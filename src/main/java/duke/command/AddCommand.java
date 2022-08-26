@@ -15,25 +15,33 @@ import duke.util.Ui;
 
 /**
  * Represents a command for adding tasks to the task lists. It comprises of 3 types
- * of task, namely todo, deadline and event.
+ * of task to be created, namely todo, deadline and event.
  */
 public class AddCommand extends Command {
     private int taskType;
     private String taskDetails;
 
     /**
-     * Insert Javadocs
+     * Constructor to create an instance of AddCommand.
+     *
+     * @param taskType Integer value representing the type of task, 0-TODO Task,
+     *                 1-DEADLINE Task, 2-EVENT Task
+     * @param taskDetails String representation of the task description
+     * @return instance of AddCommand
      */
     public AddCommand(int taskType, String taskDetails) {
-        // 0: TODO Task
-        // 1: DEADLINE Task
-        // 2: EVENT Task
         this.taskType = taskType;
         this.taskDetails = taskDetails;
     }
 
     /**
-     * Insert Javadocs
+     * Create the corresponding task based on the taskType in AddCommand and adds task
+     * to the TaskList. The task list is then stored on a file under data/tasks.txt
+     *
+     * @param tasks a list to add and keep track of the tasks
+     * @param ui an instance of ui that handles the interaction with user inputs
+     * @param storage a storage that handles the writing and reading of tasks from a txt file
+     * @throws IOException if the writeToFile method fails while storing the TaskList on a local txt file
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         if (this.taskType == 0) {
@@ -51,9 +59,12 @@ public class AddCommand extends Command {
         storage.writeToFile(tasks);
     }
 
-    // Format the dates from YYYY-MM_DD to MMM d yyyy
     /**
-     * Insert Javadocs
+     * Takes in dates in the format YYYY-MM-DD and transform them into MMM d yyyy.
+     * (2019-05-05 to May 5 2019)
+     *
+     * @param dateInput a String representation of the date in YYYY-MM-DD format.
+     * @return a string representation of the same date in MMM d yyyy format.
      */
     public String formatDate(String dateInput) {
         try {
@@ -64,10 +75,19 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Check if it is the exit command.
+     *
+     * @return false since an AddCommand does not terminate the ChatBot.
+     */
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * A string
+     * @return
+     */
     @Override
     public String toString() {
         return "__________________________________________________\n"
