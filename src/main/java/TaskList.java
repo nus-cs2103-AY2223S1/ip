@@ -3,12 +3,19 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the list of task managed by the ChatBot.
+ */
 public class TaskList {
 
     private List<Task> list;
     private static int noOfTasks;
     private Ui ui;
 
+    /**
+     * Create a tasklist.
+     * @param pastList
+     */
     TaskList(List<Task> pastList) {
         this.list = pastList;
         this.noOfTasks = pastList.size();
@@ -19,6 +26,11 @@ public class TaskList {
         return this.list;
     }
 
+    /**
+     * Add new task from the users into the existing taskList.
+     * Keep track of the number of tasks in the list.
+     * @param s Task given by the users
+     */
     void add(String s) {
         String[] strarr = s.split(" ");
         String typeOfTask = strarr[0];
@@ -43,6 +55,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Delete the task with this taskNo from the list.
+     * @param taskNo TaskNo given by the users.
+     */
     void delete(int taskNo) {
         Task currentTask = list.get(taskNo - 1);
         list.remove(taskNo - 1);
@@ -51,6 +67,9 @@ public class TaskList {
         ui.delete(deletedTask, this.noOfTasks);
     }
 
+    /**
+     * Print out the existing list of tasks for the users.
+     */
     void getPrintedList() {
         System.out.println("Here are the tasks in your list:");
         for(int i = 1; i < list.size() + 1; i++) {
@@ -58,7 +77,10 @@ public class TaskList {
             System.out.println(i + ". " + currentTask);
         }
     }
-
+    /**
+     * Mark the task with this taskNo as done.
+     * @param taskNo TaskNo given by the users.
+     */
     void mark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.markAsDone();
@@ -66,6 +88,10 @@ public class TaskList {
         ui.mark(markedTask);
     }
 
+    /**
+     * Unmark the task with this taskNo.
+     * @param taskNo TaskNo given by the users.
+     */
     void unmark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.unmarked();
@@ -73,7 +99,7 @@ public class TaskList {
         ui.unmark(unmarkedTask);
     }
 
-    String[] processDescription(String[] strarr) throws TaskWithNoDescriptionException {
+    private String[] processDescription(String[] strarr) throws TaskWithNoDescriptionException {
         if(strarr.length > 1) {
             String description = strarr[1];
             String date = "";

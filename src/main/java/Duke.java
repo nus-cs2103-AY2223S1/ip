@@ -1,6 +1,10 @@
 package duke;
 import java.util.*;
 
+/**
+ * Represents a ChatBot for managing tasks such as deadline, todo and event.
+ */
+
 public class Duke {
 
     private Storage storage;
@@ -8,12 +12,22 @@ public class Duke {
     private Ui ui;
     private final static String fileLocation = "./data/duke.txt";
 
+    /**
+     * Create ChatBot.
+     * @param filePath
+     * @throws Exception
+     */
     public Duke(String filePath) throws Exception {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.readFiles());
     }
 
+    /**
+     * Run the ChatBot.
+     * Receive command from the users and implement it.
+     * @throws Exception
+     */
     public void run() throws Exception {
         ui.greet();
         Scanner sc = new Scanner(System.in);
@@ -45,48 +59,13 @@ public class Duke {
         }
     }
 
+    /**
+     * Start ChatBot.
+     */
     public static void main(String[] args) throws Exception{
         new Duke(fileLocation).run();
     }
 
 }
 
-    /*public static void main(String[] args) throws MismatchInputException, Exception {
-        /*String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
-        //Scanner sc = new Scanner(System.in);
-        //SkeletonDuke duke = new SkeletonDuke();
-        //duke.greet();
-        //duke.readFiles();
-        /*while(sc.hasNextLine()) {
-            String str = sc.nextLine();
-            String[] strarr = str.split(" ");
-            String command = strarr[0];
-            if(command.equals("bye")) {
-                duke.exit();
-                duke.saveNewChanges();
-                break;
-            } else if(command.equals("list")) {
-                duke.getList();
-            } else if(command.equals("mark")){
-                int taskNo = Integer.parseInt(strarr[1]);
-                duke.mark(taskNo);
-            } else if(command.equals("unmark")){
-                int taskNo = Integer.parseInt(strarr[1]);
-                duke.unmark(taskNo);
-            } else if(command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                duke.add(str);
-            } else if(command.equals("delete")){
-                int taskNo = Integer.parseInt(strarr[1]);
-                duke.delete(taskNo);
-            } else {
-                duke.saveNewChanges();
-                throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means" );
-            }
-        }
-    }*/
 
