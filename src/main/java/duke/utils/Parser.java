@@ -1,31 +1,32 @@
 package duke.utils;
 
-import duke.exceptions.DukeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
-import duke.commands.Command;
 import duke.commands.AddCommand;
+import duke.commands.Command;
 import duke.commands.DeleteCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.ListCommand;
 import duke.commands.ExitCommand;
 import duke.commands.InvalidCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.UnmarkCommand;
+import duke.exceptions.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
 /**
- * This class parses the user input.
- *
- * @author sikai00
+ * Handles the parsing of user input.
  */
-
 public class Parser {
     private static final InvalidCommand NUMBER_FORMAT = new InvalidCommand("Task index should be integers!");
 
+    /**
+     * Parses the user input and returns the appropriate Command.
+     * @param userInput Raw user input
+     * @return Command based on user input
+     */
     public Command parseCommand(String userInput) {
         String[] tokens = userInput.split(" ", 2);
         String command = tokens[0];
@@ -48,13 +49,20 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares and returns a new AddCommand.
+     * This method parses the user input to distinguish between the different Tasks
+     * and returns an AddCommand with the correct Task.
+     * @param userInput Raw user input
+     * @return AddCommand based on raw user input
+     */
     private Command prepareAdd(String userInput) {
         String[] tokens = userInput.split(" ", 3);
         if (tokens.length < 3) {
             return new InvalidCommand("Oh no! Try add <task type> <description>!");
         }
 
-        String taskType = tokens[1];
+        String taskType = tokens[1].toLowerCase();
 
         switch (taskType) {
         case Todo.TASK_WORD:
@@ -92,6 +100,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares and returns a new DeleteCommand.
+     * @param userInput Raw user input
+     * @return DeleteCommand based on raw user input
+     */
     private Command prepareDelete(String userInput) {
         String[] tokens = userInput.split(" ", 2);
         if (tokens.length < 2) {
@@ -105,6 +118,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares and returns a new MarkCommand.
+     * @param userInput Raw user input
+     * @return MarkCommand based on raw user input
+     */
     private Command prepareMark(String userInput) {
         String[] tokens = userInput.split(" ", 2);
         if (tokens.length < 2) {
@@ -118,6 +136,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares and returns a new UnmarkCommand.
+     * @param userInput Raw user input
+     * @return UnmarkCommand based on raw user input
+     */
     private Command prepareUnmark(String userInput) {
         String[] tokens = userInput.split(" ", 2);
         if (tokens.length < 2) {
@@ -142,9 +165,9 @@ public class Parser {
      * @return LocalDateTime
      */
     private static LocalDateTime parseDateTime(String dateText) throws DukeException {
-        DukeException WRONG_FORMAT = new DukeException("Date and time is in the wrong format! "
+        final DukeException WRONG_FORMAT = new DukeException("Date and time is in the wrong format! "
                 + "Correct format: yyyy-mm-dd HH:MM");
-        DukeException CANNOT_PARSE = new DukeException("Date and time may have invalid values!");
+        final DukeException CANNOT_PARSE = new DukeException("Date and time may have invalid values!");
 
         String[] dateTextTokens = dateText.split(" ");
         if (dateTextTokens.length != 2) {

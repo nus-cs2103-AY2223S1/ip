@@ -5,15 +5,21 @@ import java.util.List;
 
 import duke.tasks.Task;
 
+/**
+ * Represents a List of Task.
+ */
 public class TaskList {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
+    /**
+     * Initializes a new TaskList instance.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Add a new task.
+     * Adds a new task.
      *
      * @param task Task to be added.
      */
@@ -22,7 +28,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task.
+     * Deletes a task.
      *
      * @param index Index of the task as printed by TaskList's toString.
      */
@@ -31,7 +37,7 @@ public class TaskList {
     }
 
     /**
-     * Return the number of tasks in the task list currently.
+     * Returns the number of tasks in the task list currently.
      *
      * @return Number of tasks in the task list.
      */
@@ -50,7 +56,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done.
+     * Marks a task as done.
      *
      * @param index Position of the task as indicated by TaskList's string
      *              representation.
@@ -61,7 +67,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as not done.
+     * Marks a task as not done.
      *
      * @param index Position of the task as indicated by TaskList's string
      *              representation.
@@ -72,7 +78,7 @@ public class TaskList {
     }
 
     /**
-     * Return a string representation of all tasks.
+     * Returns a string representation of all tasks.
      *
      * @return String representation of all tasks
      */

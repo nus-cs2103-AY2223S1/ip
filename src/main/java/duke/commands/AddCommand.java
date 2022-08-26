@@ -6,18 +6,24 @@ import duke.utils.TaskList;
 import duke.utils.Ui;
 
 /**
- * Adds a new task to the task list and prints a confirmation message.
- *
- * @author sikai00
+ * Represents an executable command that adds a Task to the specified TaskList.
  */
 public class AddCommand extends Command {
+    /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "add";
     private final Task task;
 
+    /**
+     * Initializes a new AddCommand instance.
+     * @param task Task to be added
+     */
     public AddCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(this.task);
