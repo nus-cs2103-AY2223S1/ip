@@ -5,12 +5,20 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import java.util.Scanner;
 
+/**
+ * The main class for the chatbot.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * A constructor for the chatbot.
+     *
+     * @param filePath the file path for storage
+     */
     public Duke (String filePath) {
         Scanner sc = new Scanner(System.in);
         this.ui = new Ui(sc);
@@ -21,6 +29,9 @@ public class Duke {
         new Duke("data/Duke.txt").run();
     }
 
+    /**
+     * Runs the chatbot program.
+     */
     public void run() {
         ui.greetUser();
         boolean isExit = false;

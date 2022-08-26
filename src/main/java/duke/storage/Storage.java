@@ -13,17 +13,30 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private static String home = System.getProperty("user.home");
     private static final String FILE_PATH = home + "/" + "data/Duke.txt";
 
     private String filePath;
 
+    /**
+     * A constructor for a Storage.
+     *
+     * @param filePath the file path for storage
+     */
     public Storage(String filePath) {
         this.filePath = home + "/" + filePath;
         checkDirectory();
     }
 
+    /**
+     * Updates the storage file with the current state.
+     *
+     * @param taskList the TaskList used to update the storage file.
+     */
     public void save(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -35,6 +48,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the last previous state from the storage file.
+     *
+     * @return a list of Tasks from the storage file memory.
+     */
     public List<Task> load() {
         String line = "";
         List<Task> tasks = new ArrayList<>();
@@ -70,6 +88,9 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Checks that the directory and file exists and if not, create them.
+     */
     public void checkDirectory() {
         // Create directory if does not exist
         File dir = new File(filePath.split("/")[0]);
@@ -86,6 +107,5 @@ public class Storage {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 }
