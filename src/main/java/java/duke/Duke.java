@@ -141,8 +141,7 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Uses parser to handle input similar to CLI duke
      */
     private String getResponse(String input) {
         try {
