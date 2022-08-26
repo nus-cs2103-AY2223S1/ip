@@ -9,7 +9,7 @@ public class Ui {
 
     public void printWithDivider(String s) {
         this.printDivider();
-        OUTPUT.printf("%s", s);
+        OUTPUT.printf("%s\n", s);
         this.printDivider();
     }
 
@@ -19,7 +19,7 @@ public class Ui {
 
     public void showWelcome() {
         this.printDivider();
-        OUTPUT.println("Hello! I'm Duke\\nWhat can I do for you?\"");
+        OUTPUT.println("Hello! I'm Duke\nWhat can I do for you?");
         this.printDivider();
     }
 }
