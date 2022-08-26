@@ -1,4 +1,6 @@
-[T][ ] hello
 [T][X] read book
-[D][X] return book (by: JUN 06 2022)
-[E][ ] birthday (at: Monday 3pm))
+[D][ ] return book (by: JUN 06 2022)
+[D][ ] book review (by: JUN 22 2022)
+[E][ ] book session (at: Monday 3pm )
+[T][X] read book
+[T][ ] housework
