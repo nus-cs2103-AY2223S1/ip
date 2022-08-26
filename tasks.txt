@@ -1,4 +1,4 @@
-E | 0 | go watch football | 2022-08-31
+E | 1 | go watch football | 2022-08-31
 D | 0 | finish IP | 2022-08-26
 T | 0 | watch lecture 1
 T | 1 | read book
