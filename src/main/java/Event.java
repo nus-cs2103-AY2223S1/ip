@@ -9,7 +9,7 @@ public class Event extends Task {
         this.eventTime = eventTime;
     }
 
-    public Event(boolean isDone, String description, String eventTime) {
+    public Event(boolean isDone, String description, LocalDate eventTime) {
         super(isDone, description);
         this.eventTime = eventTime;
     }
@@ -20,6 +20,6 @@ public class Event extends Task {
     }
 
     public String toDbString() {
-        return "E" + " | " + super.toDbString() + " | " + eventTime;
+        return "E" + " | " + super.toDbString() + " | " + eventTime.format(DateTimeFormatter.ofPattern("dd MMM yy"));
     }
 }

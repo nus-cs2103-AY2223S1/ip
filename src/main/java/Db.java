@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +37,15 @@ public class Db {
                             tasks.add(new Todo(isDone, description));
                             break;
                         case "D":
-                            String deadline = taskArray[3].strip();
+                            String deadlineString = taskArray[3].strip();
+                            LocalDate deadline = LocalDate.parse(deadlineString,
+                                    DateTimeFormatter.ofPattern("dd MMM yy"));
                             tasks.add(new Deadline(isDone, description, deadline));
                             break;
                         case "E":
-                            String eventTime = taskArray[3].strip();
+                            String eventTimeString = taskArray[3].strip();
+                            LocalDate eventTime = LocalDate.parse(eventTimeString,
+                                    DateTimeFormatter.ofPattern("dd MMM yy"));
                             tasks.add(new Event(isDone, description, eventTime));
                             break;
                     }

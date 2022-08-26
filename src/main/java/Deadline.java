@@ -9,7 +9,7 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
-    public Deadline(boolean isDone, String description, String deadline) {
+    public Deadline(boolean isDone, String description, LocalDate deadline) {
         super(isDone, description);
         this.deadline = deadline;
     }
@@ -20,6 +20,6 @@ public class Deadline extends Task {
     }
 
     public String toDbString() {
-        return "D" + " | " + super.toDbString() + " | " + deadline;
+        return "D" + " | " + super.toDbString() + " | " + deadline.format(DateTimeFormatter.ofPattern("dd MMM yy"));
     }
 }
