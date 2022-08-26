@@ -116,13 +116,13 @@ public class Parser {
      */
     private static String[] splitWithFormat(String input, String delimiter, String errMsg) 
             throws InvalidCommandException {
-        String[] processedInput = input.trim().split(delimiter, 2);
-        if (processedInput.length < 2) {
+        String[] processedInputs = input.trim().split(delimiter, 2);
+        if (processedInputs.length < 2) {
             throw new InvalidCommandException(errMsg);
         } 
-        for (int i = 0; i < processedInput.length; i++) {
-            processedInput[i] = processedInput[i].trim();
+        for (int i = 0; i < processedInputs.length; i++) {
+            processedInputs[i] = processedInputs[i].trim();
         }
-        return processedInput;
+        return processedInputs;
     }
 }

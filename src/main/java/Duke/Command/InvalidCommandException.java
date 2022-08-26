@@ -5,6 +5,7 @@ package Duke.Command;
  * invalid command was given by the user.
  */
 public class InvalidCommandException extends Exception{
+    
     public InvalidCommandException(String errMsg) {
         super(errMsg);
     }
