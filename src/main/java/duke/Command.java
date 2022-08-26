@@ -1,10 +1,12 @@
+package duke;
+
 public class Command {
 
-    // Attributes of a Command
+    // Attributes of a duke.Command
     protected CommandName givenCommand;
 
     /**
-     * Constructor for the Command class
+     * Constructor for the duke.Command class
      * @param givenCommand the given command
      */
     public Command(CommandName givenCommand) {
@@ -14,7 +16,7 @@ public class Command {
     public void printCommand() {
         switch (givenCommand) {
             case GREETINGS:
-                System.out.println("Hello! I'm Duke");
+                System.out.println("Hello! I'm duke.Duke");
                 System.out.println("What can I do for you?");
                 break;
             case DEPARTURE:

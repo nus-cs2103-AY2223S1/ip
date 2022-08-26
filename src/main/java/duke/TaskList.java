@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +8,7 @@ public class TaskList {
     public static List<Task> taskArrayList;
 
     /**
-     * The constructor for TaskList
+     * The constructor for duke.TaskList
      */
     public TaskList() {
         taskArrayList = new ArrayList<>();

@@ -1,7 +1,6 @@
+package duke;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.FileWriter;
 import java.time.LocalDate;
 
 public class Duke {

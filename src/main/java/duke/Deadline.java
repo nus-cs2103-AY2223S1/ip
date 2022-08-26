@@ -1,15 +1,16 @@
+package duke;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Deadline extends Task {
 
-    // Attributes of a Deadline
+    // Attributes of a duke.Deadline
     protected LocalDate byDate;
     protected String byTime;
 
 
     /**
-     * The information regarding the Deadline
+     * The information regarding the duke.Deadline
      * @param description the description of the task to do by the deadline
      * @param byDate the due date
      * @param byTime the due time

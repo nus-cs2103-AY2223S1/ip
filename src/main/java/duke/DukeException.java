@@ -1,8 +1,10 @@
+package duke;
+
 public class DukeException extends Exception {
 
     /**
-     * Constructor for the DukeException
-     * @param errorMessage message to be shown when DukeException is caught
+     * Constructor for the duke.DukeException
+     * @param errorMessage message to be shown when duke.DukeException is caught
      */
     public DukeException(String errorMessage) {
         super(errorMessage);
@@ -10,7 +12,7 @@ public class DukeException extends Exception {
 
     /**
      * Text to be shown
-     * @return text to be shown when DukeException is caught
+     * @return text to be shown when duke.DukeException is caught
      */
     @Override
     public String getMessage() {

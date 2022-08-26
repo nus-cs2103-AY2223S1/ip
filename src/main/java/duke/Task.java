@@ -1,11 +1,13 @@
+package duke;
+
 public abstract class Task {
 
-    // Attributes of a Task
+    // Attributes of a duke.Task
     protected String description;
     private boolean isDone;
 
     /**
-     * The constructor for the Task
+     * The constructor for the duke.Task
      * @param description the text for the task
      */
     public Task(String description) {

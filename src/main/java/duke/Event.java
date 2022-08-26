@@ -1,10 +1,12 @@
+package duke;
+
 public class Event extends Task {
 
-    // Attributes of an Event
+    // Attributes of an duke.Event
     protected String at;
 
     /**
-     * The constructor for the Event
+     * The constructor for the duke.Event
      * @param description the description of the event
      * @param at the time of the event
      */

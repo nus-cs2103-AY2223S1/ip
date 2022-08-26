@@ -1,16 +1,18 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
 
     // Use final variables to denote standard greetings we will say to the user
-    static final String GREETING = "Hello! I'm Duke! What can I do for you?";
+    static final String GREETING = "Hello! I'm duke.Duke! What can I do for you?";
     static final String BYE = "Bye. Hope to see you again soon ^^!";
     static final String LINEBREAK = "-------------------------";
 
     private Scanner enterInput;
 
     /**
-     * Constructor for the Ui
+     * Constructor for the duke.Ui
      */
     public Ui() {
         this.enterInput = new Scanner(System.in);
