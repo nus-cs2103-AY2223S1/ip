@@ -6,7 +6,15 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test Class for Deadline class.
+ */
 public class DeadlineTest {
+
+    /**
+     * Tests save format conversion method in Deadline class with 2 valid inputs.
+     * Test should return successfully if the converted string matches the expected output.
+     */
     @Test
     public void convertToSaveFormat_saveFormatConversion_success() {
         Deadline t1 = new Deadline("task1", LocalDateTime.of(2012, 3, 4, 5, 6));
