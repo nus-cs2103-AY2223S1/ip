@@ -10,6 +10,6 @@ public class ToDo extends Task {
 
     @Override
     public String toWrite() {
-        return String.format("T/%s/%s", (isDone ? "1" : "0"), description.trim());
+        return String.format("T~%s~%s", (isDone ? "1" : "0"), description.trim());
     }
 }
