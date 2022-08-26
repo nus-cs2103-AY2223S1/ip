@@ -14,16 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
+/**
+ * This class encapsulates the logic of the storage of the task list in the user's harddrive.
+ */
 public class Storage {
+    /* Const fields for representation of the various paths. */
     private static final String PROJECT_ROOT = System.getProperty("user.dir");
     private static final Path SAVE_LOCATION = Path.of(PROJECT_ROOT, "data");
     private static final String SAVE_FILE_NAME = "Task List.txt";
     private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
 
-    public Storage() {
-
-    }
-
+    /**
+     * Loads the data from the file found in the saved location into the task list.
+     *
+     * @param tasks task list.
+     */
     public static void Load(List<Task> tasks) {
         // This is the current directory the system is in.
         boolean isDataFolderPresent = Files.exists(SAVE_LOCATION);
@@ -63,6 +68,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the task to the text file in the user's hard drive.
+     *
+     * @param tasks task list.
+     * @param isDeleted if the contents of the file should be deleted and reset.
+     */
     public static void Save(ArrayList<Task> tasks, boolean isDeleted) {
         // Saves to the file
         try {
@@ -84,6 +95,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Method to parse the saved text file data into usable data to be input into the task list.
+     *
+     * @param savedTask the task in the saved task list.
+     * @return a task to be input into the task list.
+     * @throws DukeException if the method fails, printing the message output.
+     */
     private static Task parseTask(String savedTask) throws DukeException {
         Task task = null;
         String[] taskArr;
@@ -118,6 +136,9 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Method for resetting the file.
+     */
     public static void resetTaskListFile() {
         try {
             Files.newBufferedWriter(SAVE_FILE_PATH, StandardOpenOption.TRUNCATE_EXISTING);

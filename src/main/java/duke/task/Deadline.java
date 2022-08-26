@@ -21,6 +21,13 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    /**
+     * Factory Method for the construction of a Deadline for user input.
+     *
+     * @param in user's input.
+     * @return Deadline with the relevant input fields.
+     * @throws DukeException if no task or incorrect formatting is given.
+     */
     public static Deadline createDeadline(String in) throws DukeException {
         String[] temp = in.split(" */by* ");
         if (temp.length != 2) {

@@ -29,14 +29,27 @@ public class UI {
         System.out.println("Have a nice day! :)");
     }
 
+    /**
+     * Prints the error given when no index is given when deleting tasks.
+     */
     public static void printDeleteErrorMessage() {
         System.out.println("Please add an index to delete a task!\n");
     }
 
+    /**
+     * Prints the exception message when a DukeException is thrown.
+     *
+     * @param e DukeException thrown.
+     */
     public static void printDukeExceptionMessage(DukeException e) {
         System.out.println(e.getMessage());
     }
 
+    /**
+     * Prints the message when a Task is added to the list.
+     *
+     * @param t task added.
+     */
     public static void printAddTaskMessage(Task t) {
         System.out.println("Added: " + t.toString() + "\n");
     }

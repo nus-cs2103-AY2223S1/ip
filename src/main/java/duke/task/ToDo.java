@@ -1,9 +1,10 @@
 package duke.task;
 
-// This class inherits from the abstract Task class
-// and encapsulates the logic of a ToDo task.
+/**
+ * This class inherits from the abstract Task class
+ * and encapsulates the logic of a ToDo task.
+ */
 public class ToDo extends Task{
-
     /**
      * Constructor for the Todo Task.
      * @param description description of the task.

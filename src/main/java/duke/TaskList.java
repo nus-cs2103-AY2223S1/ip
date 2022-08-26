@@ -23,6 +23,11 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Getter for the task list.
+     *
+     * @return The task list.
+     */
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }

@@ -20,6 +20,13 @@ public class Event extends Task {
         this.duration = duration;
     }
 
+    /**
+     * Factory Method for the construction of a Event for user input.
+     *
+     * @param in user's input.
+     * @return Event with the relevant input fields.
+     * @throws DukeException if no task or incorrect formatting is given.
+     */
     public static Event createEvent(String in) throws DukeException {
         String[] temp = in.split(" */at* ");
         if (temp.length != 2) {

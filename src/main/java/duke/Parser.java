@@ -4,6 +4,7 @@ package duke;
  * This class handles the logic of extrapolating the keywords from the whole command.
  */
 public class Parser {
+    /* User Input Fields.*/
     private static Command userCommand;
     private static String userInstructions;
 
@@ -32,10 +33,20 @@ public class Parser {
         }
     }
 
+    /**
+     * Getter for the user's command.
+     *
+     * @return command enum representing the user's command.
+     */
     public static Command getUserCommand() {
         return userCommand;
     }
 
+    /**
+     * Getter for the user's instructions.
+     *
+     * @return string representation of the user's instructions.
+     */
     public static String getUserInstructions() {
         return userInstructions;
     }

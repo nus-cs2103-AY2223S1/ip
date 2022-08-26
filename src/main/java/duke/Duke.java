@@ -12,8 +12,6 @@ import java.util.Scanner;
 public class Duke {
     /* Handles task list logic. */
     private TaskList taskList;
-    /* Handles file storage logic. */
-    private Storage storage;
 
     /**
      * Constructor for the Duke Chat bot.
@@ -25,7 +23,7 @@ public class Duke {
     }
 
     /**
-     * Handles the logic for the task manager.
+     * Handles the logic for Duke to run.
      */
     public void run() {
         UI.Greet();
@@ -74,6 +72,9 @@ public class Duke {
         UI.Goodbye();
     }
 
+    /**
+     * The main class, running the chat bot.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

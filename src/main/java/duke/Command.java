@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * This class encapsulates the commands that the user can input.
+ */
 public enum Command {
     TODO("todo"),
     DEADLINE("deadline"),
@@ -10,6 +13,7 @@ public enum Command {
     DELETE("delete"),
     BYE("bye");
 
+    /* The input command by the user. */
     private final String inputCommand;
 
     /**
