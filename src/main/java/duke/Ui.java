@@ -89,7 +89,7 @@ public class Ui {
      * @param error The description for the error.
      */
     public void showError(String error) {
-        System.out.println("☹ OOPS!!!" + error);
+        System.out.println("OOPS!!!" + error);
     }
 
     public void showBye() {
