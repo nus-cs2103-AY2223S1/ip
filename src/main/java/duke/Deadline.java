@@ -41,7 +41,8 @@ public class Deadline extends Task {
                 + super.toString()
                 + " | "
                 + this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + " | "
-                + this.byTime.toString());
+                + ((this.byTime == null)
+                    ? ""
+                    : " | " + this.byTime.toString()));
     }
 }

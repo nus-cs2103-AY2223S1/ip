@@ -39,7 +39,8 @@ public class Event extends Task {
                 + super.toString()
                 + " | "
                 + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + " | "
-                + this.atTime.toString());
+                + ((this.atTime == null)
+                    ? ""
+                    : " | " + this.atTime.toString()));
     }
 }
