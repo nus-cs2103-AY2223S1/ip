@@ -19,10 +19,10 @@ public class Task {
     protected final String due; // can be accessed by subclasses
     protected final String commandWord;
 
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
         .withResolverStyle(ResolverStyle.SMART);
 
-    DateValidator validator = new DateValidator(dateFormatter);
+    private final DateValidator validator = new DateValidator(dateFormatter);
 
     public Task (String description, String due, String commandWord) {
         this.description = description;
@@ -65,12 +65,15 @@ public class Task {
         } catch (DateTimeParseException e) {
             System.out.println(e);
             System.out.println("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format");
+
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
             System.out.println("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
+
         } catch (ParseException e) {
             System.out.println(e);
             System.out.println("Caught parse exception!");
+
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("Some other error occurred");

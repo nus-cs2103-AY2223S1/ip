@@ -75,10 +75,8 @@ public class Pixel {
                     for (Task task : inputTasks) {
                         storage.appendToFile(task);
                     }
-
                     System.out.println(" Nice! I've marked this task as done:");
                     System.out.println(inputTasks.get(indexToChange - 1));
-                    // run();
 
                 } else if (userInput.strip().startsWith("unmark ")) {
                     // truncate the front part
@@ -94,10 +92,8 @@ public class Pixel {
                     for (Task task : inputTasks) {
                         storage.appendToFile(task);
                     }
-
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(inputTasks.get(indexToChange - 1));
-                    // run();
 
                 } else if (userInput.strip().equals("list")) {
                     // System.out.println(inputMemory.length);
@@ -106,7 +102,6 @@ public class Pixel {
                         Task currentTask = inputTasks.get(i);
                         System.out.println((i + 1) + ". " + currentTask);
                     }
-                    // run();
 
                 } else if (userInput.strip().startsWith("delete ")) {
                     storage.deleteEntry(userInput);
@@ -118,23 +113,18 @@ public class Pixel {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e);
                 System.out.println("caught Index Out of Bounds Exception");
-
             } catch (StackOverflowError e) {
                 System.out.println(e);
                 System.out.println("caught Stack Overflow Error");
-
             } catch (NullPointerException e) {
                 System.out.println(e);
                 System.out.println("caught Null pointer exception");
-
             } catch (IncorrectFormatException e) {
                 System.out.println(e);
                 System.out.println("Incorrect format exception!");
-
             } catch (IOException e) {
                 System.out.println(e);
                 System.out.println("Caught IO exception! Please ensure that the file address provided is valid");
-
             } finally {
                 // clean up
                 // System.out.println("cleaning up. Process resumes. Please enter your new input");
@@ -157,7 +147,6 @@ public class Pixel {
             int indexOfEndOfDescription = indexOfSlash == -1 ? userInput.length() : indexOfSlash;
             Task newTask;
             String commandWord = "";
-
             if (indexOfSlash != -1) {
                 if (userInput.substring(indexOfSlash + 1).startsWith("by")) {
                     commandWord = "by";
@@ -172,19 +161,16 @@ public class Pixel {
                 case "T": { // todo
                     String description = userInput.substring(5, indexOfEndOfDescription);
                     newTask = new ToDo(description, due, commandWord); // Stores user input
-
                     break;
                 }
                 case "D": { // deadline
                     String description = userInput.substring(9, indexOfEndOfDescription);
                     newTask = new Deadline(description, due, commandWord); // Stores user input
-
                     break;
                 }
                 case "E": { // event
                     String description = userInput.substring(6, indexOfEndOfDescription);
                     newTask = new Event(description, due, commandWord); // Stores user input
-
                     break;
                 }
                 default:  //shouldn't reach here
@@ -202,7 +188,6 @@ public class Pixel {
             for (Task task : inputTasks) {
                 storage.appendToFile(task);
             }
-
             count += 1;
             System.out.println("Got it. I've added this task:");
             System.out.println(newTask);
