@@ -23,6 +23,8 @@ public class Parser {
                 return new EventCommand(str);
             } else if (str.startsWith("delete ")) {
                 return new DeleteCommand(str);
+            } else if (str.startsWith("find ")) {
+                return new FindCommand(str);
             } else if (str.equals("todo")) { // to avoid strings such as "todotodo for earlier block"
                 return new ErrorCommand("☹ OOPS!!! The description of a todo cannot be empty.");
             } else {
