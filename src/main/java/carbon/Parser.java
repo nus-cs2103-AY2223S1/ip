@@ -47,6 +47,8 @@ public class Parser {
                 log = this.taskList.validateAndMark(input, false);
             } else if (lowerCaseInput.startsWith("delete")) {
                 log = this.taskList.deleteTask(input);
+            } else if (lowerCaseInput.startsWith("find")) {
+                log = this.taskList.findTask(input);
             } else if (lowerCaseInput.startsWith("todo")) {
                 log = this.taskList.addTask(input, Task.Type.TODO);
             } else if (lowerCaseInput.startsWith("deadline")) {

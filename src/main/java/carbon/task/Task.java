@@ -81,6 +81,11 @@ public abstract class Task {
 
     public abstract String encode();
 
+    public boolean contains(String keyword) {
+        boolean hasKeyword = this.name.contains(keyword);
+        return hasKeyword;
+    }
+
     @Override
     public String toString() {
         String doneness = this.isDone? "X" : " ";
