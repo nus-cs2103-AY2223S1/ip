@@ -19,12 +19,13 @@ class Duke {
     private Storage storage;
     private Ui ui;
 
-    Duke() {
+    public Duke() {
         Storage storage = new Storage(DATA_PATH);
         this.storage = storage;
         this.taskList = new TaskList(storage.load());
         this.ui = new Ui();
     }
+
 
     /**
      * Initialises the application and begins interacting with the user.
