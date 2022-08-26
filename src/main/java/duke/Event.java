@@ -21,6 +21,9 @@ public class Event extends Task {
         this.time = time;
     }
 
+    /**
+     * Converts the event in tasks.txt into a Event object.
+     */
     public static Event parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
         Pattern taskPattern = Pattern.compile("] (.*?) \\(by");
