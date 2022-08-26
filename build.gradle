@@ -28,6 +28,10 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
+checkstyle {
+    toolVersion = '10.2'
+}
+
 application {
     mainClass = 'duke.Duke' 
 }
