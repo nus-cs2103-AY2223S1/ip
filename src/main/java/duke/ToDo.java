@@ -12,7 +12,10 @@ public class ToDo extends Task{
      */
     @Override
     public String toString() {
-        return "[T] " + this.getStatusIcon() + " " + super.description;
+        return "[T] "
+                + this.getStatusIcon()
+                + " "
+                + super.description;
     }
 
     /*
@@ -24,9 +27,13 @@ public class ToDo extends Task{
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
-            return "T|1|" + super.description + "\n";
+            return "T|1|"
+                    + super.description
+                    + "\n";
         } else {
-            return "T|0|" + super.description + "\n";
+            return "T|0|"
+                    + super.description
+                    + "\n";
         }
     }
 }

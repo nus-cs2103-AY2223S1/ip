@@ -14,6 +14,7 @@ public class DeleteCommand extends Command {
      * Command that represents the removal of task from Storage.
      */
     public DeleteCommand(int deleteTask) {
+
         this.deleteTask = deleteTask;
     }
 

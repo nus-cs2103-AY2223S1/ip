@@ -72,16 +72,23 @@ public class TaskList {
         Object[] taskArr = this.taskList.toArray();
         String result = "";
         for (int i = 0; i < this.taskList.size(); i++) {
-            result += (i + 1) + ". " + taskArr[i].toString() + "\n";
+            result += (i + 1)
+                    + ". "
+                    + taskArr[i].toString()
+                    + "\n";
         }
         return result;
     }
 
     public String numOfTask() {
         if (taskList.size() > 1) {
-            return "YOU HAVE " + taskList.size() + " TASKS!";
+            return "YOU HAVE "
+                    + taskList.size()
+                    + " TASKS!";
         } else {
-            return "YOU HAVE " + taskList.size() + " TASK!";
+            return "YOU HAVE "
+                    + taskList.size()
+                    + " TASK!";
         }
     }
 

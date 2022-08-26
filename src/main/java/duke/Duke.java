@@ -12,7 +12,6 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
     public Duke() {
-
         this.ui = new Ui();
         this.taskList = new TaskList();
         this.storage = new Storage();
