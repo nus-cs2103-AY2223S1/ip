@@ -19,7 +19,8 @@ public class CommandParser {
         DEADLINE
     }
 
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
+    private static final Pattern COMMAND_PATTERN =
+            Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
     private final TaskList taskList;
 
     public CommandParser(TaskList tasks) {
@@ -36,6 +37,7 @@ public class CommandParser {
 
     public void handle(String command) {
         try {
+            // Identify groups based on command pattern
             Matcher matcher = COMMAND_PATTERN.matcher(command);
             matcher.find();
             String action = matcher.group(1);
@@ -43,31 +45,32 @@ public class CommandParser {
             String time = matcher.group(4);
             Command cmd = generator(action);
 
+            // Call methods according to command
             switch (cmd) {
-                case LIST:
-                    taskList.printList();
-                    break;
-                case DONE:
-                    taskList.markDone(desc);
-                    break;
-                case BEFORE:
-                    taskList.printDeadline(time);
-                    break;
-                case DELETE:
-                    taskList.delete(desc);
-                    break;
-                case TODO:
-                    taskList.addToDo(desc);
-                    break;
-                case EVENT:
-                    taskList.addEvent(desc, time);
-                    break;
-                case DEADLINE:
-                    taskList.addDeadline(desc, time);
-                    break;
-                default:
-                    throw new InvalidCommandException();
-                }
+            case LIST:
+                taskList.printList();
+                break;
+            case DONE:
+                taskList.markDone(desc);
+                break;
+            case BEFORE:
+                taskList.printDeadline(time);
+                break;
+            case DELETE:
+                taskList.delete(desc);
+                break;
+            case TODO:
+                taskList.addToDo(desc);
+                break;
+            case EVENT:
+                taskList.addEvent(desc, time);
+                break;
+            case DEADLINE:
+                taskList.addDeadline(desc, time);
+                break;
+            default:
+                throw new InvalidCommandException();
+            }
         } catch (DukeException e) {
             System.out.println(e);
         } catch (DateTimeParseException e) {
