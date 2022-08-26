@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class Duke {
                     if (done.equals("X")) {
                         t.markDone();
                     }
-                    this.loadTask("todo", t);
+                    this.loadTask(t);
                 } else if (taskArr[0].equals("D")) {
                     String done = taskArr[1];
                     String description = taskArr[2];
@@ -37,7 +39,7 @@ public class Duke {
                     if (done.equals("X")) {
                         t.markDone();
                     }
-                    this.loadTask("deadline", t);
+                    this.loadTask(t);
                 } else if (taskArr[0].equals("E")) {
                     String done = taskArr[1];
                     String description = taskArr[2];
@@ -46,7 +48,7 @@ public class Duke {
                     if (done.equals("X")) {
                         t.markDone();
                     }
-                    this.loadTask("event", t);
+                    this.loadTask(t);
                 } else {
                     throw new DukeException("Oops, unknown task type.");
                 }
@@ -100,35 +102,26 @@ public class Duke {
         }
     }
 
-    public void loadTask(String type, Task task) {
-        if (type.equals("todo")) {
+    public void loadTask(Task task) {
+        if (task instanceof Todo) {
             this.list.add(this.list.size(), task);
-        } else if (type.equals("deadline")) {
+        } else if (task instanceof Deadline) {
             this.list.add(this.list.size(), task);
-        } else if (type.equals("event")) {
+        } else if (task instanceof Event) {
             this.list.add(this.list.size(), task);
         }
     }
 
-    public void addTask(String type, String desc) {
-        Task t;
-        if (type.equals("todo")) {
-            t = new Todo(desc);
-            this.list.add(this.list.size(), t);
-            System.out.println("Added ToDo: " + t);
-        }
-    }
-
-    public void addTask(String type, String desc, String date) {
-        Task t;
-        if (type.equals("deadline")) {
-            t = new Deadline(desc, date);
-            this.list.add(this.list.size(), t);
-            System.out.println("Added Deadline: " + t);
-        } else if (type.equals("event")) {
-            t = new Event(desc, date);
-            this.list.add(this.list.size(), t);
-            System.out.println("Added Event: " + t);
+    public void addTask(Task task) {
+        if (task instanceof Todo) {
+            this.list.add(this.list.size(), task);
+            System.out.println("Added ToDo: " + task);
+        } else if (task instanceof Deadline) {
+            this.list.add(this.list.size(), task);
+            System.out.println("Added Deadline: " + task);
+        } else if (task instanceof Event) {
+            this.list.add(this.list.size(), task);
+            System.out.println("Added Event: " + task);
         }
     }
 
@@ -139,6 +132,23 @@ public class Duke {
             System.out.println("Task removed: " + this.list.get(ind));
             this.list.remove(ind);
             System.out.println(this.list.size() + " tasks remaining.");
+        }
+    }
+
+    public void getDateTasks(String dateStr) {
+        System.out.println("Tasks on date " + dateStr + ":");
+        for (Task t : this.list) {
+            if (t instanceof Deadline) {
+                Deadline d = (Deadline) t;
+                if (d.isOnDate(dateStr)) {
+                    System.out.println(t);
+                }
+            } else if (t instanceof Event) {
+                Event e = (Event) t;
+                if (e.isOnDate(dateStr)) {
+                    System.out.println(t);
+                }
+            }
         }
     }
 
@@ -162,7 +172,8 @@ public class Duke {
                 throw new DukeException("Oops, the description of a todo task cannot be empty.");
             }
             String desc = input.substring(5);
-            this.addTask("todo", desc);
+            Task t = new Todo(desc);
+            this.addTask(t);
         } else if (input.startsWith("deadline")) {
             if (input.length() < 10) {
                 throw new DukeException("Oops, the description of a deadline task cannot be empty.");
@@ -171,7 +182,8 @@ public class Duke {
             }
             String[] str = input.split(" /by ", 2);
             String s1 = str[0].substring(9);
-            this.addTask("deadline", s1, str[1]);
+            Task t = new Deadline(s1, str[1]);
+            this.addTask(t);
         } else if (input.startsWith("event")) {
             if (input.length() < 7) {
                 throw new DukeException("Oops, the description of an event task cannot be empty.");
@@ -179,14 +191,21 @@ public class Duke {
                 throw new DukeException("Oops, no date given for event task.");
             }
             String[] str = input.split(" /at ", 2);
-            String s1 = str[0].substring(6, str[0].length());
-            this.addTask("event", s1, str[1]);
+            String s1 = str[0].substring(6);
+            Task t = new Event(s1, str[1]);
+            this.addTask(t);
         } else if (input.startsWith("delete")) {
             if (input.length() < 8) {
                 throw new DukeException("Oops, no task given to delete.");
             }
             int i = Integer.parseInt(input.substring(7)) - 1;
             this.deleteTask(i);
+        } else if (input.startsWith("date")) {
+            if (input.length() < 6) {
+                throw new DukeException("Oops, no date given.");
+            }
+            String dateStr = input.substring(5);
+            this.getDateTasks(dateStr);
         } else {
             throw new DukeException("Oops, I don't know what that means");
         }

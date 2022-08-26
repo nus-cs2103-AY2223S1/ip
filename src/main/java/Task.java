@@ -31,5 +31,4 @@ public class Task {
     public String save() {
         return " | " + (this.isDone ? "X" : " ") + " | " + this.description;
     }
-
 }
