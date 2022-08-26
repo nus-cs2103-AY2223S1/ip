@@ -32,6 +32,8 @@ public class Parser {
                 return new UnmarkCommand(parseIndex(input[1].strip()));
             case "delete":
                 return new DeleteCommand(parseIndex(input[1].strip()));
+            case "find":
+                return new FindCommand(input[1].strip());
             case "todo":
                 return new TodoCommand(input[1].strip());
             case "deadline":
