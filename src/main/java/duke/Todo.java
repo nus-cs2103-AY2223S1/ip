@@ -9,6 +9,9 @@ public class Todo extends Task {
         }
     }
 
+    /**
+     * Converts the todo in tasks.txt into a Todo object.
+     */
     public static Todo parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
         return new Todo(task.substring(7), isDone);

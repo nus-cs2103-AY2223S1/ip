@@ -21,6 +21,10 @@ public class Deadline extends Task {
         this.time = time;
     }
 
+
+    /**
+     * Converts the deadline in tasks.txt into a Deadline object.
+     */
     public static Deadline parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
         Pattern taskPattern = Pattern.compile("] (.*?) \\(by");

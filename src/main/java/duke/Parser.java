@@ -1,6 +1,13 @@
 package duke;
 
 public class Parser {
+
+    /**
+     * Checks command and make sense of the command.
+     *
+     * @param command The command passed in by the user.
+     * @return enum type of the command.
+     */
     public static Command parse(String command) {
         if (command.startsWith("bye")) {
             return Command.QUIT;

@@ -15,28 +15,39 @@ public class Storage {
         file = filePath;
     }
 
+    /**
+     * Checks if file exists.
+     *
+     * @return True if file exists, False otherwise.
+     */
     public boolean hasExisted() {
         return new File(file).isFile();
     }
 
+    /**
+     * Loads the file into a tasklist.
+     *
+     * @return Tasklist containing all the files.
+     */
     public TaskList load() {
         //todo
         TaskList tasks = new TaskList();
         try {
             FileInputStream fis = new FileInputStream(file);
             Scanner sc = new Scanner(fis);
-            while(sc.hasNextLine()) {
-                if (sc.nextLine().startsWith("[T]")) {
+            while (sc.hasNextLine()) {
+                String nextLine = sc.nextLine();
+                if (nextLine.startsWith("[T]")) {
                     tasks.add(Todo.parse(sc.nextLine()));
-                } else if (sc.nextLine().startsWith("[D]")) {
+                } else if (nextLine.startsWith("[D]")) {
                     tasks.add(Deadline.parse(sc.nextLine()));
-                } else if (sc.nextLine().startsWith("[E]")) {
+                } else if (nextLine.startsWith("[E]")) {
                     tasks.add(Event.parse(sc.nextLine()));
                 }
             }
             sc.close();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         return tasks;
     }
