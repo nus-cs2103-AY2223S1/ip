@@ -3,12 +3,22 @@ package duke;
 import duke.commands.Command;
 import duke.exceptions.DukeException;
 
+/**
+ * Chatbot to read user inputs and manage a tasks list.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a <code>Duke</code> instance and attempt to retrieve the saved tasks list stored locally.
+     * If the retrieval succeeds, initializes a <code>TaskList</code> with the saved tasks in it.
+     * If the retrieval fails, initializes a <code>TaskList</code>.
+     *
+     * @param filePath Path of the file relative to the root directory.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         ui.printWelcome();
@@ -22,8 +32,9 @@ public class Duke {
         }
     }
 
-
-
+    /**
+     * Runs <code>Duke</code> to start taking inputs.
+     */
     public void run() {
         boolean isExit = false;
         while (!isExit) {

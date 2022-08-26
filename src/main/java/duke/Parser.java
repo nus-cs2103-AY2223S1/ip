@@ -11,8 +11,18 @@ import duke.commands.MarkCommand;
 import duke.commands.UnMarkCommand;
 import duke.exceptions.DukeException;
 
+/**
+ * Represents a <code>Parser</code> that parses input into <code>Command</code> to be executed.
+ */
 public class Parser {
 
+    /**
+     * Parses input into a <code>Command</code>.
+     *
+     * @param fullCommand Input taken from <code>Ui</code>.
+     * @return <code>Command</code> to be executed.
+     * @throws DukeException If input is not of a recognizable pattern.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         if (fullCommand.equalsIgnoreCase("bye")) {
             return new ExitCommand(fullCommand);

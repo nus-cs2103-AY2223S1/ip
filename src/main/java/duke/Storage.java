@@ -9,16 +9,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a <code>Storage</code> class that reads and writes to the local storage.
+ */
 public class Storage {
 
     private File file;
     private FileWriter writer;
     private Scanner sc;
 
+    /**
+     * Constructs a <code>Storage</code> object that will read and write to the specified file path.
+     *
+     * @param filePath Path of the file to be read and written into.
+     */
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
 
+    /**
+     * Creates a directory at the specified path in the local storage, unless the directory already exists.
+     *
+     * @param path Path of the directory to be created.
+     * @throws DukeException If directory cannot be created.
+     */
     public void createDirectory(String path) throws DukeException {
         File dir = new File(path);
         try {
@@ -30,6 +44,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a file at the path specified in the constructor, unless the file already exists.
+     *
+     * @throws DukeException If file cannot be created.
+     */
     public void createFile() throws DukeException {
         try {
             this.file.createNewFile();
@@ -38,6 +57,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the list of tasks stored locally.
+     *
+     * @return An <code>ArrayList</code> of <code>Task</code>.
+     * @throws DukeException If the file is not found.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
@@ -73,6 +98,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the specified list of tasks into local storage.
+     *
+     * @param taskList <code>TaskList</code> to be saved into local storage.
+     * @throws DukeException If writing into the file fails.
+     */
     public void save(TaskList taskList) throws DukeException {
         try {
             writer = new FileWriter(file);
