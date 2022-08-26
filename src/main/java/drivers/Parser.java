@@ -31,7 +31,7 @@ public class Parser {
     public static Command parse(String fullCommand, UI ui) throws TumuException, NumberFormatException {
         String[] input = fullCommand.split(" ", 2);
         String command = input[0].trim().toLowerCase();
-        String body = input[1].trim();
+        String body = input.length > 1 ? input[1].trim() : null;
 
         switch (command) {
         case END_CHAT_BOT_CMD:
@@ -53,7 +53,6 @@ public class Parser {
         case FIND_CMD:
             return new FindCmd(body);
         default:
-            ui.readCommand(); //clear buffer
             throw new UnrecognisedCommandException(command);
         }
     }

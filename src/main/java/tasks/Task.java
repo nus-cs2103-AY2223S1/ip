@@ -50,9 +50,18 @@ public abstract class Task {
     /**
      * Abstract class to parse the task class into a String
      * to be saved into the local txt file.
-     * @return A string format to save the taks into the local txt file.
+     * @return A string format to save the tasks into the local txt file.
      */
     public abstract String parseToFile();
+
+    /**
+     * Checks whether the task has the keyword in the task description.
+     * @param keyword Keyword to be found in task description.
+     * @return True if keyword is found, False otherwise.
+     */
+    public boolean containsKeyword(String keyword) {
+        return taskDescription.contains(keyword);
+    }
 
     /**
      * Returns a formatted task to the user.

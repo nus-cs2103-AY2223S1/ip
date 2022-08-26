@@ -5,6 +5,7 @@ import exceptions.OutOfBoundsException;
 import exceptions.TumuException;
 import tasks.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -111,5 +112,21 @@ public class TaskList {
      */
     public void addTask(Task task) {
         userTasks.add(task);
+    }
+
+    /**
+     * Checks whether the tasks have keywords in it. Return tasks that
+     * have the keyword in their description.
+     * @param keyword The keyword to be found within the task description.
+     * @return A list of tasks with the keyword in it.
+     */
+    public List<Task> tasksContain(String keyword) {
+        List<Task> wantedTasks = new ArrayList<>();
+        for (Task task : userTasks) {
+            if (task.containsKeyword(keyword)) {
+                wantedTasks.add(task);
+            }
+        }
+        return wantedTasks;
     }
 }

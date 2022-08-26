@@ -55,7 +55,6 @@ public class Tumu {
             } catch (NumberFormatException e) {
                 ui.notifyUser("Please (un)mark or delete a task by " +
                         "its list position (must be an integer)!");
-                ui.readCommand(); //flush rest of the commands
             } finally {
                 ui.showLine();
             }

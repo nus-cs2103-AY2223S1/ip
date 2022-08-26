@@ -4,6 +4,9 @@ import drivers.Storage;
 import drivers.TaskList;
 import drivers.UI;
 import exceptions.TumuException;
+import tasks.Task;
+
+import java.util.List;
 
 /**
  * Class to be executed when a find command is issued
@@ -23,8 +26,7 @@ public class FindCmd extends Command {
     }
 
     /**
-     * Executes the command and gives the appropriate
-     * feedback to the user.
+     * Finds entries with the keyword in body, retrieves it and sends it back to the user.
      * @param tasks TaskList containing all the tasks currently available.
      * @param ui Specifies how the program interacts with the user.
      * @param storage Stores and retrieves data from a local .txt file.
@@ -32,6 +34,12 @@ public class FindCmd extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
-
+        List<Task> wantedTasks = tasks.tasksContain(body);
+        ui.notifyUser("Here are the matching tasks in your list:\n");
+        int counter = 1;
+        for (Task task : wantedTasks) {
+            ui.notifyUser(String.format("%d. %s\n", counter, task));
+            counter++;
+        }
     }
 }
