@@ -94,4 +94,5 @@ public abstract class Task implements Comparable<Task> {
      * @return converted Task
      */
     abstract public ParsedData convertToParseData();
+
 }

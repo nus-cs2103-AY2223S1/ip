@@ -1,6 +1,5 @@
 package duke.util;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,31 +65,6 @@ public class TaskList {
         return tasks.get(index);
     }
 
-    /**
-     * Returns a List of task with smaller time tag than {@code dt}.
-     * 
-     * @param dt
-     * @return List<Task>
-     */
-    public List<Task> filterBefore(LocalDateTime dt) {
-        List<Task> cpy = new ArrayList<>(tasks);
-        cpy.sort(null);
-        List<Task> ret = new ArrayList<>();
-        for (Task t : cpy) {
-            if (t.compareTo(dt) > 0) {
-                break;
-            }
-            ret.add(t);
-        }
-
-        return ret;
-    }
-
-    /**
-     * Returns the number of tasks currently.
-     * 
-     * @return int
-     */
     public int getSize() {
         return tasks.size();
     }
@@ -116,5 +90,4 @@ public class TaskList {
         }
         return ret;
     }
-
 }

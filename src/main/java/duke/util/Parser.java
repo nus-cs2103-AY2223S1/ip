@@ -14,6 +14,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -86,7 +87,8 @@ public final class Parser {
                 return new EventCommand(data);
             case "by":
                 return new ByCommand(data);
-
+            case "find":
+                return new FindCommand(data);
             default:
                 return new InvalidCommand();
         }
