@@ -36,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]"  + super.toString() + "(at: " + Parser.displayDate(timeobject) + ")";
+        return "[E]"  + super.toString() + " (at: " + Parser.displayDate(timeobject) + ")";
     }
 }
