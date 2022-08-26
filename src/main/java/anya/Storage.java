@@ -1,11 +1,5 @@
 package anya;
 
-import anya.task.Deadline;
-import anya.task.Event;
-import anya.task.Task;
-import anya.task.TaskList;
-import anya.task.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +7,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import anya.task.Deadline;
+import anya.task.Event;
+import anya.task.Task;
+import anya.task.TaskList;
+import anya.task.Todo;
 
 public class Storage {
     private String filePath;
@@ -69,7 +69,7 @@ public class Storage {
         return task;
     }
 
-    public void saveFile(TaskList tasks) throws IOException{
+    public void saveFile(TaskList tasks) throws IOException {
         FileWriter saveTask = new FileWriter(this.filePath);
         for (int i = 0; i < tasks.getLength(); i++) {
             Task task = tasks.getTaskFromIndex(i + 1);

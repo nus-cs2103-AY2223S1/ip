@@ -1,16 +1,15 @@
 package anya;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
 import anya.task.Deadline;
 import anya.task.Event;
 import anya.task.Task;
 import anya.task.TaskList;
 import anya.task.Todo;
-
-import java.util.Scanner;
-import java.io.IOException;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 public class Anya {
     private static String breakLine = "\n---------------------------------------------------------------------";
@@ -104,7 +103,7 @@ public class Anya {
             this.ui.savingFileMessage();
             this.storage.saveFile(tasks);
             this.ui.saveFileSuccessMessage();
-        } catch (IOException e){
+        } catch (IOException e) {
             this.ui.errorMessage(e.getMessage() + " Sorry, Anya is unable to save data.");
         }
         this.ui.closeScanner();

@@ -1,7 +1,7 @@
 package anya.task;
 
 public class Event extends Task {
-    String eventAt;
+    private String eventAt;
 
     public Event(String name, String eventAt) {
         super(name);
