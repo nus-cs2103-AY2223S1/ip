@@ -27,7 +27,7 @@ public class TaskList {
      * @return List of tasks.
      */
     public List<Task> getTaskList() {
-        return this.taskList;
+        return taskList;
     }
 
     /**
@@ -36,7 +36,7 @@ public class TaskList {
      * @return Size of list.
      */
     public int getSize() {
-        return this.taskList.size();
+        return taskList.size();
     }
 
     /**

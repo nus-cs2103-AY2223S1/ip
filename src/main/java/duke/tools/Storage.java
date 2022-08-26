@@ -31,7 +31,7 @@ public class Storage {
      * Constructs a default storage and initialises path to file.
      */
     public Storage() {
-        this.filePath = directoryPath.resolve("data.txt");
+        filePath = directoryPath.resolve("data.txt");
     }
 
     /**
@@ -40,7 +40,7 @@ public class Storage {
      * @param fileName String name of file.
      */
     public Storage(String fileName) {
-        this.filePath = directoryPath.resolve(fileName);
+        filePath = directoryPath.resolve(fileName);
     }
 
     /**
@@ -92,10 +92,10 @@ public class Storage {
      * @param taskList TaskList to be saved.
      * @throws DukeException If file access has failed.
      */
-    public void storeToFile(TaskList taskList) throws DukeException {
+    public void saveToFile(TaskList taskList) throws DukeException {
         List<Task> dataToStore = taskList.getTaskList();
-        ensureDirectoryExist();
-        ensureFileExist();
+        checkDirectoryExist();
+        checkFileExist();
         try {
             FileWriter fw = new FileWriter(filePath.toString());
             for (int i = 0; i < taskList.getSize(); i++) {
@@ -115,8 +115,8 @@ public class Storage {
      * @throws DukeException If file access has failed.
      */
     public void appendToFile(Task task) throws DukeException {
-        ensureDirectoryExist();
-        ensureFileExist();
+        checkDirectoryExist();
+        checkFileExist();
         try {
             FileWriter data = new FileWriter(filePath.toString(), true);
             data.write(task.taskToDataString());
@@ -126,10 +126,11 @@ public class Storage {
         }
     }
 
+
     /**
      * Checks that directory exists, else make a directory at the path.
      */
-    private static void ensureDirectoryExist() {
+    private static void checkDirectoryExist() {
         File folder = new File(directoryPath.toString());
         if (!folder.exists()) {
             folder.mkdir();
@@ -141,7 +142,7 @@ public class Storage {
      *
      * @throws DukeException If file access has failed.
      */
-    private void ensureFileExist() throws DukeException {
+    private void checkFileExist() throws DukeException {
         try {
             File data = new File(directoryPath.resolve("data.txt").toString());
             if (!data.exists()) {

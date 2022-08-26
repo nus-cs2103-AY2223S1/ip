@@ -30,7 +30,7 @@ public class DeleteCommand implements Command {
         try {
             Task task = taskList.getTask(index);
             taskList.deleteTask(index);
-            storage.storeToFile(taskList);
+            storage.saveToFile(taskList);
             ui.deleteTask(index, task);
         } catch (DukeException e) {
             ui.printException(e);

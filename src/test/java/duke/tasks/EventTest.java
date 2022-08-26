@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EventTest {
 
     @Test
-    void testToString_expectedBehavior() {
+    void testToString() {
         assertEquals("[E][ ] test1 (at: 07:30PM Oct 27 2022)",
                 new Event("test1", false, LocalDateTime.of(2022, 10, 27, 19, 30)).toString());
         assertEquals("[E][X] test2 (at: 05:47AM Feb 01 2023)",
@@ -17,7 +17,7 @@ class EventTest {
     }
 
     @Test
-    void testTaskToDataString_expectedBehavior() {
+    void testTaskToDataString() {
         Event test3 = new Event("test3", false, LocalDateTime.of(2022, 8, 28, 23, 31));
         assertEquals("E | X | test3 | 28/08/2022 2331\n", test3.taskToDataString());
 

@@ -28,9 +28,9 @@ public class TodoCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            taskList.addTask(this.todo);
+            taskList.addTask(todo);
             storage.appendToFile(todo);
-            ui.addTask(this.todo);
+            ui.addTask(todo);
             ui.printListSize(taskList);
         } catch (DukeException e) {
             ui.printException(e);

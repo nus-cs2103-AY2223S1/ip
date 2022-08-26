@@ -32,9 +32,9 @@ public class DeadlineCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            taskList.addTask(this.deadline);
-            storage.appendToFile(this.deadline);
-            ui.addTask(this.deadline);
+            taskList.addTask(deadline);
+            storage.appendToFile(deadline);
+            ui.addTask(deadline);
             ui.printListSize(taskList);
         } catch (DukeException e) {
             ui.printException(e);

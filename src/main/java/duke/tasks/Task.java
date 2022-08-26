@@ -16,7 +16,7 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -32,14 +32,14 @@ public abstract class Task {
      * Marks task as done.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks task as undone.
      */
     public void markAsUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -56,6 +56,6 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s] %s", this.getStatusIcon(), description);
     }
 }

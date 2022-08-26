@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ToDoTest {
 
     @Test
-    void testTaskToDataString_expectedBehavior() {
+    void testToString() {
         assertEquals("[T][ ] test1",
                 new ToDo("test1", false).toString());
         assertEquals("[T][X] test2",
@@ -15,7 +15,7 @@ class ToDoTest {
     }
 
     @Test
-    void testToString_expectedBehavior() {
+    void testTaskToDataString() {
         ToDo test3 = new ToDo("test3", false);
         assertEquals("T | X | test3\n", test3.taskToDataString());
         ToDo test4 = new ToDo("test4", true);

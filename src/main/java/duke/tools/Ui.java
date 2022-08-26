@@ -129,6 +129,6 @@ public class Ui {
      * Terminates Duke program.
      */
     public void exit() {
-        this.isExit = true;
+        isExit = true;
     }
 }
