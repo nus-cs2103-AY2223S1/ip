@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class Storage {
             for (Task task : TaskList.taskList) {
                 String holder;
                 if (task instanceof Todo) {
-                    holder = String.format("T | %s | %s", task.getStatus(),task.description);
+                    holder = String.format("T | %s | %s", task.getStatus(), task.description);
                 } else if (task instanceof Deadline) {
                     Deadline deadlineTask = (Deadline) task;
                     holder = String.format("D | %s | %s | %s",
@@ -78,4 +79,4 @@ public class Storage {
             System.out.println(e.getMessage());
         }
     }
-    }
+}
