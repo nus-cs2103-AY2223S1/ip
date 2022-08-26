@@ -15,11 +15,9 @@ import duke.command.SaveCommand;
 import duke.command.UnmarkCommand;
 
 /**
-<<<<<<< HEAD
  * Represents a parser to parse string inputs from user
  * and output appropriate commands to be executed.
  */
-
 public class Parser {
     /**
      * Returns appropriate command from parsed input.
