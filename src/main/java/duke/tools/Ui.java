@@ -59,7 +59,7 @@ public class Ui {
         } else {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < taskList.getSize(); i++) {
-                System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i)));
+                System.out.printf("%d. %s\n", i + 1, taskList.getTask(i));
             }
         }
     }

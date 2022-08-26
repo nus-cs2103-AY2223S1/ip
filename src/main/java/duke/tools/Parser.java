@@ -109,10 +109,8 @@ public class Parser {
      */
     public static LocalDate parseDate(String str) throws DukeException {
         try {
-            LocalDate dateTime = LocalDate.parse(str, DATETIME_PARSE_FORMAT);
-            return dateTime;
+            return LocalDate.parse(str, DATETIME_PARSE_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println(e);
             throw new DukeException("Please enter a valid date format:\n"
                     + "day/month/year > dd/mm/yyyy");
         }
@@ -147,10 +145,8 @@ public class Parser {
      */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(str, DATE_PARSE_FORMAT);
-            return dateTime;
+            return LocalDateTime.parse(str, DATE_PARSE_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println(e);
             throw new DukeException("Please enter a valid date and time format:\n"
                     + "day/month/year 24hour time > dd/mm/yyyy HH:mm");
         }
