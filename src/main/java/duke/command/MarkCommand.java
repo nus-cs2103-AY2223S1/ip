@@ -4,11 +4,11 @@ import duke.DukeException;
 import duke.TaskList;
 
 public class MarkCommand extends Command {
-    private boolean bool;
+    private boolean isDone;
     private int pos;
     
-    public MarkCommand(boolean bool, int pos) {
-        this.bool = bool;
+    public MarkCommand(boolean isDone, int pos) {
+        this.isDone = isDone;
         this.pos = pos;
     }
 
