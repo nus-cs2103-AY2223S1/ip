@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents Tasks save by Duke.
+ */
 public abstract class Task {
     private String name;
     private boolean isDone;

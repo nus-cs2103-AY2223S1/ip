@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * The DukeRuntimeException when errors in reading attributes from a formatted String.
  */
-public class ReadAttributeException extends RuntimeException{
+public class ReadAttributeException extends RuntimeException {
     /**
      * The constructor of the Exception.
      * @param className The class that reads the formatted String.

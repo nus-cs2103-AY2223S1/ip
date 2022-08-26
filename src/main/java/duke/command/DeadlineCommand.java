@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.time.LocalDateTime;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 import duke.task.Task;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents a Command to create a Deadline Task in Duke.
@@ -54,8 +54,8 @@ public class DeadlineCommand extends AddCommand {
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         taskList.add(deadline);
-        successMsg = successMsg + "\n" + deadline + "\n" +
-                "Now you have " + taskList.size() + " tasks in the list.";
+        successMsg = successMsg + "\n" + deadline + "\n"
+                + "Now you have " + taskList.size() + " tasks in the list.";
         messagePrinter.printMessage(successMsg);
     }
 

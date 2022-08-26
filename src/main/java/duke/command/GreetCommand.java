@@ -23,13 +23,13 @@ public class GreetCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
-        String LOGO = " ____        _        \n"
+        String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String HELLO_MESSAGE = "Hello! I'm Duke \n" + "What can I do for you?";
-        messagePrinter.printMessage("Hello from\n" + LOGO + "\n" + HELLO_MESSAGE);
+        String welcomeMsg = "Hello! I'm Duke \n" + "What can I do for you?";
+        messagePrinter.printMessage("Hello from\n" + logo + "\n" + welcomeMsg);
     }
 
     /**

@@ -1,21 +1,26 @@
 package duke;
 
-import duke.command.Action;
-import duke.command.Command;
-import duke.exception.*;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static duke.task.Task.*;
+import duke.command.Action;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.exception.DukeRuntimeException;
+import duke.exception.InvalidArgumentException;
+import duke.exception.NoArgumentException;
+import duke.exception.ReadAttributeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
+/**
+ * The Parser for conversion between String and other types.
+ */
 public class Parser {
     /**
      * The String representation of the separator to divide a row of String into attributes.
@@ -24,6 +29,7 @@ public class Parser {
 
     /**
      * Returns an Arraylist of all beginning indices of target in the whole String.
+     *
      * @param str1 The targeted String.
      * @param str2 The whole String
      * @return The Arraylist of all beginning indices of target in the whole String.
@@ -42,6 +48,7 @@ public class Parser {
 
     /**
      * Returns the first index of all beginning indices of target in the whole String.
+     *
      * @param str1 The targeted String.
      * @param str2 The whole String
      * @return The first index of all beginning indices of target in the whole String.
@@ -53,6 +60,7 @@ public class Parser {
 
     /**
      * Returns an Arraylist of String separated as attributes from the given formatted String.
+     *
      * @param string The given formatted String.
      * @return The Arraylist of String separated as attributes from the given formatted String.
      */
@@ -64,16 +72,19 @@ public class Parser {
 
     /**
      * Returns the formatted String by combining attributes of Strings.
+     *
      * @param strings The attributes of Array of Strings
      * @return The formatted String.
      */
     public static String combineAttributes(String... strings) {
         return Arrays.stream(strings)
-                .reduce("", (x, y) -> x + " " + ATTRIBUTE_SEPARATOR + " " + y).substring(ATTRIBUTE_SEPARATOR.length() + 2);
+                .reduce("", (x, y) -> x + " " + ATTRIBUTE_SEPARATOR + " " + y)
+                .substring(ATTRIBUTE_SEPARATOR.length() + 2);
     }
 
     /**
      * Returns the Command indicated by given String.
+     *
      * @param s The given String.
      * @return The Command.
      * @throws DukeException if the given String is not in correct format.
@@ -120,15 +131,15 @@ public class Parser {
             }
             return Command.todo(arg1);
         case EVENT:
-            String START_OF_EVENT_TIME_SYMBOL = " /at ";
-            if (!s.contains(START_OF_EVENT_TIME_SYMBOL)) {
-                throw new InvalidArgumentException(action, "Keyword: [" +
-                        START_OF_EVENT_TIME_SYMBOL + " ] or [Time] is not found.");
+            String symbolEvent = " /at ";
+            if (!s.contains(symbolEvent)) {
+                throw new InvalidArgumentException(action, "Keyword: ["
+                        + symbolEvent + " ] or [Time] is not found.");
             }
             indexOfName = Action.getString(action).length();
-            indexOfTime = getFirstIndexOfStr1InStr2(START_OF_EVENT_TIME_SYMBOL, s);
+            indexOfTime = getFirstIndexOfStr1InStr2(symbolEvent, s);
             arg1 = s.substring(indexOfName, indexOfTime).trim();
-            arg2 = s.substring(indexOfTime + START_OF_EVENT_TIME_SYMBOL.length()).trim();
+            arg2 = s.substring(indexOfTime + symbolEvent.length()).trim();
             if (arg1.equals("") && arg2.equals("")) {
                 throw new NoArgumentException(action);
             } else if (!isValidString(arg1)) {
@@ -141,17 +152,17 @@ public class Parser {
 
             return Command.event(arg1, parseStringToDateTime(arg2));
         case DEADLINE:
-            String START_OF_DEADLINE_TIME_SYMBOL = " /by ";
+            String symbolDeadline = " /by ";
 
-            if (!s.contains(START_OF_DEADLINE_TIME_SYMBOL)) {
-                throw new InvalidArgumentException(action, "Keyword: [" +
-                        START_OF_DEADLINE_TIME_SYMBOL + " ] or [Time] is not found.");
+            if (!s.contains(symbolDeadline)) {
+                throw new InvalidArgumentException(action, "Keyword: ["
+                        + symbolDeadline + " ] or [Time] is not found.");
             }
 
             indexOfName = Action.getString(action).length();
-            indexOfTime = getFirstIndexOfStr1InStr2(START_OF_DEADLINE_TIME_SYMBOL, s);
+            indexOfTime = getFirstIndexOfStr1InStr2(symbolDeadline, s);
             arg1 = s.substring(indexOfName, indexOfTime).trim();
-            arg2 = s.substring(indexOfTime + START_OF_DEADLINE_TIME_SYMBOL.length()).trim();
+            arg2 = s.substring(indexOfTime + symbolDeadline.length()).trim();
 
             if (arg1.equals("") && arg2.equals("")) {
                 throw new NoArgumentException(action);
@@ -191,6 +202,7 @@ public class Parser {
 
     /**
      * Returns the Task represented by given formatted String.
+     *
      * @param formattedString The given formatted String.
      * @return The Task represented by given formatted String.
      * @throws ReadAttributeException if the String is not in correct format.
@@ -212,6 +224,7 @@ public class Parser {
 
     /**
      * Returns the Event represented by given formatted String.
+     *
      * @param formattedString The given formatted String.
      * @return The Event represented by given formatted String.
      * @throws ReadAttributeException if the String is not in correct format.
@@ -221,7 +234,7 @@ public class Parser {
         if (attributes.size() < 4) {
             throw new ReadAttributeException("Event", formattedString, "Number of attributes less than 4");
         }
-        Event result = event(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        Event result = Task.event(attributes.get(2), parseStringToDateTime(attributes.get(3)));
         if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
@@ -230,6 +243,7 @@ public class Parser {
 
     /**
      * Returns the Deadline represented by given formatted String.
+     *
      * @param formattedString The given formatted String.
      * @return The Deadline represented by given formatted String.
      * @throws ReadAttributeException if the String is not in correct format.
@@ -239,7 +253,7 @@ public class Parser {
         if (attributes.size() < 4) {
             throw new ReadAttributeException("Deadline", formattedString, "Number of attributes less than 4");
         }
-        Deadline result = deadline(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        Deadline result = Task.deadline(attributes.get(2), parseStringToDateTime(attributes.get(3)));
         if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
@@ -248,6 +262,7 @@ public class Parser {
 
     /**
      * Returns the Todo represented by given formatted String.
+     *
      * @param formattedString The given formatted String.
      * @return The Todo represented by given formatted String.
      * @throws ReadAttributeException if the String is not in correct format.
@@ -257,7 +272,7 @@ public class Parser {
         if (attributes.size() < 3) {
             throw new ReadAttributeException("Todo", formattedString, "Number of attributes less than 3");
         }
-        Todo result = todo(attributes.get(2));
+        Todo result = Task.todo(attributes.get(2));
         if (Parser.convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
             result.markAsDone();
         }
@@ -266,6 +281,7 @@ public class Parser {
 
     /**
      * Returns the TaskList represented by given formatted String.
+     *
      * @param formattedString The given formatted String.
      * @return The TaskList represented by given formatted String.
      * @throws ReadAttributeException if the String is not in correct format.
@@ -282,6 +298,7 @@ public class Parser {
 
     /**
      * Returns a boolean indicating whether the given String is a valid integer.
+     *
      * @param s The given String
      * @return The boolean indicating whether the given String is a valid integer.
      */
@@ -296,6 +313,7 @@ public class Parser {
 
     /**
      * Returns a boolean indicating whether the given String is a valid String.
+     *
      * @param input The given String
      * @return The boolean indicating whether the given String is a valid String.
      */
@@ -305,6 +323,7 @@ public class Parser {
 
     /**
      * Returns a boolean indicating whether the given String is a valid LocalDateTime.
+     *
      * @param input The given String
      * @return The boolean indicating whether the given String is a valid LocalDateTime.
      */
@@ -319,6 +338,7 @@ public class Parser {
 
     /**
      * Returns the number representation of a given boolean.
+     *
      * @param bool The given boolean.
      * @return The number representation of a given boolean.
      */
@@ -328,6 +348,7 @@ public class Parser {
 
     /**
      * Returns the boolean from given number representation.
+     *
      * @param i The given number representation.
      * @return The boolean.
      */
@@ -343,6 +364,7 @@ public class Parser {
 
     /**
      * Returns the String representation of the Attribute Separator in formatted String.
+     *
      * @return The String representation of the Attribute Separator in formatted String.
      */
     public static String getAttributeSeparator() {
@@ -351,6 +373,7 @@ public class Parser {
 
     /**
      * Returns the String representation of given LocalDateTime.
+     *
      * @param localDateTime The given LocalDateTime.
      * @return The String representation of given LocalDateTime.
      */
@@ -360,6 +383,7 @@ public class Parser {
 
     /**
      * Returns the LocalDateTime from given String representation.
+     *
      * @param string The given String representation.
      * @return The LocalDateTime from given String representation.
      */

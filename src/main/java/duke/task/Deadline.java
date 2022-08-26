@@ -1,9 +1,13 @@
 package duke.task;
 
-import duke.Parser;
 
 import java.time.LocalDateTime;
 
+import duke.Parser;
+
+/**
+ * Represents Deadline tasks.
+ */
 public class Deadline extends Task {
     public static final String SYMBOL = "D";
     private LocalDateTime time;

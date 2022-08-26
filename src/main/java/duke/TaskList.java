@@ -1,10 +1,11 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
 import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 /**
  * Represents the memory that Duke uses for Tasks.

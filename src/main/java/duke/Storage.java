@@ -1,8 +1,5 @@
 package duke;
 
-import duke.exception.ReadFileException;
-import duke.exception.WriteFileException;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import duke.exception.ReadFileException;
+import duke.exception.WriteFileException;
+
+/**
+ * The IO part of Duke.
+ */
 public class Storage {
     /**
      * The Path of the file.

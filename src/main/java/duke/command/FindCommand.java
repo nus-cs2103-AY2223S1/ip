@@ -1,22 +1,40 @@
 package duke.command;
 
+import java.util.stream.Stream;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
-import java.util.stream.Stream;
-
+/**
+ * Represents a Command to find Tasks with given information.
+ */
 public class FindCommand extends Command {
     private String target;
+
+    /**
+     * Constructor of the class.
+     * @param target The given String.
+     */
     public FindCommand(String target) {
         super(Action.FIND);
         this.target = target;
     }
 
+    /**
+     * Returns the target String.
+     * @return The target String.
+     */
     public String getTarget() {
         return this.target;
     }
 
+    /**
+     * Execute the Command with given Duke Segments.
+     * @param tasks TaskList of the Duke.
+     * @param messagePrinter MessagePrinter of the Duke.
+     * @param storage Storage of the Duke.
+     */
     @Override
     public void execute(TaskList tasks, MessagePrinter messagePrinter, Storage storage) {
         String message = "Here are the matching tasks in your list:\n";
@@ -33,16 +51,31 @@ public class FindCommand extends Command {
         messagePrinter.printMessage(message);
     }
 
+    /**
+     * Returns whether this command terminates Duke.
+     * @return Returns whether this command terminates Duke.
+     */
     @Override
     public boolean isTerminated() {
         return false;
     }
 
+    /**
+     * Returns the standard format of the Command.
+     * @return String of standard format.
+     */
     @Override
     public String getFormat() {
         return "find [keyword]";
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

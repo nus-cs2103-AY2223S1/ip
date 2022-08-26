@@ -1,9 +1,12 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
 
+import duke.Parser;
+
+/**
+ * Represents Event Tasks
+ */
 public class Event extends Task {
     public static final String SYMBOL = "E";
     private LocalDateTime time;

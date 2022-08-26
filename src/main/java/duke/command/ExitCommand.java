@@ -23,8 +23,8 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
-        String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
-        messagePrinter.printMessage(FAREWELL_MESSAGE);
+        String farewellMsg = "Bye. Hope to see you again soon!";
+        messagePrinter.printMessage(farewellMsg);
     }
 
     /**

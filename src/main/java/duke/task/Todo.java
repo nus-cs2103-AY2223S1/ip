@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.Parser;
 
+/**
+ * Represents Todo tasks.
+ */
 public class Todo extends Task {
     public static final String SYMBOL = "T";
 
