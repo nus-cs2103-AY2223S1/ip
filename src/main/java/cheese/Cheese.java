@@ -1,3 +1,13 @@
+package cheese;
+
+import cheese.data.TaskList;
+import cheese.storage.Storage;
+import cheese.ui.Ui;
+import cheese.parser.Parser;
+import cheese.exception.CheeseException;
+import cheese.command.Command;
+import cheese.command.ByeCommand;
+
 public class Cheese {
   private TaskList taskList;
   private Storage storage;

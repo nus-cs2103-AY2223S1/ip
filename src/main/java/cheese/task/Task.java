@@ -1,3 +1,5 @@
+package cheese.task;
+
 public abstract class Task {
   /** Description of Task */
   private String description;

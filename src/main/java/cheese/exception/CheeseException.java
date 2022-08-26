@@ -1,3 +1,5 @@
+package cheese.exception;
+
 public class CheeseException extends Exception {
   public CheeseException() {
     super("Sowwy, I don't understand");

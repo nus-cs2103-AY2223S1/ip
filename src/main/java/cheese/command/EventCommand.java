@@ -1,3 +1,12 @@
+package cheese.command;
+
+import cheese.exception.CheeseException;
+import cheese.storage.Storage;
+import cheese.ui.Ui;
+import cheese.task.Event;
+import cheese.task.Task;
+import cheese.data.TaskList;
+
 public class EventCommand extends Command {
   private String description;
   private String timeInterval;

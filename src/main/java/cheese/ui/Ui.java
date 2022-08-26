@@ -1,5 +1,10 @@
+package cheese.ui;
+
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import cheese.data.TaskList;
+import cheese.task.Task;
 
 public class Ui {
   private final Scanner in;

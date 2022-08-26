@@ -1,4 +1,9 @@
+package cheese.data;
+
 import java.util.ArrayList;
+
+import cheese.exception.CheeseException;
+import cheese.task.Task;
 
 public class TaskList {
   private ArrayList<Task> taskList;

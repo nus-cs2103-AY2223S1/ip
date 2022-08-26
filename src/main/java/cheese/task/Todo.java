@@ -1,3 +1,5 @@
+package cheese.task;
+
 public class Todo extends Task {
   /**
    * Constructor to create a new Todo
