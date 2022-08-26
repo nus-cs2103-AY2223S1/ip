@@ -1,5 +1,7 @@
+package bloop;
+
 public class Ui {
-    private static final String HI_MESSAGE = "Hey! I'm Bloop\n" + "\tWhat can I do for you?";
+    private static final String HI_MESSAGE = "Hey! I'm bloop.Bloop\n" + "\tWhat can I do for you?";
 
     private static final String BYE_MESSAGE = "Goodbye! Hope to see you soon :)";
 
