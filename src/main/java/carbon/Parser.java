@@ -19,7 +19,7 @@ public class Parser {
         }
     }
 
-    public String process(String input) {
+    public String process(String input) throws CarbonException {
         String lowerCaseInput = input.toLowerCase();
         String log;
         switch (lowerCaseInput) {
@@ -37,7 +37,7 @@ public class Parser {
         return log;
     }
 
-    private String processAdvanced(String input) {
+    private String processAdvanced(String input) throws CarbonException {
         String lowerCaseInput = input.toLowerCase();
         String log;
         try {

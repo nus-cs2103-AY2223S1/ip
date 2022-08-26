@@ -1,8 +1,10 @@
 package carbon;
 
 import org.junit.jupiter.api.Test;
+import carbon.error.InvalidInputException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
     private Ui ui = new Ui();
@@ -10,14 +12,22 @@ public class ParserTest {
     private Parser parser = new Parser(this.ui, this.storage);
 
     @Test
-    public void process_invalidCommand_returnsInvalidInput(){
+    public void process_invalidCommand_returnsInvalidInputException() {
         String input = "testInvalidCommand";
-        String expectedOutput = "";
-        assertEquals(2, 2);
+        boolean hasError = false;
+        try {
+            this.parser.process(input);
+        } catch (InvalidInputException error) {
+            hasError = true;
+        }
+        assertTrue(hasError);
     }
 
     @Test
-    public void anotherDummyTest(){
-        assertEquals(4, 4);
+    public void process_bye_returnsEmptyLog() {
+        String input = "bye";
+        String expectedOutput = "";
+        String actualOutput = this.parser.process(input);
+        assertEquals(expectedOutput, actualOutput);
     }
 }
