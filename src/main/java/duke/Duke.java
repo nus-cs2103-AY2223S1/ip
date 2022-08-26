@@ -1,5 +1,10 @@
 package duke;
 
+import duke.task.TaskList;
+import duke.util.Parser;
+import duke.util.SaveTasks;
+import duke.util.Ui;
+
 import java.nio.file.Paths;
 
 public class Duke {

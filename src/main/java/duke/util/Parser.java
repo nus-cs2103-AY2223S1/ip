@@ -1,4 +1,7 @@
-package duke;
+package duke.util;
+
+import duke.DukeException;
+import duke.task.*;
 
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";

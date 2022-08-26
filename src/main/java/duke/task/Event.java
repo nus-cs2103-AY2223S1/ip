@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 public class Event extends Task {
     private String specTime;

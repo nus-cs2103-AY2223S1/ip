@@ -1,4 +1,7 @@
-package duke;
+package duke.util;
+
+import duke.DukeException;
+import duke.task.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class SaveTasks {
         this.fileDir = fileDir;
         this.filePath = filePath;
     }
-    public ArrayList<Task> load() throws DukeException{
+    public ArrayList<Task> load() throws DukeException {
         try {
             File dir = new File(this.fileDir);
             if (!dir.exists()) {
