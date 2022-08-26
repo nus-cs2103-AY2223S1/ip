@@ -9,7 +9,7 @@ public abstract class Task {
     protected String description;
 
     /** A symbol indicating what kind of task this is */
-    protected char typeSymbol;
+    protected final char typeSymbol;
 
     /** Is this task done? */
     protected boolean isDone;
