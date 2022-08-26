@@ -155,6 +155,21 @@ public class Duke {
                 throw new DukeException("Invalid argument: Use /at flag to specify the date and time of the event.");
             }
             break;
+        case "delete":
+            if (inputs.length == 1) {
+                throw new DukeException("Wrong number of arguments.");
+            }
+            try {
+                int index = Integer.parseInt(inputs[1]) - 1;
+                Task task = taskList.remove(index);
+                IOParser.printMsg(String.format("Noted. I've removed this task:\n %s",
+                        task));
+            } catch (NumberFormatException e) {
+                throw new DukeException("Invalid argument: Index of task should be a number.");
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
+            }
+            break;
         default:
             throw new DukeException("Invalid command: Please try again.");
         }
