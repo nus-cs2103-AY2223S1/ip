@@ -5,11 +5,9 @@ import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
 
-    // class variables
     protected String deadline;
     private LocalDate dateTime;
 
-    // constructor
     public Deadline(String description, String deadline) throws DukeException {
         super(description);
         this.deadline = deadline;

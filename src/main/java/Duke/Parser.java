@@ -11,11 +11,21 @@ import Command.UnmarkCommand;
 
 
 /**
- * The Parser deals with making sense of the user command
- *
- */
+* Parser deals with making sense of the user command by formatting user inputs
+* such that Duke can handle them through the Command Class and Ui Class
+*
+* @author Linus Chui
+*/
 public class Parser {
 
+    /**
+     * Parses the user input and splits the input into a user command and user action
+     * to be passed into a Command object to execute the respective commands.
+     *
+     * @param fullCommand the full user input as a String.
+     * @return a Command object to execute the user input if it is valid.
+     * @throws DukeException if the user input is invalid or insufficient.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] command = fullCommand.split("_______________");
         String userCommand = command[0];

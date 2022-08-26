@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Storage Class deals with loading tasks from the file and saving tasks in the file
- */
+* Storage deals with loading tasks from the file and saving tasks in the file
+*
+* @author Linus Chui
+*/
 public class Storage {
     private String filePath;
     private ArrayList<Task> tasks;
@@ -19,6 +21,14 @@ public class Storage {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Loads previously stored tasks from a .txt file when the program starts and formats the
+     * data to be stored in a TaskList object or creates a new .txt file if the file is not found.
+     *
+     * @return an ArrayList of Task objects that has been formatted by Duke after reading the .txt file.
+     * @throws DukeException if the target file cannot be found and creates a new .txt file.
+     * @throws IOException if error occurs when Duke is reading data from the target file.
+     */
     public ArrayList<Task> load() throws DukeException {
         try {
             FileReader fileReader = new FileReader(this.filePath);
@@ -74,6 +84,12 @@ public class Storage {
         return this.tasks;
     }
 
+    /**
+     * Saves the tasks to a .txt file when changes are made to the TaskList object.
+     *
+     * @throws DukeException if Duke is unable to find the target file to write data to.
+     * @throws IOException if error occurs when Duke is writing data to the target file.
+     */
     public void save() throws DukeException, IOException {
         try {
             FileWriter fw = new FileWriter("./data/tasks.txt");
