@@ -18,7 +18,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + "(at:" + date + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + "(at: " + PARSER.getDateTimeString(date) + ")";
     }
 
     @Override

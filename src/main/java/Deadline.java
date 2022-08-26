@@ -19,7 +19,7 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        return "[" + TASK_TYPE +"]" + super.toString() + "(by:" + dueDate + ")";
+        return "[" + TASK_TYPE +"]" + super.toString() + "(by: " + PARSER.getDateTimeString(dueDate) + ")";
     }
 
     @Override

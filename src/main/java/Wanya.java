@@ -143,9 +143,9 @@ public class Wanya {
                 count++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Oops! File not found hehe maybe a spy stole the file awayyy.");
+            System.out.println("Oops! File not found hehe maybe a spy stole the file awayyy.\n" +
+                    "Wanya shall create a new list for you\n");
         }
-
     }
 
     public static void exit() {
@@ -189,8 +189,8 @@ public class Wanya {
                         wanya.addDeadline(inputs[1]);
                     } catch (DateTimeException e) {
                         System.out.println("Please enter a valid date behind /by with the format " +
-                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
-                                "provided, leave it in 24 hours format.\n");
+                                "\"yyyy-mm-dd HH:mm\" where time is optional.\n " +
+                                "If time is provided, leave it in 24 hours format.\n");
                     }
                 } else if (command.equals("event")) {
                     wanya.checkTask(inputs, command);
@@ -198,8 +198,8 @@ public class Wanya {
                         wanya.addEvent(inputs[1]);
                     } catch (DateTimeException e) {
                         System.out.println("Please enter a valid date behind /at with the format " +
-                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
-                                "provided, leave it in 24 hours format.\n");
+                                "\"yyyy-mm-dd HH:mm\" where time is optional.\n " +
+                                "If time is provided, leave it in 24 hours format.\n");
                     }
                 } else if (command.equals("delete")) {
                     int index = wanya.checkTaskNumber(inputs);
