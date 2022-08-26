@@ -33,6 +33,10 @@ public class Storage {
     public void loadUpData() throws IOException {
         Scanner sc = new Scanner(this.file);
 
+        if(!sc.hasNextLine()) {
+            return;
+        }
+
         String header = sc.nextLine();
 
         while(sc.hasNextLine()) {
