@@ -1,12 +1,20 @@
 package duke.command;
 
+import duke.Duke;
 import duke.exception.DukeIndexOutOfBoundException;
 import duke.exception.DukeIoException;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
+import static duke.Duke.TAB;
+
 public class DeleteCommand extends Command {
+
+    private static final String OUTPUT_MESSAGE = "Sure, I have removed this task from the list: \n" + TAB;
+    private static final String ERROR_MESSAGE =
+            "Oops! Do check the index range, and the format should be \"delete <index>\"";
+
     int taskIndex;
 
     DeleteCommand(int taskIndex) {
@@ -19,9 +27,20 @@ public class DeleteCommand extends Command {
         String output;
 
         try {
-            output = taskList.deleteTask(taskIndex);
+            String s = taskList.deleteTask(taskIndex);
+            boolean hasOnlyOneTask = taskList.hasOnlyOneTask();
+            int size = taskList.size();
+            output = OUTPUT_MESSAGE
+                    + s
+                    + "\n"
+                    + TAB
+                    + "There "
+                    + (hasOnlyOneTask ? "is " : "are ")
+                    + size
+                    + (hasOnlyOneTask ? " task" : " tasks")
+                    + " in the list";
         } catch (DukeIndexOutOfBoundException exception) {
-            output = exception.getMessage();
+            output = ERROR_MESSAGE;
         }
 
         ui.printOutput(output);

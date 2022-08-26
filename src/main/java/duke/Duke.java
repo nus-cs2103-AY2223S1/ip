@@ -23,27 +23,11 @@ import java.util.Scanner;
  */
 public class Duke {
 
-    public static final String EXIT_COMMAND_STRING = "bye";
-    public static final String DISPLAY_LIST_COMMAND_STRING = "list";
-    public static final String MARK_DONE_COMMAND_STRING = "mark";
-    public static final String MARK_UNDONE_COMMAND_STRING = "unmark";
-    public static final String DELETE_COMMAND_STRING = "delete";
-    public static final String FIND_COMMAND_STRING = "find";
-    public static final String ADD_EVENT_COMMAND_STRING = "event";
-    public static final String ADD_TODO_COMMAND_STRING = "todo";
-    public static final String ADD_DEADLINE_COMMAND_STRING = "deadline";
-
-    public static final String DELIMITER = "/";
-    public static final String BY_DATE_DELIMITER = "/by";
-    public static final String AT_DATE_DELIMITER = "/at";
-    public static final String FILE_WRITING_DELIMITER = "|";
     public static final String TAB = "    ";
 
     public static final String FILE_PATH = "../saved_list.txt";
     public static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
-    public static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
-    public static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
 
 
     private TaskList taskList;

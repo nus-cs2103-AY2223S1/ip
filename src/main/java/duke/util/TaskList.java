@@ -10,15 +10,7 @@ import java.util.List;
 public class TaskList {
 
     private static final String TAB = Duke.TAB;
-    private static final String EMPTY_LIST_MESSAGE ="The list is empty.";
-    private static final String GENERAL_ERROR_STRING = Duke.GENERAL_ERROR_STRING;
-    private static final String MARK_DONE_OUTPUT_STRING = "Good to hear that! I have marked this as done: ";
-    private static final String MARK_DONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"mark <index>\"";
-    private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
-    private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
-    private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
-    private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
-    private static final String FIND_COMMAND_OUTPUT_STRING = "Here are what I found: ";
+    private static final String EMPTY_LIST_MESSAGE = "The list is empty.";
 
 
     private List<Task> tasks;
@@ -54,47 +46,30 @@ public class TaskList {
 
     public String markTaskDone(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeIndexOutOfBoundException(MARK_DONE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException("");
         } else {
             Task targetTask = tasks.get(index);
             targetTask.markDone();
-            return MARK_DONE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + targetTask;
+            return targetTask.toString();
         }
     }
 
     public String markTaskUndone(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeIndexOutOfBoundException(MARK_UNDONE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException("");
         } else {
             Task targetTask = tasks.get(index);
             targetTask.markUndone();
-            return MARK_UNDONE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + targetTask;
+            return targetTask.toString();
         }
     }
 
     public String deleteTask(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeIndexOutOfBoundException(DELETE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException("");
         } else {
             Task removedTask = tasks.remove(index);
-            boolean onlyOneTask = tasks.size() == 1;
-            return DELETE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + removedTask
-                    + "\n"
-                    + TAB
-                    + "There "
-                    + (onlyOneTask ? "is " : "are ")
-                    + tasks.size()
-                    + (onlyOneTask ? " task" : " tasks")
-                    + " in the list";
+            return removedTask.toString();
         }
     }
 
@@ -115,21 +90,27 @@ public class TaskList {
             return "The list is empty.";
         }
 
-        StringBuilder stringBuilder = new StringBuilder(FIND_COMMAND_OUTPUT_STRING);
+        StringBuilder stringBuilder = new StringBuilder();
         int displayIndex = 1;
 
         for (int i = 0; i < len; i++) {
             Task curr = tasks.get(i);
             if (curr.contains(keyword)) {
                 stringBuilder
+                        .append('\n' + TAB)
                         .append(displayIndex++)
                         .append(". ")
                         .append(curr);
-                if (i < len - 1) {
-                    stringBuilder.append('\n' + TAB);
-                }
             }
         }
         return stringBuilder.toString();
+    }
+
+    public boolean hasOnlyOneTask() {
+        return tasks.size() == 1;
+    }
+
+    public int size() {
+        return tasks.size();
     }
 }

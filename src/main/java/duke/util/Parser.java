@@ -1,7 +1,11 @@
 package duke.util;
 
 import duke.Duke;
+import duke.command.Command;
 import duke.exception.*;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,9 +27,9 @@ public class Parser {
      * @throws
      */
     public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public static final String DELIMITER = Duke.DELIMITER;
-    public static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
-    public static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;
+    public static final String DELIMITER = "/";
+    public static final String BY_DATE_DELIMITER = "/by";
+    public static final String AT_DATE_DELIMITER = "/at";
     public static final String EVENT_WITHOUT_AT_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
     public static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
@@ -38,6 +42,40 @@ public class Parser {
             "Oops! You didn't specify the date and time of the task.";
     public static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
             "Oops! The date and time should follow the format: " + INPUT_DATE_TIME_FORMAT;
+
+
+
+
+    public Command parse(String input) {
+
+    }
+
+    public static Task createFromCommand(String command)
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
+            DukeDateTimeFormatException {
+        String firstWord = Parser.getCommandInstruction(command);
+
+        String taskTitle = "";
+        LocalDateTime dateTime;
+        switch (firstWord) {
+        case (TODO_TASK_COMMAND_STRING):
+            taskTitle = Parser.getTaskTitle(command);
+            return new ToDoTask(taskTitle);
+
+        case (EVENT_TASK_COMMAND_STRING):
+            taskTitle = Parser.getTaskTitle(command);
+            dateTime = Parser.getAtDate(command);
+            return new EventTask(taskTitle, dateTime);
+
+        case (DEADLINE_TASK_COMMAND_STRING):
+            taskTitle = Parser.getTaskTitle(command);
+            dateTime = Parser.getByDate(command);
+            return new DeadlineTask(taskTitle, dateTime);
+
+        default:
+            return null;
+        }
+    }
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);

@@ -1,10 +1,10 @@
 package duke.task;
 
-public class ToDoTask extends Task {
+public class TodoTask extends Task {
 
     private static final String LABEL = "T";
 
-    protected ToDoTask(String taskTitle) {
+    protected TodoTask(String taskTitle) {
         super(taskTitle, TaskType.TODO);
     }
 

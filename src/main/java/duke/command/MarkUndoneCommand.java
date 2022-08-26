@@ -1,12 +1,17 @@
 package duke.command;
 
+import duke.Duke;
 import duke.exception.DukeIndexOutOfBoundException;
-import duke.exception.DukeIoException;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
 public class MarkUndoneCommand extends Command {
+
+    private static final String OUTPUT_MESSAGE = "Sure, I have marked this as not done yet.\n" + Duke.TAB;
+    private static final String ERROR_MESSAGE =
+            "Oops! Do check the index range, and the format should be \"unmark <index>\"";
+
     int taskIndex;
 
     MarkUndoneCommand(int taskIndex) {
@@ -19,9 +24,9 @@ public class MarkUndoneCommand extends Command {
         String output;
 
         try {
-            output = taskList.markTaskUndone(taskIndex);
+            output = OUTPUT_MESSAGE + taskList.markTaskUndone(taskIndex);
         } catch (DukeIndexOutOfBoundException exception) {
-            output = exception.getMessage();
+            output = ERROR_MESSAGE;
         }
 
         ui.printOutput(output);

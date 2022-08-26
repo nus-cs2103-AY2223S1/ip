@@ -3,15 +3,16 @@ package duke.command;
 import duke.Duke;
 
 public enum CommandType {
-    EXIT(Duke.EXIT_COMMAND_STRING),
-    DISPLAY_LIST(Duke.DISPLAY_LIST_COMMAND_STRING),
-    MARK_DONE(Duke.MARK_DONE_COMMAND_STRING),
-    MARK_UNDONE(Duke.MARK_UNDONE_COMMAND_STRING),
-    DELETE(Duke.DELETE_COMMAND_STRING),
-    FIND(Duke.FIND_COMMAND_STRING),
-    ADD_EVENT(Duke.ADD_EVENT_COMMAND_STRING),
-    ADD_TODO(Duke.ADD_TODO_COMMAND_STRING),
-    ADD_DEADLINE(Duke.ADD_DEADLINE_COMMAND_STRING);
+    UNKNOWN(""),
+    EXIT("bye"),
+    DISPLAY_LIST("list"),
+    MARK_DONE("mark"),
+    MARK_UNDONE("unmark"),
+    DELETE("delete"),
+    FIND("find"),
+    ADD_EVENT("event"),
+    ADD_TODO("todo"),
+    ADD_DEADLINE("deadline");
 
     private String commandString;
 
