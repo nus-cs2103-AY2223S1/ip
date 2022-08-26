@@ -20,11 +20,6 @@ public class Storage {
         this.directory = directory;
     }
 
-//    Storage(String pathname, String directory) {
-//        this.pathname = pathname;
-//        this.directory = directory;
-//    }
-
     public void getData() {
         try {
             File f = new File(this.pathname);
@@ -82,30 +77,9 @@ public class Storage {
         }
     }
 
-    /* public String[] modifyFileHelper(String taskStatus) throws FileNotFoundException {
-         File file = new File(this.pathname);
-         Scanner scanner = new Scanner(file);
-         String oldLine = "";
-         String oldContent = "";
-         while (scanner.hasNext()) {
-             String string = scanner.nextLine();
-             if (string.equals(taskStatus)) {
-                 oldLine = string;
-             } else {
-             }
-             oldContent = oldContent + string + "\n";
-         }
-         String[] pair = {oldLine, oldContent};
-         return pair;
-     }
-
-     */
     public void updateFile() throws IOException {
         File f = new File(this.pathname);
         FileWriter fw = new FileWriter(f);
-//        for (int i = 0; i < listStored.size(); i++) {
-//            fw.write(listStored.get(i) + "\n");
-//        }
         String newContent = "";
         for (int i = 0; i < listStored.size(); i++) {
             newContent = newContent + listStored.get(i) + "\n";
@@ -113,6 +87,5 @@ public class Storage {
         fw.write(newContent);
         fw.close();
     }
-
 }
 

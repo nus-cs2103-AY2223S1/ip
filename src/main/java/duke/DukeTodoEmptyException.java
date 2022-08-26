@@ -1,5 +1,5 @@
 package duke;
-public class DukeTodoEmptyException extends DukeException{
+public class DukeTodoEmptyException extends DukeException {
     DukeTodoEmptyException() {
         super();
     }
