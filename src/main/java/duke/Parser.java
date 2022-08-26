@@ -8,10 +8,16 @@ import tasks.Deadlines;
 import tasks.Task;
 
 public class Parser {
-    public enum COMMANDS {
+    private enum COMMANDS {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
+    /**
+     * Returns Command that program is to execute from String input.
+     * @param input String to be converted to command.
+     * @return Command for program to execute.
+     * @throws DukeException If an illegal command is entered or not enought information was given.
+     */
     public static Command parse(String input) throws DukeException {
         String[] inputSplit = input.split(" ", 2);
         if (inputSplit.length == 1) {
