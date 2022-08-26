@@ -10,7 +10,7 @@ import duke.ui.Ui;
  * Marks a task as completed.
  */
 public class MarkCommand extends Command {
-    int index;
+    private final int index;
 
     /**
      * Constructor for MarkCommand.

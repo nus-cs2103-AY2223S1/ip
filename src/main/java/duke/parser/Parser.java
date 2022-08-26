@@ -39,33 +39,38 @@ public class Parser {
                 case Find:
                     return new FindCommand(contents);
                 case Todo:
-                    if (contents.isBlank())
+                    if (contents.isBlank()) {
                         throw new EmptyTitleException();
-                    else
+                    } else {
                         return new CreateTodoCommand(new Todo(contents));
+                    }
                 case Deadline:
                     String[] deadlineComponents = contents.split(" /by ");
 
-                    if (deadlineComponents.length != 2)
+                    if (deadlineComponents.length != 2) {
                         throw new InvalidDeadlineException();
-                    else if (deadlineComponents[0].isBlank())
+                    } else if (deadlineComponents[0].isBlank()) {
                         throw new EmptyTitleException();
-                    else
+                    } else {
                         return new CreateDeadlineCommand(
                                 new Deadline(deadlineComponents[0].trim(),
                                         deadlineComponents[1].trim())
                         );
+                    }
                 case Event:
                     String[] eventComponents = contents.split(" /at ");
-                    if (eventComponents.length != 2)
+                    if (eventComponents.length != 2) {
                         throw new InvalidEventException();
-                    else if (eventComponents[0].isBlank())
+                    } else if (eventComponents[0].isBlank()) {
                         throw new EmptyTitleException();
-                    else
+                    } else {
                         return new CreateEventCommand(
                                 new Event(eventComponents[0].trim(),
                                         eventComponents[1].trim())
                         );
+                    }
+                default:
+                    break;
                 }
             } catch (NumberFormatException e) {
                 throw new InvalidTaskIndexException();

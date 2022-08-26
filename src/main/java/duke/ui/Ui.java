@@ -4,8 +4,8 @@ package duke.ui;
  * The interface responsible for handling the app's interaction with the user.
  */
 public class Ui {
-    private static String WELCOME_MESSAGE = "Hello! I'm Duke\n" + "What can I do for you?";
-    private static String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\n" + "What can I do for you?";
+    private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
 
     /**
      * Welcomes the user.

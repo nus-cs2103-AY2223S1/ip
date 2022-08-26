@@ -1,16 +1,16 @@
 package duke.task;
 
 import java.io.File;
-
 import java.time.format.FormatStyle;
 
-
+/**
+ * An object representing a task in a checklist. This is the application's primary class.
+ */
 public class Task {
+    public static final FormatStyle DATE_FORMAT = FormatStyle.MEDIUM;
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
     private String title;
     private boolean completed;
-
-    public static final FormatStyle DATE_FORMAT = FormatStyle.MEDIUM;
 
     Task(String title) {
         this.title = title;

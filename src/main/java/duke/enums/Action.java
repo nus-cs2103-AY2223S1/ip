@@ -1,6 +1,6 @@
 package duke.enums;
 
-import duke.exceptions.*;
+import duke.exceptions.InvalidCommandException;
 
 /**
  * A helper enumeration that specifies various keywords and their corresponding actions that are
@@ -17,7 +17,7 @@ public enum Action {
 
     public final String label;
 
-    private Action(String label) {
+    Action(String label) {
         this.label = label;
     }
 

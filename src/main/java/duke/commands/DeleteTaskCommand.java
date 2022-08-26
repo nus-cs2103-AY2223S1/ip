@@ -10,7 +10,7 @@ import duke.ui.Ui;
  * Deletes a task from the task list.
  */
 public class DeleteTaskCommand extends Command {
-    int index;
+    private final int index;
 
     /**
      * Constructor for DeleteTaskCommand.

@@ -1,10 +1,11 @@
 package duke.task;
 
-import duke.exceptions.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.exceptions.InvalidDeadlineException;
+import duke.exceptions.ParsingTaskException;
 
 /**
  * Deadlines are tasks that need to be done before a specific date/time e.g., submit report by 11/10/2019 5pm
@@ -55,7 +56,8 @@ public class Deadline extends Task {
     public static Deadline parse(String data) throws ParsingTaskException {
         String[] components = data.split(",");
         if (components.length != 4) {
-            throw new ParsingTaskException(String.format("Todos require 4 components, but found %d.", components.length));
+            throw new ParsingTaskException(String.format("Todos require 4 components, but found %d.",
+                    components.length));
         }
         try {
             boolean completed = Integer.parseInt(components[1]) == 1;
@@ -65,7 +67,8 @@ public class Deadline extends Task {
 
             return new Deadline(description, by, completed);
         } catch (NumberFormatException e) {
-            throw new ParsingTaskException(String.format("Expected a number at component 1, but found %s", components[1]));
+            throw new ParsingTaskException(String.format("Expected a number at component 1, but found %s",
+                    components[1]));
         } catch (InvalidDeadlineException e) {
             throw new ParsingTaskException(e.getMessage());
         }

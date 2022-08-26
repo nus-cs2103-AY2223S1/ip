@@ -1,5 +1,5 @@
 package duke.task;
-import duke.exceptions.*;
+import duke.exceptions.ParsingTaskException;
 
 /**
  * Todos are tasks without any date/time attached to it e.g., visit new theme park
@@ -26,7 +26,8 @@ public class Todo extends Task {
     public static Todo parse(String data) throws ParsingTaskException {
         String[] components = data.split(",");
         if (components.length != 3) {
-            throw new ParsingTaskException(String.format("Todos require 3 components, but found %d.", components.length));
+            throw new ParsingTaskException(String.format("Todos require 3 components, but found %d.",
+                    components.length));
         }
         try {
             boolean completed = Integer.parseInt(components[1]) == 1;
@@ -34,7 +35,8 @@ public class Todo extends Task {
 
             return new Todo(title, completed);
         } catch (NumberFormatException e) {
-            throw new ParsingTaskException(String.format("Expected a number at component 1, but found %s", components[1]));
+            throw new ParsingTaskException(String.format("Expected a number at component 1, but found %s",
+                    components[1]));
         }
     }
 }

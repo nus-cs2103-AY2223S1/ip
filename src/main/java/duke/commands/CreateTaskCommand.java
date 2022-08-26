@@ -9,7 +9,7 @@ import duke.ui.Ui;
  * Creates and stores a task.
  */
 class CreateTaskCommand extends Command {
-    Task task;
+    private final Task task;
 
     /**
      * Constructor for CreateTaskCommand.

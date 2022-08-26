@@ -1,14 +1,14 @@
 package duke;
 
+import java.io.File;
+import java.util.Scanner;
+
 import duke.commands.Command;
-import duke.exceptions.*;
+import duke.exceptions.InvalidCommandException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.File;
-import java.util.Scanner;
 
 /**
  * The entry point to the application.
