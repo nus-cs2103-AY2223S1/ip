@@ -9,6 +9,9 @@ import duke.task.Todo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser to parse the input from users.
+ */
 public class Parser {
     public static final String EXIT_PREFIX = "bye";
     public static final String LIST_PREFIX = "list";
@@ -22,6 +25,12 @@ public class Parser {
     private static final String DEADLINE_SPLIT = " /by ";
     private static final String EVENT_SPLIT = " /at ";
 
+    /**
+     * Parse an input string from user to a suitable command.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parse(String input) throws DukeException {
         if (input.startsWith(EXIT_PREFIX)) {
             return new ExitCommand();
@@ -44,6 +53,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse a given string to a add comment for a Todo task.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseTodoCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (!isValidSplit(splitInput, 2)) {
@@ -55,6 +70,12 @@ public class Parser {
         return new AddCommand(new Todo(splitInput[1]));
     }
 
+    /**
+     * Parse a given string to a add comment for a Deadline task.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseDeadlineCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (!isValidSplit(splitInput, 2)) {
@@ -81,6 +102,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse a given string to a add comment for a Event task.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseEventCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (!isValidSplit(splitInput, 2)) {
@@ -106,6 +133,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse a given string to a MarkDoneCommand to mark a task as done.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseMarkDoneCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput[1].trim().length() == 0) {
@@ -119,6 +152,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse a given string to a UnmarkDoneCommand to unmark a marked task.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseUnmarkDoneCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput[1].trim().length() == 0) {
@@ -131,7 +170,12 @@ public class Parser {
             throw new DukeException("OOPS!!! The task number format is invalid.");
         }
     }
-
+    /**
+     * Parse a given string to a DeleteCommand to delete a task from the task list.
+     * @param input
+     * @return
+     * @throws DukeException
+     */
     public static Command parseDeleteCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
         if (splitInput[1].trim().length() == 0) {
