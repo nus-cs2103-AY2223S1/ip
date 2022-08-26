@@ -5,13 +5,19 @@ public class TaskList {
     private ArrayList<String> addCommands;   // running these commands will always give the tasks array
     // delete, update, list functions
 
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+        this.addCommands = new ArrayList<>();
+    }
+
     // takes in a string of add commands
     public TaskList(String commands) {
         this.tasks = new ArrayList<>();
         this.addCommands = new ArrayList<>();
         String[] commandArr = commands.split("\n");
-        for(String command: commandArr) {
-            Parser.parse(command, this);      // should get the command, then execute it to change the task list
+        for(String commandString: commandArr) {
+            Command command = Parser.parse(commandString, this);      // should get the command, then execute it to change the task list
+            command.execute();
         }
     }
 
