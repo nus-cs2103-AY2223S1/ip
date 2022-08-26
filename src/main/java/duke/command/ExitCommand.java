@@ -9,6 +9,7 @@ public class ExitCommand extends Command {
         ui.exit();
         storage.save(tasks.toString());
     }
+    @Override
     public boolean isExit() {
         return true;
     }

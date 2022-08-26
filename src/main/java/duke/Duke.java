@@ -1,11 +1,21 @@
 package duke;
 
 import duke.command.Command;
+
+/**
+ * Represents chatbot duke
+ */
 public class Duke {
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
     private static final String filePath = "./data/duke.txt";
+
+    /**
+     * Initialize duke
+     *
+     * @param filePath file path to store data
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +30,10 @@ public class Duke {
             }
         }
     }
+
+    /**
+     * Runs duke
+     */
     public void run() {
         ui.greetings();
         boolean isExit = false;
@@ -37,6 +51,7 @@ public class Duke {
             }
         }
     }
+    
     public static void main(String[] args) {
         new Duke(filePath).run();
     }

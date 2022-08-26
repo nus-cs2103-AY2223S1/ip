@@ -24,6 +24,13 @@ public class Parser {
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
 
+    /**
+     * Parses user's input to be a recognisable command
+     *
+     * @param response User's input
+     * @return command
+     * @throws DukeException if User's input is in the wrong format
+     */
     protected static Command parse(String response) throws DukeException {
         String[] cmd_descp = response.split(" ");
         String command = cmd_descp[0];

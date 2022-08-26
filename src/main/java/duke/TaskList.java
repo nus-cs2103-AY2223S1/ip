@@ -9,11 +9,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Represents a task list
+ */
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
+
+    /**
+     * Constructs an empty task list
+     */
     TaskList() {
 
     }
+
+    /**
+     * Constructs a task list
+     *
+     * @param data Data containing tasks in the list
+     */
     TaskList (String data) {
         if (!data.equals("")) {
             String[] tasksArray = data.split("\n");
@@ -51,9 +64,22 @@ public class TaskList {
         return String.join(",", type, completed, taskDescription);
     }
 
+    /**
+     * Adds task to task list
+     *
+     * @param task Target task
+     */
     public void add(Task task) {
         this.tasks.add(task);
     }
+
+    /**
+     * Deletes task from task list
+     *
+     * @param ind Index of targetd task
+     * @return deleted task
+     * @throws DukeException if ind >= tasks.size() or ind < 0
+     */
     public Task del(int ind) throws DukeException {
         try {
             Task deleting_task = this.tasks.get(ind);
@@ -63,6 +89,14 @@ public class TaskList {
             throw new DukeException("Index given is out of range");
         }
     }
+
+    /**
+     * Gets target task from task list
+     *
+     * @param i Index of target task
+     * @return target task
+     * @throws DukeException if i >= tasks.size() or i < 0
+     */
     public Task get(int i) throws DukeException {
         try {
             return this.tasks.get(i);
@@ -70,9 +104,21 @@ public class TaskList {
             throw new DukeException("Index given is out of range");
         }
     }
+
+    /**
+     * Returns size of task list
+     *
+     * @return size
+     */
     protected int size() {
         return this.tasks.size();
     }
+
+    /**
+     * Changes task list to a string format
+     *
+     * @return data
+     */
     public String toString() {
         StringBuilder data = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
