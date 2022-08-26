@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Enapsulates information regarding tasks.
+ * This is an abstract class, and is extended by Todo, Event, and Deadline.
+ */
 public abstract class Task {
     public static enum Type {
         TODO,
@@ -34,6 +38,13 @@ public abstract class Task {
         return key;
     }
 
+    /**
+     * Decodes text data into a single task.
+     *
+     * @param data Text data of the encoded task.
+     * @return Decoded Task.
+     * @throws CarbonException  If the data is invalid.
+     */
     public static Task decodeTask(String data) throws CarbonException{
         String[] values = data.split("\\|");
 
@@ -70,17 +81,37 @@ public abstract class Task {
     protected String name;
     protected boolean isDone;
 
+    /**
+     * Constructs an instance of a Task.
+     * Constructor for an abstract class, not meant to be called directly.
+     *
+     * @param name Name of the task.
+     * @param isDone Whether the task is done or not.
+     * @return Task object.
+     */
     protected Task(String name, Boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
 
+    /**
+     * Updates whether the task is done or not.
+     *
+     * @param isDone Whether the task is done or not.
+     */
     public void changeDoneness(boolean isDone) {
         this.isDone = isDone;
     }
 
+    /**
+     * Encodes the task object into a simplified text to be stored.
+     * Does not use an actual encoding format.
+     *
+     * @return Encoded text data.
+     */
     public abstract String encode();
 
+    /** @inheritDoc */
     @Override
     public String toString() {
         String doneness = this.isDone? "X" : " ";

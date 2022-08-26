@@ -2,14 +2,22 @@ package carbon;
 
 import carbon.error.CarbonException;
 
+/**
+ * Interacts with user through CLI to keep track of tasks.
+ * Requires user to provide input and call task management commands.
+ */
 public class Carbon {
-    // own fields
     private boolean isRunning;
     private Ui ui;
     private Parser parser;
     private Storage storage;
 
-    // actual constructor and init method
+    /**
+     * Creates an instance of Carbon.
+     * Initializes with required components: UI, Storage, and Parser.
+     *
+     * @return Carbon object.
+     */
     private Carbon() {
         // init fields
         this.ui = new Ui();
@@ -17,7 +25,9 @@ public class Carbon {
         this.parser = new Parser(this.ui, this.storage);
     }
 
-    // main shell method
+    /**
+     * Runs the Carbon interactive bot.
+     */
     private void run() {
         this.isRunning = true;
         while (this.isRunning) {
@@ -36,6 +46,11 @@ public class Carbon {
         }
     }
 
+    /**
+     * Initializes and runs an instance of Carbon.
+     *
+     * @param args Additional arguments.
+     */
     public static void main(String[] args) {
         Carbon shell = new Carbon();
         shell.run();

@@ -10,13 +10,27 @@ import carbon.error.OutOfBoundsException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains and manages user-declared tasks.
+ */
 public class TaskList {
     private List<Task> tasks;
 
+    /**
+     * Constructs an instance of TaskList class.
+     *
+     * @return TaskList object.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Loads and adds a task to the list of all tasks.
+     *
+     * @param data String input of the encoded task.
+     * @throws CarbonException  If an error is encountered while decoding the String data.
+     */
     public void loadTask(String data) throws CarbonException {
         try {
             Task task = Task.decodeTask(data);
@@ -26,6 +40,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Encodes the task into text data to be stored.
+     * Does not use any actual encoding format, but simplifies the text.
+     * 
+     * @return Encoded task data.
+     */
     public String encodeTasks() {
         String encodedTasks = "";
         int len = this.tasks.size();
@@ -35,10 +55,19 @@ public class TaskList {
         return encodedTasks;
     }
 
-    public String validateAndMark(String input, boolean doneness) throws CarbonException {
+    /**
+     * Updates if a specific task is done or not.
+     * Performs input validation before executing.
+     *
+     * @param input User text input.
+     * @param isDone Whether the task is done or not.
+     * @return Execution log.
+     * @throws CarbonException  If there are invalid parameters.
+     */
+    public String validateAndMark(String input, boolean isDone) throws CarbonException {
         int taskNumber;
         int len = input.length();
-        if (doneness) {
+        if (isDone) {
             int requiredLen = "mark ".length();
             if (len <= requiredLen) {
                 CarbonException invalidParam = new InvalidParamException(input);
@@ -60,18 +89,26 @@ public class TaskList {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
             throw outOfBounds;
         } else {
-            String log = this.setTaskDoneness(taskNumber, doneness);
+            String log = this.setTaskDoneness(taskNumber, isDone);
             return log;
         }
     }
 
-    public String setTaskDoneness(int taskNumber, boolean doneness) {
+    private String setTaskDoneness(int taskNumber, boolean isDone) {
         Task task = this.tasks.get(taskNumber - 1);
-        task.changeDoneness(doneness);
+        task.changeDoneness(isDone);
         String log = String.format("Got it! \n\n    %s", task);
         return log;
     }
 
+    /**
+     * Adds a new task to the list.
+     *
+     * @param input User text input.
+     * @param type Type of Task: Todo, Event, or Deadline.
+     * @return Execution log.
+     * @throws CarbonException  If an error is encountered while creating the task.
+     */
     public String addTask(String input, Task.Type type) throws CarbonException {
         Task newTask;
         switch (type) {
@@ -100,6 +137,13 @@ public class TaskList {
         return log;
     }
 
+    /**
+     * Deletes a user-specified task.
+     *
+     * @param input User text input.
+     * @return Execution log.
+     * @throws CarbonException  If there are invalid parameters.
+     */
     public String deleteTask(String input) throws CarbonException {
         int len = input.length();
         int requiredLen = "delete ".length();
@@ -123,6 +167,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Lists all tasks that are contained.
+     *
+     * @return Text containing all tasks.
+     */
     public String listItems() {
         int size = this.tasks.size();
         if (size == 0) {
