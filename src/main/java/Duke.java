@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Duke {
     public static void main(String[] args) {
@@ -9,7 +12,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        Checklist tasks = new Checklist();
+        Checklist tasks = loadChecklist();
         Scanner scanner = new Scanner(System.in);
         InputParser parser = new InputParser();
         String input = "";
@@ -24,5 +27,20 @@ public class Duke {
 
             }
         }
+    }
+
+    static Checklist loadChecklist() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("./tasks.txt"));
+            Stream<String> lines = reader.lines();
+
+            Checklist checklist = new Checklist(lines);
+            reader.close();
+            return checklist;
+        } catch (Exception e) {
+            System.out.println(e);
+            return new Checklist();
+        }
+
     }
 }

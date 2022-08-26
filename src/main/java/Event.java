@@ -5,6 +5,10 @@ class Event extends Task {
         super(id, name);
         this.eventTime = eventTime;
     }
+    Event (int id, String name, String eventTime, boolean done) {
+        super(id, name, done);
+        this.eventTime = eventTime;
+    }
 
     @Override
     public String toString() {
