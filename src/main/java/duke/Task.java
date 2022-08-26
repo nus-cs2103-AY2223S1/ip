@@ -21,7 +21,7 @@ public class Task {
     }
 
     public void mark() throws IOException {
-        Storage s = new Storage(Duke.getPathname, Duke.getDirectory);
+        /*Storage s = new Storage(Duke.getPathname, Duke.getDirectory);
         String[] oldLineOldContentPair = s.modifyFileHelper(this.toString());
         String oldLine = oldLineOldContentPair[0];
         String oldContent = oldLineOldContentPair[1];
@@ -31,13 +31,15 @@ public class Task {
                 "[X] " + oldLine.substring(6));
         writer.write(newContent);
         writer.close();
+
+         */
         this.isDone = true;
         Ui ui = new Ui();
         ui.markHelperUi(this);
     }
 
     public void unmark() throws IOException {
-        Storage s = new Storage(Duke.getPathname, Duke.getDirectory);
+       /* Storage s = new Storage(Duke.getPathname, Duke.getDirectory);
         String[] oldLineOldContentPair = s.modifyFileHelper(this.toString());
         String oldLine = oldLineOldContentPair[0];
         String oldContent = oldLineOldContentPair[1];
@@ -47,6 +49,8 @@ public class Task {
                 oldLine.substring(0,3) + "[] " + oldLine.substring(7));
         writer.write(newContent);
         writer.close();
+        */
+
         this.isDone = false;
         Ui ui = new Ui();
         ui.unmarkHelperUi(this);

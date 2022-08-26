@@ -18,27 +18,23 @@ public class TaskList {
         ui.displayListUi(this.list);
     }
 
-    public void writeToFile(String status) throws IOException {
-        FileWriter fw = new FileWriter(Duke.getPathname, true);
-        fw.write(status + "\n");
-        fw.close();
-    }
+//    public void writeToFile(String status) throws IOException {
+//        FileWriter fw = new FileWriter(Duke.getPathname, true);
+//        fw.write(status + "\n");
+//        fw.close();
+//    }
 
     void addToList(Task task) {
-        try {
-            writeToFile(task.toString());
-            this.list.add(task);
-            Ui ui = new Ui();
-            ui.addToListUi(task, this.list);
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
+        //  writeToFile(task.toString());
+        this.list.add(task);
+        Ui ui = new Ui();
+        ui.addToListUi(task, this.list);
     }
 
      void delete(String s) throws IOException {
         int i = Integer.parseInt(s.substring(7)) - 1;
         Task task = this.list.remove(i);
-         File file = new File(Duke.getPathname);
+        /* File file = new File(Duke.getPathname);
          Scanner scanner = new Scanner(file);
          String oldLine = "";
          String content = "";
@@ -52,7 +48,7 @@ public class TaskList {
          }
          FileWriter writer = new FileWriter(file);
          writer.write(content);
-         writer.close();
+         writer.close();*/
          Ui ui = new Ui();
          ui.deleteUi(task, this.list);
     }
