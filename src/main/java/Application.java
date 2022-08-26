@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Application {
@@ -77,13 +79,15 @@ public class Application {
                 newTask = new Todo(description);
                 break;
             case DEADLINE:
-                printResponse("deadline:");
-                String deadline = sc.nextLine();
+                printResponse("deadline (dd/mm/yy):");
+                String deadlineString = sc.nextLine();
+                LocalDate deadline = LocalDate.parse(deadlineString, DateTimeFormatter.ofPattern("dd/MM/yy"));
                 newTask = new Deadline(description, deadline);
                 break;
             case EVENT:
-                printResponse("event date/time:");
-                String eventTime = sc.nextLine();
+                printResponse("event date (dd/mm/yy):");
+                String eventTimeString = sc.nextLine();
+                LocalDate eventTime = LocalDate.parse(eventTimeString, DateTimeFormatter.ofPattern("dd/MM/yy"));
                 newTask = new Event(description, eventTime);
                 break;
         }
