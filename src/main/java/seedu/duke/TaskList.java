@@ -115,6 +115,18 @@ public class TaskList {
         task.unmark();
     }
 
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            Task task = this.getTaskList().get(i);
+            String taskDescription = task.getDescription();
+            if (taskDescription.contains(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
+    }
+
     public void printList() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < this.taskList.size(); i++) {
@@ -122,6 +134,7 @@ public class TaskList {
             System.out.println(line);
         }
     }
+
 
 //    public String toString() {
 //        String output = String.join("\n", this.taskList);

@@ -2,6 +2,8 @@ package seedu.duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -29,4 +31,11 @@ public class Ui {
         return command;
     }
 
+    public static void showMatchingTasks(ArrayList<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            String line = String.format("%s. %s", i + 1, tasks.get(i));
+            System.out.println(line);
+        }
+    }
 }
