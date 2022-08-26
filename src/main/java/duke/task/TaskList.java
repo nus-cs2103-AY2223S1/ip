@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 
+/** Contains the task list and operations to edit the list */
 public class TaskList {
 
     /** ArrayList of type Task */
@@ -15,10 +16,21 @@ public class TaskList {
         this.taskArray = new ArrayList<>();
     }
 
+    /**
+     * Returns size of taskList
+     *
+     * @return int.
+     */
     public int getSize() {
         return taskArray.size();
     }
 
+    /**
+     * Returns a task object.
+     *
+     * @param taskID ID of the task object.
+     * @return Task.
+     */
     public Task getTask(int taskID) {
         return taskArray.get(taskID - 1);
     }

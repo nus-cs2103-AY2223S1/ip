@@ -4,10 +4,15 @@ import duke.exception.DukeException;
 
 import java.time.LocalDateTime;
 
+/** Represents a task. */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected int day, month, year, hours, minutes;
+    protected int day;
+    protected int month;
+    protected int year;
+    protected int hours;
+    protected int minutes;
 
     /**
      * Constructor to initialise a Task object.

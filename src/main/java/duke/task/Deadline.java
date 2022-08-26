@@ -4,6 +4,7 @@ import duke.exception.DukeException;
 
 import java.time.format.DateTimeFormatter;
 
+/** Deadline task that needs to be completed by a date */
 public class Deadline extends Task {
 
     /** Deadline date of the task */

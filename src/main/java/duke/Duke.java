@@ -9,11 +9,18 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/** Contains storage, tasks and ui to help interact with user and execute commands */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initialises the Storage object with the saved tasks.
+     *
+     * @param filePath
+     * @throws IOException
+     */
     public Duke(String filePath) throws IOException {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -27,6 +34,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Takes in user input and execute commands until user exits.
+     *
+     * @throws IOException
+     */
     public void run() throws IOException {
         ui.showWelcome();
         boolean isExit = false;

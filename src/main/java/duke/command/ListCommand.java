@@ -4,6 +4,7 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/** Command that helps to list the tasks in the list */
 public class ListCommand extends Command {
 
     /**

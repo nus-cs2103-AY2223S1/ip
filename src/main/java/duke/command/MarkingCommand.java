@@ -4,6 +4,7 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/** Command that helps to mark or unmark tasks in the list */
 public class MarkingCommand extends Command {
 
     /** True if user wants to mark a task. False if is unmark */

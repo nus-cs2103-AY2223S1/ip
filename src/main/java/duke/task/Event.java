@@ -4,6 +4,7 @@ import duke.exception.DukeException;
 
 import java.time.format.DateTimeFormatter;
 
+/** Event task that occurs at a date */
 public class Event extends Task {
 
     /** Event date of the task */

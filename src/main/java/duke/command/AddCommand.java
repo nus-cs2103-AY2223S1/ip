@@ -5,11 +5,17 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/** Command that adds tasks into the list */
 public class AddCommand extends Command {
 
     /** Task object to be added to the list */
     private Task task;
 
+    /**
+     * Initialises the object and set field task.
+     *
+     * @param task
+     */
     public AddCommand(Task task) {
         this.task = task;
     }

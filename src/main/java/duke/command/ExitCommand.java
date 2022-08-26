@@ -4,6 +4,7 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/** Command that allows user to exit. */
 public class ExitCommand extends Command {
 
     @Override

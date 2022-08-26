@@ -1,20 +1,20 @@
 package duke.data;
 
-import duke.exception.DukeException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
+/** Deals with loading tasks from the file and saving tasks in the file */
 public class Storage {
 
     private File f;
@@ -31,6 +31,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Load the tasks from hard disk.
+     *
+     * @return ArrayList of task objects.
+     * @throws FileNotFoundException
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws FileNotFoundException, DukeException {
         ArrayList<Task> ls = new ArrayList<>();
         try {
