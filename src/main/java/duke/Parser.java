@@ -210,8 +210,11 @@ public class Parser {
                                     .filter(t -> t.getDateTime().getDayOfYear() == deadlineDate.getDayOfYear())
                                     .forEach((t) -> {
                                         int itemNumber = tasks.indexOf(t) + 1;
+                                        if (!hasElements[0]) {
+                                            System.out.println("Here are deadlines in your list");
+                                        }
                                         hasElements[0] = true;
-                                        System.out.printf("%d: %s", itemNumber, t);
+                                        System.out.printf("%d: %s\n", itemNumber, t);
                                     });
 
                             if (!hasElements[0]) {
@@ -221,6 +224,32 @@ public class Parser {
                         } catch (DateTimeParseException e) {
                             System.out.println("Please input the date and time in the following format: " + DEADLINE_TIME_INPUT_PATTERN);
                         }
+                    }
+            );
+            break;
+
+        case "find":
+            command = new Command(
+                    (tasks, ui, storage) -> {
+
+                        boolean[] hasElements = {false};
+
+                        tasks
+                                .stream()
+                                .filter(t -> t.getDescription().contains(parameters))
+                                .forEach((t) -> {
+                                    int itemNumber = tasks.indexOf(t) + 1;
+                                    if (!hasElements[0]) {
+                                        System.out.println("Here are the matching tasks in you list");
+                                    }
+                                    hasElements[0] = true;
+                                    System.out.printf("%d: %s\n", itemNumber, t);
+                                });
+
+                        if (!hasElements[0]) {
+                            System.out.println("No such entries were found!");
+                        }
+
                     }
             );
             break;

@@ -15,6 +15,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public boolean isDone() {
         return this.isDone;
     }
