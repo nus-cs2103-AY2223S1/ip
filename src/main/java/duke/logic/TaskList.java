@@ -11,10 +11,22 @@ import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * TaskList stores user tasks and manages them.
+ *
+ * @author totsukatomofumi
+ */
 public class TaskList extends ArrayList<Task> {
+    /** Storage object for writing task history to a file. */
     private Storage storage;
+
+    /**
+     * HashMap to contain set chars representing task types and function to return a new task of that
+     * corresponding type pairs.
+     */
     private static final HashMap<Character,
             BiFunction<Integer, Integer, Function<String, Task>>> taskMap = new HashMap<>();
+
     static {
         TaskList.taskMap.put('T', (index, length) -> line -> new ToDo(line.substring(index)));
         TaskList.taskMap.put('D', (index, length) -> line -> new Deadline(line.substring(index, index + length),
@@ -23,6 +35,11 @@ public class TaskList extends ArrayList<Task> {
                 LocalDate.parse(line.substring(index + length))));
     }
 
+    /**
+     * Constructs a task list.
+     *
+     * @param storage the storage object to be tied to this task list.
+     */
     public TaskList(Storage storage) {
         super();
         this.storage = storage;
@@ -36,10 +53,20 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
+    /**
+     * Checks if a task exists at that zero-based index.
+     * @param query the zero-based index.
+     * @return true if a task exists, else false.
+     */
     public boolean exists(int query) {
         return query < super.size() && query >= 0;
     }
 
+    /**
+     * Removes the task at the specified position from this task list.
+     * @param index the index of the task to be removed.
+     * @return the task that was removed from the task list.
+     */
     @Override
     public Task remove(int index) {
         Task temp = super.remove(index);
@@ -47,6 +74,12 @@ public class TaskList extends ArrayList<Task> {
         return temp;
     }
 
+    /**
+     * Appends the specified task to the end of the task list.
+     *
+     * @param task task to be appended to this task list.
+     * @return true.
+     */
     @Override
     public boolean add(Task task) {
         boolean bool = super.add(task);
@@ -54,18 +87,35 @@ public class TaskList extends ArrayList<Task> {
         return bool;
     }
 
+    /**
+     * Marks the specified task in the task list.
+     *
+     * @param index the index of the task to be marked.
+     * @return the task that was marked.
+     */
     public Task markTask(int index) {
         this.get(index).mark();
         storage.update(this);
         return this.get(index);
     }
 
+    /**
+     * Unmarks the specified task in the task list.
+     *
+     * @param index the index of the task to be unmarked.
+     * @return the task that was unmarked.
+     */
     public Task unmarkTask(int index) {
         this.get(index).unmark();
         storage.update(this);
         return this.get(index);
     }
 
+    /**
+     * Retrieves list of task from the task history file via storage.
+     *
+     * @throws IOException If the file contains invalid contents that cannot be parsed.
+     */
     public void retrieve() throws IOException {
         //initialize scanner with task history file
         Scanner retriever;

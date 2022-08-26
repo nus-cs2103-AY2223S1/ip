@@ -6,10 +6,23 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Storage deals with writing task history to a file.
+ *
+ * @author totsukatomofumi
+ */
 public class Storage {
+    /** Directory where task history file is. */
     private File dataDir;
+
+    /** Task history file. */
     private File history;
 
+    /**
+     * Constructs a storage.
+     *
+     * @param filePath the file path of the stored task history.
+     */
     public Storage(String filePath) {
         this.history = new File(filePath);
         this.dataDir = history.getParentFile();
@@ -17,6 +30,9 @@ public class Storage {
         this.createRequiredFiles();
     }
 
+    /**
+     * Creates the directory and the file.
+     */
     public void createRequiredFiles() {
         //will not create if files and directory already exist
         this.dataDir.mkdirs();
@@ -28,6 +44,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the file with this task list.
+     *
+     * @param taskList the task list to update the file with.
+     */
     public void update(TaskList taskList) {
         FileWriter fileWriter;
         try {
@@ -45,6 +66,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Clears the file.
+     */
     public void clear() {
         try {
             FileWriter clearer = new FileWriter(this.history);
@@ -56,6 +80,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the file task history is stored.
+     *
+     * @return the file task history is stored.
+     */
     public File getHistory() {
         return this.history;
     }

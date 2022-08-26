@@ -10,8 +10,16 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
+/**
+ * Parser deals with making sense of user input.
+ *
+ * @author totsukatomofumi
+ */
 public class Parser {
+    /** Task list to be passed into command constructors. */
     private TaskList taskList;
+
+    /** HashMap to contain abbreviated month and their numerical representation as a string pairs. */
     private static HashMap<String, String> months = new HashMap<>();
 
     static {
@@ -23,10 +31,21 @@ public class Parser {
         }
     }
 
+    /**
+     * Constructor for the parser.
+     *
+     * @param taskList the task list to be passed into the construction of commands.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
+    /**
+     * Parses the user input to the appropriate command called, if any.
+     *
+     * @param response the user input.
+     * @return the command based on the user input.
+     */
     public Runnable parse(String response) {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
@@ -159,7 +178,13 @@ public class Parser {
         };
     }
 
-
+    /**
+     * Parses string to the appropriate time it represents, if any.
+     *
+     * @param str the string to parse.
+     * @return the LocalDate object representing time.
+     * @throws IllegalTimeException If unable to parse the string to a valid time.
+     */
     private static LocalDate parseTime(String str) throws IllegalTimeException {
         String sDay;
         String sMonth;
@@ -219,8 +244,15 @@ public class Parser {
         }
     }
 
-    //helper that just splits string by specified char separator into array of size 3
+    /**
+     * Splits a string by using a separator char.
+     *
+     * @param c the char used as separator.
+     * @param str the string to split.
+     * @return an array of parts of the input string in order.
+     */
     private static String[] parseTimeHelper(char c, String str) {
+        //helper that just splits string by specified char separator into array of size 3
         String[] arr = new String[3];
         int count = 0;
         for (int charIndex = str.indexOf(c); charIndex >= 0 && count < 2; charIndex = str.indexOf(c)) {

@@ -4,10 +4,25 @@ import duke.logic.TaskList;
 import duke.exception.IllegalDescriptionException;
 import duke.task.ToDo;
 
+/**
+ * ToDoCommand is a command for Duke to remember a todo.
+ *
+ * @author totsukatomofumi
+ */
 public class ToDoCommand extends Command {
+    /** Task list the command has to add a todo to. */
     private TaskList taskList;
+
+    /** Description of the todo. */
     private String description;
 
+    /**
+     * Constructor for the command.
+     *
+     * @param taskList the task list the command will modify.
+     * @param description the description of the todo.
+     * @throws IllegalDescriptionException If no description is specified, including just whitespaces.
+     */
     public ToDoCommand(TaskList taskList, String description) throws IllegalDescriptionException {
         this.taskList = taskList;
         //double check
@@ -18,6 +33,9 @@ public class ToDoCommand extends Command {
         }
     }
 
+    /**
+     * Adds new todo to the list of tasks.
+     */
     public void run() {
         taskList.add(new ToDo(description));
         System.out.println("Got it. I've added this task:");
