@@ -8,8 +8,8 @@ public class Event extends Task{
 
     public Event(String name, String dateAndTime) {
         super(name);
-        this.date = getDateFromInput(dateAndTime);
-        this.time = getTimeFromInput(dateAndTime);
+        this.date = LocalDate.parse(getDateFromInput(dateAndTime));
+        this.time = LocalTime.parse(getTimeFromInput(dateAndTime));
     }
 
     @Override
@@ -21,22 +21,6 @@ public class Event extends Task{
                 + " "
                 + this.time.format(DateTimeFormatter.ofPattern("hh:mm a"))
                 + ")";
-    }
-
-    private String[] splitIntoDateAndTime(String string) {
-        String[] token = string.split(" ", 2);
-        return token;
-    }
-
-    private LocalDate getDateFromInput(String input) {
-        String[] token = splitIntoDateAndTime(input);
-        return LocalDate.parse(token[0], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-    }
-
-    private LocalTime getTimeFromInput(String input) {
-        String[] token = splitIntoDateAndTime(input);
-
-        return LocalTime.parse(token[1], DateTimeFormatter.ofPattern("HHmm"));
     }
 
     private String[] splitIntoDateAndTime(String string) {
