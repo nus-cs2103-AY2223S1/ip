@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public enum Command {
     DEADLINE("deadline"),
     DELETE("delete"),
@@ -6,6 +10,8 @@ public enum Command {
     MARK("mark"),
     TODO("todo"),
     UNMARK("unmark");
+
+    private String INPUT_DATE_FORMAT = "dd-MM-yyyy";
 
     private final String name;
     Command(String name) {
@@ -28,12 +34,14 @@ public enum Command {
 
             case "deadline":
                 String[] temp = args.split(" /by ", 2);
-                Duke.addTask(new Deadline(temp[0], temp[1]));
+                Duke.addTask(new Deadline(temp[0], LocalDate.parse(temp[1],
+                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT))));
                 break;
 
             case "event":
                 temp = args.split(" /at ", 2);
-                Duke.addTask(new Event(temp[0], temp[1]));
+                Duke.addTask(new Event(temp[0], LocalDate.parse(temp[1],
+                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT))));
                 break;
 
             case "todo":
@@ -46,6 +54,15 @@ public enum Command {
                 index = Integer.parseInt(args) - 1;
                 Duke.markTask(Duke.getTasks().get(index), name.equals("mark"));
                 break;
+        }
+    }
+
+    public boolean isValidDate(String date) {
+        try {
+            LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT));
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
         }
     }
 
@@ -70,8 +87,14 @@ public enum Command {
             case "deadline":
                 String[] temp = args.split(" /by ", 2);
                 if (temp.length < 2) {
-                    Duke.printBot("----Error----\nPlease specify a task and deadline.\n\n"
+                    Duke.printBot("----Error----\n"
+                                   + "Please specify a task and deadline.\n\n"
                                    + usage);
+                    return false;
+                } else if (!isValidDate(temp[1])) {
+                    Duke.printBot("----Error----\n"
+                                  + "Please specify the due date in the right format.\n\n"
+                                  + usage);
                     return false;
                 }
                 return true;
@@ -79,7 +102,13 @@ public enum Command {
             case "event":
                 temp = args.split(" /at ", 2);
                 if (temp.length < 2) {
-                    Duke.printBot("----Error----\nPlease specify an event and date.\n\n"
+                    Duke.printBot("----Error----\n"
+                                   + "Please specify an event and date.\n\n"
+                                   + usage);
+                    return false;
+                } else if (!isValidDate(temp[1])) {
+                    Duke.printBot("----Error----\n"
+                                   + "Please specify the event date in the right format.\n\n"
                                    + usage);
                     return false;
                 }
@@ -121,13 +150,13 @@ public enum Command {
         String ret = "Correct usage: ";
         switch(name) {
             case "deadline":
-                return ret + "deadline [task-description] /by [date]";
+                return ret + "deadline [task-description] /by [DD-MM-YYYY]";
 
             case "delete":
                 return ret + "delete [task-number]";
 
             case "event":
-                return ret + "event [task-description] /at [date]";
+                return ret + "event [task-description] /at [DD-MM-YYYY]";
 
             case "mark":
                 return ret + "mark [task-number]";
