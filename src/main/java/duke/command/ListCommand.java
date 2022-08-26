@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.data.Storage;
-import duke.task.*;
+import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ListCommand extends Command {

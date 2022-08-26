@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
+
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
@@ -13,7 +14,8 @@ public class Deadline extends Task {
         if (dateIsFormatted == true) {
             this.date = by;
         } else {
-            this.date = getLocalDateTime(by, "deadline", "/by").format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm a"));
+            this.date = getLocalDateTime(by,
+                    "deadline", "/by").format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm a"));
         }
     }
 

@@ -1,7 +1,9 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 public class Parser {
 
@@ -11,23 +13,26 @@ public class Parser {
      * @param strInput String input from user.
      * @return Command object.
      */
-    public static Command parse(String strInput) throws DukeException{
-        if (strInput.equalsIgnoreCase("bye"))  {
+    public static Command parse(String strInput) throws DukeException {
+        if (strInput.equalsIgnoreCase("bye")) {
             return new ExitCommand();
-        }  if (strInput.equalsIgnoreCase("list")) {
+        }
+        if (strInput.equalsIgnoreCase("list")) {
             return new ListCommand();
-        } else if (isATodo(strInput)){
+        } else if (isATodo(strInput)) {
             checkForNullTask(strInput.substring(4), "todo");
             checkForMultipleTasks(strInput.substring(4));
             return new AddCommand(new Todo(strInput.substring(5)));
         } else if (isADeadline(strInput)) {
             checkForNullTask(strInput.substring(8), "deadline");
             checkForMultipleTasks(strInput.substring(8));
-            return new AddCommand(new Deadline(strInput.substring(9, strInput.indexOf("/") - 1), strInput.substring(strInput.indexOf("/by") + 4), false));
+            return new AddCommand(new Deadline(strInput.substring(9, strInput.indexOf("/") - 1),
+                    strInput.substring(strInput.indexOf("/by") + 4), false));
         } else if (isAEvent(strInput)) {
             checkForNullTask(strInput.substring(5), "event");
             checkForMultipleTasks(strInput.substring(5));
-            return new AddCommand(new Event(strInput.substring(6, strInput.indexOf("/") - 1), strInput.substring(strInput.indexOf("/at") + 4), false));
+            return new AddCommand(new Event(strInput.substring(6, strInput.indexOf("/") - 1),
+                    strInput.substring(strInput.indexOf("/at") + 4), false));
         } else if (strInput.contains("delete") && strInput.substring(0, 6).equals("delete")) {
             return new DeleteCommand(Integer.parseInt(strInput.substring(7)));
         } else if (strInput.contains("unmark") && strInput.substring(0, 6).equals("unmark")) {
@@ -72,7 +77,7 @@ public class Parser {
      * @throws DukeException if there are multiple tasks in one input.
      */
     public static void checkForMultipleTasks(String s) throws DukeException {
-        if (s.contains("todo") ||s.contains("deadline") || s.contains("event")) {
+        if (s.contains("todo") || s.contains("deadline") || s.contains("event")) {
             throw new DukeException("Multiple task detected.");
         }
     }
@@ -84,7 +89,7 @@ public class Parser {
      * @return boolean. True if is a todo task.
      */
     public static boolean isATodo(String s) {
-        return s.contains("todo") && s.substring(0,4).equals("todo");
+        return s.contains("todo") && s.substring(0, 4).equals("todo");
     }
 
     /**
@@ -94,7 +99,7 @@ public class Parser {
      * @return boolean. True if is a deadline task.
      */
     public static boolean isADeadline(String s) {
-        return s.contains("deadline") && s.substring(0,8).equals("deadline");
+        return s.contains("deadline") && s.substring(0, 8).equals("deadline");
     }
 
     /**

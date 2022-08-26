@@ -1,16 +1,15 @@
 package duke.ui;
 
-import duke.task.*;
 import duke.exception.DukeException;
+import duke.task.Task;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
 
     private Scanner sc;
 
-    public Ui () {
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 
@@ -65,7 +64,7 @@ public class Ui {
     }
 
     public void showListMessage(String s) {
-        showToUser( " Here are the tasks in your list:" + s);
+        showToUser(" Here are the tasks in your list:" + s);
     }
 
     public void showExitMessage() {

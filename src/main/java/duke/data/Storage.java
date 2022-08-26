@@ -1,12 +1,16 @@
 package duke.data;
 
-import duke.task.*;
 import duke.exception.DukeException;
 
-import java.io.IOException;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +19,7 @@ public class Storage {
 
     private File f;
 
-    public Storage (String filepath) throws IOException {
+    public Storage(String filepath) throws IOException {
         try {
             f = new File(filepath);
             f.getParentFile().mkdirs();
@@ -69,10 +73,10 @@ public class Storage {
     public void updateFile(TaskList tasks) throws IOException {
         try {
             FileWriter fw = new FileWriter(f);
-            for (int i = 1 ; i <= tasks.getSize(); i++) {
+            for (int i = 1; i <= tasks.getSize(); i++) {
                 String s = "";
                 Task task = tasks.getTask(i);
-                String taskType = task.toString().substring(1,2);
+                String taskType = task.toString().substring(1, 2);
                 s += taskType;
                 if (task.getIsDone()) {
                     s += " | 1 | ";
@@ -92,5 +96,4 @@ public class Storage {
             e.printStackTrace();
         }
     }
-
 }

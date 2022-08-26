@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
+
 import java.time.LocalDateTime;
 
 public abstract class Task {
@@ -38,14 +39,19 @@ public abstract class Task {
     }
 
     /**
-     * Returns [X] if task is done. Else, [ ].
+     * Set isDone to bool.
      *
-     * @return String.
+     * @param bool Boolean.
      */
     public void toggleIsDone(boolean bool) {
         isDone = bool;
     }
 
+    /**
+     * Returns [X] if task is done. Else, [ ].
+     *
+     * @return String.
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
