@@ -14,6 +14,7 @@ public class Duke {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+    private final Parser parser;
 
     /**
      * Initializes a Duke object with the specified file path to load and store tasks.
@@ -30,6 +31,7 @@ public class Duke {
             ui.showError(e.getMessage());
             tasks = new TaskList();
         }
+        parser = new Parser(tasks);
     }
 
     /**
@@ -42,7 +44,7 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
+                Command c = parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {

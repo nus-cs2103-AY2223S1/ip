@@ -25,12 +25,12 @@ public class FindCommand extends Command {
             Predicate<Task> filter = task -> task.stringify().contains(sub);
             Consumer<Task> print = task -> {
                 if (filter.test(task)) {
-                    System.out.println((tasks.TASKS.indexOf(task) + 1)
+                    System.out.println((tasks.getTasks().indexOf(task) + 1)
                             + ". " + task.toString());
                 }
             };
             System.out.println("Here are the matching tasks in your list:");
-            tasks.TASKS.forEach(print);
+            tasks.getTasks().forEach(print);
         } else {
             throw new DukeException("Please put in an argument for the find command.");
         }
