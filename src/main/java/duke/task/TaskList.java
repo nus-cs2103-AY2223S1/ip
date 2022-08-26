@@ -48,7 +48,7 @@ public class TaskList {
      * This method converts tasks in the taskList to a String that can be later written into a file
      * @return tasks in String.
      */
-    public String taskListToSaveString() {
+    public String taskListToString() {
         StringBuilder saveString = new StringBuilder();
         for (Task task : this.tasks) {
             saveString.append(task.savedTaskString()).append("\n");

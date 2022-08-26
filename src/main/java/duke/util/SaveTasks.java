@@ -88,7 +88,7 @@ public class SaveTasks {
     public void save(TaskList savedTasks) {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            fw.write(savedTasks.taskListToSaveString());
+            fw.write(savedTasks.taskListToString());
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
