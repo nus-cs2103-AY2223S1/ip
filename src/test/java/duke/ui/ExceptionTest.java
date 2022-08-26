@@ -1,13 +1,13 @@
 package duke.ui;
 
-import duke.task.Deadline;
-import duke.task.Todo;
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import duke.task.Deadline;
+import duke.task.Todo;
 
 class ExceptionTest {
     @Test
