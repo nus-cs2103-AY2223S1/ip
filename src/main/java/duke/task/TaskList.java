@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import duke.errors.DukeException;
 
 public class TaskList {
-//delete errors?, 1 indexed
+
     private ArrayList<Task> list;
 
     public TaskList() {
@@ -55,5 +55,15 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("unmark failed");
         }
+    }
+
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDescription().contains(keyword)) {
+                matchingTasks.add(list.get(i));
+            }
+        }
+        return matchingTasks;
     }
 }

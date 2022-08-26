@@ -23,6 +23,10 @@ public abstract class Task {
 
     public abstract String textFormat();
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
