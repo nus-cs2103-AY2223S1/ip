@@ -22,4 +22,10 @@ public class DukeException extends Exception{
         String errorText = String.format("OOPS!!! There is only %d task(s) in the tasklist", tasklist.size());
         return errorText;
     }
+
+    public static void DateTimeFormatErrorMessage() {
+        String errorText = String.format("OOPS!!! Please input deadline in this format yyyy-MM-dd\n" +
+                "E.g: 2020-01-01");
+        Duke.echo(errorText);
+    }
 }

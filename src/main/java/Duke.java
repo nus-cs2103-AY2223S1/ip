@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import java.nio.file.Files;
 
+
 public class Duke {
 
     public static void echo(String echoCommand) {
@@ -111,8 +112,9 @@ public class Duke {
                     String error = DukeException.taskErrorMessage(command);
                     echo(error);
                 } else {
-                    String[] parts = deadlineTask.split(" /", 2);
-                    Task newTask = new Deadline(parts[0], parts[1]);
+                    String[] parts = deadlineTask.split(" /by ", 2);
+                    Deadline newTask = new Deadline(parts[0], parts[1]);
+                    newTask.stringToDate();
                     tasklist.add(newTask);
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
@@ -126,7 +128,7 @@ public class Duke {
                     String error = DukeException.taskErrorMessage(command);
                     echo(error);
                 } else {
-                    String[] parts = eventTask.split(" /", 2);
+                    String[] parts = eventTask.split(" /",2);
                     Task newTask = new Event(parts[0], parts[1]);
                     tasklist.add(newTask);
                     String taskStatus = String.format("Got it. I've added this task:\n" +
