@@ -9,17 +9,13 @@ import duke.tasks.TaskList;
 import java.io.File;
 import java.util.Scanner;
 
-import static duke.utils.DukeUtils.wrapWithLines;
+import static duke.utils.Ui.logo;
+import static duke.utils.Ui.wrapWithLines;
 
 public class Duke {
-    private static final String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
 
     private void initialise() {
-        wrapWithLines("Hello from\n" + Duke.logo);
+        wrapWithLines("Hello from\n" + logo);
 
         File storageDirectory = new File("./data");
         if (!storageDirectory.exists()) {
