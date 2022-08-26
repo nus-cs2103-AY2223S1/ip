@@ -1,4 +1,4 @@
-package DukeUI.Task;
+package Duke.Task;
 
 /**
  * A task that is not time sensitive.

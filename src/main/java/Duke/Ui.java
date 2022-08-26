@@ -1,4 +1,4 @@
-package DukeUI;
+package Duke;
 import java.util.Scanner;
 
 /**
@@ -60,8 +60,8 @@ public class Ui {
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n");
-        System.out.println("Hello, welcome to Duke!");
+                + "|____/ \\__,_|_|\\_\\___|\n"
+                + "Hello, welcome to Duke!");
     }
 
     public void showExit() {

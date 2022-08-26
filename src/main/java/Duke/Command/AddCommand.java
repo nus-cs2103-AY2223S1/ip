@@ -1,9 +1,9 @@
-package DukeUI.Command;
+package Duke.Command;
 
-import DukeUI.TaskList;
-import DukeUI.Ui;
-import DukeUI.FileStorage.Storage;
-import DukeUI.Task.Task;
+import Duke.TaskList;
+import Duke.Ui;
+import Duke.FileStorage.Storage;
+import Duke.Task.Task;
 
 public class AddCommand extends Command{
 
@@ -23,5 +23,13 @@ public class AddCommand extends Command{
 
     @Override public String toString() {
         return String.format("Got it. I've added this task:\n    %s", this.task.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof AddCommand) {
+            return ((AddCommand) obj).task.equals(this.task);
+        } 
+        return false;
     }
 }

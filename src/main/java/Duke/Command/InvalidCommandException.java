@@ -1,4 +1,4 @@
-package DukeUI.Command;
+package Duke.Command;
 
 public class InvalidCommandException extends Exception{
     public InvalidCommandException(String errMsg) {

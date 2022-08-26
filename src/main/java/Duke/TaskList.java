@@ -1,7 +1,7 @@
-package DukeUI;
+package Duke;
 import java.util.ArrayList;
 
-import DukeUI.Task.Task;
+import Duke.Task.Task;
 
 /**
  * This class represents the todo-list that allows users

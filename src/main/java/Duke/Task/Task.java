@@ -1,4 +1,4 @@
-package DukeUI.Task;
+package Duke.Task;
 /**
  * This is an abstract class representing the task that
  * the user wants to record. The task can be time sensitive
@@ -84,5 +84,13 @@ public abstract class Task {
         default:
             return "";
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            return encodeForStorage().equals(((Task) obj).encodeForStorage());
+        }
+        return false;
     }
 }
