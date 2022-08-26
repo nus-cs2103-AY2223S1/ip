@@ -1,3 +1,5 @@
+import jdk.jshell.execution.Util;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Duke {
@@ -79,7 +81,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/by");
                     String taskName = curr.substring(9, slashPos - 1);
                     String deadline = curr.substring(slashPos + 3);
-                    Deadline newDL = new Deadline(taskName, deadline);
+                    Deadline newDL = new Deadline(taskName, Utility.dateParser(deadline));
                     tl.add(newDL);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
@@ -94,7 +96,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/at");
                     String taskName = curr.substring(6, slashPos - 1);
                     String deadline = curr.substring(slashPos + 3);
-                    Event newEvent = new Event(taskName, deadline);
+                    Event newEvent = new Event(taskName, Utility.dateParser(deadline));
                     tl.add(newEvent);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");

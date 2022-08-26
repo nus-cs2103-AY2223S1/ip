@@ -1,16 +1,20 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private final String occursAt;
+    private final LocalDateTime occursAt;
 
-    public Event(String taskName, String occursAt) {
+    public Event(String taskName, LocalDateTime occursAt) {
         super(taskName);
         this.occursAt = occursAt;
     }
 
     @Override
     public String toString() {
-        return "[E]" + (this.done ? "[X] " : "[ ] ") + this.taskName + " (at:" + this.occursAt + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
+        String stringAt = occursAt.format(formatter);
+        return "[E]" + (this.done ? "[X] " : "[ ] ") + this.taskName + " (at: " + stringAt + ")";
     }
 
 }
