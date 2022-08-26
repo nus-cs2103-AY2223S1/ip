@@ -153,16 +153,17 @@ public class Duke {
     }
 
     /**
-     * Filters the list based on keyword specified and calls Ui object to display the list of filtered tasks.
+     * Filters the list based on keyword
+     * Calls Ui object to display the list of filtered tasks.
      *
-     * @param string The keyword inputted by user in the format of String.
+     * @param str The keyword inputted by user in the format of String.
      */
-    public void find(String string) {
+    public void find(String str) {
         ArrayList<Task> lst = tasks.getTasks();
         ArrayList<Task> filtered = new ArrayList<>();
         for (Task task : lst) {
             String description = task.description;
-            if (description.contains(string)) {
+            if (description.contains(str)) {
                 filtered.add(task);
             }
         }
