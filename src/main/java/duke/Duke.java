@@ -5,12 +5,19 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.nio.file.*;
 
+/**
+ * Main class of the Duke chat-bot.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for the Duke class.
+     * @param filePath Provides the file location for loading and storing tasks.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -22,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke chat-bot.
+     */
     public void run() {
         Parser parser = new Parser();
         this.ui.start();

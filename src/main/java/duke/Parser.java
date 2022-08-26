@@ -1,10 +1,21 @@
 package duke;
 
+/**
+ * A class that handles user inputs for the Duke chat-bot.
+ */
 public class Parser {
 
+    /**
+     * Constructor for the Parser class
+     */
     public Parser() {
     }
 
+    /**
+     * Processes the user input and does a corresponding action.
+     * @param response The user input.
+     * @param tasks The TaskList object that contains the tasks currently stored in the Duke chat-bot.
+     */
     public void parse(String response, TaskList tasks) {
         if (response.equals("list")) {
             System.out.println("     The following are your saved tasks: ");
@@ -53,6 +64,21 @@ public class Parser {
         } else if (response.length() > 5 && response.substring(0, 6).equals("delete")) {
             int taskNumber = Integer.parseInt(response.substring(7, 8)) - 1;
             tasks.deleteTask(taskNumber);
+        } else if (response.length() > 3 && response.substring(0, 4).equals("find")) {
+            if (response.length() <= 5) {
+                System.out.println("     Please add a keyword after 'find'!");
+            } else {
+                String keyword = response.substring(5);
+                int counter = 1;
+                System.out.println("     The following are tasks in your list that contain the given keyword!:");
+                for (int i = 0; i < tasks.getTasks().size(); i++) {
+                    Task t = tasks.getTask(i);
+                    if (t.hasKeyword(keyword)) {
+                        System.out.println("       " + counter + ". " + t.toString());
+                        counter++;
+                    }
+                }
+            }
         } else if (response.equals("bye")) {
             ;
         } else {

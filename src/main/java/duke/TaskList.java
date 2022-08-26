@@ -2,22 +2,49 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
 
     private ArrayList<Task> tasks;
 
+    /**
+     * Constructor for the TaskList class.
+     * @param tasks An ArrayList object containing Task objects.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Another constructor for the TaskList class.
+     */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
 
+    /**
+     * Returns the ArrayList object that contains Task objects.
+     * @return The instance field 'tasks' that is an ArrayList object.
+     */
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }
 
+    /**
+     * Returns the task in the ArrayList that has the given index position.
+     * @param index The index position of the task in the ArrayList.
+     * @return The task in the ArrayList that has the given index position.
+     */
+    public Task getTask(int index) {
+        return this.tasks.get(index);
+    }
+
+    /**
+     * Removes a task from the ArrayList object 'tasks'.
+     * @param taskNumber An integer that provides the index of the task in the ArrayList to be removed.
+     */
     public void deleteTask(int taskNumber) {
         Task t = tasks.get(taskNumber);
         tasks.remove(taskNumber);
@@ -26,6 +53,10 @@ public class TaskList {
                     + "     You now have a total of " + tasks.size() + " tasks!");
     }
 
+    /**
+     * Adds a task to the ArrayList object 'tasks'.
+     * @param t The Task object to be added into the ArrayList object.
+     */
     public void addTask(Task t) {
         tasks.add(t);
         System.out.println("     Ok! I have added the following "
