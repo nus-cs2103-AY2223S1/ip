@@ -3,10 +3,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -255,7 +255,15 @@ public class Duke {
                         break;
                     case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
                         break;
-                    case "E": task = new Event(taskStr[2], LocalDate.parse(taskStr[3]));
+                    case "E": String[] timeDesc = taskStr[3].split(" ", 2);
+                        if(timeDesc.length > 1) {
+                            LocalDate date = LocalDate.parse(timeDesc[0]);
+                            task = new Event(taskStr[2], date, timeDesc[1]);
+                        } else {
+                            LocalDate date = LocalDate.parse(taskStr[3]);
+                            task = new Event(taskStr[2], date);
+                        }
+
                         break;
                     default: task = new Task(taskStr[2]);
                         break;
@@ -373,8 +381,15 @@ public class Duke {
                             throw new DukeException(DukeException.MISSING_DATE);
                         }
                         try {
-                            LocalDate date = LocalDate.parse(eventDesc[1]);
-                            temp = new Event(eventDesc[0], date);
+                            String[] timeDesc = eventDesc[1].split(" ", 2);
+                            if(timeDesc.length > 1) {
+                                LocalDate date = LocalDate.parse(timeDesc[0]);
+                                temp = new Event(eventDesc[0], date, timeDesc[1]);
+                            } else {
+                                LocalDate date = LocalDate.parse(eventDesc[1]);
+                                temp = new Event(eventDesc[0], date);
+                            }
+
                             return new AddCommand(temp);
                         } catch (DateTimeParseException e) {
                             throw new DukeException(DukeException.WRONG_FORMAT_DATE);
@@ -540,6 +555,7 @@ public class Duke {
 
     public class Event extends Task {
         protected LocalDate at;
+        private String time;
 
         /**
          * Takes in a description and time for the task
@@ -549,13 +565,24 @@ public class Duke {
         public Event(String description, LocalDate at) {
             super(description);
             this.at = at;
+            this.time = "";
+        }
+
+        public Event(String description, LocalDate at, String time) {
+            super(description);
+            this.at = at;
+            this.time = time;
         }
 
         @Override
         public String formatToSave() {
-            return isDone
-                    ? "E" + KEY_SEPARATOR + 1 + KEY_SEPARATOR + description + KEY_SEPARATOR + at
-                    : "E" + KEY_SEPARATOR + 0 + KEY_SEPARATOR + description + KEY_SEPARATOR + at;
+            int value;
+            if(isDone) {
+                value = 1;
+            } else {
+                value = 0;
+            }
+            return "E" + KEY_SEPARATOR + value + KEY_SEPARATOR + description + KEY_SEPARATOR + at + " " + time;
         }
         /**
          * Returns a String representation of the task
@@ -563,7 +590,7 @@ public class Duke {
          */
         @Override
         public String toString() {
-            return "[E]" + super.toString() + " (at: " + at + ")";
+            return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time + ")";
         }
     }
 
