@@ -33,7 +33,7 @@ public class TaskTest {
 
     @Test
     public void deadlineTest() {
-        assertEquals(deadline.toString(), "[D][ ] test (by: 21 Mar 2022)");
+        assertEquals("[D][ ] test (by: 21 Mar 2022)", deadline.toString());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class TaskTest {
 
     @Test
     public void eventTest() {
-        assertEquals(event.toString(), "[E][ ] test (at: test)");
+        assertEquals("[E][ ] test (at: test)", event.toString());
     }
 
     @Test

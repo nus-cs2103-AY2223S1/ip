@@ -36,7 +36,7 @@ public class ParserTest {
 
     @Test
     public void todoCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "todo");
+        c = Parser.parse(tasks, "todo abc");
         assertTrue(c instanceof TodoCommand);
     }
 
@@ -45,7 +45,7 @@ public class ParserTest {
         try {
             c = Parser.parse(tasks, "todo");
         } catch (DukeException e) {
-            assertEquals(e.getMessage(), "\t ☹ OOPS!!!\n\t The description of a todo cannot be empty.");
+            assertEquals("\t ☹ OOPS!!!\n\t The description of todo cannot be empty.", e.getMessage());
         }
     }
 
