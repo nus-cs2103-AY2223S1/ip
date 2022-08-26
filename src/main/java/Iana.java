@@ -44,13 +44,9 @@ public class Iana {
             vocabList = DataLoader.loadData(absPath);
         } catch (IanaException e) {
             echo(e.getMessage());
-            return;
-        } catch (FileNotFoundException e) {
-            echo("File DataStorage.txt not found in [project_root]/src/main/data");
-            return;
         }
 
-        String printText = "\t> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )\n";
+        String printText = "\n\t> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )\n";
         System.out.println(printText);
         boolean isActive = true;
 
@@ -112,6 +108,8 @@ public class Iana {
                         echo(printText);
                     } catch (IanaException e) {
                         echo(e.getMessage());
+                    } catch (IllegalArgumentException e) {
+                        echo("Sorry, this is an invalid task type!! D:");
                     }
                 }
             }

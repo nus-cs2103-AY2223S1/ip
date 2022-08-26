@@ -38,7 +38,7 @@ public class Task {
             case event:
             taskArray = textArray[1].split("/at", 2);
             if (taskArray.length <= 1) {
-                throw new IanaException("Rejected! Add event again with the format EVENT <event> /at <event time> !! :-)");
+                throw new IanaException("Add event again with the format EVENT <event> /at <event time> !! :-)");
             }
             break;
             
@@ -55,7 +55,7 @@ public class Task {
             break;
 
             default:
-            throw new IanaException("This is an invalid task type!! D-:");
+            throw new IanaException("Sorry, this is an invalid task type!! D-:");
         }
 
         return taskArray;
