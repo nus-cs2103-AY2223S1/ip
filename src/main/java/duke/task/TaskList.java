@@ -55,4 +55,14 @@ public class TaskList {
             throw new DukeException("unmark failed");
         }
     }
+
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDescription().contains(keyword)) {
+                matchingTasks.add(list.get(i));
+            }
+        }
+        return matchingTasks;
+    }
 }

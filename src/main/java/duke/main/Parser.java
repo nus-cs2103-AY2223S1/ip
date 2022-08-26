@@ -11,6 +11,7 @@ import duke.command.AddTodoCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -27,6 +28,9 @@ public class Parser {
         String[] splitReply = userReply.split(" ");
         if (isExitCommand(userReply)) {
             return new ExitCommand();
+        } else if (isFindCommand(splitReply)) {
+            String keyword = validateFind(splitReply);
+            return new FindCommand(keyword);
         } else if (isListCommand(userReply)) {
             return new ListCommand();
         } else if (isMarkCommand(splitReply)) {
@@ -85,6 +89,10 @@ public class Parser {
 
     private static boolean isDeleteCommand(String[] splitReply) {
         return splitReply[0].equals("delete");
+    }
+
+    private static boolean isFindCommand(String[] splitReply) {
+        return splitReply[0].equals("find");
     }
 
     private static int validateIndex(String userReply) throws DukeException {
@@ -151,5 +159,14 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new DukeException("error in validate date time");
         }
+    }
+
+    private static String validateFind(String[] splitReply) throws DukeException {
+        if (splitReply.length != 2) {
+            throw new DukeException("☹ OOPS!!! Only one keyword allowed for find");
+        }
+        String[] keywordArray = Arrays.copyOfRange(splitReply,1, splitReply.length);
+        String keyword = String.join(" ", keywordArray);
+        return keyword;
     }
 }

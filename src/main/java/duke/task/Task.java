@@ -46,6 +46,14 @@ public abstract class Task {
 
     /**
      *
+     * @return String of description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     *
      * @return String to describe task to users
      */
     @Override
