@@ -1,9 +1,19 @@
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 public class TaskManager {
     private final List<Task> taskList;
+    private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
+    private final DateTimeFormatter dateTimeFormatter;
     TaskManager() {
         this.taskList = new ArrayList<>();
+        this.dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+    }
+
+    public String getDateFormat() {
+        return DATE_FORMAT;
     }
 
     public String list() {
@@ -18,7 +28,7 @@ public class TaskManager {
             return stringBuilder.toString();
         }
     }
-    public String addTask(Task task) {
+    public String addTask(Task task) throws DateTimeParseException {
         this.taskList.add(task);
         return ("\t> Added: " + task.getName() + "\n");
     }

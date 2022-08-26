@@ -1,18 +1,33 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class EventTask extends Task {
-    private final String duration;
-    EventTask(String task, String duration) throws EmptyTaskException, InvalidEventException {
+    private final LocalDateTime taskTime;
+    private final String dateFormat;
+    EventTask(String task, String duration, String dateFormat) throws EmptyTaskException, InvalidEventException {
         super(task);
-        this.duration = duration;
+        this.dateFormat = dateFormat;
         if (super.getName().equals("")) {
             throw new EmptyTaskException();
         }
-        if (this.duration.equals("")) {
-            throw new InvalidEventException();
+        try {
+            this.taskTime = LocalDateTime.parse(duration, DateTimeFormatter.ofPattern(dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidEventException(dateFormat);
         }
+    }
+
+    public String getTaskTime() {
+        return (taskTime.getDayOfMonth() + " " +
+                taskTime.getMonth() + " " +
+                taskTime.getYear() + " | " +
+                taskTime.getHour() + ":" +
+                taskTime.getMinute());
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at:" + duration + ")";
+        return "[E]" + super.toString() + " (at:" + getTaskTime() + ")";
     }
 }
