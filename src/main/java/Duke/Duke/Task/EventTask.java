@@ -18,12 +18,12 @@ public class EventTask extends Task{
      * Constructs the event task given the description, starting time and
      * ending time.
      * 
-     * @param description A description of the event.
-     * @param startTime The start time for the event.
-     * @param endTime The end time for the event.
+     * @param description A description of the event
+     * @param startTime The start time for the event
+     * @param endTime The end time for the event
      */
     public EventTask(String description, LocalDateTime startTime, LocalDateTime endTime) {
-        super(description, TaskType.EVENT);
+        super(description);
         this.startTime = startTime;
         this.endTime = endTime;
     }
