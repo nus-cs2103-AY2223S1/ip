@@ -100,6 +100,17 @@ public abstract class Task {
     }
 
     /**
+     * Returns if the task contains the specified keyword in its
+     * description.
+     * 
+     * @param keyword The keyword to be matched with the description.
+     * @return True if description contains the keyword, false otherwise.
+     */
+    public boolean containsKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
+
+    /**
      * Compares this task to the given object. Returns true if both tasks are the
      * same (i.e. having the task encoding).
      * 
@@ -112,4 +123,5 @@ public abstract class Task {
         }
         return false;
     }
+
 }

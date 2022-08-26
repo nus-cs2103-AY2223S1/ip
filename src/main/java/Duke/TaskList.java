@@ -77,7 +77,7 @@ public class TaskList {
         return tasks.get(taskID);
     }
 
-        /**
+    /**
      * Unmarks a task as completed.
      * 
      * @param taskID The id of the tasks to be unmarked. The first task is of id 1.
@@ -87,6 +87,24 @@ public class TaskList {
     public Task unmarkTask(int taskID) throws ArrayIndexOutOfBoundsException {
         tasks.get(taskID).unmarkTask();
         return tasks.get(taskID);
+    }
+
+    /**
+     * Finds the list of alll the tasks whose description contains
+     * the specified keyword.
+     * 
+     * @param keyword The keyword used to find the tasks.
+     * @return The list of tasks that has description containing the
+     * keyword.
+     */
+    public ArrayList<Task> findTasksContainingKeyword (String keyword) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task t : this.tasks) {
+            if (t.containsKeyword(keyword)) {
+                result.add(t);
+            }
+        }
+        return result;
     }
 
     /**
