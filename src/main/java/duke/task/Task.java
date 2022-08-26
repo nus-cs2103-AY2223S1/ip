@@ -31,6 +31,15 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Checks if the task description matches the query.
+     * @param query Query for the task to check.
+     * @return True if the task description matches the query.
+     */
+    public boolean isMatchingQuery(String query) {
+        return name.contains(query);
+    }
+
     private char getDoneMarker() {
         return this.isDone ? MARKER_DONE : MARKER_NOT_DONE;
     }

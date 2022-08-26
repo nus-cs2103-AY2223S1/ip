@@ -44,4 +44,8 @@ delete nan
 delete 24
   event  wow  much  space / very /wow /at 10am
 list
+find
+find 
+find  meet
+find      me
 bye
