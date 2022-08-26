@@ -1,6 +1,7 @@
 abstract class Command {
 
-    abstract void execute(TaskMaker tasks, Ui ui, Storage storage);
+
+    abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     boolean isExit() {
         return false;

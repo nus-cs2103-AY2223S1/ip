@@ -14,4 +14,16 @@ public class TaskList {
     Task fetchTask(int taskIndex) {
         return taskList.get(taskIndex - 1);
     }
+
+    boolean isEmpty() {
+        return numOfTasks() == 0;
+    }
+
+    Task removeTask(int index) {
+        return taskList.remove(index);
+    }
+
+    void addTask(Task task) {
+        taskList.add(task);
+    }
 }

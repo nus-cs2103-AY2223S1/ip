@@ -16,22 +16,8 @@ public class Storage {
     ArrayList<Task> load() throws DukeException {
         File dataFile = new File(filePath);
         if (!dataFile.exists()) {
-            String[] dataPath = filePath.split("/");
-            String pathBuilder = "";
-            try {
-                for (String path : dataPath) {
-                    if (path.contains(".")) {
-                        new File(pathBuilder + path).createNewFile();
-                        break;
-                    } else {
-                        pathBuilder += path + "/";
-                        new File(pathBuilder).mkdir();
-                    }
-                }
-                return new ArrayList<>();
-            } catch (IOException e) {
-                throw new DukeException("Loading Error");
-            }
+            setupDirectory();
+            return new ArrayList<>();
         } else {
             ArrayList<Task> loadedTasks = new ArrayList<>();
             try {
@@ -46,15 +32,31 @@ public class Storage {
                         Task loadTask = TaskMaker.createTask(split[0], split[1], split[2]);
                         loadedTasks.add(loadTask);
                     } catch (DukeException e) {
-                        continue;
                     } catch (DateTimeParseException e) {
-                        continue;
                     }
                 }
                 return loadedTasks;
             } catch (FileNotFoundException e) {
                 throw new DukeException("Loading Error");
             }
+        }
+    }
+
+    void setupDirectory() throws DukeException {
+        String[] dataPath = filePath.split("/");
+        String pathBuilder = "";
+        try {
+            for (String path : dataPath) {
+                if (path.contains(".")) {
+                    new File(pathBuilder + path).createNewFile();
+                    break;
+                } else {
+                    pathBuilder += path + "/";
+                    new File(pathBuilder).mkdir();
+                }
+            }
+        } catch (IOException e) {
+            throw new DukeException("Loading Error");
         }
     }
 
@@ -68,7 +70,7 @@ public class Storage {
             writer.write(toWrite.toString());
             writer.flush();
         } catch (IOException e) {
-            throw new DukeException("Save Error");
+            setupDirectory();
         }
     }
 }

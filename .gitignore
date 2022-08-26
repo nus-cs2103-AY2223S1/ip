@@ -14,7 +14,7 @@ src/main/resources/docs/
 bin/
 
 *.class
-data/duke.txt
+data/tasks.txt
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT

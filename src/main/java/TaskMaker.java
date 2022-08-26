@@ -1,27 +1,9 @@
-import java.util.Map;
-import java.util.function.Function;
-
 abstract class TaskMaker {
     static final String noSuchTaskLabelMessage = "No such Task label exists";
-    private static final Map<String, Function<String[], Task>> taskMaker = Map.of(
-            "todo"
-            , (input) -> new TodoTask(input[1])
-            , "deadline"
-            , (input) -> new DeadlineTask(input[1], input[2])
-            , "event"
-            , (input) -> new EventTask(input[1], input[2])
-    );
 
     private TaskMaker() {
     }
 
-    static boolean isMakeTaskCmd(String cmd) {
-        return taskMaker.containsKey(cmd);
-    }
-
-    static Task makeTask(String[] input) {
-        return taskMaker.get(input[0]).apply(input);
-    }
 
     static Task createTask(String taskType, String check, String description) throws DukeException {
         Task newTask = null;
