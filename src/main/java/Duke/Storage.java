@@ -58,7 +58,8 @@ public class Storage {
             br.close();
         } catch (FileNotFoundException e) {
             try {
-                // code adapted from : https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
+                // Solution below adapted from
+                // https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
                 File file = new File(filePath);
                 file.getParentFile().mkdirs();
                 file.createNewFile();
