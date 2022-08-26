@@ -1,2 +1,1 @@
-T | Not Done | return book| 
-D | Not Done | CS2103 assignment | TOMORROW
+D | Not Done | CS2103 assignment | tomorrow
