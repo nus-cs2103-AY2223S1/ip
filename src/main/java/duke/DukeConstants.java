@@ -6,4 +6,5 @@ public final class DukeConstants {
     }
     public static final String KEY_SEPARATOR = "//";
     public static final String FILENAME = "bin/tasks.txt";
+    public static final String EXIT = "bye";
 }

@@ -3,8 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static duke.DukeConstants.EXIT;
+
 public class Parser {
-    private final String exit = "bye";
 
     public Parser() {
 
@@ -12,7 +13,7 @@ public class Parser {
 
     public Command parse(TaskList taskList, String input, Ui ui) throws DukeException {
         input = input.toLowerCase();
-        if(input.equals(exit)) {
+        if(input.equals(EXIT)) {
             return new ExitCommand();
         } else if (input.equals("list")) {
             return new ListCommand();
@@ -29,13 +30,11 @@ public class Parser {
                         index = Integer.parseInt(substr[1]) - 1;
                         if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
                             throw new DukeException(DukeException.OUT_OF_RANGE);
-                            //System.out.println("thrs nth there :<");
                         }
 
                         return new MarkCommand(index);
                     } catch (NumberFormatException e) {
                         throw new DukeException(DukeException.WRONG_FORMAT);
-                        //ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
                     }
                 case "unmark":
                     if(substr.length == 1) {
@@ -90,7 +89,6 @@ public class Parser {
                         //break;
                     } catch (DateTimeParseException e) {
                         throw new DukeException(DukeException.WRONG_FORMAT_DATE);
-                        //ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
 
                     }
 
@@ -116,7 +114,6 @@ public class Parser {
                         return new AddCommand(temp);
                     } catch (DateTimeParseException e) {
                         throw new DukeException(DukeException.WRONG_FORMAT_DATE);
-                        //ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
 
                     }
                 default:
