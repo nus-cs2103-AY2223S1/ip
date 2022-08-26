@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import java.time.DateTimeException;
+
 public class Wanya {
     private static List<Task> taskList = new ArrayList<>();
     private static int count = 0;
@@ -17,12 +19,30 @@ public class Wanya {
         addTask(newTask);
     }
 
-    public void addDeadline(String taskName, String dueDate) {
+    public void addDeadline(String commandInput) throws WanyaException, DateTimeException {
+        String[] inputs = commandInput.split("/by");
+        //no deadline provided
+        if (inputs.length == 1) {
+            throw new WanyaException("Deadline must have a due date\n" +
+                    "Include '/by' and date with format " +
+                    "\"yyyy-mm-dd\" at the back");
+        }
+        String taskName = inputs[0];
+        String dueDate = inputs[1].trim();
         Task newTask = new Deadline(taskName, dueDate);
         addTask(newTask);
     }
 
-    public void addEvent(String taskName, String date)  {
+    public void addEvent(String commandInput) throws WanyaException, DateTimeException {
+        String[] inputs = commandInput.split("/at");
+        //no date provided
+        if (inputs.length == 1) {
+            throw new WanyaException("Event must have a date\n" +
+                    "Include '/at' and date with format " +
+                    "\"yyyy-mm-dd\" at the back");
+        }
+        String taskName = inputs[0];
+        String date = inputs[1].trim();
         Task newTask = new Event(taskName, date);
         addTask(newTask);
     }
@@ -165,22 +185,22 @@ public class Wanya {
                     wanya.addToDo(inputs[1]);
                 } else if (command.equals("deadline")) {
                     wanya.checkTask(inputs, command);
-                    String[] deadlineDetails = inputs[1].split("/by");
-                    //no deadline provided
-                    if (deadlineDetails.length == 1) {
-                        throw new WanyaException("Deadline must have a due date\n" +
-                                "Include '/by' and date at the back");
+                    try {
+                        wanya.addDeadline(inputs[1]);
+                    } catch (DateTimeException e) {
+                        System.out.println("Please enter a valid date behind /by with the format " +
+                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
+                                "provided, leave it in 24 hours format.\n");
                     }
-                    wanya.addDeadline(deadlineDetails[0], deadlineDetails[1]);
                 } else if (command.equals("event")) {
                     wanya.checkTask(inputs, command);
-                    String[] eventDetails = inputs[1].split("/at");
-                    //no date provided
-                    if (eventDetails.length == 1) {
-                        throw new WanyaException("Event must have a date\n" +
-                                "Include '/at' and date at the back");
+                    try {
+                        wanya.addEvent(inputs[1]);
+                    } catch (DateTimeException e) {
+                        System.out.println("Please enter a valid date behind /at with the format " +
+                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
+                                "provided, leave it in 24 hours format.\n");
                     }
-                    wanya.addEvent(eventDetails[0], eventDetails[1]);
                 } else if (command.equals("delete")) {
                     int index = wanya.checkTaskNumber(inputs);
                     wanya.deleteTask(index);
