@@ -46,8 +46,7 @@ public class TaskList {
 
   public String toFileString() {
     String fileString = "";
-    for (int i = 0; i < taskList.size(); i++) {
-      Task task = taskList.get(i);
+    for (Task task : taskList) {
       fileString += task.toFileString();
       fileString += System.lineSeparator();
     }
