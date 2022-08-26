@@ -1,5 +1,4 @@
 public class Task {
-
     enum Tag {
         T,
         E,

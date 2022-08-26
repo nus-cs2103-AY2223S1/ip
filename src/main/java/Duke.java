@@ -1,9 +1,15 @@
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Duke {
 
     private static String greetings = "Hello! I'm Ekud \n" + "What can I do for you?";
+    private static String FOLDER_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data";
+    private static String FILE_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data\\duke.txt";
     private static String banner = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -11,6 +17,30 @@ public class Duke {
         System.out.println(banner);
         System.out.println(msg);
         System.out.println(banner);
+    }
+
+    private static void save() throws Exception {
+        String res = "";
+        for (Task task : tasks) {
+            res += task;
+            res += "\n";
+        }
+
+        Files.createDirectories(Paths.get(FOLDER_LOCATION));
+        Files.write(Paths.get(FILE_LOCATION), res.getBytes(StandardCharsets.UTF_8));
+    }
+
+    private static void load() throws Exception {
+        try {
+            List<String> res = Files.readAllLines(Paths.get(FILE_LOCATION));
+            for (String line: res) {
+                char tag = line.charAt(1);
+
+
+            }
+        } catch (Exception e) {
+            throw(new DukeException("No saved data found!"));
+        }
     }
 
     private static String getTaskName(String[] msg) {
@@ -27,6 +57,7 @@ public class Duke {
     }
 
     public static void processInput(String input) throws Exception {
+
         if (input.equals("bye")) {
 
             print("Cya!");
@@ -105,10 +136,17 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         print(greetings);
 
+        try {
+            load();
+        } catch (Exception e) {
+            print(e.getMessage());
+        }
+
         while(true) {
             String input = sc.nextLine();
             try {
                 processInput(input);
+                save();
             } catch (Exception e){
                 print(e.getMessage());
             }
