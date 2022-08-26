@@ -2,6 +2,11 @@ package duke.ui;
 
 import java.util.Scanner;
 
+/**
+ * Handles outputs to the UI.
+ *
+ * @author Kang Wei
+ */
 public class Ui {
 
     /**
