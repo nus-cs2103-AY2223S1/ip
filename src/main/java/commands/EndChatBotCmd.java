@@ -17,7 +17,6 @@ public class EndChatBotCmd extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
-        ui.notifyUser("Goodbye, and have a nice day ahead!");
-        ui.notifyUser("٩(ˊᗜˋ )و");
+        ui.notifyUser("Goodbye, and have a nice day ahead! :D");
     }
 }
