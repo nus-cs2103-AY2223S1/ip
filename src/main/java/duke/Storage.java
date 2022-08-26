@@ -16,16 +16,37 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The class that deals with loading tasks from the file and
+ * saving tasks in the file in the Duke program.
+ *
+ * @author ShummyOwnzYou
+ * @version 0.1
+ */
 
 public class Storage {
 
     private final String DIRECTORY_PATH;
     private final String FILE_PATH;
 
+    /**
+     * Initializes a Storage object with the specified file path to load and store tasks.
+     *
+     * @param filePath The file path to the local file responsible for loading and saving.
+     */
+
     public Storage(String filePath) {
         this.DIRECTORY_PATH = null;
         this.FILE_PATH = filePath;
     }
+
+    /**
+     * Loads the local data stored in the Duke program and returns an ArrayList
+     * containing all the Tasks stored in the local data.
+     *
+     * @return the ArrayList containing all the Tasks stored in the local data.
+     * @throws DukeException if the local data does not exist.
+     */
 
     public ArrayList<Task> loadLocalData() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
@@ -67,6 +88,12 @@ public class Storage {
             return taskList;
         }
     }
+
+    /**
+     * Saves the TaskList into the local data everytime the TaskList changes.
+     *
+     * @throws DukeException if IOException is thrown
+     */
 
     public void saveLocalData(ArrayList<Task> taskList) throws DukeException {
         try {
