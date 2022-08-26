@@ -1,11 +1,11 @@
 public class Deadline extends Task{
     protected String description;
     protected boolean isDone;
-    protected String date;
+    protected DateFormat date;
 
     public Deadline(String description, String date) {
         this.description = description;
-        this.date = date;
+        this.date = new DateFormat(date);
     }
 
     public void isMark(boolean bool) {
@@ -19,6 +19,6 @@ public class Deadline extends Task{
     @Override
     public String toString() {
         return "[D][" + this.getStatusIcon() + "] " +
-                this.description + " (by: " + this.date + ")";
+                this.description + " (by: " + this.date.toString() + ")";
     }
 }
