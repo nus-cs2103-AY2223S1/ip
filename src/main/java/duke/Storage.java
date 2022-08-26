@@ -11,13 +11,33 @@ import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Encapsulation of reading from and writing into file.
+ *
+ * @author   Sun Ruoxin
+ * @version  %I%, %G%
+ */
 public class Storage {
+    /**
+     * The file being read from and write to.
+     */
     protected File file;
 
+    /**
+     * Class constructor.
+     *
+     * @param filePath  the path of the file
+     */
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
 
+    /**
+     * Loads from the file containing existing records of Tasks.
+     *
+     * @param ui  the UI handling interactions with the user
+     * @return    the list of existing Tasks
+     */
     public ArrayList<Task> load(Ui ui) {
         initialiseFile(ui);
         ArrayList<Task> taskList = new ArrayList<>();
@@ -36,6 +56,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Creates the directory and the file if not already exist.
+     *
+     * @param ui  the UI handling interactions with the user
+     */
     public void initialiseFile(Ui ui) {
         File directory = new File(this.file.getParent());
         if (!directory.exists()) {
@@ -53,6 +78,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the current list of Tasks to the file.
+     *
+     * @param list  the current list of Tasks
+     * @param ui    the UI handling interactions with the user
+     */
     public void writeFile(TaskList list, Ui ui) {
         initialiseFile(ui);
 
