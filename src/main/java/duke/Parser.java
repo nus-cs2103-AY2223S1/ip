@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 import java.util.Scanner;
 
-public class Parser{
+public class Parser {
 
     Scanner sc = new Scanner(System.in);
     private String filepath = "duke.txt";

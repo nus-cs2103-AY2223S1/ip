@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Storage{
+public class Storage {
 
     private String filepath;
     private File file;

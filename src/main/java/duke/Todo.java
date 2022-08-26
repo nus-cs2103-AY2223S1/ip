@@ -1,6 +1,6 @@
 package duke;
 
-public class Todo extends Task{
+public class Todo extends Task {
 
     private String name;
     private String type;

@@ -2,7 +2,7 @@ package duke;
 
 import java.io.File;
 
-public class Duke{
+public class Duke {
 
     public static final String LINE = "____________________________________________________________";
     public static int count = 0;

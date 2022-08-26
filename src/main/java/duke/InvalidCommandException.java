@@ -1,6 +1,6 @@
 package duke;
 
-public class InvalidCommandException extends Exception{
+public class InvalidCommandException extends Exception {
 
     public InvalidCommandException(String command) {
         super(String.format(Duke.LINE + "\n"

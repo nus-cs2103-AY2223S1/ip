@@ -2,7 +2,7 @@ package duke;
 
 import java.time.LocalDateTime;
 
-public class Task{
+public class Task {
 
     private String status;
     private String type;
