@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class ChatBot {
     public static final String NAME = "Duke";
     private TaskList taskList;
@@ -44,7 +46,7 @@ public class ChatBot {
                 String[] arguments = deadlineInput.split("/");
                 if (arguments.length > 1) {
                     String description = arguments[0];
-                    String date = arguments[1];
+                    String date = extractDateByKeyword("by",arguments[1]);
                     this.taskList.addTask(new Deadlines(description, date));
                 } else {
                     throw new EmptyDescriptionException();
@@ -54,11 +56,16 @@ public class ChatBot {
                 String[] arguments = eventInput.split("/");
                 if (arguments.length > 1) {
                     String description = arguments[0];
-                    String date = arguments[1];
+                    String date = extractDateByKeyword("at",arguments[1]);
                     this.taskList.addTask(new Events(description, date));
                 } else  {
                     throw new EmptyDescriptionException();
                 }
+            } else if (input.toLowerCase().contains("date")) {
+                String[] arguments = input.split(" ");
+                LocalDate date = LocalDate.parse(arguments[1]);
+                this.taskList.printTasksOnSpecificDate(date);
+
             } else if (input.toLowerCase().contains("delete")) {
                 String[] arguments = input.split(" ");
                 int taskNo = Integer.parseInt(arguments[1]);
@@ -69,7 +76,12 @@ public class ChatBot {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
 
+    public static String extractDateByKeyword (String keyword, String text) {
+        String[] args = text.split(keyword);
+        String date = args[1].trim();
+        return date;
     }
 
 }

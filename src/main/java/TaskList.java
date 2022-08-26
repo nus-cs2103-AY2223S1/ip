@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,13 +70,36 @@ public class TaskList {
     }
 
 
-//    public void loadTasksFromFile() throws IOException {
-//            Scanner s = FileDataHandler.load();
-//            while (s.hasNext()) {
-//                char taskType = s.nextLine().charAt(1);
-//                System.out.println(taskType);
-//            }
-//    }
+    public void printTasksOnSpecificDate(LocalDate date) {
+        System.out.println("Here are the tasks on: " + date + "\n");
+        int ListLength = taskList.size();
+        for (int i = 0; i < ListLength; i++) {
+            Task task = taskList.get(i);
+            if (this.getTaskType(task).equals("Deadlines")) {
+                Deadlines d = (Deadlines) task;
+                if (d.getDate().equals(date)) {
+                    System.out.println(d);
+                }
+            } else if (this.getTaskType(task).equals("Events")) {
+                Events e = (Events) task;
+                if (e.getDate().equals(date)) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }
+    
+
+    public String getTaskType(Task task) {
+        if (task instanceof Deadlines) {
+            return "Deadlines";
+        } else if (task instanceof Events) {
+            return "Events";
+        } else if (task instanceof  ToDos) {
+            return "ToDos";
+        }
+        return "";
+    }
 
     public void printList() {
         System.out.println("Here are the tasks in your list:\n");
