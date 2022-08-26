@@ -22,7 +22,6 @@ public class EventDateTime extends Date {
                 splitted[0].strip().equals("") ||
                 splitted[1].strip().equals("") ||
                 splitted[2].strip().equals("")) {
-            System.out.println("length error");
             throw new DukeException(DukeException.ErrorCode.INVALID_EVENT_DATETIME_FORMAT);
         }
         try {
