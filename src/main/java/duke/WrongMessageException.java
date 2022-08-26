@@ -1,3 +1,5 @@
+package duke;
+
 public class WrongMessageException extends Exception{
 
     public WrongMessageException() {

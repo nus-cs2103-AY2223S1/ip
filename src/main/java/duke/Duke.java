@@ -1,9 +1,8 @@
-import java.util.Scanner;
+package duke;
+
 import java.util.List;
-import java.util.ArrayList;
 import java.io.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
@@ -50,7 +49,7 @@ public class Duke {
     public void delete(String str) throws WrongMessageException {
         String[] temp = str.split(" ");
         int key3 = Integer.decode(temp[1]);
-        System.out.println("ok I will delete the task" + tasks.deleteTask(key3 - 1) + "it right now!");
+        System.out.println("ok I will delete the task " + tasks.deleteTask(key3 - 1) + " right now!");
         System.out.println("now you have " + tasks.getSize() + " tasks in the list");
     }
 
@@ -74,13 +73,13 @@ public class Duke {
             try {
                 if (str.startsWith("todo")) {
                     tasks.addTask(Parser.todo(str));
-                    System.out.println("got");
+                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
                 } else if (str.startsWith("deadline")) {
                     tasks.addTask(Parser.deadline(str));
-                    System.out.println("got");
+                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
                 } else if (str.startsWith("event")) {
                     tasks.addTask(Parser.event(str));
-                    System.out.println("got");
+                    System.out.println("Now you have " + tasks.getSize() + " task(s)");
                 } else if (str.startsWith("mark")) {
                     String[] temp = str.split(" ");
                     int key = Parser.parseInteger(temp[1]);

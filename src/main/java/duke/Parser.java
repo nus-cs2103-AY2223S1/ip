@@ -1,3 +1,5 @@
+package duke;
+
 class Parser {
     public static int parseInteger(String input) throws WrongMessageException {
         if (input.length() == 0) {
@@ -16,6 +18,7 @@ class Parser {
             throw new WrongMessageException();
         }
         Todo td = new Todo(content);
+        System.out.println("Added task: " + td.toString());
         return td;
     }
 
@@ -27,6 +30,7 @@ class Parser {
             throw new WrongMessageException();
         }
         Deadline ddl = new Deadline(content, ddlDate);
+        System.out.println("Added task: " + ddl.toString());
         return ddl;
     }
 
@@ -38,6 +42,7 @@ class Parser {
             throw new WrongMessageException();
         }
         Event evt = new Event(content, happenTime);
+        System.out.println("Added task: " + evt.toString());
         return evt;
     }
 }
