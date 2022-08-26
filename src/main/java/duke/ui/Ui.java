@@ -19,7 +19,7 @@ public class Ui {
         System.out.println("\tHow may I help you? :)");
     }
 
-    public static void sayBye() {
+    public void sayBye() {
         System.out.println("\tNice seeing you! Bye!");
     }
 
@@ -31,17 +31,17 @@ public class Ui {
         this.sc.close();
     }
 
-    public static void add(Task task) {
+    public void add(Task task) {
         System.out.println("\tGot it! I've added this task!");
         System.out.println("\t\t" + task);
         System.out.println("\tYou now have " + Task.getNumOfTasks() + " tasks in the list!");
     }
 
-    public static void list(TaskList taskList) {
+    public void list(TaskList taskList) {
         System.out.println(taskList);
     }
 
-    public static void delete(Task task) {
+    public void delete(Task task) {
         System.out.println("\tAlright! The following task has been deleted!");
         System.out.println("\t\t" + task);
     }

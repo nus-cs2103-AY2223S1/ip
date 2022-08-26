@@ -23,9 +23,10 @@ public class TaskList {
         Task.incrementNumOfTasks();
     }
 
-    public void delete(int taskNumber) {
-        tasks.remove(taskNumber - 1);
+    public Task delete(int taskNumber) {
+        Task task = tasks.remove(taskNumber - 1);
         Task.decrementNumOfTasks();
+        return task;
     }
 
     public void mark(int taskNumber) {
