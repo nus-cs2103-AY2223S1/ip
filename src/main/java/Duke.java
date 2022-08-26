@@ -21,7 +21,13 @@ public class Duke {
                 if (temp.length == 3) {
                     tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0)));
                 } else {
-                    tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
+                    // OOP will be made better later on
+                    if (temp[0].contains("D")){
+                        LocalDateTime ldt1 = LocalDateTime.parse(temp[3].substring(1, temp[3].length() - 1));
+                        tasklist.add(new DukeTaskDeadline(temp[2], temp[1].contains("X"), temp[0].charAt(0), ldt1));
+                    } else {
+                        tasklist.add(new DukeTaskEvent(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
+                    }
                 }
 
             }
@@ -37,9 +43,13 @@ public class Duke {
             for (int i = 0; i < tasklist.size(); i ++) {
                 DukeTask t = tasklist.get(i);
                 if (t.taskType == 'D') {
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + "(" + t.ldt.toString() + ")" +"\n");
+                    DukeTaskDeadline tD = (DukeTaskDeadline) t;
+                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + "(" + tD.ldt.toString() + ")" +"\n");
+                } else if (t.taskType == 'E') {
+                    DukeTaskEvent tE = (DukeTaskEvent) t;
+                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + tE.time +"\n");
                 } else {
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + t.time +"\n");
+                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task +"\n");
                 }
                 
             }
@@ -114,7 +124,7 @@ public class Duke {
                         str = str.substring(9);
                         String s1 = str.substring(0, str.indexOf('/') - 1);
                         LocalDateTime ldt1 = LocalDateTime.parse(str.substring(str.indexOf('/') + 1), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                        DukeTask t = new DukeTask(s1, false, 'D', ldt1);
+                        DukeTask t = new DukeTaskDeadline(s1, false, 'D', ldt1);
                         tasklist.add(t);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
@@ -130,7 +140,7 @@ public class Duke {
                     str = str.substring(6);
                     String s1 = str.substring(0, str.indexOf('/') - 1);
                     String s2 = "(" + str.substring(str.indexOf('/') + 1) + ')';
-                    DukeTask t = new DukeTask(s1, false, 'E', s2);
+                    DukeTask t = new DukeTaskEvent(s1, false, 'E', s2);
                     tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
