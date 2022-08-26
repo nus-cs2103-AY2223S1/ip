@@ -1,6 +1,0 @@
-T/0/1/
-T/1/2/
-E/1/3/by dffd
-D/1/4/by rertr
-T/0/ddfgfdg/
-T/0/dfgfd/
