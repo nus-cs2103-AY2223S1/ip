@@ -2,8 +2,6 @@ package tobtob;
 
 import java.util.Scanner;
 
-import duke.DukeException;
-
 /**
  * Represent a Ui that interacts with the user
  */

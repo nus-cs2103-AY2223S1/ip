@@ -1,7 +1,6 @@
 package executor;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import belly.Belly;
 import brain.Brain;
