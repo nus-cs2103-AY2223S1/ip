@@ -1,4 +1,5 @@
 D |   | concert|2022-08-25
-D |   | concert|2022-08-26
-E |   | yes| no
-E |   | yes| no no
+T |   | borrow book
+D |   | this|2022-08-26
+E |   | chill| tonight
+E |   | rest| now
