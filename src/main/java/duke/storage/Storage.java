@@ -10,6 +10,9 @@ public class Storage {
     private static final TaskList TASK_LIST = new TaskList();
     private static final FileParser FILE_PARSER = new FileParser(TASK_LIST);
 
+    /**
+     * Writes and save current list into tasklist.txt
+     */
     public void save() {
         try {
             FileWriter myWriter = new FileWriter("tasklist.txt");
@@ -21,6 +24,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasklist.txt file.
+     *
+     * @return tasklist in tasklist.txt file
+     */
     public TaskList load() {
         try {
             BufferedReader in = new BufferedReader(new FileReader("tasklist.txt"));

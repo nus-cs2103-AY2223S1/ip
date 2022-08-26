@@ -24,6 +24,12 @@ public class TaskList {
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
+    /**
+     * Marks numbered task as done in task list.
+     *
+     * @param value a string representation of the task index to be marked as done
+     * @throws DukeException if index is out of range
+     */
     public void markDone(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
@@ -35,6 +41,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes numbered task in task list.
+     *
+     * @param value a string representation of the task index to be deleted
+     * @throws DukeException if index is out of range
+     */
     public void delete(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
@@ -47,12 +59,21 @@ public class TaskList {
         }
     }
 
-
-
+    /**
+     * Adds task to task list.
+     *
+     * @param task the task to be added to task list
+     */
     public void addTask(Task task) {
         tasks.add(task);
     }
 
+    /**
+     * Adds a to do task to task list.
+     *
+     * @param desc the description of to do task
+     * @throws DukeException if description is empty
+     */
     public void addToDo(String desc) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("todo");
@@ -62,6 +83,13 @@ public class TaskList {
         printAddedTask(newTask);
     }
 
+    /**
+     * Adds a deadline task to task list.
+     *
+     * @param desc the description of deadline task
+     * @param time the deadline of deadline task
+     * @throws DukeException if no description or time is given
+     */
     public void addDeadline(String desc, String time) throws DukeException{
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("deadline");
@@ -74,6 +102,13 @@ public class TaskList {
         printAddedTask(newTask);
     }
 
+    /**
+     * Adds an event task to task list
+     *
+     * @param desc the description of event task
+     * @param time the time of event task
+     * @throws DukeException if no description or time is given
+     */
     public void addEvent(String desc, String time) throws DukeException{
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("event");
@@ -100,11 +135,20 @@ public class TaskList {
         }
     }
 
+    /**
+     * Prints current list.
+     */
     public void printList() {
         System.out.println("Here are the tasks in your list:");
         System.out.println(this.toString());
     }
 
+    /**
+     * Prints list of task before specified deadline.
+     *
+     * @param deadline the deadline to check
+     * @throws NoBeforeException if no deadline is given
+     */
     public void printDeadline(String deadline) throws NoBeforeException {
         if (deadline == null || deadline.isBlank()) {
             throw new NoBeforeException();
@@ -119,6 +163,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns string representation of list.
+     *
+     * @return string representation of the list.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

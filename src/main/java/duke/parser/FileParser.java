@@ -18,6 +18,11 @@ public class FileParser {
             Pattern.compile("^([0-9]).\\[(T|D|E)\\]\\[(✓|✘)\\] (.[^\\(]*)(?: (.*: (.*?)))?\\)?$");
     private final TaskList taskList;
 
+    /**
+     * Constructor specifying tasklist to store read tasks into.
+     *
+     * @param tasks tasklist to store read tasks.
+     */
     public FileParser(TaskList tasks) {
         this.taskList = tasks;
     }
@@ -30,6 +35,11 @@ public class FileParser {
         }
     }
 
+    /**
+     * Parses lines from tasklist.txt and stores them in tasklist.
+     *
+     * @param line each line in tasklist.txt file
+     */
     public void handle(String line) {
         try {
             // Identify groups based on task pattern
