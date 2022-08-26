@@ -1,25 +1,26 @@
+package duke.util;
 import java.util.List;
 import java.util.Scanner;
 
-class DukeIO {
+public class DukeIO {
     // class to handle input/output of data
     private static final String LINE = "   ____________________________________________________________";
     private static final String EMPTY_LIST = "The current list is empty!";
     private final Scanner scanner;
 
-    DukeIO() {
+    public DukeIO() {
         scanner = new Scanner(System.in);
     }
 
-    String readLine() {
+    public String readLine() {
         return scanner.nextLine().trim();
     }
 
-    void printLine() {
+    public void printLine() {
         System.out.println(LINE);
     }
 
-    void printTask(String txt, int features) {
+    public void printTask(String txt, int features) {
         // 00 - no wrapper/indent
         // 01 - indent
         // 10 - wrapper
@@ -31,11 +32,11 @@ class DukeIO {
         System.out.println(txt);
     }
 
-    void printTask(String txt) {
+    public void printTask(String txt) {
         printTask(txt, 3);
     }
 
-    <U> void printList(List<U> list) {
+    public <U> void printList(List<U> list) {
         if (list.isEmpty()) {
             printTask(EMPTY_LIST);
             return;
@@ -47,7 +48,7 @@ class DukeIO {
         printLine();
     }
 
-    <U> void printList(U[] list) {
+    public <U> void printList(U[] list) {
         if (list.length == 0) {
             printTask(EMPTY_LIST);
             return;
@@ -59,15 +60,15 @@ class DukeIO {
         printLine();
     }
 
-    void printError(Exception e) {
+    public void printError(Exception e) {
         printTask(String.format("🙄 OOPS!!! %s", e.getMessage()));
     }
 
-    static String addIndent(String txt) {
+    public static String addIndent(String txt) {
         return "\t" + txt.replaceAll("\n", "\n\t");
     }
 
-    static String addWrapper(String txt) {
+    public static String addWrapper(String txt) {
         return String.format("%s%n%s%n%s%n", LINE, txt, LINE);
     }
 }

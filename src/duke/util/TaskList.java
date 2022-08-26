@@ -1,6 +1,11 @@
+package duke.util;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.exceptions.OutOfBoundException;
+import duke.task.Task;
 
 public class TaskList {
     private List<Task> tasks;

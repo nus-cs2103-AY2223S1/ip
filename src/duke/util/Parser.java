@@ -1,3 +1,4 @@
+package duke.util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -6,10 +7,16 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duke.exceptions.CorruptedLineException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 /**
  * Parser
  */
-final class Parser {
+public final class Parser {
     private static final String SPACE = " +";
     private static final String SEP = " +/";
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
@@ -41,7 +48,7 @@ final class Parser {
     Parser() {
     }
 
-    static ParsedData parse(String txt) {
+    public static ParsedData parse(String txt) {
         String[] parsedTmp = txt.split(SPACE, 2);
 
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
@@ -58,7 +65,7 @@ final class Parser {
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
 
-    static Task parseDataFromLine(String savedLine) throws CorruptedLineException {
+    public static Task parseDataFromLine(String savedLine) throws CorruptedLineException {
         Matcher result = SAVE_PATTERN.matcher(savedLine);
         if (!result.find()) {
             throw new CorruptedLineException();
@@ -81,7 +88,7 @@ final class Parser {
         }
 
         if (result.group(2).equals("c")) {
-            ret.completed = true;
+            ret.mark();
         } else if (!result.group(2).equals("x")) {
             throw new CorruptedLineException();
         }
@@ -90,7 +97,7 @@ final class Parser {
 
     }
 
-    static Optional<LocalDateTime> strToDateTime(String str) {
+    public static Optional<LocalDateTime> strToDateTime(String str) {
         for (DateTimeFormatEnum signature : DateTimeFormatEnum.values()) {
             try {
                 return Optional.of(LocalDateTime.parse(str, signature.dtf));

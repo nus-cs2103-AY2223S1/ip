@@ -1,7 +1,11 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-abstract class Task implements Comparable<Task> {
+import duke.util.ParsedData;
+
+public abstract class Task implements Comparable<Task> {
     protected final String description;
     protected boolean completed;
     protected Optional<LocalDateTime> dateTime;
@@ -16,15 +20,15 @@ abstract class Task implements Comparable<Task> {
         this(description, Optional.empty());
     }
 
-    void mark() {
+    public void mark() {
         completed = true;
     }
 
-    void unmark() {
+    public void unmark() {
         completed = false;
     }
 
-    boolean isCompleted() {
+    public boolean isCompleted() {
         return completed;
     }
 

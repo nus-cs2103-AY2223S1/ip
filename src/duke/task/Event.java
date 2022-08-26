@@ -1,4 +1,13 @@
-class Event extends Task {
+package duke.task;
+
+import duke.exceptions.CorruptedLineException;
+import duke.exceptions.DukeException;
+import duke.exceptions.EmptyDescriptionException;
+import duke.exceptions.EmptyTimeException;
+import duke.util.ParsedData;
+import duke.util.Parser;
+
+public class Event extends Task {
     private static final String PREFIX = "at ";
     private static final String SPLIT = "/at ";
 
@@ -9,7 +18,7 @@ class Event extends Task {
         this.period = period;
     }
 
-    static Event createEvent(ParsedData data) throws DukeException {
+    public static Event createEvent(ParsedData data) throws DukeException {
         if (data.description.length() == 0)
             throw new EmptyDescriptionException("event");
 
@@ -18,7 +27,7 @@ class Event extends Task {
         return new Event(data.description, data.additionalInfo.substring(3));
     }
 
-    static Event createEvent(String description, String period) throws CorruptedLineException {
+    public static Event createEvent(String description, String period) throws CorruptedLineException {
         if (description.length() == 0 || period.length() == 0)
             throw new CorruptedLineException();
 

@@ -1,7 +1,9 @@
+package duke.exceptions;
+
 public class CorruptedLineException extends DukeException {
     private static final String DESCRIPTION = "There was an error parsing this line";
 
-    CorruptedLineException() {
+    public CorruptedLineException() {
         super(DESCRIPTION);
     }
 }
