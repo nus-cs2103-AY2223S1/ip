@@ -23,7 +23,7 @@ public class Parser {
             return Command.TODO;
         } else if (command.startsWith("event")) {
             return Command.EVENT;
-        }else if (command.startsWith("delete")) {
+        } else if (command.startsWith("delete")) {
             return Command.DELETE;
         } else {
             return Command.INVALID;
