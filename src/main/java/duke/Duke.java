@@ -13,6 +13,9 @@ public class Duke {
     private static DukeTaskManager taskManager;
     private static DukeUi dukeUi;
 
+    /**
+     * Starts the process of running Duke
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

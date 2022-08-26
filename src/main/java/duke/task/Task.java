@@ -17,8 +17,6 @@ public abstract class Task implements Serializable {
      * @param type Type of the task
      * @param isComplete Status of current task, true if task is completed false otherwise
      */
-
-
     public Task(String name, char type, boolean isComplete) {
         this.name = name;
         this.type = type;
@@ -46,7 +44,7 @@ public abstract class Task implements Serializable {
      * Updates the status of the task to be incomplete
      */
     public void markIncomplete() {
-        this.isComplete= false;
+        this.isComplete = false;
     }
 
     /**

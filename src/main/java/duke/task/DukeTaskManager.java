@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -112,7 +111,7 @@ public class DukeTaskManager {
     /**
      * Shows the list of tasks stored
      */
-    public void dukeShowAllTasks(){
+    public void dukeShowAllTasks() {
         String description = "List of tasks to be done:\n";
         dukeShowList(description, dukeTasks);
     }

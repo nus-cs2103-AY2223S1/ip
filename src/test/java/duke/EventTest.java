@@ -1,22 +1,22 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 import duke.task.Event;
 
-//featureUnderTest_testScenario_expectedBehavior()
 public class EventTest {
     @Test
-    public void newEventTest(){
+    public void newEventTest() {
         String name = "test1";
         String at = "testing";
-        Event newEvent= new Event(name, at);
+        Event newEvent = new Event(name, at);
         assertEquals(String.format("[E][ ] %s (at: %s)", name, at), newEvent.toString());
     }
 
     @Test
-    public void newEventTest_markTask(){
+    public void newEventTest_markTask() {
         String name = "test2";
         String at = "testing";
         Event newEvent = new Event(name, at);
