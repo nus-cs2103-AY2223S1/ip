@@ -48,14 +48,19 @@ public class Storage {
     private Task readEntry(String entry) {
         String[] data = entry.split("\\|");
         Task dataTask = null;
-        if (data[0].equals("T")) {
-            dataTask = new Todo(data[2]);
-        } else if (data[0].equals("D")) {
-            dataTask = new Deadline(data[2], data[3]);
-        } else if (data[0].equals("E")) {
-            dataTask = new Event(data[2], data[3]);
-        } else {
-            SakuraException.databaseError();
+        switch (data[0]) {
+            case "T":
+                dataTask = new Todo(data[2]);
+                break;
+            case "D":
+                dataTask = new Deadline(data[2], data[3]);
+                break;
+            case "E":
+                dataTask = new Event(data[2], data[3]);
+                break;
+            default:
+                SakuraException.databaseError();
+                break;
         }
         if (Integer.parseInt(data[1]) == 1) {
             assert dataTask != null;
