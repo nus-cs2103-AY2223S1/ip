@@ -23,28 +23,21 @@ public class Duke {
     }
 
     /**
-     * Initialises the chatbot.
-     */
-    public void start() {
-        ui.showIntro();
-        run();
-    }
-
-    /**
-     * Runs Apollo. Waits for input lines and
-     * processes them accordingly.
+     * Runs Apollo. Waits for input lines and processes them accordingly.
      */
     private void run() {
-        try {
-            parser.parseUserInput(ui.getUserInput());
-        } catch (DukeException e) {
-            ui.showError(e);
-        } finally {
-            run();
+        ui.showIntro();
+        while (true) {
+            try {
+                Command c = parser.parseUserInput(ui.getUserInput());
+                c.execute(itemList, ui, storage);
+            } catch (DukeException e) {
+                ui.showError(e);
+            }
         }
     }
 
     public static void main(String[] args) {
-        new Duke().start();
+        new Duke().run();
     }
 }

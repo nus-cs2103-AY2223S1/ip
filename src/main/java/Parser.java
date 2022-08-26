@@ -15,34 +15,27 @@ public class Parser {
    * @param inputString String given to Apollo
    * @throws DukeException Indicates incorrect inputs
    */
-  public void parseUserInput(String inputString) throws DukeException {
+  public Command parseUserInput(String inputString) throws DukeException {
     String[] input = inputString.split(" ");
-    String output = "";
     try {
       switch (input[0]) {
         case "bye": {
-          itemList.save(storage);
-          ui.showOutro();
-          System.exit(0);
+          return new ExitCommand();
         }
         case "list": {
-          output = itemList.toString();
-          break;
+          return new ListItemsCommand();
         }
         case "mark": {
-          output = itemList.mark(Integer.parseInt(input[1]));
-          break;
+          return new MarkCommand(input[1]);
         }
         case "unmark": {
-          output = itemList.unmark(Integer.parseInt(input[1]));
-          break;
+          return new UnmarkCommand(input[1]);
         }
         case "delete": {
-          output = itemList.deleteItem(Integer.parseInt(input[1]));
-          break;
+          return new DeleteCommand(input[1]);
         }
         default: {
-          output = parseAddItem(input);
+          return new AddItemCommand(input, this);
         }
       }
     } catch (IndexOutOfBoundsException e) {
@@ -51,7 +44,6 @@ public class Parser {
       throw new DukeException("Please recheck your number input, " +
           "including trailing spaces.");
     }
-    ui.showToUser(output);
   }
 
   /**
