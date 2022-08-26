@@ -1,8 +1,6 @@
 package commands;
 
-import java.util.ArrayList;
-
-import duke.Statements;
+import duke.Ui;
 import tasks.*;
 
 public class DeleteCommand extends Command {
@@ -13,11 +11,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
-        String descript = taskList.get(index).toString();
-        taskList.remove(index);
-        System.out.println("Okay! The task: \n" + descript + "\nhas been deleted forever.\n" +
-                "You have " + taskList.size() + " task" + ((taskList.size()!=1)?"s ":" ") + "left!");
+    public void run(TaskList taskList) {
+        String descript = taskList.retrieveTask(index).toString();
+        taskList.deleteTask(index);
+        Ui.deleteStatement(descript, taskList.getSize());
     }
 
 }

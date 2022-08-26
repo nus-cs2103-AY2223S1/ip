@@ -1,8 +1,7 @@
 package commands;
 
-import java.util.ArrayList;
 import tasks.*;
-import duke.Statements;
+import duke.Ui;
 
 public class TodoCommand extends Command {
     String descript;
@@ -14,9 +13,9 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
+    public void run(TaskList taskList) {
         Task toAdd = new Todos(this.descript);
-        taskList.add(toAdd);
-        Statements.addStatement(toAdd.toString(), taskList.size());
+        taskList.addTask(toAdd);
+        Ui.addStatement(toAdd.toString(), taskList.getSize());
     }
 }

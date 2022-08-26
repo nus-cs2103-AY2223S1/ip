@@ -1,6 +1,5 @@
 package commands;
 
-import java.util.ArrayList;
 import tasks.*;
 
 public class UnMarkCommand extends Command {
@@ -11,8 +10,8 @@ public class UnMarkCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
-        taskList.get(index).unmark();
-        System.out.println("OK, I've marked this task as not done yet:\n" + "  " + taskList.get(index).toString());
+    public void run(TaskList taskList) {
+        taskList.unmark(index);
+        System.out.println("OK, I've marked this task as not done yet:\n" + "  " + taskList.retrieveTask(index).toString());
     }
 }

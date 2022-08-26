@@ -1,8 +1,6 @@
 package commands;
 
-import java.util.ArrayList;
-
-import duke.Statements;
+import duke.Ui;
 import tasks.*;
 
 public class DeadlineCommand extends Command {
@@ -15,9 +13,9 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
+    public void run(TaskList taskList) {
         Task toAdd = new Deadlines(this.descript, this.doBy);
-        taskList.add(toAdd);
-        Statements.addStatement(toAdd.toString(), taskList.size());
+        taskList.addTask(toAdd);
+        Ui.addStatement(toAdd.toString(), taskList.getSize());
     }
 }

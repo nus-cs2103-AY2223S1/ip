@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
 import commands.*;
 import dukeexceptions.*;
@@ -13,22 +11,24 @@ import tasks.*;
 
 
 public class Duke {
-    ArrayList<Task> taskList;
+    TaskList taskList;
     String filePath;
     private Storage s;
+    private Ui ui;
 
     public Duke(String filePath) {
+        this.ui = new Ui();
         this.filePath = filePath;
         this.s = new Storage(this.filePath);
         this.taskList = s.open();
     }
 
     public void run() {
+        Ui.entryStatement();
         boolean toExitProgram = false;
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        Statements.initStatement();
+        Ui.initStatement();
         while (!toExitProgram) {
-            String userIn = myObj.nextLine();  // Read user input
+            String userIn = ui.readCommand();  // Read user input
             try {
                 Command comm = Parser.parse(userIn);
                 if (comm instanceof ByeCommand) {
@@ -43,7 +43,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Statements.entryStatement();
         new Duke("data/task.txt").run();
     }
 

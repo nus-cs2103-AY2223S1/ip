@@ -1,6 +1,5 @@
 package commands;
 
-import java.util.ArrayList;
 import tasks.*;
 
 public class MarkCommand extends Command {
@@ -11,8 +10,8 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
-        taskList.get(index).mark();
-        System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.get(index).toString());
+    public void run(TaskList taskList) {
+        taskList.mark(index);
+        System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.retrieveTask(index).toString());
     }
 }

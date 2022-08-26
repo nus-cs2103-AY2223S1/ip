@@ -1,6 +1,21 @@
 package duke;
 
-public class Statements {
+import java.util.Scanner;
+
+public class Ui {
+    Scanner sc;
+
+    public Ui() {
+        this.sc = new Scanner(System.in);
+    }
+
+    public String readCommand() {
+        if (sc.hasNext()) {
+            return sc.nextLine();
+        }
+        return "";
+    }
+
     public static void entryStatement() {
         System.out.println(" /\\_/\\");
         System.out.println("/ o o \\");
@@ -21,5 +36,10 @@ public class Statements {
 
     public static void addStatement(String res, int len) {
         System.out.println("Got it. I've added this task:\n" + "  " + res + "\nNow you have " + len + " tasks in the list.\n");
+    }
+
+    public static void deleteStatement(String res, int len) {
+        System.out.println("Okay! The task: \n" + res + "\nhas been deleted forever.\n" +
+                "You have " + len + " task" + ((len!=1)?"s ":" ") + "left!");
     }
 }

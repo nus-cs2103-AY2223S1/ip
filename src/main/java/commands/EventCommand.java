@@ -1,8 +1,6 @@
 package commands;
 
-import java.util.ArrayList;
-
-import duke.Statements;
+import duke.Ui;
 import tasks.*;
 
 public class EventCommand extends Command {
@@ -15,9 +13,9 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
+    public void run(TaskList taskList) {
         Task toAdd = new Events(this.descript, this.atTime);
-        taskList.add(toAdd);
-        Statements.addStatement(toAdd.toString(), taskList.size());
+        taskList.addTask(toAdd);
+        Ui.addStatement(toAdd.toString(), taskList.getSize());
     }
 }

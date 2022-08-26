@@ -1,8 +1,7 @@
 package commands;
 
-import java.util.ArrayList;
+import duke.Ui;
 import tasks.*;
-import duke.Statements;
 
 public class ByeCommand extends Command {
     boolean toExitProgram = true;
@@ -12,7 +11,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void run(ArrayList<Task> taskList) {
-        Statements.byeStatement();
+    public void run(TaskList taskList) {
+        Ui.byeStatement();
     }
 }
