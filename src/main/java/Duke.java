@@ -4,6 +4,7 @@ public class Duke {
         TaskList list = new TaskList();
         Storage storage = new Storage("./tasks.txt");
         Ui ui = new Ui();
+        Parser parser = new Parser();
 
         // attempt to open file within same folder as src code, create file if file doesn't exist
        storage.openFile();
@@ -32,7 +33,7 @@ public class Duke {
                 } else if (input.equals("list")) {
                     list.taskPrinter();
                 } else if (input.startsWith("mark")) {
-                    String in = input.replaceAll("mark", "").trim();
+                    String in = parser.replaceAll(input, "mark");
                     if (in.isEmpty()) {
                         throw new TaskStatusException("Please provide task number");
                     } else {
@@ -51,7 +52,7 @@ public class Duke {
                         }
                     }
                 } else if (input.startsWith("unmark")) {
-                    String in = input.replaceAll("unmark", "").trim();
+                    String in = parser.replaceAll(input, "unmark");
                     if (in.isEmpty()) {
                         throw new TaskStatusException("Please provide task number");
                     } else {
@@ -70,7 +71,7 @@ public class Duke {
                         }
                     }
                 } else if (input.startsWith("delete")) {
-                    String in = input.replaceAll("delete", "").trim();
+                    String in = parser.replaceAll(input, "delete");
                     if (in.isEmpty()) {
                         throw new TaskStatusException("Please provide task number");
                     } else {
@@ -89,17 +90,17 @@ public class Duke {
                     Task task;
                     if (input.startsWith("todo")) {
                         String s = input;
-                        if (s.replaceAll("todo","").trim().isEmpty()) {
+                        if (parser.replaceAll(s, "todo").isEmpty()) {
                             throw new IncompleteTaskNameException("Please provide task name");
                         } else {
-                            task = new ToDo(input.replaceAll("todo", "").trim());
+                            task = new ToDo(parser.replaceAll(input, "todo"));
                         }
                     } else if (input.startsWith("event")) {
                         String[] arr = input.split("/");
                         if (arr.length != 2) {
                             throw new IllegalArgumentException("Please write your task in the proper format");
                         } else {
-                            String name = arr[0].replaceAll("event","").trim();
+                            String name = parser.replaceAll(arr[0], "event");
                             String date = arr[1];
                             if (name.isEmpty()) {
                                 throw new IncompleteTaskNameException("Please provide task name");
@@ -108,8 +109,7 @@ public class Duke {
                             } else if (!date.startsWith("at")) {
                                 throw new IllegalArgumentException("Event time must be specified with at");
                                 } else {
-                                task = new Event(arr[0].replaceAll("event", "").trim(),
-                                        arr[1].replaceAll("at", "").trim() );
+                                task = new Event(parser.replaceAll(arr[0], "event"), parser.replaceAll(arr[1], "at"));
                             }
                         }
                     } else if (input.startsWith("deadline")) {
@@ -117,7 +117,7 @@ public class Duke {
                         if (arr.length != 2) {
                             throw new IllegalArgumentException("Please write your task in the proper format");
                         } else {
-                            String name = arr[0].replaceAll("deadline", "").trim();
+                            String name = parser.replaceAll(arr[0], "deadline");
                             String date = arr[1];
                             if (name.isEmpty()) {
                                 throw new IncompleteTaskNameException("Please provide task name");
@@ -126,8 +126,7 @@ public class Duke {
                             } else if (!date.startsWith("by")) {
                                 throw new IllegalArgumentException("Deadline time must be specified with by");
                             } else {
-                                    task = new Deadline(arr[0].replaceAll("deadline", "").trim(), arr[1].replaceAll("by", "")
-                                            .trim());
+                                task = new Deadline(parser.replaceAll(arr[0], "deadline"), parser.replaceAll(arr[1], "by"));
                             }
                         }
                     }
