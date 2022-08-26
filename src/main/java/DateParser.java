@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateParser {
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
 
     public static LocalDate convertToLocalDate(String date) {
         return LocalDate.parse(date, dateFormatter);
