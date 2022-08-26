@@ -1,3 +1,5 @@
+package mia.tasks;
+
 public class Todo extends Task {
 
     Todo(String title, boolean isCompleted) {

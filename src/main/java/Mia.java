@@ -1,5 +1,6 @@
 import general.ui.ChatWindow;
 import general.ui.Span;
+import mia.tasks.TaskManager;
 
 public class Mia {
     private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
