@@ -5,7 +5,7 @@ import duke.errors.DukeException;
 import duke.task.TaskList;
 
 /**
- * Represents the Duke program. Carries out the commands and handles exceptions
+ * Represents the Duke programme. Carries out the commands and handles exceptions
  */
 public class Duke {
     private static final String FILEPATH = "data/duke.txt";
