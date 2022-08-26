@@ -4,6 +4,9 @@ import duke.Constants;
 import duke.TaskList;
 import duke.models.Task;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Deals with interactions with the user and displaying output on the console
  */
@@ -103,4 +106,18 @@ public class Ui {
         System.out.println(tasks.getAllTasks());
         this.showIndentedDottedLines();
     }
+
+    /**
+     * Prints out the list of tasks
+     * @param taskList
+     */
+    public void listQueryResult(List<Task> taskList) {
+        this.showIndentedDottedLines();
+        Iterator<Task> iterator = taskList.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator);
+        }
+        this.showIndentedDottedLines();
+    }
+
 }

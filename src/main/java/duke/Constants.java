@@ -15,6 +15,7 @@ public final class Constants {
     public static final String MARK_STRING = "mark";
     public static final String UNMARK_STRING = "unmark";
     public static final String BYE_STRING = "bye";
+    public static final String FIND_STRING = "find";
     public static final String LIST_STRING = "list";
     public static final String DELETE_STRING = "delete";
 }

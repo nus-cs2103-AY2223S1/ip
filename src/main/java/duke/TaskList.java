@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -48,6 +49,24 @@ public class TaskList {
             Task t = listIterator.next();
             result += Constants.INDENT + listIterator.nextIndex()
                     + ". " + t + "\n";
+        }
+        return result;
+    }
+
+    /**
+     * Searches the list if the description matches the query string
+     * @param query query string
+     * @return
+     */
+    public List<Task> findTask(String query) {
+        List<Task> result = new ArrayList<>();
+        Iterator<Task> iterator = this.tasks.iterator();
+        while (iterator.hasNext()) {
+            Task t = iterator.next();
+            System.out.println(t);
+            if (t.getDescription().contains(query)) {
+                result.add(t);
+            }
         }
         return result;
     }
