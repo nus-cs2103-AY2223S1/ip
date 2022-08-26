@@ -13,6 +13,7 @@ public class Duke {
 
         List<Task> list = new ArrayList<>(); // to store list of inputs
 
+
         // attempt to open file within same folder as src code, create file if file doesn't exist
         try {
             File file = new File("./tasks.txt");
@@ -231,7 +232,10 @@ public class Duke {
     }
 
 
-
+    /**
+     * Initialise the list from the .txt file
+     * @param list list storing all tasks 
+     */
     static void listInit(List<Task> list) {
         try {
             List<String> tasks = Files.readAllLines(Path.of("./tasks.txt"));
