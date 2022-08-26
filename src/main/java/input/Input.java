@@ -34,6 +34,11 @@ public class Input {
     protected Map<String, String> parameters; // store arguments without arg_start
     protected String[] tokens;
 
+    /**
+     * Parses the input string received from the user and stores command name, parameters and arguments
+     * @param input Input string received from CLI
+     * @throws DukeException if input string is empty or command name is malformed
+     */
     private Input(String input) throws DukeException {
         // remove trailing space
         this.inputString = input.trim();
@@ -98,33 +103,6 @@ public class Input {
     }
 
     /**
-     * @return Number of tokens in the input string
-     */
-    public int getNumberOfTokens() {
-        return tokens.length;
-    }
-
-    /**
-     * @param index Integer for token index
-     * @return String token at index provided
-     * @throws DukeException - if index is not a valid 0-index into tokens
-     */
-    public String getTokenAtIndex(int index) throws DukeException {
-        if (index < 0 || index > tokens.length - 1) {
-            throw new DukeException("Invalid token index");
-        }
-
-        return tokens[index];
-    }
-
-    /**
-     * @return The original input string
-     */
-    public String getInputString() {
-        return inputString;
-    }
-
-    /**
      * Returns true if input contains the specified argument
      * @param argument Argument name to check existence of
      * @return true if argument is present in input, else false
@@ -145,6 +123,14 @@ public class Input {
         }
 
         return parameters.get(argument);
+    }
+
+    /**
+     * Returns number of tokens parsed
+     * @return Number of tokens parsed
+     */
+    public int getNumberOfTokens() {
+        return tokens.length;
     }
 
     /**

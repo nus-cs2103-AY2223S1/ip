@@ -11,9 +11,6 @@ import output.OutputLogger;
 import task.TaskModel;
 import task.TaskResponse;
 
-
-
-
 /**
  * Command to add a Deadline task
  * usage: deadline /d -description- /by -date-
