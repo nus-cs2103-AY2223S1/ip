@@ -1,20 +1,20 @@
-package duke.Storage;
 
+package duke.storage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import duke.DukeException.DukeException;
-import duke.DukeException.TypeNotExistException;
-import duke.Tasks.Task;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import duke.Ui;
+import duke.dukeexception.DukeException;
+import duke.dukeexception.TypeNotExistException;
+import duke.tasks.Task;
+
 
 /**
  * A class represents a duke.Storage.
@@ -31,7 +31,8 @@ public class Cache {
     }
 
     /**
-     * Alerts the user that there are some previously saved work and recover, otherwise create a new file for future cache.
+     * Alerts the user that there are some previously saved work and recover,
+     * otherwise create a new file for future cache.
      * @return A recovered list of previous work or a blank list if no cache.
      * @throws DukeException If IOException occurs during the process.
      */
@@ -75,7 +76,7 @@ public class Cache {
 
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                commands = line.split(" \\| ",3);
+                commands = line.split(" \\| ", 3);
                 type = commands[0].trim();
                 isDone = commands[1].trim().equals("1") ? true : false;
                 description = commands[2].trim();
@@ -95,7 +96,7 @@ public class Cache {
 
             return new TaskList(taskList);
         } catch (FileNotFoundException e) {
-            throw new DukeException("     ☹ OOPS!!! Cannot be read cos the file doesn't exist");
+            throw new DukeException("     :( OOPS!!! Cannot be read cos the file doesn't exist");
         }
     }
 
@@ -114,7 +115,7 @@ public class Cache {
             writer.write(builder.toString());
             writer.close();
         } catch (IOException e) {
-            throw new DukeException("     ☹ OOPS!!! Cannot be written cos the file doesn't exist");
+            throw new DukeException("     :( OOPS!!! Cannot be written cos the file doesn't exist");
         }
     }
 }

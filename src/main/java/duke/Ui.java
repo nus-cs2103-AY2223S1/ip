@@ -1,14 +1,14 @@
 package duke;
 
-import duke.DukeException.DukeException;
+import duke.dukeexception.DukeException;
 import java.io.FileNotFoundException;
-import duke.DukeException.DateTimeFormatException;
-import duke.Storage.Cache;
-import duke.Storage.TaskList;
-import duke.Tasks.Deadline;
-import duke.Tasks.Event;
-import duke.Tasks.Task;
-import duke.Tasks.ToDo;
+import duke.dukeexception.DateTimeFormatException;
+import duke.storage.Cache;
+import duke.storage.TaskList;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 import java.io.File;
 
@@ -177,9 +177,10 @@ public class Ui {
 
     public static TaskList loading(File file) throws DukeException, FileNotFoundException {
         printLine();
-        System.out.println("     \uD83D\uDE0A Heyyo!!! Some saved work found in: " + file.getAbsolutePath() + "\n     Loading...");
+        System.out.println("     :) Heyyo!!! Some saved work found in: "
+                + file.getAbsolutePath() + "\n     Loading...");
         TaskList taskList = Cache.recovery(file);
-        System.out.println("     \uD83D\uDE0A Done loading~ Thanks for waiting!!!");
+        System.out.println("     :) Done loading~ Thanks for waiting!!!");
         printLine();
         return taskList;
     }
@@ -188,6 +189,6 @@ public class Ui {
      * Helper func to print a horizontal line.
      */
     private static void printLine() {
-        System.out.println("    --------------------------------------------------------------------------------------");
+        System.out.println("    ------------------------------------------------------------------------------------");
     }
 }

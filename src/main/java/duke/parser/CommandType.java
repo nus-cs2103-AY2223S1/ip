@@ -1,7 +1,11 @@
-package duke.Parser;
+
+package duke.parser;
 
 import java.util.HashMap;
 
+/**
+ * Enum class for command types
+ */
 public enum CommandType {
     TODO,
     DEADLINE,

@@ -1,6 +1,6 @@
-package duke.Tasks;
+package duke.tasks;
 
-import duke.DukeException.DateTimeFormatException;
+import duke.dukeexception.DateTimeFormatException;
 
 public class ToDo extends Task {
 
