@@ -2,18 +2,18 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.exception.DukeIoException;
-import duke.task.EventTask;
 import duke.task.Task;
+import duke.task.ToDoTask;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
-public class AddEventCommand extends Command {
+public class AddTodoCommand extends Command {
 
-    EventTask task;
+    ToDoTask task;
 
-    AddEventCommand(EventTask task) {
-        super(CommandType.ADD_EVENT);
+    AddTodoCommand(ToDoTask task) {
+        super(CommandType.ADD_TODO);
         this.task = task;
     }
 

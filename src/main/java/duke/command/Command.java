@@ -1,6 +1,8 @@
 package duke.command;
 
 import duke.exception.DukeCommandAlreadyExecutedException;
+import duke.exception.DukeIoException;
+import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
@@ -39,6 +41,14 @@ public abstract class Command {
         }
         isExecuted = true;
         executeConcretely(ui, taskList, storage);
+    }
+
+    protected void saveFile(Ui ui, TaskList taskList, Storage storage) {
+        try {
+            storage.saveFile(taskList.getFileStream());
+        } catch (DukeIoException exception) {
+            ui.printOutput(exception.getMessage());
+        }
     }
 
     protected abstract void executeConcretely(Ui ui, TaskList taskList, Storage storage);

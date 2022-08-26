@@ -45,13 +45,9 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
-    public String addNewTask(String input)
+    public String addNewTask(Task newTask)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
             DukeDateTimeFormatException {
-        Task newTask = Task.createFromCommand(input);
-        if (newTask == null) {
-            return GENERAL_ERROR_STRING;
-        }
         tasks.add(newTask);
         return "added: " + newTask.toString();
     }

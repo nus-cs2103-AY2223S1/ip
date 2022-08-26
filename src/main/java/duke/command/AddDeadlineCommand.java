@@ -1,20 +1,17 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.exception.DukeIoException;
-import duke.task.EventTask;
-import duke.task.Task;
+import duke.task.DeadlineTask;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
-public class AddEventCommand extends Command {
+public class AddDeadlineCommand extends Command {
 
-    EventTask task;
+    DeadlineTask task;
 
-    AddEventCommand(EventTask task) {
-        super(CommandType.ADD_EVENT);
-        this.task = task;
+    AddDeadlineCommand(DeadlineTask task) {
+        super(CommandType.ADD_DEADLINE);
     }
 
     @Override

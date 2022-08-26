@@ -27,10 +27,6 @@ public class MarkDoneCommand extends Command {
 
         ui.printOutput(output);
 
-        try {
-            storage.saveFile(taskList.getFileStream());
-        } catch (DukeIoException exception) {
-            ui.printOutput(exception.getMessage());
-        }
+        super.saveFile(ui, taskList, storage);
     }
 }
