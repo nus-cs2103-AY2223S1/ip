@@ -25,16 +25,7 @@ public class FileHandler {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String text = sc.nextLine().strip();
-//                System.out.println(text);
-                String[] textArr = text.split(" | ");
-//                System.out.println(textArr.length);
-//                System.out.println(textArr[0]);
-//                System.out.println(textArr[1]);
-//                System.out.println(textArr[2]);
-//                System.out.println(textArr[3]);
-//                System.out.println(textArr[4]);
-//                System.out.println(textArr[5]);
-
+                String[] textArr = text.split(" | ", 7);
                 String command = textArr[0];
                 switch (command) {
                     case "T":

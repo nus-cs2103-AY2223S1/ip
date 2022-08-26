@@ -24,6 +24,7 @@ public class Event extends Task{
     @Override
     public String toFile() {
         int done = (isDone ? 1 : 0);
-        return String.format("E | %d | %s | %s", done, description, at);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        return String.format("E | %d | %s | %s", done, description, dtf.format(at));
     }
 }

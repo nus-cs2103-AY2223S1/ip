@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +10,11 @@ public class Pluto {
     private enum Type {
         TODO,
         DEADLINE,
-        EVENT
+        EVENT,
+        MARK,
+        UNMARK,
+        DELETE,
+        LIST
     }
     private static ArrayList<Task> missions = new ArrayList<>();
 
@@ -34,33 +39,33 @@ public class Pluto {
                 String[] textArr = inputLine.split(" ", 2);
                 String command = textArr[0];
 
-                switch (command) {
-                    case "todo":
+                switch (Type.valueOf(command.toUpperCase())) {
+                    case TODO:
                         addTask(inputLine, Type.TODO, file);
                         break;
-                    case "deadline":
+                    case DEADLINE:
                         addTask(inputLine, Type.DEADLINE, file);
                         break;
-                    case "event":
+                    case EVENT:
                         addTask(inputLine, Type.EVENT, file);
                         break;
-                    case "mark":
+                    case MARK:
                         isOnlyCommand(inputLine);
                         Task toMark = missions.get(Integer.parseInt(textArr[1]) - 1);
                         toMark.markAsDone();
                         file.rewriteFile(missions);
                         break;
-                    case "unmark":
+                    case UNMARK:
                         isOnlyCommand(inputLine);
                         Task toUnmark = missions.get(Integer.parseInt(textArr[1]) - 1);
                         toUnmark.markAsUndone();
                         file.rewriteFile(missions);
                         break;
-                    case "delete":
+                    case DELETE:
                         deleteTask(inputLine);
                         file.rewriteFile(missions);
                         break;
-                    case "list":
+                    case LIST:
                         System.out.println("\tHere are the tasks in your list:");
                         for (int i = 0; i < missions.size(); i++) {
                             String output = String.format("\t\t%d. %s",i + 1, missions.get(i).toString());
