@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.TaskList;
+import duke.ui.Ui;
 import duke.storage.Storage;
 
 /**
@@ -11,7 +12,7 @@ public class InvalidCommand extends Command {
 
     }
     @Override
-    public void execute(TaskList tasks, Storage storage) {
+    public void execute(TaskList tasks, Storage storage, Ui ui) {
 
     }
 }

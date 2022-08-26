@@ -5,19 +5,16 @@ import duke.models.Task;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
-/**
- * Marks the Task in the TaskList
- */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
     private final int index;
 
-    public MarkCommand(int index) {
+    public UnmarkCommand(int index) {
         this.index = index;
     }
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) {
         Task t = tasks.getTask(index);
-        t.markAsDone();
-        ui.showTaskMarkMessage(t);
+        t.markAsNotDone();
+        ui.showTaskUnmarkMessage(t);
     }
 }
