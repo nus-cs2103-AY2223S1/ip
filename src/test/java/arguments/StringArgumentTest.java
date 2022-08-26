@@ -10,6 +10,9 @@ import input.Input;
 
 
 public class StringArgumentTest {
+    /**
+     * Tests StringArgument for valid inputs
+     */
     @Test
     public void argumentValidation_validInput() {
         try {
@@ -23,6 +26,9 @@ public class StringArgumentTest {
         }
     }
 
+    /**
+     * Tests StringArgument when the parameter is specified but an empty string
+     */
     @Test
     public void argumentValidation_invalidInput_emptyParameter() {
         try {
@@ -34,6 +40,9 @@ public class StringArgumentTest {
         }
     }
 
+    /**
+     * Tests StringArgument when parameter is not specified at all
+     */
     @Test
     public void argumentValidation_invalidInput_missingParameter() {
         try {

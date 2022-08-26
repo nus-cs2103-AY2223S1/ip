@@ -18,6 +18,11 @@ public class InputStub extends Input {
         stubInput = inputString;
     }
 
+    /**
+     * @param argument Argument to get parameter of
+     * @return Parameter string
+     * @throws DukeException if any issues occur
+     */
     @Override
     public String getParameter(String argument) throws DukeException {
         assert argument.equals("d");

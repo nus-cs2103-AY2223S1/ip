@@ -11,6 +11,9 @@ import exceptions.DukeException;
 
 
 public class InputTest {
+    /**
+     * Tests Input with valid input string - command name, parameters, number of tokens correct
+     */
     @Test
     public void inputInitialization_validInput() {
         String inputStringWithNoArguments = "deadline ";
@@ -31,6 +34,9 @@ public class InputTest {
         }
     }
 
+    /**
+     * Tests Input with empty input string - correct exception thrown
+     */
     @Test
     public void inputInitialization_invalidInput_emptyInput() {
         try {
@@ -40,6 +46,9 @@ public class InputTest {
         }
     }
 
+    /**
+     * Tests Input with invalid command format - correct exception thrown
+     */
     @Test
     public void inputInitialization_invalidInput_commandName() {
         try {
