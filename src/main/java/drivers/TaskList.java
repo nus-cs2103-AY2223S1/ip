@@ -50,6 +50,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Mark the task at the specified index in the task list.
+     * @param oneIndexedNum Index of the task to be marked.
+     * @return Task that is marked.
+     * @throws TumuException Main exception for the Tumu program.
+     */
     public Task markTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
