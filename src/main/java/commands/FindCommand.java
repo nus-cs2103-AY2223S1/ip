@@ -1,5 +1,8 @@
 package commands;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import arguments.Argument;
 import arguments.SearchArgument;
 import exceptions.DukeException;
@@ -8,9 +11,10 @@ import output.OutputLogger;
 import task.Task;
 import task.TaskModel;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Class for find command
+ */
 public class FindCommand extends Command {
     protected TaskModel taskModel;
     protected SearchArgument search;
