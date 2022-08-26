@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 import exceptions.TumuException;
 import tasks.Task;
 
@@ -33,7 +33,7 @@ public class FindCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         List<Task> wantedTasks = tasks.tasksContain(body);
         ui.notifyUser("Here are the matching tasks in your list:");
         int counter = 1;

@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 
 /**
  * Class to be executed when the user wants to exit the program.
@@ -16,7 +16,7 @@ public class EndChatBotCmd extends Command {
      * @param storage Stores and retrieves data from a local .txt file.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.notifyUser("Goodbye, and have a nice day ahead! :D");
     }
 }
