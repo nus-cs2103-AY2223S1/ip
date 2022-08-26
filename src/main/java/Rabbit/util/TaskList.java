@@ -80,45 +80,49 @@ public class TaskList {
     /**
      * Prints the list of current tasks
      * when the user inputs "list".
+     *
+     * @return the string of the list;
      */
-    public void list() {
+    public String list() {
+        String output = "";
+
         if (list.size() == 0) {
-            System.out.println("There is no task in the list.");
+            output = "There is no task in the list.";
         }
+
         for (int i  = 0; i < list.size(); i++ ) {
             int index = i + 1;
-            System.out.println(index + ". " + list.get(i));
+            output += index + ". " + list.get(i) + "\n";
         }
+        return output;
     }
 
     /**
      * Marks the task at index i as done
      *
      * @param input the user's input.
-     * @return the index of the task changed.
+     * @return the content of the task changed.
      * @throws MarkUnmarkException
      */
-    public int mark(String input) throws MarkUnmarkException {
+    public String mark(String input) throws MarkUnmarkException {
         int i = Parser.parseMark(input, this);
 
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is marked as done.");
         list.get(i - 1).markDone();
-        return i - 1;
+        return list.get(i - 1).getContent();
     }
 
     /**
      * Unmarks the task at index i as not done
      *
      * @param input the user's input.
-     * @return the index of the task changed.
+     * @return the content of the task changed.
      * @throws MarkUnmarkException
      */
-    public int unmark(String input) throws MarkUnmarkException {
+    public String unmark(String input) throws MarkUnmarkException {
         int i = Parser.parseUnmark(input, this);
 
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is unmarked.");
         list.get(i - 1).unmark();
-        return i - 1;
+        return list.get(i - 1).getContent();
     }
 
     public void add(Task task) {
@@ -129,15 +133,14 @@ public class TaskList {
      * Deletes a specified task from the list.
      *
      * @param input The input from the user intended to delete a task.
-     * @return the index of the task deleted.
+     * @return the content of the task changed.
      * @throws DeleteException The task to be deleted is not in the list.
      */
-    public int delete(String input) throws DeleteException {
+    public String delete(String input) throws DeleteException {
         int i = Parser.parseDelete(input, this);
 
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is deleted.");
         list.remove(i - 1);
-        return i - 1;
+        return list.get(i - 1).getContent();
     }
 
     public int size() {
