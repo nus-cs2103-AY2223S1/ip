@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DukeException extends Exception{
 
     DukeException(String error) {
@@ -13,6 +15,11 @@ public class DukeException extends Exception{
 
     public static String taskErrorMessage() {
         String errorText = String.format("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        return errorText;
+    }
+
+    public static String IndexOutofBoundsException(ArrayList<?> tasklist) {
+        String errorText = String.format("OOPS!!! There is only %d task(s) in the tasklist", tasklist.size());
         return errorText;
     }
 }

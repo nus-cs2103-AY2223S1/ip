@@ -1,5 +1,9 @@
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.nio.file.Files;
 
 public class Duke {
 
@@ -9,7 +13,37 @@ public class Duke {
         System.out.println("--------------------------------------------------");
     }
 
-    public static void main(String[] args) {
+    private static void writeToFile(ArrayList<Task> tasks) throws IOException {
+        String filePath = "./././data/duke.txt";
+        String directoryPath = "./././data";
+        if (!Files.exists(Path.of(directoryPath))) {
+            throw new IOException("Directory Data does not exist");
+        }
+        if (!Files.exists(Path.of(filePath))) {
+            throw new IOException("File, duke.text, does not exist");
+        }
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(filePath);
+            String taskRecords = "";
+            for (int i = 0; i < tasks.size(); i++) {
+                String taskRecord="";
+                if (i == tasks.size() - 1) {
+                    taskRecord = String.format("%d.%s", i + 1, tasks.get(i));
+                } else {
+                    taskRecord = String.format("%d.%s\n", i + 1, tasks.get(i));
+                }
+                taskRecords += taskRecord;
+            }
+            fw.write(taskRecords);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void main(String[] args) throws IOException {
         echo("Hello! I'm Duke\nWhat can I do for you?");
         ArrayList<Task> tasklist = new ArrayList<Task>();
 
@@ -35,17 +69,27 @@ public class Duke {
             } else if (command.contains("unmark")) { // to detect unmark command
                 String number = command.replaceAll("[^\\d.]", "");
                 int n = Integer.parseInt(number);
-                Task unmarkedTask = tasklist.get(n-1);
-                unmarkedTask.markAsUndone();
-                String taskStatus = String.format("OK, I've marked this task as not done yet:\n%s", unmarkedTask);
-                echo(taskStatus);
+                if (n > tasklist.size()){
+                    echo(DukeException.IndexOutofBoundsException(tasklist));
+                } else {
+                    Task unmarkedTask = tasklist.get(n-1);
+                    unmarkedTask.markAsUndone();
+                    String taskStatus = String.format("OK, I've marked this task as not done yet:\n%s", unmarkedTask);
+                    echo(taskStatus);
+                    writeToFile(tasklist);
+                }
             } else if (command.contains("mark")){ // to detect mark command
                 String number = command.replaceAll("[^\\d.]", "");
                 int n = Integer.parseInt(number);
-                Task markedTask = tasklist.get(n-1);
-                markedTask.markAsDone();
-                String taskStatus = String.format("Nice! I've marked this task as done:\n%s", markedTask);
-                echo(taskStatus);
+                if (n > tasklist.size()){
+                    echo(DukeException.IndexOutofBoundsException(tasklist));
+                } else {
+                    Task markedTask = tasklist.get(n-1);
+                    markedTask.markAsDone();
+                    String taskStatus = String.format("Nice! I've marked this task as done:\n%s", markedTask);
+                    echo(taskStatus);
+                    writeToFile(tasklist);
+                }
             } else if (command.contains("todo")) {
                 String todoTask = command.replace("todo ", "");
                 if (todoTask.equals(command) || "".equals(todoTask)) {
@@ -58,6 +102,7 @@ public class Duke {
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
                     echo(taskStatus);
+                    writeToFile(tasklist);
                 }
 
             } else if (command.contains("deadline")) {
@@ -66,13 +111,14 @@ public class Duke {
                     String error = DukeException.taskErrorMessage(command);
                     echo(error);
                 } else {
-                    String[] parts = deadlineTask.split(" /");
+                    String[] parts = deadlineTask.split(" /", 2);
                     Task newTask = new Deadline(parts[0], parts[1]);
                     tasklist.add(newTask);
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
                     echo(taskStatus);
+                    writeToFile(tasklist);
                 }
             } else if (command.contains("event")) {
                 String eventTask = command.replace("event ", "");
@@ -80,13 +126,14 @@ public class Duke {
                     String error = DukeException.taskErrorMessage(command);
                     echo(error);
                 } else {
-                    String[] parts = eventTask.split(" /");
+                    String[] parts = eventTask.split(" /", 2);
                     Task newTask = new Event(parts[0], parts[1]);
                     tasklist.add(newTask);
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
                     echo(taskStatus);
+                    writeToFile(tasklist);
                 }
             } else if (command.toLowerCase().contains("delete")) {
                 String deleteTaskNumber = command.replace("delete ", "");
@@ -95,11 +142,16 @@ public class Duke {
                     echo(error);
                 } else {
                     int n = Integer.parseInt(deleteTaskNumber);
-                    Task deletedTask = tasklist.remove(n-1);
-                    String taskStatus = String.format("Noted. I've removed this task:\n" +
-                            "%s\n" +
-                            "Now you have %d tasks in the list.", deletedTask, tasklist.size());
-                    echo(taskStatus);
+                    if (n > tasklist.size()){
+                        echo(DukeException.IndexOutofBoundsException(tasklist));
+                    } else {
+                        Task deletedTask = tasklist.remove(n-1);
+                        String taskStatus = String.format("Noted. I've removed this task:\n" +
+                                "%s\n" +
+                                "Now you have %d tasks in the list.", deletedTask, tasklist.size());
+                        echo(taskStatus);
+                        writeToFile(tasklist);
+                    }
                 }
             } else {
                 echo(DukeException.taskErrorMessage());
