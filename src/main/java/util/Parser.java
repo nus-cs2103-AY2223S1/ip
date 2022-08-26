@@ -54,6 +54,10 @@ public class Parser {
                 Task event = new Event(taskArgs[0], eventDateTime);
                 cmd = new AddTaskCommand(event);
                 break;
+            case "find":
+                String searchText = splitted[1];
+                cmd = new FindSearchTextCommand(searchText);
+                break;
             default:
                 throw new DukeException(DukeException.ErrorCode.UNKNOWN_CMD);
         }
