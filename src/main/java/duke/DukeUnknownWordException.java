@@ -1,4 +1,5 @@
 package duke;
+
 public class DukeUnknownWordException extends DukeException {
     DukeUnknownWordException() {
         super();

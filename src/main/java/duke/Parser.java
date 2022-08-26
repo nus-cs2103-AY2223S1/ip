@@ -1,8 +1,11 @@
 package duke;
 
+<<<<<<< HEAD
 /**
  * Represents a class which contains methods to make sense of the commands.
  */
+=======
+>>>>>>> branch-A-CodingStandard
 public class Parser {
     String stringToParse;
 

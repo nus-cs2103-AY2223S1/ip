@@ -7,12 +7,16 @@ public class Task {
     protected String name;
     protected boolean isDone;
 
+<<<<<<< HEAD
     /**
      * Creates a Task object.
      * @param name Name of the task.
      * @param isDone Status of whether task is marked as done or not.
      */
     Task(String name, boolean isDone){
+=======
+    Task(String name, boolean isDone) {
+>>>>>>> branch-A-CodingStandard
         this.name = name;
         this.isDone = isDone;
     }
@@ -22,7 +26,7 @@ public class Task {
      * @return [X] if task is marked done, [] if task is not marked done.
      */
     public String getStatusIcon() {
-       return(this.isDone? "[X] " : "[] " );
+        return (this.isDone ? "[X] " : "[] ");
     }
 
     /**
@@ -50,8 +54,7 @@ public class Task {
     public String getStatus() {
         return this.getStatusIcon() + "" + this.name;
     }
-
-    }
+}
 
 
 

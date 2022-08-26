@@ -15,10 +15,14 @@ public class TaskList {
         this.list = list;
     }
 
+<<<<<<< HEAD
     /**
      * Displays the tasks in the list.
      */
     void showList(){
+=======
+    void showList() {
+>>>>>>> branch-A-CodingStandard
         Ui ui = new Ui();
         ui.displayListUi(this.list);
     }

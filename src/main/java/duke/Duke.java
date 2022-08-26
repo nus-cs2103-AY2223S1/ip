@@ -1,5 +1,5 @@
 package duke;
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class Duke {
             try {
                 String fullCommand = input.nextLine();
                 Parser parser = new Parser(fullCommand);
-                if (parser.isSubStringForExitCommand()){
+                if (parser.isSubStringForExitCommand()) {
                     ExitCommand exitCommand = new ExitCommand();
                     exitCommand.execute(fullCommand,listOfTask,ui,storage);
                     break;

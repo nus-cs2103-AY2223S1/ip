@@ -1,5 +1,6 @@
 package duke;
 
+<<<<<<< HEAD:src/main/java/duke/Events.java
 /**
  * Represents a task of an event.
  */
@@ -14,6 +15,12 @@ public class Events extends Task{
      * @param time The time of the event task inputted by user.
      */
     Events(String name, boolean isDone, String time){
+=======
+public class Event extends Task{
+    String time;
+    String type;
+    Event(String name, boolean isDone, String time){
+>>>>>>> branch-A-CodingStandard:src/main/java/duke/Event.java
         super(name, isDone);
         this.time = time;
         this.type = "[E]";
