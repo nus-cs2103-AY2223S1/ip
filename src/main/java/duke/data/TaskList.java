@@ -106,6 +106,11 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Finds the tasks based on the given keyword
+     * @param keyword Keyword used to search for tasks
+     * @return A list of tasks containing the keyword provided
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> list = new ArrayList<>();
         for (Task task : this.tasks) {

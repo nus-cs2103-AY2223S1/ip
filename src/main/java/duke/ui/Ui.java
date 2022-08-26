@@ -109,6 +109,10 @@ public class Ui {
         System.out.println(list);
     }
 
+    /**
+     * Prints the list of task returned after executing the find command
+     * @param list List of tasks to print
+     */
     public void printFind(ArrayList<Task> list) {
         StringBuilder stringBuilder = new StringBuilder("\tHere are the matching tasks in your list:");
         int count = 1;

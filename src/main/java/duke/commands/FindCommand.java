@@ -1,12 +1,15 @@
 package duke.commands;
 
-import duke.data.TaskList;
-import duke.tasks.Task;
-import duke.storage.Storage;
-import duke.ui.Ui;
-
 import java.util.ArrayList;
 
+import duke.data.TaskList;
+import duke.storage.Storage;
+import duke.tasks.Task;
+import duke.ui.Ui;
+
+/**
+ * This class encapsulates a find command
+ */
 public class FindCommand extends Command {
     private String keyword;
 

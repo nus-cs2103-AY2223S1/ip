@@ -2,6 +2,9 @@ package duke.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * This class encapsulates a task that users can add a list
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;

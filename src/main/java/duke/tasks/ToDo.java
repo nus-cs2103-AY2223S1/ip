@@ -2,6 +2,9 @@ package duke.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * This class encapsulates a todo item
+ */
 public class ToDo extends Task {
 
     /**
