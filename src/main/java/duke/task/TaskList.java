@@ -65,6 +65,11 @@ public class TaskList {
         return this.tasks;
     }
 
+    /**
+     * Returns the list of Tasks containing the keyword.
+     * @param keyWord The keyword used for filtering the list.
+     * @return Filtered Task list.
+     */
     public ArrayList<Task> filterTasks(String keyWord) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task t : this.tasks) {

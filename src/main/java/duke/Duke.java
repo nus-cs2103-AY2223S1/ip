@@ -1,15 +1,14 @@
 package duke;
 
+import java.io.IOException;
+import java.time.format.DateTimeParseException;
+
 import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.DukeException;
 import duke.ui.Parser;
 import duke.ui.Ui;
-
-import java.io.IOException;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Main class for Duke program.
@@ -60,6 +59,10 @@ public class Duke {
         this.ui.close();
     }
 
+    /**
+     * Main that runs the program.
+     * @param args
+     */
     public static void main(String[] args) {
         Duke d = new Duke();
         d.run();

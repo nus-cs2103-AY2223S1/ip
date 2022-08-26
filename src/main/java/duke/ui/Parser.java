@@ -1,20 +1,19 @@
 package duke.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnMarkCommand;
-import duke.command.ByeCommand;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.FindCommand;
-import duke.command.Command;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * A class that parses the input from user into something program can understand.

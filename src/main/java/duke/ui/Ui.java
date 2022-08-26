@@ -1,10 +1,10 @@
 package duke.ui;
 
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * A class that deals with user interaction with the program.

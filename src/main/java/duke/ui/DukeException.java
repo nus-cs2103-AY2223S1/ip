@@ -13,6 +13,10 @@ public class DukeException extends Exception {
         super(message);
     }
 
+    /**
+     * Returns the message from a DukeException.
+     * @return The exception message.
+     */
     @Override
     public String getMessage() {
         return "☹ OOPS!!! " + super.getMessage();
