@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.io.File;
 import java.nio.file.Path;
@@ -10,9 +9,9 @@ import java.util.Scanner;
 
 public class FileDataHandler {
 
-    private final static Path FOLDERPATH = Paths.get(System.getProperty("user.dir") + "/data");
+    private final static Path FOLDER_PATH = Paths.get(System.getProperty("user.dir") + "/data");
 
-    private final static Path FILEPATH = Paths.get(FOLDERPATH + "/duke.txt");
+    private final static Path FILE_PATH = Paths.get(FOLDER_PATH + "/duke.txt");
 
 
     public FileDataHandler() throws IOException {
@@ -20,21 +19,21 @@ public class FileDataHandler {
     }
 
     public static TaskList load() throws  IOException {
-        boolean directoryExists = java.nio.file.Files.exists(FOLDERPATH);
-        boolean fileExists = java.nio.file.Files.exists(FILEPATH);
+        boolean directoryExists = java.nio.file.Files.exists(FOLDER_PATH);
+        boolean fileExists = java.nio.file.Files.exists(FILE_PATH);
         TaskList taskList = new TaskList();
 
         if(!directoryExists) {
-            Files.createDirectories(FOLDERPATH);
+            Files.createDirectories(FOLDER_PATH);
         }
 
         if(!fileExists) {
-            FileWriter fw = new FileWriter(FILEPATH.toString());
+            FileWriter fw = new FileWriter(FILE_PATH.toString());
             fw.close();
         }
 //        return readFile();
 
-        File f = new File(FILEPATH.toString()); // create a File for the given file path
+        File f = new File(FILE_PATH.toString()); // create a File for the given file path
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -62,7 +61,7 @@ public class FileDataHandler {
 
 //    the code should save the whole file again instead of appending line by line
     public static void save(ArrayList<Task> taskListToAdd) throws IOException {
-        FileWriter fw = new FileWriter(FILEPATH.toString());
+        FileWriter fw = new FileWriter(FILE_PATH.toString());
         String fullText = "";
         int ListLength = taskListToAdd.size();
         for (int i = 0; i < ListLength; i++) {
