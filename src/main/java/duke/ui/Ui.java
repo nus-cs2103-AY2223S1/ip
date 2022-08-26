@@ -8,9 +8,9 @@ public class Ui {
             + "|   /| _> |     |\n"
             + "|_\\_\\|___>|_|_|_|\n";
     public final String SPACER = "----------------------------------------------------";
-    public final String WELCOME = "こんにちは (Konnichiwa)! Rem だよ! (I'm Rem!) :>\n"
-            + "今日は何ができますか? (What can I do for you today?)\n";
-    public final String GOODBYE = "またね! (See you soon!) <3";
+    public final String WELCOME = "Konnichiwa! I'm Rem desu! :>\n"
+            + "What can I do for you today?\n";
+    public final String GOODBYE = "See you soon! <3";
     private Scanner sc;
 
     public Ui() {
