@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.exception.DukeCommandAlreadyExecutedException;
 import duke.exception.DukeIoException;
-import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
@@ -27,7 +26,7 @@ public abstract class Command {
     CommandType commandType;
     boolean isExecuted;
 
-    Command(CommandType commandType) {
+    public Command(CommandType commandType) {
         this.commandType = commandType;
         isExecuted = false;
     }
@@ -35,6 +34,7 @@ public abstract class Command {
     public boolean isExit() {
         return commandType == CommandType.EXIT;
     }
+
     public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeCommandAlreadyExecutedException {
         if (isExecuted) {
             throw new DukeCommandAlreadyExecutedException(COMMAND_ALREADY_EXECUTED_ERROR_MESSAGE);

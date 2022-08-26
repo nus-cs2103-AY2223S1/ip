@@ -8,7 +8,7 @@ public class ExitCommand extends Command {
 
     private static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
 
-    ExitCommand() {
+    public ExitCommand() {
         super(CommandType.EXIT);
     }
 

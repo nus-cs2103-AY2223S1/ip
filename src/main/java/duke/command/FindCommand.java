@@ -10,7 +10,7 @@ public class FindCommand extends Command {
 
     private String keyword;
 
-    FindCommand(String keyword) {
+    public FindCommand(String keyword) {
         super(CommandType.FIND);
         this.keyword = keyword;
     }

@@ -1,8 +1,6 @@
 package duke.command;
 
-import duke.Duke;
 import duke.exception.DukeIndexOutOfBoundException;
-import duke.exception.DukeIoException;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
@@ -15,9 +13,9 @@ public class DeleteCommand extends Command {
     private static final String ERROR_MESSAGE =
             "Oops! Do check the index range, and the format should be \"delete <index>\"";
 
-    int taskIndex;
+    private int taskIndex;
 
-    DeleteCommand(int taskIndex) {
+    public DeleteCommand(int taskIndex) {
         super(CommandType.DELETE);
         this.taskIndex = taskIndex;
     }

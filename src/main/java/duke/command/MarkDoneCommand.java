@@ -14,7 +14,7 @@ public class MarkDoneCommand extends Command {
 
     int taskIndex;
 
-    MarkDoneCommand(int taskIndex) {
+    public MarkDoneCommand(int taskIndex) {
         super(CommandType.MARK_DONE);
         this.taskIndex = taskIndex;
     }

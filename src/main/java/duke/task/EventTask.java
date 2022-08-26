@@ -8,7 +8,7 @@ public class EventTask extends Task {
 
     private LocalDateTime dateTime;
 
-    protected EventTask(String taskTitle, LocalDateTime dateTime) {
+    public EventTask(String taskTitle, LocalDateTime dateTime) {
         super(taskTitle, TaskType.EVENT);
         this.dateTime = dateTime;
     }

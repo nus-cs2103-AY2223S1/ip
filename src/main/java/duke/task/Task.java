@@ -1,13 +1,5 @@
 package duke.task;
 
-import duke.Duke;
-import duke.exception.DukeCommandFormatException;
-import duke.exception.DukeDateTimeFormatException;
-import duke.exception.DukeTaskDateTimeMissingException;
-import duke.exception.DukeTaskTitleMissingException;
-import duke.util.Parser;
-
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {

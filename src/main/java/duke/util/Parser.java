@@ -1,15 +1,17 @@
 package duke.util;
 
-import duke.Duke;
-import duke.command.Command;
+import duke.command.*;
 import duke.exception.*;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
-import duke.task.Task;
+import duke.task.TodoTask;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class Parser {
 
@@ -26,58 +28,136 @@ public class Parser {
      * @return
      * @throws
      */
-    public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public static final String DELIMITER = "/";
-    public static final String BY_DATE_DELIMITER = "/by";
-    public static final String AT_DATE_DELIMITER = "/at";
-    public static final String EVENT_WITHOUT_AT_ERROR_MESSAGE =
+    private static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String DELIMITER = "/";
+    private static final String BY_DATE_DELIMITER = "/by";
+    private static final String AT_DATE_DELIMITER = "/at";
+    private static final String MISSING_AT_DELIMITER_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
-    public static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
+    private static final String MISSING_BY_DELIMITER_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + BY_DATE_DELIMITER;
-    public static final String INDEX_MISSING_ERROR_MESSAGE =
+    private static final String INDEX_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the index, starting from 1.";
-    public static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
+    private static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the title of the task.";
-    public static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
+    private static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time of the task.";
-    public static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
+    private static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
             "Oops! The date and time should follow the format: " + INPUT_DATE_TIME_FORMAT;
 
+    private static final Function<String, Command> addDeadlineCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    String taskTitle = getTaskTitle(commandArgument);
+                    LocalDateTime deadline = getByDate(commandArgument);
+                    DeadlineTask task = new DeadlineTask(taskTitle, deadline);
+                    newCommand = new AddDeadlineCommand(task);
+                } catch (DukeMissingTaskTitleException | DukeCommandFormatException | DukeMissingTaskDateTimeException |
+                         DukeDateTimeFormatException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
 
+    private static final Function<String, Command> addEventCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    String taskTitle = getTaskTitle(commandArgument);
+                    LocalDateTime dateTime = getAtDate(commandArgument);
+                    EventTask task = new EventTask(taskTitle, dateTime);
+                    newCommand = new AddEventCommand(task);
+                } catch (DukeMissingTaskTitleException | DukeCommandFormatException | DukeMissingTaskDateTimeException |
+                         DukeDateTimeFormatException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
 
+    private static final Function<String, Command> addTodoCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    String taskTitle = getTaskTitle(commandArgument);
+                    TodoTask task = new TodoTask(taskTitle);
+                    newCommand = new AddTodoCommand(task);
+                } catch (DukeMissingTaskTitleException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
+
+    private static final Function<String, Command> deleteCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    int taskIndex = getTaskIndexFromCommand(commandArgument);
+                    newCommand = new DeleteCommand(taskIndex);
+                } catch (DukeMissingIndexException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
+
+    private static final Function<String, Command> displayListCommandSupplier =
+            commandArgument -> new DisplayListCommand();
+
+    private static final Function<String, Command> exitCommandSupplier =
+            commandArgument -> new ExitCommand();
+
+    private static final Function<String, Command> findCommandSupplier = FindCommand::new;
+
+    private static final Function<String, Command> markDoneCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    int taskIndex = getTaskIndexFromCommand(commandArgument);
+                    newCommand = new MarkDoneCommand(taskIndex);
+                } catch (DukeMissingIndexException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
+
+    private static final Function<String, Command> markUndoneCommandSupplier =
+            commandArgument -> {
+                Command newCommand;
+                try {
+                    int taskIndex = getTaskIndexFromCommand(commandArgument);
+                    newCommand = new MarkUndoneCommand(taskIndex);
+                } catch (DukeMissingIndexException exception) {
+                    newCommand = new ErrorCommand(exception.getMessage());
+                }
+                return newCommand;
+            };
+
+    private static final Function<String, Command> unknownCommandSupplier =
+            commandArgument -> new UnknownCommand();
+
+    private Map<String, Function<String, Command>> commandMap;
+
+    public Parser() {
+        commandMap = new HashMap<>();
+        commandMap.put(CommandType.ADD_DEADLINE.toString(), addDeadlineCommandSupplier);
+        commandMap.put(CommandType.ADD_EVENT.toString(), addEventCommandSupplier);
+        commandMap.put(CommandType.ADD_TODO.toString(), addTodoCommandSupplier);
+        commandMap.put(CommandType.DELETE.toString(), deleteCommandSupplier);
+        commandMap.put(CommandType.DISPLAY_LIST.toString(), displayListCommandSupplier);
+        commandMap.put(CommandType.EXIT.toString(), exitCommandSupplier);
+        commandMap.put(CommandType.FIND.toString(), findCommandSupplier);
+        commandMap.put(CommandType.MARK_DONE.toString(), markDoneCommandSupplier);
+        commandMap.put(CommandType.MARK_UNDONE.toString(), markUndoneCommandSupplier);
+    }
 
     public Command parse(String input) {
-
+        String instruction = getCommandInstruction(input);
+        String argument = getCommandArgument(input);
+        Function<String, Command> supplier = commandMap.getOrDefault(instruction, unknownCommandSupplier);
+        return supplier.apply(argument);
     }
 
-    public static Task createFromCommand(String command)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
-            DukeDateTimeFormatException {
-        String firstWord = Parser.getCommandInstruction(command);
-
-        String taskTitle = "";
-        LocalDateTime dateTime;
-        switch (firstWord) {
-        case (TODO_TASK_COMMAND_STRING):
-            taskTitle = Parser.getTaskTitle(command);
-            return new ToDoTask(taskTitle);
-
-        case (EVENT_TASK_COMMAND_STRING):
-            taskTitle = Parser.getTaskTitle(command);
-            dateTime = Parser.getAtDate(command);
-            return new EventTask(taskTitle, dateTime);
-
-        case (DEADLINE_TASK_COMMAND_STRING):
-            taskTitle = Parser.getTaskTitle(command);
-            dateTime = Parser.getByDate(command);
-            return new DeadlineTask(taskTitle, dateTime);
-
-        default:
-            return null;
-        }
-    }
-
-    public static int getIndexOfFirstOccurrence(String input, String pattern) {
+    private static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
         if (indexOfFirstOccurrence == -1) {
             indexOfFirstOccurrence = input.length();
@@ -85,128 +165,81 @@ public class Parser {
         return indexOfFirstOccurrence;
     }
 
-    public static int getIndexOfFirstWhiteSpace(String input) {
+    private static int getIndexOfFirstWhiteSpace(String input) {
         return getIndexOfFirstOccurrence(input, " ");
     }
 
-    public static int getIndexOfFirstDelimiter(String input) {
+    private static int getIndexOfFirstDelimiter(String input) {
         return getIndexOfFirstOccurrence(input, DELIMITER);
     }
 
-    public static String getCommandInstruction(String input) {
+    private static String getCommandInstruction(String input) {
         int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
-        return input.substring(0, indexOfFirstWhiteSpace);
+        String rawInstruction = input.substring(0, indexOfFirstWhiteSpace);
+        return removeHeadingAndTailingWhiteSpaces(rawInstruction);
     }
 
-    public static String getCommandArgument(String input) {
+    private static String getCommandArgument(String input) {
         int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
         String rawArgument = input.substring(indexOfFirstWhiteSpace, input.length());
         return removeHeadingAndTailingWhiteSpaces(rawArgument);
     }
 
-    /**
-     *
-     *
-     *
-     *
-     *@param
-     *@param
-     *@param
-     *@param
-     *@param
-     *@return
-     *@throws
-     */
-
-    public static LocalDateTime getByDate(String input)
-            throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
-        int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
-        if (indexOfDelimiter == -1) {
-            throw new DukeCommandFormatException(DEADLINE_WITHOUT_BY_ERROR_MESSAGE);
-        }
-        String rawDateString = input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
-        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
-        if (refinedDateString.isEmpty()) {
-            throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
-        }
-        return getLocalDateTimeFromString(refinedDateString);
-    }
-
-    /**
-     *
-     *
-     *
-     *
-     *@param
-     *@param
-     *@param
-     *@param
-     *@param
-     *@return
-     *@throws
-     */
-
-    public static LocalDateTime getAtDate(String input)
-            throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
-        int indexOfDelimiter = input.indexOf(AT_DATE_DELIMITER);
-        if (indexOfDelimiter == -1) {
-            throw new DukeCommandFormatException(EVENT_WITHOUT_AT_ERROR_MESSAGE);
-        }
-        String rawDateString = input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
-        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
-        if (refinedDateString.isEmpty()) {
-            throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
-        }
-        return getLocalDateTimeFromString(refinedDateString);
-    }
-
-    public static String getTaskTitle(String input) throws DukeTaskTitleMissingException {
-        int indexOfStart = getIndexOfFirstWhiteSpace(input);
-        if (indexOfStart == input.length()) {
-            throw new DukeTaskTitleMissingException(TASK_TITLE_MISSING_ERROR_MESSAGE);
-        }
-        int indexOfEnd = indexOfStart
-                + getIndexOfFirstDelimiter(input.substring(indexOfStart + 1, input.length()))
-                + 1;
-        String roughTaskTitle = input.substring(indexOfStart + 1, indexOfEnd);
+    private static String getTaskTitle(String commandArgument) throws DukeMissingTaskTitleException {
+        int indexOfEnd = getIndexOfFirstDelimiter(commandArgument);
+        String roughTaskTitle = commandArgument.substring(0, indexOfEnd);
         String realTaskTitle = removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
         if (realTaskTitle.isEmpty()) {
-            throw new DukeTaskTitleMissingException(TASK_TITLE_MISSING_ERROR_MESSAGE);
+            throw new DukeMissingTaskTitleException(TASK_TITLE_MISSING_ERROR_MESSAGE);
         }
         return removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
     }
 
-    public static int getTaskIndexFromCommand(String input) throws DukeIndexMissingException {
-        int indexOfFirstWhiteSpace = Parser.getIndexOfFirstWhiteSpace(input);
-        String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
+    private static LocalDateTime getByDate(String commandArgument)
+            throws DukeCommandFormatException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
+        int indexOfDelimiter = getIndexOfFirstOccurrence(commandArgument, BY_DATE_DELIMITER);
+        if (indexOfDelimiter == commandArgument.length()) {
+            throw new DukeCommandFormatException(MISSING_BY_DELIMITER_ERROR_MESSAGE);
+        }
+        String rawDateString = commandArgument.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), commandArgument.length());
+        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
+        if (refinedDateString.isEmpty()) {
+            throw new DukeMissingTaskDateTimeException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
+        }
+        return getLocalDateTimeFromString(refinedDateString);
+    }
+
+    private static LocalDateTime getAtDate(String commandArgument)
+            throws DukeCommandFormatException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
+        int indexOfDelimiter = getIndexOfFirstOccurrence(commandArgument, AT_DATE_DELIMITER);
+        if (indexOfDelimiter == commandArgument.length()) {
+            throw new DukeCommandFormatException(MISSING_AT_DELIMITER_ERROR_MESSAGE);
+        }
+        String rawDateString = commandArgument.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), commandArgument.length());
+        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
+        if (refinedDateString.isEmpty()) {
+            throw new DukeMissingTaskDateTimeException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
+        }
+        return getLocalDateTimeFromString(refinedDateString);
+    }
+
+    private static int getTaskIndexFromCommand(String commandArgument) throws DukeMissingIndexException {
+        int indexOfFirstWhiteSpace = Parser.getIndexOfFirstWhiteSpace(commandArgument);
+        String tailSubString = commandArgument.substring(0, indexOfFirstWhiteSpace);
         tailSubString = tailSubString.replace(" ", "");
         if (tailSubString.isEmpty()) {
-            throw new DukeIndexMissingException(INDEX_MISSING_ERROR_MESSAGE);
+            throw new DukeMissingIndexException(INDEX_MISSING_ERROR_MESSAGE);
         }
         int taskIndex;
         try {
             taskIndex = Integer.parseInt(tailSubString) - 1; // Minus 1 because user input indices start from 1
         } catch (NumberFormatException ex) {
-            throw new DukeIndexMissingException(INDEX_MISSING_ERROR_MESSAGE);
+            throw new DukeMissingIndexException(INDEX_MISSING_ERROR_MESSAGE);
         }
         return taskIndex;
     }
 
-    /**
-     *
-     *
-     *
-     *
-     *@param
-     *@param
-     *@param
-     *@param
-     *@param
-     *@return
-     *@throws
-     */
-
-    public static String removeHeadingAndTailingWhiteSpaces(String input) {
+    private static String removeHeadingAndTailingWhiteSpaces(String input) {
         int start = 0;
         int end = input.length();
         while (start < input.length() && Character.isWhitespace(input.charAt(start))) {

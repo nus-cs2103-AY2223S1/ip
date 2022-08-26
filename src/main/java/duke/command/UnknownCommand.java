@@ -8,7 +8,7 @@ public class UnknownCommand extends Command {
 
     private static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
 
-    UnknownCommand() {
+    public UnknownCommand() {
         super(CommandType.UNKNOWN);
     }
 

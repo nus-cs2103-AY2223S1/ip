@@ -8,9 +8,9 @@ import duke.util.Ui;
 
 public class AddDeadlineCommand extends Command {
 
-    DeadlineTask task;
+    private DeadlineTask task;
 
-    AddDeadlineCommand(DeadlineTask task) {
+    public AddDeadlineCommand(DeadlineTask task) {
         super(CommandType.ADD_DEADLINE);
     }
 

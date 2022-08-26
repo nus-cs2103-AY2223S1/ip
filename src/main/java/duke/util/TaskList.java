@@ -11,6 +11,7 @@ public class TaskList {
 
     private static final String TAB = Duke.TAB;
     private static final String EMPTY_LIST_MESSAGE = "The list is empty.";
+    private static final String NOTHING_FOUND_MESSAGE = "Sorry, nothing found in the list.";
 
 
     private List<Task> tasks;
@@ -38,7 +39,7 @@ public class TaskList {
     }
 
     public String addNewTask(Task newTask)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
+            throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException,
             DukeDateTimeFormatException {
         tasks.add(newTask);
         return "added: " + newTask.toString();
@@ -87,7 +88,7 @@ public class TaskList {
         int len = tasks.size();
 
         if (len == 0) {
-            return "The list is empty.";
+            return EMPTY_LIST_MESSAGE;
         }
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -103,6 +104,11 @@ public class TaskList {
                         .append(curr);
             }
         }
+
+        if (displayIndex == 1) {
+            stringBuilder.append(NOTHING_FOUND_MESSAGE);
+        }
+
         return stringBuilder.toString();
     }
 

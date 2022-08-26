@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.Duke;
-
 public enum CommandType {
     UNKNOWN(""),
+    ERROR(null),
     EXIT("bye"),
     DISPLAY_LIST("list"),
     MARK_DONE("mark"),

@@ -12,9 +12,9 @@ public class MarkUndoneCommand extends Command {
     private static final String ERROR_MESSAGE =
             "Oops! Do check the index range, and the format should be \"unmark <index>\"";
 
-    int taskIndex;
+    private int taskIndex;
 
-    MarkUndoneCommand(int taskIndex) {
+    public MarkUndoneCommand(int taskIndex) {
         super(CommandType.MARK_UNDONE);
         this.taskIndex = taskIndex;
     }

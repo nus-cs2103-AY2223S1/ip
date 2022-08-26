@@ -6,8 +6,7 @@ import duke.util.Ui;
 
 public class DisplayListCommand extends Command {
 
-
-    DisplayListCommand() {
+    public DisplayListCommand() {
         super(CommandType.DISPLAY_LIST);
     }
 

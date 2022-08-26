@@ -4,7 +4,7 @@ public class TodoTask extends Task {
 
     private static final String LABEL = "T";
 
-    protected TodoTask(String taskTitle) {
+    public TodoTask(String taskTitle) {
         super(taskTitle, TaskType.TODO);
     }
 

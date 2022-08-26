@@ -1,18 +1,16 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.exception.DukeIoException;
 import duke.task.EventTask;
-import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
 public class AddEventCommand extends Command {
 
-    EventTask task;
+    private EventTask task;
 
-    AddEventCommand(EventTask task) {
+    public AddEventCommand(EventTask task) {
         super(CommandType.ADD_EVENT);
         this.task = task;
     }

@@ -1,6 +1,7 @@
 package duke;
 
-import duke.exception.*;
+import duke.command.Command;
+import duke.exception.DukeCommandAlreadyExecutedException;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -25,110 +26,46 @@ public class Duke {
 
     public static final String TAB = "    ";
 
-    public static final String FILE_PATH = "../saved_list.txt";
-    public static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
+    private static final String FILE_PATH = "../saved_list.txt";
+    private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
 
-
-    private TaskList taskList;
-    private Ui ui;
-    private Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
+    private final Storage storage;
+    private final Parser parser;
 
     Duke(String filePath) {
         this.taskList = new TaskList();
         this.ui = new Ui();
         this.storage = new Storage(filePath);
+        this.parser = new Parser();
     }
 
     public void run() {
         greet();
-        listen();
+        startListening();
     }
 
     private void greet() {
         System.out.println(GREETING_MESSAGE);
     }
 
-    private void listen() {
+    private void startListening() {
         Scanner scanner = new Scanner(System.in);
         boolean isExit = false;
 
         while (!isExit) {
-
-            String output = "";
             String nextLine = scanner.nextLine();
 
-            if (nextLine.isEmpty()) {
-                continue;
-            }
-
-            boolean commandFetched = false;
-
-            String firstWord = Parser.getCommandInstruction(nextLine);
-            int index;
-
+            Command nextCommand = parser.parse(nextLine);
+            isExit = nextCommand.isExit();
             try {
-                switch (firstWord) {
-                case (MARK_DONE_COMMAND_STRING):
-                    index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = taskList.markTaskDone(index);
-                    storage.saveFile(taskList.getFileStream());
-                    commandFetched = true;
-                    break;
-
-                case (MARK_UNDONE_COMMAND_STRING):
-                    index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = taskList.markTaskUndone(index);
-                    storage.saveFile(taskList.getFileStream());
-                    commandFetched = true;
-                    break;
-
-                case (DELETE_COMMAND_STRING):
-                    index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = taskList.deleteTask(index);
-                    storage.saveFile(taskList.getFileStream());
-                    commandFetched = true;
-                    break;
-
-                default:
-                    break;
-                }
-
-                if (!commandFetched) {
-                    switch (nextLine) {
-                    case (EXIT_COMMAND_STRING):
-                        output = EXIT_OUTPUT_STRING;
-                        commandFetched = true;
-                        isExit = true;
-                        break;
-
-                    case (DISPLAY_LIST_COMMAND_STRING):
-                        output = taskList.getListInfo();
-                        commandFetched = true;
-                        break;
-
-                    case (FIND_COMMAND_STRING):
-                        output = taskList.find(Parser.getCommandArgument(nextLine));
-
-                    default:
-                        output = taskList.addNewTask(nextLine);
-                        commandFetched = true;
-                        storage.saveFile(taskList.getFileStream());
-                        break;
-                    }
-                }
-            } catch (DukeIndexOutOfBoundException | DukeDateTimeFormatException | DukeTaskDateTimeMissingException |
-                     DukeTaskTitleMissingException | DukeIndexMissingException | DukeCommandFormatException |
-                     DukeIoException exception) {
-                output = exception.getMessage();
+                nextCommand.execute(ui, taskList, storage);
+            } catch (DukeCommandAlreadyExecutedException exception) {
+                ui.printOutput(exception.getMessage());
             }
-
-            ui.printOutput(output);
         }
-    }
-
-    private void saveFile() {
-
     }
 
     public static void main(String[] args) {
