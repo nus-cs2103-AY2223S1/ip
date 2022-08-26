@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -32,5 +35,11 @@ public abstract class Task {
         System.out.println("\t" + this.toString());
     }
 
+
     public abstract String toFile();
+
+    public String getDateTime(LocalDateTime dt) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return dtf.format(dt);
+    }
 }
