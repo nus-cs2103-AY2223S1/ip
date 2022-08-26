@@ -27,6 +27,8 @@ public class Parser {
      * Executes the user command specified to Duke.
      *
      * @param fullCommand The command specified to Duke.
+     * @return A Command object representing the user command.
+     * @throws DukeException when the user command is invalid.
      */
     public static Command parse(String fullCommand) throws DukeException {
         try {

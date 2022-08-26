@@ -10,7 +10,9 @@ import java.time.format.DateTimeParseException;
  * that needs to be done by a specified date/time.
  */
 public class Deadline extends Task {
+    /** A string describing by when the task must be completed. */
     private String by;
+    /** The date by which the task must be completed. */
     private LocalDate date;
 
     /**

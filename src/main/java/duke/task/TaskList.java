@@ -9,6 +9,7 @@ import duke.DukeException;
  * The TaskList class represents a list of tasks.
  */
 public class TaskList {
+    /** An ArrayList storing the tasks for the instance of TaskList. */
     private final ArrayList<Task> tasks;
 
     /**

@@ -11,6 +11,7 @@ import duke.task.TaskList;
  * that will find tasks on a specified date from duke.Duke's task list.
  */
 public class OnCommand extends Command {
+    /** The date at/by which tasks occur to be checked. */
     private final LocalDate date;
 
     /**

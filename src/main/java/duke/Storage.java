@@ -15,6 +15,7 @@ import java.util.Scanner;
  * and saving tasks in the file.
  */
 public class Storage {
+    /** The location of the file in the hard disk to load from and write to. */
     private final String filePath;
 
     /**

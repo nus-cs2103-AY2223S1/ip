@@ -8,7 +8,9 @@ import duke.DukeException;
  * The Task class represents a task added to duke.Duke.
  */
 public abstract class Task {
+    /** The description of the task. */
     private final String description;
+    /** Whether the task has been completed or not. */
     private boolean isDone = false;
 
     /**
