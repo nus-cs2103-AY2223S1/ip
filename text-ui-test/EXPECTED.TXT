@@ -32,4 +32,7 @@ Here are the tasks in your list:
 No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy
 Here are the matching tasks:
 1.[D][X] essay (by: SATURDAY, Jul 07 2007, 07:00 pm)
+Got it, this task is added in your list:
+[T][ ] dinner
+Now you have 3 tasks in your list.
 Bye! Hope to see you again soon!

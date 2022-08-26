@@ -1,197 +1,34 @@
 package Duke;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 public class Duke {
-    private ArrayList<Task> list;
-    private static Scanner sc;
+    private TaskList taskList;
+    private static Ui ui;
+    private Storage storage;
+    private final String filePath;
+
 
     public Duke() {
-        this.list = new ArrayList<>();
-        this.sc = new Scanner(System.in);
+        ui = new Ui();
+        this.taskList = new TaskList();
+        filePath = "/Users/yiye/Desktop/cs2103Projects/ip/duke.txt";
+        storage = new Storage(filePath);
     }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        Task task;
-        duke.greet();
-        while (true) {
-            String input = sc.nextLine();
-            if (input.equals("list")) {
-                duke.listTask();
-            } else if (input.startsWith("mark")) {
-                duke.markDone(input);
-            } else if (input.startsWith("unmark")) {
-                duke.unmark(input);
-            } else if (input.startsWith("todo")) {
-                try {
-                    if (input.length() <= 5) {
-                        throw new Exception("☹ OOPS!!! The description of a todo cannot be empty.");
-                    }
-                    duke.todo(input);
-                } catch (Exception c) {
-                    System.out.println(c);
-                }
-            } else if (input.startsWith("deadline")) {
-                try {
-                    if (input.length() <= 9) {
-                        throw new Exception("☹ OOPS!!! The description of a deadline cannot be empty.");
-                    }
-                    duke.deadline(input);
-                } catch (Exception c) {
-                    System.out.println(c);
-                }
-            } else if (input.startsWith("event")) {
-                try {
-
-                    if (input.length() <= 6) {
-                        throw new Exception("☹ OOPS!!! The description of a event cannot be empty.");
-                    }
-                    duke.event(input);
-                } catch (Exception c) {
-                    System.out.println(c);
-                }
-            } else if (input.startsWith("delete")) {
-                duke.delete(input);
-            } else if (input.equals("bye")) {
-                duke.bye();
-                break;
-            } else {
-                duke.search(input);
-            }
-
-        }
-        try {
-            duke.write();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        sc.close();
+        Parser parser = new Parser(duke, ui);
+        duke.run(parser);
     }
 
-    private void write() throws IOException{
-        File file = new File("/Users/yiye/Desktop/cs2103Projects/ip/duke.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        for (Task task: list) {
-            printWriter.println(task);
-        };
-        printWriter.close();
-
+    public void run(Parser parser) {
+        ui.greet();
+        parser.run();
+        storage.writeTasks(taskList);
+        ui.stop();
     }
 
-    private void greet() {
-        System.out.println("Hello!, I'm Yiye.\nWhat can I do for you? ◠‿◠");
-    }
 
-    private void bye() {
-        System.out.println("Bye! Hope to see you again soon!");
-    }
-
-    private void listTask() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.printf("%d.%s\n", i + 1, list.get(i).toString());
-        }
-    }
-
-    private void markDone(String input) {
-        System.out.println("Nice! I have marked this task as done:");
-        int j = Integer.parseInt(input.substring(5)) - 1;
-        Task task = list.get(j);
-        task.markAsDone();
-        System.out.println(task.toString());
-    }
-
-    private void unmark(String input) {
-        System.out.println("This task is marked as not done:");
-        int j = Integer.parseInt(input.substring(7)) - 1;
-        Task task = list.get(j);
-        task.markAsNotDone();
-        System.out.println(task.toString());
-    }
-
-    private void todo(String input) {
-        System.out.println("Got it, this task is added in your list:");
-        Task todo = new Todo(input.substring(5));
-        list.add(todo);
-        System.out.println(todo.toString());
-        if (list.size()>1) {
-            System.out.printf("Now you have %d tasks in your list.\n", list.size());
-        } else {
-            System.out.printf("Now you have %d task in your list.\n", list.size());
-        }
-    }
-
-    private void deadline(String input) {
-        System.out.println("Got it, this task is added in your list:");
-        String[] parts = input.split(" ");
-        String date = parts[parts.length-2];
-        String time = parts[parts.length-1];
-        Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
-        list.add(dl);
-        System.out.println(dl.toString());
-        if (list.size()>1) {
-            System.out.printf("Now you have %d tasks in your list.\n", list.size());
-        } else {
-            System.out.printf("Now you have %d task in your list.\n", list.size());
-        }
-    }
-
-    private void event(String input) {
-        System.out.println("Got it, this task is added in your list:");
-        String[] parts = input.split(" ");
-        String at = parts[parts.length-3];
-        String date = parts[parts.length-2];
-        String time = parts[parts.length-1];
-        Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
-        list.add(event);
-        System.out.println(event.toString());
-        if (list.size()>1) {
-            System.out.printf("Now you have %d tasks in your list.\n", list.size());
-        } else {
-            System.out.printf("Now you have %d task in your list.\n", list.size());
-        }
-    }
-
-    private void delete(String input) {
-        System.out.println("Noted. I've removed this task:");
-        int index = Integer.parseInt(input.substring(7)) - 1;
-        Task task = list.get(index);
-        System.out.println(task);
-        list.remove(index);
-        if (list.size()>1) {
-            System.out.printf("Now you have %d tasks in your list.\n", list.size());
-        } else {
-            System.out.printf("Now you have %d task in your list.\n", list.size());
-        }
-    }
-
-    private void search(String input) {
-        ArrayList<Task> matched = new ArrayList<>();
-        for(Task t: list) {
-            String str = t.toString();
-            if(str.contains(input)) {
-                matched.add(t);
-            }
-        }
-        if (matched.isEmpty()) {
-            System.out.println("No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy");
-        } else {
-            System.out.println("Here are the matching tasks:");
-            for (int i = 0; i < matched.size(); i++) {
-                System.out.printf("%d.%s\n", i + 1, matched.get(i).toString());
-            }
-        }
-
-    }
 
 }
