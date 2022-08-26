@@ -96,5 +96,16 @@ public class Ui {
         breakLine();
     }
 
-    // TODO: Add Error messages
+    public void filteredTaskMessage(TaskList filteredTasks, String keyword) {
+        if (filteredTasks.getLength() == 0) {
+            System.out.println("Anya couldn't find any matching tasks with keyword: " + keyword);
+        } else {
+            System.out.println("Anya has found these matching tasks in your list:");
+            for (int i = 0; i < filteredTasks.getLength(); i++) {
+                int index = i + 1;
+                System.out.println(index + ". " + filteredTasks.getTaskFromIndex(index).toString());
+            }
+        }
+        breakLine();
+    }
 }

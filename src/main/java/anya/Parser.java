@@ -36,4 +36,9 @@ public class Parser {
         String eventDetails = details[1];
         return eventDetails;
     }
+
+    public static String parseKeyword(String userInput) {
+        String keyword = userInput.split(" ", 2)[1];
+        return keyword;
+    }
 }

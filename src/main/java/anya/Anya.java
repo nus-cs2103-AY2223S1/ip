@@ -50,6 +50,9 @@ public class Anya {
                 command = Parser.parseCommand(userInput);
                 if (command.equals("list")) {
                     list(tasks);
+                } else if (command.equals("find")) {
+                    String keyword = Parser.parseKeyword(userInput);
+                    find(tasks, keyword);
                 } else if (command.equals("mark")) {
                     int index = Parser.parseCommandIndex(userInput);
                     mark(tasks, index);
@@ -141,5 +144,16 @@ public class Anya {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
         this.ui.deleteTaskMessage(removedTask);
+    }
+
+    /**
+     * Gets a filtered TaskList where each task contains the keyword.
+     *
+     * @param tasks A collection of Tasks.
+     * @param keyword The word that the task must contain.
+     */
+    public void find(TaskList tasks, String keyword) {
+        TaskList filteredTasks = tasks.getMatchingTasks(keyword);
+        this.ui.filteredTaskMessage(filteredTasks, keyword);
     }
 }

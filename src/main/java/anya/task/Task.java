@@ -21,6 +21,16 @@ public abstract class Task {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Returns true if the task name contains the keyword; false otherwise.
+     *
+     * @param keyword The word that the task must contain.
+     * @return true if the task name contains the keyword; false otherwise.
+     */
+    public boolean nameContains(String keyword) {
+        return this.name.contains(keyword);
+    }
+
     @Override
     public String toString() {
         String res = "[" + this.getStatusIcon() + "] " + this.name;
