@@ -1,19 +1,19 @@
 package duke.storage;
 
-import duke.DukeException;
-import duke.task.TaskList;
-import duke.parser.DateParser;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.parser.DateParser;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * Reads the given file to get the stored tasks and store ongoing tasks after exiting duke.
@@ -32,7 +32,7 @@ public class Storage {
 
     /**
      * Read the tasks from a given file and return a task list with those tasks.
-     * @return
+     * @return An ArrayList of Task
      * @throws DukeException
      */
     public ArrayList<Task> load() throws DukeException {
@@ -56,13 +56,13 @@ public class Storage {
                 } else {
                     task = new Event(splitTask[2], splitTask[3]);
                 }
-                if(splitTask[1].equals("1")) {
+                if (splitTask[1].equals("1")) {
                     task.markDone();
                 }
                 tasks.add(task);
             }
             return tasks;
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new DukeException("Cannot find the given file.");
         }
     }
