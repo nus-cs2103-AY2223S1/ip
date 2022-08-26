@@ -1,5 +1,10 @@
 package Duke;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Parser {
     private Duke duke;
     private Ui ui;
@@ -56,7 +61,8 @@ public class Parser {
             } else {
                 commands.search(input);
             }
-
         }
     }
+
+
 }

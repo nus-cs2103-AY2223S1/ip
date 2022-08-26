@@ -36,9 +36,8 @@ public class Deadline extends Task{
         b = t1.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
-    @Override
     public String fileFormat() {
-        return "D|" + super.fileFormat() + "|" + by + "|" + a + "|" + b;
+        return "D|" + super.fileFormat() + "|" + by + "|" + date + "|" + time;
     }
 
     @Override

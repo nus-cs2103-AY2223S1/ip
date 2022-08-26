@@ -3,19 +3,17 @@ import java.util.ArrayList;
 
 public class Commands {
     private String input;
-    private TaskList taskList;
+    private TaskList list;
     private Ui ui;
-    private ArrayList<Task> list;
 
     public Commands(String in) {
         this.input = in;
         this.ui = new Ui();
-        this.taskList = new TaskList();
-        this.list = taskList.listTasks();
+        this.list = new TaskList();
     }
 
     public void printList() {
-        ui.listTask(list);
+        ui.listTask(list.listTasks());
     }
 
     public void markDone(String input) {
@@ -39,7 +37,7 @@ public class Commands {
         Task todo = new Todo(input.substring(5));
         list.add(todo);
         System.out.println(todo.toString());
-        ui.printSummary(list);
+        ui.printSummary(list.listTasks());
     }
 
     public void deadline(String input) {
@@ -50,7 +48,7 @@ public class Commands {
         Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
         list.add(dl);
         System.out.println(dl.toString());
-        ui.printSummary(list);
+        ui.printSummary(list.listTasks());
     }
 
     public void event(String input) {
@@ -62,7 +60,7 @@ public class Commands {
         Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
         list.add(event);
         System.out.println(event.toString());
-        ui.printSummary(list);
+        ui.printSummary(list.listTasks());
     }
 
     public void delete(String input) {
@@ -71,12 +69,12 @@ public class Commands {
         Task task = list.get(index);
         System.out.println(task);
         list.remove(index);
-        ui.printSummary(list);
+        ui.printSummary(list.listTasks());
     }
 
     public void search(String input) {
         ArrayList<Task> matched = new ArrayList<>();
-        for(Task t: list) {
+        for(Task t: list.listTasks()) {
             String str = t.toString();
             if(str.contains(input)) {
                 matched.add(t);

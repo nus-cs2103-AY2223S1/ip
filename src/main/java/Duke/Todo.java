@@ -6,7 +6,6 @@ public class Todo extends Task {
         super(name);
     }
 
-    @Override
     public String fileFormat() {
         return "T|" + super.fileFormat();
     }

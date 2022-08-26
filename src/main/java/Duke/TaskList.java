@@ -23,4 +23,13 @@ public class TaskList {
     public int size() {
         return list.size();
     }
+
+    public void add(Task task) {
+        list.add(task);
+    }
+
+    public void remove(int i) {
+        list.remove(i);
+    }
+
 }
