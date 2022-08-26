@@ -46,6 +46,12 @@ public class Ui {
         System.out.println(taskList.toString());
     }
 
+    public void showFind(TaskList findList) {
+        System.out.println(
+                "Here are the matching tasks in your list:\n"
+                + findList.toString()
+        );
+    }
     public void showToggleSuccess(Task task) {
         if (!task.isDone()) {
             System.out.println("MISTAKES WERE MADE!\nTHAT'S WHY YOU ARE HERE:\n" + task.toString());

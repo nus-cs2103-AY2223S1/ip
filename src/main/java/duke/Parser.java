@@ -18,6 +18,8 @@ public class Parser {
             case ("list"):
                 return new ListCommand();
 
+            case ("find"):
+                return new FindCommand(inputArr[1]);
             case ("todo"):
                 if (inputArr.length < 1 || inputArr[1].equals("")) {
                     throw new BlankContentException();
