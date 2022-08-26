@@ -19,11 +19,24 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Represents a parser that interprets the user input and
+ * turns the input into a command understood by duke.
+ */
 public class Parser {
 
     private static final List<String> formatStrings = Arrays.asList(
             "yyyy/MM/dd", "yyyy-MM-dd", "MMM dd yyyy");
 
+    /**
+     * Parses the given user input and returns a command.
+     * If the user input cannot be recognised as a valid command,
+     * a DukeException is thrown.
+     *
+     * @param fullCommand User input.
+     * @return Command.
+     * @throws DukeException If the user input is not a valid command.
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         String commandWord;
@@ -59,6 +72,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Process the task to be added and specifies which type of Task it is,
+     * and returns an AddCommand instance.
+     * It throws a DukeException if the description of the task is null.
+     *
+     * @param commandWord Either "deadline" or "event" or "todo".
+     * @param description Description of the task.
+     * @return AddCommand.
+     * @throws DukeException If the description of a task is empty.
+     */
     public static Command prepareAdd(String commandWord, String description) throws DukeException {
         if (description == null) {
             throw new DukeException("☹ Description of a duke.task cannot be empty!");
@@ -70,6 +93,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an input that potentially includes a date,
+     * and returns an AddCommand instance.
+     * It throws a DukeException when the input does not contain the required keyword.
+     *
+     * @param commandWord Either "deadline" or "event".
+     * @param description Description of the task.
+     * @return AddCommand.
+     * @throws DukeException If the required keyword (e.g. "/by" or "/at") is missing.
+     */
     public static Command parseDate(String commandWord, String description) throws DukeException {
         switch (commandWord) {
             case AddCommand.COMMAND_WORD_DEADLINE:
@@ -95,6 +128,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the given date using preset formats
+     * Returns a LocalDate instance.
+     * If the given date does not fulfil one of the preset formats,
+     * a DukeException is thrown.
+     *
+     * @param dateString Date as string.
+     * @return LocalDate instance.
+     * @throws DukeException If the given date string is not in one of the preset formats.
+     */
     public static LocalDate parseDateFormats(String dateString) throws DukeException {
         for (String formatString : formatStrings) {
             try {
@@ -110,6 +153,15 @@ public class Parser {
         throw new DukeException("☹ Invalid date format!");
     }
 
+    /**
+     * Parses an input that potentially includes an index.
+     * Returns a command that is either a DeleteCommand, MarkCommand, or UnmarkCommand.
+     *
+     * @param commandWord Either "delete" or "mark" or "unmark".
+     * @param description Description of the command.
+     * @return A command.
+     * @throws DukeException If the given index is invalid.
+     */
     public static Command parseIndex(String commandWord, String description) throws DukeException {
         try {
             int index = Integer.parseInt(description) - 1;
@@ -122,7 +174,7 @@ public class Parser {
                 return new UnmarkCommand(index);
             }
         } catch (NumberFormatException nfe) {
-            throw new DukeException("☹ Please enter an index of a duke.task!");
+            throw new DukeException("☹ Please enter an index of a task!");
         }
     }
 
