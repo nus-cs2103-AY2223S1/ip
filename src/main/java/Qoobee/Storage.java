@@ -6,16 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents a storage to be saved in the hard disk.
+ */
 public class Storage {
 
     private String filePath;
     private List<Task> list;
 
+    /**
+     * Creates a storage given a filepath.
+     * @param filepath The directory of the storage.
+     */
     public Storage(String filepath) {
         this.filePath = filepath;
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Loads a file from the hard disk. If file is not available, creates one.
+     * @throws QoobeeException if error in saving task list.
+     */
     public void loadFile() throws QoobeeException {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -51,14 +62,19 @@ public class Storage {
                     save(list);
                 }
             }
-        } catch (QoobeeException e) {
-            System.out.println("I cant find the file!");
         } catch (FileNotFoundException e) {
             // Create the empty file if there is no existing file.
             File file = new File(filePath);
+        } catch (QoobeeException e) {
+            System.out.println("Unable to save task");
         }
     }
 
+    /**
+     * Saves the tasklist into the hard disk.
+     * @param taskList The tasklist to be saved.
+     * @throws QoobeeException if there is an error saving the file.
+     */
     public void save(List<Task> taskList) throws QoobeeException {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
@@ -96,6 +112,10 @@ public class Storage {
         };
     }
 
+    /**
+     * Returns the list of tasks.
+     * @return The list of tasks.
+     */
     public List<Task> getList() {
         return this.list;
     }

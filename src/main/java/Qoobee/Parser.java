@@ -1,15 +1,27 @@
 package Qoobee;
 
+/**
+ * Represents a parser that executes commands based on user's input.
+ */
 public class Parser {
 
     protected Ui ui;
     protected TaskList tasks;
 
+    /**
+     * Creates a parser given a ui and taskList.
+     * @param ui The interface that user interacts with.
+     * @param tasklist The list of tasks of the user.
+     */
     public Parser(Ui ui, TaskList tasklist) {
         this.ui = ui;
         this.tasks = tasklist;
     }
 
+    /**
+     * Executes a specific action given a user's input.
+     * @param input The user's input.
+     */
     public void parse(String input) {
         try {
             if (input.equals("bye")) {

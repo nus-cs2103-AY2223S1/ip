@@ -3,24 +3,43 @@ package Qoobee;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the list of tasks.
+ */
 public class TaskList {
 
     private Storage storage;
     private List<Task> taskList;
 
+    /**
+     * Creates a tasklist given a storage.
+     * @param storage The object where the tasklist will be stored to.
+     */
     public TaskList(Storage storage) {
         this.storage = storage;
         this.taskList = storage.getList();
     }
 
+    /**
+     * Returns the size of the tasklist.
+     * @return The size of the tasklist.
+     */
     public int taskListSize() {
         return this.taskList.size();
     }
 
+    /**
+     * Retrieves a task given an index inputted.
+     * @param index The index of the task identified.
+     * @return Returns a task.
+     */
     public Task getTask(int index) {
         return this.taskList.get(index);
     }
 
+    /**
+     * Prints the list of tasks.
+     */
     public void printTasks() {
         if (taskListSize() == 0) {
             System.out.println("You have no tasks dummy!");
@@ -33,6 +52,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a task into the list.
+     * @param task A task to be added in the list.
+     * @throws QoobeeException if the user inputs an invalid syntax.
+     */
     public void addTask(Task task) throws QoobeeException {
         this.taskList.add(task);
         System.out.println("Got it. I've added this task:\n" + task + "\n" +
@@ -40,6 +64,11 @@ public class TaskList {
         storage.save(taskList);
     }
 
+    /**
+     * Removes a task from the list.
+     * @param index The index of the task identified.
+     * @throws QoobeeException if the task does not exist.
+     */
     public void removeTask(int index) throws QoobeeException {
         try {
             Task task = taskList.remove(index);
@@ -51,13 +80,22 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks the task as undone.
+     * @param task The task to be unmarked.
+     * @throws QoobeeException if the task does not exist.
+     */
     public void unmark(Task task) throws QoobeeException {
         task.markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:\n" + task);
         storage.save(taskList);
     }
 
-
+    /**
+     * Marks a task as done.
+     * @param task The task to be marked.
+     * @throws QoobeeException if the tast does not exist.
+     */
     public void mark(Task task) throws QoobeeException {
         task.markAsDone();
         System.out.println("Nice! I've marked this task as done:\n" + task);
