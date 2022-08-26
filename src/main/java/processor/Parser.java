@@ -55,6 +55,8 @@ public class Parser {
             return executor.trashFromBrain(commandDescription);
         case "bye":
             return executor.hibernate();
+        case "find":
+            return executor.findInBrain(commandDescription);
         default:
             throw DukeException.commandNotRecognizedError(command);
         }

@@ -26,6 +26,16 @@ public class Task {
         isDone = false;
     }
 
+    /**
+     * Returns a boolean indicating if the task has the specified keyword
+     *
+     * @param keyword a {@link String} that wants to be searched
+     * @return a {@code boolean}
+     */
+    public boolean hasKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);
     }

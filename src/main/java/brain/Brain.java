@@ -22,6 +22,19 @@ public class Brain {
     public String show() {
         ArrayList<String> result = new ArrayList<>();
         result.add("Abrakadabraaa! Here's what's inside Tob Tob's Brain:");
+        result.add(toString());
+
+        return String.join("\n", result);
+    }
+
+    /**
+     * Returns a {@link String} representation of a brain
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
             result.add(String.format("%s.%s", i + 1, task.toString()));
@@ -50,5 +63,21 @@ public class Brain {
 
     public void remove(int index) {
         taskList.remove(index);
+    }
+
+    /**
+     * Returns a {@link Brain} instance with the matching {@link Task}s
+     *
+     * @param keyword a {@link String} that wants to be searched
+     * @return Brain
+     */
+    public Brain findInTask(String keyword) {
+        ArrayList<Task> tempTaskList = new ArrayList<>();
+        for (Task task: taskList) {
+            if (task.hasKeyword(keyword)) {
+                tempTaskList.add(task);
+            }
+        }
+        return new Brain(tempTaskList);
     }
 }
