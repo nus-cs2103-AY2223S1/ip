@@ -1,3 +1,10 @@
+package Command;
+import Duke.Deadline;
+import Duke.DukeUi;
+import Duke.DukeException;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -23,11 +30,16 @@ public class DeadlineCommand extends Command {
                 Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
                 tasks.addTask(newDeadline);
                 storage.save();
-                DukeUi.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
+                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "this is a deadline command : deadline " + userAction;
     }
 }

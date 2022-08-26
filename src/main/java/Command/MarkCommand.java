@@ -1,3 +1,9 @@
+package Command;
+import Duke.DukeException;
+import Duke.DukeUi;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -41,6 +47,11 @@ public class MarkCommand extends Command {
         } catch (DukeException | IOException e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "this is a mark command : mark " + userAction;
     }
 }
 

@@ -1,5 +1,9 @@
-package Duke;
 import Command.Command;
+import Duke.DukeException;
+import Duke.DukeUi;
+import Duke.Parser;
+import Duke.TaskList;
+import Duke.Storage;
 import java.util.ArrayList;
 
 public class Duke {
@@ -28,7 +32,11 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                if (c != null) {
+                    c.execute(tasks, ui, storage);
+                } else {
+                    continue;
+                }
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());

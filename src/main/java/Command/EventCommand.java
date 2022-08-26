@@ -1,3 +1,10 @@
+package Command;
+import Duke.DukeException;
+import Duke.DukeUi;
+import Duke.Event;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -23,11 +30,16 @@ public class EventCommand extends Command {
                 Task newEvent = new Event(eventString[0], eventString[1]);
                 tasks.addTask(newEvent);
                 storage.save();
-                DukeUi.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
+                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
         } catch (IOException | DukeException e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "this is an event command : event " + userAction;
     }
 }
