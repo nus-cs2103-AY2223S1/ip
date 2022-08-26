@@ -46,7 +46,7 @@ public class Storage {
             }
             return tasks;
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
-            throw new DukeException();
+            throw new DukeException("Unable to load data from hard disk file.");
         }
     }
 

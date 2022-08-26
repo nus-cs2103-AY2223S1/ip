@@ -3,16 +3,15 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
-
 import duke.task.TaskList;
 
 /**
  * The Command class represents a command that can be
- * issued by the user to duke.Duke.
+ * issued by the user to Duke.
  */
 public abstract class Command {
     /**
-     * Checks if a command is a command to exit duke.Duke.
+     * Checks if a command is a command to exit Duke.
      *
      * @return true only if the command is an exit command.
      */

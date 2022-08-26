@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import duke.DukeException;
 
 /**
  * The TaskList class represents a list of tasks.
@@ -146,6 +146,26 @@ public class TaskList {
             return task;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("The specified task does not exist.");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj instanceof TaskList) {
+            TaskList taskList = (TaskList) obj;
+            if (this.tasks == taskList.tasks) {
+                return true;
+            }
+            return this.tasks.equals(taskList.tasks);
+        } else {
+            return false;
         }
     }
 }

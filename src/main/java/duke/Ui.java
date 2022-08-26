@@ -103,13 +103,6 @@ public class Ui {
     }
 
     /**
-     * Shows user that an error occurred while attempting to load data from hard disk file.
-     */
-    public void showLoadingError() {
-        showError("Unable to load data from hard disk file.");
-    }
-
-    /**
      * Shows a message that a specified task has been marked as done.
      *
      * @param task The specified task that was marked as done.

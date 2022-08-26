@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
+
+import duke.DukeException;
 
 /**
  * The Task class represents a task added to duke.Duke.
@@ -28,39 +28,43 @@ public abstract class Task {
      * @throws DukeException when the string in the data file is invalid.
      */
     public static Task parseData(String s) throws DukeException {
-        String[] strings = s.split(" \\| ");
-        Task task;
+        try {
+            String[] strings = s.split(" \\| ");
+            Task task;
 
-        switch (strings[0]) {
-        case "T":
-            if (strings.length > 3) {
-                throw new DukeException();
+            switch (strings[0]) {
+            case "T":
+                if (strings.length > 3) {
+                    throw new DukeException("Invalid task data loaded.");
+                }
+                task = new Todo(strings[2]);
+                break;
+            case "D":
+                if (strings.length > 4) {
+                    throw new DukeException("Invalid task data loaded.");
+                }
+                task = new Deadline(strings[2], strings[3]);
+                break;
+            case "E":
+                if (strings.length > 4) {
+                    throw new DukeException("Invalid task data loaded.");
+                }
+                task = new Event(strings[2], strings[3]);
+                break;
+            default:
+                throw new DukeException("Invalid task data loaded.");
             }
-            task = new Todo(strings[2]);
-            break;
-        case "D":
-            if (strings.length > 4) {
-                throw new DukeException();
+
+            if (strings[1].equals("X")) {
+                task.markAsDone();
+            } else if (!strings[1].equals(" ")) {
+                throw new DukeException("Invalid task data loaded.");
             }
-            task = new Deadline(strings[2], strings[3]);
-            break;
-        case "E":
-            if (strings.length > 4) {
-                throw new DukeException();
-            }
-            task = new Event(strings[2], strings[3]);
-            break;
-        default:
-            throw new DukeException();
+
+            return task;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid task data loaded.");
         }
-
-        if (strings[1].equals("X")) {
-            task.markAsDone();
-        } else if (!strings[1].equals(" ")) {
-            throw new DukeException();
-        }
-
-        return task;
     }
 
     /**

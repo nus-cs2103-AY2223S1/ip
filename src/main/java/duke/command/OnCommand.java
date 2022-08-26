@@ -1,11 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.Ui;
-
 import duke.task.TaskList;
-
-import java.time.LocalDate;
 
 /**
  * The OnCommand class represents a command
