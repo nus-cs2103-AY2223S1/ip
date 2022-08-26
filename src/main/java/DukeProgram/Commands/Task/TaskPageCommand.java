@@ -40,16 +40,16 @@ public class TaskPageCommand extends Command {
             return new ListTasksCommand(separatedCommands);
 
         case "add":
-            return new AddTaskCommand(separatedCommands);
+            return new AddTaskCommand().parse(commandString);
 
         case "mark":
-            return new MarkTaskCommand(separatedCommands);
+            return new MarkTaskCommand().parse(commandString);
 
         case "unmark":
-            return new UnmarkTaskCommand(separatedCommands);
+            return new UnmarkTaskCommand().parse(commandString);
 
         case "delete":
-            return new DeleteTaskCommand(separatedCommands);
+            return new DeleteTaskCommand().parse(commandString);
 
         case "back":
             return new ExitCommand();

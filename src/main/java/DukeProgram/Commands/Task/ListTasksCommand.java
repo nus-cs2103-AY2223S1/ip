@@ -33,7 +33,7 @@ public class ListTasksCommand extends Command {
         try {
             return parse(fullCommandParameters[1]).execute();
         } catch (InvalidCommandException e) {
-            printInStyle("I didn't understand how you wanted me to list the tasks.");
+            printInStyle(e.getUiMessage().toString());
         }
 
         return true;

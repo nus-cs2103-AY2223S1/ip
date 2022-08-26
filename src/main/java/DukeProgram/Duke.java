@@ -11,6 +11,10 @@ import java.io.IOException;
 public class Duke {
     private static User user;
 
+    /**
+     * Runs the main program.
+     * @param args
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -47,6 +51,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Loads the current user from existing deserialized data
+     * @return The User profile that has been loaded
+     */
     private static User loadCurrentUser() {
         try {
             user = SaveManager.load("user");
@@ -63,6 +71,10 @@ public class Duke {
         return user;
     }
 
+    /**
+     * Begins a new user profile
+     * @param userName the user's name that the profile is created for
+     */
     private static void beginNewUser(String userName) {
         UserInterface.printInStyle(
                 String.format("This is the first time we've met, %s!", userName),
@@ -73,10 +85,17 @@ public class Duke {
         SaveManager.save("user", user);
     }
 
+    /**
+     * Initialises the facilities of the program
+     */
     private static void initialiseFacilities() {
         TaskList.initialise();
     }
 
+    /**
+     * Returns the current user profile loaded in this profile
+     * @return the current user profile using the program
+     */
     public static User getUser() {
         return user;
     }

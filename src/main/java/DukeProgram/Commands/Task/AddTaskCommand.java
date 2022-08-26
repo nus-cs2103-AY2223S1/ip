@@ -3,7 +3,6 @@ package DukeProgram.Commands.Task;
 import DukeProgram.*;
 import DukeProgram.Commands.Command;
 import DukeProgram.Facilities.TaskList;
-import DukeProgram.UI.UserInterface;
 import Exceptions.InvalidCommandException;
 import Exceptions.JobNameException;
 import Utilities.StringUtilities;
@@ -15,28 +14,15 @@ import static DukeProgram.UI.UserInterface.printInStyle;
 
 public class AddTaskCommand extends Command {
 
-    private final String[] fullCommandParameters;
-
-    public AddTaskCommand(String[] fullCommandParameters) {
-        this.fullCommandParameters = fullCommandParameters;
-    }
-
     @Override
     public boolean execute() {
-        try {
-            return parse().execute();
-        } catch (InvalidCommandException ex) {
-            UserInterface.printInStyle(ex.getUiMessage().toString());
-            return true;
-        }
-    }
-
-    private Command parse() throws InvalidCommandException {
-        return parse("");
+        return false;
     }
 
     @Override
     public Command parse(String commandString) throws InvalidCommandException {
+        String[] fullCommandParameters = commandString.split(" ");
+
         if (fullCommandParameters.length < 2) {
             throw new InvalidCommandException(
                     new UiMessage(
@@ -48,13 +34,13 @@ public class AddTaskCommand extends Command {
 
         switch (fullCommandParameters[1]) {
         case "todo":
-            return new CreateToDoTask();
+            return new CreateToDoTask(fullCommandParameters);
 
         case "deadline":
-            return new CreateDeadlineTask();
+            return new CreateDeadlineTask(fullCommandParameters);
 
         case "event":
-            return new CreateEventTask();
+            return new CreateEventTask(fullCommandParameters);
 
         default:
             throw new InvalidCommandException(
@@ -66,6 +52,14 @@ public class AddTaskCommand extends Command {
         }
     }
 
+    /**
+     * Consolidates command name without the command flag and task type
+     * For example, "[add] [event] [My] [Event]" will be converted to "My Event"
+     * @param input the flag, type and name from the user, split by spaces. Usually this
+     *              input does not contain the prefix and date info given in the full command
+     * @return the consolidated string without the flag and task type
+     * @throws JobNameException if there doesn't exit anything after the flag and type
+     */
     private static String concatName(String[] input) throws JobNameException {
         String name = Arrays.stream(input).skip(2).collect(Collectors.joining(" "));
         if (name.equals("")) {
@@ -77,6 +71,12 @@ public class AddTaskCommand extends Command {
     private abstract static class CreateTaskCommand extends Command {
 
         protected Task task;
+        protected final String[] splitCommands;
+
+
+        public CreateTaskCommand(String[] splitCommands) {
+            this.splitCommands = splitCommands;
+        }
 
         @Override
         public boolean execute() {
@@ -94,12 +94,16 @@ public class AddTaskCommand extends Command {
         }
     }
 
-    private class CreateToDoTask extends CreateTaskCommand {
+    private static class CreateToDoTask extends CreateTaskCommand {
+
+        public CreateToDoTask(String[] splitCommands) {
+            super(splitCommands);
+        }
 
         @Override
         public boolean execute() {
             try {
-                task = new ToDo(concatName(fullCommandParameters));
+                task = new ToDo(concatName(splitCommands));
                 TaskList.current().add(task);
                 super.execute();
 
@@ -111,11 +115,15 @@ public class AddTaskCommand extends Command {
     }
 
 
-    private class CreateDeadlineTask extends CreateTaskCommand {
+    private static class CreateDeadlineTask extends CreateTaskCommand {
+        public CreateDeadlineTask(String[] splitCommands) {
+            super(splitCommands);
+        }
+
         @Override
         public boolean execute() {
             String[][] nameAndDate = StringUtilities
-                    .splitStringArray(fullCommandParameters, "/by");
+                    .splitStringArray(splitCommands, "/by");
 
             if (nameAndDate.length != 2) {
                 printInStyle("Please use /by to set a time");
@@ -135,10 +143,14 @@ public class AddTaskCommand extends Command {
         }
     }
 
-    private class CreateEventTask extends CreateTaskCommand {
+    private static class CreateEventTask extends CreateTaskCommand {
+        public CreateEventTask(String[] splitCommands) {
+            super(splitCommands);
+        }
+
         @Override
         public boolean execute() {
-            String[][] nameAndDate = StringUtilities.splitStringArray(fullCommandParameters, "/at");
+            String[][] nameAndDate = StringUtilities.splitStringArray(splitCommands, "/at");
             if (nameAndDate.length != 2) {
                 printInStyle("Please use /at to set a time");
                 return true;
