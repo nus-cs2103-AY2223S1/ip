@@ -60,7 +60,6 @@ public class TaskList {
    * ui.
    */
   public void list() {
-    Ui.print("Sweetie, here is the list of tasks that you have <3");
     String output = "";
     for (int i = 0; i < tasks.size(); i++) {
       output += (
@@ -106,5 +105,28 @@ public class TaskList {
    */
   public int getSize() {
     return tasks.size();
+  }
+
+  /**
+   * Searches through its tasks whos descriptions fit the input String.
+   *
+   * @param searchString The String to be used to search the tasks.
+   * @return A <code>TaskList<Task></code> containing the tasks,
+   */
+  public TaskList searchUsingString(String searchString) {
+    ArrayList<Task> foundTasks = new ArrayList<Task>();
+    for (Task task : tasks) {
+      if (task.taskDescription != null) {
+        if (task.taskDescription.contains(searchString)) {
+          foundTasks.add(task);
+        }
+      } else if (task.miscDescription != null) {
+        if (task.miscDescription.contains(searchString)) {
+          foundTasks.add(task);
+        }
+      }
+    }
+
+    return new TaskList(foundTasks);
   }
 }

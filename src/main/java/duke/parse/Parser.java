@@ -3,6 +3,7 @@ package duke.parse;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TaskCommand;
@@ -150,6 +151,19 @@ public class Parser {
       String[] newSplitInput = parseString(action, splitInput);
       Command command = new TaskCommand(newSplitInput, tasks);
       return command.performAction();
+    } else if (action.equals("find")) {
+
+      // Throw an error  if the formatting for the 'find' command is wrong
+      if (!(splitInput.length == 2)) {
+        throw new DukeException(
+            "Your formatting for the " + action + " command is wrong!!\n" +
+            "In future, please do: " + action + " <search string>"
+            );
+      }
+
+      Command command = new FindCommand(splitInput, tasks);
+      return command.performAction();
+
     } else if (action.equals("delete")) {
 
       // Throw an error if the formatting for the 'delete' command is wrong
