@@ -15,4 +15,10 @@ public class DukeException extends Exception{
         String errorText = String.format("OOPS!!! I'm sorry, but I don't know what that means :-(");
         return errorText;
     }
+
+    public static void DateTimeFormatErrorMessage() {
+        String errorText = String.format("OOPS!!! Please input deadline in this format yyyy-MM-dd\n" +
+                "E.g: 2020-01-01");
+        Duke.echo(errorText);
+    }
 }
