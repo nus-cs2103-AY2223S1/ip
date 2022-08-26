@@ -1,4 +1,6 @@
-public class Task {
+import java.time.LocalDate;
+
+public abstract class Task {
     private String taskName;
     private boolean completed;
     private static int taskCounter = 0;
@@ -17,6 +19,10 @@ public class Task {
         this.completed = false;
     }
 
+    public static void reduceTaskCount() {
+        taskCounter--;
+    }
+
     public static int getCount() {
         return taskCounter;
     }
@@ -32,6 +38,10 @@ public class Task {
     public boolean isCompleted() {
         return this.completed;
     }
+
+    public abstract void setTime(String time);
+
+    public abstract void setDate(LocalDate date);
 
     @Override
     public String toString() {

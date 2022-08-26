@@ -1,4 +1,4 @@
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -56,6 +56,49 @@ public class Duke {
         }
     }
 
+    private static void dateSetter(Task t, String date) throws DukeException{
+        String[] dateTime = date.split(" ", 2);
+        String ddmmyyyyRegex = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";
+        String yyyymmddRegex = "[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}";
+        String timeRegex = "[0-9]{4}";
+        if (dateTime[0].matches(ddmmyyyyRegex)) {
+            String[] info = dateTime[0].split("/");
+            String dd = info[0];
+            String mm = info[1];
+            String yyyy = info[2];
+            dd = dd.length() == 1 ? "0" + dd : dd;
+            mm = mm.length() == 1 ? "0" + mm : mm;
+            LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
+            t.setDate(toAdd);
+            if (dateTime.length == 2 ) {
+                if (dateTime[1].matches(timeRegex)) {
+                    t.setTime(dateTime[1]);
+                }
+            }
+        } else if (dateTime[0].matches(yyyymmddRegex)){
+           String[] info = dateTime[0].split("-");
+           String dd = info[2];
+           String mm = info[1];
+           String yyyy = info[0];
+           dd = dd.length() == 1 ? "0" + dd : dd;
+           mm = mm.length() == 1 ? "0" + mm : mm;
+           LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
+            t.setDate(toAdd);
+           if (dateTime.length == 2) {
+               if (dateTime[1].matches(timeRegex)) {
+                   t.setTime(dateTime[1]);
+               } else {
+                   throw new DukeException("Please input your time properly, it should be in 24h time.");
+               }
+           }
+        } else {
+//            System.out.println(dateTime[0]);
+            throw new DukeException("Please input your deadline properly, I can only accept in dd/mm/yyyy OR yyyy-mm-dd.");
+        }
+
+    }
+
+
     private static void todo(String input) {
         Todo curr = new Todo(input);
         tasks.add(curr);
@@ -64,22 +107,49 @@ public class Duke {
         System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
     }
 
-    private static void deadline (String input) {
-        String arr[] = input.split("/by", 2);
-        Deadline curr = new Deadline(arr[0], arr[1]);
-        tasks.add(curr);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(curr);
-        System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
+    private static void deadline (String input){
+        int created = 0;
+        try {
+            if (!input.contains("/by")) {
+                throw new DukeException("Deadline creation should contain the '/by' tag! Please input again!");
+            }
+            String arr[] = input.split("/by ", 2);
+            Deadline curr = new Deadline(arr[0]);
+            created = 1;
+            dateSetter(curr, arr[1]);
+            tasks.add(curr);
+            System.out.println("Got it. I've added this task: ");
+            System.out.println(curr);
+            System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
+        } catch (DukeException e) {
+            if (created == 1) {
+                Task.reduceTaskCount();
+            }
+            System.out.println(e);
+        }
+
     }
 
     private static void event(String input) {
-        String arr[] = input.split("/at", 2);
-        Event curr = new Event(arr[0], arr[1]);
-        tasks.add(curr);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(curr);
-        System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
+        int created = 0;
+        try {
+            if (!input.contains("/at")) {
+                throw new DukeException("Event creation should contain the '/at' tag! Please input again!");
+            }
+            String arr[] = input.split("/at ", 2);
+            Event curr = new Event(arr[0]);
+            created = 1;
+            dateSetter(curr, arr[1]);
+            tasks.add(curr);
+            System.out.println("Got it. I've added this task: ");
+            System.out.println(curr);
+            System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
+        } catch (DukeException e) {
+            if (created == 1) {
+                Task.reduceTaskCount();
+            }
+            System.out.println(e);
+        }
     }
 
     private static void delete (String input) {
