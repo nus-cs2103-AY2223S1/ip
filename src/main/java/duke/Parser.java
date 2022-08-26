@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,33 +45,33 @@ public class Parser {
                 command = Command.LIST;
             } else if (firstArg.equals("mark")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: mark (task number)");
+                    throw new DukeException("Input format: mark (duke.task number)");
                 }
                 try {
                     command = Command.MARK;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: mark (task number)");
+                    throw new DukeException("Input format: mark (duke.task number)");
                 }
             } else if (firstArg.equals("unmark")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: unmark (task number)");
+                    throw new DukeException("Input format: unmark (duke.task number)");
                 }
                 try {
                     command = Command.UNMARK;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: unmark (task number)");
+                    throw new DukeException("Input format: unmark (duke.task number)");
                 }
             } else if (firstArg.equals("delete")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: delete (task number)");
+                    throw new DukeException("Input format: delete (duke.task number)");
                 }
                 try {
                     command = Command.DELETE;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: delete (task number)");
+                    throw new DukeException("Input format: delete (duke.task number)");
                 }
             } else if (firstArg.equals("todo")) {
                 if (numArgs == 1) {

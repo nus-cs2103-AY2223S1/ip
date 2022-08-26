@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +17,7 @@ public class Storage {
     private static final String PATH_NAME = "data/duke.txt";
 
     /**
-     * Reads task data from hard disk.
+     * Reads duke.task data from hard disk.
      * If there's no existing directory or file, a new directory and/or file is created.
      */
     public static ArrayList<Task> readData() {
@@ -39,10 +43,10 @@ public class Storage {
     }
 
     /**
-     * Writes task data from Duke chatbot to hard disk.
+     * Writes duke.task data from duke.Duke chatbot to hard disk.
      * If there's no existing directory or file, a new directory and/or file is created.
      *
-     * @param data The task data to be written to hard disk.
+     * @param data The duke.task data to be written to hard disk.
      */
     public static void writeData(String data) {
         try {
