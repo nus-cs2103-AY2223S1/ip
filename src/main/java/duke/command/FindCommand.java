@@ -5,17 +5,24 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DateCommand extends Command {
+/**
+ * FindCommand is a command to find tasks with the matching keyword.
+ */
+public class FindCommand extends Command {
 
-    private LocalDate date;
+    private String keyword;
     private ArrayList<Task> matchingTasks;
 
-    public DateCommand(LocalDate date) {
+    /**
+     * Constructor for FindCommand.
+     *
+     * @param keyword Word to find in task.
+     */
+    public FindCommand(String keyword) {
         super();
-        this.date = date;
+        this.keyword = keyword;
         this.matchingTasks = new ArrayList<>();
     }
 
@@ -23,10 +30,11 @@ public class DateCommand extends Command {
     public void execCommand(TaskList list, Ui ui, Storage storage) {
         for (int i = 0; i < list.getSize(); i++) {
             Task task = list.getTask(i);
-            if (task.getTime().equals(date)) {
+            if (task.getDescription().contains(keyword)) {
                 matchingTasks.add(task);
             }
         }
-        ui.showDate(matchingTasks);
+        ui.showFind(matchingTasks);
     }
+
 }

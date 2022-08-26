@@ -58,7 +58,7 @@ public class Ui {
 
     public void showDate(ArrayList<Task> tasks) {
         if (tasks.size() != 0) {
-            System.out.println("Here are the tasks on that date:");
+            System.out.println("Here are the task(s) on that date:");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println(i + 1 + ". " + tasks.get(i));
             }
@@ -73,5 +73,16 @@ public class Ui {
 
     public void showError(String msg) {
         System.out.println(msg);
+    }
+
+    public void showFind(ArrayList<Task> tasks) {
+        if (tasks.size() != 0) {
+            System.out.println("Here are the matching task(s):");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(i + 1 + ". " + tasks.get(i));
+            }
+        } else {
+            System.out.println("There are no tasks matching that word.");
+        }
     }
 }
