@@ -115,7 +115,7 @@ public class Input {
      * Returns parameter corresponding to an argument name if it exists
      * @param argument Argument to get parameter of
      * @return Parameter corresponding to the argument
-     * @throws DukeException - if the specified argument was not provided
+     * @throws DukeException if the specified argument was not provided
      */
     public String getParameter(String argument) throws DukeException {
         if (!hasArgument(argument)) {

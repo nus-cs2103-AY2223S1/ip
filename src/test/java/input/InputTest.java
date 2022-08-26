@@ -15,7 +15,6 @@ public class InputTest {
     public void inputInitialization_validInput() {
         String inputStringWithNoArguments = "deadline ";
         String inputString = " deadline /d deadline description /by 26-08-2022 1800 ";
-
         try {
             Input in = Input.newInput(inputStringWithNoArguments);
             Input inWithArgs = Input.newInput(inputString);
@@ -24,6 +23,7 @@ public class InputTest {
 
             assertEquals(in.getNumberOfTokens(), 1);
             assertEquals(inWithArgs.getNumberOfTokens(), 7);
+
             assertEquals(inWithArgs.getParameter("d"), "deadline description");
             assertEquals(inWithArgs.getParameter("by"), "26-08-2022 1800");
         } catch (DukeException e) {
