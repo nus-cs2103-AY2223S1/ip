@@ -21,10 +21,10 @@ public class Event extends Task {
      * Creates an event.
      * @param description Description of event.
      * @param at Time of event.
-     * @param done If the task is done.
+     * @param isDone If the task is done.
      */
-    public Event(String description, String at, boolean done) {
-        super(description, done);
+    public Event(String description, String at, boolean isDone) {
+        super(description, isDone);
         datetime = new ParsedDateTime(at);
     }
 

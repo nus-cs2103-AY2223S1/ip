@@ -20,10 +20,10 @@ public class Duke {
             Task task = TaskList.getTaskList().get(idx - 1);
             return Optional.of(task);
         } catch (NumberFormatException ex) {
-            Ui.messagePrint("Sorry, I didn't understand " + index + ", please give me a number.");
+            Ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
             return Optional.empty();
         } catch (IndexOutOfBoundsException ex) {
-            Ui.messagePrint("Sorry, the number " + index + ", wasn't in the range.");
+            Ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
     }
@@ -41,19 +41,24 @@ public class Duke {
      * @param args Command line args which are not used.
      */
     public static void main(String[] args) {
+        // initialization
         Ui.greet();
         TaskList.initializeTaskList();
         commands = Parser.getCommands();
         Scanner input = new Scanner(System.in);
-        boolean keepRunning = true;
-        while (keepRunning) {
+
+        // main application logic
+        boolean isStillRunning = true;
+        while (isStillRunning) {
             String command = input.nextLine();
             if (command.equals("bye")) {
-                keepRunning = false;
+                isStillRunning = false;
             } else {
                 handleCommand(command);
             }
         }
+
+        // finalization
         TaskList.finalizeTaskList();
         Ui.leave();
     }

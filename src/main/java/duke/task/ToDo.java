@@ -16,10 +16,10 @@ public class ToDo extends Task {
     /**
      * Creates a task item.
      * @param description Description of task.
-     * @param done If the task is done.
+     * @param isDone If the task is done.
      */
-    public ToDo(String description, boolean done) {
-        super(description, done);
+    public ToDo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     @Override
