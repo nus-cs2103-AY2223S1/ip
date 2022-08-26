@@ -11,7 +11,8 @@ import duke.DukeException;
  * Represents a formatter that process a datetime object
  */
 public class TaskDatetimeFormatter {
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Returns a <code>LocalDate</code> of the converted <code>String</code>

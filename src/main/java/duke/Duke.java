@@ -31,8 +31,6 @@ public class Duke {
 
     /**
      * Runs the chatbot
-     *
-     * @return null
      */
     public void run() {
         tobTob.tobTobGreets();
@@ -61,7 +59,6 @@ public class Duke {
      * Runs Duke
      *
      * @param args
-     * @return null
      */
     public static void main(String[] args) {
         new Duke().run();

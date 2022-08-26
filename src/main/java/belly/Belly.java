@@ -52,7 +52,8 @@ public class Belly {
                     break;
                 case "D":
                     taskDatetimeString = taskDetails[3];
-                    task = new Deadline(taskIsDone, taskName, TaskDatetimeFormatter.stringToDatetime(taskDatetimeString));
+                    task = new Deadline(taskIsDone, taskName,
+                            TaskDatetimeFormatter.stringToDatetime(taskDatetimeString));
                     break;
                 default:
                     taskDatetimeString = taskDetails[3];
@@ -73,7 +74,6 @@ public class Belly {
      * Saves <code>txt</code> input to hard disk.
      *
      * @param txt String that will be saved
-     * @return <code>null</code>
      */
     public void saveToHardDisk(String txt) {
         try {

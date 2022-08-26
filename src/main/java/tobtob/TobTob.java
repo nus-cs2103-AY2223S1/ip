@@ -1,8 +1,8 @@
 package tobtob;
 
-import duke.DukeException;
-
 import java.util.Scanner;
+
+import duke.DukeException;
 
 /**
  * Represent a Ui that interacts with the user
@@ -32,7 +32,6 @@ public class TobTob {
      * Prints the specified <code>String</code> with indentation
      *
      * @param s a <code>String</code> to print
-     * @return <code>null</code>
      * @throws DukeException
      */
     public void printTobTobIndent(String s) {
@@ -42,8 +41,6 @@ public class TobTob {
 
     /**
      * Prints the boundary
-     *
-     * @return <code>null</code>
      */
     public void printTobTobBoundary() {
         printTobTobIndent(TOB_TOB_BOUNDARY);
@@ -51,8 +48,6 @@ public class TobTob {
 
     /**
      * Greets the user
-     *
-     * @return <code>null</code>
      */
     public void tobTobGreets() {
         printTobTobIndent(TOB_TOB_LOGO);
@@ -65,8 +60,6 @@ public class TobTob {
 
     /**
      * Informs the user that there is no file saved before
-     *
-     * @return <code>null</code>
      */
     public void tobTobNeverMetBefore() {
         printTobTobBoundary();

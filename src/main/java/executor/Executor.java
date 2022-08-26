@@ -111,7 +111,8 @@ public class Executor {
      * @return <code>String</code>
      * @throws DukeException
      */
-    public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex) throws DukeException {
+    public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex)
+            throws DukeException {
         if (taskDescriptionDatetime[0].equals("")) {
             throw DukeException.emptyCommandDescriptionError();
         }

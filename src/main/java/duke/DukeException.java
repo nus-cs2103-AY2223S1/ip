@@ -1,18 +1,29 @@
 package duke;
 
+/**
+ * Represents an error thrown by Duke
+ */
 public class DukeException extends Exception {
-    private static final String EMPTY_COMMAND_DESCRIPTION_ERROR_MESSAGE = "Oopsieee! Command description cannot be empty";
-    private static final String INTEGER_INDEX_ERROR_MESSAGE = "Oopsieee! Command \"%s\" should be followed with an integer index";
-    private static final String TASK_INCORRECT_FORMAT_ERROR_MESSAGE = "Oopsieee! Task name and datetime format is incorrect.\n"
+    private static final String EMPTY_COMMAND_DESCRIPTION_ERROR_MESSAGE =
+            "Oopsieee! Command description cannot be empty";
+    private static final String INTEGER_INDEX_ERROR_MESSAGE =
+            "Oopsieee! Command \"%s\" should be followed with an integer index";
+    private static final String TASK_INCORRECT_FORMAT_ERROR_MESSAGE =
+            "Oopsieee! Task name and datetime format is incorrect.\n"
             + "Please indicate task name and datetime separated using \"%s\" for %s";
-    private static final String COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE = "Oopsieee! Command \"%s\" is not in Tob Tob Dictionary";
-    private static final String SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE = "Oopsieee! Command \"list\" shouldn't have any description";
-    private static final String INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE = "Oopsieee! There are only %s tasks in Tob Tob Brain.\n"
+    private static final String COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE =
+            "Oopsieee! Command \"%s\" is not in Tob Tob Dictionary";
+    private static final String SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE =
+            "Oopsieee! Command \"list\" shouldn't have any description";
+    private static final String INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE =
+            "Oopsieee! There are only %s tasks in Tob Tob Brain.\n"
             + "Index should be a positive number and less than %s.\n"
             + "To see the task list, input \"list\"";
-    private static final String DATETIME_FORMAT_ERROR_MESSAGE = "Oopsieee! Tob Tob cannot recognize the input datetime '%s'.\n"
+    private static final String DATETIME_FORMAT_ERROR_MESSAGE =
+            "Oopsieee! Tob Tob cannot recognize the input datetime '%s'.\n"
             + "Please make sure that it's in format 'yyyy-mm-dd'";
-    private static final String FILE_NOT_FOUND_ERROR_MESSAGE = "Oopsieee! There is no file in path %s";
+    private static final String FILE_NOT_FOUND_ERROR_MESSAGE =
+            "Oopsieee! There is no file in path %s";
 
     /**
      * DukeException constructor with the specified message

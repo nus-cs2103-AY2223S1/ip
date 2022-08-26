@@ -2,11 +2,10 @@ package brain;
 
 import java.util.ArrayList;
 
-import duke.DukeException;
 import task.Task;
 
 /**
- * Represents a space to save <code>Task</code>s.
+ * Represents a space to store <code>Task</code>s.
  */
 public class Brain {
     private ArrayList<Task> taskList;
@@ -81,7 +80,6 @@ public class Brain {
      * Returns an Arraylist of Tasks inside the file in the specified path.
      *
      * @param task <code>Task</code> object to add in <code>taskList</code>
-     * @return <code>null</code>
      */
     public void add(Task task) {
         taskList.add(task);
@@ -91,7 +89,6 @@ public class Brain {
      * Removes a <code>Task</code> in the specified index of <code>taskList</code>.
      *
      * @param index index of the <code>Task</code> in <code>taskList</code> to remove
-     * @return <code>null</code>
      */
     public void remove(int index) {
         taskList.remove(index);
