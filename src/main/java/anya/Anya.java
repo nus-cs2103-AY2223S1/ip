@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class Anya {
-    private static String breakLine = "\n---------------------------------------------------------------------";
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -118,28 +116,59 @@ public class Anya {
         new Anya("data/Anya.txt").run();
     }
 
-    // Commands
+    /**
+     * Appends a Task to the end of the TaskList.
+     *
+     * @param tasks A collection of Tasks.
+     * @param task The task to be added into the TaskList.
+     */
     public void addTask(TaskList tasks, Task task) {
         tasks.addTask(task);
         this.ui.addTaskMessage(task, tasks.getLength());
     }
 
+    /**
+     * Prints out the tasks in the TaskList
+     *
+     * @param tasks A collection of Tasks.
+     */
     public void list(TaskList tasks) {
         this.ui.getListMessage(tasks);
     }
 
+    /**
+     * Marks the task at the specified position as complete.
+     * The TaskList is One-Indexed.
+     *
+     * @param tasks A collection of Tasks.
+     * @param index The index of the task in the TaskList to be marked.
+     */
     public void mark(TaskList tasks, int index) {
         Task task = tasks.getTaskFromIndex(index);
         task.markDone();
         this.ui.markTaskMessage(task);
     }
 
+    /**
+     * Marks the task at the specified position as incomplete.
+     * The TaskList is One-Indexed.
+     *
+     * @param tasks A collection of Tasks.
+     * @param index The index of the task in the TaskList to be unmarked
+     */
     public void unmark(TaskList tasks, int index) {
         Task task = tasks.getTaskFromIndex(index);
         task.markUndone();
         this.ui.unmarkTaskMessage(task);
     }
 
+    /**
+     * Removes the task at the specified position in the TaskList.
+     * The TaskList is One-Indexed.
+     *
+     * @param tasks A collection of Tasks.
+     * @param index The index of the task in the TaskList to be removed
+     */
     public void delete(TaskList tasks, int index) {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
