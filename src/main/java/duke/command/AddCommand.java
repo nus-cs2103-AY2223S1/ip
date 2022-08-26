@@ -14,7 +14,8 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * Insert Javadocs
+ * Represents a command for adding tasks to the task lists. It comprises of 3 types
+ * of task, namely todo, deadline and event.
  */
 public class AddCommand extends Command {
     private int taskType;
