@@ -1,7 +1,7 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.TaskList;
+import duke.exceptions.DukeException;
+import duke.models.TaskList;
 
 public interface DukeCommand {
     String run(TaskList taskList, String s) throws DukeException;

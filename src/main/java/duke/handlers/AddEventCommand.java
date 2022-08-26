@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.Event;
-import models.EventParser;
-import models.TaskList;
+import duke.exceptions.DukeException;
+import duke.models.Event;
+import duke.models.EventParser;
+import duke.models.TaskList;
 
 public class AddEventCommand implements DukeCommand {
    private final EventParser eventParser = new EventParser();

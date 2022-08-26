@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 public class Ui {
     private static final String logo =

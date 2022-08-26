@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.Deadline;
-import models.DeadlineParser;
-import models.TaskList;
+import duke.exceptions.DukeException;
+import duke.models.Deadline;
+import duke.models.DeadlineParser;
+import duke.models.TaskList;
 
 public class AddDeadlineCommand implements DukeCommand {
     private final DeadlineParser deadlineParser = new DeadlineParser();

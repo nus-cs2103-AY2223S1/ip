@@ -1,6 +1,6 @@
-package models;
+package duke.models;
 
-import exceptions.DukeException;
+import duke.exceptions.DukeException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

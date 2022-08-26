@@ -1,8 +1,8 @@
-package models;
+package duke.models;
 
-import exceptions.DukeException;
-import handlers.DukeCommand;
-import handlers.DukeCommandMap;
+import duke.exceptions.DukeException;
+import duke.handlers.DukeCommand;
+import duke.handlers.DukeCommandMap;
 
 public class Parser {
     public static final DukeCommandMap commandMap = new DukeCommandMap();

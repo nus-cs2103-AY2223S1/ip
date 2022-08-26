@@ -1,6 +1,4 @@
-package models;
-
-import models.Task;
+package duke.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

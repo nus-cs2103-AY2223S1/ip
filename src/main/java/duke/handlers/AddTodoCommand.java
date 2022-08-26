@@ -1,8 +1,8 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.TaskList;
-import models.Todo;
+import duke.exceptions.DukeException;
+import duke.models.TaskList;
+import duke.models.Todo;
 
 import java.util.Objects;
 

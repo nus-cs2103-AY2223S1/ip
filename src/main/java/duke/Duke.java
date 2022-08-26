@@ -1,9 +1,11 @@
-import exceptions.DukeException;
-import handlers.DukeCommand;
-import models.Parser;
-import models.Storage;
-import models.TaskList;
-import models.Ui;
+package duke;
+
+import duke.exceptions.DukeException;
+import duke.handlers.DukeCommand;
+import duke.models.Parser;
+import duke.models.Storage;
+import duke.models.TaskList;
+import duke.models.Ui;
 
 import java.util.Scanner;
 

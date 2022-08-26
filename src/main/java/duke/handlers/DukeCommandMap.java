@@ -1,6 +1,6 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
+import duke.exceptions.DukeException;
 import java.util.HashMap;
 
 public class DukeCommandMap {

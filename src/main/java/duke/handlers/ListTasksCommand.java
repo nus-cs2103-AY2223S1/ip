@@ -1,6 +1,6 @@
-package handlers;
+package duke.handlers;
 
-import models.TaskList;
+import duke.models.TaskList;
 
 public class ListTasksCommand implements DukeCommand {
 
