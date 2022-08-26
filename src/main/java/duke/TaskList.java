@@ -47,4 +47,17 @@ public class TaskList {
             System.out.println(i + "." + task.toString());
         }
     }
+
+    public void find(String input) {
+        System.out.println("Here are the matching tasks in your list: ");
+        int count = 1;
+        for (int i = 0; i < tasks.size(); i++) {
+            String task = tasks.get(i).toString();
+            if (task.contains(input.substring(5))) {
+                System.out.println(count + "." + task);
+                count++;
+            };
+        }
+    }
+
 }

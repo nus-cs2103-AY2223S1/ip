@@ -6,6 +6,7 @@ import duke.commands.AddToDoCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnMarkCommand;
@@ -37,6 +38,9 @@ public class Parser {
         }
         if (fullCommand.matches("^delete [0-9]*$")) {
             return new DeleteCommand(fullCommand);
+        }
+        if (fullCommand.matches("^find.*")) {
+            return new FindCommand(fullCommand);
         }
         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
     }
