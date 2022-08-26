@@ -1,13 +1,18 @@
-public class Task {
-    private final String name;
+public abstract class Task {
+    private final String taskName;
     private boolean status; // True = Done, False = Not Done
-    Task(String name) {
-        this.name = name;
+    Task(String taskName) {
+        this.taskName = taskName;
         this.status = false;
     }
 
-    public String getName() {
-        return this.name;
+    Task(String taskName, boolean status) {
+        this.taskName = taskName;
+        this.status = status;
+    }
+
+    public String getTaskName() {
+        return this.taskName;
     }
 
     public boolean getStatus() {
@@ -18,8 +23,11 @@ public class Task {
         this.status = status;
     }
 
+    public abstract boolean isEmpty();
+    public abstract String getFormattedString();
+
     @Override
     public String toString() {
-        return "[" + (status ? "X":" ") + "] " + this.name;
+        return "[" + (status ? "X":" ") + "] " + this.taskName;
     }
 }
