@@ -16,6 +16,7 @@ public class Parser {
     private static final String DEADLINE_CMD = "deadline";
     private static final String EVENT_CMD = "event";
     private static final String DELETE_CMD = "delete";
+    private static final String FIND_CMD = "find";
 
     /**
      * Parse the command and calls the correct classes
@@ -49,6 +50,8 @@ public class Parser {
             return new EventCmd(body);
         case DELETE_CMD:
             return new DeleteCmd(body);
+        case FIND_CMD:
+            return new FindCmd(body);
         default:
             ui.readCommand(); //clear buffer
             throw new UnrecognisedCommandException(command);
