@@ -22,7 +22,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        String timeFormat = this.at.format(DateTimeFormatter.ofPattern("HH:mm, MMM dd yyyy"));
+        String timeFormat = this.at.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
         return "\u001B[35m(EVENT)\u001B[0m" + super.toString() + " (at: " + timeFormat + ")";
     }
 }

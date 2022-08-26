@@ -29,12 +29,8 @@ public class SakuraException {
         System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR Todo Command written incorrectly!! ✿\n");
     }
 
-    protected static void readingError() {
-        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR Error while reading entry!! ✿\n");
-    }
-
     protected static void databaseError() {
-        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR I cannot find this data!! ✿\n");
+        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR There is something wrong with the database!! ✿\n");
     }
 
     protected static void saveError() {

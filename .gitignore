@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # IDEA files
 /.idea/
 /out/
@@ -16,3 +17,24 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 data/
+=======
+# IDEA files
+/.idea/
+/out/
+/*.iml
+
+# Gradle build files
+/.gradle/
+/build/
+src/main/resources/docs/
+
+# MacOS custom attributes files created by Finder
+.DS_Store
+*.iml
+bin/
+
+/text-ui-test/ACTUAL.txt
+text-ui-test/EXPECTED-UNIX.TXT
+
+/data
+>>>>>>> master
