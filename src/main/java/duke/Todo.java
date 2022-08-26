@@ -1,3 +1,5 @@
+package duke;
+
 public class Todo extends Task {
 
     private final char type = 'T';

@@ -1,12 +1,14 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
 
     private LocalDate time;
-    private final char type = 'D';
+    private final char type = 'E';
 
-    public Deadline(String taskname, LocalDate time) {
+    public Event(String taskname, LocalDate time) {
         super(taskname);
         this.time = time;
     }
@@ -14,7 +16,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
-        return String.format("[%c] %s (by: %s)", this.type, super.toString(), this.time.format(formatter));
+        return String.format("[%c] %s (at: %s)", this.type, super.toString(), this.time.format(formatter));
     }
 
     @Override
