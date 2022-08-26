@@ -6,27 +6,27 @@ public class DeadlineTask extends Task {
     private static final String TASK_TYPE = "D";
     private final LocalDateTime taskTime;
     private final String dateFormat;
-    DeadlineTask(String taskName, String date, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
+    DeadlineTask(String taskName, String taskTime, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
         super(taskName);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
         try {
-            this.taskTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+            this.taskTime = LocalDateTime.parse(taskTime, DateTimeFormatter.ofPattern(dateFormat));
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }
     }
 
-    DeadlineTask(String taskName, String date, boolean status, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
+    DeadlineTask(String taskName, String taskTime, boolean status, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
         super(taskName,  status);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
         try {
-            this.taskTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+            this.taskTime = LocalDateTime.parse(taskTime);
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }

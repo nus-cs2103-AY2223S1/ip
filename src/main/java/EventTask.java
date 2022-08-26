@@ -6,27 +6,27 @@ public class EventTask extends Task {
     private static final String TASK_TYPE = "E";
     private final LocalDateTime taskTime;
     private final String dateFormat;
-    EventTask(String task, String duration, String dateFormat) throws EmptyTaskException, InvalidEventException {
+    EventTask(String task, String taskTime, String dateFormat) throws EmptyTaskException, InvalidEventException {
         super(task);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
         try {
-            this.taskTime = LocalDateTime.parse(duration, DateTimeFormatter.ofPattern(dateFormat));
+            this.taskTime = LocalDateTime.parse(taskTime, DateTimeFormatter.ofPattern(dateFormat));
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
     }
 
-    EventTask(String taskName, String duration, boolean status, String dateFormat) throws EmptyTaskException, InvalidEventException {
+    EventTask(String taskName, String taskTime, boolean status, String dateFormat) throws EmptyTaskException, InvalidEventException {
         super(taskName, status);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
         try {
-            this.taskTime = LocalDateTime.parse(duration, DateTimeFormatter.ofPattern(dateFormat));
+            this.taskTime = LocalDateTime.parse(taskTime);
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
