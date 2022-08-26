@@ -14,11 +14,19 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
     private static final DateTimeFormatter DATE_PARSER = DateTimeFormatter.ofPattern("dd-MM-yyyy kkmm");
     private static final String ARG_NAME = "by";
 
-    protected DatetimeArgument(Input input) {
+    /**
+     * Initialise argument
+     * @param input Input to argument
+     */
+    public DatetimeArgument(Input input) {
         super(input, ARG_NAME, String.format("This command needs a datetime argument! e.g /%s 26-08-2022 0900",
                 ARG_NAME));
     }
 
+    /**
+     * Validates datetime argument
+     * @throws DukeException if datetime is empty or incorrect date format provided
+     */
     @Override
     public void validate() throws DukeException {
         if (super.value != null) {
@@ -35,7 +43,7 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
         try {
             super.value = LocalDateTime.parse(arg, DATE_PARSER);
         } catch (DateTimeParseException ex) {
-            throw new DukeException("Incorrect date format provided :(");
+            throw new DukeException("Incorrect date format provided :( e.g 26-08-2022 0900");
         }
     }
 }
