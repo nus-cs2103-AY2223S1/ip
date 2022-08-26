@@ -16,9 +16,9 @@ public class TaskTest {
 
     @BeforeAll
     public static void setUp() {
-        todo = new Todo(" test");
-        deadline = new Deadline(" test", LocalDate.parse("2022-03-21"));
-        event = new Event(" test", " test");
+        todo = new Todo("test");
+        deadline = new Deadline("test", LocalDate.parse("2022-03-21"));
+        event = new Event("test", "test");
     }
 
     @Test

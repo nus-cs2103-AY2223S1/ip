@@ -10,6 +10,10 @@ public class Task implements Serializable {
         this.description = description;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public boolean isDone() {
         return this.done;
     }
@@ -24,10 +28,10 @@ public class Task implements Serializable {
 
     public String toString() {
         if (this.isDone()) {
-            return("[X]" + this.description);
+            return("[X] " + this.description);
         }
         else {
-            return("[ ]" + this.description);
+            return("[ ] " + this.description);
         }
     }
 }

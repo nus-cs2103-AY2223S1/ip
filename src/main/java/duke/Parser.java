@@ -86,6 +86,15 @@ public class Parser {
                 } catch (NumberFormatException e) {
                     throw new DukeException("The argument you've input is not an integer");
                 }
+            case "find":
+                try {
+                    if (str[1].length() == 0) {
+                        throw new DukeException("The description of find cannot be empty.");
+                    }
+                    return new FindCommand(str[1]);
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("The description of find cannot be empty.");
+                }
             default:
                 return new InvalidCommand();
         }

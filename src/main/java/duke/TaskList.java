@@ -36,6 +36,16 @@ public class TaskList {
         return tasks.size();
     }
 
+    public ArrayList<Task> find(String s) {
+        ArrayList<Task> temp = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task.getDescription().contains(s)) {
+                temp.add(task);
+            }
+        }
+        return temp;
+    }
+
     public void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println("\t " + (i + 1) + "." + tasks.get(i).toString());

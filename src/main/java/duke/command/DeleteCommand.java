@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
         try {
             task = tasks.get(idx);
             tasks.remove(idx);
-            ui.DeleteTask(tasks, task);
+            ui.deleteTask(tasks, task);
             storage.update(tasks.getTasks());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid index.");

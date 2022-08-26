@@ -20,7 +20,7 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Deadline deadline = new Deadline(description, date);
         tasks.add(deadline);
-        ui.DeadlineTask(tasks, deadline);
+        ui.deadlineTask(tasks, deadline);
         storage.update(tasks.getTasks());
     }
 }

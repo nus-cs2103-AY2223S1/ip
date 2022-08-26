@@ -20,7 +20,7 @@ public class UnmarkCommand extends Command {
         try {
             task = tasks.get(idx);
             task.markAsNotDone();
-            ui.UnmarkTask(task);
+            ui.unmarkTask(task);
             storage.update(tasks.getTasks());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid index.");

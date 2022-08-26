@@ -18,7 +18,7 @@ public class EventCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Event event = new Event(description, remark);
         tasks.add(event);
-        ui.EventTask(tasks, event);
+        ui.eventTask(tasks, event);
         storage.update(tasks.getTasks());
     }
 }
