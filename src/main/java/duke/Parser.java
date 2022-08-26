@@ -32,11 +32,14 @@ public class Parser {
             return new EventCommand();
         } else if (isSubstringForTodoCommand()){
             return new TodoCommand();
-        } else if (isSubstringForShowListCommand()){
+        } else if (isSubstringForShowListCommand()) {
             return new ShowListCommand();
+        } else if (isSubstringForFindCommand()) {
+            return new FindCommand();
+        }
         //} else if (isSubStringForExitCommand()){
           //  return new ExitCommand();
-        } else {
+         else {
             throw new DukeUnknownWordException();
         }
     }
@@ -69,6 +72,10 @@ public class Parser {
 
     boolean isSubstringForDeleteCommand() {
         return this.stringToParse.length() > 7 && this.stringToParse.substring(0, 6).equals("delete");
+    }
+
+    boolean isSubstringForFindCommand() {
+        return this.stringToParse.substring(0,4).equals("find");
     }
 }
 
