@@ -9,10 +9,20 @@ public abstract class Command {
 
     private boolean isExit = false;
 
+    /*
+     * Toggle Command to exit for Duke to stop scanning for next line.
+     */
     public void toggleExit() {
+
         this.isExit = !isExit;
     }
+
+    /*
+     * Return if Command signals exit.
+     * @return isExit status of Command
+     */
     public Boolean isExit() {
+
         return this.isExit;
     }
 

@@ -13,6 +13,11 @@ public class Deadline extends Task {
     private LocalDate date;
 
     private String by;
+
+    /*
+     * Create Deadline with description, date in MMM DD YYYY, time in hh:mm aa
+     * @throws ImproperFormatException when by does not follow specified format
+     */
     public Deadline(String description, String by) throws ImproperFormatException {
         super(description);
         this.by = by;
@@ -27,6 +32,10 @@ public class Deadline extends Task {
         }
     }
 
+    /*
+     * @return String representation in
+     *         "[D] [status] task (by: MMM DD YYYY h:mm a)"
+     */
     @Override
     public String toString() {
         return "[D] "
@@ -39,6 +48,12 @@ public class Deadline extends Task {
                 + ")";
     }
 
+    /*
+     * return String representation of deadline to be stored in Storage
+     * @return String representation in
+     *         "D|0 or 1|task|by|"
+     *         where 1 represents the task is marked and 0 otherwise
+     */
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {

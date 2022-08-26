@@ -7,6 +7,9 @@ import duke.command.Command;
 
 public class ExitCommand extends Command {
 
+    /*
+     * Duke exits
+     */
     @Override
     public void execute(Ui ui, TaskList taskList, Storage storage) {
         toggleExit();

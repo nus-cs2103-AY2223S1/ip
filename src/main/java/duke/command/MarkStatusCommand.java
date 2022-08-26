@@ -11,9 +11,14 @@ public class MarkStatusCommand extends Command {
     private int toggleTask;
 
     public MarkStatusCommand(int toggleTask) {
+
         this.toggleTask = toggleTask;
     }
 
+    /*
+     * Mark task as done.
+     * @throws DukeException if task cannot be found within the taskList
+     */
     @Override
     public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         Task success = taskList.markStatus(this.toggleTask);

@@ -16,6 +16,10 @@ public class Event extends Task {
 
     private String at;
 
+    /*
+     * Create Event with description, date in MMM DD YYYY, time in hh:mm aa
+     * @throws ImproperFormatException when by does not follow specified format
+     */
     public Event(String description, String at) throws ImproperFormatException {
         super(description);
         this.at = at;
@@ -30,6 +34,10 @@ public class Event extends Task {
         }
     }
 
+    /*
+     * @return String representation in
+     *         "[T] [status] task (at: MMM DD YYYY h:mm a)"
+     */
     @Override
     public String toString() {
         return "[E] " + this.getStatusIcon() + " "
@@ -41,6 +49,12 @@ public class Event extends Task {
                 + ")";
     }
 
+    /*
+     * return String representation of event to be stored in Storage
+     * @return String representation in
+     *         "T|0 or 1|task|at|"
+     *         where 1 represents the task is marked and 0 otherwise
+     */
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
