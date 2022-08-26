@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Main class of chatbot
- */
 public class Pixel {
 
     public static int count = 0; // made public for testing

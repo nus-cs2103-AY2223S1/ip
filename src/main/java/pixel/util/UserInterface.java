@@ -1,11 +1,6 @@
 package pixel.util;
 
-/**
- * Ui: deals with interactions with the user
- * Currently only contains messages to be displayed
- *
- * Needs more work atm, will require enums
- */
+// Ui: deals with interactions with the user
 public class UserInterface {
     String logo = " ____        _        \n"
         + "|  _ \\ _   _| | _____ \n"
