@@ -47,6 +47,8 @@ public class TaskList {
         }
     }
 
+
+
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -82,6 +84,20 @@ public class TaskList {
         Event newTask = new Event(desc, time);
         tasks.add(newTask);
         printAddedTask(newTask);
+    }
+
+    public void find(String desc) throws EmptyCommandException {
+        if (desc == null || desc.isBlank()) {
+            throw new EmptyCommandException("find");
+        }
+        int i = 1;
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task t : tasks) {
+            if (t.hasDescription(desc)) {
+                System.out.println(i + "." + t);
+                i++;
+            }
+        }
     }
 
     public void printList() {

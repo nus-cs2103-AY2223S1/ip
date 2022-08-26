@@ -1,6 +1,7 @@
 package duke.tasks;
 
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 public class Task {
     protected String description;
@@ -21,6 +22,10 @@ public class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public boolean hasDescription(String description) {
+        return this.description.toLowerCase().contains(description.toLowerCase());
     }
 
     public boolean isBefore(String deadline) throws DateTimeParseException { return false; }

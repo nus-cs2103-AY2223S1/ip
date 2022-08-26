@@ -14,6 +14,7 @@ public class CommandParser {
         DELETE,
         DONE,
         BEFORE,
+        FIND,
         TODO,
         EVENT,
         DEADLINE
@@ -55,6 +56,9 @@ public class CommandParser {
                 break;
             case BEFORE:
                 taskList.printDeadline(time);
+                break;
+            case FIND:
+                taskList.find(desc);
                 break;
             case DELETE:
                 taskList.delete(desc);
