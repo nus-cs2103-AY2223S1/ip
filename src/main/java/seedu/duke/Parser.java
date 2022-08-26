@@ -84,6 +84,11 @@ public class Parser {
                 System.out.println(output3);
             }
             break;
+        case "find":
+            String keyword = inputArr[1];
+            ArrayList<Task> tasks = taskList.find(keyword);
+            Ui.showMatchingTasks(tasks);
+            break;
         case "bye":
             isOpen.set(0, false);
             Ui.showGoodbyeMessage();
