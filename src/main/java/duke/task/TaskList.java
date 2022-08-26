@@ -82,6 +82,23 @@ public class TaskList {
     }
 
     /**
+     * Displays all tasks that contain keyword
+     *
+     * @param keyword Word to look for
+     */
+    public void findTasks(String keyword) {
+        System.out.println("Here are the matching tasks in your list:");
+        int i = 1;
+        for (Task task : taskList) {
+            if (task.description.contains(keyword)) {
+                System.out.println(i + "." + task);
+                i++;
+            }
+        }
+
+    }
+
+    /**
      * Returns task list as data in disk storage
      *
      * @return Data representation of task list

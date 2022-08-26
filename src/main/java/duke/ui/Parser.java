@@ -7,6 +7,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.IncorrectCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -56,6 +57,10 @@ public class Parser {
             case "event":
                 String[] str2 = input[1].split(" /at ", 2);
                 command = new AddCommand(new Event(str2[0], str2[1]));
+                break;
+            case "find":
+                String keyword = input[1];
+                command = new FindCommand(keyword);
                 break;
             default:
                 return new IncorrectCommand("Sorry, I don't quite understand what you mean...");
