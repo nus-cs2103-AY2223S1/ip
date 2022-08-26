@@ -1,5 +1,0 @@
-T,1,go to the gym
-E,1,national day,2022-08-01
-D,0,homework lab1,2022-09-08
-T,0,go for a run
-E,0,team meeting,2022-09-20

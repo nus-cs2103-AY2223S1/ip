@@ -34,6 +34,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method for Duke program.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Duke dk = new Duke("data/duke.txt");
         dk.run();

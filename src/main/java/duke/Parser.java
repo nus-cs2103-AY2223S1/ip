@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.command.AddCommand;
 import duke.command.CommandType;
 import duke.command.DeleteCommand;
@@ -11,8 +13,6 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.SaveCommand;
 import duke.command.UnmarkCommand;
-
-import java.util.Scanner;
 
 /**
  * Represents a parser to process input from user.
@@ -27,10 +27,10 @@ public class Parser {
         Scanner sc = new Scanner(input);
         try {
             String command = sc.next();
-            if (!CommandType.commandMap.containsKey(command)) {
+            if (!CommandType.COMMAND_MAP.containsKey(command)) {
                 throw new DukeException("I'm sorry, but I don't understand that.");
             }
-            CommandType type = CommandType.commandMap.get(command);
+            CommandType type = CommandType.COMMAND_MAP.get(command);
             ICommand cmd = new EmptyCommand();
             switch (type) {
             case TODO:
@@ -84,6 +84,8 @@ public class Parser {
             case BYE:
                 cmd = new ExitCommand();
                 break;
+            default:
+                throw new DukeException("I'm sorry, but I don't understand that.");
             }
             return cmd;
         } catch (DukeException e) {

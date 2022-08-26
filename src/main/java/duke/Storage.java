@@ -1,13 +1,13 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Represents a storage class for I/O operations.

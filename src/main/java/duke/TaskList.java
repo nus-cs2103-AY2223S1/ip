@@ -1,14 +1,17 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
-
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 
@@ -29,17 +32,17 @@ public class TaskList {
             while (sc.hasNextLine()) {
                 String[] arguments = sc.nextLine().split(",");
                 switch (arguments[0]) {
-                    case "T":
-                        this.list.add(new ToDo(arguments[1], arguments[2]));
-                        break;
-                    case "D":
-                        this.list.add(new Deadline(arguments[1], arguments[2], arguments[3]));
-                        break;
-                    case "E":
-                        this.list.add(new Event(arguments[1], arguments[2], arguments[3]));
-                        break;
-                    default:
-                        throw new DukeException("Invalid input from file.");
+                case "T":
+                    this.list.add(new ToDo(arguments[1], arguments[2]));
+                    break;
+                case "D":
+                    this.list.add(new Deadline(arguments[1], arguments[2], arguments[3]));
+                    break;
+                case "E":
+                    this.list.add(new Event(arguments[1], arguments[2], arguments[3]));
+                    break;
+                default:
+                    throw new DukeException("Invalid input from file.");
                 }
             }
             Ui.showMsg("Successfully loaded saved contents.\n" + this);
@@ -104,6 +107,10 @@ public class TaskList {
 
     @Override
     public String toString() {
+        if (this.list.size() < 1) {
+            // List is empty
+            return "You have no task on your list.\n";
+        }
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < this.list.size(); i++) {
             stringBuilder.append(String.format("%d.%s", i + 1, this.list.get(i).toString()));
