@@ -8,6 +8,9 @@ import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
 
+/**
+ * Adds Event to the tasklist
+ */
 public class AddEventCommand extends AddDeadlineCommand {
     public AddEventCommand(TaskList tasks, String desc, String input, String deadline) throws DukeException {
         super(tasks, desc, input, deadline);
@@ -15,7 +18,6 @@ public class AddEventCommand extends AddDeadlineCommand {
 
     /**
      * Add new event to the task list
-     * 
      * @throws DukeException
      */
     @Override

@@ -5,6 +5,9 @@ import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
 
+/**
+ * Adds Todo to the tasklist
+ */
 public class AddTodoCommand extends ShowList {
     protected String descrition;
     protected String instruction;

@@ -1,9 +1,11 @@
-package duke;
+
 /**
  * This is Duke, he replies to messages.
- * 
+ *
  * @author Pei Cheng Yi A0229823Y
  */
+
+package duke;
 
 // Reading command line inputs
 import java.io.BufferedReader;
