@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Collections;
+import java.time.LocalDate;
 
 /**
  *  Duke Class
@@ -93,6 +93,8 @@ public class Duke {
                 "\n" + "_______________________________________________________";
     }
 
+
+
     /**
      *The Main function for interaction between the user and DUKE
      */
@@ -137,7 +139,7 @@ public class Duke {
                 else if(instruction.equals("todo"))
                 {
                   try {
-                      str = str.split(" ", 2)[1];
+                      str = str.split(" ", 2)[1].trim();
                       ToDo tasktoDo = new ToDo(str);
                       inputs.add(tasktoDo);
                       System.out.println(addition(tasktoDo.toString()));
@@ -152,8 +154,8 @@ public class Duke {
                   try {
                       //splits away deadline
                       str = str.split(" ", 2)[1];
-                      String desc = str.split("/by")[0];
-                      String by = str.split("/by")[1];
+                      String desc = str.split("/by")[0].trim();
+                      String by = str.split("/by")[1].trim();
                       Deadline taskDeadline = new Deadline(desc, by);
                       inputs.add(taskDeadline);
                       System.out.println(addition(taskDeadline.toString()));
@@ -167,11 +169,12 @@ public class Duke {
                   try {
                       //splits away event
                       str = str.split(" ", 2)[1];
-                      String desc = str.split("/at")[0];
-                      String at = str.split("/at")[1];
+                      String desc = str.split("/at")[0].trim();
+                      String at = str.split("/at")[1].trim();
                       Event taskEvent = new Event(desc, at);
                       inputs.add(taskEvent);
                       System.out.println(addition(taskEvent.toString()));
+                      System.out.println("l" + at + "l");
                   } catch (ArrayIndexOutOfBoundsException e) {
                       throw new DukeException(("OOPS!!! The description of an Event cannot be empty/incomplete."));
                   }
@@ -179,7 +182,7 @@ public class Duke {
                 }
                 else if(instruction.equals("delete"))
                 {
-                    str = str.split(" ", 2)[1];
+                    str = str.split(" ", 2)[1].trim();
                     int index = Integer.valueOf(str) - 1;
                     Task content = inputs.get(index);
                     inputs.remove(content);
