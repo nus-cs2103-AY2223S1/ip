@@ -5,33 +5,44 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TaskManager {
     private final List<Task> tasks;
 
     public TaskManager(String saveFile) {
-        tasks = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(saveFile))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine().strip();
-                if (!line.equals("")) {
-                    switch (line.charAt(0)) {
-                    case 'T':
-                        tasks.add(Todo.fromSaveFormat(line.substring(3)));
-                        break;
-                    case 'E':
-                        tasks.add(Event.fromSaveFormat(line.substring(3)));
-                        break;
-                    case 'D':
-                        tasks.add(Deadline.fromSaveFormat(line.substring(3)));
-                        break;
-                    }
-                }
+        List<Task> tasks;
+        StoredFile storedFile = StoredFile.from(saveFile);
+        if (storedFile.fileExists()) {
+            try {
+                tasks = storedFile.getTextContent().lines().map(String::strip).flatMap(
+                        line -> {
+                            if (!line.equals("")) {
+                                switch (line.charAt(0)) {
+                                case 'T':
+                                    return Stream.of(Todo.fromSaveFormat(line.substring(3)));
+                                case 'E':
+                                    return Stream.of(Event.fromSaveFormat(line.substring(3)));
+                                case 'D':
+                                    return Stream.of(Deadline.fromSaveFormat(line.substring(3)));
+                                default:
+                                    System.out.printf("Invalid save file format: %s\nSkipping this line... please check for corrupted data.\n", line);
+                                    return Stream.empty();
+                                }
+                            }
+                            return Stream.empty();
+                        }
+                ).collect(Collectors.toList());
+            } catch (FileNotFoundException e) {
+                System.out.println("Something went wrong while opening the file. Defaulting to empty initial state.");
+                tasks = new ArrayList<>();
             }
-        } catch (FileNotFoundException e) {
+        } else {
             System.out.println("Save file not found, starting from scratch...");
+            tasks = new ArrayList<>();
         }
+        this.tasks = tasks;
     }
 
     public void addTask(Task task) {
