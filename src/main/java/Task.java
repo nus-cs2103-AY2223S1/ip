@@ -1,9 +1,14 @@
 public abstract class Task {
-    private boolean completed = false;
+    private boolean hasCompleted = false;
     private String taskName;
 
     public Task(String taskName) {
         this.taskName = taskName;
+    }
+
+    public Task(String taskName, boolean hasCompleted) {
+        this.taskName = taskName;
+        this.hasCompleted = hasCompleted;
     }
 
     public String getTaskName() {
@@ -11,27 +16,32 @@ public abstract class Task {
     }
 
     public boolean hasCompleted() {
-        return completed;
+        return hasCompleted;
     }
 
     public void completedTask() {
-        if (this.completed) {
-            System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
+        if (this.hasCompleted) {
+            System.out.println("Wanya.java is confused errrrr... You have already marked this task as done!\n");
         }
-        this.completed = true;
+        this.hasCompleted = true;
         System.out.println("Hehe well done! One task down, one step closer to play time!\n" +
                 "This task has been completed:");
         System.out.println(this + "\n");
     }
 
     public void uncompletedTask() {
-        if (!this.completed) {
-            System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
+        if (!this.hasCompleted) {
+            System.out.println("Wanya.java is confused errrrr... This task is not done yet!\n");
         }
-        this.completed = false;
+        this.hasCompleted = false;
         System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +
                 "This task has not been completed:");
-        System.out.println(this+ "\n");
+        System.out.println(this + "\n");
+    }
+
+    public String toStorageString() {
+        String status = hasCompleted ? "1" : "0";
+        return status + "|" + taskName;
     }
 
     @Override
