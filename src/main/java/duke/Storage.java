@@ -6,7 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 
 /**
@@ -61,11 +65,11 @@ public class Storage {
         // write to file TODO
     }*/
 
-    private static String toBase64(String input) {
+    private static String convertToBase64(String input) {
         return Base64.getEncoder().encodeToString(input.getBytes(StandardCharsets.UTF_16));
     }
 
-    private static String fromBase64(String input) {
+    private static String convertFromBase64(String input) {
         return StandardCharsets.UTF_16.decode(ByteBuffer.wrap(Base64.getDecoder().decode(input))).toString();
     }
 
@@ -77,7 +81,7 @@ public class Storage {
             while (sc.hasNext()) {
                 ArrayList<String> curLine = new ArrayList<>();
                 for (String str : sc.nextLine().split(",")) {
-                    curLine.add(fromBase64(str));
+                    curLine.add(convertFromBase64(str));
                 }
                 lines.add(curLine.toArray(new String[] {}));
             }
@@ -101,13 +105,13 @@ public class Storage {
                 }
                 StringBuilder builder = new StringBuilder();
                 for (String s : strings[i]) {
-                    builder.append(',').append(toBase64(s));
+                    builder.append(',').append(convertToBase64(s));
                 }
                 writer.append(builder.substring(1));
             }
             writer.close();
         } catch (IOException ex) {
-            Ui.messagePrint("(>.<') I was unable to record your tasks...");
+            Ui.printStyledMessage("(>.<') I was unable to record your tasks...");
             ex.printStackTrace();
         }
     }

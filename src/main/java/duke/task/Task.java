@@ -7,32 +7,32 @@ public class Task {
     private static final char MARKER_DONE = 'X';
     private static final char MARKER_NOT_DONE = ' ';
     private String name;
-    private boolean done;
+    private boolean isDone;
     Task(String name) {
         this(name, false);
     }
 
-    Task(String name, boolean done) {
+    Task(String name, boolean isDone) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
      * Marks the task as done.
      */
     public void markAsDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
      * Marks the task as not done.
      */
     public void markAsNotDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     private char getDoneMarker() {
-        return this.done ? MARKER_DONE : MARKER_NOT_DONE;
+        return this.isDone ? MARKER_DONE : MARKER_NOT_DONE;
     }
 
     /**
@@ -49,6 +49,6 @@ public class Task {
      * @return String array representation.
      */
     public String[] getAsStringArray() {
-        return new String[]{ "Task", name, String.valueOf(done) };
+        return new String[]{ "Task", name, String.valueOf(isDone) };
     }
 }

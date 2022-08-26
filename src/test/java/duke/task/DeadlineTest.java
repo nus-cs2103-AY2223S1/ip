@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeadlineTest {
     @Test
-    public void testStringArray() {
+    public void getAsStringArray_makingObjects_normalBehavior() {
         Task task1 = new Deadline("task one", "1", false);
         Task task2 = new Deadline("task two", "2", true);
         Task task3 = new Deadline("task three", "3");

@@ -42,7 +42,7 @@ public class TaskFactory {
         try {
             return Optional.of(constructTask(taskData));
         } catch (IllegalArgumentException ex) {
-            Ui.messagePrint("(>.<') did not understand this task - dropping it",
+            Ui.printStyledMessage("(>.<') did not understand this task - dropping it",
                     String.join(", ", taskData));
             return Optional.empty();
         }

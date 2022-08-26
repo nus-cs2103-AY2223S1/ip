@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskTest {
     @Test
-    public void testDoneMarker() {
+    public void markAsDone_togglingDoneAndNotDone_normalBehavior() {
         Task task1 = new Task("task one", false);
         Task task2 = new Task("task two", true);
         Task task3 = new Task("task three");
@@ -43,7 +43,7 @@ public class TaskTest {
     }
 
     @Test
-    public void testStringArray() {
+    public void getAsStringArray_makingObjects_normalBehavior() {
         Task task1 = new Task("task one", false);
         Task task2 = new Task("task two", true);
         Task task3 = new Task("task three");

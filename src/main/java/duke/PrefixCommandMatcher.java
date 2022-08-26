@@ -16,11 +16,16 @@ public class PrefixCommandMatcher extends CommandMatcher {
      */
     public PrefixCommandMatcher(String prefix, BiConsumer<String, Map<String, String>> action) {
         super((cmd) -> cmd.strip().startsWith(prefix + " ") || cmd.strip().equals(prefix), (cmd) -> {
+            // preprocessing
             cmd = cmd.strip();
+
+            // corner case
             if (cmd.equals(prefix)) {
-                Ui.messagePrint("(>.<') Add a description to your " + prefix + ".");
+                Ui.printStyledMessage("(>.<') Add a description to your " + prefix + ".");
                 return;
             }
+
+            // map processing
             String withoutPrefix = cmd.split(" ", 2)[1];
             String[] commandParts = withoutPrefix.split(" /");
             Map<String, String> map = new HashMap<>();
@@ -33,10 +38,14 @@ public class PrefixCommandMatcher extends CommandMatcher {
                 }
             }
             commandParts[0] = commandParts[0].strip();
+
+            // another corner case
             if (commandParts[0].equals("")) {
-                Ui.messagePrint("(>.<') The description for " + prefix + " shouldn't be empty.");
+                Ui.printStyledMessage("(>.<') The description for " + prefix + " shouldn't be empty.");
                 return;
             }
+
+            // accept
             action.accept(commandParts[0].strip(), map);
         });
     }

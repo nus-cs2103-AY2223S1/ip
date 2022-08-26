@@ -32,10 +32,10 @@ public class TaskList {
             Task task = taskList.get(idx - 1);
             return Optional.of(task);
         } catch (NumberFormatException ex) {
-            Ui.messagePrint("Sorry, I didn't understand " + index + ", please give me a number.");
+            Ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
             return Optional.empty();
         } catch (IndexOutOfBoundsException ex) {
-            Ui.messagePrint("Sorry, the number " + index + ", wasn't in the range.");
+            Ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
     }

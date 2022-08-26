@@ -21,10 +21,10 @@ public class Deadline extends Task {
      * Creates a duke.tasks.Deadline object.
      * @param description Description of deadline.
      * @param by Time of deadline.
-     * @param done If the task is done.
+     * @param isDone If the task is done.
      */
-    public Deadline(String description, String by, boolean done) {
-        super(description, done);
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, isDone);
         datetime = new ParsedDateTime(by);
     }
 
