@@ -3,6 +3,13 @@ package duke;
 import duke.command.*;
 
 public class Parser {
+    /**
+     * Interprets the user's input as a corresponding command.
+     *
+     * @param fullCommand The user's entire input.
+     * @return Command object that can be executed.
+     * @throws DukeException If the command cannot be recognised or data file cannot be accessed.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] spacedArr = fullCommand.split(" ", 2);
         String command = spacedArr[0];

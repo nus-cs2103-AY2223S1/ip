@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a deadline task.
+ */
 public class DeadlineTask extends Task {
     protected LocalDate by;
 

@@ -4,6 +4,9 @@ import duke.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Represents user interactions like getting user inputs and printing to the user's screen.
+ */
 public class UI {
     private Scanner sc = new Scanner(System.in);
     
