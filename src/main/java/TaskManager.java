@@ -1,11 +1,34 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class TaskManager {
+    private static final String FILEPATH = "tasklist.txt";
     private final List<Task> taskList;
     TaskManager() {
         this.taskList = new ArrayList<>();
     }
 
+    private Task processFormattedString(String formattedString) throws Exception {
+        String[] arguments = formattedString.split(" | ");
+        String taskType = arguments[0];
+        boolean status = (arguments[2].equals("1") ? true : false);
+        String taskName = arguments[4];
+
+        switch (taskType) {
+        case "T":
+            return new ToDoTask(taskName, status);
+        case "D":
+            return new DeadlineTask(taskName, arguments[6], status);
+        case "E":
+            return new EventTask(taskName, arguments[6], status);
+        default:
+            return new EmptyTask();
+        }
+    }
     public String list() {
         if (taskList.size() == 0) {
             return "\tYou have no tasks in your list.\n";
@@ -20,7 +43,7 @@ public class TaskManager {
     }
     public String addTask(Task task) {
         this.taskList.add(task);
-        return ("\t> Added: " + task.getName() + "\n");
+        return ("\t> Added: " + task.getTaskName() + "\n");
     }
 
     public String mark(int itemNumber) {
@@ -59,5 +82,43 @@ public class TaskManager {
             return "\tThere is no such task!!\n";
         }
         return stringBuilder.toString();
+    }
+
+    public void save() {
+        try {
+            File file = new File(FILEPATH);
+            if (!(file.exists())) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file);
+            for (Task task : this.taskList) {
+                fileWriter.write(task.getFormattedString());
+            }
+            fileWriter.close();
+        } catch (IOException exception) {
+            System.out.println(exception);
+        }
+    }
+
+    public void load() {
+        try {
+            File file = new File(FILEPATH);
+            if (!(file.exists())) {
+                file.createNewFile();
+            }
+            Scanner fileScanner = new Scanner(file);
+            try {
+                while (fileScanner.hasNextLine()) {
+                    Task newTask = processFormattedString(fileScanner.nextLine());
+                    if (!(newTask.isEmpty())) {
+                        taskList.add(newTask);
+                    }
+                }
+            } catch (Exception exception) {
+                System.out.println(exception);
+            }
+        } catch (IOException exception) {
+            System.out.println(exception);
+        }
     }
 }

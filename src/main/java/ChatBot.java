@@ -15,6 +15,7 @@ public class ChatBot {
         this.runningState = true;
         System.out.println(wrapMessage("Greetings, " + this.name + " at your service.\n" +
                 "How may I help you today?\n"));
+        taskManager.load();
     }
 
     public void terminate() {
@@ -32,52 +33,53 @@ public class ChatBot {
             String command = inputScanner.next();
             if (!(inputScanner.hasNext())) {
                 switch (command) {
-                    case "bye":
-                        this.runningState = false;
-                        break;
-                    case "list":
-                        System.out.println(wrapMessage(taskManager.list()));
-                        break;
-                    case "todo":
-                    case "deadline":
-                    case "event":
-                        throw new EmptyTaskException();
-                    default:
-                        printError(input);
-                        break;
+                case "bye":
+                    this.runningState = false;
+                    break;
+                case "list":
+                    System.out.println(wrapMessage(taskManager.list()));
+                    break;
+                case "todo":
+                case "deadline":
+                case "event":
+                    throw new EmptyTaskException();
+                default:
+                    printError(input);
+                    break;
                 }
             } else {
-                String arguments = inputScanner.nextLine();
+                String arguments = inputScanner.nextLine().substring(1);
                 Scanner argumentScanner = new Scanner(arguments);
                 switch (command) {
-                    case "todo":
-                        System.out.println(wrapMessage(taskManager.addTask(
-                                new ToDoTask(argumentScanner.nextLine()))));
-                        break;
-                    case "deadline":
-                        argumentScanner.useDelimiter("/by");
-                        System.out.println(wrapMessage(taskManager.addTask(
-                                new DeadlineTask(argumentScanner.next(), argumentScanner.next()))));
-                        break;
-                    case "event":
-                        argumentScanner.useDelimiter("/at");
-                        System.out.println(wrapMessage(taskManager.addTask(
-                                new EventTask(argumentScanner.next(), argumentScanner.next()))));
-                        break;
-                    case "mark":
-                        System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments.substring(1)))));
-                        break;
-                    case "unmark":
-                        System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments.substring(1)))));
-                        break;
-                    case "delete":
-                        System.out.println(wrapMessage(taskManager.delete(Integer.parseInt(arguments.substring(1)))));
-                        break;
-                    default:
-                        printError(input);
-                        break;
+                case "todo":
+                    System.out.println(wrapMessage(taskManager.addTask(
+                            new ToDoTask(argumentScanner.nextLine()))));
+                    break;
+                case "deadline":
+                    argumentScanner.useDelimiter(" /by ");
+                    System.out.println(wrapMessage(taskManager.addTask(
+                            new DeadlineTask(argumentScanner.next(), argumentScanner.next()))));
+                    break;
+                case "event":
+                    argumentScanner.useDelimiter(" /at ");
+                    System.out.println(wrapMessage(taskManager.addTask(
+                            new EventTask(argumentScanner.next(), argumentScanner.next()))));
+                    break;
+                case "mark":
+                    System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments))));
+                    break;
+                case "unmark":
+                    System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments))));
+                    break;
+                case "delete":
+                    System.out.println(wrapMessage(taskManager.delete(Integer.parseInt(arguments))));
+                    break;
+                default:
+                    printError(input);
+                    break;
                 }
                 argumentScanner.close();
+                taskManager.save();
             }
         } catch (InputMismatchException exception) {
             System.out.println(wrapMessage("You need to put a number after your command!\n"));
