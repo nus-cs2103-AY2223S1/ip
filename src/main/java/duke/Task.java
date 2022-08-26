@@ -1,3 +1,5 @@
+package duke;
+
 public class Task {
 
     private boolean isDone;
@@ -99,7 +101,7 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of the Task.
+     * Returns a string representation of the duke.Task.
      *
      * @return string describing the task.
      */
@@ -123,7 +125,7 @@ public class Task {
      * A method to output in the console the task deleted from the list of tasks.
      */
     public void printDeleted() {
-        System.out.println(Ui.straightLine + "\n  Task deleted!\n" + Ui.straightLine + "\n");
+        System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n" + Ui.straightLine + "\n");
     }
 
 }

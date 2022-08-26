@@ -1,7 +1,9 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task{
+public class Event extends Task {
 
     private LocalDate date;
     private String time;
@@ -74,7 +76,7 @@ public class Event extends Task{
     }
 
     /**
-     * Returns a string representation of the Event.
+     * Returns a string representation of the duke.Event.
      *
      * @return string describing the event.
      */
@@ -108,10 +110,10 @@ public class Event extends Task{
     @Override
     public void printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [E][ ] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [E][ ] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         } else {
-            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [E][X] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [E][X] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         }
     }

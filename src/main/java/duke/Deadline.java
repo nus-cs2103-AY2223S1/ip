@@ -1,17 +1,19 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     private LocalDate date;
     private String time;
 
     /**
-     * A constructor to initialize a Deadline object.
+     * A constructor to initialize a duke.Deadline object.
      *
      * @param isDone A boolean to indicate if the deadline is completed.
      * @param deadlineDescription A string to describe the deadline.
-     * @param index An integer to indicate the position of the Deadline in list of tasks.
+     * @param index An integer to indicate the position of the duke.Deadline in list of tasks.
      * @param date A String to indicate the date to be completed by.
      */
     public Deadline(boolean isDone, String deadlineDescription, int index, LocalDate date, String time) {
@@ -69,9 +71,9 @@ public class Deadline extends Task{
     }
 
     /**
-     * Returns a string representation of the Deadline.
+     * Returns a string representation of the duke.Deadline.
      *
-     * @return string describing the Deadline.
+     * @return string describing the duke.Deadline.
      */
     @Override
     public String toString() {
@@ -102,10 +104,10 @@ public class Deadline extends Task{
      */
     public void printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [D][ ] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [D][ ] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         } else {
-            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [D][X] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [D][X] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         }
     }

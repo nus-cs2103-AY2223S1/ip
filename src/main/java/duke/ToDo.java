@@ -1,36 +1,38 @@
+package duke;
+
 public class ToDo extends Task {
 
     private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
-     * A constructor to initialize the ToDo object.
+     * A constructor to initialize the duke.ToDo object.
      *
-     * @param isDone A boolean to indicate if the ToDo is done.
+     * @param isDone A boolean to indicate if the duke.ToDo is done.
      * @param toDoDescription A String to detail what to do.
-     * @param index An integer to indicate the position of the ToDo in the list of tasks.
+     * @param index An integer to indicate the position of the duke.ToDo in the list of tasks.
      */
     public ToDo(boolean isDone, String toDoDescription, int index) {
         super(isDone, toDoDescription, index);
     }
 
     /**
-     * A method to update the ToDo from incomplete to complete.
+     * A method to update the duke.ToDo from incomplete to complete.
      */
     public void markDone() {
         super.markDone();
     }
 
     /**
-     * A method to update the ToDo from complete to incomplete.
+     * A method to update the duke.ToDo from complete to incomplete.
      */
     public void markUndone() {
         super.markUndone();
     }
 
     /**
-     * A method to update the index of the ToDo in the list of tasks.
+     * A method to update the index of the duke.ToDo in the list of tasks.
      *
-     * @param newIndex The most current integer index of the ToDo.
+     * @param newIndex The most current integer index of the duke.ToDo.
      */
     @Override
     public void setIndex(int newIndex) {
@@ -38,7 +40,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Outputs the full details of the ToDo added to the console.
+     * Outputs the full details of the duke.ToDo added to the console.
      */
     @Override
     public void printAdded() {
@@ -47,7 +49,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Outputs the full details of the ToDo to the console.
+     * Outputs the full details of the duke.ToDo to the console.
      */
     @Override
     public void printTask() {
@@ -59,9 +61,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns a string representation of the ToDo.
+     * Returns a string representation of the duke.ToDo.
      *
-     * @return string describing the ToDo.
+     * @return string describing the duke.ToDo.
      */
     @Override
     public String toString() {
@@ -81,14 +83,14 @@ public class ToDo extends Task {
         }
     }
     /**
-     * Outputs the full details of the ToDo that is deleted to the console.
+     * Outputs the full details of the duke.ToDo that is deleted to the console.
      */
     @Override
     public void printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(straightLine + "\n  Task deleted!\n    [T][ ] " + this.getDescription());
+            System.out.println(straightLine + "\n  duke.Task deleted!\n    [T][ ] " + this.getDescription());
         } else {
-            System.out.println(straightLine + "\n  Task deleted!\n    [T][X] " + this.getDescription());
+            System.out.println(straightLine + "\n  duke.Task deleted!\n    [T][X] " + this.getDescription());
         }
     }
 
