@@ -14,6 +14,7 @@ public class Ui {
             + "Got it. I've added this task:" + "\n";
     public static final String FIND_HEADER = Duke.LINE + "\n"
             + "Here are the matching tasks in your list:" + "\n";
+
     public Ui() {
         System.out.println(Duke.LINE + "\n" + "Hello! I'm Duke" + "\n"
                 + "What can I do for you?" + "\n" + Duke.LINE + "\n");

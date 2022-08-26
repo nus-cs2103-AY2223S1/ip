@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
     private String name;
@@ -24,6 +25,7 @@ public class Deadline extends Task {
         System.out.println(Ui.ADD_TASK_HEADER + this.toString()
                 + " Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
+
     public void list() {
         System.out.println(this.type + this.status + " " + this.name + "(by: " + formatDateString(this.time) + ")" );
     }

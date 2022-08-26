@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Storage{
+
     private String filepath;
     private File file;
 
