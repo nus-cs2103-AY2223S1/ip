@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class TaskList {
 
     TaskList(List<Task> pastList) {
         this.list = pastList;
-        this.noOfTasks = 0;
+        this.noOfTasks = pastList.size();
         this.ui = new Ui();
     }
 
