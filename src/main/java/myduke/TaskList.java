@@ -85,13 +85,16 @@ public class TaskList {
     }
 
     /**
-     * Deletes the tasks with the given index
+     * Deletes the tasks with the given index and returns it
      * @param index given index
      * @throws DukeException
+     * @return the deleted task
      */
-    public void deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
+            Task task = taskLists.get(index);
             taskLists.remove(index);
+            return task;
         } else {
             throw new DukeException("☹ OOPS!!! The The task you want to delete is not here.");
         }

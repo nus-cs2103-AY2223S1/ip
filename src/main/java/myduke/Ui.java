@@ -82,11 +82,10 @@ public class Ui {
             }
             String indexString = input.substring(7);
             int index = Integer.valueOf(indexString) - 1;
-            Task deletedTask = taskLists.getTask(index);
-            taskLists.deleteTask(index);
+            Task deletedTask = taskLists.deleteTask(index);
             storage.saveToFile(taskLists);
             String content = "Noted. I've removed this task:\n" + deletedTask.toString()
-                    + taskLists.getNumOfTask();
+                    + "\nNow you have " + taskLists.getNumOfTask() + " tasks in the list.";
             System.out.println(wrapper(content));
         } else if (input.startsWith("todo")) {
             if (input.length() == 4) {
