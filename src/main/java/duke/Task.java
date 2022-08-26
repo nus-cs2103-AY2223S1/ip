@@ -34,6 +34,9 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    /**
+     * Marks a task as undone.
+     */
     public void markAsUnDone() {
         this.isDone = false;
     }
