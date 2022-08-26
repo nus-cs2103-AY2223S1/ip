@@ -10,6 +10,10 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * An object that handles reading and writing of data to save file.
+ *
+ */
 public class Storage {
 
     private static File savedFile = null;
@@ -18,6 +22,13 @@ public class Storage {
 
     }
 
+    /**
+     * Is called upon starting Duke. Attempts to find a save file.
+     * If found, calls the ReadData method to read the save file.
+     * If not, create a new empty save file.
+     *
+     * @return Arraylist of tasks that is created when reading contents of save file.
+     */
     protected ArrayList<Task> ReadFileAtStart() {
         File dataDir = new File(System.getProperty("user.dir") + File.separator + "data");
 
@@ -49,6 +60,13 @@ public class Storage {
         return arrayList;
     }
 
+    /**
+     * Is called only when a save file is found.
+     * Attempts to parse contents of save file to populate the arraylist of tasks.
+     *
+     * @return Arraylist of tasks that is created when reading contents of save file.
+     * @throws FileNotFoundException If scanner is unable to read save file.
+     */
     private ArrayList<Task> ReadData() throws FileNotFoundException {
 
         Scanner sc = new Scanner(savedFile);
@@ -90,6 +108,13 @@ public class Storage {
         return arrayList;
     }
 
+    /**
+     * Attempts to write the tasks in arraylist into the save file.
+     * Each task is separated by line in the save file.
+     *
+     * @param arrayList Current arraylist of tasks to be saved.
+     * @throws IOException If unable to write to save file.
+     */
     protected void SaveData(ArrayList<Task> arrayList) throws IOException {
 
         FileWriter fw = new FileWriter(savedFile, false);

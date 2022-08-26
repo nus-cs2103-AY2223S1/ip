@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Parser class parses user inputs.
+ *
+ */
 public class Parser {
 
     private final TaskList taskList;
@@ -14,6 +18,13 @@ public class Parser {
         this.taskList = new TaskList();
     }
 
+    /**
+     * Calls the corresponding methods according to user input.
+     *
+     * @param strArray User input separated by spaces into a String array.
+     * @throws DukeException If user input format is incorrect.
+     * @throws IOException If unable to save changes to file.
+     */
     protected void parseCommand(String[] strArray) throws DukeException, IOException {
 
         String str = strArray[0];

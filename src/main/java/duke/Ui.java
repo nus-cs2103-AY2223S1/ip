@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Handles some print statements from Duke.
+ *
+ */
 public class Ui {
 
     protected Ui() {
@@ -7,6 +11,10 @@ public class Ui {
 
     }
 
+    /**
+     * Displays Duke logo and opening statements when starting Duke.
+     *
+     */
     protected void displayLogo() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

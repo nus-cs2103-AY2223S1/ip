@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents a ToDo object that is also a Task.
+ * Inherits from the Task class.
+ *
+ */
 public class Todo extends Task {
 
     private final char type = 'T';

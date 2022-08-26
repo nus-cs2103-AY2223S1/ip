@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the Duke chatbot.
+ *
+ */
 public class Duke {
 
 
@@ -17,6 +21,10 @@ public class Duke {
         this.parser = new Parser();
     }
 
+    /**
+     * Runs the scanner and Duke chatbot.
+     *
+     */
     private void run() throws DukeException, IOException {
 
         this.ui.displayLogo();
@@ -31,9 +39,13 @@ public class Duke {
         }
 
         System.out.println("Bye. Hope to see you again soon!");
+
     }
 
-
+    /**
+     * Runs the Duke chatbot in the main method
+     *
+     */
     public static void main(String[] args) throws DukeException, IOException {
         Duke duke = new Duke();
         duke.run();
