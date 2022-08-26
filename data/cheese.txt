@@ -1,5 +1,4 @@
-todo // T // read book
+todo // F // read book
 deadline // T // return book // 2022-26-08 12:30
-event // F // project meeting // 2022-27-08 14:00
-todo // T // join sports club
-todo // F // laskdf
+event // T // project meeting // 2022-27-08 14:00
+todo // F // join sports club

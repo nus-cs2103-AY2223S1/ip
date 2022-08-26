@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
   /** Time interval of Event */
@@ -7,9 +6,7 @@ public class Event extends Task {
 
   public Event(String description, String timeInterval) {
     super(description);
-    String inputPattern = "yyyy-dd-MM HH:mm";
-    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
-    this.timeInterval = LocalDateTime.parse(timeInterval, inputFormatter);
+    this.timeInterval = DateTimeUtils.parseString(timeInterval);
   }
 
   /**
@@ -20,14 +17,13 @@ public class Event extends Task {
    */
   public Event(boolean isDone, String description, String timeInterval) {
     super(isDone, description);
-    String inputPattern = "yyyy-dd-MM HH:mm";
-    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
-    this.timeInterval = LocalDateTime.parse(timeInterval, inputFormatter);
+    this.timeInterval = DateTimeUtils.parseString(timeInterval);
   }
 
   @Override
   public String toFileString() {
-    return "event // " + super.toFileString() + " // " + timeInterval;
+    String formattedTimeInterval = DateTimeUtils.parseLocalDateTimeToInput(timeInterval);
+    return "event // " + super.toFileString() + " // " + formattedTimeInterval;
   }
 
   /**
@@ -37,8 +33,7 @@ public class Event extends Task {
    */
   @Override
   public String toString() {
-    String outputPattern = "dd-MM-yyyy HH:mm";
-    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputPattern);
-    return "[E]" + super.toString() + " (at: " + outputFormatter.format(timeInterval) + ")";
+    String formattedTimeInterval = DateTimeUtils.parseLocalDateTimeToOutput(timeInterval);
+    return "[E]" + super.toString() + " (at: " + formattedTimeInterval + ")";
   }
 }

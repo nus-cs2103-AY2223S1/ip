@@ -1,3 +1,4 @@
+
 public class Parser {
 
   public static Command parse(String fullCommand) throws CheeseException {
@@ -45,8 +46,8 @@ public class Parser {
     if (deadlineArgumentArray[0].length() == 0 || deadlineArgumentArray[1].length() == 0) {
       throw new CheeseException("A deadline requires both a description and deadline.");
     }
-    String description = deadlineArgumentArray[0];
-    String deadline = deadlineArgumentArray[1];
+    String description = deadlineArgumentArray[0].trim();
+    String deadline = deadlineArgumentArray[1].trim();
     return new DeadlineCommand(description, deadline);
   }
 
@@ -60,8 +61,8 @@ public class Parser {
     if (eventArgumentArray[0].length() == 0 || eventArgumentArray[1].length() == 0) {
       throw new CheeseException("An event requires both a description and event time.");
     }
-    String description = eventArgumentArray[0];
-    String timeInterval = eventArgumentArray[1];
+    String description = eventArgumentArray[0].trim();
+    String timeInterval = eventArgumentArray[1].trim();
     return new DeadlineCommand(description, timeInterval);
   }
 
