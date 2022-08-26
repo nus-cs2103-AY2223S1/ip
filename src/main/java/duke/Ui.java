@@ -51,7 +51,7 @@ public class Ui {
      * @param task duke.task.Task to be added to task list.
      */
     public void notifyAdded(Task task) {
-        System.out.println("Successfully added duke.task.Task!\n" + task);
+        System.out.println("Successfully added Task!\n" + task);
     }
 
     /**
