@@ -18,4 +18,8 @@ public class Task {
         String statusIcon = isDone ? "[X]" : "[ ]";
         return statusIcon + " " + description;
     }
+    
+    public boolean containsKeyword(String keyword) {
+        return description.contains(keyword);
+    }
 }

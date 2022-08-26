@@ -5,6 +5,6 @@ import duke.UI;
 
 public class ListCommand extends Command {
     public void execute(TaskList tasks) {
-        UI.printList(tasks);
+        UI.print(tasks.toString());
     }
 }

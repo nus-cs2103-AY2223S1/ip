@@ -13,7 +13,7 @@ public class Parser {
             return new ListCommand();
         }
         
-        if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event") && !command.equals("delete")) {
+        if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event") && !command.equals("delete") && !command.equals("find")) {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
 
@@ -37,7 +37,9 @@ public class Parser {
         case "deadline":
             return new AddCommand("deadline", suffix);
         case "event":
-            return new AddCommand("event", suffix);
+            return new AddCommand("event", suffix); 
+        case "find": 
+            return new FindCommand(suffix);
         default: {
             int pos = Integer.parseInt(suffix) - 1;
             return new DeleteCommand(pos);

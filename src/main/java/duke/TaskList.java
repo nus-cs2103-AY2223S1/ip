@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.Task;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -33,6 +34,18 @@ public class TaskList {
         data.remove(pos);
         storage.writeFile(pos, null);
         ui.deleteTask(task, data.size());
+    }
+    
+    public String findTasks(String keyword) {
+        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        int counter = 0;
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).containsKeyword(keyword)) {
+                sb.append(counter + 1).append(".").append(data.get(i).toString()).append("\n");
+                counter++;
+            }
+        }
+        return sb.toString();
     }
 
     @Override
