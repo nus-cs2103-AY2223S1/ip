@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class TaskList {
 
     /** This represents the todo-list to be populated with tasks */
+<<<<<<< HEAD
     private ArrayList<Task> items = new ArrayList<>();
 
     public static final DateTimeFormatter DATETIME_FORMATTER =
@@ -97,56 +98,42 @@ public class TaskList {
             "Got it. I've added this task:\n %s\nNow you have %d tasks in the list.",
             items.get( items.size() - 1).toString(),
             items.size());
+=======
+    private ArrayList<Task> tasks = new ArrayList<>();
+
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    } 
+
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    } 
+
+    public ArrayList<Task> getList() {
+        return this.tasks;
     }
 
-    /**
-     * Mark an item in the list as done.
-     * 
-     * @param index The index of the task to be marked as done
-     * @return Prompt indicating the result of the marking
-     * @throws ArrayIndexOutOfBoundsException
-     */
-    public String markItem(int index) 
-            throws ArrayIndexOutOfBoundsException {
-        index -= 1;
-        if (index >=  items.size()) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        String result = items.get(index).markTask();
-        saveList();
-        return result;
+    public int getNumOfTasks() {
+        return this.tasks.size();
+>>>>>>> 9e19dbe (Refactor using OOP)
     }
 
-    /**
-     * Unmark an item in the list.
-     * 
-     * @param index The index of the task to be unmarked as done
-     * @return Prompt indicating the result of the unmarking
-     * @throws ArrayIndexOutOfBoundsException
-     */
-    public String unmarkItem(int index) 
-            throws ArrayIndexOutOfBoundsException {
-        index -= 1;
-        if (index >=  items.size()) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        String result = items.get(index).unmarkTask();
-        saveList();
-        return result;
+    public void insertTask(Task task) {
+        this.tasks.add(task);
     }
 
-    public String deleteItem(int index) 
-            throws ArrayIndexOutOfBoundsException {
-        index -= 1;
-        if (index >=  items.size()) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        Task removedItem = items.remove(index);
-        saveList();     
-        return String.format(
-            "Noted. I've removed this task:\n %s\nNow you have %d tasks in the list.",
-            removedItem.toString(),
-            items.size());
+    public Task delTask(int taskID) throws ArrayIndexOutOfBoundsException {
+        return this.tasks.remove(taskID);
+    }
+
+    public Task markTask(int taskID) throws ArrayIndexOutOfBoundsException {
+        tasks.get(taskID).markTask();
+        return tasks.get(taskID);
+    }
+
+    public Task unmarkTask(int taskID) throws ArrayIndexOutOfBoundsException {
+        tasks.get(taskID).unmarkTask();
+        return tasks.get(taskID);
     }
 
     /**
@@ -157,28 +144,14 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = ("Here are the tasks in your list:");
-        for (int i = 0; i <  items.size(); i++) {
-            if (items.get(i) == null) {
+        String res = ("Here are the tasks in your list:\n");
+        for (int i = 0; i <  tasks.size(); i++) {
+            if (tasks.get(i) == null) {
                 break;
             }
-            res += String.format("\n %d.%s", i + 1, items.get(i).toString());
+            res += String.format("\n %d.%s", i + 1, tasks.get(i).toString());
         }
         return res;
-    }
-
-    private void saveList() {
-        try {
-            FileWriter listWriter = new FileWriter(storageFileLocation);
-            for (Task task : items) {
-                listWriter.write(task.encodeForStorage() + "\n");
-            }
-            listWriter.close();
-
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
     }
 
 }

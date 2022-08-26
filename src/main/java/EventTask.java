@@ -27,10 +27,31 @@ public class EventTask extends Task{
         this.endTime = endTime;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Returns the string representation of the event.
+     * @return String representation of the event.
+     */
+>>>>>>> 038da11 (Refactor using OOP)
     @Override
     public String toString() {
         String startTimeString = this.startTime.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm"));
         String endTimeString = this.endTime.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm"));
-        return String.format("[E]%s (at: %s to %s)", super.toString(), startTimeString, endTimeString);
+        return String.format("%s (at: %s to %s)", super.toString(), startTimeString, endTimeString);
+    }
+
+    /**
+     * Encodes the event for storage.
+     * Format of the event is TASK_TYPE|IS_MARKED|DESCRIPTION|START_TIME|END_TIME. Note, time is 
+     * encoded in ISO compliant format.
+     * @return String encoding of the event.
+     */
+    @Override
+    public String encodeForStorage() {
+        return String.format("%s|%s|%s", 
+                super.encodeForStorage(), 
+                this.startTime.toString(), 
+                this.endTime.toString());
     }
 }

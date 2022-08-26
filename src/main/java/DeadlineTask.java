@@ -26,6 +26,19 @@ public class DeadlineTask extends Task{
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.deadline.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm")));
+        return String.format("%s (by: %s)", 
+                super.toString(), 
+                this.deadline.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm")));
+    }
+
+    /**
+     * Encodes the deadline for storage.
+     * Format of the deadline is TASK_TYPE|IS_MARKED|DESCRIPTION|TIME. Note, time is 
+     * encoded in ISO compliant format.
+     * @return String encoding of the deadline.
+     */
+    @Override
+    public String encodeForStorage() {
+        return String.format("%s|%s", super.encodeForStorage(), this.deadline.toString());
     }
 }
