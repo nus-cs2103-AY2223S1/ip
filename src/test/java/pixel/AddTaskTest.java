@@ -3,12 +3,16 @@ package pixel;
 import org.junit.jupiter.api.Test;
 import pixel.util.IncorrectFormatException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InvalidPropertiesFormatException;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HandleTaskTest {
+public class AddTaskTest {
 
     Pixel pixelBot = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt"); // output file address
 
