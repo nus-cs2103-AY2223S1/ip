@@ -1,19 +1,13 @@
-import duke.Command;
-import duke.DukeConstants;
-import duke.DukeException;
-import duke.Parser;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+package duke;
 
 import java.io.FileNotFoundException;
-public class DukeBot {
+public class Duke {
 
     private TaskList taskList;
     private Storage storage;
     private Ui ui;
 
-    public DukeBot() {
+    public Duke() {
         ui = new Ui();
         storage = new Storage(DukeConstants.FILENAME);
         try {
@@ -26,7 +20,7 @@ public class DukeBot {
     }
 
     public static void main(String[] args) {
-        new DukeBot().run();
+        new Duke().run();
     }
 
     public void run() {
