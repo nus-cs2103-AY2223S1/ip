@@ -1,18 +1,43 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TaskList {
     private ArrayList<Task> taskList;
 
     public TaskList() {
-       this.taskList = new ArrayList<>();
+        this.taskList = new ArrayList<>();
+//        try {
+//            loadTasksFromFile();
+//        }catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
 
-    public void addTask(Task t) {
-        taskList.add(t);
+    public void addTask(Task t)  {
+        this.taskList.add(t);
+        try {
+            FileDataHandler.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         String reply = "Got it. I've added this task:\n" +
                         t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
         System.out.println(reply);
     }
+
+    public void addTaskWithoutPrinting(Task t)  {
+        this.taskList.add(t);
+        try {
+            FileDataHandler.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+    }
+
+
+
+
 
     public Task getTask(int taskNo) {
         return taskList.get(taskNo - 1);
@@ -33,10 +58,24 @@ public class TaskList {
     public void deleteTask(int taskNo) {
         Task t = this.getTask(taskNo);
         this.taskList.remove(taskNo - 1);
+        try {
+            FileDataHandler.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         String reply = "Noted. I've removed this task:\n" +
                         t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
         System.out.println(reply);
     }
+
+
+//    public void loadTasksFromFile() throws IOException {
+//            Scanner s = FileDataHandler.load();
+//            while (s.hasNext()) {
+//                char taskType = s.nextLine().charAt(1);
+//                System.out.println(taskType);
+//            }
+//    }
 
     public void printList() {
         System.out.println("Here are the tasks in your list:\n");
