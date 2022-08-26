@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -217,11 +218,15 @@ public class Duke {
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("deadline", " /by ");
         }
-        String instruction = splitDescription[0];
-        String by = splitDescription[1];
-        Deadline deadline = new Deadline(instruction, by);
-        addList(deadline);
-        displayAddTask(deadline);
+        try {
+            String instruction = splitDescription[0];
+            String by = splitDescription[1];
+            Deadline deadline = new Deadline(instruction, by);
+            addList(deadline);
+            displayAddTask(deadline);
+        } catch (DateTimeParseException dtp) {
+            throw new DukeInvalidDateException();
+        }
     }
 
     private static void addEvent(String description) throws DukeException {
@@ -229,10 +234,14 @@ public class Duke {
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("event", " /at ");
         }
-        String instruction = splitDescription[0];
-        String at = splitDescription[1];
-        Event event = new Event(instruction, at);
-        addList(event);
-        displayAddTask(event);
+        try {
+            String instruction = splitDescription[0];
+            String at = splitDescription[1];
+            Event event = new Event(instruction, at);
+            addList(event);
+            displayAddTask(event);
+        } catch (DateTimeParseException dtp) {
+            throw new DukeInvalidDateException();
+        }
     }
 }
