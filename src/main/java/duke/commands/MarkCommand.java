@@ -28,7 +28,8 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
+    public void execute(
+            TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
         taskList.markTask(taskNumber);
         storage.saveList(taskList);
     }

@@ -5,7 +5,7 @@ import duke.exceptions.InvalidInputException;
 import duke.exceptions.UnableToSaveException;
 import duke.parser.Parser;
 import duke.storage.StorageFile;
-import duke.task.*;
+import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class Duke {
