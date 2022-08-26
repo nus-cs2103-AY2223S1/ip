@@ -52,7 +52,7 @@ public abstract class Task {
         this.isDone = false;
         System.out.printf("OK, I've marked this task as not done yet:\n  %s\n", this);
     }
-    
+
     /**
      * Return String representation of Task to be saved in Txt file
      *
