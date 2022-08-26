@@ -5,7 +5,11 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents a command to delete a task from the list.
+ */
 public class DeleteCommand extends Command {
+    /** The task number to be deleted. */
     private int taskNumber;
 
     public DeleteCommand(int taskNumber) {

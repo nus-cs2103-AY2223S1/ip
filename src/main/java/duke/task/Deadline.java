@@ -3,7 +3,11 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents the user's task, specifically a deadline to be completed before a specific date.
+ */
 public class Deadline extends Task {
+    /** The date of the deadline. */
     protected LocalDate endDate;
 
     public Deadline(String description, LocalDate endDate) {
