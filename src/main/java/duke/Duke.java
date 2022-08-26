@@ -9,8 +9,7 @@ import java.util.Scanner;
  *
  */
 public class Duke {
-
-
+    
     protected static ArrayList<Task> arrayList = null;
 
     private Ui ui;
