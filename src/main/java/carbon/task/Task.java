@@ -113,6 +113,17 @@ public abstract class Task {
      */
     public abstract String encode();
 
+    /**
+     * Checks if task name contains a keyword.
+     *
+     * @param keyword Keyword to check for.
+     * @return Whether or not the task name contains the keyword.
+     */
+    public boolean contains(String keyword) {
+        boolean hasKeyword = this.name.contains(keyword);
+        return hasKeyword;
+    }
+
     /** @inheritDoc */
     @Override
     public String toString() {

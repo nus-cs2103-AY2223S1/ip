@@ -169,23 +169,54 @@ public class TaskList {
     }
 
     /**
+     * Finds all tasks that contain a user-specified keyword.
+     *
+     * @param input User text input.
+     * @return All matching tasks.
+     * @throws CarbonException  If there are invalid parameters.
+     */
+    public String findTask(String input) throws CarbonException {
+        int len = input.length();
+        int requiredLen = "find ".length();
+        if (len <= requiredLen) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        } else {
+            String keyword = input.substring(requiredLen);
+            String log = "Here's what I could find. \n";
+            List<Task> matches = new ArrayList<>();
+            this.tasks.forEach(task -> {
+                if (task.contains(keyword)) {
+                    matches.add(task);
+                }
+            });
+            log = this.arrangeTasks(matches, log);
+            return log;
+        }
+    }
+
+    /**
      * Lists all tasks that are contained.
      *
      * @return Text containing all tasks.
      */
     public String listItems() {
-        int size = this.tasks.size();
-        if (size == 0) {
+        if (this.tasks.size() == 0) {
             String log = "There are no tasks so far.";
             return log;
         }
 
         String log = "Here are the tasks so far. \n";
-        for (int i = 0; i < size; i++) {
+        log = this.arrangeTasks(this.tasks, log);
+        return log;
+    }
+
+    private String arrangeTasks(List<Task> tasks, String log) {
+        for (int i = 0; i < tasks.size(); i++) {
             String taskLog = String.format(
                     "\n    %d: %s", 
                     i + 1, 
-                    this.tasks.get(i)
+                    tasks.get(i)
                     );
             log += taskLog;
         }
