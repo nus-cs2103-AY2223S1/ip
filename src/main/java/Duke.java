@@ -1,5 +1,3 @@
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.*;
 public class Duke {
     public static void main(String[] args) {
@@ -14,7 +12,10 @@ public class Duke {
         System.out.println("Hello! I'm Kuke\n" +
                 "What can I do for you?");
         String a = sc.nextLine();
-        Task[] arr = new Task[100];
+        String[] arr = new String[100];
+        int[] status = new int[100];
+        String[] taskType = new String[100];
+        int pos = 0;
 
         // if input received is anything but "bye" system will output what the user
         // inputted
@@ -22,34 +23,56 @@ public class Duke {
             if (a.equals("list")) {
                 //lists out all elements in task list
                 System.out.println("Here are the tasks in your list:");
-                for (int i = 1; i <= Task.getNumberTasks(); i++) {
-                    System.out.println(i + "." + arr[i].output());
+                for (int i = 1; i <= pos; i++) {
+                    if (status[i - 1] == 0) {
+                        System.out.println(i + ".[" + taskType[i - 1] + "][ ] " + arr[i - 1]);
+                    } else {
+                        System.out.println(i + ".[" + taskType[i - 1] + "][X] " + arr[i - 1]);
+                    }
                 }
                 a = sc.nextLine();
             } else if (a.contains("unmark")) {
                 // if unmark, update status
                 char b = a.charAt(7);
                 int c = Character.getNumericValue(b);
-                arr[c].unMark();
+                status[c - 1] = 0;
+//                System.out.println(status[c - 1]);
+                System.out.println("OK, I've marked this task as not done yet: ");
+                System.out.println("[" + taskType[c - 1] + "][ ] " + arr[c - 1]);
                 a = sc.nextLine();
             } else if (a.contains("mark")) {
                 char b = a.charAt(5);
                 int c = Character.getNumericValue(b);
-                arr[c].mark();
+//                System.out.println(b);
+//                System.out.println(c);
+                status[c - 1] = 1;
+//                System.out.println(status[c - 1]);
+//                System.out.println(c - 1);
+//                System.out.println(status[0]);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("[" + taskType[c - 1] + "][X] " + arr[c - 1]);
                 a = sc.nextLine();
             } else if (a.contains("delete")) {
                 char b = a.charAt(7);
                 int c = Character.getNumericValue(b);
-                int numberTasksLeft = Task.getNumberTasks() - 1;
-                Task deletedTask = arr[c];
-                System.out.println("Noted. I've removed this task:");
-                System.out.println(deletedTask.output());
-                System.out.println("Now you have " + (numberTasksLeft) + " tasks in the list.");
+                int numberTasksLeft = pos - 1;
+                String deletedTask = arr[c - 1];
 
-                Task.numberTasks = Task.getNumberTasks() - 1;
+                if (status[c - 1] == 0) {
+                    System.out.println("Noted. I've removed this task:\n" +
+                            "[" + taskType[c - 1] + "][ ] " + deletedTask + "\n" +
+                            "Now you have " + (numberTasksLeft) + " tasks in the list.");
+                } else {
+                    System.out.println("Noted. I've removed this task:\n" +
+                            "[" + taskType[c - 1] + "][X] " + deletedTask + "\n" +
+                            "Now you have " + (numberTasksLeft) + " tasks in the list.");
+                }
 
+                pos--;
                 for (int i = (c - 1); i <= numberTasksLeft; i++) {
                     arr[i] = arr[i + 1];
+                    status[i] = status[i + 1];
+                    taskType[i] = taskType[i + 1];
                 }
 
                 a = sc.nextLine();
@@ -60,33 +83,43 @@ public class Duke {
                     DukeException.todoException();
                     a = sc.nextLine();
                 }
-
-                String description = a.substring(5);
-                Todo newTask = new Todo(description);
-                arr[Task.getNumberTasks()] = newTask;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newTask.output());
-                System.out.println("Now you have " + Task.getNumberTasks() + " tasks in the list.");
+                String task = a.substring(5);
+                arr[pos] = task;
+                status[pos] = 0;
+                taskType[pos] = "T";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[T][ ] " + task + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
                 a = sc.nextLine();
             } else if (a.contains("deadline")) {
-                String description = a.substring(9, a.lastIndexOf("/") - 1);
+                String task = a.substring(9, a.lastIndexOf("/") - 1);
                 String day = a.substring(a.lastIndexOf("/by") + 4);
-                String dayDescription = " (by: " + day + ")";
-                Deadline newTask = new Deadline(description, dayDescription);
-                arr[Task.getNumberTasks()] = newTask;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newTask.output());
-                System.out.println("Now you have " + Task.getNumberTasks() + " tasks in the list.");
+//                System.out.println(task);
+//                System.out.println(day);
+                String overall = task + " (by: " + day + ")";
+//                System.out.println(overall);
+                arr[pos] = overall;
+                status[pos] = 0;
+                taskType[pos] = "D";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[D][ ] " + overall + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
                 a = sc.nextLine();
             } else if (a.contains("event")) {
-                String description = a.substring(6, a.lastIndexOf("/") - 1);
+                String task = a.substring(6, a.lastIndexOf("/") - 1);
                 String time = a.substring(a.lastIndexOf("/at") + 4);
-                String timeDescription = " (at: " + time + ")";
-                Event newTask = new Event(description, timeDescription);
-                arr[Task.getNumberTasks()] = newTask;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newTask.output());
-                System.out.println("Now you have " + Task.getNumberTasks() + " tasks in the list.");
+//                System.out.println(time);
+                String overall = task + " (at: " + time + ")";
+//                System.out.println(overall);
+                arr[pos] = overall;
+                status[pos] = 0;
+                taskType[pos] = "E";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[E][ ] " + overall + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
                 a = sc.nextLine();
             } else {
                 // else
@@ -101,17 +134,6 @@ public class Duke {
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
-
-//    public void fileWriter(String filePath) {
-//
-//        for (int i = 1; i <= pos; i++) {
-//            if (status[i - 1] == 0) {
-//                System.out.println(i + ".[" + taskType[i - 1] + "][ ] " + arr[i - 1]);
-//            } else {
-//                System.out.println(i + ".[" + taskType[i - 1] + "][X] " + arr[i - 1]);
-//            }
-//        }
-
 
 }
 

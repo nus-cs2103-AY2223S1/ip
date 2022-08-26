@@ -19,12 +19,4 @@ public class DukeException {
     public static void taskException() {
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
-
-    /**
-     * non-existent file Exception handler which may occur when
-     * file has not been created before and thus does not exist yet
-     */
-    public static void nonexistentFileException() {
-        System.out.println("☹ OOPS!!! The file does not exist!");
-    }
 }
