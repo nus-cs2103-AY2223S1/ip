@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,14 +32,14 @@ public class Duke {
         } else if (input.length() > 7 && input.substring(0, 8).equals("deadline")) {
             String taskInput = input.substring(9);
             String[] taskAndDate = taskInput.split("/by ");
-            Task newTask = new Deadline(taskAndDate[0], taskAndDate[1]);
+            Task newTask = new Deadline(taskAndDate[0], handleDate(taskAndDate[1]));
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
                     "\nNow you have " + taskList.size() + " tasks in the list.";
         } else if (input.length() > 4 && input.substring(0, 5).equals("event")) {
             String taskInput = input.substring(6);
             String[] taskAndDate = taskInput.split("/at ");
-            Task newTask = new Event(taskAndDate[0], taskAndDate[1]);
+            Task newTask = new Event(taskAndDate[0], handleDate(taskAndDate[1]));
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
                     "\nNow you have " + taskList.size() + " tasks in the list.";
@@ -63,6 +65,12 @@ public class Duke {
         }
         return tasks;
     }
+
+    private static LocalDateTime handleDate(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return LocalDateTime.parse(dateTime, formatter);
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String logo = " ____        _\n"
