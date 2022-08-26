@@ -31,53 +31,39 @@ public class TaskList {
 
     public void addTask(Task task) {
         this.taskList.add(task);
-        String message = "";
-        message += "Got it. I've added this task:\n";
-        message += "\t" + task.toString() + "\n";
-        message += "Now you have " + this.taskList.size() + " tasks in the list.\n";
-        ui.printMessage(message);
     }
 
-    public void deleteTask(int index) throws DukeException{
+    public Task deleteTask(int index) throws DukeException{
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
         index = index - 1;
         Task task = this.taskList.remove(index);
-        String message = "";
-        message += "Noted. I've removed this task:\n";
-        message += "\t" + task.toString() + "\n";
-        message += "Now you have " + taskList.size() + " tasks in the list.\n";
-        ui.printMessage(message);
+        return task;
     }
 
-    public void updateTaskStatus(int index, boolean isMark) throws DukeException{
+    public Task updateTaskStatus(int index, boolean isMark) throws DukeException{
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
-        String message = "";
         index = index - 1;
         Task task = this.taskList.get(index);
         if (isMark) {
-            message += "Nice! I've marked this task as done:\n";
             task.setTaskStatus(true);
         } else {
-            message += "OK, I've marked this task as not done yet:\n";
             task.setTaskStatus(false);
         }
         this.taskList.set(index, task);
-        message += task.toString() + "\n";
-        ui.printMessage(message);
+        return task;
     }
 
-    public void printTaskList() {
+    public String printTaskList() {
         String message = "";
-        message += "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i ++) {
             Task task = taskList.get(i);
             message += (i+ 1) + "." + task.toString() + "\n";
         }
-        ui.printMessage(message);
+        return message;
     }
 
 

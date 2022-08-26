@@ -66,8 +66,9 @@ public class Storage {
         }
     }
 
-    public void saveTaskList(ArrayList<Task> taskList) {
+    public void saveTaskList(TaskList list) {
         File file;
+        ArrayList<Task> taskList = list.getTaskList();
         try {
             file = new File(this.filePath);
             if (file.isDirectory()) {
