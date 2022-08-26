@@ -8,27 +8,23 @@ Hello from
 What can I do for you today, Master?
 I have added [D][ ] send help (by: tomorrow) to the list, Master.
 I have added [D][ ] project (by: wed) to the list, Master.
-I have added [T][ ] eat to the list, Master.
+DukeException: I beg your pardon?
 I have added [E][ ] rest (on: 10pm tonight) to the list, Master.
-I have added [T][ ] to-do sleep to the list, Master.
+DukeException: I beg your pardon?
 Here is your to-do list, Master:
 1. [D][ ] send help (by: tomorrow)
 2. [D][ ] project (by: wed)
-3. [T][ ] eat
-4. [E][ ] rest (on: 10pm tonight)
-5. [T][ ] to-do sleep
-Well done! I have marked [T][X] eat as done, Master.
-This task was already marked done, Master.
-There is no task 6 just yet, Master.
+3. [E][ ] rest (on: 10pm tonight)
 Well done! I have marked [E][X] rest (on: 10pm tonight) as done, Master.
-This task was already marked undone, Master.
-Oh no :( I have marked [T][ ] eat as undone, Master.
+DukeException: This task was already marked done, Master.
+DukeException: There is no task 6 just yet, Master.
+DukeException: There is no task 4 just yet, Master.
+DukeException: This task was already marked undone, Master.
+Oh no :( I have marked [E][ ] rest (on: 10pm tonight) as undone, Master.
 Here is your to-do list, Master:
 1. [D][ ] send help (by: tomorrow)
 2. [D][ ] project (by: wed)
-3. [T][ ] eat
-4. [E][X] rest (on: 10pm tonight)
-5. [T][ ] to-do sleep
+3. [E][ ] rest (on: 10pm tonight)
 Goodbye, Master! Thank you for visiting
  ____        _
 |  _ \ _   _| | _____
