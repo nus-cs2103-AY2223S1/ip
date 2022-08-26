@@ -4,6 +4,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * This class represents tasks that need to be done before a specific date/time.
+ *
  * @author Carrie Zheng Jiarui
  * @version CS2103T AY22/23 Semester 1, iP
  */
@@ -12,6 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for creating a deadline.
+     *
      * @param description Task description from user input.
      * @param dateTimeInput Date/time as deadline from user input.
      * @throws InvalidDateException If date entered by user is not in the specified format.
@@ -37,6 +39,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for creating a deadline with given isDone status.
+     *
      * @param description Task description.
      * @param dateTimeInput Date/time as deadline from user input.
      * @param isDone True if deadline is marked as done; false otherwise.
@@ -51,6 +54,7 @@ public class Deadline extends Task {
 
     /**
      * Displays the task type of deadline as D.
+     *
      * @return D.
      */
     @Override
@@ -60,6 +64,7 @@ public class Deadline extends Task {
 
     /**
      * Displays the deadline with its type, status (done or undone), description and date/time.
+     *
      * @return Task type, status, description and date/time.
      */
     @Override
@@ -74,6 +79,7 @@ public class Deadline extends Task {
 
     /**
      * Formats deadline in a file.
+     *
      * @return Deadline with task type, status, description and date/time.
      */
     @Override
