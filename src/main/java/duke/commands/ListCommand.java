@@ -22,7 +22,7 @@ public class ListCommand extends Command {
             ui.prettyPrint(msg);
         } else {
             String msgBegin = "Here are the tasks in your list:\n";
-            String msg = msgBegin + taskList.toString();
+            String msg = msgBegin + taskList;
             ui.prettyPrint(msg);
         }
     }
