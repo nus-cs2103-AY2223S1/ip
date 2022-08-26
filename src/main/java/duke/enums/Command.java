@@ -8,5 +8,6 @@ public enum Command {
     UNMARK,
     LIST,
     BYE,
-    DELETE;
+    DELETE,
+    FIND;
 }
