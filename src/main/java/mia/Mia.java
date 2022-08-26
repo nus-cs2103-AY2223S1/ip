@@ -1,3 +1,5 @@
+package mia;
+
 import general.ui.ChatWindow;
 import general.ui.Span;
 import mia.tasks.TaskManager;

@@ -1,3 +1,5 @@
+package mia;
+
 import mia.tasks.Deadline;
 import mia.tasks.Event;
 import mia.tasks.Task;
