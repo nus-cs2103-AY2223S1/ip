@@ -1,8 +1,9 @@
-import java.util.stream.Collectors;
+package general.ui;
+
 import java.util.stream.Stream;
 
 /**
- * Base class substitute for String that is compatible with Text
+ * Base class substitute for String that is compatible with general.ui.Text
  */
 public class Span implements Text {
     private final String text;

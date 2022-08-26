@@ -1,3 +1,5 @@
+import general.ui.ChatWindow;
+import general.ui.Span;
 
 public class Mia {
     private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
