@@ -1,2 +1,5 @@
-E | 0 | project meeting  | at Mon 2-4pm
-E | 1 | project meeting  | at Mon 2-4pm
+D | 0 | return book | 2 DECEMBER 2019 18:00
+E | 0 | Anime convention | 27 NOVEMBER 2022 08:00
+T | 1 | borrow book
+E | 0 | CS2103 Finals | 25 NOVEMBER 2022 09:00
+E | 0 | new year | 1 JANUARY 2022 00:00

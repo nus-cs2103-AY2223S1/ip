@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.*;
 public class Task {
     private final String val;
@@ -24,6 +25,8 @@ public class Task {
     public boolean getDone() {
         return this.done;
     }
+
+    public boolean sameDay(LocalDateTime date) {return false;}
 
     public String getVal() {
         return this.val;
