@@ -1,3 +1,6 @@
+/**
+ * This class handles features related to storing tasks.
+ */
 package duke;
 
 import java.io.File;
@@ -14,10 +17,21 @@ import static duke.DukeConstants.KEY_SEPARATOR;
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructor for the Storage class.
+     *
+     * @param filePath Filepath to store tasks in.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Writes the tasklist into the file.
+     *
+     * @param taskList Tasklist to be written.
+     * @param ui Ui for display.
+     */
     public void save(TaskList taskList, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath, false);
@@ -29,6 +43,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasklist from the file.
+     *
+     * @return list of tasks from the file.
+     * @throws FileNotFoundException
+     */
     public List<Task> load() throws FileNotFoundException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);

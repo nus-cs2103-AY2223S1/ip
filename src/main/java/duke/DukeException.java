@@ -1,3 +1,6 @@
+/**
+ * This class handles all exceptions specific to duke.
+ */
 package duke;
 
 public class DukeException extends Exception {
@@ -10,9 +13,11 @@ public class DukeException extends Exception {
     public static final String WRONG_FORMAT = "wrong format!";
     public static final String WRONG_FORMAT_DATE = "wrong date format! pls re-enter using yyyy-mm-dd";
 
+    /**
+     * Constructor for the DukeException class.
+     * @param message Message of the exception thrown.
+     */
     public DukeException(String message) {
         super(message);
     }
-
-
 }

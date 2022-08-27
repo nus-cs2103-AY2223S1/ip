@@ -1,3 +1,6 @@
+/**
+ * This class is used to construct an Event task.
+ */
 package duke;
 
 import java.time.LocalDate;
@@ -6,13 +9,16 @@ import java.time.format.DateTimeFormatter;
 import static duke.DukeConstants.KEY_SEPARATOR;
 
 public class Event extends Task {
+    /** Date of event */
     protected LocalDate at;
+    /** Time of event */
     private String time;
 
     /**
-     * Takes in a description and time for the task
-     * @param description task description
-     * @param at time of task
+     * Constructor for the Event class.
+     *
+     * @param description Task description.
+     * @param at Date of task.
      */
     public Event(String description, LocalDate at) {
         super(description);
@@ -20,12 +26,22 @@ public class Event extends Task {
         this.time = "";
     }
 
+    /**
+     * Constructor for the Event class.
+     *
+     * @param description Task description.
+     * @param at Date of task.
+     * @param time Time of task.
+     */
     public Event(String description, LocalDate at, String time) {
         super(description);
         this.at = at;
         this.time = time;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String formatToSave() {
         int value;
@@ -36,9 +52,9 @@ public class Event extends Task {
         }
         return "E" + KEY_SEPARATOR + value + KEY_SEPARATOR + description + KEY_SEPARATOR + at + " " + time;
     }
+
     /**
-     * Returns a String representation of the task
-     * @return string
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

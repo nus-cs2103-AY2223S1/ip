@@ -1,3 +1,7 @@
+/**
+ * This class contains all the constants used in the program.
+ */
+
 package duke;
 
 public final class DukeConstants {

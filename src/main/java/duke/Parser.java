@@ -1,3 +1,6 @@
+/**
+ * This class handles the parsing of user commands.
+ */
 package duke;
 
 import java.time.LocalDate;
@@ -7,10 +10,23 @@ import static duke.DukeConstants.EXIT;
 
 public class Parser {
 
+    /**
+     * Constructor for the Parser class.
+     */
     public Parser() {
 
     }
 
+    /**
+     * Parses the user input and returns a Command
+     * for the program to respond to.
+     *
+     * @param taskList TaskList to be used.
+     * @param input User input.
+     * @param ui Ui for display.
+     * @return Command for program to execute.
+     * @throws DukeException
+     */
     public Command parse(TaskList taskList, String input, Ui ui) throws DukeException {
         input = input.toLowerCase();
         if(input.equals(EXIT)) {
