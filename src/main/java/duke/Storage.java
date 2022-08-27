@@ -20,6 +20,7 @@ import duke.task.Todo;
  * @author Perry Wong
  */
 public class Storage {
+
     private String filePath;
 
     public Storage(String filePath) {
@@ -113,4 +114,5 @@ public class Storage {
         }
         fw.close();
     }
+
 }

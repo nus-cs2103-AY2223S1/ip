@@ -16,6 +16,7 @@ import duke.task.Task;
  * @author Perry Wong
  */
 public class UnmarkCommand extends Command {
+
     private int index;
 
     public UnmarkCommand(int index) {
@@ -39,4 +40,5 @@ public class UnmarkCommand extends Command {
             throw new DukeException(s);
         }
     }
+
 }
