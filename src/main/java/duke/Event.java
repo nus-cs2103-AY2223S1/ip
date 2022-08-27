@@ -1,13 +1,12 @@
 package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 
 /**
  * Encapsulates an event Class
  */
-public class Event extends Task{
+public class Event extends Task {
     private LocalDate date;
 
 
@@ -26,7 +25,7 @@ public class Event extends Task{
      * @param date the date being queried
      * @return Whether the event is on the date
      */
-    public boolean onThisDate(LocalDate date){
+    public boolean onThisDate(LocalDate date) {
         return this.date.equals(date);
     }
 
@@ -54,7 +53,7 @@ public class Event extends Task{
      * @return The string representation of the Event
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

@@ -7,15 +7,18 @@ import duke.command.Command;
  * Main class for the chatbot programme
  */
 public class Duke {
-    static Ui ui = new Ui();
-    static Storage storage = new Storage();
-    static TaskList taskList = new TaskList(storage.readFile("duke.txt"));
+    private static final Ui ui = new Ui();
+    private static final Storage storage = new Storage();
+    private static final TaskList taskList = new TaskList(storage.readFile("duke.txt"));
 
 
     public static void main(String[] args) {
         Duke.run();
     }
 
+    /**
+     * Runs the chat-bot Duke.
+     */
     public static void run() {
         ui.showWelcome();
         boolean isExit = false;

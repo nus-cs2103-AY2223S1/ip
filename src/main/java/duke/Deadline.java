@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Encapsulates a deadline Class
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private LocalDate date;
 
     /**
@@ -13,7 +13,7 @@ public class Deadline extends Task{
      * @param description The description of the deadline
      * @param date The date of the deadline
      */
-    public Deadline(String description, LocalDate date){
+    public Deadline(String description, LocalDate date) {
         super(description);
         this.date = date;
     }
@@ -23,7 +23,7 @@ public class Deadline extends Task{
      * @param date the date being queried
      * @return Whether the deadline has passed
      */
-    public boolean byThisDate(LocalDate date){
+    public boolean byThisDate(LocalDate date) {
         return this.date.isBefore(date);
     }
 
@@ -49,7 +49,7 @@ public class Deadline extends Task{
      * @return The string representation of the Deadline
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
