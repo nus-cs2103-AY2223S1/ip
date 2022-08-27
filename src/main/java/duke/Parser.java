@@ -77,16 +77,23 @@ public class Parser {
         }
         else if (arr[0].equals("delete")) {
             if (!inputChecker(arr)) {
-                System.out.println("Index not found in the list!");
+                throw new DukeException("Index not found in the list!");
             } else {
                 return new DeleteCommand(arr[1]);
             }
 
         }
+        else if (arr[0].equals("find")) {
+            if (!inputChecker(arr)) {
+                throw new DukeException("Input the word that you want to find/match!");
+            } else {
+                return new FindCommand(arr[1]);
+            }
+        }
 
         else {
             return new UnknownCommand();
         }
-        return null;
+
     }
 }

@@ -47,5 +47,20 @@ public class TaskList {
         return tasks.remove(i);
     }
 
+    /**
+     * Finds tasks in the list that match the input string.
+     * @param input String to match.
+     * @return List of tasks that match the input.
+     */
+    public ArrayList<Task> find(String input) {
+        ArrayList toReturn = new ArrayList<>();
+        for(Task t : tasks) {
+            if(t.getTaskName().contains(input)) {
+                toReturn.add(t);
+            }
+        }
+        return toReturn;
+    }
+
 }
 
