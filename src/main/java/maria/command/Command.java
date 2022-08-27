@@ -1,17 +1,13 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
-import maria.task.TaskList;
+import maria.TaskManager;
 
 public abstract class Command {
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract void execute(TaskManager taskManager);
 
 }

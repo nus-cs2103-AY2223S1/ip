@@ -2,13 +2,14 @@ package maria.command;
 
 import java.time.LocalDate;
 
-import maria.Storage;
-import maria.Ui;
+import maria.TaskManager;
 import maria.task.Task;
-import maria.task.TaskList;
-import maria.task.TaskNoNameException;
 import maria.task.TaskEvent;
+import maria.task.TaskNoNameException;
 
+/**
+ * Represents the command for adding a task with a start and end date.
+ */
 public class CommandAddEvent extends Command {
 
     private String name;
@@ -25,19 +26,16 @@ public class CommandAddEvent extends Command {
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskManager taskManager) {
 
         try {
             Task task = new TaskEvent(this.name, this.done, this.start, this.end);
-            taskList.add(task);
-            ui.showText("I created a Event " + task + " for you. You have " + taskList.size() + " task(s) now.");
+            taskManager.getTaskList().add(task);
         } catch (TaskNoNameException e) {
-            ui.showText("Error in creating Event. " + e.getMessage());
+            System.out.println("Error in creating Event. " + e.getMessage());
         }
 
     }

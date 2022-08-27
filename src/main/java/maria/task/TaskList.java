@@ -1,10 +1,10 @@
 package maria.task;
 
-import maria.Storage;
-import maria.util.StorageConverter;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import maria.Storage;
+import maria.util.StorageConverter;
 
 public class TaskList extends ArrayList<Task> {
 
@@ -45,6 +45,18 @@ public class TaskList extends ArrayList<Task> {
         Task t = super.remove(index);
         syncStorageState();
         return t;
+    }
+
+    /**
+     * Removes a task as per the standard library List, and syncs with the storage file.
+     * @param task The task object to be removed
+     * @return The removed task
+     */
+    @Override
+    public boolean remove(Object task) {
+        boolean isRemoved = super.remove(task);
+        syncStorageState();
+        return isRemoved;
     }
 
     /**

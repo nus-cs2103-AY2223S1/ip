@@ -24,12 +24,16 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    /**
-     * Sets if the task is done
-     * @param done If the task is done
-     */
-    public void setDone(boolean done) {
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
+    public void setIsDone(boolean done) {
         this.isDone = done;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -37,17 +41,17 @@ public abstract class Task {
      * @param s The string to be checked against
      * @return If the name contains s
      */
-    public boolean nameContainsString(String s) {
+    public boolean doesNameContainsString(String s) {
         return this.name.contains(s);
     }
-    
+
     /**
      * Gets the string representation of the task.
      * @return The string representation of the task
      */
     @Override
     public String toString() {
-        return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
+        return "";
     }
 
     /**

@@ -1,12 +1,13 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
+import maria.TaskManager;
 import maria.task.Task;
-import maria.task.TaskList;
 import maria.task.TaskNoNameException;
 import maria.task.TaskTodo;
 
+/**
+ * Represents the command for adding a task with no timings specified.
+ */
 public class CommandAddTodo extends Command {
 
     private String name;
@@ -19,19 +20,16 @@ public class CommandAddTodo extends Command {
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskManager taskManager) {
 
         try {
             Task task = new TaskTodo(this.name, this.done);
-            taskList.add(task);
-            ui.showText("I created a Todo " + task + " for you. You have " + taskList.size() + " task(s) now.");
+            taskManager.getTaskList().add(task);
         } catch (TaskNoNameException e) {
-            ui.showText("Error in creating Todo. " + e.getMessage());
+            System.out.println("Error in creating Todo. " + e.getMessage());
         }
 
     }

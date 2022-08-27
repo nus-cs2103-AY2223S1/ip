@@ -1,13 +1,13 @@
 package maria.task;
 
-import maria.util.DukeDateTimeFormatter;
-
 import java.time.LocalDate;
+
+import maria.util.DukeDateTimeFormatter;
 
 /**
  * Represents a Task of type Event.
  */
-public class TaskEvent extends Task{
+public class TaskEvent extends Task {
 
     private LocalDate startTime;
     private LocalDate endTime;
@@ -33,9 +33,9 @@ public class TaskEvent extends Task{
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from " +
-                DukeDateTimeFormatter.formatDisplay(this.startTime) + " to " +
-                DukeDateTimeFormatter.formatDisplay(this.endTime) + ")";
+        return "[Event]" + super.toString() + " (from "
+                + DukeDateTimeFormatter.formatDisplay(this.startTime) + " to "
+                + DukeDateTimeFormatter.formatDisplay(this.endTime) + ")";
     }
 
     /**
@@ -44,9 +44,9 @@ public class TaskEvent extends Task{
      */
     @Override
     public String toStorageString() {
-        return super.toStorageString() + "|||" + "event" + "|||" +
-                DukeDateTimeFormatter.formatStorage(this.startTime) + "|||" +
-                DukeDateTimeFormatter.formatStorage(this.endTime);
+        return super.toStorageString() + "|||" + "event" + "|||"
+                + DukeDateTimeFormatter.formatStorage(this.startTime) + "|||"
+                + DukeDateTimeFormatter.formatStorage(this.endTime);
     }
 
 }

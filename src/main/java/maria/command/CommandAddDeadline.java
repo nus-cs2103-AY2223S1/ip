@@ -2,13 +2,14 @@ package maria.command;
 
 import java.time.LocalDate;
 
-import maria.Storage;
-import maria.Ui;
+import maria.TaskManager;
 import maria.task.Task;
-import maria.task.TaskList;
-import maria.task.TaskNoNameException;
 import maria.task.TaskDeadline;
+import maria.task.TaskNoNameException;
 
+/**
+ * Represents the command for adding a task with a deadline.
+ */
 public class CommandAddDeadline extends Command {
 
     private String name;
@@ -23,19 +24,16 @@ public class CommandAddDeadline extends Command {
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskManager taskManager) {
 
         try {
             Task task = new TaskDeadline(this.name, this.done, this.deadline);
-            taskList.add(task);
-            ui.showText("I created a Deadline " + task + " for you. You have " + taskList.size() + " task(s) now.");
+            taskManager.getTaskList().add(task);
         } catch (TaskNoNameException e) {
-            ui.showText("Error in creating Deadline. " + e.getMessage());
+            System.out.println("Error in creating Deadline. " + e.getMessage());
         }
 
     }

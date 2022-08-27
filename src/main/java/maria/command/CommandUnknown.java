@@ -1,19 +1,21 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
-import maria.task.TaskList;
+import maria.TaskManager;
 
 public class CommandUnknown extends Command {
 
+    private int index;
+
+    public CommandUnknown() {
+
+    }
+
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showText("There is a mistake in the command given, please try again.");
+    public void execute(TaskManager taskManager) {
+        System.out.println("Unknown command.");
     }
 }

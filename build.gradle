@@ -1,7 +1,9 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 repositories {
@@ -60,4 +62,22 @@ jar {
     }
 
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+javafx {
+    version = "18.0.2"
+    modules = [
+        'javafx.controls',
+        'javafx.fxml'
+    ]
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }

@@ -1,13 +1,13 @@
 package maria.task;
 
-import maria.util.DukeDateTimeFormatter;
-
 import java.time.LocalDate;
+
+import maria.util.DukeDateTimeFormatter;
 
 /**
  * Represents a Task of type Deadline.
  */
-public class TaskDeadline extends Task{
+public class TaskDeadline extends Task {
 
     private LocalDate deadline;
 
@@ -29,7 +29,7 @@ public class TaskDeadline extends Task{
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
+        return "[Deadline]" + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
     }
 
     /**
@@ -38,8 +38,8 @@ public class TaskDeadline extends Task{
      */
     @Override
     public String toStorageString() {
-        return super.toStorageString() + "|||" + "deadline" + "|||" +
-                DukeDateTimeFormatter.formatStorage(this.deadline);
+        return super.toStorageString() + "|||" + "deadline" + "|||"
+                + DukeDateTimeFormatter.formatStorage(this.deadline);
     }
 
 }

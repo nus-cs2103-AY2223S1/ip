@@ -1,20 +1,18 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
-import maria.task.TaskList;
+import maria.TaskManager;
 
+/**
+ * Represents the command to exit the application.
+ */
 public class CommandExit extends Command {
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showText("Adiós, hasta luego!");
+    public void execute(TaskManager taskManager) {
         System.exit(0);
     }
 }

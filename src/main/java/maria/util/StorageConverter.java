@@ -1,14 +1,13 @@
 package maria.util;
 
-import maria.Parser;
-import maria.Storage;
-import maria.Ui;
-import maria.task.Task;
-import maria.task.TaskList;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import maria.Parser;
+import maria.TaskManager;
+import maria.task.Task;
+import maria.task.TaskList;
 
 public class StorageConverter {
 
@@ -23,13 +22,11 @@ public class StorageConverter {
 
     }
 
-    public static TaskList stringToTasks(Storage storage, Ui ui) {
-
-        TaskList tasks = new TaskList(storage);
+    public static void stringToTasks(TaskManager taskManager) {
 
         String tasksStr = null;
         try {
-            tasksStr = storage.readFromFile();
+            tasksStr = taskManager.getStorage().readFromFile();
         } catch (IOException e) {
             System.out.println("File is corrupted. Please delete the tasks file and retry.");
             System.out.println(e.getMessage());
@@ -40,11 +37,9 @@ public class StorageConverter {
 
         for (String taskStr : tasksStrArr) {
             if (!taskStr.isEmpty()) {
-                Parser.parseStorage(taskStr).execute(tasks, ui, storage);
+                Parser.parseStorage(taskStr).execute(taskManager);
             }
         }
-
-        return tasks;
 
     }
 

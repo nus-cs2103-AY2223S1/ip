@@ -3,7 +3,7 @@ package maria.task;
 /**
  * Represents a Task of type Todo.
  */
-public class TaskTodo extends Task{
+public class TaskTodo extends Task {
 
     /**
      * Creates a Todo Task.
@@ -21,7 +21,7 @@ public class TaskTodo extends Task{
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[Todo]" + super.toString();
     }
 
     /**

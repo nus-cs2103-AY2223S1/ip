@@ -37,7 +37,8 @@ public class Storage {
      * @throws IOException If there's an error with file access
      */
     public void writeToFile(String content) throws IOException {
-        Files.writeString(Path.of(this.fileName), content, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+        Files.writeString(Path.of(this.fileName), content,
+                StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     /**

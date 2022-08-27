@@ -1,29 +1,26 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
-import maria.task.TaskList;
+import maria.TaskManager;
+import maria.task.Task;
 
+/**
+ * Represents the command for unmarking a task as not done.
+ */
 public class CommandUnmarkTask extends Command {
 
-    private int index;
+    private Task task;
 
-    public CommandUnmarkTask(int index) {
-        this.index = index;
+    public CommandUnmarkTask(Task task) {
+        this.task = task;
     }
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-
-        taskList.get(this.index - 1).setDone(false);
-        taskList.mutatedTask();
-        ui.showText("Your task " + taskList.get(this.index - 1) + " has been un-completed.");
-
+    public void execute(TaskManager taskManager) {
+        taskManager.getTaskList().get(taskManager.getTaskList().indexOf(this.task)).setIsDone(false);
+        taskManager.getTaskList().mutatedTask();
     }
 }

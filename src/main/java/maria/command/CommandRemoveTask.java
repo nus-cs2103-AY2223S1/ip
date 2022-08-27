@@ -1,29 +1,25 @@
 package maria.command;
 
-import maria.Storage;
-import maria.Ui;
-import maria.task.TaskList;
+import maria.TaskManager;
+import maria.task.Task;
 
+/**
+ * Represents the command for removing a task.
+ */
 public class CommandRemoveTask extends Command {
 
-    private int index;
+    private Task task;
 
-    public CommandRemoveTask(int index) {
-        this.index = index;
+    public CommandRemoveTask(Task task) {
+        this.task = task;
     }
 
     /**
      * Executes the command.
-     * @param taskList The list of all the tasks
-     * @param ui The user interface object
-     * @param storage The storage object
+     * @param taskManager The overall-in-charge for all task related affairs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-
-        String taskStr = taskList.get(this.index - 1).toString();
-        taskList.remove(this.index - 1);
-        ui.showText("Your task " + taskStr + " has been deleted.");
-
+    public void execute(TaskManager taskManager) {
+        taskManager.getTaskList().remove(this.task);
     }
 }

@@ -1,51 +1,34 @@
 package maria;
 
-import maria.command.Command;
-import maria.task.TaskList;
-import maria.util.StorageConverter;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import maria.ui.LandingPage;
 
 /**
  * Represents the entry point of the program.
  */
-public class Maria {
-
-    private final Ui ui;
-    private final TaskList taskList;
-    private final Storage storage;
+public class Maria extends Application {
 
     /**
-     * Creates a new chatbot called Maria.
+     * Starts the main user interface window.
+     * @param stage The main stage provided by JavaFX
      */
-    public Maria() {
+    @Override
+    public void start(Stage stage) {
 
-        this.ui = new Ui();
-        this.storage = new Storage("tasks.mariadata");
-        this.taskList = StorageConverter.stringToTasks(this.storage, this.ui);
+        TaskManager taskManager = new TaskManager();
 
-    }
-
-    /**
-     * Represents the main event loop of the program.
-     */
-    public void run() {
-
-        this.ui.showInstructions();
-
-        while (true) {
-
-            String commandStr = this.ui.readCommand();
-            Command command = Parser.parse(commandStr);
-            command.execute(this.taskList, this.ui, this.storage);
-
-        }
+        LandingPage landingPage = new LandingPage(taskManager);
+        Scene scene = new Scene(landingPage);
+        stage.setScene(scene);
+        stage.setTitle("Maria");
+        stage.show();
 
     }
 
     public static void main(String[] args) {
-
-        Maria maria = new Maria();
-        maria.run();
-
+        Application.launch();
     }
 
 }
