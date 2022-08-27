@@ -9,10 +9,6 @@ public class Ui {
         sc = new Scanner(System.in);
     }
 
-    /**
-     *
-     * @return next line of user input
-     */
     public String getUserCommand() {
         return sc.nextLine();
     }
@@ -63,5 +59,18 @@ public class Ui {
         System.out.println(String.format("%s.%s", index+1, tasklist.get(index).toString()));
     }
 
-
+    /**
+     * Finds tasks in list with matching description.
+     *
+     * @param tasklist tasklist from duke application.
+     * @param word word to be matched.
+     */
+    public void find(TaskList tasklist, String word) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasklist.size(); i++) {
+            if (tasklist.get(i).toString().contains(word)) {
+                System.out.println(String.format("%s.%s", i + 1, tasklist.get(i).toString()));
+            }
+        }
+    }
 }

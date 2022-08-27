@@ -7,6 +7,7 @@ public class Parser {
 
     /**
      * Parses user input and carry out commands accordingly.
+     *
      * @param tasklist list of tasks in Duke application.
      * @param ui user interface of Duke application.
      * @param storage stores the tasklist into the hard drive.
@@ -92,10 +93,14 @@ public class Parser {
                 if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
                     String remainder = input.substring(7);
                     int index = Integer.valueOf(remainder) - 1;
-                    System.out.println("you reached here");
-                    System.out.println("int is" + index);
                     tasklist.deleteTask(index, ui);
                     storage.updateStorage(tasklist);
+                    continue;
+                }
+                //  Find Tasks
+                if (input.length() >= 4 && input.substring(0,4).equals("find")) {
+                    String remainder = input.substring(5);
+                    ui.find(tasklist, remainder);
                     continue;
                 }
                 //  if loop reaches here, raise error
