@@ -1,14 +1,14 @@
+package duke;
+
 import java.time.LocalDate;
 
 public abstract class Task {
     private String taskName;
     private boolean completed;
-    private static int taskCounter = 0;
 
     public Task(String name) {
         this.taskName = name;
         this.completed = false;
-        taskCounter++;
     }
 
     public void complete() {
@@ -17,18 +17,6 @@ public abstract class Task {
 
     public void incomplete() {
         this.completed = false;
-    }
-
-    public static void reduceTaskCount() {
-        taskCounter--;
-    }
-
-    public static int getCount() {
-        return taskCounter;
-    }
-
-    public static void reduceCount() {
-        taskCounter--;
     }
 
     public String getTaskName() {
