@@ -1,17 +1,33 @@
 package duke;
 import java.util.Scanner;
+
+/**
+ * The Parser class deals with making sense of the user command.
+ */
 public class Parser {
+    /** A user interface to interact with the user */
     private Ui ui;
+    /** The command input by the user */
     private String command;
     private static final String LINE = "____________________________________________________________\n";
 
-
+    /**
+     * Instantiates the Parser object to deal with user input.
+     *
+     * @param command The command input by the user.
+     * @param ui
+     */
     public Parser(String command, Ui ui) {
         this.command = command;
         this.ui = ui;
     }
 
-
+    /**
+     * Reads the input given by the user and determines the commands to be carried out.
+     *
+     * @param taskList A collection of tasks.
+     * @return false if command closes the Parser, true otherwise.
+     */
     public boolean readCommand(TaskList taskList) {
         Scanner sc = new Scanner(command);
         String input = sc.nextLine();
@@ -48,6 +64,11 @@ public class Parser {
         return true;
     }
 
+    /**
+     * Returns the lists of tasks onto the console.
+     *
+     * @param taskList A collection of Task objects.
+     */
     public static void listTasks(TaskList taskList) {
         int counter = 1;
         System.out.println(LINE + "Here are the tasks in your list:");
@@ -57,6 +78,14 @@ public class Parser {
         }
         System.out.println(LINE);
     }
+
+    /**
+     * Unmarks the task given by the input user command.
+     *
+     * @param input The input command given by the user.
+     * @param taskList A collection of Task objects.
+     * @throws DukeException If input given is invalid.
+     */
     public static void unmarkTask(String input, TaskList taskList) throws DukeException {
         String taskNumber = input.substring(7);
         int number = Integer.parseInt(taskNumber);
@@ -71,6 +100,13 @@ public class Parser {
         System.out.println(task + "\n" + LINE);
     }
 
+    /**
+     * Marks the task given by the input user command.
+     *
+     * @param input The input command given by the user.
+     * @param taskList A collection of Task objects.
+     * @throws DukeException If input given is invalid.
+     */
     public static void markTask(String input, TaskList taskList) throws DukeException {
         String taskNumber = input.substring(5);
         int number = Integer.parseInt(taskNumber);
@@ -84,6 +120,14 @@ public class Parser {
         System.out.println(LINE + "Nice! I've marked this task as done:");
         System.out.println(task + "\n" + LINE);
     }
+
+    /**
+     * Adds the task given by the input user command into the list.
+     *
+     * @param input The input command given by the user.
+     * @param taskList A collection of Task objects.
+     * @throws DukeException If input given is invalid.
+     */
     public static void addTask(String input, TaskList taskList) throws DukeException {
         String[] taskArray = input.split(" ", 2);
         String task = taskArray[0];
@@ -149,6 +193,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Deletes the task given by the input user command.
+     *
+     * @param input The input command given by the user.
+     * @param taskList A collection of Task objects.
+     * @throws DukeException If input given is invalid.
+     */
     public static void deleteTask(String input, TaskList taskList) throws DukeException {
         String deletionIndex = input.substring(7);
         int index = Integer.parseInt(deletionIndex);

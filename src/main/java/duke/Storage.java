@@ -9,13 +9,28 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The Storage class deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
+    /** The relative path of the file to be loaded and saved in */
     private String filePath;
 
+    /**
+     * Instantiates the Storage object.
+     *
+     * @param filePath Relative path of the file to be loaded and saved.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Prints the contents of the file onto the console.
+     *
+     * @param filePath Relative path of the file to be loaded from.
+     * @throws FileNotFoundException If filePath is invalid.
+     */
     public static void printFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -24,6 +39,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reformats the content from the saved file into the list.
+     *
+     * @param f File to be loaded from.
+     * @param taskList The collection of Task objects.
+     * @throws FileNotFoundException If file does not exist.
+     */
     public static void formatToList(File f, ArrayList<Task> taskList) throws FileNotFoundException {
         Scanner s = new Scanner(f);
         try {
@@ -55,6 +77,13 @@ public class Storage {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Loads the file when Duke is opened.
+     *
+     * @return The collection of Tasks that was saved in the file.
+     * @throws DukeException If file does not exist.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
@@ -74,6 +103,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Converts the tasks in the list to the file format.
+     *
+     * @param taskList The collection of Task objects.
+     * @return The string representation of the tasks in file format.
+     */
     public static String formatToFile(TaskList taskList) {
         String result = "";
         for (Task t : taskList.getTaskList()) {
@@ -82,6 +117,11 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Saves the list into the file when Duke is closed.
+     *
+     * @param taskList The collection of Task objects.
+     */
     public void save(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(filePath);

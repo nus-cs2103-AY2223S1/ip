@@ -1,10 +1,23 @@
 package duke;
-public class Duke {
 
+/**
+ * The Duke class encapsulates a Personal Assistant Chatbot named Duke to help keep track of various tasks.
+ *
+ * @author Jerome Hoo Jun Jie
+ */
+public class Duke {
+    /** The storage to load tasks from the file and saves tasks in the file specified */
     private Storage storage;
+    /** A collection to store tasks into a list */
     private TaskList tasks;
+    /** A user interface to interact with the user */
     private Ui ui;
 
+    /**
+     * Instantiates the Duke object.
+     *
+     * @param filePath the relative path provided for Duke to load and save files.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -16,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke chatbot.
+     */
     public void run() {
         ui.greeting();
         while (true) {

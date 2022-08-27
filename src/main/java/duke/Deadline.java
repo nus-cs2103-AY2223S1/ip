@@ -3,10 +3,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Deadline class encapsulates a Deadline task.
+ */
 public class Deadline extends Task {
-    protected String by; // "Aug 26 2022 07:00:00 PM" i want to format it back to yyyy-mm-ddTHours:Minute:Seconds
+    /** A specific date/time for the task to be done */
+    protected String by;
+    /** The deadline to be stored in the Deadline object */
     protected LocalDateTime deadline;
 
+    /**
+     * Instantiates a Deadline object.
+     *
+     * @param description Description of the task.
+     * @param by A specific date/time for the task to be done.
+     * @throws DukeException If by is in an invalid format.
+     */
     public Deadline(String description, String by) throws DukeException {
         super(description);
         this.by = by;
@@ -18,6 +30,14 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Instantiates a Deadline object.
+     *
+     * @param description Description of the task.
+     * @param isDone Flag to indicate if the task is done or not.
+     * @param by A specific date/time for the task to be done.
+     * @throws DukeException If by is in an invalid format.
+     */
     public Deadline(String description, boolean isDone, String by) throws DukeException {
         super(description, isDone);
         this.by = by;
@@ -29,10 +49,16 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns the deadline date/time in a valid format.
+     *
+     * @return Deadline date/time in a valid format.
+     */
     private String printTime() {
         String s = this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm:ss a"));
         return s;
     }
+
     @Override
     public String fileStatus() {
         return "D | " + super.fileStatus() + "|" + this.by;
