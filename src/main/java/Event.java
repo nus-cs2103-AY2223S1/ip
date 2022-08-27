@@ -4,26 +4,26 @@ import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
 
-    protected String datetime;
+    protected String dateTime;
 
     public Event(String description, String dt) throws DateTimeParseException {
         super(description);
         try {
             LocalDateTime dtFormatted = LocalDateTime.parse(dt, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-            this.datetime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
+            this.dateTime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
         } catch (DateTimeParseException err) {
             System.out.println("I don't recognise this time format.\nTry using this format next time: dd/MM/yyyy HHmm");
-            this.datetime = dt;
+            this.dateTime = dt;
         }
     }
 
     public String getDatetime() {
-        return this.datetime;
+        return this.dateTime;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + datetime + ")";
+        return "[E]" + super.toString() + " (at: " + dateTime + ")";
 
     }
 }
