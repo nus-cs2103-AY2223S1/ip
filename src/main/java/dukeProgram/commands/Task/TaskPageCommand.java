@@ -2,8 +2,8 @@ package dukeprogram.commands.task;
 
 import dukeprogram.commands.Command;
 import dukeprogram.commands.ExitCommand;
-import dukeprogram.commands.task.Annotations.MarkTaskCommand;
-import dukeprogram.commands.task.Annotations.UnmarkTaskCommand;
+import dukeprogram.commands.task.annotations.MarkTaskCommand;
+import dukeprogram.commands.task.annotations.UnmarkTaskCommand;
 import dukeprogram.commands.task.annotations.MarkTaskCommand;
 import dukeprogram.commands.task.annotations.UnmarkTaskCommand;
 import dukeprogram.facilities.TaskList;
