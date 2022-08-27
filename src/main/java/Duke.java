@@ -80,7 +80,7 @@ public class Duke {
                     continue;
                 case "DEADLINE":
                     taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                    taskDesc = String.join(" ", taskDesc).split("/by");
+                    taskDesc = String.join(" ", taskDesc).split("/by ");
                     Deadline newDeadline = new Deadline(taskDesc[0], taskDesc[1]);
                     listOfInputs.add(newDeadline);
                     System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newDeadline
@@ -89,7 +89,7 @@ public class Duke {
                     continue;
                 case "EVENT":
                     taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                    taskDesc = String.join(" ", taskDesc).split("/at");
+                    taskDesc = String.join(" ", taskDesc).split("/at ");
                     Event newEvent = new Event(taskDesc[0], taskDesc[1]);
                     listOfInputs.add(newEvent);
                     System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newEvent
@@ -106,10 +106,10 @@ public class Duke {
                 }
                 throw new DukeException("I'm sorry, but I don't know what that means" + LINE);
             } catch (DukeException err) {
-                System.out.println(LINE + "\n:( OOPS! " + err.getMessage());
+                System.out.println(LINE + "\n:( OOPS! " + err.getMessage() + LINE);
                 input = sc.nextLine();
             } catch (ArrayIndexOutOfBoundsException err) {
-                System.out.println(LINE + "\nSlow down! " + err.getMessage());
+                System.out.println(LINE + "\nSlow down! " + err.getMessage() + LINE);
                 input = sc.nextLine();
             }
         }
