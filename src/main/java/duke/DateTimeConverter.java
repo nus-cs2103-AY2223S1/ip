@@ -18,9 +18,9 @@ public class DateTimeConverter {
      * @return LocalDate.
      */
     public static LocalDate formatDate(String dateString){
-            LocalDate date = LocalDate.parse(dateString,dateFormat);
-            return date;
-        }
+        LocalDate date = LocalDate.parse(dateString,dateFormat);
+        return date;
+    }
 
     /**
      * Returns String version of a date
@@ -31,6 +31,8 @@ public class DateTimeConverter {
      */
 
     public static String formatString(LocalDate date){
-            return date.format(dateFormatPrint);
-        }
+        return date.format(dateFormatPrint);
     }
+}
+
+

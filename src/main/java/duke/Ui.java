@@ -45,12 +45,16 @@ public class Ui {
         return command;
     }
 
+<<<<<<< HEAD
     /**
      * Outputs message for Duke
      *
      * @param message message from Duke
      */
     public void printMessage(String message){
+=======
+    public void printMessage(String message) {
+>>>>>>> branch-A-CodingStandard
         System.out.println(UNDERLINE + "\n" + message + "\n" + UNDERLINE);
     }
 }

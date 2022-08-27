@@ -3,21 +3,21 @@ package duke;
 import java.util.ArrayList;
 
 public class TaskList {
+    private ArrayList<Task> taskList;
 
-    ArrayList<Task> taskList;
-
-    public TaskList(){
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
-    public void load(Task task){
+    public void load(Task task) {
         this.taskList.add(task);
     }
 
-    public ArrayList<Task> getTaskList(){
+    public ArrayList<Task> getTaskList() {
         return this.taskList;
     }
 
+<<<<<<< HEAD
     /**
      * Lists out all the tasks currently
      * in the task list
@@ -28,8 +28,18 @@ public class TaskList {
         String log = "Tasks that you have:";
         for (int i = 0; i < taskList.size(); i++) {
             log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
+=======
+    public String handleList() {
+        if (this.taskList.size() == 0) {
+            return "No tasks as of now!";
+        } else {
+            String log = "Tasks that you have:";
+            for (int i = 0; i < taskList.size(); i++) {
+                log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
+            }
+            return log;
+>>>>>>> branch-A-CodingStandard
         }
-        return log;
     }
 
     /**
@@ -42,8 +52,8 @@ public class TaskList {
      */
 
     public String handleMark(String cmd) throws DukeException {
-        int min_length = "mark ".length();
-        if (cmd.length() <= min_length) {
+        int minLength = "mark ".length();
+        if (cmd.length() <= minLength) {
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("mark ".length()));
@@ -66,8 +76,8 @@ public class TaskList {
      * @throws OutOfListException Task number is not within list
      */
     public String handleUnmark(String cmd) throws DukeException {
-        int min_length = "unmark ".length();
-        if (cmd.length() <= min_length) {
+        int minLength = "unmark ".length();
+        if (cmd.length() <= minLength) {
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("unmark ".length()));
@@ -82,6 +92,7 @@ public class TaskList {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Creates new ToDo task to be added into task list.
      *
@@ -92,12 +103,20 @@ public class TaskList {
     public String handleToDo(String cmd) throws DukeException{
         int min_length = "todo ".length();
         if (cmd.length() <= min_length) {
+=======
+
+
+    public String handleToDo(String cmd) throws DukeException {
+        int minLength = "todo ".length();
+        if (cmd.length() <= minLength) {
+>>>>>>> branch-A-CodingStandard
             throw new IncompleteParamException(cmd);
         } else {
-            String taskdes = cmd.substring("todo ".length());
-            Task task = new ToDo(taskdes);
+            String description = cmd.substring("todo ".length());
+            Task task = new ToDo(description);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n "
+                    + " Now you have %d tasks in the list.", task , this.taskList.size());
         }
     }
 
@@ -113,11 +132,12 @@ public class TaskList {
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String taskdes = cmd.substring("deadline ".length(), endPointer);
+            String description = cmd.substring("deadline ".length(), endPointer);
             String by = cmd.substring(endPointer + 4);
-            Task task = new Deadline(taskdes, by);
+            Task task = new Deadline(description, by);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n  "
+                    + " Now you have %d tasks in the list.", task, this.taskList.size());
         }
     }
 
@@ -133,15 +153,17 @@ public class TaskList {
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String taskdes = cmd.substring("event ".length(), endPointer);
+            String description = cmd.substring("event ".length(), endPointer);
             String at = cmd.substring(endPointer + 4);
-            Task task = new Event(taskdes, at);
+            Task task = new Event(description, at);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n "
+                    + " Now you have %d tasks in the list.", task, this.taskList.size());
 
         }
     }
 
+<<<<<<< HEAD
     /**
      * Deletes task from list
      *
@@ -153,6 +175,11 @@ public class TaskList {
     public String handleDelete(String cmd) throws DukeException{
         int min_length = "delete ".length();
         if (cmd.length() <= min_length) {
+=======
+    public String handleDelete(String cmd) throws DukeException {
+        int minLength = "delete ".length();
+        if (cmd.length() <= minLength) {
+>>>>>>> branch-A-CodingStandard
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("delete ".length()));
@@ -161,7 +188,8 @@ public class TaskList {
             } else {
                 Task task = this.taskList.get(taskNumber - 1);
                 this.taskList.remove(taskNumber - 1);
-                return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
+                return String.format("Got it. I've removed this task: \n %s \n  "
+                        + "Now you have %d tasks in the list.", task , this.taskList.size());
             }
         }
     }

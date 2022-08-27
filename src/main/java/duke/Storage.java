@@ -1,15 +1,15 @@
 package duke;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.File;
 
 public class Storage {
     private final String pathFile;
 
+<<<<<<< HEAD
     /**
      * Constructor to create instance of Storage
      *
@@ -28,8 +28,17 @@ public class Storage {
     public void save(ArrayList<Task> taskList){
         try{
             FileWriter fw = new FileWriter(pathFile,false);
+=======
+    public Storage(String pathFile) {
+        this.pathFile = pathFile;
+    }
+
+    public void save(ArrayList<Task> taskList) {
+        try {
+            FileWriter fw = new FileWriter(pathFile, false);
+>>>>>>> branch-A-CodingStandard
             String allTasks = "";
-            for (Task task : taskList){
+            for (Task task : taskList) {
                 allTasks += task.changeFormat() + "\n";
             }
             fw.write(allTasks);
@@ -39,6 +48,7 @@ public class Storage {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Loads the taskList from the file
      * in the path
@@ -47,10 +57,13 @@ public class Storage {
      * @throws IOException If IO error occurs
      */
     public TaskList load() throws IOException{
+=======
+    public TaskList load() throws IOException {
+>>>>>>> branch-A-CodingStandard
         TaskList taskList = new TaskList();
         File file = new File(this.pathFile);
         file.getParentFile().mkdirs();
-        if (!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         Scanner sc = new Scanner(file);
