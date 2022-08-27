@@ -115,4 +115,24 @@ public class TaskList {
             }
         }
     }
+
+    public String handleFind(String cmd) throws DukeException {
+        int minLength = "find ".length();
+        if (cmd.length() <= minLength) {
+            throw new IncompleteParamException(cmd);
+        } else {
+            String taskToFind = cmd.substring(minLength);
+            ArrayList<Task> tempList = new ArrayList<>();
+            this.taskList.forEach( (task) -> {
+                if (task.checkMatch(taskToFind)) {
+                    tempList.add(task);
+                }
+            });
+            String log = "Here are the matching tasks in your list:";
+            for (int i = 0; i < tempList.size(); i++) {
+                log += String.format("\n %d. %s", i + 1, tempList.get(i));
+            }
+            return log;
+        }
+    }
 }
