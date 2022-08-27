@@ -1,15 +1,15 @@
 package util;
 
-import command.Command;
-import exception.DukeException;
-import task.Task;
-import tasklist.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import command.Command;
+import exception.DukeException;
+import task.Task;
+import tasklist.TaskList;
 
 /**
  * Handles the any storage related functionality related to the save file

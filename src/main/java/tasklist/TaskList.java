@@ -1,9 +1,9 @@
 package tasklist;
 
+import java.util.ArrayList;
+
 import task.Task;
 import util.Ui;
-
-import java.util.ArrayList;
 
 /**
  * A list that that handles the storing of tasks

@@ -30,14 +30,15 @@ public class DukeException extends Exception {
             break;
         case UNKNOWN_TASK_ENCODING:
             errorMsg = "OOPS!!! Unable to parse one of the saved tasks. This task will be skipped.";
+            break;
         case INVALID_DEADLINE_DATETIME_FORMAT:
-            String dateFormat = "\t Please ensure date time is of the " +
-                    "following format: yyyy-mm-dd hh:mm:ss";
+            String dateFormat = "\t Please ensure date time is of the "
+                    + "following format: yyyy-mm-dd hh:mm:ss";
             errorMsg = "OOPS!!! Unable to parse date time for deadline.\n" + dateFormat;
             break;
         case INVALID_EVENT_DATETIME_FORMAT:
-            dateFormat = "\t Please ensure date time is of the " +
-                    "following format: yyyy-mm-dd hh:mm:ss hh:mm:ss hh:mm:ss";
+            dateFormat = "\t Please ensure date time is of the "
+                    + "following format: yyyy-mm-dd hh:mm:ss hh:mm:ss hh:mm:ss";
             errorMsg = "OOPS!!! Unable to parse date time for event.\n" + dateFormat;
             break;
         default:

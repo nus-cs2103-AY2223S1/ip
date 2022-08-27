@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.Scanner;
+
 import command.Command;
 import exception.DukeException;
 import tasklist.TaskList;
 import util.Parser;
 import util.Storage;
 import util.Ui;
-
-import java.util.Scanner;
 
 /**
  * Entry point of the application that initialises and run the app.
@@ -39,7 +39,7 @@ public class Duke {
                 String nextLine = sc.nextLine();
                 Command cmd = Parser.parseInputLine(nextLine);
                 cmd.execute(dukelist, storage);
-                isTerminated = cmd.isTerminated;
+                isTerminated = cmd.getIsTerminated();
             } catch (DukeException e) {
                 System.out.println(Ui.formatLinesIntoParagraph(e.errorMessage()));
             }

@@ -1,10 +1,10 @@
 package date;
 
-import exception.DukeException;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import exception.DukeException;
 
 /**
  * Stores a representation of a data, start time and end time based on ISO-8601
@@ -31,10 +31,10 @@ public class EventDateTime extends Date {
      */
     public static EventDateTime parseDate(String dateTime) throws DukeException {
         String[] splitted = dateTime.split("\\s+", 3);
-        if (splitted.length < 3 ||
-                splitted[0].strip().equals("") ||
-                splitted[1].strip().equals("") ||
-                splitted[2].strip().equals("")) {
+        if (splitted.length < 3
+                || splitted[0].strip().equals("")
+                || splitted[1].strip().equals("")
+                || splitted[2].strip().equals("")) {
             throw new DukeException(DukeException.ErrorCode.INVALID_EVENT_DATETIME_FORMAT);
         }
         try {

@@ -13,9 +13,6 @@ import util.Ui;
 public class AddTaskCommand extends Command {
     private final Task taskItem;
 
-    /**
-     * @param taskItem Task to be added to duke list
-     */
     public AddTaskCommand(Task taskItem) {
         this.taskItem = taskItem;
     }

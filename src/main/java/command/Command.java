@@ -10,7 +10,7 @@ import util.Storage;
  * @author Bryan Lim Jing Xiang
  */
 public abstract class Command {
-    public boolean isTerminated = false;
+    private boolean isTerminated = false;
 
     /**
      * Executes a specific command
@@ -19,4 +19,12 @@ public abstract class Command {
      * @param storage Storage that handles all storage related functionalities
      */
     public abstract void execute(TaskList list, Storage storage);
+
+    public boolean getIsTerminated() {
+        return isTerminated;
+    }
+
+    public void setIsTerminated(boolean isTerminated) {
+        this.isTerminated = isTerminated;
+    }
 }

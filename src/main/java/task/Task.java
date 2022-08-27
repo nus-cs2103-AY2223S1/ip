@@ -6,27 +6,26 @@ package task;
  * @author Bryan Lim Jing Xiang
  */
 public abstract class Task {
-    private final String TaskItem;
+    private final String taskItem;
     private boolean isMarked;
 
     /**
-     * @param TaskItem Task to be stored
+     * @param taskItem Task to be stored
      */
-    public Task(String TaskItem) {
-        this.TaskItem = TaskItem;
+    public Task(String taskItem) {
+        this.taskItem = taskItem;
         this.isMarked = false;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @return String representation of the task
-     * including its marked status and type
+     * @return String representation of the task including its markStatus and type
      */
     @Override
     public String toString() {
         String checkbox = isMarked ? "[X] " : "[ ] ";
-        return checkbox + this.TaskItem;
+        return checkbox + this.taskItem;
     }
 
     public void setIsMarked(boolean status) {
@@ -38,7 +37,7 @@ public abstract class Task {
     }
 
     protected String getTaskItem() {
-        return TaskItem;
+        return taskItem;
     }
 
     /**

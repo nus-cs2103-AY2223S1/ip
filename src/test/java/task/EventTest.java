@@ -1,11 +1,11 @@
 package task;
 
-import date.EventDateTime;
-import exception.DukeException;
-import org.junit.jupiter.api.DisplayName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import date.EventDateTime;
+import exception.DukeException;
 
 class EventTest {
 
