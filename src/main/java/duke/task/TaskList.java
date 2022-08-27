@@ -30,18 +30,30 @@ public class TaskList {
     /**
      * Returns the number of tasks in the {@code TaskList}.
      *
-     * @return
+     * @return Number of tasks in the {@code TaskList}.
      */
     public int size() {
         return tasks.size();
     }
 
+    /**
+     * Default display message for task index out of range.
+     *
+     * @return {@code String} message declaring that the task index is out of range.
+     */
     String getIndexOutOfBoundsExceptionMessage() {
         return this.size() > 0
                 ? String.format("Task index out of range. Please choose from index 1 to %d", this.size())
                 : "Tasks index out of range. There are no tasks.";
     }
 
+    /**
+     * Gets the task at the specified index.
+     *
+     * @param index Index of the {@code Task} in the {@code TaskList} to get.
+     * @return {@code Task} at the specified index.
+     * @throws DukeException {@code IndexOutOfBoundsException} caught.
+     */
     Task getTask(int index) throws DukeException {
         try {
             return tasks.get(index);

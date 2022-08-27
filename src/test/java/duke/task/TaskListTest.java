@@ -100,7 +100,7 @@ public class TaskListTest {
         taskList.addTask(task);
         try {
             taskList.markTask(0);
-            assertEquals(true, taskList.getTask(0).getStatus());
+            assertEquals(true, taskList.getTask(0).isDone());
         } catch (DukeException e) {
             fail();
         }
@@ -113,7 +113,7 @@ public class TaskListTest {
         taskList.addTask(task);
         try {
             taskList.unmarkTask(0);
-            assertEquals(false, taskList.getTask(0).getStatus());
+            assertEquals(false, taskList.getTask(0).isDone());
         } catch (DukeException e) {
             fail();
         }

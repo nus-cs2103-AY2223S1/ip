@@ -65,7 +65,7 @@ public abstract class Task {
     /**
      * Returns {@code true} if {@code Task} is done, otherwise {@code false}.
      */
-    public boolean getStatus() {
+    public boolean isDone() {
         return this.isDone;
     }
 
