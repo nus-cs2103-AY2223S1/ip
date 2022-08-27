@@ -25,7 +25,7 @@ public class Deadline extends Task {
      * task with the time it is to be done by.
      *
      * @return String representation
-     * @throws DateTimeException if format specified for DateTime is wrong
+     * @throws DateTimeException if format specified for DateTime is wrong.
      */
     @Override
     public String toString() throws DateTimeException {
