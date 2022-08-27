@@ -52,7 +52,7 @@ public class Deadline extends Task{
         }
         else {
             if (Integer.parseInt(hh) == 0) {
-                return "12:" + mm +"pm";
+                return "12:" + mm +"am";
             } else {
                 return hh + ":" + mm +"pm";
             }
