@@ -1,6 +1,7 @@
 package skyler;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -172,6 +173,26 @@ public class Storage {
         }
 
         fw.close();
+    }
+
+    public ArrayList<Integer> findTask(String keyword) {
+        // return arraylist of task indices
+        ArrayList<Integer> taskIndices = new ArrayList<>();
+        File file = new File(filePathChosen);
+        try {
+            Scanner sc = new Scanner(file);
+            int task = 0;
+            while (sc.hasNext()) {
+                String line = sc.nextLine();
+                if (line.contains(keyword)) {
+                    taskIndices.add(task);
+                }
+                task++;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return taskIndices;
     }
 
 }
