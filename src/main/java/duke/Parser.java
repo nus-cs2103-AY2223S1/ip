@@ -5,6 +5,7 @@ import commands.Command;
 import commands.DeadlineCommand;
 import commands.DeleteCommand;
 import commands.EventCommand;
+import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.TodoCommand;
@@ -15,7 +16,7 @@ import dukeexceptions.NoSuchCommandException;
 
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     /**
@@ -44,6 +45,8 @@ public class Parser {
                 throw new NoDescriptionException("mark");
             case TODO:
                 throw new NoDescriptionException("todo");
+            case FIND:
+                throw new NoDescriptionException("find");
             default:
                 throw new NoSuchCommandException();
             }
@@ -67,6 +70,9 @@ public class Parser {
             case DELETE:
                 int del = Integer.parseInt(inputSplit[1]) - 1;
                 return new DeleteCommand(del);
+            case FIND:
+                String keyword = inputSplit[1];
+                return new FindCommand(keyword);
             default:
                 throw new NoSuchCommandException();
             }

@@ -6,8 +6,6 @@ import tasks.Task;
 import tasks.TaskList;
 import tasks.Todos;
 
-import java.util.ArrayList;
-
 public class FindCommand extends Command {
     String keyword;
 
