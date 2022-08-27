@@ -8,16 +8,16 @@ import java.util.function.Predicate;
  * as a matching process and an action.
  */
 public class CommandMatcher {
-    private Predicate<String> check;
+    private Predicate<String> shouldRunAction;
     private Consumer<String> action;
 
     /**
      * Creates an object that handles checking and executing a command.
-     * @param check Predicate to check if the command should be run.
+     * @param shouldRunAction Predicate to check if the command should be run.
      * @param action Action to run.
      */
-    public CommandMatcher(Predicate<String> check, Consumer<String> action) {
-        this.check = check;
+    public CommandMatcher(Predicate<String> shouldRunAction, Consumer<String> action) {
+        this.shouldRunAction = shouldRunAction;
         this.action = action;
     }
 
@@ -27,7 +27,7 @@ public class CommandMatcher {
      * @param action Action to run.
      */
     public CommandMatcher(String prefix, Consumer<String> action) {
-        this.check = (cmd) -> cmd.strip().startsWith(prefix);
+        this.shouldRunAction = (cmd) -> cmd.strip().startsWith(prefix);
         this.action = action;
     }
 
@@ -38,7 +38,7 @@ public class CommandMatcher {
      * @return If the string matches.
      */
     public boolean run(String input) {
-        if (check.test(input)) {
+        if (shouldRunAction.test(input)) {
             action.accept(input);
             return true;
         }
