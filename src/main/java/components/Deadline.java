@@ -3,7 +3,10 @@ package components;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Represents a student enrolled in the school.
+ * A student can be enrolled in many courses.
+ */
 public class Deadline extends Task {
 
     protected String by;
