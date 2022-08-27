@@ -1,10 +1,13 @@
 package duke.task;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 
 /**
  * An abstract class representing the Tasks included in Duke.
  */
+=======
+>>>>>>> branch-A-CodingStandard
 public abstract class Task {
     protected final String description;
     protected boolean isDone;

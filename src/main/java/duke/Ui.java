@@ -49,6 +49,7 @@ public class Ui {
         dukePrint("Something bad happened! :O", "Error message: " + msg);
     }
 
+<<<<<<< HEAD
     public void showLine() {
         System.out.println(SEPARATOR);
     }
@@ -58,6 +59,8 @@ public class Ui {
      *
      * @return a String containing the user input
      */
+=======
+>>>>>>> branch-A-CodingStandard
     public String readCommand() {
         return sc.nextLine();
     }

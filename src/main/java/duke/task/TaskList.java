@@ -25,12 +25,13 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+
     /**
      * Returns the String representation of this TaskList
      *
      * @return an Array of String in according to the printing format.
      */
-    public String[] list() {
+    public String[] toPrintFormat() {
         String[] lines = new String[tasks.size() + 1];
         lines[0] = "Here are the tasks in your list: ";
         for (int i = 1; i < tasks.size() + 1; i++) {

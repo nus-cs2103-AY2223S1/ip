@@ -1,17 +1,17 @@
 package duke.command;
 
-import duke.*;
+import duke.DukeException;
+import duke.Parser;
+import duke.Storage;
+import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
-import java.util.Arrays;
-
 /**
  * Represents the command for the addition of new tasks to Duke's TaskList.
  */
-
 public class AddCommand implements Command{
     String[] inputs;
     String commandType;

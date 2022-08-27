@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.TaskList;
 import duke.Ui;
+import duke.task.TaskList;
 
 /**
  * Represents the command for the deleting tasks from Duke's TaskList.

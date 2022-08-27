@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.TaskList;
 import duke.Ui;
+import duke.task.TaskList;
 
 /**
  * Represents the command for asking Duke to list its tasks in the TaskList.
@@ -18,7 +18,7 @@ public class ListCommand implements Command{
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.dukePrint(tasks.list());
+        Ui.dukePrint(tasks.toPrintFormat());
     }
 
     /**
