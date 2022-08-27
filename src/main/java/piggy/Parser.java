@@ -8,7 +8,7 @@ import piggy.task.Todo;
 class Parser {
     static boolean parse(String command, Ui ui, TaskList taskList) {
         if (command.equals("list")) {
-            ui.showTaskList(taskList);
+            ui.showTaskList(taskList.toList());
         } else if (command.matches("^mark \\d+$")) {
             Task task = taskList.get(Integer.parseInt(command.substring(5)) - 1);
             task.markDone();
@@ -20,6 +20,9 @@ class Parser {
         } else if (command.matches("^delete \\d+$")) {
             Task task = taskList.remove(Integer.parseInt(command.substring(7)) - 1);
             ui.showTaskRemoved(task, taskList.size());
+        }else if (command.matches("^find \\w+$")) {
+            String keyword = command.substring(5);
+            ui.showTasksFound(taskList.find(keyword));
         } else if (command.equals("bye")) {
             return true;
         } else {
