@@ -38,9 +38,9 @@ public class Ui {
     }
 
     /**
-     * Add a new duke.Tasks.Deadline.
+     * Add a new Deadline.
      * @param str the description of ddl + by when
-     * @return a newly created duke.Tasks.Deadline class for storage.
+     * @return a newly created Deadline class for storage.
      */
     public static Deadline addDeadline(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -55,9 +55,9 @@ public class Ui {
     }
 
     /**
-     * Adds a new duke.Tasks.Event.
+     * Adds a new Event.
      * @param str The description of event + at what time
-     * @return A newly created duke.Tasks.Event class for storage.
+     * @return A newly created Event class for storage.
      */
     public static Event addEvent(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -72,9 +72,9 @@ public class Ui {
     }
 
     /**
-     * Adds a new duke.Tasks.ToDo task.
+     * Adds a new ToDo task.
      * @param str The description of to do task.
-     * @return A newly created duke.Tasks.ToDo class for storage.
+     * @return A newly created ToDo class for storage.
      */
     public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
