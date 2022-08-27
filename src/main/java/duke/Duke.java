@@ -9,6 +9,7 @@ import duke.exceptions.IncorrectArgumentException;
 import duke.exceptions.InvalidDateTimeException;
 import duke.exceptions.InvalidTaskSpecificationException;
 import duke.exceptions.MissingArgumentException;
+import duke.exceptions.NoCommandException;
 import duke.exceptions.UnknownCommandException;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -19,6 +20,7 @@ import duke.ui.Ui;
  * The type duke.Duke.
  */
 public class Duke {
+
     private static final String defaultFilePath = "src/main/java/duke/data/tasks.txt";
     private final Storage storage;
     private final TaskList tasks;
@@ -28,7 +30,7 @@ public class Duke {
 
     /**
      * Duke Constructor
-     * 
+     *
      * @param filePath
      *            The path to the file where the data is stored.
      */
@@ -68,12 +70,11 @@ public class Duke {
             try {
                 command = parser.parse(userCommandText);
             } catch (MissingArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException
-                    | IncorrectArgumentException | UnknownCommandException e) {
+                    | IncorrectArgumentException | UnknownCommandException | NoCommandException e) {
                 command = new ErrorCommand(e.getMessage());
             }
             CommandResult result = runCommand(command);
             ui.showResult(result);
-
         } while (!ExitCommand.equals(command));
     }
 
@@ -132,7 +133,7 @@ public class Duke {
     /**
      * The isValidFilePath function checks to see if the string passed in is a valid
      * file path.
-     * 
+     *
      * @param string
      *            Check if the file path is valid
      * @return True

@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import duke.commands.CommandResult;
 
+/**
+ * ListTasksBeforeCommand class
+ */
 public class ListTasksBeforeCommand extends ListTasksCommand {
     private final LocalDateTime dateTime;
     private String successMessage = "Here are your tasks:\n";
@@ -14,7 +17,7 @@ public class ListTasksBeforeCommand extends ListTasksCommand {
 
     /**
      * The execute function prints out the tasks that are due before a certain date.
-     * 
+     *
      * @return A command result object
      */
     @Override

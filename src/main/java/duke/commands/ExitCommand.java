@@ -1,9 +1,9 @@
 package duke.commands;
 
+/**
+ * ExitCommand Class
+ */
 public class ExitCommand implements BaseCommand {
-    // --Commented out by Inspection (26/8/22, 1:09 AM):public static final String
-    // COMMAND_WORD = "bye";
-
     @Override
     public CommandResult execute() {
         String successMessage = "Goodbye:\n";
@@ -13,5 +13,4 @@ public class ExitCommand implements BaseCommand {
     public static boolean equals(BaseCommand command) {
         return command instanceof ExitCommand;
     }
-
 }

@@ -3,20 +3,23 @@ package duke.commands.tasks;
 import duke.commands.CommandResult;
 import duke.domain.Task;
 
+/**
+ * AddTaskCommand class
+ */
 public class AddTaskCommand extends BaseTaskCommand {
     private final Task task;
     private String successMessage = "This task has been successfully added!\n";
 
-    /*
+    /**
      * AddTaskCommand Constructor
      */
     public AddTaskCommand(Task task) {
         this.task = task;
     }
 
-    /*
+    /**
      * (non-Javadoc)
-     * 
+     *
      * @see duke.commands.BaseCommand#execute()
      */
     @Override

@@ -1,5 +1,8 @@
 package duke.commands;
 
+/**
+ * ErrorCommand Class
+ */
 public class ErrorCommand implements BaseCommand {
     private final String message;
 
@@ -10,5 +13,12 @@ public class ErrorCommand implements BaseCommand {
     @Override
     public CommandResult execute() {
         return new CommandResult(this.message);
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
     }
 }

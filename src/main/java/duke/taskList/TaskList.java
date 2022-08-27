@@ -19,7 +19,7 @@ public class TaskList {
 
     /**
      * Instantiates a new Task list.
-     * 
+     *
      * @param initTaskList
      *            Initial Task List
      */
@@ -30,7 +30,7 @@ public class TaskList {
 
     /**
      * Marks a task as complete.
-     * 
+     *
      * @param idx
      *            Find the task in the list
      * @return A task object
@@ -49,7 +49,7 @@ public class TaskList {
 
     /**
      * The unmarkTask function marks a task as incomplete.
-     * 
+     *
      * @param idx
      *            Find the task in the list
      * @return The task that was un-marked
@@ -68,7 +68,7 @@ public class TaskList {
 
     /**
      * The addTask function adds a new task to the list of tasks.
-     * 
+     *
      * @param newTask
      *            Pass the task object to be added to the tasklist
      */
@@ -81,7 +81,7 @@ public class TaskList {
 
     /**
      * The deleteTask function removes the task at index idx from the list of tasks.
-     * 
+     *
      * @param idx
      *            Find the task to be deleted
      * @return The task that was deleted
@@ -113,7 +113,7 @@ public class TaskList {
     /**
      * The convertTaskListToString function takes a list of tasks and converts it to
      * a string.
-     * 
+     *
      * @param tasks
      *            List of tasks
      * @return A string representation of the list of tasks
@@ -122,8 +122,7 @@ public class TaskList {
         String result = "";
         int counter = 1;
         for (Task task : tasks) {
-            result = String.format(
-                    "%s%d%s%s%s", result, counter, ":", task, "\n");
+            result = String.format("%s%d%s%s%s", result, counter, ":", task, "\n");
             counter++;
         }
         return result;
@@ -132,7 +131,7 @@ public class TaskList {
     /**
      * The outputTasksString function returns a string representation of the task
      * list.
-     * 
+     *
      * @return A string representation of the task list
      */
     public String outputTasksString() {
@@ -150,8 +149,7 @@ public class TaskList {
      */
     public String outputTasksBeforeString(LocalDateTime dateTime) {
         return convertTaskListToString(
-                this.taskList
-                        .stream()
+                this.taskList.stream()
                         .filter(task -> task.isBefore(dateTime))
                         .collect(Collectors.toList()));
     }
@@ -167,8 +165,7 @@ public class TaskList {
      */
     public String outputTasksAfterString(LocalDateTime dateTime) {
         return convertTaskListToString(
-                this.taskList
-                        .stream()
+                this.taskList.stream()
                         .filter(task -> task.isAfter(dateTime))
                         .collect(Collectors.toList()));
     }

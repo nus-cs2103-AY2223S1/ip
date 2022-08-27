@@ -19,12 +19,14 @@ import duke.exceptions.IncorrectArgumentException;
 import duke.exceptions.InvalidDateTimeException;
 import duke.exceptions.InvalidTaskSpecificationException;
 import duke.exceptions.MissingArgumentException;
+import duke.exceptions.NoCommandException;
 import duke.exceptions.UnknownCommandException;
 
 /**
  * Parser Class in charge of parsing the users' command.
  */
 public class Parser {
+
     private static final String listCommand = "list";
     private static final String markCommand = "mark";
     private static final String todoCommand = "todo";
@@ -40,10 +42,9 @@ public class Parser {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
             "dd-MM-yyyy HH:mm");
 
-    private static LocalDateTime parseInputString(String inputDateTime) throws DateTimeParseException {
-        return LocalDateTime.parse(
-                inputDateTime,
-                formatter);
+    private static LocalDateTime parseInputString(String inputDateTime)
+            throws DateTimeParseException {
+        return LocalDateTime.parse(inputDateTime, formatter);
     }
 
     /**
@@ -75,8 +76,13 @@ public class Parser {
      * @param userInput
      *            Get the user input
      */
-    public BaseCommand parse(String userInput) throws MissingArgumentException, InvalidDateTimeException,
-            InvalidTaskSpecificationException, IncorrectArgumentException, UnknownCommandException {
+    public BaseCommand parse(String userInput)
+            throws MissingArgumentException, InvalidDateTimeException, InvalidTaskSpecificationException,
+            IncorrectArgumentException, UnknownCommandException, NoCommandException {
+        if (userInput.trim().isEmpty()) {
+            throw new NoCommandException(
+                    "Please enter a command");
+        }
 
         String[] commandArgs = userInput.split(" ");
         String[] commandArgsCopy = new String[commandArgs.length - 1];
@@ -100,7 +106,6 @@ public class Parser {
                 throw new MissingArgumentException(
                         "The description of the todo cannot be empty!");
             }
-
         case deadlineCommand:
             String deadlineText = String.join(" ", commandArgsCopy);
             if (deadlineText.contains(deadlineSubCommand)) {
@@ -119,12 +124,10 @@ public class Parser {
                 throw new MissingArgumentException(
                         "Deadlines need a /by command");
             }
-
         case eventCommand:
             String eventText = String.join(" ", commandArgsCopy);
             if (eventText.contains(eventSubCommand)) {
-                String[] eventArgs = eventText.split(
-                        eventSubCommand);
+                String[] eventArgs = eventText.split(eventSubCommand);
                 String eventTitle = eventArgs[0];
                 String eventDateTime = eventArgs[1];
 
@@ -139,7 +142,6 @@ public class Parser {
                 throw new MissingArgumentException(
                         "Events need a /at command");
             }
-
         case markCommand:
             if (isNumeric(commandArgs[1])) {
                 int idx = Integer.parseInt(commandArgs[1]);
@@ -148,7 +150,6 @@ public class Parser {
                 throw new IncorrectArgumentException(
                         "Sorry the second argument is not a number");
             }
-
         case unmarkCommand:
             if (isNumeric(commandArgs[1])) {
                 int idx = Integer.parseInt(commandArgs[1]);
@@ -157,7 +158,6 @@ public class Parser {
                 throw new IncorrectArgumentException(
                         "Sorry the second argument is not a number");
             }
-
         case deleteCommand:
             if (isNumeric(commandArgs[1])) {
                 int idx = Integer.parseInt(commandArgs[1]);
@@ -166,11 +166,8 @@ public class Parser {
                 throw new IncorrectArgumentException(
                         "Sorry the second argument is not a number");
             }
-
         case listCommand:
-            String advancedListText = String.join(
-                    " ",
-                    commandArgsCopy);
+            String advancedListText = String.join(" ", commandArgsCopy);
             if (advancedListText.contains(advancedListSubCommand1)) {
                 String[] advancedListArgs = advancedListText.split(
                         advancedListSubCommand1);
@@ -186,7 +183,6 @@ public class Parser {
             } else {
                 return new ListTasksCommand();
             }
-
         default:
             throw new UnknownCommandException(
                     "Sorry I don't understand that command");

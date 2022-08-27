@@ -18,12 +18,13 @@ import duke.domain.Task;
  * Storage class in charge of storing the tasks in a text file.
  */
 public class Storage {
+
     private static final String delimiter = "@@@";
 
     /**
      * Ensures that the data file exists, then reads the data file and returns a
      * list of tasks
-     * 
+     *
      * @param filePath
      *            The path to the file where the data is stored.
      * @return A list of tasks
@@ -62,7 +63,7 @@ public class Storage {
 
     /**
      * Writes the data to the file.
-     * 
+     *
      * @param filePath
      *            The path to the file you want to write to.
      * @param tasks
@@ -89,7 +90,7 @@ public class Storage {
 
     /**
      * Creates the data file if it doesn't exist
-     * 
+     *
      * @param filePath
      *            The path to the file that will be created.
      */
@@ -105,12 +106,13 @@ public class Storage {
 
     /**
      * It creates a file at the given path
-     * 
+     *
      * @param filePath
      *            The path to the file you want to create.
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private static void createDataFile(String filePath) throws IOException, SecurityException {
+    private static void createDataFile(String filePath)
+            throws IOException, SecurityException {
         File dataFile = new File(filePath);
         dataFile.getParentFile().mkdirs();
         dataFile.createNewFile();

@@ -1,5 +1,8 @@
 package duke.commands;
 
+/**
+ * CommandResult Class
+ */
 public class CommandResult {
     private final String message;
 
@@ -10,7 +13,7 @@ public class CommandResult {
     /**
      * The getMessage function returns the message that was passed into the
      * constructor.
-     * 
+     *
      * @return The message variable
      */
     public String getMessage() {

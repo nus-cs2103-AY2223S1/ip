@@ -10,10 +10,11 @@ import duke.commands.CommandResult;
  * UI Class in charge of al things the users see
  */
 public class Ui {
+
     private static final String exitMessage = "Goodbye and have a nice day!";
     private final Scanner scanner;
 
-    /*
+    /**
      * Ui Constructor
      */
     public Ui() {
@@ -32,7 +33,8 @@ public class Ui {
                 System.out.println(sc.nextLine());
             }
             sc.close();
-        } catch (FileNotFoundException ignored) {
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
 
         System.out.println("Welcome to Aladdin Services");
@@ -47,7 +49,7 @@ public class Ui {
 
     /**
      * The getUserCommand function prompts the user for a command and returns it.
-     * 
+     *
      * @return A string
      */
     public String getUserCommand() {
@@ -57,7 +59,7 @@ public class Ui {
 
     /**
      * The showResult function prints the result of a command to the console.
-     * 
+     *
      * @param result
      *            Return the result of the command execution
      */

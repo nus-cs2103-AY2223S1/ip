@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import duke.commands.CommandResult;
 
+/**
+ * ListTasksAfterCommand class
+ */
 public class ListTasksAfterCommand extends ListTasksCommand {
     private final LocalDateTime dateTime;
     private String successMessage = "Here are your tasks:\n";
@@ -15,7 +18,7 @@ public class ListTasksAfterCommand extends ListTasksCommand {
     /**
      * The execute function prints out all the tasks that are due after a certain
      * date.
-     * 
+     *
      * @return A command result object
      */
     @Override
