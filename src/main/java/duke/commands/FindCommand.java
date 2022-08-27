@@ -2,6 +2,7 @@ package duke.commands;
 
 import java.util.ArrayList;
 
+import duke.exceptions.DukeException;
 import duke.task.Task;
 
 /**
@@ -12,14 +13,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     private static final String TASK_FORMAT = "%d: %s";
     private static final String USER_MESSAGE_FORMAT = "Here are the matching tasks in your list!\n%s";
+    private static final DukeException WRONG_FORMAT =
+        new DukeException("Wrong format for Find!\nShould be 'find <keyword>'.");
     private final String keyword;
 
     /**
      * Constructor for a delete command that takes in arguments.
      *
      * @param arguments Arguments string is the find keyword.
+     * @throws DukeException Exception due to invalid arguments.
      */
-    public FindCommand(String arguments) {
+    public FindCommand(String arguments) throws DukeException {
+        if (arguments.isEmpty()) {
+            throw WRONG_FORMAT;
+        }
         keyword = arguments;
     }
 
