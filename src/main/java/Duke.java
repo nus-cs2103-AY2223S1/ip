@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static String indent = "       ";
+    private static String indent = "        ";
     private static String divider = " ___________________________________________________________________";
     private enum taskTypes {TODO, DEADLINE, EVENT}
 
@@ -47,8 +47,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("\n Hello there! \n"
-                + "\n My name is Zelk, nice to meet you :D \n"
+        System.out.println("\n Hello there!\n"
+                + "\n My name is Zelk, nice to meet you :D\n"
                 + " What can I do for you?\n"
                 + divider);
 
@@ -110,7 +110,7 @@ public class Duke {
                         continue;
                     }
                 } else {
-                    System.out.println(indent + "I'm sorry, I'm not sure I understand what that means :( \n" + divider);
+                    System.out.println(indent + "I'm sorry, I'm not sure I understand what that means :(\n" + divider);
                     continue;
                 }
 
