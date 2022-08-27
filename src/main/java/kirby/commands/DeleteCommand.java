@@ -8,7 +8,7 @@ import kirby.exceptions.KirbyMissingArgumentException;
 public class DeleteCommand extends Command {
     private String inputString;
     public DeleteCommand(String inputString) {
-        super(inputString);
+        this.inputString = inputString;
     }
 
     @Override
