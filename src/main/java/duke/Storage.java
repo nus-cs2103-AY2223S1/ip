@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -32,30 +31,29 @@ public class Storage {
                         br.close();
                         break;
                     }
+
                     // process each line into a task
                     String[] taskArray = taskString.split("\\|");
-                    // if (taskArray.length < 3) {
-                    // continue;
-                    // }
                     String taskType = taskArray[0].strip();
                     boolean isDone = taskArray[1].strip().equals("1");
                     String description = taskArray[2].strip();
+
                     switch (taskType) {
-                        case "T":
-                            tasks.add(new Todo(isDone, description));
-                            break;
-                        case "D":
-                            String deadlineString = taskArray[3].strip();
-                            LocalDate deadline = LocalDate.parse(deadlineString,
-                                    DateTimeFormatter.ofPattern("dd MMM yy"));
-                            tasks.add(new Deadline(isDone, description, deadline));
-                            break;
-                        case "E":
-                            String eventTimeString = taskArray[3].strip();
-                            LocalDate eventTime = LocalDate.parse(eventTimeString,
-                                    DateTimeFormatter.ofPattern("dd MMM yy"));
-                            tasks.add(new Event(isDone, description, eventTime));
-                            break;
+                    case "T":
+                        tasks.add(new Todo(isDone, description));
+                        break;
+                    case "D":
+                        String deadlineString = taskArray[3].strip();
+                        LocalDate deadline = LocalDate.parse(deadlineString,
+                                DateTimeFormatter.ofPattern("dd MMM yy"));
+                        tasks.add(new Deadline(isDone, description, deadline));
+                        break;
+                    case "E":
+                        String eventTimeString = taskArray[3].strip();
+                        LocalDate eventTime = LocalDate.parse(eventTimeString,
+                                DateTimeFormatter.ofPattern("dd MMM yy"));
+                        tasks.add(new Event(isDone, description, eventTime));
+                        break;
                     }
                 } catch (IOException e) {
                     throw new DukeException(
@@ -72,6 +70,7 @@ public class Storage {
         try {
             List<Task> tasks = taskList.getTasks();
             BufferedWriter bw = new BufferedWriter(new FileWriter(FILE));
+
             for (Task task : tasks) {
                 // process each task into a line
                 String taskString = task.toDbString();
