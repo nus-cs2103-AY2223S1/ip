@@ -12,7 +12,8 @@ public class TaskList {
     private UI ui;
     private Storage storage;
 
-    /** Constructor that takes a UI and Storage objects
+    /**
+     * Constructor that takes a UI and Storage objects
      *
      * @param ui UI to display message.
      * @param storage Storage to store tasks.

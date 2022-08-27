@@ -1,6 +1,7 @@
 package ploopy;
 
-/** Interacts with the user between commands
+/**
+ * Interacts with the user between commands
  *
  */
 public class UI {
@@ -116,16 +117,17 @@ public class UI {
      */
     public void exceptionMessage(String type) {
         switch (type) {
-            case "nonsense":
-                System.out.println(messageFormatter(NONSENSE_INPUT_MESSAGE));
-                break;
-            case "blank":
-                System.out.println(messageFormatter(NO_INPUT_MESSAGE));
-                break;
-            case "IO":
-                System.out.println(messageFormatter(IO_ERROR));
-            default:
-                System.out.println(messageFormatter(EMPTY_COMMAND_MESSAGE + type));
+        case "nonsense":
+            System.out.println(messageFormatter(NONSENSE_INPUT_MESSAGE));
+            break;
+        case "blank":
+            System.out.println(messageFormatter(NO_INPUT_MESSAGE));
+            break;
+        case "IO":
+            System.out.println(messageFormatter(IO_ERROR));
+            break;
+        default:
+            System.out.println(messageFormatter(EMPTY_COMMAND_MESSAGE + type));
         }
     }
 

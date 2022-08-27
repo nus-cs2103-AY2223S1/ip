@@ -6,13 +6,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Creates, loads from, writes to file to store
+ * tasks so the user may preserve data in their hard drive.
+ */
 public class Storage {
     private static final String FOLDER_PATH = "./data/";
     private static final String FILE_NAME = "PloopyDatabase.txt";
     private static final String FILE_PATH = FOLDER_PATH + FILE_NAME;
-    private static File folder, file;
+    private static File folder;
+    private static File file;
     private UI ui;
 
+    /**
+     * Constructor that takes in a UI object
+     *
+     * @param ui UI object used to interact with user.
+     * @throws PloopyException If a file storage error occurs.
+     */
     public Storage(UI ui) throws PloopyException {
         folder = new File(FOLDER_PATH);
         file = new File(FILE_PATH);
