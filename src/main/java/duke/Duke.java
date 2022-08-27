@@ -8,9 +8,9 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasklist;
-    private Ui ui;
+    private final Ui ui;
 
     // Constructor
     public Duke(String filePath) {
