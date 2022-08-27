@@ -28,6 +28,8 @@ public class Parser {
             taskList.addTask(input);
         } else if (input.toLowerCase().startsWith("delete")) {
             taskList.deleteTask(input);
+        } else if (input.toLowerCase().startsWith("find")) {
+            taskList.searchTask(input);
         } else {
             SakuraException.genericTask();
         }
