@@ -1,6 +1,6 @@
-public class Task {
-    protected String description;
-    protected boolean isDone;
+abstract class Task {
+    private String description;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -22,9 +22,5 @@ public class Task {
     @Override
     public String toString() {
         return this.getStatusIcon() + " " + this.description;
-    }
-
-    public String toFileString() {
-        return "? | " + (this.isDone ? 1 : 0) + " | " + this.description;
     }
 }
