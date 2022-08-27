@@ -1,4 +1,4 @@
-package duke.exception;
+package ava.exception;
 
 /**
  * Class to represent Duke.Exception.NoTimeException.

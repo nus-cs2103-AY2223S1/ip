@@ -1,11 +1,11 @@
-package duke.task;
+package ava.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.Ui;
-import duke.processor.Storage;
-import duke.processor.TaskList;
+import ava.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
 
 /**
  * Class to represent "Deadline" tasks.
@@ -27,7 +27,7 @@ public class Deadline extends Task {
     /**
      * Marks done a Deadline task.
      *
-     * @return Duke.Task.Deadline object.
+     * @return Deadline object.
      */
     @Override
     public Deadline markDone() {
@@ -38,7 +38,7 @@ public class Deadline extends Task {
     /**
      * Marks undone a Deadline task.
      *
-     * @return Duke.Task.Deadline object.
+     * @return Deadline object.
      */
     @Override
     public Deadline markUndone() {

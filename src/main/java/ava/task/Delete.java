@@ -1,8 +1,8 @@
-package duke.task;
+package ava.task;
 
-import duke.processor.Storage;
-import duke.processor.TaskList;
-import duke.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
+import ava.Ui;
 
 /**
  * Class to represent "Delete" tasks.

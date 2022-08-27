@@ -1,8 +1,8 @@
-package duke.task;
+package ava.task;
 
-import duke.Ui;
-import duke.processor.Storage;
-import duke.processor.TaskList;
+import ava.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
 
 /**
  * Abstract class to represent the tasks.
@@ -36,7 +36,7 @@ public abstract class Task {
     /**
      * Marks done a task.
      *
-     * @return Duke.Task.Task object.
+     * @return Task object.
      */
     public Task markDone() {
         this.isDone = true;
@@ -46,7 +46,7 @@ public abstract class Task {
     /**
      * Marks undone a task.
      *
-     * @return Duke.Task.Task object.
+     * @return Task object.
      */
     public Task markUndone() {
         this.isDone = false;

@@ -1,4 +1,4 @@
-package duke.processor;
+package ava.processor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,10 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import ava.task.Deadline;
+import ava.task.Event;
+import ava.task.Task;
+import ava.task.Todo;
 
 
 /**
@@ -58,8 +58,8 @@ public class Storage {
         } catch (FileNotFoundException e) {
             if (new File("data").mkdir()) {
                 System.out.println("Folder does not exist");
-            } else if (new File("data/duke.txt").createNewFile()) {
-                System.out.println("I cannot find the file duke.txt");
+            } else if (new File("data/ava.txt").createNewFile()) {
+                System.out.println("I cannot find the file ava.txt");
             }
         }
         return tasks;

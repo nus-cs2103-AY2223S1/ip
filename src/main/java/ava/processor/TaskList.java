@@ -1,8 +1,8 @@
-package duke.processor;
+package ava.processor;
 
 import java.util.ArrayList;
 
-import duke.task.Task;
+import ava.task.Task;
 
 /**
  * Class to represent the tasks lists.
@@ -39,7 +39,7 @@ public class TaskList {
      * Deletes a specific tasks from the TaskList.
      *
      * @param i Specific tasks's index number.
-     * @return Duke.Task.Task taskDeleted.
+     * @return Task taskDeleted.
      */
     public Task delete(int i) {
         return tasks.remove(i);
@@ -76,7 +76,7 @@ public class TaskList {
      * Returns a specific tasks from the TaskList.
      *
      * @param i Specific tasks's index number.
-     * @return Duke.Task.Task object.
+     * @return Task object.
      */
     public Task get(int i) {
         return tasks.get(i);

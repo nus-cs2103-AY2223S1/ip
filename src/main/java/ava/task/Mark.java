@@ -1,8 +1,8 @@
-package duke.task;
+package ava.task;
 
-import duke.Ui;
-import duke.processor.Storage;
-import duke.processor.TaskList;
+import ava.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
 
 /**
  * Class to represent "Mark" tasks.

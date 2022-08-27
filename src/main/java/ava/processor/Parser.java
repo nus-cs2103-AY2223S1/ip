@@ -1,23 +1,23 @@
-package duke.processor;
+package ava.processor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.Ui;
-import duke.exception.NoCommandException;
-import duke.exception.NoDescriptionException;
-import duke.exception.NoTimeException;
-import duke.exception.WrongTimeFormatException;
-import duke.task.Bye;
-import duke.task.Deadline;
-import duke.task.Delete;
-import duke.task.Event;
-import duke.task.Find;
-import duke.task.List;
-import duke.task.Mark;
-import duke.task.Task;
-import duke.task.Todo;
-import duke.task.Unmark;
+import ava.Ui;
+import ava.exception.NoCommandException;
+import ava.exception.NoDescriptionException;
+import ava.exception.NoTimeException;
+import ava.exception.WrongTimeFormatException;
+import ava.task.Bye;
+import ava.task.Deadline;
+import ava.task.Delete;
+import ava.task.Event;
+import ava.task.Find;
+import ava.task.List;
+import ava.task.Mark;
+import ava.task.Task;
+import ava.task.Todo;
+import ava.task.Unmark;
 
 /**
  * Class to represent a parser.
@@ -35,7 +35,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Task object.
+     * @return Task object.
      * @throws NoDescriptionException If there are no description.
      * @throws NoCommandException If there are no commands.
      */
@@ -49,7 +49,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Task object.
+     * @return Task object.
      * @throws NoDescriptionException If there are no description.
      * @throws NoCommandException If there are no commands.
      */
@@ -63,7 +63,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Task object.
+     * @return Task object.
      * @throws NoDescriptionException If there are no description.
      * @throws NoCommandException If there are no commands.
      */
@@ -128,7 +128,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Task object
+     * @return Task object
      * @throws NoDescriptionException If there are no description.
      * @throws NoCommandException If there are no commands.
      */
@@ -136,7 +136,7 @@ public class Parser {
 
         int order = tasklist.size();
         if (chat.split(" ").length == 1) {
-            throw new NoDescriptionException("Duke.Task.Delete");
+            throw new NoDescriptionException("Delete");
         } else {
             int num = Integer.parseInt(chat.split(" ")[1]) - 1;
             return new Delete(num);
@@ -148,7 +148,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Find object
+     * @return Find object
      * @throws NoDescriptionException If there are no description.
      */
     public static Find find(String chat, TaskList tasklist) throws NoDescriptionException {
@@ -164,7 +164,7 @@ public class Parser {
      *
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
-     * @return Duke.Task.Task object.
+     * @return Task object.
      * @throws NoCommandException If there are no commands.
      */
     public static Task parse(String chat, TaskList tasklist) throws NoCommandException {

@@ -1,7 +1,7 @@
-package duke;
+package ava;
 
-import duke.processor.TaskList;
-import duke.task.Task;
+import ava.processor.TaskList;
+import ava.task.Task;
 
 /**
  * Class to represent the user interfaces.
@@ -15,8 +15,8 @@ public class Ui {
      */
     public void printGreetings() {
         System.out.println(INDENTATION + UNDERLINE);
-        System.out.println(INDENTATION + "Hello! I'm Duke\n"
-                + INDENTATION + "What can I do for you?");
+        System.out.println(INDENTATION + "Hello! I'm Ava\n"
+                + INDENTATION + "What do you want to do?");
         System.out.println(INDENTATION + UNDERLINE);
     }
 
@@ -25,7 +25,7 @@ public class Ui {
      */
     public void exit() {
         System.out.println(INDENTATION + UNDERLINE);
-        System.out.println(INDENTATION + "Bye! Hope to see you again soon!");
+        System.out.println(INDENTATION + "Bye! Good luck on your tasks!");
         System.out.println(INDENTATION + UNDERLINE);
     }
 
@@ -65,7 +65,7 @@ public class Ui {
      */
     public void showDoneTask(TaskList tasks, int num) {
         System.out.println(INDENTATION + UNDERLINE);
-        System.out.println(INDENTATION + "Nice! I've marked this task as done:");
+        System.out.println(INDENTATION + "Nice job! I've marked this task as done:");
         System.out.println(INDENTATION + tasks.get(num));
         System.out.println(INDENTATION + UNDERLINE);
     }
@@ -78,7 +78,7 @@ public class Ui {
      */
     public void showUndoneTask(TaskList tasks, int num) {
         System.out.println(INDENTATION + UNDERLINE);
-        System.out.println(INDENTATION + "OK, I've marked this task as not done yet:");
+        System.out.println(INDENTATION + "It's OK, I've marked this task as not done yet:");
         System.out.println(INDENTATION + tasks.get(num));
         System.out.println(INDENTATION + UNDERLINE);
     }
@@ -94,6 +94,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println(INDENTATION + (i + 1) + "." + INDENTATION + tasks.get(i));
         }
+        System.out.println(INDENTATION + "Jiayous!");
         System.out.println(INDENTATION + UNDERLINE);
     }
 

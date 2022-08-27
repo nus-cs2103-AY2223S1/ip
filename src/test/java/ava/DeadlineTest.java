@@ -1,6 +1,6 @@
-package duke;
+package ava;
 
-import duke.task.Deadline;
+import ava.task.Deadline;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

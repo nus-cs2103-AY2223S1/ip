@@ -1,8 +1,8 @@
-package duke.task;
+package ava.task;
 
-import duke.Ui;
-import duke.processor.Storage;
-import duke.processor.TaskList;
+import ava.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
 
 /**
  * Class to represent "Todo" tasks.
@@ -21,7 +21,7 @@ public class Todo extends Task {
     /**
      * Marks done a Todo task.
      *
-     * @return Duke.Task.Todo object.
+     * @return Todo object.
      */
     @Override
     public Todo markDone() {
@@ -32,7 +32,7 @@ public class Todo extends Task {
     /**
      * Marks undone a Todo task.
      *
-     * @return Duke.Task.Todo object.
+     * @return Todo object.
      */
     @Override
     public Todo markUndone() {

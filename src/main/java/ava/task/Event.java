@@ -1,11 +1,11 @@
-package duke.task;
+package ava.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.Ui;
-import duke.processor.Storage;
-import duke.processor.TaskList;
+import ava.Ui;
+import ava.processor.Storage;
+import ava.processor.TaskList;
 
 /**
  * Class to represent "Events" tasks.
@@ -27,7 +27,7 @@ public class Event extends Task {
     /**
      * Marks done an Event task.
      *
-     * @return Duke.Task.Event object.
+     * @return Event object.
      */
     @Override
     public Event markDone() {
@@ -38,7 +38,7 @@ public class Event extends Task {
     /**
      * Marks undone an Event task.
      *
-     * @return Duke.Task.Event object.
+     * @return Event object.
      */
     @Override
     public Event markUndone() {
