@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -98,10 +99,10 @@ public class Duke {
         if (deadLine.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         } else {
-            String[] aStr = deadLine.split("/by", 2);
+            String[] aStr = deadLine.split("/by ", 2);
             String desc = aStr[0];
             String by = aStr[1];
-            Deadline d = new Deadline(desc, by);
+            Deadline d = new Deadline(desc, LocalDate.parse(by));
             list.add(d);
             size += 1;
             System.out.println("Got it. I've added this task:");
@@ -121,10 +122,10 @@ public class Duke {
         if (event.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         } else {
-            String[] aStr = event.split("/at", 2);
+            String[] aStr = event.split("/at ", 2);
             String desc = aStr[0];
             String by = aStr[1];
-            Event e = new Event(desc, by);
+            Event e = new Event(desc, LocalDate.parse(by));
             list.add(e);
             size += 1;
             System.out.println("Got it. I've added this task:");
