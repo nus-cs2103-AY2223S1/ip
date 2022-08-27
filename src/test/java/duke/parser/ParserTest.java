@@ -23,6 +23,12 @@ public class ParserTest {
         parser = new Parser();
     }
 
+    /**
+     * The parse_emptyInput_returnsIncorrect function tests that the parse function
+     * returns an ErrorCommand when given empty inputs.
+     * 
+     * @return The following
+     */
     @Test
     public void parse_emptyInput_returnsIncorrect() {
         final String[] emptyInputs = { "", "  ", "\n  \n" };
@@ -31,6 +37,13 @@ public class ParserTest {
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
     }
 
+    /**
+     * The parse_unknownCommandWord_returnsError function tests that the parse
+     * function returns an ErrorCommand
+     * when given a string containing an unknown command word.
+     *
+     * @return An errorcommand
+     */
     @Test
     public void parse_unknownCommandWord_returnsError() {
         final String input = "unknown command";
@@ -38,6 +51,19 @@ public class ParserTest {
                 input, ErrorCommand.class);
     }
 
+    /**
+     * The parseAndAssertIncorrectWithMessage function is a helper function that
+     * parses the given input and asserts that it is an ErrorCommand with the
+     * expected feedback message. The inputs are passed as varargs, so this function
+     * can be used to test multiple inputs at once. This is useful for testing error
+     * messages.
+     *
+     * @param feedbackMessage
+     *            Provide feedback to the user
+     * @param String...
+     *            Pass an array of strings to the function
+     * @return An errorcommand
+     */
     private void parseAndAssertIncorrectWithMessage(
             String feedbackMessage, String... inputs) {
         for (String input : inputs) {
@@ -47,6 +73,20 @@ public class ParserTest {
         }
     }
 
+    /**
+     * The parseAndAssertCommandType function takes a string input and an expected
+     * command class.
+     * It parses the input using the parser, and asserts that the resulting command
+     * is of type
+     * expectedCommandClass. If it is not, then it throws an AssertionError with a
+     * helpful message.
+     *
+     * @param input
+     *            Pass the input string to be parsed
+     * @param Class&lt;T&gt;
+     *            Ensure that the result is of type t
+     * @return A basecommand object
+     */
     private <T extends BaseCommand> T parseAndAssertCommandType(
             String input, Class<T> expectedCommandClass) {
         BaseCommand result;
