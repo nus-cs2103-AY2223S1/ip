@@ -3,7 +3,7 @@ public class Event extends Task {
 
     private static final String EVENT_LETTER = "E";
 
-    // Event is of the form at: dateAndTime
+    // Event is of the form "event description /at dateAndTime"
     protected final String dateAndTime;
 
 
