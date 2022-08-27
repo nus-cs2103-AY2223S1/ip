@@ -46,8 +46,10 @@ public class TextUi {
         showDivider();
     }
 
-    public void showWithCurrentColour(String message) {
-        out.println(ansi().fg(currentColour).a(message).reset());
+    public void showWithCurrentColour(String... messages) {
+        for (String s : messages) {
+            out.println(ansi().fg(currentColour).a(s).reset());
+        }
     }
 
     public void showWithColour(String inputColour, String message) {
