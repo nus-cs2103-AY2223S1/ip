@@ -1,18 +1,18 @@
 package ip.task;
 
-import java.util.Scanner;
+import ip.exception.MissingDescription;
 
-import ip.exception.NoDescription;
+import java.util.Scanner;
 
 public class ToDo extends Task {
     
-    public ToDo(Scanner options) throws NoDescription {
+    public ToDo(Scanner options) throws MissingDescription {
         if (options.hasNext()) {
             String description = options.nextLine().substring(1);
             super.describe(description);
             System.out.println("CREATED TASK: " + description);
         } else {
-            throw new NoDescription();
+            throw new MissingDescription();
         }
     }
 
