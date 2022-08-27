@@ -62,4 +62,22 @@ public class TaskList {
         }
         return sb.toString();
     }
+
+    /**
+     * Finds all matching tasks containing a specific string.
+     *
+     * @param toFind the string to find
+     * @return the print format of all the tasks found
+     */
+    public String[] find(String toFind) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            if (curr.description.contains(toFind)) {
+                res.append(curr.toStringWithIndex(i + 1)).append("\n");
+            }
+        }
+        return new String[] {"Here are the matching tasks in your list:",
+                res.toString()};
+    }
 }
