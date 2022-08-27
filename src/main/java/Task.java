@@ -10,9 +10,9 @@ public abstract class Task {
             case " T ":
                 return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
             case " E ":
-                return new Event(taskSplit[2].trim(), Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
+                return new Event(taskSplit[2].trim(), Parser.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             case " D ":
-                return new Deadline(taskSplit[2].trim(), Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
+                return new Deadline(taskSplit[2].trim(), Parser.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             default:
                 return null;
         }

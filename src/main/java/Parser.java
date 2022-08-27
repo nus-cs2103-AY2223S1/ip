@@ -1,7 +1,10 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
-public class Utility {
+public class Parser {
 
     public static LocalDateTime dateParser(String dateTime) {
         String[] splitDateTime = dateTime.trim().split(" ");
@@ -22,4 +25,15 @@ public class Utility {
         return dt.format(formatter);
     }
 
+    public static void listToFile(ArrayList<Task> tasklist) {
+        try {
+            FileWriter fw = new FileWriter("./data/dukedata.txt");
+            for (Task t : tasklist) {
+                fw.write(t.taskToFileString() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
