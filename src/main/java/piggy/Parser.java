@@ -5,7 +5,18 @@ import piggy.task.Event;
 import piggy.task.Task;
 import piggy.task.Todo;
 
+/**
+ * Class that contains methods to help with parsing user commands.
+ */
 class Parser {
+    /**
+     * Parses a given command and prints the appropriate responses.
+     *
+     * @param command The command to parse.
+     * @param ui The ui to use for displaying the responses.
+     * @param taskList A list of existing tasks.
+     * @return true if the command is to exit, false otherwise.
+     */
     static boolean parse(String command, Ui ui, TaskList taskList) {
         if (command.equals("list")) {
             ui.showTaskList(taskList);
