@@ -18,15 +18,33 @@ import duke.task.Task;
 public class UnmarkCommand extends Command {
     private int index;
 
+    /**
+     * Instantiates the unmark command to be executed
+     *
+     * @param index Index of the task in the list to be unmarked.
+     */
     public UnmarkCommand(int index) {
         this.index = index;
     }
 
+    /**
+     * Returns whether command is an ExitCommand.
+     *
+     * @return Whether the command will cause the Duke program to exit.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Executes the command by unmarking the task.
+     *
+     * @param taskList List of tasks being operated on.
+     * @param ui UI that prints corresponding responses.
+     * @param storage Storage for saving purposes if applicable.
+     * @throws DukeException If the input index is invalid.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();

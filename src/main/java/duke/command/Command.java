@@ -15,9 +15,22 @@ import duke.Ui;
  * @author Perry Wong
  */
 public abstract class Command {
-
+    /**
+     * Returns whether command is an ExitCommand.
+     *
+     * @return Whether the command will cause the Duke program to exit.
+     */
     public abstract boolean isExit();
 
+    /**
+     * Executes the command.
+     *
+     * @param taskList List of tasks being operated on.
+     * @param ui UI that prints corresponding responses.
+     * @param storage Storage for saving purposes if applicable.
+     * @throws DukeException If the input task or index is invalid.
+     * @throws IOException If there is an issue with saving the list to Storage.
+     */
     public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException;
 
 }

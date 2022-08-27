@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -12,11 +13,23 @@ import duke.Ui;
  * @author Perry Wong
  */
 public class ShowListCommand extends Command {
+    /**
+     * Returns whether command is an ExitCommand.
+     *
+     * @return Whether the command will cause the Duke program to exit.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Executes the command by printing the list of tasks.
+     *
+     * @param taskList List of tasks being operated on.
+     * @param ui UI that prints corresponding responses.
+     * @param storage Storage for saving purposes if applicable.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.printList();
