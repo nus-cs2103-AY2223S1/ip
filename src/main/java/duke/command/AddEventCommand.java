@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.util.Arrays;
 
 /**
  * Represents an add Event Task command. An AddEventCommand object contains the index of the /at command,

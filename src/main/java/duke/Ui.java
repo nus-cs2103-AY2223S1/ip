@@ -1,9 +1,9 @@
 package duke;
 
-import duke.task.Task;
-
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Represents a Ui to handle user interactions. A Ui object contains a scanner to read in user inputs.
@@ -41,7 +41,7 @@ public class Ui {
      *
      * @throws DukeException Exception thrown to indicate that /at was not included in the command.
      */
-    public void printEventErrorMessage() throws DukeException{
+    public void printEventErrorMessage() throws DukeException {
         throw new DukeException("Oops! Remember to include /at and the event time after your task description");
     }
 

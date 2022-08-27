@@ -1,12 +1,12 @@
 package duke;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Represents a task list to handle task related functionalities. A TaskList object contains an ArrayList of the
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    /** List of all the tasks */;
+    /** List of all the tasks */
     private ArrayList<Task> data;
 
     /**
@@ -109,7 +109,7 @@ public class TaskList {
         for (Task task : data) {
             if (!task.getTaskType().equals("T")) {
                 if (task.getTaskType().equals("E")) {
-                    if (LocalDate.parse(((Event)task).getAt().split(" ")[0]).equals(date)) {
+                    if (LocalDate.parse(((Event) task).getAt().split(" ")[0]).equals(date)) {
                         System.out.println(task);
                     }
                 } else if (task.getTaskType().equals("D")) {

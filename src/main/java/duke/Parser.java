@@ -1,5 +1,9 @@
 package duke;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+
 import duke.command.AddDeadLineCommand;
 import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
@@ -11,16 +15,12 @@ import duke.command.ListCommand;
 import duke.command.MarkItemCommand;
 import duke.command.UnMarkItemCommand;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Represents a Parser to parse user inputs.
  */
 public class Parser {
     /** ArrayList of unknown commands */
-    private static List<String> UNKNOWN_COMMANDS = Arrays.asList("todo", "deadline", "event");
+    private static final List<String> UNKNOWN_COMMANDS = Arrays.asList("todo", "deadline", "event");
 
     /**
      * Parses the user inputs.
@@ -60,6 +60,8 @@ public class Parser {
                 return new AddDeadLineCommand(inputs);
             case "event":
                 return new AddEventCommand(inputs);
+            default:
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

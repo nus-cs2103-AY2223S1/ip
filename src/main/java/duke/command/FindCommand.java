@@ -10,7 +10,7 @@ import duke.Ui;
 public class FindCommand extends Command {
 
     /** keyword to search for */
-    String keyword;
+    private String keyword;
 
     /**
      * Creates a FindCommand object.

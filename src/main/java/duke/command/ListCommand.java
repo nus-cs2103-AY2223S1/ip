@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Represents a List command. A ListCommand object contains a boolean indicating if a date is provided and the
