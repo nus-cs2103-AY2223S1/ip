@@ -134,8 +134,8 @@ public class Ui {
      * @return A newly created duke.Tasks.Deadline class for storage.
      */
     public static Deadline syncDeadline(String str, boolean isDone) throws DateTimeFormatException {
-        String name = str.split(" \\| ",2)[0];
-        String by = str.split(" \\| ",2)[1];
+        String name = str.split(" \\| ", 2)[0];
+        String by = str.split(" \\| ", 2)[1];
 
         Deadline task = Deadline.addTask(name, by);
         if (isDone) {
@@ -151,8 +151,8 @@ public class Ui {
      * @return A newly created duke.Tasks.Event class for storage.
      */
     public static Event syncEvent(String str, boolean isDone) throws DateTimeFormatException {
-        String name = str.split(" \\| ",2)[0];
-        String at = str.split(" \\| ",2)[1];
+        String name = str.split(" \\| ", 2)[0];
+        String at = str.split(" \\| ", 2)[1];
 
         Event task = Event.addTask(name, at);
         if (isDone) {
@@ -175,6 +175,13 @@ public class Ui {
         return task;
     }
 
+    /**
+     * Loads previous cache file contents and adds to current task list.
+     * @param file The duke.txt in .\data\ folder
+     * @return The synced task list.
+     * @throws DukeException
+     * @throws FileNotFoundException
+     */
     public static TaskList loading(File file) throws DukeException, FileNotFoundException {
         printLine();
         System.out.println("     :) Heyyo!!! Some saved work found in: "

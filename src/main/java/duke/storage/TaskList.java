@@ -1,8 +1,8 @@
 package duke.storage;
 
-import duke.tasks.Task;
-
 import java.util.ArrayList;
+
+import duke.tasks.Task;
 
 public class TaskList {
     private ArrayList<Task> taskList;
@@ -10,7 +10,7 @@ public class TaskList {
     /**
      * Default constructor which generates an empty list for storage.
      */
-    public TaskList () {
+    public TaskList() {
         taskList = new ArrayList<Task>();
     }
 
@@ -18,7 +18,7 @@ public class TaskList {
      * Constructs a taskList using previous cache.
      * @param list The list of tasks retrieved from cache.
      */
-    public TaskList (ArrayList<Task> list) {
+    public TaskList(ArrayList<Task> list) {
         taskList = list;
     }
 
