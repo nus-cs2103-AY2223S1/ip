@@ -13,9 +13,9 @@ import duke.task.TaskList;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    private String query;
-    public FindCommand(String query) {
-        this.query = query;
+    private String[] queries;
+    public FindCommand(String ... queries) {
+        this.queries = queries;
     }
 
     /**
@@ -27,7 +27,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
-        ArrayList<Task> foundTasks = list.findTasks(query);
+        ArrayList<Task> foundTasks = list.findTasks(queries);
         ui.printFoundTasks(foundTasks);
     }
 }
