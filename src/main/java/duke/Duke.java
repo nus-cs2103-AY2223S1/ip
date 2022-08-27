@@ -1,12 +1,6 @@
 package duke;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -17,7 +11,6 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-
     private Parser parser;
 
     /**

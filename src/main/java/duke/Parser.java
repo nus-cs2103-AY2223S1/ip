@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Parser {
 
     private TaskList taskList;
-
     private Storage storage;
 
     /**
