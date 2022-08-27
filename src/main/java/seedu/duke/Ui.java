@@ -1,6 +1,10 @@
 package seedu.duke;
 import java.util.ArrayList;
 
+/**
+ * Represents the User Interface, responsible for interacting with the user
+ */
+
 public class Ui {
 
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
@@ -9,24 +13,45 @@ public class Ui {
 
     private boolean isActive;
 
+    /**
+     * Displays the start message
+     */
     public void start() {
         this.isActive = true;
         this.msg(start);
     }
 
+    /**
+     * Displays the end message
+     */
     public void end() {
         this.isActive = false;
         this.msg(end);
     }
 
+    /**
+     * Returns the status of the Ui
+     *
+     * @return status of the Ui.
+     */
     public boolean isActive() {
         return this.isActive;
     }
 
+    /**
+     * Displays a message
+     *
+     * @param s String to be displayed
+     */
     public void msg(String s) {
         System.out.println(breaker + s + "\n" + breaker);
     }
 
+    /**
+     * Displays the Tasks in a given TaskList
+     *
+     * @param taskL TaskList containing Tasks
+     */
     public void displayList(TaskList taskL) {
         String result = "";
         ArrayList<Task> l = taskL.getTasks();

@@ -28,4 +28,12 @@ public class TaskListTest {
         taskL.add(new Task("Dinner Party", "event", LocalDate.parse("2013-12-23")));
         assertEquals(taskL.get(1).toString(), "[E][ ] Dinner Party(at Dec 23 2013)");
     }
+
+    @Test
+    public void Test4(){
+        TaskList taskL = new TaskList();
+        taskL.add(new Task("Dinner Party", "event", LocalDate.parse("2013-12-23")));
+        taskL.delete(1);
+        assertEquals(taskL.size(), 0);
+    }
 }

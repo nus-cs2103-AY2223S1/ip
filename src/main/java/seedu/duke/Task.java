@@ -3,6 +3,9 @@ package seedu.duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Task
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -10,6 +13,9 @@ public class Task {
     protected Type type;
     protected LocalDate date;
 
+    /**
+     * Instantiates a new Task object
+     */
     public Task(String description, String type, LocalDate date) {
         this.description = description;
         this.isDone = false;
@@ -25,6 +31,9 @@ public class Task {
         }
     }
 
+    /**
+     * Instantiates a new Task object
+     */
     public Task(String data) {
         String[] temp = data.split("\\|"); //0:type 1:description 2:status 3:date (optional)
         this.description = temp[1];
@@ -47,14 +56,27 @@ public class Task {
         }
     }
 
+    /**
+     * Sets the status icon of this Task
+     */
     public void setStatusIcon(boolean b) {
         this.isDone = b;
     }
 
+    /**
+     * Returns the status icon of this Task
+     *
+     * @return the status icon of this Task
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns the short form of the type of this Task
+     *
+     * @return the short form of the type of this Task
+     */
     public String getType() {
         switch (this.type) {
             case TODO:
@@ -67,6 +89,11 @@ public class Task {
         return "";
     }
 
+    /**
+     * Returns the long form of the type of this Task
+     *
+     * @return the long form of the type of this Task
+     */
     public String getTypeLong() {
         switch (this.type) {
             case TODO:
@@ -79,6 +106,11 @@ public class Task {
         return "";
     }
 
+    /**
+     * Returns the status of this Task
+     *
+     * @return the status of this Task
+     */
     public String getStatus() {
         if (this.isDone) {
             return "1";
@@ -86,6 +118,11 @@ public class Task {
         return "0";
     }
 
+    /**
+     * Returns the String object representing this Task
+     *
+     * @return the String object representing this Task
+     */
     public String toString() {
         switch (this.type) {
             case TODO:
@@ -100,6 +137,11 @@ public class Task {
         return "";
     }
 
+    /**
+     * Returns the String object to be stored as data representing this Task
+     *
+     * @return the String object to be stored as data representing this Task
+     */
     public String getData() {
         switch (this.type) {
             case TODO:

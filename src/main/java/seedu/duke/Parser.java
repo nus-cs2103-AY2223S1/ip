@@ -3,12 +3,18 @@ package seedu.duke;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Represents a Parser, makes sense of user input
+ */
 public class Parser {
 
     private TaskList taskL;
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Instantiates a new Parser object
+     */
     public Parser(TaskList taskL, Ui ui, Storage storage) {
         this.taskL = taskL;
         this.ui = ui;
@@ -48,7 +54,7 @@ public class Parser {
 
         } else if (checkCommand(text, 6)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
-            this.ui.msg("Noted. I've removed this task:\n\t" + this.taskL.get(i - 1)
+            this.ui.msg("Noted. I've removed this task:\n\t" + this.taskL.get(i)
                     + "\nNow you have " + (this.taskL.size() - 1) + " tasks in the list.");
             this.taskL.delete(i);
 

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Duke {
 
-    private static String dataFilePath = "src/main/Duke.txt";
+    private static String dataFilePath = "./Duke.txt";
 
     private Storage storage;
     private TaskList taskL;

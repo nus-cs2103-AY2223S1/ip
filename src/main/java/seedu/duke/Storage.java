@@ -7,13 +7,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a storage, stores and read data from given file location
+ */
 public class Storage {
     protected String dataFileName;
 
+    /**
+     * Instantiates a new Storage object
+     */
     public Storage(String filePath) {
         this.dataFileName = filePath;
     }
 
+    /**
+     * Writes the contents of a given TaskList to a specified file
+     *
+     * @param taskL the TaskList containing Task to be written to file
+     */
     public void writeToFile(TaskList taskL) throws IOException {
         //structure: command|1 (1 for mark, 0 for unmark)
         ArrayList<Task> arr = taskL.getTasks();
@@ -24,6 +35,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Loads the contents of a given TaskList from a specified file
+     *
+     * @param taskL the TaskList to contain Tasks loaded from a specified file
+     */
     public void loadFromFile(TaskList taskL) {
         try {
 
