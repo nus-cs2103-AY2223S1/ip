@@ -25,7 +25,7 @@ public class Parser {
      * @param input User input.
      * @param ui Ui for display.
      * @return Command for program to execute.
-     * @throws DukeException
+     * @throws DukeException Exception to be thrown
      */
     public Command parse(TaskList taskList, String input, Ui ui) throws DukeException {
         input = input.toLowerCase();
@@ -35,7 +35,7 @@ public class Parser {
             return new ListCommand();
         } else {
             String[] subStrs = input.split(" ", 2); // to identify the keyword used
-            Integer index;
+            int index;
             Task temp;
             switch (subStrs[0]) {
             case "mark":
