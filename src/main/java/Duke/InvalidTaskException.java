@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class InvalidTaskException extends Exception {
     public InvalidTaskException(String message) {

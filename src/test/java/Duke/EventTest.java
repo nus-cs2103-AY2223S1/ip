@@ -1,4 +1,4 @@
-import Duke.Event;
+import duke.Event;
 
 import org.junit.jupiter.api.Test;
 

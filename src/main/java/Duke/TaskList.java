@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class TaskList {
     private ArrayList<Task> list;
 
     public TaskList() {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<Task>(100);
     }
 
     public int size() {
@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     public void deleteTask(int index, Ui ui) throws IllegalIndexException {
-        if (index <= 0 || index >= list.size()) {
+        if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
             ui.deleteResponse(this, index);
@@ -37,7 +37,7 @@ public class TaskList {
 
     public void mark (int index, Ui ui) throws IllegalIndexException {
         //  error checking
-        if (index <= 0 || index >= list.size()) {
+        if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
             list.get(index).setDone();
@@ -47,7 +47,7 @@ public class TaskList {
 
     public void unmark(int index, Ui ui) throws IllegalIndexException {
         //  error checking
-        if (index <= 0 || index >= list.size()) {
+        if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
             list.get(index).setNotDone();

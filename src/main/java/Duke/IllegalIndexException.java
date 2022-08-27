@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class IllegalIndexException extends Exception {
     public IllegalIndexException(String message) {

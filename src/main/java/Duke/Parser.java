@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Parser {
     public static void parse(TaskList tasklist, Ui ui, Storage storage) {
@@ -82,6 +82,8 @@ public class Parser {
                 if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
                     String remainder = input.substring(7);
                     int index = Integer.valueOf(remainder) - 1;
+                    System.out.println("you reached here");
+                    System.out.println("int is" + index);
                     tasklist.deleteTask(index, ui);
                     storage.updateStorage(tasklist);
                     continue;

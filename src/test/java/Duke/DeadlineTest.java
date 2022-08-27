@@ -1,4 +1,4 @@
-import Duke.Deadline;
+import duke.Deadline;
 
 import org.junit.jupiter.api.Test;
 

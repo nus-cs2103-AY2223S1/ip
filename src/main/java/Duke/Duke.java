@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +34,6 @@ public class Duke {
         Parser.parse(tasklist, ui, storage);
     }
 
-    // Methods End
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }
