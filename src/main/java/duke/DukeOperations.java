@@ -46,6 +46,8 @@ public class DukeOperations {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(array.get(number-1).toString());
         System.out.println("_________________________________________________________________________");
+        Storage.clearFile();
+        Storage.writeToFile(array,array.size());
     }
 
     /**
@@ -60,6 +62,8 @@ public class DukeOperations {
          System.out.println("OK, I've marked this task as not done yet:");
          System.out.println(array.get(number-1).toString());
          System.out.println("_________________________________________________________________________");
+         Storage.clearFile();
+         Storage.writeToFile(array,array.size());
      }
 
     /**

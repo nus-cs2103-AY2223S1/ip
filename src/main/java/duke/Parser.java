@@ -35,12 +35,14 @@ public class Parser {
                 }
                 try {
                     tl.todo(array, arr, counter);
-                    storage.writeToFile(array, counter);
                     counter++;
+                    Storage.clearFile();
+                    Storage.writeToFile(array, counter);
 
                 } catch (DukeException e1) {
                     System.out.println(e1.toString());
                 }
+
             } else if (firstword.equals("deadline")) {
                 if (!storage.fileExists()) {
                     System.out.println("File doesnt exist yet");
@@ -50,8 +52,9 @@ public class Parser {
                 String arr2[] = arr[1].split("/by ", 2);
                 String arr3[] = arr2[1].split(" ", 2);
                 tl.deadline(array, arr2[0], arr3[0], arr3[1], counter);
-                storage.writeToFile(array, counter);
                 counter++;
+                Storage.clearFile();
+                Storage.writeToFile(array, counter);
 
             } else if (firstword.equals("event")) {
                 if (!storage.fileExists()) {
@@ -61,8 +64,9 @@ public class Parser {
                 String arr2[] = arr[1].split("/at ", 2);
                 String arr3[] = arr2[1].split(" ", 2);
                 tl.event(array, arr2[0], arr3[0], arr3[1], counter);
-                storage.writeToFile(array, counter);
                 counter++;
+                Storage.clearFile();
+                Storage.writeToFile(array, counter);
 
             } else if (firstword.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
@@ -76,6 +80,8 @@ public class Parser {
                 tl.delete(array, num, counter);
                 counter--;
                 System.out.println("_________________________________________________________________________");
+                Storage.clearFile();
+                Storage.writeToFile(array, counter);
 
             } else if(firstword.equals("find")) {
                 System.out.println("_________________________________________________________________________");

@@ -40,6 +40,7 @@ public class TaskList {
         counter ++;
         System.out.println("Now you have " + counter + " tasks in the list.");
         System.out.println("_________________________________________________________________________");
+
     }
 
     public void event(ArrayList<Task> array,String item, String deadline, String timing, int counter) {
