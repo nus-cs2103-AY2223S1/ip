@@ -35,6 +35,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Formats the provided task, so it can be written to the hard drive.
+     *
+     * @param task Task to be formatted.
+     * @return Formatted string representing the task.
+     */
     public String formatLineToWrite(Task task) {
         final String sep = "_";
         String type = task.getType();
@@ -45,6 +51,12 @@ public class Storage {
 
     }
 
+    /**
+     * Opens storage file to read from it and add tasks to the taskList.
+     *
+     * @param taskList TaskList the tasks are being added to.
+     * @throws PloopyException If an error occurs during the file opening or reading.
+     */
     public void loadFile(TaskList taskList) throws PloopyException {
         try {
             Scanner fileReader = new Scanner(file);
@@ -57,6 +69,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites file from beginning using updated taskList.
+     *
+     * @param taskList Updated list of tasks to read from.
+     * @throws PloopyException If an error occurs during the file opening or reading.
+     */
     public void rewriteFile(ArrayList<Task> taskList) throws PloopyException {
         try {
             FileWriter fileDelete = new FileWriter(FILE_PATH, false);
@@ -72,6 +90,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds a new task to storage file.
+     *
+     * @param task Task to be stored.
+     * @throws PloopyException If an error occurs during the file opening or reading.
+     */
     public void writeToFile(Task task) throws PloopyException {
         try {
             FileWriter fileWriter = new FileWriter(FILE_PATH, true);
