@@ -7,16 +7,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A class that provides a simple user interface for the Duke system.
+ */
+
 public class Ui {
 
     private static String line = "--------------------";
 
     private Scanner s;
 
+    /**
+     * Creates a new UI for user.
+     */
     public Ui() {
         this.s = new Scanner(System.in);
     }
 
+    /**
+     * Greets the user.
+     */
     public void printDukeOpening() {
         String name = "Turtle";
         System.out.println("Hello I am " + name + "!");
@@ -24,26 +34,41 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Ends the user interaction.
+     */
     public void printDukeClosing() {
         System.out.println("Goodbye!");
         System.out.println(line);
     }
 
+    /**
+     * Tells user that there is error.
+     */
     public void printDukeException(DukeException e) {
         System.out.println("OOPS!!!" + e.getMessage());
         System.out.println(line);
     }
 
+    /**
+     * Tells user that there is IO error.
+     */
     public void printIoException(IOException e) {
         System.out.println("OOPS!!! " + e.getMessage());
         System.out.println(line);
     }
 
+    /**
+     * Tells user that date format is wrong.
+     */
     public void printDateTimeParseException() {
         System.out.println("All dates must be in the format (yyyy-MM-dd HH:mm)!");
         System.out.println(line);
     }
 
+    /**
+     * Displays all the tasks.
+     */
     public void printTasks(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         System.out.println("Here are the tasks in your list: ");
@@ -54,6 +79,9 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Tells user task is added.
+     */
     public void printAddTask(Task task, TaskList taskList) {
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
@@ -61,6 +89,9 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Tells user task status have changed.
+     */
     public void printChangeTaskStatus(Task task, boolean isDone) {
         if (isDone) {
             System.out.println(("Nice! I've marked this task as done:"));
@@ -71,7 +102,9 @@ public class Ui {
         }
         System.out.println(line);
     }
-
+    /**
+     * Tells user that tasks is deleted
+     */
     public void printDeleteTask(Task task, TaskList taskList) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(task.toString());
@@ -79,12 +112,22 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Tells user app is loading.
+     */
     public void showLoadingError() { System.out.println("Loading ...");}
 
+    /**
+     * Closes scanner.
+     * */
     public void closeScanner() {
         this.s.close();
     }
 
+    /**
+     * Goes to next line.
+     * @return
+     */
     public String nextLine() {
         return this.s.nextLine();
     }

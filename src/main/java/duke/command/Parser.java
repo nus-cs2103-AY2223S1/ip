@@ -5,7 +5,16 @@ import duke.utilities.DukeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Parser to make sense of user input.
+ */
 public class Parser {
+    /**
+     * Parses user input to a standard format
+     * @param input The user input
+     * @return The standardised input.
+     * @throws DukeException
+     */
     public static String parseCommand(String input) throws DukeException {
 
         String[] segments = input.split(" ");

@@ -2,8 +2,16 @@ package duke.task;
 
 import duke.utilities.DukeException;
 
+/**
+ * Encapsulates a to-do task.
+ */
 public class Todo extends Task{
-
+    /**
+     * Constructs a new {@code Todo} with given description.
+     *
+     * @param description The description of the task.
+     * @throws DukeException
+     */
     public Todo(String description) throws DukeException {
         super(description);
         if (description.equals("")) {

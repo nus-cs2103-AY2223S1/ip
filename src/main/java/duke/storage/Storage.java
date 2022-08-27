@@ -12,9 +12,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class for loading nd saving data from a file
+ */
 public class Storage {
     private final File file;
 
+    /**
+     * Construct a new Storage object with a given file path.
+     * Ensures the file is accessible.
+     *
+     * @param filePath The path to the file to store data in.
+     * @throws IOException
+     */
     public Storage(String filePath) throws IOException {
         String[] parts = filePath.split("/");
 
@@ -31,6 +41,11 @@ public class Storage {
         this.file = file;
     }
 
+    /**
+     * Saves the {@code Task}s from a {@code TaskList} to the {@code file}.
+     * @param taskList The {@code TaskList} to save.
+     * @throws IOException
+     */
     public void writeTasksToStorage(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTasks();
         FileWriter fileWriter = new FileWriter(this.file);
@@ -62,6 +77,14 @@ public class Storage {
         }
         fileWriter.close();
     }
+
+    /**
+     * Loads the {@code Task}s from the {@code file}.
+     *
+     * @return The {@code Task}s loaded from the {@code file} in an {@code ArrayList}.
+     * @throws FileNotFoundException
+     * @throws DukeException
+     */
 
     public ArrayList<Task> load() throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(file);

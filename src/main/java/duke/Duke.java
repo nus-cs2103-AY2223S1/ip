@@ -11,12 +11,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Duke {
+/**
+ * The main class of the Duke chat-bot.
+ */
 
+public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a new {@code Duke} with a datafile path.
+     *
+     * @param filePath The path to the datafile.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         try {
@@ -31,6 +39,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke chat-bot.
+     */
     public void run() {
         this.ui.printDukeOpening();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -101,6 +112,12 @@ public class Duke {
         this.ui.closeScanner();
         System.exit(0);
     }
+
+    /**
+     * The main method that is the entry to the Duke Application.
+     *
+     * @param args
+     */
 
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
