@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -13,26 +14,26 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public static void printLine() {
+    public void printLine() {
         System.out.println(HORIZONTAL_BAR);
     }
 
-    public static void greetings() {
+    public void greetings() {
         String message = "Hello! I'm Duke\n" + "What can I do for you?";
         printMessage(message);
     }
 
-    public static void printBye() {
+    public void printBye() {
         String message = "Bye. Hope to see you again soon!";
     }
 
-    public static void printMessage(String message) {
+    public void printMessage(String message) {
         printLine();
         System.out.println(message);
         printLine();
     }
 
-    public String listAllItems(ArrayList<Task> tasks) {
+    public String listAllItems(List<Task> tasks) {
         //printLine();
         String result = "";
         result += "-".repeat(100);
