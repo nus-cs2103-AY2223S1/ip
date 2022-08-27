@@ -13,18 +13,18 @@ public class Event extends Task {
     private final DateTimeFormatter FORMAT_MMDDYY_TIME = 
             DateTimeFormatter.ofPattern("MM/dd/yy, HH:mm");
             
-    private LocalDateTime endTime;
+    private LocalDateTime eventTime;
 
     /**
      * Constructor to initialise an Event object with given
      * taskname and end time.
      * 
      * @param taskName The name of the Event to be created.
-     * @param endTime The time of the Event
+     * @param eventTime The time of the Event
      */
-    public Event(String taskName, LocalDateTime endTime) {
+    public Event(String taskName, LocalDateTime eventTime) {
         super(taskName);
-        this.endTime = endTime;
+        this.eventTime = eventTime;
     }
 
     /**
@@ -35,6 +35,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + 
-                this.endTime.format(FORMAT_MMDDYY_TIME) + ")";
+                this.eventTime.format(FORMAT_MMDDYY_TIME) + ")";
     }
 }
