@@ -9,6 +9,14 @@ public class Deadline extends Task {
     private static final String SYMBOL = "[D]";
     protected String dateStr;
     protected LocalDate dateTime;
+
+    /**
+     * Constructor for the Deadline class
+     *
+     * @param description description of the deadline
+     * @param dateStr date of the deadline in string
+     * @param dateTime date of the deadline in LocalDate class
+     */
     public Deadline(String description, String dateStr, LocalDate dateTime) {
         super(description, SYMBOL);
         this.dateStr = dateStr;
@@ -41,6 +49,11 @@ public class Deadline extends Task {
      * in the format of [D][ ] {deadline name} (by: {date})
      *
      * @return the date of the deadline
+     */
+
+    /**
+     * Method to return a string representation of the deadline
+     * @return string representation of the deadline
      */
     @Override
     public String toString() {

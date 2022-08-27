@@ -19,6 +19,11 @@ public class DateTimeConverter {
     private SimpleDateFormat SDF24H = new SimpleDateFormat("HHmm");
     private SimpleDateFormat SDF12H = new SimpleDateFormat("h:mm a");
 
+    /**
+     * Constructor for the DateTimeConverter class
+     *
+     * @param dateFormatter the format in which the input date is in
+     */
     public DateTimeConverter(DateTimeFormatter dateFormatter) {
         this.dateFormatter = dateFormatter;
     }

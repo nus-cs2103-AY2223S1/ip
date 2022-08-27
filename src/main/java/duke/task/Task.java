@@ -8,6 +8,12 @@ public class Task {
     protected boolean isDone;
     protected String symbol;
 
+    /**
+     * Constructor for the Task class
+     *
+     * @param description description of the task
+     * @param symbol symbol of the task
+     */
     public Task(String description, String symbol) {
         this.description = description;
         this.isDone = false;
@@ -72,6 +78,11 @@ public class Task {
      * in the format of [T][ ] {task name}
      *
      * @return the date of the task
+     */
+
+    /**
+     * Method to return a string representation of thetask
+     * @return string representation of the task
      */
     @Override
     public String toString() {

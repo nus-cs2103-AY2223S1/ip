@@ -61,7 +61,7 @@ public class TaskCreator {
         case DEADLINE:
             indexOfSplit = info.indexOf("/by");
             if (indexOfSplit == -1) {
-                return new ErrorTask("");
+                return new ErrorTask();
             }
             try {
                 description = info.substring(0, indexOfSplit - 1);
@@ -95,7 +95,7 @@ public class TaskCreator {
             try {
                 indexOfSplit = info.indexOf("/at");
                 if (indexOfSplit == -1) {
-                    return new ErrorTask("");
+                    return new ErrorTask();
                 }
 
                 description = info.substring(0, indexOfSplit - 1);

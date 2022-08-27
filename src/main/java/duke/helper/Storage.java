@@ -19,6 +19,11 @@ public class Storage {
 
     protected File file;
 
+    /**
+     * Constructor for the Storage class
+     *
+     * @param filePath the path in which the file is to be in
+     */
     public Storage(String filePath) {
         try {
             int indexOfSplit = filePath.lastIndexOf("/");

@@ -10,10 +10,18 @@ public class TaskList {
      */
     private ArrayList<Task> taskList;
 
+    /**
+     * Constructor of the TaskList class given a taskList
+     *
+     * @param taskList taskList to be loaded
+     */
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
 
+    /**
+     * Constructor of the TaskList class
+     */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }

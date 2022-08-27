@@ -6,6 +6,13 @@ public class Event extends Task {
      */
     private static final String SYMBOL = "[E]";
     protected String dateTime;
+
+    /**
+     * Constructor for the Event class
+     *
+     * @param description description of the event
+     * @param dateTime date and time of the event
+     */
     public Event(String description, String dateTime) {
         super(description, SYMBOL);
         this.dateTime = dateTime;
@@ -37,6 +44,11 @@ public class Event extends Task {
      * in the format of [E][ ] {event name} (at: {date})
      *
      * @return the date of the event
+     */
+
+    /**
+     * Method to return a string representation of the event
+     * @return string representation of the event
      */
     @Override
     public String toString() {
