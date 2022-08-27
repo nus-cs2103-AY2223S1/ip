@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a task to be completed. Has a description,
+ * and can be marked as done or undone.
+ */
 public class Task {
     private boolean done;
     private String description;
@@ -19,6 +23,19 @@ public class Task {
         this(description, 'T', done);
     }
 
+    /**
+     * Converts save string data to a Task object.
+     * The save string data is in the format:
+     * <p>
+     * <pre>
+     * T,"<description>"
+     * </pre>
+     * <p>
+     * 
+     * @param saveString the save string data
+     * @return the new Task object created from saveString
+     * @throws DukeException
+     */
     public static Task fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if(splitSaveString.length != 2) {
@@ -29,10 +46,24 @@ public class Task {
         return new Task(description, done);
     }
 
+    /**
+     * Converts Task object into save string data.
+     * @return save string data that represents the Task object.
+     */
+    public String toSaveData() {
+        return String.format("%s,%s,\"%s\"", this.tag, this.done ? '1' : '0', this.description);
+    }
+
+    /**
+     * Mark a Task as done.
+     */
     public void markDone() {
         this.done = true;
     }
 
+    /**
+     * Mark a Task as undone.
+     */
     public void unmarkDone() {
         this.done = false;
     }
@@ -54,9 +85,5 @@ public class Task {
         return done == task.done &&
                 description.equals(task.description) &&
                 tag == task.tag;
-    }
-
-    public String toSaveData() {
-        return String.format("%s,%s,\"%s\"", this.tag, this.done ? '1' : '0', this.description);
     }
 }

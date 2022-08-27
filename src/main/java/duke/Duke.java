@@ -2,6 +2,10 @@ package duke;
 
 import duke.command.Command;
 
+/*
+ * Duke is a chatbot that helps you keep track of your tasks.
+ * This is the main application class for Duke.
+ */
 public class Duke {
     private static final String SAVE_FILE_PATH = "data/tasks.txt";
 
@@ -10,7 +14,9 @@ public class Duke {
     private Ui ui;
 
     /**
-     * @param filePath
+     * Create a new Duke application.
+     * 
+     * @param filePath path to the save file
      */
     public Duke(String filePath) {
         storage = new Storage(filePath);
@@ -22,6 +28,9 @@ public class Duke {
         ui = new Ui();
     }
 
+    /**
+     * Run the Duke application.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;
@@ -37,6 +46,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point for the Duke application.
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         new Duke(SAVE_FILE_PATH).run();
     }
