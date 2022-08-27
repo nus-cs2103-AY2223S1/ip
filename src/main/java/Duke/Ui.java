@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class Ui {
 
-
     public Ui() {
     }
 

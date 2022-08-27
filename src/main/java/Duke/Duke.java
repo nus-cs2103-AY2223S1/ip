@@ -11,7 +11,7 @@ public class Duke {
     private TaskList taskList;
     private static Ui ui;
     private Storage storage;
-    private final String filePath;
+    private String filePath;
     private static Scanner sc;
 
 
@@ -22,6 +22,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         this.sc = new Scanner(System.in);
+        this.taskList = new TaskList();
         filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";
         storage = new Storage(filePath);
         try {
@@ -48,7 +49,7 @@ public class Duke {
     public void run(Parser parser) throws DukeException {
         ui.greet();
         while (sc.hasNextLine()) {
-            parser.run(sc.nextLine());
+            parser.parse(sc.nextLine());
             storage.writeTasks(taskList);
         }
     }

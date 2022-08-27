@@ -6,9 +6,9 @@ import java.util.Scanner;
  * Parser that parses input into the program
  */
 public class Parser {
-    private Duke duke;
-    private Ui ui;
-    private Commands commands;
+    private final Duke duke;
+    private final Ui ui;
+    private final Commands commands;
 
     public Parser(Duke duke, Ui ui) {
         this.duke = duke;
@@ -18,11 +18,10 @@ public class Parser {
 
     /**
      *
-     *
      * @param input that is being read
      * @throws DukeException when input is invalid
      */
-    public void run(String input) throws DukeException{
+    public void parse(String input) throws DukeException{
             if (input.equals("list")) {
                 commands.printList();
             } else if (input.startsWith("mark")) {
