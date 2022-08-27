@@ -11,12 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents a storage for the task list, provides save/load task list methods.
+ * Task list is saved in / loaded from specified file path.
+ */
 public class Storage {
     private String filepath;
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
+    /**
+     * Saves the task list in the location indicated by filepath as a txt file.
+     *
+     * @param taskList list of tasks.
+     */
     public void save(TaskList taskList) {
         int i = filepath.lastIndexOf('/');
         File dir = new File(filepath.substring(0,i));
@@ -36,6 +45,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the task list from the location indicated by filepath.
+     * If the filepath doesn't exist, empty task list is loaded.
+     *
+     * @return task list.
+     */
     public TaskList load() {
         int i = filepath.lastIndexOf('/');
         File dir = new File(filepath.substring(0,i));

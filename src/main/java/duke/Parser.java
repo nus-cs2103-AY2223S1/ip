@@ -10,9 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents duke chatbot parser that make sense of user commands.
+ */
 public class Parser {
     private Scanner input;
 
+    /**
+     * Returns a LocalDate object parsed from a string containing date.
+     * If the string date format is not accepted, exception is thrown.
+     *
+     * @param str a string containing a date.
+     * @return LocalDate object.
+     * @throws DukeException If the string date format is not accepted by duke chatbot.
+     */
     public LocalDate parseDate(String str) throws DukeException {
         // parse string format date to LocalDate object -> to String format yyyy-MM-dd, exception
         String time = str.trim();
@@ -37,6 +48,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns simplified command string parsed from a user command.
+     * If the command is invalid, exception is thrown.
+     *
+     * @param line a string containing a user command.
+     * @param taskList a List of tasks.
+     * @return command string understandable by other methods/classes.
+     * @throws DukeException If the command is regarded invalid/incomplete by duke chatbot.
+     */
     public String parseCommand(String line, TaskList taskList) throws DukeException {
         String [] taskString = line.split(" ", 2);
         String taskType = taskString[0];

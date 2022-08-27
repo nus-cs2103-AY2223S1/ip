@@ -9,6 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a list of tasks.
+ * Chatbot users can perform add/delete/mark operations on the tasks in the list.
+ */
 public class TaskList {
     private List<Task> tasks;
 
@@ -24,6 +28,12 @@ public class TaskList {
         this.tasks = new ArrayList<Task>();
     }
 
+    /**
+     * Prints all tasks in the task list.
+     * Each task printed consists of task type, status, description, (date);
+     * task types (todo, event, deadline) are represented by [T], [E], [D],
+     * task status (done, undone) are represented by [X], [ ].
+     */
     public void printTaskList() {
         int count = 1;
         for (Task t : tasks) {
@@ -33,6 +43,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the string format of task list to be saved to storage.
+     * Each task string consists of task type, status, description, (date);
+     * The format is | task type | status | description | time
+     *
+     * @return string format of task list.
+     */
     public String saveTaskList() {
         String result = "Task Type | Status | Description & Time\n";
         for (Task t : tasks) {
@@ -41,34 +58,77 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Returns the number of tasks in the task list.
+     *
+     * @return the number of tasks.
+     */
     public Integer getSize() {
         return this.tasks.size();
     }
 
+    /**
+     * Returns the task at an index in the task list (the index method starts from 0).
+     * The task at index is deleted from the task list.
+     *
+     * @param index task index.
+     * @return Task object.
+     */
     public Task getTask(int index) {
         return tasks.get(index);
     }
 
+    /**
+     * Returns the task at an index in the task list (the index method starts from 1).
+     *
+     * @param index task index.
+     * @return Task object.
+     */
     public Task deleteTaskAtIndex(int index) {
         return this.tasks.remove(index - 1);
     }
 
+    /**
+     * Adds the task at the end of the task list.
+     *
+     * @param t task to add to list.
+     */
     public void addTask(Task t) {
         this.tasks.add(t);
     }
 
+    /**
+     * Marks a task at task index as done and returns the marked task.
+     *
+     * @param index task index.
+     * @return marked task.
+     */
     public Task markAsDone(int index) {
         Task t = this.tasks.get(index - 1);
         t.markAsDone();
         return t;
     }
 
+    /**
+     * Marks a task at task index as undone and returns the marked task.
+     *
+     * @param index task index.
+     * @return marked task.
+     */
     public Task markAsUndone(int index) {
         Task t = this.tasks.get(index - 1);
         t.markAsUndone();
         return t;
     }
 
+    /**
+     * Returns a task list containing unfinished tasks on the date.
+     * The task list includes unfinished deadline tasks with end date after/on the specified date,
+     * and unfinished event tasks with the specified date between start and end date.
+     *
+     * @param date LocalDate object.
+     * @return task list.
+     */
     public TaskList searchByDate(LocalDate date) {
         List<Task> tasksAtDate = new ArrayList<Task>();
         for (Task t : tasks) {

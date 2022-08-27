@@ -1,7 +1,10 @@
 package duke;
 
 import java.util.Scanner;
-
+/**
+ * Represents a duke chatbot object that stores a task list,
+ * users can add / delete / mark / unmark / list tasks using this chatbot.
+ */
 public class Duke {
 
     private Storage storage;
@@ -16,6 +19,10 @@ public class Duke {
         tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Runs the duke chatbot,
+     * starts the chatbot up, interacts with user commands, and ends until user enters 'bye' command.
+     */
     public void run() {
         ui.printStartUpUi();
         while(true) {
@@ -44,6 +51,9 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * Creates and runs the duke chatbot.
+     */
     public static void main(String[] args) {
         new Duke("data/Duke.txt").run();
     }

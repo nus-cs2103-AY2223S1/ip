@@ -2,8 +2,13 @@ package duke;
 import duke.task.Task;
 
 import java.time.LocalDate;
-
+/**
+ * Represents duke chatbot Ui that user sees.
+ */
 public class Ui {
+    /**
+     * Prints duke chatbot start up message that user sees when he/her opens duke chatbot.
+     */
     public void printStartUpUi() {
         System.out.println("========================================================================================");
         System.out.println("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
@@ -13,6 +18,10 @@ public class Ui {
         System.out.println("========================================================================================");
     }
 
+    /**
+     * Prints duke information message that user sees when he/her uses help command to get information about duke chatbot.
+     * The information includes task type, command format, and other notes.
+     */
     public void printDukeInfo() {
         System.out.println("________________________________________________________________________________________");
         System.out.println("There are 3 types of task implemented: " +
@@ -38,6 +47,13 @@ public class Ui {
         System.out.println("________________________________________________________________________________________");
     }
 
+    /**
+     * Prints duke chatbot message after user add, delete task, and mark tasks as done or undone.
+     *
+     * @param command user command.
+     * @param index index of a task that is added / deleted / marked / unmarked.
+     * @param taskList task list.
+     */
     public void printAddCommandUi(String command, String index, TaskList taskList) {
         // for add, delete, mark/unmark
         System.out.println("________________________________________________________________________________________");
@@ -61,6 +77,13 @@ public class Ui {
         System.out.println("________________________________________________________________________________________");
     }
 
+    /**
+     * Prints duke chatbot message after user list tasks and list unfinished tasks at a date.
+     *
+     * @param command user command.
+     * @param date string containing a date.
+     * @param taskList task list to be printed.
+     */
     public void printListCommandUi(String command, String date, TaskList taskList) {
         // for list, list date, search
         if (date.trim().equals("all")) { //list
@@ -76,6 +99,9 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints duke chatbot ending message that user sees when he/her stops/exits duke chatbot.
+     */
     public void printEndingUi() {
         System.out.println("________________________________________________________________________________________");
         System.out.println("Chatbot stopped, all previous tasks will be auto-saved :D");
@@ -83,18 +109,29 @@ public class Ui {
         System.out.println("________________________________________________________________________________________");
     }
 
+    /**
+     * Prints message when task list storage loading occurs.
+     */
     public void showLoadingError() {
         System.out.println("________________________________________________________________________________________");
         System.out.println("☹ OOPS!!! Loading error occurred, new text file is created for task list storage.");
         System.out.println("________________________________________________________________________________________");
     }
 
+    /**
+     * Prints message when task list storage saving occurs.
+     */
     public void showSavingError() {
         System.out.println("________________________________________________________________________________________");
         System.out.println("☹ OOPS!!! Saving error occurred, task list not properly saved in the text file.");
         System.out.println("________________________________________________________________________________________");
     }
 
+    /**
+     * Prints error message when an exception is raised possibly because of inproper commands.
+     *
+     * @param e exception.
+     */
     public void printException(Exception e) {
         System.out.println("________________________________________________________________________________________");
         System.out.println(e.getMessage());
