@@ -80,11 +80,11 @@ public class Duke {
                 try {
                     String deadline = task.getVal().substring(9);
                     String[] at = deadline.split(" /by ");
-                    System.out.println(Arrays.toString(at));
-                    if(at[1].charAt(1) == '/'){
-                        at[1] = "0" + at[1];
-                    }
-                    task = new Deadline(at[0], at[1]);
+                    String[] time = at[1].split("/");
+                    time[0] = String.format("%02d", Integer.parseInt(time[0]));
+                    time[1] = String.format("%02d", Integer.parseInt(time[1]));
+                    String date = String.join("/", time);
+                    task = new Deadline(at[0], date);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(task);
@@ -98,10 +98,11 @@ public class Duke {
                 try {
                     String event = task.getVal().substring(6);
                     String[] at = event.split(" /by ");
-                    if(at[1].charAt(1) == '/') {
-                        at[1] = "0" + at[1];
-                    }
-                    task = new Event(at[0], at[1]);
+                    String[] time = at[1].split("/");
+                    time[0] = String.format("%02d", Integer.parseInt(time[0]));
+                    time[1] = String.format("%02d", Integer.parseInt(time[1]));
+                    String date = String.join("/", time);
+                    task = new Event(at[0], date);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(task);
@@ -111,6 +112,24 @@ public class Duke {
                         System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
                     }
             }
+
+            else if(task.getVal().indexOf("things") == 0) {
+                String[] at = task.getVal().split(" /on ");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+                String[] time = at[1].split("/");
+                time[0] = String.format("%02d", Integer.parseInt(time[0]));
+                time[1] = String.format("%02d", Integer.parseInt(time[1]));
+                String date = String.join("/", time);
+                LocalDateTime dateTime = LocalDateTime.parse(date + " 0000", formatter);
+                task = new Task("", "");//to not go into bye block, change to switch
+                for(int i = 0; i < curr; i++) {
+                    if(arr.get(i).sameDay(dateTime)) {
+                        System.out.println(arr.get(i));
+                    }
+                }
+
+            }
+
             else if (!task.getVal().equals("bye")) {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 //arr[curr++] = task;

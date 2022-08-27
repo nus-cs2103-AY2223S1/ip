@@ -53,4 +53,10 @@ public class Deadline extends Task {
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
         return dateTime;
     }
+
+    public boolean sameDay(LocalDateTime date) {
+        return (this.deadline.getDayOfMonth() == date.getDayOfMonth() &&
+                this.deadline.getMonth().equals(date.getMonth()) &&
+                this.deadline.getYear() == date.getYear());
+    }
 }

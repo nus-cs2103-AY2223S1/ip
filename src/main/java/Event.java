@@ -52,4 +52,10 @@ public class Event extends Task {
         LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
         return dateTime;
     }
+
+    public boolean sameDay(LocalDateTime date) {
+        return (this.timing.getDayOfMonth() == date.getDayOfMonth() &&
+                this.timing.getMonth().equals(date.getMonth()) &&
+                this.timing.getYear() == date.getYear());
+    }
 }
