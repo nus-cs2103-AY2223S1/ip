@@ -35,7 +35,7 @@ public class AddCommand implements Command{
                         Parser.getTime(inputs, "/at"));
                 break;
             default:
-                throw new DukeException();
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
         Ui.dukePrint(tasks.add(task));
         storage.addTaskToStorage(task);

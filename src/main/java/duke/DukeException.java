@@ -1,17 +1,18 @@
 package duke;
 
 public class DukeException extends RuntimeException {
-    private String message;
+    private final String message;
 
     public DukeException(String message) {
         this.message = message;
     }
 
-    public DukeException() {
-        this.message = "I'm sorry, but I don't know what that means :-(";
+    @Override
+    public String getMessage() {
+        return this.message;
     }
 
     public String toString() {
-        return ":( Something went wrong: " + message;
+        return "DukeException: " + message;
     }
 }
