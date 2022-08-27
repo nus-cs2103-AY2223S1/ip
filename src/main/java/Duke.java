@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Duke {
     private TaskList tasks;
     private Ui ui;
-
+    private Storage storage;
 //    public static void printLine() {
 //        System.out.println("-".repeat(100));
 //    }
@@ -106,29 +106,10 @@ public class Duke {
         ui.printLine();
     }
 
-    public void update(Path path) {
-        String str = ui.listAllItems(tasks.getTasks());
-        try {
-            // Now calling Files.writeString() method
-            // with path , content & standard charsets
-//            Files.writeString(path, str,
-//                    StandardCharsets.UTF_8);
-            FileWriter fw = new FileWriter(path.toString());
-            fw.write(str);
-            fw.close();
-        }
-
-        // Catch block to handle the exception
-        catch (IOException ex) {
-            // Print messqage exception occurred as
-            // invalid. directory local path is passed
-            System.out.print("Invalid Path");
-        }
-    }
-
-    public Duke() {
+    public Duke(String filePath) {
         ui = new Ui();
         tasks = new TaskList();
+        storage = new Storage(filePath);
     }
 
     public void run() {
@@ -150,22 +131,22 @@ public class Duke {
                 case "mark":
                     int num1 = Integer.parseInt(input.split(" ")[1]);
                     mark(num1);
-                    update(path);
+                    storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 case "unmark":
                     int num2 = Integer.parseInt(input.split(" ")[1]);
                     unmark(num2);
-                    update(path);
+                    storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 case "delete":
                     int num3 = Integer.parseInt(input.split(" ")[1]);
                     delete(num3);
-                    update(path);
+                    storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 default:
                     try {
                         addATask(input);
-                        update(path);
+                        storage.update(ui.listAllItems(tasks.getTasks()));
                     } catch (DukeException e) {
                         ui.printMessage(e.getMessage());
                     }
@@ -175,7 +156,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke("/src/main/java/duke.txt").run();
     }
 
 }
