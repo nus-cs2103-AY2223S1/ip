@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -109,8 +110,11 @@ public class Duke {
         try {
             // Now calling Files.writeString() method
             // with path , content & standard charsets
-            Files.writeString(path, str,
-                    StandardCharsets.UTF_8);
+//            Files.writeString(path, str,
+//                    StandardCharsets.UTF_8);
+            FileWriter fw = new FileWriter(path.toString());
+            fw.write(str);
+            fw.close();
         }
 
         // Catch block to handle the exception
