@@ -5,7 +5,8 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String toString() {
-        return "[T]" + super.toString();
-    }
+    public String toSave() { return "T | " + super.toSave(); }
+
+    @Override
+    public String toString() { return "[T]" + super.toString(); }
 }
