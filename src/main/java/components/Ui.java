@@ -1,5 +1,7 @@
-import java.io.File;
-import java.util.ArrayList;
+package components;
+
+import components.Parser;
+
 import java.util.Scanner;
 
 public class Ui {

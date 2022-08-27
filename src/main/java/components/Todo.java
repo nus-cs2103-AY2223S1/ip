@@ -1,3 +1,7 @@
+package components;
+
+import components.Task;
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
