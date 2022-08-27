@@ -113,14 +113,14 @@ public class Ui {
      * Prints the number of Task objects currently in a TaskList.
      * @param tasks Target TaskList
      */
-    public void showNumTasks(TaskList tasks) {
+    private void showNumTasks(TaskList tasks) {
         System.out.println("You have " + tasks.size() + " tasks in the list");
     }
 
     /**
      * Prints a Task object, indented by 3 spaces.
      */
-    public void showTask(Task task) {
+    private void showTask(Task task) {
         System.out.println("   " + task);
     }
 
