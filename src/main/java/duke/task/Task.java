@@ -3,10 +3,16 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task. A task object contains a description, isDone to indicate if it is completed and a task type
+ */
 public abstract class Task {
+    /** Description of the task */
 
     protected String description;
+    /** Indicates if the task is completed */
     protected boolean isDone;
+    /** Type of the task */
     protected String taskType;
 
     /**

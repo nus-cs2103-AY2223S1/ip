@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.util.Arrays;
 
 /**
  * Represents an add Todo Task command. An AddTodoCommand object contains the task description.

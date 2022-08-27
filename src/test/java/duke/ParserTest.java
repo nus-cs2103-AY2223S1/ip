@@ -1,10 +1,11 @@
 package duke;
 
-import duke.command.ByeCommand;
-import duke.command.ListCommand;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import duke.command.ByeCommand;
+import duke.command.ListCommand;
 
 /**
  * Tests to test the Parser class.
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ParserTest {
 
     /** Parser object used in the tests */
-    Parser parser = new Parser();
+    private Parser parser = new Parser();
 
     /**
      * Tests if the bye command works as intended, which should return a ByeCommand object.

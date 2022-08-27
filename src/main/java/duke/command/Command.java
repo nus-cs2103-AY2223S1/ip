@@ -35,10 +35,10 @@ public abstract class Command {
     /**
      * Finds an element within an array.
      *
+     * @param <T> generic type for any type of array and element.
      * @param arr array to be searched.
      * @param elem element to be searched for.
      * @return index of the element in the array.
-     * @param <T> generic type for any type of array and element.
      */
     protected static <T> int findElem(T[] arr, T elem) {
         for (int i = 0; i < arr.length; i++) {

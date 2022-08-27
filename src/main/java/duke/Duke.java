@@ -42,20 +42,29 @@ public class Duke {
      * Runs the functionalities of the Duke bot.
      */
     public void run() {
-        new LoadDataCommand(folderPath, filePath).execute(tasks, ui, storage);
-        new WelcomeCommand().execute(tasks, ui, storage);
-        while (ui.hasNext()) {
-            try {
-                String inputs = ui.readCommand();
-                Command command = parser.parse(inputs);
-                command.execute(tasks, ui, storage);
-                new SaveDataCommand(filePath).execute(tasks, ui, storage);
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
+        try {
+            new LoadDataCommand(folderPath, filePath).execute(tasks, ui, storage);
+            new WelcomeCommand().execute(tasks, ui, storage);
+            while (ui.hasNext()) {
+                try {
+                    String inputs = ui.readCommand();
+                    Command command = parser.parse(inputs);
+                    command.execute(tasks, ui, storage);
+                    new SaveDataCommand(filePath).execute(tasks, ui, storage);
+                } catch (DukeException e) {
+                    ui.showError(e.getMessage());
+                }
             }
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
         }
     }
 
+    /**
+     * Main function to run Duke.
+     *
+     * @param args command line arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("./data", "./data/duke.txt");
         duke.run();
