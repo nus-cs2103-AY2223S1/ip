@@ -1,8 +1,8 @@
 package task;
 
 import date.DeadlineDateTime;
-import date.EventDateTime;
 import exception.DukeException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeadlineTest {
 
     @Test
+    @DisplayName("Test for toString() method of unmarked deadline")
     void testToString_for_unmarked_deadline() throws DukeException {
         DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
         Deadline test = new Deadline("Testing!", date);
@@ -18,6 +19,7 @@ class DeadlineTest {
     }
 
     @Test
+    @DisplayName("Test for toString() method of marked deadline")
     void testToString_for_marked_deadline() throws DukeException {
         DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
         Deadline test = new Deadline("Testing!", date);
@@ -27,6 +29,7 @@ class DeadlineTest {
     }
 
     @Test
+    @DisplayName("Test for encode() method of deadline")
     void encode() throws DukeException {
         DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
         Deadline test = new Deadline("Testing!", date);

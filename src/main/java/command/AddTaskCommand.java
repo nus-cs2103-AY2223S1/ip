@@ -5,12 +5,24 @@ import tasklist.TaskList;
 import util.Storage;
 import util.Ui;
 
+/**
+ * Represents a command to be executed that adds a task to the internal duke list.
+ *
+ * @author Bryan Lim Jing Xiang
+ */
 public class AddTaskCommand extends Command {
     private final Task taskItem;
+
+    /**
+     * @param taskItem Task to be added to duke list
+     */
     public AddTaskCommand(Task taskItem) {
         this.taskItem = taskItem;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList list, Storage storage) {
         String task = "  " + list.addTask(this.taskItem);
