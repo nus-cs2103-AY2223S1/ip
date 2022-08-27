@@ -21,9 +21,13 @@ public class Todo extends Task {
      */
     @Override
     public String formatToSave() {
-        return isDone
-                ? "T" + KEY_SEPARATOR + 1 + KEY_SEPARATOR + description
-                : "T" + KEY_SEPARATOR + 0 + KEY_SEPARATOR + description;
+        int value;
+        if(isDone) {
+            value = 1;
+        } else {
+            value = 0;
+        }
+        return "T" + KEY_SEPARATOR + value + KEY_SEPARATOR + description;
     }
 
     /**

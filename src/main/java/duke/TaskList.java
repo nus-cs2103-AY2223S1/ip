@@ -96,8 +96,8 @@ public class TaskList {
     /**
      * Finds the tasks with the matching description
      *
-     * @param description to find tasks
-     * @return Tasklist containing the tasks
+     * @param description to find tasks.
+     * @return Tasklist containing the tasks.
      */
     public TaskList findTasks(String description) {
         List<Task> foundTasks = new ArrayList<>();
