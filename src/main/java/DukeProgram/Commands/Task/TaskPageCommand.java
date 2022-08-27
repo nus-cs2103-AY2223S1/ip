@@ -9,6 +9,9 @@ import DukeProgram.Task;
 import DukeProgram.UI.UserInterface;
 import DukeProgram.UiMessage;
 import Exceptions.InvalidCommandException;
+import Utilities.StringUtilities;
+
+import java.util.Arrays;
 
 public class TaskPageCommand extends Command {
 
@@ -21,7 +24,7 @@ public class TaskPageCommand extends Command {
             UserInterface.printCurrentLocation();
             try {
                 String response = UserInterface.askForInput(
-                        "[add | delete | list | mark | unmark | back]");
+                        "[add | delete | list | find | mark | unmark | back]");
                 continueLoop = parse(response).execute();
             } catch (InvalidCommandException e) {
                 UserInterface.printInStyle(e.getUiMessage().toString());
@@ -47,6 +50,13 @@ public class TaskPageCommand extends Command {
 
         case "unmark":
             return new UnmarkTaskCommand(separatedCommands);
+
+        case "find":
+            return new FindTaskCommand().parse(
+                    String.join(" ",
+                            Arrays.copyOfRange(separatedCommands, 1, separatedCommands.length)
+                    )
+            );
 
         case "delete":
             return new DeleteTaskCommand(separatedCommands);

@@ -6,7 +6,6 @@ import Exceptions.JobNameException;
 import Exceptions.KeyNotFoundException;
 
 import java.io.Serializable;
-import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -92,6 +91,10 @@ public class TaskList implements List<Task>, Serializable {
         taskListsMapping.put(name, this);
 
         SaveManager.save("taskListsMapping", taskListsMapping);
+    }
+
+    public Task[] getAllTasks() {
+        return taskArrayList.toArray(new Task[0]);
     }
 
     /***
