@@ -134,4 +134,11 @@ public class Parser {
         }
         return parseInt(inputString[1]);
     }
+
+    public String parseFind() throws DukeException {
+        if (inputString.length == 1 || inputString[1].trim().length() == 0) {
+            throw new DukeException("Oops! You forgot to specify a keyword");
+        }
+        return inputString[1].trim();
+    }
 }
