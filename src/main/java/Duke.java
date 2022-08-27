@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
 
@@ -75,26 +77,42 @@ public class Duke {
 
         } else if (input.startsWith("deadline")) {
 
-            String[] msg = input.split("/");
+            String[] msg = input.split("/by ");
             if (msg.length < 2) throw(new DukeException("no date specified!"));
 
             String[] tmp = msg[0].split(" ");
             if (msg.length < 2) throw(new DukeException("nothing to add!"));
 
             input = getTaskName(tmp);
-            tasks.add(new Deadline(input, msg[1]));
-            printAddTask(input);
+
+            try {
+                String timeString = msg[1].replace('/', '-');
+                LocalDateTime time = LocalDateTime.parse(
+                        timeString, DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
+                tasks.add(new Deadline(input, time));
+                printAddTask(input);
+            } catch (Exception e) {
+                throw(e);
+            }
 
         } else if (input.startsWith("event")) {
 
-            String[] msg = input.split("/");
+            String[] msg = input.split("/at ");
             if (msg.length < 2) throw(new DukeException("no date specified!"));
 
             String[] tmp = msg[0].split(" ");
             if (msg.length < 2) throw(new DukeException("nothing to add!"));
             input = getTaskName(tmp);
-            tasks.add(new Event(input, msg[1]));
-            printAddTask(input);
+
+            try {
+                String timeString = msg[1].replace('/', '-');
+                LocalDateTime time = LocalDateTime.parse(
+                        timeString, DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
+                tasks.add(new Event(input, time));
+                printAddTask(input);
+            } catch (Exception e) {
+                throw(e);
+            }
 
         } else {
             throw(new DukeException("I do not understand!"));
