@@ -16,6 +16,7 @@ import duke.task.Task;
  * @author Perry Wong
  */
 public class DeleteCommand extends Command {
+
     private int index;
 
     public DeleteCommand(int index) {
@@ -52,4 +53,5 @@ public class DeleteCommand extends Command {
             throw new DukeException(s);
         }
     }
+
 }

@@ -12,6 +12,7 @@ import duke.task.Task;
  * @author Perry Wong
  */
 public class TaskList {
+
     private ArrayList<Task> taskArrayList;
     private int index;
 
@@ -89,4 +90,5 @@ public class TaskList {
     public ArrayList<Task> getTaskArrayList() {
         return this.taskArrayList;
     }
+
 }

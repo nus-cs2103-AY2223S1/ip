@@ -16,6 +16,7 @@ import duke.task.Todo;
  * @author Perry Wong
  */
 public class AddCommand extends Command {
+
     private String type;
     private String description;
     private String date;
@@ -67,4 +68,5 @@ public class AddCommand extends Command {
             ui.showAdd(e, taskList.getTaskArrayList().size());
         }
     }
+
 }

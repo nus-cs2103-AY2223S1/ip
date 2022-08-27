@@ -18,15 +18,14 @@ import duke.command.UnmarkCommand;
  * @author Perry Wong
  */
 public class Parser {
+
     //Exception Messages
     private static final String NO_DESC_TODO = "☹ OOPS!!! Description of the todo can't be empty.";
     private static final String NO_DESC_DEADLINE = "☹ OOPS!!! Description of the deadline can't be empty.";
     private static final String NO_DESC_EVENT = "☹ OOPS!!! Description of the event can't be empty.";
-
     private static final String NO_DATE_DEADLINE = "☹ OOPS!!! Date/time of the deadline can't be empty.";
     private static final String NO_DATE_EVENT = "☹ OOPS!!! Date/time of the event can't be empty.";
     private static final String NO_INDEX = "☹ OOPS!!! Index of the task to be marked/unmarked/deleted can't be empty.";
-
     private static final String UNKNOWN_COMMAND = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
 
     /**
@@ -108,4 +107,5 @@ public class Parser {
             }
         }
     }
+
 }

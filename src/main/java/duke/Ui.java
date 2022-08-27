@@ -12,6 +12,7 @@ import duke.task.Task;
  * @author Perry Wong
  */
 public class Ui {
+
     private Scanner sc = new Scanner(System.in);
 
     /**
@@ -110,4 +111,5 @@ public class Ui {
             return " tasks ";
         }
     }
+    
 }

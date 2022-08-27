@@ -13,6 +13,7 @@ import duke.Ui;
  * @author Perry Wong
  */
 public class ShowListCommand extends Command {
+
     /**
      * Returns whether command is an ExitCommand.
      *
@@ -34,4 +35,5 @@ public class ShowListCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.printList();
     }
+
 }

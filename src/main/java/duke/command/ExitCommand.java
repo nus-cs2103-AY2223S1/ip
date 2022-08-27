@@ -15,6 +15,7 @@ import duke.Ui;
  * @author Perry Wong
  */
 public class ExitCommand extends Command {
+
     /**
      * Returns whether command is an ExitCommand.
      *
@@ -38,4 +39,5 @@ public class ExitCommand extends Command {
         storage.save(taskList.getTaskArrayList());
         ui.showGoodbye();
     }
+
 }
