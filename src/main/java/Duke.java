@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.FileWriter;
@@ -130,12 +131,94 @@ public class Duke {
 
     }
     public static void main(String[] args) {
-
         System.out.println("What can I do for you?");
         ArrayList<Task> ls = new ArrayList<>();
         ArrayList<String> tested = new ArrayList<>();
+        ArrayList<String> preload = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String line = "";
+        try {
+            File f = new File("duke.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                String maker = s.nextLine();
+                if (maker.contains("[T]")) {
+                    if (maker.contains("[X]")) {
+                        String d1 = maker.substring(7);
+                        Todo test = new Todo(d1);
+                        test.setStatus(true);
+                        ls.add(test);
+                    } else {
+                        String d1 = maker.substring(7);
+                        Todo test = new Todo(d1);
+                        ls.add(test);
+                    }
+
+                }
+                else if (maker.contains("[D]")) {
+                    try {
+                        if (maker.contains("[X]")) {
+                            String description = maker.substring(7, maker.indexOf(":") - 4);
+                            String var = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                            LocalDate d1 = LocalDate.parse(var);
+                            Deadline test = new Deadline(description, d1);
+                            test.setStatus(true);
+                            ls.add(test);
+                        } else {
+                            String description = maker.substring(7, maker.indexOf(":") - 4);
+                            String var = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                            LocalDate d1 = LocalDate.parse(var);
+                            Deadline test = new Deadline(description, d1);
+                            ls.add(test);
+                        }
+                    } catch (DateTimeParseException e) {
+                        if (maker.contains("[X]")) {
+                            String description = maker.substring(7, maker.indexOf(":") - 4);
+                            String by = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                            Deadline test = new Deadline(description, by);
+                            test.setStatus(true);
+                            ls.add(test);
+                        } else {
+                            String description = maker.substring(7, maker.indexOf(":") - 4);
+                            String by = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                            Deadline test = new Deadline(description, by);
+                            ls.add(test);
+                        }
+                    }
+                    } else if (maker.contains("[E]")) {
+                        try {
+                            if (maker.contains("[X]")) {
+                                String description = maker.substring(7, maker.indexOf(":") - 1);
+                                LocalDate d1 = LocalDate.parse(maker.substring(maker.indexOf(":") + 1, maker.length() - 1));
+                                Event test = new Event(description, d1);
+                                test.setStatus(true);
+                                ls.add(test);
+                            } else {
+                                String description = maker.substring(7, maker.indexOf(":") - 1);
+                                LocalDate d1 = LocalDate.parse(maker.substring(maker.indexOf(":") + 1, maker.length() - 1));
+                                Event test = new Event(description, d1);
+                                ls.add(test);
+                            }
+                        } catch (DateTimeParseException e) {
+                            if (maker.contains("[X]")) {
+                                String description = maker.substring(7, maker.indexOf(":") - 1);
+                                String at = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                                Event test = new Event(description, at);
+                                test.setStatus(true);
+                                ls.add(test);
+                            } else {
+                                String description = maker.substring(7, maker.indexOf(":") - 1);
+                                String at = maker.substring(maker.indexOf(":") + 1, maker.length() - 1);
+                                Event test = new Event(description, at);
+                                ls.add(test);
+                            }
+                        }
+                    }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("duke.txt not found!");
+        }
         while (true) {
             try {
                 line = sc.nextLine();
@@ -145,7 +228,11 @@ public class Duke {
                     break;
                 } else if (line.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < ls.size(); i++) {
+                    if (!preload.isEmpty()) {
+                        for (int j =0; j< preload.size(); j++)
+                            System.out.println(j + 1 + "." + " " + preload.get(j));
+                    }
+                    for (int i = preload.size(); i < ls.size(); i++) {
                         System.out.println(i + 1 + "." + " " + ls.get(i).toString());
                     }
 
@@ -183,7 +270,7 @@ public class Duke {
                         } catch (IOException e) {
                             System.out.println("Something went wrong: " + e.getMessage());
                         }
-                        System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                        System.out.println("Now you have" + " " + ls.size()+ " " + "tasks in the list.");
                     }
                 } else if (line.contains("deadline")) {
                     if (line.equals("deadline")) {
@@ -212,7 +299,7 @@ public class Duke {
                             ls.add(test);
                             System.out.println("Got it. I've added this task:");
                             System.out.println(test.toString());
-                            String file2 = "duke.txt";
+                            String file2 =  "duke.txt";
                             try {
                                 writeToFile(file2, test.toString() + System.lineSeparator());
                             } catch (IOException f) {
@@ -234,7 +321,7 @@ public class Duke {
                             ls.add(test);
                             System.out.println("Got it. I've added this task:");
                             System.out.println(test.toString());
-                            String file2 = "duke.txt";
+                            String file2 ="duke.txt";
                             try {
                                 writeToFile(file2, test.toString() + System.lineSeparator());
                             } catch (IOException e) {
@@ -265,7 +352,7 @@ public class Duke {
                         int removal = Integer.parseInt(line.substring(7));
                         System.out.println("Noted. I've removed this task:");
                         System.out.println(ls.get(removal - 1).toString());
-                        String file2 = "duke.txt";
+                        String file2 =  "duke.txt";
                         ls.remove(removal - 1);
                         try {
                             deleteFromFile(file2, ls);
