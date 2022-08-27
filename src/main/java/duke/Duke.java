@@ -9,7 +9,7 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
-    public Duke(String filePath) throws DukeException {
+    public Duke(String filePath) {
         try {
             ui = new Ui();
             ui.hello();
@@ -21,7 +21,7 @@ public class Duke {
         }
     }
         public void run() throws DukeException, IOException {
-        parser = new Parser(tasks,storage);
+        parser = new Parser(tasks);
         parser.read();
 
         }
