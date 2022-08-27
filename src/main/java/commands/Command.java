@@ -1,6 +1,10 @@
 package commands;
 
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 public abstract class Command {
     public boolean isDone;

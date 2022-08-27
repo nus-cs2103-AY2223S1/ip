@@ -1,13 +1,18 @@
 package duke;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import commands.*;
-import dukeexceptions.*;
-import tasks.*;
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.TodoCommand;
+import commands.UnMarkCommand;
+import dukeexceptions.DukeException;
+import dukeexceptions.NoDescriptionException;
+import dukeexceptions.NoSuchCommandException;
+import tasks.TaskList;
 
 
 public class Duke {
@@ -24,9 +29,9 @@ public class Duke {
     }
 
     public void run() {
-        Ui.entryStatement();
+        Ui.printEntryStatement();
         boolean toExitProgram = false;
-        Ui.initStatement();
+        Ui.printInitStatement();
         while (!toExitProgram) {
             String userIn = ui.readCommand();  // Read user input
             try {

@@ -1,6 +1,10 @@
 package commands;
 
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 public class UnMarkCommand extends Command {
     public int index;
@@ -12,6 +16,7 @@ public class UnMarkCommand extends Command {
     @Override
     public void run(TaskList taskList) {
         taskList.unmark(index);
-        System.out.println("OK, I've marked this task as not done yet:\n" + "  " + taskList.retrieveTask(index).toString());
+        System.out.println("OK, I've marked this task as not done yet:\n" + "  "
+                + taskList.retrieveTask(index).toString());
     }
 }
