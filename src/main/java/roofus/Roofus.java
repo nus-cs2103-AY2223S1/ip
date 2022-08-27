@@ -4,6 +4,11 @@ import java.io.FileNotFoundException;
 
 import roofus.command.Command;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 /**
  * Roofus is a Personal Assistant Chatbot that
  * helps a person to keep track of various things.
@@ -12,7 +17,7 @@ import roofus.command.Command;
  * @version 0.1
  * @since 2022-08-13
  */
-public class Roofus {
+public class Roofus extends Application {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -35,6 +40,8 @@ public class Roofus {
             ui.printErrMessage("Required file not found\nRoofus did not load storage data");
         }
     }
+    
+    public Roofus(){};
 
     /**
      * Starts Roofus
@@ -55,6 +62,15 @@ public class Roofus {
                 break;
             }
         }
+    }
+    
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     /**
