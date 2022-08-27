@@ -140,6 +140,7 @@ public class Sally {
                 }
                 printBorder();
             }
+
             // Delete
             else if (message.startsWith("delete")) {
                 if (message.length() > 7 && message.substring(7).trim().chars().allMatch(Character::isDigit)) {
@@ -162,6 +163,7 @@ public class Sally {
                     System.out.println("File Not Found");
                 }
             }
+
             // Unmark
             else if (message.contains("unmark")) {
                 int taskNum = Integer.parseInt(message.substring(7)) - 1; // -1 so that index is constant
@@ -208,6 +210,7 @@ public class Sally {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
             } else {
+
                 //ToDos
                 if (message.startsWith("todo")) {
                     if (message.length() > 4) {
@@ -218,6 +221,7 @@ public class Sally {
                         throw new SallyException.SallyNoDescriptionException();
                     }
                 }
+
                 //Deadlines
                 else if (message.startsWith("deadline")) {
                     String description, by;
@@ -231,6 +235,7 @@ public class Sally {
                         throw new SallyException.SallyNoDeadlineException();
                     }
                 }
+
                 //Events
                 else if (message.startsWith("event")) {
                     String description, at;
@@ -244,6 +249,7 @@ public class Sally {
                         throw new SallyException.SallyNoPlaceException();
                     }
                 }
+
                 //Any other messages
                 else {
                     throw new SallyException.SallyInvalidInputException();
