@@ -1,7 +1,13 @@
+package duke;
+
+import duke.exceptions.EmptyTextException;
+import duke.exceptions.EndProgramException;
+import duke.exceptions.IllegalCommandException;
+
 class InputParser {
-    void parse(String input, TaskList tasks) throws EmptyTextException, IllegalCommandException, EndProgramException {
+    void parse(String input, TaskList tasks, Storage storage) throws EmptyTextException, IllegalCommandException, EndProgramException {
         if (input.equals("bye")) {
-            tasks.save();
+            storage.save(tasks);
             throw new EndProgramException();
         } else if (input.equals("list")) {
             tasks.list();

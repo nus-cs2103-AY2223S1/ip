@@ -1,4 +1,6 @@
-class EmptyTextException extends IllegalArgumentException {
+package duke.exceptions;
+
+public class EmptyTextException extends IllegalArgumentException {
 
     @Override
     public boolean equals(Object obj) {

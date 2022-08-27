@@ -1,4 +1,6 @@
-class IllegalCommandException extends IllegalArgumentException {
+package duke.exceptions;
+
+public class IllegalCommandException extends IllegalArgumentException {
     @Override
     public boolean equals(Object obj) {
         return obj.getClass() == this.getClass();

@@ -1,7 +1,9 @@
+package duke;
+
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     public Duke(String filepath) {
         ui = new Ui();
@@ -14,7 +16,7 @@ public class Duke {
     }
 
     public void run() {
-        ui.run(tasks);
+        ui.run(tasks, storage);
     }
 
     public static void main(String[] args) {

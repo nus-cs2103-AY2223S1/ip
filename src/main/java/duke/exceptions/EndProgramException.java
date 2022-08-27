@@ -1,4 +1,6 @@
-class EndProgramException extends Exception {
+package duke.exceptions;
+
+public class EndProgramException extends Exception {
 
     @Override
     public boolean equals(Object obj) {

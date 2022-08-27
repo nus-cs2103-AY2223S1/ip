@@ -1,18 +1,17 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-class TaskList {
+public class TaskList {
     private final List<Task> taskList;
 
-    TaskList() {
+    public TaskList() {
         taskList = new ArrayList<>();
     }
 
-    TaskList(Stream<String> lines) {
+    public TaskList(Stream<String> lines) {
         taskList = populateList(lines);
     }
 
@@ -39,20 +38,8 @@ class TaskList {
         return arrayList;
     }
 
-    void save() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./tasks.txt"));
-            taskList.forEach(x -> {
-                try {
-                    writer.write(x.toString());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-            writer.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    List<Task> retrieve() {
+        return taskList;
     }
 
     void list() {
@@ -69,14 +56,14 @@ class TaskList {
             task.setNotDone();
             System.out.println("OK, I've marked this task as not done yet: ");
         }
-        System.out.println(task.toString());
+        System.out.println(task);
     }
 
     void event(String name, String eventDate) {
         Event event = new Event(taskList.size() + 1, name, eventDate);
         taskList.add(event);
         System.out.println("Got it. I've added this task: ");
-        System.out.println(event.toString());
+        System.out.println(event);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
@@ -84,7 +71,7 @@ class TaskList {
         Deadline deadlineEvent = new Deadline(taskList.size() + 1, name, deadline);
         taskList.add(deadlineEvent);
         System.out.println("Got it. I've added this task: ");
-        System.out.println(deadlineEvent.toString());
+        System.out.println(deadlineEvent);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
@@ -92,7 +79,7 @@ class TaskList {
         Todo todo = new Todo(taskList.size() + 1, task);
         taskList.add(todo);
         System.out.println("Got it. I've added this task: ");
-        System.out.println(todo.toString());
+        System.out.println(todo);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
