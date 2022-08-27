@@ -27,7 +27,7 @@ public class Storage {
      * @return List of array of strings from the lines in the file path specified
      * @throws IOException If there is an I/O issue, e.g. file not found
      */
-    public ArrayList<ArrayList<String>> load() throws IOException {
+    public ArrayList<String[]> load() throws IOException {
         File f = new File(this.filePath);
         Scanner s = new Scanner(f);
         ArrayList<String[]> loadResult = new ArrayList<String[]>();
