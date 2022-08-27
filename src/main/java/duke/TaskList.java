@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class TaskList {
-    private final List<Task> tasks;
+class TaskList {
 
+    private final List<Task> tasks;
     public TaskList() {
         tasks = new ArrayList<>();
     }
@@ -15,7 +15,7 @@ public class TaskList {
         tasks = populateList(lines);
     }
 
-    static List<Task> populateList(Stream<String> lines) {
+    List<Task> populateList(Stream<String> lines) {
         ArrayList<Task> arrayList = new ArrayList<>();
         lines.forEach(x -> {
             int id = Integer.parseInt(x.substring(0, 1));
