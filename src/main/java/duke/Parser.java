@@ -220,6 +220,13 @@ public class Parser {
                 + " tasks in the list.\n" + LINE);
     }
 
+    /**
+     * Finds the task by searching for a keyword.
+     *
+     * @param input The input command given by the user.
+     * @param taskList A collection of Task objects.
+     * @throws DukeException If input given is invalid.
+     */
     public static void findTask(String input, TaskList taskList) throws DukeException {
         String[] inputArray = input.split(" ", 2);
         String keyword = inputArray[1];
