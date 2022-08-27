@@ -20,7 +20,7 @@ public class Ui {
     }
 
     /**
-     * Bye to user.
+     * Bye to user (End process message).
      *
      */
     public void sayBye() {
