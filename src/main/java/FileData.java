@@ -34,7 +34,6 @@ public class FileData {
     }
 
     public void updateData(ArrayList<Task> tasks) {
-        int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             try {
                 if (i == 0) {

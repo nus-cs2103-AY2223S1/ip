@@ -1,3 +1,0 @@
-[T][ ] read book
-[D][ ] read book (by: Feb 2 2222 15:00:00)
-[E][ ] read book (at: Feb 2 2222)

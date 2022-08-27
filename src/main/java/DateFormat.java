@@ -15,7 +15,8 @@ public class DateFormat {
     protected String stringDate;
     protected String stringTime;
     protected LocalDateTime dateAndTime;
-    protected HashMap<String, String> months = new HashMap<String, String>();
+    protected HashMap<String, String> months = new HashMap<>();
+
     public DateFormat(String date) {
         this.afterBy = date;
         this.date = date;
