@@ -67,6 +67,10 @@ public class Hazell {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
                     String response = taskList.deleteTask(index);
                     ui.reply(response);
+                } else if (command.startsWith("find")) {
+                    String keyword = command.getTrailingArgs().get(0);
+                    String response = taskList.findMatchingTasks(keyword);
+                    ui.reply(response);
                 } else {
                     throw new UnknownCommand();
                 }

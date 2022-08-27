@@ -124,6 +124,30 @@ public class TaskList {
     }
 
     /**
+     * Find tasks with descriptions matching `keyword`.
+     * @param keyword The search string
+     * @return Response string
+     */
+    public String findMatchingTasks(String keyword) {
+        List<Task> output = new ArrayList<>();
+        for (Task task : store) {
+            if (task.getDescription().matches(keyword)) {
+                output.add(task);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:");
+        for (Task task : output) {
+            sb.append("\n");
+            sb.append(task.toString());
+        }
+        return sb.toString();
+
+
+
+    }
+
+    /**
      * List detailed information about all tasks in this store.
      * @return String Details
      */
