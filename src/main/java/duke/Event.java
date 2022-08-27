@@ -8,14 +8,14 @@ public class Event extends Task {
     protected LocalDate at;
     protected LocalTime time;
 
-    public Event(String description, String[] msg) {
-        super(description);
-        this.at = LocalDate.parse(msg[1]);
-        this.time = LocalTime.parse(msg[2]);
+    public Event(String description, boolean isDone, String at, String time) {
+        super(description, isDone);
+        this.at = LocalDate.parse(at);
+        this.time = LocalTime.parse(time);
     }
 
     @Override
     public String toString() {
-        return "[E][" + this.getStatusIcon() + "] " + this.getDescription() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time.format(DateTimeFormatter.ofPattern("hh:mma")) + ")";
+        return "E | " + this.getStatusIcon() + " | " + this.getDescription() + " | " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time.format(DateTimeFormatter.ofPattern("hhmma"));
     }
 }

@@ -1,211 +1,45 @@
-import duke.*;
+import duke.command.Command;
+import duke.DukeException;
+import duke.Parser;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 public class Duke {
 
-    public static void enumerateList(ArrayList<Task> lst) {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < lst.size(); i++) {
-            int curr = i + 1;
-            System.out.println(curr + ". " + lst.get(i).toString());
-        }
-    }
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    public static void markDone(ArrayList<Task> lst, String message) throws DukeException, IOException {
+    public Duke(String filePath) {
+        this.ui = new Ui();
         try {
-            Scanner sc = new Scanner(message);
-            int pos = sc.nextInt() - 1;
-            lst.get(pos).mark();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(lst.get(pos).toString());
-        } catch (ArrayIndexOutOfBoundsException a) {
-            throw new DukeException("OOPS! Please enter a valid number!");
-        } catch (Exception e) {
-            throw new DukeException("OOPS! Please enter a number that you want to mark!");
-        }
-        saveList(lst);
-    }
-
-    public static void markUndone(ArrayList<Task> lst, String message) throws DukeException, IOException {
-        try {
-            Scanner sc = new Scanner(message);
-            int pos = sc.nextInt() - 1;
-            lst.get(pos).unmark();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(lst.get(pos).toString());
-        } catch (ArrayIndexOutOfBoundsException a) {
-            throw new DukeException("OOPS! Please enter a valid number!");
-        } catch (Exception e) {
-            throw new DukeException("OOPS! Please enter a number that you want to unmark!");
-        }
-        saveList(lst);
-    }
-
-    public static void toDo(ArrayList<Task> lst, String message) throws DukeException, IOException {
-        Scanner sc = new Scanner(message);
-        if (sc.hasNext()) {
-            String description = sc.nextLine();
-            ToDo todo = new ToDo(description);
-            lst.add(todo);
-            System.out.println("Got it. I've added this task:");
-            System.out.println("\t" + todo.toString());
-            System.out.println("Now you have " + lst.size() + " tasks in the list.");
-        } else {
-            throw new DukeException("OOPS! The description of the todo should not be empty!");
-        }
-        saveList(lst);
-    }
-
-    public static void makeDeadline(ArrayList<Task> lst, String message) throws DukeException, IOException {
-        Scanner sc = new Scanner(message);
-        try {
-            String description = "";
-            while (!sc.hasNext("/by")) {
-                String next = sc.next();
-                description += next + " ";
-            }
-            sc.next();
-            String next = sc.nextLine();
-            String[] date = next.split(" ");
-            Deadline deadline = new Deadline(description, date);
-            lst.add(deadline);
-            System.out.println("Got it. I've added this task: ");
-            System.out.println("\t" + deadline.toString());
-            System.out.println("Now you have " + lst.size() + " tasks in the list.");
-        } catch (Exception e) {
-            throw new DukeException("OOPS!! Please enter a valid message!");
-        }
-        saveList(lst);
-    }
-
-    public static void makeEvent(ArrayList<Task> lst, String message) throws DukeException, IOException {
-        Scanner sc = new Scanner(message);
-        try {
-            String description = "";
-            while (!sc.hasNext("/at")) {
-                String next = sc.next();
-                description += next + " ";
-            }
-            sc.next();
-            String next = sc.nextLine();
-            String[] date = next.split(" ");
-            Event event = new Event(description, date);
-            lst.add(event);
-            System.out.println("Got it. I've added this task: ");
-            System.out.println("\t" + event.toString());
-            System.out.println("Now you have " + lst.size() + " tasks in the list.");
-        } catch (Exception e) {
-            throw new DukeException("OOPS! Please enter a valid message!");
-        }
-        saveList(lst);
-    }
-
-    public static void delete(ArrayList<Task> lst, String message) throws DukeException, IOException {
-        try {
-            Scanner sc = new Scanner(message);
-            int pos = sc.nextInt() - 1;
-            Task task = lst.remove(pos);
-            System.out.println("Noted. I've removed this task:");
-            System.out.println("\t" + task.toString());
-            System.out.println("Now you have " + lst.size() + " tasks in the list");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Please enter a valid number!");
-        } catch (Exception e) {
-            throw new DukeException("Please enter a number you want to delete!");
-        }
-        saveList(lst);
-    }
-
-    public static void addToList(ArrayList<Task> lst, String message, Command command) throws DukeException, IOException {
-        switch (command) {
-            case TODO: {
-                toDo(lst, message);
-                break;
-            }
-            case DEADLINE: {
-                makeDeadline(lst, message);
-                break;
-            }
-            case EVENT: {
-                makeEvent(lst, message);
-                break;
-            }
+            this.storage = new Storage(filePath);
+            tasks = new TaskList(storage.load(ui));
+        } catch (DukeException e) {
+            ui.showText(e.toString());
         }
     }
 
-    public static void saveList(ArrayList<Task> lst) throws IOException, DukeException {
-        try {
-            String path = "data/duke.txt";
-            File f = new File(path);
-            if (f.exists()) {
-                Files.delete(Paths.get(path));
-            }
-            FileWriter fw = new FileWriter(path, true);
-            for (Task t : lst) {
-                fw.write(t.toString() + System.lineSeparator());
-            }
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException("OOPS! Looks like the file or directory does not exist...");
-        }
-    }
-
-    public static void main(String[] args) throws DukeException, IOException {
-        ArrayList<Task> lst = new ArrayList<>();
-        boolean isDone = false;
-        System.out.println("Hello! I'm Justin, your personal assistant");
-        System.out.println("What can I do for you?");
-        Scanner sc = new Scanner(System.in);
-        while (!isDone) {
+    public void run() {
+        ui.welcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String first = sc.next();
-                String message = sc.nextLine();
-                switch (first) {
-                    case ("bye"): {
-                        System.out.println("Bye. Hope to see you again soon!");
-                        isDone = true;
-                        break;
-                    }
-                    case ("list"): {
-                        enumerateList(lst);
-                        break;
-                    }
-                    case ("mark"): {
-                        markDone(lst, message);
-                        break;
-                    }
-                    case ("unmark"): {
-                        markUndone(lst, message);
-                        break;
-                    }
-                    case ("todo"): {
-                        addToList(lst, message, Command.TODO);
-                        break;
-                    }
-                    case ("deadline"): {
-                        addToList(lst, message, Command.DEADLINE);
-                        break;
-                    }
-                    case ("event"): {
-                        addToList(lst, message, Command.EVENT);
-                        break;
-                    }
-                    case ("delete"): {
-                        delete(lst, message);
-                        break;
-                    }
-                    default: {
-                        throw new DukeException("OOPS! I'm sorry, but I don't know what that means...");
-                    }
-                }
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
             } catch (DukeException e) {
-                System.out.println(e.toString());
+                ui.showText(e.toString());
+            } finally {
+                ui.showLine();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke("data/duke.txt").run();
     }
 }
