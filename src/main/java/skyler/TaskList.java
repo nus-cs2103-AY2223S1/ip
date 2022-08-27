@@ -91,7 +91,7 @@ public class TaskList {
      *
      * @param desc Task description.
      */
-    public void todo(String desc) {
+    public void addTodo(String desc) {
         Todo newTodo = new Todo(desc);
         tasks.add(newTodo);
 
@@ -110,7 +110,7 @@ public class TaskList {
      *
      * @param descWithDate Task description with date.
      */
-    public void deadline(String descWithDate) {
+    public void addDeadline(String descWithDate) {
         String[] arr1 = descWithDate.split(" /by ", 2);
 
         // process date and time
@@ -128,13 +128,13 @@ public class TaskList {
             System.out.println(ie.getMessage());
         }
     }
-
+    
     /**
      * Adds a new event to the list
      *
      * @param descWithDate Task description with date.
      */
-    public void event(String descWithDate) {
+    public void addEvent(String descWithDate) {
         String[] arr1 = descWithDate.split(" /at ", 2);
 
         // process date and time

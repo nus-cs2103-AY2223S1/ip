@@ -43,21 +43,21 @@ public class Parser {
             if (command.trim().equals("todo")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.todo(arr[1]);
+            taskList.addTodo(arr[1]);
             return 1;
         } else if (command.startsWith("deadline")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("deadline")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.deadline(arr[1]);
+            taskList.addDeadline(arr[1]);
             return 1;
         } else if (command.startsWith("event")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("event")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.event(arr[1]);
+            taskList.addEvent(arr[1]);
             return 1;
         } else if (command.startsWith("delete")) {
             int item = Integer.parseInt(command.substring(command.length() - 1));
