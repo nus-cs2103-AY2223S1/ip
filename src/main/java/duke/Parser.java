@@ -21,6 +21,10 @@ public class Parser {
      */
     public static Command parseInput(String userInput) throws DukeException {
         String[] split = userInput.split(" ");
+        if (userInput.equals("welcome") && split.length == 1) {
+            return new WelcomeCommand();
+        }
+
         if (userInput.equals("bye") && split.length == 1) {
             return new ByeCommand();
         }

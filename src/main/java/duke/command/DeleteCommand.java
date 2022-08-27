@@ -31,13 +31,15 @@ public class DeleteCommand extends Command {
      * @param ui A ui to handle printing output.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            ui.printDeleteTask(taskList.deleteTask(index - 1));
-            ui.printSizeOfList(taskList.size());
+            String output = "";
+            output += ui.printDeleteTask(taskList.deleteTask(index - 1)) + '\n';
+            output += ui.printSizeOfList(taskList.size());
             storage.save(taskList.getTasks());
+            return output;
         } catch (DukeException e) {
-            ui.printErrorMessage(e.getMessage());
+            return ui.printErrorMessage(e.getMessage());
         }
     }
 }

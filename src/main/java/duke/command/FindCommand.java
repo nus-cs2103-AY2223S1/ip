@@ -31,8 +31,8 @@ public class FindCommand extends Command {
      * @param ui A ui to handle printing output.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         TaskList matchingTaskList = taskList.findMatchingTasks(keyword);
-        ui.printList(matchingTaskList.toString());
+        return ui.printList(matchingTaskList.toString());
     }
 }

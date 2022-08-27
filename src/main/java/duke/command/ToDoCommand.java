@@ -32,9 +32,11 @@ public class ToDoCommand extends Command {
      * @param ui A ui to handle printing output.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addTask(new ToDo(description)));
-        ui.printSizeOfList(taskList.size());
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        String output = "";
+        output += ui.printAddTask(taskList.addTask(new ToDo(description))) + '\n';
+        output += ui.printSizeOfList(taskList.size());
         storage.save(taskList.getTasks());
+        return output;
     }
 }

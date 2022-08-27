@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Platform;
 
 /**
  * The main class for the Duke program.
@@ -12,10 +13,6 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-
-    public Duke() {
-
-    }
 
     /**
      * Creates a Duke object with specified file path to load and store tasks.
@@ -34,32 +31,19 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke program.
-     */
-    public void run() {
-        ui.printGreeting();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userInput = ui.read();
-                Command command = Parser.parseInput(userInput);
-                command.execute(storage, taskList, ui);
-                isExit = command.canExit();
-            } catch (DukeException e) {
-                ui.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
-
-    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            Command command = Parser.parseInput(input);
+            boolean isExit = command.canExit();
+            if (isExit) {
+                Platform.exit();
+            }
+            return command.execute(storage, taskList, ui);
+        } catch (DukeException e) {
+            return ui.printErrorMessage(e.getMessage());
+        }
     }
 }

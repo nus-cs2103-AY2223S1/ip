@@ -20,38 +20,18 @@ public class Ui {
     private static final String GREETING = "Hello! I'm Duke\n"
             + "What can I do for you?\n";
 
-    private Scanner scanner;
-
-    /**
-     * Creates ui object to handle input and output.
-     */
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
     /**
      * Prints Duke logo and greeting message.
      */
-    public void printGreeting() {
-        System.out.println(LOGO);
-        System.out.println(GREETING);
-    }
-
-    /**
-     * Returns a string read from input.
-     *
-     * @return A line of user input.
-     */
-    public String read() {
-        return scanner.nextLine();
+    public String printGreeting() {
+        return LOGO + GREETING;
     }
 
     /**
      * Closes the scanner for reading input.
      */
-    public void close() {
-        System.out.println("Bye. Hope to see you again soon!");
-        scanner.close();
+    public String close() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
@@ -59,9 +39,8 @@ public class Ui {
      *
      * @param list A list of tasks in string.
      */
-    public void printList(String list) {
-        System.out.println("Here are the tasks in your list:");
-        System.out.println(list);
+    public String printList(String list) {
+        return "Here are the tasks in your list:\n" + list;
     }
 
     /**
@@ -69,8 +48,8 @@ public class Ui {
      *
      * @param size The size of the list.
      */
-    public void printSizeOfList(int size) {
-        System.out.println(String.format("Now you have %d tasks in the list.", size));
+    public String printSizeOfList(int size) {
+        return String.format("Now you have %d tasks in the list.\n", size);
     }
 
     /**
@@ -78,9 +57,8 @@ public class Ui {
      *
      * @param task The task that is marked as complete.
      */
-    public void printMarkTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        printTask(task);
+    public String printMarkTask(Task task) {
+        return "Nice! I've marked this task as done:\n" + printTask(task);
     }
 
     /**
@@ -88,9 +66,8 @@ public class Ui {
      *
      * @param task The task that is marked as incomplete.
      */
-    public void printUnmarkTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        printTask(task);
+    public String printUnmarkTask(Task task) {
+        return "OK, I've marked this task as not done yet:\n" + printTask(task);
     }
 
     /**
@@ -98,9 +75,8 @@ public class Ui {
      *
      * @param task The task that is deleted.
      */
-    public void printDeleteTask(Task task) {
-        System.out.println("Noted. I've removed this task:");
-        printTask(task);
+    public String printDeleteTask(Task task) {
+        return "Noted. I've removed this task:\n" + printTask(task);
     }
 
     /**
@@ -108,9 +84,8 @@ public class Ui {
      *
      * @param task The task that is added.
      */
-    public void printAddTask(Task task) {
-        System.out.println("Got it. I've added this task:");
-        printTask(task);
+    public String printAddTask(Task task) {
+        return "Got it. I've added this task:\n" + printTask(task);
     }
 
     /**
@@ -118,11 +93,11 @@ public class Ui {
      *
      * @param message The error message
      */
-    public void printErrorMessage(String message) {
-        System.out.println(message);
+    public String printErrorMessage(String message) {
+        return message;
     }
 
-    private void printTask(Task task) {
-        System.out.println(task);
+    private String printTask(Task task) {
+        return task.toString();
     }
 }

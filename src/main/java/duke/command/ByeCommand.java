@@ -30,7 +30,7 @@ public class ByeCommand extends Command {
      * @param ui A ui to handle printing output.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        ui.close();
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return ui.close();
     }
 }

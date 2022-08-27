@@ -31,12 +31,13 @@ public class MarkCommand extends Command {
      * @param ui A ui to handle printing output.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            ui.printMarkTask(taskList.markTask(index - 1));
+            String output = ui.printMarkTask(taskList.markTask(index - 1));
             storage.save(taskList.getTasks());
+            return output;
         } catch (DukeException e) {
-            ui.printErrorMessage(e.getMessage());
+            return ui.printErrorMessage(e.getMessage());
         }
     }
 }
