@@ -21,7 +21,6 @@ public class Storage {
         this.filePath = filePath;
     }
 
-
     /**
      * Loads the current text file, updates the ArrayList.
      */
@@ -48,7 +47,6 @@ public class Storage {
         return strList;
     }
 
-
     /**
      * Writes the following tasks in the taskList to the text file.
      *
@@ -64,7 +62,8 @@ public class Storage {
             } else if (currTask instanceof Deadline) {
                 Deadline currDeadline = (Deadline) currTask;
                 newTextLine.append("D | ").append(currDeadline.getStatusIcon()).append(" |")
-                        .append(currDeadline.description).append("|").append(currDeadline.date.toString()).append("\n");
+                        .append(currDeadline.description).append("|")
+                        .append(currDeadline.date.toString()).append("\n");
             } else if (currTask instanceof Event) {
                 Event currEvent = (Event) currTask;
                 newTextLine.append("E | ").append(currEvent.getStatusIcon()).append(" |")
