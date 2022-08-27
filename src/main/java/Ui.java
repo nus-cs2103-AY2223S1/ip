@@ -11,6 +11,7 @@ public class Ui {
         this.printDivider();
         OUTPUT.printf("%s\n", s);
         this.printDivider();
+        OUTPUT.print("\n");
     }
 
     public void println(String s) {
@@ -18,8 +19,11 @@ public class Ui {
     }
 
     public void showWelcome() {
-        this.printDivider();
-        OUTPUT.println("Hello! I'm Duke\nWhat can I do for you?");
-        this.printDivider();
+        this.printWithDivider("Hello! I'm Duke\nWhat can I do for you?");
+    }
+
+    public void showLoadingError() {
+        this.printWithDivider(
+                "There was a problem loading the tasks from the output file. Starting with empty list.");
     }
 }
