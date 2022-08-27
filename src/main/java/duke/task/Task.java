@@ -13,7 +13,7 @@ public abstract class Task {
         this.status = true;
     }
 
-    public void unmarkComplete() {
+    public void unMarkComplete() {
         this.status = false;
     }
 
