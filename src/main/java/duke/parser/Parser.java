@@ -1,5 +1,6 @@
-package duke.command;
+package duke.parser;
 
+import duke.command.*;
 import duke.exceptions.InvalidArgumentException;
 import duke.exceptions.InvalidCommandException;
 import duke.task.Deadline;

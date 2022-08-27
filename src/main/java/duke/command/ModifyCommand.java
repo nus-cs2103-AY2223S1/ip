@@ -5,7 +5,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ModifyCommand extends Command {
-    enum CommandType {
+    public enum CommandType {
         DONE,
         UNDONE,
         LIST
@@ -13,12 +13,12 @@ public class ModifyCommand extends Command {
 
     private CommandType commandType;
 
-    ModifyCommand(CommandType commandType, int index) {
+    public ModifyCommand(CommandType commandType, int index) {
         super(index);
         this.commandType = commandType;
     }
 
-    ModifyCommand(CommandType commandType) {
+    public ModifyCommand(CommandType commandType) {
         this.commandType = commandType;
     }
 

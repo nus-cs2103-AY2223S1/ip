@@ -5,7 +5,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ExitCommand extends Command {
-    ExitCommand() {
+    public ExitCommand() {
         super();
     }
 

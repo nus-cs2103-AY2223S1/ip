@@ -6,7 +6,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class AddCommand extends Command {
-    AddCommand(Task task) {
+    public AddCommand(Task task) {
         super(task);
     }
 
