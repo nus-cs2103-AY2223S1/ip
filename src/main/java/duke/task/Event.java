@@ -4,6 +4,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
+    /**
+     * Initialises Event object with specified description and date.
+     *
+     * @param description Description for Event object
+     * @param at          Date the event is on
+     */
     public Event(String description, String at) {
         super(description, at);
     }

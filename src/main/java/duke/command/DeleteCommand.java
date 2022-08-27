@@ -5,6 +5,12 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class DeleteCommand extends Command {
+
+    /**
+     * Initialises DeleteCommand object with specified task index.
+     *
+     * @param index Index of task to be deleted
+     */
     public DeleteCommand(int index) {
         super(index);
     }

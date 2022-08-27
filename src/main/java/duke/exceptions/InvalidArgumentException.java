@@ -1,7 +1,13 @@
 package duke.exceptions;
 
 public class InvalidArgumentException extends DukeException {
-    public InvalidArgumentException(String error) {
-        super(error);
+
+    /**
+     * Initialises InvalidArgumentException exception with specified error message.
+     *
+     * @param errorMessage Message related to error.
+     */
+    public InvalidArgumentException(String errorMessage) {
+        super(errorMessage);
     }
 }

@@ -13,22 +13,28 @@ import duke.task.Todo;
 
 public class Parser {
 
+    /**
+     * Processes user input for erroneous input and returns Command object.
+     *
+     * @param command Full command expressed as String
+     * @return Command object corresponding to input command
+     */
     public static Command parse(String command) {
         if (command.equals("bye")) {
             return new ExitCommand();
         } else if (command.equals("list")) {
-            return new ModifyCommand(ModifyCommand.CommandType.LIST);
+            return new ModifyCommand(ModifyCommand.getCommandType().LIST);
         } else if (command.startsWith("mark")) {
             try {
                 int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-                return new ModifyCommand(ModifyCommand.CommandType.DONE, taskNumber);
+                return new ModifyCommand(ModifyCommand.getCommandType().DONE, taskNumber);
             } catch (Exception e) {
                 throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
             }
         } else if (command.startsWith("unmark")) {
             try {
                 int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-                return new ModifyCommand(ModifyCommand.CommandType.UNDONE, taskNumber);
+                return new ModifyCommand(ModifyCommand.getCommandType().UNDONE, taskNumber);
             } catch (Exception e) {
                 throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
             }

@@ -24,10 +24,17 @@ public class Command {
 
     }
 
-    public boolean isExit() {
+    public boolean getExit() {
         return this.isExit;
     }
 
+    /**
+     * Executes command, adding/deleting/modifying stored task.
+     *
+     * @param tasks   TaskList object corresponding to all tasks
+     * @param ui      Ui object to show user output/errors
+     * @param storage Storage object to save data after execution
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
     }

@@ -12,12 +12,23 @@ public class Task {
 
     protected LocalDate date;
 
+    /**
+     * Creates new Task object with specified description.
+     *
+     * @param description Description for task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
         this.date = LocalDate.parse("1970-01-01");
     }
 
+    /**
+     * Creates new Task object with specified description and date.
+     *
+     * @param description Description for task
+     * @param date        Date to be attached to task
+     */
     public Task(String description, String date) {
         this.description = description;
         try {
@@ -43,10 +54,16 @@ public class Task {
         return this.date.toString();
     }
 
+    /**
+     * Marks task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks task as undone.
+     */
     public void markAsUndone() {
         this.isDone = false;
     }

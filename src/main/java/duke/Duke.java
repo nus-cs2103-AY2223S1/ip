@@ -17,6 +17,12 @@ public class Duke {
     public final static String FILENAME = "todo.txt";
 
 
+    /**
+     * Creates new Duke object, initialising tasks array.
+     *
+     * @param directory Directory for save file
+     * @param fileName  File name for save file
+     */
     Duke(String directory, String fileName) {
         ui = new Ui();
         try {
@@ -41,13 +47,18 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                isExit = c.isExit();
+                isExit = c.getExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
         }
     }
 
+    /**
+     * Initialises Duke class and runs the main part.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke(DIRECTORY, FILENAME);
         duke.run();
