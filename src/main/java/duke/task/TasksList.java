@@ -63,7 +63,7 @@ public class TasksList {
     public void addTodo(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n"
-                    + "todo <task>");
+                    + "todo <description>");
         }
         String description = command[1];
         System.out.println("Duke: Got it! Duke has added this task:");
@@ -87,12 +87,12 @@ public class TasksList {
     public void addDeadline(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n"
-                    + "deadline <task> /by <date/time>");
+                    + "deadline <description> /by <date/time>");
         }
         String[] deadline = command[1].split(" /by ", 2);
         if (deadline.length == 1) {
-            throw new DukeException("Duke: Please specify the date/time of this deadline:\n"
-                    + "deadline <task> /by <date/time>");
+            throw new DukeException("Duke: Please specify the description and the date/time of this deadline:\n"
+                    + "deadline <description> /by <date/time>");
         }
         try {
             Task newTask = new Deadline(deadline[0], deadline[1]);
@@ -120,12 +120,12 @@ public class TasksList {
     public void addEvent(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n"
-                    + "event <task> /at <date/time>");
+                    + "event <description> /at <date/time>");
         }
         String[] event = command[1].split(" /at ", 2);
         if (event.length == 1) {
-            throw new DukeException("Duke: Please specify the date/time of this event:\n"
-                    + "event <task> /at <date/time>");
+            throw new DukeException("Duke: Please specify the description and the date/time of this event:\n"
+                    + "event <description> /at <date/time>");
         }
         try {
             Task newTask = new Event(event[0], event[1]);
