@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents tasks to be done,
+ * Parent class for subclasses Deadline,
+ * Events and ToDos
+ */
 public class Task {
     protected String description;
     protected boolean isDone;

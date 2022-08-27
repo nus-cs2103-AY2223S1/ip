@@ -1,9 +1,12 @@
 package duke;
 
-
 import java.io.IOException;
 import java.util.Scanner;
 
+/** Deal with taking in user input
+ * and making sense of the input
+ *
+ */
 public class Parser {
     private TaskList tLst;
     private Storage storage;
@@ -13,6 +16,12 @@ public class Parser {
         this.storage = storage;
     }
 
+    /**
+     * Reads user input and determines
+     * what action to carry out
+     * @throws DukeException Thrown if input does not make sense
+     * @throws IOException For interrupted I/O operations
+     */
     public void read() throws DukeException, IOException {
         Scanner help = new Scanner(System.in);
         while (true) {

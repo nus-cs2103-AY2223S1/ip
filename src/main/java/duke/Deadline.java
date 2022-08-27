@@ -10,8 +10,6 @@ import java.time.format.DateTimeParseException;
  * it requires a description of task
  * and by timing to indicate the deadline.
  */
-
-
 public class Deadline extends Task {
     protected String by;
     public Deadline(String description,String by) {
