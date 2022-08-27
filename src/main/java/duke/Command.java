@@ -11,8 +11,9 @@ public abstract class Command {
      * @param tasks Tasklist object that Duke uses to store tasks
      * @param ui Ui object that Duke uses to display information to user
      * @param storage Storage object that Duke uses to handle file IO operations
+     * @return a string with the message to display to the user
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Checks if command is an ExitCommand.

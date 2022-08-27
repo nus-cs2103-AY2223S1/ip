@@ -12,15 +12,16 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (isMark) {
             tasks.markTask(taskNumber);
-            ui.showMarkTask();
+            storage.save(tasks);
+            return ui.showMarkTask();
         } else {
             tasks.unmarkTask(taskNumber);
-            ui.showUnmarkTask();
+            storage.save(tasks);
+            return ui.showUnmarkTask();
         }
-        storage.save(tasks);
     }
 
     @Override

@@ -10,11 +10,11 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task todo = new ToDo(this.description);
         tasks.addTask(todo);
         storage.save(tasks);
-        ui.showAddTask(todo, tasks.getSize());
+        return ui.showAddTask(todo, tasks.getSize());
     }
 
     public boolean isExit() {

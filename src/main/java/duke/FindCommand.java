@@ -8,8 +8,8 @@ public class FindCommand extends Command {
         this.filter = filter;
     }
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showList(tasks, filter);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showList(tasks, filter);
     }
 
     @Override

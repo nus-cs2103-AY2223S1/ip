@@ -1,2 +1,2 @@
-D | 0 | return book | 2022-11-10
 E | 1 | project meeting | 2022-10-10
+T | 0 | borrow shit

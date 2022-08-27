@@ -21,27 +21,39 @@ public class Ui {
      * Displays the current taskList to the user.
      *
      * @param tl the taskList to be shown to the user.
+     * @return String containing display message to user.
      */
-    public void showList(TaskList tl) {
+    public String showList(TaskList tl) {
+        StringBuilder sb = new StringBuilder();
         List<Task> taskList = tl.getTasks();
         int index = 1;
-        System.out.println("Here are the tasks in your list nya:");
+        sb.append("Here are the tasks in your list nya:\n");
         for (Task t : taskList) {
-            System.out.println(index + "." + t);
+            sb.append(index + "." + t + "\n");
             index++;
         }
+        return sb.toString();
     }
 
-    public void showList(TaskList tl, String filter) {
+    /**
+     * Displays the current taskList to the user.
+     *
+     * @param tl the taskList to be shown to the user.
+     * @param filter the filter to find tasks by.
+     * @return String containing display message to user.
+     */
+    public String showList(TaskList tl, String filter) {
+        StringBuilder sb = new StringBuilder();
         List<Task> taskList = tl.getTasks();
         int index = 1;
-        System.out.println("Here are the matching tasks in your list nya:");
+        sb.append("Here are the matching tasks in your list nya:\n");
         for (Task t : taskList) {
             if (t.description.contains(filter)) {
-                System.out.println(index + "." + t);
+                sb.append(index + "." + t + "\n");
                 index++;
             }
         }
+        return sb.toString();
     }
 
     /**
@@ -64,9 +76,10 @@ public class Ui {
      * Displays the error message to the user.
      *
      * @param message the error message to be shown to the user.
+     * @return the string message to be shown to the user.
      */
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return message;
     }
 
     /**
@@ -74,24 +87,31 @@ public class Ui {
      *
      * @param task the task that has been added.
      * @param size the size of the current taskList.
+     * @return string containing display message to the user.
      */
-    public void showAddTask(Task task, int size) {
-        System.out.println("Roger nya! Added this task:\n  " + task.toString());
-        System.out.println("Now you have " + size + " task(s) in the list nya");
+    public String showAddTask(Task task, int size) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Roger nya! Added this task:\n  " + task.toString() + "\n");
+        sb.append("Now you have " + size + " task(s) in the list nya");
+        return sb.toString();
     }
 
     /**
      * Informs the user that a task has been marked as done.
+     *
+     * @return the string containing the display message to the user.
      */
-    public void showMarkTask() {
-        System.out.println("I've marked this task as done. Great job nya!");
+    public String showMarkTask() {
+        return "I've marked this task as done. Great job nya!";
     }
 
     /**
      * Informs the user that a task has been marked as not done.
+     *
+     * @return the string containing the display message to the user.
      */
-    public void showUnmarkTask() {
-        System.out.println("Roger nya! I've marked this task as not done.");
+    public String showUnmarkTask() {
+        return "Roger nya! I've marked this task as not done.";
     }
 
     /**
@@ -99,10 +119,13 @@ public class Ui {
      *
      * @param task the task that has been deleted.
      * @param size the size of the taskList.
+     * @return string containing display message to user.
      */
-    public void showDeleteTask(Task task, int size) {
-        System.out.println("Roger nya! I've removed this task:\n  " + task.toString());
-        System.out.println("Now you have " + size + " task(s) left in the list.");
+    public String showDeleteTask(Task task, int size) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Roger nya! I've removed this task:\n  " + task.toString() + "\n");
+        sb.append("Now you have " + size + " task(s) left in the list.");
+        return sb.toString();
     }
     
     /**

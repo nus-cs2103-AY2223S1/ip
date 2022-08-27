@@ -9,10 +9,10 @@ public class DeleteCommand extends Command {
         this.taskNumber = taskNumber;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task target = tasks.deleteTask(taskNumber);
         storage.save(tasks);
-        ui.showDeleteTask(target, tasks.getSize());
+        return ui.showDeleteTask(target, tasks.getSize());
     }
 
     public boolean isExit() {

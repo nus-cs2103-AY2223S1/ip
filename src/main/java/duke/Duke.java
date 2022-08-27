@@ -1,5 +1,6 @@
 package duke;
 
+
 /**
  * Main program for running Duke, a bot that keeps track of tasks.
  */
@@ -9,15 +10,15 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-
     /**
      * Constructor for Duke bot
      *
-     * @param filePath filepath of save file for Duke
      */
-    public Duke(String filePath) {
+
+    public Duke() {
+        String home = System.getProperty("user.home");
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(home + "/Documents/ip/list.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -26,31 +27,23 @@ public class Duke {
         }
     }
 
+
     /**
-     * Runs Duke bot.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.showWelcomeMessage();
+    public String getResponse(String input) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = new Parser().parseCommand(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+        try {
+            Command c = new Parser().parseCommand(input);
+            String msg = c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+            if (isExit) {
+                System.exit(0);
             }
+            return msg;
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
         }
-        ui.showGoodbyeMessage();
     }
-
-    public static void main(String[] args) {
-        String home = System.getProperty("user.home");
-        new Duke(home + "/Documents/ip/list.txt").run();
-    }
-
 }
