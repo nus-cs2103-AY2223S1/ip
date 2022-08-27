@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.parser.DateParser;
-
 import java.time.LocalDate;
+
+import duke.parser.DateParser;
 
 /**
  * Deadline task.

@@ -7,6 +7,7 @@ public class Todo extends Task {
 
     /**
      * Constructor for <code>Todo</code>.
+     *
      * @param description
      */
     public Todo(String description) {
@@ -15,7 +16,8 @@ public class Todo extends Task {
 
     /**
      * String representative of Todo.
-     * @return
+     *
+     * @return String representative of Todo for displaying
      */
     @Override
     public String toString() {
@@ -24,10 +26,11 @@ public class Todo extends Task {
 
     /**
      * Convert a Todo task to a String to store with Storage.
-     * @return
+     *
+     * @return String representative of Todo for storing
      */
     @Override
     public String toMemoryString() {
-        return "T | " +  super.toMemoryString();
+        return "T | " + super.toMemoryString();
     }
 }

@@ -1,13 +1,19 @@
 package duke.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.DukeException;
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkDoneCommand;
+import duke.command.UnmarkDoneCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * Parser to parse the input from users.
@@ -28,7 +34,7 @@ public class Parser {
     /**
      * Parse an input string from user to a suitable command.
      * @param input
-     * @return
+     * @return Command
      * @throws DukeException
      */
     public static Command parse(String input) throws DukeException {
@@ -56,7 +62,7 @@ public class Parser {
     /**
      * Parse a given string to a add comment for a Todo task.
      * @param input
-     * @return
+     * @return AddCommand(Todo)
      * @throws DukeException
      */
     public static Command parseTodoCommand(String input) throws DukeException {
@@ -73,7 +79,7 @@ public class Parser {
     /**
      * Parse a given string to a add comment for a Deadline task.
      * @param input
-     * @return
+     * @return AddCommand(Deadline)
      * @throws DukeException
      */
     public static Command parseDeadlineCommand(String input) throws DukeException {
@@ -98,14 +104,15 @@ public class Parser {
             LocalDate due = DateParser.convertToLocalDate(splitInputByDeadlineSplit[1].trim());
             return new AddCommand(new Deadline(splitInputByDeadlineSplit[0].trim(), due));
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! duke.task.Deadline due date format is wrong. Follow format yyyy-mm-dd for due date");
+            throw new DukeException("OOPS!!! duke.task.Deadline due date format is wrong. "
+                    + "Follow format yyyy-mm-dd for due date");
         }
     }
 
     /**
      * Parse a given string to a add comment for a Event task.
      * @param input
-     * @return
+     * @return AddCommand(Event)
      * @throws DukeException
      */
     public static Command parseEventCommand(String input) throws DukeException {
@@ -136,7 +143,7 @@ public class Parser {
     /**
      * Parse a given string to a MarkDoneCommand to mark a task as done.
      * @param input
-     * @return
+     * @return MarkDoneCommand
      * @throws DukeException
      */
     public static Command parseMarkDoneCommand(String input) throws DukeException {
@@ -155,7 +162,7 @@ public class Parser {
     /**
      * Parse a given string to a UnmarkDoneCommand to unmark a marked task.
      * @param input
-     * @return
+     * @return UnmarkDoneCommand
      * @throws DukeException
      */
     public static Command parseUnmarkDoneCommand(String input) throws DukeException {
@@ -173,7 +180,7 @@ public class Parser {
     /**
      * Parse a given string to a DeleteCommand to delete a task from the task list.
      * @param input
-     * @return
+     * @return DeleteCommand
      * @throws DukeException
      */
     public static Command parseDeleteCommand(String input) throws DukeException {
