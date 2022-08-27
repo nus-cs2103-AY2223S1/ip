@@ -11,7 +11,7 @@ public class TaskList {
     }
     public TaskList(ArrayList<Task> tasks) {
         if (tasks == null) {
-            tasks = new ArrayList<>();
+            this.tasks = new ArrayList<>();
         } else {
             this.tasks = tasks;
             taskCount = tasks.size();

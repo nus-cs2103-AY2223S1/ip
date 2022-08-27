@@ -1,5 +1,3 @@
-package kirby.commands;
-
 import kirby.tasks.Task;
 
 public class TaskStub extends Task {
