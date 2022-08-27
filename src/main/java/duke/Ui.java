@@ -1,8 +1,5 @@
 package duke;
 
-import duke.Task;
-import duke.TaskList;
-
 public class Ui {
     TaskList taskList;
     Ui(TaskList taskList) {
@@ -27,9 +24,10 @@ public class Ui {
     }
 
     public String printRemovedTask(String msg) {
+        int taskRemaining = taskList.getSize() - 1;
         return "_______________________________________________________" +
                 "\n" + "OK, I have deleted this task from your list:\n " + msg + "\n" +
-                "Great, now you have " + taskList.getSize()  + " tasks in the list.\n" +
+                "Great, now you have " + taskRemaining  + " tasks in the list.\n" +
                 "_______________________________________________________";
     }
 
