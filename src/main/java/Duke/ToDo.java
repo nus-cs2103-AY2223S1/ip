@@ -1,6 +1,14 @@
 package duke;
 
+/**
+ * ToDo class to represent tasks to be done as soon as possible.
+ */
 public class ToDo extends Task {
+
+    /**
+     * Constructor for ToDo.
+     * @param description description of ToDo task.
+     */
     public ToDo(String description) {
         super(description);
     }
