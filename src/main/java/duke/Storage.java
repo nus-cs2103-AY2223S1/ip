@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles the loading and saving of data in file,
+ * where data represents the list of tasks
+ * to be done
+ */
 
 
 public class Storage {
@@ -24,7 +29,11 @@ public class Storage {
 
     }
 
-
+    /**
+     * Checks and loads the tasks in file
+     * @return ArrayList of tasks already in file
+     * @throws DukeException Thrown if file is empty
+     */
     public ArrayList<Task> load() throws DukeException {
 
         try {
@@ -66,6 +75,12 @@ public class Storage {
         return tasks;
 
     }
+
+    /**
+     * Saves tasks in file
+     * @param tasks
+     * @throws IOException
+     */
     public static void writeToFile(ArrayList<Task> tasks) throws IOException {
         File f = new File(filePath);
         if (!f.exists()) {
