@@ -12,21 +12,15 @@ import duke.Ui;
  */
 public class ListCommand extends Command {
     /**
-     * Constructor for ListCommand.
-     */
-    public ListCommand() {
-        super();
-    }
-
-    /**
-     * Displays the list of Tasks.
+     * Returns the list of Tasks.
      *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The list of Tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMessage(tasks.toString());
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.toString();
     }
 }

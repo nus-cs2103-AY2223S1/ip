@@ -23,22 +23,22 @@ public class DeadlineCommand extends Command {
      * @param by The date/time when the Deadline is due.
      */
     public DeadlineCommand(String description, LocalDate by) {
-        super();
         this.description = description;
         this.by = by;
     }
 
     /**
-     * Creates a new Deadline with the given description and time/date.
+     * Returns the response from Duke after creating a new Deadline with the given description and time/date.
      *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The response from Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addDeadline(description, by);
-        ui.showAdd(task, tasks.getSize());
         storage.save(tasks.saveTasks());
+        return ui.showAdd(task, tasks.getSize());
     }
 }

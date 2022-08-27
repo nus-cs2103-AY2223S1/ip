@@ -19,19 +19,19 @@ public class FindCommand extends Command {
      * @param keyword Keyword to search for.
      */
     public FindCommand(String keyword) {
-        super();
         this.keyword = keyword;
     }
 
     /**
-     * Finds the Tasks containing given keyword.
+     * Returns the response from Duke after finding the Tasks containing the given keyword.
      *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The response from Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMessage(tasks.findTasks(keyword));
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.findTasks(keyword);
     }
 }
