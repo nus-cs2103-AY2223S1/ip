@@ -26,10 +26,12 @@ public class Storage {
                     Task todo = new Todo(parts[1]);
                     list.add(todo);
                 } else if (txt.startsWith("D")) {
-                    Task dl = new Deadline(parts[2], parts[4], parts[5]);
+                    String[] dateTime = parts[3].split(" ");
+                    Task dl = new Deadline(parts[2], dateTime[0], dateTime[1]);
                     list.add(dl);
                 } else if (txt.startsWith("E")) {
-                    Task event = new Event(parts[2], parts[3], parts[5], parts[6]);
+                    String[] dateTime = parts[4].split(" ");
+                    Task event = new Event(parts[2], parts[3], parts[0], parts[1]);
                     list.add(event);
                 }
             }

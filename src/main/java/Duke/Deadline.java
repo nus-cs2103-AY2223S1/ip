@@ -16,17 +16,14 @@ public class Deadline extends Task{
         this.time = time;
     }
 
-    public Deadline(Task task) {
-        super(task.name);
-    }
-
     public void dateProcess() {
         if(date.length() == 9) {
             date = "0" + date;
         }
         LocalDate d1 = LocalDate.parse(date.substring(6, 10) + "-" + date.substring(3, 5) + "-" + date.substring(0, 2));
         by = d1.getDayOfWeek().toString(); // -> SUNDAY
-        a = d1.format(DateTimeFormatter.ofPattern("MMM dd YYYY")); // -> Dec 27 2001
+        a = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // -> Dec 27 2001
+        System.out.println(a);
     }
 
     public void timeProcess() {
@@ -38,7 +35,7 @@ public class Deadline extends Task{
 
     @Override
     public String fileFormat() {
-        return "D|" + super.fileFormat() + "|" + by + "|" + a + "|" + b;
+        return "D|" + super.fileFormat() + "|" + by + "|" + date + "|" + time;
     }
 
     @Override

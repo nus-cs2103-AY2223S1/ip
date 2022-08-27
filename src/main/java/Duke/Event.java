@@ -1,5 +1,4 @@
 package Duke;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -20,17 +19,13 @@ public class Event extends Task{
         this.date = date;
     }
 
-    public Event(Task task) {
-        super(task.name);
-    }
-
     public void dateProcess() {
         if(date.length() == 9) {
             date = "0" + date;
         }
         LocalDate d1 = LocalDate.parse(date.substring(6, 10) + "-" + date.substring(3, 5) + "-" + date.substring(0, 2));
         day = d1.getDayOfWeek().toString(); // -> SUNDAY
-        a= d1.format(DateTimeFormatter.ofPattern("MMM dd YYYY")); // -> Dec 27 2001
+        a= d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // -> Dec 27 2001
     }
 
     public void timeProcess() {
@@ -42,7 +37,7 @@ public class Event extends Task{
 
     @Override
     public String fileFormat() {
-        return "E" + super.fileFormat() + "|" + at + "|" + day + "|" + a + "|" + b;
+        return "E" + super.fileFormat() + "|" + at + "|" + day + "|" + date + "|" + time;
     }
 
     @Override
