@@ -2,6 +2,9 @@ package hazell;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 
+/**
+ * A superclass to be inherited by other Tasks.
+ */
 public abstract class Task {
     private String description;
     private boolean isDone;
@@ -45,18 +48,18 @@ public abstract class Task {
         String[] words = s.split(" \\| ");
         Task task;
         switch (words[0]) {
-            case ("T"):
-                task = ToDo.unserialise(words);
-                break;
-            case ("D"):
-                task = Deadline.unserialise(words);
-                break;
-            case ("E"):
-                task = Event.unserialise(words);
-                break;
-            default:
-                task = null;
-                break;
+        case ("T"):
+            task = ToDo.unserialise(words);
+            break;
+        case ("D"):
+            task = Deadline.unserialise(words);
+            break;
+        case ("E"):
+            task = Event.unserialise(words);
+            break;
+        default:
+            task = null;
+            break;
         }
         return task;
     }

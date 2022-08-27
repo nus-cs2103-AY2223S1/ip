@@ -4,13 +4,12 @@ import hazell.exceptions.HazellException;
 import hazell.exceptions.UnknownCommand;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Hazell {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-    private static final String logo = "  _    _               _ _ \n"
+    private static final String APP_LOGO = "  _    _               _ _ \n"
             + " | |  | |             | | |\n"
             + " | |__| | __ _ _______| | |\n"
             + " |  __  |/ _` |_  / _ \\ | |\n"
@@ -19,7 +18,7 @@ public class Hazell {
 
     public Hazell(String filePath) {
         ui = new Ui();
-        System.out.println(logo);
+        System.out.println(APP_LOGO);
         try {
             storage = new Storage(filePath);
             taskList = new TaskList(storage.load());

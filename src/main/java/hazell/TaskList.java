@@ -2,14 +2,12 @@ package hazell;
 
 import hazell.exceptions.NoSuchTask;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Class that stores Tasks.
@@ -33,7 +31,7 @@ public class TaskList {
 
     /**
      * Retrieves a specified task using an index (1-indexed).
-     * @param index
+     * @param index The index
      * @return The `index`-th task
      */
     public Task getTask(int index) throws NoSuchTask {
@@ -55,13 +53,17 @@ public class TaskList {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Got it. I've added this task:\n\t%s", task.toString()));
-        sb.append("\n");
-        sb.append(this.getSummary());
-        return sb.toString();
+        return String.format("Got it. I've added this task:\n\t%s", task.toString()) +
+                "\n" +
+                this.getSummary();
     }
 
+    /**
+     * Deletes a task in the store.
+     * @param index The index for which the (index)-th task to delete
+     * @return A response string
+     * @throws NoSuchTask If task cannot be found
+     */
     public String deleteTask(int index) throws NoSuchTask {
         Task task;
         try {
@@ -74,13 +76,17 @@ public class TaskList {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Noted. I've removed this task:\n\t%s", task.toString()));
-        sb.append("\n");
-        sb.append(this.getSummary());
-        return sb.toString();
+        return String.format("Noted. I've removed this task:\n\t%s", task.toString()) +
+                "\n" +
+                this.getSummary();
     }
 
+    /**
+     * Marks a task in the store as done.
+     * @param index The index for which the (index)-th task to mark
+     * @return A response string
+     * @throws NoSuchTask If task cannot be found
+     */
     public String markTaskAsDone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsDone();
@@ -92,6 +98,12 @@ public class TaskList {
         return String.format("Nice! I've marked this task as done:\n\t%s", task);
     }
 
+    /**
+     * Marks a task in the store as undone.
+     * @param index The index for which the (index)-th task to mark
+     * @return A response string
+     * @throws NoSuchTask If task cannot be found
+     */
     public String markTaskAsUndone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsUndone();
@@ -105,10 +117,9 @@ public class TaskList {
 
     /**
      * Returns a Path object pointing to the file used to store Hazell data locally.
-     *
      * Before doing so, it ensures that the folder exists.
      * @return Path to file used by Hazell chatbot
-     * @throws IOException
+     * @throws IOException When error getting file
      */
     private static Path getAndInitialiseFilePath() throws IOException {
         String currentDir = System.getProperty("user.dir");
@@ -140,7 +151,7 @@ public class TaskList {
             } catch (NoSuchTask e) {
                 // This block will never be executed as we are looping within the size of store.
             }
-            sb.append(String.format("%d. %s", i + 1, task.toString()));
+            sb.append(String.format("%d. %s", i + 1, task));
             if (i != this.size() - 1) sb.append("\n");
         }
         return sb.toString();
