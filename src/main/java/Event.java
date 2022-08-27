@@ -8,19 +8,15 @@ public class Event extends Task {
         super(description);
         at = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
-    public Event(String description, String at, boolean isDone) {
+    public Event(String description, String dateString, boolean isDone) {
         super(description, isDone);
-        this.at = at;
-    }
-
-    public String getAt() {
-        return at;
+        at = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     @Override
     public String getSaveFormat() {
-        return "E" + " | " + (getIsDone() ? 1 : 0) + " | " + getDescription() + " | " + getAt() +
-                System.lineSeparator();
+        return "E" + " | " + (getIsDone() ? 1 : 0) + " | " + getDescription() + " | " +
+                at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + System.lineSeparator();
     }
 
     @Override

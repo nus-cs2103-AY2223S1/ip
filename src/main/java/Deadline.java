@@ -8,19 +8,15 @@ public class Deadline extends Task {
         super(description);
         by = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
-    public Deadline(String description, String by, boolean isDone) {
+    public Deadline(String description, String dateString, boolean isDone) {
         super(description, isDone);
-        this.by = by;
-    }
-
-    public String getBy() {
-        return by;
+        by = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     @Override
     public String getSaveFormat() {
-        return "D" + " | " + (getIsDone() ? 1 : 0) + " | " + getDescription() + " | " + getBy() +
-                System.lineSeparator();
+        return "D" + " | " + (getIsDone() ? 1 : 0) + " | " + getDescription() + " | " +
+                by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + System.lineSeparator();
     }
 
     @Override

@@ -71,7 +71,7 @@ public class Fred {
         try {
             Fred.load(storage);
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Fred: No data file found.");
         } catch (FredException e) {
             System.out.println(e.getMessage());
         }
