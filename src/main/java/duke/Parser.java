@@ -43,6 +43,9 @@ public class Parser {
             int i = Integer.parseInt(strArray[1]) - 1;
             this.taskList.DeleteTaskAt(i);
 
+        } else if (str.equals("find")) {
+            this.taskList.FindAllTasksWith(strArray[1]);
+
         } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
 
             String taskname = "";

@@ -115,7 +115,7 @@ public class Storage {
      * @param arrayList Current arraylist of tasks to be saved.
      * @throws IOException If unable to write to save file.
      */
-    protected void SaveData(ArrayList<Task> arrayList) throws IOException {
+    protected void SaveDataToFile(ArrayList<Task> arrayList) throws IOException {
 
         FileWriter fw = new FileWriter(savedFile, false);
 
