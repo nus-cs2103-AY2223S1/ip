@@ -1,18 +1,22 @@
 package duke;
+
 import duke.task.Task;
 
 import java.time.LocalDate;
+
 /**
  * Represents duke chatbot Ui that user sees.
  */
 public class Ui {
+
     /**
      * Prints duke chatbot start up message that user sees when he/her opens duke chatbot.
      */
     public void printStartUpUi() {
         System.out.println("========================================================================================");
         System.out.println("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
-        System.out.println("Duke allows you to freely add, delete, mark task status, search tasks by time, \nand list all tasks");
+        System.out.println("Duke allows you to freely add, delete, mark task status, search tasks by time, " +
+                "\nand list all tasks");
         System.out.println("________________________________________________________________________________________");
         System.out.println("Please type 'help' command for more information on Duke task types and command format.");
         System.out.println("========================================================================================");
@@ -24,10 +28,10 @@ public class Ui {
      */
     public void printDukeInfo() {
         System.out.println("________________________________________________________________________________________");
-        System.out.println("There are 3 types of task implemented: " +
-                "\n1. todo     : tasks without any date/time attached to it" +
-                "\n2. deadline : tasks that need to be done before a specific date/time" +
-                "\n3. event    : tasks that start at a specific time and ends at a specific time");
+        System.out.println("There are 3 types of task implemented: "
+                + "\n1. todo     : tasks without any date/time attached to it"
+                + "\n2. deadline : tasks that need to be done before a specific date/time"
+                + "\n3. event    : tasks that start at a specific time and ends at a specific time");
         System.out.println("________________________________________________________________________________________");
         System.out.println("Below is all the command you can use: ");
         System.out.println("  Command                | Command Format");
@@ -55,7 +59,7 @@ public class Ui {
      * @param taskList task list.
      */
     public void printAddCommandUi(String command, String index, TaskList taskList) {
-        // for add, delete, mark/unmark
+        // for add, delete, mark / unmark
         System.out.println("________________________________________________________________________________________");
         Task task = taskList.getTask(Integer.parseInt(index) - 1);
         if (command.equals("todo") || command.equals("event") || command.equals("deadline")) { //add
