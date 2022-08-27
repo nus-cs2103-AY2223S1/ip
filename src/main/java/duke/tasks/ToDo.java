@@ -11,7 +11,7 @@ public class ToDo extends Task {
 
     @Override
     public String dbRepresentation() {
-        return String.join("|", "T", Boolean.toString(isMarked),  description);
+        return String.join("|", "T", Boolean.toString(isMarked), description);
     }
 
     @Override

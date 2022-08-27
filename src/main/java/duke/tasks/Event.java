@@ -1,9 +1,9 @@
 package duke.tasks;
 
-import duke.utils.DateTime;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.utils.DateTime;
 
 public class Event extends Task {
     private static final DateTimeFormatter formatter = DateTime.formatter;
@@ -21,7 +21,7 @@ public class Event extends Task {
 
     @Override
     public String dbRepresentation() {
-        return String.join("|", "E", Boolean.toString(isMarked),  description, time.toString());
+        return String.join("|", "E", Boolean.toString(isMarked), description, time.toString());
     }
 
     @Override

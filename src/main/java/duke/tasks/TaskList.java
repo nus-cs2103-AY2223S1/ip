@@ -1,9 +1,9 @@
 package duke.tasks;
 
+import java.util.ArrayList;
+
 import duke.data.Storage;
 import duke.exceptions.DukeException;
-
-import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> taskList;
@@ -38,7 +38,8 @@ public class TaskList {
         } catch (NumberFormatException e) {
             throw new DukeException("Please input a number.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.", taskList.size()));
+            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.",
+                    taskList.size()));
         }
     }
 
@@ -49,10 +50,11 @@ public class TaskList {
             this.taskList.remove(taskNumber - 1);
             updateDb();
             return "Noted. I've removed this task:\n\t" + task + "\n" + getRemainingTasks();
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new DukeException("Please input a number.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.", taskList.size()));
+            throw new DukeException(String.format("Please input a valid number! There are %d duke.tasks remaining.",
+                    taskList.size()));
         }
     }
 
@@ -61,17 +63,17 @@ public class TaskList {
         String taskType = args[0];
         Task task;
         switch (taskType) {
-            case "T":
-                task = new ToDo(Boolean.parseBoolean(args[1]), args[2]);
-                break;
-            case "D":
-                task = new Deadline(Boolean.parseBoolean(args[1]), args[2], args[3]);
-                break;
-            case "E":
-                task = new Event(Boolean.parseBoolean(args[1]), args[2], args[3]);
-                break;
-            default:
-                throw new DukeException("Corrupted file");
+        case "T":
+            task = new ToDo(Boolean.parseBoolean(args[1]), args[2]);
+            break;
+        case "D":
+            task = new Deadline(Boolean.parseBoolean(args[1]), args[2], args[3]);
+            break;
+        case "E":
+            task = new Event(Boolean.parseBoolean(args[1]), args[2], args[3]);
+            break;
+        default:
+            throw new DukeException("Corrupted file");
         }
         taskList.add(task);
     }
