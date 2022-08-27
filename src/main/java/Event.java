@@ -4,7 +4,7 @@ public class Event extends Task {
 
     public Event(String name, boolean isDone, String at) throws DukeTaskException {
         super(name, isDone);
-        if (at.equals("") || at.equals(" ")) {
+        if (at.equals("")) {
             throw new DukeTaskException("time can't be empty");
         }
         this.at = at;

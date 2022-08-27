@@ -11,16 +11,20 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public void Mark() {
+    public void mark() {
         isDone = true;
     }
 
-    public void Unmark() {
+    public void unmark() {
         isDone = false;
     }
 
     public String saveString() {
         return name + "|" + isDone;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

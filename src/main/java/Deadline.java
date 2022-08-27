@@ -13,7 +13,7 @@ public class Deadline extends Task {
             throw new DukeTaskException("time can't be empty");
         }
         this.by = by;
-        if (by.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        if (by.matches("\\d{4}-\\d{2}-\\d{2}") || by.matches("\\d{4}/\\d{2}/\\d{2}")) {
             this.dateBy = LocalDate.parse(by);
         } else {
             throw new DukeTaskException("invalid date format");
