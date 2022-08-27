@@ -1,6 +1,6 @@
 package duke.dukeexception;
 
-public class NoSuchCommandException extends DukeException{
+public class NoSuchCommandException extends DukeException {
     /**
      * The error shown when user entered sth random.
      * @param msg error message.
