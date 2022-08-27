@@ -2,3 +2,9 @@ T | 0 | sleep
 E | 0 | poop | Aug 22 2022 4:00PM
 T | 0 | sleep
 T | 0 | sleep
+T | 0 | cry
+T | 0 | todo
+T | 0 | cry
+T | 0 | sleep cry
+T | 0 | 5
+E | 0 | sleep | 1000

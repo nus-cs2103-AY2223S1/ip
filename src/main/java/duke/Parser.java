@@ -21,7 +21,7 @@ public class Parser {
 
         case TodoCommand.COMMAND_WORD:
             try {
-                userInput = userInput.substring(userInput.indexOf(" ") + 1);
+                userInput = userInput.substring(5);
                 return new TodoCommand(userInput);
             } catch (StringIndexOutOfBoundsException e) {
                 throw new DukeException("Please enter a task todo.");
@@ -29,7 +29,7 @@ public class Parser {
 
         case EventCommand.COMMAND_WORD:
             try {
-                userInput = userInput.substring(userInput.indexOf(" ") + 1);
+                userInput = userInput.substring(6);
                 String[] stringsEvent = userInput.split(" /at ");
                 if (stringsEvent.length > 2) {
                     throw new DukeException("Please only enter one event.");
@@ -43,7 +43,7 @@ public class Parser {
 
         case DeadlineCommand.COMMAND_WORD:
             try {
-                userInput = userInput.substring(userInput.indexOf(" ") + 1);
+                userInput = userInput.substring(9);
                 String[] stringsEvent = userInput.split(" /by ");
                 if (stringsEvent.length > 2) {
                     throw new DukeException("Please only enter one deadline.");
@@ -52,7 +52,7 @@ public class Parser {
             } catch (StringIndexOutOfBoundsException e) {
                 throw new DukeException("Please enter a deadline.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("Please use /at to specify event time.");
+                throw new DukeException("Please use /by to specify event time.");
             }
 
         case MarkCommand.COMMAND_WORD:
