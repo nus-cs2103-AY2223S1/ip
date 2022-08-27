@@ -2,6 +2,9 @@ package duke;
 
 import duke.task.TaskList;
 
+/**
+ * Represents a <code>Duke</code> programme.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;

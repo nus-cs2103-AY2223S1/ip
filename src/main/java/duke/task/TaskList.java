@@ -8,11 +8,14 @@ import java.util.Scanner;
 import duke.DukeException;
 import duke.Ui;
 
+/**
+ * Represents a list of <code>Task</code> objects.
+ */
 public class TaskList {
     private LinkedList<Task> tasks = new LinkedList<>();
 
     /**
-     * Constructs a task list containing tasks from the data file.
+     * Constructs a <code>TaskList</code> containing <code>Task</code> from the data file.
      *
      * @param dataFile file with stored tasks
      */
@@ -50,9 +53,9 @@ public class TaskList {
     /**
      * Adds new tasks to the end of this TaskList.
      *
-     * @param taskType type of task to be added
-     * @param taskDescription description of task to be added
-     * @param date date property of task of to be added
+     * @param taskType type of <code>Task</code> to be added
+     * @param taskDescription description of <code>Task</code> to be added
+     * @param date date property of <code>Task</code> of to be added
      */
     public void editTaskList(String taskType, String taskDescription, String date) {
         Task newTask = null;
@@ -72,10 +75,10 @@ public class TaskList {
     }
 
     /**
-     * Modifies this Tasklist by editing the task at the specified position.
+     * Modifies this <code>TaskList</code> by editing the task at the specified position.
      *
      * @param cmd command to be executed
-     * @param index index of the task to be edited
+     * @param index index of the <code>Task</code> to be edited
      * @throws DukeException if the index is out of range
      */
     public void editTaskList(String cmd, int index) throws DukeException {
@@ -99,9 +102,9 @@ public class TaskList {
     }
 
     /**
-     * Returns this TaskList in a CSV format.
+     * Returns this <code>TaskList</code> in a CSV format.
      *
-     * @return CSV representation of this TaskList
+     * @return CSV representation of this <code>TaskList</code>
      */
     public String toCsv() {
         StringBuilder csv = new StringBuilder();
@@ -112,18 +115,18 @@ public class TaskList {
     }
 
     /**
-     * Returns true if, and only if, this TaskList has zero tasks.
+     * Returns true if, and only if, this <code>TaskList</code> has zero tasks.
      *
-     * @return true if number of tasks in TaskList is 0, otherwise false
+     * @return true if number of tasks in <code>TaskList</code> is 0, otherwise false
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
     /**
-     * Prints the list of tasks in this TaskList with the keyword in it.
+     * Prints the list of <code>Task</code> in this <code>TaskList</code> with the keyword in it.
      *
-     * @param keyword word being searched for in the TaskList
+     * @param keyword word being searched for in the <code>TaskList</code>
      */
     public void find(String keyword) {
         StringBuilder match = new StringBuilder();
@@ -138,9 +141,9 @@ public class TaskList {
     }
 
     /**
-     * Returns a string representation of this TaskList.
+     * Returns a string representation of this <code>TaskList</code>.
      *
-     * @return a string representation of this TaskList
+     * @return a string representation of this <code>TaskList</code>
      */
     @Override
     public String toString() {

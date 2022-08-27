@@ -10,7 +10,7 @@ public abstract class Task {
     }
 
     /**
-     * Marks this Task as done.
+     * Marks this <code>Task</code> as done.
      */
     public void markAsDone() {
         this.isDone = true;
@@ -18,7 +18,7 @@ public abstract class Task {
     }
 
     /**
-     * Marks this Task as not done.
+     * Marks this <code>Task</code> as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
@@ -26,25 +26,25 @@ public abstract class Task {
     }
 
     /**
-     * Sets the status of this Task.
+     * Sets the status of this <code>Task</code>.
      *
-     * @param isDone a boolean of whether the Task is done
+     * @param isDone a boolean of whether the <code>Task</code> is done
      */
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
     /**
-     * Returns 'X' if Task is done, else returns ' '.
+     * Returns 'X' if <code>Task</code> is done, else returns ' '.
      *
-     * @return 'X' if Task is done, else ' '
+     * @return 'X' if <code>Task</code> is done, else ' '
      */
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
 
     /**
-     * Returns true if and only if keyword in a substring of the task description.
+     * Returns true if and only if keyword in a substring of the <code>Task</code> description.
      *
      * @param keyword word being searched for
      * @return true if and only if keyword in a substring of the task description
@@ -54,9 +54,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns this Task in CSV format.
+     * Returns this <code>Task</code> in CSV format.
      *
-     * @return CSV representation of this Task
+     * @return CSV representation of this <code>Task</code>
      */
     public String toCsv() {
         int status = this.isDone ? 1 : 0;
@@ -64,9 +64,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns a string representation of this Task.
+     * Returns a string representation of this <code>Task</code>.
      *
-     * @return a string representation of this Task
+     * @return a string representation of this <code>Task</code>
      */
     @Override
     public String toString() {

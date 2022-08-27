@@ -7,7 +7,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns this Task in CSV format.
+     * Returns this <code>Task</code> in CSV format.
      *
      * @return CSV representation of this Task
      */
@@ -17,9 +17,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns a string representation of this Task.
+     * Returns a string representation of this <code>Task</code>.
      *
-     * @return a string representation of this Task
+     * @return a string representation of this <code>Task</code>
      */
     @Override
     public String toString() {

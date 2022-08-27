@@ -6,6 +6,9 @@ import java.util.Arrays;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Interprets user commands.
+ */
 public class Parser {
     private boolean isExit;
 
@@ -48,12 +51,12 @@ public class Parser {
     }
 
     /**
-     * Edit Tasks and TaskList based on user input.
+     * Edit <code>Task</code> and <code>TaskList</code> based on user input.
      *
      * @param cmd command to be executed
      * @param splitInput array of user input words
-     * @param tasks list of stored tasks
-     * @throws DukeException if the index is out of range of the TaskList
+     * @param tasks list of stored <code>Task</code>
+     * @throws DukeException if the index is out of range of the <code>TaskList</code>
      */
     private void parseEdit(String cmd, String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
@@ -64,7 +67,7 @@ public class Parser {
     }
 
     /**
-     * Creates a new task from user input and adds it to the TaskList.
+     * Creates a new task from user input and adds it to the <code>TaskList</code>.
      *
      * @param splitInput array of user input words
      * @param tasks list of stored tasks
@@ -92,7 +95,7 @@ public class Parser {
     }
 
     /**
-     * Searches for tasks in the TaskList with the input keyword.
+     * Searches for tasks in the <code>TaskList</code> with the input keyword.
      *
      * @param splitInput array of user input words
      * @param tasks list of stored tasks

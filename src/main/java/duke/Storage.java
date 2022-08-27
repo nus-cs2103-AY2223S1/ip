@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Deals with loading <code>Tasks</code> from storage file and saving <code>Tasks</code> in the file.
+ */
 public class Storage {
     private static final String FILENAME = "saved-tasks.txt";
     private final File dataFile;

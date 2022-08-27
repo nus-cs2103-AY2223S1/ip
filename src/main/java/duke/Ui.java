@@ -45,7 +45,7 @@ public class Ui {
     }
 
     /**
-     * Prints list of stored tasks.
+     * Prints list of stored <code>Task</code> from given <code>TaskList</code>.
      *
      * @param taskList list of stored tasks
      */
@@ -62,8 +62,8 @@ public class Ui {
     /**
      * Prints task creation message.
      *
-     * @param newTask new task added to TaskList
-     * @param noOfTasks number of tasks in this TaskList
+     * @param newTask new task added to <code>TaskList</code>
+     * @param noOfTasks number of tasks in this <code>TaskList</code>
      */
     public static void printTaskCreationMessage(Task newTask, int noOfTasks) {
         System.out.println("Got it. I've added this task:\n "
