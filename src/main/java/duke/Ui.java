@@ -103,6 +103,10 @@ public class Ui {
         return command;
     }
 
+    public void showFound() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
+
     private String taskString(int len) {
         if (len <= 1) {
             return " task ";

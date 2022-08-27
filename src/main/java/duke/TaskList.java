@@ -89,4 +89,21 @@ public class TaskList {
     public ArrayList<Task> getTaskArrayList() {
         return this.taskArrayList;
     }
+
+    /**
+     * Finds tasks in the list that contains the specified input String.
+     *
+     * @param s Input string to be checked against.
+     */
+    public void find(String s) {
+        int counter = 1;
+        ArrayList<Task> list = this.taskArrayList;
+        for (int i = 0; i < list.size(); i++) {
+            Task t = list.get(i);
+            if (t.toString().contains(s)) {
+                System.out.println(counter + ". " + t);
+                counter++;
+            }
+        }
+    }
 }
