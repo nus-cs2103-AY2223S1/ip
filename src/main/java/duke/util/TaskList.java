@@ -132,7 +132,7 @@ public class TaskList {
         int len = tasks.size();
 
         if (len == 0) {
-            return 'n' + TAB + EMPTY_LIST_MESSAGE;
+            return '\n' + TAB + EMPTY_LIST_MESSAGE;
         }
 
         StringBuilder stringBuilder = new StringBuilder();

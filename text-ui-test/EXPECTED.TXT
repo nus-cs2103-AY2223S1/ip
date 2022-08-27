@@ -1,0 +1,178 @@
+-------------------------
+    Hi there! I' am Duke, your personal time manager.
+    What can I help you?
+-------------------------
+
+
+-------------------------
+    Added: [ ] [T] read a book
+-------------------------
+
+
+-------------------------
+    Added: [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    Added: [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    1. [ ] [T] read a book
+    2. [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+    3. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    Good to hear that! I have marked this as done:
+    [X] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    1. [ ] [T] read a book
+    2. [X] [E] orbital splashdown at 2022/08/22 13:00:00
+    3. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    Sure, I have marked this as not done yet.
+    [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    1. [ ] [T] read a book
+    2. [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+    3. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    Here are what I found:
+    1. [ ] [T] read a book
+-------------------------
+
+
+-------------------------
+    Here are what I found:
+    1. [ ] [T] read a book
+    2. [ ] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    Here are what I found:
+    1. [ ] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    Good to hear that! I have marked this as done:
+    [X] [T] read a book
+-------------------------
+
+
+-------------------------
+    Good to hear that! I have marked this as done:
+    [X] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    Good to hear that! I have marked this as done:
+    [X] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+-------------------------
+
+
+-------------------------
+    Here are what I found:
+    1. [X] [E] orbital splashdown at 2022/08/22 13:00:00
+-------------------------
+
+
+-------------------------
+    Sure, I have removed this task from the list:
+    [X] [D] CS2103T iP Week 4 by 2022/08/27 18:00:00
+    There are 2 tasks in the list.
+-------------------------
+
+
+-------------------------
+    Sure, I have removed this task from the list:
+    [X] [T] read a book
+    There is 1 task in the list.
+-------------------------
+
+
+-------------------------
+    Sure, I have removed this task from the list:
+    [X] [E] orbital splashdown at 2022/08/22 13:00:00
+    There are 0 tasks in the list.
+-------------------------
+
+
+-------------------------
+    Oops! Do check the index range, and the format should be "delete <index>"
+-------------------------
+
+
+-------------------------
+    Oops! Do check the index range, and the format should be "mark <index>"
+-------------------------
+
+
+-------------------------
+    Oops! Do check the index range, and the format should be "unmark <index>"
+-------------------------
+
+
+-------------------------
+    Sorry, I don't understand that!
+-------------------------
+
+
+-------------------------
+    Oops! You didn't specify the title of the task.
+-------------------------
+
+
+-------------------------
+    Oops! You didn't specify the title of the task.
+-------------------------
+
+
+-------------------------
+    Oops! You didn't specify the title of the task.
+-------------------------
+
+
+-------------------------
+    Here are what I found:
+    The list is empty.
+-------------------------
+
+
+-------------------------
+    Oops! You didn't specify the date and time with the delimiter /at
+-------------------------
+
+
+-------------------------
+    Oops! The date and time should follow the format: yyyy-MM-dd HH:mm:ss
+-------------------------
+
+
+-------------------------
+    Oops! The date and time should follow the format: yyyy-MM-dd HH:mm:ss
+-------------------------
+
+
+-------------------------
+    Bye! See you next time!
+-------------------------
+

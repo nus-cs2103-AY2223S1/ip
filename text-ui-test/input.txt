@@ -1,1 +1,30 @@
-todo read book
+todo read a book
+event orbital splashdown /at 2022-08-22 13:00:00
+deadline CS2103T iP Week 4 /by 2022-08-27 18:00:00
+list
+mark 2
+list
+unmark 2
+list
+find book
+find r
+find T
+mark 1
+mark 2
+mark 3
+find or
+delete 3
+delete 1
+delete 1
+delete 0
+mark -1
+unmark 100
+unknownCommand 9999
+todo
+event
+deadline
+find i
+event orbital splashdown
+deadline CS2103T iP Week 4 /by 2022/08/27
+deadline CS2103T iP Week 4 /by 2022-08-27
+bye
