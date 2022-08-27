@@ -1,18 +1,18 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.list.TaskList;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.TaskId;
-import duke.task.Todo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import duke.exception.DukeException;
+import duke.list.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskId;
+import duke.task.Todo;
 
 /**
  * Reads and writes to a skeleton of the current task list while being updated as the list changes.
@@ -74,6 +74,8 @@ public class ListLoader {
                     break;
                 case D:
                     taskList.addTask(new Deadline(description, inputArray[3], isCompleted));
+                    break;
+                default:
                     break;
                 }
             }

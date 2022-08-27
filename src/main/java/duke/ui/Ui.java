@@ -1,9 +1,9 @@
 package duke.ui;
 
+import java.util.Scanner;
+
 import duke.task.Task;
 import duke.task.TaskId;
-
-import java.util.Scanner;
 
 /**
  * Text UI of application that deals with interactions with the user.

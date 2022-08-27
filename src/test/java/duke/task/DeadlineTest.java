@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class DeadlineTest {
 
     @Test
-    public void summary_success() {
+    public void summary_newDeadlines_success() {
         Deadline d1 = new Deadline("eat", "wed 2022-10-13 2359", true);
         Deadline d2 = new Deadline("eat", "wed 2022-10-1322400", true);
         Deadline d3 = new Deadline("eat", "wed 2022-13-1str1900", false);
@@ -24,7 +24,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void toString_success() {
+    public void toString_newDeadlines_success() {
         Deadline d1 = new Deadline("eat", "wed 2022-10-13 2359", true);
         Deadline d2 = new Deadline("eat", "wed 2022-10-1322401", true);
         Deadline d3 = new Deadline("eat", "wed 2022-13-1str1900", false);
