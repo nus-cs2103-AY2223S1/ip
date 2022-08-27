@@ -23,18 +23,18 @@ public class Parser {
         if (command.equals("bye")) {
             return new ExitCommand();
         } else if (command.equals("list")) {
-            return new ModifyCommand(ModifyCommand.getCommandType().LIST);
+            return new ModifyCommand(ModifyCommand.CommandType.LIST);
         } else if (command.startsWith("mark")) {
             try {
                 int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-                return new ModifyCommand(ModifyCommand.getCommandType().DONE, taskNumber);
+                return new ModifyCommand(ModifyCommand.CommandType.DONE, taskNumber);
             } catch (Exception e) {
                 throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
             }
         } else if (command.startsWith("unmark")) {
             try {
                 int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-                return new ModifyCommand(ModifyCommand.getCommandType().UNDONE, taskNumber);
+                return new ModifyCommand(ModifyCommand.CommandType.UNDONE, taskNumber);
             } catch (Exception e) {
                 throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
             }

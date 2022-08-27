@@ -7,7 +7,6 @@ import duke.ui.Ui;
 public class ModifyCommand extends Command {
     public enum CommandType {
         LIST, UNDONE, DONE;
-
     }
 
     private static CommandType commandType;
@@ -30,10 +29,6 @@ public class ModifyCommand extends Command {
      */
     public ModifyCommand(CommandType commandType) {
         this.commandType = commandType;
-    }
-
-    public static CommandType getCommandType() {
-        return commandType;
     }
 
 
