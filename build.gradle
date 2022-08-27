@@ -37,6 +37,7 @@ application {
 }
 
 shadowJar {
+    mainClassName = "duke.Duke"
     archiveBaseName = "duke"
     archiveClassifier = null
 }
