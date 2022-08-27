@@ -22,8 +22,7 @@ public class DateTimeParser {
             .toFormatter();
 
     public LocalDateTime getDateTime(String dateStr) throws DateTimeException {
-        LocalDateTime dateTime = LocalDateTime.parse(dateStr, FORMATTER);
-        return dateTime;
+        return LocalDateTime.parse(dateStr, FORMATTER);
     }
 
     public String getDateTimeString(LocalDateTime dateTime) {
