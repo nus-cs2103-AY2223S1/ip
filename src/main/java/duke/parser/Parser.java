@@ -1,12 +1,6 @@
 package duke.parser;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.InvalidCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 
 import java.util.ArrayList;
@@ -35,6 +29,8 @@ public class Parser {
             return new AddCommand(words, firstWord);
         case "delete":
             return new DeleteCommand(words);
+        case "find":
+            return new FindCommand(words);
         default:
             return new InvalidCommand();
         }

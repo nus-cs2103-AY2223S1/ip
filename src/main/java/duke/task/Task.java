@@ -2,7 +2,7 @@ package duke.task;
 
 public class Task {
     // Class Fields
-    protected String taskName;
+    public String taskName;
     public boolean isDone;
 
     // Constructor
