@@ -11,7 +11,7 @@ public class ListItemsCommand implements Command {
      * Shows contents of itemList to user.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) {
+    public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
         ui.showToUser(itemList.toString());
     }
 }

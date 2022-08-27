@@ -36,8 +36,8 @@ public class TaskList {
      * Deletes an item from the items list.
      *
      * @param i 1-indexed position of item to be deleted
-     * @return string signifying successful deletion
-     * @throws DukeException if the index is erroneous
+     * @return String signifying successful deletion
+     * @throws DukeException Indicates incorrect index
      */
     public String deleteItem(int i) throws DukeException {
         try {
@@ -82,7 +82,6 @@ public class TaskList {
 
     /**
      * Returns number of items in the list as a string.
-     *
      * @return string signifying number of items stored
      */
     public String listCount() {
@@ -92,7 +91,6 @@ public class TaskList {
 
     /**
      * Saves list of items to storage.
-     *
      * @param s storage object that is used to save
      */
     public void save(Storage s) {
@@ -101,7 +99,6 @@ public class TaskList {
 
     /**
      * Returns string signifying the items stored in the list.
-     *
      * @return string signifying stored items
      */
     @Override
