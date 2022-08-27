@@ -6,6 +6,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.MarkCommand;
 import duke.command.ShowListCommand;
 import duke.command.UnmarkCommand;
@@ -26,6 +27,7 @@ public class Parser {
     private static final String NO_DATE_DEADLINE = "☹ OOPS!!! Date/time of the deadline can't be empty.";
     private static final String NO_DATE_EVENT = "☹ OOPS!!! Date/time of the event can't be empty.";
     private static final String NO_INDEX = "☹ OOPS!!! Index of the task to be marked/unmarked/deleted can't be empty.";
+    private static final String NO_TARGET = "☹ OOPS!!! Keyword of task to be found can't be empty.";
     private static final String UNKNOWN_COMMAND = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
 
     /**
@@ -96,6 +98,15 @@ public class Parser {
                 int i = sc.nextInt();
                 sc.close();
                 return new DeleteCommand(i);
+            }
+        } else if (sc.hasNext("find")) {
+            sc.useDelimiter("find\\s*");
+            if (!sc.hasNext()) {
+                throw new DukeException(NO_TARGET);
+            } else {
+                String s = sc.next();
+                sc.close();
+                return new FindCommand(s);
             }
         } else {
             if (command.equals("bye")) {
