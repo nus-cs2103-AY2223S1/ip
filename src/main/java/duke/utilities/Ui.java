@@ -113,6 +113,17 @@ public class Ui {
     }
 
     /**
+     * Displays the tasks with the user input.
+     */
+    public void printMatchTask(ArrayList<Task> tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task t = tasks.get(i);
+            System.out.println((i + 1) + "." + t.toString());
+        }
+        System.out.println(line);
+    }
+
+    /**
      * Tells user app is loading.
      */
     public void showLoadingError() { System.out.println("Loading ...");}

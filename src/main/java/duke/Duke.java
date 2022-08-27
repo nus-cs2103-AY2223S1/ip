@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * The main class of the Duke chat-bot.
@@ -88,6 +89,10 @@ public class Duke {
                     );
                     tasks.addTask(event);
                     this.ui.printAddTask(event, this.tasks);
+                    break;
+                case "find":
+                    ArrayList<Task> targetTasks = this.tasks.findMatchTasks(parts[1]);
+                    this.ui.printMatchTask(targetTasks);
                     break;
                 default:
                     throw new DukeException("I'm sorry but I don't know what that means!");
