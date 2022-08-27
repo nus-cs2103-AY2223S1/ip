@@ -81,20 +81,25 @@ public class Ui {
      * Prints duke chatbot message after user list tasks and list unfinished tasks at a date.
      *
      * @param command user command.
-     * @param date string containing a date.
+     * @param str string containing a date.
      * @param taskList task list to be printed.
      */
-    public void printListCommandUi(String command, String date, TaskList taskList) {
+    public void printListCommandUi(String command, String str, TaskList taskList) {
         // for list, list date, search
-        if (date.trim().equals("all")) { //list
+        if (str.trim().equals("0")) { //list
             System.out.println("________________________________________________________________________________________");
             System.out.println("Here are the tasks in your list:");
             taskList.printTaskList();
             System.out.println("________________________________________________________________________________________");
-        } else { //list date
+        } else if (str.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) { //list date
             System.out.println("________________________________________________________________________________________");
             System.out.println("Here are unfinished tasks on this date in your list:");
-            taskList.searchByDate(LocalDate.parse(date)).printTaskList();
+            taskList.searchByDate(LocalDate.parse(str)).printTaskList();
+            System.out.println("________________________________________________________________________________________");
+        } else {
+            System.out.println("________________________________________________________________________________________");
+            System.out.println("Here are the matching tasks in your list:");
+            taskList.searchByKeyword(str).printTaskList();
             System.out.println("________________________________________________________________________________________");
         }
     }
