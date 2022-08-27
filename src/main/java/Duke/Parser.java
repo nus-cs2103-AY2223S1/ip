@@ -1,3 +1,5 @@
+package Duke;
+
 public class Parser {
     public static void parse(TaskList tasklist, Ui ui, Storage storage) {
         while (ui.hasNextLine()) {
