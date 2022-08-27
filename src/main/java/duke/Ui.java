@@ -1,6 +1,11 @@
 package duke;
 
+import duke.task.Task;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.time.DateTimeException;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -48,13 +53,26 @@ public class Ui {
         if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
             while (!isValidAnswer) {
                 System.out.println("What is the path of your save file?");
+                saveFilePath = scanner.nextLine();
                 try {
-                    saveFilePath = scanner.nextLine();
+                    Paths.get(saveFilePath);
+                    if (!saveFilePath.endsWith(".txt")) {
+                        System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file");
+                        continue;
+                    }
                     File saveFile = new File(saveFilePath);
-                    System.out.println("Your timezone is now " + saveFilePath);
-                    isValidAnswer = true;
-                } catch (DateTimeException e) {
-                    System.out.println("☹ OOPS!!! Please enter a valid filepath.");
+                    if (saveFile.getParentFile() != null) {
+                        saveFile.getParentFile().mkdirs();
+                    }
+                    saveFile.createNewFile();
+                    if (saveFile.exists()) {
+                        System.out.println("Your save file is now " + saveFile);
+                        isValidAnswer = true;
+                    } else {
+                        System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file.");
+                    }
+                } catch (InvalidPathException | IOException e) {
+                    System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file.");
                 }
             }
         }
