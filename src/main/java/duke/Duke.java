@@ -60,6 +60,8 @@ public class Duke {
                 handler.addDeadline(input);
             } else if (input.startsWith("event")) {
                 handler.addEvent(input);
+            } else if (input.startsWith("find")) {
+                handler.find(input);
             } else {
                 throw new DukeUnknownCommandException();
             }

@@ -107,4 +107,15 @@ public class EventHandler {
         this.taskList.remove(taskIndex);
     }
 
+    /**
+     * Finds Tasks in taskList that match the description and prints them out using userInterface.
+     *
+     * @param input User input.
+     */
+    public void find(String input) {
+        String query = input.substring(5);
+        TaskList matches = taskList.filterByKeyword(query);
+        userInterface.printMatches(matches);
+    }
+
 }

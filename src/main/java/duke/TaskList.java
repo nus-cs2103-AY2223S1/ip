@@ -30,4 +30,16 @@ public class TaskList {
         return this.taskList;
     }
 
+    public TaskList filterByKeyword(String query) {
+        TaskList matches = new TaskList();
+        System.out.println("searching keyword");
+        for (Task task: this.taskList) {
+            if (task.getDescription().contains(query)) {
+                System.out.println(task.getDescription());
+                matches.add(task);
+            }
+        }
+        System.out.println();
+        return matches;
+    }
 }

@@ -76,6 +76,8 @@ public class UserInterface {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+
+
     /**
      * Prints goodbye message.
      */
@@ -88,5 +90,23 @@ public class UserInterface {
      */
     public static void showLoadingError() {
         System.out.println("Error loading file from specified path, creating new list");
+    }
+
+    /**
+     * Given a TaskList of query matches, prints out the results.
+     *
+     * @param matches TaskList of query matches.
+     */
+    public void printMatches(TaskList matches) {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        if (matches.size() == 0) {
+            System.out.println("Sorry, i couldn't find any matches!");
+        } else {
+            System.out.println("Here are your results:");
+            for (int i = 0; i < matches.size(); i++) {
+                System.out.println(i + 1 + "." + matches.get(i).toUser());
+            }
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 }

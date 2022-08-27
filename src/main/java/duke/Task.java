@@ -30,6 +30,10 @@ public class Task {
         return new Task("fromStringExample");
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;
     }
