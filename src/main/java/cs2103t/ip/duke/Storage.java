@@ -9,25 +9,44 @@ import java.util.Scanner;
 
 public class Storage {
 
-    protected String filePath;
-    protected String folderPath;
+    protected final String filePath;
+    protected final String folderPath;
 
     public Storage(String folderPath, String filePath) {
         this.folderPath = folderPath;
         this.filePath = filePath;
     }
+
+    /**
+     * Writes the provided text to the file specified by the file path.
+     * @param filePath
+     * @param textToAdd
+     * @throws IOException
+     */
     public static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
     }
 
+    /**
+     * Writes the provided text to the file specified by the file path, adding to the existing
+     * text without overwriting the whole file.
+     * @param filePath
+     * @param textToAppend
+     * @throws IOException
+     */
     public static void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
         fw.write(textToAppend);
         fw.close();
     }
 
+    /**
+     * Loads saved data from the file to be displayed by Duke.
+     * @return A list comprising the tasks entered previously to Duke by the user.
+     * @throws DukeException
+     */
     public ArrayList<Task> loadFileData() throws DukeException {
         ArrayList<Task> arr = new ArrayList<>();
         try {
