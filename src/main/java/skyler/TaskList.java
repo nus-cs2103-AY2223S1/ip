@@ -6,21 +6,38 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Contains the task list
+ */
 public class TaskList {
 
     private Storage storage;
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates a TaskList object
+     *
+     * @param storage Storage object from which to retrieve previous tasks and save new tasks to.
+     * @param tasks List of tasks.
+     */
     public TaskList(Storage storage, ArrayList<Task> tasks) {
         this.storage = storage;
         this.tasks = tasks;
     }
 
+    /**
+     * Creates a TaskList object
+     *
+     * @param storage Storage object from which to retrieve previous tasks and save new tasks to.
+     */
     public TaskList(Storage storage) {
         this.storage = storage;
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Prints the current list of tasks
+     */
     public void list() {
         System.out.println("Tasks:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -29,6 +46,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as done
+     *
+     * @param item Index of task.
+     */
     public void mark(int item) {
         Task currTask = tasks.get(item - 1);
         currTask.markAsDone();
@@ -44,6 +66,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as not done
+     *
+     * @param item Index of task.
+     */
     public void unmark(int item) {
         Task currTask = tasks.get(item - 1);
         currTask.markAsNotDone();
@@ -59,6 +86,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a new todo task to the list
+     *
+     * @param desc Task description.
+     */
     public void todo(String desc) {
         Todo newTodo = new Todo(desc);
         tasks.add(newTodo);
@@ -73,6 +105,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a new deadline to the list
+     *
+     * @param descWithDate Task description with date.
+     */
     public void deadline(String descWithDate) {
         String[] arr1 = descWithDate.split(" /by ", 2);
 
@@ -92,6 +129,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a new event to the list
+     *
+     * @param descWithDate Task description with date.
+     */
     public void event(String descWithDate) {
         String[] arr1 = descWithDate.split(" /at ", 2);
 
@@ -111,6 +153,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes task from the list
+     *
+     * @param item Index of task.
+     */
     public void delete(int item) {
         Task currTask = tasks.get(item - 1);
 
@@ -131,6 +178,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Prints action taken and task summary
+     *
+     * @param task The task added.
+     * @param num Current total number of tasks.
+     */
     public static void printTask(Task task, int num) {
         System.out.println("I've added the following task:");
         String str = String.format("  %s", task);
@@ -139,6 +192,12 @@ public class TaskList {
         System.out.println(summary);
     }
 
+    /**
+     * Formats date and time information and returns a LocalDateTime object
+     *
+     * @param strDateTime String representation of date and time.
+     * @return Corresponding LocalDateTime object.
+     */
     public static LocalDateTime processDateTime(String strDateTime) {
         String[] timeInfo = strDateTime.split(" ", 2);
 

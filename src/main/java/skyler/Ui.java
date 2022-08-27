@@ -1,10 +1,9 @@
 package skyler;
 
+/**
+ * Represents an interface for user interactions
+ */
 public class Ui {
-
-    public Ui() {
-
-    }
 
     public void greet() {
         System.out.println("Hello! I'm Skyler\nHow can I help you?\n");
