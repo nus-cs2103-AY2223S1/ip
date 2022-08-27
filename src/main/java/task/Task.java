@@ -1,9 +1,20 @@
 package task;
 
+/**
+ * <h1>Task class</h1>
+ * Task that the user has inputted and is required to do.
+ */
 public class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Creates a Task object.
+     *
+     * @param description describes the Task.
+     * @param isDone boolean value describing whether the user has done
+     *               the Task or not.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
@@ -24,7 +35,7 @@ public class Task {
      *
      * @param newIsDone the new isDone value to be checked.
      * @return the boolean representing whether the isDone value can
-     * be changed to the new value.
+     *         be changed to the new value.
      */
     public boolean canChangeIsDone(boolean newIsDone) {
         return this.isDone != newIsDone;
@@ -35,7 +46,7 @@ public class Task {
      *
      * @param newIsDone the newIsDone value to be changed.
      */
-    public void changeIsDone(boolean newIsDone){
+    public void changeIsDone(boolean newIsDone) {
         this.isDone = newIsDone;
     }
 

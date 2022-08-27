@@ -7,11 +7,22 @@ import storage.Storage;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * <h1>Duke class</h1>
+ * Main class of the chat bot that links the
+ * Storage, TaskList and Ui together.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a Duke object.
+     *
+     * @param folderPath folder path the output is to be saved at.
+     * @param filename file name the output is to be saved as.
+     */
     public Duke(String folderPath, String filename) {
         storage = new Storage(folderPath, filename);
         tasks = new TaskList();
@@ -34,7 +45,7 @@ public class Duke {
                 command.execute();
                 isExit = command.isExit();
             } catch (DukeException e) {
-               ui.sayErrorMessage(e.getMessage());
+                ui.sayErrorMessage(e.getMessage());
             }
         }
         try {
@@ -45,6 +56,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Main class to run the chat bot.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Duke uncleCheong = new Duke("data", "duke.txt");
         uncleCheong.startChatBot();

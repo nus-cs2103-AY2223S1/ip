@@ -3,9 +3,16 @@ package parser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * <h1>DateTimeParser class</h1>
+ * Parses the input String from the user and generates a
+ * LocalDateTime with an appropriate format.
+ */
 public class DateTimeParser {
-    private static DateTimeFormatter parsingFormatter = java.time.format.DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
-    private static DateTimeFormatter readingFormatter = java.time.format.DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a");
+    private static DateTimeFormatter parsingFormatter = java.time.format
+            .DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
+    private static DateTimeFormatter readingFormatter = java.time.format
+            .DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a");
 
     /**
      * Returns the LocalDateTime parsed from the input String.

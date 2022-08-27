@@ -1,19 +1,24 @@
 package ui;
 
+import java.util.Scanner;
+
 import task.Task;
 import task.TaskList;
 
-import java.util.Scanner;
-
+/**
+ * <h1>Ui class</h1>
+ * Layer of abstraction that handles the printing of
+ * output to the user.
+ */
 public class Ui {
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Prints the greeting text by the Chatbot.
      */
     public void greet() {
-        System.out.print("Eh hello, my name is Uncle Cheong. \n" +
-                "What you want?\n");
+        System.out.print("Eh hello, my name is Uncle Cheong. \n"
+                + "What you want?\n");
     }
 
     /**
@@ -41,6 +46,15 @@ public class Ui {
         System.out.println("Eh something went wrong! " + error);
     }
 
+    /**
+     * Prints all the Tasks and their descriptions in the list.
+     *
+     * @param tasks TaskList to br printed out.
+     * @param notEmptyMessage message to be printed out if there are
+     *                        Tasks in the list.
+     * @param emptyMessage message to be printed out if there are no
+     *                     Tasks in the list.
+     */
     public void printTasks(TaskList tasks, String notEmptyMessage, String emptyMessage) {
         int numberOfTasks = tasks.getSize();
         if (numberOfTasks > 0) {
@@ -53,22 +67,47 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints out the number of Tasks in the TaskList.
+     *
+     * @param tasks TaskList to be printed out.
+     */
     public void printTaskCountMessage(TaskList tasks) {
         System.out.printf("Boss, you got %s tasks now\n", tasks.getSize());
     }
 
+    /**
+     * Prints out a message when a Task has been successfully added.
+     *
+     * @param task TaskList to be printed out.
+     */
     public void printAddedTaskMessage(Task task) {
-         System.out.printf("Swee lah! I added this task liao:\n%s\n", task);
+        System.out.printf("Swee lah! I added this task liao:\n%s\n", task);
     }
 
-    public void printDeletedTaskMessage(String taskString) {
-        System.out.printf("Okay boss, this task I delete le:\n%s\n", taskString);
+    /**
+     * Prints out a message when a Task has been successfully deleted.
+     *
+     * @param task TaskList to be printed out.
+     */
+    public void printDeletedTaskMessage(Task task) {
+        System.out.printf("Okay boss, this task I delete le:\n%s\n", task);
     }
 
+    /**
+     * Prints out a message when a Task has been successfully completed.
+     *
+     * @param task TaskList to be printed out.
+     */
     public void printMarkedMessage(Task task) {
         System.out.println("Swee lah! Your task done liao: \n" + task);
     }
 
+    /**
+     * Prints out a message when a Task has been unmarked.
+     *
+     * @param task TaskList to br printed out.
+     */
     public void printUnmarkedMessage(Task task) {
         System.out.println("Eh? Not done yet? Okay I change liao: \n" + task);
     }

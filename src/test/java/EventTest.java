@@ -1,17 +1,19 @@
-import org.junit.jupiter.api.Test;
-import task.Event;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import task.Event;
+
 
 public class EventTest {
     public void testEmptyDescription() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
         LocalDateTime eventDateTime = LocalDateTime.parse("Sep 2 2022 06:54 AM", formatter);
-        Event event= new Event("", false, eventDateTime);
+        Event event = new Event("", false, eventDateTime);
         assertEquals("", event.getDescription());
     }
 
@@ -96,9 +98,8 @@ public class EventTest {
             LocalDateTime eventDateTime = LocalDateTime.parse("Sep 32 2022 06:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 32 2022 06:54 AM' could not be parsed: Invalid value for " +
-                            "DayOfMonth (valid values 1 - 28/31): 32"
-                    , e.getMessage());
+            assertEquals("Text 'Sep 32 2022 06:54 AM' could not be parsed: Invalid value for "
+                            + "DayOfMonth (valid values 1 - 28/31): 32", e.getMessage());
         }
 
         try {
@@ -106,9 +107,8 @@ public class EventTest {
             LocalDateTime eventDateTime = LocalDateTime.parse("Sep -1 2022 06:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep -1 2022 06:54 AM' could not be parsed: Invalid value for " +
-                            "DayOfMonth (valid values 1 - 28/31): -1"
-                    , e.getMessage());
+            assertEquals("Text 'Sep -1 2022 06:54 AM' could not be parsed: Invalid value for "
+                            + "DayOfMonth (valid values 1 - 28/31): -1", e.getMessage());
         }
     }
 
@@ -138,8 +138,8 @@ public class EventTest {
             LocalDateTime eventDateTime = LocalDateTime.parse("Sep 15 2022 06:61 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 06:61 AM' could not be parsed: Invalid value for " +
-                    "MinuteOfHour (valid values 0 - 59): 61", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 06:61 AM' could not be parsed: Invalid value for "
+                    + "MinuteOfHour (valid values 0 - 59): 61", e.getMessage());
         }
 
         try {
@@ -147,8 +147,8 @@ public class EventTest {
             LocalDateTime eventDateTime = LocalDateTime.parse("Sep 15 2022 15:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 15:54 AM' could not be parsed: Invalid value for " +
-                    "ClockHourOfAmPm (valid values 1 - 12): 15", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 15:54 AM' could not be parsed: Invalid value for "
+                    + "ClockHourOfAmPm (valid values 1 - 12): 15", e.getMessage());
         }
 
         try {
@@ -164,7 +164,8 @@ public class EventTest {
             LocalDateTime eventDateTime = LocalDateTime.parse("Sep 15 2022 12:54 AMM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 12:54 AMM' could not be parsed, unparsed text found at index 20", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 12:54 AMM' could not be parsed, "
+                    + "unparsed text found at index 20", e.getMessage());
         }
     }
 

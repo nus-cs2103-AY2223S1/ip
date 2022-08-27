@@ -1,11 +1,14 @@
-import org.junit.jupiter.api.Test;
-import task.Deadline;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import task.Deadline;
+
+
 
 public class DeadlineTest {
     @Test
@@ -97,9 +100,8 @@ public class DeadlineTest {
             LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep 32 2022 06:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 32 2022 06:54 AM' could not be parsed: Invalid value for " +
-                            "DayOfMonth (valid values 1 - 28/31): 32"
-                    , e.getMessage());
+            assertEquals("Text 'Sep 32 2022 06:54 AM' could not be parsed: Invalid value for "
+                            + "DayOfMonth (valid values 1 - 28/31): 32", e.getMessage());
         }
 
         try {
@@ -107,9 +109,8 @@ public class DeadlineTest {
             LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep -1 2022 06:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep -1 2022 06:54 AM' could not be parsed: Invalid value for " +
-                            "DayOfMonth (valid values 1 - 28/31): -1"
-                    , e.getMessage());
+            assertEquals("Text 'Sep -1 2022 06:54 AM' could not be parsed: Invalid value for "
+                    + "DayOfMonth (valid values 1 - 28/31): -1", e.getMessage());
         }
     }
 
@@ -139,8 +140,8 @@ public class DeadlineTest {
             LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep 15 2022 06:61 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 06:61 AM' could not be parsed: Invalid value for " +
-                    "MinuteOfHour (valid values 0 - 59): 61", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 06:61 AM' could not be parsed: Invalid value for "
+                    + "MinuteOfHour (valid values 0 - 59): 61", e.getMessage());
         }
 
         try {
@@ -148,8 +149,8 @@ public class DeadlineTest {
             LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep 15 2022 15:54 AM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 15:54 AM' could not be parsed: Invalid value for " +
-                    "ClockHourOfAmPm (valid values 1 - 12): 15", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 15:54 AM' could not be parsed: Invalid value for "
+                    + "ClockHourOfAmPm (valid values 1 - 12): 15", e.getMessage());
         }
 
         try {
@@ -165,7 +166,8 @@ public class DeadlineTest {
             LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep 15 2022 12:54 AMM", formatter);
             fail();
         } catch (Exception e) {
-            assertEquals("Text 'Sep 15 2022 12:54 AMM' could not be parsed, unparsed text found at index 20", e.getMessage());
+            assertEquals("Text 'Sep 15 2022 12:54 AMM' could not be parsed, "
+                    + "unparsed text found at index 20", e.getMessage());
         }
     }
 

@@ -1,12 +1,22 @@
 package task;
 
-import task.Task;
-
 import java.util.ArrayList;
 
+/**
+ * <h1>TaskList class</h1>
+ * A list that contains all the tasks that the user is
+ * required to do.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates the TaskList object with the input Task
+     * ArrayList.
+     *
+     * @param tasks ArrayList of Task objects the TaskList is
+     *              to contain.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -62,6 +72,16 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    /**
+     * Checks the Task at the input index and returns a boolean
+     * describing whether the description of the task contains the
+     * input keyword.
+     *
+     * @param index index of the Task to be checked.
+     * @param keyword String to be checked against.
+     * @return a boolean describing whether the description of the Task
+     *         contains the input keyword.
+     */
     public boolean containsKeyword(int index, String keyword) {
         for (String word : tasks.get(index).getDescription().split(" ")) {
             if (word.equals(keyword)) {

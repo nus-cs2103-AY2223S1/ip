@@ -1,7 +1,8 @@
-import org.junit.jupiter.api.Test;
-import task.Todo;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import task.Todo;
 
 public class TodoTest {
     @Test
@@ -50,7 +51,7 @@ public class TodoTest {
 
         assertEquals("[T][ ] ", todo.toString());
 
-        todo.setDescription("Eat food") ;
+        todo.setDescription("Eat food");
 
         assertEquals("[T][ ] Eat food", todo.toString());
 

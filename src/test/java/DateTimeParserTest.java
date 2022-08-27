@@ -1,16 +1,16 @@
-import org.junit.jupiter.api.Test;
-import parser.DateTimeParser;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import parser.DateTimeParser;
 
 public class DateTimeParserTest {
     @Test
     public void testChangeStringToParsingDateTime() {
-            assertEquals(LocalDateTime.of(2022, 9, 15, 6, 54),
-                    DateTimeParser.changeStringToParsingDateTime("Sep 15 2022 06:54 AM"));
+        assertEquals(LocalDateTime.of(2022, 9, 15, 6, 54),
+                DateTimeParser.changeStringToParsingDateTime("Sep 15 2022 06:54 AM"));
     }
 
     @Test

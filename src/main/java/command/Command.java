@@ -1,20 +1,37 @@
 package command;
 
-import exception.DukeException;
-import parser.DateTimeParser;
-import task.*;
-import ui.Ui;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import exception.DukeException;
+import parser.DateTimeParser;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
+import ui.Ui;
+
+/**
+ * <h1>Command class</h1>
+ * Filters out the commandType and runs the executes the appropriate
+ * command based on the input commandType.
+ */
 public class Command {
     private CommandType commandType;
     private TaskList tasks;
     private String input;
     private Ui ui;
 
+    /**
+     * Creates a Command object to be executed.
+     *
+     * @param commandType type of command to be executed.
+     * @param tasks list of Tasks the user currently has.
+     * @param input the String to be parsed.
+     * @param ui the User Interface that prints out the output.
+     */
     public Command(CommandType commandType, TaskList tasks, String input, Ui ui) {
         this.commandType = commandType;
         this.tasks = tasks;
@@ -59,7 +76,7 @@ public class Command {
      * Executes the Command based on the CommandType.
      *
      * @throws DukeException If an exception is encountered or if
-     * an the input is invalid.
+     *         an the input is invalid.
      */
     public void execute() throws DukeException {
         switch (this.commandType) {
@@ -91,7 +108,7 @@ public class Command {
                 throw new DukeException("Eh you never added the event range");
             } else {
                 LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
-                Event event = new Event(splittedEvent[0].trim(),false, eventDateTime);
+                Event event = new Event(splittedEvent[0].trim(), false, eventDateTime);
                 this.addTask(event);
                 ui.printAddedTaskMessage(event);
                 ui.printTaskCountMessage(tasks);
@@ -114,8 +131,8 @@ public class Command {
                     ui.printAddedTaskMessage(deadline);
                     ui.printTaskCountMessage(tasks);
                 } catch (DateTimeParseException e) {
-                    throw new DukeException("Eh you never add a proper deadline date! \n" +
-                            "Your deadline date should be like this lah: Jan 21 2023 04:10 AM");
+                    throw new DukeException("Eh you never add a proper deadline date! \n"
+                            + "Your deadline date should be like this lah: Jan 21 2023 04:10 AM");
                 }
             }
             break;
@@ -134,8 +151,7 @@ public class Command {
                 } else {
                     throw new DukeException("Eh, you done that task alr lah");
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new DukeException("Eh, you enter your task number correctly anot?");
             }
             break;
@@ -152,8 +168,7 @@ public class Command {
                 } else {
                     throw new DukeException("Eh, your task alr not done lah");
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new DukeException("Eh, you enter your task number correctly anot?");
             }
             break;
@@ -164,11 +179,10 @@ public class Command {
                 if (!hasTaskIndex(taskIndex)) {
                     throw new DukeException("Eh, you got that task number meh?");
                 } else {
-                    ui.printDeletedTaskMessage(tasks.taskStringAtIndex(taskIndex - 1));
+                    ui.printDeletedTaskMessage(tasks.get(taskIndex - 1));
                     tasks.remove(taskIndex - 1);
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new DukeException("Eh, you enter your task number correctly anot?");
             }
             break;
@@ -180,7 +194,7 @@ public class Command {
             if (keyword.equals("")) {
                 throw new DukeException("Eh your keyword cannot be empty lah!");
             }
-
+            break;
         default:
             throw new DukeException("What talking you");
         }
