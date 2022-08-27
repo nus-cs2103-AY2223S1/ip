@@ -9,14 +9,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that contains methods to manipulate the list of tasks
+ */
 public class Storage {
+
     private final String path;
 
+    /**
+     * Constructor for Storage
+     * @param path file path to from root directory to file
+     */
     public Storage(String path) {
         this.path = path;
     }
 
-    public ArrayList<String> load() throws FileNotFoundException {
+    /**
+     * Loads list of tasks in storage file
+     * @return List of tasks
+     */
+    public ArrayList<String> load() {
         ArrayList<String> lst = new ArrayList<>();
         File file = new File(path);
         if (!file.getParentFile().exists()) {
@@ -45,7 +57,11 @@ public class Storage {
         return lst;
     }
 
-    public void update(ArrayList<Task> lst) throws IOException {
+    /**
+     * Updates list of tasks in the storage file
+     * @param lst latest list of tasks to be written into storage
+     */
+    public void update(ArrayList<Task> lst) {
         File file = new File(path);
         FileWriter fw = new FileWriter(this.path);
         for (int i = 0; i < lst.size(); i++) {

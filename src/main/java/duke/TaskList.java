@@ -4,13 +4,25 @@ import duke.task.Task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+/**
+ * Class to store list of tasks
+ */
 public class TaskList {
     private ArrayList<Task> lst;
 
+    /**
+     * Constructor for new TaskList
+     */
     TaskList() {
+
         this.lst = new ArrayList<Task>();
     }
 
+    /**
+     * Constructor for list of tasks
+     * @param lst previous list stored in storage file
+     */
     TaskList(ArrayList<String> lst) {
         //parse duke.task from string to duke.task
         this.lst = new ArrayList<Task>();

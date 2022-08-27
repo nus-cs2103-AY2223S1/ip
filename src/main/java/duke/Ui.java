@@ -1,6 +1,10 @@
 package duke;
 
 import java.util.Scanner;
+
+/**
+ * Class to deal with user interface
+ */
 public class Ui {
     private Scanner sc;
     private static final String HELLO = "Hello! I'm duke.Duke\nWhat can I do for you?";
