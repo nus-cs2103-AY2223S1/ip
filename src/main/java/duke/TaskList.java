@@ -27,7 +27,7 @@ public class TaskList {
         //parse duke.task from string to duke.task
         this.lst = new ArrayList<Task>();
         for (int i = 0; i < lst.size(); i++) {
-            this.lst.add(Task.parseTask(lst.get(i)));
+            this.lst.add((Task.parseTask(lst.get(i))));
         }
     }
 
@@ -81,5 +81,16 @@ public class TaskList {
                 System.out.println("Something went wrong " + e.getMessage());
             }
         }
+    }
+
+    public ArrayList<String> findTasks(String toFind) {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (int i = 0; i < lst.size(); i++) {
+            if (lst.get(i).match(toFind)) {
+                result.add(lst.get(i).formatTask());
+            }
+        }
+        return result;
     }
 }

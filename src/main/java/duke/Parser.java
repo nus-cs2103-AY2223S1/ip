@@ -33,34 +33,12 @@ public class Parser {
                 return true;
 
             } else if (first.equals("list")) {
-                String textToAppend = "Here are the tasks in your list: \n";
-
-                try {
-                    ArrayList<String> data = storage.load();
-                    for (int i = 0; i < data.size(); i++) {
-                        String j = data.get(i);
-                        String[] details = j.split("/");
-                        String verb = "";
-                        String date= "";
-                        if (details[0].equals("E")) {
-                            verb = "at ";
-                            LocalDate d = LocalDate.parse(details[3]);
-                            date = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-                        } else if (details[0].equals("D")) {
-                            verb = "by ";
-                            LocalDate d = LocalDate.parse(details[3]);
-                            date = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-                        }
-                        String s =  (i + 1) + "." + "[" + details[0] + "]" + "[" + details[1] + "] " + details[2] + verb + date + "\n";
-                        textToAppend += s;
-                    }
-
-                    System.out.println(textToAppend);
-
-                } catch (FileNotFoundException e) {
-                    System.out.println("File not found");
+                String result = "Here are the tasks in your list:\n";
+                for (int i = 0; i < lst.size(); i++) {
+                    result += (i + 1) + "." + lst.get(i).formatTask() + "\n";
                 }
 
+                System.out.println(result);
 
             } else if (first.equals("mark")) {
                 char c = input.charAt(5);
@@ -83,7 +61,7 @@ public class Parser {
                 String s = words[1];
 
                 String desc = "";
-                Task t = new Deadline.ToDo("test");
+                Task t = new Task("test");
                 if (first.equals("deadline")) {
                     String[] arr = s.split("/by");
                     desc = arr[0];
@@ -119,16 +97,28 @@ public class Parser {
                     lst.addNewTask(t);
                 }
                 lst.updateStorage(storage);
-                System.out.println("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have " + lst.size() + " tasks in the list.");
-            }
+                System.out.println("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
+                        + lst.size() + " tasks in the list.");
 
-            else if (first.equals("delete")) {
+            }  else if (first.equals("delete")) {
                 if (words.length==1) {
                     throw new DukeException("Please specify duke.task to delete");
                 }
                 int index = Integer.parseInt(words[1]) - 1;
                 lst.deleteTask(index);
                 lst.updateStorage(storage);
+
+            } else if (first.equals("find")) {
+                String toFind = words[1];
+                if (toFind.length() ==0) {
+                    throw new DukeException("Please enter a keyword!");
+                }
+                ArrayList<String> result = lst.findTasks(toFind);
+                System.out.println("Here are the matching tasks in your list:\n");
+                for (int i = 0; i < result.size(); i++) {
+                    System.out.println(result.get(i));
+                }
+
             }
 
             else {
