@@ -3,6 +3,7 @@ package duke.tasklist;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import duke.task.Task;
 import duke.task.ToDo;
@@ -88,5 +89,21 @@ public class TaskList {
             writeList.add(this.list.get(i).toFileData());
         }
         return writeList;
+    }
+
+    public void find(String content) {
+        ArrayList<Task> matchList = new ArrayList<>();
+        for (int i = 0; i < this.list.size(); i++) {
+            if (this.list.get(i).toString().toLowerCase().contains(content.toLowerCase())) {
+                matchList.add(this.list.get(i));
+            }
+        }
+
+        Ui.showLine();
+        System.out.println("\tHere are the matching tasks in your list:");
+        for (int i = 0; i < matchList.size(); i++) {
+            System.out.println(String.format("\t%d.%s", i + 1, matchList.get(i).toString()));
+        }
+        Ui.showLine();
     }
 }
