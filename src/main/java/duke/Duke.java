@@ -120,7 +120,7 @@ public class Duke {
     /**
      * The main method that is the entry to the Duke Application.
      *
-     * @param args
+     * @param args The input task file.
      */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
