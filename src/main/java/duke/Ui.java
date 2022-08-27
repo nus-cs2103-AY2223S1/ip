@@ -1,10 +1,12 @@
+package duke;
+
 public class Ui {
 
     String line_divider = "____________________________________________________________";
 
     public void printIntro() {
         System.out.println(line_divider);
-        System.out.println("Wassup la I'm Duke\nWhat you want?\n" + line_divider);
+        System.out.println("Wassup la I'm duke.Duke\nWhat you want?\n" + line_divider);
     }
     public void goodByeMessage() {
         System.out.println(line_divider + "\nBye. Zai Jian!\n" + line_divider);
