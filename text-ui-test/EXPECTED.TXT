@@ -117,32 +117,32 @@ Duke: Here are the matching tasks in your list:
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify what task you wish to do:
-todo <task>
+todo <description>
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify what task you wish to do:
-deadline <task> /by <date/time>
+deadline <description> /by <date/time>
 
 ☹ OOPS!!! Duke got an error!
-Duke: Please specify the date/time of this deadline:
-deadline <task> /by <date/time>
+Duke: Please specify the description and the date/time of this deadline:
+deadline <description> /by <date/time>
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify what task you wish to do:
-event <task> /at <date/time>
+event <description> /at <date/time>
 
 ☹ OOPS!!! Duke got an error!
-Duke: Please specify the date/time of this event:
-event <task> /at <date/time>
+Duke: Please specify the description and the date/time of this event:
+event <description> /at <date/time>
 
 ☹ OOPS!!! Duke got an error!
-Unknown command. Please try again.
+Unknown command, please try again! Type "help" for a list of commands.
 
 ☹ OOPS!!! Duke got an error!
-Unknown command. Please try again.
+Unknown command, please try again! Type "help" for a list of commands.
 
 ☹ OOPS!!! Duke got an error!
-Unknown command. Please try again.
+Unknown command, please try again! Type "help" for a list of commands.
 
 Duke: Bye! Hope to see you again soon!
 
