@@ -34,7 +34,7 @@ public class Ploopy {
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
             try {
-               Parser.parseInput(input, taskList);
+                Parser.parseInput(input, taskList);
             } catch (PloopyException e) {
                 ui.exceptionMessage(e.getMessage());
             }
@@ -45,6 +45,5 @@ public class Ploopy {
 
     public static void main(String[] args) {
         new Ploopy().start();
-        //System.out.println("event dfgd fgdfg /at 12/12/2000 1800".split("event")[1].split(" /")[0]);
     }
 }

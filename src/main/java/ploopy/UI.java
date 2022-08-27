@@ -93,4 +93,12 @@ public class UI {
         System.out.println(BOTTOM_WINDOW);
     }
 
+    public void foundTasks() {
+        System.out.println("Found these tasks");
+    }
+
+    public void noTasksFound() {
+        System.out.println(messageFormatter("No tasks found"));
+    }
+
 }

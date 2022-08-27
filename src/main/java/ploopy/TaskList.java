@@ -12,6 +12,7 @@ public class TaskList {
         this.ui = ui;
         this.storage = storage;
     }
+
     public void displayList() {
         ui.showTopWindow();
         int index = 1;
@@ -61,6 +62,29 @@ public class TaskList {
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
+    }
+
+    public void findTasks(String keyword) {
+        ArrayList<Task> matchedTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getName().contains(keyword)) {
+                matchedTasks.add(task);
+            }
+        }
+
+        if (matchedTasks.size() > 0) {
+            ui.showTopWindow();
+            ui.foundTasks();
+            int index = 1;
+            for (Task matched : matchedTasks) {
+                System.out.println("\n" + index + "." + matched);
+                index++;
+            }
+            ui.showBottomWindow();
+        } else {
+            ui.noTasksFound();
+        }
+
     }
 
     public void addTasksFromFile(String input) {
