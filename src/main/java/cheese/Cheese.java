@@ -8,11 +8,24 @@ import cheese.exception.CheeseException;
 import cheese.command.Command;
 import cheese.command.ByeCommand;
 
+/**
+ * Represents a command line interface used to manage tasks.
+ */
 public class Cheese {
+  /** List of tasks. */
   private TaskList taskList;
+
+  /** Storage to interact with save file. */
   private Storage storage;
+
+  /** User interface to interact with user. */
   private Ui ui;
 
+  /**
+   * Constructs an instance of <code>Cheese</code>.
+   * 
+   * @param filePath File path of save file.
+   */
   public Cheese(String filePath) {
     ui = new Ui();
     storage = new Storage(filePath);
@@ -24,6 +37,9 @@ public class Cheese {
     }
   }
 
+  /**
+   * Runs program until user enters command to exit.
+   */
   public void run() {
     ui.showWelcome();
     boolean isExit = false;
@@ -39,6 +55,11 @@ public class Cheese {
     }
   }
 
+  /**
+   * Acts as entry point for program.
+   * 
+   * @param args Command line arguments.
+   */
   public static void main(String[] args) {
     new Cheese("data/cheese.txt").run();
   }
