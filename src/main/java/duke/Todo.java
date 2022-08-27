@@ -14,7 +14,9 @@ public class Todo extends Task {
     }
 
     /**
-     * @return The task-representation of an event written to the file
+     * Returns the task-representation of an event written to the file.
+     *
+     * @return The task-representation of an event written to the file.
      */
     @Override
     public String encode() {

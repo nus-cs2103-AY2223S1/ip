@@ -7,11 +7,22 @@ import static java.lang.Integer.parseInt;
 public class Parser {
     private String[] inputString;
 
+    /**
+     * Creates a Parser instance to parse the given input.
+     *
+     * @param inputString The user input split by a space, with a maximum length of 2.
+     */
     public Parser(String[] inputString) {
         this.inputString = inputString;
     }
 
-    public Deadline parseDeadline() throws DukeException{
+    /**
+     * Parses the user input to create a Deadline instance.
+     *
+     * @return A Deadline Instance with the user-specified description and deadline.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
+    public Deadline parseDeadline() throws DukeException {
         if (inputString.length == 1) {
             throw new DukeException("Oops! You forgot to indicate the description and deadline " +
                     "for your deadline");
@@ -38,7 +49,12 @@ public class Parser {
                     "the description and deadline");
         }
     }
-
+    /**
+     * Parses the user input to create a Todo instance.
+     *
+     * @return A Todo Instance with the user-specified description.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
     public Todo parseTodo() throws DukeException {
         if (inputString.length == 1) {
             throw new DukeException("Oops! You forgot to indicate the description for your todo");
@@ -46,6 +62,12 @@ public class Parser {
         return new Todo(inputString[1]);
     }
 
+    /**
+     * Parses the user input to create an Event instance.
+     *
+     * @return A Deadline Instance with the user-specified description and timing.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
     public Event parseEvent() throws DukeException {
         if (inputString.length == 1) {
             throw new DukeException("Oops! You forgot to indicate the description and timing " +
@@ -75,27 +97,41 @@ public class Parser {
         }
     }
 
-    public int parseMark() throws DukeException{
+    /**
+     * Returns the task number of the task to be marked.
+     *
+     * @return The task number of the task  to be marked.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
+    public int parseMark() throws DukeException {
         if (inputString.length == 1) {
             throw new DukeException("Oops! you forgot to indicate the task number");
         }
-        int taskNumber = parseInt(inputString[1].trim());
-        return taskNumber;
+        return parseInt(inputString[1].trim());
     }
-
+    /**
+     * Returns the task number of the task to be unmarked.
+     *
+     * @return The task number of the task to be unmarked.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
     public int parseUnmark() throws DukeException {
         if (inputString.length == 1) {
             throw new DukeException("Oops! You forgot to indicate the task number");
         }
-        int taskNumber = parseInt(inputString[1].trim());
-        return taskNumber;
+        return parseInt(inputString[1].trim());
     }
 
+    /**
+     * Returns the task number of the task to be deleted.
+     *
+     * @return The task number of the task to be deleted.
+     * @throws DukeException When user input has missing fields or incorrect formatting.
+     */
     public int parseDelete() throws DukeException {
         if (inputString.length == 1 || inputString[1].trim().length() == 0) {
             throw new DukeException("Oops! You forgot to specify which task number to delete");
         }
-        int taskNumber = parseInt(inputString[1]);
-        return taskNumber;
+        return parseInt(inputString[1]);
     }
 }

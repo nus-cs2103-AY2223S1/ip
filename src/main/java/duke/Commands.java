@@ -1,4 +1,8 @@
 package duke;
+
+/**
+ * This class is used to access the names of commands.
+ */
 public class Commands {
     public static final String BYE = "bye";
     public static final String TODO = "todo";
