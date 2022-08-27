@@ -32,7 +32,7 @@ public class Storage {
    * Loads task list from save file.
    * 
    * @return Instance of <code>TaskList</code> loaded from save file.
-   * @throws CheeseException
+   * @throws CheeseException If save file contains corrupted data.
    */
   public TaskList load() throws CheeseException {
     TaskList taskList = new TaskList();
@@ -68,6 +68,13 @@ public class Storage {
     }
   }
 
+  /**
+   * Parses string from save file to task.
+   * 
+   * @param taskString String from save file to parse.
+   * @return Task parsed from string.
+   * @throws CheeseException If string from save file is corrupted.
+   */
   private Task decodeStringToTask(String taskString) throws CheeseException {
     String[] taskStringArray = taskString.split(" // ");
     String taskType = taskStringArray[0];

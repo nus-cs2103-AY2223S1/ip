@@ -20,7 +20,7 @@ public class Parser {
    * 
    * @param fullCommand User input.
    * @return Instance of <code>Command</code> that corresponds to user input.
-   * @throws CheeseException
+   * @throws CheeseException If given user input is invalid or contains error.
    */
   public static Command parse(String fullCommand) throws CheeseException {
     String[] fullCommandArray = fullCommand.split(" ", 2);
@@ -57,6 +57,14 @@ public class Parser {
     }
   }
 
+  /**
+   * Validates and parses command to create a new deadline.
+   * 
+   * @param fullCommandArray Array containing user input split by space.
+   * @return Deadline command with extracted arguments.
+   * @throws CheeseException If command has invalid arguments or command does not
+   *                         contain the correct flag.
+   */
   private static Command parseDeadlineCommand(String[] fullCommandArray) throws CheeseException {
     validateCommandHasNArguments(fullCommandArray, 1);
     String deadlineArgument = fullCommandArray[1];
@@ -72,6 +80,14 @@ public class Parser {
     return new DeadlineCommand(description, deadline);
   }
 
+  /**
+   * Validates and parses command to create a new event.
+   * 
+   * @param fullCommandArray Array containing user input split by space.
+   * @return Event command with extracted arguments.
+   * @throws CheeseException If command has invalid arguments or command does not
+   *                         contain the correct flag.
+   */
   private static Command parseEventCommand(String[] fullCommandArray) throws CheeseException {
     validateCommandHasNArguments(fullCommandArray, 1);
     String eventArgument = fullCommandArray[1];
