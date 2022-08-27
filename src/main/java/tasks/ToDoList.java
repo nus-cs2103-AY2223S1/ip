@@ -24,7 +24,7 @@ public class ToDoList {
     }
 
     /* Method for adding items to the list */
-    public void addTask(String command) throws BobException {
+    public void addTask(String command) {
         if (command.startsWith("todo")) {
             command = command.replace("todo", "").trim();
             if (command.length() == 0) {

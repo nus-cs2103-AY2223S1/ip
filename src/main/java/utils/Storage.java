@@ -27,7 +27,7 @@ public class Storage {
     // method for loading whatever is in the file to an array list
     // returns an array list
     // if the file is not found, then return an empty list
-    public ArrayList<Task> load() throws IOException {
+    public ArrayList<Task> load() {
         ArrayList<Task> list = new ArrayList<>();
         File dir = new File(this.dirPath);
         if (!dir.exists()) {
