@@ -1,16 +1,17 @@
 package duke;
 
-import duke.commands.CommandHandlerFactory;
-import duke.commands.CommandHandler;
-import duke.data.Storage;
-import duke.exceptions.DukeException;
-import duke.tasks.TaskList;
+import static duke.utils.Ui.logo;
+import static duke.utils.Ui.wrapWithLines;
 
 import java.io.File;
 import java.util.Scanner;
 
-import static duke.utils.Ui.logo;
-import static duke.utils.Ui.wrapWithLines;
+import duke.commands.CommandHandler;
+import duke.commands.CommandHandlerFactory;
+import duke.data.Storage;
+import duke.exceptions.DukeException;
+import duke.tasks.TaskList;
+
 
 public class Duke {
 

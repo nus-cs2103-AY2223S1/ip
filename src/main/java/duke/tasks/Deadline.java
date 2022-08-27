@@ -1,9 +1,9 @@
 package duke.tasks;
 
-import duke.utils.DateTime;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.utils.DateTime;
 
 public class Deadline extends Task {
     private static final DateTimeFormatter formatter = DateTime.formatter;
@@ -16,12 +16,13 @@ public class Deadline extends Task {
 
     public Deadline(boolean isMarked, String description, String time) {
         super(isMarked, description);
+        System.out.println(time);
         this.time = LocalDateTime.parse(time);
     }
 
     @Override
     public String dbRepresentation() {
-        return String.join("|", "D", Boolean.toString(isMarked),  description, time.toString());
+        return String.join("|", "D", Boolean.toString(isMarked), description, time.toString());
     }
 
     @Override
