@@ -4,9 +4,7 @@ public class Task {
     protected boolean isDone;
 
     public Task(String task) {
-        String[] temp = task.split(" ", 2);
-        this.taskType = temp[0];
-        this.description = temp[1];
+        this.description = task;
         this.isDone = false;
     }
 
@@ -14,12 +12,8 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void unmark() {
-        this.isDone = false;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public String toString() {
@@ -28,6 +22,6 @@ public class Task {
 
     public String toStorageString() {
         String isDoneIndicator = isDone ? "1" : "0";
-        return taskType.toUpperCase().charAt(0) + isDoneIndicator + "," + description;
+        return "Task," + isDoneIndicator + "," + description;
     }
 }

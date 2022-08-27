@@ -1,6 +1,9 @@
 public class UwuChat {
-    private TaskList userTaskList = new TaskList();
-    private Storage taskListStorage = new Storage();
+    protected TaskList userTaskList = new TaskList();
+
+    public UwuChat(TaskList userTaskList) {
+        this.userTaskList = userTaskList;
+    }
 
     private void printFormattedChat(String uwuChat) {
         String horizontalLine ="-----------------------------------------------------";
@@ -26,9 +29,9 @@ public class UwuChat {
         Task task = null;
 
         if (userCmd.startsWith("todo")) {
-            task = new ToDos(userCmd);
+            String[] taskData = userCmd.split(" ", 2);
+            task = new ToDos(taskData[1]);
             userTaskList.add(task);
-            taskListStorage.save(userTaskList.taskListToStorageString());
         }
 
         if (userCmd.startsWith("deadline")) {
@@ -43,7 +46,6 @@ public class UwuChat {
 
             task = new Deadline(description, by);
             userTaskList.add(task);
-            taskListStorage.save(userTaskList.taskListToStorageString());
         }
 
         if (userCmd.startsWith("event")) {
@@ -58,7 +60,6 @@ public class UwuChat {
 
             task = new Event(description, at);
             userTaskList.add(task);
-            taskListStorage.save(userTaskList.taskListToStorageString());
         }
 
         if (task != null) {
@@ -85,11 +86,10 @@ public class UwuChat {
             }
 
             Task task = userTaskList.get(index);
-            task.markAsDone();
+            task.setIsDone(true);
 
             String markedAsDone = "\n\tyey! good job~ keep it up <3";
             printFormattedChat(markedAsDone + "\n\t\t" + task.toString());
-            taskListStorage.save(userTaskList.taskListToStorageString());
         } else {
             userCommand = userCommand.replaceAll("[^0-9]", "");
             int index = Integer.parseInt(userCommand) - 1;
@@ -99,11 +99,10 @@ public class UwuChat {
             }
 
             Task task = userTaskList.get(index);
-            task.unmark();
+            task.setIsDone(false);
 
             String unmarked = "\n\tkeep going~";
             printFormattedChat(unmarked + "\n\t\t" + task.toString());
-            taskListStorage.save(userTaskList.taskListToStorageString());
         }
     }
 
@@ -120,7 +119,6 @@ public class UwuChat {
         printFormattedChat("\n\tremoving this task from your list...\n\t\t" +
                 task.toString() +
                 "\n\ttask removed~! now you have " + String.valueOf(userTaskList.size()) + " task(s) <:");
-        taskListStorage.save(userTaskList.taskListToStorageString());
     }
 
     public void unknownCommand() {
