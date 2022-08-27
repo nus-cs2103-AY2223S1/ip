@@ -23,7 +23,6 @@ public class TaskList {
         this.ui = ui;
         this.storage = storage;
     }
-
     /**
      * Prints the list of tasks in the order they were added.
      *
@@ -122,6 +121,36 @@ public class TaskList {
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
+    }
+
+    /**
+     * Iterates through all tasks in list and adds
+     * tasks matching keyword to a second list.
+     * Displays that list to user.
+     *
+     * @param keyword Keyword for tasks to match.
+     */
+    public void findTasks(String keyword) {
+        ArrayList<Task> matchedTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getName().contains(keyword)) {
+                matchedTasks.add(task);
+            }
+        }
+
+        if (matchedTasks.size() > 0) {
+            ui.showTopWindow();
+            ui.foundTasks();
+            int index = 1;
+            for (Task matched : matchedTasks) {
+                System.out.println("\n" + index + "." + matched);
+                index++;
+            }
+            ui.showBottomWindow();
+        } else {
+            ui.noTasksFound();
+        }
+
     }
 
     /**

@@ -69,6 +69,13 @@ public class Parser {
                 throw new PloopyException("event");
             }
             break;
+        case "find":
+            if (!isEmptyCommand(input, "mark".length())) {
+                taskList.findTasks(inputSequence[1]);
+            } else {
+                throw new PloopyException("find");
+            }
+            break;
         default:
             throw new PloopyException("nonsense");
         }

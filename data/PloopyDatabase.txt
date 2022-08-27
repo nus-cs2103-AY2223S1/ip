@@ -1,1 +1,4 @@
-E_0_ dfgdf dfgdfgfdg dfgfdg gdfgdfg_12/12/2000 1800
+T_1_aaa_
+T_0_bbb_
+E_0_aaa_12/12/2000 1200
+D_0_bbb_12/12/2000 1200
