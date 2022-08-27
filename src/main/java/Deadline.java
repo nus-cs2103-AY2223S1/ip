@@ -16,7 +16,7 @@ public class Deadline extends Task {
 
     public Deadline(String[] data) {
         super(data[2], (data[1].equals("1")));
-        this.datetime = data[3];
+        this.datetime = LocalDateTime.parse(data[3]);
     }
 
     /**
@@ -42,6 +42,6 @@ public class Deadline extends Task {
 
     @Override
     public String toStringWritable() {
-        return " D |" + super.toStringWritable() + String.format("| %s ", this.getDatetime());
+        return " D |" + super.toStringWritable() + String.format("| %s ", this.datetime);
     }
 }

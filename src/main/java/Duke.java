@@ -10,8 +10,8 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Duke {
-    private final ArrayList<Task> db = new ArrayList<>(10);
-    private final Scanner sc = new Scanner(System.in);
+    private ArrayList<Task> db = new ArrayList<>(10);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Prints welcome message upon starting the bot.
