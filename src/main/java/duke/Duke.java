@@ -6,11 +6,18 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * A chat bot.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for <code>Duke</code>
+     * @param filePath
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -22,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the chat bot.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;

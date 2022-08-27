@@ -15,14 +15,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Reads the given file to get the stored tasks and store ongoing tasks after exiting duke.
+ */
 public class Storage {
     private ArrayList<Task> storedTasks;
     private String filePath = "./data/sheep.txt";
 
+    /**
+     * Constructor for <code>Storage</code>.
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Read the tasks from a given file and return a task list with those tasks.
+     * @return
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws DukeException {
         File file = new File(filePath);
         try {
@@ -55,6 +67,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Store ongoing tasks to a file for later use.
+     * @param tasks
+     */
     public void storeTasks(TaskList tasks) {
         try {
             File file = new File(filePath);
