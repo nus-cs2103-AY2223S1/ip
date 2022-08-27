@@ -12,9 +12,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class represents storage object which interacts
+ * with the task data stored in the txt file.
+ */
 public class Storage {
 
-    public ArrayList<Task> readFile() throws FileNotFoundException, IOException {
+    /**
+     * Reads the txt file from Info/data.txt and returns
+     * an ArrayList of all the tasks.
+     *
+     * @return An ArrayList of the tasks read from the file.
+     * @throws FileNotFoundException If the txt file does not exist.
+     * @throws IOException If the file cannot be found by scanner or I/O error occurred.
+     */
+    public ArrayList<Task> readFile() throws IOException {
         ArrayList<Task> botArray  = new ArrayList<>();
         File dataDirectory = new File("Info");
         if (!dataDirectory.isDirectory()) {
@@ -53,6 +65,12 @@ public class Storage {
         return botArray;
     }
 
+    /**
+     * Saves all the tasks to the txt file.
+     *
+     * @param isDeleted Whether the file should be deleted.
+     * @param taskList The list of tasks.
+     */
     public void saveToFile(boolean isDeleted, ArrayList<Task> taskList) {
         try {
             File dataFile = new File("Info/data.txt");
