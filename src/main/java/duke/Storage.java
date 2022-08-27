@@ -26,7 +26,7 @@ public class Storage {
         this.file = new File(filePath);
         String [] directoryPaths = filePath.split("/");
         this.directoryPath = String.join("/", Arrays.copyOfRange(
-                directoryPaths,0,directoryPaths.length - 1));
+                directoryPaths, 0, directoryPaths.length - 1));
     }
 
     /**

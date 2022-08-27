@@ -7,9 +7,9 @@ import duke.DukeException;
  */
 public class Task {
 
+    private static final String ALREADY = "This task is already marked as ";
     private final String taskDescription;
     private boolean isDone;
-    private static final String ALREADY = "This task is already marked as ";
 
     Task(String taskDescription) {
         this.taskDescription = taskDescription;

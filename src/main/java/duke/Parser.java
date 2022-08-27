@@ -1,20 +1,23 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.ExitCommand;
-import duke.command.MarkCommand;
-import duke.command.FindCommand;
-import duke.task.Deadline;
-import duke.task.Todo;
-import duke.task.Event;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
+/**
+ * Represents a parser
+ */
 public class Parser {
 
     private static final String EXIT_COMMAND = "bye";
@@ -41,8 +44,12 @@ public class Parser {
             switch (command) {
             case EXIT_COMMAND:
                 return new ExitCommand();
+                //Fallthrough
             case LIST_COMMAND:
                 return new ListCommand();
+                //Fallthrough
+            default:
+                break;
             }
         } else if (command.equals(FIND_COMMAND)) {
             if (cmdDescp.length < 2) {
@@ -63,10 +70,15 @@ public class Parser {
             switch (command) {
             case MARK_COMMAND:
                 return new MarkCommand(ind, true);
+                //Fallthrough
             case UNMARK_COMMAND:
                 return new MarkCommand(ind, false);
+                //Fallthrough
             case DELETE_COMMAND:
                 return new DeleteCommand(ind);
+                //Fallthrough
+            default:
+                break;
             }
         } else if (command.equals(TODO_COMMAND)) {
             if (cmdDescp.length < 2) {
@@ -80,8 +92,12 @@ public class Parser {
                 switch (command) {
                 case DEADLINE_COMMAND:
                     throw new DukeException("/by is missing");
+                    //Fallthrough
                 case EVENT_COMMAND:
                     throw new DukeException("/at is missing");
+                    //Fallthrough
+                default:
+                    break;
                 }
             }
             String[] details = splitSlash[1].split(" ");
@@ -96,6 +112,8 @@ public class Parser {
                 if (!action.equals("at")) {
                     throw new DukeException("/at is missing");
                 }
+                break;
+            default:
                 break;
             }
             if (details.length < 2) {
@@ -112,12 +130,16 @@ public class Parser {
             if (cmdDescp.length < 2) {
                 throw new DukeException("Task description is missing");
             }
-            String task_description = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
+            String taskDescription = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
             switch (command) {
             case DEADLINE_COMMAND:
-                return new AddCommand(new Deadline(task_description, date));
+                return new AddCommand(new Deadline(taskDescription, date));
+                //Fallthrough
             case EVENT_COMMAND:
-                return new AddCommand(new Event(task_description, date));
+                return new AddCommand(new Event(taskDescription, date));
+                //Fallthrough
+            default:
+                break;
             }
         }
         throw new DukeException("Invalid command given");

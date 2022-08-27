@@ -1,13 +1,13 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Represents a task list
@@ -61,11 +61,11 @@ public class TaskList {
     private static String taskToString(Task task) {
         String taskDescription = task.getDescription();
         String completed = (task.isDone()) ? "1" : "0";
-        String type = task.toString().substring(1,2);
+        String type = task.toString().substring(1, 2);
         String [] splitTime = task.toString().split(":");
         if (splitTime.length == 2) {
             String time = splitTime[1];
-            return String.join(",", type, completed, taskDescription, time.substring(1,time.length()-1));
+            return String.join(",", type, completed, taskDescription, time.substring(1, time.length() - 1));
         }
         return String.join(",", type, completed, taskDescription);
     }
@@ -91,7 +91,7 @@ public class TaskList {
             Task deletingTask = this.tasks.get(ind);
             this.tasks.remove(ind);
             return deletingTask;
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Index given is out of range");
         }
     }
@@ -106,7 +106,7 @@ public class TaskList {
     public Task get(int i) throws DukeException {
         try {
             return this.tasks.get(i);
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Index given is out of range");
         }
     }
@@ -129,7 +129,7 @@ public class TaskList {
                 Task task = tasks.get(i);
                 if (task.getDescription().contains(word) && added.get(i) == 0) {
                     filteredTasks.add(task);
-                    added.set(i,1);
+                    added.set(i, 1);
                 }
             }
         }

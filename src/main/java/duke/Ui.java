@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Represents the user interface
@@ -19,7 +19,7 @@ public class Ui {
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String FIND_MESSAGE = "Here are the matching tasks in your list:";
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Prints greeting message

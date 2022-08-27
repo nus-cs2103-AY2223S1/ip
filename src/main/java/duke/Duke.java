@@ -7,10 +7,10 @@ import duke.command.Command;
  */
 public class Duke {
 
+    private static final String filePath = "./data/duke.txt";
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
-    private static final String filePath = "./data/duke.txt";
 
     /**
      * Initialize duke
