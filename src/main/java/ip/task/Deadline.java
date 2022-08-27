@@ -47,7 +47,7 @@ public class Deadline extends Task {
     }
 
     public String writeFormat() {
-        return "d|" + isComplete + "|" + description + "|" + deadline + "|\n";
+        return "d|" + isComplete + "|" + description + "|" + deadline.format(inputFormat) + "|\n";
     }
 
     @Override
