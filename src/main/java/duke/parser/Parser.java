@@ -10,8 +10,16 @@ import java.util.HashSet;
 
 import duke.dukeexception.DateTimeFormatException;
 
+/**
+ * The parser class helps to convert user input into correct format.
+ */
 public class Parser {
-    public static Integer strToInt (String str) {
+    /**
+     * Converts integer string to integer.
+     * @param str The integer string.
+     * @return The integer implied.
+     */
+    public static Integer strToInt(String str) {
         Integer result = null;
         try {
             result = Integer.valueOf(str);
@@ -22,16 +30,27 @@ public class Parser {
         return result;
     }
 
-    public static boolean multipleVariable (String str) {
+    /**
+     * Detects the commands that needs more than 1 variables.
+     * @param str The command input by user.
+     * @return A boolean value to indicate if the command needs another input.
+     */
+    public static boolean multipleVariable(String str) {
         String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
         return checkList.contains(str.toLowerCase());
     }
 
-
+    /**
+     * Converts a datetime string to a LocalDateTime Object.
+     * @param dateTime A string in format: yyyy-MM-dd hh:mm.
+     * @return A LocalDateTime variable implied by the string.
+     * @throws DateTimeFormatException
+     */
     public static LocalDateTime strToDateTime(String dateTime) throws DateTimeFormatException {
         String[] dateAndTime = dateTime.trim().split(" ");
-        String hour, min;
+        String hour;
+        String min;
 
         if (dateAndTime.length != 2) {
             throw new DateTimeFormatException("The correct Format: YYYY-MM-DD HH:mm");
@@ -57,9 +76,17 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a datetime string to a LocalDate Object.
+     * @param date A string in format: yyyy-MM-dd.
+     * @return A LocalDate variable implied by the string.
+     * @throws DateTimeFormatException
+     */
     public static LocalDate strToDate(String date) throws DateTimeFormatException {
         String[] components = date.strip().split("-", 3);
-        String year, month, day;
+        String year;
+        String month;
+        String day;
         if (components.length != 3) {
             throw new DateTimeFormatException("The correct Format: YYYY-MM-DD");
         } else {

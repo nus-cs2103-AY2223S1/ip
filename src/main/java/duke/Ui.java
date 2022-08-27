@@ -1,8 +1,10 @@
 package duke;
 
-import duke.dukeexception.DukeException;
+import java.io.File;
 import java.io.FileNotFoundException;
+
 import duke.dukeexception.DateTimeFormatException;
+import duke.dukeexception.DukeException;
 import duke.storage.Cache;
 import duke.storage.TaskList;
 import duke.tasks.Deadline;
@@ -10,8 +12,10 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
-import java.io.File;
 
+/**
+ * The user interface.
+ */
 public class Ui {
     /**
      *  Greets.

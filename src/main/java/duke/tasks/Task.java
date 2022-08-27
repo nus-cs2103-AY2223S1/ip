@@ -2,14 +2,19 @@ package duke.tasks;
 
 import duke.dukeexception.DateTimeFormatException;
 
-import java.lang.StringBuilder;
-
+/**
+ * The base class for Task.
+ */
 public class Task {
+    protected static Integer totalNumber = 0;
     protected String name;
-    static protected Integer totalNumber = 0;
     protected Integer index;
     protected boolean isDone;
 
+    /**
+     * Constructs a Task object.
+     * @param name The description of task.
+     */
     public Task(String name) {
         this.name = name;
         totalNumber++;
