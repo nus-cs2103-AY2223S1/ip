@@ -8,10 +8,8 @@ import java.util.List;
 public class Duke {
 
     private static final String GREETINGS = "Hello! I'm Ekud \n" + "What can I do for you?";
-    //private static final String FOLDER_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data";
-    //private static final String FILE_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data\\duke.txt";
-    private static final String FOLDER_LOCATION = "C:\\Users\\Yeo\\Downloads\\drive-download-20210330T061318Z-001\\ip\\data";
-    private static final String FILE_LOCATION = "C:\\Users\\Yeo\\Downloads\\drive-download-20210330T061318Z-001\\ip\\data\\duke.txt";
+    private static final String FOLDER_LOCATION = "data";
+    private static final String FILE_LOCATION = "data\\duke.txt";
     private static final String BANNER = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static ArrayList<Task> tasks = new ArrayList<>();
 
