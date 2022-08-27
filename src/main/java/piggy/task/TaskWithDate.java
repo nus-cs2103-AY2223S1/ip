@@ -10,11 +10,9 @@ public class TaskWithDate extends Task {
 
     protected LocalDateTime datetime;
     /** The DateTimeFormatter used for input into this class */
-    public static final DateTimeFormatter inDateTimeFormatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter inDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     /** The DateTimeFormatter used for output from this class */
-    public static final DateTimeFormatter outDateTimeFormatter =
-            DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    public static final DateTimeFormatter outDateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
      * Creates a new TaskWithDate with the given description and datetime.

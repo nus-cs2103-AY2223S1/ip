@@ -50,11 +50,9 @@ class Storage {
                 if (data[0].equals("T")) {
                     task = new Todo(description);
                 } else if (data[0].equals("D")) {
-                    task = new Deadline(description,
-                            LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
+                    task = new Deadline(description, LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
                 } else if (data[0].equals("E")) {
-                    task = new Event(description,
-                            LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
+                    task = new Event(description, LocalDateTime.parse(data[3]).format(TaskWithDate.inDateTimeFormatter));
                 } else {
                     task = new Task(description);
                 }
