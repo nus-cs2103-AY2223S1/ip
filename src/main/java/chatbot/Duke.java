@@ -21,7 +21,6 @@ public class Duke {
 //    private static final Path dataPath = Paths.get(root, "data", "data.txt");
     private boolean isActive = true;
     private UI ui;
-    private Parser parser;
     private Storage storage;
     private TaskList taskList;
     private Command currentCommand;
@@ -30,7 +29,6 @@ public class Duke {
         ui = new UI();
         storage = new Storage();
         taskList = new TaskList();
-        parser = new Parser();
     }
 
     public static void main(String[] args) throws IOException {
@@ -60,7 +58,7 @@ public class Duke {
         do {
             String input = ui.getUserInput();
             try {
-                currentCommand = parser.parse(input);
+                currentCommand = Parser.parse(input);
                 currentCommand.execute(taskList, ui);
             } catch (DukeException e) {
                 ui.reprimand(e);

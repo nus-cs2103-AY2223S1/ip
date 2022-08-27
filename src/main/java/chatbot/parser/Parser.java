@@ -11,12 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    public static final Pattern EVENT_FORMAT = Pattern.compile("(?<taskName>\\S+)\\s+/at\\s+(?<date>\\S+)");
-    public static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<taskName>\\S+)\\s+/by\\s+(?<date>\\S+)");
+    public static final Pattern EVENT_FORMAT = Pattern.compile("(?<taskName>.+)\\s+/at\\s+(?<date>\\S+)");
+    public static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<taskName>.+)\\s+/by\\s+(?<date>\\S+)");
     public static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<taskIndex>\\d+)");
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S+)(?<arguments>.*)");
 
-    public Command parse(String userInput) throws DukeException {
+    public static Command parse(String userInput) throws DukeException {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw DukeException.INVALID_COMMAND;
@@ -68,7 +68,7 @@ public class Parser {
         }
     }
 
-    private int parseTargetIndex(String args) throws DukeException {
+    public static int parseTargetIndex(String args) throws DukeException {
         Matcher indexMatcher = TASK_INDEX_FORMAT.matcher(args);
         if (!indexMatcher.matches()) {
             throw DukeException.TASK_INDEX_MISSING;
@@ -82,7 +82,7 @@ public class Parser {
         return Integer.parseInt(index);
     }
 
-    private String parseTodo(String args) throws DukeException {
+    public static String parseTodo(String args) throws DukeException {
         String taskName = args.trim();
         if (taskName.isEmpty()) {
             throw DukeException.INSUFFICIENT_TASK_SPECIFICATION;
@@ -91,7 +91,7 @@ public class Parser {
         return taskName;
     }
 
-    private String[] parseTimedTask(String type, String args) throws DukeException {
+    public static String[] parseTimedTask(String type, String args) throws DukeException {
         Matcher matcher;
         if (type == Deadline.TYPE) {
              matcher = DEADLINE_FORMAT.matcher(args);
@@ -103,14 +103,14 @@ public class Parser {
             throw DukeException.INSUFFICIENT_TASK_SPECIFICATION;
         }
 
-        String taskName = matcher.group("taskName");
+        String taskName = matcher.group("taskName").trim();
         String date = matcher.group("date");
 
 
         return new String[] {taskName, date};
     }
 
-    private LocalDate parseList(String args) throws DukeException {
+    public static LocalDate parseList(String args) throws DukeException {
         String trimmed = args.trim();
         if (trimmed.isEmpty()) {
             return null;
