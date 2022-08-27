@@ -8,9 +8,9 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
-    protected Task(String task, boolean done) {
+    protected Task(String task, boolean isDone) {
         this.description = task;
-        this.isDone = done;
+        this.isDone = isDone;
     }
 
     /**
