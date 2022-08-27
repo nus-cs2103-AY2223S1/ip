@@ -1,79 +1,64 @@
-package DukeProgram.Commands.Task;
+package dukeprogram.commands.task;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.Task;
+import dukeprogram.ui.UserInterface;
 
 public class DeleteTaskCommand extends Command {
 
-    @Override
-    public boolean execute() {
-        return false;
+    private final String[] fullCommandParameters;
+
+    public DeleteTaskCommand(String[] fullCommandParameters) {
+        this.fullCommandParameters = fullCommandParameters;
     }
 
     @Override
-    public Command parse(String commandString) throws InvalidCommandException {
-        String[] fullCommandParameters = commandString.split(" ");
+    public boolean execute() {
         if (fullCommandParameters.length < 2) {
-            throw new InvalidCommandException(
-                    new UiMessage(
-                    "You have to specify which task index you want to delete!")
-            );
+            UserInterface.printInStyle(
+                    "You have to specify which task index you want to delete!");
+            return true;
         }
 
-        TaskList currentTaskList = TaskList.current();
-        int index;
         if (fullCommandParameters[1].equals("all")) {
-            index = -1;
-        } else {
-            try {
-                index = Integer.parseInt(fullCommandParameters[1]) - 1;
-            } catch (NumberFormatException e) {
-                throw new InvalidCommandException(new UiMessage(
-                        "I couldn't understand what you wanted to delete."
-                ));
+            String response = UserInterface.askForInput("Are you sure you want to delete all tasks?");
+            if (response.equals("yes")) {
+                TaskList.current().clear();
+                UserInterface.printInStyle(
+                        String.format("Ok, I've annotated all the items in %s.",
+                                TaskList.current().getName())
+                );
+            } else if (!response.equals("no")) {
+                UserInterface.printInStyle("Please only input \"yes\" or \" no\"");
             }
+        } else {
+            TaskList currentTaskList = TaskList.current();
 
-            if (index >= currentTaskList.size() || index < 0) {
-                throw new InvalidCommandException(new UiMessage(
-                        "Sorry!",
+            try {
+                int index = Integer.parseInt(fullCommandParameters[1]) - 1;
+                Task task = TaskList.current().get(index);
+                currentTaskList.remove(index);
+
+                UserInterface.printInStyle(
+                        "Okay, I've removed this task as requested:",
+                        task.toString()
+                );
+            } catch (NumberFormatException e) {
+                UserInterface.printInStyle(
+                        "I couldn't understand what you wanted to delete."
+                );
+            } catch (IndexOutOfBoundsException e) {
+                UserInterface.printInStyle("Sorry!",
                         "You've specified a task number that's out of bounds!",
-                        currentTaskList.size() == 0 ?
-                                "You have no tasks in this list." :
-                                String.format("Please only choose numbers between 1 and %d",
-                                        currentTaskList.size())
-                ));
+                        currentTaskList.getSize() == 0 ? "You have no tasks in this list." :
+                                String.format(
+                                        "Please only choose numbers between 1 and %d",
+                                        currentTaskList.getSize())
+                );
             }
         }
 
-        return new Command() {
-            @Override
-            public boolean execute() {
-                if (index == -1) {
-                    String response = UserInterface.askForInput("Are you sure you want to delete all tasks?");
-                    if (response.equals("yes")) {
-                        TaskList.current().clear();
-                        UserInterface.printInStyle(
-                                String.format("Ok, I've deleted all the items in %s.",
-                                        TaskList.current().getName())
-                        );
-                    } else if (!response.equals("no")) {
-                        UserInterface.printInStyle("Please only input \"yes\" or \" no\"");
-                    }
-                } else {
-                    Task task = TaskList.current().get(index);
-                    currentTaskList.remove(index);
-
-                    UserInterface.printInStyle(
-                            "Okay, I've removed this task as requested:",
-                            task.toString()
-                    );
-                }
-                return true;
-            }
-        };
+        return true;
     }
 }

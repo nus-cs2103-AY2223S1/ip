@@ -1,6 +1,6 @@
-package DukeProgram;
+package dukeprogram;
 
-import DukeProgram.Parser.DateTimeParser;
+import dukeprogram.parser.DateTimeParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

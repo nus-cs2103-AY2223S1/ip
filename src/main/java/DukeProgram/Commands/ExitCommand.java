@@ -1,10 +1,10 @@
-package DukeProgram.Commands;
+package dukeprogram.commands;
 
-import DukeProgram.Duke;
-import DukeProgram.Storage.SaveManager;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
-import Utilities.SerializedNamesFormatter;
+import dukeprogram.Duke;
+import dukeprogram.storage.SaveManager;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
+import utilities.SerializedNamesFormatter;
 
 import java.io.IOException;
 

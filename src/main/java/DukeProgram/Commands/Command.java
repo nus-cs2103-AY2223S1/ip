@@ -1,7 +1,7 @@
-package DukeProgram.Commands;
+package dukeprogram.commands;
 
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 
 public abstract class Command {
 

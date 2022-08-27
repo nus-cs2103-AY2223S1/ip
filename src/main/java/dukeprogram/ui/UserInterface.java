@@ -1,27 +1,21 @@
-package DukeProgram.UI;
+package dukeprogram.ui;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Commands.HomepageCommand;
-import DukeProgram.Parser.Parser;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.commands.HomepageCommand;
+import dukeprogram.parser.Parser;
+import exceptions.InvalidCommandException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-/**
- * UserInterface that delivers output text and reads input from the user
- */
 public class UserInterface {
     private static final String DECORATOR = "\t" + "-".repeat(50);
     private static final Scanner scanner = new Scanner(System.in);
 
     private static final List<String> location = new ArrayList<>();
 
-    /**
-     * Requests for commands from the user from the home page
-     */
     public static void requestCommands() {
         boolean canContinue = true;
         while (canContinue) {
@@ -29,7 +23,8 @@ public class UserInterface {
 
             try {
                 Command command = Parser.parse(
-                        new HomepageCommand(), askForInput("[tasks | exit]")
+                        new HomepageCommand(),
+                        askForInput("[tasks | exit]")
                 );
 
                 canContinue = command.execute();
@@ -39,24 +34,14 @@ public class UserInterface {
         }
     }
 
-    /**
-     * Advances the position of the location address
-     * @param locationName the next location to move to
-     */
     public static void advanceLocation(String locationName) {
         location.add(locationName);
     }
 
-    /**
-     * Retreats back from the previous advanced location
-     */
     public static void retreatLocation() {
         location.remove(location.size() - 1);
     }
 
-    /**
-     * Prints the current location of the user
-     */
     public static void printCurrentLocation() {
         System.out.println("\t Location | " + String.join(" -> ", location));
     }

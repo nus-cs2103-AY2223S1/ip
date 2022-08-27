@@ -1,14 +1,13 @@
-package DukeProgram.Commands.Task;
+package dukeprogram.commands.task;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Commands.ExitCommand;
-import DukeProgram.Commands.Task.Annotations.MarkTaskCommand;
-import DukeProgram.Commands.Task.Annotations.UnmarkTaskCommand;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.commands.ExitCommand;
+import dukeprogram.commands.task.Annotations.MarkTaskCommand;
+import dukeprogram.commands.task.Annotations.UnmarkTaskCommand;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 
 public class TaskPageCommand extends Command {
 

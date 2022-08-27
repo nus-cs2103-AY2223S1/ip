@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 /**
  * Event class for creating an event

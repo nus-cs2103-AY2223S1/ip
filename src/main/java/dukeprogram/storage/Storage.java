@@ -1,6 +1,6 @@
-package DukeProgram.Storage;
+package dukeprogram.storage;
 
-import Exceptions.KeyNotFoundException;
+import exceptions.KeyNotFoundException;
 
 import java.io.Serializable;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package DukeProgram.Commands.Task.Annotations;
+package dukeprogram.commands.task.Annotations;
 
 public class MarkTaskCommand extends AnnotateTaskCommand {
 

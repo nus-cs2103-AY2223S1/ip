@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 /**
  * A Deadline task with a date that describes when the task is due

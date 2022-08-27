@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 import java.io.Serializable;
 

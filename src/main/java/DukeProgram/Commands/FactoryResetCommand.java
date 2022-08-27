@@ -1,10 +1,10 @@
-package DukeProgram.Commands;
+package dukeprogram.commands;
 
-import DukeProgram.Duke;
-import DukeProgram.Storage.SaveManager;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.Duke;
+import dukeprogram.storage.SaveManager;
+import dukeprogram.ui.UserInterface;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 
 import java.util.Random;
 

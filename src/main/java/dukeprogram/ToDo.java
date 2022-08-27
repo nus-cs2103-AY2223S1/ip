@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 /**
  * Todo is a type of Task that only possess a name and status of the task

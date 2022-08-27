@@ -1,6 +1,6 @@
 package Testing;
 
-import Utilities.StringUtilities;
+import utilities.StringUtilities;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
