@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents a To-do Task.
+ *
+ * @author Denzel Tan
+ */
 public class Todo extends Task {
     protected String by;
 

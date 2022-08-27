@@ -4,9 +4,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A Class that deals with the loading tasks from the file and saving tasks in the file.
+ *
+ * @author Denzel Tan
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * The constructor for the Storage class.
+     *
+     * @param filePath path of the file to be used
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
