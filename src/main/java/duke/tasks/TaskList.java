@@ -5,10 +5,17 @@ import duke.exceptions.DukeException;
 
 import java.util.ArrayList;
 
+/**
+ * Describes the TaskList class which stores the tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> taskList;
     private final Storage db;
 
+    /**
+     * Constructor of taskList linked to a Storage.
+     * @param db the database where taskList stores the tasks.
+     */
     public TaskList(Storage db) {
         this.taskList = new ArrayList<>();
         this.db = db;
@@ -22,12 +29,24 @@ public class TaskList {
         db.write(taskList);
     }
 
+    /**
+     * Add tasks into the taskList and updates the database.
+     * @param task the task to be added.
+     * @return the reply when adding a task.
+     */
     public String addTask(Task task) {
         taskList.add(task);
         updateDb();
         return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }
 
+    /**
+     * Marks a task as either complete or incomplete.
+     * @param value the number of the task to edit.
+     * @param isCompleted whether the task is complete or incomplete.
+     * @return edited task.
+     * @throws DukeException error message.
+     */
     public Task markTask(String value, boolean isCompleted) throws DukeException {
         try {
             int taskNumber = Integer.parseInt(value);
@@ -42,6 +61,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task from taskList and updates the database.
+     * @param value the task number of the task to be deleted.
+     * @return the reply when adding a task.
+     * @throws DukeException error message
+     */
     public String deleteTask(String value) throws DukeException {
         try {
             int taskNumber = Integer.parseInt(value);
@@ -56,8 +81,13 @@ public class TaskList {
         }
     }
 
-    public void addTaskFromDb(String row) throws DukeException {
-        String[] args = row.split("\\|");
+    /**
+     * Adds a task from Database. Used when loading the database into TaskList.
+     * @param storedTask task stored in the database.
+     * @throws DukeException error message.
+     */
+    public void addTaskFromDb(String storedTask) throws DukeException {
+        String[] args = storedTask.split("\\|");
         String taskType = args[0];
         Task task;
         switch (taskType) {
@@ -76,6 +106,10 @@ public class TaskList {
         taskList.add(task);
     }
 
+    /**
+     * The string representation of the TaskList class which shows the tasks that are currently saved.
+     * @return string representation.
+     */
     public String toString() {
         StringBuilder result = new StringBuilder();
         int counter = 1;
