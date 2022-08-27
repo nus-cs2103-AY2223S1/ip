@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Duke {
@@ -14,23 +13,25 @@ public class Duke {
 
 
     private final char TIME_DELIMITER = '/';
+    private final String DATA_FILE_PATH = "./data.ser";
 
 
-    // Linked list to store the user's tasks
-    private LinkedList<Task> storedTasks;
+    // TaskList object to store the user's tasks
+    private TaskList storedTasks;
 
 
     // Constructor
     public Duke() {
-        storedTasks = new LinkedList<>();
+        // TaskList is initialized in the initialize() method
     }
+
 
 
     public void listTasks() {
         String result = "Here are the tasks in your list:\n";
 
-        for (int i = 0; i < this.storedTasks.size(); i++) {
-            String line = String.format("%d. %s\n", i + 1, this.storedTasks.get(i));
+        for (int i = 0; i < this.storedTasks.getSize(); i++) {
+            String line = String.format("%d. %s\n", i + 1, this.storedTasks.getTask(i));
             result = result.concat(line);
         }
 
@@ -49,8 +50,8 @@ public class Duke {
         // Task number is 1 index, so subtract 1 to make it 0 index
         int indexNumber = Integer.parseInt(commands[1]) - 1;
         
-        // Get the task from the linked list
-        Task t = this.storedTasks.get(indexNumber);
+        // Get the task from the TaskList object
+        Task t = this.storedTasks.getTask(indexNumber);
 
 
         // Mark the task as done or undone depending on the command
@@ -63,19 +64,19 @@ public class Duke {
             result = "OK, I've marked this task as undone:\n";
         }
 
-        // Store the task back in the linked list
-        this.storedTasks.set(indexNumber, t);
+        // Store the task back in the TaskList
+        this.storedTasks.setTask(indexNumber, t);
         
 
-        // Add the string representation of the task
+        // Add the string representation of the task to the result
         result = result.concat(String.format("%s\n", t));
         System.out.println(result);
     }
 
 
     public void addTask(String[] commands) {
+        
         // Create the correct type of task based on the first token
-
         Task t = null;
 
         try {
@@ -88,16 +89,15 @@ public class Duke {
             return;
         }
 
-        this.storedTasks.add(t);
+        this.storedTasks.addTask(t);
 
         String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.size());
+                                        t, storedTasks.getSize());
         System.out.println(result);
     }
 
 
     public Task createTask(String[] commands) throws Exception {
-
         
         String description = "";
         boolean isDeadline = false;
@@ -220,11 +220,11 @@ public class Duke {
         // Task number is 1 index, so subtract 1 to make it 0 index
         int indexNumber = Integer.parseInt(commands[1]) - 1;
         
-        // Remove the task from the linked list
-        Task t = storedTasks.remove(indexNumber);
+        // Remove the task from the TaskList object
+        Task t = storedTasks.removeTask(indexNumber);
 
         String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.size());
+                                        t, storedTasks.getSize());
         System.out.println(result);
     }
 
@@ -285,7 +285,8 @@ public class Duke {
         System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
     }
 
-
+    
+    // Initialize the system by loading the TaskList from the hard disk, if it exists
     private void initialize() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -294,6 +295,9 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?\n");
+
+        // Load the TaskList from the file
+        this.storedTasks = TaskList.loadTaskListFromFile(DATA_FILE_PATH);
     }
 
 
@@ -326,12 +330,11 @@ public class Duke {
         
         Duke d = new Duke();
 
-        // Print the logo
+        // Initialize the system
         d.initialize();
 
         // Process user commands
         d.processCommands();
-
 
     }
 }
