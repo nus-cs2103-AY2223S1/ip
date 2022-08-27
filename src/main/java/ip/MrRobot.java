@@ -1,7 +1,7 @@
 package ip;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,7 +31,7 @@ import ip.exception.NoTaskFound;
 public class MrRobot {
     /** List of all tasks. */
     private static LinkedList<Task> tasks = new LinkedList<>();
-    private final static String path = "src/main/java/ip/data/taskData.txt";
+    private final static String path = "src/main/java/ip/taskData.txt";
     /** File to load and save task data to. */
     private static File taskDataFile = new File(path);
     /** Stream of input from the user. */
@@ -44,9 +44,14 @@ public class MrRobot {
     }
 
     public static void main(String[] args) {
-        // TODO
-        // Load existing task data (if it exists)
-        // If task data does not exist, create the file.
+        // Display Logo
+        System.out.println( "╔═╗╔═╗         ╔═══╗╔═══╗╔══╗ ╔═══╗╔════╗\n" +
+                            "║║╚╝║║         ║╔═╗║║╔═╗║║╔╗║ ║╔═╗║║╔╗╔╗║\n" +
+                            "║╔╗╔╗║╔═╗      ║╚═╝║║║ ║║║╚╝╚╗║║ ║║╚╝║║╚╝\n" +
+                            "║║║║║║║╔╝      ║╔╗╔╝║║ ║║║╔═╗║║║ ║║  ║║  \n" +
+                            "║║║║║║║║ ╔╗    ║║║╚╗║╚═╝║║╚═╝║║╚═╝║ ╔╝╚╗ \n" +
+                            "╚╝╚╝╚╝╚╝ ╚╝    ╚╝╚═╝╚═══╝╚═══╝╚═══╝ ╚══╝ \n");
+        // Load existing data (if exists).
         loadSavedData(path);
         // Greeting Message
         System.out.println("HELLO HUMAN. TELL ME WHAT'S ON YOUR MIND?");
@@ -64,6 +69,10 @@ public class MrRobot {
                 }
                 // End program if exit command entered.
                 if (lastCommand == Command.BYE) {
+                    // Save task data again.
+                    System.out.println("SAVING TASK DATA...");
+                    writeTaskData();
+                    System.out.println("TASK DATA SAVED!");
                     // Farewell Message
                     System.out.println("FAREWELL HUMAN.");
                     break;
@@ -73,8 +82,7 @@ public class MrRobot {
                 } else {
                     // Store all subsequent text as options.
                     Scanner options = new Scanner(input.nextLine());
-                        if (lastCommand == Command.MARK ||
-                                lastCommand == Command.UNMARK ||
+                        if (lastCommand == Command.MARK || lastCommand == Command.UNMARK ||
                                 lastCommand == Command.DELETE) {
                             if (options.hasNextInt()) {
                                 int index = options.nextInt();
@@ -104,17 +112,17 @@ public class MrRobot {
                                 lastCommand == Command.EVENT) {
                             try {
                                 switch (lastCommand) {
-                                    case TODO:
-                                        tasks.add(new ToDo(options));
-                                        break;
-                                    case DEADLINE:
-                                        tasks.add(new Deadline(options));
-                                        break;
-                                    case EVENT:
-                                        tasks.add(new Event(options));
-                                        break;
-                                    default:
-                                        break;
+                                case TODO:
+                                    tasks.add(new ToDo(options));
+                                    break;
+                                case DEADLINE:
+                                    tasks.add(new Deadline(options));
+                                    break;
+                                case EVENT:
+                                    tasks.add(new Event(options));
+                                    break;
+                                default:
+                                    break;
                                 }
                             } catch (NoDescription e) {
                                 System.out.println("PLEASE ADD DESCRIPTION TO YOUR TASK");
@@ -124,8 +132,8 @@ public class MrRobot {
                                 System.out.println("ADD PERIOD BY APPENDING TASK WITH \"/at [date]\"");
                             }
                         }
-                    // TODO
                     // After execution of commands that edit the tasklist, save changes to file.
+                    writeTaskData();
                 }
             } else {
                 System.out.println("NO INPUT DETECTED. TERMINATING...");
@@ -143,16 +151,9 @@ public class MrRobot {
             } else {
                 System.out.println("FILE ALREADY EXISTS. LOADING DATA...");
                 // Parse data from taskDataFile.txt into ArrayList Tasks.
-                /* Sample text data for tasks:
-                t|0|Do the dishes||
-                d|1|Attend ceremony|Today|
-                e|1|Eat with grandma|Next Tuesday, 2-3pm|
-
-                 */
                 String data = new String(Files.readAllBytes(Path.of(path)));
                 String[] lines = data.split("\\r?\\n");
                 for (String line : lines) {
-                    System.out.println(line);
                     String[] props = line.split("\\|");
                     String taskType = props[0];
                     switch (taskType) {
@@ -177,8 +178,21 @@ public class MrRobot {
         }
     }
 
-    private static void updateTask(int index) {
-
+    /**
+     * Write all current tasks to the hard disk.
+     * Will overwrite previous data.
+     */
+    private static void writeTaskData() {
+        try {
+            FileWriter taskDataFile = new FileWriter(path);
+            for (Task task : tasks) {
+                taskDataFile.append(task.writeFormat());
+            }
+            taskDataFile.close();
+        } catch (IOException e) {
+            System.out.println("IO ERROR!!!");
+            e.printStackTrace();
+        }
     }
 
     /**

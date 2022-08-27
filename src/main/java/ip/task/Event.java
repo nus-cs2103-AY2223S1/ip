@@ -29,9 +29,13 @@ public class Event extends Task {
     public Event(String[] props) {
         super.describe(props[2]);
         this.period = props[3];
-        if (props[1].equals("1")) {
+        if (props[1].equals("true")) {
             super.mark();
         }
+    }
+
+    public String writeFormat() {
+        return "e|" + isComplete + "|" + description + "|" + period + "|\n";
     }
 
     @Override

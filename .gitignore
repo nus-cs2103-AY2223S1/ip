@@ -16,4 +16,4 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 
-src/main/java/ip/data/
+src/main/java/ip/taskData.txt

@@ -18,9 +18,13 @@ public class ToDo extends Task {
 
     public ToDo(String[] props) {
         super.describe(props[2]);
-        if (props[1].equals("1")) {
+        if (props[1].equals("true")) {
             super.mark();
         }
+    }
+
+    public String writeFormat() {
+        return "t|" + isComplete + "|" + description + "||\n";
     }
 
     @Override

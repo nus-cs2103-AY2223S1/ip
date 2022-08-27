@@ -28,9 +28,13 @@ public class Deadline extends Task {
     public Deadline(String[] props) {
         super.describe(props[2]);
         this.deadline = props[3];
-        if (props[1].equals("1")) {
+        if (props[1].equals("true")) {
             super.mark();
         }
+    }
+
+    public String writeFormat() {
+        return "d|" + isComplete + "|" + description + "|" + deadline + "|\n";
     }
 
     @Override

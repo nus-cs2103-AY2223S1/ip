@@ -1,10 +1,10 @@
 package ip.task;
 
-public class Task {
+public abstract class Task {
     /** Description of the task. */
-    private String description;
+    protected String description;
     /** Completion status of the task. */
-    private boolean isComplete;
+    protected boolean isComplete;
 
     public Task() {
         isComplete = false;
@@ -29,6 +29,8 @@ public class Task {
     private String check() {
         return isComplete ? "[X]" : "[ ]";
     }
+
+    public abstract String writeFormat();
 
     @Override
     public String toString() {
