@@ -1,3 +1,5 @@
+package exception;
+
 public class FredException extends Exception {
 
     public FredException() {

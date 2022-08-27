@@ -1,3 +1,15 @@
+import commands.Command;
+
+import exception.FredException;
+
+import parser.Parser;
+
+import storage.Storage;
+
+import tasklist.TaskList;
+
+import ui.Ui;
+
 public class Fred {
 
     private Storage storage;

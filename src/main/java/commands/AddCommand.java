@@ -1,3 +1,18 @@
+package commands;
+
+import exception.FredException;
+
+import storage.Storage;
+
+import task.Deadline;
+import task.Event;
+import task.TaskType;
+import task.ToDo;
+
+import tasklist.TaskList;
+
+import ui.Ui;
+
 import java.time.LocalDate;
 
 public class AddCommand extends Command {

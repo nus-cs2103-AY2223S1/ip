@@ -1,3 +1,13 @@
+package commands;
+
+import exception.FredException;
+
+import storage.Storage;
+
+import tasklist.TaskList;
+
+import ui.Ui;
+
 public class DeleteCommand extends Command {
 
     protected int index;
