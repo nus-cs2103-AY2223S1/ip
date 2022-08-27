@@ -19,6 +19,13 @@ public class DeadlineCommand extends Command {
         this.by = by;
     }
 
+    /**
+     * Creates a new Deadline task and add it into the <Code>TaskList</Code>.
+     *
+     * @param tasks The <code>TaskList</code> object containing all stored tasks.
+     * @param ui The <code>Ui</code> object
+     * @param storage The database object.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {

@@ -22,6 +22,13 @@ public class Storage {
         this.path = path;
     }
 
+    /**
+     * Returns the tasks stored on the disk.
+     *
+     * If no database was found, an empty ArrayList will be returned.
+     *
+     * @return Tasks stored on disk.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
         File db = new File(path);
@@ -66,6 +73,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Updates the database to reflect any changes made by the user.
+     *
+     * @param tasks The <Code>ArrayList</Code> of tasks.
+     */
     public void update(ArrayList<Task> tasks) {
         StringBuilder store = new StringBuilder();
 

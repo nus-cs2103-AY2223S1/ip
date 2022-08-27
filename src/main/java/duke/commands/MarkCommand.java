@@ -15,6 +15,14 @@ public class MarkCommand extends Command {
         this.idx = idx;
     }
 
+    /**
+     * Marks the specified task from the <Code>TaskList</Code>.
+     *
+     * @param tasks The <code>TaskList</code> object containing all stored tasks.
+     * @param ui The <code>Ui</code> object
+     * @param storage The database object.
+     * @throws DukeException if index number provided is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (idx <= 0 || idx > tasks.getSize()) {

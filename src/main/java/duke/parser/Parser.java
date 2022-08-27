@@ -17,6 +17,13 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    /**
+     * Parses the provided user input to return the command to be executed.
+     *
+     * @param input The provided user input.
+     * @return The command the user wants to execute.
+     * @throws DukeException if the command has invalid arguments.
+     */
     public Command parse(String input) throws DukeException {
         int idx = input.indexOf(' ');
         String textCommand = idx < 0 ? input : input.substring(0, idx);

@@ -14,6 +14,13 @@ public class TodoCommand extends Command {
         this.description = description;
     }
 
+    /**
+     * Creates a new Todo task and add it into the <Code>TaskList</Code>.
+     *
+     * @param tasks The <code>TaskList</code> object containing all stored tasks.
+     * @param ui The <code>Ui</code> object
+     * @param storage The database object.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {

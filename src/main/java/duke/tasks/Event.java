@@ -15,11 +15,21 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Returns a string representation of the object suitable for storage.
+     *
+     * @return A storage-friendly string representation.
+     */
     @Override
     public String encode() {
         return "E | " + super.encode() + " | " + this.at;
     }
 
+    /**
+     * Returns a user-friendly string representation of the object.
+     *
+     * @return A user-friendly string representation.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
