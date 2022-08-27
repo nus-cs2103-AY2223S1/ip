@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,7 +11,12 @@ public class Duke {
         this.storage = new Storage(ui, fileName, directories);
         this.taskList = new TaskList();
         ui.showWelcome();
-        storage.load(taskList, ui);
+        try {
+            storage.load(taskList, ui);
+        } catch (IOException e) {
+            ui.showLoadingError();
+            this.taskList = new TaskList();     // if error loading, use an empty task list
+        }
     }
 
     // starts taking in the user's commands
@@ -19,8 +25,14 @@ public class Duke {
         boolean isExit = false;
         while (!isExit && scanner.hasNext()) {
             String commandString = scanner.nextLine();
-            Command command = Parser.parse(commandString, taskList);
-            command.execute(this.taskList, this.ui);
+            Command command;
+            try {
+                command = Parser.parse(commandString, taskList);
+            } catch (IllegalArgumentException e) {
+                ui.println(e.getMessage());
+                continue;
+            }
+            command.execute(this.taskList, this.storage, this.ui);
             isExit = command.getIsExit();
         }
     }
