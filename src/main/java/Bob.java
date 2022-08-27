@@ -1,9 +1,12 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 import java.io.File;
 import java.io.FileWriter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Bob {
@@ -69,8 +72,9 @@ public class Bob {
                             taskCount = taskCount + 1;
                         } else if (taskLabel.equals("D")) {
                             String deadlineTaskName = temp[2].substring(1);
-                            String deadlineTime = temp[3].substring(1);
-                            Deadline deadline = new Deadline(deadlineTaskName, deadlineTime);
+                            String[] deadlineDetails = temp[3].substring(1).split(" ");
+                            String deadlineDate = deadlineDetails[0];
+                            Deadline deadline = new Deadline(deadlineTaskName, LocalDate.parse(deadlineDate));
                             if (temp[1].substring(1,2).equals("1")) {
                                 deadline.toMark(true);
                             }
@@ -78,8 +82,9 @@ public class Bob {
                             taskCount = taskCount + 1;
                         } else if (taskLabel.equals("E")){
                             String eventTaskName = temp[2].substring(1);
-                            String eventTime = temp[3].substring(1);
-                            Event event = new Event(eventTaskName, eventTime);
+                            String[] eventDetails = temp[3].substring(1).split(" ");
+                            String eventDate = eventDetails[0];
+                            Event event = new Event(eventTaskName, LocalDate.parse(eventDate));
                             if (temp[1].substring(1,2).equals("1")) {
                                 event.toMark(true);
                             }
@@ -94,8 +99,20 @@ public class Bob {
         }
     }
 
-    public void activate() {
+    public void dateFilter(String dateString) {
+        LocalDate date = LocalDate.parse(dateString);
+        String list = "";
+        for (Task task : tasks) {
+            if (task instanceof Event && ((Event) task).at.equals(date)) {
+                list = list + task.toString() + "\n";
+            } else if (task instanceof Deadline && ((Deadline) task).by.equals(date)) {
+                list = list + task.toString() + "\n";
+            }
+        }
+        System.out.print("here are your tasks on " + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + "\n" + list);
+    }
 
+    public void activate() {
         read();
         Scanner scanner = new Scanner(System.in);
         System.out.println("hey, i'm bob!\ndo you need help?");
@@ -159,6 +176,13 @@ public class Bob {
                 } catch (NumberFormatException e) {
                     System.out.println("which task do you want to delete?");
                 }
+            } else if (reply.toLowerCase().matches("filter(.*)")) {
+                try {
+                    String[] temp = reply.split(" ");
+                    dateFilter(temp[1]);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("what date do you want to filter?");
+                }
             } else {
                 if (reply.toLowerCase().matches("todo(.*)")) {
                     try {
@@ -175,8 +199,9 @@ public class Bob {
                     try {
                         String[] temp = reply.split("/");
                         String taskName = temp[0].substring(9);
-                        String time = temp[1].substring(3);
-                        Deadline newTask = new Deadline(taskName, time);
+                        String[] deadlineDetails = temp[1].split(" ");
+                        String date = deadlineDetails[1];
+                        Deadline newTask = new Deadline(taskName, LocalDate.parse(date));
                         tasks.add(newTask);
                         taskCount = taskCount + 1;
                         save();
@@ -188,8 +213,9 @@ public class Bob {
                     try {
                         String[] temp = reply.split("/");
                         String taskName = temp[0].substring(6);
-                        String time = temp[1].substring(3);
-                        Event newTask = new Event(taskName, time);
+                        String[] eventDetails = temp[1].split(" ");
+                        String date = eventDetails[1];
+                        Event newTask = new Event(taskName, LocalDate.parse(date));
                         tasks.add(newTask);
                         taskCount = taskCount + 1;
                         save();
@@ -211,3 +237,4 @@ public class Bob {
         new Bob().activate();
     }
 }
+
