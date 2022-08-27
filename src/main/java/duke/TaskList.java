@@ -94,6 +94,23 @@ public class TaskList {
     }
 
     /**
+     * Finds the tasks with the matching description
+     *
+     * @param description to find tasks
+     * @return Tasklist containing the tasks
+     */
+    public TaskList findTasks(String description) {
+        List<Task> foundTasks = new ArrayList<>();
+
+        for(Task task : tasks) {
+            if(task.contains(description)) {
+                foundTasks.add(task);
+            }
+        }
+        return new TaskList(foundTasks);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

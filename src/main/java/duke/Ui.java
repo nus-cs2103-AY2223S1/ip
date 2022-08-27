@@ -26,7 +26,6 @@ public class Ui {
      */
     public void showWelcome() {
         System.out.println("hi im chompers what can i do for u today!");
-        System.out.println(System.getProperty("user.dir"));
         scanner = new Scanner(System.in);
     }
 
@@ -71,6 +70,20 @@ public class Ui {
     }
 
     /**
+     * Displays the matching tasks for the user.
+     *
+     * @param taskList Tasklist to be displayed.
+     */
+    public void showMatchingTasks(TaskList taskList) {
+        if(taskList.getSize() > 0) {
+            System.out.println("here are the matching tasks:");
+            System.out.println(taskList);
+        } else {
+            System.out.println("there are no tasks matching this keyword!");
+        }
+    }
+    
+    /**
      * Displays an error message.
      *
      * @param message Message to be displayed.
@@ -85,7 +98,7 @@ public class Ui {
      * @return String containing the user input.
      */
     public String readCommand() {
-        String str = "";
+        String str;
         scanner = new Scanner(System.in);
         str = scanner.nextLine();
         return str;

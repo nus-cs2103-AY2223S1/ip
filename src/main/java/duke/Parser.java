@@ -125,8 +125,14 @@ public class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException(DukeException.WRONG_FORMAT_DATE);
                 }
-            default:
-                throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
+                case "find":
+                    if(subStrs.length == 1) { // no number was given
+                        throw new DukeException(DukeException.MISSING_DESCRIPTION);
+                    } else {
+                        return new FindCommand(subStrs[1]);
+                    }
+                default:
+                    throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
             }
         }
         return new ExitCommand();
