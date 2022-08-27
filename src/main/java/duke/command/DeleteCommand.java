@@ -1,15 +1,15 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 
 /**
  * Command to execute deleting a task
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class DeleteCommand extends Command {
     private String[] splitCommands;
@@ -48,10 +48,12 @@ public class DeleteCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException if the input command is invalid
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) throws DukeException {
+    public String execute(Storage storage) throws DukeException {
         if (splitCommands.length == 1) {
             throw new DukeException("your command is incomplete."
                     + "\nPlease use the [help] command to check the proper usage of [delete].");
@@ -64,9 +66,10 @@ public class DeleteCommand extends Command {
                 throw new DukeException("that task you want to delete does not exist."
                         + "\nUse the [list] command to check what tasks are available.");
             } else {
-                ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
+                String response = ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
                 tasks.remove(taskId);
                 storage.saveDuke(tasks);
+                return response;
             }
         } else {
             throw new DukeException("your command is incorrect."

@@ -1,4 +1,4 @@
-package duke;
+package duke.exception;
 
 /**
  * The exceptions thrown by Duke due to invalid inputs that Duke does not recognise.

@@ -1,15 +1,15 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Event;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to execute adding an Event to a TaskList
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class EventCommand extends Command {
     private String command;
@@ -32,10 +32,12 @@ public class EventCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException if the input command is invalid
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) throws DukeException {
+    public String execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" /at ");
         if (returnedArray.length <= 0) {
             throw new DukeException("your command is incomplete."
@@ -53,8 +55,9 @@ public class EventCommand extends Command {
         }
         Event event = new Event(returnedArray[0], returnedArray[1]);
         tasks.add(event);
-        ui.addTask(event, tasks.size());
+        String response = ui.addTask(event, tasks.size());
         storage.saveDuke(tasks);
+        return response;
     }
 
     /**
