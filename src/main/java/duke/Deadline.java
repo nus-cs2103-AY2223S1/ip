@@ -17,9 +17,7 @@ public class Deadline extends Task {
     @Override
     public String toString() throws DateTimeException {
         try {
-
-
-            LocalDate d1 = LocalDate.parse(by.substring(1), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate d1 = LocalDate.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String deadline = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             return "[D]" + super.toString() + " (by: " + deadline + ")";
 

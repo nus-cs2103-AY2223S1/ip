@@ -7,7 +7,12 @@ public class TaskList {
 
 
     TaskList(ArrayList<Task> lst) {
+
         this.lst = lst;
+    }
+
+    TaskList() {
+        lst = new ArrayList<>();
     }
 
 

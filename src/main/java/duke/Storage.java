@@ -23,7 +23,7 @@ public class Storage {
     }
 
 
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws DukeException {
 
         try {
             reader = new Scanner(file);
@@ -55,13 +55,12 @@ public class Storage {
                 }
             }
         }
-        catch (DukeException e) {
-
-        }
         catch (FileNotFoundException e) {
             this.file = new File(filePath);
 
-    }
+    } catch (DukeException e) {
+           throw new DukeException("File empty");
+        }
         return tasks;
 
     }

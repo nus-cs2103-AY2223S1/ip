@@ -10,10 +10,15 @@ public class Duke {
     private Parser parser;
 
     public Duke(String filePath) throws DukeException {
-        ui = new Ui();
-        ui.hello();
-        storage = new Storage(filePath);
-        tasks = new TaskList(storage.load());
+        try {
+            ui = new Ui();
+            ui.hello();
+            storage = new Storage(filePath);
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
     }
         public void run() throws DukeException, IOException {
         parser = new Parser(tasks,storage);

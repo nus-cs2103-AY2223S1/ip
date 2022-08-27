@@ -43,21 +43,21 @@ public class Parser {
                         throw new DukeException("Oops The description of deadline cannot be empty !");
                     }
                     String currD = str.substring(str.indexOf("deadline") + 8, str.indexOf("/by"));
-                    tLst.add(new Deadline(currD, str.substring(str.indexOf("/by") + 3)));
+                    tLst.add(new Deadline(currD.substring(1), str.substring(str.indexOf("/by") + 4)));
                     storage.writeToFile(tLst.getTasks());
                 } else if (first.equals("event")) {
                     if (str.endsWith("event")) {
                         throw new DukeException("Oops The description of event cannot be empty !");
                     }
                     String currE = str.substring(str.indexOf("event") + 5, str.indexOf("/at"));
-                    tLst.add(new Events(currE, str.substring(str.indexOf("/at") + 3)));
+                    tLst.add(new Events(currE.substring(1), str.substring(str.indexOf("/at") + 4)));
                     storage.writeToFile(tLst.getTasks());
                 } else if (first.equals("todo")) {
                     if (str.endsWith("todo")) {
                         throw new DukeException("Oops The description of todo cannot be empty !");
                     }
                     String currT = str.substring(str.indexOf("todo") + 4);
-                    tLst.add(new ToDos(currT));
+                    tLst.add(new ToDos(currT.substring(1)));
 
                     storage.writeToFile(tLst.getTasks());
                 } else {
