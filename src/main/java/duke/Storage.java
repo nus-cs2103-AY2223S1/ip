@@ -17,7 +17,6 @@ public class Storage {
 
     /**
      * Constructor for {@code Storage}
-     *
      * @param filePath the path of the file
      */
     public Storage(String filePath) {
@@ -26,7 +25,6 @@ public class Storage {
 
     /**
      * To check if file mentions in filePath exists
-     *
      * @return true if file exists and false if it does not
      */
     public boolean isFileExists() {

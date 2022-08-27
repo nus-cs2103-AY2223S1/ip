@@ -71,7 +71,7 @@ public class Ui {
 
     /**
      * To display the list of current tasks
-     * @param tasks
+     * @param tasks the current {@code TaskList}
      */
     public void listTask(TaskList tasks) {
         System.out.println("\t Here are the tasks in your list:");
@@ -139,6 +139,11 @@ public class Ui {
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
 
+    /**
+     * To display all the tasks that match the search
+     * @param tasks the current {@code TaskList}
+     * @param description the user input to find marching {@code Task}
+     */
     public void findTask(TaskList tasks, String description) {
         System.out.println("\t Here are the matching tasks in your list:");
         ArrayList<Task> temp = tasks.find(description);

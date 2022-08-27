@@ -11,7 +11,6 @@ public class Parser {
 
     /**
      * The main function to parse user input
-     *
      * @param s The user input
      * @return a {@code Command} after performing input sanitization
      * @throws DukeException if user enters an invalid input

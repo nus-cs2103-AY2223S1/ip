@@ -17,7 +17,6 @@ public class Duke {
 
     /**
      * Constructor for {@code Duke} to initialize the ui and the storage
-     *
      * @param filePath the path to where the file is located
      */
     public Duke(String filePath) {
