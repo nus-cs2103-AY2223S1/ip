@@ -52,7 +52,7 @@ public class Duke {
     }
 
     /**
-     * Creates and runs the duke chatbot.
+     * Creates and runs duke chatbot.
      */
     public static void main(String[] args) {
         new Duke("data/Duke.txt").run();
