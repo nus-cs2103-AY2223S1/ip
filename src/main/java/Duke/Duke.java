@@ -1,21 +1,20 @@
 package Duke;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.sql.SQLSyntaxErrorException;
-import java.text.ParseException;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.ListIterator;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 
+/**
+ *
+ */
 public class Duke {
     private ArrayList<Task> all = new ArrayList<>();
     enum TaskType {
@@ -169,10 +168,12 @@ public class Duke {
                     newTask = new Todo(des);
                 } else if (type == 'D') {
                     int i = des.indexOf('(');
-                    newTask = new Deadline(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5, i + 15)));
+                    newTask = new Deadline(des.substring(0, i - 1),
+                            parser.parseStringToDate(des.substring(i + 5, i + 15)));
                 } else if (type == 'E') {
                     int i = des.indexOf('(');
-                    newTask = new Event(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5, i + 15)));
+                    newTask = new Event(des.substring(0, i - 1),
+                            parser.parseStringToDate(des.substring(i + 5, i + 15)));
                 } else {
                     newTask = null;
                 }
@@ -252,7 +253,7 @@ public class Duke {
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return false;
         }
     }
@@ -264,12 +265,12 @@ public class Duke {
          * Execute the List command. List all tasks in taskList.
          */
         @Override
-        public void execute()  {
+        public void execute() {
             taskList.displayList();
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return false;
         }
     }
@@ -286,12 +287,12 @@ public class Duke {
          * Execute the find command. Display all tasks containing the input text.
          */
         @Override
-        public void execute()  {
+        public void execute() {
             taskList.findList(target);
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return false;
         }
     }
@@ -324,7 +325,7 @@ public class Duke {
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return false;
         }
     }
@@ -342,7 +343,7 @@ public class Duke {
          * Delete the specified task in taskList.
          * */
         @Override
-        public void execute()  {
+        public void execute() {
             if (index < 1 || index > taskList.count()) {
                 ui.showError("index out of range");
             } else {
@@ -351,7 +352,7 @@ public class Duke {
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return false;
         }
     }
@@ -360,12 +361,12 @@ public class Duke {
         public ExitCommand() { super(); }
 
         @Override
-        public void execute()  {
+        public void execute() {
             ui.exit();
         }
 
         @Override
-        public boolean isExit () {
+        public boolean isExit() {
             return true;
         }
     }
@@ -401,7 +402,7 @@ public class Duke {
                     return new AddCommand(TaskType.TODO, description);
                 } else if (identifier.equals(event)) {
                     return new AddCommand(TaskType.EVENT, description);
-                }  else if (identifier.equals(ddl)) {
+                } else if (identifier.equals(ddl)) {
                     return new AddCommand(TaskType.DEADLINE, description);
                 } else if (identifier.equals(delete)) {
                     return new DeleteCommand(extractIndex(s));
@@ -419,7 +420,9 @@ public class Duke {
 
         public int extractIndex(String s) throws DukeException {
             int pos = s.indexOf(" ");
-            if (pos == -1) throw new DukeException("Invalid structure, include the index after mark/unmark");
+            if (pos == -1) {
+                throw new DukeException("Invalid structure, include the index after mark/unmark");
+            }
 
             int index;
             try {
@@ -432,18 +435,23 @@ public class Duke {
 
         public LocalDate extractDate(String s) throws DukeException {
             int pos = s.indexOf("/by");
-            if (pos == -1) pos = s.indexOf("/at");
-            if (pos == -1) throw new DukeException("Invalid structure, include /by or /at before the date");
-
-//            String date = ;
-
+            if (pos == -1) {
+                pos = s.indexOf("/at");
+            }
+            if (pos == -1) {
+                throw new DukeException("Invalid structure, include /by or /at before the date");
+            }
             return parseStringToDate(s.substring(pos + 4));
         }
 
         public String extractDescription(String s) throws DukeException {
             int pos = s.indexOf("/by");
-            if (pos == -1) pos = s.indexOf("/at");
-            if (pos == -1) throw new DukeException("Invalid structure, include /by or /at before the date");
+            if (pos == -1) {
+                pos = s.indexOf("/at");
+            }
+            if (pos == -1) {
+                throw new DukeException("Invalid structure, include /by or /at before the date");
+            }
             return s.substring(0, pos - 1);
         }
 
@@ -458,6 +466,9 @@ public class Duke {
 
     }
 
+    /**
+     * Run the program.
+     */
     public void run() {
         try {
             storage.loadData();
@@ -488,12 +499,11 @@ public class Duke {
      * This class contain the description and type of the task
      */
     public class Task {
+        protected String description;
+        protected boolean isDone;
         private String todo = "todo";
         private String ddl = "deadline";
         private String event = "event";
-        protected String description;
-        protected boolean isDone;
-
         /**
          * Constructor for Task class.
          *
