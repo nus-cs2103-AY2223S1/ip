@@ -1,13 +1,13 @@
 package duke;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
-import duke.command.Command;
 import duke.command.ByeCommand;
-
+import duke.command.Command;
 import duke.exception.DukeException;
 
 public class ParserTest {
@@ -20,7 +20,7 @@ public class ParserTest {
             assertEquals("Command cannot be empty", de.getMessage());
         }
     }
-    
+
     @Test
     public void parseInput_bye_returnByeCommand() throws DukeException {
         Command command = Parser.parse("bye");
