@@ -4,12 +4,15 @@ import blob.commands.*;
 import blob.common.Messages;
 import blob.exception.UnknownCommandException;
 
+/**
+ * The Parser class deals with making sense of user commands.
+ */
 public class Parser {
 
     /**
-     * Returns a Command after parsing the user input
+     * Returns a Command after parsing the user input.
      *
-     * @param userInput the user input to parse
+     * @param userInput The user input to parse.
      * @return the Command object corresponding to the parsed input
      */
     public Command parseUserInput(String userInput) throws UnknownCommandException {
@@ -89,10 +92,10 @@ public class Parser {
     }
 
     /**
-     * Returns an EventCommand based on user input
+     * Returns a Command based on parsing user input in the context of an EventCommand.
      *
      * @param deconstructedInput The deconstructed user input.
-     * @return An EventCommand based on user input
+     * @return A Command based on parsing user input in the context of an EventCommand
      */
     private Command parseEvent(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
@@ -109,6 +112,12 @@ public class Parser {
         return new EventCommand(deconstructedDetails[0], deconstructedDetails[1]);
     }
 
+    /**
+     * Returns a Command based on parsing user input in the context of a MarkCommand.
+     *
+     * @param deconstructedInput The deconstructed user input.
+     * @return A Command based on parsing user input in the context of a MarkCommand
+     */
     private Command parseMark(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,
@@ -122,6 +131,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a Command based on parsing user input in the context of an UnmarkCommand.
+     *
+     * @param deconstructedInput The deconstructed user input.
+     * @return A Command based on parsing user input in the context of an UnmarkCommand
+     */
     private Command parseUnmark(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,
@@ -135,6 +150,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a Command based on parsing user input in the context of a DeleteCommand.
+     *
+     * @param deconstructedInput The deconstructed user input.
+     * @return A Command based on parsing user input in the context of a DeleteCommand
+     */
     private Command parseDelete(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,

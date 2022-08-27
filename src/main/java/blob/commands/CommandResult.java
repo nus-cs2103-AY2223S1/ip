@@ -5,6 +5,7 @@ package blob.commands;
  * a command in the application
  */
 public class CommandResult {
+
     /** The resulting messages that are derived from executing a previous command */
     private final String[] resultMessages;
 
