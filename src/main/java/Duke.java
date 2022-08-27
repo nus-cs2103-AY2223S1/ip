@@ -1,25 +1,73 @@
 import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import  java.nio.file.Paths;
+import java.nio.file.Files;
 
 public class Duke {
+    private static final String FILE_PATH = "C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2/src/data/duke.txt";
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
+
+        //file creation
+        try {
+            createFiles();
+        } catch (Exception e) {
+            System.out.println("Throwing error in file");
+        }
+
         List<Task> arr = new ArrayList<Task>(); //should be list as compile time type
         String input = "";
         int curr = 0;
         Task task = new Task(input, "");
-        arr.add(curr, task);
-        String home = System.getProperty("user.home");
-        System.out.println(home);
+
+        //file reading
+        try {
+            File myObj = new File(FILE_PATH);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] fromText = data.split(" \\| "); //special chara
+                boolean done = fromText[1].equals("1") ? true : false;
+                switch(fromText[0]) {
+                    case "T":
+                        task = new ToDo(fromText[2], done, "");
+                        arr.add(curr++, task);
+                        break;
+                    case "E":
+                        task = new Event(fromText[2], done, fromText[3]);
+                        arr.add(curr++, task);
+                        break;
+                    case "D":
+                        task = new Deadline(fromText[2], done, fromText[3]);
+                        arr.add(curr++, task);
+                        break;
+                }
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            PrintWriter writer = new PrintWriter(new File(FILE_PATH));
+            writer.print("");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Nth to read form duke.txt");
+        }
+
+        //main body
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
-            //System.out.println(task.getVal());
             if(task.getVal().equals("list")) {
                 for(int i = 0; i < curr; i++) {
                     System.out.println(arr.get(i));
                 }
-                //System.out.println(input); level 1
             }
             else if(task.getVal().indexOf("mark") == 0) {
                 String[] at = task.getVal().split(" ");
@@ -93,7 +141,7 @@ public class Duke {
                 try {
                     String event = task.getVal().substring(6);
                     String[] at = event.split("/");
-                    task = new Deadline(at[0], at[1]);
+                    task = new Event(at[0], at[1]);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(task);
@@ -108,6 +156,38 @@ public class Duke {
                 //arr[curr++] = task;
             }
         }
+        //bye block
+        try {
+            PrintWriter writer = new PrintWriter(new File(FILE_PATH));
+            for(int i = 0; i < curr; i++) {
+                writer.println(arr.get(i).toText());
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("File not found error");
+        }
+        for(int i = 0; i < curr; i++) {
+
+        }
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+
+    public static void createFiles() throws IOException {
+        String[] arr = FILE_PATH.split("/");
+        java.nio.file.Path path = java.nio.file.Paths.get("");
+        for (int i = 0; i < arr.length - 1; i++) {
+            path = java.nio.file.Paths.get(String.valueOf(path),arr[i]);
+            boolean directoryExists = java.nio.file.Files.exists(path);
+            if(!directoryExists) {
+                new File(String.valueOf(path)).mkdirs();
+                System.out.println("hi, made new directory");
+            }
+        }
+        java.nio.file.Path filePath = java.nio.file.Paths.get(FILE_PATH);
+        boolean directoryExists = java.nio.file.Files.exists(filePath);
+        if(!directoryExists) {
+            filePath.toFile().createNewFile();
+        }
     }
 }

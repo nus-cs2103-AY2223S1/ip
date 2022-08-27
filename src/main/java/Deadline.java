@@ -32,4 +32,9 @@ public class Deadline extends Task {
             return (String.format("[D][ ] %s (%s)", this.getVal(), this.getTiming()));
         }
     }
+
+    @Override
+    public String toText() {
+        return String.format("D | %s | %s | %s", this.getDone() ? 1 : 0, this.getVal(), this.getTiming());
+    }
 }

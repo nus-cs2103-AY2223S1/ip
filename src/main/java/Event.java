@@ -32,4 +32,9 @@ public class Event extends Task {
             return String.format("[E][ ] %s (%s)", this.getVal(), this.getTiming());
         }
     }
+
+    @Override
+    public String toText() {
+        return String.format("E | %s | %s | %s", this.getDone() ? 1 : 0, this.getVal(), getTiming());
+    }
 }
