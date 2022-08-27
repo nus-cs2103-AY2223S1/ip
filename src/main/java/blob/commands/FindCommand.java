@@ -9,11 +9,20 @@ public class FindCommand extends TaskCommand {
     /** The keyword to find tasks for */
     String keyword;
 
+    /**
+     * Returns a command that when executed will attempt to find tasks that have descriptions
+     * matching the input keyword.
+     *
+     * @param keyword The input keyword.
+     */
     public FindCommand(String keyword) {
         super("find");
         this.keyword = keyword;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public CommandResult execute() {
         String[] taskList = this.taskList.findTasks(keyword);
         if (taskList.length == 0) {
