@@ -16,7 +16,7 @@ public class Messages {
     public static final String MESSAGE_ERROR_INVALID_DATETIME = "Blob does not understand input datetime...";
     public static final String MESSAGE_USAGE_INPUT_DATETIME = "USAGE: Dates have to be in the following formats: \n" +
             "\t<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy> \n " +
-            "\tOptionally include time as <H:mm> or <H:mm a> ";
+            "\tOptionally include time as <HH:mm> ";
 
     public static final String MESSAGE_ERROR_MISSING_TASK_DESCRIPTION = "Blob needs to know details of task...";
     public static final String MESSAGE_USAGE_TASK_COMMAND = "USAGE: todo/event/deadline <description> (...)";
@@ -36,4 +36,6 @@ public class Messages {
 
     public static final String MESSAGE_ERROR_MISSING_TASK_INDEX = "Blob need to know which task index...";
     public static final String MESSAGE_ERROR_TASK_NOT_FOUND = "Blob cannot find that task..., maybe task no exist...?";
+
+    public static final String MESSAGE_ERROR_LOADING_TASK = "Blob couldn't load your tasks...";
 }

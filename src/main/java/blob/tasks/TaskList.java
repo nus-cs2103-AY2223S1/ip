@@ -1,16 +1,22 @@
 package blob.tasks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The TaskList class represents the task list that keep tracks of the user's tasks
  */
 public class TaskList {
     /** The main data structure used to store the user's tasks */
-    protected final ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     public TaskList() {
         this.taskList = new ArrayList<>();
+    }
+
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
     }
 
     /**
@@ -84,9 +90,9 @@ public class TaskList {
     }
 
     /**
-     * Returns an array of strings containing every task in storage format.
+     * Returns an array of strings containing every task in blob.storage format.
      *
-     * @return An array of strings containing every task in storage format.
+     * @return An array of strings containing every task in blob.storage format.
      */
     public String[] listTasksInStorageFormat() {
         String[] tasks = new String[taskList.size()];
