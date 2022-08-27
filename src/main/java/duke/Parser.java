@@ -1,5 +1,20 @@
 package duke;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Parser {
+
+    /** Returns String date in a nicer format.
+     *
+     * @param date
+     * @return String date in nicer format
+     */
+    public String getDate(String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
     public boolean parse(String fullCommand, Ui ui, TaskList taskList, Storage storage) {
         String[] commandBreakdown = fullCommand.split(" ");
         String command = commandBreakdown[0];
@@ -39,14 +54,14 @@ public class Parser {
             break;
         case "deadline":
             String[] deadlineSplit = fullCommand.split(" /by ");
-            String formattedDate = Duke.getDate(deadlineSplit[1]);
+            String formattedDate = this.getDate(deadlineSplit[1]);
             Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), formattedDate);
             taskList.addTask(deadline);
             ui.printTaskAdded(deadline, taskList);
             break;
         case "event":
             String[] eventSplit = fullCommand.split(" /at ");
-            formattedDate = Duke.getDate(eventSplit[1]);
+            formattedDate = this.getDate(eventSplit[1]);
             Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), formattedDate);
             taskList.addTask(event);
             ui.printTaskAdded(event, taskList);

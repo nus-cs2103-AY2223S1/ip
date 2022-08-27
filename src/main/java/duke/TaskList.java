@@ -31,6 +31,6 @@ public class TaskList {
         for (int i = 0; i < this.tasks.size(); i++) {
             str += String.format("%d. %s \n", i+1, this.tasks.get(i).toString());
         }
-        return str;
+        return str.trim();
     }
 }

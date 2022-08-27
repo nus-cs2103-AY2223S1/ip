@@ -23,16 +23,6 @@ public class Duke {
         this.parser = new Parser();
     }
 
-    /** Returns String date in a nicer format.
-     *
-     * @param date
-     * @return String date in nicer format
-     */
-    public static String getDate(String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-    }
-
     public void run() {
         this.ui.printStart();
 
