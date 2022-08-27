@@ -67,6 +67,10 @@ public class Duke {
         }
     }
 
+    /**
+     * The main logic that runs a chatbot.
+     * @param args String arguments for starting the logic.
+     */
     public static void main(String[] args) {
         Duke chatBot = new Duke(FILE_PATH);
         chatBot.run();

@@ -7,6 +7,9 @@ import duke.util.Ui;
 
 import static duke.Duke.TAB;
 
+/**
+ * A command class that deletes a task, displays the output, and saves the list.
+ */
 public class DeleteCommand extends Command {
 
     private static final String OUTPUT_MESSAGE = "Sure, I have removed this task from the list: \n" + TAB;
@@ -15,11 +18,23 @@ public class DeleteCommand extends Command {
 
     private final int taskIndex;
 
+    /**
+     * The standard constructor.
+     */
     public DeleteCommand(int taskIndex) {
         super(CommandType.DELETE);
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes the command concretely.
+     * Deletes a task, displays the output, and saves the list.
+     *
+     * @param ui An object that facilitates output that might be required by the command.
+     * @param taskList An object that facilitates basic insert, edit, search, and delete operations
+     *                 that this command might need.
+     * @param storage An object that facilitates file IO and the save operation that command might need.
+     */
     @Override
     protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
         String output;
