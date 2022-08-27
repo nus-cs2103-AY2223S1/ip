@@ -1,11 +1,12 @@
 package duke.task;
 
-import duke.util.DukeException;
-
 import java.util.Objects;
+
+import duke.util.DukeException;
 
 /**
  * Task Class to store information of task.
+ * @author Jicson Toh
  */
 public class Task {
     protected String action;
@@ -36,6 +37,11 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * Checks if the task contains the keyword.
+     * @param keyword input keyword.
+     * @return true if contains the keyword.
+     */
     public boolean matchKeyword(String keyword) {
         String[] words = action.split(" ");
         for (String word : words) {

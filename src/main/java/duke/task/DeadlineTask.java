@@ -1,13 +1,14 @@
 package duke.task;
 
-import duke.util.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import duke.util.DukeException;
+
 /**
  * Task to be done by a deadline.
+ * @author Jicson Toh
  */
 public class DeadlineTask extends Task {
     protected LocalDate by;

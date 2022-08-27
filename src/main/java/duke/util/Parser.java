@@ -2,8 +2,18 @@ package duke.util;
 
 import java.util.Objects;
 
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+
 /**
  * Parses commands and checks it.
+ * @author Jicson Toh
  */
 public class Parser {
 
@@ -12,27 +22,32 @@ public class Parser {
      * @param action user input.
      * @return returns the string action.
      */
-    public String parseCommand(String action) {
+    public Command parseCommand(String action) throws DukeException {
         if (Objects.equals(action.strip(), "bye")) {
-            return "bye";
+            return new ByeCommand();
         } else if (Objects.equals(action.strip(), "list")) {
-            return "list";
+            return new ListCommand();
         } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "mark")) {
-            return "markTask";
+            return new MarkCommand(action);
         } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "unmark")) {
-            return "unMarkTask";
+            return new UnmarkCommand(action);
         } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "delete")) {
-            return "deleteTask";
+            return new DeleteCommand(action);
         } else if (isValidTask(parseTaskType(action))) {
-            return "addToList";
+            return new AddCommand(action, parseTaskType(action));
         } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "find")) {
-            return "find";
+            return new FindCommand(action);
         } else {
-            return "";
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
-    private boolean isValidTask(String taskType) {
+    /**
+     * Checks if the string is a valid type task.
+     * @param taskType input string.
+     * @return true is valid task type.
+     */
+    public boolean isValidTask(String taskType) {
         return taskType.equals("todoTask")
                 || taskType.equals("eventTask")
                 || taskType.equals("deadlineTask");

@@ -1,5 +1,10 @@
 package duke.data;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -7,17 +12,13 @@ import duke.task.TodoTask;
 import duke.util.DukeException;
 import duke.util.Ui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /**
  * Stores the current list of tasks.
+ * @author Jicson Toh
  */
 public class TaskList {
     private static final Ui ui = new Ui();
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     /**
      * Creates the TaskList object.
@@ -49,7 +50,7 @@ public class TaskList {
                 }
             }
         } catch (DukeException | FileNotFoundException e) {
-            ui.showError();
+            ui.showError(e.getMessage());
         }
     }
 

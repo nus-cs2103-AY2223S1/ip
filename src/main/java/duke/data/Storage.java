@@ -1,15 +1,16 @@
 package duke.data;
 
-import duke.util.Ui;
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import duke.task.Task;
+import duke.util.Ui;
+
 /**
  * Stores the data in the hard disk.
+ * @author Jicson Toh
  */
 public class Storage {
     private static final Ui ui = new Ui();

@@ -1,11 +1,13 @@
 package duke.util;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 
+import duke.task.Task;
+
 /**
- * Prints output from Duke.
+ * Prints output messages from Duke.
+ *
+ * @author Jicson Toh
  */
 public class Ui {
 
@@ -35,10 +37,19 @@ public class Ui {
     }
 
     /**
-     * Prints error message.
+     * Prints unknown error message.
      */
     public void showError() {
         System.out.println("An error occurred.");
+        showLine();
+    }
+
+    /**
+     * Prints error message.
+     */
+    public void showError(String error) {
+        System.out.println(error);
+        showLine();
     }
 
     /**
@@ -82,7 +93,7 @@ public class Ui {
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + ". " + list.get(i));
         }
-        System.out.println("--------------------------");
+        showLine();
     }
 
     /**
@@ -94,7 +105,7 @@ public class Ui {
         String output = mark ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
         System.out.println(output);
         System.out.println(task);
-        System.out.println("--------------------------");
+        showLine();
     }
 
     /**
@@ -103,7 +114,13 @@ public class Ui {
      */
     public void showFoundTasks(ArrayList<Task> list) {
         System.out.println("I found some matching tasks!");
-        this.getList(list);
+        getList(list);
+    }
+
+    /**
+     * Prints the line.
+     */
+    public void showLine() {
         System.out.println("--------------------------");
     }
 }

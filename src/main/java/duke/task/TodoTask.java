@@ -4,6 +4,7 @@ import duke.util.DukeException;
 
 /**
  * Task to be done without deadline.
+ * @author Jicson Toh
  */
 public class TodoTask extends Task {
     public TodoTask(String action, boolean isDone) throws DukeException {

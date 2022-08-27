@@ -1,13 +1,15 @@
 package duke.task;
 
-import duke.util.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import duke.util.DukeException;
+
 /**
  * Event task to be done at a specific date.
+ *
+ * @author Jicson Toh
  */
 public class EventTask extends Task {
     protected LocalDate event;

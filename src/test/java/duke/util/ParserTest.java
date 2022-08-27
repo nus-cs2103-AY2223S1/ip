@@ -7,18 +7,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ParserTest {
 
     @Test
-    public void parseCommand_validCommand_success() {
-        assertEquals("bye", new Parser().parseCommand("bye"));
-        assertEquals("list", new Parser().parseCommand("list"));
-        assertEquals("markTask", new Parser().parseCommand("mark 1234"));
-        assertEquals("markTask", new Parser().parseCommand("mark123"));
-        assertEquals("unMarkTask", new Parser().parseCommand("unmark"));
-        assertEquals("unMarkTask", new Parser().parseCommand("unmark123"));
-        assertEquals("deleteTask", new Parser().parseCommand("delete"));
-        assertEquals("deleteTask", new Parser().parseCommand("delete123"));
-        assertEquals("addToList", new Parser().parseCommand("todo abas"));
-        assertEquals("addToList", new Parser().parseCommand("event abas /at 19/02/2022"));
-        assertEquals("addToList", new Parser().parseCommand("deadline abas /by 10/03/2020"));
+    public void isValidTask_validCommand_success() {
+        assertEquals(true, new Parser().isValidTask("todoTask"));
+        assertEquals(true, new Parser().isValidTask("eventTask"));
+        assertEquals(true, new Parser().isValidTask("deadlineTask"));
+    }
+
+    @Test
+    public void isValidTask_invalidCommand_fail() {
+        assertEquals(false, new Parser().isValidTask("hbchdbchdc"));
+        assertEquals(false, new Parser().isValidTask(""));
+        assertEquals(false, new Parser().isValidTask("hi"));
+        assertEquals(false, new Parser().isValidTask("1767162"));
+        assertEquals(false, new Parser().isValidTask("[[][]]]]"));
     }
 
     @Test
