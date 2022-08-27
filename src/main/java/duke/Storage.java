@@ -29,13 +29,11 @@ public class Storage {
             saveFile = new File(filePath);
             File parent = saveFile.getParentFile();
 
-            if (parent == null) {
+            if (!parent.exists()) {
                 parent.mkdirs();
             }
 
-            if (!saveFile.exists()) {
-                saveFile.createNewFile();
-            }
+            saveFile.createNewFile();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -50,6 +48,7 @@ public class Storage {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+            System.out.println(saveFile);
             PrintWriter finalPrintWriter = printWriter;
 
             taskList.forEach((t) -> {
