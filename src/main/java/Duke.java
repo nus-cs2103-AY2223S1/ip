@@ -58,6 +58,13 @@ public class Duke {
                     continue;
                 }
                 taskList.addTask(input.substring(9), Task.TaskType.Deadline);
+            } else if (input.startsWith("delete")) {
+                if (input.length() <= 7) {
+                    System.out.println("You should specify the index of task to delete");
+                    continue;
+                }
+                taskList.deleteTask(Integer.parseInt(input.substring(7)) - 1);
+
             } else {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }

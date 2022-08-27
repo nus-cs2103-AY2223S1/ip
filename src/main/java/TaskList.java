@@ -39,6 +39,21 @@ public class TaskList {
         System.out.println(taskList[taskNum].toString());
     }
 
+    public void deleteTask(int index) {
+        if (index >= firstEmptyIndex) {
+            System.out.println("There is no task with index " + (index + 1));
+            return;
+        }
+        System.out.println("Noted. I've removed this task:\n" +
+                taskList[index].toString() + "\n" +
+                "Now you have " + (firstEmptyIndex - 1) + " tasks in the list");
+        taskList[index] = null;
+        for (int i = index; i < firstEmptyIndex; i++) {
+            taskList[index] = taskList[index + 1];
+        }
+        --firstEmptyIndex;
+    }
+
     public void printTasks() {
         if (firstEmptyIndex == 0) {
             System.out.println("There's nothing in the list.");
