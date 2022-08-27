@@ -7,7 +7,7 @@ public class ToDo extends Task {
     /**
      * Constructor method.
      *
-     * @param description
+     * @param description The description of this to-do
      */
     public ToDo(String description) {
         super(description);
