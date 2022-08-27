@@ -5,6 +5,7 @@
 
 # Gradle build files
 /.gradle/
+/src/main/java/.gradle/
 /build/
 src/main/resources/docs/
 
@@ -18,5 +19,7 @@ bin/
 
 *.class
 
+#Data files
 /src/main/java/data
 text-ui-test/data
+/data/

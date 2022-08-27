@@ -4,6 +4,7 @@ import duke.exceptions.InvalidDateTimeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 public class Task {
     private final String description;
@@ -14,6 +15,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.date = LocalDate.parse("1970-01-01");
     }
 
     public Task(String description, String date) {
@@ -52,5 +54,22 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Task task = (Task) o;
+        return isDone == task.isDone && description.equals(task.description) && date.equals(task.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, isDone, date);
     }
 }
