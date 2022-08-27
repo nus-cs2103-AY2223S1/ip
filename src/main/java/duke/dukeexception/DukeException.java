@@ -1,8 +1,5 @@
 package duke.dukeexception;
 
-/**
- * DukeException with no additional feature.
- */
 public class DukeException extends Exception {
     /**
      * duke.DukeException with no additional feature.

@@ -1,14 +1,16 @@
 package duke.parser;
 
+import duke.dukeexception.DateTimeFormatException;
+
+import java.lang.NumberFormatException;
 import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Arrays;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
 
-import duke.dukeexception.DateTimeFormatException;
 
 public class Parser {
     public static Integer strToInt (String str) {
@@ -78,11 +80,11 @@ public class Parser {
         }
     }
 
-    public static String dateTimeToString(LocalDateTime dateTime) throws DateTimeFormatException {
+    public static String dateTimeToString (LocalDateTime dateTime) throws DateTimeFormatException {
         return dateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"));
     }
 
-    public static String dateToString(LocalDate date) throws DateTimeFormatException {
+    public static String dateToString (LocalDate date) throws DateTimeFormatException {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 }
