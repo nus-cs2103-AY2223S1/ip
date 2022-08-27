@@ -28,6 +28,10 @@ public abstract class Task {
         return (isDone ? "[X]" : "[ ]");
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public String toFileOutput() {
         return null;
     }

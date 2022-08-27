@@ -46,6 +46,16 @@ public class TaskList {
         printTaskCount();
     }
 
+    public ArrayList<Task> findTask(String keyword) {
+        ArrayList<Task> res = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                res.add(task);
+            }
+        }
+        return res;
+    }
+
     private void printTaskCount() {
         if (taskCount > 1) {
             System.out.println("Now you have " + taskCount + " tasks in the bag!");
