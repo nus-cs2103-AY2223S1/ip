@@ -1,19 +1,20 @@
 package parser;
 
 import duke.DukeException;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.nio.file.Path;
+
+import java.util.ArrayList;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.Todo;
 import task.TaskList;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-
-
 
 public class Parser {
 
@@ -28,7 +29,7 @@ public class Parser {
     private String type = "error";
 
     public Parser(TaskList list, String str) throws DukeException {
-        String[] input = str.split(" ");
+        String input[] = str.split(" ");
         this.taskList = list;
         this.listOfActions = this.taskList.getTaskList();
         if (input.length == 1) {
