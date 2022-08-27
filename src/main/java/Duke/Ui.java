@@ -11,7 +11,7 @@ public class Ui {
 
     /**
      *
-     * @return User command given by user
+     * @return next line of user input
      */
     public String getUserCommand() {
         return sc.nextLine();

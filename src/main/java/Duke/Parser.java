@@ -1,6 +1,16 @@
 package duke;
 
+/**
+ * Parser class deals with making sense of the user command.
+ */
 public class Parser {
+
+    /**
+     * Parses user input and carry out commands accordingly.
+     * @param tasklist list of tasks in Duke application.
+     * @param ui user interface of Duke application.
+     * @param storage stores the tasklist into the hard drive.
+     */
     public static void parse(TaskList tasklist, Ui ui, Storage storage) {
         while (ui.hasNextLine()) {
             String input = ui.getUserCommand();
@@ -90,15 +100,15 @@ public class Parser {
                 }
                 //  if loop reaches here, raise error
                 throw new InvalidTaskException("OOPS!!! I'm sorry, but I don't know what that means :-(");
-            } catch(InvalidTaskException e){
-            System.out.println(e);
-            continue;
-            } catch(IllegalIndexException e){
-            System.out.println(e);
-            continue;
-            } catch(EmptyDescriptionException e){
-            System.out.println(e);
-            continue;
+            } catch (InvalidTaskException e) {
+                System.out.println(e);
+                continue;
+            } catch (IllegalIndexException e) {
+                System.out.println(e);
+                continue;
+            } catch (EmptyDescriptionException e) {
+                System.out.println(e);
+                continue;
             }
         }
     }

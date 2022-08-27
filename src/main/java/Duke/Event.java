@@ -2,12 +2,19 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
+/**
+ * Event class to represent tasks with a time attached.
+ */
 public class Event extends Task {
     protected String timeString;
     protected LocalDate time;
 
+    /**
+     * Constructor for an Event.
+     * @param description description of the event.
+     * @param time time of event in YYYY-MM-DD format.
+     */
     public Event(String description, String time) {
         super(description);
         this.timeString = time;

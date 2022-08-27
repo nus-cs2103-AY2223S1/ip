@@ -6,13 +6,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Storage class deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private String path;
 
+    /**
+     * Constructor for Storage class.
+     *
+     * @param path filepath of duke.txt file.
+     */
     public Storage(String path) {
         this.path = path;
     }
 
+    /**
+     * Reads the duke.txt file and uploads tasks to TaskList in Duke application.
+     *
+     * @param receivingList TaskList to receive tasks from duke.txt file.
+     * @throws FileNotFoundException if duke.txt file does not exist.
+     */
     public void readFromFile(TaskList receivingList) throws FileNotFoundException {
             File file = new File(path);
             Scanner sc = new Scanner(file);
@@ -49,16 +63,21 @@ public class Storage {
             }
     }
 
-        public void updateStorage(TaskList list) {
-            try {
-                FileWriter writer = new FileWriter(path);
-                for (int x = 0; x < list.size(); x++) {
-                    writer.write(list.get(x).toWrite() + "\n");
-                }
-                writer.close();
-            } catch(IOException e) {
-                System.out.println(e.getMessage());
+    /**
+     * Updates the duke.txt file with TaskList from Duke application.
+     *
+     * @param list TaskList to be uploaded to duke.txt file.
+     */
+    public void updateStorage(TaskList list) {
+        try {
+            FileWriter writer = new FileWriter(path);
+            for (int x = 0; x < list.size(); x++) {
+                writer.write(list.get(x).toWrite() + "\n");
             }
+            writer.close();
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
         }
+    }
 }
 
