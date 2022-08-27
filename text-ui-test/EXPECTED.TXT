@@ -1,7 +1,33 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+   __ __    ____       ___               __
+  / // /__ / / /__    / _ \___ ____  ___/ /__ _
+ / _  / -_) / / _ \  / ___/ _ `/ _ \/ _  / _ `/
+/_//_/\__/_/_/\___/ /_/   \_,_/_//_/\_,_/\_,_/
 
+How can I help you today? :)
+Got it. I've added this task:
+  [T][ ] wake up
+Now you have 1 tasks in the list.
+Got it. I've added this task:
+  [D][ ] sleep (by: Mar 25 2022)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+  [E][ ] do tutorial (at: Dec 05 2017)
+Now you have 3 tasks in the list.
+Nice! I've marked this task as done:
+  [T][X] wake up
+Nice! I've marked this task as done:
+  [E][X] do tutorial (at: Dec 05 2017)
+1. [T][X] wake up
+2. [D][ ] sleep (by: Mar 25 2022)
+3. [E][X] do tutorial (at: Dec 05 2017)
+
+Noted. I've removed this task:
+  [T][X] wake up
+Now you have 2 tasks in the list.
+OK, I've marked this task as not done yet:
+  [E][ ] do tutorial (at: Dec 05 2017)
+1. [D][ ] sleep (by: Mar 25 2022)
+2. [E][ ] do tutorial (at: Dec 05 2017)
+
+Bye. Hope to see you again soon!
