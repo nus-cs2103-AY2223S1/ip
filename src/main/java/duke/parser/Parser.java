@@ -18,6 +18,7 @@ public class Parser {
     public static final String MARK_DONE_PREFIX = "mark";
     public static final String UNMARK_DONE_PREFIX = "unmark";
     public static final String DELETE_PREFIX = "delete";
+    public static final String FIND_PREFIX = "find";
 
     private static final String DEADLINE_SPLIT = " /by ";
     private static final String EVENT_SPLIT = " /at ";
@@ -39,6 +40,8 @@ public class Parser {
             return parseUnmarkDoneCommand(input);
         } else if (input.startsWith(DELETE_PREFIX)) {
             return parseDeleteCommand(input);
+        } else if (input.startsWith(FIND_PREFIX)) {
+            return parseFindCommand(input);
         } else {
             throw new DukeException("OOPS!!! I don't understand what you mean.");
         }
@@ -143,6 +146,23 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new DukeException("OOPS!!! The task number format is invalid.");
         }
+    }
+
+    /**
+     * Parse a given string to a FindCommand to find a task by searching the keyword.
+     * @param input
+     * @return FindCommand
+     * @throws DukeException
+     */
+    public static Command parseFindCommand(String input) throws DukeException {
+        String[] splitInput = input.split(" ", 2);
+        if (!isValidSplit(splitInput, 2)) {
+            throw new DukeException("OOPS!!! Invalid find command.");
+        }
+        if (splitInput[1].trim().length() == 0) {
+            throw new DukeException("OOPS!!! Find command description cannot be empty.");
+        }
+        return new FindCommand(splitInput[1].trim());
     }
 
     private static boolean isValidSplit(String[] split, int splitNumber) {

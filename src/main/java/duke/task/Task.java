@@ -21,6 +21,15 @@ public class Task {
         return this.content;
     }
 
+    /**
+     * Check if a task description contains given keyword.
+     * @param keyword
+     * @return boolean value
+     */
+    public boolean match(String keyword) {
+        return this.content.contains(keyword);
+    }
+
     public String isDoneString() {
         return this.done == true ? "1" : "0";
     }
