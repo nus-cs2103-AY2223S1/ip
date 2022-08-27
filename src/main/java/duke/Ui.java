@@ -17,6 +17,7 @@ public class Ui {
 
     public void showWelcome() {
         System.out.println("hi im chompers what can i do for u today!");
+        System.out.println(System.getProperty("user.dir"));
         scanner = new Scanner(System.in);
     }
 
