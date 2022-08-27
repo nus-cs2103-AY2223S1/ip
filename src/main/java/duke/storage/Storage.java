@@ -11,19 +11,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-<<<<<<< HEAD:src/duke/storage/Storage.java
-import duke.tasklist.TaskList;
-
-import duke.task.ToDo;
-import duke.task.Deadline;
-import duke.task.Event;
-
-=======
 import duke.task.Event;
 import duke.task.ToDo;
-import duke.tasklist.TaskList;
 import duke.task.Deadline;
->>>>>>> tmp:src/main/java/duke/storage/Storage.java
+import duke.tasklist.TaskList;
 
 public class Storage {
 

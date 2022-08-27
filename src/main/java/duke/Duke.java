@@ -10,15 +10,7 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 
 import java.io.IOException;
-<<<<<<< HEAD:src/duke/Duke.java
 
-import duke.tasklist.TaskList;
-import duke.ui.Ui;
-import duke.parser.Parser;
-import duke.storage.Storage;
-
-=======
->>>>>>> tmp:src/main/java/duke/Duke.java
 import duke.exception.DukeException;
 
 public class Duke {
@@ -40,7 +32,7 @@ public class Duke {
             System.out.println("\tWelcome new user!");
         }
 
-        Boolean quit = false;
+        boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         while (!quit) {
             System.out.println("Enter a command below:");
