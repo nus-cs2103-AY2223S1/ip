@@ -9,7 +9,7 @@ import duke.Ui;
  * The DeleteCommand class represents the delete command given by user.
  */
 public class DeleteCommand extends Command {
-    private final Integer position;
+    private final int position;
 
     /**
      * The constructor of the DeleteCommand class.
