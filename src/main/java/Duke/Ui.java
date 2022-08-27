@@ -9,10 +9,6 @@ public class Ui {
         sc = new Scanner(System.in);
     }
 
-    /**
-     *
-     * @return next line of user input
-     */
     public String getUserCommand() {
         return sc.nextLine();
     }
@@ -62,6 +58,4 @@ public class Ui {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(String.format("%s.%s", index+1, tasklist.get(index).toString()));
     }
-
-
 }
