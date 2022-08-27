@@ -1,12 +1,20 @@
 package duke.command;
 
 import java.util.ArrayList;
-import duke.Ui;
+
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
+import duke.Ui;
 import duke.task.Task;
-import duke.DukeException;
 
+/**
+ * Command that deletes a task from the list.
+ * CS2103T iP
+ * AY22/23 Semester 1
+ *
+ * @author Perry Wong
+ */
 public class DeleteCommand extends Command {
     private int index;
 

@@ -1,12 +1,20 @@
 package duke.command;
 
 import java.util.ArrayList;
-import duke.Ui;
+
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
+/**
+ * Command that marks a task in the list as done.
+ * CS2103T iP
+ * AY22/23 Semester 1
+ *
+ * @author Perry Wong
+ */
 public class MarkCommand extends Command {
     private int index;
 

@@ -1,14 +1,22 @@
 package duke;
 
 import java.util.Scanner;
-import duke.command.Command;
+
 import duke.command.AddCommand;
-import duke.command.UnmarkCommand;
-import duke.command.ShowListCommand;
-import duke.command.MarkCommand;
+import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.MarkCommand;
+import duke.command.ShowListCommand;
+import duke.command.UnmarkCommand;
 
+/**
+ * Parser to parse the input string and determine its command.
+ * CS2103T iP
+ * AY22/23 Semester 1
+ *
+ * @author Perry Wong
+ */
 public class Parser {
     //Exception Messages
     private static final String NO_DESC_TODO = "☹ OOPS!!! Description of the todo can't be empty.";
@@ -21,6 +29,13 @@ public class Parser {
 
     private static final String UNKNOWN_COMMAND = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
 
+    /**
+     * Processes the input string and returns its corresponding Command.
+     *
+     * @param command Input string that denotes a command for the chatbot.
+     * @return Command that the string is referring to.
+     * @throws DukeException If the input string is invalid and does not represent a valid command.
+     */
     public static Command parse(String command) throws DukeException {
         Scanner sc = new Scanner(command);
 

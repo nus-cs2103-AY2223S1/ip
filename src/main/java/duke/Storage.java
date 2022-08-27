@@ -6,11 +6,19 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import duke.task.Task;
+
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Storage of data from the user specified relative file path.
+ * CS2103T iP
+ * AY22/23 Semester 1
+ *
+ * @author Perry Wong
+ */
 public class Storage {
     private String filePath;
 
@@ -28,6 +36,13 @@ public class Storage {
     }
 
 
+    /**
+     * Loads tasks from the data file if the file path exists.
+     *
+     * @return List of tasks that was saved previously.
+     * @throws IOException If there is an issue with accessing the file.
+     * @throws DukeException If Duke is unable to process the contents of the file as they are invalid data.
+     */
     public ArrayList<Task> load() throws IOException, DukeException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -36,7 +51,7 @@ public class Storage {
         } else {
             System.out.println("Saved tasks retrieved!\n");
             ArrayList<Task> tasks = new ArrayList<>(100);
-            Scanner sc =  new Scanner(file);
+            Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine()) {
                 String text = sc.nextLine();
@@ -85,9 +100,15 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the list of tasks from the current run of the Duke program.
+     *
+     * @param taskArrayList List of tasks to be saved.
+     * @throws IOException If there is an issue with writing into the file.
+     */
     public void save(ArrayList<Task> taskArrayList) throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        for(int i = 0; i < taskArrayList.size(); i++) {
+        for (int i = 0; i < taskArrayList.size(); i++) {
             fw.write(taskArrayList.get(i).toString() + System.lineSeparator());
         }
         fw.close();

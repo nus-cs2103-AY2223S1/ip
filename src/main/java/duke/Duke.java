@@ -1,14 +1,27 @@
 package duke;
 
 import java.io.IOException;
+
 import duke.command.Command;
 
+/**
+ * A Personal Assistant Chatbot that helps a person to keep track of various things.
+ * CS2103T iP
+ * AY22/23 Semester 1
+ *
+ * @author Perry Wong
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Instantiates a Duke program.
+     *
+     * @param filePath Relative path that the data file is stored in.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
