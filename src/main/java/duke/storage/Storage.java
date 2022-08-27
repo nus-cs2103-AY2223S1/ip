@@ -16,10 +16,21 @@ import java.util.Scanner;
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructor for Storage class.
+     *
+     * @param filePath the path of the txt file to be used for storing list
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads the txt file line by line for each task
+     * and returns an ArrayList of all the tasks in the file.
+     *
+     * @return an ArrayList of all the tasks in the file
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -58,7 +69,7 @@ public class Storage {
                     tasks.add(eventTask);
                     break;
                 default:
-                    // For the case of errors in the starting letters of every new line in file.
+                    // Defensive coding for the case of errors in the starting letters
                     throw new DukeException("Invalid task type");
                 }
                 if (!sc.hasNextLine()) {
@@ -72,11 +83,16 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Writes the reformatted ArrayList of tasks to the txt file.
+     *
+     * @param tasklist the reformatted ArrayList of tasks to be written to the txt file
+     */
     public void writeToFile(TaskList tasklist) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath, false);
             for (Task task : tasklist.tasks) {
-                fw.write(task.inputToTxt());
+                fw.write(task.formatTask());
             }
             fw.close();
         } catch (IOException e) {

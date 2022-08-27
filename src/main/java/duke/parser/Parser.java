@@ -13,11 +13,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Parser {
-
+    /**
+     * Parses the given user's string of command input and
+     * returns the corresponding command object.
+     *
+     * @param input the user input to parse
+     * @return the corresponding command object
+     * @throws DukeException if the command is unrecognised
+     */
     public static Command parse(String input) throws DukeException {
         ArrayList<String> words = new ArrayList<>(Arrays.asList(input.split(" ")));
         String firstWord = words.remove(0);
-        // String restOfWords = String.join(" ", words);
         switch (firstWord) {
         case "list":
             return new ListCommand(words);

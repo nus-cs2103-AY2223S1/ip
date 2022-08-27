@@ -8,11 +8,14 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasklist;
-    private Ui ui;
+    private final Ui ui;
 
-    // Constructor
+    /**
+     * Constructor for the Duke class.
+     * @param filePath The name of path to the file used for list storage.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
