@@ -103,7 +103,7 @@ public class Duke {
     }
 
     /**
-     * return the list of tasks containing given String
+     * return the list of tasks containing given String.
      *
      * @param require the given string
      */
