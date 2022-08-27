@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -83,8 +84,12 @@ public class Duke {
             } else if (split.length > 2) {
                 throw new DukeException("☹ OOPS!!! Multiple usage of /by separator is not allowed.");
             }
-            Task t = new Deadline(split[0], split[1]);
-            addTask(t);
+            try {
+                Task t = new Deadline(split[0], split[1]);
+                addTask(t);
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Cannot parse date.");
+            }
             return 4;
         } else if (m.startsWith("event")) {
             // event
@@ -101,8 +106,12 @@ public class Duke {
             } else if (split.length > 2) {
                 throw new DukeException("☹ OOPS!!! Multiple usage of /at separator is not allowed.");
             }
-            Task t = new Event(split[0], split[1]);
-            addTask(t);
+            try {
+                Task t = new Event(split[0], split[1]);
+                addTask(t);
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Cannot parse date.");
+            }
             return 5;
         } else if (m.startsWith("todo")) {
             // to do
