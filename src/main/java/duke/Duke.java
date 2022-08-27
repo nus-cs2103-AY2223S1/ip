@@ -4,8 +4,17 @@ import duke.command.Command;
 
 public class Duke {
 
+    /**
+     * Stores task information in file.
+     */
     private Storage storage;
+    /**
+     * List to track current tasks.
+     */
     private TaskList tasks;
+    /**
+     * User interface for duke bot.
+     */
     private Ui ui;
 
     public Duke(String filePath) {
@@ -14,6 +23,9 @@ public class Duke {
         tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Runs the duke bot.
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;

@@ -5,19 +5,33 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    private String time;
-    private LocalDate date = null;
+    /**
+     * Time of the event.
+     */
+    private String time = null;
+    /**
+     * Date of the event in LocalDate type.
+     */
+    private LocalDate date;
 
     public Event(String name) {
         super(name);
     }
 
+    /**
+     * Returns the tag for the type of event.
+     * @return The 'E' tag for event task.
+     */
     @Override
     public String getTaskType() {
         return "E";
     }
 
 
+    /**
+     * Returns the string representation of the event task.
+     * @return Event string representation.
+     */
     @Override
     public String toString() {
         return "[E] " + (super.isCompleted() ? "[X] " : "[ ] ") + super.getTaskName() + "(at: " + this.getDate() + ")";

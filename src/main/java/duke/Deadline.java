@@ -5,7 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task{
 
+    /**
+     * Information of the date of deadline.
+     */
     private LocalDate date;
+    /**
+     * Time corresponding to the deadline.
+     */
     private String time = null;
 
     public Deadline(String name) {
@@ -13,11 +19,22 @@ public class Deadline extends Task{
 
     }
 
+    /**
+     * Returns the tag for the type of task.
+     * All deadline task have 'D' tag.
+     *
+     * @return Task type tag.
+     */
     @Override
     public String getTaskType() {
         return "D";
     }
 
+    /**
+     * Returns string representation of Deadline task.
+     *
+     * @return Deadline task information.
+     */
     @Override
     public String toString() {
         return "[D] " + (super.isCompleted() ? "[X] " : "[ ] ") + super.getTaskName() + "(by: " + this.getDate() + ")";
@@ -34,6 +51,7 @@ public class Deadline extends Task{
     public String getDate() {
         return this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + (this.time == null ? "" : ", " + this.getTime());
     }
+
 
     public String getDateFormat() {
         return this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + (this.time == null ? "" : " " + this.getTime());

@@ -11,12 +11,21 @@ import java.time.LocalDate;
 
 public class DeadlineCommand extends Command {
 
+    /**
+     * Command line input information for deadline task.
+     */
     private String input;
 
     public DeadlineCommand (String input) {
         this.input = input;
     }
 
+    /**
+     * Creates a deadline task and stores it.
+     * @param tasks List of tasks.
+     * @param ui User interface for duke.
+     * @param storage Storage information for tasks.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -35,6 +44,12 @@ public class DeadlineCommand extends Command {
         }
     }
 
+    /**
+     * Sets the date for deadline task.
+     * @param t Deadline task.
+     * @param date Date deadline for task.
+     * @throws DukeException
+     */
     private static void dateSetter(Task t, String date) throws DukeException{
         String[] dateTime = date.split(" ", 2);
         String ddmmyyyyRegex = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";

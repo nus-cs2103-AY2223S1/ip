@@ -4,6 +4,11 @@ import duke.command.*;
 
 public class Parser {
 
+    /**
+     * Checks if the command line input is a proper argument.
+     * @param arr String array that contains the seperate parts of the command line argument.
+     * @return True if the command line input is of the correct form.
+     */
     private static boolean inputChecker(String[] arr) {
         if (arr.length  < 2) {
             return false;
@@ -14,7 +19,12 @@ public class Parser {
         return true;
     }
 
-    public static Command parse (String input) {
+    /**
+     * Converts the command line input to call the command.
+     * @param input The commmand line input.
+     * @return Command with respect ot the command line input.
+     */
+    public static Command parse (String input) throws DukeException{
         String arr[] = input.split(" ", 2);
 
         if (input.equals("bye")) {
@@ -27,7 +37,7 @@ public class Parser {
 
         else if (arr[0].equals("mark")){
             if (!inputChecker(arr)) {
-                System.out.println(DukeException.MarkIndexEmptyException());
+                throw DukeException.MarkIndexEmptyException();
             } else {
                 return new MarkCommand(arr);
             }
@@ -35,7 +45,7 @@ public class Parser {
         }
         else if (arr[0].equals("unmark")) {
             if (!inputChecker(arr)) {
-                System.out.println(DukeException.UnmarkIndexEmptyException());
+                throw DukeException.UnmarkIndexEmptyException();
             } else {
                 return new UnmarkCommand(arr);
             }
@@ -43,7 +53,7 @@ public class Parser {
 
         else if (arr[0].equals("todo")) {
             if (!inputChecker(arr)) {
-                System.out.println(DukeException.EmptyTaskException());
+                throw DukeException.EmptyTaskException();
             } else {
                 return new TodoCommand(arr[1]);
             }
@@ -52,7 +62,7 @@ public class Parser {
 
         else if (arr[0].equals("deadline")) {
             if (!inputChecker(arr)) {
-                System.out.println(DukeException.EmptyTaskException());
+                throw DukeException.EmptyTaskException();
             } else {
                 return new DeadlineCommand(arr[1]);
             }
@@ -60,7 +70,7 @@ public class Parser {
         }
         else if (arr[0].equals("event")) {
             if (!inputChecker(arr)) {
-                System.out.println(DukeException.EmptyTaskException());
+                throw DukeException.EmptyTaskException();
             } else {
                 return new EventCommand(arr[1]);
             }
@@ -75,9 +85,8 @@ public class Parser {
         }
 
         else {
-            System.out.println("Input not recognised! Please try again! ");
+            return new UnknownCommand();
         }
-
         return null;
     }
 }

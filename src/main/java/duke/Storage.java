@@ -9,8 +9,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-
+    /**
+     * File that contains user task information.
+     */
     private File toRead;
+    /**
+     * Path that contains the file.
+     */
     private String path;
 
     public Storage (String path) {
@@ -30,6 +35,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the file and loads the information into TaskList.
+     * If file does not exist in specified location, creates the file.
+     * @return List of the tasks in the file.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -84,6 +94,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes user's task information to the file in the path.
+     * @param tasks List of tasks that the user specified.
+     */
     public void write(TaskList tasks) {
         try {
             FileWriter toLoad = new FileWriter(path);

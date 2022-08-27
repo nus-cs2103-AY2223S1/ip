@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Todo extends Task{
 
-
     public Todo(String name) {
         super(name);
     }
@@ -16,6 +15,11 @@ public class Todo extends Task{
     public void setDate(LocalDate date) {
         return;
     }
+
+    /**
+     * Returns the tag for the task type.
+     * @return The 'T' tag for Todo task.
+     */
     @Override
     public String getTaskType() {
         return "T";
@@ -30,6 +34,10 @@ public class Todo extends Task{
         return "";
     }
 
+    /**
+     * Returns string representation of the task.
+     * @return Todo task string representaion.
+     */
     @Override
     public String toString() {
         return "[T] " + (super.isCompleted() ? "[X] " : "[ ] ") + super.getTaskName();

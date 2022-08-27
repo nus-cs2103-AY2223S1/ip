@@ -17,26 +17,33 @@ public class EventCommand extends Command {
         this.input = input;
     }
 
+    /***
+     * Creates a event task and stores it.
+     * @param tasks List of tasks.
+     * @param ui User interface for duke.
+     * @param storage Storage information for tasks.
+     */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            if (!input.contains("/at")) {
-                throw new DukeException("duke.Event creation should contain the '/at' tag! Please input again!");
-            }
-            String arr[] = input.split("/at ", 2);
-            Event curr = new Event(arr[0]);
-            dateSetter(curr, arr[1]);
-            tasks.add(curr);
-            System.out.println("Got it. I've added this task: ");
-            System.out.println(curr);
-            System.out.println("Now you have " + tasks.getCount() + " tasks in the list.");
-        } catch (DukeException e) {
-            System.out.println(e);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+        if (!input.contains("/at")) {
+            throw new DukeException("duke.Event creation should contain the '/at' tag! Please input again!");
         }
+        String arr[] = input.split("/at ", 2);
+        Event curr = new Event(arr[0]);
+        dateSetter(curr, arr[1]);
+        tasks.add(curr);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(curr);
+        System.out.println("Now you have " + tasks.getCount() + " tasks in the list.");
     }
 
 
-
+    /**
+     * Sets the date for event task.
+     * @param t Event task.
+     * @param date Date Event for task.
+     * @throws DukeException
+     */
     private static void dateSetter(Task t, String date) throws DukeException {
         String[] dateTime = date.split(" ", 2);
         String ddmmyyyyRegex = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";

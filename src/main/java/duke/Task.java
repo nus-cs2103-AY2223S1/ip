@@ -3,13 +3,20 @@ package duke;
 import java.time.LocalDate;
 
 public abstract class Task {
+    /**
+     * Description of the task.
+     */
     private String taskName;
+    /**
+     * Information of task completion.
+     */
     private boolean completed;
 
     public Task(String name) {
         this.taskName = name;
         this.completed = false;
     }
+
 
     public void complete() {
         this.completed = true;
@@ -27,7 +34,6 @@ public abstract class Task {
         return this.completed;
     }
 
-
     public abstract String getTaskType();
 
     public abstract String getTime();
@@ -38,6 +44,10 @@ public abstract class Task {
 
     public abstract String getDateFormat();
 
+    /**
+     * Returns the string representation of the task
+     * @return Task information.
+     */
     @Override
     public String toString() {
         return (this.completed ? "[X] " : "[ ] ") + this.taskName;
