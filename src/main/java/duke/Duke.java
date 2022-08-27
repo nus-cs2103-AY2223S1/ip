@@ -41,6 +41,7 @@ public class Duke {
     private void run() {
         ui.showWelcome();
         boolean isExit = false;
+
         while (!isExit) {
             try {
                 ui.showPrompt();
@@ -52,6 +53,8 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
+        
+        ui.showExit();
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ui {
 
     private final Scanner input = new Scanner(System.in);
-    
+
     /**
      * Shows welcome message upon initialization.
      */
@@ -19,7 +19,14 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        showMessage("Hello from\n" + logo);
+    }
+
+    /**
+     * Shows goodbye message upon exit.
+     */
+    public void showExit() {
+        showMessage("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -44,7 +51,7 @@ public class Ui {
      * @param errorMessage Error message to be displayed to user.
      */
     public void showError(String errorMessage) {
-        System.out.println("\nERROR: " + errorMessage + "\n");
+        showMessage("ERROR: " + errorMessage);
     }
 
     /**
