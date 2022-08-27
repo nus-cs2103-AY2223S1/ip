@@ -1,2 +1,2 @@
-[D][X] essay (by: Sunday)
-[T][ ] shopping
+D|1|essay|Sunday
+T|0|shopping

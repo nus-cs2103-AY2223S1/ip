@@ -17,6 +17,13 @@ public class Task {
         this.isDone = false;
     }
 
+    public String fileFormat() {
+        if(isDone) {
+            return "1|" + this.name;
+        }
+        return"0|" + this.name;
+    }
+
     @Override
     public String toString() {
         if(isDone) {

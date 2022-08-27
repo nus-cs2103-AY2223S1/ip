@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -83,7 +82,7 @@ public class Duke {
         FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
         PrintWriter printWriter = new PrintWriter(fileWriter);
         for (Task task: list) {
-            printWriter.println(task);
+            printWriter.println(task.fileFormat());
         };
         printWriter.close();
 
