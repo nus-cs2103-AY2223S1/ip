@@ -1,4 +1,4 @@
-package dukeprogram.commands.task.Annotations;
+package dukeprogram.commands.task.annotations;
 
 public class UnmarkTaskCommand extends AnnotateTaskCommand {
 

@@ -1,9 +1,11 @@
-package dukeprogram.commands.task.Annotations;
+package dukeprogram.commands.task.annotations;
 
+import dukeprogram.UiMessage;
 import dukeprogram.commands.Command;
 import dukeprogram.facilities.TaskList;
 import dukeprogram.Task;
 import dukeprogram.ui.UserInterface;
+import exceptions.InvalidCommandException;
 
 /**
  * AnnotateTaskCommand is an abstract class that provides functionalities
@@ -43,7 +45,7 @@ public abstract class AnnotateTaskCommand extends Command {
             public boolean execute() {
 
                 if (fullCommandParameters[1].equals("all")) {
-                    for (Task task : TaskList.current()) {
+                    for (Task task : TaskList.current().getAllTasks()) {
                         task.MarkJobState(annotationState);
                     }
                     UserInterface.printInStyle(

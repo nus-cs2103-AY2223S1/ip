@@ -7,7 +7,6 @@ import dukeprogram.ToDo;
 import dukeprogram.UiMessage;
 import dukeprogram.commands.Command;
 import dukeprogram.facilities.TaskList;
-import dukeprogram.ui.UserInterface;
 
 import exceptions.InvalidCommandException;
 import exceptions.JobNameException;
@@ -21,28 +20,14 @@ import static dukeprogram.ui.UserInterface.printInStyle;
 
 public class AddTaskCommand extends Command {
 
-    private final String[] fullCommandParameters;
-
-    public AddTaskCommand(String[] fullCommandParameters) {
-        this.fullCommandParameters = fullCommandParameters;
-    }
-
     @Override
     public boolean execute() {
-        try {
-            return parse().execute();
-        } catch (InvalidCommandException ex) {
-            UserInterface.printInStyle(ex.getUiMessage().toString());
-            return true;
-        }
-    }
-
-    private Command parse() throws InvalidCommandException {
-        return parse("");
+        return false;
     }
 
     @Override
     public Command parse(String commandString) throws InvalidCommandException {
+        String[] fullCommandParameters = commandString.split(" ");
         if (fullCommandParameters.length < 2) {
             throw new InvalidCommandException(
                     new UiMessage(
@@ -54,13 +39,13 @@ public class AddTaskCommand extends Command {
 
         switch (fullCommandParameters[1]) {
         case "todo":
-            return new CreateToDoTask();
+            return new CreateToDoTask(fullCommandParameters);
 
         case "deadline":
-            return new CreateDeadlineTask();
+            return new CreateDeadlineTask(fullCommandParameters);
 
         case "event":
-            return new CreateEventTask();
+            return new CreateEventTask(fullCommandParameters);
 
         default:
             throw new InvalidCommandException(
@@ -83,6 +68,11 @@ public class AddTaskCommand extends Command {
     private abstract static class CreateTaskCommand extends Command {
 
         protected Task task;
+        protected final String[] fullCommandParameters;
+
+        public CreateTaskCommand(String[] fullCommandParameters) {
+            this.fullCommandParameters = fullCommandParameters;
+        }
 
         @Override
         public boolean execute() {
@@ -102,6 +92,10 @@ public class AddTaskCommand extends Command {
 
     private class CreateToDoTask extends CreateTaskCommand {
 
+        public CreateToDoTask(String[] fullCommandParameters) {
+            super(fullCommandParameters);
+        }
+
         @Override
         public boolean execute() {
             try {
@@ -118,6 +112,10 @@ public class AddTaskCommand extends Command {
 
 
     private class CreateDeadlineTask extends CreateTaskCommand {
+        public CreateDeadlineTask(String[] fullCommandParameters) {
+            super(fullCommandParameters);
+        }
+
         @Override
         public boolean execute() {
             String[][] nameAndDate = StringUtilities
@@ -142,6 +140,10 @@ public class AddTaskCommand extends Command {
     }
 
     private class CreateEventTask extends CreateTaskCommand {
+        public CreateEventTask(String[] fullCommandParameters) {
+            super(fullCommandParameters);
+        }
+
         @Override
         public boolean execute() {
             String[][] nameAndDate = StringUtilities.splitStringArray(fullCommandParameters, "/at");

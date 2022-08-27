@@ -7,12 +7,6 @@ import dukeprogram.ui.UserInterface;
 
 public class DeleteTaskCommand extends Command {
 
-    private final String[] fullCommandParameters;
-
-    public DeleteTaskCommand(String[] fullCommandParameters) {
-        this.fullCommandParameters = fullCommandParameters;
-    }
-
     @Override
     public boolean execute() {
         if (fullCommandParameters.length < 2) {
