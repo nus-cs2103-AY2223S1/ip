@@ -92,5 +92,24 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Returns collection of task descriptions of matching tasks as a String array.
+     *
+     * @param content String of content to match within task descriptions.
+     * @return String array of the descriptions of the matching tasks in the list.
+     */
+    public String[] giveFindList(String content) {
+        String[] list = new String[tasksLeft()];
+        int count = 0;
+        for (int i = 0; i < tasksLeft(); i++) {
+            Task t = this.list.get(i);
+            if (t.contains(content)) {
+                list[count] = count + 1 + ". " + t;
+                count++;
+            }
+        }
+        return list;
+    }
+
 
 }

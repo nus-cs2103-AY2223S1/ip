@@ -3,23 +3,26 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.list.TaskList;
 import duke.storage.ListLoader;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
 import duke.task.TaskId;
+import duke.task.Todo;
 import duke.ui.Ui;
 
 /**
- * Represents command to duke.Duke to add a task to the list.
+ * Represents command to Duke to add a task to the list.
  *
  * @author WR3nd3
  */
 public class AddCommand extends Command {
 
-    private TaskId id;
-    private String content = "";
+    private final TaskId id;
+    private String content;
     private String time = "";
 
     /**
-     * Constructs command.AddCommand for a task without a date tagged to it.
+     * Constructs AddCommand for a task without a date tagged to it.
      *
      * @param id Type of task.
      * @param content String representing description of task.
@@ -30,7 +33,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Constructs command.AddCommand for a task with a date tagged to it.
+     * Constructs AddCommand for a task with a date tagged to it.
      *
      * @param id Type of task.
      * @param content String representing description of task.

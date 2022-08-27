@@ -56,6 +56,17 @@ public abstract class Task {
     public TaskId getType() {
         return id;
     }
+
+    /**
+     * Returns whether the task description includes the given content.
+     *
+     * @param content The String to be queried for in the task description.
+     * @return boolean representing whether the task contains this content.
+     */
+    public boolean contains(String content) {
+        return description.contains(content);
+    }
+
     /**
      * Returns a string representation of the task.
      *

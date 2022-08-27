@@ -7,16 +7,16 @@ import duke.task.Task;
 import duke.ui.Ui;
 
 /**
- * Represents command to duke.Duke to delete a task from the list.
+ * Represents command to Duke to delete a task from the list.
  *
  * @author WR3nd3
  */
 public class DeleteCommand extends Command {
     /** Position of task to be deleted from the list */
-    private int position;
+    private final int position;
 
     /**
-     * Constructs command.DeleteCommand for a given task.
+     * Constructs DeleteCommand for a given task.
      *
      * @param position Integer representing position of task to be deleted in the list.
      */

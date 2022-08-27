@@ -4,6 +4,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -19,7 +20,7 @@ public class Parser {
 
     /** Commands to interact with duke.Duke program */
     public enum DukeCommand {
-        TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE
+        FIND, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE
     }
 
     /**
@@ -45,6 +46,11 @@ public class Parser {
         try {
             DukeCommand c = DukeCommand.valueOf(cmd.toUpperCase());
             switch (c) {
+            case FIND:
+                if (content == null) {
+                    throw new DukeException("Input 'find ABC' to find tasks with ABC\n");
+                }
+                return new FindCommand(content);
             case TODO:
                 if (content == null) {
                     throw new DukeException("Input 'todo ABC' to add task ABC\n");

@@ -7,16 +7,16 @@ import duke.task.Task;
 import duke.ui.Ui;
 
 /**
- * Represents command to duke.Duke to mark a task as complete.
+ * Represents command to Duke to mark a task as complete.
  *
  * @author WR3nd3
  */
 public class MarkCommand extends Command {
     /** Position of task to be marked as complete in the list */
-    private int position;
+    private final int position;
 
     /**
-     * Constructs command.MarkCommand for a given task.
+     * Constructs MarkCommand for a given task.
      *
      * @param position Integer representing position of task to be marked as complete in the list.
      */

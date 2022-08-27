@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author WR3nd3
  */
 public class Ui {
-    /** Welcome symbol to be displayed to users upon running duke.Duke */
+    /** Welcome symbol to be displayed to users upon running Duke */
     private static final String CAT_SYMBOL = "     /\\_____/\\\n"
             + "    /  o   o  \\\n"
             + "   ( ==  ^  == )\n"
@@ -147,6 +147,29 @@ public class Ui {
             message = "Here nya the tasks in your list:\n";
             StringBuilder builder = new StringBuilder(message);
             for (String s : list) {
+                builder.append(s).append("\n");
+            }
+            System.out.println(builder);
+        }
+    }
+
+    /**
+     * Prints tasks in the list that are matching.
+     *
+     * @param list String array of matching task descriptions.
+     */
+    public void showFindList(String[] list) {
+        String message;
+        if (list[0] == null) {
+            message = "NYAAA! 00 Tasks are found.\n";
+            System.out.println(message);
+        } else {
+            message = "Here nya the matching tasks in your list:\n";
+            StringBuilder builder = new StringBuilder(message);
+            for (String s : list) {
+                if (s == null) {
+                    break;
+                }
                 builder.append(s).append("\n");
             }
             System.out.println(builder);

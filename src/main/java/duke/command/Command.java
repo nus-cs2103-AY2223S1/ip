@@ -5,7 +5,7 @@ import duke.storage.ListLoader;
 import duke.ui.Ui;
 
 /**
- * Represents an input command to the duke.Duke application.
+ * Represents an input command to the Duke application.
  *
  * @author WR3nd3
  */
