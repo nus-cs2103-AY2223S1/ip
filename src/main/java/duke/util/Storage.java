@@ -1,6 +1,12 @@
+package duke.util;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.task.Task;
+
 import java.io.FileWriter;
 
 /**

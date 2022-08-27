@@ -1,4 +1,8 @@
+package duke.task;
+
 import java.util.Date;
+
+import duke.DukeException;
 
 public class Deadline extends Task {
     private Date deadline;

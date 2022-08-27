@@ -1,3 +1,5 @@
+package duke.util;
+
 /**
  * Text UI for Duke app
  */

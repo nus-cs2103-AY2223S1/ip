@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.util.TaskList;
+import duke.util.Storage;
+import duke.util.Ui;
+
 public class ChangeStatusCommand extends Command {
     int taskIndex;
     boolean isDone;
