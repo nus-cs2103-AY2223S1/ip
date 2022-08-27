@@ -19,4 +19,16 @@ public class TodoCommand extends Command {
         tasks.add(new Task(task));
         ui.printAddTaskSuccessfully(tasks);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof TodoCommand == false) {
+            return false;
+        }
+        TodoCommand that = (TodoCommand) o;
+        return task.equals(that.task);
+    }
 }

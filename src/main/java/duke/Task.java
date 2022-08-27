@@ -37,8 +37,23 @@ public class Task {
         this.done = false;
     }
 
+    @Override
     public String toString() {
         return String.format("[%s][%s] %s", this.tag, this.done ? 'X' : ' ', this.description);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof Task == false) {
+            return false;
+        }
+        Task task = (Task) o;
+        return done == task.done &&
+                description.equals(task.description) &&
+                tag == task.tag;
     }
 
     public String toSaveData() {

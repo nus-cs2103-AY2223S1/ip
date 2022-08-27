@@ -22,4 +22,16 @@ public class DeleteCommand extends Command {
         Task deleted = tasks.remove(index);
         ui.wrapPrint("Noted. I've removed this task:\n" + deleted.toString());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof DeleteCommand == false) {
+            return false;
+        }
+        DeleteCommand that = (DeleteCommand) o;
+        return index == that.index;
+    }
 }

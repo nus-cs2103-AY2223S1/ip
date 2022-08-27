@@ -15,4 +15,9 @@ public class ByeCommand extends Command {
         ui.wrapPrint("Bye. Hope to see you again soon!");
         storage.save(tasks);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ByeCommand;
+    }
 }

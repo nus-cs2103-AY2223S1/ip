@@ -21,4 +21,17 @@ public class EventCommand extends Command {
         tasks.add(new Event(task, on));
         ui.printAddTaskSuccessfully(tasks);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof EventCommand == false) {
+            return false;
+        }
+        EventCommand that = (EventCommand) o;
+        return task.equals(that.task) &&
+                on.equals(that.on);
+    }
 }

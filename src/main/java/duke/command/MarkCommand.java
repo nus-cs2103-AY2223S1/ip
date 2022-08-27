@@ -28,4 +28,17 @@ public class MarkCommand extends Command{
             ui.wrapPrint(String.format("OK, I've marked task %d as not done yet:\n  %s", index + 1, tasks.get(index).toString()));
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof MarkCommand == false) {
+            return false;
+        }
+        MarkCommand that = (MarkCommand) o;
+        return index == that.index &&
+                isDone == that.isDone;
+    }
 }

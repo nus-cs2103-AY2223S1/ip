@@ -21,4 +21,17 @@ public class DeadlineCommand extends Command {
         tasks.add(new Deadline(task, by));
         ui.printAddTaskSuccessfully(tasks);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o instanceof DeadlineCommand == false) {
+            return false;
+        }
+        DeadlineCommand that = (DeadlineCommand) o;
+        return task.equals(that.task) &&
+                by.equals(that.by);
+    }
 }

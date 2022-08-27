@@ -18,4 +18,9 @@ public class ListCommand extends Command {
         }
         ui.wrapPrint(listString.toString());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ListCommand;
+    }
 }

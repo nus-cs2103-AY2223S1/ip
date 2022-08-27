@@ -38,4 +38,14 @@ public class Event extends Task {
     public String toSaveData() {
         return super.toSaveData() + String.format(",\"%s\"", this.on.toString());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o instanceof Event == false) {
+            return false;
+        }
+        Event event = (Event) o;
+        return super.equals(o) &&
+                on.equals(event.on);
+    }
 }

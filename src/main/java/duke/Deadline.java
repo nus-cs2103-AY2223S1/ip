@@ -31,7 +31,17 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (on " + by.toString() + ")";
+        return super.toString() + " (by " + by.toString() + ")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o instanceof Deadline == false) {
+            return false;
+        }
+        Deadline deadline = (Deadline) o;
+        return super.equals(o) &&
+                by.equals(deadline.by);
     }
 
     @Override
