@@ -24,7 +24,34 @@ public class TaskList {
      * @throws IOException If unable to save changes to file.
      */
     private void SaveChangesToFile() throws IOException {
-        this.storage.SaveData(this.arrayList);
+        this.storage.SaveDataToFile(this.arrayList);
+    }
+
+    /**
+     * Prints out all tasks with the specified taskname.
+     *
+     */
+    protected void FindAllTasksWith(String name) {
+
+        ArrayList<Task> foundTasks = new ArrayList<>();
+
+        for (Task task : this.arrayList) {
+            if (task.getTaskname().contains(name)) {
+                foundTasks.add(task);
+            }
+        }
+
+        if (!foundTasks.isEmpty()) {
+            System.out.printf("Found %d matching tasks in your list:\n", foundTasks.size());
+
+            for (int i = 0; i < foundTasks.size(); i++) {
+                int j = i + 1;
+                System.out.println(j + "." + foundTasks.get(i));
+            }
+
+        } else {
+            System.out.println("Unable to find any task containing: " + name);
+        }
     }
 
     /**
