@@ -17,4 +17,16 @@ public class DeleteCommand extends Command {
         storage.save(tasks);
         ui.printString("I've removed this task:\n" + deletedTask);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DeleteCommand)) {
+            return false;
+        }
+        DeleteCommand otherCommand = (DeleteCommand) o;
+        return this.index == otherCommand.index;
+    }
 }

@@ -17,4 +17,16 @@ public class MarkCommand extends Command {
         storage.save(tasks);
         ui.printString("Task marked as done:\n" + doneTask);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MarkCommand)) {
+            return false;
+        }
+        MarkCommand otherCommand = (MarkCommand) o;
+        return this.index == otherCommand.index;
+    }
 }
