@@ -8,7 +8,7 @@ import java.time.LocalDate;
  */
 public class Parser {
 
-    private TaskList taskL;
+    private TaskList tasks;
     private Ui ui;
     private Storage storage;
 
@@ -16,7 +16,7 @@ public class Parser {
      * Instantiates a new Parser object
      */
     public Parser(TaskList taskL, Ui ui, Storage storage) {
-        this.taskL = taskL;
+        this.tasks = taskL;
         this.ui = ui;
         this.storage = storage;
     }
@@ -36,76 +36,78 @@ public class Parser {
         }
     }
 
-    private String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
+    private final String[] commandWords = new String[]{"list", "mark",
+            "unmark", "todo", "event", "deadline", "delete", "bye"};
 
     public void parse(String text) throws EmptyMessageException, InvalidCommandException {
         if (checkCommand(text, 0)) {
-            this.ui.displayList(this.taskL);
+            this.ui.displayList(this.tasks);
 
         } else if (checkCommand(text, 1)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
-            Task task = this.taskL.mark(i);
+            Task task = this.tasks.mark(i);
             ui.msg("Nice! I've marked this task as done:\n" + "\t" + task);
 
         } else if (checkCommand(text, 2)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
-            Task task = this.taskL.unmark(i);
+            Task task = this.tasks.unmark(i);
             ui.msg("OK, I've marked this task as not done yet:\n" + "\t" + task);
 
         } else if (checkCommand(text, 6)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
-            this.ui.msg("Noted. I've removed this task:\n\t" + this.taskL.get(i)
-                    + "\nNow you have " + (this.taskL.size() - 1) + " tasks in the list.");
-            this.taskL.delete(i);
+            this.ui.msg("Noted. I've removed this task:\n\t" + this.tasks.get(i)
+                    + "\nNow you have " + (this.tasks.size() - 1) + " tasks in the list.");
+            this.tasks.delete(i);
 
         } else if (checkCommand(text, 7)) {
             this.ui.end();
 
         } else { // is a task, commandwords index 3-5 inclusive
-            boolean sent = false;
+            boolean isSent = false;
             LocalDate d = null;
             Task t = null;
             if (checkCommand(text, 3)) {
-                sent = true;
+                isSent = true;
                 if (text.length() <= commandWords[3].length() + 1) { //check if description exists
                     throw new EmptyMessageException();
                 }
 
                 text = text.substring(commandWords[3].length() + 1);
 
-                t = this.taskL.add(new Task(text, commandWords[3], d));
+                t = this.tasks.add(new Task(text, commandWords[3], d));
 
             } else if (checkCommand(text, 4)) {
-                sent = true;
+                isSent = true;
                 String[] temp = text.split("/at");
                 text = temp[0].strip().substring(commandWords[4].length() + 1);
                 d = LocalDate.parse(temp[1].strip());
-                t = this.taskL.add(new Task(text, commandWords[4], d));
+                t = this.tasks.add(new Task(text, commandWords[4], d));
 
             } else if (checkCommand(text, 5)) {
-                sent = true;
+                isSent = true;
                 String[] temp = text.split("/by");
                 text = temp[0].strip().substring(commandWords[5].length() + 1);
                 d = LocalDate.parse(temp[1].strip());
-                t = this.taskL.add(new Task(text, commandWords[5], d));
+                t = this.tasks.add(new Task(text, commandWords[5], d));
             }
 
-            if (!sent) {
+            if (!isSent) {
                 throw new InvalidCommandException();
             } else {
-                this.ui.msg("Got it. I've added this task:\n " + "\t" + t + "\n" + "Now you have " +
-                        this.taskL.size() + " tasks in the list.");
+                this.ui.msg("Got it. I've added this task:\n " + "\t" + t + "\n" + "Now you have "
+                        + this.tasks.size() + " tasks in the list.");
             }
         }
 
         try {
-            this.storage.writeToFile(this.taskL);
+            this.storage.writeToFile(this.tasks);
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 
     private boolean checkCommand(String s, int i) {
-        return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,commandWords[i].length()));
+        return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,
+                commandWords[i].length()));
     }
 }

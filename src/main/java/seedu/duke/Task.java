@@ -9,7 +9,9 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     protected String description;
     protected boolean isDone;
+
     protected enum Type {TODO, EVENT, DEADLINE}
+
     protected Type type;
     protected LocalDate date;
 
@@ -79,13 +81,14 @@ public class Task {
      */
     public String getType() {
         switch (this.type) {
-            case TODO:
-                return "T";
-            case EVENT:
-                return "E";
-            case DEADLINE:
-                return "D";
-        };
+        case TODO:
+            return "T";
+        case EVENT:
+            return "E";
+        case DEADLINE:
+            return "D";
+        }
+        ;
         return "";
     }
 
@@ -96,13 +99,14 @@ public class Task {
      */
     public String getTypeLong() {
         switch (this.type) {
-            case TODO:
-                return "todo";
-            case EVENT:
-                return "event";
-            case DEADLINE:
-                return "deadline";
-        };
+        case TODO:
+            return "todo";
+        case EVENT:
+            return "event";
+        case DEADLINE:
+            return "deadline";
+        }
+        ;
         return "";
     }
 
@@ -125,14 +129,14 @@ public class Task {
      */
     public String toString() {
         switch (this.type) {
-            case TODO:
-                return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
-            case DEADLINE:
-                return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description
-                        + "(by " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
-            case EVENT:
-                return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description
-                        + "(at " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        case TODO:
+            return "[" + this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
+        case DEADLINE:
+            return "[" + this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description
+                    + "(by " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        case EVENT:
+            return "[" + this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description
+                    + "(at " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         }
         return "";
     }
@@ -144,10 +148,10 @@ public class Task {
      */
     public String getData() {
         switch (this.type) {
-            case TODO:
-                return getTypeLong() + "|" + this.description + "|" + this.getStatus();
-            default:
-                return getTypeLong() + "|" + this.description + "|" + this.getStatus() + "|" + this.date;
+        case TODO:
+            return getTypeLong() + "|" + this.description + "|" + this.getStatus();
+        default:
+            return getTypeLong() + "|" + this.description + "|" + this.getStatus() + "|" + this.date;
         }
 
     }

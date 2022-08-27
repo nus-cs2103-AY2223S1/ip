@@ -23,11 +23,11 @@ public class Storage {
     /**
      * Writes the contents of a given TaskList to a specified file
      *
-     * @param taskL the TaskList containing Task to be written to file
+     * @param tasks the TaskList containing Task to be written to file
      */
-    public void writeToFile(TaskList taskL) throws IOException {
+    public void writeToFile(TaskList tasks) throws IOException {
         //structure: command|1 (1 for mark, 0 for unmark)
-        ArrayList<Task> arr = taskL.getTasks();
+        ArrayList<Task> arr = tasks.getTasks();
         FileWriter fw = new FileWriter(this.dataFileName);
         for (Task task : arr) {
             fw.write(task.getData() + "\n");
@@ -38,9 +38,9 @@ public class Storage {
     /**
      * Loads the contents of a given TaskList from a specified file
      *
-     * @param taskL the TaskList to contain Tasks loaded from a specified file
+     * @param tasks the TaskList to contain Tasks loaded from a specified file
      */
-    public void loadFromFile(TaskList taskL) {
+    public void loadFromFile(TaskList tasks) {
         try {
 
             File f = new File(dataFileName);
@@ -48,7 +48,7 @@ public class Storage {
 
             while (s.hasNext()) {
                 String line = s.nextLine();
-                taskL.add(new Task(line));
+                tasks.add(new Task(line));
             }
 
         } catch (FileNotFoundException e) {

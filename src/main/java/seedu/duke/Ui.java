@@ -1,4 +1,5 @@
 package seedu.duke;
+
 import java.util.ArrayList;
 
 /**
@@ -7,9 +8,9 @@ import java.util.ArrayList;
 
 public class Ui {
 
-    private static String start = "Hello! I'm Duke\nWhat can I do for you?";
-    private static String end = "Bye. Hope to see you again soon!";
-    private static String breaker = "____________________________________________________________\n";
+    private static final String START = "Hello! I'm Duke\nWhat can I do for you?";
+    private static final String END = "Bye. Hope to see you again soon!";
+    private static final String BREAKER = "____________________________________________________________\n";
 
     private boolean isActive;
 
@@ -18,7 +19,7 @@ public class Ui {
      */
     public void start() {
         this.isActive = true;
-        this.msg(start);
+        this.msg(START);
     }
 
     /**
@@ -26,7 +27,7 @@ public class Ui {
      */
     public void end() {
         this.isActive = false;
-        this.msg(end);
+        this.msg(END);
     }
 
     /**
@@ -44,17 +45,17 @@ public class Ui {
      * @param s String to be displayed
      */
     public void msg(String s) {
-        System.out.println(breaker + s + "\n" + breaker);
+        System.out.println(BREAKER + s + "\n" + BREAKER);
     }
 
     /**
      * Displays the Tasks in a given TaskList
      *
-     * @param taskL TaskList containing Tasks
+     * @param tasks TaskList containing Tasks
      */
-    public void displayList(TaskList taskL) {
+    public void displayList(TaskList tasks) {
         String result = "";
-        ArrayList<Task> l = taskL.getTasks();
+        ArrayList<Task> l = tasks.getTasks();
         if (l.isEmpty()) {
             msg("");
             return;

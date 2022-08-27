@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Duke {
 
-    private static String dataFilePath = "./Duke.txt";
+    private static String DATA_FILE_PATH = "./Duke.txt";
 
     private Storage storage;
     private TaskList taskL;
@@ -22,7 +22,7 @@ public class Duke {
 
     public void run() {
         try {
-            File f = new File(dataFilePath);
+            File f = new File(DATA_FILE_PATH);
             f.createNewFile();
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
@@ -44,6 +44,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(dataFilePath).run();
+        new Duke(DATA_FILE_PATH).run();
     }
 }

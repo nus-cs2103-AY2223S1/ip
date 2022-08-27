@@ -6,13 +6,13 @@ import java.util.ArrayList;
  * Represents a TaskList, store, add and delete <code>Task</code> objects
  */
 public class TaskList {
-    private ArrayList<Task> taskL;
+    private ArrayList<Task> tasks;
 
     /**
      * Instantiates a new TaskList object
      */
     public TaskList() {
-        this.taskL = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
     }
 
     /**
@@ -21,7 +21,7 @@ public class TaskList {
      * @return number of Tasks in this TaskList
      */
     public int size() {
-        return this.taskL.size();
+        return this.tasks.size();
     }
 
     /**
@@ -31,7 +31,7 @@ public class TaskList {
      * @return Task to be added to this TaskList
      */
     public Task add(Task t) {
-        this.taskL.add(t);
+        this.tasks.add(t);
         return t;
     }
 
@@ -41,7 +41,7 @@ public class TaskList {
      * @param i index of Task to be removed
      */
     public void delete(int i) {
-        this.taskL.remove(i-1);
+        this.tasks.remove(i-1);
     }
 
     /**
@@ -51,7 +51,7 @@ public class TaskList {
      * @return the Task at the specified position in this TaskList
      */
     public Task get(int i) {
-        return this.taskL.get(i-1);
+        return this.tasks.get(i-1);
     }
 
     /**
@@ -60,7 +60,7 @@ public class TaskList {
      * @return an ArrayList containing all Tasks in this TaskList
      */
     public ArrayList<Task> getTasks() {
-        return this.taskL;
+        return this.tasks;
     }
 
     /**
@@ -70,7 +70,7 @@ public class TaskList {
      * @return the Task at the specified position in this TaskList
      */
     public Task mark(int i) {
-        Task task = taskL.get(i-1);
+        Task task = tasks.get(i-1);
         task.setStatusIcon(true);
         return task;
     }
@@ -82,7 +82,7 @@ public class TaskList {
      * @return the Task at the specified position in this TaskList
      */
     public Task unmark(int i) {
-        Task task = taskL.get(i-1);
+        Task task = tasks.get(i-1);
         task.setStatusIcon(false);
         return task;
     }
