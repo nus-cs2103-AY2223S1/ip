@@ -15,7 +15,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a Deadline object.
-     * 
+     *
      * @param description Description of the deadline task.
      * @param byDateTime Deadline of the deadline task.
      */
@@ -26,7 +26,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the human-readable, string representation of the deadline task.
-     * 
+     *
      * @return Human-readable, string representation of the deadline task.
      */
     @Override

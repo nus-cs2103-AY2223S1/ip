@@ -21,7 +21,7 @@ public class EventCommand extends Command {
 
     /** Date and time of the event task. */
     private LocalDateTime atDateTime;
-    
+
     /**
      * Creates an EventCommand.
      *
@@ -43,8 +43,7 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Executes the event command. 
-     * Creates and adds a new event task.
+     * Executes the event command. Creates and adds a new event task.
      *
      * @param tasks TaskList the newly created event task should be added to.
      * @param ui Ui object which interacts with the user.

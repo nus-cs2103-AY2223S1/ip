@@ -16,15 +16,6 @@ import duke.task.Todo;
 public class TodoCommand extends Command {
     /** Description of the todo task. */
     private String description;
-    
-    /**
-     * Returns the format of the todo command.
-     *
-     * @return The format of the todo command.
-     */
-    public static String getFormat() {
-        return "todo <String>";
-    }
 
     /**
      * Creates a TodoCommand.
@@ -36,9 +27,17 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Executes the todo command. 
-     * Creates and adds a new todo task.
-     * 
+     * Returns the format of the todo command.
+     *
+     * @return The format of the todo command.
+     */
+    public static String getFormat() {
+        return "todo <String>";
+    }
+
+    /**
+     * Executes the todo command. Creates and adds a new todo task.
+     *
      * @param tasks TaskList to add the newly created Todo into.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.

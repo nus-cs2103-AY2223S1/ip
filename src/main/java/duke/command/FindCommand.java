@@ -18,7 +18,7 @@ public class FindCommand extends Command {
 
     /**
      * Creates a new FileCommand.
-     * 
+     *
      * @param searchTerm Search term.
      */
     public FindCommand(String searchTerm) {
@@ -35,9 +35,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Executes the find command. 
-     * Finds a list of Task objects in the TaskList with descriptions that match the 
-     * given search term.
+     * Executes the find command. Finds a list of Task objects in the TaskList with descriptions that match the given
+     * search term.
      *
      * @param tasks TaskList to find the Tasks from.
      * @param ui Ui object which interacts with the user.
@@ -52,7 +51,7 @@ public class FindCommand extends Command {
 
     /**
      * Returns false, because find is not an application terminating command.
-     * 
+     *
      * @return False.
      */
     @Override

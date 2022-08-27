@@ -1,16 +1,16 @@
 package duke.exception;
 
 /**
- * Represents the exception which occurs when the user tries to excess a Task object 
- * from a TaskList via its taskIndex, but the Task object cannot be found.
- * 
+ * Represents the exception which occurs when the user tries to excess a Task object from a TaskList via its taskIndex,
+ * but the Task object cannot be found.
+ *
  * @author njxue
  * @version v0.1
  */
 public class TaskIndexOutOfBoundsException extends DukeException {
     /**
      * Creates a TaskOutOfBoundsException.
-     * 
+     *
      * @param providedIndex Incorrect task index provided by the user.
      * @param maxIndex Maximum valid task index, which is also the size of the current TaskList.
      */

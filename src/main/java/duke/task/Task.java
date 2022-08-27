@@ -13,13 +13,12 @@ import duke.Parser;
 public class Task {
     /** Description of the task. **/
     private String description;
-    
     /** Describes if the task is completed or not */
     private boolean isDone;
 
     /**
      * Creates a Task object.
-     * 
+     *
      * @param description Description of the task.
      */
     public Task(String description) {
@@ -29,8 +28,8 @@ public class Task {
 
     /**
      * Returns a Task object from a string.
-     * 
-     * @param fileFormatString String representation of the Task object, in file format. 
+     *
+     * @param fileFormatString String representation of the Task object, in file format.
      * @return New Task object.
      */
     public static Task parse(String fileFormatString) {
@@ -56,7 +55,7 @@ public class Task {
 
     /**
      * Returns the status icon, which represents whether the task is completed.
-     * 
+     *
      * @return 'X' if the task is completed, returns a whitespace otherwise.
      */
     public String getStatusIcon() {
@@ -76,10 +75,10 @@ public class Task {
     public void unmarkAsDone() {
         isDone = false;
     }
-    
+
     /**
      * Returns string representation of the task.
-     * 
+     *
      * @return String representation of the task.
      */
     @Override
@@ -95,7 +94,7 @@ public class Task {
     public String getDescription() {
         return description;
     }
-    
+
     /**
      * Returns the formatted task, which is to be written into the storage file.
      *

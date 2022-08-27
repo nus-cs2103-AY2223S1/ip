@@ -19,16 +19,16 @@ import duke.exception.UnknownCommandException;
 
 /**
  * The Parser parses input from the user and returns the corresponding commands to execute.
- * 
+ *
  * @author njxue
  * @version v0.1
  */
 public class Parser {
     /**
      * Returns a LocalDateTime object from an appropriately-formatted string.
-     * 
-     * @param dateTimeString String representation of a LocalDateTime object. 
-     *                       The expected format is YYYY-MM-DDTHH:MM or YYYY-MM-DD.
+     *
+     * @param dateTimeString String representation of a LocalDateTime object. The expected format is
+     *                       YYYY-MM-DDTHH:MM or YYYY-MM-DD.
      * @return LocalDateTime object corresponding to the dateTimeString.
      */
     public static LocalDateTime parseDateTime(String dateTimeString) {
@@ -44,12 +44,12 @@ public class Parser {
 
     /**
      * Checks if a given string contains only digits.
-     * 
-     * @param str The target string.
+     *
+     * @param string The target string.
      * @return True if str contains only digits. Returns false otherwise.
      */
-    private static boolean isDigit(String str) {
-        for (char c : str.toCharArray()) {
+    private static boolean isDigit(String string) {
+        for (char c : string.toCharArray()) {
             if (!Character.isDigit(c)) {
                 return false;
             }
@@ -59,12 +59,12 @@ public class Parser {
 
     /**
      * Parses the full input from the user and returns the correct Command object.
-     * 
+     *
      * @param fullCommand Full input from the user.
      * @return Command object corresponding to the user's input.
      * @throws DukeException If the user provides an empty command, or if the command is not a recognised command.
      * @throws DateTimeException If the string representation of a LocalDateTime cannot be parsed
-     *                          correctly due to incorrect formatting.  
+     *                          correctly due to incorrect formatting.
      */
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
         String[] fullCommandSplit = fullCommand.split(" ", 2);

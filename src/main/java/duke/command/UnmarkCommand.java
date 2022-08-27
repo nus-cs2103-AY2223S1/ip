@@ -15,16 +15,7 @@ import duke.task.TaskList;
 public class UnmarkCommand extends Command {
     /** The index of the task in the TaskList to be unmarked. */
     private int taskIndex;
-    
-    /**
-     * Returns the format of the unmark command.
-     *
-     * @return The format of the unmark command.
-     */
-    public static String getFormat() {
-        return "unmark <Integer>";
-    }
-    
+
     /**
      * Creates an UnmarkCommand.
      *
@@ -35,13 +26,22 @@ public class UnmarkCommand extends Command {
     }
 
     /**
+     * Returns the format of the unmark command.
+     *
+     * @return The format of the unmark command.
+     */
+    public static String getFormat() {
+        return "unmark <Integer>";
+    }
+
+    /**
      * Executes the unmark command. Deletes the specific task in the TaskList.
      *
      * @param tasks TaskList containing the Task to be unmarked.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @throws DukeException If storage object is unable to save the list of tasks after unmarking, 
-     * or if the taskIndex is not within range of the size of the TaskList.
+     * @throws DukeException If storage object is unable to save the list of tasks after unmarking,
+     *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

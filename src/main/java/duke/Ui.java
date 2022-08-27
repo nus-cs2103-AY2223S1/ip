@@ -47,7 +47,7 @@ public class Ui {
 
     /**
      * Prints an error message to the user interface.
-     * 
+     *
      * @param errorMessage Error message to be printed.
      */
     public void showError(String errorMessage) {
@@ -63,7 +63,7 @@ public class Ui {
 
     /**
      * Prints the Task object, along with the number of tasks, when it is successfully added.
-     * 
+     *
      * @param task Newly added Task object.
      * @param tasks TaskList to add the new Task into.
      */

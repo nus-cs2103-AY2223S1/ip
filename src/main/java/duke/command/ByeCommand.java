@@ -13,7 +13,7 @@ import duke.task.TaskList;
 public class ByeCommand extends Command {
     /**
      * Executes the bye command. Terminates the current Duke session.
-     * 
+     *
      * @param tasks TaskList containing the list of tasks.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
@@ -25,7 +25,7 @@ public class ByeCommand extends Command {
 
     /**
      * Returns true, because bye is an application terminating command.
-     * 
+     *
      * @return True, terminating the Duke application.
      */
     @Override

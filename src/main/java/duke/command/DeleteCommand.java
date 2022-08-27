@@ -13,18 +13,10 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class DeleteCommand extends Command {
-    
-    /** The index of the Task object in the TaskList to be deleted. */
-    private int taskIndex;
-
     /**
-     * Returns the format of the delete command.
-     *
-     * @return The format of the delete command.
+     * The index of the Task object in the TaskList to be deleted.
      */
-    public static String getFormat() {
-        return "delete <Integer>";
-    }
+    private int taskIndex;
 
     /**
      * Creates a DeleteCommand.
@@ -36,14 +28,22 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Executes the delete command. 
-     * Deletes the specific Task object in the TaskList.
+     * Returns the format of the delete command.
+     *
+     * @return The format of the delete command.
+     */
+    public static String getFormat() {
+        return "delete <Integer>";
+    }
+
+    /**
+     * Executes the delete command. Deletes the specific Task object in the TaskList.
      *
      * @param tasks TaskList containing the task to be deleted.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @throws DukeException If storage object is unable to save the list of tasks after marking, 
-     * or if the taskIndex is not within range of the size of the TaskList.
+     * @throws DukeException If storage object is unable to save the list of tasks after marking,
+     *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

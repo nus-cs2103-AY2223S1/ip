@@ -11,7 +11,6 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class ListCommand extends Command {
-    
     /**
      * Executes the list command. Prints the list of tasks from the TaskList.
      *

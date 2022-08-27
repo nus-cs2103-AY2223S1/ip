@@ -16,16 +16,15 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class DeadlineCommand extends Command {
-    
     /** Description of the deadline task. */
     private String description;
-    
+
     /** Deadline of the deadline task. */
     private LocalDateTime byDateTime;
 
     /**
      * Creates a DeadlineCommand.
-     * 
+     *
      * @param description Description of the deadline task.
      * @param byDateTime Deadline of the deadline task.
      */
@@ -36,7 +35,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Returns the format of the deadline command.
-     * 
+     *
      * @return The format of the deadline command.
      */
     public static String getFormat() {
@@ -44,8 +43,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Executes the deadline command. 
-     * Creates and adds a new deadline task.
+     * Executes the deadline command. Creates and adds a new deadline task.
      *
      * @param tasks TaskList which the newly created deadline task should be added into.
      * @param ui Ui object which interacts with the user.

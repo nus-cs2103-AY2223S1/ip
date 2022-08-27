@@ -15,28 +15,28 @@ import duke.task.TaskList;
  */
 public class Duke {
     /** Ui object which interacts with the user. **/
-    private final Ui UI;
+    private final Ui ui;
 
     /** Storage object which loads and saves the list of tasks. **/
-    private final Storage STORAGE;
-    
+    private final Storage storage;
+
     /** TaskList object containing user's list of tasks. **/
     private TaskList tasks;
 
     /**
      * Creates a new Duke object.
-     * 
+     *
      * @param pathString Relative path to the file containing the list of tasks.
      */
     public Duke(String pathString) {
-        UI = new Ui();
-        STORAGE = new Storage(pathString);
-        UI.showIsLoading();
+        ui = new Ui();
+        storage = new Storage(pathString);
+        ui.showIsLoading();
         try {
-            tasks = new TaskList(STORAGE.load());
-            UI.showLoadingSuccess();
+            tasks = new TaskList(storage.load());
+            ui.showLoadingSuccess();
         } catch (FileNotFoundException fnfe) {
-            UI.showLoadingError();
+            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -46,21 +46,26 @@ public class Duke {
      */
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        UI.showWelcome();
+        ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
-                UI.showPrompt();
+                ui.showPrompt();
                 String fullCommand = scanner.nextLine();
                 Command command = Parser.parse(fullCommand);
-                command.execute(tasks, UI, STORAGE);
+                command.execute(tasks, ui, storage);
                 isExit = command.isExit();
             } catch (DukeException de) {
-                UI.showError(de.getMessage());
+                ui.showError(de.getMessage());
             }
         }
     }
-    
+
+    /**
+     * The main method. Entry point of the Duke application.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("storage/tasks.txt");
         duke.start();

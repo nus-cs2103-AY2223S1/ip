@@ -18,15 +18,14 @@ public abstract class Command {
      * @param tasks TaskList containing the list of tasks.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @throws DukeException
+     * @throws DukeException If an exception occurs.
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Checks if the command is an application terminating command.
-     * 
+     *
      * @return True, if the command is an application terminating command, otherwise false.
      */
     public abstract boolean isExit();
 }
-   
