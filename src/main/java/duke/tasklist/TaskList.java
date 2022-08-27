@@ -53,9 +53,9 @@ public class TaskList {
         Ui.removeTaskMessage(task.toString(), this.list.size());
     }
 
-    public void unmarkTask(int index) {
+    public void unMarkTask(int index) {
         try {
-            this.list.get(index).unmarkComplete();
+            this.list.get(index).unMarkComplete();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("\t☹ OOPS!!! Task number to be unmarked does not exist.");
             return;

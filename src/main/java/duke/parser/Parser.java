@@ -20,7 +20,7 @@ public class Parser {
 
         } else if (input.contains("unmark")) {
             int index = Integer.parseInt(input.replace("unmark", "").trim()) - 1;
-            taskList.unmarkTask(index);
+            taskList.unMarkTask(index);
             return false;
 
         } else if (input.contains("mark")) {
