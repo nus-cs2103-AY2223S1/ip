@@ -2,32 +2,32 @@ Hello! I'm Rio, the reality check you never asked for but really need.
 What can I help with today?
 
 Ah, more reality stuff. Here, I've added:
-[T] [ ] read book
+T |   | read book
 Now you have 1 tasks in the list.
 Ah, more reality stuff. Here, I've added:
-[D] [ ] return book  (by:  Monday)
+D |   | return book  (by:  Monday)
 Now you have 2 tasks in the list.
 Ah, more reality stuff. Here, I've added:
-[E] [ ] meeting  (at:  Tuesday 2-4pm)
+E |   | meeting  (at:  Tuesday 2-4pm)
 Now you have 3 tasks in the list.
-1. [T] [ ] read book
-2. [D] [ ] return book  (by:  Monday)
-3. [E] [ ] meeting  (at:  Tuesday 2-4pm)
+1. T |   | read book
+2. D |   | return book  (by:  Monday)
+3. E |   | meeting  (at:  Tuesday 2-4pm)
 Congratulations on smashing reality!
-[T] [X] read book
+T | X | read book
 Congratulations on smashing reality!
-[D] [X] return book  (by:  Monday)
+D | X | return book  (by:  Monday)
 Oops reality is catching up... this is still undone:
-[D] [ ] return book  (by:  Monday)
+D |   | return book  (by:  Monday)
 Congratulations on smashing reality!
-[E] [X] meeting  (at:  Tuesday 2-4pm)
+E | X | meeting  (at:  Tuesday 2-4pm)
 Ah, more reality stuff. Here, I've added:
-[D] [ ] homework  (by:  Monday)
+D |   | homework  (by:  Monday)
 Now you have 4 tasks in the list.
 Congratulations on smashing reality!
-[D] [X] homework  (by:  Monday)
+D | X | homework  (by:  Monday)
 Ah, more reality stuff. Here, I've added:
-[E] [ ] class  (at:  Tuesday 2-4pm)
+E |   | class  (at:  Tuesday 2-4pm)
 Now you have 5 tasks in the list.
 Ah, more reality stuff. Here, I've added:
 [T] [ ] cook dinner
