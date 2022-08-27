@@ -5,13 +5,13 @@ public class Event extends Task {
     private final LocalDateTime occursAt;
 
     public Event(String taskName, LocalDateTime occursAt, boolean isDone) {
-        super(taskName, isDone);
+        super(taskName.trim(), isDone);
         this.occursAt = occursAt;
     }
 
     @Override
     public String taskToFileString() {
-        return " E " + "| " + (this.done ? "1 " : "0 ") + "|" + this.taskName + "|" + Utility.dateTimeToString(occursAt);
+        return " E " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | " + Utility.dateTimeToString(occursAt);
     }
 
     @Override

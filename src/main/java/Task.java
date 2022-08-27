@@ -8,11 +8,11 @@ public abstract class Task {
         String type = taskSplit[0];
         switch (type) {
             case " T ":
-                return new Todo(taskSplit[2], taskSplit[1].equals("1"));
+                return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
             case " E ":
-                return new Event(taskSplit[2], Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
+                return new Event(taskSplit[2].trim(), Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             case " D ":
-                return new Deadline(taskSplit[2], Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
+                return new Deadline(taskSplit[2].trim(), Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             default:
                 return null;
         }
