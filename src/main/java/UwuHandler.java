@@ -47,6 +47,8 @@ public class UwuHandler {
             chat.emptyInput();
         } catch (IncorrectFormatException incorrectFormatException) {
             chat.incorrectFormat();
+        } catch (InvalidDateException invalidDateException) {
+            chat.invalidDate();
         } catch (NullTaskException nullTaskException) {
             chat.nullTask();
         }

@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class Storage {
     protected String filePath;
-    protected File taskFile;
-    FileWriter fileWriter;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -15,7 +13,7 @@ public class Storage {
 
     public void save(String taskList) {
         try {
-            fileWriter = new FileWriter("data/taskList.txt");
+            FileWriter fileWriter = new FileWriter("data/taskList.txt");
             fileWriter.write(taskList);
             fileWriter.close();
         } catch (IOException e) {
@@ -47,23 +45,22 @@ public class Storage {
                         ToDos todo = new ToDos(taskData[2]);
                         todo.setIsDone(taskData[1].equals("1"));
                         result.add(todo);
-                        System.out.println("adds todo");
                         break;
                     case "D":
                         Deadline deadline = new Deadline(taskData[2],taskData[3]);
                         deadline.setIsDone(taskData[1].equals("1"));
                         result.add(deadline);
-                        System.out.println("adds deadline");
                         break;
                     case "E":
                         Event event = new Event(taskData[2], taskData[3]);
                         event.setIsDone(taskData[1].equals("1"));
                         result.add(event);
-                        System.out.println("adds event");
                         break;
                 }
             }
         } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (UwuException e) {
             System.out.println(e.getMessage());
         }
 

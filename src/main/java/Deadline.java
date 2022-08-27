@@ -1,20 +1,26 @@
-public class Deadline extends Task {
-    protected String by;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String description, String by) {
+public class Deadline extends Task {
+    protected LocalDateTime by;
+
+    public Deadline(String description, String by) throws UwuException {
         super(description);
-        this.by = by;
+        this.by = new UwuDateTime(by).getDateTime();
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[D]" + super.toString() + " (by: " +
+                by.format(formatter) + ")";
     }
 
     @Override
     public String toStorageString() {
         String isDoneIndicator = super.isDone ? "1" : "0";
+        String byString = by.toString().replaceAll("T", " ");
 
-        return "D," + isDoneIndicator + "," + description.trim() + "," + by.trim();
+        return "D," + isDoneIndicator + "," + description.trim() + "," + byString;
     }
 }

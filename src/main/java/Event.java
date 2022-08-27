@@ -1,20 +1,26 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String at) {
+public class Event extends Task {
+    protected LocalDateTime at;
+
+    public Event(String description, String at) throws UwuException {
         super(description);
-        this.at = at;
+        this.at = new UwuDateTime(at).getDateTime();
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[E]" + super.toString() + " (at: " +
+                at.format(formatter) + ")";
     }
 
     @Override
     public String toStorageString() {
         String isDoneIndicator = super.isDone ? "1" : "0";
+        String atString = at.toString().replaceAll("T", " ");
 
-        return "E," + isDoneIndicator + "," + description.trim() + "," + at.trim();
+        return "E," + isDoneIndicator + "," + description.trim() + "," + atString;
     }
 }
