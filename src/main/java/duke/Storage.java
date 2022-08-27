@@ -61,9 +61,13 @@ public class Storage {
                 taskList.add(newTask);
             }
 
-            System.out.println("Tasks successfully loaded!");
+            if (taskList.isEmpty()) {
+                System.out.println("No tasks to load.");
+            } else {
+                System.out.println("Tasks successfully loaded!");
+            }
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("No tasks to load.");
         }
 
         return taskList;
