@@ -17,9 +17,20 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Represents database of Duke.
+ * Persists tasks into duke.txt file.
+ */
 public class Storage {
     private static final String FILE = "./duke.txt";
 
+    /**
+     * Loads tasks from duke.txt file.
+     * 
+     * @return
+     * @throws DukeException If duke.txt was not found or if there was an error
+     *                       during processing.
+     */
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
         try {
@@ -68,6 +79,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves tasks to duke.txt file.
+     * 
+     * @param taskList The current tasks.
+     */
     public void save(TaskList taskList) {
         try {
             List<Task> tasks = taskList.getTasks();
