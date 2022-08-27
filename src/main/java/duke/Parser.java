@@ -20,15 +20,15 @@ public class Parser {
                     taskList.unmarkTask(str, taskList);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("duke.todo")) {
+                else if(str.split(" ", 2)[0].equals("todo")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("duke.deadline")) {
+                else if(str.split(" ", 2)[0].equals("deadline")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("duke.event")) {
+                else if(str.split(" ", 2)[0].equals("event")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }

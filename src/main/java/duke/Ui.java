@@ -30,7 +30,7 @@ public class Ui {
      *
      * @param tasks
      */
-    public static void printList(ArrayList<Task> tasks) {
+    public static void printList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0, d = 1; i < tasks.size(); i++, d++) {
             System.out.println(d + ". " + tasks.get(i));

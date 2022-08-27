@@ -10,7 +10,7 @@ public class TaskList extends ArrayList<Task> {
      * @param
      * @param str
      */
-    public void deleteTask(String str, ArrayList<Task> task) throws DukeException {
+    public void deleteTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
@@ -30,7 +30,7 @@ public class TaskList extends ArrayList<Task> {
      * @param
      * @param str
      */
-    public void markTask(String str, ArrayList<Task> task) throws DukeException {
+    public void markTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
@@ -49,7 +49,7 @@ public class TaskList extends ArrayList<Task> {
      * @param
      * @param str
      */
-    public void unmarkTask(String str, ArrayList<Task> task) throws DukeException {
+    public void unmarkTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
