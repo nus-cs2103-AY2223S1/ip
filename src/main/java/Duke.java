@@ -1,6 +1,12 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+
 public class Duke {
     private static Scanner sc = new Scanner(System.in);
     private static ArrayList<Task> taskList = new ArrayList<>();
@@ -12,7 +18,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
+        loadTasks();
         int state = 0;
         while (state >= 0) {
             String m = sc.nextLine();
@@ -22,11 +28,13 @@ public class Duke {
                 printMessage(e.getMessage());
             }
         }
+//        System.out.println(System.getProperty("user.dir"));
     }
 
     private static int handleMessage(String m) throws DukeException {
         if (m.equals("bye")) {
             // bye
+            saveTasks();
             printMessage("Bye. Hope to see you again soon!");
             return -1;
         } else if (m.equals("list")) {
@@ -36,25 +44,29 @@ public class Duke {
             return 1;
         } else if (m.startsWith("mark")) {
             // mark task
-            try {
-                int id = Integer.parseInt(m.substring(5));
-                Task t = Duke.taskList.get(id - 1);
-                t.done();
-                printMessage("Nice! I've marked this task as done:\n    " + t);
-            } catch (NumberFormatException e) {
-                throw new DukeException("☹ OOPS!!! Number is required for marking");
+            if (m.length() < 6) {
+                throw new DukeException("Please input a number.");
             }
+            int id = Integer.parseInt(m.substring(5));
+            if (id > taskList.size() || id < 0) {
+                throw new DukeException("Please input a valid number. " + id + " is invalid.");
+            }
+            Task t = Duke.taskList.get(id - 1);
+            t.done();
+            printMessage("Nice! I've marked this task as done:\n    " + t);
             return 2;
         } else if (m.startsWith("unmark")) {
             // unmark task
-            try {
-                int id = Integer.parseInt(m.substring(7));
-                Task t = Duke.taskList.get(id - 1);
-                t.undone();
-                printMessage("OK, I've marked this task as not done yet:\n    " + t);
-            } catch (NumberFormatException e) {
-                throw new DukeException("☹ OOPS!!! Number is required for unmarking");
+            if (m.length() < 8) {
+                throw new DukeException("Please input a number.");
             }
+            int id = Integer.parseInt(m.substring(7));
+            if (id > taskList.size() || id < 0) {
+                throw new DukeException("Please input a valid number. " + id + " is invalid.");
+            }
+            Task t = Duke.taskList.get(id - 1);
+            t.undone();
+            printMessage("OK, I've marked this task as not done yet:\n    " + t);
             return 3;
         } else if (m.startsWith("deadline")) {
             // deadline
@@ -103,12 +115,14 @@ public class Duke {
             return 6;
         } else if (m.startsWith("delete")) {
             // delete task
-            try {
-                int id = Integer.parseInt(m.substring(7));
-                deleteTask(id - 1);
-            } catch (NumberFormatException e) {
-                throw new DukeException("☹ OOPS!!! Number is required for deletion");
+            if (m.length() < 8) {
+                throw new DukeException("Please input a number.");
             }
+            int id = Integer.parseInt(m.substring(7));
+            if (id > taskList.size() || id < 0) {
+                throw new DukeException("Please input a valid number. " + id + " is invalid.");
+            }
+            deleteTask(id - 1);
             return 7;
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -150,5 +164,59 @@ public class Duke {
                 "\n    Now you have " +
                 Duke.taskList.size() +
                 " tasks in the list.");
+    }
+
+    private static void loadTasks() {
+        File file = new File("data/duke.txt");
+        if (!file.exists()) {
+            return;
+        }
+        try {
+            String tasks = Files.readString(Path.of("data/duke.txt"));
+            for (String s: tasks.split("\n")) {
+                Task task = new Todo("Error");
+                if (s.startsWith("[T]")) {
+                    String description = s.substring(7);
+                    task = new Todo(description);
+                } else if (s.startsWith("[E]")) {
+                    String[] split = s.substring(7).split(" \\(at: ");
+                    String description = split[0];
+                    String at = split[1];
+                    at = at.substring(0, at.length() - 1); // remove closing )
+                    task = new Event(description, at);
+                } else if (s.startsWith("[D]")) {
+                    String[] split = s.substring(7).split(" \\(by: ");
+                    String description = split[0];
+                    String by = split[1];
+                    by = by.substring(0, by.length() - 1); // remove closing )
+                    task = new Deadline(description, by);
+                } else {
+                    continue;
+                }
+                if (s.charAt(5) == 'X') {
+                    task.done();
+                }
+                Duke.taskList.add(task);
+            }
+        } catch (java.io.IOException e) {
+            System.out.println("Unable to read task list. Error: " + e);
+        }
+    }
+
+    private static void saveTasks() {
+        try {
+            File file = new File("data");
+            if (!file.exists()) {
+                file.mkdir();
+            }
+            FileWriter output = new FileWriter("data/duke.txt");
+            for (Task t : Duke.taskList) {
+                output.write(t.toString());
+                output.write("\n");
+            }
+            output.close();
+        } catch (java.io.IOException e) {
+            System.out.println("Unable to save file. Error: " + e);
+        }
     }
 }
