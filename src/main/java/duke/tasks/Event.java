@@ -5,11 +5,23 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import duke.dukeExceptions.DukeException;
 
+/**
+ * Represents a Event in Duke.
+ * 
+ * @author Ramanathan Kumarappan
+ */
 public class Event extends Task {
     private LocalDate d;
     private LocalTime t;
     private boolean hasTime;
 
+    /**
+     * Constructor for Event.
+     * 
+     * @param description - The description for the Event
+     * @param at - The date and time for the Event (in YYYY-MM-DD HHMM format).
+     * @throws DukeException - When the description or at date is invalid.
+     */
     public Event(String description, String at) throws DukeException {
         super(description);
         String[] dateAndTime = at.split(" ");
@@ -26,6 +38,13 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Rebuilds the Event from an event save string.
+     *
+     * @param saveString - The save string containing Event information.
+     * @return A Event Task.
+     * @throws DukeException - When Event cannot be reconstructed from the given string.
+     */
     public static Event taskFromSave(String saveString) throws DukeException {
         String[] tokens = saveString.split(" \\| ");
         String time = tokens[3].equals("true") ? tokens[4] + " " + tokens[5] : tokens[4];
@@ -36,12 +55,22 @@ public class Event extends Task {
         return event;
     }
 
+    /**
+     * Returns the Event in a save string format.
+     *
+     * @return The event in a save string format.
+     */
     @Override
     public String saveString() {
         return "E | " + super.saveString() +  " | " + this.hasTime + " | " + this.d + " | " 
                 + (this.hasTime ? this.t.format(DateTimeFormatter.ofPattern("HHmm")) : "");
     }
-    
+
+    /**
+     * Returns a string representation of the Event.
+     *
+     * @return The string representation of the Event.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " 

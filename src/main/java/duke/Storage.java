@@ -10,10 +10,21 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+/**
+ * Represents a Storage class that is responsible for saving and loading data.
+ * 
+ * @author Ramanathan Kumarappan
+ */
 public class Storage {
     private final String DIR = System.getProperty("user.dir") + "/data";
     private final String SAVE_FILE = DIR + "/dukeData.txt";
-    
+
+    /**
+     * Constructor for Storage.
+     * 
+     * @param tl - The TaskList to load the saved data onto.
+     * @throws DukeException - When there is an error loading storage.
+     */
     Storage(TaskList tl) throws DukeException {
         try {
             File savedTasks = new File(SAVE_FILE);
@@ -43,10 +54,16 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new DukeException("duke.Storage error");
+            throw new DukeException("Storage error");
         } 
     }
-    
+
+    /**
+     * Saves the given TaskList.
+     * 
+     * @param tl - The TaskList to be saved.
+     * @throws DukeException - When there is an error saving storage.
+     */
     public void saveTaskList(TaskList tl) throws DukeException {
         try {
             File savedTasks = new File(SAVE_FILE);

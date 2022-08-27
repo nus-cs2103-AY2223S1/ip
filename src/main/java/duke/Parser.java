@@ -6,7 +6,20 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
+/**
+ * Represents a Parser class that is responsible for parsing user inputs.
+ * 
+ * @author Ramanathan Kumarappan
+ */
 public class Parser {
+    /**
+     * Parses the given string and executes the appropriate action.
+     * 
+     * @param input - The user command to be parsed.
+     * @param tl - The TaskList associated with the user.
+     * @return - The resultant String of executing the command.
+     * @throws DukeException - When there is an error with the command.
+     */
     public String parseInput(String input, TaskList tl) throws DukeException {
         String[] tokens = input.split(" ", 2);
         String command = tokens[0];
