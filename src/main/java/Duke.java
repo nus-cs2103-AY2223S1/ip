@@ -1,11 +1,16 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Duke {
 
     private final ArrayList<Task> tasks = new ArrayList<>();
     private int totalTasks = 0;
     private final Scanner input = new Scanner(System.in);
+    public static String DIRECTORY = "./data/";
+    public static String FILENAME = "todo.txt";
+
 
     private String receiveCommand() {
         return input.nextLine();
@@ -112,6 +117,8 @@ public class Duke {
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+
+        saveFile(DIRECTORY, FILENAME);
     }
 
     private void greet() {
@@ -142,8 +149,113 @@ public class Duke {
         } while (!command.equals("bye"));
     }
 
+    private void parseLine(String line) {
+        String[] parts = line.split(" \\| ");
+        Task task = null;
+
+        switch (parts[0]) {
+            case "T":
+                task = new Todo(parts[2]);
+                break;
+            case "D":
+                task = new Deadline(parts[2], parts[3]);
+                break;
+            case "E":
+                task = new Event(parts[2], parts[3]);
+                break;
+        }
+
+        switch (parts[1]) {
+            case "0":
+                task.markAsUndone();
+                break;
+            case "1":
+                task.markAsDone();
+                break;
+        }
+        tasks.add(task);
+        totalTasks += 1;
+    }
+
+    private void loadFile(String directory, String filename) {
+        File data = createFileWithDirIfNotExist(directory, filename);
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(data));
+            String line = reader.readLine();
+            while (line != null) {
+                parseLine(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ArrayList<String> tasksToString() {
+        ArrayList<String> tasksAsStrings = new ArrayList<>();
+        String currString;
+
+        for (Task currTask : tasks) {
+            currString = "";
+            if (currTask instanceof Todo) {
+                currString += "T | ";
+                currString += currTask.isDone ? "1 | " : "0 | ";
+                currString += currTask.description;
+            } else if (currTask instanceof Deadline) {
+                currString += "D | ";
+                currString += currTask.isDone ? "1 | " : "0 | ";
+                currString += currTask.description + " | ";
+                currString += ((Deadline) currTask).by;
+            } else if (currTask instanceof Event) {
+                currString += "E | ";
+                currString += currTask.isDone ? "1 | " : "0 | ";
+                currString += currTask.description + " | ";
+                currString += ((Event) currTask).at;
+            }
+            tasksAsStrings.add(currString);
+        }
+
+        return tasksAsStrings;
+    }
+
+    private void saveFile(String directory, String filename) {
+        try {
+            File data = createFileWithDirIfNotExist(directory, filename);
+            data.delete();
+            data = createFileWithDirIfNotExist(directory, filename);
+
+            BufferedWriter writer;
+            writer = new BufferedWriter(new FileWriter(data));
+            ArrayList<String> toWrite = tasksToString();
+
+            for (String str : toWrite) {
+                writer.write(str + System.lineSeparator());
+            }
+
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    private File createFileWithDirIfNotExist(String directory, String filename) {
+        File f = new File(directory + filename);
+        try {
+            f.getParentFile().mkdirs();
+            f.createNewFile();
+        } catch (Exception e) {
+            System.out.println("Failed to create file, will not be able to save data.");
+            return null;
+        }
+        return f;
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
+        duke.loadFile(DIRECTORY, FILENAME);
         duke.greet();
         duke.run();
     }
