@@ -110,16 +110,5 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-//    public void fileWriter(String filePath) {
-//
-//        for (int i = 1; i <= pos; i++) {
-//            if (status[i - 1] == 0) {
-//                System.out.println(i + ".[" + taskType[i - 1] + "][ ] " + arr[i - 1]);
-//            } else {
-//                System.out.println(i + ".[" + taskType[i - 1] + "][X] " + arr[i - 1]);
-//            }
-//        }
-
-
 }
 
