@@ -1,10 +1,10 @@
-package dukeProgram.commands.task.annotations;
+package dukeprogram.commands.task.annotations;
 
-import dukeProgram.UiMessage;
-import dukeProgram.commands.Command;
-import dukeProgram.facilities.TaskList;
-import dukeProgram.Task;
-import dukeProgram.ui.UserInterface;
+import dukeprogram.Task;
+import dukeprogram.UiMessage;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
 import exceptions.InvalidCommandException;
 
 /**
@@ -43,10 +43,9 @@ public abstract class AnnotateTaskCommand extends Command {
         return new Command() {
             @Override
             public boolean execute() {
-
                 if (fullCommandParameters[1].equals("all")) {
                     for (Task task : TaskList.current().getAllTasks()) {
-                        task.MarkJobState(annotationState);
+                        task.markJobState(annotationState);
                     }
                     UserInterface.printInStyle(
                             String.format("Ok, I've annotated all the items in %s.", TaskList.current().getName())
@@ -54,14 +53,13 @@ public abstract class AnnotateTaskCommand extends Command {
                 } else {
                     int index = Integer.parseInt(fullCommandParameters[1]) - 1;
                     Task task = TaskList.current().get(index);
-                    task.MarkJobState(annotationState);
+                    task.markJobState(annotationState);
 
                     UserInterface.printInStyle(
                             "Okay, I've annotated this task as requested:",
                             task.toString()
                     );
                 }
-                
                 return true;
             }
         };

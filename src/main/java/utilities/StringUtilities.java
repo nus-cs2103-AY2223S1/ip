@@ -2,14 +2,18 @@ package utilities;
 
 import java.util.stream.IntStream;
 
+/**
+ * StringUtilities provides utilities for strings and collections containing strings
+ */
 public class StringUtilities {
+
     /**
      * Helper method to split a String array by a delimiter.
      * If two delimiters sit adjacent, an empty array is returned.
      * @param input The string array to split
      * @param delimiter The string to split by
      * @return A nested array containing string arrays that are
-     * partitioned by the delimiter, excluding all instances of the delimiter
+     *      partitioned by the delimiter, excluding all instances of the delimiter
      */
     public static String[][] splitStringArray(String[] input, String delimiter) {
         if (input.length == 0) {
@@ -22,7 +26,7 @@ public class StringUtilities {
         while (input[splitStart].equals(delimiter)) {
             splitStart++;
         }
-        while(input[splitEnd].equals(delimiter)) {
+        while (input[splitEnd].equals(delimiter)) {
             splitEnd--;
         }
 
@@ -32,9 +36,9 @@ public class StringUtilities {
                 .toArray();
 
         String[][] splitArrays = new String[
-                (int)IntStream
+                (int) IntStream
                 .range(0, splitIndices.length)
-                .filter(i -> i == 0 || splitIndices[i] - 1 != splitIndices[i-1])
+                .filter(i -> i == 0 || splitIndices[i] - 1 != splitIndices[i - 1])
                 .count() + 1][];
 
         int startingIndex = splitStart;
