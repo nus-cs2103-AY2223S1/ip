@@ -70,6 +70,11 @@ public class Ui {
                 + newTask + "\nNow you have " + noOfTasks + " tasks in the list.");
     }
 
+    /**
+     * Prints output for <code>Task</code> search.
+     *
+     * @param match string of <code>Task</code> matching the search keywords
+     */
     public static void printTaskSearch(String match) {
         if (match == "") {
             System.out.println("Duke: Sorry! Cannot find any matching tasks in your list.");
