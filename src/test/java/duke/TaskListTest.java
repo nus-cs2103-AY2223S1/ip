@@ -16,7 +16,7 @@ public class TaskListTest {
 
     private TaskList initializeTaskList() {
         TaskList list = new TaskList();
-        Task task = new ToDo("", TaskType.TASK);
+        Task task = new ToDo("", TaskType.TODO);
         for (int i = 0; i < 3; i++) {
             list.addTask(task);
         }

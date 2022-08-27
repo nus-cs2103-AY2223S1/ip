@@ -39,6 +39,12 @@ public class Duke {
             storage.createFile();
         }
     }
+
+    /**
+     * Returns Duke's response for the user's input to the GUI.
+     * @param input The given user input.
+     * @return The string containing Duke's response.
+     */
     public String getResponse(String input) {
         String response = "";
         try {
