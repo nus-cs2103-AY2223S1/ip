@@ -51,6 +51,9 @@ public abstract class Task {
         return this.description;
     }
 
+    /**
+     * Returns the String representation of a particular task.
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
@@ -62,5 +65,7 @@ public abstract class Task {
      *
      * @return String representation of the task that is parsable by the Storage object.
      */
-    public abstract String toStringFile();
+    public String toStringFile() {
+        return String.format("%d | %s", this.getStatusIcon().equals("X") ? 1 : 0, this.getDescription());
+    }
 }

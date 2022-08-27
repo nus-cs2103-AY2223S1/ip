@@ -63,26 +63,26 @@ public class Storage {
                 Scanner scanner = new Scanner(file);
                 while (scanner.hasNextLine()) {
                     String nextLine = scanner.nextLine();
-                    String[] splitString = nextLine.split(" \\| ", -1);
+                    String[] splitStrings = nextLine.split(" \\| ", -1);
 
-                    if (splitString.length < 3) {
+                    if (splitStrings.length < 3) {
                         throw new SkylarkException("Not enough parameters!");
                     }
 
                     Task currentTask;
-                    switch (splitString[0]) {
+                    switch (splitStrings[0]) {
                     case "T":
-                        currentTask = new ToDo(splitString[2]);
+                        currentTask = new ToDo(splitStrings[2]);
                         break;
                     case "D": {
-                        String desc = splitString[2];
-                        String endDate = splitString[3];
+                        String desc = splitStrings[2];
+                        String endDate = splitStrings[3];
                         currentTask = new Deadline(desc, endDate);
                         break;
                     }
                     case "E": {
-                        String desc = splitString[2];
-                        String timing = splitString[3];
+                        String desc = splitStrings[2];
+                        String timing = splitStrings[3];
                         currentTask = new Event(desc, timing);
                         break;
                     }
@@ -90,7 +90,7 @@ public class Storage {
                         throw new SkylarkException("No suitable task found!");
                     }
 
-                    boolean isDone = Integer.parseInt(splitString[1]) == 1;
+                    boolean isDone = Integer.parseInt(splitStrings[1]) == 1;
                     if (isDone) {
                         currentTask.markAsDone();
                     } else {

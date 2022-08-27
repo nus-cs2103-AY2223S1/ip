@@ -40,6 +40,12 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a Deadline task.
+     */
     @Override
     public String toString() {
         // Oct 15 2019
@@ -49,10 +55,16 @@ public class Deadline extends Task {
                 this.endDate.format(DateTimeFormatter.ofPattern(outputFormat)));
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a Deadline task that can be written to a file.
+     */
     @Override
     public String toStringFile() {
-        return String.format("%c | %d | %s | %s", Deadline.SYMBOL_DEADLINE,
-                super.getStatusIcon().equals("X") ? 1 : 0, super.getDescription(),
+        return String.format("%c | %s | %s", Deadline.SYMBOL_DEADLINE,
+                super.toStringFile(),
                 this.endDate.format(DateTimeFormatter.ofPattern(inputFormat)));
     }
 }

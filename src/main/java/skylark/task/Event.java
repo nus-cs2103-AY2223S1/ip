@@ -34,6 +34,12 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a Event task.
+     */
     @Override
     public String toString() {
         String outputFormat = "MMM dd yyyy"; // Oct 15 2019
@@ -41,10 +47,16 @@ public class Event extends Task {
                 super.toString(), this.timing.format(DateTimeFormatter.ofPattern(outputFormat)));
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a Event task that can be written to a file.
+     */
     @Override
     public String toStringFile() {
-        return String.format("%c | %d | %s | %s", Event.SYMBOL_EVENT,
-                super.getStatusIcon().equals("X") ? 1 : 0,
-                super.getDescription(), this.timing.format(DateTimeFormatter.ofPattern(inputFormat)));
+        return String.format("%c | %s | %s", Event.SYMBOL_EVENT,
+                super.toStringFile(),
+                this.timing.format(DateTimeFormatter.ofPattern(inputFormat)));
     }
 }

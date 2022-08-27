@@ -14,14 +14,25 @@ public class ToDo extends Task {
         super(description);
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a ToDo task.
+     */
     @Override
     public String toString() {
         return String.format("[%c] %s", ToDo.SYMBOL_TODO, super.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     * <br><br>
+     *
+     * Returns the String representation of a ToDo task that can be written to a file.
+     */
     @Override
     public String toStringFile() {
-        return String.format("%c | %d | %s", ToDo.SYMBOL_TODO,
-                super.getStatusIcon().equals("X") ? 1 : 0, super.getDescription());
+        return String.format("%c | %s", ToDo.SYMBOL_TODO, super.toStringFile());
     }
 }
