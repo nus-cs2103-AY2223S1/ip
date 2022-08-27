@@ -1,6 +1,13 @@
 package util;
 
-import command.*;
+import command.AddTaskCommand;
+import command.AddTaskFromStorageCommand;
+import command.Command;
+import command.DeleteTaskCommand;
+import command.ListAllTasksCommand;
+import command.MarkTaskCommand;
+import command.TerminateCommand;
+import command.UnmarkTaskCommand;
 import date.DeadlineDateTime;
 import date.EventDateTime;
 import exception.DukeException;
@@ -15,47 +22,47 @@ public class Parser {
         String command = splitted[0];
         Command cmd;
         switch (command) {
-            case "bye":
-                cmd = new TerminateCommand();
-                break;
-            case "list":
-                cmd = new ListAllTasksCommand();
-                break;
-            case "mark":
-                int index = Integer.parseInt(splitted[1]);
-                cmd = new MarkTaskCommand(index);
-                break;
-            case "unmark":
-                index = Integer.parseInt(splitted[1]);
-                cmd = new UnmarkTaskCommand(index);
-                break;
-            case "delete":
-                index = Integer.parseInt(splitted[1]);
-                cmd = new DeleteTaskCommand(index);
-                break;
-            case "todo":
-                Todo.validateInput(splitted);
-                Task todo = new Todo(splitted[1]);
-                cmd = new AddTaskCommand(todo);
-                break;
-            case "deadline":
-                // Regex "\\s+/" matches one or more space followed by a /by,
-                // followed by one or more space
-                String[] taskArgs = splitted[1].split("\\s+/by\\s+",2);
-                DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDate(taskArgs[1]);
-                Task deadline = new Deadline(taskArgs[0], deadlineDateTime);
-                cmd = new AddTaskCommand(deadline);
-                break;
-            case "event":
-                // Regex "\s+/at\s+" matches one or more space followed by a /at,
-                // followed by one or more space
-                taskArgs = splitted[1].split("\\s+/at\\s+",2);
-                EventDateTime eventDateTime = EventDateTime.parseDate(taskArgs[1]);
-                Task event = new Event(taskArgs[0], eventDateTime);
-                cmd = new AddTaskCommand(event);
-                break;
-            default:
-                throw new DukeException(DukeException.ErrorCode.UNKNOWN_CMD);
+        case "bye":
+            cmd = new TerminateCommand();
+            break;
+        case "list":
+            cmd = new ListAllTasksCommand();
+            break;
+        case "mark":
+            int index = Integer.parseInt(splitted[1]);
+            cmd = new MarkTaskCommand(index);
+            break;
+        case "unmark":
+            index = Integer.parseInt(splitted[1]);
+            cmd = new UnmarkTaskCommand(index);
+            break;
+        case "delete":
+            index = Integer.parseInt(splitted[1]);
+            cmd = new DeleteTaskCommand(index);
+            break;
+        case "todo":
+            Todo.validateInput(splitted);
+            Task todo = new Todo(splitted[1]);
+            cmd = new AddTaskCommand(todo);
+            break;
+        case "deadline":
+            // Regex "\\s+/" matches one or more space followed by a /by,
+            // followed by one or more space
+            String[] taskArgs = splitted[1].split("\\s+/by\\s+", 2);
+            DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDate(taskArgs[1]);
+            Task deadline = new Deadline(taskArgs[0], deadlineDateTime);
+            cmd = new AddTaskCommand(deadline);
+            break;
+        case "event":
+            // Regex "\s+/at\s+" matches one or more space followed by a /at,
+            // followed by one or more space
+            taskArgs = splitted[1].split("\\s+/at\\s+", 2);
+            EventDateTime eventDateTime = EventDateTime.parseDate(taskArgs[1]);
+            Task event = new Event(taskArgs[0], eventDateTime);
+            cmd = new AddTaskCommand(event);
+            break;
+        default:
+            throw new DukeException(DukeException.ErrorCode.UNKNOWN_CMD);
         }
         return cmd;
     }
@@ -66,19 +73,19 @@ public class Parser {
         Task taskItem;
 
         switch (taskType) {
-            case "T":
-                taskItem = new Todo(splitted[2]);
-                break;
-            case "E":
-                EventDateTime eventDateTime = EventDateTime.parseDateFromStorage(splitted[3]);
-                taskItem = new Event(splitted[2], eventDateTime);
-                break;
-            case "D":
-                DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDateFromStorage(splitted[3]);
-                taskItem = new Deadline(splitted[2], deadlineDateTime);
-                break;
-            default:
-                throw new DukeException(DukeException.ErrorCode.UNKNOWN_TASK_ENCODING);
+        case "T":
+            taskItem = new Todo(splitted[2]);
+            break;
+        case "E":
+            EventDateTime eventDateTime = EventDateTime.parseDateFromStorage(splitted[3]);
+            taskItem = new Event(splitted[2], eventDateTime);
+            break;
+        case "D":
+            DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDateFromStorage(splitted[3]);
+            taskItem = new Deadline(splitted[2], deadlineDateTime);
+            break;
+        default:
+            throw new DukeException(DukeException.ErrorCode.UNKNOWN_TASK_ENCODING);
         }
         taskItem.setIsMarked(splitted[1].equals("1"));
         return new AddTaskFromStorageCommand(taskItem);

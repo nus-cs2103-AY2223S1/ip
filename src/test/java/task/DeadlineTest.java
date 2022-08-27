@@ -1,11 +1,11 @@
 package task;
 
-import date.DeadlineDateTime;
-import date.EventDateTime;
-import exception.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import date.DeadlineDateTime;
+import exception.DukeException;
 
 class DeadlineTest {
 

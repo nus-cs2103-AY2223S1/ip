@@ -1,18 +1,19 @@
 package util;
 
-import command.Command;
-import exception.DukeException;
-import task.Task;
-import tasklist.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import command.Command;
+import exception.DukeException;
+import task.Task;
+import tasklist.TaskList;
+
 public class Storage {
     private final File saveFile;
+
     private Storage(File saveFile) {
         this.saveFile = saveFile;
     }

@@ -6,6 +6,7 @@ import util.Storage;
 
 public class AddTaskFromStorageCommand extends Command {
     private final Task taskItem;
+
     public AddTaskFromStorageCommand(Task taskItem) {
         this.taskItem = taskItem;
     }

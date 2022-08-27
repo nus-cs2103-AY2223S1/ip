@@ -4,7 +4,7 @@ import tasklist.TaskList;
 import util.Storage;
 import util.Ui;
 
-public class UnmarkTaskCommand extends Command{
+public class UnmarkTaskCommand extends Command {
     private final int index;
 
     public UnmarkTaskCommand(int index) {

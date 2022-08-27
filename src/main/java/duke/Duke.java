@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.Scanner;
+
 import command.Command;
 import exception.DukeException;
 import tasklist.TaskList;
 import util.Parser;
 import util.Storage;
 import util.Ui;
-
-import java.util.Scanner;
 
 public class Duke {
     private TaskList dukelist = new TaskList();
@@ -23,17 +23,18 @@ public class Duke {
         boolean isTerminated = false;
         Scanner sc = new Scanner(System.in);
 
-        while(!isTerminated) {
+        while (!isTerminated) {
             try {
                 String nextLine = sc.nextLine();
                 Command cmd = Parser.parseInputLine(nextLine);
                 cmd.execute(dukelist, storage);
-                isTerminated = cmd.isTerminated;
+                isTerminated = cmd.getIsTerminated();
             } catch (DukeException e) {
                 System.out.println(Ui.formatLinesIntoParagraph(e.errorMessage()));
             }
         }
     }
+
     public static void main(String[] args) {
         new Duke("data/saveFile.txt").run();
     }

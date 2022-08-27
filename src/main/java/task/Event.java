@@ -2,9 +2,9 @@ package task;
 
 import date.EventDateTime;
 
-public class Event extends Task{
+public class Event extends Task {
     private final EventDateTime eventTiming;
-    
+
     public Event(String taskItem, EventDateTime eventTiming) {
         super(taskItem);
         this.eventTiming = eventTiming;

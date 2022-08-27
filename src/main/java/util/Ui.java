@@ -20,8 +20,8 @@ public class Ui {
     }
 
     public static void printIntroMessage() {
-        String introParagraph = Ui.formatLine("Hello! I'm duke.") +
-                Ui.formatLine("What can I do for you?");
+        String introParagraph = Ui.formatLine("Hello! I'm duke.")
+                + Ui.formatLine("What can I do for you?");
         String formattedIntro = Ui.formatParagraph(introParagraph);
 
         System.out.println(formattedIntro);

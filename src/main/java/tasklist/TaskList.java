@@ -1,8 +1,10 @@
 package tasklist;
 
+import java.util.ArrayList;
+
 import task.Task;
 import util.Ui;
-import java.util.ArrayList;
+
 
 public class TaskList {
     private final ArrayList<Task> list = new ArrayList<>();

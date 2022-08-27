@@ -1,18 +1,18 @@
 package task;
 
 public abstract class Task {
-    private final String TaskItem;
+    private final String taskItem;
     private boolean isMarked;
 
-    public Task(String TaskItem) {
-        this.TaskItem = TaskItem;
+    public Task(String taskItem) {
+        this.taskItem = taskItem;
         this.isMarked = false;
     }
 
     @Override
     public String toString() {
         String checkbox = isMarked ? "[X] " : "[ ] ";
-        return checkbox + this.TaskItem;
+        return checkbox + this.taskItem;
     }
 
     public void setIsMarked(boolean status) {
@@ -24,7 +24,7 @@ public abstract class Task {
     }
 
     protected String getTaskItem() {
-        return TaskItem;
+        return taskItem;
     }
 
     public abstract String encode();

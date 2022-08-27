@@ -1,7 +1,5 @@
 package task.stub;
 
-import task.stub.TaskStub;
-
 public class UnmarkedTaskStub extends TaskStub {
     @Override
     protected boolean getIsMarked() {

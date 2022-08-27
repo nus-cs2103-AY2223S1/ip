@@ -1,12 +1,15 @@
 package tasklist;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 import org.junit.jupiter.api.Test;
-import task.stub.MarkedTaskStub;
+
 import task.Task;
+import task.stub.MarkedTaskStub;
 import task.stub.TaskStub;
 import task.stub.UnmarkedTaskStub;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
 

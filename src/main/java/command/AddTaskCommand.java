@@ -7,6 +7,7 @@ import util.Ui;
 
 public class AddTaskCommand extends Command {
     private final Task taskItem;
+
     public AddTaskCommand(Task taskItem) {
         this.taskItem = taskItem;
     }

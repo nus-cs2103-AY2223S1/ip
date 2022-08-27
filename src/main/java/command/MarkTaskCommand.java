@@ -6,6 +6,7 @@ import util.Ui;
 
 public class MarkTaskCommand extends Command {
     private final int index;
+
     public MarkTaskCommand(int index) {
         this.index = index;
     }

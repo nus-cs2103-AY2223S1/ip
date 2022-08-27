@@ -1,9 +1,11 @@
 package task;
 
-import exception.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import exception.DukeException;
 
 class TodoTest {
 
