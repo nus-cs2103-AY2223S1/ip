@@ -1,14 +1,18 @@
-package duke;
+package duke.task;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    protected ZonedDateTime by;
+    private ZonedDateTime by;
 
     public Deadline(String description, ZonedDateTime by) {
         super(description);
         this.by = by;
+    }
+
+    public ZonedDateTime getBy() {
+        return by;
     }
 
     @Override

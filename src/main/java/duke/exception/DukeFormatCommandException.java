@@ -1,4 +1,4 @@
-package duke;
+package duke.exception;
 
 public class DukeFormatCommandException extends DukeException {
     public DukeFormatCommandException(String taskType) {

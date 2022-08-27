@@ -1,5 +1,8 @@
 package duke;
 
+import duke.exception.DukeIndexErrorException;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {

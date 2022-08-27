@@ -1,14 +1,18 @@
-package duke;
+package duke.task;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    protected ZonedDateTime at;
+    private ZonedDateTime at;
 
     public Event(String description, ZonedDateTime at) {
         super(description);
         this.at = at;
+    }
+
+    public ZonedDateTime getAt() {
+        return at;
     }
 
     @Override

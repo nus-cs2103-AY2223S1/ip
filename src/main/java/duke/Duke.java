@@ -1,5 +1,14 @@
 package duke;
 
+import duke.exception.DukeException;
+import duke.exception.DukeFormatCommandException;
+import duke.exception.DukeIndexErrorException;
+import duke.exception.DukeInvalidCommandException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +16,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
-import java.util.ArrayList;
 
 /**
  * MakiBot
@@ -46,6 +54,7 @@ public class Duke {
     protected void start() {
         System.out.println("Hello! I'm MAKIBOT");
         timeZone = ui.getTimeZone(timeZone);
+        storage.setSaveFilePath(ui.getSaveFile(storage.getSaveFilePath()));
         tasks = new TaskList(storage.loadTasks(timeZone));
         System.out.println("Welcome! What can I do for you?");
         eventLoop();
