@@ -86,6 +86,7 @@ public class Deadline extends Task {
         }
     }
 
+
     @Override
     public String savedString() {
         if (!this.getStatus()) {
@@ -96,8 +97,6 @@ public class Deadline extends Task {
                     date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";
         }
     }
-
-
 
     /**
      * Outputs the full details of the deadline being deleted in the console.

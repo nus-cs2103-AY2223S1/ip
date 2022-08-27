@@ -45,7 +45,7 @@ public class ToDo extends Task {
     @Override
     public void printAdded() {
         System.out.println(straightLine + "\n  Its been added!\n    [T][ ] " + this.getDescription()
-                            + "\n  " + this.getIndex() + " tasks left! ^-^\n" + straightLine + "\n");
+                + "\n  " + this.getIndex() + " tasks left! ^-^\n" + straightLine + "\n");
     }
 
     /**

@@ -38,14 +38,14 @@ public class Ui {
 
     public void printIndexOutOfBoundsException(Keywords keyword) {
         switch (keyword) {
-            case delete:
-                System.out.println(straightLine + "\n  Can't delete something that isn't there...\n"
-                        + straightLine + "\n");
-                break;
-            case unmark:
-                System.out.println(straightLine + "\n  HEY THERE'S NO SUCH TASK! >:(\n"
-                        + straightLine + "\n");
-                break;
+        case delete:
+            System.out.println(straightLine + "\n  Can't delete something that isn't there...\n"
+                    + straightLine + "\n");
+            break;
+        case unmark:
+            System.out.println(straightLine + "\n  HEY THERE'S NO SUCH TASK! >:(\n"
+                    + straightLine + "\n");
+            break;
         }
     }
 
