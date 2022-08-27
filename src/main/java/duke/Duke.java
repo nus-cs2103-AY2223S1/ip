@@ -103,7 +103,7 @@ public class Duke {
     }
 
     /**
-     * Run the chatbot.
+     * Run the chatbot, Life is good.
      */
     public void run() {
         ui.greet();
