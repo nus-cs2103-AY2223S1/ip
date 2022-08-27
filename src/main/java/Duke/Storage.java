@@ -28,39 +28,42 @@ public class Storage {
      * @throws FileNotFoundException if duke.txt file does not exist.
      */
     public void readFromFile(TaskList receivingList) throws FileNotFoundException {
-            File file = new File(path);
-            Scanner sc = new Scanner(file);
-            while (sc.hasNext()) {
-                String task = sc.nextLine();
-                String[] line = task.split("~");
-                String label = line[0];
-                boolean isDone = line[1].equals("1");
-                String description = line[2];
-                Task newTask;
-                switch (line[0]) {
-                    case "T":
-                        newTask = new ToDo(description);
-                        if (isDone) {
-                            newTask.setDone();
-                        }
-                        receivingList.addTaskWithoutOutput(newTask);
-                        break;
-                    case "D":
-                        newTask = new Deadline(description, line[3]);
-                        if (isDone) {
-                            newTask.setDone();
-                        }
-                        receivingList.addTaskWithoutOutput(newTask);
-                        break;
-                    case "E":
-                        newTask = new Event(description, line[3]);
-                        if (isDone) {
-                            newTask.setDone();
-                        }
-                        receivingList.addTaskWithoutOutput(newTask);
-                        break;
+        File file = new File(path);
+        Scanner sc = new Scanner(file);
+        while (sc.hasNext()) {
+            String task = sc.nextLine();
+            String[] line = task.split("~");
+            String label = line[0];
+            boolean isDone = line[1].equals("1");
+            String description = line[2];
+            Task newTask;
+            switch (line[0]) {
+            case "T":
+                newTask = new ToDo(description);
+                if (isDone) {
+                    newTask.setDone();
                 }
+                receivingList.addTaskWithoutOutput(newTask);
+                break;
+            case "D":
+                newTask = new Deadline(description, line[3]);
+                if (isDone) {
+                    newTask.setDone();
+                }
+                receivingList.addTaskWithoutOutput(newTask);
+                break;
+            case "E":
+                newTask = new Event(description, line[3]);
+                if (isDone) {
+                    newTask.setDone();
+                }
+                receivingList.addTaskWithoutOutput(newTask);
+                break;
+
+            default:
+                continue;
             }
+        }
     }
 
     /**
@@ -75,7 +78,7 @@ public class Storage {
                 writer.write(list.get(x).toWrite() + "\n");
             }
             writer.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
