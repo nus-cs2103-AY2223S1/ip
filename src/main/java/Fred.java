@@ -1,7 +1,61 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Fred {
+    public static void save(ArrayList<Task> storage) throws IOException {
+        File f = new File("data/fred.txt");
+        if (!f.exists()) {
+            f.createNewFile();
+            System.out.println("Fred: No data file exists. New data file has been created.");
+        }
+
+        FileWriter fw = new FileWriter("data/fred.txt");
+        for (int i = 0; i < storage.size(); i++) {
+            Task t = storage.get(i);
+            fw.write(t.getSaveFormat());
+        }
+        fw.close();
+        System.out.println("Fred: Tasks have been saved!");
+    }
+
+    public static void load(ArrayList<Task> storage) throws FileNotFoundException, FredException {
+        File f = new File("data/fred.txt");
+        Scanner s = new Scanner(f);
+        Scanner scanner = s.useDelimiter("\\s\\|\\s");
+        while (s.hasNext()) {
+            String start = s.next();
+            if (start.equals("T")) {
+                String isDoneSymbol = s.next();
+                s.skip("\\s\\|\\s");
+                String description = s.nextLine();
+                Task t = new ToDo(description, (isDoneSymbol.equals("1")));
+                storage.add(t);
+            } else if (start.equals("E")) {
+                String isDoneSymbol = s.next();
+                String description = s.next();
+                s.skip("\\s\\|\\s");
+                String at = s.nextLine();
+                Task t = new Event(description, at, (isDoneSymbol.equals("1")));
+                storage.add(t);
+            } else if (start.equals("D")) {
+                String isDoneSymbol = s.next();
+                String description = s.next();
+                s.skip("\\s\\|\\s");
+                String by = s.nextLine();
+                Task t = new Deadline(description, by, (isDoneSymbol.equals("1")));
+                storage.add(t);
+            } else {
+                throw new FredException("Loading... Data file entry is wrong!");
+            }
+        }
+        s.close();
+        System.out.println("Fred: Data file has been loaded!");
+    }
+
     public static void list(ArrayList<Task> arrayList) {
         int counter = 1;
         for (Task t : arrayList) {
@@ -13,6 +67,14 @@ public class Fred {
         Scanner scanner = new Scanner(System.in);
         String input;
         ArrayList<Task> storage = new ArrayList<>();
+
+        try {
+            Fred.load(storage);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (FredException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("Fred: Hello! I'm Fred!");
         System.out.println("Fred: What can I do for you?");
@@ -102,11 +164,15 @@ public class Fred {
                     System.out.println("Fred: Noted. I've removed this task:");
                     System.out.println("Fred: " + nameDeleted);
                     System.out.println("Fred: Now you have " + storage.size() + " tasks in your list.");
+                } else if (input.equals("save")) {
+                    Fred.save(storage);
                 } else {
                     throw new FredException("I'm sorry, but I don't know what that means :(");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Fred: Must enter an integer!");
+            } catch (IOException e) {
+                System.out.println(e);
             } catch (FredException e) {
                 System.out.println(e.getMessage());
             }
