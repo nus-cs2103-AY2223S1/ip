@@ -17,7 +17,6 @@ public class Parser {
         String[] words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
         while (!(words.length == 1 && words[0].equals("bye"))) {
             if (words.length > 0) {
-                currWordIndex = 1;
                 try {
                     if (words.length == 1 && words[0].equals("list")) {
                         TaskList.listTasks(); //could put words.length == 1 cases all here
@@ -53,6 +52,7 @@ public class Parser {
      * @throws IllegalArgumentException If words specifies an empty description
      */
     public static String getDescription(String[] words, String stop) {
+        currWordIndex = 1;
         StringBuilder descBuilder = new StringBuilder();
         boolean emptyDesc = true;
 
@@ -112,7 +112,7 @@ public class Parser {
         int taskNumber = 0;
 
         try {
-            taskNumber = (words.length == 2) ? Integer.parseInt(words[currWordIndex]) : 0;
+            taskNumber = (words.length == 2) ? Integer.parseInt(words[1]) : 0;
             if (taskNumber <= 0 || taskNumber > TaskList.getTaskCount()) {
                 throw new IllegalArgumentException();
             }
