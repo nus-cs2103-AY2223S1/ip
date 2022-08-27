@@ -50,7 +50,6 @@ public class TaskList {
         System.out.println(" " + task);
     }
 
-
     public void list() {
         System.out.println("This is your tasks in your list: \n");
         for (Task item : lst) {
