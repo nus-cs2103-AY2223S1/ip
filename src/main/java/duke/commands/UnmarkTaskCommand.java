@@ -36,7 +36,7 @@ public class UnmarkTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         // Retrieve the task index (1-indexed) to mark the task as undone
         if (this.arguments.length() == 0) {
             throw new DukeException(UnmarkTaskCommand.ERROR_MISSING_TASK_INDEX);
@@ -51,6 +51,6 @@ public class UnmarkTaskCommand implements Command {
         Task task = taskManager.get(taskNumber);
         task.markAsUndone();
         Task updatedTask = taskManager.update(taskNumber, task);
-        uiManager.print(String.format("%s\n\t%s", UnmarkTaskCommand.MESSAGE_MARK_TASK_AS_UNDONE, updatedTask));
+        return String.format("%s\n\t%s", UnmarkTaskCommand.MESSAGE_MARK_TASK_AS_UNDONE, updatedTask);
     }
 }

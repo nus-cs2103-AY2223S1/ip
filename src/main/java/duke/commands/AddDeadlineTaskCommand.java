@@ -47,7 +47,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         Matcher matcher = AddDeadlineTaskCommand.MATCH_DEADLINE_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
             throw new DukeException(AddDeadlineTaskCommand.ERROR_INVALID_DEADLINE_TASK);
@@ -56,6 +56,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
         String description = matcher.group("taskDescription").strip();
         String datelineString = matcher.group("taskDeadline").strip();
         LocalDate dateline = DukeValidator.parseDate(datelineString);
-        uiManager.print(this.addTask(taskManager, () -> new Deadline(description, dateline)));
+
+        return this.addTask(taskManager, () -> new Deadline(description, dateline));
     }
 }

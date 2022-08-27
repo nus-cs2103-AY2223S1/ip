@@ -39,7 +39,7 @@ public class DeleteTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         // Retrieve the task index (1-indexed) to delete the task
         if (this.arguments.length() == 0) {
             throw new DukeException(DeleteTaskCommand.ERROR_MISSING_TASK_INDEX);
@@ -58,11 +58,11 @@ public class DeleteTaskCommand implements Command {
             throw new DukeException(DeleteTaskCommand.ERROR_TASK_NUMBER_IS_INVALID);
         }
 
-        uiManager.print(String.format(
+        return String.format(
                 "%s\n\t%s\n%s",
                 DeleteTaskCommand.MESSAGE_DELETE_TASK,
                 task,
                 taskManager.getStatus()
-        ));
+        );
     }
 }

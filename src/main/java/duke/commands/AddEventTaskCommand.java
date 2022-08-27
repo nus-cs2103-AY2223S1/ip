@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 import duke.models.task.Event;
 import duke.utils.DukeValidator;
 
@@ -45,7 +44,7 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         Matcher matcher = AddEventTaskCommand.MATCH_EVENT_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
             throw new DukeException(AddEventTaskCommand.ERROR_INVALID_EVENT_TASK);
@@ -53,6 +52,6 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
         String description = matcher.group("taskDescription").strip();
         String dateString = matcher.group("taskDate").strip();
         LocalDate date = DukeValidator.parseDate(dateString);
-        uiManager.print(this.addTask(taskManager, () -> new Event(description, date)));
+        return this.addTask(taskManager, () -> new Event(description, date));
     }
 }
