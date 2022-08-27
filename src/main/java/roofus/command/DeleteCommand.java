@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         try {
             if (index > taskList.length() || index < 1) {
@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
             ui.printErrMessage(err.getMessage());
         }
         taskList.delete(index);
-        ui.delete(taskList.getTask(index - 1).toString(),
+        return ui.delete(taskList.getTask(index - 1).toString(),
                 taskList.length());
     }
 

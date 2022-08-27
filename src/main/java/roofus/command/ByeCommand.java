@@ -15,14 +15,15 @@ public class ByeCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
-        ui.signOff();
         try {
             storage.save(taskList);
         } catch (IOException err) {
-            ui.printErrMessage("file not saved");
+            return ui.printErrMessage("file not saved") + "\n" 
+                    + ui.signOff();
         }
+        return ui.signOff();
     }
 
     /**

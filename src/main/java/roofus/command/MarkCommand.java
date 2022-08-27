@@ -20,16 +20,16 @@ public class MarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         try {
             if (index > taskList.length() || index < 1) {
                 throw new RoofusException("Hey! It's not even in this list!");
             }
             taskList.mark(index);
-            ui.mark(taskList.getTask(index - 1));
+            return ui.mark(taskList.getTask(index - 1));
         } catch (RoofusException err) {
-            ui.printErrMessage(err.getMessage());
+            return ui.printErrMessage(err.getMessage());
         }
     }
 

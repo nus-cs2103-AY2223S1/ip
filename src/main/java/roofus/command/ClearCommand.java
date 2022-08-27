@@ -14,10 +14,10 @@ public class ClearCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         taskList.clearStorage();
-        ui.clearStorage();
+        return ui.clearStorage();
     }
 
     /**

@@ -20,7 +20,7 @@ public class UnmarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         try {
             if (index > taskList.length() || index < 1) {
@@ -30,7 +30,7 @@ public class UnmarkCommand extends Command {
             ui.printErrMessage(err.getMessage());
         }
         taskList.unMark(index);
-        ui.unmark(taskList.getTask(index - 1));
+        return ui.unmark(taskList.getTask(index - 1));
     }
 
     /**

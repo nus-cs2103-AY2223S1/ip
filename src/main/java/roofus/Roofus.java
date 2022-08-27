@@ -4,11 +4,6 @@ import java.io.FileNotFoundException;
 
 import roofus.command.Command;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
 /**
  * Roofus is a Personal Assistant Chatbot that
  * helps a person to keep track of various things.
@@ -17,7 +12,7 @@ import javafx.stage.Stage;
  * @version 0.1
  * @since 2022-08-13
  */
-public class Roofus extends Application {
+public class Roofus {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -26,60 +21,32 @@ public class Roofus extends Application {
      * Constructs an instance of Roofus with
      * Ui, Storage and TaskList instance.
      *
-     * @param storagePath File path to storage file.
      * @see Ui
      * @see Storage
      * @see TaskList
      */
-    public Roofus(String storagePath) {
-        this.storage = new Storage(storagePath);
+    public Roofus() {
+        this.storage = new Storage(System.getProperty("user.home")
+                + "/data/roofus.txt");
         this.ui = new Ui();
         try {
             this.taskList = new TaskList(this.storage.load());
         } catch (FileNotFoundException err) {
-            ui.printErrMessage("Required file not found\nRoofus did not load storage data");
+            ui.printErrMessage("Required file not found\n" +
+                    "Roofus did not load storage data");
         }
-    }
-    
-    public Roofus(){};
-
-    /**
-     * Starts Roofus
-     */
-    public void run() {
-        ui.greet();
-        boolean isRunning = true;
-        while (isRunning) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, storage, ui);
-                isRunning = c.isRunning();
-            } catch (RoofusException err) {
-                ui.printErrMessage(err.getMessage());
-            }
-            if (!isRunning) {
-                break;
-            }
-        }
-    }
-    
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
     }
 
     /**
-     * Initialises storage files and directories
-     *
-     * @param args
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public static void main(String[] args) {
-        new Roofus(System.getProperty("user.home")
-                + "/data/roofus.txt").run();
+    public String getResponse(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return c.execute(taskList, storage, ui);
+        } catch (RoofusException err) {
+            return ui.printErrMessage(err.getMessage());
+        }
     }
 }
