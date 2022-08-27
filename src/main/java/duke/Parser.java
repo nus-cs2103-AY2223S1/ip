@@ -38,10 +38,10 @@ public class Parser {
 
     protected static String formatDate(String desc) {
         int index = desc.indexOf('/');
-        if (index > 0) {
+        /*if (index > 0) {
             return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-mm-dd")).
                     format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        }
+        }*/
         return desc;
     }
 

@@ -23,9 +23,9 @@ public class Deadline extends Task {
 
     private LocalDate getDue(String desc) {
         int index = desc.indexOf('/');
-        if (index > 0) {
-            return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-mm-dd"));
-        }
+        /*if (index > 0) {
+            return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        }*/
         return LocalDate.now();
     }
 
