@@ -8,6 +8,7 @@ public class Todo extends Task {
     private String name;
     private String type;
     private String status;
+    private Duke duke = new Duke();
 
     /**
      * Constructs a todo task.
@@ -64,7 +65,7 @@ public class Todo extends Task {
      */
     public void print() {
         System.out.println(Ui.ADD_TASK_HEADER + this.toString()
-                + " Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.LINE + "\n");
+                + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
     /**

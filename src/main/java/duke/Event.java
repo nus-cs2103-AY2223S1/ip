@@ -12,6 +12,7 @@ public class Event extends Task {
     private String type;
     private String status;
     private LocalDateTime time;
+    private Duke duke = new Duke();
 
     /**
      * Constructs an event.
@@ -40,7 +41,7 @@ public class Event extends Task {
      */
     public void print() {
         System.out.println(Ui.ADD_TASK_HEADER + this.toString() + " Now you have "
-                + Duke.count + " tasks in the list." + "\n" + Duke.LINE + "\n");
+                + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
     /**
@@ -99,7 +100,7 @@ public class Event extends Task {
                 + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 
-    private String formatDateString (LocalDateTime date){
+    private String formatDateString(LocalDateTime date) {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
     }
 

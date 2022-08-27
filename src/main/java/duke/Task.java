@@ -11,6 +11,7 @@ public class Task {
     private String type;
     private String name;
     private LocalDateTime time;
+    private Duke duke = new Duke();
 
     /**
      * Constructs a task.
@@ -79,8 +80,8 @@ public class Task {
     public void print() {
         TaskList t = new TaskList();
         System.out.println(Duke.LINE);
-        for (int i = 0, j = 1; i < Duke.count; i++, j++) {
-            System.out.println(j + ". " + t.getList().get(i).status + t.getList().get(i).name );
+        for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
+            System.out.println(j + ". " + t.getList().get(i).status + t.getList().get(i).name);
         }
         System.out.println(Duke.LINE + "\n");
     }

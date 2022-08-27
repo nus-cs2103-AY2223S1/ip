@@ -12,6 +12,7 @@ public class Deadline extends Task {
     private String type;
     private String status;
     private LocalDateTime time;
+    private Duke duke = new Duke();
 
     /**
      * Constructs a task with deadline.
@@ -40,14 +41,14 @@ public class Deadline extends Task {
      */
     public void print() {
         System.out.println(Ui.ADD_TASK_HEADER + this.toString()
-                + " Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.LINE + "\n");
+                + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
     /**
      * Prints the description of the deadline task.
      */
     public void list() {
-        System.out.println(this.type + this.status + " " + this.name + "(by: " + formatDateString(this.time) + ")" );
+        System.out.println(this.type + this.status + " " + this.name + "(by: " + formatDateString(this.time) + ")");
     }
 
     /**

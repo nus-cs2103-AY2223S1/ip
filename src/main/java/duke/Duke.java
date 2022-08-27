@@ -8,11 +8,11 @@ import java.io.File;
 public class Duke {
 
     public static final String LINE = "____________________________________________________________";
-    public static int count = 0;
+    private static int count = 0;
     private Storage storage;
     private TaskList tasklist;
     private Ui ui;
-    private  Parser parser;
+    private Parser parser;
 
     /**
      * Constructs a Duke bot.
@@ -38,6 +38,36 @@ public class Duke {
     public void run() {
         storage.load_task(new File("duke.txt"));
         parser.respond();
+    }
+
+    /**
+     * Gets the total number of tasks.
+     * @return the total number of tasks.
+     */
+    public int getCount() {
+        return Duke.count;
+    }
+
+    /**
+     * Adds the count of the tasks.
+     */
+    public void addCount() {
+        Duke.count++;
+    }
+
+    /**
+     * Minus the count of the tasks.
+     */
+    public void minusCount() {
+        Duke.count--;
+    }
+
+    /**
+     * Sets count as specified.
+     * @param count the count to be updated.
+     */
+    public void setCount(int count) {
+        Duke.count = count;
     }
 
     public static void main(String[] args) {

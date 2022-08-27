@@ -1,8 +1,8 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the Todo Class.
@@ -15,6 +15,6 @@ public class TodoTest {
     @Test
     public void toStringTest() {
         Todo todo = new Todo("picnic");
-       assertEquals("[T][ ] picnic" + "\n", todo.toString());
+        assertEquals("[T][ ] picnic" + "\n", todo.toString());
     }
 }

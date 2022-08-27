@@ -1,5 +1,2 @@
-[T][ ]                    kk
-[T][X]                     picnic
-[T][ ] read book
-[T][ ] bok
-[T][ ] book
+[T][ ]                         kk
+[T][ ]  list

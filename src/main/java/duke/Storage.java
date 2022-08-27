@@ -2,9 +2,9 @@ package duke;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -14,6 +14,7 @@ public class Storage {
 
     private String filepath;
     private File file;
+    private Duke duke = new Duke();
 
     /**
      * Constructs a storage space.
@@ -31,8 +32,8 @@ public class Storage {
      * @param file the file to be load.
      */
     public void load_task(File file) {
-            System.out.println("Loading tasks...");
-            load_initial(file);
+        System.out.println("Loading tasks...");
+        load_initial(file);
     }
 
     private void load_initial(File file) {
@@ -59,7 +60,7 @@ public class Storage {
                 throw new RuntimeException(e);
             }
             tl.getList().add(stringToTask(st));
-            Duke.count++;
+            duke.addCount();
             System.out.println(st);
         }
     }
@@ -72,7 +73,7 @@ public class Storage {
      */
     public TaskList load(File file) {
         TaskList tl = new TaskList();
-        Duke.count = 0;
+        duke.setCount(0);
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -89,7 +90,7 @@ public class Storage {
                 throw new RuntimeException(e);
             }
             tl.getList().add(stringToTask(st));
-            Duke.count++;
+            duke.addCount();
         }
         return tl;
     }
@@ -158,7 +159,7 @@ public class Storage {
             String name = s.substring(6, firstDateIndex);
             String date = s.substring(firstDateIndex + 5, lastDateIndex);
             Parser p = new Parser();
-            task = new Deadline(name,p.parseFileString(date));
+            task = new Deadline(name, p.parseFileString(date));
         }
         if (done == 'X') {
             task.setStatus("[X]");

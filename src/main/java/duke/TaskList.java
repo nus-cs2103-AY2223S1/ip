@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class TaskList {
 
     private ArrayList<Task> list;
+    private Duke duke = new Duke();
 
     /**
      * Constructs a task list.
@@ -54,7 +55,7 @@ public class TaskList {
     public void delete(TaskList list, Task task, int index) {
         list.getList().remove(index);
         System.out.println(Ui.DELETE_HEADER + task.toString()
-                + "Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.LINE);
+                + "Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE);
     }
 
     /**
@@ -62,7 +63,7 @@ public class TaskList {
      */
     public void list() {
         System.out.println(Ui.TASK_LIST_HEADER);
-        for (int i = 0, j = 1; i < Duke.count; i++, j++) {
+        for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
             System.out.print(j + ". ");
             list.get(i).list();
         }
@@ -76,8 +77,8 @@ public class TaskList {
      * @param index the index of the task to be marked.
      */
     public void mark(TaskList list, int index) {
-        System.out.println(Ui.MARK_HEADER + "[X] " + list.getList().get(index-1).description());
-        list.getList().get(index-1).setStatus("[X]");
+        System.out.println(Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).description());
+        list.getList().get(index - 1).setStatus("[X]");
     }
 
     /**
@@ -87,8 +88,8 @@ public class TaskList {
      * @param index the index of the task to be unmarked.
      */
     public void unmark(TaskList list, int index) {
-        System.out.println(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index-1).description());
-        list.getList().get(index-1).setStatus("[ ]");
+        System.out.println(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).description());
+        list.getList().get(index - 1).setStatus("[ ]");
     }
 
     /**
@@ -101,11 +102,11 @@ public class TaskList {
         System.out.println(Ui.FIND_HEADER);
         Task task = null;
         int find = 1;
-        for (int i = 0; i < Duke.count; i++) {
+        for (int i = 0; i < duke.getCount(); i++) {
             task = list.get(i);
             String finding = task.getName();
             if (finding.contains(keyword)) {
-                System.out.println(find++ +"." + task.toString());
+                System.out.println(find++ + "." + task.toString());
             }
         }
         System.out.println(Duke.LINE);
