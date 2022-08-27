@@ -47,6 +47,17 @@ public class Ui {
         System.out.println(list + LINE);
     }
 
+    public void showFilteredList(Tasklist tasks, int index) {
+        String list = LINE + "\n" + "Here are the matching tasks in your list: \n";
+        for (int i = 0; i < index; i++) {
+            list += i + 1;
+            list += ". ";
+            list += tasks.getTasks().get(i).toString();
+            list += "\n";
+        }
+        System.out.println(list + LINE);
+    }
+
     public void showTodo(Todo todo, int index) {
         System.out.println(todo.addString(index));
     }

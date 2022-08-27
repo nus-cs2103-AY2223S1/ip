@@ -16,6 +16,7 @@ public class Parser {
      * @param input
      * @return True if task is of type event, false if it is not.
      */
+
     public boolean isEvent(String input) {
         return input.startsWith("event");
     }
@@ -35,6 +36,7 @@ public class Parser {
      * @param input
      * @return True if input begins with "mark".
      */
+
     public boolean isMark(String input) {
         return input.startsWith("mark");
     }
@@ -45,6 +47,7 @@ public class Parser {
      * @param input
      * @return True if input begins with "unmark".
      */
+
     public boolean isUnmark(String input) {
         return input.startsWith("unmark");
     }
@@ -54,6 +57,7 @@ public class Parser {
      * @param input
      * @return True if input begins with "delete".
      */
+
     public boolean isDelete(String input) {
         return input.startsWith("delete");
     }
@@ -63,6 +67,7 @@ public class Parser {
      * @param input
      * @return True if input begins with "bye".
      */
+
     public boolean isBye(String input) {
         return input.startsWith("bye");
     }
@@ -76,4 +81,7 @@ public class Parser {
         return input.startsWith("list");
     }
 
+    public boolean isFind(String input) {
+        return input.startsWith("find");
+    }
 }
