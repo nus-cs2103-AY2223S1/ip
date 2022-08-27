@@ -88,9 +88,27 @@ public class TaskList {
     }
 
     /**
-     * Returns an array of strings containing every task in blob.storage format.
+     * Returns an array of strings containing tasks that match the input keyword.
      *
-     * @return An array of strings containing every task in blob.storage format.
+     * @param keyword The input keyword.
+     * @return An array of strings containing tasks that match the input keyword.
+     */
+    public String[] findTasks(String keyword) {
+        ArrayList<String> tasks = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            List<String> deconstructedDescription = Arrays.asList(task.description.split("\\s+"));
+            if (deconstructedDescription.contains(keyword)) {
+                tasks.add(String.format("%d. %s", i + 1, taskList.get(i).toString()));
+            }
+        }
+        return tasks.toArray(new String[0]);
+    }
+
+    /**
+     * Returns an array of strings containing every task in storage format.
+     *
+     * @return An array of strings containing every task in storage format.
      */
     public String[] listTasksInStorageFormat() {
         String[] tasks = new String[taskList.size()];

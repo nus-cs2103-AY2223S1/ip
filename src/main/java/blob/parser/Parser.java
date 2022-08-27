@@ -58,6 +58,9 @@ public class Parser {
         case UNMARK:
             return parseUnmark(deconstructedInput);
 
+        case FIND:
+            return parseFind(deconstructedInput);
+
         case BYE:
             return new ByeCommand();
 
@@ -177,6 +180,15 @@ public class Parser {
         } catch (NumberFormatException exception) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
         }
+    }
+
+    private Command parseFind(String[] deconstructedInput) {
+        if (deconstructedInput.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_FIND_KEYWORD,
+                    Messages.MESSAGE_USAGE_FIND_COMMAND);
+        }
+
+        return new FindCommand(deconstructedInput[1]);
     }
 
 }
