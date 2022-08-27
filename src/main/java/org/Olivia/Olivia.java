@@ -4,10 +4,7 @@ import org.Olivia.IO.FileHandler;
 import org.Olivia.IO.UiHandler;
 import org.Olivia.calendar.Calendar;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-public class Duke {
+public class Olivia {
     public static void main(String[] args) {
         //each worker is attached to a calendar table to work on and an IO_handler to handle IO
         //this design would allow the program to handle multi-user with multi-input-source case (with multi-thread)
