@@ -11,8 +11,8 @@ public class ExitCommand extends Command {
     /**
      * Executes the ExitCommand to terminate Duke.
      * 
-     * @param tasks   TaskList.
-     * @param ui      Ui that displays success or error to user.
+     * @param tasks TaskList.
+     * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override

@@ -18,10 +18,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + eventTime.format(DateTimeFormatter.ofPattern("dd MMM yy")) + ")";
+        return "[E]" + super.toString() + " (at: "
+                + eventTime.format(DateTimeFormatter.ofPattern("dd MMM yy")) + ")";
     }
 
     public String toDbString() {
-        return "E" + " | " + super.toDbString() + " | " + eventTime.format(DateTimeFormatter.ofPattern("dd MMM yy"));
+        return "E" + " | " + super.toDbString() + " | "
+                + eventTime.format(DateTimeFormatter.ofPattern("dd MMM yy"));
     }
 }

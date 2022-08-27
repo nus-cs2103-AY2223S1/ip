@@ -22,8 +22,8 @@ public class UnmarkCommand extends Command {
     /**
      * Executes the UnmarkCommand to mark a Task as undone.
      * 
-     * @param tasks   TaskList containing task to be marked as undone.
-     * @param ui      Ui that displays success or error to user.
+     * @param tasks TaskList containing task to be marked as undone.
+     * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override

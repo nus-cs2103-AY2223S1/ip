@@ -21,9 +21,9 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand.
      * 
-     * @param taskType    TaskType of the task to be added.
+     * @param taskType TaskType of the task to be added.
      * @param description Description of the task to be added.
-     * @param taskDate    Date of the task to be added.
+     * @param taskDate Date of the task to be added.
      */
     public AddCommand(TaskType taskType, String description, LocalDate taskDate) {
         this.taskType = taskType;
@@ -34,8 +34,8 @@ public class AddCommand extends Command {
     /**
      * Executes the AddCommand to add a Task into the list.
      * 
-     * @param tasks   TaskList that task will be added to.
-     * @param ui      Ui that displays success or error to user.
+     * @param tasks TaskList that task will be added to.
+     * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override

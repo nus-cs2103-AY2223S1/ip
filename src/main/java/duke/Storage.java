@@ -27,8 +27,7 @@ public class Storage {
      * Loads tasks from duke.txt file.
      * 
      * @return
-     * @throws DukeException If duke.txt was not found or if there was an error
-     *                       during processing.
+     * @throws DukeException If duke.txt was not found or if there was an error during processing.
      */
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();

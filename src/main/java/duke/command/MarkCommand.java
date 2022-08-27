@@ -22,8 +22,8 @@ public class MarkCommand extends Command {
     /**
      * Executes the MarkCommand to mark a Task as done.
      * 
-     * @param tasks   TaskList containing task to be marked as done.
-     * @param ui      Ui that displays success or error to user.
+     * @param tasks TaskList containing task to be marked as done.
+     * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
      */
     @Override

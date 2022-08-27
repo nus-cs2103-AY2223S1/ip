@@ -18,10 +18,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline.format(DateTimeFormatter.ofPattern("dd MMM yy")) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + deadline.format(DateTimeFormatter.ofPattern("dd MMM yy")) + ")";
     }
 
     public String toDbString() {
-        return "D" + " | " + super.toDbString() + " | " + deadline.format(DateTimeFormatter.ofPattern("dd MMM yy"));
+        return "D" + " | " + super.toDbString() + " | "
+                + deadline.format(DateTimeFormatter.ofPattern("dd MMM yy"));
     }
 }
