@@ -1,7 +1,7 @@
 package duke.exception;
 
-import duke.Parser;
 import duke.command.Action;
+import duke.util.Parser;
 
 /**
  * The DukeException that the user enters incorrect arguments to a Duke Action.

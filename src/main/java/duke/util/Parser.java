@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,7 +34,7 @@ public class Parser {
      * @param str2 The whole String
      * @return The Arraylist of all beginning indices of target in the whole String.
      */
-    public static ArrayList<Integer> getIndicesOfStr1InStr2(String str1, String str2) {
+    private static ArrayList<Integer> getIndicesOfStr1InStr2(String str1, String str2) {
         int len1 = str1.length();
         int len2 = str2.length();
 
@@ -64,7 +64,7 @@ public class Parser {
      * @param string The given formatted String.
      * @return The Arraylist of String separated as attributes from the given formatted String.
      */
-    public static ArrayList<String> separateAttributes(String string) {
+    private static ArrayList<String> separateAttributes(String string) {
         ArrayList<String> result = new ArrayList<>();
         Arrays.stream(string.split(ATTRIBUTE_SEPARATOR)).forEach(s -> result.add(s.trim()));
         return result;
@@ -288,7 +288,8 @@ public class Parser {
      */
     public static TaskList parseTaskList(String formattedString) {
         TaskList result = new TaskList();
-        Arrays.stream(formattedString.split(System.lineSeparator()))
+        String[] rows = formattedString.split(System.lineSeparator());
+        Arrays.stream(rows)
                 .filter(s -> !s.trim().equals(""))
                 .map(s -> s.trim())
                 .map(s -> Parser.parseTask(s))

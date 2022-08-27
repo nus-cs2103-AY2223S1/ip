@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.MessagePrinter;
-import duke.Storage;
-import duke.TaskList;
 import duke.task.Task;
+import duke.util.MessagePrinter;
+import duke.util.Storage;
+import duke.util.TaskList;
 
 /**
  * Represents a Command to mark a Task not done in Duke.

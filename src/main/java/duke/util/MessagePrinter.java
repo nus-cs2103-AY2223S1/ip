@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -71,32 +71,8 @@ public class MessagePrinter {
     }
 
     /**
-     * The default constructor of the MessagePrinter.
-     */
-    public MessagePrinter() {
-        int defaultIndentationLevel = 3;
-        int defaultHorizontalLineLength = 50;
-        char defaultHorizontalLineSymbol = '-';
-        setIndentationLevel(defaultIndentationLevel);
-        setHorizontalLineLength(defaultHorizontalLineLength);
-        setHorizontalLineSymbol(defaultHorizontalLineSymbol);
-    }
-
-    /**
-     * The constructor to customize the behavior of the Message Printer.
-     * @param indentationLevel The indentation level of the Message Printer.
-     * @param horizontalLineLength The horizontal line length of the Message Printer.
-     * @param horizontalLineSymbol The symbol of horizontal line of the Message Printer.
-     */
-    public MessagePrinter(int indentationLevel, int horizontalLineLength, char horizontalLineSymbol) {
-        setIndentationLevel(indentationLevel);
-        setHorizontalLineLength(horizontalLineLength);
-        setHorizontalLineSymbol(horizontalLineSymbol);
-    }
-
-    /**
      * Returns the indentation in String.
-     * @return The the indentation in String.
+     * @return The indentation in String.
      */
     private String getIndentation() {
         return Stream.generate(() -> " ").limit(this.indentationLevel).reduce("", (x, y) -> x + y);

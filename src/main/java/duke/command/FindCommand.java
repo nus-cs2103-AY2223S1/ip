@@ -2,9 +2,9 @@ package duke.command;
 
 import java.util.stream.Stream;
 
-import duke.MessagePrinter;
-import duke.Storage;
-import duke.TaskList;
+import duke.util.MessagePrinter;
+import duke.util.Storage;
+import duke.util.TaskList;
 
 /**
  * Represents a Command to find Tasks with given information.

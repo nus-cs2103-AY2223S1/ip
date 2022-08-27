@@ -7,6 +7,10 @@ import java.util.function.Consumer;
 import duke.command.Action;
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.util.MessagePrinter;
+import duke.util.Parser;
+import duke.util.Storage;
+import duke.util.TaskList;
 
 
 /**
@@ -15,7 +19,7 @@ import duke.exception.DukeException;
 public class Duke {
     private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
     private boolean isTerminated;
-    private final duke.MessagePrinter messagePrinter;
+    private final MessagePrinter messagePrinter;
     private final TaskList tasks;
     private final Storage storage;
 

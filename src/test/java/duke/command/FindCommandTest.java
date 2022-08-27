@@ -1,9 +1,7 @@
 package duke.command;
 
-import duke.Duke;
-import duke.Parser;
-import duke.Storage;
-import duke.TaskList;
+import duke.util.Parser;
+import duke.util.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

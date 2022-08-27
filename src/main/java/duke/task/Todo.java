@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.Parser;
+import duke.util.Parser;
 
 /**
  * Represents Todo tasks.

@@ -3,7 +3,7 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
-import duke.Parser;
+import duke.util.Parser;
 
 /**
  * Represents Deadline tasks.

@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.MessagePrinter;
-import duke.Storage;
-import duke.TaskList;
+import duke.util.MessagePrinter;
+import duke.util.Storage;
+import duke.util.TaskList;
 
 /**
  * Represents a Command to save Tasks to Storage in Duke.
