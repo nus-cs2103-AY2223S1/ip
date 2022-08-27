@@ -11,4 +11,5 @@ list
 7/07/2007
 Jul 07 2007
 todo dinner
+find dinner
 bye

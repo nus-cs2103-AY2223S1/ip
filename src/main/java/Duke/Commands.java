@@ -70,7 +70,7 @@ public class Commands {
         ui.printSummary(taskList.size());
     }
 
-    public void search(String input) {
+    public void searchDate(String input) {
         ArrayList<Task> matched = new ArrayList<>();
         for(Task t: taskList.listTasks()) {
             String str = t.toString();
@@ -80,6 +80,22 @@ public class Commands {
         }
         if (matched.isEmpty()) {
             ui.notFound();
+        } else {
+            ui.printMatchedTasks(matched);
+        }
+    }
+
+    public void searchName(String input) {
+        String[] parts = input.split(" ", 2);
+        ArrayList<Task> matched = new ArrayList<>();
+        for(Task t: taskList.listTasks()) {
+            String str = t.toString();
+            if (str.contains(parts[1])) {
+                matched.add(t);
+            }
+        }
+        if (matched.isEmpty()) {
+            ui.nameNotFound();
         } else {
             ui.printMatchedTasks(matched);
         }
