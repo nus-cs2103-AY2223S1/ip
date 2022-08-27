@@ -26,8 +26,7 @@ public class ParserTest {
     @Test
     public void parse_emptyInput_returnsIncorrect() {
         final String[] emptyInputs = { "", "  ", "\n  \n" };
-        final String resultMessage = String.format(
-                "Please enter a command");
+        final String resultMessage = "Please enter a command";
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
     }
 
@@ -47,6 +46,7 @@ public class ParserTest {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends BaseCommand> T parseAndAssertCommandType(
             String input, Class<T> expectedCommandClass) {
         BaseCommand result;
