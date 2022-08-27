@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -40,6 +41,22 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Detect if the user clicks up and down arrow keys for command history navigation.
+        userInput.setOnKeyPressed(event -> {
+            String commandToBeChangedTo = null;
+            KeyCode keyCode = event.getCode();
+            if (keyCode.equals(KeyCode.UP) || keyCode.equals(KeyCode.KP_UP)) {
+                commandToBeChangedTo = duke.getPreviousCommand();
+            } else if (keyCode.equals(KeyCode.DOWN) || keyCode.equals(KeyCode.KP_DOWN)) {
+                commandToBeChangedTo = duke.getNextCommand();
+            }
+            if (commandToBeChangedTo != null) {
+                userInput.setText(commandToBeChangedTo);
+                // Change caret / cursor position.
+                userInput.positionCaret(commandToBeChangedTo.length());
+            }
+        });
     }
 
     /**

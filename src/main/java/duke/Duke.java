@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import duke.commands.Command;
 import duke.commands.CommandResult;
@@ -18,6 +19,10 @@ public class Duke {
     private final Parser parser;
     private final Storage storage;
     private final TaskList tasks;
+    /* Index of current command history location. */
+    private int commandsHistoryPointer;
+    /* History of commands. */
+    private final ArrayList<String> commandsHistory;
 
     /**
      * Constructor for a Duke application instance.
@@ -36,6 +41,40 @@ public class Duke {
             tasks = new TaskList();
         }
         this.tasks = tasks;
+        commandsHistoryPointer = 0;
+        commandsHistory = new ArrayList<>();
+    }
+
+    /**
+     * Gets the previous command and moves the pointer of the history up by 1.
+     * If history is empty, null is returned.
+     *
+     * @return Previous command or null.
+     */
+    public String getPreviousCommand() {
+        if (commandsHistory.isEmpty()) {
+            return null;
+        }
+        commandsHistoryPointer = Math.max(0, commandsHistoryPointer - 1);
+        return commandsHistory.get(commandsHistoryPointer);
+    }
+
+    /**
+     * Gets the next command and moves the pointer of the history down by 1.
+     * If history is empty, null is returned.
+     *
+     * @return Next command or null.
+     */
+    public String getNextCommand() {
+        if (commandsHistory.isEmpty()) {
+            return null;
+        }
+        commandsHistoryPointer = Math.min(commandsHistory.size(), commandsHistoryPointer + 1);
+        if (commandsHistoryPointer == commandsHistory.size()) {
+            // Pointing to new "empty" command.
+            return "";
+        }
+        return commandsHistory.get(commandsHistoryPointer);
     }
 
     /**
@@ -45,6 +84,10 @@ public class Duke {
      * @return Response from the Duke application.
      */
     public String getResponse(String input) {
+        commandsHistory.add(input);
+        // Set the command history pointer to point to the newest command.
+        commandsHistoryPointer = commandsHistory.size();
+
         try {
             Command command = parser.parseCommand(input);
             // Populate command with tasks.
