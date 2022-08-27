@@ -16,7 +16,6 @@ private TaskList taskList;
         this.storage = new Storage("data/blank.txt", "data/");
         this.ui = new Ui();
         taskList = new TaskList(null);
-
     }
 
     @Test

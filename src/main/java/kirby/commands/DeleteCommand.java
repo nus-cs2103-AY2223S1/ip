@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
      * @param inputString arguments of a command.
      */
     public DeleteCommand(String inputString) {
-        super(inputString);
+        this.inputString = inputString;
     }
 
     /**
