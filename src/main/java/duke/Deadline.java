@@ -6,7 +6,7 @@ import static duke.DukeConstants.KEY_SEPARATOR;
 
 public class Deadline extends Task {
 
-    protected LocalDate date;
+    private LocalDate date;
 
     /**
      * Takes in a description and deadline for the task

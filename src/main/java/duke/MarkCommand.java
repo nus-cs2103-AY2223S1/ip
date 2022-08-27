@@ -1,7 +1,7 @@
 package duke;
 
 public class MarkCommand extends Command {
-    int index;
+    private int index;
 
     public MarkCommand(int index) {
         this.index = index;

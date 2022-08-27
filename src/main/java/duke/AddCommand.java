@@ -1,7 +1,7 @@
 package duke;
 
 public class AddCommand extends Command {
-    Task task;
+    private Task task;
 
     public AddCommand(Task task) {
         this.task = task;

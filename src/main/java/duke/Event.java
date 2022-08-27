@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import static duke.DukeConstants.KEY_SEPARATOR;
 
 public class Event extends Task {
-    protected LocalDate at;
+    private LocalDate at;
     private String time;
 
     /**
@@ -42,6 +42,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.time + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + " " + this.time + ")";
     }
 }
