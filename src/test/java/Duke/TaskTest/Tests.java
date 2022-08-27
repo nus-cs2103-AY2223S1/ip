@@ -1,4 +1,4 @@
-package DukeTest.TaskTest;
+package Duke.TaskTest;
 import Duke.Deadline;
 import Duke.Event;
 import Duke.Todo;

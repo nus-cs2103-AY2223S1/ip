@@ -1,19 +1,33 @@
 package Duke;
 import java.util.ArrayList;
 
+/**
+ * Contains methods of the program
+ */
 public class Commands {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor of command that initialised ui and tasklist
+     */
     public Commands() {
         this.ui = new Ui();
         this.taskList = new TaskList();
     }
 
+    /**
+     * Prints out current list of tasks
+     */
     public void printList() {
         ui.listTask(taskList.listTasks());
     }
 
+    /**
+     * Mark a task as done using the task index
+     *
+     * @param input read task index
+     */
     public void markDone(String input) {
         System.out.println("Nice! I have marked this task as done:");
         int j = Integer.parseInt(input.substring(5)) - 1;
@@ -22,6 +36,11 @@ public class Commands {
         System.out.println(task.toString());
     }
 
+    /**
+     * Mark a task as not done using the task index
+     *
+     * @param input read task index
+     */
     public void unmark(String input) {
         System.out.println("This task is marked as not done:");
         int j = Integer.parseInt(input.substring(7)) - 1;
@@ -30,6 +49,11 @@ public class Commands {
         System.out.println(task.toString());
     }
 
+    /**
+     * Add a task to list and print the task out
+     *
+     * @param input read name of task
+     */
     public void todo(String input) {
         System.out.println("Got it, this task is added in your list:");
         Task todo = new Todo(input.substring(5));
@@ -38,6 +62,11 @@ public class Commands {
         ui.printSummary(taskList.size());
     }
 
+    /**
+     * Add a deadline task to list and print the task out
+     *
+     * @param input read name, time and date of task
+     */
     public void deadline(String input) {
         System.out.println("Got it, this task is added in your list:");
         String[] parts = input.split(" ");
@@ -49,6 +78,11 @@ public class Commands {
         ui.printSummary(taskList.size());
     }
 
+    /**
+     * Add an event task to list and print the task out
+     *
+     * @param input read name, time and date of task
+     */
     public void event(String input) {
         System.out.println("Got it, this task is added in your list:");
         String[] parts = input.split(" ");
@@ -61,6 +95,11 @@ public class Commands {
         ui.printSummary(taskList.size());
     }
 
+    /**
+     * Remove a task from list
+     *
+     * @param input read task index
+     */
     public void delete(String input) {
         System.out.println("Noted. I've removed this task:");
         int index = Integer.parseInt(input.substring(7)) - 1;
@@ -70,6 +109,11 @@ public class Commands {
         ui.printSummary(taskList.size());
     }
 
+    /**
+     * Search for task that matches the date inputted
+     *
+     * @param input read date
+     */
     public void search(String input) {
         ArrayList<Task> matched = new ArrayList<>();
         for(Task t: taskList.listTasks()) {
