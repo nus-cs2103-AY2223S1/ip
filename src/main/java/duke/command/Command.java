@@ -11,13 +11,14 @@ import duke.ui.Ui;
  * @author Kartikeya
  */
 public interface Command {
-  /**
-   * Executes the command action.
-   * @param itemList list of tasks
-   * @param ui ui interactions with user
-   * @param storage loading/saving from local storage
-   * @throws DukeException if input is erroneous
-   */
-  public abstract void execute(TaskList itemList, Ui ui, Storage storage)
-      throws DukeException;
+    /**
+     * Executes the command action.
+     *
+     * @param itemList list of tasks
+     * @param ui       ui interactions with user
+     * @param storage  loading/saving from local storage
+     * @throws DukeException if input is erroneous
+     */
+    public abstract void execute(TaskList itemList, Ui ui, Storage storage)
+            throws DukeException;
 }
