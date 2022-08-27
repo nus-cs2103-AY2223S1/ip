@@ -2,9 +2,6 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,194 +11,182 @@ import duke.task.Task;
  * Class that handles input and output between the user.
  */
 public class Ui {
-    public static final String DIVIDER = "    ____________________________________________________________";
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String PADDING = "  ";
-    private Scanner scanner;
 
     /**
-     * Constructor for Ui. Initialises input.
-     */
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
-
-    /**
-     * Reads user input.
+     * Returns formatted welcome message.
      *
-     * @return user input.
-     * @throws DukeException when error reading input.
+     * @return Welcome message.
      */
-    String readCommand() throws DukeException {
-        try {
-            return this.scanner.nextLine();
-        } catch (NoSuchElementException e) {
-            throw new DukeException("Can't read command!", e);
-        }
+    public static String getWelcomeMessage() {
+        return "Hello! I'm Duke.\n"
+                + "What can I do for you?";
     }
 
     /**
-     * Pads the text.
+     * Pads the text with 2 spaces.
      *
      * @param text text to pad.
      * @return Left padded text.
      */
-    String leftPad(String text) {
+    public static String leftPad(String text) {
         return PADDING + text;
     }
 
     /**
-     * Formats texts before displaying them to the user.
+     * Joins texts with new line and returns the result as a String.
      *
-     * @param texts texts to display to the user.
+     * @param texts Variable number of texts to display to ther user.
      */
-    public void formatAndPrint(List<? extends String> texts) {
-        System.out.println(DIVIDER);
-        texts.forEach((text) -> System.out.println(leftPad(leftPad(" " + text))));
-        System.out.println(DIVIDER);
+    public static String joinTextsWithNewLine(String... texts) {
+        return String.join("\n", texts);
     }
 
     /**
-     * Formats text before displaying it to the user.
+     * Joins texts with new line and returns the result as a String.
      *
-     * @param text text to display to ther user.
+     * @param texts List of number of texts to display to ther user.
      */
-    void formatAndPrint(String text) {
-        formatAndPrint(List.of(text));
+    public static String joinTextsWithNewLine(List<String> texts) {
+        return String.join("\n", texts);
     }
 
     /**
-     * Displays error message to the user.
+     * Formats and returns error message passed in.
      *
-     * @param errorMessage message to display.
+     * @param errorMessage Message to display.
+     * @return Formatted error message.
      */
-    void displayErrorMessage(String errorMessage) {
-        formatAndPrint("Error! " + errorMessage);
+    public static String getErrorMessage(String errorMessage) {
+        return "Error! " + errorMessage;
     }
 
     /**
-     * Displays welcome message to the user.
+     * Returns a list of tasks that is formatted by {@code formatTaskList}.
+     *
+     * @param tasks List of tasks.
+     * @return A single String consisting of an indexed list of tasks.
      */
-    void showWelcome() {
-        System.out.println("Hello from\n" + LOGO);
-        String[] messages = { "Hello! I'm Duke.", "What can I do for you?" };
-        formatAndPrint(List.<String>of(messages));
+    public static String getTaskListMessage(List<Task> tasks) {
+        List<String> toPrint = formatTaskList(tasks);
+        return joinTextsWithNewLine(toPrint);
     }
 
     /**
-     * Wrapper funtion for displaying update message.
+     * Returns a String consisting a list of tasks that is formatted by
+     * {@code formatTaskList} along with a search message. Will return an
+     * unsuccessful message if task list is empty.
      *
-     * @param task task that was added / deleted / updated.
-     * @param updateMessage message to display first.
+     * @param tasks List of tasks.
+     * @return A single String consisting of an indexed list of matched tasks.
+     */
+    public static String getTaskListSearchMessage(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            return "No task matched your query!";
+        }
+        return "Here is what I found:" + "\n"
+                + joinTextsWithNewLine(formatTaskList(tasks));
+    }
+
+    /**
+     * Returns an add task message.
+     *
+     * @param task Task that was added.
+     * @param taskListSize Size of {@code TaskList}.
+     * @return Add task message.
+     */
+    public static String getAddTaskMessage(Task task, int taskListSize) {
+        return getUpdateMessage(task, "Task added: ", taskListSize);
+    }
+
+    /**
+     * Returns a delete task message.
+     *
+     * @param task task that was deleted.
      * @param taskListSize size of TaskList.
+     * @return Delete task message.
      */
-    private void displayUpdateMessage(Task task, String updateMessage, Optional<Integer> taskListSize) {
+    public static String getDeleteTaskMessage(Task task, int taskListSize) {
+        return getUpdateMessage(task, "Task deleted: ", taskListSize);
+    }
+
+    /**
+     * Returns a mark task message.
+     *
+     * @param task Task that was marked.
+     * @return Mark task message;
+     */
+    public static String getMarkTaskMessage(Task task) {
+        return getUpdateMessage(task, "I have marked this task as done: ");
+    }
+
+    /**
+     * Returns an unmark task message.
+     *
+     * @param task Task that was unmarked.
+     * @return Unmark task message;
+     */
+    public static String displayUnmarkTaskMessage(Task task) {
+        return getUpdateMessage(task, "I have unmarked the completion of this task: ");
+    }
+
+    /**
+     * Returns an exit message.
+     *
+     * @return Exit message;
+     */
+    public static String getExitMessage() {
+        return "Bye bye!";
+    }
+
+    /**
+     * Returns an unknown command message.
+     *
+     * @param input unknown command text.
+     * @return Unknown command message;
+     */
+    public static String displayUnknownCommandMessage(String input) {
+        return "Unknown command: " + input;
+    };
+
+    /**
+     * Returns a String containing the {@code updateMessage} followed by the
+     * {@code task} in a separate line.
+     *
+     * @param task {@code Task} object to display in the message.
+     * @param updateMessage Message to display before the {@code Task} object.
+     * @return String containing {@updateMessage} and {@code Task}.
+     */
+    private static String getUpdateMessage(Task task, String updateMessage) {
         List<String> toPrint = new ArrayList<>();
         toPrint.add(updateMessage);
         toPrint.add(leftPad(task.toString()));
-        taskListSize.ifPresent((size) -> toPrint.add("There are now " + size + " tasks in the list."));
-        formatAndPrint(toPrint);
+        return joinTextsWithNewLine(toPrint);
+    }
+
+    /**
+     * Works just like {@link Ui#getUpdateMessage(Task, String)} except that there
+     * is another line for reporting of {@code taskListSize}.
+     *
+     * @see Ui#getUpdateMessage(Task, String)
+     */
+    private static String getUpdateMessage(Task task, String updateMessage, int taskListSize) {
+        return getUpdateMessage(task, updateMessage) + "\n"
+                + "There are now " + taskListSize + " tasks in the list.";
     }
 
     /**
      * Returns a list of strings corresponding to the task in the list.
      * Each string is prefixed with their corresponding index in the list.
      *
-     * @param tasks list of tasks.
-     *
+     * @param tasks List of tasks.
      * @return List of task Strings.
      */
-    List<String> formatTaskList(List<Task> tasks) {
+    private static List<String> formatTaskList(List<Task> tasks) {
         List<String> indexedList = IntStream.range(0,
                 tasks.size()).mapToObj((index) -> String.format("%d. %s", index + 1, tasks.get(index).toString()))
                 .collect(Collectors.toList());
         return indexedList;
     }
-
-    /**
-     * Displays a list of tasks that is formatted by {@code formatTaskList}.
-     *
-     * @param tasks list of tasks.
-     */
-    public void displayTaskList(List<Task> tasks) {
-        List<String> toPrint = formatTaskList(tasks);
-        formatAndPrint(toPrint);
-    }
-
-    /**
-     * Displays a list of tasks that is formatted by {@code formatTaskList} along
-     * with a search message. Will display a unsuccessful message if task list is
-     * empty.
-     *
-     * @param tasks list of tasks.
-     */
-    public void displayTaskListSearch(List<Task> tasks) {
-        if (tasks.isEmpty()) {
-            formatAndPrint("No task matched your query!");
-            return;
-        }
-        List<String> toPrint = new ArrayList<>();
-        toPrint.add("Here is what I found: ");
-        toPrint.addAll(formatTaskList(tasks));
-        formatAndPrint(toPrint);
-    }
-
-    /**
-     * Displays add task message.
-     *
-     * @param task task that was added.
-     * @param taskListSize size of TaskList.
-     */
-    public void displayAddTaskMessage(Task task, int taskListSize) {
-        displayUpdateMessage(task, "Task added: ", Optional.of(taskListSize));
-    }
-
-    /**
-     * Displays delete task message.
-     *
-     * @param task task that was deleted.
-     * @param taskListSize size of TaskList.
-     */
-    public void displayDeleteTaskMessage(Task task, int taskListSize) {
-        displayUpdateMessage(task, "Task deleted: ", Optional.of(taskListSize));
-    }
-
-    /**
-     * Displays mark task message.
-     *
-     * @param task task that was marked.
-     */
-    public void displayMarkTaskMessage(Task task) {
-        displayUpdateMessage(task, "I have marked this task as done: ", Optional.empty());
-    }
-
-    /**
-     * Displays unmark task message.
-     *
-     * @param task task that was unmarked.
-     */
-    public void displayUnmarkTaskMessage(Task task) {
-        displayUpdateMessage(task, "I have unmarked the completion of this task: ", Optional.empty());
-    }
-
-    /**
-     * Displays exit message.
-     */
-    public void displayExitMessage() {
-        formatAndPrint("Bye bye");
-    }
-
-    /**
-     * Displays unknown command message.
-     *
-     * @param input unknown command text.
-     */
-    public void displayUnknownCommandMessage(String input) {
-        formatAndPrint("Unknown command: " + input);
-    };
 
 }

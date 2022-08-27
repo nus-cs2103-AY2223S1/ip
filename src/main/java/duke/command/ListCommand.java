@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.Ui;
+
 /**
  * Command for listing Tasks.
  */
@@ -12,10 +14,11 @@ public class ListCommand extends Command {
     }
 
     /**
+     * {@inheritDoc}
      * Displays Tasks in TaskList.
      */
     @Override
-    public void execute() {
-        Command.ui.displayTaskList(Command.taskList.getTasks());
+    public String execute() {
+        return Ui.getTaskListMessage(Command.taskList.getTasks());
     }
 }

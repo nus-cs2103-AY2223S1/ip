@@ -2,40 +2,19 @@ package duke.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import duke.DukeException;
 import duke.StorageStub;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Task;
 import duke.task.Todo;
 
 public class CommandTest {
     private final StorageStub storageStub = new StorageStub(List.<Task>of());
     private final TaskList taskList = new TaskList();
-    private final Ui ui = new Ui();
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream orignalOut = System.out;
-
-    @BeforeEach
-    void setUp() {
-        System.setOut(new PrintStream(outContent));
-        Command.setStorage(storageStub);
-        Command.setTaskList(taskList);
-        Command.setUi(ui);
-    }
-
-    @AfterEach
-    void restore() {
-        System.setOut(orignalOut);
-    }
 
     @Test
     void execute_addCommand() throws DukeException {
@@ -51,54 +30,37 @@ public class CommandTest {
 
     @Test
     void execute_listCommand() throws DukeException {
-        String divider = "    ____________________________________________________________"
-                + System.lineSeparator();
+        Command.setTaskList(new TaskList(List.of()));
 
         Command command = new ListCommand();
-        command.execute();
+        String response = command.execute();
+        String expected = "";
 
-        String firstExpected = divider + divider;
-        assertEquals(firstExpected,
-                outContent.toString());
+        assertEquals("", response);
 
         Task todo = new Todo("Test task");
         Command.setTaskList(new TaskList(List.of(todo)));
-        command.execute();
+        response = command.execute();
 
-        String secondExpected = firstExpected
-                + divider
-                + "     1. " + todo.toString() + System.lineSeparator()
-                + divider;
-        assertEquals(secondExpected,
-                outContent.toString());
+        expected = "1. " + todo;
+        assertEquals(expected, response);
     }
 
     @Test
     void execute_findCommand() throws DukeException {
-        String divider = "    ____________________________________________________________"
-                + System.lineSeparator();
         Task todo = new Todo("Test task");
         Command.setTaskList(new TaskList(List.of(todo)));
 
         Command command = new FindCommand("Test");
-        command.execute();
+        String response = command.execute();
 
-        String firstExpected = divider
-                + "     Here is what I found: "
-                + System.lineSeparator()
-                + "     1. " + todo.toString() + System.lineSeparator()
-                + divider;
-        assertEquals(firstExpected,
-                outContent.toString());
+        String expected = "Here is what I found:" + "\n"
+                + "1. " + todo;
+        assertEquals(expected, response);
 
         command = new FindCommand("bad");
-        command.execute();
-        String secondExpected = firstExpected
-                + divider
-                + "     No task matched your query!" + System.lineSeparator()
-                + divider;
-        assertEquals(secondExpected,
-                outContent.toString());
-
+        response = command.execute();
+        expected = "No task matched your query!";
+        assertEquals(expected, response);
     }
 }

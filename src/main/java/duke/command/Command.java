@@ -3,25 +3,14 @@ package duke.command;
 import duke.DukeException;
 import duke.StorageInterface;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Abstract superclass that handles Commands given by user.
  */
 public abstract class Command {
-    protected static Ui ui;
     protected static TaskList taskList;
     protected static StorageInterface storage;
     protected boolean isExit;
-
-    /**
-     * Sets Ui object to be used for all Commands;
-     *
-     * @param ui Ui object to be used.
-     */
-    public static void setUi(Ui ui) {
-        Command.ui = ui;
-    }
 
     /**
      * Sets TaskList object to be used for all Commands;
@@ -53,8 +42,8 @@ public abstract class Command {
     /**
      * Executes Command.
      *
-     * @throws DukeException
-     *             Exception might occur when saving tasks to Storage.
+     * @return Return message of command.
+     * @throws DukeException Exception might occur when saving tasks to Storage.
      */
-    public abstract void execute() throws DukeException;
+    public abstract String execute() throws DukeException;
 }
