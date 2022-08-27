@@ -20,6 +20,20 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public String find(String keyword) {
+        String result = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.descriptionContains(keyword)) {
+                result += (i + 1) + "." + task;
+                if (i != tasks.size() - 1) {
+                    result += "\n";
+                }
+            }
+        }
+        return result;
+    }
+
     public String delete(int taskId) {
         Task task = tasks.get(taskId);
         tasks.remove(taskId);
