@@ -21,6 +21,12 @@ public class Parser {
 
         if (input.equals("list")) {
             return "list|";
+        } else if (segments[0].equals("find")) {
+            input = input.replace("find", "");
+            if (input.equals("")) {
+                throw new DukeException("The description of a todo cannot be empty.");
+            }
+            return "find|" + input.trim();
         } else if (segments[0].equals("mark")) {
             int taskId;
             if (segments[1].equals("")) {

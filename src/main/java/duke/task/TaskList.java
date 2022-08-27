@@ -70,4 +70,24 @@ public class TaskList {
         task.setIsDone(isDone);
         return task;
     }
+
+    /**
+     * Find tasks with user input.
+     * @param target The user input.
+     * @return The ArrayList of task with user input.
+     */
+    public ArrayList<Task> findMatchTasks(String target) {
+        ArrayList<Task> filtered = new ArrayList<>();
+        if (target.equals("")) {
+            return this.tasks;
+        }
+
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(target)) {
+                filtered.add(task);
+            }
+        }
+
+        return filtered;
+    }
 }
