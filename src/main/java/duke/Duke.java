@@ -3,8 +3,6 @@ package duke;
 import java.io.File;
 import java.io.IOException;
 
-
-
 /**
  *  duke.Duke Class
  *  The class which stores inputs and interacts with user
