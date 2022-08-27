@@ -15,7 +15,6 @@ public class Duke {
         }
     }
 
-
     public void run() throws IOException {
         Ui.sayGreeting();
         Scanner sc = new Scanner(System.in);
@@ -25,7 +24,6 @@ public class Duke {
             canQuit = Parser.parse(sc.nextLine(), tasks);
         }
     }
-
 
     /**
      * The main function.

@@ -16,7 +16,6 @@ public class TaskList {
         }
     }
 
-
     /**
      * Marks the specified task as done.
      *
@@ -32,7 +31,6 @@ public class TaskList {
         }
     }
 
-
     /**
      * Unmarks the specified task as not done.
      *
@@ -47,7 +45,6 @@ public class TaskList {
             throw new DukeException("Input a valid task index!");
         }
     }
-
 
     /**
      * Deletes the specified task.

@@ -33,7 +33,6 @@ public class Parser {
         }
     }
 
-
     public static boolean parse(String input, TaskList tasks) throws IOException {
         String[] arrOfInput = input.split(" ");
         String firstWord = arrOfInput[0];
@@ -82,14 +81,14 @@ public class Parser {
         return false;
     }
 
-
     /**
      * Creates a new task and adds it to the task list.
      *
      * @param firstWord the first word typed in by the user
      * @param strArray the array of strings of the words typed in by the user
      */
-    public static void createNewTask(String firstWord, String[] strArray, TaskList tasks) throws DukeException, IOException {
+    public static void createNewTask(String firstWord, String[] strArray, TaskList tasks)
+            throws DukeException, IOException {
         if ("todo".equals(firstWord)) {
             // throw exception if no word after to-do
             if (strArray.length < 2) {
@@ -123,7 +122,8 @@ public class Parser {
                 }
             }
             if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! Add again with /by followed by the deadline timing.");
+                throw new DukeException("This description needs a timing! "
+                        + "Add again with /by followed by the deadline timing.");
             }
 
             // create deadline description and deadline date
@@ -176,7 +176,8 @@ public class Parser {
                 }
             }
             if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! Add again with /at followed by the deadline timing.");
+                throw new DukeException("This description needs a timing! "
+                        + "Add again with /at followed by the deadline timing.");
             }
 
             // create event string and deadline

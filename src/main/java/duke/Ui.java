@@ -15,7 +15,6 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-
     public static void markedDoneMessage(Task task) {
         System.out.println("Nice! I've marked this task as done:\n  " + task.toString());
     }
