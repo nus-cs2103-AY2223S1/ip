@@ -142,7 +142,7 @@ public class TaskList {
      * @param index Index of a Task object.
      * @return True, if index is a valid index.
      */
-    public boolean isValidIndex(int index) {
+    private boolean isValidIndex(int index) {
         return index >= 1 && index <= this.size();
     }
 }
