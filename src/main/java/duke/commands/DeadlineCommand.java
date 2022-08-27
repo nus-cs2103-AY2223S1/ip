@@ -28,5 +28,6 @@ public class DeadlineCommand extends Command {
         } catch (DukeException e) {
             ui.showError(e.getMessage());
         }
+        tasks.updateStorage();
     }
 }

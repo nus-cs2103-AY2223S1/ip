@@ -21,5 +21,6 @@ public class DeleteCommand extends Command {
         }
         Task task = tasks.deleteTask(idx - 1);
         ui.sendMessage("Deleted '" + task.getDescription() + "'.");
+        tasks.updateStorage();
     }
 }

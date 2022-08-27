@@ -23,5 +23,6 @@ public class MarkCommand extends Command {
         Task task = tasks.getTask(idx - 1);
         task.markAsDone();
         ui.sendMessage("Marked '" + task.getDescription() + "' as done.");
+        tasks.updateStorage();
     }
 }

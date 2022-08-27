@@ -23,5 +23,6 @@ public class UnmarkCommand extends Command {
         Task task = tasks.getTask(idx - 1);
         task.unmark();
         ui.sendMessage("Unmarked '" + task.getDescription() + "'.");
+        tasks.updateStorage();
     }
 }

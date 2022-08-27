@@ -74,7 +74,7 @@ public class Storage {
         }
 
         try {
-            FileWriter writer = new FileWriter("database.txt");
+            FileWriter writer = new FileWriter(path);
             writer.write(store.toString());
             writer.close();
         } catch (IOException e) {

@@ -23,5 +23,6 @@ public class TodoCommand extends Command {
         } catch (DukeException e) {
             ui.showError(e.getMessage());
         }
+        tasks.updateStorage();
     }
 }
