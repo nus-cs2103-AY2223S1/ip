@@ -27,7 +27,7 @@ public class TaskList {
 
     public void markTaskAsUnDone(int taskNum) {
         taskList[taskNum].markAsUnDone();
-        System.out.println("Nice! I've marked this task as not done:");
+        System.out.println("I've marked this task as not done:");
         System.out.println(taskList[taskNum].toString());
     }
 
