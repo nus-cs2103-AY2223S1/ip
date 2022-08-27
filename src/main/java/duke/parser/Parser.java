@@ -22,9 +22,6 @@ public class Parser {
         String strippedCommand = fullCommand.stripTrailing();
         String[] parsedCommand = strippedCommand.split(" ", 2);
         try {
-            if (fullCommand.contains("|")) {
-                throw new DukeException("  '|' characters are not allowed.");
-            }
             switch (parsedCommand[0]) {
             case "":
                 throw new DukeException("  Somehow you're even more unbearable when you're silent.");
@@ -79,6 +76,8 @@ public class Parser {
         if (parsedCommand.length < 2) {
             throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.TODO));
+        } else if (parsedCommand[1].contains("|")) {
+            throw new DukeException("  '|' characters are not allowed in the task description.");
         } else {
             return new AddCommand(TaskType.TODO, parsedCommand[1]);
         }
@@ -96,6 +95,8 @@ public class Parser {
             } else if (parsedTask.length < 2) {
                 throw new DukeException("  You do realise deadlines and events usually have a time or date,"
                         + " right?\n" + Ui.getCommandHelp(CommandWord.DEADLINE));
+            } else if (parsedTask[0].contains("|")) {
+                throw new DukeException("  '|' characters are not allowed in the task description.");
             } else {
                 return new AddCommand(TaskType.DEADLINE, parsedTask[0], parsedTask[1]);
             }
@@ -114,6 +115,8 @@ public class Parser {
             } else if (parsedTask.length < 2) {
                 throw new DukeException("  You do realise deadlines and events usually have a time or date,"
                         + " right?\n" + Ui.getCommandHelp(CommandWord.EVENT));
+            } else if (parsedTask[0].contains("|")) {
+                throw new DukeException("  '|' characters are not allowed in the task description.");
             } else {
                 return new AddCommand(TaskType.EVENT, parsedTask[0], parsedTask[1]);
             }
