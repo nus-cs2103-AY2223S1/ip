@@ -1,3 +1,10 @@
+package duke;
+
+import duke.events.Deadlines;
+import duke.events.Events;
+import duke.events.Task;
+import duke.events.ToDos;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

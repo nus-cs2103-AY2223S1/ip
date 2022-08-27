@@ -1,3 +1,5 @@
+package duke.events;
+
 public class Events extends Task {
 
     private String taskName;

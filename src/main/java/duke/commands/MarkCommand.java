@@ -1,3 +1,9 @@
+package duke.commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 public class MarkCommand extends Command {
 
     boolean isDone;
@@ -9,7 +15,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (isDone) {
             tasks.finishedTask(taskNum);
         } else {
@@ -18,7 +24,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

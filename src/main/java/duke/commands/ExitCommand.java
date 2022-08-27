@@ -1,11 +1,17 @@
+package duke.commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 public class ExitCommand extends Command {
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println("UwU Byebyeeee! Come back soon... Meowmeow misses you already =^._.^= ");
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return true;
     }
 }

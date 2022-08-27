@@ -1,3 +1,9 @@
+package duke.commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 public class DeleteCommand extends Command {
 
     private int taskNum;
@@ -7,12 +13,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.deleteTask(taskNum - 1);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }
