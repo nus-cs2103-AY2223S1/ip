@@ -19,6 +19,11 @@ public class TaskList extends ArrayList<Task> {
         return this.stream().map(Task::toSaveData).collect(joining("\n"));
     }
 
+    /**
+     * Finds all tasks in the list that contain the given string.
+     * @param toFind the string to be searched within task descriptions
+     * @return list of tasks that contain the given string
+     */
     public ArrayList<Task> find(String toFind) {
         return this.stream().filter(task -> task.descriptionContains(toFind)).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }

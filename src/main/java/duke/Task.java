@@ -68,6 +68,11 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns true if the description of task contains the given string.
+     * @param search given search string
+     * @return whether search string is found in description
+     */
     public boolean descriptionContains(String search) {
         return this.description.contains(search);
     }
