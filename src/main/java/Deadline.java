@@ -4,12 +4,9 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private LocalDateTime deadline;
 
-    public Deadline(boolean isDone, String text, LocalDateTime deadline, boolean isPrinting) {
-        super(isDone, text, isPrinting);
+    public Deadline(boolean isDone, String text, LocalDateTime deadline) {
+        super(isDone, text);
         this.deadline = deadline;
-        if (isPrinting) {
-            System.out.println(this.toString());
-        }
     }
 
     @Override

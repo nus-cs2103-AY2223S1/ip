@@ -1,9 +1,6 @@
 public class Todo extends Task {
-    public Todo(boolean isDone, String text, boolean isPrinting) {
-        super(isDone, text, isPrinting);
-        if (isPrinting) {
-            System.out.println(this.toString());
-        }
+    public Todo(boolean isDone, String text) {
+        super(isDone, text);
     }
 
     @Override

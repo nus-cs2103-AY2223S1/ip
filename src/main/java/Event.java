@@ -4,12 +4,9 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     private LocalDateTime time;
 
-    public Event(boolean isDone, String text, LocalDateTime time, boolean isPrinting) {
-        super(isDone, text, isPrinting);
+    public Event(boolean isDone, String text, LocalDateTime time) {
+        super(isDone, text);
         this.time = time;
-        if (isPrinting) {
-            System.out.println(this.toString());
-        }
     }
 
     @Override

@@ -18,7 +18,7 @@ public class AddTodoCommand extends AddCommand {
         if (text.isEmpty()) {
             throw new IllegalArgumentException("🙁 OOPS!!! The description of a todo cannot be empty.\n");
         } else {
-            return new AddTodoCommand(command, new Todo(isDone, text, true));
+            return new AddTodoCommand(command, new Todo(isDone, text));
         }
     }
 }

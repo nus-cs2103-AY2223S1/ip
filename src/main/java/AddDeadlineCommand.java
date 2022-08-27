@@ -26,7 +26,7 @@ public class AddDeadlineCommand extends AddCommand {
             } catch (DateTimeParseException e) {
                 throw new IllegalArgumentException("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.\n");
             }
-            return new AddDeadlineCommand(command, new Deadline(isDone, text, timeObj, true));
+            return new AddDeadlineCommand(command, new Deadline(isDone, text, timeObj));
         }
     }
 }

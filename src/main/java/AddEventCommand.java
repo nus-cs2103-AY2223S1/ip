@@ -26,7 +26,7 @@ public class AddEventCommand extends AddCommand {
             } catch (DateTimeParseException e) {
                 throw new IllegalArgumentException("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the event.\n");
             }
-            return new AddEventCommand(command, new Event(isDone, text, timeObj, true));
+            return new AddEventCommand(command, new Event(isDone, text, timeObj));
         }
     }
 }
