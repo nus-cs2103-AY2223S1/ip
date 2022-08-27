@@ -2,14 +2,12 @@ package duke;
 
 import java.io.IOException;
 
-
+/**
+ * Main class that contains duke,
+ * Duke keeps track of all tasks to be done
+ *
+ */
 public class Duke {
-    /**
-     * Main class that contains duke,
-     * Duke keeps track of all tasks to be done
-     *
-     */
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -34,9 +32,8 @@ public class Duke {
         }
     }
         public void run() throws DukeException, IOException {
-        parser = new Parser(tasks,storage);
-        parser.read();
-
+            parser = new Parser(tasks);
+            parser.read();
         }
 
     /**

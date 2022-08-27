@@ -92,7 +92,7 @@ public class Storage {
         String textToAdd = "";
         for (Task item : tasks) {
             if (item != null)
-                textToAdd += tasks.indexOf(item) + 1 + "." + item.toString() + "\n";
+                textToAdd += tasks.indexOf(item) + 1 + "." + item + "\n";
         }
         fw.write(textToAdd);
         fw.close();
