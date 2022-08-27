@@ -30,7 +30,7 @@ public class Parser {
      * @return command.Command to be executed.
      * @throws DukeException for invalid commands inputted.
      */
-    public static Command parse(String input) throws DukeException{
+    public static Command parse(String input) throws DukeException {
         // Isolate individual strings in the input
         String[] inputArray = input.split(" ", 2);
         // The command should be the first string
