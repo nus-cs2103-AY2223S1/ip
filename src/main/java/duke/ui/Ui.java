@@ -11,7 +11,7 @@ public class Ui {
     public final String WELCOME = "Konnichiwa! I'm Rem desu! :>\n"
             + "What can I do for you today?\n";
     public final String GOODBYE = "See you soon! <3";
-    private Scanner sc;
+    private final Scanner sc;
 
     public Ui() {
         sc = new Scanner(System.in);
@@ -32,5 +32,4 @@ public class Ui {
     public String readCommand() {
         return sc.nextLine();
     }
-
 }
