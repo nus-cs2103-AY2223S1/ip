@@ -33,6 +33,8 @@ public class CommandHandlerFactory {
             return new CommandEventHandler(value, flag, additionalValue);
         case DELETE:
             return new CommandDeleteHandler(value, flag, additionalValue);
+        case FIND:
+            return new CommandFindHandler(value, flag, additionalValue);
         default:
             throw new DukeException("No such command!");
         }

@@ -11,4 +11,5 @@ public enum Command {
     EVENT, // create an event
     DEADLINE, // create a deadline
     DELETE, // delete a task
+    FIND, // find a task
 }

@@ -107,6 +107,32 @@ public class TaskList {
     }
 
     /**
+     * Find task that matches the searchParams.
+     * @param searchParams the searchParameters.
+     * @return the string representation of the tasks.
+     */
+    public String findTask(String searchParams) {
+        ArrayList<Task> results = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.description.contains(searchParams)) {
+                results.add(task);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        boolean isFirst = true;
+        for (Task task: results) {
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                sb.append("\n");
+            }
+            sb.append(task);
+        }
+        return sb.toString();
+    }
+
+    /**
      * The string representation of the TaskList class which shows the tasks that are currently saved.
      * @return string representation.
      */
