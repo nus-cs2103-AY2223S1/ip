@@ -5,7 +5,7 @@ package duke.exception;
  *
  * @author WR3nd3
  */
-public class DukeException extends IllegalArgumentException {
+public class DukeException extends RuntimeException {
 
     private static final String INTRO = "Nyat a valid instruction! Rub my belly instead!\n";
     private static final String TODO = "Input 'todo ABC' to add task ABC\n";

@@ -68,21 +68,21 @@ public class Parser {
                 return new AddCommand(TaskId.D, inputD[0], inputD[1]);
             case MARK:
                 if (content == null) {
-                    throw new DukeException("Input 'mark xxx' to mark task xxx"
+                    throw new DukeException("Input 'mark x' to mark task x"
                             + " as complete\n");
                 }
                 position = Integer.parseInt(content);
                 return new MarkCommand(position);
             case UNMARK:
                 if (content == null) {
-                    throw new DukeException("Input 'unmark xxx' to mark task xxx"
+                    throw new DukeException("Input 'unmark x' to mark task x"
                             + " as incomplete\n");
                 }
                 position = Integer.parseInt(content);
                 return new UnmarkCommand(position);
             case DELETE:
                 if (content == null) {
-                    throw new DukeException("Input 'delete xxx' to delete task xxx"
+                    throw new DukeException("Input 'delete x' to delete task x"
                             + " from the list\n");
                 }
                 position = Integer.parseInt(content);
