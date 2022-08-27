@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import static java.util.stream.Collectors.joining;
 
 public class TaskList extends ArrayList<Task> {
-    public TaskList(ArrayList<Task> taskList) {
-        super(taskList);
+    public TaskList(ArrayList<Task> tasks) {
+        super(tasks);
     }
 
     public String toSaveData() {

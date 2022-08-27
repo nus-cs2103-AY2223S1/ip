@@ -45,25 +45,30 @@ public class Parser {
             String[] inputSlashSplit = input.split("/");
             // Error handling
             if (inputSlashSplit.length < 2 || inputSlashSplit[1].split(" ").length < 2) {
-                throw new DukeException(String.format("Please specify a time for your %s.", inputSplit[0]));
+                throw new DukeException(String.format(
+                        "Please specify a time for your %s.", inputSplit[0]));
             }
             if (inputSlashSplit[0].split(" ").length < 2) {
-                throw new DukeException(String.format("Please provide a description for your %s.", inputSplit[0]));
+                throw new DukeException(String.format(
+                        "Please provide a description for your %s.", inputSplit[0]));
             }
             // Return the commands
             String date = input.split("/")[1];
             String[] description = inputSlashSplit[0].split(" ");
             if (inputSplit[0].equals("deadline")) {
-                return new DeadlineCommand(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), date);
+                return new DeadlineCommand(String.join(
+                        " ", Arrays.copyOfRange(description, 1, description.length)), date);
             } else {
-                return new EventCommand(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), date);
+                return new EventCommand(String.join(
+                        " ", Arrays.copyOfRange(description, 1, description.length)), date);
             }
         case "delete":
             // Error handling
             if (inputSplit.length < 2) {
                 throw new DukeException("You did not specify what task number to delete.");
             } else if (!isNumeric(inputSplit[1])) {
-                throw new DukeException(String.format("Invalid task number provided: %s. Unable to delete task.", inputSplit[1]));
+                throw new DukeException(String.format(
+                        "Invalid task number provided: %s. Unable to delete task.", inputSplit[1]));
             }
             // Return the command
             return new DeleteCommand(Integer.parseInt(inputSplit[1]) - 1);
