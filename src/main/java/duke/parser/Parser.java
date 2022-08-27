@@ -7,10 +7,18 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+<<<<<<< HEAD
 /**
  * Represents the location where the commands entered into the program are
  * processed and how should the <code>Ui</code>, or Seaward, should respond.
  */
+=======
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidDescriptionException;
+
+import java.io.IOException;
+
+>>>>>>> branch-A-CodingStandard
 public class Parser {
 
     private static TaskList taskList;
