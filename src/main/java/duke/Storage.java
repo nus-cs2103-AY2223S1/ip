@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +15,7 @@ public class Storage {
     }
 
     protected TaskList load() throws FileNotFoundException {
-        List<Task> tasks = new ArrayList<Task>();
+        List<Task> tasks = new ArrayList<>();
         Scanner s = new Scanner(new File(filepath));
         while (s.hasNext()) {
             String taskText = s.nextLine();

@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -10,7 +12,7 @@ public class TaskList {
     }
 
     public TaskList() {
-        this.tasks = new ArrayList<Task>();
+        tasks = new ArrayList<>();
     }
 
     protected Task markTask(int index) {

@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -6,17 +8,17 @@ public class Deadline extends Task {
 
     public Deadline(String desc, char taskType) {
         super(desc, taskType);
-        this.due = getDue(desc);
+        due = getDue(desc);
     }
 
     public Deadline(String desc, char completed, char taskType) {
         super(desc,completed, taskType);
-        this.due = getDue(desc);
+        due = getDue(desc);
     }
 
     public Deadline(String desc) {
         super(Parser.formatDate(desc));
-        this.due = getDue(desc);
+        due = getDue(desc);
     }
 
     private LocalDate getDue(String desc) {

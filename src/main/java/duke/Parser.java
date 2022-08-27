@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -36,7 +38,6 @@ public class Parser {
 
     protected static String formatDate(String desc) {
         int index = desc.indexOf('/');
-        String formattedString = desc.substring(0, index);
         if (index > 0) {
             return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-mm-dd")).
                     format(DateTimeFormatter.ofPattern("MMM dd yyyy"));

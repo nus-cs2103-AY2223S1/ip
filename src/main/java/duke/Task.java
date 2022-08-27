@@ -1,3 +1,5 @@
+package duke;
+
 public class Task {
     private final String desc;
     private final char completed;
@@ -5,7 +7,7 @@ public class Task {
 
     public Task(String desc, char taskType) {
         this.desc = desc;
-        this.completed = ' ';
+        completed = ' ';
         this.taskType = taskType;
     }
 
@@ -18,17 +20,17 @@ public class Task {
     public Task(String taskString) {
         int firstBracketIndex = taskString.indexOf('[');
         taskString = taskString.substring(firstBracketIndex);
-        this.taskType = taskString.charAt(1);
-        this.completed = taskString.charAt(4);
-        this.desc = taskString.substring(7);
+        taskType = taskString.charAt(1);
+        completed = taskString.charAt(4);
+        desc = taskString.substring(7);
     }
 
     protected Task performTask() {
-        return new Task(this.desc, 'X', this.taskType);
+        return new Task(desc, 'X', taskType);
     }
 
     protected Task undoTask() {
-        return new Task(this.desc, this.taskType);
+        return new Task(desc, taskType);
     }
 
     protected String getDesc() {
@@ -40,6 +42,6 @@ public class Task {
     }
 
     public String toString() {
-        return String.format("[%c][%c] %s", this.taskType, this.completed, this.desc);
+        return String.format("[%c][%c] %s", taskType, completed, desc);
     }
 }

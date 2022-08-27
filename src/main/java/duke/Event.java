@@ -1,19 +1,21 @@
+package duke;
+
 public class Event extends Task {
     private final String timing;
 
     public Event(String desc, char taskType) {
         super(desc, taskType);
-        this.timing = getTiming(desc);
+        timing = getTiming(desc);
     }
 
     public Event(String desc, char completed, char taskType) {
         super(desc, completed, taskType);
-        this.timing = getTiming(desc);
+        timing = getTiming(desc);
     }
 
     public Event(String desc) {
         super(desc);
-        this.timing = getTiming(desc);
+        timing = getTiming(desc);
     }
 
     private String getTiming(String desc) {

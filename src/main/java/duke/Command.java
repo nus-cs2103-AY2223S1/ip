@@ -1,3 +1,5 @@
+package duke;
+
 public class Command {
     private final String keyword;
     private final String content;
@@ -58,6 +60,6 @@ public class Command {
     }
 
     protected boolean isBye(){
-        return this.keyword.equals(EXIT);
+        return keyword.equals(EXIT);
     }
 }
