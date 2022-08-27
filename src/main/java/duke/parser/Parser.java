@@ -10,6 +10,11 @@ import duke.task.DukeTask;
 import duke.task.Event;
 import duke.task.ToDo;
 
+/**
+ * Encapsulates parsing of input messages.
+ *
+ * @author Kartikeya
+ */
 public class Parser {
   private final TaskList itemList;
   private final Storage storage;
@@ -24,8 +29,8 @@ public class Parser {
   /**
    * Processes chat inputs using a switch statement, throwing a duke.exception.DukeException
    * on incorrect inputs.
-   * @param inputString String given to Apollo
-   * @throws DukeException Indicates incorrect inputs
+   * @param inputString string given to Apollo
+   * @throws DukeException if input is erroneous
    */
   public Command parseUserInput(String inputString) throws DukeException {
     String[] input = inputString.split(" ");
@@ -62,9 +67,9 @@ public class Parser {
    * Executes item addition commands, throwing a duke.exception.DukeException on incorrect
    * inputs.
    *
-   * @param newItem Parsed item addition command
-   * @return String signifying result of adding newItem to items
-   * @throws DukeException Indicates incorrect inputs
+   * @param newItem parsed item addition command split into an array
+   * @return string signifying result of adding newItem to items
+   * @throws DukeException if input is erroneous
    */
   public String parseAddItem(String[] newItem) throws DukeException {
     String s = String.join(" ", newItem);

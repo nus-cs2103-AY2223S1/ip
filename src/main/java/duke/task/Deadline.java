@@ -21,10 +21,17 @@ public class Deadline extends DukeTask {
     formatTime();
   }
 
+  /**
+   * Formats time to the specified format of `MMM d, yyyy | h:mma`
+   * @throws DukeException if the input is erroneous
+   */
   private void formatTime() throws DukeException {
     this.formattedBy = DukeDateTimeFormatter.format(by);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String getStorageString() {
     return "D >> " + (this.isDone() ? "1" : "0") + " >> "
         + this.description + " >> " + this.by;

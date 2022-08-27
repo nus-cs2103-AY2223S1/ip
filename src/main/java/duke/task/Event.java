@@ -21,10 +21,17 @@ public class Event extends DukeTask {
     formatTime();
   }
 
+  /**
+   * Formats time to the specified format of `MMM d, yyyy | h:mma`
+   * @throws DukeException if the input is erroneous
+   */
   private void formatTime() throws DukeException {
     this.formattedAt = DukeDateTimeFormatter.format(at);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String getStorageString() {
     return "E >> " + (this.isDone() ? "1" : "0") + " >> "
         + this.description + " >> " + this.at;

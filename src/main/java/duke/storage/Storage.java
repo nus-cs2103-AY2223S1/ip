@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Encapsulates saving/loading data from storage.
+ *
+ * @author Kartikeya
+ */
 public class Storage {
   private static final String FILE_FOLDER_NAME = "data";
   private static final String FILENAME = "duke.txt";
@@ -37,6 +42,12 @@ public class Storage {
     }
   }
 
+  /**
+   * Loads saved TaskList data from the storage file. Parses saved data
+   * into required format that complies with the ui.
+   * @return list of DukeTasks that were saved in local storage
+   * @throws DukeException if the storage file cannot be found
+   */
   public ArrayList<DukeTask> load() throws DukeException {
     ArrayList<DukeTask> taskList = new ArrayList<>();
     try {
@@ -77,6 +88,11 @@ public class Storage {
     return taskList;
   }
 
+  /**
+   * Saves TaskList data to the storage file. Uses a getter for specified
+   * storage strings to achieve this in a consistent format.
+   * @param itemList list of DukeTasks
+   */
   public void save(ArrayList<DukeTask> itemList) {
     try {
       FileWriter fw = new FileWriter(FILEPATH);

@@ -12,6 +12,10 @@ public class MarkCommand implements Command {
     this.index = index;
   }
 
+  /**
+   * {@inheritDoc}
+   * Marks task at given index as complete, and shows output to user.
+   */
   @Override
   public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
     ui.showToUser(itemList.mark(Integer.parseInt(index)));

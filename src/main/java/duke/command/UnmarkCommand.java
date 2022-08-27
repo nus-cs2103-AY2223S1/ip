@@ -12,6 +12,10 @@ public class UnmarkCommand implements Command {
     this.index = index;
   }
 
+  /**
+   * {@inheritDoc}
+   * Marks task at given index as incomplete, and shows output to user.
+   */
   @Override
   public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
     ui.showToUser(itemList.unmark(Integer.parseInt(index)));

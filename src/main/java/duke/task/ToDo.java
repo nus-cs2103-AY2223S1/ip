@@ -13,6 +13,9 @@ public class ToDo extends DukeTask {
     this.description = description;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String getStorageString() {
     return "T >> " + (this.isDone() ? "1" : "0") + " >> "
         + this.description;

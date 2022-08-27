@@ -15,8 +15,8 @@ import java.time.format.DateTimeParseException;
 public class DukeDateTimeFormatter {
   /**
    * Formats date-time inputs to the required `MMM d, yyyy | h:mma` format
-   * @param input Input string from event
-   * @return Formatted string
+   * @param input input string from event
+   * @return formatted string
    */
   public static String format(String input) throws DukeException {
     try {

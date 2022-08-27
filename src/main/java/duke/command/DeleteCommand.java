@@ -12,6 +12,10 @@ public class DeleteCommand implements Command {
     this.index = index;
   }
 
+  /**
+   * {@inheritDoc}
+   * Removes given input index from itemList, and shows the resulting message to the user.
+   */
   @Override
   public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
     ui.showToUser(itemList.deleteItem(Integer.parseInt(index)));

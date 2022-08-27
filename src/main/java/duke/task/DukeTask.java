@@ -48,10 +48,18 @@ public abstract class DukeTask {
         + this;
   }
 
+  /**
+   * Checks if a task is marked as completed.
+   * @return true if task is marked as complete; false otherwise
+   */
   public boolean isDone() {
     return this.isDone;
   }
 
+  /**
+   * Converts task representation to a string suitable for saving in storage
+   * @return string representation of task suitable for storage
+   */
   public abstract String getStorageString();
 
   @Override

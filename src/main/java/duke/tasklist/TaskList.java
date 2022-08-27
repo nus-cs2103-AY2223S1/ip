@@ -23,16 +23,19 @@ public class TaskList {
     items = new ArrayList<>();
   }
 
+  /**
+   * Adds given DukeTask to the list of items.
+   * @param newItem DukeTask that needs to be added to the list of items
+   */
   public void add(DukeTask newItem) {
     items.add(newItem);
   }
 
   /**
    * Deletes an item from the items list.
-   *
    * @param i 1-indexed position of item to be deleted
-   * @return String signifying successful deletion
-   * @throws DukeException Indicates incorrect index
+   * @return string signifying successful deletion
+   * @throws DukeException if the index is erroneous
    */
   public String deleteItem(int i) throws DukeException {
     try {
@@ -47,10 +50,9 @@ public class TaskList {
 
   /**
    * Marks an item as completed.
-   *
    * @param i 1-indexed position of item to be marked
-   * @return String signifying successful marking
-   * @throws DukeException Indicates incorrect index
+   * @return string signifying successful marking
+   * @throws DukeException if the index is erroneous
    */
   public String mark(int i) throws DukeException {
     try {
@@ -62,10 +64,9 @@ public class TaskList {
 
   /**
    * Marks an item as not completed.
-   *
    * @param i 1-indexed position of item to be marked
-   * @return String signifying successful marking
-   * @throws DukeException Indicates incorrect index
+   * @return string signifying successful marking
+   * @throws DukeException if the index is erroneous
    */
   public String unmark(int i) throws DukeException {
     try {
@@ -77,22 +78,24 @@ public class TaskList {
 
   /**
    * Returns number of items in the list as a string.
-   *
-   * @return String signifying number of items stored
+   * @return string signifying number of items stored
    */
   public String listCount() {
     return "\nNow you have " + items.size() + " task" +
         (items.size() == 1 ? "" : "s") +" in the list.";
   }
 
+  /**
+   * Saves list of items to storage.
+   * @param s storage object that is used to save
+   */
   public void save(Storage s) {
     s.save(items);
   }
 
   /**
    * Returns string signifying the items stored in the list.
-   *
-   * @return String signifying stored items
+   * @return string signifying stored items
    */
   @Override
   public String toString() {
