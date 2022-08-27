@@ -7,20 +7,14 @@ public class Deadline extends Task {
     private LocalDateTime byDateTime;
     private boolean hasTime;
 
-    public Deadline(String desc, LocalDate byDate) throws MissingDescriptionException {
+    public Deadline(String desc, LocalDate byDate) {
         super(desc);
-        if (desc.isBlank()) {
-            throw new MissingDescriptionException(Duke.commandGuide("deadline", Command.DEADLINE));
-        } 
         this.byDate = byDate;
         this.hasTime = false;
     }
 
-    public Deadline(String desc, LocalDateTime byDateTime) throws MissingDescriptionException {
+    public Deadline(String desc, LocalDateTime byDateTime) {
         super(desc);
-        if (desc.isBlank()) {
-            throw new MissingDescriptionException(Duke.commandGuide("deadline", Command.DEADLINE));
-        }
         this.byDateTime = byDateTime;
         this.hasTime = true;
     }

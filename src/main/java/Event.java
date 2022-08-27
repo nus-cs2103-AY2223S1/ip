@@ -7,21 +7,15 @@ public class Event extends Task {
     private LocalDateTime atDateTime;
     private boolean hasTime;
 
-    public Event(String desc, LocalDate atDate) throws MissingDescriptionException {
+    public Event(String desc, LocalDate atDate) {
         super(desc);
-        if (desc.isBlank()) {
-            throw new MissingDescriptionException(Duke.commandGuide("event", Command.EVENT));
-        }
         this.atDate = atDate;
         this.isDone = false;
         this.hasTime = false;
     }
 
-    public Event(String desc, LocalDateTime atDateTime) throws MissingDescriptionException {
+    public Event(String desc, LocalDateTime atDateTime) {
         super(desc);
-        if (desc.isBlank()) {
-            throw new MissingDescriptionException(Duke.commandGuide("event", Command.EVENT));
-        }
         this.atDateTime = atDateTime;
         this.isDone = false;
         this.hasTime = true;

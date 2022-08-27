@@ -15,6 +15,16 @@
 
 
 >>======================================[**]======================================<<
+  Somehow you're even more unbearable when you're silent.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Somehow you're even more unbearable when you're silent.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
   You don't have any tasks. Make yourself useful.
 >>======================================[**]======================================<<
 
@@ -40,8 +50,10 @@
 
 
 >>======================================[**]======================================<<
-  It seems you've invented a way to do nothing. Typical...
-  Type "event <description> /at <date> <time>[optional]" to add a new event.
+  Seriously? Another one?
+  Give me strength...
+    [T][ ] buy pen refill
+  You have 2 tasks. Bummer.
 >>======================================[**]======================================<<
 
 
@@ -53,18 +65,6 @@
 
 >>======================================[**]======================================<<
   It seems you've invented a way to do nothing. Typical...
-  Type "event <description> /at <date> <time>[optional]" to add a new event.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  It seems you've invented a way to do nothing. Typical...
-  Type "event <description> /at <date> <time>[optional]" to add a new event.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  You do realise deadlines and events usually have a time or date, right?
   Type "event <description> /at <date> <time>[optional]" to add a new event.
 >>======================================[**]======================================<<
 
@@ -88,6 +88,24 @@
 
 
 >>======================================[**]======================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /at <date> <time>[optional]" to add a new event.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /at <date> <time>[optional]" to add a new event.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /at <date> <time>[optional]" to add a new event.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
   You do realise deadlines and events usually have a time or date, right?
   Type "event <description> /at <date> <time>[optional]" to add a new event.
 >>======================================[**]======================================<<
@@ -100,9 +118,8 @@
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /at <date> <time>[optional]" to add a new event.
 >>======================================[**]======================================<<
 
 
@@ -113,16 +130,20 @@
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  Invalid date: 'Sunday'
+  Please enter a date with the following format: 'dd/mm/yyyy'
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  Invalid date or time: 'Sunday 2-4pm'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: 'Sunday 2-4pm /at'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
 >>======================================[**]======================================<<
 
 
@@ -130,65 +151,21 @@
   Seriously? Another one?
   Give me strength...
     [E][ ] project meeting (at: 1 Jan 2022)
-  You have 2 tasks. Bummer.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Seriously? Another one?
-  Give me strength...
-    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
   You have 3 tasks. Bummer.
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
   Seriously? Another one?
   Give me strength...
-    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+    [E][ ] birthday party (at: 1 Jan 2022)
   You have 4 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/1/2022 4.30pm'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
 >>======================================[**]======================================<<
 
 
@@ -203,12 +180,54 @@
 >>======================================[**]======================================<<
   Seriously? Another one?
   Give me strength...
-    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+    [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
   You have 6 tasks. Bummer.
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
+  Invalid date or time: '32/1/2022 1630'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/13/2022 1630'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/1/2022 1665'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  You have 7 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  You have 8 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [E][ ] project meeting (at: 1 Jan 2022)
+  You have 9 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
   It seems you've invented a way to do nothing. Typical...
   Type "deadline <description> /by <date> <time>[optional]" to add a new deadline.
 >>======================================[**]======================================<<
@@ -269,9 +288,8 @@
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /by <date> <time>[optional]" to add a new deadline.
 >>======================================[**]======================================<<
 
 
@@ -282,16 +300,20 @@
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  Invalid date: 'Wednesday'
+  Please enter a date with the following format: 'dd/mm/yyyy'
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
+  Invalid date or time: 'Wednesday 6pm'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: 'Wednesday 6pm /by'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
 >>======================================[**]======================================<<
 
 
@@ -299,72 +321,6 @@
   Seriously? Another one?
   Give me strength...
     [D][ ] spanish homework (by: 1 Apr 2022)
-  You have 7 tasks. Bummer.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Seriously? Another one?
-  Give me strength...
-    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  You have 8 tasks. Bummer.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Invalid date or time.
-  Please enter a date and time with either of the following formats:
-  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Seriously? Another one?
-  Give me strength...
-    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  You have 9 tasks. Bummer.
->>======================================[**]======================================<<
-
-
->>======================================[**]======================================<<
-  Seriously? Another one?
-  Give me strength...
-    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
   You have 10 tasks. Bummer.
 >>======================================[**]======================================<<
 
@@ -372,8 +328,72 @@
 >>======================================[**]======================================<<
   Seriously? Another one?
   Give me strength...
-    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+    [D][ ] assignment 2 (by: 1 Apr 2022)
   You have 11 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/4/2022 8.30am'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  You have 12 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  You have 13 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '32/4/2022 0815'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/13/2022 0815'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Invalid date or time: '1/4/2022 2815'
+  Please enter a date and time with the following format: 'dd/mm/yyyy HHMM'
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  You have 14 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  You have 15 tasks. Bummer.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by: 1 Apr 2022)
+  You have 16 tasks. Bummer.
 >>======================================[**]======================================<<
 
 
@@ -382,16 +402,21 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][ ] project meeting (at: 1 Jan 2022)
-  3. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  2. [T][ ] buy pen refill
+  3. [E][ ] project meeting (at: 1 Jan 2022)
+  4. [E][ ] birthday party (at: 1 Jan 2022)
   5. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  7. [D][ ] spanish homework (by: 1 Apr 2022)
-  8. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  9. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  10. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  6. [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  9. [E][ ] project meeting (at: 1 Jan 2022)
+  10. [D][ ] spanish homework (by: 1 Apr 2022)
+  11. [D][ ] assignment 2 (by: 1 Apr 2022)
+  12. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  16. [D][ ] spanish homework (by: 1 Apr 2022)
 >>======================================[**]======================================<<
 
 
@@ -445,13 +470,13 @@
 
 >>======================================[**]======================================<<
   You really took your time with this one, didn't you?
-    [E][X] project meeting (at: 1 Jan 2022)
+    [T][X] buy pen refill
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
   You can't finish the same task twice, genius.
-    [E][X] project meeting (at: 1 Jan 2022)
+    [T][X] buy pen refill
 >>======================================[**]======================================<<
 
 
@@ -460,22 +485,27 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][X] project meeting (at: 1 Jan 2022)
-  3. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  2. [T][X] buy pen refill
+  3. [E][ ] project meeting (at: 1 Jan 2022)
+  4. [E][ ] birthday party (at: 1 Jan 2022)
   5. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  7. [D][ ] spanish homework (by: 1 Apr 2022)
-  8. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  9. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  10. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  6. [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  9. [E][ ] project meeting (at: 1 Jan 2022)
+  10. [D][ ] spanish homework (by: 1 Apr 2022)
+  11. [D][ ] assignment 2 (by: 1 Apr 2022)
+  12. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  16. [D][ ] spanish homework (by: 1 Apr 2022)
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
   And here I was thinking you were getting somewhere...
-    [E][ ] project meeting (at: 1 Jan 2022)
+    [T][ ] buy pen refill
 >>======================================[**]======================================<<
 
 
@@ -484,23 +514,28 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][ ] project meeting (at: 1 Jan 2022)
-  3. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  2. [T][ ] buy pen refill
+  3. [E][ ] project meeting (at: 1 Jan 2022)
+  4. [E][ ] birthday party (at: 1 Jan 2022)
   5. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  7. [D][ ] spanish homework (by: 1 Apr 2022)
-  8. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  9. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  10. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  6. [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  9. [E][ ] project meeting (at: 1 Jan 2022)
+  10. [D][ ] spanish homework (by: 1 Apr 2022)
+  11. [D][ ] assignment 2 (by: 1 Apr 2022)
+  12. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  16. [D][ ] spanish homework (by: 1 Apr 2022)
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
   You're trying to unmark a task you haven't done.
   Let that sink in for a moment.
-    [E][ ] project meeting (at: 1 Jan 2022)
+    [T][ ] buy pen refill
 >>======================================[**]======================================<<
 
 
@@ -530,8 +565,8 @@
 
 >>======================================[**]======================================<<
   Good riddance, I say.
-    [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  You have 10 tasks.
+    [E][ ] project meeting (at: 1 Jan 2022)
+  You have 15 tasks.
 >>======================================[**]======================================<<
 
 
@@ -540,15 +575,20 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][ ] project meeting (at: 1 Jan 2022)
-  3. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  2. [T][ ] buy pen refill
+  3. [E][ ] birthday party (at: 1 Jan 2022)
   4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  5. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
-  6. [D][ ] spanish homework (by: 1 Apr 2022)
-  7. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  8. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  9. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
-  10. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  5. [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
+  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022)
+  9. [D][ ] spanish homework (by: 1 Apr 2022)
+  10. [D][ ] assignment 2 (by: 1 Apr 2022)
+  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  12. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022)
 >>======================================[**]======================================<<
 
 
@@ -571,16 +611,19 @@
 
 
 >>======================================[**]======================================<<
+  'list sss' is not a valid command.
   If you want my help, the least you could do is say something I understand.
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
+  'bye asda' is not a valid command.
   If you want my help, the least you could do is say something I understand.
 >>======================================[**]======================================<<
 
 
 >>======================================[**]======================================<<
+  'random word' is not a valid command.
   If you want my help, the least you could do is say something I understand.
 >>======================================[**]======================================<<
 

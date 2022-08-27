@@ -12,9 +12,9 @@ then
     rm ACTUAL.TXT
 fi
 
-if [ -e "../data/duke.txt" ]
+if [ -e "./data/duke.txt" ]
 then
-    rm ../data/duke.txt
+    rm data/duke.txt
 fi
 
 # compile the code into the bin folder, terminates if error occurred
