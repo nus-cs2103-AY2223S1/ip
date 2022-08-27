@@ -75,25 +75,26 @@ public class Storage {
         while (sc.hasNextLine()) { //type#boolean#taskname#time
 
             String[] array = sc.nextLine().split("#");
-            boolean cond1 = (array.length == 3 && array[0].equals("T"));
-            boolean cond2 = (array.length == 4 && (array[0].equals("D") || array[0].equals("E")));
-            boolean cond3 = (array[1].equals("1") || array[1].equals("0"));
+            boolean isToDo = (array.length == 3 && array[0].equals("T"));
+            boolean isDeadlineOrEvent = (array.length == 4 && (array[0].equals("D") || array[0].equals("E")));
+            boolean hasCorrectMark = (array[1].equals("1") || array[1].equals("0"));
+            boolean isValidTask = isToDo || isDeadlineOrEvent;
 
-            if ((!cond1 && !cond2) || !cond3) {
+            if (!isValidTask || !hasCorrectMark) {
                 throw new RuntimeException("Cannot read file due to incorrect input");
             }
 
-            char c = array[0].charAt(0);
+            char type = array[0].charAt(0);
             String taskname = array[2];
             boolean isDone = array[1].equals("1");
 
-            if (c == 'T') {
+            if (type == 'T') {
                 arrayList.add(new Todo(taskname));
             } else {
                 String date = array[3];
                 LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MMM-d"));
 
-                if (c == 'E') {
+                if (type == 'E') {
                     arrayList.add(new Event(taskname, d));
                 } else {
                     arrayList.add(new Deadline(taskname, d));
@@ -117,13 +118,13 @@ public class Storage {
      */
     protected void SaveData(ArrayList<Task> arrayList) throws IOException {
 
-        FileWriter fw = new FileWriter(savedFile, false);
+        FileWriter fileWriter = new FileWriter(savedFile, false);
 
-        for (Task t : arrayList) {
-            fw.write(t.toSavedString() + System.lineSeparator());
+        for (Task task : arrayList) {
+            fileWriter.write(task.toSavedString() + System.lineSeparator());
         }
 
-        fw.close();
+        fileWriter.close();
     }
 
 }
