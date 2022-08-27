@@ -12,9 +12,6 @@ import java.util.Scanner;
 
 public class Parser {
     private Scanner input;
-    public Parser() {
-        this.input = new Scanner(System.in);
-    }
 
     public LocalDate parseDate(String str) throws DukeException {
         // parse string format date to LocalDate object -> to String format yyyy-MM-dd, exception
@@ -40,8 +37,7 @@ public class Parser {
         }
     }
 
-    public String parseCommand(TaskList taskList) throws DukeException {
-        String line = input.nextLine().trim();
+    public String parseCommand(String line, TaskList taskList) throws DukeException {
         String [] taskString = line.split(" ", 2);
         String taskType = taskString[0];
         if (taskString.length <= 1 && !taskType.equals("list") && !taskType.equals("bye") && !taskType.equals("help")) {

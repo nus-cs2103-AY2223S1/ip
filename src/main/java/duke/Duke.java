@@ -1,4 +1,7 @@
 package duke;
+
+import java.util.Scanner;
+
 public class Duke {
 
     private Storage storage;
@@ -16,8 +19,10 @@ public class Duke {
     public void run() {
         ui.printStartUpUi();
         while(true) {
+            Scanner input = new Scanner(System.in);
             try {
-                String [] parsedCommand = parser.parseCommand(tasks).split(" ");
+                String line = input.nextLine().trim();
+                String [] parsedCommand = parser.parseCommand(line, tasks).split(" ");
                 //parsedCommand={command}{task index, can be multiple for list date or search}
                 if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark") ||
                         parsedCommand[0].equals("todo") || parsedCommand[0].equals("event") ||
