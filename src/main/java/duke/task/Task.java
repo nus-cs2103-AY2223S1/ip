@@ -3,9 +3,15 @@ package duke.task;
 public class Task {
     // Class Fields
     public String taskName;
+
+    /* true if the task is done, false otherwise */
     public boolean isDone;
 
-    // Constructor
+    /**
+     * Constructor for the Task class.
+     *
+     * @param taskName the name of the task
+     */
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
@@ -27,16 +33,27 @@ public class Task {
 
     /**
      * Returns a string of tick or empty string depending on whether the task is done or not.
+     *
      * @return String representation of a tick or empty string
      */
     public String getStatusIcon() {
         return this.isDone ? "✔" : " ";
     }
 
-    public String inputToTxt() {
+    /**
+     * Empty formatTask function to be overridden by subclasses.
+     *
+     * @return null
+     */
+    public String formatTask() {
         return null;
     }
 
+    /**
+     * Returns String of the task name (eg. [ ] read book).
+     *
+     * @return String representation of the task name
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + taskName;

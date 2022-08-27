@@ -5,20 +5,28 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 public class TaskList {
-    // Class Fields
+    /* The list of tasks */
     public final ArrayList<Task> tasks;
 
-    // Constructor
+    /**
+     * Constructor for the TaskList class.
+     *
+     * @param tasks arraylist of tasks already in the list
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Constructor for the TaskList class, for an empty tasklist.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
      * Adds a task to the list.
+     *
      * @param task the task to add
      */
     public void addTask(Task task) {
@@ -27,6 +35,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the list.
+     *
      * @param taskNum the index of task to be deleted
      */
     public void deleteTask(int taskNum) {
@@ -34,8 +43,9 @@ public class TaskList {
     }
 
     /**
-     * Prints list of tasks in the Checklist.
-     * @return the list of tasks in the Checklist in String format
+     * Returns formatted list of tasks in the tasklist in String format.
+     *
+     * @return the formatted list of tasks in the tasklist in String format
      */
     public String printList() {
         StringBuilder output = new StringBuilder();
@@ -51,9 +61,10 @@ public class TaskList {
     }
 
     /**
-     * Prints the entire string of a task in the Checklist. (eg. [T][] read book)
-     * @param idx index of the task in the Checklist
-     * @return the status string of the task in the Checklist in String format
+     * Returns the entire string of a single task in the tasklist (eg. [T][ ] read book).
+     *
+     * @param idx index of the task in the tasklist
+     * @return the entire string of a single task in the tasklist
      */
     public String printTaskStatus(int idx) {
         Task curr = tasks.get(idx);

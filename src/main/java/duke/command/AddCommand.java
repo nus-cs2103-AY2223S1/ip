@@ -16,11 +16,26 @@ public class AddCommand extends Command {
     private final ArrayList<String> words;
     private final String firstWord;
 
+    /**
+     * Constructor for AddCommand.
+     *
+     * @param words the remaining user input after the first keyword
+     * @param firstWord the first word in the user input
+     */
     public AddCommand(ArrayList<String> words, String firstWord) {
         this.words = words;
         this.firstWord = firstWord;
     }
 
+    /**
+     * Executes the command for "todo", "deadline" and "event" keywords.
+     * This is the main way for outputting bot replies.
+     *
+     * @param storage the storage object
+     * @param tasklist the task list object
+     * @param ui the user interface object
+     * @throws DukeException if the user input is unrecognised
+     */
     public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         String input = String.join(" ", words);
         switch (firstWord) {

@@ -10,13 +10,27 @@ import java.util.ArrayList;
 public class DeleteCommand extends Command {
     private final ArrayList<String> words;
 
+    /**
+     * Constructor for DeleteCommand.
+     *
+     * @param words the remaining user input after the first keyword
+     */
     public DeleteCommand(ArrayList<String> words) {
         this.words = words;
     }
 
+    /**
+     * Executes the command for "delete" keyword.
+     * This is the main way for outputting bot replies.
+     *
+     * @param storage the storage object
+     * @param tasklist the task list object
+     * @param ui the user interface object
+     * @throws DukeException if the user input is unrecognised
+     */
     public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         String input = String.join(" ", words);
-        // Implement error for "delete hello"
+        // Work on implementing error for "delete hello"
         int taskNum = Integer.parseInt(input);
         if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
             String deletedTask = tasklist.tasks.get(taskNum - 1).toString();

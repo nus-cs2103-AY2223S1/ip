@@ -12,7 +12,10 @@ public class Duke {
     private TaskList tasklist;
     private final Ui ui;
 
-    // Constructor
+    /**
+     * Constructor for the Duke class.
+     * @param filePath The name of path to the file used for list storage.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

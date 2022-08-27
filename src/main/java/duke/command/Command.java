@@ -6,5 +6,14 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 public abstract class Command {
-    public abstract void execute(Storage storage, TaskList tasks, Ui ui) throws DukeException;
+    /**
+     * Executes the command.
+     * This is the main way for outputting bot replies.
+     *
+     * @param storage the storage object
+     * @param tasklist the tasklist object
+     * @param ui the ui object
+     * @throws DukeException if the user input is unrecognised
+     */
+    public abstract void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException;
 }

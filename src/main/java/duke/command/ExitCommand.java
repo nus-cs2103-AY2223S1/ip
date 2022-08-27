@@ -6,9 +6,18 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 public class ExitCommand extends Command {
-    public void execute(Storage storage, TaskList tasks, Ui ui) throws DukeException {
+    /**
+     * Executes the command for "bye" keyword.
+     * This is the main way for outputting bot replies.
+     *
+     * @param storage the storage object
+     * @param tasklist the task list object
+     * @param ui the user interface object
+     * @throws DukeException if the user input is unrecognised
+     */
+    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         ui.showGoodbye();
-        storage.writeToFile(tasks);
+        storage.writeToFile(tasklist);
         System.exit(0);
     }
 }
