@@ -188,7 +188,7 @@ public class TaskList {
             if(taskList.listTasks().equals(this.listTasks())) {
                 return true;
             }
-            return true;
+//            return true;
         }
         return  false;
     }
