@@ -1,5 +1,5 @@
 {
   "java.format.settings.url": "eclipse-formatter.xml",
   "java.configuration.updateBuildConfiguration": "interactive",
-  "git.mergeEditor": false,
+  "git.mergeEditor": false
 }
