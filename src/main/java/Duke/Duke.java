@@ -12,7 +12,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         this.taskList = new TaskList();
-        filePath = "/Users/yiye/Desktop/cs2103Projects/ip/duke.txt";
+        filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";
         storage = new Storage(filePath);
         try {
             taskList = new TaskList(storage.loadTasks());
