@@ -19,9 +19,9 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
-        ui.filterList(taskList, key);
+        return ui.filterList(taskList, key);
     }
 
     /**

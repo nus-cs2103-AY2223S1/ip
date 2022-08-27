@@ -19,10 +19,10 @@ public class DeadlineCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         taskList.addTask(task);
-        ui.addTask(task, taskList.length());
+        return ui.addTask(task, taskList.length());
     }
 
     /**
