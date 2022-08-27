@@ -5,11 +5,13 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        ArrayList<Task> arr = new ArrayList<Task>();
+        List<Task> arr = new ArrayList<Task>(); //should be list as compile time type
         String input = "";
         int curr = 0;
         Task task = new Task(input, "");
         arr.add(curr, task);
+        String home = System.getProperty("user.home");
+        System.out.println(home);
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
             //System.out.println(task.getVal());
@@ -44,21 +46,21 @@ public class Duke {
             }
             else if(task.getVal().indexOf("delete") == 0) {
                 String[] at = task.getVal().split(" ");
-                //try {
+                try {
                     int index = Integer.parseInt(at[1]);
                     index--;
                     Task del = arr.get(index);
-                    for(int i = index; i < curr; i++) {
-                        arr.set(i, arr.get(i+1));
+                    for (int i = index; i < curr; i++) {
+                        arr.set(i, arr.get(i + 1));
                     }
                     curr--;
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(del);
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
 
-                //} //catch (Exception e) {
-                    //System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
-                //}
+                } catch (Exception e) {
+                    System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
+                }
             }
             else if(task.getVal().indexOf("todo") == 0) {
                 try {
