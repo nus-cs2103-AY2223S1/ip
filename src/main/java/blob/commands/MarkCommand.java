@@ -4,12 +4,23 @@ import blob.common.Messages;
 import blob.tasks.Task;
 
 public class MarkCommand extends TaskCommand {
-    int index;
+
+    /** The index of the task in the task list to be marked as done */
+    private int index;
+
+    /**
+     * Returns a command that when executed will attempt to mark a task in the task list as done.
+     *
+     * @param index The index of the task in the task list to be marked as done.
+     */
     public MarkCommand(int index) {
         super("mark");
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public CommandResult execute() {
         try {
             Task task = taskList.getTask(index);

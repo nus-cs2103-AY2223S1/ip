@@ -13,17 +13,15 @@ public enum CommandType {
     UNMARK("unmark"),
     BYE("bye");
 
+    /** The trigger associated to the command type */
     private String trigger;
 
-    /**
-     * @param trigger the trigger that invokes the command type
-     */
     CommandType(String trigger) {
         this.trigger = trigger;
     }
 
     /**
-     * Returns the trigger of the command type
+     * Returns the trigger of the command type.
      *
      * @return the trigger of the command type
      */

@@ -31,6 +31,12 @@ public class Storage {
         this.filePath = Paths.get(filePath);
     }
 
+    /**
+     * Returns a TaskList based on parsing task data in the specified file path.
+     *
+     * @return A TaskList based on parsing task data in the specified file path
+     * @throws ErrorLoadingTaskException
+     */
     public TaskList loadTaskList() throws ErrorLoadingTaskException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
@@ -69,6 +75,11 @@ public class Storage {
         return new TaskList(taskList);
     }
 
+    /**
+     * Saves the task information of the given task list into a separate file for storage.
+     *
+     * @param taskList The task list that contains the tasks to be stored.
+     */
     public void saveTaskList(TaskList taskList) {
         try {
             FileWriter taskFileWriter = new FileWriter(filePath.toFile());

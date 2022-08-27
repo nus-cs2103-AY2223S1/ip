@@ -1,15 +1,13 @@
 package blob.tasks;
 
 public enum TaskType {
-    TODO ("todo", "T"),
-    EVENT ("event", "E"),
-    DEADLINE ("deadline", "D");
+    TODO ("T"),
+    EVENT ("E"),
+    DEADLINE ("D");
 
-    private final String name;
     private final String abbreviation;
 
-    TaskType(String s, String abbreviation) {
-        this.name = s;
+    TaskType(String abbreviation) {
         this.abbreviation = abbreviation;
     }
 

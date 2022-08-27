@@ -4,6 +4,7 @@ package blob.commands;
  * The Command class represents an executable command that can be invoked by the user.
  */
 public abstract class Command {
+
     /** The word used to invoke the command */
     public final String COMMAND_WORD;
 
@@ -13,6 +14,8 @@ public abstract class Command {
 
     /**
      * Executes the command.
+     *
+     * @return A CommandResult object containing the application's response to the invoked command.
      */
     public abstract CommandResult execute();
 

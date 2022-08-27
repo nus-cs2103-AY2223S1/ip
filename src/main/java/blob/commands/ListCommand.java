@@ -6,10 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListCommand extends TaskCommand {
+
+    /**
+     * Returns a command that when executed will attempt to list the tasks in the task list.
+     */
     public ListCommand() {
         super("list");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public CommandResult execute() {
         ArrayList<String> messages = new ArrayList<>();
         messages.add(String.format(Messages.MESSAGE_TASK_LIST_SIZE, taskList.getNumberOfTasks()));

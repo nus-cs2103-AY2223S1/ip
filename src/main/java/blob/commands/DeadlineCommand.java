@@ -6,14 +6,28 @@ import blob.tasks.Deadline;
 
 
 public class DeadlineCommand extends TaskCommand {
-    String taskDescription;
-    String by;
+
+    /** The description of the deadline task to be created */
+    private String taskDescription;
+
+    /** The string representation of the date of the deadline task to be created */
+    private String by;
+
+    /**
+     * Returns a command that when executed will attempt to add a deadline to the task list.
+     *
+     * @param taskDescription The description of the deadline task to be created.
+     * @param by The string representation of the date of the deadline task to be created.
+     */
     public DeadlineCommand(String taskDescription, String by) {
         super("deadline");
         this.taskDescription = taskDescription;
         this.by = by;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public CommandResult execute() {
         try {
             Deadline task = new Deadline(taskDescription, by);

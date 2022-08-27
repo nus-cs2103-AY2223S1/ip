@@ -44,6 +44,10 @@ public class Blob {
                 Command command = parser.parseUserInput(sc.nextLine());
                 CommandResult result;
 
+                if (command.isByeCommand()) {
+                    end();
+                }
+
                 if (command.isTaskCommand()) {
                     TaskCommand taskCommand = (TaskCommand) command;
                     taskCommand.setTaskList(taskList);
@@ -55,9 +59,6 @@ public class Blob {
 
                 ui.speakToUser(result.getResultMessages());
 
-                if (command.isByeCommand()) {
-                    end();
-                }
             } catch (BlobException exception) {
                 ui.speakToUser(exception.getBlobMessages());
             }
@@ -66,6 +67,7 @@ public class Blob {
 
     public void end() {
         storage.saveTaskList(taskList);
+        ui.sayGoodbyeToUser();
         System.exit(0);
     }
 
