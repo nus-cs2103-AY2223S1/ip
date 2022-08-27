@@ -103,6 +103,27 @@ public class Duke {
     }
 
     /**
+     * return the list of tasks containing given String
+     *
+     * @param require the given string
+     */
+    public void search(String require) {
+        List<Task> shortList = tasks.getTaskList().stream()
+                .filter(task -> task.hasThis(require))
+                .collect(Collectors.toList());
+        int i = 0;
+        if (shortList.size() > 0) {
+            System.out.println("search result of " + require + " are here: ");
+            for (Task t : shortList) {
+                System.out.println((i + 1) + "." + t);
+                i++;
+            }
+        } else {
+            System.out.println("Sorry, We cannot find those for you");
+        }
+    }
+
+    /**
      * Run the chatbot.
      */
     public void run() {
@@ -140,6 +161,8 @@ public class Duke {
                     String date = temp[1].trim();
                     LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     getOnDate(lc);
+                } else if (str.startsWith("search")) {
+                    search(Parser.convertInfo(str));
                 } else {
                     throw new CannotUnderstandException();
                 }

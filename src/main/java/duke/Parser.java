@@ -45,4 +45,12 @@ class Parser {
         System.out.println("Added task: " + evt.toString());
         return evt;
     }
+
+    public static String convertInfo(String require) throws WrongMessageException {
+        String info = require.substring(6).trim();
+        if (info.equals("")) {
+            throw new WrongMessageException();
+        }
+        return info;
+    }
 }
