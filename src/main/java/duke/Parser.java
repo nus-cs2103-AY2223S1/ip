@@ -37,6 +37,8 @@ public class Parser {
                 Task current = tLst.get(Integer.parseInt(str.split(" ")[1]) - 1);
                 tLst.delete(current);
                 storage.writeToFile(tLst.getTasks());
+            } else if (first.equals("find")) {
+                tLst.find(str.split(" ")[1]);
             } else {
                 if (first.equals("deadline")) {
                     if (str.endsWith("deadline")) {

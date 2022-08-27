@@ -7,7 +7,6 @@ public class TaskList {
 
 
     TaskList(ArrayList<Task> lst) {
-
         this.lst = lst;
     }
 
@@ -50,12 +49,21 @@ public class TaskList {
         System.out.println(" " + task);
     }
 
-
     public void list() {
         System.out.println("This is your tasks in your list: \n");
         for (Task item : lst) {
             if (item != null)
                 System.out.println(lst.indexOf(item) + 1 + "." + item);
+        }
+    }
+
+    public void find(String searchTask) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task item:lst) {
+            String taskName = item.description;
+            if (taskName.contains(searchTask)) {
+                System.out.println(item);
+            }
         }
     }
 
