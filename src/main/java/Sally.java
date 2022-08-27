@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Sally {
     protected static ArrayList<Task> list = new ArrayList<>();
@@ -105,6 +108,13 @@ public class Sally {
                     } else if (message.contains("/by ")) {
                         description = message.substring(9, message.indexOf("/by") - 1);
                         by = message.substring(message.indexOf("/by") + 4);
+                        LocalDate localDate;
+                        try {
+                            localDate = LocalDate.parse(by);
+                            by = localDate.format(DateTimeFormatter.ofPattern("MMM dd yyy"));
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Oops! Date has to be in the format of yyyy-mm-dd");
+                        }
                         Task.makeTask(description, by, Task.Type.DEADLINE);
                     } else {
                         throw new SallyException.SallyNoDeadlineException();
