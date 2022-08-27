@@ -1,10 +1,8 @@
 package duke;
-
-import duke.events.Deadlines;
-import duke.events.Events;
+import duke.events.Deadline;
+import duke.events.Event;
 import duke.events.Task;
-import duke.events.ToDos;
-
+import duke.events.ToDo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -79,7 +77,7 @@ public class Storage {
                     case "T":
                         String taskName = split[2];
 
-                        Task todo = new ToDos(taskName);
+                        Task todo = new ToDo(taskName);
                         taskList.add(todo);
 
                         boolean isDone = Boolean.parseBoolean(split[1]);
@@ -93,7 +91,7 @@ public class Storage {
 
                         LocalDateTime date = LocalDateTime.parse(split[3]);
 
-                        Task deadline = new Deadlines(taskName, date);
+                        Task deadline = new Deadline(taskName, date);
                         taskList.add(deadline);
 
                         isDone = Boolean.parseBoolean(split[1]);
@@ -107,7 +105,7 @@ public class Storage {
 
                         String time = split[3];
 
-                        Task event = new Events(taskName, time);
+                        Task event = new Event(taskName, time);
                         taskList.add(event);
 
                         isDone = Boolean.parseBoolean(split[1]);

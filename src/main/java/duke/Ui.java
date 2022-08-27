@@ -22,10 +22,6 @@ public class Ui {
         System.out.println("_____");
     }
 
-    public void showError(String e) {
-        System.out.println(e);
-    }
-
     public String readCommand() {
         return sc.nextLine();
     }

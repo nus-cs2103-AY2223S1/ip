@@ -1,10 +1,8 @@
 package duke;
-
-
-import duke.events.Deadlines;
-import duke.events.Events;
+import duke.events.Deadline;
+import duke.events.Event;
 import duke.events.Task;
-import duke.events.ToDos;
+import duke.events.ToDo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -62,7 +60,7 @@ public class TaskList {
             if (taskName == null || taskName.equals("")) {
                 throw new DukeException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
             } else {
-                Task t = new ToDos(taskName);
+                Task t = new ToDo(taskName);
                 taskList.add(t);
                 numOfInputs += 1;
 
@@ -83,7 +81,7 @@ public class TaskList {
             } else {
                 System.out.println(splitB[1]);
                 LocalDateTime deadline = LocalDateTime.parse(splitB[1]);
-                Task d = new Deadlines(splitB[0], deadline);
+                Task d = new Deadline(splitB[0], deadline);
                 taskList.add(d);
                 numOfInputs += 1;
                 System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
@@ -102,7 +100,7 @@ public class TaskList {
                 throw new DukeException("=0w0= To add an event type it in in this format: event taskName /at time");
             } else {
                 String time = splitA[1];
-                Task e = new Events(splitA[0], time);
+                Task e = new Event(splitA[0], time);
                 taskList.add(e);
                 numOfInputs += 1;
 

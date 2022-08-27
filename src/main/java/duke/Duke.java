@@ -1,13 +1,20 @@
 package duke;
-
 import duke.commands.Command;
 
+/**
+ * <p>The Duke class is the main class of the program.</p>
+ * <p>This class is used to run the program.</p>
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for the Duke class.
+     * @param filePath is a String that specifies the filepath of the save file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -15,6 +22,9 @@ public class Duke {
     }
 
 
+    /**
+     * Method that runs the program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -32,7 +42,11 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    /**
+     * Main method that runs the program.
+     * @param args the command line arguments.
+     */
+    public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 }
