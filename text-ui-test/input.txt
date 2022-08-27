@@ -14,4 +14,5 @@ delete 3
 list
 list /before 21-02-2019 19:00
 list /after 03-12-2019 19:00
+find book
 bye

@@ -122,7 +122,7 @@ public class TaskList {
         String result = "";
         int counter = 1;
         for (Task task : tasks) {
-            result = String.format("%s%d%s%s%s", result, counter, ":", task, "\n");
+            result = String.format("%s%d%s%s%s", result, counter, ": ", task, "\n");
             counter++;
         }
         return result;
@@ -167,6 +167,21 @@ public class TaskList {
         return convertTaskListToString(
                 this.taskList.stream()
                         .filter(task -> task.isAfter(dateTime))
+                        .collect(Collectors.toList()));
+    }
+
+    /**
+     * The searchTasks function searches the task list for tasks that contain the
+     * search term.
+     *
+     * @param searchTerm
+     *            Search for a specific task
+     * @return A string
+     */
+    public String searchTasks(String searchTerm) {
+        return convertTaskListToString(
+                this.taskList.stream()
+                        .filter(task -> task.textContains(searchTerm))
                         .collect(Collectors.toList()));
     }
 }
