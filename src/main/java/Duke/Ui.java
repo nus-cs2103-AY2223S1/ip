@@ -9,6 +9,10 @@ public class Ui {
         sc = new Scanner(System.in);
     }
 
+    /**
+     *
+     * @return User command given by user
+     */
     public String getUserCommand() {
         return sc.nextLine();
     }
