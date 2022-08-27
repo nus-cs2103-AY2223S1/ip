@@ -43,7 +43,9 @@ public class Task {
             return new Deadline(entry[2],  Boolean.parseBoolean(entry[1]), d);
         }
     }
-
+    public boolean match(String toFind) {
+        return description.contains(toFind);
+    }
     public String formatTask() {
         return "task";
     }
