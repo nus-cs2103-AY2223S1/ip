@@ -15,7 +15,7 @@ public class TaskList {
     }
 
     public String getRemainingTasks() {
-        return String.format("Now you have %d duke.tasks in the list.", taskList.size());
+        return String.format("Now you have %d tasks in the list.", taskList.size());
     }
 
     private void updateDb() {
