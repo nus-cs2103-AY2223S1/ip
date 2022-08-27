@@ -8,7 +8,7 @@ import java.time.DateTimeException;
  * Main class where the Blink program runs, containing the TaskList,
  * Storage and Ui.
  *
- * @Author maxng17
+ * @author maxng17
  * @version CS2103T AY 22/23 Sem 1
  */
 public class Blink {
@@ -22,7 +22,7 @@ public class Blink {
      *
      * @param path The file path of the save file
      */
-    public Blink(String path)  {
+    public Blink(String path) {
         ui = new Ui();
         storage = new Storage(path);
         try {
@@ -59,7 +59,7 @@ public class Blink {
     }
 
     public static void main(String[] args) {
-        String path = System.getProperty("user.home") + "/blink/blink.txt";
+        String path =  System.getProperty("user.home") + "/blink/blink.txt";
         Blink blink = new Blink(path);
         blink.run();
     }

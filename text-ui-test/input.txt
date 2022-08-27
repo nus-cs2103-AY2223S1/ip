@@ -24,4 +24,5 @@ delete
 Rubbish command
 qrrwqrerq
 3410341
+find study
 bye
