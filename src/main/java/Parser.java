@@ -44,6 +44,7 @@ public abstract class Parser {
         return command;
     }
 
+    // returns the 0-based index of task
     public static int getTaskIndex(String command, TaskList taskList) throws IllegalArgumentException {
         int i;
         String[] commandArr = command.split(" ");
@@ -53,6 +54,6 @@ public abstract class Parser {
             throw new IllegalArgumentException();
         }
 
-        return i;
+        return i - 1;
     }
 }
