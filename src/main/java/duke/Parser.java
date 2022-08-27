@@ -51,6 +51,8 @@ public class Parser {
                 addTask(input, taskList);
             } else if (first.equals("delete")) {
                 deleteTask(input, taskList);
+            } else if (first.equals("find")) {
+                findTask(input, taskList);
             } else {
                 throw new DukeException(LINE + "☹ OOPS!!! I'm sorry, but I don't know what that means :(\n"
                         + LINE);
@@ -216,5 +218,31 @@ public class Parser {
         System.out.println(LINE + "Noted. I've removed this task:");
         System.out.println(task.toString() + "\n" + "Now you have " + taskList.size()
                 + " tasks in the list.\n" + LINE);
+    }
+
+    public static void findTask(String input, TaskList taskList) throws DukeException {
+        String[] inputArray = input.split(" ", 2);
+        String keyword = inputArray[1];
+        TaskList temp = new TaskList();
+        int index = 1;
+        if (inputArray[1].isEmpty()) {
+            throw new DukeException(LINE + "☹ OOPS!!! Please input something for me to find.\n"
+                    + LINE);
+        }
+        for (Task t : taskList.getTaskList()) {
+            if (t.getDescription().contains(keyword)) {
+                temp.add(t);
+            }
+        }
+        if (temp.size() == 0) {
+            throw new DukeException(LINE + "No matching tasks in your list\n" + LINE);
+        }
+        System.out.println(LINE + "Here are the matching tasks in your list:");
+        for (Task t : temp.getTaskList()) {
+            System.out.println(index + "." + t.toString());
+            index++;
+        }
+        System.out.println(LINE);
+
     }
 }
