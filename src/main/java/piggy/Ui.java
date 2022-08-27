@@ -1,5 +1,6 @@
 package piggy;
 
+import java.util.List;
 import java.util.Scanner;
 
 import piggy.task.Task;
@@ -37,12 +38,16 @@ class Ui {
     /**
      * Shows the list of tasks on the output.
      *
-     * @param taskList The list of tasks to show.
+     * @param tasks The list of tasks to show.
      */
-    void showTaskList(TaskList taskList) {
+    void showTaskList(List<Task> tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.printf("%d.%s\n", i + 1, taskList.get(i));
+        showTasks(tasks);
+    }
+
+    private void showTasks(List<Task> tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.printf("%d.%s\n", i + 1, tasks.get(i));
         }
     }
 
@@ -88,6 +93,20 @@ class Ui {
     void showMarkAsNotDone(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + task);
+    }
+
+    /**
+     * Show the list of tasks found.
+     *
+     * @param tasks The list of tasks.
+     */
+    void showTasksFound(List<Task> tasks) {
+        if (tasks.size() == 0) {
+            System.out.println("No matching tasks found in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            showTasks(tasks);
+        }
     }
 
     /**
