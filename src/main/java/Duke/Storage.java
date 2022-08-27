@@ -5,14 +5,13 @@ import java.util.Scanner;
 
 public class Storage {
     private File file;
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-
-    public ArrayList<Task> loadTasks() throws DukeException {
+    public ArrayList<Task> loadTasks() throws DukeException{
         ArrayList<Task> list = new ArrayList<Task>();
         try {
             File file = new File(filePath);
@@ -40,22 +39,18 @@ public class Storage {
         return list;
     }
 
-    public void writeTasks(ArrayList<Task> list) {
+        public void writeTasks(TaskList tl) {
         try {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+            FileWriter fileWriter = new FileWriter(filePath);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            for (Task task: list) {
+            for (int i = 0; i < tl.size(); i++) {
+                Task task = tl.get(i);
                 String str = task.fileFormat();
-                printWriter.print(str + System.lineSeparator());
+                printWriter.println(str);
             }
-            printWriter.close();
+           printWriter.close();
         } catch (IOException e) {
             System.out.println("☹ OOPS!!! Failed to save your file!.");
         }
     }
-
 }

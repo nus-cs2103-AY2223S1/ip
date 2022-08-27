@@ -40,8 +40,9 @@ public class Event extends Task{
         b = t1.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
+    @Override
     public String fileFormat() {
-        return "E|" + super.fileFormat() + "|" + at + "|" + day + "|" + date + "|" + time;
+        return "E" + super.fileFormat() + "|" + at + "|" + day + "|" + a + "|" + b;
     }
 
     @Override

@@ -1,18 +1,18 @@
 package Duke;
+import java.io.IOException;
 
 
 public class Duke {
-
-    private static TaskList taskList;
+    private TaskList taskList;
     private static Ui ui;
-    private static Storage storage;
-    protected String filePath;
+    private Storage storage;
+    private final String filePath;
 
 
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
         this.taskList = new TaskList();
-        this.filePath = filePath;
+        filePath = "/Users/yiye/Desktop/cs2103Projects/ip/duke.txt";
         storage = new Storage(filePath);
         try {
             taskList = new TaskList(storage.loadTasks());
@@ -23,7 +23,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("/Users/yiye/Desktop/cs2103Projects/ip/Data.txt");
+        Duke duke = new Duke();
         Parser parser = new Parser(duke, ui);
         duke.run(parser);
     }
@@ -31,8 +31,10 @@ public class Duke {
     public void run(Parser parser)  {
         ui.greet();
         parser.run();
-        storage.writeTasks(taskList.listTasks());
+        storage.writeTasks(taskList);
         ui.stop();
     }
+
+
 
 }
