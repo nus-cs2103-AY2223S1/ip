@@ -1,3 +1,4 @@
+package org.Olivia.calendar;
 public class CalendarEntryEvent extends CalendarEntry {
     private CalendarTime startTime;
     private CalendarTime endTime;

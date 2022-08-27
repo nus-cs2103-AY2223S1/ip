@@ -1,5 +1,12 @@
+package org.Olivia;
+
+import org.Olivia.IO.FileHandler;
+import org.Olivia.IO.UiHandler;
+import org.Olivia.calendar.*;
+
 import java.io.File;
 import java.security.InvalidParameterException;
+
 
 public class EventDispatcher {
 

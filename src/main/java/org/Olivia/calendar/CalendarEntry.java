@@ -1,3 +1,4 @@
+package org.Olivia.calendar;
 /**
  * a specific entry in a calendar
  * over the course of the development process, i will try to make this as close to the ics file format as possible

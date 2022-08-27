@@ -1,3 +1,4 @@
+package org.Olivia.calendar;
 public class CalendarEntryDeadline extends CalendarEntry {
     private CalendarTime time;
     public CalendarEntryDeadline(String title, String time) throws Exception {
