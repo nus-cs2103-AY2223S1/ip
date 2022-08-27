@@ -1,11 +1,5 @@
 package duke;
 
-/**
- * TODOs
- * update file for mark/unmark
- * update file for delete
- */
-
 public class Duke {
     protected static boolean terminate = false;
     private Ui ui;
