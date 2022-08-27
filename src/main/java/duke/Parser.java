@@ -7,6 +7,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -75,6 +76,12 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 throw new DukeException("To add an event, please specify '/at dd/mm/yy'.");
             }
+        case "FIND":
+            String keyword = restOfCommand;
+            if (keyword.isBlank()) {
+                throw new DukeException("Keyword cannot be empty.");
+            }
+            return new FindCommand(keyword);
         case "DELETE":
             try {
                 int index = Integer.valueOf(restOfCommand) - 1;
