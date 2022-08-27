@@ -9,10 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Db {
+public class Storage {
     private static final String FILE = "./duke.txt";
 
-    public List<Task> load() {
+    public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(FILE));
@@ -50,19 +50,19 @@ public class Db {
                             break;
                     }
                 } catch (IOException e) {
-                    System.out.println("IOException...");
-                    System.out.println(e.getMessage());
+                    throw new DukeException(
+                            "Error occured while processing duke.txt. Loading empty list of tasks instead.");
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("FileNotFound...");
-            System.out.println(e.getMessage());
+            throw new DukeException("duke.txt was not found. Loading empty list of tasks instead.");
         }
         return tasks;
     }
 
-    public void save(List<Task> tasks) {
+    public void save(TaskList taskList) {
         try {
+            List<Task> tasks = taskList.getTasks();
             BufferedWriter bw = new BufferedWriter(new FileWriter(FILE));
             for (Task task : tasks) {
                 // process each task into a line
