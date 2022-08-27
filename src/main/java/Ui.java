@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,10 +12,24 @@ public class Ui {
 
     public void getPrompt(Scanner sc) {
             String line = "";
-            while (true) {
-                line = sc.nextLine();
-                Parser parser = new Parser();
+            while (sc.hasNext()) {
+                try {
+                    line = sc.nextLine();
+                    Parser.parseLine(line);
+                } catch (DukeException e) {
+                    e.printStackTrace();
+                }
             }
-
     }
+
+
+    public void showLoadingError() {
+        System.out.println("duke.txt not found!");
+    }
+
+    public void showExceptionError(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+
 }
