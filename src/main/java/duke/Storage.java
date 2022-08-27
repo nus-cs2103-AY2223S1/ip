@@ -6,13 +6,26 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.file.FileAlreadyExistsException;
 
+/*
+ * Handles saving and loading of tasks to and from a file.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Create a new Storage object to handle saving and loading of tasks.
+     * 
+     * @param filePath path to the file to save and load tasks from
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the tasks from the file.
+     * @return the tasks from the file
+     * @throws DukeException if there is an error reading the file
+     */
     public ArrayList<Task> load() throws DukeException {
         Path saveLocation = Paths.get(filePath);
         ArrayList<Task> taskList = new ArrayList<>();
@@ -40,21 +53,22 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the tasks to the file.
+     * @param taskList the tasks to save
+     * @throws DukeException if there is an error writing to the file
+     */
     public void save(TaskList tasks) throws DukeException {
         try {
-            saveTaskListToFile(tasks);
+            Files.createDirectories(Paths.get(filePath).getParent());
+            Path saveLocation = Paths.get(filePath);
+            try {
+                Files.createFile(saveLocation);
+            } catch (FileAlreadyExistsException ignored) {
+            }
+            Files.write(saveLocation, tasks.toSaveData().getBytes());
         } catch (IOException e) {
             throw new DukeException("IOException: " + e.toString());
         }
-    }
-
-    private static void saveTaskListToFile(TaskList tasks) throws IOException {
-        Files.createDirectories(Paths.get("data"));
-        Path saveLocation = Paths.get("data/tasks.txt");
-        try {
-            Files.createFile(saveLocation);
-        } catch (FileAlreadyExistsException ignored) {
-        }
-        Files.write(saveLocation, tasks.toSaveData().getBytes());
     }
 }

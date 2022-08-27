@@ -5,6 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a deadline to be completed. Has a description, date
+ * that the deadline is due, and can be marked as done or undone.
+ */
 public class Deadline extends Task {
     protected LocalDate by;
 
@@ -18,6 +22,19 @@ public class Deadline extends Task {
         this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
     }
 
+    /**
+     * Converts save string data to a Deadline object.
+     * The save string data is in the format:
+     * <p>
+     * <pre>
+     * D,"<description>","<by>"
+     * </pre>
+     * <p>
+     * 
+     * @param saveString the save string data
+     * @return the new Deadline object created from saveString
+     * @throws DukeException
+     */
     public static Deadline fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if(splitSaveString.length != 3) {
@@ -27,6 +44,14 @@ public class Deadline extends Task {
         String by = "by " + splitSaveString[2];
         boolean done = splitSaveString[0].endsWith("1");
         return new Deadline(description, by, done);
+    }
+
+    /* (non-Javadoc)
+     * @see duke.Task#toSaveData()
+     */
+    @Override
+    public String toSaveData() {
+        return super.toSaveData() + String.format(",\"%s\"", this.by.toString());
     }
 
     @Override
@@ -42,10 +67,5 @@ public class Deadline extends Task {
         Deadline deadline = (Deadline) o;
         return super.equals(o) &&
                 by.equals(deadline.by);
-    }
-
-    @Override
-    public String toSaveData() {
-        return super.toSaveData() + String.format(",\"%s\"", this.by.toString());
     }
 }

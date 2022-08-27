@@ -11,7 +11,18 @@ import duke.command.DeleteCommand;
 
 import java.util.Arrays;
 
+/**
+ * Parser takes in a string and returns a Command object which
+ * represents the command the user wants to execute.
+ */
 public class Parser {
+    /**
+     * Parses a string and returns a Command object.
+     * 
+     * @param input the command string
+     * @return the Command object representing the command the user wants to execute
+     * @throws DukeException if the command is invalid
+     */
     public static Command parse(String input) throws DukeException {
         String[] inputSplit = input.split(" ");
         switch(inputSplit[0]) {
