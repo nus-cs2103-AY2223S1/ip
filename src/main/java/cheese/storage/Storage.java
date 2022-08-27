@@ -12,13 +12,28 @@ import cheese.task.Task;
 import cheese.task.Todo;
 import cheese.exception.CheeseException;
 
+/**
+ * Represents a storage that interacts with <code>Cheese</code>'s save file.
+ */
 public class Storage {
+  /** File path of save file. */
   private String filePath;
 
+  /**
+   * Constructs an instance of <code>Storage</code>.
+   * 
+   * @param filePath File path of save file.
+   */
   public Storage(String filePath) {
     this.filePath = filePath;
   }
 
+  /**
+   * Loads task list from save file.
+   * 
+   * @return Instance of <code>TaskList</code> loaded from save file.
+   * @throws CheeseException If save file contains corrupted data.
+   */
   public TaskList load() throws CheeseException {
     TaskList taskList = new TaskList();
     try {
@@ -37,6 +52,11 @@ public class Storage {
     return taskList;
   }
 
+  /**
+   * Saves given task list to save file.
+   * 
+   * @param taskList Task list to save.
+   */
   public void save(TaskList taskList) {
     String toSave = taskList.toFileString();
     try {
@@ -48,6 +68,13 @@ public class Storage {
     }
   }
 
+  /**
+   * Parses string from save file to task.
+   * 
+   * @param taskString String from save file to parse.
+   * @return Task parsed from string.
+   * @throws CheeseException If string from save file is corrupted.
+   */
   private Task decodeStringToTask(String taskString) throws CheeseException {
     String[] taskStringArray = taskString.split(" // ");
     String taskType = taskStringArray[0];
