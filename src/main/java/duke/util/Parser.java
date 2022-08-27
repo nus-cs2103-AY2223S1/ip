@@ -80,21 +80,21 @@ public class Parser {
 
         try {
             switch (command) {
-            case mark: {
-                int index = Integer.parseInt(arr[1]) - 1;
-                Ui.markTaskDone(list.markAsDone(index));
-                return;
-            }
-            case unmark: {
-                int index = Integer.parseInt(arr[1]) - 1;
-                Ui.markTaskNotDone(list.markAsNotDone(index));
-                return;
-            }
-            case delete: {
-                int index = Integer.parseInt(arr[1]) - 1;
-                Ui.deleteTask(list.delete(index));
-                return;
-            }
+                case mark: {
+                    int index = Integer.parseInt(arr[1]) - 1;
+                    Ui.markTaskDone(list.markAsDone(index));
+                    return;
+                }
+                case unmark: {
+                    int index = Integer.parseInt(arr[1]) - 1;
+                    Ui.markTaskNotDone(list.markAsNotDone(index));
+                    return;
+                }
+                case delete: {
+                    int index = Integer.parseInt(arr[1]) - 1;
+                    Ui.deleteTask(list.delete(index));
+                    return;
+                }
             case find:
                 String keyword = arr[1];
                 Ui.findKeyword(keyword, list.searchFor(keyword));
@@ -105,47 +105,50 @@ public class Parser {
         }
 
         switch (command) {
-        case todo:
-            try {
-                list.add(new ToDo(arr[1]));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new NoArgumentException(0, e);
+            case todo: {
+                try {
+                    list.add(new ToDo(arr[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new NoArgumentException(0, e);
+                }
+                break;
             }
-            break;
-        case deadline:
-            try {
-                String[] desc = arr[1].split(" /by ");
-                list.add(new Deadline(desc[0], desc[1]));
-            } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-                if (fromSave) {
-                    throw new FileParseException(input, e);
-                } else {
-                    if (e instanceof ArrayIndexOutOfBoundsException) {
-                        throw new NoArgumentException(1, e);
+            case deadline: {
+                try {
+                    String[] desc = arr[1].split(" /by ");
+                    list.add(new Deadline(desc[0], desc[1]));
+                } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+                    if (fromSave) {
+                        throw new FileParseException(input, e);
                     } else {
-                        // e will definitely be a DateTimeParseException
-                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                        if (e instanceof ArrayIndexOutOfBoundsException) {
+                            throw new NoArgumentException(1, e);
+                        } else {
+                            // e will definitely be a DateTimeParseException
+                            throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                        }
                     }
                 }
+                break;
             }
-            break;
-        case event:
-            try {
-                String[] desc = arr[1].split(" /at ");
-                list.add(new Event(desc[0], desc[1]));
-            } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-                if (fromSave) {
-                    throw new FileParseException(input, e);
-                } else {
-                    if (e instanceof ArrayIndexOutOfBoundsException) {
-                        throw new NoArgumentException(2, e);
+            case event: {
+                try {
+                    String[] desc = arr[1].split(" /at ");
+                    list.add(new Event(desc[0], desc[1]));
+                } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+                    if (fromSave) {
+                        throw new FileParseException(input, e);
                     } else {
-                        //e will definitely be a DateTimeParseException
-                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                        if (e instanceof ArrayIndexOutOfBoundsException) {
+                            throw new NoArgumentException(2, e);
+                        } else {
+                            //e will definitely be a DateTimeParseException
+                            throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                        }
                     }
                 }
+                break;
             }
-            break;
         }
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
