@@ -1,11 +1,11 @@
 package duke.task;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import duke.DukeException;
 import duke.common.Messages;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Represents the task list and methods to manage the task list.
@@ -13,7 +13,7 @@ import duke.ui.Ui;
 public class TaskList {
 
     private final List<Task> tasks;
-    private final Ui ui;
+    private final TextUi textUi;
 
     /**
      * Constructor for a new Task List.
@@ -22,7 +22,11 @@ public class TaskList {
      */
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
-        ui = new Ui();
+        textUi = new TextUi();
+    }
+
+    public int getNumberOfTasks() {
+        return tasks.size();
     }
 
     /**
@@ -30,13 +34,10 @@ public class TaskList {
      *
      * @param description description of the to-do
      */
-    public void addTodo(String description) {
+    public Task addTodo(String description) {
         Task task = new Todo(description);
         tasks.add(task);
-        ui.showMessages(
-                Messages.MESSAGE_TASK_ADDED,
-                "  " + task,
-                String.format(Messages.MESSAGE_TASK_NUMBER, tasks.size()));
+        return task;
     }
 
     /**
@@ -45,13 +46,10 @@ public class TaskList {
      * @param description description of the deadline
      * @param by date deadline is to be completed by
      */
-    public void addDeadline(String description, String by) {
+    public Task addDeadline(String description, String by) {
         Task task = new Deadline(description, by);
         tasks.add(task);
-        ui.showMessages(
-                Messages.MESSAGE_TASK_ADDED,
-                "  " + task,
-                String.format(Messages.MESSAGE_TASK_NUMBER, tasks.size()));
+        return task;
     }
 
     /**
@@ -60,13 +58,10 @@ public class TaskList {
      * @param description description of the event
      * @param at time frame of the event
      */
-    public void addEvent(String description, String at) {
+    public Task addEvent(String description, String at) {
         Task task = new Event(description, at);
         tasks.add(task);
-        ui.showMessages(
-                Messages.MESSAGE_TASK_ADDED,
-                "  " + task,
-                String.format(Messages.MESSAGE_TASK_NUMBER, tasks.size()));
+        return task;
     }
 
     /**
@@ -74,15 +69,9 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public void deleteTask(int inputIndex) throws DukeException {
+    public Task deleteTask(int inputIndex) throws DukeException {
         int targetIndex = checkIndex(inputIndex);
-        Task task = tasks.get(targetIndex);
-        tasks.remove(targetIndex);
-        ui.showMessages(
-                Messages.MESSAGE_TASK_DELETED,
-                "  " + task,
-                String.format(Messages.MESSAGE_TASK_NUMBER, tasks.size()));
-
+        return tasks.remove(targetIndex);
     }
 
     /**
@@ -90,17 +79,13 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public void markTask(int inputIndex) throws DukeException {
-        Task targetTask = getTask(checkIndex(inputIndex));
-
+    public Task markTask(int inputIndex) throws DukeException {
+        Task targetTask = tasks.get(checkIndex(inputIndex));
         if (targetTask.isDone()) {
             throw new DukeException(Messages.MESSAGE_TASK_ALREADY_MARKED);
         }
-
         targetTask.mark();
-        ui.showMessages(
-                String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "done"),
-                "  " + targetTask);
+        return targetTask;
     }
 
     /**
@@ -108,27 +93,30 @@ public class TaskList {
      *
      * @param inputIndex visible index of the task
      */
-    public void unmarkTask(int inputIndex) throws DukeException {
-        Task targetTask = getTask(checkIndex(inputIndex));
-
+    public Task unmarkTask(int inputIndex) throws DukeException {
+        Task targetTask = tasks.get(checkIndex(inputIndex));
         if (!targetTask.isDone()) {
             throw new DukeException(Messages.MESSAGE_TASK_ALREADY_UNMARKED);
         }
-
         targetTask.unmark();
-        ui.showMessages(
-                String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "not done"),
-                "  " + targetTask);
+        return targetTask;
     }
 
     /**
      * Finds tasks in the task list with a keyword.
      */
-    public void findTask(String keyword) {
-        AtomicInteger index = new AtomicInteger(1);
-        tasks.stream()
-                .filter(t -> t.toString().contains(keyword))
-                .forEach(t -> ui.showWithCurrentColour(index.getAndIncrement() + "." + t));
+    public List<Task> findTasks(String keyword) {
+        return tasks.stream()
+                .filter(t -> String.valueOf(t).contains(keyword))
+                .collect(Collectors.toList());
+    }
+
+    public static String convertListOfTasksToString(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append(String.format("%d.%s\n\t", i + 1, tasks.get(i)));
+        }
+        return sb.toString().stripTrailing();
     }
 
     /**
@@ -142,10 +130,6 @@ public class TaskList {
         return sb.toString();
     }
 
-    private Task getTask(int index) {
-        return tasks.get(index);
-    }
-
     private int checkIndex(int inputIndex) throws DukeException {
         int actualListIndex = inputIndex - 1;
         if (actualListIndex >= tasks.size() || actualListIndex < 0) {
@@ -156,11 +140,7 @@ public class TaskList {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append(String.format("  %d.%s\n\t", i + 1, getTask(i)));
-        }
-        return sb.toString().stripTrailing();
+        return TaskList.convertListOfTasksToString(tasks);
     }
 
 }

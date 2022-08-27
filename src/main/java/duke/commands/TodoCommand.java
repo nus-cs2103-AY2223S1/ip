@@ -1,9 +1,11 @@
 package duke.commands;
 
 import duke.DukeException;
+import duke.common.Messages;
 import duke.storage.StorageFile;
+import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Adds a new to-do to the task list.
@@ -27,8 +29,15 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws DukeException {
-        taskList.addTodo(description);
-        storage.save(taskList);
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        try {
+            Task task = taskList.addTodo(description);
+            storage.save(taskList);
+            return new CommandResult(Messages.MESSAGE_TASK_ADDED + "\n"
+                    + task + "\n"
+                    + String.format(Messages.MESSAGE_TASK_NUMBER, taskList.getNumberOfTasks()));
+        } catch (DukeException e) {
+            return new CommandResult(e.getMessage());
+        }
     }
 }

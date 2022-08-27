@@ -1,9 +1,11 @@
 package duke.commands;
 
 import duke.DukeException;
+import duke.common.Messages;
 import duke.storage.StorageFile;
+import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Marks a task in the task list as done.
@@ -27,8 +29,13 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws DukeException {
-        taskList.markTask(targetIndex);
-        storage.save(taskList);
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        try {
+            Task task = taskList.markTask(targetIndex);
+            storage.save(taskList);
+            return new CommandResult(String.format(Messages.MESSAGE_TASK_UPDATE_STATUS + "\n%s", "done", task));
+        } catch (DukeException e) {
+            return new CommandResult(e.getMessage());
+        }
     }
 }

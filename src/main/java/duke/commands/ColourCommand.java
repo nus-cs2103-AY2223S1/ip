@@ -1,8 +1,9 @@
 package duke.commands;
 
+import duke.common.Messages;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Sets the output colour of the program.
@@ -22,7 +23,8 @@ public class ColourCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.setOutputColor(colour);
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        textUi.setOutputColor(colour);
+        return new CommandResult(String.format(Messages.MESSAGE_OUTPUT_COLOUR_SET, colour));
     }
 }
