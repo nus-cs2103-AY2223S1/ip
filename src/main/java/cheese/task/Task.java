@@ -1,46 +1,64 @@
 package cheese.task;
 
-public abstract class Task {
-  /** Description of Task */
+/**
+ * Represents a task with a description and complete/incomplete status.
+ */
+public class Task {
+  /** Description of task. */
   private String description;
 
-  /** Boolean representing whether Task is done or not */
+  /** Whether task is complete or incomplete. */
   private boolean isDone;
 
   /**
-   * Constructor to create a new Task
+   * Constructs an instance of <code>Task</code>.
    * 
-   * @param description description of Task
+   * @param description Description of task.
    */
   protected Task(String description) {
     this.description = description;
     isDone = false;
   }
 
+  /**
+   * Constructs an instance of <code>Task</code>.
+   * 
+   * @param isDone      Whether task is complete or incomplete.
+   * @param description Description of task.
+   */
   protected Task(boolean isDone, String description) {
     this.isDone = isDone;
     this.description = description;
   }
 
-  /** Marks this task as done */
+  /**
+   * Marks this task as complete.
+   */
   public void markAsDone() {
     isDone = true;
   }
 
-  /** Marks this task as not done */
+  /**
+   * Marks this task as incomplete.
+   */
   public void markAsNotDone() {
     isDone = false;
   }
 
+  /**
+   * Returns string representation of task to save in file.
+   * 
+   * @return String representation of task to save in file.
+   */
   public String toFileString() {
     String isDoneString = isDone ? "T" : "F";
     return isDoneString + " // " + description;
   }
 
   /**
-   * Returns string representation of Task
+   * Returns string representation of task.
    * 
-   * @return string representation of Task
+   * @return String representation of task.
    */
   @Override
   public String toString() {

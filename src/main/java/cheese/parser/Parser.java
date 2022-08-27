@@ -11,8 +11,17 @@ import cheese.command.TodoCommand;
 import cheese.command.UnknownCommand;
 import cheese.command.UnmarkCommand;
 
+/**
+ * Represents a parser to translate user input into command.
+ */
 public class Parser {
-
+  /**
+   * Parses user input into command.
+   * 
+   * @param fullCommand User input.
+   * @return Instance of <code>Command</code> that corresponds to user input.
+   * @throws CheeseException
+   */
   public static Command parse(String fullCommand) throws CheeseException {
     String[] fullCommandArray = fullCommand.split(" ", 2);
     String command = fullCommandArray[0];
@@ -79,10 +88,11 @@ public class Parser {
   }
 
   /**
-   * Checks if given command has no arguments
+   * Checks if given user input has n arguments
    * 
-   * @param inputArray array containing user input after splitting by space
-   * @throws CheeseException if given command contains extra arguments
+   * @param fullCommandArray Array containing user input after splitting by space.
+   * @param n                Desired number of arguments.
+   * @throws CheeseException If given user input does not contain n arguments.
    */
   private static void validateCommandHasNArguments(String[] fullCommandArray, int n) throws CheeseException {
     if (fullCommandArray.length != n + 1) {
@@ -90,6 +100,13 @@ public class Parser {
     }
   }
 
+  /**
+   * Parses String argument to int.
+   * 
+   * @param argument Argument to parse to int.
+   * @return Integer that is parsed.
+   * @throws CheeseException If argument is in non-integer format.
+   */
   private static int parseArgumentToInt(String argument) throws CheeseException {
     int parsedArgument;
     try {
