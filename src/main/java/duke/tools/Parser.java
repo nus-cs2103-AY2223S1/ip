@@ -1,4 +1,6 @@
-import java.util.HashMap;
+package duke.tools;
+
+import duke.exception.TaskNotFoundException;
 
 /**
  * Converter of user inputs to commands

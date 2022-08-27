@@ -1,9 +1,13 @@
+package duke.tools;
+
+import duke.exception.ContentNotFoundException;
+import duke.exception.TaskNotFoundException;
 import java.util.HashMap;
 
 public class TaskParser extends Parser {
     private String[] keywords;
     private String input;
-    enum TASKS {
+    public enum TASKS {
         TODO,
         DEADLINE,
         EVENT

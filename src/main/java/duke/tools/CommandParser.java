@@ -1,3 +1,6 @@
+package duke.tools;
+
+import duke.exception.TaskNotFoundException;
 import java.util.HashMap;
 
 public class CommandParser extends Parser {
@@ -6,7 +9,7 @@ public class CommandParser extends Parser {
 
     private final HashMap<String, COMMANDS> commandMap = new HashMap<>();
 
-    enum COMMANDS {
+    public enum COMMANDS {
         BYE,
         LIST,
         MARK,

@@ -1,3 +1,13 @@
+package duke;
+
+import duke.exception.ContentNotFoundException;
+import duke.exception.DateNotFoundException;
+import duke.exception.TaskNotFoundException;
+import duke.task.TaskList;
+import duke.task.Task;
+import duke.tools.CommandParser;
+import duke.tools.Storage;
+import duke.tools.Ui;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -11,7 +21,6 @@ public class Duke {
     }
 
     public void run() {
-        //TODO
         Ui.greet();
 
         Scanner userScan = new Scanner(System.in);

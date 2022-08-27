@@ -1,3 +1,10 @@
+package duke.task;
+
+import duke.exception.ContentNotFoundException;
+import duke.exception.DateNotFoundException;
+import duke.exception.TaskNotFoundException;
+import duke.tools.Ui;
+import duke.tools.TaskParser;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
