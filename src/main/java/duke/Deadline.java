@@ -1,8 +1,8 @@
 package duke;
 
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a deadline task that can be stored by Duke.

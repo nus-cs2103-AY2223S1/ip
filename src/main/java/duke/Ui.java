@@ -127,13 +127,6 @@ public class Ui {
         sb.append("Now you have " + size + " task(s) left in the list.");
         return sb.toString();
     }
-    
-    /**
-     * Displays a horizontal line to the user to separate inputs.
-     */
-    public void showLine() {
-
-    }
 
     /**
      * Displays the goodbye message to uesr before application exits.

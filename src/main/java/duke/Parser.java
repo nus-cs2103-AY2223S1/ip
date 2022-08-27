@@ -10,14 +10,14 @@ public class Parser {
     /**
      * Converts user input into Command.
      *
-     * @param CommandString user input that has been entered.
+     * @param commandString user input that has been entered.
      * @return Command based on user input.
      * @throws DukeException the exception encountered while parsing through user input.
      */
-    public Command parseCommand(String CommandString) throws DukeException {
-        String[] splitInput = CommandString.split(" ", 2);
+    public Command parseCommand(String commandString) throws DukeException {
+        String[] splitInput = commandString.split(" ", 2);
         switch(splitInput[0]) {
-        case "bye" :
+        case "bye":
             return new ExitCommand();
 
         case "todo":
@@ -57,7 +57,7 @@ public class Parser {
             checkForMissingArgs(splitInput);
             return new DeleteCommand(Integer.parseInt(splitInput[1]));
 
-        default :
+        default:
             throw new DukeException("Sorry nya, I don't understand what that means :3");
         }
 

@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,8 +14,8 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    String filePath;
-    File saveFile;
+    private String filePath;
+    private File saveFile;
 
     /**
      * Constructor for Storage.
@@ -61,18 +59,20 @@ public class Storage {
                     String[] taskInfo = nextLine.split(" \\| ");
                     Task curr = null;
                     switch (taskInfo[0]) {
-                        case "T" :
-                            curr = new ToDo(taskInfo[2]);
-                            taskList.add(curr);
-                            break;
-                        case "D":
-                            curr = new Deadline(taskInfo[2], LocalDate.parse(taskInfo[3]));
-                            taskList.add(curr);
-                            break;
-                        case "E":
-                            curr = new Event(taskInfo[2], LocalDate.parse(taskInfo[3]));
-                            taskList.add(curr);
-                            break;
+                    case "T":
+                        curr = new ToDo(taskInfo[2]);
+                        taskList.add(curr);
+                        break;
+                    case "D":
+                        curr = new Deadline(taskInfo[2], LocalDate.parse(taskInfo[3]));
+                        taskList.add(curr);
+                        break;
+                    case "E":
+                        curr = new Event(taskInfo[2], LocalDate.parse(taskInfo[3]));
+                        taskList.add(curr);
+                        break;
+                    default:
+                        break;
                     }
                     if (taskInfo[1].equals("1")) {
                         curr.markAsDone();

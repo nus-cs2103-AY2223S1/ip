@@ -2,7 +2,7 @@ package duke;
 
 public class DeleteCommand extends Command {
 
-    int taskNumber;
+    private int taskNumber;
 
     public DeleteCommand(int taskNumber) {
         super();

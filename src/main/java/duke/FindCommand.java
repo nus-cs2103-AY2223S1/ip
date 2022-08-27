@@ -2,7 +2,7 @@ package duke;
 
 public class FindCommand extends Command {
 
-    String filter;
+    private String filter;
 
     public FindCommand(String filter) {
         this.filter = filter;
