@@ -1,7 +1,18 @@
 package ploopy;
 
+/**
+ * Understands the user's input.
+ *
+ */
 public class Parser {
 
+    /**
+     * Interprets the user's input and calls the correct TaskList method.
+     *
+     * @param input Input provided by User
+     * @param taskList Associated taskList for subsequent methods.
+     * @throws PloopyException if input is invalid.
+     */
     public static void parseInput(String input, TaskList taskList) throws PloopyException {
         String[] inputSequence = input.split(" ");
         if (input.isBlank() || input.isEmpty()) {

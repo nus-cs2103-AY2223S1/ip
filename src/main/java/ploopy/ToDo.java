@@ -2,24 +2,27 @@ package ploopy;
 
 public class ToDo extends Task {
 
-    protected ToDo(String name) {
+    /**
+     * Constructor that takes a name.
+     * @param name Name of the task.
+     */
+    public ToDo(String name) {
         super(name, null);
-        type = "T";
+        this.type = "T";
     }
-
-    @Override
-    public String stringType() {
-        return "todo";
-    }
-
 
     @Override
     public String getDate() {
         return "";
     }
 
+    /**
+     * Returns the string representation of the ToDo.
+     *
+     * @return the String representation of the ToDo.
+     */
     @Override
-    protected String getDateForFileWrite() {
+    public String getDateForFileWrite() {
         return "";
     }
 
