@@ -1,9 +1,13 @@
+package kirby.commands;
+
+import kirby.TaskList;
+import kirby.Ui;
+import kirby.Storage;
+import kirby.exceptions.KirbyMissingArgumentException;
+
 public abstract class Command {
-    private String command;
-    private String inputString;
     public Command(String inputString) {
-        this.inputString = inputString;
-        this.command = inputString.split(" ")[0];
+        String command = inputString.split(" ")[0];
     }
 
     public Command() {

@@ -1,9 +1,13 @@
+package kirby;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import kirby.tasks.Task;
+
 /**
- * The HandleTime class contains methods to deal with time and dates.
+ * The kirby.HandleTime class contains methods to deal with time and dates.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class HandleTime {
@@ -20,18 +24,20 @@ public class HandleTime {
 
     public static int[] fromStringToDate(String input) {
         String[] parts = input.split("-");
+        if (parts.length != 3) {
+            return new int[]{-1, -1, -1};
+        }
         int date = Integer.parseInt(parts[2]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[0]);
         return new int[]{date, month, year};
     }
 
-    public static ArrayList<Task> getDate(ArrayList<Task> arr, String input) {
-        int[] toCompare = fromStringToDate(input);
+    public static ArrayList<Task> getTaskByDate(ArrayList<Task> arr, String input) {
         ArrayList<Task> result = new ArrayList<>();
-
+        int[] inputArray = fromStringToDate(input);
         for (Task task : arr) {
-            if (Arrays.equals(toCompare, task.getDate())) {
+            if (Arrays.equals(inputArray, task.getDate())) {
                 result.add(task);
             }
         }

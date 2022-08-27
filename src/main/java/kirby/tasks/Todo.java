@@ -1,5 +1,7 @@
+package kirby.tasks;
+
 /**
- * The Todo class contains information of a Todo task.
+ * The kirby.Todo class contains information of a kirby.Todo task.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Todo extends Task {
@@ -19,6 +21,6 @@ public class Todo extends Task {
 
     @Override
     public String toFileOutput() {
-        return "Todo~" + this.description;
+        return "kirby.Todo~" + this.description;
     }
 }

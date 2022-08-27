@@ -1,7 +1,11 @@
+package kirby.tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import kirby.HandleTime;
+
 /**
- * The Deadline class contains information of a Deadline task.
+ * The kirby.tasks.Deadline class contains information of a kirby.tasks.Deadline task.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Deadline extends Task {
@@ -15,6 +19,7 @@ public class Deadline extends Task {
             this.localDate = LocalDate.parse(by);
         }
     }
+
     @Override
     public int[] getDate() {
         return HandleTime.fromStringToDate(by);
@@ -31,7 +36,6 @@ public class Deadline extends Task {
 
     @Override
     public String toFileOutput() {
-        return "Deadline-" + this.description + "~" + this.by;
+        return "kirby.tasks.Deadline-" + this.description + "~" + this.by;
     }
-
 }

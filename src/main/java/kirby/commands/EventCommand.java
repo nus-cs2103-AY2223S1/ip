@@ -1,3 +1,10 @@
+package kirby.commands;
+
+import kirby.tasks.Event;
+import kirby.TaskList;
+import kirby.Ui;
+import kirby.Storage;
+import kirby.exceptions.KirbyMissingArgumentException;
 import java.io.IOException;
 
 public class EventCommand extends Command {

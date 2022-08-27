@@ -1,27 +1,31 @@
-import java.io.IOException;
+package kirby.commands;
 
-public class UnmarkCommand extends Command {
+import java.io.IOException;
+import kirby.TaskList;
+import kirby.Ui;
+import kirby.Storage;
+import kirby.exceptions.KirbyMissingArgumentException;
+
+public class MarkCommand extends Command {
     private String inputString;
-    public UnmarkCommand(String inputString) {
+    public MarkCommand(String inputString) {
         this.inputString = inputString;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
-            throw new KirbyMissingArgumentException("unmark");
+            throw new KirbyMissingArgumentException("mark");
         }
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
         int currentTaskCount = tasks.getTaskCount();
         if (taskIndex < 1 || taskIndex > currentTaskCount) {
-            throw new KirbyMissingArgumentException("unmark");
+            throw new KirbyMissingArgumentException("mark");
         }
-        tasks.setTaskUnmarked(taskIndex - 1);
-
+        tasks.setTaskMarked(taskIndex - 1);
         try {
             storage.writeTask(tasks.getList());
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

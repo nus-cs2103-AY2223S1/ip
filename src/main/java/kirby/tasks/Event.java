@@ -1,7 +1,11 @@
+package kirby.tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import kirby.HandleTime;
+
 /**
- * The Event class contains information of an Event task.
+ * The kirby.Event class contains information of an kirby.Event task.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Event extends Task {
@@ -15,6 +19,7 @@ public class Event extends Task {
             this.localDate = LocalDate.parse(at);
         }
     }
+
     @Override
     public int[] getDate() {
         return HandleTime.fromStringToDate(at);
@@ -31,6 +36,6 @@ public class Event extends Task {
 
     @Override
     public String toFileOutput() {
-        return "Event~" + this.description + "~" + this.at;
+        return "kirby.Event~" + this.description + "~" + this.at;
     }
 }

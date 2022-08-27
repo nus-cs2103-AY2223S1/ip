@@ -1,4 +1,12 @@
+package kirby.commands;
+
+import kirby.tasks.Task;
 import java.util.ArrayList;
+import kirby.TaskList;
+import kirby.HandleTime;
+import kirby.Ui;
+import kirby.Storage;
+import kirby.exceptions.KirbyMissingArgumentException;
 
 public class GetCommand extends Command {
     private String inputString;
@@ -15,9 +23,13 @@ public class GetCommand extends Command {
         if (!HandleTime.isValidDate(inputDate)) {
             throw new KirbyMissingArgumentException("get");
         }
-        ArrayList<Task> res = HandleTime.getDate(tasks.getList(), inputDate);
-        for (Task re : res) {
-            System.out.println(re.toString());
+        ArrayList<Task> res = HandleTime.getTaskByDate(tasks.getList(), inputDate);
+        if (res.size() < 1) {
+            System.out.println("No tasks found!");
+        } else {
+            for (Task re : res) {
+                System.out.println(re.toString());
+            }
         }
     }
 

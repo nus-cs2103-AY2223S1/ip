@@ -1,8 +1,12 @@
+package kirby;
+
+import kirby.commands.Command;
+import kirby.exceptions.KirbyInvalidCommandException;
+import kirby.exceptions.KirbyMissingArgumentException;
 import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
+
 /**
- * The Kirby class implements the main method of the bot.
+ * The kirby.Kirby class implements the main method of the bot.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Kirby {

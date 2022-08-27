@@ -1,5 +1,12 @@
-public class ShowListCommand extends Command {
+package kirby.commands;
 
+import kirby.TaskList;
+import kirby.Ui;
+import kirby.Storage;
+import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.tasks.Task;
+
+public class ShowListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         System.out.println("Here is your bag of fabulous tasks:");
@@ -13,5 +20,4 @@ public class ShowListCommand extends Command {
     public boolean isExit() {
         return false;
     }
-
 }

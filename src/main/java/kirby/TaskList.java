@@ -1,3 +1,6 @@
+package kirby;
+
+import kirby.tasks.Task;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -41,7 +44,6 @@ public class TaskList {
         this.taskCount --;
         System.out.println("Removed from your bag of fabulous tasks: " + tasks.get(taskIndex - 1).toString());
         printTaskCount();
-
     }
 
     private void printTaskCount() {

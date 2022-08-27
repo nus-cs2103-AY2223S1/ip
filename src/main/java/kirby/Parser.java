@@ -1,8 +1,10 @@
-import java.io.IOException;
+package kirby;
+
+import kirby.commands.*;
+import kirby.exceptions.KirbyInvalidCommandException;
 
 public class Parser {
     public static Command parse(String inputString) throws KirbyInvalidCommandException {
-
         switch (inputString.split(" ")[0]) {
         case "todo":
             return new ToDoCommand(inputString);

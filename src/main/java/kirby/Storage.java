@@ -1,3 +1,6 @@
+package kirby;
+
+import kirby.tasks.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -14,7 +17,6 @@ public class Storage {
             file = createFile();
         }
     }
-
 
     public File createFile() throws IOException {
         try {
@@ -45,17 +47,15 @@ public class Storage {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 String[] parts = line.split("~");
-                System.out.println(parts[0]);
                 switch (parts[0]) {
-                case "Todo":
+                case "kirby.Todo":
                     result.add(new Todo(parts[1]));
                     break;
-                case "Deadline":
+                case "kirby.tasks.Deadline":
                     result.add(new Deadline(parts[1], parts[2]));
                     break;
-                case "Event":
+                case "kirby.Event":
                     result.add(new Event(parts[1], parts[2]));
                     break;
                 }
@@ -66,5 +66,4 @@ public class Storage {
             return null;
         }
     }
-
 }

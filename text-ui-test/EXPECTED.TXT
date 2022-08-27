@@ -1,19 +1,19 @@
-Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! 
+Hai I'm kirby.Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!!
 What amazing plans do you have today?
-Added into your bag of fabulous tasks: [T] [ ] cs2105 assignment
+Added into your bag of fabulous kirby.tasks: [T] [ ] cs2105 assignment
 Now you have 1 task in the bag!
-Added into your bag of fabulous tasks: [D] [ ] st2334 (by: tmr)
-Now you have 2 tasks in the bag!
+Added into your bag of fabulous kirby.tasks: [D] [ ] st2334 (by: tmr)
+Now you have 2 kirby.tasks in the bag!
 Awesome :D I've marked [T] [X] cs2105 assignment completed!
 T_T Aaaaaaah, the description of a mark is invalid! Try again!
-Added into your bag of fabulous tasks: [E] [ ] concert (at: imaginary concert uh :p)
-Now you have 3 tasks in the bag!
-Here is your bag of fabulous tasks:
+Added into your bag of fabulous kirby.tasks: [E] [ ] concert (at: imaginary concert uh :p)
+Now you have 3 kirby.tasks in the bag!
+Here is your bag of fabulous kirby.tasks:
 1: [T] [X] cs2105 assignment
 2: [D] [ ] st2334 (by: tmr)
 3: [E] [ ] concert (at: imaginary concert uh :p)
 Okay, I've marked [T] [ ] cs2105 assignment pending!
-Here is your bag of fabulous tasks:
+Here is your bag of fabulous kirby.tasks:
 1: [T] [ ] cs2105 assignment
 2: [D] [ ] st2334 (by: tmr)
 3: [E] [ ] concert (at: imaginary concert uh :p)

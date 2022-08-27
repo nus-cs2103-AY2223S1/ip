@@ -1,10 +1,11 @@
+package kirby.tasks;
+
 /**
- * The Task class is an abstract class which is inherited by
- * Todo, Deadline and Event.
+ * The kirby.Task class is an abstract class which is inherited by
+ * kirby.Todo, kirby.tasks.Deadline and kirby.Event.
  * @author Sheryl-Lynn Tan (G11)
  */
 public abstract class Task {
-
     protected String description;
     protected boolean isDone;
 
