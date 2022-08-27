@@ -1,25 +1,43 @@
 import java.util.Scanner;
 
 public class UwuBot {
-    private static UwuChat chat = new UwuChat(new TaskList());
+    private Storage storage;
+    private TaskList tasks;
+    private static Ui ui = new Ui();
 
-    public static void run() throws UwuException {
-        chat.greetUsers();
+    public UwuBot(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = storage.load();
+        } catch (UwuException e) {
+            ui.showError(e.getMessage());
+            tasks = new TaskList();
+        }
+    }
 
-        UwuHandler handler = new UwuHandler("data/taskList.txt");
-        Scanner userInput = new Scanner(System.in);
+    public void run() {
+        ui.showLine();
+        ui.greetUsers();
+        ui.showLine();
+        boolean isExit = false;
 
-        while (userInput.hasNextLine()) {
-            String input = userInput.nextLine().toLowerCase();
-            handler.handleResponse(input);
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (UwuException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
         }
     }
 
     public static void main(String[] args) {
-        try {
-            UwuBot.run();
-        } catch (UwuException e){
-            System.out.println(e.getMessage());
-        }
+        new UwuBot("data/taskList.txt").run();
     }
 }

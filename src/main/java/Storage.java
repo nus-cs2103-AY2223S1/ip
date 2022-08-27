@@ -21,7 +21,7 @@ public class Storage {
         }
     }
 
-    public TaskList load() {
+    public TaskList load() throws UwuException {
         TaskList result = new TaskList();
 
         try {
@@ -59,9 +59,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (UwuException e) {
-            System.out.println(e.getMessage());
+            throw new LoadingFileErrorException("\n\toops! seems like there is trouble loading the task list file TT");
         }
 
         return result;
