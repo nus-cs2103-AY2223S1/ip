@@ -1,7 +1,6 @@
 package duke;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Parser {
 
@@ -36,13 +35,15 @@ public class Parser {
         return command.substring(index).trim();
     }
 
-    protected static String formatDate(String desc) {
+    protected static LocalDate formatDate(String desc) {
         int index = desc.indexOf('/');
-        /*if (index > 0) {
-            return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-mm-dd")).
-                    format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        }*/
-        return desc;
+        if (index > 0) {
+            int year = Integer.parseInt(desc.substring(index + 1, index + 5));
+            int month = Integer.parseInt(desc.substring(index + 5, index + 7));
+            int date = Integer.parseInt(desc.substring(index + 7, index + 9));
+            return LocalDate.of(year, month, date);
+        }
+        return LocalDate.now();
     }
 
     private static boolean isKeyword(String keyword) {

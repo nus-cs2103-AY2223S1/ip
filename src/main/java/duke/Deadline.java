@@ -8,25 +8,17 @@ public class Deadline extends Task {
 
     public Deadline(String desc, char taskType) {
         super(desc, taskType);
-        due = getDue(desc);
+        due = Parser.formatDate(desc);
     }
 
     public Deadline(String desc, char completed, char taskType) {
         super(desc,completed, taskType);
-        due = getDue(desc);
+        due = Parser.formatDate(desc);
     }
 
     public Deadline(String desc) {
-        super(Parser.formatDate(desc));
-        due = getDue(desc);
-    }
-
-    private LocalDate getDue(String desc) {
-        int index = desc.indexOf('/');
-        /*if (index > 0) {
-            return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        }*/
-        return LocalDate.now();
+        super(desc);
+        due = Parser.formatDate(desc);
     }
 
     protected Deadline performTask() {

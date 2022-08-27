@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Ui {
     protected void intro() {
-        System.out.println("Good Day!");
+        System.out.println("Good Day!\nDate Format: YYYYMMDD");
     }
 
     protected String readInput() {
