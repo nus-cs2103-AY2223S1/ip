@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-class Checklist {
+class TaskList {
     private final List<Task> taskList;
 
-    Checklist() {
+    TaskList() {
         taskList = new ArrayList<>();
     }
 
-    Checklist(Stream<String> lines) {
+    TaskList(Stream<String> lines) {
         taskList = populateList(lines);
     }
 
