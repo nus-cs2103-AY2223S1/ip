@@ -29,7 +29,7 @@ test {
 }
 
 application {
-    mainClassName = "main.java.duke.gitDuke"
+    mainClassName = "duke.Duke"
 }
 
 shadowJar {

@@ -23,7 +23,6 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    //TODO: file isn't being loaded even when one exists
     public void checkFileExists() throws IOException {
         //Create save file
         try {
@@ -31,7 +30,7 @@ public class Storage {
             File parent = saveFile.getParentFile();
 
             if (parent == null) {
-                saveFile.mkdirs();
+                parent.mkdirs();
             }
 
             if (!saveFile.exists()) {
