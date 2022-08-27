@@ -8,29 +8,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Contains methods that deal with storing and loading Tasks from memory.
- */
 public class Storage {
     private String filePath;
     private String tempFilePath;
 
-    /**
-     * Constructor for creating Storage.
-     *
-     * @param filePath The filePath to the file that stores Tasks in a .txt file.
-     * @param tempFilePath The filePath for a temporary file for use when main file has to be rewritten.
-     */
     public Storage(String filePath, String tempFilePath) {
         this.filePath = filePath;
         this.tempFilePath = tempFilePath;
     }
 
-    /**
-     * Creates files for storage of Tasks if they do not exist. If they exist, returns list of Tasks.
-     *
-     * @return An ArrayList of Tasks added previously.
-     */
     public ArrayList<Task> startUp() {
         // Ensure file exists
         File hardDiskTasks = new File(filePath);
@@ -47,12 +33,6 @@ public class Storage {
         return pastTasks;
     }
 
-    /**
-     * Loads Tasks previously added from memory and adds into an ArrayList.
-     *
-     * @param file File which contains Tasks added previously.
-     * @return ArrayList of Tasks which were added previously.
-     */
     public ArrayList<Task> loadTasksFromDisk(File file) {
         ArrayList<Task> pastTasks = new ArrayList<>();
         try {
@@ -91,15 +71,6 @@ public class Storage {
         return pastTasks;
     }
 
-    /**
-     * Creates a Task object using information retrieved from memory.
-     *
-     * @param task Task identifier.
-     * @param description Task description.
-     * @param time Time associated with Task.
-     * @param isDone Status of Task.
-     * @return Task object.
-     */
     public Task createTask(String task, String description, String time, boolean isDone) {
         Task newTask = null;
         LocalDate date = null;
@@ -123,21 +94,10 @@ public class Storage {
         return newTask;
     }
 
-    /**
-     * Stores Task information onto memory.
-     *
-     * @param task Task information.
-     */
     public void addTaskToDisk(String task) {
         appendToFile(filePath, task);
     }
 
-    /**
-     * Rewrites the .txt file that contains all the tasks added in order to reflect changes in a task status.
-     *
-     * @param taskNumber the row of Task which changed status.
-     * @param isDone the new status of the task.
-     */
     public void setTaskStatusOnDisk(int taskNumber, boolean isDone) {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
@@ -165,11 +125,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Removes Task information from memory.
-     *
-     * @param taskNumber Row of Task to delete from memory.
-     */
     public void deleteTaskFromDisk(int taskNumber) {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
@@ -189,12 +144,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Appends String to a file.
-     *
-     * @param file The filepath of file to be appended.
-     * @param textToAdd The String to be appended to file.
-     */
     public void appendToFile(String file, String textToAdd) {
         try {
             FileWriter fw = new FileWriter(file, true);

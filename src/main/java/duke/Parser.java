@@ -2,27 +2,15 @@ package duke;
 
 import java.util.Scanner;
 
-/**
- * Handles interpretation of user inputs.
- */
 public class Parser {
     private TaskList tasks;
     private Ui ui;
 
-    /**
-     * Parser constructor.
-     *
-     * @param tasks Object that deals with tracking Tasks added.
-     * @param ui Object that deals with user interaction.
-     */
     public Parser(TaskList tasks, Ui ui) {
         this.tasks = tasks;
         this.ui = ui;
     }
 
-    /**
-     * Listens for user inputs and decipher them to call required methods.
-     */
     public void takeUserInput() {
         // Listening to inputs from user
         Scanner in = new Scanner(System.in);
