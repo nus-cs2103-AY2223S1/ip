@@ -55,6 +55,8 @@ public class Dave2 {
                 case "remove":
                     print(new RemoveTaskCommand(Dave2.tasks, args).execute());
                     break;
+                case "find":
+                    print(new FindTasksCommand(Dave2.tasks, args).execute());
                 default:
                     throw new DaveException("(｡╯︵╰｡) OOPS!!! I'm sowwy, but I don't know what that means ｡･ﾟﾟ*(>д<)*ﾟﾟ･｡");
             }

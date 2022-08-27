@@ -20,6 +20,10 @@ public abstract class Task  implements Serializable {
          return this.done;
      }
 
+     public boolean contains(String keyword) {
+         return task.contains(keyword);
+     }
+
      public String markdone() {
          this.done = true;
          return "Nice! I've marked this task as done:\n" + this;
