@@ -45,7 +45,7 @@ public class MarkCommand extends Command {
                 }
             }
         } catch (DukeException | IOException e) {
-            throw new DukeException(e.getMessage());
+            DukeUi.sendMessage(e.getMessage());
         }
     }
 
