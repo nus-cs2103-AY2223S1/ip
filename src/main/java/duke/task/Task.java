@@ -39,6 +39,15 @@ public class Task {
     }
 
     /**
+     * Check if a task description contains given keyword.
+     * @param keyword
+     * @return boolean value
+     */
+    public boolean match(String keyword) {
+        return this.content.contains(keyword);
+    }
+
+    /**
      * Return 1 if the task is done, 0 otherwise.
      * @return
      */

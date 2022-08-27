@@ -74,6 +74,27 @@ public class TaskList {
     }
 
     /**
+     * Find all the tasks having the given keyword in their descriptions.
+     * @param keyword
+     * @return TaskList containing all matched tasks.
+     */
+    public TaskList findTasks(String keyword) {
+        TaskList matches = new TaskList();
+        for (int i = 0; i < getNumberOfTasks(); i++) {
+            Task currentTask = getTask(i);
+            if (currentTask.match(keyword)) {
+                matches.addTask(currentTask);
+            }
+        }
+        return matches;
+    }
+
+
+   public String convertTaskToString(int index) {
+        return tasks.get(index).toString();
+    }
+
+    /**
      * Convert a task with given index to a String to store with Storage.
      * @param index
      * @return
