@@ -5,11 +5,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import duke.task.Task;
+<<<<<<< HEAD:src/duke/tasklist/TaskList.java
 import duke.task.ToDo;
 import duke.task.Deadline;
 import duke.task.Event;
 
 import duke.ui.Ui;
+=======
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.ui.Ui;
+import duke.task.Deadline;
+>>>>>>> tmp:src/main/java/duke/tasklist/TaskList.java
 
 public class TaskList {
 

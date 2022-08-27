@@ -3,13 +3,22 @@ package duke;
 import java.util.Scanner;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 import duke.parser.Parser;
 import duke.storage.Storage;
 
+import java.io.IOException;
+<<<<<<< HEAD:src/duke/Duke.java
+
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
+import duke.parser.Parser;
+import duke.storage.Storage;
+
+=======
+>>>>>>> tmp:src/main/java/duke/Duke.java
 import duke.exception.DukeException;
 
 public class Duke {

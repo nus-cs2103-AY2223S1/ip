@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
+<<<<<<< HEAD
 sourceSets{
     main{
         java {
@@ -12,6 +13,8 @@ sourceSets{
     }
 }
 
+=======
+>>>>>>> tmp
 repositories {
     mavenCentral()
 }
