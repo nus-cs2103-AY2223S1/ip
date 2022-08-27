@@ -4,19 +4,19 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     String date;
+    boolean isDone;
 
-    public Event(String description, String date) {
+    public Event(String description, boolean isDone, String date) {
         super(description.trim());
-        this.date = date;
+        this.date = date.trim();
         Task.taskCount++;
     }
 
     @Override
     public String toString() {
-        if (this.date.charAt(0) == ' ') this.date = this.date.substring(1);
-        LocalDate d = LocalDate.parse(this.date);
-        String formatDate = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        return String.format("[E] [%s] %s (at: %s)", this.getStatusIcon(), this.description, formatDate);
+//        LocalDate d = LocalDate.parse(this.date);
+//        String formatDate = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return String.format("E | %s | %s | %s", this.getStatusIcon(), this.description, this.date);
     }
 
 }

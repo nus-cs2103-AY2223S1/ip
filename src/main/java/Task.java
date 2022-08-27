@@ -8,6 +8,14 @@ public class Task {
         this.isDone = false;
     }
 
+    public static void addTaskCount() {
+        taskCount++;
+    }
+
+    public static void minusTaskCount() {
+        taskCount--;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -21,7 +29,7 @@ public class Task {
     }
 
     public String added() {
-        return String.format("Got it. I've added this task:\n" +
+        return String.format("Task added:\n" +
                 "%s\n" +
                 "Now you have %d tasks in the list.\n", this, Task.taskCount);
     }
