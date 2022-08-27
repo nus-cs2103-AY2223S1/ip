@@ -4,6 +4,7 @@ import cheese.command.ByeCommand;
 import cheese.command.Command;
 import cheese.command.DeadlineCommand;
 import cheese.command.DeleteCommand;
+import cheese.command.FindCommand;
 import cheese.command.ListCommand;
 import cheese.command.MarkCommand;
 import cheese.command.TodoCommand;
@@ -32,6 +33,10 @@ public class Parser {
         case "list":
             validateCommandHasNArguments(fullCommandArray, 0);
             return new ListCommand();
+        case "find":
+            validateCommandHasNArguments(fullCommandArray, 1);
+            String findArgument = fullCommandArray[1];
+            return new FindCommand(findArgument);
         case "mark":
             validateCommandHasNArguments(fullCommandArray, 1);
             String markArgument = fullCommandArray[1];

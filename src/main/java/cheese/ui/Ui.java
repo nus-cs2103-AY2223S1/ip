@@ -1,6 +1,7 @@
 package cheese.ui;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import cheese.data.TaskList;
 import cheese.task.Task;
@@ -94,6 +95,17 @@ public class Ui {
      */
     public void showTaskList(TaskList taskList) {
         out.println(taskList);
+    }
+
+    /**
+     * Prints search result.
+     * 
+     * @param searchResult List of searched tasks to print.
+     */
+    public void showSearchResult(ArrayList<Task> searchResult) {
+        for (int i = 0; i < searchResult.size(); i++) {
+            out.println((i + 1) + ". " + searchResult.get(i));
+        }
     }
 
     /**

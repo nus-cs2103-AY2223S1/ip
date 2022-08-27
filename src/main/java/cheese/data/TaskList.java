@@ -91,6 +91,22 @@ public class TaskList {
     }
 
     /**
+     * Returns list of tasks containing given keyword.
+     * 
+     * @param keyword Keyword to search for.
+     * @return List of tasks containing given keyword.
+     */
+    public ArrayList<Task> searchTasksByKeyword(String keyword) {
+        ArrayList<Task> searchResult = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.hasKeyword(keyword)) {
+                searchResult.add(task);
+            }
+        }
+        return searchResult;
+    }
+
+    /**
      * Returns String representation of task list to save in file.
      * 
      * @return String representation of task list to save in file.
