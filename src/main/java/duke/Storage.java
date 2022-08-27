@@ -52,31 +52,34 @@ public class Storage {
     public List<Task> load() throws FileNotFoundException {
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);
-        List<Task> tasks= new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         while(scanner.hasNext()) {
             String dataStr = scanner.nextLine();
-            String[] taskStr = dataStr.split(KEY_SEPARATOR);
+            String[] taskStrings = dataStr.split(KEY_SEPARATOR);
             Task task;
 
-            switch (taskStr[0]) {
-                case "T": task = new Todo(taskStr[2]);
-                    break;
-                case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
-                    break;
-                case "E": String[] timeDesc = taskStr[3].split(" ", 2);
-                    if(timeDesc.length > 1) {
-                        LocalDate date = LocalDate.parse(timeDesc[0]);
-                        task = new Event(taskStr[2], date, timeDesc[1]);
-                    } else {
-                        LocalDate date = LocalDate.parse(taskStr[3]);
-                        task = new Event(taskStr[2], date);
-                    }
-
-                    break;
-                default: task = new Task(taskStr[2]);
-                    break;
+            switch (taskStrings[0]) {
+            case "T":
+                task = new Todo(taskStrings[2]);
+                break;
+            case "D":
+                task = new Deadline(taskStrings[2], LocalDate.parse(taskStrings[3]));
+                break;
+            case "E":
+                String[] timeDescs = taskStrings[3].split(" ", 2);
+                if(timeDescs.length > 1) {
+                    LocalDate date = LocalDate.parse(timeDescs[0]);
+                    task = new Event(taskStrings[2], date, timeDescs[1]);
+                } else {
+                    LocalDate date = LocalDate.parse(taskStrings[3]);
+                    task = new Event(taskStrings[2], date);
+                }
+                break;
+            default:
+                task = new Task(taskStrings[2]);
+                break;
             }
-            if(Integer.parseInt(taskStr[1]) == 1) {
+            if(Integer.parseInt(taskStrings[1]) == 1) {
                 task.markAsDone();
             } else {
                 task.markAsUndone();

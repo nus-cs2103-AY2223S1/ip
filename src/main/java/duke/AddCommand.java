@@ -5,8 +5,7 @@
 package duke;
 
 public class AddCommand extends Command {
-    /** Task to be added */
-    Task task;
+    private Task task;
 
     /**
      * Constructor for the AddCommand class.

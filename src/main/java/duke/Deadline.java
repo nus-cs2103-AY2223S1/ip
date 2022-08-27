@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import static duke.DukeConstants.KEY_SEPARATOR;
 
 public class Deadline extends Task {
-    /** Date of task */
-    protected LocalDate date;
+
+    private LocalDate date;
 
     /**
      * Constructor for the Deadline task.

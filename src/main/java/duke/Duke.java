@@ -5,6 +5,7 @@
 package duke;
 
 import java.io.FileNotFoundException;
+
 public class Duke {
 
     /** The tasklist to store the tasks */

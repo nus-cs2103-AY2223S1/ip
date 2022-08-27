@@ -5,8 +5,7 @@
 package duke;
 
 public class MarkCommand extends Command {
-    /** Index of task to be marked */
-    int index;
+    private int index;
 
     /**
      * Constructor for the MarkCommand class.

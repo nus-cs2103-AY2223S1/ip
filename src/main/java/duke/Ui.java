@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 public class Ui {
 
-    public final String ADDED = "oke i added this:";
-    public final String DELETED = "oke i deleted this:";
-    public final String MARKED = "oke this is done now:";
-    public final String UNMARKED = "oke this is undone now:";
+    protected final String ADDED = "oke i added this:";
+    protected final String DELETED = "oke i deleted this:";
+    protected final String MARKED = "oke this is done now:";
+    protected final String UNMARKED = "oke this is undone now:";
 
-    Scanner scanner;
+    private Scanner scanner;
 
     /**
      * Constructor for the Ui class.
