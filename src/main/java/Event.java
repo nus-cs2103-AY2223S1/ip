@@ -4,9 +4,9 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     protected LocalDate at;
 
-    public Event(String description, String dateString) {
+    public Event(String description, LocalDate date) {
         super(description);
-        at = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        at = date;
     }
     public Event(String description, String dateString, boolean isDone) {
         super(description, isDone);

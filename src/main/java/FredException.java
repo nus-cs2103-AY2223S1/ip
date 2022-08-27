@@ -1,5 +1,10 @@
 public class FredException extends Exception {
+
+    public FredException() {
+        super();
+    }
+
     public FredException(String error) {
-        super("Fred: OOPS!!! " + error);
+        super(error);
     }
 }

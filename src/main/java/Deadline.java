@@ -4,9 +4,9 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
 
-    public Deadline(String description, String dateString) {
+    public Deadline(String description, LocalDate date) {
         super(description);
-        by = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        by = date;
     }
     public Deadline(String description, String dateString, boolean isDone) {
         super(description, isDone);
