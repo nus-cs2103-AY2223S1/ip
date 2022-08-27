@@ -13,6 +13,9 @@ public class Ui {
   public void start(Scanner sc, Storage storage, TaskList taskList){
     while (true) {
       String command = sc.nextLine();
+      if(command.equals("bye")) {
+        break;
+      }
       Parser.parseCommand(command,taskList,this);
       storage.save(taskList.getList());
     }
