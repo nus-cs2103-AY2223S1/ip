@@ -48,6 +48,11 @@ public class TaskList {
         size++;
     }
 
+    public void addStart(Task task) {
+        this.taskArray.add(task);
+        size++;
+    }
+
     public void delete(int index) {
         String removed = taskArray.get(index).toString();
         taskArray.remove(index);

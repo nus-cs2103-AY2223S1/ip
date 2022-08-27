@@ -60,10 +60,10 @@ public class Storage {
             if (d) {
                 Todo add = new Todo(str.substring(7));
                 add.mark();
-                arr.add(add);
+                arr.addStart(add);
             } else {
                 Todo add = new Todo(str.substring(7));
-                arr.add(add);
+                arr.addStart(add);
             }
         }
         //If event
@@ -72,10 +72,10 @@ public class Storage {
             if (d) {
                 Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
                 add.mark();
-                arr.add(add);
+                arr.addStart(add);
             } else {
                 Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.add(add);
+                arr.addStart(add);
             }
         }
         //if task.Deadline
@@ -84,10 +84,10 @@ public class Storage {
             if (d) {
                 Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
                 add.mark();
-                arr.add(add);
+                arr.addStart(add);
             } else {
                 Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.add(add);
+                arr.addStart(add);
             }
         }
     }
