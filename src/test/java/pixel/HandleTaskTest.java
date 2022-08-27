@@ -2,6 +2,8 @@ package pixel;
 
 import org.junit.jupiter.api.Test;
 import pixel.util.IncorrectFormatException;
+import pixel.util.Storage;
+import pixel.util.TaskList;
 
 import java.io.IOException;
 
@@ -10,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HandleTaskTest {
 
-    Pixel pixelBot = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt"); // output file address
+    String filePath = "C:/!Education/CS2103/gitFolderOne/data/pixel.txt";
+    Pixel pixelBot = new Pixel(filePath); // output file address
+    TaskList taskList = new TaskList(filePath);
 
 //    @Test
 //    public void testAddingTasks() throws FileNotFoundException {
@@ -40,7 +44,7 @@ public class HandleTaskTest {
     @Test
     public void testInvalidDue() {
         try {
-            pixelBot.taskList.handleNewTask("deadline /as jjjj", "D");
+            taskList.handleNewTask("deadline /as jjjj", "D");
         } catch (Exception exception) {
             // System.out.println(exception);
             assertTrue(exception instanceof IncorrectFormatException);
@@ -51,11 +55,11 @@ public class HandleTaskTest {
     @Test
     public void testDeleteTask() {
         try {
-            pixelBot.taskList.handleNewTask("deadline CS2103 assignment /by tomorrow", "D");
-            pixelBot.taskList.handleNewTask("todo meet Wayne for dinner /at 2022-26-08 1850", "D");
-            assertEquals(2, Pixel.inputTasks.size());
-            pixelBot.storage.deleteEntry("delete 2");
-            assertEquals(1, Pixel.inputTasks.size());
+            taskList.handleNewTask("deadline CS2103 assignment /by tomorrow", "D");
+            taskList.handleNewTask("todo meet Wayne for dinner /at 2022-26-08 1850", "D");
+            assertEquals(2, Storage.INPUT_TASKS.size());
+            Storage.deleteEntry("delete 2", this.filePath);
+            assertEquals(1, Storage.INPUT_TASKS.size());
         } catch (Exception exception) {
             // System.out.println(exception);
             assertTrue(exception instanceof IOException);

@@ -18,30 +18,26 @@ import java.util.ArrayList;
  */
 public class Storage {
 
-    private String filePath;
+    public static final ArrayList<Task> INPUT_TASKS = new ArrayList<>(100); // made public for testing
 
     /**
      * Constructor for a new Storage object
-     *
-     * @param filePath absolute path of the file where the tasks will be saved
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
-    }
+    public Storage() {}
 
     /**
      * Finds if a tasks which description matches the query string exists
      *
      * @param userInput input from the user, starting with "find ..."
      * @return an ArrayList containing all the matching tasks
-     * @throws IOException
+     * @throws IndexOutOfBoundsException when the user input contains less than 6 characters
      */
-    public ArrayList<Task> findEntry(String userInput) throws IndexOutOfBoundsException {
+    public static ArrayList<Task> findEntry(String userInput) throws IndexOutOfBoundsException {
         ArrayList<Task> resultTasks = new ArrayList<>(100);
         // truncate the front part
         String queryString = userInput.substring(5).strip();
 
-        for (Task task : Pixel.inputTasks) {
+        for (Task task : Storage.INPUT_TASKS) {
             if (task.getDescription().contains(queryString)) {
                 resultTasks.add(task);
             }
@@ -65,10 +61,10 @@ public class Storage {
     /**
      * Clears the output file
      *
-     * @throws IOException
+     * @throws IOException when the filePath is incorrect
      */
-    public void resetFile() throws IOException {
-        new FileWriter(this.filePath, false).close();
+    public static void resetFile(String filePath) throws IOException {
+        new FileWriter(filePath, false).close();
     }
 
     /**
@@ -76,9 +72,9 @@ public class Storage {
      * and updates the external file
      *
      * @param userInput input from the user, starting with "delete ..."
-     * @throws IOException
+     * @throws IOException when the filePath is invalid
      */
-    public void deleteEntry(String userInput) throws IOException {
+    public static void deleteEntry(String userInput, String filePath) throws IOException {
 
         Task tempRecord;
         // truncate the front part
@@ -87,8 +83,8 @@ public class Storage {
         int indexToDelete = Character.getNumericValue(temp.charAt(0));
         // System.out.println(indexToChange);
         if ((indexToDelete > 0) && (indexToDelete < 100)) {
-            tempRecord = Pixel.inputTasks.get(indexToDelete - 1);
-            int originalInputListSize = Pixel.inputTasks.size();
+            tempRecord = Storage.INPUT_TASKS.get(indexToDelete - 1);
+            int originalInputListSize = Storage.INPUT_TASKS.size();
 
             System.out.println("Noted. I've removed this task:");
             System.out.println(tempRecord);
@@ -99,34 +95,32 @@ public class Storage {
                 // move everything up by 1
                 if (i == (originalInputListSize - 1)) {
                     // System.out.println(i + " remove");
-                    Pixel.inputTasks.remove(i);
+                    Storage.INPUT_TASKS.remove(i);
                 } else {
                     // System.out.println(i + " replace");
-                    Pixel.inputTasks.set(i, Pixel.inputTasks.get(i + 1));
+                    Storage.INPUT_TASKS.set(i, Storage.INPUT_TASKS.get(i + 1));
                 }
             }
 
-            resetFile();
-            for (Task task : Pixel.inputTasks) {
-                appendToFile(task);
+            resetFile(filePath);
+            for (Task task : Storage.INPUT_TASKS) {
+                Storage.appendToFile(task, filePath);
             }
 
             Pixel.count -= 1;
             System.out.println("Now you have " + Pixel.count + " tasks in the list.");
         }
-        // run();
-
     }
 
     /**
      * Appends a new task to the external file
      *
      * @param task new task to be appended
-     * @throws IOException
+     * @throws IOException when the filePath is invalid
      */
-    public void appendToFile(Task task) throws IOException {
+    public static void appendToFile(Task task, String filePath) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
-        Writer bufferedFileWriter = new BufferedWriter(new FileWriter(this.filePath, true)); // FileWriter(String fileName, boolean append)
+        Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true)); // FileWriter(String fileName, boolean append)
         bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
     }

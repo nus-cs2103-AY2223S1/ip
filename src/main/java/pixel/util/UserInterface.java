@@ -7,7 +7,9 @@ package pixel.util;
  * Needs more work atm, will require enums
  */
 public class UserInterface {
-    String logo = " ____        _        \n"
+
+    String oldDukeLogo
+        = " ____        _        \n"
         + "|  _ \\ _   _| | _____ \n"
         + "| | | | | | | |/ / _ \\\n"
         + "| |_| | |_| |   <  __/\n"
@@ -15,7 +17,8 @@ public class UserInterface {
     // System.out.println("Hello from\n" + logo);
     // System.out.println("Hello from\n");
 
-    public static final String INTRO_MESSAGE = ("Hello! I'm Pixel \r\n" +
+    public static final String GREETING_MESSAGE = ("Hello! I'm Pixel! \r\n");
+    public static final String PROMPT_MESSAGE = (
         "You can input the following commands \n" +
         " todo/ event/ deadline + <task description> + /by or /at + <due> \n" +
         " ***date format for due has to be in <yyyy-MM-dd(SPACE)HHmm(24h)> format \n" +
@@ -24,9 +27,11 @@ public class UserInterface {
         " unmark <index of task in the list> -- to mark as not done \n" +
         " delete <index of task in the list> -- to delete that particular task \n" +
         " find <query> -- Find all tasks with description containing query \n" +
-        " end -- leaves the chatbot \n" +
+        " end -- leaves the chatbot and closes the programme \n" +
         "   Your input: ");
 
     public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
+    public static final String AFTER_VALID_INPUT = "You may enter a new task or command";
+    public static final String AFTER_INVALID_INPUT = "Oops! Make sure the input is a valid task or command";
 
 }

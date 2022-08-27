@@ -1,6 +1,7 @@
 package pixel.task;
 
 import pixel.util.DateValidator;
+import pixel.util.UserInterface;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -51,8 +52,7 @@ public class Task {
      * @return date and time in MONTH dd yyyy hh:mm aa format
      */
     private String dateTimeProcessing(String due) {
-        String temp = due;
-        String[] tempStringArray = temp.strip().split(" ", 2);
+        String[] tempStringArray = due.strip().split(" ", 2);
 
         try {
             String dueDate = tempStringArray[0];
@@ -85,18 +85,25 @@ public class Task {
         } catch (DateTimeParseException e) {
             System.out.println(e);
             System.out.println("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format");
+            System.out.println(UserInterface.PROMPT_MESSAGE);
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
             System.out.println("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
+            System.out.println(UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {
             System.out.println(e);
             System.out.println("Caught parse exception!");
+            System.out.println(UserInterface.AFTER_INVALID_INPUT);
+            System.out.println(UserInterface.PROMPT_MESSAGE);
 
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("Some other error occurred");
+            System.out.println(UserInterface.AFTER_INVALID_INPUT);
+            System.out.println(UserInterface.PROMPT_MESSAGE);
+
         }
 
         return due; // Shouldn't reach here
