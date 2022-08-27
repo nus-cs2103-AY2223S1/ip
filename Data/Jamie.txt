@@ -1,9 +1,1 @@
 T*0*read
-E*0*hall *23/6/2022 0000
-T*0*read
-T*0*work
-T*1*read book
-E*0*Jamie's birthday *29/10/2022 0000
-E*0*my birthday *17/6/2022 0000
-E*0*bday *7/6/2022 0000
-D*1*cs2103t *26/8/2022 2359

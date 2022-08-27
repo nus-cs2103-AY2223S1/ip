@@ -1,4 +1,3 @@
-
 public class Event extends Task {
     private String at;
 
@@ -22,5 +21,4 @@ public class Event extends Task {
         }
         return line;
     }
-
 }

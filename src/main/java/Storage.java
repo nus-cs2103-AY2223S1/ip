@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -10,6 +10,7 @@ public class Storage {
 
     public void load() {
         File folder = new File("Data");
+        folder.mkdirs();
         File file = new File(filePath);
         try {
             if (!file.createNewFile()) {

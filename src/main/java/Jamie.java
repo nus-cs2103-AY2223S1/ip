@@ -14,7 +14,6 @@ public class Jamie {
     }
 
     public static void main(String[] args) {
-        new Jamie("Data/Duke.txt").run();
-
+        new Jamie("Data/Jamie.txt").run();
     }
 }
