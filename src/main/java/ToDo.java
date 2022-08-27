@@ -23,4 +23,9 @@ public class ToDo extends Task {
             return String.format("[T][ ] %s", this.getVal());
         }
     }
+
+    @Override
+    public String toText() {
+        return String.format("T | %s | %s", this.getDone() ? 1 : 0, this.getVal());
+    }
 }
