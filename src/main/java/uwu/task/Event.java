@@ -1,5 +1,8 @@
+package uwu.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import uwu.exception.UwuException;
 
 public class Event extends Task {
     protected LocalDateTime at;

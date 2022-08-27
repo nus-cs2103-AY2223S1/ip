@@ -1,3 +1,20 @@
+package uwu.command;
+
+import uwu.exception.EmptyInputException;
+import uwu.exception.IncorrectFormatException;
+import uwu.exception.InvalidDateException;
+import uwu.exception.UwuException;
+
+import uwu.Storage;
+
+import uwu.task.Deadline;
+import uwu.task.Event;
+import uwu.task.Task;
+import uwu.task.TaskList;
+import uwu.task.ToDos;
+
+import uwu.Ui;
+
 public class AddCommand extends Command {
     String description;
     String taskType;

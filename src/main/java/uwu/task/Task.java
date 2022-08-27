@@ -1,3 +1,5 @@
+package uwu.task;
+
 public class Task {
     protected String taskType;
     protected String description;

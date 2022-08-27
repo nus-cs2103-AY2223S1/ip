@@ -1,4 +1,8 @@
+package uwu;
+
 import java.util.Scanner;
+import uwu.task.Task;
+import uwu.task.TaskList;
 
 public class Ui {
     Scanner scanner = new Scanner(System.in);
@@ -60,9 +64,5 @@ public class Ui {
 
     public void showError(String e) {
         System.out.println(e);
-    }
-
-    public void showLoadingError() {
-        System.out.println("\toops! seems like there is trouble loading the task list file TT");
     }
 }
