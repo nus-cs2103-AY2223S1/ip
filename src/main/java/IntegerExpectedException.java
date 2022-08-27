@@ -1,5 +1,5 @@
-public class IntegerExpectedException extends NumberFormatException{
+public class IntegerExpectedException extends DukeException {
     public IntegerExpectedException() {
-        super("☹ OOPS!!! Expected an Integer!");
+        super("Expected an Integer!");
     }
 }

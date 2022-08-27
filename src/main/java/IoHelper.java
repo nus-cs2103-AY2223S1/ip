@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class IOHelper {
+public class IoHelper {
     private final Scanner scanner;
     private String text;
 
-    public IOHelper() {
+    public IoHelper() {
         scanner = new Scanner(System.in);
     }
 
@@ -24,4 +24,9 @@ public class IOHelper {
     public void print(Object Message) {
         System.out.println(Message);
     }
+
+    public void printError(Exception e) {
+        System.err.println(e);
+    }
+
 }

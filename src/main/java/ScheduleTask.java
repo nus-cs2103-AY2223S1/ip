@@ -1,18 +1,20 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public abstract class ScheduleTask extends Task {
-    protected LocalDate date;
-    protected LocalTime time;
+    protected LocalDateTime dateTime;
 
-    public ScheduleTask(String description, String dateTime) {
+    public ScheduleTask(String description, String dateTime) throws UnexpectedDateTimeFormatException {
         super(description);
-        String[] dateAndTime = dateTime.split(" ");
-        date = DateTimeHandler.formatDate(dateAndTime[0]);
-        time = DateTimeHandler.formatTime(dateAndTime[1]);
+        this.dateTime = DateTimeHandler.formatDukeDateTime(dateTime);
+    }
+
+    public ScheduleTask(String description, String dateTime, boolean done) {
+        super(description);
+        this.dateTime = DateTimeHandler.formatStorageDateTime(dateTime);
+        isDone = done;
     }
 
     protected String showDateTime() {
-        return date.format(DateTimeHandler.returnDateFormat) + " " + time.format(DateTimeHandler.returnTimeFormat);
+        return dateTime.format(DateTimeHandler.storageDateTimeFormat);
     }
 }

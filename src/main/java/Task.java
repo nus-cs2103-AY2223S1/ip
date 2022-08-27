@@ -16,11 +16,17 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void mark() {
+    public void mark() throws TaskMarkException{
+        if (isDone) {
+            throw new TaskMarkException();
+        }
         isDone = true;
     }
 
-    public void unmark() {
+    public void unmark() throws TaskUnmarkException{
+        if (!isDone) {
+            throw new TaskUnmarkException();
+        }
         isDone = false;
     }
 

@@ -1,3 +1,0 @@
-1. [T][ ] read book
-2. [T][ ] return book
-3. [D][ ] project (by: Sunday)

@@ -1,12 +1,11 @@
 public class Event extends ScheduleTask {
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws UnexpectedDateTimeFormatException {
         super(description, at);
     }
 
     public Event(String description, String at, boolean done) {
-        super(description, done);
-        this.at = at;
+        super(description, at, done);
     }
 
     @Override

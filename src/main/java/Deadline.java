@@ -1,12 +1,11 @@
 public class Deadline extends ScheduleTask {
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws UnexpectedDateTimeFormatException {
         super(description, by);
     }
 
     public Deadline(String description, String by, boolean done) {
-        super(description, done);
-        this.by = by;
+        super(description, by, done);
     }
 
     @Override

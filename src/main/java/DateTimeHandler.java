@@ -1,20 +1,24 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.rmi.UnexpectedException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DateTimeHandler {
-    public static final DateTimeFormatter receiveDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public static final DateTimeFormatter returnDateFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
-    public static final DateTimeFormatter receiveTimeFormat = DateTimeFormatter.ofPattern("HHmm");
-    public static final DateTimeFormatter returnTimeFormat = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter dukeDateTimeFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    public static final DateTimeFormatter storageDateTimeFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
-    public static LocalDate formatDate(String strDate) {
-        LocalDate date = LocalDate.parse(strDate, receiveDateFormat);
-        return date;
+    public static LocalDateTime formatDukeDateTime(String strDateTime) throws UnexpectedDateTimeFormatException {
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(strDateTime, dukeDateTimeFormat);
+            return dateTime;
+        } catch (DateTimeParseException e) {
+            throw new UnexpectedDateTimeFormatException();
+        }
     }
 
-    public static LocalTime formatTime(String strTime) {
-        LocalTime time = LocalTime.parse(strTime, receiveTimeFormat);
-        return time;
+    public static LocalDateTime formatStorageDateTime(String strTime) {
+        LocalDateTime dateTime = LocalDateTime.parse(strTime, storageDateTimeFormat);
+        return dateTime;
     }
+
 }

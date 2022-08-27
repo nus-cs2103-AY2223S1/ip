@@ -5,38 +5,44 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String home = System.getProperty("user.home");
-    private static final String dir = home + "/Desktop/Y2S1/CS2103T/Week 2 iP/ip/src/main/duke.txt";
-    private final File dukeFile = new File(dir);
+    private final IoHelper ioHelper = new IoHelper();
+    private File dukeFile;
     private FileWriter fileWriter;
     private Scanner scanner;
-    private final Messager messager = new Messager();
 
-    public Storage() {
-        try {
-            if (dukeFile.createNewFile()) {
-                messager.message("Storage: New File duke.txt has been created");
-            } else {
-                messager.message("Storage: duke.txt is already in the dir");
-            };
-        } catch (IOException e){
-            messager.message(e);
-        }
-
+    public Storage(String fileName) {
+        dukeFile = new File(fileName);
     }
 
-    public void writeToFile(Object obj) {
+    private boolean isFilePresent() {
+        return dukeFile.isFile();
+    }
+
+    public TaskList setUp() {
+        if (isFilePresent()) {
+            return new TaskList(load());
+        }
         try {
-            fileWriter = new FileWriter(dir);
+            dukeFile.createNewFile();
+        } catch (IOException e) {
+            ioHelper.printError(e);
+        } finally {
+            return new TaskList();
+        }
+    }
+
+    public void update(Object obj) {
+        try {
+            fileWriter = new FileWriter(dukeFile);
             fileWriter.write(obj.toString());
-            messager.message("Storage: duke.txt updated");
+            ioHelper.print("Storage: duke.txt updated");
             fileWriter.close();
         } catch (IOException e) {
-            messager.message(e);
+            ioHelper.printError(e);
         }
     }
 
-    public String readFromFile() {
+    private String load() {
         String data = "";
         try {
             scanner = new Scanner(dukeFile);
@@ -45,13 +51,8 @@ public class Storage {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            messager.message(e);
+            ioHelper.printError(e);
         }
         return data;
-    }
-
-    public static void main(String[] args) {
-        Storage s = new Storage();
-        System.out.println(s.readFromFile());
     }
 }

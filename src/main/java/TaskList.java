@@ -2,28 +2,36 @@ import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> tasks;
-    private TaskMessager taskMessager;
+
+    public TaskList() {
+        tasks = new ArrayList<>();
+    }
 
     public TaskList(String text) {
-        tasks = new ArrayList<>();
-        taskMessager = new TaskMessager();
+        this();
         if (text != "") {
             String[] texts = text.split("\n");
             String taskType;
+            String description;
             for (int i = 0; i < texts.length; i++) {
                 taskType = texts[i].substring(3,6);
                 String[] descriptions;
                 switch (taskType) {
                 case "[T]":
+                    description = texts[i].substring(10);
                     tasks.add(new Todo(texts[i].substring(10), texts[i].charAt(7) == 'X'));
                     break;
                 case "[D]":
-                    descriptions = texts[i].substring(10).split(" / by ");
-                    tasks.add(new Deadline(descriptions[0], descriptions[1], texts[i].charAt(7) == 'X'));
+                    description = texts[i].substring(10);
+                    descriptions = description.split("by");
+                    tasks.add(new Deadline(descriptions[0].substring(0, description.indexOf("(") - 1),
+                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
                     break;
                 case "[E]":
-                    descriptions = texts[i].substring(10).split(" / at ");
-                    tasks.add(new Event(descriptions[0], descriptions[1], texts[i].charAt(7) == 'X'));
+                    description = texts[i].substring(10);
+                    descriptions = description.split("at");
+                    tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
+                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
                     break;
                 }
 
@@ -33,41 +41,57 @@ public class TaskList {
 
     public void addTask(Task task) {
         tasks.add(task);
-        taskMessager.addMessage(task, tasks.size());
     }
 
-    public void listTask() {
-        taskMessager.listMessage(toString());
+    private boolean isIndexOutOfBound(int index)  {
+        return (index < 0 || index > tasks.size() - 1);
     }
 
-    private void checkIndexOutOfBound(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > tasks.size()) {
-            throw new IndexOutOfBoundsException("☹ OOPS!!! Index is out of range!");
+    public Task markTask(int index) throws TaskMarkException, TaskNotFoundException {
+        if (isIndexOutOfBound(index)) {
+            throw new TaskNotFoundException(index + 1);
         }
-    }
-
-    public void markTask(int index) {
-        checkIndexOutOfBound(index);
         Task task = tasks.get(index);
         task.mark();
-        taskMessager.markMessage(task);
+        return task;
     }
 
-    public void unmarkTask(int index) {
-        checkIndexOutOfBound(index);
+    public Task unmarkTask(int index) throws TaskUnmarkException, TaskNotFoundException {
+        if (isIndexOutOfBound(index)) {
+            throw new TaskNotFoundException(index + 1);
+        }
         Task task = tasks.get(index);
         task.unmark();
-        taskMessager.unmarkMessage(task);
+        return task;
     }
 
-    public void deleteTask(int index) {
-        checkIndexOutOfBound(index);
-        Task removed = tasks.remove(index);
-        taskMessager.deleteMessage(removed, tasks.size());
+    public Task deleteTask(int index) throws TaskNotFoundException {
+        if (isIndexOutOfBound(index)) {
+            throw new TaskNotFoundException(index + 1);
+        }
+        return tasks.remove(index);
     }
 
     public boolean isEmpty() {
         return tasks.size() == 0;
+    }
+
+    public String getStatus() {
+        String totalTaskMessage = "Total Task: " + tasks.size();
+        String unmarkTaskMessage = "Unmarked Task: " + getNoOfUnmarkTask();
+        return totalTaskMessage + "\n" + unmarkTaskMessage;
+    }
+
+    private int getNoOfUnmarkTask() {
+        Task task;
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            task = tasks.get(i);
+            if (!task.isDone) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override
