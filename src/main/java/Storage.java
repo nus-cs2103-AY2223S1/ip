@@ -11,7 +11,8 @@ public class Storage {
 
     public void update(String str) {
         try {
-            FileWriter fw = new FileWriter(filePath.toString());
+            System.out.println(filePath);
+            FileWriter fw = new FileWriter(filePath);
             fw.write(str);
             fw.close();
         }  // Catch block to handle the exception

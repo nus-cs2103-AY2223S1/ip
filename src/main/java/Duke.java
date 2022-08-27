@@ -115,9 +115,9 @@ public class Duke {
     public void run() {
         ui.greetings();
         //create the duke file that stores the text
-        String filePath = new File("").getAbsolutePath();
-        filePath = filePath.concat("/src/main/java/duke.txt");
-        Path path = Paths.get(filePath);
+//        String filePath = new File("").getAbsolutePath();
+//        filePath = filePath.concat("/src/main/java/duke.txt");
+//        Path path = Paths.get(filePath);
         while (true) {
             String input = ui.readCommand();
             String command = input.split(" ")[0];
@@ -156,7 +156,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("/src/main/java/duke.txt").run();
+        new Duke("src/main/java/duke.txt").run();
     }
 
 }
