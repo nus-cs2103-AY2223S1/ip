@@ -1,14 +1,30 @@
+package duke.parser;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.CommandWord;
+import duke.exception.DukeException;
+import duke.task.TaskType;
+import duke.ui.Ui;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String strippedCommand = fullCommand.stripTrailing();
         String[] parsedCommand = strippedCommand.split(" ", 2);
         try {
+            if (fullCommand.contains("|")) {
+                throw new DukeException("  '|' characters are not allowed.");
+            }
             switch (parsedCommand[0]) {
             case "":
                 throw new DukeException("  Somehow you're even more unbearable when you're silent.");
@@ -62,7 +78,7 @@ public class Parser {
     private static Command validateToDo(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) {
             throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
-                    + Ui.getCommandHelp(Keyword.TODO));
+                    + Ui.getCommandHelp(CommandWord.TODO));
         } else {
             return new AddCommand(TaskType.TODO, parsedCommand[1]);
         }
@@ -71,15 +87,15 @@ public class Parser {
     private static Command validateDeadline(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) {
             throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
-                    + Ui.getCommandHelp(Keyword.DEADLINE));
+                    + Ui.getCommandHelp(CommandWord.DEADLINE));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /by ", 2);
             if (parsedTask[0].startsWith("/by") || parsedTask[0].isBlank()) {
                 throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
-                        + Ui.getCommandHelp(Keyword.DEADLINE));
+                        + Ui.getCommandHelp(CommandWord.DEADLINE));
             } else if (parsedTask.length < 2) {
                 throw new DukeException("  You do realise deadlines and events usually have a time or date,"
-                        + " right?\n" + Ui.getCommandHelp(Keyword.DEADLINE));
+                        + " right?\n" + Ui.getCommandHelp(CommandWord.DEADLINE));
             } else {
                 return new AddCommand(TaskType.DEADLINE, parsedTask[0], parsedTask[1]);
             }
@@ -89,15 +105,15 @@ public class Parser {
     private static Command validateEvent(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) {
             throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
-                    + Ui.getCommandHelp(Keyword.EVENT));
+                    + Ui.getCommandHelp(CommandWord.EVENT));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /at ", 2);
             if (parsedTask[0].startsWith("/at") || parsedTask[0].isBlank()) {
                 throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
-                        + Ui.getCommandHelp(Keyword.EVENT));
+                        + Ui.getCommandHelp(CommandWord.EVENT));
             } else if (parsedTask.length < 2) {
                 throw new DukeException("  You do realise deadlines and events usually have a time or date,"
-                        + " right?\n" + Ui.getCommandHelp(Keyword.EVENT));
+                        + " right?\n" + Ui.getCommandHelp(CommandWord.EVENT));
             } else {
                 return new AddCommand(TaskType.EVENT, parsedTask[0], parsedTask[1]);
             }
@@ -106,7 +122,7 @@ public class Parser {
 
     private static Command validateDelete(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(Keyword.DELETE));
+            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.DELETE));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new DeleteCommand(num);
@@ -115,7 +131,7 @@ public class Parser {
 
     private static Command validateMark(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(Keyword.MARK));
+            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.MARK));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new MarkCommand(num);
@@ -124,7 +140,7 @@ public class Parser {
 
     private static Command validateUnmark(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(Keyword.UNMARK));
+            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.UNMARK));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new UnmarkCommand(num);

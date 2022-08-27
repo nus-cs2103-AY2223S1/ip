@@ -3,6 +3,7 @@
 list
 todo
 todo 
+todo window | door shopping
 todo read a book
 todo buy pen refill  
 event

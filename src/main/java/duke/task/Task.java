@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Task {
     // consider making this an abstract class
     protected String desc;

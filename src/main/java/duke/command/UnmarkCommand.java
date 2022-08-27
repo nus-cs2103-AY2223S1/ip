@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public class UnmarkCommand extends Command {
     private int taskNumber;
 
@@ -11,7 +18,7 @@ public class UnmarkCommand extends Command {
             tasks.unmarkTask(this.taskNumber - 1);
             storage.save(tasks);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(ui.getMissingTaskError(Keyword.UNMARK, this.taskNumber));
+            throw new DukeException(ui.getMissingTaskError(CommandWord.UNMARK, this.taskNumber));
         }
     }
 

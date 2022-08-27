@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.Task;
+import duke.command.CommandWord;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -68,9 +73,9 @@ public class Ui {
         }
     }
     
-    public String getMissingTaskError(Keyword keyword, int num) {
+    public String getMissingTaskError(CommandWord commandWord, int num) {
         StringBuilder sb = new StringBuilder();
-        switch (keyword) {
+        switch (commandWord) {
         case DELETE:
             sb.append("  Impressive. You've figured out how to delete non-existent tasks.\n");
             break;
@@ -89,7 +94,7 @@ public class Ui {
                 + "you could do is say something I understand.";
     }
     
-    public static String getCommandHelp(Keyword keyword) {
+    public static String getCommandHelp(CommandWord keyword) {
         StringBuilder sb = new StringBuilder("  Type \"");
         switch (keyword) {
         case TODO:

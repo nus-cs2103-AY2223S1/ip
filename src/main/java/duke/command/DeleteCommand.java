@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public class DeleteCommand extends Command {
     private int taskNumber;
     
@@ -12,7 +20,7 @@ public class DeleteCommand extends Command {
             storage.save(tasks);
             ui.showDeleteMessage(task, tasks.getSize());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(ui.getMissingTaskError(Keyword.DELETE, this.taskNumber));
+            throw new DukeException(ui.getMissingTaskError(CommandWord.DELETE, this.taskNumber));
         }
     }
     
