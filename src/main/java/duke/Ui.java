@@ -10,124 +10,85 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class Ui {
+    /** Left padding to a string for pretty printing. */
+    private String leftPadding = "   ";
+
     /**
-     * Greets the user when the application is launched.
+     * Returns the greeting message when the application is launched.
      */
-    public void showWelcome() {
-        String logo = " ____        _        \n"
+    public String greetingMessage() {
+        String greeting = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        System.out.println("Hello! I'm Duke. How may I assist you?");
+                + "|____/ \\__,_|_|\\_\\___|\n"
+                + "Hello! I'm Duke. How may I assist you?";
+        return greeting;
     }
 
     /**
-     * Prints the prompt, which signals the user to key in an input.
-     */
-    public void showPrompt() {
-        System.out.print("\n>>> ");
-    }
-
-    /**
-     * Prints the error message when the previously saved tasks could not be loaded.
-     */
-    public void showLoadingError() {
-        System.out.println("FAILED! Could not find storage file containing your tasks");
-        System.out.println("Add a task to generate one!!!");
-    }
-
-    /**
-     * Prints the success message when all previously saves tasks were loaded.
-     */
-    public void showLoadingSuccess() {
-        System.out.println("Yay! Your tasks were loaded successfully!");
-    }
-
-    /**
-     * Prints an error message to the user interface.
-     *
-     * @param errorMessage Error message to be printed.
-     */
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    /**
-     * Prints the message that signifies the termination of the application.
-     */
-    public void showGoodbye() {
-        System.out.println("Goodbye! Hope to see you soon!");
-    }
-
-    /**
-     * Prints the Task object, along with the number of tasks, when it is successfully added.
+     * Returns the success message when a task has been successfully added.
      *
      * @param task Newly added Task object.
      * @param tasks TaskList to add the new Task into.
      */
-    public void showAddTask(Task task, TaskList tasks) {
-        System.out.println("Got it. I've added this task:");
-        showTask(task);
-        showNumTasks(tasks);
+    public String taskAddedMessage(Task task, TaskList tasks) {
+        return String.format("Got it. I've added this task ^_^: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
     }
 
     /**
-     * Prints the Task object, along with the number of tasks, when it is successfully removed.
+     * Returns the success message when a task has been successfully deleted.
      *
      * @param task Removed Task object.
      * @param tasks TaskList to remove the new Task from.
      */
-    public void showDeleteTask(Task task, TaskList tasks) {
-        System.out.println("Okie, I've deleted this task: ");
-        showTask(task);
-        showNumTasks(tasks);
+    public String taskDeletedMessage(Task task, TaskList tasks) {
+       return String.format("Okie, I've deleted this task >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
     }
 
     /**
-     * Prints the Task object, along with the number of tasks, when it is successfully marked.
+     * Returns the success message when a task has been successfully marked.
      *
      * @param task Marked Task object.
      * @param tasks TaskList containing the target Task to mark.
      */
-    public void showMarkTask(Task task, TaskList tasks) {
-        System.out.println("Sure! I've marked this task as done: ");
-        showTask(task);
-        showNumTasks(tasks);
+    public String taskMarkedMessage(Task task, TaskList tasks) {
+       return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
     }
 
     /**
-     * Prints the Task object, along with the number of tasks, when it is successfully unmarked.
+     * Returns the success message when a task has been successfully unmarked.
      *
      * @param task Unmarked Task object.
      * @param tasks TaskList containing the target Task to unmark.
      */
-    public void showUnmarkTask(Task task, TaskList tasks) {
-        System.out.println("Sure! I've unmarked this task as done: ");
-        showTask(task);
-        showNumTasks(tasks);
+    public String taskUnmarkedMessage(Task task, TaskList tasks) {
+        return String.format("Sure! I've marked this task as done >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
     }
 
     /**
-     * Prints the number of Task objects currently in a TaskList.
+     * Returns the number of tasks in a TaskList.
+     *
      * @param tasks Target TaskList
      */
-    public void showNumTasks(TaskList tasks) {
-        System.out.println("You have " + tasks.size() + " tasks in the list");
+    private String getNumTasks(TaskList tasks) {
+        return "You have " + tasks.size() + " tasks in the list";
     }
 
     /**
-     * Prints a Task object, indented by 3 spaces.
+     * Returns the string representation of a Task, left padded with three spaces.
      */
-    public void showTask(Task task) {
-        System.out.println("   " + task);
+    private String getIndentedTask(Task task) {
+        return leftPadding + task;
     }
 
     /**
-     * Prints loading message when loading tasks from disk.
+     * Returns the string representation of the TaskList.
+     *
+     * @param tasks Target TaskList
+     * @return String representation of the TaskList.
      */
-    public void showIsLoading() {
-        System.out.println("Loading tasks from disk.......");
+    public String getPrettyTaskList(TaskList tasks) {
+       return tasks.toString();
     }
 }

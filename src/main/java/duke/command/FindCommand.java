@@ -43,10 +43,10 @@ public class FindCommand extends Command {
      * @param storage Storage object which loads and saves tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         TaskList foundTasks = tasks.find(searchTerm);
         ListCommand listCommand = new ListCommand();
-        listCommand.execute(foundTasks, ui, storage);
+        return listCommand.execute(foundTasks, ui, storage);
     }
 
     /**

@@ -51,11 +51,12 @@ public class EventCommand extends Command {
      * @throws DukeException If storage object is unable to save the newly created event task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task event = new Event(description, atDateTime);
         tasks.add(event);
-        ui.showAddTask(event, tasks);
+        String message = ui.taskMarkedMessage(event, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

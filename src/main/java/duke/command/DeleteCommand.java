@@ -46,10 +46,11 @@ public class DeleteCommand extends Command {
      *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.delete(taskIndex);
-        ui.showDeleteTask(task, tasks);
+        String message = ui.taskDeletedMessage(task, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

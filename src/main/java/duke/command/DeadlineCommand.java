@@ -51,11 +51,12 @@ public class DeadlineCommand extends Command {
      * @throws DukeException If storage object is unable to save the newly created deadline task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deadline = new Deadline(description, byDateTime);
         tasks.add(deadline);
-        ui.showAddTask(deadline, tasks);
+        String message = ui.taskAddedMessage(deadline, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

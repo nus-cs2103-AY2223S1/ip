@@ -43,11 +43,12 @@ public class TodoCommand extends Command {
      * @param storage Storage object which loads and saves tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task todo = new Todo(description);
         tasks.add(todo);
-        ui.showAddTask(todo, tasks);
+        String message = ui.taskAddedMessage(todo, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**
