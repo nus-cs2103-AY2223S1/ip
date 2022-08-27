@@ -1,2 +1,2 @@
-todo
-borrow book
+todo read book
+bye
