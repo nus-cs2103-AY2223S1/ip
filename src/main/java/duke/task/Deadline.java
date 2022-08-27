@@ -1,7 +1,7 @@
 package duke.task;
 
 public class Deadline extends Task {
-    protected String deadline;
+    private final String deadline;
 
     /**
      * Constructor for the Deadline class.

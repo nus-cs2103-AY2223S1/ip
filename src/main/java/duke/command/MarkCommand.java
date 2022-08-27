@@ -8,8 +8,8 @@ import duke.util.TaskList;
 import java.util.ArrayList;
 
 public class MarkCommand extends Command {
-    protected ArrayList<String> words;
-    protected String firstWord;
+    private final ArrayList<String> words;
+    private final String firstWord;
 
     /**
      * Constructor for MarkCommand.

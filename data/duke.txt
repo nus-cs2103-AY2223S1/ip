@@ -1,3 +1,0 @@
-T | 0 | read book
-E | 0 | asdasd | kajshd'
-D | 0 | return book | 03 Feb 2019

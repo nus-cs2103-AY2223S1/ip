@@ -1,10 +1,8 @@
 package duke.task;
 
 public class Task {
-    // Class Fields
     public String taskName;
 
-    /* true if the task is done, false otherwise */
     public boolean isDone;
 
     /**

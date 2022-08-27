@@ -1,7 +1,7 @@
 package duke.task;
 
 public class Event extends Task {
-    protected String event;
+    private final String event;
 
     /**
      * Constructor for the Event class.
