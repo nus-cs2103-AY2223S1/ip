@@ -47,6 +47,11 @@ public abstract class Task {
         return (isDone ? "[X]" : "[ ]");
     }
 
+    /**
+     * Returns the description of a task.
+     *
+     * @return description of the task.
+     */
     public String getDescription() {
         return this.description;
     }

@@ -88,7 +88,12 @@ public class TaskList {
         printTaskCount();
     }
 
-
+    /**
+     * Removes a task from the list.
+     *
+     * @param keyword the word to be searched in the list of tasks.
+     * @return the list of tasks where each task contains the keyword.
+     */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> res = new ArrayList<>();
         for (Task task : tasks) {
