@@ -1,5 +1,6 @@
 package duke;
 import java.util.Scanner;
+
 public class Ui {
     private static final String LINE = "____________________________________________________________\n";
     private Scanner sc;

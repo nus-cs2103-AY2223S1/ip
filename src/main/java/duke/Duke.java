@@ -21,9 +21,11 @@ public class Duke {
         while (true) {
             String fullCommand = ui.readCommand();
             Parser p = new Parser(fullCommand, ui);
+
             if (p.readCommand(tasks)) {
                 continue;
             }
+
             ui.exit();
             storage.save(tasks);
             break;

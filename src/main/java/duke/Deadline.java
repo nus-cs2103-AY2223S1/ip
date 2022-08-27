@@ -1,10 +1,10 @@
 package duke;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
 
 public class Deadline extends Task {
-    protected String by; // "Aug 26 2022 07:00:00 PM" i want to format it back to yyyy-mm-ddTHours:Minute:Seconds
+    protected String by;
     protected LocalDateTime deadline;
 
     public Deadline(String description, String by) throws DukeException {
@@ -13,8 +13,8 @@ public class Deadline extends Task {
         try {
             this.deadline = LocalDateTime.parse(by.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
         }
     }
 
@@ -24,8 +24,8 @@ public class Deadline extends Task {
         try {
             this.deadline = LocalDateTime.parse(by.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
         }
     }
 

@@ -1,7 +1,7 @@
 package duke;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
 
 public class Event extends Task {
     protected String at;
@@ -13,8 +13,8 @@ public class Event extends Task {
         try {
             this.event = LocalDateTime.parse(at.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minutes:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minutes:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
         }
     }
 
@@ -24,8 +24,9 @@ public class Event extends Task {
         try {
             this.event = LocalDateTime.parse(at.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minutes:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minutes:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
+
         }
     }
 
@@ -38,6 +39,7 @@ public class Event extends Task {
     public String fileStatus() {
         return "E | " + super.fileStatus() + "|" + this.at;
     }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: "
