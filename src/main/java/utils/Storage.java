@@ -1,3 +1,13 @@
+package utils;
+
+import utils.Parser;
+import tasks.ToDoList;
+import tasks.Task;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Todo;
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -9,7 +19,7 @@ public class Storage {
     private String filePath;
     private String dirPath;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
         this.dirPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }

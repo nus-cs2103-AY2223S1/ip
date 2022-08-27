@@ -1,3 +1,5 @@
+package tasks;
+
 public class Task {
     public boolean isDone;
     public String taskName;
