@@ -1,5 +1,5 @@
-deadline do homework /by no idea :-p
-event lecture /at 4pm
+deadline do homework /by 2022-03-31
+event lecture /at 2021-12-21
 list
 mark 1
 unmark 1
