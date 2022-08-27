@@ -8,6 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Represents a storage system that is responsible for
+ *
+ */
 public class Storage {
     private String fileName;
 

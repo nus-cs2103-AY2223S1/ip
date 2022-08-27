@@ -16,8 +16,19 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * Represents a class that is responsible for
+ * reading data from inputs or from text files.
+ * @author Justin Cheng.
+ */
 public class Parser {
 
+    /**
+     * Returns an AddToDoCommand through scanning the description.
+     * @param message The description of the command.
+     * @return an AddToDoCommand.
+     * @throws DukeException if the description of the ToDo is empty.
+     */
     public static Command parseToDo(String message) throws DukeException{
         Scanner sc = new Scanner(message);
         if (sc.hasNext()) {
@@ -28,6 +39,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns an AddDeadlineCommand through scanning the description.
+     * @param message The description of the command.
+     * @return an AddDeadlineCommand.
+     * @throws DukeException if the message given is invalid.
+     */
     public static Command parseDeadline(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         try {
@@ -45,6 +62,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns an AddEventCommand through scanning the description.
+     * @param message The description of the command.
+     * @return an AddEventCommand.
+     * @throws DukeException if the message is invalid.
+     */
     public static Command parseEvent(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         try {
@@ -62,6 +85,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a command from scanning the inputs of users.
+     * @param message The description of the command.
+     * @return a Command.
+     * @throws DukeException if the input is invalid.
+     */
     public static Command parse(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         String first = sc.next();
@@ -102,6 +131,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a Command through scanning the text file in String format.
+     * @param message The description of the command.
+     * @return A Command.
+     * @throws DukeException if the file has been corrupted.
+     */
     public static Command parseCommand(String message) throws DukeException {
         String[] arr = message.split("\\s\\|\\s");
         if (arr.length == 1) {
@@ -128,6 +163,4 @@ public class Parser {
                 throw new DukeException("OOPS, looks like the file has been corrupted. Please delete the file and try again.");
         }
     }
-
-
 }
