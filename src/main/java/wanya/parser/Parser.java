@@ -9,7 +9,8 @@ import java.time.DateTimeException;
 public class Parser {
     public static void checkTask(String[] inputs, String command) throws WanyaException {
         //handle the error where no task name
-        if (inputs.length == 1 || inputs[1].startsWith("/at") || inputs[1].startsWith("/by")) {
+        if (inputs.length == 1 || inputs[1].trim().startsWith("/at")
+                || inputs[1].trim().startsWith("/by") || inputs[1].trim().equals("")) {
             throw new WanyaException("The description of a " + command + " cannot be empty");
         }
     }
