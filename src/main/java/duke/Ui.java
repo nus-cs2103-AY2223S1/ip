@@ -11,6 +11,9 @@ public class Ui {
         event
     }
 
+    /**
+     * A constructor to initialize the Ui Object.
+     */
     public Ui() {}
 
     public static String straightLine = "  ----------------------------------------------------------------------------------";
@@ -21,21 +24,34 @@ public class Ui {
                                + "|    \\  \\  |  |      \\  \\/ /     \\ \\/  /      |  | \n"
                                + "|___| \\__\\ |__|       \\____/       \\____/       |__| \n";
 
+    /**
+     * Output the greeting message when starting up the project.
+     */
     public void printGreeting() {
         System.out.println("\nHello from\n" + logo);
 
         System.out.println("Hello! I'm KiwiQE :) \nWhat can I do for you? \n");
     }
 
+    /**
+     * Output the goodbye message when terminating the project.
+     */
     public void printGoodbyeMessage() {
         System.out.println(straightLine + "\n  sayonara, goodbye\n" + straightLine);
     }
 
-
+    /**
+     * Output the task list.
+     */
     public void printTaskListEmpty() {
         System.out.println(straightLine + "\n" + "  Nothing to do currently ehe\n" + straightLine);
     }
 
+    /**
+     * Output the corresponding customised Index Out Of Bounds Exception message.
+     *
+     * @param keyword A keyword object to identify which message to output.
+     */
     public void printIndexOutOfBoundsException(Keywords keyword) {
         switch (keyword) {
             case delete:
@@ -49,6 +65,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Output the corresponding customised String Index Out Of Bounds Exception message.
+     *
+     * @param keyword A keyword object to identify which message to output.
+     */
     public void printInsufficientInfoException(Keywords keyword) {
         switch (keyword) {
             case delete:
@@ -78,18 +99,30 @@ public class Ui {
         }
     }
 
+    /**
+     * Output the message when input is not recognised.
+     */
     public void printUnrecognisedWord() {
         System.out.println(straightLine + "\n  What do you mean by Justin Bieber plays~\n" + straightLine + "\n");
     }
 
+    /**
+     * Output the File Not Found Error.
+     */
     public static void printFileNotFound() {
         System.out.println("File has yet to be created, creating for you now!");
     }
 
+    /**
+     * Output the error unable to create the file.
+     */
     public static void printCannotOpenFile() {
         System.out.println("You can't create a file!");
     }
 
+    /**
+     * Output unable to append information to the file.
+     */
     public static void printUnableToAppend() {
         System.out.println("You can't append!");
     }

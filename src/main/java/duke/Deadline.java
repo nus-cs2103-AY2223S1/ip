@@ -47,7 +47,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Outputs the deadline added to the list of tasks in the console.
+     * Output the deadline added to the list of tasks in the console.
      */
     @Override
     public void printAdded() {
@@ -57,7 +57,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Outputs the full details of the deadline in the console.
+     * Output the full details of the deadline in the console.
      */
     @Override
     public void printTask() {
@@ -71,7 +71,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation of the duke.Deadline.
+     * Return a string representation of the duke.Deadline.
      *
      * @return string describing the duke.Deadline.
      */
@@ -86,6 +86,11 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Return a string to be saved in the hard disk.
+     *
+     * @return A string representation of deadline to be saved in the hard disk.
+     */
     @Override
     public String savedString() {
         if (!this.getStatus()) {
@@ -100,7 +105,7 @@ public class Deadline extends Task {
 
 
     /**
-     * Outputs the full details of the deadline being deleted in the console.
+     * Output the full details of the deadline being deleted in the console.
      */
     public void printDeleted() {
         if (!this.getStatus()) {
