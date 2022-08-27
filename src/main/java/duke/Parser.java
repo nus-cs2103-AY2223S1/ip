@@ -5,8 +5,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser class represents the parser which parses the command given by user
+ * in the terminal.
+ */
 public class Parser {
-
+    /**
+     * Parses the command given by user in the terminal
+     * and returns the corresponding Command object based
+     * on command given by user.
+     *
+     * @param command Command given by the user in terminal.
+     * @param taskList The tasks stored in the list.
+     * @return The corresponding Command object is returned.
+     * @throws DukeException If valid description or number is missing after command.
+     * @throws DateTimeParseException If the user does not key in valid date.
+     * @throws NumberFormatException If the user does not choose a valid number.
+     */
     public static Command parse(String command, TaskList taskList) throws DukeException,
             DateTimeParseException, NumberFormatException{
         if (command.toLowerCase().equals("bye")) {

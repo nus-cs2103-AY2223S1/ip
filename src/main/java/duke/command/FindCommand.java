@@ -7,13 +7,31 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * FindCommand class represents the find command given by the user.
+ */
 public class FindCommand extends Command{
     private final String keyword;
 
+    /**
+     * Constructor of the Find Class.
+     * Sets the keyword which filters the task to
+     * local variable.
+     *
+     * @param keyword The keyword used for filtering.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Filters out all tasks which contains the keyword and
+     * returns the list of tasks which contains the keyword.
+     *
+     * @param ui Ui object which handles the interaction with the user
+     * @param storage Storage object which handles interaction with data in file
+     * @param taskList List of tasks
+     */
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {
         ui.printBorder();

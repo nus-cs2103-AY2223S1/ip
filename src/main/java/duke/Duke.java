@@ -8,11 +8,18 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Duke class represents the Duke Bot which serves the user.
+ */
 public class Duke {
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
 
+    /**
+     * Constructor of the Duke class.
+     * Sets the storage, ui and taskList to the local variables.
+     */
     public Duke() {
         try {
             ui = new Ui();
@@ -27,6 +34,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Gets the command from the terminal, parses
+     * the command and executes the command given.
+     */
     public void run() {
         ui.Greet();
         boolean isTerminated = false;
@@ -51,7 +62,6 @@ public class Duke {
         }
         scanner.close();
     }
-
 
     public static void main(String[] args) {
         new Duke().run();
