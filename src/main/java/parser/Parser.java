@@ -28,7 +28,7 @@ public class Parser {
     private String type = "error";
 
     public Parser(TaskList list, String str) throws DukeException {
-        String[] input = str.split(" ");
+        String input[] = str.split(" ");
         this.taskList = list;
         this.listOfActions = this.taskList.getTaskList();
         if (input.length == 1) {
@@ -100,6 +100,16 @@ public class Parser {
                     throw new DukeException("");
                 }
             }
+        } else if (input[0].equals("find")) {
+            String out = findTasks(input[1]);
+            this.type = "find";
+            this.isErreneous = false;
+            if (out.isBlank()) {
+                System.out.println("----------------------\n" + "Oops nothing fits the description :(\n"
+                        + "----------------------\n");
+            } else {
+                System.out.println("----------------------\n" + out + "----------------------\n");
+            }
         }
 
 
@@ -120,7 +130,7 @@ public class Parser {
         return this.isAction;
     }
 
-    public void bye(ArrayList<Task> listOfActions, File file) {
+    private void bye(ArrayList<Task> listOfActions, File file) {
         try {
             FileWriter writer = new FileWriter(file.getPath());
             for (Task t : listOfActions) {
@@ -130,6 +140,19 @@ public class Parser {
         } catch (IOException e) {
             System.out.println("Oops");
         }
+    }
+
+    private String findTasks(String variable) {
+        String output = "";
+        int counter = 1;
+        ArrayList<Task> listOfTasks = taskList.getTaskList();
+        for (int i = 0; i < taskList.taskListSize(); i++) {
+            if(listOfTasks.get(i).hasWord(variable)) {
+                output = output + String.format("%d. ",counter) + listOfTasks.get(i) + "\n";
+                counter++;
+            }
+        }
+        return output;
     }
 
 

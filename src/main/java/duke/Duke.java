@@ -67,6 +67,10 @@ public class Duke {
                     ui.showList(tasks.getList());
                 } else if (type.equals("delete")) {
                     currentAction--;
+                } else if (type.equals("find")) {
+                    //do nothing
+                } else {
+                    //do nothing
                 }
             } catch (DukeException e) {
                 ui.showInaccurateInput();

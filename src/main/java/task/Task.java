@@ -2,11 +2,23 @@ package task;
 
 public class Task {
     protected String description;
+
+    protected String splitDesscription[];
     protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.splitDesscription = description.split(" ");
+    }
+
+    public Boolean hasWord(String word) {
+        for (String str : splitDesscription) {
+            if (str.equals(word)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getStatusIcon() {
