@@ -1,7 +1,8 @@
 package duke;
 
-import duke.task.Task;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Represents UI of application
@@ -26,7 +27,9 @@ public class Ui {
     /**
      * Prints a goodbye message for the user.
      */
-    public void showGoodbye() { System.out.println("Bye Bye See You Next Time!"); }
+    public void showGoodbye() {
+        System.out.println("Bye Bye See You Next Time!");
+    }
 
     /**
      * Gets first line of user input into system.

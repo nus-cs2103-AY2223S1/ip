@@ -39,7 +39,8 @@ public class MarkCommand extends Command {
                 throw new DukeException("Task is already marked");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
+            //plus 1 for indexing
+            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1));
         }
         new SaveCommand().execute(taskList, ui, storage);
     }

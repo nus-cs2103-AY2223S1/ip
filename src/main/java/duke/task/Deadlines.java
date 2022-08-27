@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 /**
  * Represents a deadline task.
@@ -24,7 +24,7 @@ public class Deadlines extends Task {
      */
     public Deadlines(String task, String deadline, boolean isDone) throws DukeException {
         super(task, isDone);
-        this.deadline = ConvertDateTime(deadline);
+        this.deadline = convertDateTime(deadline);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Deadlines extends Task {
      * @return LocalDateTime in MMM dd yyyy HHmm
      * @throws DukeException if dateTime is not in format dd/MM/yyyy HHmm.
      */
-    private LocalDateTime ConvertDateTime(String dateTime) throws DukeException {
+    private LocalDateTime convertDateTime(String dateTime) throws DukeException {
         return Task.getLocalDateTime(dateTime);
     }
 }

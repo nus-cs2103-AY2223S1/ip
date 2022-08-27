@@ -1,14 +1,14 @@
-import duke.Parser;
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.command.ListCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import duke.DukeException;
+import duke.Parser;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
 
 public class ParserTest {
     @Test

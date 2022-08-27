@@ -1,6 +1,14 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddSavedInputCommand;
+import duke.command.AddUserCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnMarkCommand;
 
 /**
  * Represents the parser that processes user input from UI.
@@ -16,25 +24,23 @@ public class Parser {
      */
     public static Command parseInput(String input) throws DukeException {
         if (!input.contains(" ")) {
-            try {
-                switch (Instructions.valueOf(input)) {
-                case bye:
-                    return ExitCommand.of();
-                case list:
-                    return ListCommand.of();
-                case mark:
-                case unmark:
-                    throw new DukeException(String.format("Choose which index to %s.", input));
-                case todo:
-                case deadline:
-                case event:
-                    throw new DukeException(String.format("The description of a %s cannot be empty.", input));
-                case delete:
-                    throw new DukeException("Choose which index to delete.");
-                case find:
-                    throw new DukeException("Input a keyword to find.");
-                }
-            } catch (IllegalArgumentException e) {
+            switch (Instructions.valueOf(input)) {
+            case bye:
+                return ExitCommand.of();
+            case list:
+                return ListCommand.of();
+            case mark:
+            case unmark:
+                throw new DukeException(String.format("Choose which index to %s.", input));
+            case todo:
+            case deadline:
+            case event:
+                throw new DukeException(String.format("The description of a %s cannot be empty.", input));
+            case delete:
+                throw new DukeException("Choose which index to delete.");
+            case find:
+                throw new DukeException("Input a keyword to find.");
+            default:
                 throw new DukeException("Sorry I do not understand what that means :(");
             }
         }
@@ -84,10 +90,18 @@ public class Parser {
             }
         case find:
             return new FindCommand(info);
+        default:
+            throw new DukeException("Unknown Error");
         }
-        throw new DukeException("Unknown Error");
     }
 
+    /**
+     * Interprets information from saved file and returns the command to add the task on the line.
+     *
+     * @param input saved file line of contents.
+     * @return specific command to execute.
+     * @throws DukeException If the file format is incorrect.
+     */
     public static Command parseSavedInput(String input) throws DukeException {
         String[] inputSplit = input.split(" ", 2);
         String instruction = inputSplit[0];
@@ -108,8 +122,9 @@ public class Parser {
             String task2 = taskAndAt[0];
             String timing = taskAndAt[1];
             return new AddSavedInputCommand(task2, Instructions.event, timing, done);
+        default:
+            throw new DukeException("Saved file input format incorrect");
         }
-        throw new DukeException("Saved file input format incorrect");
     }
 
 }

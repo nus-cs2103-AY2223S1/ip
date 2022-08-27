@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 /**
  * Represents an event task.
@@ -22,9 +22,9 @@ public class Events extends Task {
      *
      * @throws DukeException if timing is not in the format dd/MM/yyyy HHmm.
      */
-    public Events (String task, String timing, boolean isDone) throws DukeException {
+    public Events(String task, String timing, boolean isDone) throws DukeException {
         super(task, isDone);
-        this.timing = ConvertDateTime(timing);
+        this.timing = convertDateTime(timing);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Events extends Task {
      * @return LocalDateTime in MMM dd yyyy HHmm
      * @throws DukeException if dateTime is not in format dd/MM/yyyy HHmm.
      */
-    public LocalDateTime ConvertDateTime(String dateTime) throws DukeException {
+    public LocalDateTime convertDateTime(String dateTime) throws DukeException {
         return Task.getLocalDateTime(dateTime);
     }
 }
