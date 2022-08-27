@@ -12,7 +12,7 @@ import kirby.tasks.Task;
 public class ShowListCommand extends Command {
     /**
      * {@inheritDoc}
-     * Lists down all the tasks.
+     * Lists down all the tasks in the list.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
