@@ -43,24 +43,20 @@ public class TaskList {
     }
 
     public void createToDo(String input) throws PloopyException {
-        Task newTask = new ToDo(input.split(" ")[1]);
+        Task newTask = new ToDo(input);
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
     }
 
-    public void createDeadline(String input) throws PloopyException {
-        String date = input.split("/by ")[1];
-        String name = input.split(" ")[1];
+    public void createDeadline(String name, String date) throws PloopyException {
         Task newTask = new Deadline(name, date);
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
     }
 
-    public void createEvent(String input) throws PloopyException {
-        String date = input.split("/at ")[1];
-        String name = input.split(" ")[1];
+    public void createEvent(String name, String date) throws PloopyException {
         Task newTask = new Event(name, date);
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
@@ -72,7 +68,8 @@ public class TaskList {
         String type = inputSequence[0];
         String name = inputSequence[2];
         String date = inputSequence.length > 3 ? inputSequence[3] : "";
-        Task createdTask = Task.createTask(type, name, date);if (inputSequence[1].equals("1")) {
+        Task createdTask = Task.addTaskFromFile(type, name, date);
+        if (inputSequence[1].equals("1")) {
             createdTask.markDone();
         }
         taskList.add(createdTask);

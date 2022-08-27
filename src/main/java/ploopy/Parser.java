@@ -35,21 +35,25 @@ public class Parser {
                 break;
             case "todo":
                 if (!isEmptyCommand(input, "todo".length())) {
-                    taskList.createToDo(input);
+                    taskList.createToDo(input.split("todo ")[1]);
                 } else {
                     throw new PloopyException("todo");
                 }
                 break;
             case "deadline":
                 if (!isEmptyCommand(input, "deadline".length())) {
-                    taskList.createDeadline(input);
+                    String date = input.split("/by ")[1];
+                    String name = input.split("deadline ")[1].split(" /")[0];
+                    taskList.createDeadline(name, date);
                 } else {
                     throw new PloopyException("deadline");
                 }
                 break;
             case "event":
                 if (!isEmptyCommand(input, "mark".length())) {
-                    taskList.createEvent(input);
+                    String date = input.split("/at ")[1];
+                    String name = input.split("event ")[1].split(" /")[0];
+                    taskList.createEvent(name, date);
                 } else {
                     throw new PloopyException("event");
                 }

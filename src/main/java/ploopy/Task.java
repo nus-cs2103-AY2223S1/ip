@@ -27,10 +27,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s]%s %s %s", type, getStatus(), stringType(), name);
+        return String.format("[%s]%s %s", type, getStatus(), name);
     }
 
-    public static Task createTask(String type, String name, String date) {
+    public static Task addTaskFromFile(String type, String name, String date) {
         switch (type) {
             case "T":
                 return new ToDo(name);

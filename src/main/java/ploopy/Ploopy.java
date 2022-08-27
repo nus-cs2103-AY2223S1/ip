@@ -45,5 +45,6 @@ public class Ploopy {
 
     public static void main(String[] args) {
         new Ploopy().start();
+        //System.out.println("event dfgd fgdfg /at 12/12/2000 1800".split("event")[1].split(" /")[0]);
     }
 }
