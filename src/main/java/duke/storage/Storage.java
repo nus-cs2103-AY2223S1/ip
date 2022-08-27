@@ -1,7 +1,7 @@
-package storage;
+package duke.storage;
 
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,12 +11,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import tasklist.TaskList;
-
-import task.ToDo;
-import task.Deadline;
-import task.Event;
-
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.tasklist.TaskList;
+import duke.task.Deadline;
 
 public class Storage {
 

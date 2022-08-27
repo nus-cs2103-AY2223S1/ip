@@ -1,12 +1,12 @@
-package parser;
+package duke.parser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import tasklist.TaskList;
+import duke.tasklist.TaskList;
 
-import exception.DukeException;
+import duke.exception.DukeException;
 
 public class Parser {
 

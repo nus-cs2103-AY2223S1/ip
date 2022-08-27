@@ -1,14 +1,14 @@
-package task;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
     private LocalDate date;
     private LocalTime time;
 
-    public Deadline(String content, LocalDate date, LocalTime time) {
+    public Event(String content, LocalDate date, LocalTime time) {
         super(content);
         this.date = date;
         this.time = time;
@@ -16,14 +16,14 @@ public class Deadline extends Task {
 
     @Override 
     public String toString() {
-        return String.format("[D]%s (by: %s %s)", super.toString(), 
+        return String.format("[E]%s (at: %s %s)", super.toString(), 
                 this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")), 
                         this.time.format(DateTimeFormatter.ofPattern("hh:mm a")));
     }
 
     @Override
     public String toFileData() {
-        return String.format("D | %d | %s | %s %s", this.status ? 1 : 0, this.content, 
+        return String.format("E | %d | %s | %s %s", this.status ? 1 : 0, this.content, 
                 this.date.toString(), this.time.toString());
     }
 }

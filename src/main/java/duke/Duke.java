@@ -1,14 +1,16 @@
+package duke;
+
 import java.util.Scanner;
 
 import java.io.FileNotFoundException;
+
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
+import duke.parser.Parser;
+import duke.storage.Storage;
+
 import java.io.IOException;
-
-import tasklist.TaskList;
-import ui.Ui;
-import parser.Parser;
-import storage.Storage;
-
-import exception.DukeException;
+import duke.exception.DukeException;
 
 public class Duke {
 
