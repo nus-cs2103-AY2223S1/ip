@@ -3,7 +3,7 @@ public class Task {
     protected String desc;
     protected boolean isDone;
 
-    public Task(String desc) throws MissingDescriptionException {
+    public Task(String desc) {
         this.desc = desc;
         this.isDone = false;
     }

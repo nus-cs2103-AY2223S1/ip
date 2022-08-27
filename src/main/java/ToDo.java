@@ -1,9 +1,6 @@
 public class ToDo extends Task {
-    public ToDo(String desc) throws MissingDescriptionException {
+    public ToDo(String desc) {
         super(desc);
-        if (desc.isBlank()) {
-            throw new MissingDescriptionException(Duke.commandGuide("todo", Command.TODO));
-        }
     }
 
     public ToDo(String desc, boolean isDone) {
