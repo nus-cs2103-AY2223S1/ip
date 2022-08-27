@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Duke {
+    private static final String FILE_PATH = "src/main/data/duke.txt";
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
@@ -10,8 +11,10 @@ public class Duke {
         int curr = 0;
         Task task = new Task(input, "");
         arr.add(curr, task);
-        String home = System.getProperty("user.home");
-        System.out.println(home);
+        //String home = System.getProperty("user.home");
+        String hardCode = "C:\\Unu_Stuff\\Y3S1\\CS2103-CS2103T\\Lab\\Lab 2\\src";
+        createFiles(hardCode);
+        //System.out.println(home);
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
             //System.out.println(task.getVal());
@@ -109,5 +112,19 @@ public class Duke {
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+
+    public static void createFiles (String path) {
+        /*String[] pathList = path.split("/");
+        for(int i = 0; i < pathList.length; i++) {
+            System.out.println(pathList[i]);
+        }*/
+        //boolean directoryExists = java.nio.file.Files.exists(path);
+        java.nio.file.Path pathData = java.nio.file.Paths.get(path, "data");
+        boolean directoryExistsPath = java.nio.file.Files.exists(pathData);
+        if(!directoryExistsPath) {
+            pathData.mkdirs()
+        }
     }
 }
