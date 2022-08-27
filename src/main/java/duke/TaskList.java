@@ -12,7 +12,6 @@ public class TaskList {
 
 
     TaskList(ArrayList<Task> lst) {
-
         this.lst = lst;
     }
 
@@ -27,7 +26,6 @@ public class TaskList {
      */
     public Task get(int ind) {
         return lst.get(ind);
-
     }
 
     /**
@@ -82,6 +80,7 @@ public class TaskList {
         System.out.println(" " + task);
     }
 
+
     /**
      * Prints out all tasks already in TaskList
      * and lists them in order
@@ -91,6 +90,16 @@ public class TaskList {
         for (Task item : lst) {
             if (item != null)
                 System.out.println(lst.indexOf(item) + 1 + "." + item);
+        }
+    }
+
+    public void find(String searchTask) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task item:lst) {
+            String taskName = item.description;
+            if (taskName.contains(searchTask)) {
+                System.out.println(item);
+            }
         }
     }
 }
