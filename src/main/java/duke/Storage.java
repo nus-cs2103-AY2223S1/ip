@@ -98,7 +98,7 @@ public class Storage {
         appendToFile(filePath, task);
     }
 
-    public void setTaskStatusOnDisk (int taskNumber, boolean isDone) {
+    public void setTaskStatusOnDisk(int taskNumber, boolean isDone) {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
         try {

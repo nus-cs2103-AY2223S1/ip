@@ -1,17 +1,17 @@
 package duke;
 
-
-/** TODOs
+/**
+ * TODOs
  * update file for mark/unmark
  * update file for delete
  */
 
 public class Duke {
+    protected static boolean terminate = false;
     private Ui ui;
     private Parser parser;
     private Storage storage;
     private TaskList tasks;
-    protected static boolean terminate = false;
 
     public Duke(String filePath) {
         storage = new Storage(filePath, "data/temp.txt");
@@ -29,14 +29,4 @@ public class Duke {
         Duke duke = new Duke("data/duke.txt");
         duke.run();
     }
-
-
-
-
-
-
-
-
-
-
 }

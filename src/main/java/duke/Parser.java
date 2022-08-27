@@ -26,7 +26,7 @@ public class Parser {
 
                 // int to store info for numbered operations
                 char charOfInt = '\0';
-                if (indexOfFirstSpace != - 1) {
+                if (indexOfFirstSpace != -1) {
                     firstWord = userInput.substring(0, indexOfFirstSpace);
                     taskDescription = userInput.substring(indexOfFirstSpace + 1);
 
@@ -41,7 +41,7 @@ public class Parser {
                 }
 
                 // convert ASCII character of integer to int
-                int taskNumber =  charOfInt - '0';
+                int taskNumber = charOfInt - '0';
 
                 // choose instruction to execute
                 switch (firstWord) {

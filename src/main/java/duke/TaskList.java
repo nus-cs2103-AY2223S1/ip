@@ -67,7 +67,7 @@ public class TaskList {
             Task task = new Deadline(description, d1);
             addTask(task);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-           ui.printWithLineFormat("     OOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
+            ui.printWithLineFormat("     OOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
         }
     }
 
@@ -76,9 +76,10 @@ public class TaskList {
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
             String taskDescription = currentTask.toString();
-            message += ("     " +
-                    String.valueOf(i) + "." +
-                    taskDescription );
+            message += ("     "
+                    + String.valueOf(i)
+                    + "."
+                    + taskDescription);
             if (i != taskList.size()) {
                 message += "\n";
             }

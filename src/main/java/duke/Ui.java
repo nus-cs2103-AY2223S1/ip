@@ -13,8 +13,8 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        printWithLineFormat("     Hello! I'm Duke\n" +
-                "     What can I do for you?\n");
+        printWithLineFormat("     Hello! I'm Duke\n"
+                + "     What can I do for you?\n");
     }
 
     public void printAddTask(Task task, int size) {
@@ -24,9 +24,9 @@ public class Ui {
     }
 
     public void printDeleteTask(Task task, int size) {
-        printWithLineFormat("     Noted. I've removed this task:\n" +
-                "       " + task.toString() + "\n" +
-                "     Now you have " + size + " tasks in the list.");
+        printWithLineFormat("     Noted. I've removed this task:\n"
+                + "       " + task.toString() + "\n"
+                + "     Now you have " + size + " tasks in the list.");
     }
 
     public void printDisplayList(String list) {
@@ -36,13 +36,13 @@ public class Ui {
     }
 
     public void printMarkTask(String message) {
-        printWithLineFormat("     Nice! I've marked this task as done:\n" +
-                "       " + message);
+        printWithLineFormat("     Nice! I've marked this task as done:\n"
+                + "       " + message);
     }
 
     public void printUnmarkTask(String message) {
-        printWithLineFormat("     OK, I've marked this task as not done yet:\n" +
-                "       " + message);
+        printWithLineFormat("     OK, I've marked this task as not done yet:\n"
+                + "       " + message);
     }
 
     public void printExit() {

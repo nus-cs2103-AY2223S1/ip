@@ -1,11 +1,17 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
 repositories {
     mavenCentral()
+}
+
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 dependencies {
