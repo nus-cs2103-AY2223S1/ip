@@ -10,6 +10,12 @@ public class TaskList implements Serializable {
 
     ArrayList<Task> tasks = new ArrayList<>();
 
+    /**
+     * Adds a task to the tasklist.
+     *
+     * @param task task to be added to the tasklist
+     * @return String representation of the addition action.
+     */
     public String add(Task task) {
         tasks.add(task);
         return String.format(
@@ -17,6 +23,12 @@ public class TaskList implements Serializable {
                 task, tasks.size());
     }
 
+    /**
+     * Removes a task from the tasklist.
+     *
+     * @param index index of task to be removed from the tasklist
+     * @return String representation of the removal action.
+     */
     public String remove(int index) throws IndexOutOfBoundsException, DaveNoTasksException {
         if (tasks.size() == 0) {
             throw new DaveNoTasksException();
@@ -27,6 +39,12 @@ public class TaskList implements Serializable {
         }
     }
 
+    /**
+     * Retrieves a task from the tasklist.
+     *
+     * @param index index of task to be retrieved from the tasklist
+     * @return String representation of the retrieval action.
+     */
     public Task get(int index) throws ArrayIndexOutOfBoundsException, DaveNoTasksException {
         if (tasks.size() == 0) {
             throw new DaveNoTasksException();
@@ -35,6 +53,11 @@ public class TaskList implements Serializable {
         }
     }
 
+    /**
+     * Gets the lenght of the the tasklist as an int.
+     *
+     * @return Lenght of the tasklist as an int.
+     */
     public int size() {
         return tasks.size();
     }

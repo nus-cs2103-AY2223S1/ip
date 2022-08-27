@@ -2,17 +2,17 @@ package Parser;
 
 import DaveExceptions.DaveException;
 import DataStruct.Pair;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
 
-    private static final DateTimeFormatter dashFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final DateTimeFormatter slashFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-
-    private static final String eventBreak = "/at ";
-    private static final String deadlineBreak = "/by ";
+    private static final DateTimeFormatter dashFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final String eventBreak = "/at ";
+    private final String deadlineBreak = "/by ";
 
     public static Pair<String, String> parseInput(String input) {
         String[] splitInput = input.trim().split(" ", 2);
@@ -38,14 +38,14 @@ public class Parser {
         }
 
         String task = args[0];
-        String dateStr = args[1];
+        String dateStr = args[1].trim();
         LocalDateTime dateTime;
 
         try {
             if (dateStr.contains("/")) {
-                dateTime = LocalDateTime.parse(args[1], slashFormat);
+                dateTime = LocalDateTime.parse(dateStr, slashFormat);
             } else {
-                dateTime = LocalDateTime.parse(args[1], dashFormat);
+                dateTime = LocalDateTime.parse(dateStr, dashFormat);
             }
         } catch (DateTimeParseException e) {
             throw new DaveException("Please input a valid date!");
@@ -73,7 +73,6 @@ public class Parser {
             if (dateStr.contains("/")) {
                 dateTime = LocalDateTime.parse(dateStr, slashFormat);
             } else {
-                System.out.println("aaaaaa");
                 dateTime = LocalDateTime.parse(dateStr, dashFormat);
             }
         } catch (DateTimeParseException e) {

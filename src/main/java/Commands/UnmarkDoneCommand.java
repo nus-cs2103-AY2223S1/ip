@@ -7,10 +7,22 @@ public class UnmarkDoneCommand implements Command {
 
     private final Task task;
 
+    /**
+     * Initialises a unmark done command with a task to be unmarked.
+     *
+     * @param task the Task to be unmarked
+     */
     public UnmarkDoneCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * Initialises a unmark done command with a provided tasklist and
+     * index of task to be unmarked.
+     *
+     * @param tasks Tasklist containing the task to be unmarked
+     * @param input Index of the Task to be unmarked in String format
+     */
     public UnmarkDoneCommand(TaskList tasks, String input) throws DaveException {
         try {
             if (input.equals("")) {

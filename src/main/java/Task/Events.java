@@ -7,6 +7,12 @@ public class Events extends Task {
 
     private final LocalDateTime time;
 
+    /**
+     * Initialises an event object.
+     *
+     * @param task description of the event
+     * @param time time of the event
+     */
     public Events(String task, LocalDateTime time) {
         super(task);
         this.time = time;

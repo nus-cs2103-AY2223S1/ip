@@ -9,10 +9,22 @@ public class MarkDoneCommand implements Command{
 
     private Task task;
 
+    /**
+     * Initialises a mark done command with a task to be marked.
+     *
+     * @param task the Task to be marked
+     */
     public MarkDoneCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * Initialises a mark done command with a provided tasklist and
+     * index of task to be marked.
+     *
+     * @param tasks Tasklist containing the task to be marked
+     * @param input Index of the Task to be marked in String format
+     */
     public MarkDoneCommand(TaskList tasks, String input) throws DaveException {
         try {
             if (input.equals("")) {

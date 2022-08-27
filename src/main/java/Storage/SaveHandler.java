@@ -16,6 +16,12 @@ public class SaveHandler {
 
     private final File SAVE_FILE = new File(SAVE_FILE_DIR);
 
+    /**
+     * Initalises the save file handler. Ensures that the save file exists by creating it if necessary,
+     * and checks that the file is able to be read and written to.
+     *
+     * @throws DaveException Exception is thrown if program is unable to read and/or write to save file.
+     */
     public void init() throws DaveException {
         try {
             SAVE_FILE.createNewFile();
@@ -27,7 +33,13 @@ public class SaveHandler {
         }
     }
 
-    // Adapted from https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
+    /**
+     * Saves the given task list to the save file.
+     * Adapted from https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
+     *
+     * @param tasks Tasklist object to be saved to the save file.
+     * @throws DaveException Exception is thrown if program is unable to save the task list to the file.
+     */
     public void save(TaskList tasks) throws DaveException {
         try{
             FileOutputStream file_output = new FileOutputStream(SAVE_FILE);
@@ -39,7 +51,13 @@ public class SaveHandler {
         }
     }
 
-    // Adapted from https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
+    /**
+     * Loads a task list from the save file.
+     * Adapted from https://stackoverflow.com/questions/16111496/java-how-can-i-write-my-arraylist-to-a-file-and-read-load-that-file-to-the
+     *
+     * @return tasks Tasklist object to read from the save file.
+     * @throws DaveException Exception is thrown if program is unable to read the task list from the file.
+     */
     public TaskList load() throws DaveException {
         if (SAVE_FILE.length() != 0) {
             try{
