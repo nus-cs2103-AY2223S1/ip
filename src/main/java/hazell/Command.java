@@ -73,11 +73,4 @@ public class Command {
         sb.append(this.kwargs.toString());
         return sb.toString();
     }
-
-    /* For debugging purposes */
-    public static void main(String[] args) {
-        System.out.println(Command.parse("todo borrow book"));
-        System.out.println(Command.parse("deadline return book /by Sunday"));
-        System.out.println(Command.parse("event project meeting /at Mon 2-4pm"));
-    }
 }
