@@ -3,6 +3,7 @@ package duke.task;
 import duke.exceptions.InvalidTaskException;
 import duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -25,27 +26,27 @@ public class TaskList {
         String[] parts = line.split(" \\| ");
         Task task;
         switch (parts[0]) {
-            case "T":
-                task = new Todo(parts[2]);
-                break;
-            case "D":
-                task = new Deadline(parts[2], parts[3]);
-                break;
-            case "E":
-                task = new Event(parts[2], parts[3]);
-                break;
-            default:
-                task = null;
-                break;
+        case "T":
+            task = new Todo(parts[2]);
+            break;
+        case "D":
+            task = new Deadline(parts[2], parts[3]);
+            break;
+        case "E":
+            task = new Event(parts[2], parts[3]);
+            break;
+        default:
+            task = null;
+            break;
         }
 
         switch (parts[1]) {
-            case "0":
-                task.markAsUndone();
-                break;
-            case "1":
-                task.markAsDone();
-                break;
+        case "0":
+            task.markAsUndone();
+            break;
+        case "1":
+            task.markAsDone();
+            break;
         }
         tasks.add(task);
     }
@@ -93,5 +94,16 @@ public class TaskList {
         } else {
             throw new InvalidTaskException("Please give a valid task number");
         }
+    }
+
+    public ArrayList<Task> find(String toFind) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(toFind)) {
+                foundTasks.add(task);
+            }
+        }
+        
+        return foundTasks;
     }
 }
