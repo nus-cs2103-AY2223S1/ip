@@ -62,18 +62,27 @@ public class Bob {
                         if (taskLabel.equals("T")) {
                             String todoTaskName = temp[2].substring(1);
                             ToDo todo = new ToDo(todoTaskName);
+                            if (temp[1].substring(1, 2).equals("1")) {
+                                todo.toMark(true);
+                            }
                             tasks.add(todo);
                             taskCount = taskCount + 1;
                         } else if (taskLabel.equals("D")) {
                             String deadlineTaskName = temp[2].substring(1);
                             String deadlineTime = temp[3].substring(1);
                             Deadline deadline = new Deadline(deadlineTaskName, deadlineTime);
+                            if (temp[1].substring(1,2).equals("1")) {
+                                deadline.toMark(true);
+                            }
                             tasks.add(deadline);
                             taskCount = taskCount + 1;
                         } else if (taskLabel.equals("E")){
                             String eventTaskName = temp[2].substring(1);
                             String eventTime = temp[3].substring(1);
                             Event event = new Event(eventTaskName, eventTime);
+                            if (temp[1].substring(1,2).equals("1")) {
+                                event.toMark(true);
+                            }
                             tasks.add(event);
                             taskCount = taskCount + 1;
                         }
@@ -92,8 +101,8 @@ public class Bob {
         System.out.println("hey, i'm bob!\ndo you need help?");
         System.out.println("here's what you can do!\n" +
                 "    ❤️    ADD A TODO TASK: todo <task>\n" +
-                "    🌸    ADD A DEADLINE: deadline <task> by <deadline>\n" +
-                "    ✨    ADD AN EVENT: event <task at <date and time>\n" +
+                "    🌸    ADD A DEADLINE: deadline <task> /by <deadline>\n" +
+                "    ✨    ADD AN EVENT: event <task /at <date and time>\n" +
                 "    💕    VIEW LIST OF EVENTS: list\n" +
                 "    🌼    MARK AS DONE: mark <task number in list>\n" +
                 "    ❣️    UNMARK TASK: unmark <task number in list>\n" +
