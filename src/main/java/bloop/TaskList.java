@@ -5,51 +5,51 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private static ArrayList<Task> list;
+    private static ArrayList<Task> tasks;
     private Ui ui;
     private Storage storage;
 
     public TaskList(Ui ui, Storage storage) {
         this.ui = ui;
-        list = new ArrayList<>();
+        tasks = new ArrayList<>();
         this.storage = storage;
     }
 
     public ArrayList<Task> getList() {
-        return list;
+        return tasks;
     }
 
     public void add(Task task) {
-        list.add(task);
+        tasks.add(task);
     }
 
     public Task get(int index) {
-        return list.get(index);
+        return tasks.get(index);
     }
 
     public void mark(Task task) throws IOException {
         task.mark();
         ui.print("This task has been marked as done -\n\t\t" + task);
-        storage.rewriteFile(list);
+        storage.rewriteFile(tasks);
     }
 
     public void unmark(Task task) throws IOException {
         task.unmark();
         ui.print("This task has been marked as not done -\n\t\t" + task);
-        storage.rewriteFile(list);
+        storage.rewriteFile(tasks);
     }
 
     public void remove(Task task) throws IOException {
-        list.remove(task);
-        storage.rewriteFile(list);
-        ui.print("This task has been removed -\n\t\t" + task + "\n\tNow you have " + list.size() + " tasks in the list");
+        tasks.remove(task);
+        storage.rewriteFile(tasks);
+        ui.print("This task has been removed -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
 
     public void listOut() {
         System.out.println(ui.getSeparator());
         System.out.println("\tTasks in your list -");
-        for(int i = 0; i < list.size(); i++) {
-            System.out.println("\t\t" + (i + 1) + ". " + list.get(i));
+        for(int i = 0; i < tasks.size(); i++) {
+            System.out.println("\t\t" + (i + 1) + ". " + tasks.get(i));
         }
         System.out.println(ui.getSeparator());
     }
@@ -75,12 +75,12 @@ public class TaskList {
                 task = new Deadline(input.substring(9, index), input.substring(index + 3));
             }
         }
-        list.add(task);
+        tasks.add(task);
         try {
             storage.writeToFile(task);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        ui.print("I've added this task -\n\t\t" + task + "\n\tNow you have " + list.size() + " tasks in the list");
+        ui.print("I've added this task -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
 }
