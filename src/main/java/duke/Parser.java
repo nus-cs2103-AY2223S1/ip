@@ -53,12 +53,22 @@ public class Parser {
                 }
 
             } else if ("mark".equals(firstWord)) {
+                // throw exception if no number after mark
+                if (arrOfInput.length < 2) {
+                    throw new DukeException("Input a number after mark!");
+                }
+
                 // to mark an element as done
                 int index = Integer.parseInt(arrOfInput[1]);
                 tasks.markTaskAsDone(index);
                 Storage.writeToFile(tasks);
 
             } else if ("unmark".equals(firstWord)) {
+                // throw exception if no number after unmark
+                if (arrOfInput.length < 2) {
+                    throw new DukeException("Input a number after unmark!");
+                }
+
                 // to mark an element as undone
                 int index = Integer.parseInt(arrOfInput[1]);
                 tasks.unmarkTask(index);
@@ -68,10 +78,26 @@ public class Parser {
                 // adding the event, deadline or to-do to the list
                 createNewTask(firstWord, arrOfInput, tasks);
 
-            } else if ("delete".equals(firstWord)) {// deleting a task
+            } else if ("delete".equals(firstWord)) {
+                // throw exception if no number after delete
+                if (arrOfInput.length < 2) {
+                    throw new DukeException("Input a number after delete!");
+                }
+
+                // deleting a task
                 int index = Integer.parseInt(arrOfInput[1]);
                 tasks.deleteTask(index);
                 Storage.writeToFile(tasks);
+
+            } else if ("find".equals(firstWord)) {
+                // throw exception if no word after find
+                if (arrOfInput.length < 2) {
+                    throw new DukeException("Input a word after find!");
+                }
+
+                // finding a task from the list
+                String str = arrOfInput[1];
+                tasks.find(str);
 
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");

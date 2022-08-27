@@ -75,4 +75,19 @@ public class TaskList {
     public void add(Task task) {
         this.taskList.add(task);
     }
+
+    /**
+     * Finds the tasks in the task list that contain the given string.
+     *
+     * @param str the given string that is used to find the tasks
+     */
+    public void find(String str) {
+        Ui.printFoundTasksStart();
+        for (int i =0; i < this.taskList.size(); i++) {
+            Task currTask = this.taskList.get(i);
+            if (currTask.toString().contains(str)) {
+                System.out.println(currTask);
+            }
+        }
+    }
 }
