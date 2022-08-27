@@ -49,5 +49,6 @@ public class Duke {
 
         Duke dukeBot = new Duke("data/tasks.txt");
         dukeBot.run();
+        System.out.println("hello");
     }
 }
