@@ -1,6 +1,6 @@
-public class Task {
+public abstract class Task {
 
-    public enum TaskType {
+    public static enum TaskType {
         ToDo,
         Deadline,
         Event
@@ -9,33 +9,17 @@ public class Task {
     protected boolean isDone;
     protected TaskType taskType;
 
-    public Task(String description, TaskType taskType) {
-        this.description = description;
-        this.isDone = false;
-        this.taskType = taskType;
-    }
-
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
-    }
-
-    public String getTaskType() {
-        return this.taskType == TaskType.ToDo
-                ? "T"
-                : this.taskType == TaskType.Event
-                ? "E"
-                : this.taskType == TaskType.Deadline
-                ? "D"
-                : " ";
     }
 
     public void markAsDone() {
         this.isDone = true;
     }
 
-    @Override
-    public String toString() {
-        String type = "[" + this.getTaskType() + "]";
-        return type + "[" + this.getStatusIcon() + "] " + this.description;
+    public void markAsUnDone() {
+        this.isDone = false;
     }
+
+    public abstract TaskType getTaskType();
 }

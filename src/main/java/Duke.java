@@ -13,20 +13,22 @@ public class Duke {
         TaskList taskList = new TaskList();
 
         while (true) {
-            String input = myObj.nextLine();// Read user input
+            String input = myObj.nextLine().trim();// Read user input
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
                 taskList.printTasks();
-            } else if (input.length() >= 6 && input.startsWith("mark")) {
-                taskList.markTaskAsDone(Integer.valueOf(input.substring(5)) - 1);
-            } else if (input.length() >= 6 && input.startsWith("todo")) {
+            } else if (input.startsWith("mark")) {
+                taskList.markTaskAsDone(Integer.parseInt(input.substring(5)) - 1);
+            } else if (input.startsWith("unmark")) {
+                taskList.markTaskAsUnDone(Integer.parseInt(input.substring(7)) - 1);
+            } else if (input.startsWith("todo")) {
                 taskList.addTask(input.substring(5), Task.TaskType.ToDo);
-            } else if (input.length() >= 7 && input.startsWith("event")) {
+            } else if (input.startsWith("event")) {
                 taskList.addTask(input.substring(6), Task.TaskType.Event);
-            } else if (input.length() >= 10 && input.startsWith("deadline")) {
-                taskList.addTask(input.substring(11), Task.TaskType.Deadline);
+            } else if (input.startsWith("deadline")) {
+                taskList.addTask(input.substring(9), Task.TaskType.Deadline);
             } else {
                 System.out.println("Invalid input. Please enter again");
             }
