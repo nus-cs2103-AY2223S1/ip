@@ -19,7 +19,7 @@ public class Duke {
     private final TaskList taskList = new TaskList();
 
     /** <Code>Ui</Code> to handle user-interface. */
-    private final Ui Ui;
+    private final Ui ui;
 
     /** <Code>Storage</Code> to handle reading and writing task list to disk. */
     private final Storage storage;
@@ -33,7 +33,7 @@ public class Duke {
      * @param filename  Filename to save task list on disk.
      */
     private Duke(String directory, String filename) {
-        Ui = new Ui();
+        ui = new Ui();
         storage = new Storage(directory, filename, taskList);
         parser = new Parser(taskList);
     }
@@ -71,7 +71,7 @@ public class Duke {
                 // Print any output.
                 if (output.equals("exit sequence initiated")) {
                     runDuke = false;
-                    Ui.showUser("Bye. Hope to see you again soon!");
+                    ui.showUser("Bye. Hope to see you again soon!");
                     break;
                 } else {
                     System.out.println(output);
@@ -79,9 +79,9 @@ public class Duke {
                 // Write to disk.
                 storage.writeToFile(taskList);
             } catch (DukeException e) {
-                Ui.showUser(e.getMessage());
+                ui.showUser(e.getMessage());
             } catch (IOException e) {
-                Ui.showUser("Error writing to file: " + e.getMessage());
+                ui.showUser("Error writing to file: " + e.getMessage());
             }
         }
         sc.close();
