@@ -1,3 +1,7 @@
+package duke.tasks;
+
+import duke.exceptions.DukeException;
+
 public abstract class Task {
     private final String description;
     private boolean isDone;
@@ -8,7 +12,7 @@ public abstract class Task {
 
     public Task(String description, boolean isDone) throws DukeException {
         if (description == null || description.length() == 0) {
-            throw new DukeException("Description cannot be empty.");
+            throw new DukeException("Task description cannot be empty.");
         }
         this.description = description;
         this.isDone = isDone;

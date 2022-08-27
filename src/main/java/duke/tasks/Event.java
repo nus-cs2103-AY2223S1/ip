@@ -1,18 +1,18 @@
+package duke.tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task{
+import duke.exceptions.DukeException;
+
+public class Event extends Task {
 
     private final LocalDate at;
 
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, LocalDate at) throws DukeException {
         super(description);
-        try {
-            this.at = LocalDate.parse(at);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date.");
-        }
+        this.at = at;
     }
 
     @Override

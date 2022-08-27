@@ -1,7 +1,8 @@
-Hello from
 ____________________________________________________________
- ____        _        
-|  _ \ _   _| | _____ 
+
+Hello from
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
@@ -24,7 +25,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 Got it. I've added this task:
-[D][ ] return by (by: June 6th)
+[D][ ] return by (by: Jun 06 2022)
 Now you have 2 tasks in the list
 ____________________________________________________________
 
@@ -46,7 +47,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 Got it. I've added this task:
-[E][ ] project meeting (at: aug 6th 2-4pm)
+[E][ ] project meeting (at: Aug 04 2023)
 Now you have 3 tasks in the list
 ____________________________________________________________
 
@@ -73,8 +74,8 @@ ____________________________________________________________
 
 Here are the tasks in your list:
 1. [T][X] read book
-2. [D][ ] return by (by: June 6th)
-3. [E][ ] project meeting (at: aug 6th 2-4pm)
+2. [D][ ] return by (by: Jun 06 2022)
+3. [E][ ] project meeting (at: Aug 04 2023)
 4. [T][X] join sports club
 5. [T][ ] borrow book
 ____________________________________________________________
@@ -82,25 +83,21 @@ ____________________________________________________________
 ____________________________________________________________
 
 Got it. I've added this task:
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Jan 12 2020)
 Now you have 6 tasks in the list
 ____________________________________________________________
 
 ____________________________________________________________
 
 Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: Dec 12 2024)
 Now you have 7 tasks in the list
-____________________________________________________________
-
 ____________________________________________________________
 
 Invalid todo command. Example: todo borrow book
 ____________________________________________________________
 
-____________________________________________________________
-
-Invalid deadline command. Example: deadline return book /by Sunday
+Invalid deadline command. Example: deadline return book /by 2022-04-02
 ____________________________________________________________
 
 ____________________________________________________________
@@ -112,18 +109,19 @@ ____________________________________________________________
 
 Here are the tasks in your list:
 1. [T][X] read book
-2. [D][ ] return by (by: June 6th)
-3. [E][ ] project meeting (at: aug 6th 2-4pm)
+2. [D][ ] return by (by: Jun 06 2022)
+3. [E][ ] project meeting (at: Aug 04 2023)
 4. [T][X] join sports club
 5. [T][ ] borrow book
-6. [D][ ] return book (by: Sunday)
-7. [E][ ] project meeting (at: Mon 2-4pm)
+6. [D][ ] return book (by: Jan 12 2020)
+7. [E][ ] project meeting (at: Dec 12 2024)
 ____________________________________________________________
 
 ____________________________________________________________
 
-Deleted this task:
-[E][ ] project meeting (at: aug 6th 2-4pm)
-You have 6 tasks remaining.
+Deleted 'return by'.
 ____________________________________________________________
 
+____________________________________________________________
+
+Bye. Hope to see you again soon!

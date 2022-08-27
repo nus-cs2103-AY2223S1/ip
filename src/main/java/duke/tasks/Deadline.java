@@ -1,19 +1,17 @@
+package duke.tasks;
+
+import duke.exceptions.DukeException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
 
     private final LocalDate by;
 
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDate by) throws DukeException {
         super(description);
-
-        try {
-            this.by = LocalDate.parse(by);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date.");
-        }
+        this.by = by;
     }
 
     @Override
