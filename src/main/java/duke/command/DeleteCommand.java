@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class DeleteCommand extends Command {
-    private final Integer position;
+    private final int position;
 
     public DeleteCommand(int position) {
         this.position = position;
