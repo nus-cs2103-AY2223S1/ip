@@ -52,10 +52,12 @@ public class Parser {
         int indexOfDateTime = input.indexOf(separator);
         String stringDateTime = input.substring(indexOfDateTime + 4);
         LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
-        String description = input.substring(6, indexOfDateTime - 1);
+        String description = null;
         if (code == "E") {
+            description = input.substring(6, indexOfDateTime - 1);
             newTask = new Event(dateTime, description);
         } else if (code == "D") {
+            description = input.substring(9, indexOfDateTime - 1);
             newTask = new Deadline(dateTime, description);
         }
         return newTask;
