@@ -18,10 +18,11 @@ class Event extends Task {
     @Override
     public String toString() {
         String out = super.getId() + ".[E][";
-        if (super.getStatus())
+        if (super.getStatus()) {
             out += "X";
-        else
+        } else {
             out += " ";
+        }
         out += "] " + super.toString() + "(at : " + eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         return out;
     }

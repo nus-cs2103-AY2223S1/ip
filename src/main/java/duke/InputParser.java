@@ -21,8 +21,9 @@ class InputParser {
             if (input.length() > 4) {
                 String name = input.substring(input.indexOf(" ") + 1);
                 taskList.todo(name);
-            } else
+            } else {
                 throw new EmptyTextException();
+            }
         } else if (input.startsWith("deadline")) {
             if (input.length() < 9 || input.substring(input.indexOf(" ") + 1).trim().equals("")) {
                 throw new EmptyTextException();

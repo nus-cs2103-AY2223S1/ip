@@ -24,9 +24,9 @@ class Ui {
                 parser.parse(input, tasks, storage);
             } catch (Exception e) {
                 System.out.println(e);
-                if (e.equals(new EndProgramException()))
+                if (e.equals(new EndProgramException())) {
                     break;
-
+                }
             }
         }
     }

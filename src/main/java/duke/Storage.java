@@ -1,6 +1,10 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -24,11 +28,12 @@ class Storage {
         }
     }
 
-    void save(TaskList tasks) {
-        List<Task> taskList = tasks.getTasks();
+
+    void save(TaskList taskList) {
+        List<Task> tasks = taskList.getTasks();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
-            taskList.forEach(x -> {
+            tasks.forEach(x -> {
                 try {
                     writer.write(x.toString());
                     writer.write("\n");
