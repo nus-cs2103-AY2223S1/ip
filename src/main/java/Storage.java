@@ -4,13 +4,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Saves Task List to memory
+ */
 public class Storage {
     private File data;
     private FileWriter writer;
-    private static String PATH = "./data/duke.txt";
+    private String PATH;
 
-    public Storage() {
+    public Storage(String filePath) {
+        this.PATH = filePath;
         this.data = new File(PATH);
+
         try {
             if (this.data.createNewFile()) {
                 System.err.println("File created " + this.data.getName());
