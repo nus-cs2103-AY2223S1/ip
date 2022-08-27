@@ -10,6 +10,7 @@ public class Deadline extends Task {
     public Deadline (String description, String deadlineDay) {
         super(description);
         this.deadlineDay = deadlineDay.replaceAll(" ", "");
+        this.stringToDate();
     }
 
     public void stringToDate() {

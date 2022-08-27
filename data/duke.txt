@@ -1,0 +1,6 @@
+1.[T][ ] homework
+2.[E][ ] event   (at: Mon 3pm)
+3.[T][ ] homework
+4.[T][ ] homework 3
+5.[D][ ] project  (by: Nov 2 2020)
+6.[D][ ] homework345 (by: Jan 4 2010)
