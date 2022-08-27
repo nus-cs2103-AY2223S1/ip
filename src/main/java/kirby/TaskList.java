@@ -88,6 +88,17 @@ public class TaskList {
         printTaskCount();
     }
 
+
+    public ArrayList<Task> findTask(String keyword) {
+        ArrayList<Task> res = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                res.add(task);
+            }
+        }
+        return res;
+    }
+
     /**
      * Prints the number of tasks in the list.
      */

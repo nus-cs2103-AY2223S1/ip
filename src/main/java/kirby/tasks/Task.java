@@ -47,6 +47,10 @@ public abstract class Task {
         return (isDone ? "[X]" : "[ ]");
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     /**
      * Returns the format when the task is written in a text file.
      *

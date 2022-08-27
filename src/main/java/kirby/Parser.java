@@ -43,6 +43,9 @@ public class Parser {
         case "get":
             return new GetCommand(inputString);
 
+        case "find":
+            return new FindCommand(inputString);
+
         default:
             throw new KirbyInvalidCommandException();
         }
