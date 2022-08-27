@@ -5,7 +5,7 @@ import roofus.TaskList;
 import roofus.Ui;
 
 /**
- * Represents a command action that lists down all the tasks in 
+ * Represents a command action that lists down all the tasks in
  * the TaskList associated with the current instance of Roofus.
  */
 public class ListCommand extends Command {

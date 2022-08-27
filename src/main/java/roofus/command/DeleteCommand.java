@@ -11,7 +11,6 @@ import roofus.Ui;
  */
 public class DeleteCommand extends Command {
     private int index;
-    
     public DeleteCommand(int index) {
         this.index = index;
     }
@@ -26,11 +25,11 @@ public class DeleteCommand extends Command {
             if (index > taskList.length() || index < 1) {
                 throw new RoofusException("Hey! It's not even in this list!");
             }
-        } catch (RoofusException err){
+        } catch (RoofusException err) {
             ui.printErrMessage(err.getMessage());
         }
         taskList.delete(index);
-        ui.delete(taskList.getTask(index - 1).toString(), 
+        ui.delete(taskList.getTask(index - 1).toString(),
                 taskList.length());
     }
 

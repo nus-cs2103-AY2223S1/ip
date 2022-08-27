@@ -5,13 +5,12 @@ import roofus.TaskList;
 import roofus.Ui;
 
 /**
- * Represents a command action that finds all tasks that 
+ * Represents a command action that finds all tasks that
  * contains a key specified by the user input in the TaskList
  * associated with the current instance of Roofus.
  */
 public class FindCommand extends Command {
     private String key;
-    
     public FindCommand(String key) {
         this.key = key;
     }

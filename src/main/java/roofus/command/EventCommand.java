@@ -11,7 +11,6 @@ import roofus.task.Event;
  */
 public class EventCommand extends Command {
     private Event task;
-    
     public EventCommand(Event task) {
         this.task = task;
     }

@@ -11,7 +11,6 @@ import roofus.task.Deadline;
  */
 public class DeadlineCommand extends Command {
     private Deadline task;
-    
     public DeadlineCommand(Deadline task) {
         this.task = task;
     }
@@ -19,7 +18,7 @@ public class DeadlineCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    @Override 
+    @Override
     public void execute(
             TaskList taskList, Storage storage, Ui ui) {
         taskList.addTask(task);

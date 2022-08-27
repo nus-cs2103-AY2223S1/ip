@@ -1,12 +1,12 @@
 package roofus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import roofus.task.Deadline;
 import roofus.task.Event;
 import roofus.task.Task;
 import roofus.task.ToDo;
-
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Represents a list of tasks to be remembered by Roofus.
@@ -37,6 +37,8 @@ public class TaskList {
                 thisTask = new Event(components[2],
                         components[3]);
                 break;
+            default:
+                break;
             }
             if (components[1].equals("1")) {
                 thisTask.mark();
@@ -47,8 +49,8 @@ public class TaskList {
 
     /**
      * Adds a task to Tasklist.
-     * 
-     * @param task 
+     *
+     * @param task
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -59,7 +61,7 @@ public class TaskList {
      *
      * @param index Task number to be marked as done.
      */
-    public  void mark(int index) {
+    public void mark(int index) {
         tasks.get(index - 1).mark();
     }
 
@@ -93,7 +95,7 @@ public class TaskList {
 
     /**
      * Gets the number of tasks in TaskList.
-     * 
+     *
      * @return int The size of TaskList.
      */
     public int length() {

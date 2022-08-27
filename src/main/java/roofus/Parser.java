@@ -6,12 +6,11 @@ import roofus.command.Command;
 import roofus.command.DeadlineCommand;
 import roofus.command.DeleteCommand;
 import roofus.command.EventCommand;
+import roofus.command.FindCommand;
 import roofus.command.ListCommand;
 import roofus.command.MarkCommand;
 import roofus.command.ToDoCommand;
 import roofus.command.UnmarkCommand;
-import roofus.command.FindCommand;
-
 import roofus.task.Deadline;
 import roofus.task.Event;
 import roofus.task.ToDo;
@@ -30,7 +29,7 @@ public class Parser {
     }
 
     /**
-     * Reads a user input and converts it 
+     * Reads a user input and converts it
      * into a command.
      *
      * @param fullCommand String representing a user input.
@@ -38,8 +37,7 @@ public class Parser {
      * @throws RoofusException If user input is invalid.
      * @see Command
      */
-    public static Command parse(String fullCommand) 
-            throws RoofusException {
+    public static Command parse(String fullCommand) throws RoofusException {
         String[] split = fullCommand.split(" ", 2);
         String firstWord = split[0];
         try {
@@ -97,6 +95,8 @@ public class Parser {
                     throw new RoofusException("Huh?! Find what?");
                 }
                 return new FindCommand(split[1]);
+            default:
+                break;
             }
         } catch (IllegalArgumentException err) {
             throw new RoofusException("\"" + split[0] + "\" is not a command!");

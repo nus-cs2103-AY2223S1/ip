@@ -1,12 +1,11 @@
 package roofus;
 
-import java.io.IOException;
-import java.io.FileWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-
-import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,6 @@ import java.util.Scanner;
  */
 public class Storage {
     private static String storagePath;
-    
     private File storage;
 
     /**

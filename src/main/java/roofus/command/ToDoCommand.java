@@ -11,7 +11,6 @@ import roofus.task.ToDo;
  */
 public class ToDoCommand extends Command {
     private ToDo task;
-    
     public ToDoCommand(ToDo task) {
         this.task = task;
     }

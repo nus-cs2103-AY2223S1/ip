@@ -26,7 +26,7 @@ public class UnmarkCommand extends Command {
             if (index > taskList.length() || index < 1) {
                 throw new RoofusException("Hey! It's not even in this list!");
             }
-        } catch (RoofusException err){
+        } catch (RoofusException err) {
             ui.printErrMessage(err.getMessage());
         }
         taskList.unMark(index);

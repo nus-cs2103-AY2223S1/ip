@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
             }
             taskList.mark(index);
             ui.mark(taskList.getTask(index - 1));
-        } catch (RoofusException err){
+        } catch (RoofusException err) {
             ui.printErrMessage(err.getMessage());
         }
     }

@@ -1,7 +1,7 @@
 package roofus.task;
 
 /**
- * Represents a Task object containing a description and a 
+ * Represents a Task object containing a description and a
  * boolean value indicating if the task has been completed.
  */
 public class Task {
@@ -10,7 +10,7 @@ public class Task {
 
     /**
      * Constructs an instance of Task.
-     * 
+     *
      * @param description A description of the task instance.
      */
     public Task(String description) {
@@ -33,9 +33,9 @@ public class Task {
     }
 
     /**
-     * Formats the Task into a string that can 
+     * Formats the Task into a string that can
      * be written to Roofus's memory.
-     * 
+     *
      * @return String A string representing the Task to be saved.
      */
     public String writeString() {
@@ -45,13 +45,13 @@ public class Task {
     /**
      * Formats the Task into a string that is printed
      * out to users.
-     * 
+     *
      * @return String A string representing the Task to be printed.
      */
     @Override
     public String toString() {
         if (isDone) {
-            return "[X] "  + description;
+            return "[X] " + description;
         } else {
             return "[ ] " + description;
         }

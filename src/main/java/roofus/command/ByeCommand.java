@@ -1,16 +1,20 @@
 package roofus.command;
 
+import java.io.IOException;
+
 import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
-import java.io.IOException;
-
+/**
+ * Represents a command action that saves data in the current
+ * instance of TaskList and terminates the current instance of Roofus.
+ */
 public class ByeCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    @Override 
+    @Override
     public void execute(
             TaskList taskList, Storage storage, Ui ui) {
         ui.signOff();
