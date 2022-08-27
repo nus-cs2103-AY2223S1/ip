@@ -7,18 +7,40 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the location where the commands entered into the program are
+ * processed and how should the <code>Ui</code>, or Seaward, should respond.
+ */
 public class Parser {
 
     private static TaskList taskList;
     private Storage storage;
     private Ui ui;
 
+    /**
+     * Initialises a <code>Parser</code> object which takes in tasks, storage and ui
+     * to make sense of the user commands.
+     * @param tasks <code>TaskList</code> object representing the lists of tasks.
+     * @param storage <code>Storage</code> object which deals with reading and writing
+     *                to a file that is located on the user's hard disk.
+     * @param ui <code>Ui</code> object that deals with the interactions with the user.
+     */
     public Parser(TaskList tasks, Storage storage, Ui ui) {
         this.taskList = tasks;
         this.storage = storage;
         this.ui = ui;
     }
 
+    /**
+     * Returns the appropriate response to a command given by the user. If the command is invalid,
+     * then an error message is returned.
+     * @param s Command given by the user.
+     * @return A response depending on the command given by the user.
+     * @throws InvalidCommandException If the command is not one of the cases, or if the index does not
+     * exist in the <code>TaskList</code> object.
+     * @throws InvalidDescriptionException If the command does not have a valid description.
+     * @throws IOException If the <code>Storage</code> object cannot read or write to the file.
+     */
     public String readInputString(String s) throws InvalidCommandException,
             InvalidDescriptionException, IOException {
         String[] splitCommand = s.split(" ", 2);
