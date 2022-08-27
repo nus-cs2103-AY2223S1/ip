@@ -70,6 +70,10 @@ public class Parser {
                 ui.printMessage(log);
                 this.storage.save(this.taskList.getTaskList());
                 return true;
+            } else if (cmd.toLowerCase().startsWith("find")){
+                String log = this.taskList.handleFind(cmd);
+                ui.printMessage(log);
+                return true;
             } else {
                 throw new InvalidInputException(cmd);
             }

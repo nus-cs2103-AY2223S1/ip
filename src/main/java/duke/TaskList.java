@@ -1,52 +1,34 @@
-package duke;
+package Duke;
 
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> taskList;
 
-    public TaskList() {
+    ArrayList<Task> taskList;
+
+    public TaskList(){
         this.taskList = new ArrayList<>();
     }
 
-    public void load(Task task) {
+    public void load(Task task){
         this.taskList.add(task);
     }
 
-    public ArrayList<Task> getTaskList() {
+    public ArrayList<Task> getTaskList(){
         return this.taskList;
     }
 
-    /**
-     * Lists out all the tasks currently
-     * in the task list
-     *
-     * @return String list of tasks
-     */
-    public String handleList() {
-        if (this.taskList.size() == 0) {
-            return "No tasks as of now!";
-        } else {
-            String log = "Tasks that you have:";
-            for (int i = 0; i < taskList.size(); i++) {
-                log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
-            }
-            return log;
+    public String handleList(){
+        String log = "Tasks that you have:";
+        for (int i = 0; i < taskList.size(); i++) {
+            log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
         }
+        return log;
     }
 
-    /**
-     * Marks the task specified as done
-     *
-     * @param cmd User input
-     * @return String Mark message
-     * @throws IncompleteParamException incomplete cmd
-     * @throws OutOfListException Task number is not within list
-     */
-
     public String handleMark(String cmd) throws DukeException {
-        int minLength = "mark ".length();
-        if (cmd.length() <= minLength) {
+        int min_length = "mark ".length();
+        if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("mark ".length()));
@@ -60,17 +42,9 @@ public class TaskList {
         }
     }
 
-    /**
-     * Marks the task specified as undone
-     *
-     * @param cmd User input
-     * @return String Unmark message
-     * @throws IncompleteParamException incomplete cmd
-     * @throws OutOfListException Task number is not within list
-     */
     public String handleUnmark(String cmd) throws DukeException {
-        int minLength = "unmark ".length();
-        if (cmd.length() <= minLength) {
+        int min_length = "unmark ".length();
+        if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("unmark ".length()));
@@ -86,80 +60,49 @@ public class TaskList {
     }
 
 
-    /**
-     * Creates new ToDo task to be added into task list.
-     *
-     * @param cmd User input
-     * @return String Add message
-     * @throws IncompleteParamException incomplete cmd
-     */
-    public String handleToDo(String cmd) throws DukeException {
-        int minLength = "todo ".length();
-        if (cmd.length() <= minLength) {
+
+    public String handleToDo(String cmd) throws DukeException{
+        int min_length = "todo ".length();
+        if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
         } else {
-            String description = cmd.substring("todo ".length());
-            Task task = new ToDo(description);
+            String taskdes = cmd.substring("todo ".length());
+            Task task = new ToDo(taskdes);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n "
-                    + " Now you have %d tasks in the list.", task , this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
         }
     }
 
-    /**
-     * Creates new Deadline task to be added into task list.
-     *
-     * @param cmd User input
-     * @return String Add message
-     * @throws IncompleteParamException incomplete cmd
-     */
     public String handleDeadline(String cmd) throws DukeException {
         int endPointer = cmd.indexOf('/');
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String description = cmd.substring("deadline ".length(), endPointer);
+            String taskdes = cmd.substring("deadline ".length(), endPointer);
             String by = cmd.substring(endPointer + 4);
-            Task task = new Deadline(description, by);
+            Task task = new Deadline(taskdes, by);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  "
-                    + " Now you have %d tasks in the list.", task, this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
         }
     }
 
-    /**
-     * Creates new Event task to be added into task list.
-     *
-     * @param cmd User input
-     * @return String Add message
-     * @throws IncompleteParamException incomplete cmd
-     */
     public String handleEvent(String cmd) throws DukeException {
         int endPointer = cmd.indexOf('/');
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String description = cmd.substring("event ".length(), endPointer);
+            String taskdes = cmd.substring("event ".length(), endPointer);
             String at = cmd.substring(endPointer + 4);
-            Task task = new Event(description, at);
+            Task task = new Event(taskdes, at);
             this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n "
-                    + " Now you have %d tasks in the list.", task, this.taskList.size());
+            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
 
         }
     }
 
-    /**
-     * Deletes task from list
-     *
-     * @param cmd User input
-     * @return String Delete message
-     * @throws IncompleteParamException incomplete cmd
-     * @throws OutOfListException Task number is not within list
-     */
-    public String handleDelete(String cmd) throws DukeException {
-        int minLength = "delete ".length();
-        if (cmd.length() <= minLength) {
+    public String handleDelete(String cmd) throws DukeException{
+        int min_length = "delete ".length();
+        if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("delete ".length()));
@@ -168,9 +111,28 @@ public class TaskList {
             } else {
                 Task task = this.taskList.get(taskNumber - 1);
                 this.taskList.remove(taskNumber - 1);
-                return String.format("Got it. I've removed this task: \n %s \n  "
-                        + "Now you have %d tasks in the list.", task , this.taskList.size());
+                return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
             }
+        }
+    }
+
+    public String handleFind(String cmd) throws DukeException {
+        int minLength = "find ".length();
+        if (cmd.length() <= minLength) {
+            throw new IncompleteParamException(cmd);
+        } else {
+            String taskToFind = cmd.substring(minLength);
+            ArrayList<Task> tempList = new ArrayList<>();
+            this.taskList.forEach( (task) -> {
+                if (task.checkMatch(taskToFind)) {
+                    tempList.add(task);
+                }
+            });
+            String log = "Here are the matching tasks in your list:";
+            for (int i = 0; i < tempList.size(); i++) {
+                log += String.format("\n %d. %s", i + 1, tempList.get(i));
+            }
+            return log;
         }
     }
 }
