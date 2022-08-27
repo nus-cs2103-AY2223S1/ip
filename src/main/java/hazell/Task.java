@@ -2,6 +2,10 @@ package hazell;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 
+
+/**
+ * A superclass to be inherited by other Tasks.
+ */
 public abstract class Task {
     private String description;
     private boolean isDone;
@@ -41,6 +45,11 @@ public abstract class Task {
 
     public abstract String serialise();
 
+    /**
+     * Factory method that unserialises data.
+     * @param s Input string to parse data from
+     * @return
+     */
     public static Task unserialise(String s) {
         String[] words = s.split(" \\| ");
         Task task;

@@ -62,6 +62,12 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Deletes a task in the store.
+     * @param index The index for which the (index)-th task to delete
+     * @return A response string
+     * @throws NoSuchTask
+     */
     public String deleteTask(int index) throws NoSuchTask {
         Task task;
         try {
@@ -81,6 +87,12 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Marks a task in the store as done.
+     * @param index The index for which the (index)-th task to mark
+     * @return A response string
+     * @throws NoSuchTask
+     */
     public String markTaskAsDone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsDone();
@@ -92,6 +104,12 @@ public class TaskList {
         return String.format("Nice! I've marked this task as done:\n\t%s", task);
     }
 
+    /**
+     * Marks a task in the store as undone.
+     * @param index The index for which the (index)-th task to mark
+     * @return A response string
+     * @throws NoSuchTask
+     */
     public String markTaskAsUndone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsUndone();
