@@ -1,8 +1,5 @@
-package dukeprogram.commands.task.annotations;
+package dukeProgram.commands.task.annotations;
 
-/**
- * MarkTaskCommand marks a task as complete
- */
 public class MarkTaskCommand extends AnnotateTaskCommand {
 
     public MarkTaskCommand() {
