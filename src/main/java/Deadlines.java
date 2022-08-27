@@ -17,4 +17,9 @@ public class Deadlines extends Task{
     public String toString() {
         return "[D] " + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern(" hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
+
+    @Override
+    public String getSaveData() {
+        return " D" + " | " + super.isDone() + " | " + taskName + " | " + date;
+    }
 }

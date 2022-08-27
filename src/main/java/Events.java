@@ -13,4 +13,9 @@ public class Events extends Task {
     public String toString() {
         return "[E] " + super.toString() + "(at:" + time + ")";
     }
+
+    @Override
+    public String getSaveData() {
+        return " E" + " | " + super.isDone() + " | " + taskName + " | " + time;
+    }
 }

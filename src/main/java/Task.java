@@ -28,4 +28,8 @@ public class Task {
         }
     }
 
+    public String getSaveData() {
+        return taskName + " | " + isDone;
+    }
+
 }
