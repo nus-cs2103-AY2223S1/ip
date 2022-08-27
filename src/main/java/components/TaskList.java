@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class TaskList {
   private ArrayList<Task> ls;
   private Storage storage;
+  private ArrayList<String> tracker = new ArrayList<>();
 
   public TaskList(ArrayList<Task> tasks) {
     this.ls = tasks;
@@ -83,6 +84,24 @@ public class TaskList {
     ls.get(index).setStatus(false);
     System.out.println("OK, I've marked this task as not done yet:");
     System.out.println(ls.get(index).toString());
+  }
+
+  public void findLine(String s) throws DukeException {
+    boolean stop = false;
+    for (int i = 0; i< ls.size(); i++) {
+      if (ls.get(i).toString().contains(s)) {
+        this.tracker.add(ls.get(i).toString());
+        stop = true;
+      }
+    }
+    if (stop) {
+      System.out.println("Here are the matching tasks in your list:");
+      for (int i = 0; i < ls.size(); i++) {
+        System.out.println(i + 1 + "." + " " + tracker.get(i));
+      }
+    } else {
+      throw new DukeException("No matching tasks");
+    }
   }
 
 

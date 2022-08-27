@@ -41,17 +41,13 @@ public class Parser {
       System.out.println("Bye. Hope to see you again soon!");
       System.exit(0);
     } else if (line.equals("list")) {
-      //System.out.println("Here are the tasks in your list:");
       taskList.showTasks();
-
     } else if (line.contains("unmark")) {
       if (line.equals("unmark")) {
         throw new DukeException("☹ OOPS!!! The description of a mark cannot be empty.");
       } else {
         int num = Integer.parseInt(line.substring(7));
         taskList.setTaskStatus(num - 1, false);
-        //System.out.println("OK, I've marked this task as not done yet:");
-        //System.out.println(ls.get(num - 1).toString());
       }
     } else if (line.contains("mark")) {
       if (line.equals("mark")) {
@@ -59,10 +55,9 @@ public class Parser {
       } else {
         int num = Integer.parseInt(line.substring(5));
         taskList.setTaskStatus(num - 1, true);
-        //System.out.println("Nice! I've marked this task as done:");
-        //System.out.println(ls.get(num - 1).toString());
-
       }
+    } else if (line.contains("find")) {
+      taskList.findLine(line.substring(5));
     } else if (line.contains("todo")) {
       if (line.equals("todo")) {
         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -115,7 +110,6 @@ public class Parser {
       } else {
         int removal = Integer.parseInt(line.substring(7));
       }
-
     } else {
       throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-()");
     }
