@@ -24,15 +24,15 @@ public class ModifyCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         switch (commandType) {
-            case DONE:
-                tasks.markAsDone(index, ui);
-                break;
-            case UNDONE:
-                tasks.markAsUndone(index, ui);
-                break;
-            case LIST:
-                tasks.listTasks(ui);
-                break;
+        case DONE:
+            tasks.markAsDone(index, ui);
+            break;
+        case UNDONE:
+            tasks.markAsUndone(index, ui);
+            break;
+        case LIST:
+            tasks.listTasks(ui);
+            break;
         }
 
         storage.saveToFile(tasks);
