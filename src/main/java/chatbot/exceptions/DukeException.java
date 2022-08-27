@@ -1,4 +1,4 @@
-package chatbot.main;
+package chatbot.exceptions;
 
 /**
  * The DukeException class represents all possible exceptions

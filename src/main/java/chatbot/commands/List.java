@@ -1,6 +1,6 @@
 package chatbot.commands;
 
-import chatbot.main.UI;
+import chatbot.ui.UI;
 import chatbot.tasks.TaskList;
 
 public class List implements Command {

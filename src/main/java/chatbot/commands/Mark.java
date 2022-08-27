@@ -1,7 +1,7 @@
 package chatbot.commands;
 
-import chatbot.main.DukeException;
-import chatbot.main.UI;
+import chatbot.exceptions.DukeException;
+import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 

@@ -1,5 +1,6 @@
-package chatbot.main;
+package chatbot.ui;
 
+import chatbot.exceptions.DukeException;
 import chatbot.tasks.Task;
 
 import java.util.List;

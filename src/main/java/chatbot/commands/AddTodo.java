@@ -1,9 +1,8 @@
 package chatbot.commands;
 
-import chatbot.main.UI;
+import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-import chatbot.tasks.Todo;
 
 public class AddTodo implements Command {
     public String taskName;

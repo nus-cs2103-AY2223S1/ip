@@ -1,19 +1,13 @@
-package chatbot.main;
+package chatbot;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.*;
 
 import chatbot.commands.Command;
+import chatbot.exceptions.DukeException;
+import chatbot.parser.Parser;
+import chatbot.storage.Storage;
 import chatbot.tasks.*;
+import chatbot.ui.UI;
 
 /**
  * The Duke chatbot named Zlimez functions as a todo list

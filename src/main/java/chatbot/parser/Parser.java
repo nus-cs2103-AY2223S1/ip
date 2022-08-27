@@ -1,6 +1,7 @@
-package chatbot.main;
+package chatbot.parser;
 
 import chatbot.commands.*;
+import chatbot.exceptions.DukeException;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.Event;
 

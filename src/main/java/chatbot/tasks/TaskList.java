@@ -1,13 +1,11 @@
 package chatbot.tasks;
 
-import chatbot.main.DukeException;
+import chatbot.exceptions.DukeException;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class TaskList {
     private List<Task> todos = new ArrayList<>();
