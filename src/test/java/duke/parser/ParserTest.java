@@ -26,14 +26,13 @@ public class ParserTest {
     /**
      * The parse_emptyInput_returnsIncorrect function tests that the parse function
      * returns an ErrorCommand when given empty inputs.
-     * 
+     *
      * @return The following
      */
     @Test
     public void parse_emptyInput_returnsIncorrect() {
         final String[] emptyInputs = { "", "  ", "\n  \n" };
-        final String resultMessage = String.format(
-                "Please enter a command");
+        final String resultMessage = "Please enter a command";
         parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
     }
 
@@ -82,11 +81,12 @@ public class ParserTest {
      * helpful message.
      *
      * @param input
-     *            Pass the input string to be parsed
+     *            Pass the input to the parseandassertcommandtype function
      * @param Class&lt;T&gt;
-     *            Ensure that the result is of type t
-     * @return A basecommand object
+     *            Specify the type of command that is expected to be returned
+     * @return A command of the expected type
      */
+    @SuppressWarnings("unchecked")
     private <T extends BaseCommand> T parseAndAssertCommandType(
             String input, Class<T> expectedCommandClass) {
         BaseCommand result;
