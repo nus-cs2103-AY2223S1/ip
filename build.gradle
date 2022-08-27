@@ -26,9 +26,9 @@ test {
         showStandardStreams = false
     }
 }
-
+6
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.Duke"
 }
 
 shadowJar {
