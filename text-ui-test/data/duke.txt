@@ -1,3 +1,0 @@
-T;0;read CS2103T textbook
-D;1;finish math assignment;21-08-2022
-E;1;career talk;06-09-2020

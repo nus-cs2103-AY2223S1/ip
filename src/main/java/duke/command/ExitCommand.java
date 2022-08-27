@@ -7,12 +7,12 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
     /**
-     * Returns an empty String.
+     * Returns the exit message.
      *
-     * @return An empty String.
+     * @return The exit message.
      */
     @Override
     public String execute() {
-        return "";
+        return "Bye! Hope to see you again.";
     }
 }

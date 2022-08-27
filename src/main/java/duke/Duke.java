@@ -1,83 +1,41 @@
 package duke;
 
 import duke.command.Command;
-import duke.command.ExitCommand;
 import duke.task.TaskList;
 
 /**
- * Driver class of Duke.
+ * This class encapsulates Duke and its functionalities.
  */
 public class Duke {
-    private Ui ui;
-    private Storage storage;
+    private final Storage storage;
     private TaskList taskList;
 
     /**
-     * Creates a new Duke to talk to.
-     */
-    public Duke() {
-        this.ui = new Ui();
-        this.storage = new Storage();
-
-        try {
-            this.taskList = storage.load();
-        } catch (DukeException e) {
-            ui.showErrorMessage(e);
-            this.taskList = new TaskList();
-        }
-    }
-
-    /**
-     * Runs Duke until it is stopped.
-     */
-    public void run() {
-        this.start();
-        this.loop();
-        this.stop();
-    }
-
-    /**
-     * Reads the user input and executes it, until the user issues the exit command.
-     */
-    public void loop() {
-        while (true) {
-            try {
-                Command command = Parser.parseInput(this.ui.getUserInput(), this.taskList);
-
-                if (command instanceof ExitCommand) {
-                    return;
-                }
-
-                this.ui.echo(command.execute());
-                this.storage.save(this.taskList);
-            } catch (DukeException e) {
-                this.ui.showErrorMessage(e);
-            }
-        }
-    }
-
-    /**
-     * Starts Duke by displaying a welcome message.
-     */
-    public void start() {
-        this.ui.showWelcomeMessage();
-    }
-
-    /**
-     * Stops Duke after displaying a goodbye message.
-     */
-    public void stop() {
-        this.ui.showGoodbyeMessage();
-        System.exit(0);
-    }
-
-    /**
-     * Runs Duke from here.
+     * Creates a new Duke to chat with.
      *
-     * @param args Ignore.
+     * @throws DukeException If there is a problem retrieving the saved tasks.
      */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public Duke() throws DukeException {
+        this.storage = new Storage();
+        this.taskList = this.storage.load();
+    }
+
+    /**
+     * Parses the given text using the Parser.
+     *
+     * @param text The text to parse.
+     * @return The corresponding command after parsing the text.
+     */
+    public Command parseText(String text) {
+        return Parser.parseText(text, this.taskList);
+    }
+
+    /**
+     * Saves the TaskList to the hard disk.
+     *
+     * @throws DukeException If there is a problem with writing to the hard disk.
+     */
+    public void saveTasks() throws DukeException {
+        this.storage.save(this.taskList);
     }
 }

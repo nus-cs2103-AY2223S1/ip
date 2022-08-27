@@ -130,7 +130,7 @@ public class TaskList {
         for (int i = 0; i < this.tasks.size(); i++) {
             Task task = this.tasks.get(i);
             int taskNum = i + 1;
-            result += taskNum + "." + task;
+            result += taskNum + ". " + task;
 
             if (i != this.tasks.size() - 1) {
                 result += "\n";

@@ -21,14 +21,14 @@ import duke.task.Todo;
  */
 public class Parser {
     /**
-     * Parses the given user input, and returns the appropriate Command.
+     * Parses the given text, and returns the appropriate Command.
      *
-     * @param userInput The user input.
+     * @param text The text to parse.
      * @param taskList  The TaskList to run the Command in.
      * @return The Command corresponding to the user input.
      */
-    public static Command parseInput(String userInput, TaskList taskList) {
-        String[] words = userInput.split(" ", 2);
+    public static Command parseText(String text, TaskList taskList) {
+        String[] words = text.split(" ", 2);
         String commandWord = words[0];
         String argument = words.length > 1 ? words[1] : "";
 
