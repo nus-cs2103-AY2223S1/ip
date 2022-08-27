@@ -48,24 +48,28 @@ public class Duke {
             //If user wants to check the list
             String output = list(tasks.getTaskList(), currentAction);
             String[] input = userInput.split(" ");
-            Parser parse = new Parser(tasks, userInput);
-            if (parse.isErreneous()) {
-                type = parse.getType();
-                ui.showInaccurateInput();
-            } else  {
-                //change from action to getAction()
-                if (parse.getIsAction()) {
-                    currentAction++;
+            try {
+                Parser parse = new Parser(tasks, userInput);
+                if (parse.isErreneous()) {
+                    type = parse.getType();
+                    ui.showInaccurateInput();
+                } else  {
+                    //change from action to getAction()
+                    if (parse.getIsAction()) {
+                        currentAction++;
+                    }
+                    type = parse.getType();
                 }
-                type = parse.getType();
-            }
-            if (type.equals("bye")) {
-                ui.goodByeMessage();
-                break;
-            } else if (type.equals("list")) {
-                ui.showList(tasks.getList());
-            } else if (type.equals("delete")) {
-                currentAction--;
+                if (type.equals("bye")) {
+                    ui.goodByeMessage();
+                    break;
+                } else if (type.equals("list")) {
+                    ui.showList(tasks.getList());
+                } else if (type.equals("delete")) {
+                    currentAction--;
+                }
+            } catch (DukeException e) {
+                ui.showInaccurateInput();
             }
 
             userInput = sc.nextLine();

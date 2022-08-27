@@ -27,7 +27,7 @@ test {
     }
 }
 
-application {
+application {\
     mainClassName = "seedu.duke.Duke"
 }
 

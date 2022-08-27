@@ -1,5 +1,6 @@
 package parser;
 
+import duke.DukeException;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -26,7 +27,7 @@ public class Parser {
 
     private String type = "error";
 
-    public Parser(TaskList list, String str) {
+    public Parser(TaskList list, String str) throws DukeException {
         String[] input = str.split(" ");
         this.taskList = list;
         this.listOfActions = this.taskList.getTaskList();
@@ -65,27 +66,39 @@ public class Parser {
 
         } else if (input[0].equals("mark")) {
             if (input.length == 2) {
-                this.type = "mark";
-                list.getTaskList().get(Integer.parseInt(input[1]) - 1).mark();
-                System.out.println("----------------------\n" + "Congrats on completing :)\n" +
-                        listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
-                this.isErreneous = false;
+                try {
+                    this.type = "mark";
+                    list.getTaskList().get(Integer.parseInt(input[1]) - 1).mark();
+                    System.out.println("----------------------\n" + "Congrats on completing :)\n" +
+                            listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
+                    this.isErreneous = false;
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("");
+                }
             }
         } else if (input[0].equals("unmark")) {
             if (input.length == 2) {
-                this.type = "unmark";
-                list.getTaskList().get(Integer.parseInt(input[1]) - 1).unMark();
-                System.out.println("----------------------\n" + "One more mission ;)\n" +
-                        listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
-                this.isErreneous = false;
+                try {
+                    this.type = "unmark";
+                    list.getTaskList().get(Integer.parseInt(input[1]) - 1).unMark();
+                    System.out.println("----------------------\n" + "One more mission ;)\n" +
+                            listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
+                    this.isErreneous = false;
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException(" ");
+                }
             }
 
         } else if (input[0].equals("delete")) {
             if (input.length == 2) {
-                int pos = Integer.parseInt(input[1]) - 1;
-                this.type = "delete";
-                list.delete(pos);
-                this.isErreneous = false;
+                try {
+                    int pos = Integer.parseInt(input[1]) - 1;
+                    this.type = "delete";
+                    list.delete(pos);
+                    this.isErreneous = false;
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("");
+                }
             }
         }
 

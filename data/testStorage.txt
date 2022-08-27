@@ -1,0 +1,3 @@
+1.[D][ ] return book  (by: Dec 02 2019 1800)
+2.[T][ ] sleep
+3.[E][X] project meeting  (at: Mon 2-4pm)
