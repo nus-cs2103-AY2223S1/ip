@@ -10,7 +10,7 @@ public class Todo extends Task{
      * Constructs a new {@code Todo} with given description.
      *
      * @param description The description of the task.
-     * @throws DukeException
+     * @throws DukeException Handles when description is empty.
      */
     public Todo(String description) throws DukeException {
         super(description);

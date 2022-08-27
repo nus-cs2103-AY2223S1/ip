@@ -13,7 +13,7 @@ public class Parser {
      * Parses user input to a standard format
      * @param input The user input
      * @return The standardised input.
-     * @throws DukeException
+     * @throws DukeException Handles duke related exceptions.
      */
     public static String parseCommand(String input) throws DukeException {
 

@@ -23,7 +23,7 @@ public class Storage {
      * Ensures the file is accessible.
      *
      * @param filePath The path to the file to store data in.
-     * @throws IOException
+     * @throws IOException Handles case of File not being found or location not existing.
      */
     public Storage(String filePath) throws IOException {
         String[] parts = filePath.split("/");
@@ -44,7 +44,7 @@ public class Storage {
     /**
      * Saves the {@code Task}s from a {@code TaskList} to the {@code file}.
      * @param taskList The {@code TaskList} to save.
-     * @throws IOException
+     * @throws IOException Handles File not being found when writing to hard disk.
      */
     public void writeTasksToStorage(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTasks();
@@ -82,8 +82,8 @@ public class Storage {
      * Loads the {@code Task}s from the {@code file}.
      *
      * @return The {@code Task}s loaded from the {@code file} in an {@code ArrayList}.
-     * @throws FileNotFoundException
-     * @throws DukeException
+     * @throws FileNotFoundException Handles cases where File is not found.
+     * @throws DukeException Handles case of there not being tasks in storage.
      */
 
     public ArrayList<Task> load() throws FileNotFoundException, DukeException {

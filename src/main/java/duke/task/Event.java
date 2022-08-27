@@ -18,7 +18,7 @@ public class Event extends Task {
      * @param description The description of the event.
      * @param start The start time of the event.
      * @param end The end time of the event.
-     * @throws DukeException
+     * @throws DukeException Handles when description is empty.
      */
 
     public Event(String description, LocalDateTime start, LocalDateTime end) throws DukeException {

@@ -42,7 +42,7 @@ public class TaskList {
     /**
      * Removes a task from the {@code ArrayList}
      * @param index The index of the task to remove.
-     * @return
+     * @return The task object that was deleted.
      */
     public Task removeTask(int index) {
         Task task = tasks.get(index - 1);

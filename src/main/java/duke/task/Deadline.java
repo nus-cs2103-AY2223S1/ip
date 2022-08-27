@@ -16,7 +16,7 @@ public class Deadline extends Task {
      *
      * @param description The description of the task.
      * @param by The deadline of the task.
-     * @throws DukeException
+     * @throws DukeException Handles when description is empty.
      */
     public Deadline(String description, LocalDateTime by) throws DukeException {
         super(description);
