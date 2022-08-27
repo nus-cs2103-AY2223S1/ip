@@ -25,7 +25,7 @@ class Storage {
     }
 
     void save(TaskList tasks) {
-        List<Task> taskList = tasks.retrieve();
+        List<Task> taskList = tasks.getTasks();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
             taskList.forEach(x -> {
