@@ -63,6 +63,13 @@ public class Parser {
             int item = Integer.parseInt(command.substring(command.length() - 1));
             taskList.delete(item);
             return 1;
+        } else if (command.startsWith("find")) {
+            String[] arr = command.split(" ", 2);
+            if (command.trim().equals("find")) {
+                throw new EmptyDescriptionException();
+            }
+            taskList.findTask(arr[1]);
+            return 1;
         } else {
             throw new TaskNotRecognisedException();
         }

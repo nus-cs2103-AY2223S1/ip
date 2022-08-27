@@ -179,6 +179,21 @@ public class TaskList {
     }
 
     /**
+     * Prints tasks containing the given keyword
+     *
+     * @param keyword Keyword to search for.
+     */
+    public void findTask(String keyword) {
+        ArrayList<Integer> taskIndices = storage.findTask(keyword);
+        System.out.println("Here are the matching tasks in your list: ");
+        for (int i = 1; i <= taskIndices.size(); i++) {
+            int index = taskIndices.get(i - 1);
+            Task currTask = tasks.get(index);
+            System.out.println(String.format("%d.%s", i, currTask.toString()));
+        }
+    }
+
+    /**
      * Prints action taken and task summary
      *
      * @param task The task added.
