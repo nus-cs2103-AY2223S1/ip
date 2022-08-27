@@ -82,6 +82,10 @@ public class Parser {
             int index = Integer.parseInt(input.replace("delete", "").trim()) - 1;
             taskList.deleteTask(index);
             return false;
+        } else if (input.contains("find")) {
+            String content = input.replace("find", "").trim();
+            taskList.find(content);
+            return false;
         }
         throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
