@@ -3,6 +3,7 @@ package duke.task;
 import duke.exceptions.InvalidTaskException;
 import duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -124,5 +125,16 @@ public class TaskList {
         } else {
             throw new InvalidTaskException("Please give a valid task number");
         }
+    }
+
+    public ArrayList<Task> find(String toFind) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(toFind)) {
+                foundTasks.add(task);
+            }
+        }
+        
+        return foundTasks;
     }
 }
