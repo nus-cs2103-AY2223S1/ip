@@ -6,15 +6,22 @@ import kirby.exceptions.KirbyMissingArgumentException;
 import java.io.*;
 
 /**
- * The kirby.Kirby class implements the main method of the bot.
- * @author Sheryl-Lynn Tan (G11)
+ * Kirby class implements the main method.
  */
 public class Kirby {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-    public Kirby(String filePath, String dirPath) {
+    /**
+     * Constructor for the class Kirby.
+     *
+     * @param filePath name of the file path as a string.
+     * @param dirPath name of the directory path as a string.
+     * @throws FileNotFoundException if the file mentioned is not found.
+     * @throws IOException if there is an improper input error.
+     */
+    public Kirby(String filePath, String dirPath) throws FileNotFoundException, IOException {
         ui = new Ui();
         try {
             storage = new Storage(filePath, dirPath);
@@ -28,7 +35,13 @@ public class Kirby {
         }
     }
 
-    public void run() throws KirbyInvalidCommandException, KirbyMissingArgumentException, IOException {
+    /**
+     * Runs the program.
+     *
+     * @throws KirbyInvalidCommandException if an undefined command is entered.
+     * @throws KirbyMissingArgumentException if the command has invalid arguments.
+     */
+    public void run() throws KirbyInvalidCommandException, KirbyMissingArgumentException {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
@@ -43,6 +56,13 @@ public class Kirby {
         }
     }
 
+    /**
+     * Runs the main method.
+     *
+     * @throws KirbyInvalidCommandException if an undefined command is entered.
+     * @throws KirbyMissingArgumentException if the command has invalid arguments.
+     * @throws IOException if there is an improper input error.
+     */
     public static void main(String[] args) throws IOException, KirbyInvalidCommandException, KirbyMissingArgumentException {
         String fileName = "data/kirby.txt";
         String dirName = "data/";

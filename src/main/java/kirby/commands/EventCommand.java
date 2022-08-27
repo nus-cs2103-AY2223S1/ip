@@ -7,12 +7,25 @@ import kirby.Storage;
 import kirby.exceptions.KirbyMissingArgumentException;
 import java.io.IOException;
 
+/**
+ * EventCommand class handles the command to create an Event task.
+ */
 public class EventCommand extends Command {
     private String inputString;
+
+    /**
+     * Constructor for the class EventCommand.
+     *
+     * @param inputString arguments of a command.
+     */
     public EventCommand(String inputString) {
         this.inputString = inputString;
     }
 
+    /**
+     * {@inheritDoc}
+     * Creates an Event task if arguments are valid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4 || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6) {
@@ -29,6 +42,9 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

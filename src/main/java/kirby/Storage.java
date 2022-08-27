@@ -4,11 +4,21 @@ import kirby.tasks.*;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Storage class handles writing into and reading from the text file created to store previous user's entries.
+ */
 public class Storage {
     private File file;
     private String filePath;
     private File dir;
 
+    /**
+     * Constructor of the Storage class.
+     *
+     * @param filePath name of the file path as a string.
+     * @param dirPath name of the directory path as a string.
+     * @throws IOException if there is an error with user's input.
+     */
     public Storage(String filePath, String dirPath) throws IOException {
         this.filePath = filePath;
         this.dir = new File(dirPath);
@@ -18,6 +28,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a file if the file has not been created.
+     *
+     * @return the new file created.
+     * @throws IOException if there is an error with creating the file.
+     */
     public File createFile() throws IOException {
         try {
             dir.mkdir();
@@ -34,6 +50,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the list of task into a file.
+     *
+     * @throws IOException if there is an error with writing into the file.
+     */
     public void writeTask(ArrayList<Task> Tasks) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         for (Task task : Tasks) {
@@ -42,6 +63,11 @@ public class Storage {
         writer.close();
     }
 
+    /**
+     * Reads from a file and returns the list of tasks that is written in the file.
+     *
+     * @throws FileNotFoundException if the file does not exist.
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

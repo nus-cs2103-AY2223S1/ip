@@ -5,13 +5,18 @@ import java.time.format.DateTimeFormatter;
 import kirby.HandleTime;
 
 /**
- * The kirby.Event class contains information of an kirby.Event task.
- * @author Sheryl-Lynn Tan (G11)
+ * Event class contains information of an Event task.
  */
 public class Event extends Task {
     protected String at;
     private LocalDate localDate  = null;
 
+    /**
+     * Constructor for the class Event.
+     *
+     * @param description description of the task.
+     * @param at the argument of the task which contains the event date.
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
@@ -20,11 +25,17 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int[] getDate() {
         return HandleTime.fromStringToDate(at);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         if (localDate != null) {
@@ -34,6 +45,9 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toFileOutput() {
         return "kirby.Event~" + this.description + "~" + this.at;

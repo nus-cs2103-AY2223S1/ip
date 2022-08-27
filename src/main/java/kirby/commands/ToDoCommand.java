@@ -7,12 +7,24 @@ import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.tasks.Todo;
 import java.io.IOException;
 
+/**
+ * ToDoCommand class handles the command to create a Todo task.
+ */
 public class ToDoCommand extends Command {
     private String inputString;
+
+    /**
+     * Constructor for the class DeadlineCommand.
+     *
+     * @param inputString arguments of a command.
+     */
     public ToDoCommand(String inputString) {
         this.inputString = inputString;
     }
-
+    /**
+     * {@inheritDoc}
+     * Creates a ToDo task if arguments are valid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.length() <= 5) {
@@ -28,6 +40,9 @@ public class ToDoCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

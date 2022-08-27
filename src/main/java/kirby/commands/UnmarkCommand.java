@@ -6,12 +6,25 @@ import kirby.Storage;
 import kirby.exceptions.KirbyMissingArgumentException;
 import java.io.IOException;
 
+/**
+ * UnmarkCommand class handles the command to unmark a task.
+ */
 public class UnmarkCommand extends Command {
     private String inputString;
+
+    /**
+     * Constructor for the class DeadlineCommand.
+     *
+     * @param inputString arguments of a command.
+     */
     public UnmarkCommand(String inputString) {
         this.inputString = inputString;
     }
 
+    /**
+     * {@inheritDoc}
+     * Unmarks the specified task if arguments are valid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
@@ -32,6 +45,9 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

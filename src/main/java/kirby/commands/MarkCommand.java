@@ -6,12 +6,25 @@ import kirby.Ui;
 import kirby.Storage;
 import kirby.exceptions.KirbyMissingArgumentException;
 
+/**
+ * MarkCommand class handles the command to mark a task.
+ */
 public class MarkCommand extends Command {
     private String inputString;
+
+    /**
+     * Constructor for the class DeadlineCommand.
+     *
+     * @param inputString arguments of a command.
+     */
     public MarkCommand(String inputString) {
         this.inputString = inputString;
     }
 
+    /**
+     * {@inheritDoc}
+     * Marks the specified task if arguments are valid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
@@ -30,6 +43,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

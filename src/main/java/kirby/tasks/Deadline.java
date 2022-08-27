@@ -5,13 +5,18 @@ import java.time.format.DateTimeFormatter;
 import kirby.HandleTime;
 
 /**
- * The kirby.tasks.Deadline class contains information of a kirby.tasks.Deadline task.
- * @author Sheryl-Lynn Tan (G11)
+ * Deadline class contains information of a Deadline task.
  */
 public class Deadline extends Task {
     protected String by;
     private LocalDate localDate = null;
 
+    /**
+     * Constructor for the class Deadline.
+     *
+     * @param description description of the task.
+     * @param by the argument of the task which contains the deadline date.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
@@ -20,11 +25,17 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int[] getDate() {
         return HandleTime.fromStringToDate(by);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         if (localDate != null) {
@@ -34,6 +45,9 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toFileOutput() {
         return "kirby.tasks.Deadline-" + this.description + "~" + this.by;
