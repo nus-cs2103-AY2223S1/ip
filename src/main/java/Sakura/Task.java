@@ -18,6 +18,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns the string description of a task.
+     *
+     * @return string description of a task.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * Checks if a task is completed.
      *
      * @return X if a task is completed, empty if not completed.

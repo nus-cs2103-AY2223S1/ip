@@ -2,6 +2,7 @@ package Sakura;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list for all tasks similar to array lists.
@@ -131,6 +132,22 @@ public class TaskList {
             }
         } catch (IndexOutOfBoundsException e) {
             SakuraException.noSuchTask();
+        }
+    }
+
+    public void searchTask(String input) {
+        String[] inputSplit = input.split(" ", 2);
+        if (inputSplit.length != 2) {
+            SakuraException.invalidCommand();
+        } else {
+            String keyword = inputSplit[1];
+            ArrayList<Task> matchList = new ArrayList<>();
+            for (Task task : this.tasks) {
+                if(task.getDescription().contains(keyword)) {
+                    matchList.add(task);
+                }
+            }
+            Ui.searchTaskDescription(matchList);
         }
     }
 
