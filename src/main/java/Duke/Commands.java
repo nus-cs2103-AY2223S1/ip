@@ -2,8 +2,8 @@ package Duke;
 import java.util.ArrayList;
 
 public class Commands {
-    private TaskList taskList;
-    private Ui ui;
+    private final TaskList taskList;
+    private final Ui ui;
 
     public Commands() {
         this.ui = new Ui();
@@ -19,7 +19,7 @@ public class Commands {
         int j = Integer.parseInt(input.substring(5)) - 1;
         Task task = taskList.get(j);
         task.markAsDone();
-        System.out.println(task.toString());
+        System.out.println(task);
     }
 
     public void unmark(String input) {
@@ -27,14 +27,14 @@ public class Commands {
         int j = Integer.parseInt(input.substring(7)) - 1;
         Task task = taskList.get(j);
         task.markAsNotDone();
-        System.out.println(task.toString());
+        System.out.println(task);
     }
 
     public void todo(String input) {
         System.out.println("Got it, this task is added in your list:");
         Task todo = new Todo(input.substring(5));
         taskList.add(todo);
-        System.out.println(todo.toString());
+        System.out.println(todo);
         ui.printSummary(taskList.size());
     }
 
@@ -45,7 +45,7 @@ public class Commands {
         String time = parts[parts.length-1];
         Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
         taskList.add(dl);
-        System.out.println(dl.toString());
+        System.out.println(dl);
         ui.printSummary(taskList.size());
     }
 
@@ -57,7 +57,7 @@ public class Commands {
         String time = parts[parts.length-1];
         Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
         taskList.add(event);
-        System.out.println(event.toString());
+        System.out.println(event);
         ui.printSummary(taskList.size());
     }
 

@@ -2,7 +2,7 @@ package Duke;
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     public TaskList() {
         this.list = new ArrayList<Task>();

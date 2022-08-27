@@ -3,9 +3,9 @@ package Duke;
 import java.util.Scanner;
 
 public class Parser {
-    private Duke duke;
-    private Ui ui;
-    private Commands commands;
+    private final Duke duke;
+    private final Ui ui;
+    private final Commands commands;
 
     public Parser(Duke duke, Ui ui) {
         this.duke = duke;
@@ -13,7 +13,7 @@ public class Parser {
         this.commands = new Commands();
     }
 
-    public void run(String input) {
+    public void parse(String input) {
             if (input.equals("list")) {
                 commands.printList();
             } else if (input.startsWith("mark")) {
