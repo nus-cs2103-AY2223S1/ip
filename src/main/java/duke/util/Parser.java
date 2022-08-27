@@ -1,4 +1,4 @@
-package duke;
+package duke.util;
 
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -11,11 +11,12 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.exception.DukeException;
 
 /**
  * Contains a single static method to read user inputs
  * @author Nephelite
- * @version
+ * @version 0.1
  */
 public class Parser {
     /**

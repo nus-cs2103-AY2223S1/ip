@@ -1,13 +1,14 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to execute listing out all the tasks in the taskList
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class ListCommand extends Command {
     private TaskList tasks;
@@ -27,11 +28,15 @@ public class ListCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) {
-        ui.list();
+    public String execute(Storage storage) {
+        String response = ui.list();
         tasks.printList();
+        return response;
     }
     /**
      * {@inheritDoc}

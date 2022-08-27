@@ -1,13 +1,18 @@
-package duke;
+package duke.core;
 
 import java.io.IOException;
 
 import duke.command.Command;
+import duke.exception.DukeException;
+import duke.util.Parser;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * The main entity for the Duke program.
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class Duke {
     /**
@@ -41,32 +46,17 @@ public class Duke {
     }
 
     /**
-     * Starts Duke's services.
-     * @since 0.1
+     * Sends a command to Duke to obtain a response
+     * @since 0.2
      */
-    public void run() {
-        ui.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.inputCommand(fullCommand, tasks, ui);
-                c.execute(storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showDukeException(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.inputCommand(input, tasks, ui);
+            String response = c.execute(storage);
+            System.out.println(response);
+            return "Suisei: " + response;
+        } catch (DukeException e) {
+            return ui.showDukeException(e.getMessage());
         }
-        ui.finalGoodbye();
-    }
-
-    /**
-     * Creates a Duke instance and runs it.
-     * @param args command line arguments
-     * @since 0.1
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
     }
 }

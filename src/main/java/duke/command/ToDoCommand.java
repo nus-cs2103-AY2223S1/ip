@@ -1,15 +1,15 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.ToDo;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to execute adding a ToDo to a TaskList
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class ToDoCommand extends Command {
     private String command;
@@ -50,10 +50,12 @@ public class ToDoCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException if the input command is invalid
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) throws DukeException {
+    public String execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {
             throw new DukeException("your [todo] command is empty."
@@ -61,8 +63,9 @@ public class ToDoCommand extends Command {
         }
         ToDo toDo = new ToDo(command);
         tasks.add(toDo);
-        ui.addTask(toDo, tasks.size());
+        String response = ui.addTask(toDo, tasks.size());
         storage.saveDuke(tasks);
+        return response;
     }
     /**
      * {@inheritDoc}

@@ -1,15 +1,15 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Deadline;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to execute adding a Deadline to a TaskList
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class DeadlineCommand extends Command {
     private String command;
@@ -32,10 +32,12 @@ public class DeadlineCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
+     * @return Duke's response to the execution of the command
      * @throws DukeException if the input command is invalid
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) throws DukeException {
+    public String execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" /by ");
         if (returnedArray.length <= 0) {
             throw new DukeException("your command is incomplete."
@@ -53,8 +55,9 @@ public class DeadlineCommand extends Command {
         }
         Deadline deadline = new Deadline(returnedArray[0], returnedArray[1]);
         tasks.add(deadline);
-        ui.addTask(deadline, tasks.size());
+        String response = ui.addTask(deadline, tasks.size());
         storage.saveDuke(tasks);
+        return response;
     }
 
     /**

@@ -1,13 +1,14 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to execute finding tasks using a keyword
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class FindCommand extends Command {
     private String word;
@@ -29,10 +30,13 @@ public class FindCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) {
-        ui.readList(tasks.find(word));
+    public String execute(Storage storage) {
+        return ui.readList(tasks.find(word));
     }
     /**
      * {@inheritDoc}

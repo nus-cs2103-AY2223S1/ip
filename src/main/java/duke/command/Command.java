@@ -2,13 +2,13 @@ package duke.command;
 
 import java.util.Locale;
 
-import duke.DukeException;
-import duke.Storage;
+import duke.exception.DukeException;
+import duke.util.Storage;
 
 /**
  * RecognisedCommand that Duke can execute
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public abstract class Command {
     /**
@@ -21,10 +21,11 @@ public abstract class Command {
     /**
      * Executes the command
      * @param storage Duke's storage system for tasks
+     * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
-     * @since 0.1
+     * @since 0.2
      */
-    public abstract void execute(Storage storage) throws DukeException;
+    public abstract String execute(Storage storage) throws DukeException;
 
     /**
      * Checks if the command leads to the end of the current Duke session

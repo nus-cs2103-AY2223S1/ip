@@ -1,20 +1,24 @@
 package duke.command;
 
-import duke.Storage;
+import duke.exception.DukeException;
+import duke.util.Storage;
 
 /**
  * Command to execute ending the current session
  * @author Nephelite
- * @version 0.1
+ * @version 0.2
  */
 public class ExitCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
+     * @return Duke's response to the execution of the command
+     * @throws DukeException for invalid inputs
+     * @since 0.2
      */
     @Override
-    public void execute(Storage storage) {
-        System.out.println("Will that be all? Alright then.");
+    public String execute(Storage storage) {
+        return "Will that be all? Alright then.";
     }
     /**
      * {@inheritDoc}
