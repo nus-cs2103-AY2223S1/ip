@@ -8,4 +8,5 @@ public class Commands {
     public static final String UNMARK = "unmark";
     public static final String LIST = "list";
     public static final String DELETE = "delete";
+    public static final String FIND = "find";
 }

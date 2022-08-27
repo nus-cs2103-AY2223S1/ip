@@ -89,6 +89,10 @@ public class Duke {
                 taskNumber = parser.parseDelete();
                 TASK_LIST.delete(taskNumber - 1, FO); // since we store tasks 0-indexed in ArrayList
                 break;
+            case Commands.FIND:
+                String keyword = parser.parseFind();
+                TASK_LIST.find(keyword);
+                break;
             default:
                 ui.printCommandNotRecognized();
             }

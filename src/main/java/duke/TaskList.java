@@ -74,4 +74,24 @@ public class TaskList {
     public void addTasks(ArrayList<Task> tasks) {
         this.tasks.addAll(tasks);
     }
+
+    /**
+     * Lists all tasks in which keyword occurs in the description.
+     *
+     * @param keyword The keyword to search in the task description.
+     */
+    public void find(String keyword) {
+        StringBuilder sb = new StringBuilder();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                sb.append("\t\t" + task.toString() + "\n");
+;            }
+        }
+        if (sb.toString().equals("")) {
+            System.out.println("\tSorry, I could not find any tasks with your keyword :(");
+        } else {
+            System.out.println("\tHere are your results: ");
+            System.out.print(sb);
+        }
+    }
 }

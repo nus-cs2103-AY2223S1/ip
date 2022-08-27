@@ -98,4 +98,11 @@ public class Parser {
         int taskNumber = parseInt(inputString[1]);
         return taskNumber;
     }
+
+    public String parseFind() throws DukeException {
+        if (inputString.length == 1 || inputString[1].trim().length() == 0) {
+            throw new DukeException("Oops! You forgot to specify a keyword");
+        }
+        return inputString[1].trim();
+    }
 }
