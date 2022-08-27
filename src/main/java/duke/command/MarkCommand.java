@@ -21,11 +21,25 @@ public class MarkCommand extends Command {
     public MarkCommand(int index) {
         this.index = index;
     }
+
+    /**
+     * Returns whether command is an ExitCommand.
+     *
+     * @return Whether the command will cause the Duke program to exit.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Executes the command by marking the task.
+     *
+     * @param taskList List of tasks being operated on.
+     * @param ui UI that prints corresponding responses.
+     * @param storage Storage for saving purposes if applicable.
+     * @throws DukeException If the input index is invalid.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();

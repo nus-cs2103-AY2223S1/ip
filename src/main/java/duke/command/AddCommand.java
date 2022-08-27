@@ -33,11 +33,24 @@ public class AddCommand extends Command {
         this.date = date;
     }
 
+    /**
+     * Returns whether command is an ExitCommand.
+     *
+     * @return Whether the command will cause the Duke program to exit.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Executes the command by adding the task to the list of tasks.
+     *
+     * @param taskList List of tasks being operated on.
+     * @param ui UI that prints corresponding responses.
+     * @param storage Storage for saving purposes if applicable.
+     * @throws DukeException If the input task is invalid.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.type.equals("todo")) {
