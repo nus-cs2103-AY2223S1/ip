@@ -14,7 +14,6 @@ import java.time.format.DateTimeParseException;
 /**
  * The main class of the Duke chat-bot.
  */
-
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -118,7 +117,6 @@ public class Duke {
      *
      * @param args
      */
-
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

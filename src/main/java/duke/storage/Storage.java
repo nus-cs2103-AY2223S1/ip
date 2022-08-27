@@ -85,7 +85,6 @@ public class Storage {
      * @throws FileNotFoundException
      * @throws DukeException
      */
-
     public ArrayList<Task> load() throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -99,30 +98,30 @@ public class Storage {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             switch (type) {
-                case "T":
-                    Todo t = new Todo(lineComponents[2]);
-                    t.setIsDone(doneStatus);
-                    tasks.add(t);
-                    break;
-                case "D":
-                    Deadline d = new Deadline(
-                            lineComponents[2],
-                            LocalDateTime.parse(lineComponents[3].trim(), dateFormat)
-                    );
-                    d.setIsDone(doneStatus);
-                    tasks.add(d);
-                    break;
-                case "E":
-                    Event e = new Event(
-                            lineComponents[2],
-                            LocalDateTime.parse(lineComponents[3].trim(), dateFormat),
-                            LocalDateTime.parse(lineComponents[4].trim(), dateFormat)
-                    );
-                    e.setIsDone(doneStatus);
-                    tasks.add(e);
-                    break;
-                default:
-                    throw new DukeException("No tasks to read from storage!");
+            case "T":
+                Todo t = new Todo(lineComponents[2]);
+                t.setIsDone(doneStatus);
+                tasks.add(t);
+                break;
+            case "D":
+                Deadline d = new Deadline(
+                        lineComponents[2],
+                        LocalDateTime.parse(lineComponents[3].trim(), dateFormat)
+                );
+                d.setIsDone(doneStatus);
+                tasks.add(d);
+                break;
+            case "E":
+                Event e = new Event(
+                        lineComponents[2],
+                        LocalDateTime.parse(lineComponents[3].trim(), dateFormat),
+                        LocalDateTime.parse(lineComponents[4].trim(), dateFormat)
+                );
+                e.setIsDone(doneStatus);
+                tasks.add(e);
+                break;
+            default:
+                throw new DukeException("No tasks to read from storage!");
             }
         }
 
