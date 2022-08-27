@@ -15,12 +15,16 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    String getName() {
+        return name;
+    }
+
     void setDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     void setNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     int getId() {
