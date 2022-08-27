@@ -6,5 +6,5 @@ import cheese.ui.Ui;
 import cheese.data.TaskList;
 
 public abstract class Command {
-  public abstract void execute(TaskList taskList, Storage storage, Ui ui) throws CheeseException;
+    public abstract void execute(TaskList taskList, Storage storage, Ui ui) throws CheeseException;
 }
