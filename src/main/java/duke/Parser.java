@@ -116,6 +116,12 @@ public class Parser {
                         throw new DukeException(DukeException.WRONG_FORMAT_DATE);
 
                     }
+                case "find":
+                    if(substr.length == 1) { // no number was given
+                        throw new DukeException(DukeException.MISSING_DESCRIPTION);
+                    } else {
+                        return new FindCommand(substr[1]);
+                    }
                 default:
                     throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
             }

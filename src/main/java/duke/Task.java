@@ -1,5 +1,8 @@
 package duke;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -28,6 +31,17 @@ public class Task {
     public String formatToSave() {
         return "";
     }
+
+    /**
+     * Checks if task description contains a string
+     *
+     * @param str String to check against.
+     * @return true if it contains and false otherwise.
+     */
+    public boolean contains(String str) {
+        return this.description.contains(str);
+    }
+
     /**
      * Returns a String representation of the task
      * @return string
