@@ -40,13 +40,13 @@ public class Task {
     }
 
     /**
-     * Checks if task description contains given keyword.
+     * Checks if task description contains given keyword, case insensitive.
      * 
      * @param keyword Keyword to search for.
      * @return True, if description contains given keyword. False otherwise.
      */
     public boolean hasKeyword(String keyword) {
-        return description.contains(keyword);
+        return description.toLowerCase().contains(keyword.toLowerCase());
     }
 
     /**
