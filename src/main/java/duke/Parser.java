@@ -24,6 +24,9 @@ public class Parser {
         switch (commandName) {
             case "TODO":
                 description = restOfCommand;
+                if (description.isBlank()) {
+                    throw new DukeException("Description cannot be empty.");
+                }
                 return new AddCommand(TaskType.TODO, description, null);
             case "DEADLINE":
                 try {
@@ -32,6 +35,9 @@ public class Parser {
                         throw new DukeException("To add a deadline, please specify '/by dd/mm/yy'.");
                     }
                     description = restOfCommand.substring(0, index);
+                    if (description.isBlank()) {
+                        throw new DukeException("Description cannot be empty.");
+                    }
                     String deadlineString = restOfCommand.substring(index + 3).strip();
                     LocalDate deadline = LocalDate.parse(deadlineString, DateTimeFormatter.ofPattern("dd/MM/yy"));
                     return new AddCommand(TaskType.DEADLINE, description, deadline);
@@ -45,6 +51,9 @@ public class Parser {
                         throw new DukeException("To add a deadline, please specify '/by dd/mm/yy'.");
                     }
                     description = restOfCommand.substring(0, index);
+                    if (description.isBlank()) {
+                        throw new DukeException("Description cannot be empty.");
+                    }
                     String eventDateString = restOfCommand.substring(index + 3).strip();
                     LocalDate eventDate = LocalDate.parse(eventDateString, DateTimeFormatter.ofPattern("dd/MM/yy"));
                     return new AddCommand(TaskType.EVENT, description, eventDate);
