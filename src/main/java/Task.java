@@ -50,7 +50,7 @@ public abstract class Task {
     public static Task createTask(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
 
-        switch (Command.valueOf(splitInput[0])) {
+        switch (Parser.CommandName.valueOf(splitInput[0])) {
         case todo:
             checkDescription(splitInput);
             return Todo.createTodo(splitInput[1]);

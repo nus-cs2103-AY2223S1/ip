@@ -38,4 +38,8 @@ public class Ui {
     public void showError(Exception e) {
         System.out.println("🙁 OOPS! " + e.getMessage());
     }
+
+    public void showInputLine() {
+        System.out.print("--> ");
+    }
 }

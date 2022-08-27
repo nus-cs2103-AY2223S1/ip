@@ -14,42 +14,18 @@ public class Duke {
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        boolean hasNextInput = true;
+        Parser parser = new Parser(storage, ui, taskList);
 
         ui.greet();
         storage.loadTasks(taskList);
-
-        while (hasNextInput) {
-            System.out.print("--> ");
+        Command command = null;
+        do {
+            ui.showInputLine();
             String input = scanner.nextLine();
-            int taskIndex;
 
             try {
-                switch (Command.valueOf(input.split(" ")[0])) {
-                case bye:
-                    hasNextInput = false;
-                    scanner.close();
-                    storage.saveTasks(taskList);
-                    break;
-                case list:
-                    taskList.displayList();
-                    break;
-                case mark:
-                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                    taskList.changeTaskStatus(taskIndex, true);
-                    break;
-                case unmark:
-                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                    taskList.changeTaskStatus(taskIndex, false);
-                    break;
-                case delete:
-                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                    taskList.removeTask(taskIndex);
-                    break;
-                default:
-                    taskList.addTask(Task.createTask(input));
-                    break;
-                }
+                command = parser.parse(input);
+                command.execute();
             } catch (NumberFormatException e) {
                 ui.showError("Please Enter a valid task number!");
             } catch (IllegalArgumentException e) {
@@ -57,8 +33,8 @@ public class Duke {
             } catch (DukeException e) {
                 ui.showError(e);
             }
-        }
-        ui.bye();
+        } while (command == null || !command.isExit());
+        scanner.close();
     }
 
     public static void main(String[] args) {
