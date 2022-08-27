@@ -19,7 +19,7 @@ public class Deadline extends Task {
 
     @Override
     public String toWrite() {
-        return String.format("D~%s~%s~%s", (isDone ? "1" : "0"), description.trim(), time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("D~%s~%s~%s", (isDone ? "1" : "0"), description.trim(), deadline);
     }
 
 }

@@ -19,6 +19,6 @@ public class Event extends Task {
 
     @Override
     public String toWrite() {
-        return String.format("E~%s~%s~%s", (isDone ? "1" : "0"), description.trim(), time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("E~%s~%s~%s", (isDone ? "1" : "0"), description.trim(), timeString);
     }
 }
