@@ -1,0 +1,101 @@
+import java.time.LocalDate;
+
+public class Ui {
+    public void printStartUpUi() {
+        System.out.println("========================================================================================");
+        System.out.println("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
+        System.out.println("Duke allows you to freely add, delete, mark task status, search tasks by time, \nand list all tasks");
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("Please type 'help' command for more information on Duke task types and command format.");
+        System.out.println("========================================================================================");
+    }
+
+    public void printDukeInfo() {
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("There are 3 types of task implemented: " +
+                "\n1. todo     : tasks without any date/time attached to it" +
+                "\n2. deadline : tasks that need to be done before a specific date/time" +
+                "\n3. event    : tasks that start at a specific time and ends at a specific time");
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("Below is all the command you can use: ");
+        System.out.println("  Command                | Command Format");
+        System.out.println("  1. Add todo            | todo {task description}");
+        System.out.println("  2. Add deadline        | deadline {task description} /by {end date}");
+        System.out.println("  3. Add event           | event {task description} /at {start date} to {end date}");
+        System.out.println("  7. List all tasks      | list");
+        System.out.println("  4. Delete task         | delete {task index in the list}");
+        System.out.println("  5. Mark task as done   | mark {task index in the list}");
+        System.out.println("  6. Mark task as undone | unmark {task index in the list}");
+        System.out.println("  8. Leave chatbot       | bye");
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("Remarks:  ");
+        System.out.println("1. Acceptable date formats include dd/MM/yyyy, yyyy/MM/dd, yyyy-MM-dd, dd-MM-yyyy, ");
+        System.out.println("   dd MM yyyy, yyyy MM dd.");
+        System.out.println("2. Task list will be auto-saved after bye command and auto-loaded when chatbot starts up.");
+        System.out.println("________________________________________________________________________________________");
+    }
+
+    public void printAddCommandUi(String command, String index, TaskList taskList) {
+        // for add, delete, mark/unmark
+        System.out.println("________________________________________________________________________________________");
+        Task task = taskList.getTask(Integer.parseInt(index) - 1);
+        if (command.equals("todo") || command.equals("event") || command.equals("deadline")) { //add
+            System.out.println("Got it. I've added this task:");
+            System.out.println(String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+            System.out.println(String.format("Now you have %d tasks in the list.", taskList.getSize()));
+        } else if (command.equals("delete")) { //delete
+            System.out.println("Noted. I've removed this task:");
+            taskList.deleteTaskAtIndex(Integer.parseInt(index));
+            System.out.println(String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+            System.out.println(String.format("Now you have %d tasks in the list.", taskList.getSize()));
+        } else if (command.equals("mark")) {
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+        } else { //unmark
+            System.out.println("OK, I've marked this task as not done yet:");
+            System.out.println(String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
+        }
+        System.out.println("________________________________________________________________________________________");
+    }
+
+    public void printListCommandUi(String command, String date, TaskList taskList) {
+        // for list, list date, search
+        if (date.trim().equals("all")) { //list
+            System.out.println("________________________________________________________________________________________");
+            System.out.println("Here are the tasks in your list:");
+            taskList.printTaskList();
+            System.out.println("________________________________________________________________________________________");
+        } else { //list date
+            System.out.println("________________________________________________________________________________________");
+            System.out.println("Here are unfinished tasks on this date in your list:");
+            taskList.searchByDate(LocalDate.parse(date)).printTaskList();
+            System.out.println("________________________________________________________________________________________");
+        }
+    }
+
+    public void printEndingUi() {
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("Chatbot stopped, all previous tasks will be auto-saved :D");
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("________________________________________________________________________________________");
+    }
+
+    public void showLoadingError() {
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("☹ OOPS!!! Loading error occurred, new text file is created for task list storage.");
+        System.out.println("________________________________________________________________________________________");
+    }
+
+    public void showSavingError() {
+        System.out.println("________________________________________________________________________________________");
+        System.out.println("☹ OOPS!!! Saving error occurred, task list not properly saved in the text file.");
+        System.out.println("________________________________________________________________________________________");
+    }
+
+    public void printException(Exception e) {
+        System.out.println("________________________________________________________________________________________");
+        System.out.println(e.getMessage());
+        System.out.println("________________________________________________________________________________________");
+    }
+
+}
