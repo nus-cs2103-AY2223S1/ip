@@ -11,6 +11,9 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
+    public int getStatusNumber() {
+        return (isDone ? 1 : 0);
+    }
     public String getDescription() {
         return description;
     }
@@ -21,7 +24,6 @@ public class Task {
     public void markAsUndone() {
         this.isDone = false;
     }
-
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + getDescription();
