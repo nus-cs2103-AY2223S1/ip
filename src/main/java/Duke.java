@@ -43,68 +43,6 @@ public class Duke {
 //        return result;
 //    }
 
-    public void addATask(String item) throws DukeException {
-        String[] arr = item.split(" ", 2);
-        String type = arr[0];
-        switch (type) {
-            case "todo":
-                if (arr.length == 1) {
-                    throw new DukeException(" OOPS!!! The description of a todo cannot be empty.");
-                }
-                String todoName = arr[1].trim();
-                Task newTodo = new Todo(todoName);
-                tasks.add(newTodo);
-                break;
-            case "deadline":
-                String[] deadlineArr = arr[1].split("/");
-                String deadlineName = deadlineArr[0];
-                String dl = deadlineArr[1];
-                Task newDeadline = new Deadline(deadlineName, dl);
-                tasks.add(newDeadline);
-                break;
-            case "event":
-                String[] eventArr = arr[1].split("/");
-                String eventName = eventArr[0];
-                String eventTime = eventArr[1];
-                Task newEvent = new Event(eventName, eventTime);
-                tasks.add(newEvent);
-                break;
-            default:
-                DukeException e = new DukeException(" OOPS!!! I'm sorry, but I don't know what that means :-(");
-                throw e;
-        }
-
-        ui.printLine();
-        int numOfTasks = tasks.size();
-        System.out.println("Got it. I've added this task:" + "\n" + tasks.get(numOfTasks - 1).toString() +
-                "\n" + "Now you have " + numOfTasks + " tasks in the list.");
-        ui.printLine();
-    }
-
-    public void mark(int num) {
-        ui.printLine();
-        tasks.get(num - 1).mark();
-        System.out.println("OK, I've marked this task as done:");
-        System.out.println(tasks.get(num - 1).toString());
-        ui.printLine();
-    }
-
-    public void unmark(int num) {
-        ui.printLine();
-        tasks.get(num - 1).unMark();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(tasks.get(num - 1).toString());
-        ui.printLine();
-    }
-
-    public void delete(int num) {
-        ui.printLine();
-        Task removedTask = tasks.get(num - 1);
-        tasks.remove(num - 1);
-        System.out.println("Noted. I've removed this task:" + "\n" + removedTask.toString()
-                + "Now you have " + tasks.size() + " tasks in the list.");
-        ui.printLine();
-    }
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -114,10 +52,6 @@ public class Duke {
 
     public void run() {
         ui.greetings();
-        //create the duke file that stores the text
-//        String filePath = new File("").getAbsolutePath();
-//        filePath = filePath.concat("/src/main/java/duke.txt");
-//        Path path = Paths.get(filePath);
         while (true) {
             String input = ui.readCommand();
             String command = input.split(" ")[0];
@@ -130,22 +64,22 @@ public class Duke {
                     break;
                 case "mark":
                     int num1 = Integer.parseInt(input.split(" ")[1]);
-                    mark(num1);
+                    tasks.mark(num1, ui);
                     storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 case "unmark":
                     int num2 = Integer.parseInt(input.split(" ")[1]);
-                    unmark(num2);
+                    tasks.unmark(num2, ui);
                     storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 case "delete":
                     int num3 = Integer.parseInt(input.split(" ")[1]);
-                    delete(num3);
+                    tasks.delete(num3, ui);
                     storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
                 default:
                     try {
-                        addATask(input);
+                        tasks.addATask(input);
                         storage.update(ui.listAllItems(tasks.getTasks()));
                     } catch (DukeException e) {
                         ui.printMessage(e.getMessage());

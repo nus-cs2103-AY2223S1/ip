@@ -14,7 +14,7 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public void printLine() {
+    public static void printLine() {
         System.out.println(HORIZONTAL_BAR);
     }
 
