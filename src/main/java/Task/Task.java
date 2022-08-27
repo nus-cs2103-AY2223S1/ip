@@ -45,6 +45,10 @@ public abstract class Task implements Serializable {
         return "Nice! I've marked this task as done:\n" + this;
     }
 
+     public boolean contains(String keyword) {
+         return task.contains(keyword);
+     }
+
     /**
      * Marks the task as incomplete.
      *

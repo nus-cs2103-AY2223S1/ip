@@ -53,6 +53,17 @@ public class TaskList implements Serializable {
         }
     }
 
+    public String findTasks(String keyword) {
+        StringBuilder result = new StringBuilder("Here are the matching tasks in your list: \n");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.contains(keyword)) {
+                result.append(String.format("%d. %s \n", i + 1, task));
+            }
+        }
+        return result.toString();
+    }
+
     /**
      * Gets the lenght of the the tasklist as an int.
      *
