@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.Scanner;
+
 /**
  * Represents a duke chatbot object that stores a task list,
  * users can add / delete / mark / unmark / list tasks using this chatbot.
@@ -25,23 +26,21 @@ public class Duke {
      */
     public void run() {
         ui.printStartUpUi();
-        while(true) {
+        while (true) {
             Scanner input = new Scanner(System.in);
             try {
                 String line = input.nextLine().trim();
-                String [] parsedCommand = parser.parseCommand(line, tasks).split(" ");
-                //parsedCommand={command}{task index, can be multiple for list date or search}
-                if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark") ||
-                        parsedCommand[0].equals("todo") || parsedCommand[0].equals("event") ||
-                        parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {
+                String[] parsedCommand = parser.parseCommand(line, tasks).split(" ");
+                if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark")
+                        || parsedCommand[0].equals("todo") || parsedCommand[0].equals("event")
+                        || parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {
                     ui.printAddCommandUi(parsedCommand[0], parsedCommand[1], tasks);
                 } else if (parsedCommand[0].equals("list")) {
                     ui.printListCommandUi(parsedCommand[0], parsedCommand[1], tasks);
                 } else if (parsedCommand[0].equals("help")) {
                     ui.printDukeInfo();
-                } else {//bye
+                } else {
                     ui.printEndingUi();
-                    // may throw duke exception
                     break;
                 }
             } catch (Exception e) {
