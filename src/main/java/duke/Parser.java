@@ -9,7 +9,7 @@ import tasks.Task;
 
 public class Parser {
     public enum COMMANDS {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     public static Command parse(String input) throws DukeException {
@@ -32,6 +32,8 @@ public class Parser {
                     throw new NoDescriptionException("mark");
                 case TODO:
                     throw new NoDescriptionException("todo");
+                case FIND:
+                    throw new NoDescriptionException("find");
                 default:
                     throw new NoSuchCommandException();
             }
@@ -55,6 +57,9 @@ public class Parser {
                     case DELETE:
                         int del = Integer.parseInt(inputSplit[1]) - 1;
                         return new DeleteCommand(del);
+                    case FIND:
+                        String keyword = inputSplit[1];
+                        return new FindCommand(keyword);
                     default:
                         throw new NoSuchCommandException();
                 }
