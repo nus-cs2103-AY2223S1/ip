@@ -35,4 +35,6 @@ Here are the matching tasks:
 Got it, this task is added in your list:
 [T][ ] dinner
 Now you have 3 tasks in your list.
+Here are the matching tasks:
+1.[T][ ] dinner
 Bye! Hope to see you again soon!

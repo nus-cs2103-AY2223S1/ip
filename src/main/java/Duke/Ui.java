@@ -48,6 +48,10 @@ public class Ui {
         System.out.println("No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy");
     }
 
+    public void nameNotFound() {
+        System.out.println("No matching name of tasks");
+    }
+
     public void printMatchedTasks(ArrayList<Task> list) {
         System.out.println("Here are the matching tasks:");
         for (int i = 0; i < list.size(); i++) {

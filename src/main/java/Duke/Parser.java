@@ -50,10 +50,12 @@ public class Parser {
                 }
             } else if (input.startsWith("delete")) {
                 commands.delete(input);
+            } else if (input.startsWith("find")) {
+                commands.searchName(input);
             } else if (input.equals("bye")) {
                 ui.bye();
             } else {
-                commands.search(input);
+                commands.searchDate(input);
             }
         }
 }
