@@ -7,15 +7,10 @@ package chatbot.tasks;
  */
 public abstract class Task {
     private boolean isComplete = false;
-    private String taskName;
+    private final String taskName;
 
     public Task(String taskName) {
         this.taskName = taskName;
-    }
-
-    public Task(String taskName, boolean isComplete) {
-        this.taskName = taskName;
-        this.isComplete = isComplete;
     }
 
     /**

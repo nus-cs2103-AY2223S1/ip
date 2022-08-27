@@ -4,12 +4,10 @@ package chatbot.tasks;
  * The Todo class is a subclass of Task.
  */
 public class Todo extends Task {
-    public Todo(String taskName) throws IndexOutOfBoundsException {
-        super(taskName.substring(5));
-    }
+    public static final String TYPE = "todo";
 
-    public Todo(String taskName, boolean isComplete) throws IndexOutOfBoundsException {
-        super(taskName, isComplete);
+    public Todo(String taskName) {
+        super(taskName);
     }
 
     @Override

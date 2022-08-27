@@ -2,9 +2,6 @@ package chatbot.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import chatbot.main.DukeException;
 
 /**
  * The Event class is a subclass of Task emulating
@@ -12,20 +9,13 @@ import chatbot.main.DukeException;
  * tied to the event.
  */
 public class Event extends Task {
+    public static final String TYPE = "event";
+
     public LocalDate date;
 
-    public Event(String taskName) throws IndexOutOfBoundsException, DukeException {
-        super(taskName.substring(6, taskName.indexOf(" /at")));
-        try {
-            this.date = LocalDate.parse(taskName.substring(taskName.indexOf(" /at") + 5));
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Your date is rubbish");
-        }
-    }
-
-    public Event(String taskName, boolean isComplete, String date) throws IndexOutOfBoundsException {
-        super(taskName, isComplete);
-        this.date = LocalDate.parse(date);
+    public Event(String taskName, LocalDate date) {
+        super(taskName);
+        this.date = date;
     }
 
     @Override
