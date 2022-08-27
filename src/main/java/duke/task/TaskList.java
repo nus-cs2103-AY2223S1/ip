@@ -4,10 +4,10 @@ import java.util.ArrayList;
 /**
  * Encapsulates a list of tasks.
  */
-
 public class TaskList {
 
     private ArrayList<Task> tasks;
+
     /**
      * Constructs a new {@code TaskList} with no tasks.
      */
@@ -54,7 +54,6 @@ public class TaskList {
      * Gets the total number of tasks.
      * @return The total number of tasks.
      */
-
     public int getNumberOfTasks() {
         return this.tasks.size();
     }

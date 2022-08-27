@@ -20,7 +20,6 @@ public class Event extends Task {
      * @param end The end time of the event.
      * @throws DukeException Handles when description is empty.
      */
-
     public Event(String description, LocalDateTime start, LocalDateTime end) throws DukeException {
         super(description);
         if (description.equals("")) {

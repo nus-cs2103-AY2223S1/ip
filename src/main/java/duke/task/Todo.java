@@ -6,6 +6,7 @@ import duke.utilities.DukeException;
  * Encapsulates a to-do task.
  */
 public class Todo extends Task{
+
     /**
      * Constructs a new {@code Todo} with given description.
      *

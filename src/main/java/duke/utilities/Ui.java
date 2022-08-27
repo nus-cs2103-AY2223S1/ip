@@ -10,7 +10,6 @@ import java.util.Scanner;
 /**
  * A class that provides a simple user interface for the Duke system.
  */
-
 public class Ui {
 
     private static String line = "--------------------";
@@ -102,6 +101,7 @@ public class Ui {
         }
         System.out.println(line);
     }
+
     /**
      * Tells user that tasks is deleted
      */
