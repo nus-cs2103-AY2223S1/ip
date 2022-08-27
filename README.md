@@ -1,6 +1,10 @@
-# duke.DukeTest project template
+# SuiseiDuke
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is a project based on a project template for a greenfield Java project. The core entity is named after the Java mascot _Duke_. 
+
+Suisei, the name of this particular version of Duke, is the name of a virtual YouTuber under Hololive. This name is temporary, and will be changed should this project reach commercial release.
+
+Given below are instructions on how to use it.
 
 ## Setting up in Intellij
 
