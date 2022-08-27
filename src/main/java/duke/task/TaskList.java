@@ -111,6 +111,9 @@ public class TaskList {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Convert the given list of tasks into a string to further process.
+     */
     public static String convertListOfTasksToString(List<Task> tasks) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {

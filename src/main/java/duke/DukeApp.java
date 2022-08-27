@@ -22,10 +22,15 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Runs the GUI application.
+ */
 public class DukeApp extends Application {
 
-    private final Image user = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
-    private final Image duke = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
+    private final Image user =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
+    private final Image duke =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -41,7 +46,6 @@ public class DukeApp extends Application {
         storage = new StorageFile(System.getProperty("user.home") + "/Desktop");
         taskList = new TaskList(storage.load());
 
-        // Step 1
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -54,7 +58,6 @@ public class DukeApp extends Application {
 
         Scene scene = new Scene(mainLayout);
 
-        // Step 2
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -69,7 +72,6 @@ public class DukeApp extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -84,7 +86,6 @@ public class DukeApp extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        // Step 3
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
@@ -101,32 +102,34 @@ public class DukeApp extends Application {
     }
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
+
         boolean isExit = false;
         final String userCommand = userInput.getText();
         final Command command = new Parser().parseCommand(userCommand);
         CommandResult result = command.execute(taskList, textUi, storage);
         Label dukeResult = new Label(result.getFeedbackToUser());
+
         if (command.isExit()) {
             System.exit(0);
         }
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke)),
                 DialogBox.getDukeDialog(dukeResult, new ImageView(duke))
         );
+
         userInput.clear();
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Respond to user input.
      */
     private String getResponse(String input) {
         return "Duke heard: " + input;
