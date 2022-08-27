@@ -1,4 +1,4 @@
-T | X | read book
-D | X | return book |June 6th
-T |   | join sports club
-T |   | borrow book
+T|X|read book
+E| |project meeting|2019-10-15 06:00|2019-10-15 07:00
+T| |join sports club
+T| |borrow book

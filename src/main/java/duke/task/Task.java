@@ -1,12 +1,12 @@
+package duke.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
-    static int numTask;
 
     public Task(String description) {
             this.description = description;
             this.isDone = false;
-            numTask++;
     }
 
     public String getStatusIcon() {
@@ -19,10 +19,6 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false; //unmark
-    }
-
-    public void removeTask() {
-        numTask--;
     }
 
     public String getDescription() {
