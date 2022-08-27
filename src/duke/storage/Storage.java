@@ -1,7 +1,7 @@
 package storage;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,10 +11,12 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import task.Event;
-import task.ToDo;
 import tasklist.TaskList;
+
+import task.ToDo;
 import task.Deadline;
+import task.Event;
+
 
 public class Storage {
 

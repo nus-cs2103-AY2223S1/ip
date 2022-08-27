@@ -5,10 +5,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import task.Task;
-import task.Event;
 import task.ToDo;
-import ui.Ui;
 import task.Deadline;
+import task.Event;
+
+import ui.Ui;
 
 public class TaskList {
 

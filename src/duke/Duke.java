@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import tasklist.TaskList;
 import ui.Ui;
 import parser.Parser;
 import storage.Storage;
 
-import java.io.IOException;
 import exception.DukeException;
 
 public class Duke {
