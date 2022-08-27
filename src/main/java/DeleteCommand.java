@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class DeleteCommand extends Command {
     private Task task;
     private int taskIndex;
@@ -31,13 +33,18 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist) {
-        this.taskList.remove(taskIndex);
+    public void execute(TaskList tasklist, Storage storage) throws IOException {
+        this.taskList.remove(taskIndex, storage);
     };
 
     @Override
-    public void execute(TaskList tasklist, Ui ui) {
-        this.execute(tasklist);
+    public void execute(TaskList tasklist, Storage storage, Ui ui) {
+        try {
+            this.execute(tasklist, storage);
+        } catch (IOException e) {
+            ui.println(e.getMessage());
+            return;
+        }
         ui.printWithDivider(String.format("Noted. I've removed this task:\n  %s", this.task.toString()));
     }
 }

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public abstract class AddCommand extends Command {
     protected Task task;
 
@@ -7,13 +9,18 @@ public abstract class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
-        taskList.add(this.task, super.command);
+    public void execute(TaskList taskList, Storage storage) throws IOException {
+        taskList.add(this.task, super.command, storage);
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        this.execute(taskList);
-        ui.printWithDivider(String.format("added: %s", this.task.toString()));
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
+        try {
+            this.execute(taskList, storage);
+        } catch (IOException e) {
+            ui.println(e.getMessage());
+            return;
+        }
+        ui.printWithDivider(String.format("Got it. I've added this task:\n  %s", this.task.toString()));
     }
 }

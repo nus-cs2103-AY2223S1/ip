@@ -1,6 +1,8 @@
+import java.io.IOException;
+
 public class UpdateUnmarkCommand extends UpdateCommand {
-    private UpdateUnmarkCommand(String command, Task task) {
-        super(command, task);
+    private UpdateUnmarkCommand(String command, Task task, int taskIndex) {
+        super(command, task, taskIndex);
     }
 
     public static UpdateUnmarkCommand of(String command, TaskList taskList) throws IllegalArgumentException {
@@ -20,17 +22,21 @@ public class UpdateUnmarkCommand extends UpdateCommand {
                             "🙁 OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", taskList.size())
             );
         }
-        return new UpdateUnmarkCommand(command, task);
+        return new UpdateUnmarkCommand(command, task, taskIndex);
     }
 
     @Override
-    public void execute(TaskList taskList) {
-        super.task.unmark();
+    public void execute(TaskList taskList, Storage storage) throws IOException {
+        taskList.unmark(super.taskIndex, storage);
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        this.execute(taskList);
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
+        try {
+            this.execute(taskList, storage);
+        } catch (IOException e) {
+            ui.println(e.getMessage());
+        }
         ui.printWithDivider(String.format("OK, I've marked this task as not done yet:\n  %s", super.task.toString()));
     }
 }

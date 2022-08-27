@@ -4,12 +4,12 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public void execute(TaskList taskList, Storage storage) {
         return;
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Storage storage, Ui ui) {
         String s = taskList.toString();
         if (s.isEmpty()) {
             ui.println("🙁 OOPS!!! There are no tasks in your list yet.");

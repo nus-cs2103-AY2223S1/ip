@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public abstract class Command {
     public enum Commands {
         mark, unmark, todo, deadline, event, delete, bye, list
@@ -14,8 +16,8 @@ public abstract class Command {
         return isExit;
     }
 
-    public abstract void execute(TaskList taskList, Ui ui);
+    public abstract void execute(TaskList taskList, Storage storage, Ui ui);
 
     // this method will not print anything
-    public abstract void execute(TaskList taskList);
+    public abstract void execute(TaskList taskList, Storage storage) throws IOException;
 }
