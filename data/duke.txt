@@ -1,3 +1,5 @@
 T~1~TestCase
 E~1~meeting~2022-06-06
 D~1~run~2022-06-05
+D~0~go to the store~2022-06-05
+E~0~goING testCASe~2022-12-12
