@@ -3,11 +3,19 @@ package duke;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
+/**
+ * Main class for Duke
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     *Constructor for Duke class
+     * Creates Ui and Storage instance
+     * @param filePath File path for storage list
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +27,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program
+     */
     public void run() {
         ui.sayHello();
         Scanner sc = new Scanner(System.in);
@@ -34,6 +45,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method of the Duke program
+     * @param args Arguments passed to the main method
+     */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

@@ -10,15 +10,15 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    public static void sayHello() {
+    public void sayHello() {
         System.out.printf("%s", HELLO);
     }
 
-    public static void sayBye() {
+    public void sayBye() {
         System.out.printf("%s", BYE);
     }
 
-    public static void showLoadingError() {
+    public void showLoadingError() {
         System.out.println("loading error");
     }
 

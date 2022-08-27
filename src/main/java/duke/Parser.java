@@ -9,7 +9,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Class for parsing user inputs to be executed
+ */
 public class Parser {
+    /**
+     * Parses user input and returns true if program is to be exited
+     * @param input user input
+     * @param lst Tasklist of Duke program
+     * @param ui user interface
+     * @param storage storage for data
+     * @return a boolean to decide if program is to be exited
+     * @throws DukeException
+     */
     public static boolean parse(String input, TaskList lst, Ui ui, Storage storage) throws DukeException {
 
         String[] words = input.split(" ",2);
