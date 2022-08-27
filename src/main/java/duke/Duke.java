@@ -1,10 +1,11 @@
 package duke;
 
 import duke.commands.Command;
+import duke.commands.CommandResult;
 import duke.parser.Parser;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Entry point of the Duke application.
@@ -14,7 +15,7 @@ public class Duke {
 
     private StorageFile storage;
     private TaskList taskList;
-    private Ui ui;
+    private TextUi textUi;
 
     public static void main(String[] args) {
         new Duke().run();
@@ -32,10 +33,10 @@ public class Duke {
      * Prints the welcome message.
      */
     private void start() {
-        ui = new Ui();
+        textUi = new TextUi();
         storage = new StorageFile(System.getProperty("user.home") + "/Desktop");
         taskList = new TaskList(storage.load());
-        ui.showWelcome();
+        textUi.showWelcome();
     }
 
     /**
@@ -43,8 +44,8 @@ public class Duke {
      * Unloads the Jansi library and exits.
      */
     private void exit() {
-        ui.showExit();
-        ui.unloadJansi();
+        textUi.showExit();
+        textUi.unloadJansi();
         System.exit(0);
     }
 
@@ -52,14 +53,11 @@ public class Duke {
     public void runCommandLoop() {
         boolean isExit = false;
         do {
-            try {
-                final String userCommand = ui.getUserCommand();
-                final Command command = new Parser().parseCommand(userCommand);
-                command.execute(taskList, ui, storage);
-                isExit = command.isExit();
-            } catch (DukeException e) {
-                ui.showMessages(e.getMessage());
-            }
+            final String userCommand = textUi.getUserCommand();
+            final Command command = new Parser().parseCommand(userCommand);
+            CommandResult result = command.execute(taskList, textUi, storage);
+            textUi.showResultToUser(result);
+            isExit = command.isExit();
         } while (!isExit);
     }
 

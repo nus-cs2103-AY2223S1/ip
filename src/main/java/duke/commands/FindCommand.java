@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.storage.StorageFile;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Find a task by searching for a keyword.
@@ -21,7 +21,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        taskList.findTask(keyword);
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        return new CommandResult(TaskList.convertListOfTasksToString(taskList.findTasks(keyword)));
     }
 }

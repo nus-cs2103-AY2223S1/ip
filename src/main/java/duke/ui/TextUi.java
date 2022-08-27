@@ -5,13 +5,14 @@ import static org.fusesource.jansi.Ansi.ansi;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import duke.commands.CommandResult;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
 /**
  * Represents the ui used to interact with the user.
  */
-public class Ui {
+public class TextUi {
 
     private static final String DIVIDER = "────────────────────────────────────────────────────────────";
     private static final String PREFIX = "duke >> ";
@@ -21,12 +22,12 @@ public class Ui {
 
     private static final PrintStream out = System.out;
     private final Scanner in;
-    private Ansi.Color currentColour = Ansi.Color.DEFAULT;
+    private Ansi.Color currentColour = Ansi.Color.CYAN;
 
     /**
      * Sets up the Ui, loads the Jansi library (enables colour support on Windows/Unix)
      */
-    public Ui() {
+    public TextUi() {
         in = new Scanner(System.in);
         AnsiConsole.systemInstall();
     }
@@ -39,14 +40,9 @@ public class Ui {
         return inputLine;
     }
 
-    /**
-     * Shows the user the specified list of messages.
-     */
-    public void showMessages(String... messages) {
+    public void showResultToUser(CommandResult result) {
         showDivider();
-        for (String m : messages) {
-            showWithCurrentColour(m);
-        }
+        showWithCurrentColour(result.getFeedbackToUser());
         showDivider();
     }
 
@@ -67,11 +63,15 @@ public class Ui {
     }
 
     public void showWelcome() {
-        showMessages(MESSAGE_WELCOME);
+        showDivider();
+        showWithCurrentColour(MESSAGE_WELCOME);
+        showDivider();
     }
 
     public void showExit() {
-        showMessages(MESSAGE_EXIT);
+        showDivider();
+        showWithCurrentColour(MESSAGE_EXIT);
+        showDivider();
     }
 
     private void showDivider() {

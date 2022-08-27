@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 checkstyle {
@@ -17,6 +18,12 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
     implementation 'org.fusesource.jansi:jansi:2.4.0'
+    implementation 'org.openjfx:javafx:11.0.2'
+}
+
+javafx {
+    version = '11.0.2'
+    modules = [ 'javafx.controls' ]
 }
 
 test {
@@ -43,6 +50,6 @@ shadowJar {
     archiveVersion.set('1.0.2')
 }
 
-run{
+run {
     standardInput = System.in
 }

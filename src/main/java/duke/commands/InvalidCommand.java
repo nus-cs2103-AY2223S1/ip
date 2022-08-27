@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.storage.StorageFile;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Represents an incorrect command.
@@ -21,7 +21,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.showMessages(errorMessage);
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        return new CommandResult(errorMessage);
     }
 }

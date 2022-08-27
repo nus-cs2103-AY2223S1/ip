@@ -6,17 +6,15 @@
 # Gradle build files
 /.gradle/
 /build/
-src/main/resources/docs/
 
 # MacOS custom attributes files created by Finder
 .DS_Store
 *.iml
-bin/
+/bin/
 
 /text-ui-test/ACTUAL.TXT
-/text-ui-test/ACTUAL-KS-Mac.TXT
 /text-ui-test/EXPECTED-UNIX.TXT
-data/
+/data/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar

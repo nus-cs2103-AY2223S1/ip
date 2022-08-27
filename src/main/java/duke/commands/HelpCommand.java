@@ -2,7 +2,7 @@ package duke.commands;
 
 import duke.storage.StorageFile;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 /**
  * Displays each command and their usages.
@@ -15,19 +15,19 @@ public class HelpCommand extends Command {
             + "\tEx.: " + COMMAND_WORD;
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.showMessages(
-                HelpCommand.MESSAGE_USAGE,
-                ColourCommand.MESSAGE_USAGE,
-                TodoCommand.MESSAGE_USAGE,
-                DeadlineCommand.MESSAGE_USAGE,
-                EventCommand.MESSAGE_USAGE,
-                ListCommand.MESSAGE_USAGE,
-                FindCommand.MESSAGE_USAGE,
-                MarkCommand.MESSAGE_USAGE,
-                UnmarkCommand.MESSAGE_USAGE,
-                DeleteCommand.MESSAGE_USAGE,
-                ExitCommand.MESSAGE_USAGE
+    public CommandResult execute(TaskList taskList, TextUi textUi, StorageFile storage) {
+        return new CommandResult(
+                HelpCommand.MESSAGE_USAGE
+                + "\n" + ColourCommand.MESSAGE_USAGE
+                + "\n" + TodoCommand.MESSAGE_USAGE
+                + "\n" + DeadlineCommand.MESSAGE_USAGE
+                + "\n" + EventCommand.MESSAGE_USAGE
+                + "\n" + ListCommand.MESSAGE_USAGE
+                + "\n" + FindCommand.MESSAGE_USAGE
+                + "\n" + MarkCommand.MESSAGE_USAGE
+                + "\n" + UnmarkCommand.MESSAGE_USAGE
+                + "\n" + DeleteCommand.MESSAGE_USAGE
+                + "\n" + ExitCommand.MESSAGE_USAGE
         );
     }
 }

@@ -20,4 +20,5 @@ public class Messages {
     public static final String MESSAGE_MISSING_SEPARATOR = "☹ OOPS!!! Missing %s. Check commands list.";
     public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already marked as done.";
     public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already unmarked.";
+    public static final String MESSAGE_OUTPUT_COLOUR_SET = "Set output colour to %s";
 }
