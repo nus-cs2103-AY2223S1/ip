@@ -1,22 +1,46 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
 
-    public enum CommandType {
-        BYE,
-        MARK,
-        UNMARK,
-        DELETE,
-        LIST,
-        TODO,
-        DEADLINE,
-        EVENT
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.err.println(e.getMessage());
+            tasks = new TaskList();
+        } catch (IOException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
+        new Duke("./data/duke.txt").run();
+        /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
@@ -106,16 +130,16 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
             String dataFileName = "./data/duke.txt";
-            FileSaver.newDir("./data");
-            FileSaver.newFile(dataFileName);
+            Storage.newDir("./data");
+            Storage.newFile(dataFileName);
             try {
-                FileSaver.save(taskList.getTasks(), dataFileName);
+                Storage.save(taskList.getTasks(), dataFileName);
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
 
-        in.close();
+        in.close();*/
     }
 }

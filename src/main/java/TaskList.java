@@ -4,15 +4,15 @@ public class TaskList {
     private ArrayList<Task> tasks;
 
     public TaskList() {
-        tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+    }
+
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void add(Task task) {
         tasks.add(task);
-        int length = tasks.size();
-        String output = length == 1 ? " task in the list." : " tasks in the list.";
-        System.out.println("Got it. I've added this task:\n" + task +
-                "\nNow you have " + length + output);
     }
 
     public void delete(int index) {
@@ -49,6 +49,10 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public int size() {
+        return tasks.size();
     }
 
     @Override

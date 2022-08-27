@@ -16,6 +16,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String fileFormat() {
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, at);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
                 + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";

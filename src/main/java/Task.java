@@ -21,6 +21,10 @@ public class Task {
         return false;
     }
 
+    public String fileFormat() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

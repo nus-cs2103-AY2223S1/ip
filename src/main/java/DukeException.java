@@ -1,13 +1,13 @@
 public class DukeException extends Exception{
-    private String message;
+    private final String MESSAGE;
 
     public DukeException(String message) {
         super(message);
-        this.message = message;
+        this.MESSAGE = message;
     }
 
     @Override
     public String toString() {
-        return message;
+        return MESSAGE;
     }
 }
