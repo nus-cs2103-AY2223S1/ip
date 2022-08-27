@@ -50,9 +50,9 @@ public class Parser_Test {
         //exception on wrong flag?
         assertThrows(IllegalArgumentException.class,
                 () -> {
-                    String[] deadline = new String[]{"deadline", "buy", "food", "/by", "tmr"};
-                    Parser.getDescription(deadline, "/at");
-                    Parser.getTiming(deadline, "/at");
+                    String[] deadline = new String[]{"deadline", "buy", "food", "/at", "tmr"};
+                    Parser.getDescription(deadline, "/by");
+                    Parser.getTiming(deadline, "/by");
                 });
     }
 }

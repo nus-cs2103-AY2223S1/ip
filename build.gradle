@@ -6,7 +6,15 @@ plugins {
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version '0.1'
+mainClassName = 'duke.services.Duke'
+
+// Output to build/libs/Duke.jar
+shadowJar {
+    archiveBaseName.set('Duke')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}
 
 repositories {
     mavenCentral()
