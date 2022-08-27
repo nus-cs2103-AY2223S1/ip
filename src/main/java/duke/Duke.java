@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Duke {
 
@@ -10,13 +10,13 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        parser = new Parser(this.ui,this.storage);
+        parser = new Parser(this.ui, this.storage);
     }
 
     public void run() {
         this.ui.intro();
         this.isProcess = true;
-        while(this.isProcess) {
+        while (this.isProcess) {
             String cmd = this.ui.getCommand();
             this.isProcess = this.parser.process(cmd);
         }

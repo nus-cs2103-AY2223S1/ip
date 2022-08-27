@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ public class Parser {
     private TaskList taskList;
     private Storage storage;
 
-    public Parser(Ui ui,Storage storage) {
+    public Parser(Ui ui, Storage storage) {
         this.ui = ui;
         this.storage = storage;
         try {

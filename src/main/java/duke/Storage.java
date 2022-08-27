@@ -1,24 +1,23 @@
-package Duke;
+package duke;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.File;
 
 public class Storage {
     private final String pathFile;
 
-    public Storage(String pathFile){
+    public Storage(String pathFile) {
         this.pathFile = pathFile;
     }
 
-    public void save(ArrayList<Task> taskList){
-        try{
-            FileWriter fw = new FileWriter(pathFile,false);
+    public void save(ArrayList<Task> taskList) {
+        try {
+            FileWriter fw = new FileWriter(pathFile, false);
             String allTasks = "";
-            for (Task task : taskList){
+            for (Task task : taskList) {
                 allTasks += task.changeFormat() + "\n";
             }
             fw.write(allTasks);
@@ -28,11 +27,11 @@ public class Storage {
         }
     }
 
-    public TaskList load() throws IOException{
+    public TaskList load() throws IOException {
         TaskList taskList = new TaskList();
         File file = new File(this.pathFile);
         file.getParentFile().mkdirs();
-        if (!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         Scanner sc = new Scanner(file);

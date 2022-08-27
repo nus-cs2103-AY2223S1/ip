@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.util.Scanner;
 
@@ -27,7 +27,7 @@ public class Ui {
         return command;
     }
 
-    public void printMessage(String message){
+    public void printMessage(String message) {
         System.out.println(UNDERLINE + "\n" + message + "\n" + UNDERLINE);
     }
 }
