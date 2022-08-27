@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class OutOfListException extends DukeException{
     public OutOfListException(String message){

@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
