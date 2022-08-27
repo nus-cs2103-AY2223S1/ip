@@ -19,6 +19,8 @@ public class Ui {
     private final static String EMPTY_TASK_MESSAGE = "You currently have no tasks. Add some!";
     private final static String MARKED_TASK_MESSAGE = "I have marked this task as done:\n";
     private final static String UNMARKED_TASK_MESSAGE = "I have marked this task as undone:\n";
+    private final static String NO_MATCHING_TASK_MESSAGE = "Sorry! There are no matching tasks that contains ";
+    private final static String MATCHING_TASK_MESSAGE = "Here are the matching tasks in your list:";
 
     /**
      * Returns a welcome message when Seaward is first running.
@@ -102,5 +104,13 @@ public class Ui {
         return "Noted. I have added:\n" + description + "\n"
                 + "Now you have "
                 + numOfTasks + " task(s) in your list.";
+    }
+
+    public String getNoMatchingTaskMessage() {
+        return NO_MATCHING_TASK_MESSAGE;
+    }
+
+    public String getMatchingTaskMessage() {
+        return MATCHING_TASK_MESSAGE;
     }
 }
