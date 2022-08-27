@@ -1,10 +1,10 @@
-package dukeprogram.commands.task.annotations;
+package dukeProgram.commands.task.annotations;
 
-import dukeprogram.UiMessage;
-import dukeprogram.commands.Command;
-import dukeprogram.facilities.TaskList;
-import dukeprogram.Task;
-import dukeprogram.ui.UserInterface;
+import dukeProgram.UiMessage;
+import dukeProgram.commands.Command;
+import dukeProgram.facilities.TaskList;
+import dukeProgram.Task;
+import dukeProgram.ui.UserInterface;
 import exceptions.InvalidCommandException;
 
 /**

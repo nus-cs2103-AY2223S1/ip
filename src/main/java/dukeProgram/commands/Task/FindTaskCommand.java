@@ -1,10 +1,10 @@
-package dukeprogram.commands.task;
+package dukeProgram.commands.task;
 
-import dukeprogram.commands.Command;
-import dukeprogram.facilities.TaskList;
-import dukeprogram.Task;
-import dukeprogram.UI.UserInterface;
-import Exceptions.InvalidCommandException;
+import dukeProgram.commands.Command;
+import dukeProgram.facilities.TaskList;
+import dukeProgram.Task;
+import dukeProgram.ui.UserInterface;
+import exceptions.InvalidCommandException;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
