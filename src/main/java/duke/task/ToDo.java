@@ -3,14 +3,14 @@ package duke.task;
 import java.time.LocalDate;
 
 /**
- * The duke.task.ToDo class represents a task
+ * The ToDo class represents a task
  * the user specified that needs to be done.
  */
 public class ToDo extends Task {
     /**
-     * Constructs a duke.task.ToDo object.
+     * Constructs a ToDo object.
      *
-     * @param description description for the duke.task.ToDo task.
+     * @param description description for the ToDo task.
      */
     public ToDo(String description) {
         super(description);

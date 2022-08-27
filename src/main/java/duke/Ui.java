@@ -4,14 +4,27 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * The Ui class deals with interactions with users.
+ */
 public class Ui {
 
+    /* The scanner that reads input*/
     private Scanner sc = new Scanner(System.in);
+
+    /**
+     * Reads the user's command.
+     * @return The string representing the user's input.
+     */
     public String readCommand() {
         String command = sc.nextLine();
         return command;
     }
 
+    /**
+     * Show the Duke's welcome message to the user.
+     */
     public void showWelcome() {
 
         String logo = " ____        _        \n"
@@ -20,17 +33,29 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm duke.Duke \nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke \nWhat can I do for you?");
     }
 
+    /**
+     * Show line to the user.
+     */
     public void showLine() {
         System.out.println("_______");
     }
+
+    /**
+     * Show loading error to the user.
+     */
     public void showLoadingError() {
         System.out.println("File not found.");
     }
 
 
+    /**
+     * Show a message that a specified task has been deleted from the list.
+     * @param t The specified task deleted.
+     * @param taskList The task list the specified task is deleted from.
+     */
     public void showDelete(Task t, TaskList taskList) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(t.toString());
@@ -42,6 +67,11 @@ public class Ui {
 
     }
 
+    /**
+     * Show a message that a specified task has been added to the list.
+     * @param t The specified task to be added.
+     * @param taskList The task list the specified task is added to.
+     */
     public void showAddTask(Task t, TaskList taskList) {
         System.out.println("Got it. I've added this task:");
         System.out.println(t);
@@ -52,16 +82,28 @@ public class Ui {
         }
     }
 
+    /**
+     * Show a message that a specified task has been marked done.
+     * @param t The specified task to be marked done.
+     */
     public void showMark(Task t) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(t);
     }
 
+    /**
+     * Show a message that a specified task has been marked undone.
+     * @param t The specified task to be marked undone.
+     */
     public void showUnmark(Task t) {
         System.out.println("Ok, I've marked this task as not done yet:");
         System.out.println(t);
     }
 
+    /**
+     * Show all the tasks in the task list.
+     * @param taskList The specified task list.
+     */
     public void showTasks(ArrayList<Task> taskList) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
@@ -70,6 +112,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Show all tasks on a specified date.
+     * @param onDateTasks ArrayList that represents all tasks on date.
+     */
     public void showGetDate(ArrayList<Task> onDateTasks) {
         for (Task t : onDateTasks) {
             System.out.println(t);
@@ -85,13 +131,16 @@ public class Ui {
     }
 
     /**
-     * Displays error message.
+     * Show error message.
      * @param error The description for the error.
      */
     public void showError(String error) {
         System.out.println("OOPS!!!" + error);
     }
 
+    /**
+     * Show bye message to the user.
+     */
     public void showBye() {
         System.out.println("Bye, hope to see you again next time!");
     }

@@ -14,7 +14,7 @@ public class Deadline extends Task {
     private LocalDate deadline;
 
     /**
-     * Constructs a duke.task.Deadline object.
+     * Constructs a Deadline object.
      * @param description description for the deadline.
      * @param deadline string that represents deadline of task.
      */
@@ -44,6 +44,12 @@ public class Deadline extends Task {
         return date.equals(this.deadline);
     }
 
+    /**
+     * Constructor for Deadline when loaded from Storage.
+     * @param i Mark status.
+     * @param description Specified Deadline description.
+     * @param deadline Specified Deadline date.
+     */
     public Deadline(int i, String description, String deadline) {
         super(description);
         this.ddl = deadline;

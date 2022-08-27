@@ -4,10 +4,19 @@ import duke.*;
 import duke.task.Deadline;
 import duke.task.Task;
 
+/**
+ * The DeadlineCommand class represents user command deadline.
+ */
 public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";
     private String[] userDescription;
+
+    /**
+     * Constructor of DeadlineCommand that takes in
+     * String Array represting user input.
+     * @param userDescription Specified user input.
+     */
     public DeadlineCommand(String[] userDescription) {
         this.userDescription = userDescription;
     }

@@ -13,17 +13,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The duke.Storage Class represents the
- * storage for duke.Duke.
+ * The Storage class deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
 
+    /* Local file path for Duke*/
     private String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Save the tasks in task list to local storage.
+     * @param tasks ArrayList that represents task list.
+     */
     public void save(ArrayList<Task> tasks) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -37,7 +41,11 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Load local storage to task list.
+     * @return ArrayList that represents task list.
+     * @throws FileNotFoundException when local storage file is not found.
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         File localStorage = new File(filePath);
         ArrayList<Task> fromStorage = new ArrayList<>();

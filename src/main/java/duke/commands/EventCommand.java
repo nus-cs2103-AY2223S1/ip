@@ -4,9 +4,18 @@ import duke.*;
 import duke.task.Event;
 import duke.task.Task;
 
+/**
+ * The EventCommand class represents user command event.
+ */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     private String[] userDescription;
+
+    /**
+     * Constructor of EventCommand that takes in
+     * String Array represting user input.
+     * @param userDescription Specified user input.
+     */
     public EventCommand(String[] userDescription) {
         this.userDescription = userDescription;
     }

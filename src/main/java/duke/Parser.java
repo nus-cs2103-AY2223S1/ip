@@ -2,8 +2,17 @@ package duke;
 
 import duke.commands.*;
 
+/**
+ * The Parser class deals with making sense of the user command.
+ */
 public class Parser {
 
+    /**
+     * Make sense of the user's input by parsing.
+     * @param userInput The command user input in Duke command line.
+     * @return A Command object representing user command.
+     * @throws DukeException when user command is invalid.
+     */
     public static Command parse(String userInput) throws DukeException {
         String[] strings = userInput.split(" ");
 

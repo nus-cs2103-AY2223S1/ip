@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The duke.task.Event class represents a task
+ * The Event class represents a task
  * with a specific date or time.
  */
 public class Event extends Task{
@@ -14,7 +14,7 @@ public class Event extends Task{
     private LocalDate eventDate;
 
     /**
-     * Constructs a duke.task.Event object
+     * Constructs a Event object
      * @param description description for the event.
      * @param eventDate string that represents time of event.
      */
@@ -44,6 +44,12 @@ public class Event extends Task{
         return date.equals(this.eventDate);
     }
 
+    /**
+     * Constructor for Event when loaded from Storage.
+     * @param i Mark status.
+     * @param description Specified Event description.
+     * @param eventAt Specified Event date.
+     */
     public Event(int i, String description, String eventAt) {
         super(description);
         this.eventAt = eventAt;

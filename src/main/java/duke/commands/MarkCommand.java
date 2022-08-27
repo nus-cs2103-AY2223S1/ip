@@ -3,9 +3,18 @@ package duke.commands;
 import duke.*;
 import duke.task.Task;
 
+/**
+ * The MarkCommand class represents user command mark.
+ */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     private int index;
+
+    /**
+     * Constructor for MarkCommand that takes in
+     * an integer representing Task to mark done.
+     * @param i Specified index.
+     */
     public MarkCommand(int i) {
         this.index = i;
     }

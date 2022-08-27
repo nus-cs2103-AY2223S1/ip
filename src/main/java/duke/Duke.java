@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 /**
- * The duke.Duke is a personalized chatbot.
+ * The Duke is a personalized chatbot.
  */
 public class Duke {
 
@@ -16,6 +16,10 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor that initializes Duke.
+     * @param filePath The specified file path.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         myStorage = new Storage(filePath);
@@ -34,10 +38,9 @@ public class Duke {
     }
 
 
-
-
-
-
+    /**
+     * Run Duke chatbot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

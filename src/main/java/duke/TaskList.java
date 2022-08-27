@@ -5,6 +5,9 @@ import duke.task.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The TaskList class contains the task list.
+ */
 public class TaskList {
 
     private ArrayList<Task> taskList;
@@ -26,8 +29,8 @@ public class TaskList {
     }
 
     /**
-     * Adds the duke.task.Task into the storage.
-     * @param t Specified duke.task.Task.
+     * Adds the Task into the storage.
+     * @param t Specified Task.
      */
     public void addTask(Task t) {
         this.taskList.add(t);
@@ -47,6 +50,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Gets the tasks on a specified date.
+     * @param date LocalDate object that represents specified date.
+     * @return ArrayList that represents all tasks on specified date.
+     */
     public ArrayList<Task> getTasksOnDate(LocalDate date) {
         ArrayList<Task> temp = new ArrayList<>();
         for (Task t : taskList) {
