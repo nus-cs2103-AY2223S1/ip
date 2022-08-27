@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -20,12 +21,13 @@ public class AddCommand extends Command {
     }
 
     /**
+     * {@inheritDoc}
      * Adds task to TaskList, Storage and displays update message.
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         Command.taskList.add(this.task);
         Command.storage.save(this.task);
-        Command.ui.displayAddTaskMessage(this.task, Command.taskList.size());
+        return Ui.getAddTaskMessage(this.task, Command.taskList.size());
     }
 }

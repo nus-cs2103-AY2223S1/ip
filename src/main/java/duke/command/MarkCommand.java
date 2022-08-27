@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -10,19 +11,20 @@ public class MarkCommand extends IndexedCommand {
     /**
      * Constructor for MarkCommand.
      *
-     * @param index index of Task .
+     * @param index Index of Task.
      */
     public MarkCommand(int index) {
         super(index);
     }
 
     /**
+     * {@inheritDoc}
      * Updates TaskList and Storage and displays mark task message.
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         Task task = taskList.markTask(super.index);
         Command.storage.updateLine(index, task.toStorageFormat());
-        Command.ui.displayMarkTaskMessage(task);
+        return Ui.getMarkTaskMessage(task);
     }
 }

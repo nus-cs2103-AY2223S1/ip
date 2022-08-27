@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -17,13 +18,13 @@ public class DeleteCommand extends IndexedCommand {
     }
 
     /**
+     * {@inheritDoc}
      * Deletes task, updates Storage and displays delete message.
      */
     @Override
-    public void execute() throws DukeException {
-        String emptyLine = "";
+    public String execute() throws DukeException {
         Task task = Command.taskList.delete(super.index);
-        Command.storage.updateLine(super.index, emptyLine);
-        Command.ui.displayDeleteTaskMessage(task, Command.taskList.size());
+        Command.storage.save(task);
+        return Ui.getDeleteTaskMessage(task, Command.taskList.size());
     }
 }

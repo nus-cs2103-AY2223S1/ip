@@ -1,14 +1,15 @@
 package duke;
 
+import java.util.List;
+
 import duke.command.Command;
 
 /**
- * Simple CLI chatbot that reacts on user input.
+ * Simple chatbot that reacts on user input.
  */
 public class Duke {
-    private static final String STORAGE_PATH = "data/duke.txt";
+    public static final String DEFAULT_STORAGE_PATH = "data/duke.txt";
 
-    private Ui ui;
     private StorageInterface storage;
     private TaskList taskList;
 
@@ -19,54 +20,47 @@ public class Duke {
      * @param storagePath Filepath to use to store Tasks.
      */
     Duke(String storagePath) {
-        this.ui = new Ui();
         this.storage = new Storage(storagePath);
-        Command.setUi(this.ui);
+        this.taskList = new TaskList();
         Command.setStorage(this.storage);
+    }
+
+    /**
+     * Starts the program by loading saved tasks from the storage file and returning
+     * a welcome message.
+     *
+     * @return A list containg the welcome message and load result message.
+     */
+    public List<String> start() {
+        String loadResultMessage = loadSavedTasks();
+        return List.of(Ui.getWelcomeMessage(), loadResultMessage);
+    }
+
+    /**
+     * Creates and executes a command based on ther user input string and returns
+     * the execution message.
+     *
+     * @param input Input string from user.
+     * @return Command execution result message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            String returnMessage = command.execute();
+            return returnMessage;
+        } catch (DukeException e) {
+            return Ui.getErrorMessage(e.getMessage());
+        }
+    }
+
+    private String loadSavedTasks() {
         try {
             this.taskList = new TaskList(this.storage.readFile());
-            ui.formatAndPrint("Successfully loaded from storage file.");
+            return "Successfully loaded from storage file.";
         } catch (DukeException e) {
-            ui.displayErrorMessage(e.getMessage());
-            this.taskList = new TaskList();
+            return e.getMessage();
         } finally {
             Command.setTaskList(this.taskList);
         }
-    }
-
-    /**
-     * Loop that listens for user input and executes Commands corresponding to the
-     * inputs.
-     */
-    void listenForInputs() {
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String commandString = ui.readCommand();
-                Command command = Parser.parse(commandString);
-                command.execute();
-                isExit = command.isExit();
-            } catch (DukeException e) {
-                ui.displayErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    /**
-     * Shows welcome messge and start listening for user input.
-     */
-    public void run() {
-        ui.showWelcome();
-        this.listenForInputs();
-    }
-
-    /**
-     * Main function for the chatbot.
-     *
-     * @param args System arguments. Not used for this program.
-     */
-
-    public static void main(String[] args) {
-        new Duke(STORAGE_PATH).run();
     }
 }

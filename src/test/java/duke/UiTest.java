@@ -1,34 +1,23 @@
 package duke;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 public class UiTest {
-    private final Ui ui = new Ui();
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream orignalOut = System.out;
+    private List<String> input = List.of("hello, how are you?", "Good bye!");
 
-    @BeforeEach
-    void setUp() {
-        System.setOut(new PrintStream(outContent));
+    @Test
+    void joinsTextWithNewLine_listOfStrings_returnTextsSeparatedWithNewLine() {
+        String expected = input.get(0) + "\n" + input.get(1);
+        assertEquals(expected, Ui.joinTextsWithNewLine(input));
     }
 
-    @AfterEach
-    void restore() {
-        System.setOut(orignalOut);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = { "Hello", "Good bye" })
-    void formatAndPrint_output(String input) {
-        ui.formatAndPrint(input);
-        assertTrue(outContent.toString().contains(input));
+    @Test
+    void joinsTextWithNewLine_variableArguments_returnTextsSeparatedWithNewLine() {
+        String expected = input.get(0) + "\n" + input.get(1);
+        assertEquals(expected, Ui.joinTextsWithNewLine(input.get(0), input.get(1)));
     }
 }

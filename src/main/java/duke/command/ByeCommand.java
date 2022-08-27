@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.Ui;
+
 /**
  * Command for exiting program.
  */
@@ -13,10 +15,11 @@ public class ByeCommand extends Command {
     }
 
     /**
+     * {@inheritDoc}}
      * Displays exit message.
      */
     @Override
-    public void execute() {
-        Command.ui.displayExitMessage();
+    public String execute() {
+        return Ui.getExitMessage();
     }
 }

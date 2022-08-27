@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -17,12 +18,13 @@ public class UnmarkCommand extends IndexedCommand {
     }
 
     /**
+     * {@inheritDoc}
      * Updates TaskList and Storage and displays unmark task message.
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         Task task = taskList.unmarkTask(super.index);
         Command.storage.updateLine(index, task.toStorageFormat());
-        Command.ui.displayUnmarkTaskMessage(task);
+        return Ui.displayUnmarkTaskMessage(task);
     }
 }

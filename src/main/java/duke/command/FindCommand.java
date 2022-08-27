@@ -3,6 +3,7 @@ package duke.command;
 import java.util.List;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -22,12 +23,13 @@ public class FindCommand extends Command {
     }
 
     /**
+     * {@inheritDoc}
      * Searches TaskList for tasks with description that contains {@code query} and
      * displays the matched tasks.
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         List<Task> matched = Command.taskList.find(this.query);
-        Command.ui.displayTaskListSearch(matched);
+        return Ui.getTaskListSearchMessage(matched);
     }
 }
