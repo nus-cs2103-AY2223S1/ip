@@ -120,6 +120,22 @@ public class Parser {
             int numOfTasks = taskList.getNumOfTasks();
             return ui.getAddTaskMessage(taskList.readTask(numOfTasks - 1), numOfTasks);
         }
+        case "find": {
+            String result = "";
+            String searchKey = splitCommand[1];
+            int index = 1;
+            for (int i = 0; i < taskList.getNumOfTasks(); i++) {
+                if (taskList.getDescription(i).contains(searchKey)) {
+                    result = result + "\n" + index + "." + taskList.readTask(i);
+                    index++;
+                }
+            }
+            if (result.equals("")) {
+                return ui.getNoMatchingTaskMessage() + searchKey;
+            } else {
+                return ui.getMatchingTaskMessage() + result;
+            }
+        }
         default:
             throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
