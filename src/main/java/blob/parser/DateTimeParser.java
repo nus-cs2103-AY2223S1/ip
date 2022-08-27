@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Locale;
 
 public class DateTimeParser {
@@ -31,6 +33,7 @@ public class DateTimeParser {
     public DateTimeParser() {
         DateTimeFormatterBuilder dateFormatterBuilder = new DateTimeFormatterBuilder().parseCaseInsensitive();
         for (String dateFormat : dateFormats) {
+            System.out.println("APPEND: " + dateFormat);
             dateFormatterBuilder.appendPattern(dateFormat);
         }
 
@@ -49,8 +52,9 @@ public class DateTimeParser {
      * @return A string in the appropriate date or datetime formats
      */
     public String parse(String inputDateTime) throws DateTimeParseException {
+        System.out.println(inputDateTime);
         try {
-            LocalDate parsedDate = LocalDate.parse(inputDateTime, this.dateFormatter);
+            LocalDate parsedDate = LocalDate.parse(inputDateTime, dateFormatter);
             return parsedDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         } catch (DateTimeParseException exception) {
             // Try to parse as datetime instead

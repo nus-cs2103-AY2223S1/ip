@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
     /** The main data structure used to store the user's tasks */
-    public final ArrayList<Task> taskList;
+    protected final ArrayList<Task> taskList;
 
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -68,7 +68,7 @@ public class TaskList {
     public String[] listTasks() {
         String[] tasks = new String[taskList.size()];
         for (int i = 0; i < taskList.size(); i++) {
-            tasks[i] = taskList.get(i).toString();
+            tasks[i] = String.format("%d. %s", i + 1, taskList.get(i).toString());
         }
         return tasks;
     }

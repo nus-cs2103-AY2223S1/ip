@@ -16,7 +16,7 @@ public class Event extends Task {
         super(description, TaskType.EVENT);
         try {
             this.at = new DateTimeParser().parse(at);
-        } catch (DateTimeParseException exception){
+        } catch (DateTimeParseException exception) {
             throw new InvalidDateFormatException();
         }
     }

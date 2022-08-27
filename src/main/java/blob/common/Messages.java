@@ -14,9 +14,9 @@ public class Messages {
     public static final String MESSAGE_TASK_LIST_SIZE = "Blob now remembers %d tasks...";
 
     public static final String MESSAGE_ERROR_INVALID_DATETIME = "Blob does not understand input datetime...";
-    public static final String MESSAGE_USAGE_INPUT_DATETIME = "USAGE: Dates have to be in the following formats " +
-            "<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy>, " +
-            "optionally include time as <H:mm> or <H:mm a> ";
+    public static final String MESSAGE_USAGE_INPUT_DATETIME = "USAGE: Dates have to be in the following formats: \n" +
+            "\t<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy> \n " +
+            "\tOptionally include time as <H:mm> or <H:mm a> ";
 
     public static final String MESSAGE_ERROR_MISSING_TASK_DESCRIPTION = "Blob needs to know details of task...";
     public static final String MESSAGE_USAGE_TASK_COMMAND = "USAGE: todo/event/deadline <description> (...)";
@@ -25,7 +25,7 @@ public class Messages {
     public static final String MESSAGE_USAGE_DEADLINE_COMMAND = "USAGE: deadline <description> /by <deadline>";
 
     public static final String MESSAGE_ERROR_INVALID_EVENT = "Blob needs to know time of your task...";
-    public static final String MESSAGE_USAGE_EVENT_COMMAND = "USAGE: deadline <description> /by <time>";
+    public static final String MESSAGE_USAGE_EVENT_COMMAND = "USAGE: event <description> /at <time>";
 
     public static final String MESSAGE_TASK_MARKED = "Blob congratulates on task well done...";
     public static final String MESSAGE_TASK_UNMARKED = "Blob will mark as undone...";

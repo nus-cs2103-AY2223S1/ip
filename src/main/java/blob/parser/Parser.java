@@ -14,7 +14,13 @@ public class Parser {
      */
     public Command parseUserInput(String userInput) throws UnknownCommandException {
         String[] deconstructedInput = userInput.trim().split("\\s+", 2);
-        CommandType commandType = CommandType.valueOf(deconstructedInput[0].toUpperCase());
+        CommandType commandType;
+
+        try {
+            commandType = CommandType.valueOf(deconstructedInput[0].toUpperCase());
+        } catch (IllegalArgumentException exception) {
+            throw new UnknownCommandException();
+        }
 
         switch (commandType) {
 
@@ -94,7 +100,7 @@ public class Parser {
                     Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
         String taskDetails = deconstructedInput[1];
-        String[] deconstructedDetails = taskDetails.split("\\s+(/by)\\s+", 2);
+        String[] deconstructedDetails = taskDetails.split("\\s+(/at)\\s+", 2);
         if (deconstructedDetails.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_INVALID_EVENT,
                     Messages.MESSAGE_USAGE_EVENT_COMMAND);
@@ -110,7 +116,7 @@ public class Parser {
         }
 
         try {
-            return new MarkCommand(Integer.parseInt(deconstructedInput[1]));
+            return new MarkCommand(Integer.parseInt(deconstructedInput[1]) - 1);
         } catch (NumberFormatException exception) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
         }
@@ -123,7 +129,7 @@ public class Parser {
         }
 
         try {
-            return new UnmarkCommand(Integer.parseInt(deconstructedInput[1]));
+            return new UnmarkCommand(Integer.parseInt(deconstructedInput[1]) - 1);
         } catch (NumberFormatException exception) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
         }
@@ -136,7 +142,7 @@ public class Parser {
         }
 
         try {
-            return new DeleteCommand(Integer.parseInt(deconstructedInput[1]));
+            return new DeleteCommand(Integer.parseInt(deconstructedInput[1]) - 1);
         } catch (NumberFormatException exception) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
         }
