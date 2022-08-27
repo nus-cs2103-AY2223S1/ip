@@ -3,12 +3,8 @@ package duke;
 import duke.task.Task;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -53,7 +49,7 @@ public class Storage {
      */
     public TaskList load() {
         int i = filepath.lastIndexOf('/');
-        File dir = new File(filepath.substring(0,i));
+        File dir = new File(filepath.substring(0, i));
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -71,6 +67,5 @@ public class Storage {
             return new TaskList();
         }
     }
-
 }
 

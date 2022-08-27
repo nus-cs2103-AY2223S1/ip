@@ -5,7 +5,6 @@ import duke.task.Event;
 import duke.task.Task;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +36,7 @@ public class TaskList {
     public void printTaskList() {
         int count = 1;
         for (Task t : tasks) {
-            System.out.println(String.format("%d.%s %s", count, t.getStatusIcon(),
-                    t.getDescription()));
+            System.out.println(String.format("%d.%s %s", count, t.getStatusIcon(), t.getDescription()));
             count += 1;
         }
     }
@@ -104,9 +102,9 @@ public class TaskList {
      * @return marked task.
      */
     public Task markAsDone(int index) {
-        Task t = this.tasks.get(index - 1);
-        t.markAsDone();
-        return t;
+        Task task = this.tasks.get(index - 1);
+        task.markAsDone();
+        return task;
     }
 
     /**
@@ -116,9 +114,9 @@ public class TaskList {
      * @return marked task.
      */
     public Task markAsUndone(int index) {
-        Task t = this.tasks.get(index - 1);
-        t.markAsUndone();
-        return t;
+        Task task = this.tasks.get(index - 1);
+        task.markAsUndone();
+        return task;
     }
 
     /**
