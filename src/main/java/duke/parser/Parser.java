@@ -10,6 +10,8 @@ import duke.task.DukeTask;
 import duke.task.Event;
 import duke.task.ToDo;
 
+import java.util.ArrayList;
+
 /**
  * Encapsulates parsing of input messages.
  *
@@ -51,6 +53,9 @@ public class Parser {
             }
             case "delete": {
                 return new DeleteCommand(input[1]);
+            }
+            case "find": {
+                return new FindCommand(input, this);
             }
             default: {
                 return new AddItemCommand(input, this);
@@ -117,5 +122,36 @@ public class Parser {
             throw new DukeException("\"" + newItem[0] + "\"" +
                     " is not a recognised command.");
         }
+    }
+
+    /**
+     * Parses input array of strings to a string that can be used to call the find method
+     * on itemList. Calls the method and parses output to a format suitable for the ui,
+     * then returns it. Accepts an empty input after the find keyword, and returns all the
+     * tasks stored in this case. Throws a DukeException if no items were found.
+     * @param input array of strings input by user
+     * @return string indicating a list of tasks whose descriptions match the input string
+     * @throws DukeException if no items were found
+     */
+    public String parseFindItems(String[] input) throws DukeException {
+        StringBuilder parsedInput = new StringBuilder();
+        for (int i = 1; i < input.length; i++) {
+            parsedInput.append(input[i]);
+            if (i + 1 != input.length) {
+                parsedInput.append(" ");
+            }
+        }
+        ArrayList<DukeTask> foundItems = itemList.find(parsedInput.toString());
+        if (foundItems.size() == 0) {
+            throw new DukeException("No items were found.");
+        }
+        StringBuilder parsedOutput = new StringBuilder("Here are the matching tasks in your list: \n");
+        for (int i = 0; i < foundItems.size(); i++) {
+            if (i != 0) {
+                parsedOutput.append("\n");
+            }
+            parsedOutput.append("  ").append(foundItems.get(i).toString());
+        }
+        return parsedOutput.toString();
     }
 }

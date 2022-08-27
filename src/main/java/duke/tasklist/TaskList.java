@@ -25,7 +25,6 @@ public class TaskList {
 
     /**
      * Adds given DukeTask to the list of items.
-     *
      * @param newItem DukeTask that needs to be added to the list of items
      */
     public void add(DukeTask newItem) {
@@ -95,6 +94,21 @@ public class TaskList {
      */
     public void save(Storage s) {
         s.save(items);
+    }
+
+    /**
+     * Returns list of DukeTasks whose descriptions match the check string.
+     * @param check string to compare descriptions against
+     * @return list of DukeTasks whose descriptions match check string
+     */
+    public ArrayList<DukeTask> find(String check) {
+        ArrayList<DukeTask> tasks = new ArrayList<>();
+        for (DukeTask t : items) {
+            if (t.getDescription().contains(check)) {
+                tasks.add(t);
+            }
+        }
+        return tasks;
     }
 
     /**

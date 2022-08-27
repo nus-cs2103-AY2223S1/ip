@@ -23,7 +23,6 @@ public class Deadline extends DukeTask {
 
     /**
      * Formats time to the specified format of `MMM d, yyyy | h:mma`
-     *
      * @throws DukeException if the input is erroneous
      */
     private void formatTime() throws DukeException {

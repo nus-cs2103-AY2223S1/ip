@@ -45,7 +45,6 @@ public class Storage {
     /**
      * Loads saved TaskList data from the storage file. Parses saved data
      * into required format that complies with the ui.
-     *
      * @return list of DukeTasks that were saved in local storage
      * @throws DukeException if the storage file cannot be found
      */
@@ -92,7 +91,6 @@ public class Storage {
     /**
      * Saves TaskList data to the storage file. Uses a getter for specified
      * storage strings to achieve this in a consistent format.
-     *
      * @param itemList list of DukeTasks
      */
     public void save(ArrayList<DukeTask> itemList) {
