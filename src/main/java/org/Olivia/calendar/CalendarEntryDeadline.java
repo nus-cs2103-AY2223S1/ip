@@ -10,4 +10,14 @@ public class CalendarEntryDeadline extends CalendarEntry {
     public String toString(){
         return "[D]"+super.toString()+" (by: "+this.time.toString()+")";
     }
+
+    @Override
+    public boolean equals(Object other){
+        if (other instanceof CalendarEntryDeadline){
+            @SuppressWarnings("unchecked")
+            CalendarEntryDeadline ot=(CalendarEntryDeadline)other;
+            return super.equals(other) && this.time.equals(ot.time);
+        }
+        return false;
+    }
 }

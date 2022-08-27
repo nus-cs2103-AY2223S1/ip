@@ -9,15 +9,16 @@ public class CalendarTime {
     private LocalDate date;
     private LocalTime time;
 
-    private CalendarTime(LocalDate date) {
+    // The constructors are set to public for ease of testing
+    public CalendarTime(LocalDate date) {
         this.date=date;
         this.time=null;
     }
-    private CalendarTime(LocalTime time) {
+    public CalendarTime(LocalTime time) {
         this.time=time;
         this.date=null;
     }
-    private CalendarTime(LocalDate date, LocalTime time) {
+    public CalendarTime(LocalDate date, LocalTime time) {
         this.date=date;
         this.time=time;
     }
@@ -71,7 +72,7 @@ public class CalendarTime {
         else if (input.length()==5 && input.indexOf(":")!=0){
             return new CalendarTime(parseTime(input));
         }
-        else if (input.length()==5 && input.indexOf("/")!=0){
+        else if (input.length()==10 && input.indexOf("/")!=0){
             return new CalendarTime(parseDate(input));
         }
         throw new ParseException("Unknown error occurred during parsing, please make sure to use use either of the following three formats for time:\n" +
@@ -107,5 +108,23 @@ public class CalendarTime {
         int minute=this.time.getMinute();
         return String.format("%02d", day)+"/"+String.format("%02d", month)+"/"+String.format("%04d", year)+
                 " "+String.format("%02d", hour)+":"+String.format("%02d", minute);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other instanceof CalendarTime){
+            @SuppressWarnings("unchecked")
+            CalendarTime ot=(CalendarTime)other;
+            if (this.time==null && ot.time==null){
+                return this.date.equals(ot.date);
+            }
+            else if (this.date==null && ot.date==null){
+                return this.time.equals(ot.time);
+            }
+            else if (this.time!=null && this.date!=null){
+                return this.date.equals(ot.date) && this.time.equals(ot.time);
+            }
+        }
+        return false;
     }
 }

@@ -43,4 +43,12 @@ public class CalendarEntry {
         }
         return ans+this.title;
     }
+
+    @Override
+    public boolean equals(Object other){
+        if (other instanceof  CalendarEntry){
+            return this.title.equals(((CalendarEntry)other).title);
+        }
+        return false;
+    }
 }
