@@ -3,14 +3,28 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Stores files and read files
+ */
 public class Storage {
     private File file;
     private final String filePath;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filePath when the path is located in disk
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads the file and store the tasks in file to the list
+     *
+     * @return ArrayList of type Task
+     * @throws DukeException when argument is invalid
+     */
     public ArrayList<Task> loadTasks() throws DukeException{
         ArrayList<Task> list = new ArrayList<Task>();
         try {
@@ -40,6 +54,11 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Writes current task to file
+     *
+     * @param tl list of tasks that is to be stored in file
+     */
         public void writeTasks(TaskList tl) {
         try {
             FileWriter fileWriter = new FileWriter(filePath);
