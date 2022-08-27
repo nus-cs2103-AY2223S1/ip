@@ -1,3 +1,1 @@
-D|1|essay|7/07/2007 1900
-T|0|shopping
-T|0|dinner
+D|0|essay|null|null|null

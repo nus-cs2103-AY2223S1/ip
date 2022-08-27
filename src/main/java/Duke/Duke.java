@@ -1,5 +1,5 @@
 package Duke;
-import java.io.IOException;
+import java.util.Scanner;
 
 
 public class Duke {
@@ -7,11 +7,13 @@ public class Duke {
     private static Ui ui;
     private Storage storage;
     private final String filePath;
+    private static Scanner sc;
 
 
     public Duke() {
         ui = new Ui();
         this.taskList = new TaskList();
+        this.sc = new Scanner(System.in);
         filePath = "/Users/yiye/Desktop/cs2103Projects/ip/Data/duke.txt";
         storage = new Storage(filePath);
         try {
@@ -30,11 +32,9 @@ public class Duke {
 
     public void run(Parser parser)  {
         ui.greet();
-        parser.run();
-        storage.writeTasks(taskList);
-        ui.stop();
+        while (sc.hasNextLine()) {
+            parser.run(sc.nextLine());
+            storage.writeTasks(taskList);
+        }
     }
-
-
-
 }

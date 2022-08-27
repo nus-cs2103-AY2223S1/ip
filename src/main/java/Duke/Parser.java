@@ -1,5 +1,7 @@
 package Duke;
 
+import java.util.Scanner;
+
 public class Parser {
     private Duke duke;
     private Ui ui;
@@ -8,12 +10,10 @@ public class Parser {
     public Parser(Duke duke, Ui ui) {
         this.duke = duke;
         this.ui = ui;
-        this.commands = new Commands(ui.scan());
+        this.commands = new Commands();
     }
 
-    public void run() {
-        while (true) {
-            String input = ui.scan();
+    public void run(String input) {
             if (input.equals("list")) {
                 commands.printList();
             } else if (input.startsWith("mark")) {
@@ -52,11 +52,8 @@ public class Parser {
                 commands.delete(input);
             } else if (input.equals("bye")) {
                 ui.bye();
-                break;
             } else {
                 commands.search(input);
             }
-
         }
-    }
 }

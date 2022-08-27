@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private static Scanner scanner;
 
     public Ui() {
-        this.scanner = new Scanner(System.in);
     }
 
     public void greet() {
@@ -16,11 +14,6 @@ public class Ui {
 
     public void bye() {
         System.out.println("Bye! Hope to see you again soon!");
-    }
-
-
-    public String scan() {
-        return scanner.nextLine();
     }
 
     public void listTask(ArrayList<Task> list) {
@@ -44,11 +37,11 @@ public class Ui {
         System.out.println("File failed to load!");
     }
 
-    public void printSummary(ArrayList<Task> list) {
-        if (list.size()>1) {
-            System.out.printf("Now you have %d tasks in your list.\n", list.size());
+    public void printSummary(int i) {
+        if (i>1) {
+            System.out.printf("Now you have %d tasks in your list.\n", i);
         } else {
-            System.out.printf("Now you have %d task in your list.\n", list.size());
+            System.out.printf("Now you have %d task in your list.\n", i);
         }
     }
 
@@ -62,8 +55,6 @@ public class Ui {
             System.out.printf("%d.%s\n", i + 1, list.get(i).toString());
         }
     }
-    public void stop() {
-        scanner.close();
-    }
+
 
 }

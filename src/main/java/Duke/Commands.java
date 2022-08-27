@@ -2,26 +2,22 @@ package Duke;
 import java.util.ArrayList;
 
 public class Commands {
-    private String input;
     private TaskList taskList;
     private Ui ui;
-    private ArrayList<Task> list;
 
-    public Commands(String in) {
-        this.input = in;
+    public Commands() {
         this.ui = new Ui();
         this.taskList = new TaskList();
-        this.list = taskList.listTasks();
     }
 
     public void printList() {
-        ui.listTask(list);
+        ui.listTask(taskList.listTasks());
     }
 
     public void markDone(String input) {
         System.out.println("Nice! I have marked this task as done:");
         int j = Integer.parseInt(input.substring(5)) - 1;
-        Task task = list.get(j);
+        Task task = taskList.get(j);
         task.markAsDone();
         System.out.println(task.toString());
     }
@@ -29,7 +25,7 @@ public class Commands {
     public void unmark(String input) {
         System.out.println("This task is marked as not done:");
         int j = Integer.parseInt(input.substring(7)) - 1;
-        Task task = list.get(j);
+        Task task = taskList.get(j);
         task.markAsNotDone();
         System.out.println(task.toString());
     }
@@ -37,9 +33,9 @@ public class Commands {
     public void todo(String input) {
         System.out.println("Got it, this task is added in your list:");
         Task todo = new Todo(input.substring(5));
-        list.add(todo);
+        taskList.add(todo);
         System.out.println(todo.toString());
-        ui.printSummary(list);
+        ui.printSummary(taskList.size());
     }
 
     public void deadline(String input) {
@@ -48,9 +44,9 @@ public class Commands {
         String date = parts[parts.length-2];
         String time = parts[parts.length-1];
         Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
-        list.add(dl);
+        taskList.add(dl);
         System.out.println(dl.toString());
-        ui.printSummary(list);
+        ui.printSummary(taskList.size());
     }
 
     public void event(String input) {
@@ -60,23 +56,23 @@ public class Commands {
         String date = parts[parts.length-2];
         String time = parts[parts.length-1];
         Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
-        list.add(event);
+        taskList.add(event);
         System.out.println(event.toString());
-        ui.printSummary(list);
+        ui.printSummary(taskList.size());
     }
 
     public void delete(String input) {
         System.out.println("Noted. I've removed this task:");
         int index = Integer.parseInt(input.substring(7)) - 1;
-        Task task = list.get(index);
+        Task task = taskList.get(index);
         System.out.println(task);
-        list.remove(index);
-        ui.printSummary(list);
+        taskList.remove(index);
+        ui.printSummary(taskList.size());
     }
 
     public void search(String input) {
         ArrayList<Task> matched = new ArrayList<>();
-        for(Task t: list) {
+        for(Task t: taskList.listTasks()) {
             String str = t.toString();
             if(str.contains(input)) {
                 matched.add(t);
