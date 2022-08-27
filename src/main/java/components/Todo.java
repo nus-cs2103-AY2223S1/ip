@@ -1,17 +1,21 @@
 package components;
 
-import components.Task;
-
+/**
+ * Represents deadline tasks.
+ */
 public class Todo extends Task {
-    public Todo(String description) {
-        super(description);
-    }
+  public Todo(String description) {
+    super(description);
+  }
 
-
-
-    @Override
-    public String toString() {
-        return "[T]" + super.toString();
-    }
+  /**
+   * Returns string representation of Deadline.
+   *
+   * @return string representation.
+   */
+  @Override
+  public String toString() {
+    return "[T]" + super.toString();
+  }
 
 }
