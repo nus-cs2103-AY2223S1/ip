@@ -1,5 +1,10 @@
 import java.util.Scanner;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
 
@@ -52,30 +57,37 @@ public class Duke {
     }
 
     private class Deadline extends Task {
-        private String by;
+        private LocalDate date;
+        private LocalTime time;
 
-        public Deadline(String content, String by) {
+        public Deadline(String content, LocalDate date, LocalTime time) {
             super(content);
-            this.by = by;
-        }
-
-        @Override 
-        public String toString() {
-            return String.format("[D]%s (by: %s)", super.toString(), by);
-        }
-    }
-
-    private class Event extends Task {
-        private String time;
-
-        public Event(String content, String time) {
-            super(content);
+            this.date = date;
             this.time = time;
         }
 
         @Override 
         public String toString() {
-            return String.format("[E]%s (at: %s)", super.toString(), time);
+            return String.format("[D]%s (by: %s %s)", super.toString(), 
+                    this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")), this.time.toString());
+        }
+    }
+
+    private class Event extends Task {
+        private LocalDate date;
+        private LocalTime time;
+
+        public Event(String content, LocalDate date, LocalTime time) {
+            super(content);
+            this.date = date;
+            this.time = time;
+        }
+
+        @Override 
+        public String toString() {
+            return String.format("[E]%s (at: %s %s)", super.toString(), 
+                    this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")), 
+                            this.time.format(DateTimeFormatter.ofPattern("hh:mm a")));
         }
     }
 
@@ -224,13 +236,23 @@ public class Duke {
         if (!input.contains(" by ")) {
             throw new DukeException("\t☹ OOPS!!! Formatting of deadline is incorrect.");
         }
+
         String[] split = input.replace("deadline", "").split(" by ");
         String content = split[0].trim();
-        String by = split[1].trim();
-        if (content.length() == 0 || by.length() == 0) {
+        if (content.length() == 0 || split[1].length() == 0) {
             throw new DukeException("\t☹ OOPS!!! The description of a deadline cannot be empty.");
         }
-        Deadline task = new Deadline(content, by);
+
+        String[] dateTimeSplit = split[1].trim().split(" ");
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        try {
+            date = LocalDate.parse(dateTimeSplit[0]);
+            time = LocalTime.parse(dateTimeSplit[1]);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("\t☹ OOPS!!! Formatting of date and time is incorrect.");
+        }
+        Deadline task = new Deadline(content, date, time);
         this.list.add(task);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
@@ -240,16 +262,24 @@ public class Duke {
     }
 
     public void addEvent(String input) throws DukeException{
-        if (!input.contains(" on ")) {
+        if (!input.contains(" at ")) {
             throw new DukeException("\t☹ OOPS!!! Formatting of event is incorrect.");
         }
-        String[] split = input.replace("event", "").split(" on ");
+        String[] split = input.replace("event", "").split(" at ");
         String content = split[0].trim();
-        String time = split[1].trim();
-        if (content.length() == 0 || time.length() == 0) {
+        if (content.length() == 0 || split[1].length() == 0) {
             throw new DukeException("\t☹ OOPS!!! The description of an event cannot be empty.");
         }
-        Event task = new Event(content, time);
+        String[] dateTimeSplit = split[1].trim().split(" ");
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        try {
+            date = LocalDate.parse(dateTimeSplit[0]);
+            time = LocalTime.parse(dateTimeSplit[1]);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("\t☹ OOPS!!! Formatting of date and time is incorrect.");
+        }
+        Event task = new Event(content, date, time);
         this.list.add(task);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
