@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    private LocalDate date;
-    private String time;
+    private final LocalDate date;
+    private final String time;
 
     /**
      * A constructor to initialize a duke.Deadline object.
