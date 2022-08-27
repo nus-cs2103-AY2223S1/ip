@@ -53,6 +53,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns content from an event command.
+     *
+     * @return the main content of the input.
+     * @throws DukeException if the input is incomplete.
+     */
     public String[] getContentForEvent() throws DukeException {
         String content = getContent();
         if (!content.contains("/at")) {
@@ -62,6 +68,12 @@ public class Parser {
         return commandArray;
     }
 
+    /**
+     * Returns content from a deadline command.
+     *
+     * @return the main content of the input.
+     * @throws DukeException if the input is incomplete.
+     */
     public String[] getContentForDeadline() throws DukeException {
         String content = getContent();
         if (!content.contains("/by")) {
@@ -81,7 +93,14 @@ public class Parser {
         }
     }
 
-    static public Task parseSave(String save) throws Exception {
+    /**
+     * Parsed a saved string and returns the corresponding Task.
+     *
+     * @param save String containing the line in the storage to be parsed.
+     * @return the parsed Task.
+     * @throws DukeException if the saved string does not match any patterns.
+     */
+    static public Task parseSave(String save) throws DukeException {
         String[] taskElements = save.split("\\|");
         Task newTask;
         try {
@@ -110,7 +129,7 @@ public class Parser {
             }
             }
         } catch (Exception e) {
-            throw e;
+            throw new DukeException(e.getMessage());
         }
         return newTask;
     }
