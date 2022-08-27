@@ -25,4 +25,13 @@ public class Event extends Task {
                 + ")";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event tmp = (Event) obj;
+            return super.equals(tmp) && this.at.equals(tmp.at);
+        }
+        return false;
+    }
+
 }

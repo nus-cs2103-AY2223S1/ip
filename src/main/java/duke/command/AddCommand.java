@@ -6,6 +6,8 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+import java.util.Arrays;
+
 public class AddCommand implements Command{
     String[] inputs;
     String commandType;
@@ -20,15 +22,15 @@ public class AddCommand implements Command{
         Task task;
         switch(commandType) {
             case "TODO":
-                task = new ToDo(Parser.getDescription(inputs, null, false), false);
+                task = new ToDo(Parser.getDescription(inputs, null), false);
                 break;
             case "DEADLINE":
-                task = new Deadline(Parser.getDescription(inputs, "/by", true),
+                task = new Deadline(Parser.getDescription(inputs, "/by"),
                         false,
                         Parser.getTime(inputs, "/by"));
                 break;
             case "EVENT":
-                task = new Deadline(Parser.getDescription(inputs, "/at", true),
+                task = new Deadline(Parser.getDescription(inputs, "/at"),
                         false,
                         Parser.getTime(inputs, "/at"));
                 break;
@@ -43,4 +45,5 @@ public class AddCommand implements Command{
     public boolean isExit() {
         return false;
     }
+
 }

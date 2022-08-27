@@ -30,6 +30,16 @@ public abstract class Task {
     public abstract String toFileFormat();
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            Task tmp = (Task) obj;
+            return tmp.description.equals(this.description) &&
+                    tmp.isDone == this.isDone;
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;
     }

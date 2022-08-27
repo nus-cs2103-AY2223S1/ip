@@ -25,4 +25,13 @@ public class Deadline extends Task {
                 + ")";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Deadline) {
+            Deadline tmp = (Deadline) obj;
+            return super.equals(tmp) && this.by.equals(tmp.by);
+        }
+        return false;
+    }
+
 }

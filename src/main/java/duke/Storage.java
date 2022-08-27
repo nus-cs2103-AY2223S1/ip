@@ -59,7 +59,7 @@ public class Storage {
         }
     }
 
-    private Task fileLineToTask(String fileLine) {
+    public static Task fileLineToTask(String fileLine) {
         String delimiter = " \\| ";
         String[] strings = fileLine.split(delimiter, 4);
         boolean isDone = strings[1].equals("1");

@@ -39,7 +39,7 @@ public class Parser {
         return res;
     }
 
-    public static String getDescription(String[] inputs, String escape, boolean hasDate) {
+    public static String getDescription(String[] inputs, String escape) {
         String description;
         try {
             description = inputs[1];
@@ -47,7 +47,7 @@ public class Parser {
             throw new DukeException("Descriptions cannot be empty!");
         }
 
-        if (!hasDate) {
+        if (escape == null) {
             return description;
         }
 
