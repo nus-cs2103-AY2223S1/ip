@@ -29,10 +29,6 @@ public class Ui {
         dukePrint("Something bad happened! :O", "Error message: " + msg);
     }
 
-    public void showLine() {
-        System.out.println(SEPARATOR);
-    }
-
     public String readCommand() {
         return sc.nextLine();
     }

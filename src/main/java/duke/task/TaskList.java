@@ -14,7 +14,7 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public String[] list() {
+    public String[] toPrintFormat() {
         String[] lines = new String[tasks.size() + 1];
         lines[0] = "Here are the tasks in your list: ";
         for (int i = 1; i < tasks.size() + 1; i++) {

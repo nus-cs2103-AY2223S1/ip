@@ -1,12 +1,13 @@
 package duke.command;
 
-import duke.*;
+import duke.DukeException;
+import duke.Parser;
+import duke.Storage;
+import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
-
-import java.util.Arrays;
 
 public class AddCommand implements Command{
     String[] inputs;
