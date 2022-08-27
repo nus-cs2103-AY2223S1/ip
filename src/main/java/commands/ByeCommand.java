@@ -27,6 +27,6 @@ public class ByeCommand extends Command {
      * @param taskList List of tasks to save before exiting.
      */
     public void run(TaskList taskList) {
-        Ui.printByeStatement();
+        Ui.printByeStatement();;
     }
 }
