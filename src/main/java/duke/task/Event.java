@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Class extending Task representing an Event task.
+ */
 public class Event extends Task {
     private LocalDate date;
     private LocalTime time;
@@ -21,6 +24,10 @@ public class Event extends Task {
                         this.time.format(DateTimeFormatter.ofPattern("hh:mm a")));
     }
 
+    /**
+     * Produces a string representation of this Event to be stored in a text file.
+     * @return string representation of this Event.
+     */
     @Override
     public String toFileData() {
         return String.format("E | %d | %s | %s %s", this.status ? 1 : 0, this.content, 

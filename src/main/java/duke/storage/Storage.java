@@ -16,8 +16,18 @@ import duke.task.ToDo;
 import duke.task.Deadline;
 import duke.tasklist.TaskList;
 
+/**
+ * Class containing static methods for loading and writing the task list to a storage text file.
+ */
 public class Storage {
 
+    /**
+     * Static Method to load the stored tasks into the taskList for Duke to read.
+     *
+     * @param taskList taskList for the tasks in the file to be stored.
+     * @param path Text Path to the text file where the tasks are stored.
+     * @throws FileNotFoundException if there is no text file to be found.
+     */
     public static void loadData(TaskList taskList, String path) throws FileNotFoundException {
         File f = new File(path);
         Scanner scanner = new Scanner(f);
@@ -63,6 +73,13 @@ public class Storage {
         scanner.close();
     }
 
+    /**
+     * Static method to write the taskList into a file to be stored.
+     *
+     * @param taskList taskList containing the tasks to be stored.
+     * @param path Path to the file where the tasks will be stored.
+     * @throws IOException if there are errors in opening or writing to the file.
+     */
     public static void writeData(TaskList taskList, String path) throws IOException {
         FileWriter clearFw = new FileWriter(path, false);
         clearFw.write("");
