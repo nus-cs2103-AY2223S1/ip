@@ -11,10 +11,11 @@ class Todo extends Task {
     @Override
     public String toString() {
         String out = super.getId() + ".[T][";
-        if (super.getStatus())
+        if (super.getStatus()) {
             out += "X";
-        else
+        } else {
             out += " ";
+        }
         out += "] " + super.toString();
         return out;
     }
