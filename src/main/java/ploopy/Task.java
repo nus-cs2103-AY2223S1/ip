@@ -32,12 +32,12 @@ public abstract class Task {
 
     public static Task addTaskFromFile(String type, String name, String date) {
         switch (type) {
-            case "T":
-                return new ToDo(name);
-            case "D":
-                return new Deadline(name, date);
-            default:
-                return new Event(name, date);
+        case "T":
+            return new ToDo(name);
+        case "D":
+            return new Deadline(name, date);
+        default:
+            return new Event(name, date);
         }
     }
 

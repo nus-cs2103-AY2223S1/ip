@@ -34,7 +34,7 @@ public class Ploopy {
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
             try {
-               Parser.parseInput(input, taskList);
+                Parser.parseInput(input, taskList);
             } catch (PloopyException e) {
                 ui.exceptionMessage(e.getMessage());
             }

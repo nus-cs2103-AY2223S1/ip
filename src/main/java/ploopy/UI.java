@@ -1,13 +1,7 @@
 package ploopy;
 
 public class UI {
-   private static final String TEXT_ART = "PLOOPY";
-//    "\n" +
-//            "\t███████████████████████████████████\n" +
-//            "\t█▄─▄▄─█▄─▄███─▄▄─█─▄▄─█▄─▄▄─█▄─█─▄█\n" +
-//            "\t██─▄▄▄██─██▀█─██─█─██─██─▄▄▄██▄─▄██\n" +
-//            "\t▀▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀";
-
+    private static final String TEXT_ART = "PLOOPY";
     private static final String TOP_WINDOW = "---------------------------------------------------";
 
     private static final String BOTTOM_WINDOW = "---------------------------------------------------";
@@ -54,7 +48,7 @@ public class UI {
 
     public void deleteTaskMessage(Task task, int index) {
         String message = "Deleted: " + task + "\n\tYou have "
-                + index+ " task(s) remaining.";
+                + index + " task(s) remaining.";
         System.out.println(messageFormatter(message));
     }
 
@@ -68,16 +62,16 @@ public class UI {
 
     public void exceptionMessage(String type) {
         switch (type) {
-            case "nonsense":
-                System.out.println(messageFormatter(NONSENSE_INPUT_MESSAGE));
-                break;
-            case "blank":
-                System.out.println(messageFormatter(NO_INPUT_MESSAGE));
-                break;
-            case "IO":
-                System.out.println(messageFormatter(IO_ERROR));
-            default:
-                System.out.println(messageFormatter(EMPTY_COMMAND_MESSAGE + type));
+        case "nonsense":
+            System.out.println(messageFormatter(NONSENSE_INPUT_MESSAGE));
+            break;
+        case "blank":
+            System.out.println(messageFormatter(NO_INPUT_MESSAGE));
+            break;
+        case "IO":
+            System.out.println(messageFormatter(IO_ERROR));
+        default:
+            System.out.println(messageFormatter(EMPTY_COMMAND_MESSAGE + type));
         }
     }
 
