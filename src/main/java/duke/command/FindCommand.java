@@ -12,9 +12,9 @@ import duke.task.TaskList;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    private String query;
-    public FindCommand(String query) {
-        this.query = query;
+    private String[] queries;
+    public FindCommand(String ... queries) {
+        this.queries = queries;
     }
 
     /**
@@ -25,7 +25,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList list, FileStorage storage) {
-        ArrayList<Task> foundTasks = list.findTasks(query);
+        ArrayList<Task> foundTasks = list.findTasks(queries);
         StringBuilder strBuilder = new StringBuilder("Here are the matching tasks in your list:");
         for (int i = 0; i < foundTasks.size(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(foundTasks.get(i));

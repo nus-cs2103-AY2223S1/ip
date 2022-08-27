@@ -98,14 +98,16 @@ public class TaskList {
 
     /**
      * Returns the list of tasks that matches the queried keyword.
-     * @param query The given query keyword.
+     * @param queries The given query keyword.
      * @return An arraylist containing the tasks that matches the query.
      */
-    public ArrayList<Task> findTasks(String query) {
+    public ArrayList<Task> findTasks(String ... queries) {
         ArrayList<Task> tmp = new ArrayList<>();
-        for (Task task: this.tasks) {
-            if (task.isQueryPresent(query)) {
-                tmp.add(task);
+        for (String query : queries) {
+            for (Task task: this.tasks) {
+                if (task.isQueryPresent(query)) {
+                    tmp.add(task);
+                }
             }
         }
         return tmp;

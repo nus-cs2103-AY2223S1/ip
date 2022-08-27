@@ -97,7 +97,7 @@ public class Parser {
                 break;
             }
             case FindCommand.COMMAND_WORD: {
-                command = new FindCommand(str[1].trim());
+                command = new FindCommand(str[1].split("\\s+"));
                 break;
             }
             default:
