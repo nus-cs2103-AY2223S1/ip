@@ -43,7 +43,7 @@ public class Task {
      * @param chars The sequence of chars to match with task name
      * @return True if yes, False if no
      */
-    public Boolean nameContains(String chars) {
+    public Boolean doesNameContain(String chars) {
         return this.taskName.contains(chars);
     }
 

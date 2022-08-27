@@ -86,7 +86,7 @@ public class TaskList {
         System.out.println("Tasks matching your search term:");
         for (int i = 0; i < this.getSize(); ++i) {
             Task searchedTask = this.addedTasks.get(i);
-            if (searchedTask.nameContains(chars)) {
+            if (searchedTask.doesNameContain(chars)) {
                 isAnyTaskFound = true;
                 this.ui.printTaskWithIndex(searchedTask, i);
             }
