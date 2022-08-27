@@ -1,8 +1,11 @@
 package duke.dukeexception;
 
+/**
+ * The exception raised when user wants to mark/unmark unspecified task.
+ */
 public class TaskOutOfBoundException extends DukeException {
     /**
-     * The error raised when user wants to mark/unmark unspecified task.
+     * The exception raised when user wants to mark/unmark unspecified task.
      * @param msg error message.
      */
     public TaskOutOfBoundException(String msg) {

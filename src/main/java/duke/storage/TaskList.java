@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import duke.tasks.Task;
 
+/**
+ * A class to store ongoing Task objects.
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
