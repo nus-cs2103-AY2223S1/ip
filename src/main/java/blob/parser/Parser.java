@@ -6,6 +6,7 @@ import blob.commands.CommandType;
 import blob.commands.DeadlineCommand;
 import blob.commands.DeleteCommand;
 import blob.commands.EventCommand;
+import blob.commands.FindCommand;
 import blob.commands.InvalidCommand;
 import blob.commands.ListCommand;
 import blob.commands.MarkCommand;
