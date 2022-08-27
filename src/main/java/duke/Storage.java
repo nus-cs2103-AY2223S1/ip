@@ -2,7 +2,9 @@ package duke;
 
 import duke.command.Command;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,7 +27,7 @@ public class Storage {
         return Files.readString(Path.of(this.fileName));
     }
 
-    public void save(TaskList list) throws DukeException{
+    public void save(TaskList list) throws DukeException {
         try {
             File f = new File(this.fileName);
             if (f.exists()) {
