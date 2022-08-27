@@ -37,6 +37,10 @@ public class Task {
         this.done = false;
     }
 
+    public boolean descriptionContains(String search) {
+        return this.description.contains(search);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s][%s] %s", this.tag, this.done ? 'X' : ' ', this.description);
