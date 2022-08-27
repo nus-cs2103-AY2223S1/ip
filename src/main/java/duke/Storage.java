@@ -9,13 +9,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A class for storing and retrieving save data for Duke
+ */
 public class Storage {
     File file;
 
+    /**
+     * Constructs a Storage.
+     *
+     * @param filePath file path of the save data
+     */
     public Storage(String filePath) {
         file = new File(filePath);
     }
 
+    /**
+     * Loads the tasks from the save data.
+     *
+     * @return an ArrayList of tasks retrieved from the save data
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> res = new ArrayList<>();
         try {
@@ -35,6 +48,11 @@ public class Storage {
         return res;
     }
 
+    /**
+     * Refreshes the save data.
+     *
+     * @param tasks the TaskList to obtain new data from.
+     */
     public void refresh(TaskList tasks) {
         File temp = new File("data/temp.txt");
         try {
@@ -49,6 +67,11 @@ public class Storage {
         this.file = temp;
     }
 
+    /**
+     * Adds a new task to the save data.
+     *
+     * @param task task to be added to the save data
+     */
     public void addTaskToStorage(Task task) {
         try {
             FileWriter fw = new FileWriter(file);
@@ -59,6 +82,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Readings a line from the save data and converts it to a task.
+     *
+     * @param fileLine the file line to be read
+     * @return a task based on the file line
+     */
     public static Task fileLineToTask(String fileLine) {
         String delimiter = " \\| ";
         String[] strings = fileLine.split(delimiter, 4);

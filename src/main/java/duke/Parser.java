@@ -3,10 +3,20 @@ package duke;
 import duke.command.*;
 import java.time.LocalDate;
 
+/**
+ * A parser class which parses the user input to make it understandable to the duke program.
+ */
 public class Parser {
     private static final String DELIMIT = " ";
     private static final String ESCAPE = "/";
 
+    /**
+     * A static method which parses the user input and returns a command based on the input.
+     *
+     * @param input user input
+     * @return command based on the user input
+     * @throws DukeException errors in the user input
+     */
     public static Command parse(String input) throws DukeException {
         String[] inputs = input.split(" ", 2);
         String head = inputs[0].toUpperCase();
@@ -39,6 +49,13 @@ public class Parser {
         return res;
     }
 
+    /**
+     * Parses the user input and returns the description of an add task user input.
+     *
+     * @param inputs user input parsed by parse method
+     * @param escape an escape character i.e. "/by" and "/at"
+     * @return a string containing the description of the task
+     */
     public static String getDescription(String[] inputs, String escape) {
         String description;
         try {
@@ -54,6 +71,13 @@ public class Parser {
         return description.split(" " + escape + " ")[0];
     }
 
+    /**
+     * Parses the user input and returns the LocalDate of an add task user input.
+     *
+     * @param inputs user input parsed by parse method
+     * @param escape an escape character i.e. "/by" and "/at"
+     * @return a LocalDate
+     */
     public static LocalDate getTime(String[] inputs, String escape) {
         String date;
         try {

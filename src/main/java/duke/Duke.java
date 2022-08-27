@@ -3,12 +3,20 @@ package duke;
 import duke.command.Command;
 import duke.task.TaskList;
 
+/**
+ * Duke is an automated chat-bot which can help you manage your tasks.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a Duke.
+     *
+     * @param filePath string representing the file path of a save file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs duke.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
