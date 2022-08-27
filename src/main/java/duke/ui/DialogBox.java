@@ -8,21 +8,24 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * The UI component that is responsible for displaying outputs to the user.
+ */
 public class DialogBox extends HBox {
 
-    private Label text;
-    private ImageView displayPicture;
-
-    public DialogBox(Label l, ImageView iv) {
-        text = l;
-        displayPicture = iv;
-
-        text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
+    /**
+     * Constructs a component to display output, containing an image and text.
+     *
+     * @param label label containing text
+     * @param view image to show
+     */
+    public DialogBox(Label label, ImageView view) {
+        label.setWrapText(true);
+        view.setFitWidth(100.0);
+        view.setFitHeight(100.0);
 
         this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(text, displayPicture);
+        this.getChildren().addAll(label, view);
     }
 
     /**
@@ -35,12 +38,12 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
-    public static DialogBox getUserDialog(Label l, ImageView iv) {
-        return new DialogBox(l, iv);
+    public static DialogBox getUserDialog(Label label, ImageView view) {
+        return new DialogBox(label, view);
     }
 
-    public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        var db = new DialogBox(l, iv);
+    public static DialogBox getDukeDialog(Label label, ImageView view) {
+        var db = new DialogBox(label, view);
         db.flip();
         return db;
     }
