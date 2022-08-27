@@ -21,13 +21,21 @@ public class Storage {
     protected File file;
 
 
+    /**
+     * Creates a new Storage.
+     * @param path The path of the Text file to store the Tasks.
+     */
     public Storage(String path) {
         this.filePath = path;
         this.file = Path.of(path).toFile();
     }
 
 
-
+    /**
+     * Loads the TaskList from Text file.
+     * @return The ArrayList that is converted from the Text file.
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> arr = new ArrayList<Task>(100);
         TaskList taskList = new TaskList(arr);

@@ -9,7 +9,11 @@ import task.*;
 import storage.Storage;
 import parser.Parser;
 
-
+/**
+ * Duke is a Personal ChatBot to help keep track of your Tasks.
+ *
+ * @author joelwong
+ */
 
 public class Duke {
 
@@ -21,6 +25,11 @@ public class Duke {
 
     private ArrayList<Task> listOfActions = new ArrayList<Task>(100);
 
+    /**
+     * Creates a new Duke.
+     *
+     * @param filePath the file path of stored tasks in the text file.
+     */
     public Duke(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
@@ -36,6 +45,10 @@ public class Duke {
         }
 
     }
+
+    /**
+     * Runs Duke.
+     */
 
     public void run() {
         String type;
