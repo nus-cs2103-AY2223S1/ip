@@ -1,18 +1,17 @@
 package duke;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import duke.events.Deadline;
 import duke.events.Event;
 import duke.events.Task;
 import duke.events.ToDo;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class TaskList {
     //Initialising task array for list cmd
+    private static int numOfInputs = 0;
     private ArrayList<Task> taskList;
     private Storage storage;
-    private static int numOfInputs = 0;
-
 
     TaskList(ArrayList<Task> loadSave, Storage storage) {
         this.taskList = loadSave;
@@ -45,13 +44,14 @@ public class TaskList {
             if (taskNum >= numOfInputs) {
                 throw new DukeException("Meowmeow can't throw away a task that doesn't exist =owo=");
             } else {
-                System.out.println("Meowmeow has thrown this task into the void!! (=^>w<^=) \n" + taskList.get(taskNum));
+                System.out.println("Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
+                        + taskList.get(taskNum));
                 taskList.remove(taskNum);
                 numOfInputs -= 1;
                 System.out.println("You have " + numOfInputs + " tasks left now Owo");
             }
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
     }
 
@@ -68,7 +68,7 @@ public class TaskList {
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
     }
 
@@ -77,7 +77,8 @@ public class TaskList {
             String[] splitB = userInput.split("/by ");
 
             if (splitB.length <= 1) {
-                throw new DukeException("=0w0= To add a deadline type it in in this format: deadline taskName /by YYYY-DD-MMTHH:MM:SS");
+                throw new DukeException("=0w0= To add a deadline type it in in this format: "
+                        + "deadline taskName /by YYYY-DD-MMTHH:MM:SS");
             } else {
                 System.out.println(splitB[1]);
                 LocalDateTime deadline = LocalDateTime.parse(splitB[1]);
@@ -88,7 +89,7 @@ public class TaskList {
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
     }
 
@@ -112,7 +113,7 @@ public class TaskList {
         }
     }
 
-    public void finishedTask(int taskNum) {
+    public void finishTask(int taskNum) {
         Task task;
         try {
             if (taskNum <= numOfInputs) {
@@ -124,11 +125,11 @@ public class TaskList {
                 throw new DukeException("Meowmeow there isn't a task with that number uwu");
             }
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
     }
 
-    public void unfinishedTask(int taskNum) {
+    public void unfinishTask(int taskNum) {
         Task task;
         try {
             if (taskNum <= numOfInputs) {
@@ -141,7 +142,7 @@ public class TaskList {
             }
 
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Ui {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     public void showWelcome() {
         //Chatbot intro segment

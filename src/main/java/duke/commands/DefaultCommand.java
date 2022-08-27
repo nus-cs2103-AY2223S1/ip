@@ -20,7 +20,7 @@ public class DefaultCommand extends Command {
      * @param storage the storage to be used by the command.
      *                The storage is used to save and load the task list.
      *
-     * Prints an error message to the user interface.
+     *     Prints an error message to the user interface.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

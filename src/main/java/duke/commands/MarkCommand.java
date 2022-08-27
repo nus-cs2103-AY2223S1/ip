@@ -10,8 +10,8 @@ import duke.Ui;
  */
 public class MarkCommand extends Command {
 
-    boolean isDone;
-    int taskNum;
+    private boolean isDone;
+    private int taskNum;
 
     /**
      * Constructor for MarkCommand.
@@ -36,9 +36,9 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (isDone) {
-            tasks.finishedTask(taskNum);
+            tasks.finishTask(taskNum);
         } else {
-            tasks.unfinishedTask(taskNum);
+            tasks.unfinishTask(taskNum);
         }
     }
 

@@ -1,11 +1,12 @@
 package duke;
-import duke.commands.Command;
-import duke.commands.ListCommand;
-import duke.commands.ExitCommand;
-import duke.commands.MarkCommand;
-import duke.commands.DeleteCommand;
+
 import duke.commands.AddCommand;
+import duke.commands.Command;
 import duke.commands.DefaultCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.ExitCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
 
 public class Parser {
 
@@ -14,11 +15,14 @@ public class Parser {
         try {
             String[] splitUI = userInput.split(" ");
             switch (splitUI[0]) {
-                case "list":
-                    return new ListCommand();
+            case "list":
+                return new ListCommand();
 
-                case "bye":
-                    return new ExitCommand();
+            case "bye":
+                return new ExitCommand();
+
+            default:
+                break;
             }
 
             String[] splitUserInput = userInput.split(" ", 2);
@@ -29,39 +33,38 @@ public class Parser {
                 String cmdWord = splitUserInput[0];
 
                 switch (cmdWord) {
+                case "mark":
+                    int taskNum = Integer.parseInt(splitUserInput[1]);
+                    return new MarkCommand(true, taskNum);
 
-                    case "mark":
-                        int taskNum = Integer.parseInt(splitUserInput[1]);
-                        return new MarkCommand(true, taskNum);
+                case "unmark":
+                    taskNum = Integer.parseInt(splitUserInput[1]);
+                    return new MarkCommand(false, taskNum);
 
-                    case "unmark":
-                        taskNum = Integer.parseInt(splitUserInput[1]);
-                        return new MarkCommand(false, taskNum);
+                case "todo":
+                    String taskName = splitUserInput[1];
+                    return new AddCommand('T', taskName);
 
-                    case "todo":
-                        String taskName = splitUserInput[1];
-                        return new AddCommand('T', taskName);
+                case "deadline":
+                    String nameAndLocalDateTime = splitUserInput[1];
+                    return new AddCommand('D', nameAndLocalDateTime);
 
-                    case "deadline":
-                        String nameAndLocalDateTime = splitUserInput[1];
-                        return new AddCommand('D', nameAndLocalDateTime);
+                case "event":
+                    String nameAndTime = splitUserInput[1];
+                    return new AddCommand('E', nameAndTime);
 
-                    case "event":
-                        String nameAndTime = splitUserInput[1];
-                        return new AddCommand('E', nameAndTime);
+                case "delete":
+                    int taskToDelete = Integer.parseInt(splitUserInput[1]);
+                    return new DeleteCommand(taskToDelete);
 
-                    case "delete":
-                        int taskToDelete = Integer.parseInt(splitUserInput[1]);
-                        return new DeleteCommand(taskToDelete);
-
-                    default:
-                        System.out.println("Sowwie meowmeow doesn't understand what you said uwu");
-                        return new DefaultCommand();
+                default:
+                    System.out.println("Sowwie meowmeow doesn't understand what you said uwu");
+                    return new DefaultCommand();
                 }
             }
 
         } catch (DukeException e) {
-            System.out.println(e.message);
+            System.out.println(e.toString());
         }
         return new DefaultCommand();
     }

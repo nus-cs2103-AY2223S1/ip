@@ -11,7 +11,7 @@ import duke.Ui;
 public class AddCommand extends Command {
 
     private char taskType;
-    String userInput;
+    private String userInput;
 
     /**
      * Constructor for AddCommand.

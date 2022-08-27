@@ -1,8 +1,5 @@
 package duke;
-import duke.events.Deadline;
-import duke.events.Event;
-import duke.events.Task;
-import duke.events.ToDo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,10 +8,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.events.Deadline;
+import duke.events.Event;
+import duke.events.Task;
+import duke.events.ToDo;
+
 public class Storage {
 
-    private String filePath = "./data/duke.txt";
     private static File saveFile;
+    private String filePath = "./data/duke.txt";
     private ArrayList<Task> taskList = new ArrayList<>(100);
 
     public Storage(String filePath) {
@@ -38,23 +40,23 @@ public class Storage {
         }
     }
 
-        public void save(ArrayList taskList) {
-            this.taskList = taskList;
-            PrintWriter printWriter = null;
-            try {
-                printWriter = new PrintWriter(saveFile);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println(saveFile);
-            PrintWriter finalPrintWriter = printWriter;
-
-            taskList.forEach((t) -> {
-                Task k = (Task) t;
-                finalPrintWriter.println(k.getSaveData());
-            });
-            printWriter.close();
+    public void save(ArrayList taskList) {
+        this.taskList = taskList;
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(saveFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        System.out.println(saveFile);
+        PrintWriter finalPrintWriter = printWriter;
+
+        taskList.forEach((t) -> {
+            Task k = (Task) t;
+            finalPrintWriter.println(k.getSaveData());
+        });
+        printWriter.close();
+    }
 
     public ArrayList<Task> parseSaveFile(File txt) {
         try {
@@ -74,45 +76,47 @@ public class Storage {
                 String firstChar = split[0];
 
                 switch (firstChar) {
-                    case "T":
-                        String taskName = split[2];
+                case "T":
+                    String taskName = split[2];
 
-                        Task todo = new ToDo(taskName);
-                        taskList.add(todo);
+                    Task todo = new ToDo(taskName);
+                    taskList.add(todo);
 
-                        boolean isDone = Boolean.parseBoolean(split[1]);
-                        if (isDone) {
-                            todo.markAsDone();
-                        }
-                        break;
+                    boolean isDone = Boolean.parseBoolean(split[1]);
+                    if (isDone) {
+                        todo.markAsDone();
+                    }
+                    break;
 
-                    case "D":
-                        taskName = split[2];
+                case "D":
+                    taskName = split[2];
 
-                        LocalDateTime date = LocalDateTime.parse(split[3]);
+                    LocalDateTime date = LocalDateTime.parse(split[3]);
 
-                        Task deadline = new Deadline(taskName, date);
-                        taskList.add(deadline);
+                    Task deadline = new Deadline(taskName, date);
+                    taskList.add(deadline);
 
-                        isDone = Boolean.parseBoolean(split[1]);
-                        if (isDone) {
-                            deadline.markAsDone();
-                        }
-                        break;
+                    isDone = Boolean.parseBoolean(split[1]);
+                    if (isDone) {
+                        deadline.markAsDone();
+                    }
+                    break;
 
-                    case "E":
-                        taskName = split[2];
+                case "E":
+                    taskName = split[2];
 
-                        String time = split[3];
+                    String time = split[3];
 
-                        Task event = new Event(taskName, time);
-                        taskList.add(event);
+                    Task event = new Event(taskName, time);
+                    taskList.add(event);
 
-                        isDone = Boolean.parseBoolean(split[1]);
-                        if (isDone) {
-                            event.markAsDone();
-                        }
-                        break;
+                    isDone = Boolean.parseBoolean(split[1]);
+                    if (isDone) {
+                        event.markAsDone();
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {

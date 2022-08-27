@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * <p>This class is used to create a task with a deadline.</p>
  * <p>This class is a concrete class because it has an implementation.</p>
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     private String taskName;
     private LocalDateTime date;
@@ -29,7 +29,8 @@ public class Deadline extends Task{
      */
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (by:" + date.format(DateTimeFormatter.ofPattern(" hh:mm a 'on' dd/MM/yyyy")) + ")";
+        return "[D] " + super.toString() + " (by:"
+                + date.format(DateTimeFormatter.ofPattern(" hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
 
     /**
