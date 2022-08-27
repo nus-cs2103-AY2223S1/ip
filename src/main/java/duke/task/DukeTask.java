@@ -6,56 +6,60 @@ package duke.task;
  * @author Kartikeya
  */
 public abstract class DukeTask {
-  // Description of task
-  private final String description;
+    // Description of task
+    private final String description;
 
-  // Indicates if the task has been completed
-  private boolean isDone;
+    // Indicates if the task has been completed
+    private boolean isDone;
 
-  public DukeTask(String description) {
-    this.description = description;
-    this.isDone = false;
-  }
+    public DukeTask(String description) {
+        this.description = description;
+        this.isDone = false;
+    }
 
-  /**
-   * Returns status of task completion.
-   *
-   * @return String signifying status of task completion
-   */
-  public String getStatusIcon() {
-    return (isDone ? "X" : " "); // mark done task with X
-  }
+    /**
+     * Returns status of task completion.
+     *
+     * @return String signifying status of task completion
+     */
+    public String getStatusIcon() {
+        return (isDone ? "X" : " "); // mark done task with X
+    }
 
-  /**
-   * Marks a task as complete and returns a string signifying this.
-   *
-   * @return String signifying task completion
-   */
-  public String markAsDone() {
-    isDone = true;
-    return "Good job! This task has been completed:\n  "
-        + this;
-  }
+    /**
+     * Marks a task as complete and returns a string signifying this.
+     *
+     * @return String signifying task completion
+     */
+    public String markAsDone() {
+        isDone = true;
+        return "Good job! This task has been completed:\n  "
+                + this;
+    }
 
-  /**
-   * Marks a task as not complete and returns a string signifying this.
-   *
-   * @return String signifying incomplete task
-   */
-  public String markAsNotDone() {
-    isDone = false;
-    return "Whoops! This task is now yet to be completed:\n  "
-        + this;
-  }
+    /**
+     * Marks a task as not complete and returns a string signifying this.
+     *
+     * @return String signifying incomplete task
+     */
+    public String markAsNotDone() {
+        isDone = false;
+        return "Whoops! This task is now yet to be completed:\n  "
+                + this;
+    }
 
-  public boolean isDone() {
-    return this.isDone;
-  }
+    public boolean isDone() {
+        return this.isDone;
+    }
 
-  public abstract String getStorageString();
+    public abstract String getStorageString();
 
-  @Override
-  public String toString() {
-    return "[" + getStatusIcon() + "] " + description;
-  }
+    public String getDescription() {
+        return this.description;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
 }
