@@ -11,7 +11,10 @@ import duke.commands.CommandResult;
  */
 public class Ui {
 
+    private static final String backupLogo = "********Aladdin********";
+    private static final String greetingMessage = "Welcome to Aladdin Services";
     private static final String exitMessage = "Goodbye and have a nice day!";
+    private static final String getCommandMessage = "Enter Command:";
     private final Scanner scanner;
 
     /**
@@ -34,10 +37,10 @@ public class Ui {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println(backupLogo);
         }
 
-        System.out.println("Welcome to Aladdin Services");
+        System.out.println(greetingMessage);
     }
 
     /**
@@ -53,7 +56,7 @@ public class Ui {
      * @return A string
      */
     public String getUserCommand() {
-        System.out.println("Enter Command:");
+        System.out.println(getCommandMessage);
         return scanner.nextLine();
     }
 

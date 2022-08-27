@@ -8,6 +8,7 @@ import duke.commands.BaseCommand;
 import duke.commands.ExitCommand;
 import duke.commands.tasks.AddTaskCommand;
 import duke.commands.tasks.DeleteTaskCommand;
+import duke.commands.tasks.FindTaskCommand;
 import duke.commands.tasks.ListTasksAfterCommand;
 import duke.commands.tasks.ListTasksBeforeCommand;
 import duke.commands.tasks.ListTasksCommand;
@@ -31,6 +32,7 @@ public class Parser {
     private static final String markCommand = "mark";
     private static final String todoCommand = "todo";
     private static final String deadlineCommand = "deadline";
+    private static final String findCommand = "find";
     private static final String deadlineSubCommand = " /by ";
     private static final String eventCommand = "event";
     private static final String eventSubCommand = " /at ";
@@ -166,6 +168,8 @@ public class Parser {
                 throw new IncorrectArgumentException(
                         "Sorry the second argument is not a number");
             }
+        case findCommand:
+            return new FindTaskCommand(commandArgs[1]);
         case listCommand:
             String advancedListText = String.join(" ", commandArgsCopy);
             if (advancedListText.contains(advancedListSubCommand1)) {

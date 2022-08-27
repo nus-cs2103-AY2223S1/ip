@@ -1,43 +1,44 @@
+********Aladdin********
 Welcome to Aladdin Services
 Enter Command:
 
- ------------------------- 
- This task has been successfully added!
+______________________
+This task has been successfully added!
 
-[T] [ ] borrow book 
- ------------------------- 
-
-Enter Command:
-
- ------------------------- 
- Here are your tasks:
-1:[T] [ ] borrow book
- 
- ------------------------- 
+[T] [ ] borrow book
+______________________
 
 Enter Command:
 
- ------------------------- 
- This task has been successfully added!
+______________________
+Here are your tasks:
+1: [T] [ ] borrow book
 
-[D] [ ] return book (by: 02-12-2019 18:00) 
- ------------------------- 
-
-Enter Command:
-
- ------------------------- 
- This task has been successfully added!
-
-[E] [ ] project meeting (at: 05-12-2019 12:00) 
- ------------------------- 
+______________________
 
 Enter Command:
 
- ------------------------- 
- This task has been successfully added!
+______________________
+This task has been successfully added!
 
-[D] [ ] do homework (by: 05-02-2020 12:00) 
- ------------------------- 
+[D] [ ] return book (by: 02-12-2019 18:00)
+______________________
+
+Enter Command:
+
+______________________
+This task has been successfully added!
+
+[E] [ ] project meeting (at: 05-12-2019 12:00)
+______________________
+
+Enter Command:
+
+______________________
+This task has been successfully added!
+
+[D] [ ] do homework (by: 05-02-2020 12:00)
+______________________
 
 Enter Command:
 The description of the todo cannot be empty!
@@ -45,91 +46,102 @@ Enter Command:
 Sorry I don't understand that command
 Enter Command:
 
- ------------------------- 
- This task has been successfully added!
+______________________
+This task has been successfully added!
 
-[T] [ ] read book 
- ------------------------- 
-
-Enter Command:
-
- ------------------------- 
- This task has been successfully added!
-
-[D] [ ] return book (by: 06-06-2019 00:00) 
- ------------------------- 
+[T] [ ] read book
+______________________
 
 Enter Command:
 
- ------------------------- 
- This task has been successfully added!
+______________________
+This task has been successfully added!
 
-[T] [ ] join sports club 
- ------------------------- 
-
-Enter Command:
-
- ------------------------- 
- This task has been successfully marked!
-[T] [X] read book 
- ------------------------- 
+[D] [ ] return book (by: 06-06-2019 00:00)
+______________________
 
 Enter Command:
 
- ------------------------- 
- Here are your tasks:
-1:[T] [ ] borrow book
-2:[D] [ ] return book (by: 02-12-2019 18:00)
-3:[E] [ ] project meeting (at: 05-12-2019 12:00)
-4:[D] [ ] do homework (by: 05-02-2020 12:00)
-5:[T] [X] read book
-6:[D] [ ] return book (by: 06-06-2019 00:00)
-7:[T] [ ] join sports club
- 
- ------------------------- 
+______________________
+This task has been successfully added!
+
+[T] [ ] join sports club
+______________________
 
 Enter Command:
 
- ------------------------- 
- This task has been successfully deleted!
-[E] [ ] project meeting (at: 05-12-2019 12:00) 
- ------------------------- 
+______________________
+This task has been successfully marked!
+[T] [X] read book
+______________________
 
 Enter Command:
 
- ------------------------- 
- Here are your tasks:
-1:[T] [ ] borrow book
-2:[D] [ ] return book (by: 02-12-2019 18:00)
-3:[D] [ ] do homework (by: 05-02-2020 12:00)
-4:[T] [X] read book
-5:[D] [ ] return book (by: 06-06-2019 00:00)
-6:[T] [ ] join sports club
- 
- ------------------------- 
+______________________
+Here are your tasks:
+1: [T] [ ] borrow book
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [E] [ ] project meeting (at: 05-12-2019 12:00)
+4: [D] [ ] do homework (by: 05-02-2020 12:00)
+5: [T] [X] read book
+6: [D] [ ] return book (by: 06-06-2019 00:00)
+7: [T] [ ] join sports club
+
+______________________
 
 Enter Command:
 
- ------------------------- 
- Here are your tasks:
-1:[T] [ ] borrow book
-2:[T] [X] read book
-3:[T] [ ] join sports club
- 
- ------------------------- 
+______________________
+This task has been successfully deleted!
+[E] [ ] project meeting (at: 05-12-2019 12:00)
+______________________
 
 Enter Command:
 
- ------------------------- 
- Here are your tasks:
-1:[T] [ ] borrow book
-2:[D] [ ] do homework (by: 05-02-2020 12:00)
-3:[T] [X] read book
-4:[T] [ ] join sports club
- 
- ------------------------- 
+______________________
+Here are your tasks:
+1: [T] [ ] borrow book
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [D] [ ] do homework (by: 05-02-2020 12:00)
+4: [T] [X] read book
+5: [D] [ ] return book (by: 06-06-2019 00:00)
+6: [T] [ ] join sports club
+
+______________________
 
 Enter Command:
-Goodbye:
+
+______________________
+Here are your tasks:
+1: [T] [ ] borrow book
+2: [T] [X] read book
+3: [T] [ ] join sports club
+
+______________________
+
+Enter Command:
+
+______________________
+Here are your tasks:
+1: [T] [ ] borrow book
+2: [D] [ ] do homework (by: 05-02-2020 12:00)
+3: [T] [X] read book
+4: [T] [ ] join sports club
+
+______________________
+
+Enter Command:
+
+______________________
+Here are the matching tasks:
+1: [T] [ ] borrow book
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [T] [X] read book
+4: [D] [ ] return book (by: 06-06-2019 00:00)
+
+______________________
+
+Enter Command:
+Thank you for using aladdin services!
 
 Goodbye and have a nice day!

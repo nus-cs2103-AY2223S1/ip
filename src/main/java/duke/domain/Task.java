@@ -161,4 +161,16 @@ public class Task {
     public Boolean isAfter(LocalDateTime dateTime) {
         return true;
     }
+
+    /**
+     * The textContains function returns true if the text of this Task contains the
+     * searchTerm.
+     *
+     * @param searchTerm
+     *            Search for the text in the text field
+     * @return A boolean value
+     */
+    public Boolean textContains(String searchTerm) {
+        return this.text.contains(searchTerm);
+    }
 }

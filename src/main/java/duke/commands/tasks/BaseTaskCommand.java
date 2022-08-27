@@ -8,6 +8,7 @@ import duke.tasklist.TaskList;
  */
 public abstract class BaseTaskCommand implements BaseCommand {
     protected TaskList taskList;
+    private final String borderMessage = "______________________";
 
     /**
      * The formatOutputString function formats the output string by adding a divider
@@ -20,8 +21,10 @@ public abstract class BaseTaskCommand implements BaseCommand {
      */
     public String formatOutputString(String text) {
         return String.format(
-                "\n ------------------------- \n %s \n ------------------------- \n",
-                text);
+                "\n%s\n%s\n%s\n",
+                borderMessage,
+                text,
+                borderMessage);
     }
 
     /**

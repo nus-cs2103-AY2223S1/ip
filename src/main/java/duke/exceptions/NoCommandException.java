@@ -1,7 +1,7 @@
 package duke.exceptions;
 
 /**
- * No command found exception.
+ * No Command Exception Class
  */
 public class NoCommandException extends DukeException {
 
