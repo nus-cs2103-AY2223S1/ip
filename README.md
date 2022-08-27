@@ -1,24 +1,61 @@
-# Duke project template
+# Renaissance Duke
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+> All new original Duke with a twist 
 
-## Setting up in Intellij
+Renaissance Duke is a very **perculiar** chat bot that helps you keep track of your daily task! 🙃
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+Features:
+- Differation of Task
+- Search by date
+- Search by Keyword
+- Load & Save 
+- And… more!
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Commands:
+1. date (search by date)
+2. find (search by keyword)
+3. deadline (add a dateline)
+4. event (add a event)
+5. todo (add a todo)
+6. delete (delete a task)
+7. list (list all the current task)
+8. load (loads a task from file)
+9. save (saves a task into file)
+10. mark (marks the task as done)
+11. unmark (unmarks the task as done)
+12. exit (exits Duke) 
+
+Download it [here](https://github.com/onepersonhere/ip/releases/tag/A-Jar)!
+
+Future plans:
+
+ - [x]  Managing more tasks
+ - [ ] Reminder
+ - [ ] Multiple language support
+ - [ ] Voiceover
+__________
+
+To add more `Commands` to Renaissance Duke, do extend this `abstract` class:
+```java
+ public abstract class Command {
+	protected boolean isExit = false;
+
+    /**
+     * Sets the exit flag.
+     *
+     * @return true if the exit flag is set, false otherwise.
+     */
+    public boolean isExit() {
+        return isExit;
+    }
+
+    /**
+     * Executes the command.
+     *
+     * @param ui the user interface
+     * @param storageList the storage list
+     * @throws DukeException if an error occurs
+     */
+    public abstract void execute(Ui ui, StorageList storageList) throws DukeException;
+}
+```
