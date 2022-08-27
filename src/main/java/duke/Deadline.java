@@ -1,9 +1,12 @@
 package duke;
 
-import duke.Task;
-
 import java.time.LocalDate;
 
+/**
+ * Represents a Deadline Task.
+ *
+ * @author Denzel Tan
+ */
 public class Deadline extends Task {
     protected LocalDate date;
 

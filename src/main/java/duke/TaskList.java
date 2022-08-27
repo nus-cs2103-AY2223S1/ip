@@ -2,9 +2,17 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * A Class to store the ArrayList of Tasks of a user, and deal with commands that edit the list.
+ *
+ * @author Denzel Tan
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
+    /**
+     * The constructor for the TaskList class.
+     */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
@@ -64,14 +72,33 @@ public class TaskList {
         }
     }
 
+
+    /**
+     * Returns the size of the task list.
+     *
+     * @return the size of the task list
+     */
     public int size() {
         return this.taskList.size();
     }
 
+
+    /**
+     * Returns the task at the index of the array of tasks.
+     *
+     * @param index the index of the array of tasks that the task is wanted
+     * @return the task that is at the given index of the array
+     */
     public Task get(int index) {
         return this.taskList.get(index);
     }
 
+
+    /**
+     * Adds the given task to the list of tasks.
+     *
+     * @param task the task to be added to the list of tasks
+     */
     public void add(Task task) {
         this.taskList.add(task);
     }

@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents an Event Task.
+ *
+ * @author Denzel Tan
+ */
 public class Event extends Task {
     protected String at;
 

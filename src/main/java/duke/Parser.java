@@ -5,7 +5,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A Parser to make sense from the inputs from the user.
+ *
+ * @author Denzel Tan
+ */
 public class Parser {
+    /**
+     * Method to parse a line of text from a text file.
+     *
+     * @param currLine the line of text from the text file
+     * @return the Task to be added to the current TaskList
+     */
     public static Task parseTaskFromText(String currLine) {
         String[] currStrArr = currLine.split("\\|");
         String firstLetter = currStrArr[0];
@@ -34,7 +45,14 @@ public class Parser {
     }
 
 
-    public static boolean parse(String input, TaskList tasks) throws IOException {
+    /**
+     * Method to parse the input from the user, and add it to the list of tasks.
+     *
+     * @param input the input from the user
+     * @param tasks the list of tasks to be edited
+     * @return the boolean true, to stop the program when bye is inputted
+     */
+    public static boolean parse(String input, TaskList tasks) {
         String[] arrOfInput = input.split(" ");
         String firstWord = arrOfInput[0];
 
@@ -78,6 +96,8 @@ public class Parser {
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return false;
     }

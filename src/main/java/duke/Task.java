@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents the main Task class.
+ *
+ * @author Denzel Tan
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
