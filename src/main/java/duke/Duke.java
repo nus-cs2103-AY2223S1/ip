@@ -10,7 +10,7 @@ import duke.task.TaskList;
  */
 public class Duke {
     private TaskList listOfTasks;
-    private FileStorage taskStorage;
+    private FileStorage storage;
     private Ui ui;
     private Parser parser;
 
@@ -20,11 +20,11 @@ public class Duke {
      */
     private Duke(String home) {
         ui = new Ui();
-        taskStorage = new FileStorage(home);
+        storage = new FileStorage(home);
         parser = new Parser();
         try {
             initializeDataFile();
-            listOfTasks = new TaskList(taskStorage.retrieveFileContents());
+            listOfTasks = new TaskList(storage.retrieveFileContents());
         } catch (DukeException e) {
             System.out.println(e.getMessage());
             listOfTasks = new TaskList();
@@ -40,7 +40,7 @@ public class Duke {
             String input = ui.retrieveUserInput();
             try {
                 Command command = parser.parse(input);
-                command.execute(listOfTasks, taskStorage, ui);
+                command.execute(listOfTasks, storage, ui);
             } catch (DukeException e) {
                 ui.printError(e.getMessage());
             }
@@ -51,11 +51,11 @@ public class Duke {
      * Creates the file and directory to store the taskList data.
      */
     private void initializeDataFile() {
-        if (!taskStorage.isDirectoryPresent()) {
-            taskStorage.createDirectory();
+        if (!storage.isDirectoryPresent()) {
+            storage.createDirectory();
         }
-        if (!taskStorage.isFilePresent()) {
-            taskStorage.createFile();
+        if (!storage.isFilePresent()) {
+            storage.createFile();
         }
     }
 

@@ -28,6 +28,10 @@ public class Event extends Task {
         this.timeEnd = timeEnd;
     }
 
+    /**
+     * Returns the description of an event with its date and duration for writing purposes.
+     * @return The string containing the description.
+     */
     @Override
     public String getDescription() {
         return super.getDescription() + " | " + at + " " + timeStart + "-" + timeEnd;
