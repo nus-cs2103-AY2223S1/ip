@@ -11,30 +11,13 @@ import duke.Ui;
  * @version CS2103T AY22/23 Sem 1
  */
 public abstract class Command {
-    protected boolean isExit;
-
     /**
-     * Constructor for Command.
-     */
-    public Command() {
-        this.isExit = false;
-    }
-
-    /**
-     * Checks if the Command causes the program to exit.
+     * Returns the response from Duke after executing the Command according to its type and details.
      *
-     * @return Whether the Command causes the program to exit.
-     */
-    public boolean isExit() {
-        return this.isExit;
-    }
-
-    /**
-     * Executes the Command according to its type and details.
-     *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The response from Duke.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 }

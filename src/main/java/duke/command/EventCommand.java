@@ -23,22 +23,23 @@ public class EventCommand extends Command {
      * @param at The date/time when the Event happens.
      */
     public EventCommand(String description, LocalDate at) {
-        super();
         this.description = description;
         this.at = at;
     }
 
     /**
-     * Creates a new Event with the given description and time/date.
+     * Returns the response from Duke after creating a new Event with the given description and time/date.
      *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The response from Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addEvent(description, at);
-        ui.showAdd(task, tasks.getSize());
         storage.save(tasks.saveTasks());
+        return ui.showAdd(task, tasks.getSize());
+
     }
 }

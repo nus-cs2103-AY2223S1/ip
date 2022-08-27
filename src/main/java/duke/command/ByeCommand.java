@@ -12,22 +12,15 @@ import duke.Ui;
  */
 public class ByeCommand extends Command {
     /**
-     * Constructor for ByeCommand.
-     */
-    public ByeCommand() {
-        super();
-        this.isExit = true;
-    }
-
-    /**
-     * Displays the farewell message.
+     * Returns the farewell message and terminates the program.
      *
      * @param tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showBye();
     }
 }

@@ -17,43 +17,29 @@ public class Duke {
 
     /**
      * Constructor for Duke.
-     *
-     * @param filePath Designated file path where saved data is stored.
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         try {
             this.tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
-            ui.showLoadingError();
             this.tasks = new TaskList();
         }
     }
 
     /**
-     * Starts Duke.
+     * Gets a response from Duke based on the user input.
+     *
+     * @param fullCommand User input.
+     * @return Response from Duke.
      */
-    private void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.printMessage(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke(System.getProperty("user.home") + "/data/duke.txt").run();
     }
 }

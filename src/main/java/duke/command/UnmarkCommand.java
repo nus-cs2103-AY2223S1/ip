@@ -20,23 +20,23 @@ public class UnmarkCommand extends Command {
      * @param idx Index of Task to be marked as uncompleted.
      */
     public UnmarkCommand(int idx) {
-        super();
         this.idx = idx;
     }
 
     /**
-     * Marks the Task with the given index as uncompleted.
+     * Returns the response from Duke after marking the Task with the given index as uncompleted.
      *
-     * @param tasks TaskList containing the Task list.
+     * @param tasks tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @return The response from Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (idx < 0 || idx >= tasks.getSize()) {
             throw new DukeException("The index provided is not within the list.");
         }
-        ui.showUnmark(tasks.unmarkTask(idx));
         storage.save(tasks.saveTasks());
+        return ui.showUnmark(tasks.unmarkTask(idx));
     }
 }

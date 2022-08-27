@@ -7,8 +7,8 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
-import duke.command.FindCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
@@ -33,7 +33,7 @@ public class Parser {
      * @throws DukeException If the user input is invalid.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        String[] commandSplit = fullCommand.strip().split(" ", 2);
+        String[] commandSplit = fullCommand.strip().split("\\s+", 2);
 
         CommandType c;
         try {
