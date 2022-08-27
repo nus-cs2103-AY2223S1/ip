@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 
 public class Duke {
@@ -46,9 +48,9 @@ public Duke(String filePath) {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
+        System.out.println("Hello! I'm duke.Duke\n" + "What can I do for you?");
 
-        TaskList taskList = new TaskList();
+        duke.TaskList taskList = new duke.TaskList();
         Scanner in = new Scanner(System.in);
         outer:
         while (true) {
@@ -86,10 +88,10 @@ public Duke(String filePath) {
                 case TODO: {
                     s = in.nextLine();
                     if (s.length() < 2) {
-                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                        throw new duke.DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
                     s = s.substring(1);
-                    Task t = new Todo(s);
+                    duke.Task t = new duke.Todo(s);
                     taskList.add(t);
                     break;
                 }
@@ -102,9 +104,9 @@ public Duke(String filePath) {
                     s = in.nextLine();
                     s = s.substring(1);
                     try {
-                        Task t = new Deadline(desc.substring(1), s);
+                        duke.Task t = new duke.Deadline(desc.substring(1), s);
                         taskList.add(t);
-                    } catch (DukeException e) {
+                    } catch (duke.DukeException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -118,22 +120,22 @@ public Duke(String filePath) {
                     s = in.nextLine();
                     s = s.substring(1);
                     try {
-                        Task t = new Event(desc.substring(1), s);
+                        duke.Task t = new duke.Event(desc.substring(1), s);
                         taskList.add(t);
-                    } catch (DukeException e) {
+                    } catch (duke.DukeException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 }
                 }
-            } catch (DukeException e) {
+            } catch (duke.DukeException e) {
                 System.out.println(e.getMessage());
             }
             String dataFileName = "./data/duke.txt";
-            Storage.newDir("./data");
-            Storage.newFile(dataFileName);
+            duke.Storage.newDir("./data");
+            duke.Storage.newFile(dataFileName);
             try {
-                Storage.save(taskList.getTasks(), dataFileName);
+                duke.Storage.save(taskList.getTasks(), dataFileName);
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
