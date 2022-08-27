@@ -38,4 +38,8 @@ public class Messages {
     public static final String MESSAGE_ERROR_TASK_NOT_FOUND = "Blob cannot find that task..., maybe task no exist...?";
 
     public static final String MESSAGE_ERROR_LOADING_TASK = "Blob couldn't load your tasks...";
+    public static final String MESSAGE_NO_TASKS_FOUND = "Blob found no tasks...";
+    public static final String MESSAGE_TASKS_FOUND = "Blob found %d tasks...";
+    public static final String MESSAGE_ERROR_MISSING_FIND_KEYWORD = "Blob needs to know what to find...";
+    public static final String MESSAGE_USAGE_FIND_COMMAND = "USAGE: find <keyword>";
 }

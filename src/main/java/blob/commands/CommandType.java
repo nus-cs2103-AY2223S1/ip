@@ -11,6 +11,7 @@ public enum CommandType {
     DELETE("delete"),
     MARK("mark"),
     UNMARK("unmark"),
+    FIND("find"),
     BYE("bye");
 
     private String trigger;
