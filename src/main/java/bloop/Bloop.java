@@ -3,6 +3,9 @@ package bloop;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Chatbot to keep track of tasks.
+ */
 public class Bloop {
 
     private static Ui ui;
@@ -13,6 +16,9 @@ public class Bloop {
 
     private static Parser parser;
 
+    /**
+     * Constructor for Bloop.
+     */
     public Bloop() {
         ui = new Ui();
         storage = new Storage("BloopData.txt", ui);

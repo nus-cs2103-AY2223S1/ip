@@ -2,14 +2,29 @@ package bloop;
 
 import java.io.IOException;
 
+/**
+ * Parses the input and performs relevent operations.
+ */
 public class Parser {
 
     private TaskList tasks;
 
+    /**
+     * Constructor for Parser object.
+     *
+     * @param tasks Tasklist object.
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Parses the input by the user.
+     *
+     * @param text Input by the user.
+     * @throws BloopException If the command is not recognised or incomplete.
+     * @throws IOException If there is a problem writing to file.
+     */
     public void parse(String text) throws BloopException, IOException {
             String[] textArr = text.split(" ");
             String command = textArr[0];

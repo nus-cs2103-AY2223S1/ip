@@ -3,41 +3,61 @@ package bloop;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Task that is to be performed.
+ */
 abstract public class Task {
     private String task;
     private boolean isDone;
 
+    /**
+     * Constructor for Task object.
+     *
+     * @param task Task to be performed.
+     */
     public Task(String task) {
         this.task = task;
         isDone = false;
     }
 
-    protected String getTask() {
+    public String getTask() {
         return task;
     }
 
-    protected boolean getStatus() {
+    public boolean getStatus() {
         return isDone;
     }
 
-    protected void mark() {
+    /**
+     * Marks the task as done.
+     */
+    public void mark() {
         isDone = true;
     }
 
-    protected void unmark() {
+    /**
+     * Marks the task as not done.
+     */
+    public void unmark() {
         isDone = false;
     }
 
-    abstract protected String getBy();
+    abstract public String getBy();
 
-    abstract protected char getType();
+    abstract public char getType();
 
     @Override
     public String toString() {
         return (isDone ? "[X]" : "[ ]") + " " + task;
     }
 
-    protected String formatDateTime(LocalDateTime dateTime) {
+    /**
+     * Formats the date and time entered by the user.
+     *
+     * @param dateTime LocalDateTime object with the date and time entered by the user.
+     * @return Formatted date and time.
+     */
+    public String formatDateTime(LocalDateTime dateTime) {
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
         return dateTime.format(outputFormatter);
     }

@@ -3,12 +3,22 @@ package bloop;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Operations related to the list of tasks.
+ */
 public class TaskList {
 
+    /** list of tasks */
     private static ArrayList<Task> tasks;
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Constructor for TaskList object.
+     *
+     * @param ui Object of class Ui.
+     * @param storage Object of class Storage.
+     */
     public TaskList(Ui ui, Storage storage) {
         this.ui = ui;
         tasks = new ArrayList<>();
@@ -19,32 +29,64 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Adds a task to the list of tasks.
+     *
+     * @param task Task to be added to the list of tasks.
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
+    /**
+     * Gets the task in the list at the specified index.
+     *
+     * @param index index at which the task is present.
+     * @return Task in the list at the specified index.
+     */
     public Task get(int index) {
         return tasks.get(index);
     }
 
+    /**
+     * Marks the specified task as done.
+     *
+     * @param task Task to be marked as done.
+     * @throws IOException If there is a problem writing to file.
+     */
     public void mark(Task task) throws IOException {
         task.mark();
         ui.print("This task has been marked as done -\n\t\t" + task);
         storage.rewriteFile(tasks);
     }
 
+    /**
+     * Marks the specified task as not done.
+     *
+     * @param task Task to be marked as not done.
+     * @throws IOException If there is a problem writing to file.
+     */
     public void unmark(Task task) throws IOException {
         task.unmark();
         ui.print("This task has been marked as not done -\n\t\t" + task);
         storage.rewriteFile(tasks);
     }
 
+    /**
+     * Removes the specified task from the list.
+     *
+     * @param task Task to be removed from the list.
+     * @throws IOException If there is a problem writing to file.
+     */
     public void remove(Task task) throws IOException {
         tasks.remove(task);
         storage.rewriteFile(tasks);
         ui.print("This task has been removed -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
 
+    /**
+     * Displays all the tasks in the list.
+     */
     public void listOut() {
         System.out.println(ui.getSeparator());
         System.out.println("\tTasks in your list -");
@@ -54,6 +96,13 @@ public class TaskList {
         System.out.println(ui.getSeparator());
     }
 
+    /**
+     * Adds a task to the list.
+     *
+     * @param input Input from the user.
+     * @param type Type of the task.
+     * @throws BloopException If the task is not specified.
+     */
     public void addTask(String input, char type) throws BloopException {
         Task task;
         if(type == 'T') {

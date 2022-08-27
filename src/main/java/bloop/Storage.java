@@ -7,16 +7,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Deals with files.
+ */
 public class Storage {
 
     private String filePath;
     private Ui ui;
 
-    public Storage(String FilePath, Ui ui) {
-        this.filePath = FilePath;
+    /**
+     * Constructor for Storage object.
+     *
+     * @param filePath File path.
+     * @param ui Ui object.
+     */
+    public Storage(String filePath, Ui ui) {
+        this.filePath = filePath;
         this.ui = ui;
     }
 
+    /**
+     * Creates a file if not already created.
+     *
+     * @param tasks List of tasks.
+     */
     public void makeFile(ArrayList<Task> tasks) {
         try {
             File file = new File(filePath);
@@ -31,6 +45,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds tasks to the file.
+     *
+     * @param task Task to be added to the file.
+     * @throws IOException If there is a problem writing to the file.
+     */
     public void writeToFile(Task task) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(task.getType() + "-"
@@ -38,6 +58,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Updates the file with the changed list.
+     *
+     * @param tasks List of tasks.
+     * @throws IOException If there is a problem writing to the file.
+     */
     public void rewriteFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write("");

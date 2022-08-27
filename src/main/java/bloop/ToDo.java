@@ -1,16 +1,24 @@
 package bloop;
 
+/**
+ * Task to do.
+ */
 public class ToDo extends Task {
 
+    /**
+     * Constructor for ToDo object.
+     *
+     * @param task Task to be performed.
+     */
     public ToDo(String task) {
         super(task);
     }
 
-    protected String getBy() {
+    public String getBy() {
         return "";
     }
 
-    protected char getType() {
+    public char getType() {
         return 'T';
     }
 
