@@ -1,3 +1,10 @@
+package duke;
+
+import duke.Deadline;
+import duke.DukeException;
+import duke.Event;
+import duke.Storage;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,7 +25,7 @@ public class Parser {
             System.out.println(ui.printAddedTask(tasktoDo.toString()));
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a ToDo cannot be empty."));
+            throw new DukeException(("OOPS!!! The description of a duke.ToDo cannot be empty."));
         }
 
     }
@@ -33,7 +40,7 @@ public class Parser {
             taskList.addTask(taskDeadline);
             System.out.println(ui.printAddedTask(taskDeadline.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a Deadline cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of a duke.Deadline cannot be empty/incomplete."));
         }
     }
     private static void parseEvent(String str, TaskList taskList) throws DukeException {
@@ -48,7 +55,7 @@ public class Parser {
             System.out.println(ui.printAddedTask(taskEvent.toString()));
             ;
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of an Event cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of an duke.Event cannot be empty/incomplete."));
         }
     }
 
@@ -56,7 +63,7 @@ public class Parser {
         Ui ui = new Ui(taskList);
         str = str.split(" ", 2)[1].trim();
         int index = Integer.valueOf(str) - 1;
-        //Task content = inputs.get(index);
+        //duke.Task content = inputs.get(index);
         String msg = taskList.getTask(index).toString();
         System.out.println(ui.printRemovedTask(msg));
         taskList.removeTask(index);

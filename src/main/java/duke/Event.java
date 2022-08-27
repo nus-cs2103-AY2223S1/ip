@@ -1,16 +1,18 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-public class Event extends Task{
+public class Event extends Task {
     protected String description;
     protected boolean isDone;
     protected String at;
     LocalDate localDate;
 
     /**
-     * Constructor for an Event object
+     * Constructor for an duke.Event object
      */
     public Event(String description, String at) {
         super(description);

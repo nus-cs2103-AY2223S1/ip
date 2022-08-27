@@ -1,9 +1,11 @@
+package duke;
+
 public class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Constructor for a Task object
+     * Constructor for a duke.Task object
      */
     public Task(String description) {
         this.description = description;

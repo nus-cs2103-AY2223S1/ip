@@ -1,3 +1,8 @@
+package duke;
+
+import duke.Task;
+import duke.TaskList;
+
 public class Ui {
     TaskList taskList;
     Ui(TaskList taskList) {

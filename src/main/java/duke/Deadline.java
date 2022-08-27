@@ -1,16 +1,18 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     protected String description;
     protected boolean isDone;
     protected String date;
     LocalDate localDate;
 
     /**
-     * Constructor for a Deadline object
+     * Constructor for a duke.Deadline object
      */
     public Deadline(String description, String date) {
         super(description);
