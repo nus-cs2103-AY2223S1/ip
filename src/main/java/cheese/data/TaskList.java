@@ -1,52 +1,51 @@
 package cheese.data;
 
 import java.util.ArrayList;
-
 import cheese.exception.CheeseException;
 import cheese.task.Task;
 
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public Task getTask(int taskIndex) throws CheeseException {
         validateTaskIndexInRange(taskIndex);
-        return taskList.get(taskIndex);
+        return tasks.get(taskIndex);
     }
 
     public Task delete(int taskIndex) throws CheeseException {
         Task task = getTask(taskIndex);
-        taskList.remove(task);
+        tasks.remove(task);
         return task;
     }
 
     public Task add(Task task) {
-        taskList.add(task);
+        tasks.add(task);
         return task;
     }
 
     public Task markTaskAsDone(int taskIndex) throws CheeseException {
         Task task = getTask(taskIndex);
-        task.markAsDone();
+        task.setDone();
         return task;
     }
 
     public Task markTaskAsNotDone(int taskIndex) throws CheeseException {
         Task task = getTask(taskIndex);
-        task.markAsNotDone();
+        task.setNotDone();
         return task;
     }
 
     public int getSize() {
-        return taskList.size();
+        return tasks.size();
     }
 
     public String toFileString() {
         String fileString = "";
-        for (Task task : taskList) {
+        for (Task task : tasks) {
             fileString += task.toFileString();
             fileString += System.lineSeparator();
         }
@@ -55,18 +54,18 @@ public class TaskList {
 
     @Override
     public String toString() {
-        String taskListString = "";
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
+        String tasksString = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
             int displayIndex = i + 1;
-            taskListString += displayIndex + ". " + task;
-            taskListString += System.lineSeparator();
+            tasksString += displayIndex + ". " + task;
+            tasksString += System.lineSeparator();
         }
-        return taskListString.trim();
+        return tasksString.trim();
     }
 
     private void validateTaskIndexInRange(int taskIndex) throws CheeseException {
-        if (taskIndex < 0 || taskIndex >= taskList.size()) {
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new CheeseException("Item number is not in list range.");
         }
     }

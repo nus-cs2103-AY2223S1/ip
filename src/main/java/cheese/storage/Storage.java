@@ -1,16 +1,15 @@
 package cheese.storage;
 
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import cheese.data.TaskList;
+import cheese.exception.CheeseException;
 import cheese.task.Deadline;
 import cheese.task.Event;
 import cheese.task.Task;
 import cheese.task.Todo;
-import cheese.exception.CheeseException;
 
 public class Storage {
     private String filePath;

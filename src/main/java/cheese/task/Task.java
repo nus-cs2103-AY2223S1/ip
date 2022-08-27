@@ -22,13 +22,11 @@ public abstract class Task {
         this.description = description;
     }
 
-    /** Marks this task as done */
-    public void markAsDone() {
+    public void setDone() {
         isDone = true;
     }
 
-    /** Marks this task as not done */
-    public void markAsNotDone() {
+    public void setNotDone() {
         isDone = false;
     }
 

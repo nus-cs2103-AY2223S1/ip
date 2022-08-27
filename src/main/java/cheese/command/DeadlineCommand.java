@@ -1,11 +1,11 @@
 package cheese.command;
 
+import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.storage.Storage;
-import cheese.ui.Ui;
 import cheese.task.Deadline;
 import cheese.task.Task;
-import cheese.data.TaskList;
+import cheese.ui.Ui;
 
 public class DeadlineCommand extends Command {
     private String description;

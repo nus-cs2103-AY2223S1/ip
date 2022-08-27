@@ -1,12 +1,10 @@
 package cheese.data;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import cheese.task.Todo;
+import org.junit.jupiter.api.Test;
 import cheese.task.Deadline;
 import cheese.task.Event;
+import cheese.task.Todo;
 
 public class TaskListTest {
     @Test

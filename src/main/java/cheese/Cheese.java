@@ -1,12 +1,12 @@
 package cheese;
 
+import cheese.command.ByeCommand;
+import cheese.command.Command;
 import cheese.data.TaskList;
+import cheese.exception.CheeseException;
+import cheese.parser.Parser;
 import cheese.storage.Storage;
 import cheese.ui.Ui;
-import cheese.parser.Parser;
-import cheese.exception.CheeseException;
-import cheese.command.Command;
-import cheese.command.ByeCommand;
 
 public class Cheese {
     private TaskList taskList;

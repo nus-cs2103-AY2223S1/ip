@@ -1,18 +1,17 @@
 package cheese.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class TodoTest {
     @Test
-    public void testFileStringConversion() {
+    public void toFileStringConversion() {
         Todo todo = new Todo(true, "Drink water");
         assertEquals("todo // T // Drink water", todo.toFileString());
     }
 
     @Test
-    public void testStringConversion() {
+    public void toStringConversion() {
         Todo todo = new Todo(true, "Drink water");
         assertEquals("[T][X] Drink water", todo.toString());
     }

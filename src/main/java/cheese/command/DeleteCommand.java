@@ -1,10 +1,10 @@
 package cheese.command;
 
+import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.storage.Storage;
-import cheese.ui.Ui;
 import cheese.task.Task;
-import cheese.data.TaskList;
+import cheese.ui.Ui;
 
 public class DeleteCommand extends Command {
     private int taskIndex;

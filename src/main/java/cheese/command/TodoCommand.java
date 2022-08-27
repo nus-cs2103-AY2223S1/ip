@@ -1,11 +1,11 @@
 package cheese.command;
 
+import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.storage.Storage;
-import cheese.ui.Ui;
-import cheese.data.TaskList;
 import cheese.task.Task;
 import cheese.task.Todo;
+import cheese.ui.Ui;
 
 public class TodoCommand extends Command {
     private String description;

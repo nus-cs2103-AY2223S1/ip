@@ -1,8 +1,8 @@
 package cheese.command;
 
+import cheese.data.TaskList;
 import cheese.storage.Storage;
 import cheese.ui.Ui;
-import cheese.data.TaskList;
 
 public class ListCommand extends Command {
     @Override
