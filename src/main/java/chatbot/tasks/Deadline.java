@@ -22,10 +22,6 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public LocalDate getDate() {
-        return this.date;
-    }
-
     @Override
     public String save() {
         return "D | " + this.getStatus() + " | " + this.getTaskName() + " | " + this.date;

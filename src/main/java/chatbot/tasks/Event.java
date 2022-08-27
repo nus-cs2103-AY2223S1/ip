@@ -23,10 +23,6 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public LocalDate getDate() {
-        return this.date;
-    }
-
     @Override
     public String save() {
         return "E | " + this.getStatus() + " | " + this.getTaskName() + " | " + this.date;
