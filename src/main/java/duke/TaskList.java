@@ -115,10 +115,35 @@ public class TaskList {
         ui.printUnmarkTask(taskDescription);
     }
 
+    /**
+     * Displays Tasks that matches what user searched for.
+     *
+     * @param keyword User input for searching Tasks.
+     * @throws DukeException if input is empty.
+     */
+    public void findTask(String keyword) {
+        if (keyword.equals("")) {
+            throw new DukeException("OOPS!!! The keyword for find cannot be empty.");
+        }
+        String message = "";
+        for (int i = 1; i <= taskList.size(); i++) {
+            Task currentTask = taskList.get(i - 1);
+            String taskDescription = currentTask.toString();
+            if (taskDescription.contains(keyword)) {
+                message += ("     "
+                        + String.valueOf(i)
+                        + "."
+                        + taskDescription);
+                if (i != taskList.size()) {
+                    message += "\n";
+                }
+            }
+        }
+        ui.printFindTask(message);
+    }
+
     public void exit() {
         Duke.terminate = true;
         ui.printExit();
     }
-
-
 }

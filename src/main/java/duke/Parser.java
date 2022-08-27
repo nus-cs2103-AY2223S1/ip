@@ -69,6 +69,9 @@ public class Parser {
                 case "delete":
                     tasks.deleteTask(taskNumber, taskDescription);
                     break;
+                case "find":
+                    tasks.findTask(taskDescription);
+                    break;
                 case "":
                     throw new DukeException("OOPS!!! Please enter an instruction");
                 default:

@@ -45,6 +45,17 @@ public class Ui {
                 + "       " + message);
     }
 
+    /**
+     * Prints Tasks that matched description given.
+     *
+     * @param list Tasks that matched description given.
+     */
+    public void printFindTask(String list) {
+        String message = "     Here are the matching tasks in your list:\n";
+        message += list;
+        printWithLineFormat(message);
+    }
+
     public void printExit() {
         printWithLineFormat("     Bye. Hope to see you again soon!");
     }
