@@ -29,6 +29,11 @@ public class Storage {
         this.path = currentDir.resolve(path);
     }
 
+    /**
+     * Load from local storage.
+     * @return List of tasks, unserialised
+     * @throws IOException
+     */
     public List<Task> load() throws IOException {
         Scanner sc = new Scanner(this.path);
         List<Task> tasks = new ArrayList<>();
@@ -39,6 +44,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Store tasks to local storage.
+     * @param tasks Lists of tasks to be serialised
+     * @throws IOException
+     */
     public void store(List<Task> tasks) throws IOException {
         FileWriter writer = new FileWriter(this.path.toFile(), false);
         for (Task task : tasks) {

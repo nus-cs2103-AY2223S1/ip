@@ -6,6 +6,9 @@ import hazell.exceptions.UnknownCommand;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Main class of the chatbot.
+ */
 public class Hazell {
     private Storage storage;
     private TaskList taskList;
@@ -17,6 +20,10 @@ public class Hazell {
             + " | |  | | (_| |/ /  __/ | |\n"
             + " |_|  |_|\\__,_/___\\___|_|_|\n";
 
+    /**
+     * Create a new instance of the chatbot.
+     * @param filePath Path to store chatbot data for persistence
+     */
     public Hazell(String filePath) {
         ui = new Ui();
         System.out.println(logo);
@@ -31,6 +38,9 @@ public class Hazell {
         taskList.setStorage(storage);
     }
 
+    /**
+     * Start the chatbot.
+     */
     public void run() {
         ui.reply("Hello, I am Hazell!\nWhat can I do for you?");
         while (ui.hasNextCommand()) {
