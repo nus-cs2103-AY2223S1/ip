@@ -3,4 +3,8 @@ public class DukeException extends Exception{
         super(message);
     }
 
+    public DukeException(String message, Throwable error) {
+        super(message, error);
+    }
+
 }
