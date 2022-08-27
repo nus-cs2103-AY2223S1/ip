@@ -1,9 +1,9 @@
-package dukeProgram.commands.Task;
+package dukeprogram.commands.task;
 
-import dukeProgram.commands.Command;
-import dukeProgram.facilities.TaskList;
-import dukeProgram.Task;
-import dukeProgram.UI.UserInterface;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.Task;
+import dukeprogram.UI.UserInterface;
 import Exceptions.InvalidCommandException;
 
 import java.util.ArrayList;

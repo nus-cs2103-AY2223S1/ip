@@ -1,4 +1,4 @@
-package dukeProgram.facilities;
+package dukeprogram.facilities;
 
 import dukeprogram.Task;
 import dukeprogram.storage.SaveManager;
