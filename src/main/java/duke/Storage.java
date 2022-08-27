@@ -106,5 +106,30 @@ public class Storage {
             }
         }
     }
+
+    /**
+     * Returns string of list of tasks with the keyword
+     *
+     * @param keyword Keyword to find the relevant tasks
+     * @return List of tasks with the keyword
+     * @throws FileNotFoundException If file does not exist
+     */
+    public String findTasks(String keyword) throws FileNotFoundException {
+        Scanner scanner = new Scanner(this.file);
+
+        String output = "Here are the matching tasks in your list:\n";
+        int index = 1;
+
+        while(scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.contains(keyword)) {
+                line = index + line.substring(1);
+                output += (line + "\n");
+                index += 1;
+            }
+        }
+
+        return output;
+    }
 }
 

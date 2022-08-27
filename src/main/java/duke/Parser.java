@@ -125,6 +125,13 @@ public class Parser {
 
                         System.out.println("Noted. I've removed this task:\n " + task.toString() + "\nNow you have "
                                 + this.taskList.getIndex() + " tasks in the list.\n");
+                    } else if (input.equals("find")) {
+                        String task = sc.nextLine();
+
+                        String output = this.storage.findTasks(task);
+
+                        System.out.println(output);
+
                     } else {
                         input += sc.nextLine();
                         throw new DukeException("☹ OOPS!!! I'm sorry, " + "but I don't know what that means :-(\n");
