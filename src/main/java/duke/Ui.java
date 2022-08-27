@@ -12,6 +12,8 @@ import duke.tasks.ToDo;
 
 import java.io.File;
 
+import java.util.ArrayList;
+
 public class Ui {
     /**
      *  Greets.
@@ -190,6 +192,28 @@ public class Ui {
         System.out.println("     :) Done loading~ Thanks for waiting!!!");
         printLine();
         return taskList;
+    }
+
+    /**
+     * Prints list of tasks that satisfies the requirements.
+     * @param str The substring.
+     * @param taskList The TaskList storage.
+     */
+    public static void find(String str, TaskList taskList) throws DateTimeFormatException {
+        ArrayList<Task> findList = new ArrayList<Task>();
+        Integer index = 0;
+        printLine();
+        for (Task task : taskList.getList()) {
+            if (task.findName(str)) {
+                findList.add(task);
+            }
+        }
+        System.out.println("     Here are the matching tasks in your list:");
+        for (Task task : findList) {
+            index = index + 1;
+            System.out.println("     " + index + "." + task.printSelf());
+        }
+        printLine();
     }
 
     /**

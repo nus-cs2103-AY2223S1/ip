@@ -55,7 +55,7 @@ public class Duke {
      * 6. mark [index]: to mark done for the task with given index.
      * 7. unmark [index]: to unmark done for the task with given index.
      * 8. delete [index]: to delete the task with given index.
-     * 9. find:
+     * 9. find [String]: to find the corresponding task.
      * 10. list: to list all ongoing tasks.
      */
     public static void run() throws IncomplateCommandException, TaskOutOfBoundException,
@@ -137,6 +137,10 @@ public class Duke {
                 }
                 case EVENT: {
                     taskList.add(Ui.addEvent(commandList[1]));
+                    break;
+                }
+                case FIND: {
+                    Ui.find(commandList[1].trim(), taskList);
                     break;
                 }
                 default:

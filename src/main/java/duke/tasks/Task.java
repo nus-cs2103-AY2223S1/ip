@@ -76,10 +76,19 @@ public class Task {
     }
 
     /**
-     * Print this line at the end of task adding/deleting for alert.
+     * Prints this line at the end of task adding/deleting for alert.
      */
     public static void countTaskLeft() {
         System.out.println("     Now you have " + totalNumber + " tasks in the list.");
+    }
+
+    /**
+     * Returns an indicator of whether some string is a substring of task name.
+     * @param str the substring for searching.
+     * @return The indicator.
+     */
+    public boolean findName(String str) {
+        return this.name.contains(str);
     }
 
     /**

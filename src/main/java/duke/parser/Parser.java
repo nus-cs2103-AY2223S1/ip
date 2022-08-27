@@ -23,7 +23,7 @@ public class Parser {
     }
 
     public static boolean multipleVariable (String str) {
-        String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
+        String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete", "find"};
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
         return checkList.contains(str.toLowerCase());
     }
