@@ -7,8 +7,8 @@ import static java.util.stream.Collectors.joining;
  * Represents a list of tasks.
  */
 public class TaskList extends ArrayList<Task> {
-    public TaskList(ArrayList<Task> taskList) {
-        super(taskList);
+    public TaskList(ArrayList<Task> tasks) {
+        super(tasks);
     }
 
     /**

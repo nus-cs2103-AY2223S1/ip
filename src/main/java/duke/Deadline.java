@@ -16,10 +16,11 @@ public class Deadline extends Task {
         this(description, by, false);
     }
 
-    public Deadline(String description, String by, boolean done) {
-        super(description, 'D', done);
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, 'D', isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
+        this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1)
+                .collect(Collectors.joining("")), formatter);
     }
 
     /**
@@ -42,8 +43,8 @@ public class Deadline extends Task {
         }
         String description = splitSaveString[1];
         String by = "by " + splitSaveString[2];
-        boolean done = splitSaveString[0].endsWith("1");
-        return new Deadline(description, by, done);
+        boolean isDone = splitSaveString[0].endsWith("1");
+        return new Deadline(description, by, isDone);
     }
 
     /* (non-Javadoc)

@@ -18,14 +18,19 @@ public class MarkCommand extends Command{
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException(String.format("Task number %d not found! Unable to mark task.", index + 1));
+            throw new DukeException(String.format(
+                    "Task number %d not found! Unable to mark task.", index + 1));
         }
         if (isDone) {
             tasks.get(index).markDone();
-            ui.wrapPrint(String.format("Nice! I've marked task %d as done:\n  %s", index + 1, tasks.get(index).toString()));
+            ui.wrapPrint(String.format(
+                    "Nice! I've marked task %d as done:\n  %s",
+                    index + 1, tasks.get(index).toString()));
         } else {
             tasks.get(index).unmarkDone();
-            ui.wrapPrint(String.format("OK, I've marked task %d as not done yet:\n  %s", index + 1, tasks.get(index).toString()));
+            ui.wrapPrint(String.format(
+                    "OK, I've marked task %d as not done yet:\n  %s",
+                    index + 1, tasks.get(index).toString()));
         }
     }
 

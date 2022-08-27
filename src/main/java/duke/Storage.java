@@ -28,19 +28,19 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException {
         Path saveLocation = Paths.get(filePath);
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         try {
             Files.lines(saveLocation).forEach((taskString) -> {
                 String type = taskString.split(",")[0];
                 switch (type) {
                 case "T":
-                    taskList.add(Task.fromSaveString(taskString));
+                    tasks.add(Task.fromSaveString(taskString));
                     break;
                 case "E":
-                    taskList.add(Event.fromSaveString(taskString));
+                    tasks.add(Event.fromSaveString(taskString));
                     break;
                 case "D":
-                    taskList.add(Deadline.fromSaveString(taskString));
+                    tasks.add(Deadline.fromSaveString(taskString));
                     break;
                 default:
                     throw new DukeException("Tried to read unexpected save data.");
@@ -50,7 +50,7 @@ public class Storage {
             // Save file does not exist, start afresh.
             return new ArrayList<>();
         }
-        return taskList;
+        return tasks;
     }
 
     /**

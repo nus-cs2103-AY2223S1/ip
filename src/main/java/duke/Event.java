@@ -16,10 +16,11 @@ public class Event extends Task {
         this(description, on, false);
     }
 
-    public Event(String description, String on, boolean done) {
-        super(description, 'E', done);
+    public Event(String description, String on, boolean isDone) {
+        super(description, 'E', isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
+        this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1)
+                .collect(Collectors.joining("")), formatter);
     }
 
     /**
@@ -42,8 +43,8 @@ public class Event extends Task {
         }
         String description = splitSaveString[1];
         String on = "on " + splitSaveString[2];
-        boolean done = splitSaveString[0].endsWith("1");
-        return new Event(description, on, done);
+        boolean isDone = splitSaveString[0].endsWith("1");
+        return new Event(description, on, isDone);
     }
 
     @Override
