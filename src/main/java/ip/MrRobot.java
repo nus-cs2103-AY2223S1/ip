@@ -3,15 +3,11 @@ package ip;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import ip.exception.*;
 import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.Task;
 import ip.task.ToDo;
-import ip.exception.InvalidCommand;
-import ip.exception.NoDeadline;
-import ip.exception.NoDescription;
-import ip.exception.NoPeriod;
-import ip.exception.NoTaskFound;
 
 /**
  * <h1>Task management program<h2>.
@@ -104,10 +100,12 @@ public class MrRobot {
                                 }
                             } catch (NoDescription e) {
                                 System.out.println("PLEASE ADD DESCRIPTION TO YOUR TASK");
-                            } catch (NoDeadline e) {
-                                System.out.println("ADD DEADLINE BY APPENDING TASK WITH \"/by [date]\"");
+                            } catch (NoDeadline | BadDeadline e) {
+                                System.out.println("ADD DEADLINE BY APPENDING TASK DESCRIPTION WITH \"/by [date]\"");
+                                System.out.println("[date] MUST HAVE THE FORMAT OF <d/M/yyyy HHmm>");
+                                System.out.println("EXAMPLE: \"4/11/1977 0240\"");
                             } catch (NoPeriod e) {
-                                System.out.println("ADD PEROID BY APPENDING TASK WITH \"/at [date]\"");
+                                System.out.println("ADD PERIOD BY APPENDING TASK DESCRIPTION WITH \"/at [date]\"");
                             }
                         }
                 }
