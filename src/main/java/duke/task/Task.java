@@ -19,6 +19,10 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    public Boolean isContainsKeyword(String keyword) {
+        return this.description.toLowerCase().contains(keyword);
+    }
+
     public String stringFormatting() {
         String marker = getStatus().equals("X") ? "T" : "F";
         return " # " + marker + " # " + this.description;
