@@ -88,7 +88,7 @@ public class TaskList {
 
   public void findLine(String s) throws DukeException {
     boolean stop = false;
-    for (int i = 0; i< ls.size(); i++) {
+    for (int i = 0; i < ls.size(); i++) {
       if (ls.get(i).toString().contains(s)) {
         this.tracker.add(ls.get(i).toString());
         stop = true;
