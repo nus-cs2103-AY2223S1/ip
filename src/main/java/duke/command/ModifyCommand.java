@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public class ModifyCommand extends Command {
     enum CommandType {
         DONE,
@@ -16,7 +22,7 @@ public class ModifyCommand extends Command {
         this.commandType = commandType;
     }
 
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         switch (commandType) {
             case DONE:
                 tasks.markAsDone(index, ui);

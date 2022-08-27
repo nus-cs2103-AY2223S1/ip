@@ -1,3 +1,11 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,8 +17,8 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
 
-    public static String DIRECTORY = "./data/";
-    public static String FILENAME = "todo.txt";
+    public final static String DIRECTORY = "./data/";
+    public final static String FILENAME = "todo.txt";
 
 
     Duke(String directory, String fileName) {
@@ -23,8 +31,8 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
+            ui.showError(e.getMessage());
             ui.showLoadingError();
-            tasks = new TaskList();
         }
     }
 
@@ -45,7 +53,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("./data", "todo.txt");
+        Duke duke = new Duke(DIRECTORY, FILENAME);
         duke.run();
     }
 }

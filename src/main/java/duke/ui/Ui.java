@@ -1,3 +1,7 @@
+package duke.ui;
+
+import duke.task.Task;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,10 +10,10 @@ public class Ui {
 
     private final Scanner input = new Scanner(System.in);
 
-    Ui() {
+    public Ui() {
     }
 
-    void showWelcome() {
+    public void showWelcome() {
         String logo = """
                  ____        _       \s
                 |  _ \\ _   _| | _____\s
@@ -20,15 +24,15 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
-    void showPrompt() {
+    public void showPrompt() {
         System.out.print("> ");
     }
 
-    String readCommand() {
+    public String readCommand() {
         return input.nextLine();
     }
 
-    void showError(String errorMessage) {
+    public void showError(String errorMessage) {
         System.out.println("\nERROR: " + errorMessage + "\n");
     }
 
