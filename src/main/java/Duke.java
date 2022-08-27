@@ -1,4 +1,6 @@
 import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     public static void main(String[] args) {
@@ -10,8 +12,7 @@ public class Duke {
         int curr = 0;
         Task task = new Task(input, "");
         arr.add(curr, task);
-        String home = System.getProperty("user.home");
-        System.out.println(home);
+
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
             //System.out.println(task.getVal());
@@ -78,7 +79,11 @@ public class Duke {
             else if(task.getVal().indexOf("deadline") == 0) {
                 try {
                     String deadline = task.getVal().substring(9);
-                    String[] at = deadline.split("/");
+                    String[] at = deadline.split(" /by ");
+                    System.out.println(Arrays.toString(at));
+                    if(at[1].charAt(1) == '/'){
+                        at[1] = "0" + at[1];
+                    }
                     task = new Deadline(at[0], at[1]);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
@@ -92,8 +97,11 @@ public class Duke {
             else if(task.getVal().indexOf("event") == 0) {
                 try {
                     String event = task.getVal().substring(6);
-                    String[] at = event.split("/");
-                    task = new Deadline(at[0], at[1]);
+                    String[] at = event.split(" /by ");
+                    if(at[1].charAt(1) == '/') {
+                        at[1] = "0" + at[1];
+                    }
+                    task = new Event(at[0], at[1]);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(task);

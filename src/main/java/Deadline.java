@@ -1,12 +1,21 @@
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private final String deadline;
+    private final LocalDateTime deadline;
 
     public Deadline(String input, String deadline) {
         super(input, "");
-        this.deadline = deadline;
+        this.deadline = getTime(deadline);
     }
 
     public Deadline(String input, boolean done, String deadline) {
+        super(input, done, "");
+        this.deadline = getTime(deadline);
+    }
+
+    public Deadline(String input, boolean done, LocalDateTime deadline) {
         super(input, done, "");
         this.deadline = deadline;
     }
@@ -20,8 +29,13 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getTiming(){
-        return this.deadline;
+    public String getTiming() {
+        int day = this.deadline.getDayOfMonth();
+        Month month = this.deadline.getMonth();
+        int year = this.deadline.getYear();
+        int hour = this.deadline.getHour();
+        int min = this.deadline.getMinute();
+        return(String.format("%s %s %s %02d:%02d", day, month, year, hour, min));
     }
     @Override
     public String toString() {
@@ -31,5 +45,12 @@ public class Deadline extends Task {
         else {
             return (String.format("[D][ ] %s (%s)", this.getVal(), this.getTiming()));
         }
+    }
+
+    private LocalDateTime getTime(String str) {
+        //from stackoverflow
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        return dateTime;
     }
 }
