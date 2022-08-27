@@ -88,24 +88,26 @@ public class Parser {
                 date = tArray[0];
 
                 //matches the yyyy-MMM-d format
-                if (!date.trim().matches("[0-9]{4}-((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))-[0-9]{1,2}")) {
+                if (!date.trim().matches("[0-9]{4}-" +
+                        "((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))" +
+                        "-[0-9]{1,2}")) {
                     throw new DukeException("Date/Time must match the YYYY-MMM-DD format!");
                 }
 
-                LocalDate d = null;
+                LocalDate localDate = null;
                 LocalDateTime dateTime = null; //no time functionality for now
 
                 try {
-                    d = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
+                    localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
                 } catch (DateTimeParseException e) {
                     System.out.println("Please provide a sensible date and time! Exiting...");
                     return;
                 }
 
                 if (str.equals("deadline")) {
-                    this.taskList.AddDeadline(taskname, d);
+                    this.taskList.AddDeadline(taskname, localDate);
                 } else {
-                    this.taskList.AddEvent(taskname, d);
+                    this.taskList.AddEvent(taskname, localDate);
                 }
             }
 
