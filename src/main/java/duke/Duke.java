@@ -11,16 +11,14 @@ import duke.task.TaskList;
 public class Duke {
     private TaskList listOfTasks;
     private FileStorage storage;
-    private Ui ui;
+
     private Parser parser;
 
     /**
      * Creates a Duke object.
-     * @param home The string for the OS of the user.
      */
-    private Duke(String home) {
-        ui = new Ui();
-        storage = new FileStorage(home);
+    public Duke() {
+        storage = new FileStorage(System.getProperty("user.home"));
         parser = new Parser();
         try {
             initializeDataFile();
@@ -30,23 +28,6 @@ public class Duke {
             listOfTasks = new TaskList();
         }
     }
-
-    /**
-     * Runs the chat session with the user until the user exits.
-     */
-    private void run() {
-        ui.printIntro();
-        while (ui.isScannerActive()) {
-            String input = ui.retrieveUserInput();
-            try {
-                Command command = parser.parse(input);
-                command.execute(listOfTasks, storage, ui);
-            } catch (DukeException e) {
-                ui.printError(e.getMessage());
-            }
-        }
-    }
-
     /**
      * Creates the file and directory to store the taskList data.
      */
@@ -58,8 +39,14 @@ public class Duke {
             storage.createFile();
         }
     }
-
-    public static void main(String[] args) {
-        new Duke(System.getProperty("user.home")).run();
+    public String getResponse(String input) {
+        String response = "";
+        try {
+            Command command = parser.parse(input);
+            response = command.execute(listOfTasks, storage);
+        } catch (DukeException e) {
+            response = e.getMessage();
+        }
+        return response;
     }
 }

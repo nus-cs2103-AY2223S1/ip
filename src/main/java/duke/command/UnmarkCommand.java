@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.FileStorage;
-import duke.Ui;
 import duke.task.TaskList;
 
 
@@ -17,15 +16,14 @@ public class UnmarkCommand extends Command {
 
     /**
      * Marks the task from the taskList as uncompleted, saves to file.
-     *     and prints out the corresponding message to the user.
+     *     and prints out the corresponding message to the GUI.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
-     * @param ui The Ui of Duke.
      */
     @Override
-    public void execute(TaskList list, FileStorage storage, Ui ui) {
+    public String execute(TaskList list, FileStorage storage) {
         list.markTaskUndone(index);
         storage.writeToFile(list.getList());
-        ui.printMarkTaskUndone(list.retrieveTask(index));
+        return String.format("OK, I've marked this task as not done yet:\n  %s", list.retrieveTask(index));
     }
 }

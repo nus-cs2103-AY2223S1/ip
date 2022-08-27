@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.FileStorage;
-import duke.Ui;
 import duke.task.TaskList;
 
 /**
@@ -10,14 +9,13 @@ import duke.task.TaskList;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     /**
-     * Ends the session with the user, printing out
-     *     the corresponding message to the user.
+     * Ends the session with the user, returning
+     *     the corresponding message to the GUI.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
-     * @param ui The Ui of Duke.
      */
     @Override
-    public void execute(TaskList list, FileStorage storage, Ui ui) {
-        ui.printOutro();
+    public String execute(TaskList list, FileStorage storage) {
+        return "Farewell, till we meet again";
     }
 }

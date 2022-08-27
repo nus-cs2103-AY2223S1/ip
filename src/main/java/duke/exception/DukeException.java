@@ -1,6 +1,5 @@
 package duke.exception;
 
-
 /**
  * Superclass of all the exceptions specific to the chatBot Duke
  */
