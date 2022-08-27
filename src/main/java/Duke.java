@@ -7,16 +7,31 @@ import java.util.List;
 
 public class Duke {
 
-    private static String greetings = "Hello! I'm Ekud \n" + "What can I do for you?";
-    private static String FOLDER_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data";
-    private static String FILE_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data\\duke.txt";
-    private static String banner = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    private static final String GREETINGS = "Hello! I'm Ekud \n" + "What can I do for you?";
+    //private static final String FOLDER_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data";
+    //private static final String FILE_LOCATION = "C:\\Users\\silas\\Documents\\GitHub\\ip\\data\\duke.txt";
+    private static final String FOLDER_LOCATION = "C:\\Users\\Yeo\\Downloads\\drive-download-20210330T061318Z-001\\ip\\data";
+    private static final String FILE_LOCATION = "C:\\Users\\Yeo\\Downloads\\drive-download-20210330T061318Z-001\\ip\\data\\duke.txt";
+    private static final String BANNER = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static void print(String msg) {
-        System.out.println(banner);
+        System.out.println(BANNER);
         System.out.println(msg);
-        System.out.println(banner);
+        System.out.println(BANNER);
+    }
+
+    private static Task createTask(char tag, String description, String time) {
+        switch (tag) {
+            case 'T':
+                return new Todo(description);
+            case 'E':
+                return new Event(description, time);
+            case 'D':
+                return new Deadline(description, time);
+            default:
+                return null;
+        } 
     }
 
     private static void save() throws Exception {
@@ -32,12 +47,31 @@ public class Duke {
 
     private static void load() throws Exception {
         try {
-            List<String> res = Files.readAllLines(Paths.get(FILE_LOCATION));
-            for (String line: res) {
-                char tag = line.charAt(1);
 
+            List<String> res = Files.readAllLines(Paths.get(FILE_LOCATION));
+
+            for (String line: res) {
+
+                char tag = line.charAt(1);
+                boolean isDone = (line.charAt(4) == 'X' ? true : false);
+                String msg[] = line.split(" ", 3)[2].split(" \\(");
+                String name = msg[0];
+                String date = "";
+
+                if (msg.length > 1) {
+                    date = msg[1].split("\\)")[0];
+                }
+
+                Task task = createTask(tag, name, date);
+
+                if (isDone) {
+                    task.mark();
+                }
+
+                tasks.add(task);
 
             }
+            
         } catch (Exception e) {
             throw(new DukeException("No saved data found!"));
         }
@@ -101,7 +135,7 @@ public class Duke {
             if (msg.length < 2) throw(new DukeException("nothing to add!"));
 
             input = getTaskName(msg);
-            tasks.add(new Todo(input));
+            tasks.add(createTask('T', input, null));
             printAddTask(input);
 
         } else if (input.startsWith("deadline")) {
@@ -113,7 +147,7 @@ public class Duke {
             if (msg.length < 2) throw(new DukeException("nothing to add!"));
 
             input = getTaskName(tmp);
-            tasks.add(new Deadline(input, msg[1]));
+            tasks.add(createTask('D', input, msg[1]));
             printAddTask(input);
 
         } else if (input.startsWith("event")) {
@@ -124,7 +158,7 @@ public class Duke {
             String[] tmp = msg[0].split(" ");
             if (msg.length < 2) throw(new DukeException("nothing to add!"));
             input = getTaskName(tmp);
-            tasks.add(new Event(input, msg[1]));
+            tasks.add(createTask('E', input, msg[1]));
             printAddTask(input);
 
         } else {
@@ -134,7 +168,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        print(greetings);
+        print(GREETINGS);
 
         try {
             load();
