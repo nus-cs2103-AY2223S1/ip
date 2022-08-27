@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import  java.nio.file.Paths;
@@ -30,17 +29,15 @@ public class Duke {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] fromText = data.split(" | ");
-                System.out.println(Arrays.toString(fromText));
+                String[] fromText = data.split(" \\| "); //special chara
                 boolean done = fromText[1].equals("1") ? true : false;
-                switch (fromText[0]) {
+                switch(fromText[0]) {
                     case "T":
                         task = new ToDo(fromText[2], done, "");
                         arr.add(curr++, task);
                         break;
                     case "E":
                         task = new Event(fromText[2], done, fromText[3]);
-                        System.out.println(task);
                         arr.add(curr++, task);
                         break;
                     case "D":
@@ -50,10 +47,10 @@ public class Duke {
                 }
             }
             myReader.close();
-        }
-            catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
         try {
             PrintWriter writer = new PrintWriter(new File(FILE_PATH));
             writer.print("");
@@ -179,17 +176,20 @@ public class Duke {
 
 
     public static void createFiles() throws IOException {
-        String[] arrFiles = FILE_PATH.split("/");
+        String[] arr = FILE_PATH.split("/");
         java.nio.file.Path path = java.nio.file.Paths.get("");
-        for (int i = 0; i < arrFiles.length - 1; i++) {
-            path = java.nio.file.Paths.get(String.valueOf(path),arrFiles[i]);
+        for (int i = 0; i < arr.length - 1; i++) {
+            path = java.nio.file.Paths.get(String.valueOf(path),arr[i]);
             boolean directoryExists = java.nio.file.Files.exists(path);
             if(!directoryExists) {
                 new File(String.valueOf(path)).mkdirs();
                 System.out.println("hi, made new directory");
             }
         }
-        File filePath = new File(FILE_PATH);
-        filePath.createNewFile();
+        java.nio.file.Path filePath = java.nio.file.Paths.get(FILE_PATH);
+        boolean directoryExists = java.nio.file.Files.exists(filePath);
+        if(!directoryExists) {
+            filePath.toFile().createNewFile();
+        }
     }
 }
