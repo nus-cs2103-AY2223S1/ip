@@ -13,6 +13,7 @@ public class Duke {
 
     /**
      *Constructor for Duke class
+     *
      * Creates Ui and Storage instance
      * @param filePath File path for storage list
      */
@@ -47,6 +48,7 @@ public class Duke {
 
     /**
      * Main method of the Duke program
+     *
      * @param args Arguments passed to the main method
      */
     public static void main(String[] args) {
