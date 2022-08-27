@@ -104,6 +104,9 @@ public class Ui {
         return command;
     }
 
+    /**
+     * Prints a notification of tasks being found.
+     */
     public void showFound() {
         System.out.println("Here are the matching tasks in your list:");
     }
