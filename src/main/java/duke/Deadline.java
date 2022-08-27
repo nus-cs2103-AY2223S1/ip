@@ -1,7 +1,7 @@
 package duke;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
 
 /**
  * The Deadline class encapsulates a Deadline task.
@@ -25,8 +25,8 @@ public class Deadline extends Task {
         try {
             this.deadline = LocalDateTime.parse(by.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
         }
     }
 
@@ -44,8 +44,8 @@ public class Deadline extends Task {
         try {
             this.deadline = LocalDateTime.parse(by.substring(1));
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. " +
-                    "E.g 2019-10-15T10:15:00");
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minute:Seconds format. "
+                    + "E.g 2019-10-15T10:15:00");
         }
     }
 

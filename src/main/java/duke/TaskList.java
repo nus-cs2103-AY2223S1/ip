@@ -5,14 +5,14 @@ import java.util.ArrayList;
  * The TaskList class encapsulates a collection of Task objects.
  */
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public TaskList(ArrayList<Task> taskList) {
-        this.taskList = taskList;
+        this.tasks = taskList;
     }
 
     /**
@@ -21,7 +21,7 @@ public class TaskList {
      * @param task Task to be done.
      */
     public void add(Task task) {
-        taskList.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -31,7 +31,7 @@ public class TaskList {
      * @return the task of given index found in list.
      */
     public Task get(int index) {
-        Task t = taskList.get(index);
+        Task t = tasks.get(index);
         return t;
     }
 
@@ -42,7 +42,7 @@ public class TaskList {
      * @return The element that was removed from the list
      */
     public Task remove(int index) {
-        Task t = taskList.remove(index);
+        Task t = tasks.remove(index);
         return t;
     }
 
@@ -52,7 +52,7 @@ public class TaskList {
      * @return the size of the list.
      */
     public int size() {
-        return taskList.size();
+        return tasks.size();
     }
 
     /**
@@ -61,6 +61,6 @@ public class TaskList {
      * @return the collection of Task objects.
      */
     public ArrayList<Task> getTaskList() {
-        return this.taskList;
+        return this.tasks;
     }
 }

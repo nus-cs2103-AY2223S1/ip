@@ -34,6 +34,7 @@ public class Storage {
     public static void printFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
+
         while (s.hasNextLine()) {
             System.out.println(s.nextLine());
         }
@@ -48,6 +49,7 @@ public class Storage {
      */
     public static void formatToList(File f, ArrayList<Task> taskList) throws FileNotFoundException {
         Scanner s = new Scanner(f);
+
         try {
             while (s.hasNextLine()) {
                 String[] taskDescription = s.nextLine().split(" \\| ");
@@ -56,21 +58,27 @@ public class Storage {
                 String description = taskDescription[2] + " ";
                 String date = " ";
                 Task task = null;
+
                 if (taskDescription.length == 4) {
                     date += taskDescription[3];
                 }
+
                 if (taskType.equals("T")) {
                     task = new ToDo(description, isDone);
                 }
+
                 if (taskType.equals("D")) {
                     task = new Deadline(description, isDone, date);
                 }
+
                 if (taskType.equals("E")) {
                     task = new Event(description, isDone, date);
                 }
+
                 if (isDone) {
                     task.markAsDone();
                 }
+
                 taskList.add(task);
             }
         } catch (DukeException e) {
@@ -86,13 +94,16 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
+
         try {
             File file = new File(this.filePath);
+
             if (!file.exists()) {
                 Path path = Paths.get("./data/");
                 Files.createDirectories(path);
                 file.createNewFile();
             }
+
             printFileContents(this.filePath);
             formatToList(file, taskList);
         } catch (FileNotFoundException e) {
@@ -131,6 +142,4 @@ public class Storage {
             System.out.println(e.getMessage());
         }
     }
-
-
 }
