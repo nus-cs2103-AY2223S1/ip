@@ -16,13 +16,14 @@ public class Storage {
     }
 
     /**
-     * Overwrites the contents of fileName (if exists) with the current tasks
+     * Overwrites the contents of fileName (if exists) with the current tasks.
+     *
+     * @param taskList The TaskList instance which contains the task list.
      */
     public void writeAllTasksToFile(TaskList taskList) {
         File file = new File(this.fileName);
-        FileWriter fw = null;
         try {
-            fw = new FileWriter(file, false);
+            FileWriter fw = new FileWriter(file, false);
             for (int i = 0; i < taskList.count(); i++) {
                 Task task = taskList.get(i);
                 String encodedTask = task.encode();

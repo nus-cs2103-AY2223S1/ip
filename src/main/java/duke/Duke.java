@@ -14,13 +14,24 @@ public class Duke {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
-
+    /**
+     * Returns a Duke instance.
+     *
+     * @param fileName The name of the file to store the tasks.
+     * @param fo The FileOperator to perform file manipulation.
+     * @param taskList The TaskList instance to manage all tasks.
+     */
     public Duke(String fileName, Storage fo, TaskList taskList) {
         FILE_NAME = fileName;
         this.FO = fo;
         this.TASK_LIST = taskList;
     }
 
+    /**
+     * Serves as the entry point for the main Duke application.
+     *
+     * @param args The user input to the application.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("data.txt", new Storage("data.txt"), new TaskList());
         Ui ui = new Ui(duke.FILE_NAME);
@@ -54,6 +65,11 @@ public class Duke {
         sc.close();
     }
 
+    /**
+     * Runs the Duke application by processing the user input and executing necessary commands.
+     *
+     * @param input The input entered by the user.
+     */
     public void run(String input) {
         Ui ui = new Ui(FILE_NAME);
         try {

@@ -3,7 +3,7 @@ package duke;
 import java.util.ArrayList;
 
 public class TaskList {
-    private static ArrayList<Task> tasks = new ArrayList<Task>();
+    private ArrayList<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<>();
@@ -68,9 +68,6 @@ public class TaskList {
                 count(), count() > 1 ? "s" : "");
     }
 
-    /**
-     * Copies all tasks into tasks list. Useful when loading all the tasks from file.
-     */
     public void addTasks(ArrayList<Task> tasks) {
         this.tasks.addAll(tasks);
     }
