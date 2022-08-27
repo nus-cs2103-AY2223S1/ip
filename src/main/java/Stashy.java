@@ -135,7 +135,7 @@ public class Stashy {
             if (taskName.isEmpty()) {
                 throw new StashyException("Please don't give me an empty todo description :(");
             }
-            tasks.add(new ToDos(taskName));
+            tasks.add(new ToDo(taskName));
         } else if (input.startsWith("deadline")) {
             String[] temp = input.replace("deadline", "").strip().split("/by");
             taskName = temp[0].strip();
@@ -148,7 +148,7 @@ public class Stashy {
             if (by.isEmpty()) {
                 throw new StashyException("Specify the due date of the deadline, perhaps?");
             }
-            tasks.add(new Deadlines(taskName, by));
+            tasks.add(new Deadline(taskName, by));
         } else if (input.startsWith("event")) {
             String[] temp = input.replace("event", "").strip().split("/at");
             taskName = temp[0].strip();
@@ -161,7 +161,7 @@ public class Stashy {
             if (at.isEmpty()) {
                 throw new StashyException("Specify the time of the event, perhaps?");
             }
-            tasks.add(new Events(taskName, at));
+            tasks.add(new Event(taskName, at));
         }
         printIndented("There, we have a new task:\n  " + tasks.get(tasks.size() - 1)
                 + "\nYou have " + tasks.size() + " task(s) in the list.");

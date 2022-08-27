@@ -23,13 +23,13 @@ public class TaskReader {
             String[] lineSplit = s.nextLine().split("\\|");
             switch (lineSplit[0].strip()) {
                 case "T":
-                    listOfTasks.add(new ToDos(lineSplit[2].strip()));
+                    listOfTasks.add(new ToDo(lineSplit[2].strip()));
                     break;
                 case "D":
-                    listOfTasks.add(new Deadlines(lineSplit[2].strip(), lineSplit[3].strip()));
+                    listOfTasks.add(new Deadline(lineSplit[2].strip(), lineSplit[3].strip()));
                     break;
                 case "E":
-                    listOfTasks.add(new Events(lineSplit[2].strip(), lineSplit[3].strip()));
+                    listOfTasks.add(new Event(lineSplit[2].strip(), lineSplit[3].strip()));
                     break;
                 default:
                     break;
