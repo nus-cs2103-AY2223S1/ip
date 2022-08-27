@@ -1,4 +1,2 @@
-todo borrow book
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-list
+T | 0 |  borrow book
+T | 0 |  buy bread

@@ -1,4 +1,6 @@
-public class DukeException extends Exception {
+package duke;
+
+public class DukeException extends RuntimeException {
     private String message;
 
     public DukeException(String message) {
