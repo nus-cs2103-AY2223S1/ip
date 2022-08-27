@@ -28,7 +28,7 @@ public class Ui {
     }
 
     public void printGoodbyeMessage() {
-        System.out.println(straightLine + "\n  さよなら, goodbye\n" + straightLine);
+        System.out.println(straightLine + "\n  sayonara, goodbye\n" + straightLine);
     }
 
 
