@@ -133,7 +133,7 @@ public class Duke {
                 " tasks on the list.");
     }
 
-    private static void addDeadline(String input) {
+    private static void addDeadline(String input) throws DukeException {
         String[] phrases = input.split(" /by ", 2);
         Deadline newDeadline = new Deadline(phrases[0], phrases[1]);
         taskList.add(newDeadline);
@@ -141,7 +141,7 @@ public class Duke {
                 " tasks on the list.");
     }
 
-    private static void addEvent(String input) {
+    private static void addEvent(String input) throws DukeException {
         String[] phrases = input.split(" /at ", 2);
         Event newEvent = new Event(phrases[0], phrases[1]);
         taskList.add(newEvent);
