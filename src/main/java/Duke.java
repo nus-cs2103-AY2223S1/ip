@@ -13,6 +13,7 @@ public class Duke {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
+        //file creation
         try {
             createFiles();
         } catch (Exception e) {
@@ -24,6 +25,7 @@ public class Duke {
         int curr = 0;
         Task task = new Task(input, "");
 
+        //file reading
         try {
             File myObj = new File(FILE_PATH);
             Scanner myReader = new Scanner(myObj);
@@ -58,18 +60,14 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Nth to read form duke.txt");
         }
-        /*if(task.getVal().equals("")) {
-            arr.add(curr, task);
-        }*/
 
+        //main body
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
-            //System.out.println(task.getVal());
             if(task.getVal().equals("list")) {
                 for(int i = 0; i < curr; i++) {
                     System.out.println(arr.get(i));
                 }
-                //System.out.println(input); level 1
             }
             else if(task.getVal().indexOf("mark") == 0) {
                 String[] at = task.getVal().split(" ");
