@@ -135,15 +135,22 @@ public class TaskList {
     }
 
     /**
-     * Finds the Tasks containing the given keyword.
+     * Finds the Tasks containing the given keywords.
      *
-     * @param keyword Given keyword.
+     * @param keywords Given keywords.
      * @return String representation of the Tasks found.
      */
-    public String findTasks(String keyword) {
+    public String findTasks(String ... keywords) {
         ArrayList<String> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.hasKeyword(keyword)) {
+            boolean hasAllKeywords = true;
+            for (String keyword : keywords) {
+                if (!task.hasKeyword(keyword)) {
+                    hasAllKeywords = false;
+                    break;
+                }
+            }
+            if (hasAllKeywords) {
                 foundTasks.add(task.toString());
             }
         }

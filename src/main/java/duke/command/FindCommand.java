@@ -5,22 +5,22 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * FindCommand is a Command that searches for Tasks using a keyword.
+ * FindCommand is a Command that searches for Tasks using keywords.
  *
  * @author Jet Lee
  * @version CS2103T AY22/23 Sem 1
  */
 public class FindCommand extends Command {
-    private String keyword;
+    private String[] keywords;
 
     /**
      * Constructor for FindCommand
      *
-     * @param keyword Keyword to search for.
+     * @param keywords Keywords to search for.
      */
-    public FindCommand(String keyword) {
+    public FindCommand(String[] keywords) {
         super();
-        this.keyword = keyword;
+        this.keywords = keywords;
     }
 
     /**
@@ -32,6 +32,6 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMessage(tasks.findTasks(keyword));
+        ui.printMessage(tasks.findTasks(keywords));
     }
 }

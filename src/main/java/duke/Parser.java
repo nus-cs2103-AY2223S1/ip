@@ -7,8 +7,8 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
-import duke.command.FindCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
@@ -88,7 +88,8 @@ public class Parser {
                 case DELETE:
                     return new DeleteCommand(Integer.parseInt(info) - 1);
                 case FIND:
-                    return new FindCommand(info);
+                    String[] findSplit = info.split("\\s+");
+                    return new FindCommand(findSplit);
                 default:
                     throw new DukeException("Please re-enter the command only.");
                 }
