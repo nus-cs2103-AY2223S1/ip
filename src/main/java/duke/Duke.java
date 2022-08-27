@@ -1,6 +1,10 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * The main class for the Duke program.
@@ -8,10 +12,14 @@ import duke.command.Command;
  * @author dexter-sim
  * @version 0.1
  */
-public class Duke {
+public class Duke extends Application {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+    public Duke() {
+
+    }
 
     /**
      * Creates a Duke object with specified file path to load and store tasks.
@@ -49,5 +57,13 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Label helloWorld = new Label("Hello World!");
+        Scene scene = new Scene(helloWorld);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
