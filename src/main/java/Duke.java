@@ -42,10 +42,18 @@ public class Duke {
                         taskList.add(new Todo(oldTask[1]));
                         break;
                     case "D":
-                        taskList.add(new Deadline(oldTask[1], oldTask[2]));
+                        try {
+                            taskList.add(new Deadline(oldTask[1], oldTask[2]));
+                        } catch (DukeException dukeException) {
+                            System.out.println("Error creating saved list.");
+                        }
                         break;
                     case "E":
-                        taskList.add(new Event(oldTask[1], oldTask[2]));
+                        try {
+                            taskList.add(new Event(oldTask[1], oldTask[2]));
+                        } catch (DukeException dukeException) {
+                            System.out.println("Error creating saved list.");
+                        }
                         break;
                     default:
 
