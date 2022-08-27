@@ -7,7 +7,6 @@ public class Parser {
     private TaskList taskList;
     private Storage storage;
 
-<<<<<<< HEAD
     /**
      * Constructor to create instance of Parser
      * which will make sense of user input
@@ -15,9 +14,6 @@ public class Parser {
      *
      */
     public Parser(Ui ui,Storage storage) {
-=======
-    public Parser(Ui ui, Storage storage) {
->>>>>>> branch-A-CodingStandard
         this.ui = ui;
         this.storage = storage;
         try {

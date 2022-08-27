@@ -17,18 +17,12 @@ public class TaskList {
         return this.taskList;
     }
 
-<<<<<<< HEAD
     /**
      * Lists out all the tasks currently
      * in the task list
      *
      * @return String list of tasks
      */
-    public String handleList(){
-        String log = "Tasks that you have:";
-        for (int i = 0; i < taskList.size(); i++) {
-            log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
-=======
     public String handleList() {
         if (this.taskList.size() == 0) {
             return "No tasks as of now!";
@@ -38,7 +32,6 @@ public class TaskList {
                 log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
             }
             return log;
->>>>>>> branch-A-CodingStandard
         }
     }
 
@@ -92,7 +85,7 @@ public class TaskList {
         }
     }
 
-<<<<<<< HEAD
+
     /**
      * Creates new ToDo task to be added into task list.
      *
@@ -100,16 +93,9 @@ public class TaskList {
      * @return String Add message
      * @throws IncompleteParamException incomplete cmd
      */
-    public String handleToDo(String cmd) throws DukeException{
-        int min_length = "todo ".length();
-        if (cmd.length() <= min_length) {
-=======
-
-
     public String handleToDo(String cmd) throws DukeException {
         int minLength = "todo ".length();
         if (cmd.length() <= minLength) {
->>>>>>> branch-A-CodingStandard
             throw new IncompleteParamException(cmd);
         } else {
             String description = cmd.substring("todo ".length());
@@ -163,7 +149,6 @@ public class TaskList {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Deletes task from list
      *
@@ -172,14 +157,9 @@ public class TaskList {
      * @throws IncompleteParamException incomplete cmd
      * @throws OutOfListException Task number is not within list
      */
-    public String handleDelete(String cmd) throws DukeException{
-        int min_length = "delete ".length();
-        if (cmd.length() <= min_length) {
-=======
     public String handleDelete(String cmd) throws DukeException {
         int minLength = "delete ".length();
         if (cmd.length() <= minLength) {
->>>>>>> branch-A-CodingStandard
             throw new IncompleteParamException(cmd);
         } else {
             int taskNumber = Integer.valueOf(cmd.substring("delete ".length()));

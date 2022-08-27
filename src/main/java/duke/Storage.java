@@ -9,13 +9,12 @@ import java.util.Scanner;
 public class Storage {
     private final String pathFile;
 
-<<<<<<< HEAD
     /**
      * Constructor to create instance of Storage
      *
      * @param pathFile path
      */
-    public Storage(String pathFile){
+    public Storage(String pathFile) {
         this.pathFile = pathFile;
     }
 
@@ -25,18 +24,9 @@ public class Storage {
      *
      * @param taskList List of tasks
      */
-    public void save(ArrayList<Task> taskList){
-        try{
-            FileWriter fw = new FileWriter(pathFile,false);
-=======
-    public Storage(String pathFile) {
-        this.pathFile = pathFile;
-    }
-
     public void save(ArrayList<Task> taskList) {
         try {
             FileWriter fw = new FileWriter(pathFile, false);
->>>>>>> branch-A-CodingStandard
             String allTasks = "";
             for (Task task : taskList) {
                 allTasks += task.changeFormat() + "\n";
@@ -48,7 +38,6 @@ public class Storage {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Loads the taskList from the file
      * in the path
@@ -56,10 +45,7 @@ public class Storage {
      * @return Task List
      * @throws IOException If IO error occurs
      */
-    public TaskList load() throws IOException{
-=======
     public TaskList load() throws IOException {
->>>>>>> branch-A-CodingStandard
         TaskList taskList = new TaskList();
         File file = new File(this.pathFile);
         file.getParentFile().mkdirs();
