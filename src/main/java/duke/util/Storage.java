@@ -31,10 +31,8 @@ public class Storage {
     public void saveFile(String fileStream) throws DukeIoException {
         try {
             File file = new File(filePath);
-            if (!file.exists()) {
-                if (!file.createNewFile()) {
-                    throw new DukeIoException(FILE_IO_ERROR_MESSAGE);
-                }
+            if (!file.exists() && !file.createNewFile()) {
+                throw new DukeIoException(FILE_IO_ERROR_MESSAGE);
             }
 
             FileWriter fileWriter = new FileWriter(filePath);

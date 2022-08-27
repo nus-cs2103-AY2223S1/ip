@@ -16,8 +16,8 @@ public class Duke {
     public static final String TAB = "    ";
 
     private static final String FILE_PATH = "saved_list.txt";
-    private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
-            + "\nWhat can I help you?";
+    private static final String GREETING_MESSAGE = "Hi there! I' am Duke, your personal time manager."
+            + "\n" + TAB + "What can I help you?";
 
     private final TaskList taskList;
     private final Ui ui;
