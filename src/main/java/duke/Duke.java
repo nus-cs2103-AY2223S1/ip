@@ -3,11 +3,18 @@ package duke;
 import duke.command.Command;
 import duke.exception.DukeException;
 
+/**
+ * Represents the Duke application.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs Duke object.
+     * Initializes ui, storage and tasks.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage();
@@ -19,6 +26,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke application.
+     * Application runs until ExitCommand is executed.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -37,6 +48,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point of Duke application.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

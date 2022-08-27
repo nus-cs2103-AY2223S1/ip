@@ -14,7 +14,17 @@ import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.TaskType;
 
+/**
+ * Utility class to convert user input into a Command.
+ */
 public class Parser {
+    /**
+     * Parses raw input from user into a specific Command.
+     * 
+     * @param fullCommand Raw input from user.
+     * @return Command that corresponds to input.
+     * @throws DukeException If fullCommand is of an invalid format.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         fullCommand = fullCommand.strip();
         String[] fullCommandArr = fullCommand.split(" ", 2);
