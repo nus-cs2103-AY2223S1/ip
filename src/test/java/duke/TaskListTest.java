@@ -8,7 +8,7 @@ import duke.task.Todo;
 
 public class TaskListTest {
     @Test
-    public void add_task_test() {
+    public void addTask() {
         TaskList tasks = new TaskList();
         tasks.add(new Todo("test Todo"));
         String actual = tasks.toString();

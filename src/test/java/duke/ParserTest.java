@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
     @Test
-    public void parse_delete_command_test() {
+    public void parse_deleteCommand() {
         Command expected = new DeleteCommand(1);
         String inputCommand = "delete 2";
         try {
@@ -24,7 +24,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_bad_delete_command_test() {
+    public void parse_deleteCommandWithoutIndex_exceptionThrown() {
         String inputCommand = "delete";
         try {
             Parser.parse(inputCommand);
@@ -37,7 +37,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_mark_command_test() {
+    public void parse_markCommand() {
         Command expected = new MarkCommand(3);
         String inputCommand = "mark 4";
         try {
