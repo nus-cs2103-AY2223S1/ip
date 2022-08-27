@@ -67,7 +67,8 @@ public class Parser {
      * @throws FileParseException If there's an error when the line was written to save file previously.
      * @throws NoArgumentException If only the command is given without any arguments.
      */
-    private void parseListCommands(String input, boolean fromSave) throws WrongArgumentException, FileParseException, NoArgumentException {
+    private void parseListCommands(String input, boolean fromSave)
+            throws WrongArgumentException, FileParseException, NoArgumentException {
         String mark = null;
         String[] arr;
         if (fromSave) {
