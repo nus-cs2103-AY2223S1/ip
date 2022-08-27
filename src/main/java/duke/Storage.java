@@ -7,13 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The class of storing tasks into file or extract tasks out of file.
+ * @author Lan Jingbo, Jerry
+ */
 class Storage {
     String filePath;
 
+    /**
+     * The constructor of the Storage.
+     * @param filePath the given file path
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * The method for saving tasks into file.
+     *
+     * @param taskList the given task list
+     * @throws IOException the potential exceptions
+     */
     public void saveFile(TaskList taskList) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         List<Task> t = taskList.getTaskList();
@@ -24,6 +38,12 @@ class Storage {
         fw.close();
     }
 
+    /**
+     * The method for saving tasks into file.
+     *
+     * @return The tasks in the file
+     * @throws WrongMessageException the potential exceptions
+     */
     public ArrayList<Task> extractFile() throws WrongMessageException {
         ArrayList<Task> list = new ArrayList<>();
         File file = new File(filePath);

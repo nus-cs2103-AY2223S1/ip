@@ -6,6 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
+/**
+ * An interactive chatbot.
+ *
+ * @author Lan Jingbo, Jerry
+ */
 public class Duke {
 
     private Ui ui;
@@ -13,6 +18,10 @@ public class Duke {
     private Storage storage;
     static String PATH = "./src/main/files/taskset.txt";
 
+    /**
+     * The constructor for duke.
+     * @param filePath the path of the .txt file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +33,12 @@ public class Duke {
         }
     }
 
+    /**
+     * mark the targeted task to "complete".
+     *
+     * @param target the index of task
+     * @throws WrongMessageException potential exception
+     */
     public void mark(int target) throws WrongMessageException {
         Task willMark = tasks.getTask(target - 1);
         willMark.donelah();
@@ -31,6 +46,12 @@ public class Duke {
                 + willMark.toString());
     }
 
+    /**
+     * mark the targeted task to "incomplete".
+     *
+     * @param target the index of task
+     * @throws WrongMessageException potential exception
+     */
     public void unmark(int target) throws WrongMessageException {
         Task willUnmark = tasks.getTask(target - 1);
         willUnmark.nodone();
@@ -38,6 +59,11 @@ public class Duke {
                 + willUnmark.toString());
     }
 
+    /**
+     * show the list of task.
+     *
+     * @throws WrongMessageException potential exception
+     */
     public void showList() throws WrongMessageException {
         System.out.println("Your list is as following");
         for (int i = 1; i <= tasks.getSize(); i++) {
@@ -46,6 +72,12 @@ public class Duke {
         }
     }
 
+    /**
+     * delete the targeted task.
+     *
+     * @param str the index of task
+     * @throws WrongMessageException potential exception
+     */
     public void delete(String str) throws WrongMessageException {
         String[] temp = str.split(" ");
         int key3 = Integer.decode(temp[1]);
@@ -53,6 +85,11 @@ public class Duke {
         System.out.println("now you have " + tasks.getSize() + " tasks in the list");
     }
 
+    /**
+     * return the list of task on given date.
+     *
+     * @param localDate the given date
+     */
     public void getOnDate(LocalDate localDate) {
         List<Task> shortList = tasks.getTaskList().stream().filter(task -> task.isOnDate(localDate))
                 .collect(Collectors.toList());
@@ -65,6 +102,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Run the chatbot.
+     */
     public void run() {
         ui.greet();
 
@@ -115,6 +155,10 @@ public class Duke {
         }
     }
 
+    /**
+     * main function for running.
+     * @param args nothing here
+     */
     public static void main(String[] args) {
         new Duke(PATH).run();
     }

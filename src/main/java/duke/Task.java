@@ -35,6 +35,10 @@ public class Task {
         return false;
     }
 
+    public boolean hasThis(String str) {
+        return itself.contains(str);
+    }
+
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + itself;
