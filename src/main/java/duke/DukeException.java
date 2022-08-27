@@ -1,3 +1,5 @@
+package duke;
+
 abstract public class DukeException {
     private String message;
 

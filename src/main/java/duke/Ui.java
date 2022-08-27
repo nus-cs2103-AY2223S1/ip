@@ -1,5 +1,6 @@
-import java.util.Scanner;
+package duke;
 
+import java.util.Scanner;
 public class Ui {
 
     public void printStart() {

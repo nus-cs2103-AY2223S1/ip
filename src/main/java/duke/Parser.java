@@ -1,3 +1,4 @@
+package duke;
 public class Parser {
     public boolean parse(String fullCommand, Ui ui, TaskList taskList, Storage storage) {
         String[] commandBreakdown = fullCommand.split(" ");
