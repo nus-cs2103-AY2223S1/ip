@@ -20,17 +20,46 @@ public class Duke {
             } else if (input.equals("list")) {
                 taskList.printTasks();
             } else if (input.startsWith("mark")) {
+                if (input.length() <= 5) {
+                    System.out.println("You need to specify the index of the task to mark");
+                    continue;
+                }
+                // -1 to match 0-based index
                 taskList.markTaskAsDone(Integer.parseInt(input.substring(5)) - 1);
             } else if (input.startsWith("unmark")) {
+                if (input.length() <= 7) {
+                    System.out.println("You need to specify the index of the task to unmark");
+                    continue;
+                }
                 taskList.markTaskAsUnDone(Integer.parseInt(input.substring(7)) - 1);
             } else if (input.startsWith("todo")) {
+                if (input.length() <= 5) {
+                    System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    continue;
+                }
                 taskList.addTask(input.substring(5), Task.TaskType.ToDo);
             } else if (input.startsWith("event")) {
+                if (input.length() <= 6) {
+                    System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+                    continue;
+                } else if (! input.contains("/at")) {
+                    System.out.println("☹ OOPS!!! The event should have a time.\n" +
+                            "e.g. event {name} /at {time}");
+                    continue;
+                }
                 taskList.addTask(input.substring(6), Task.TaskType.Event);
             } else if (input.startsWith("deadline")) {
+                if (input.length() <= 9) {
+                    System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    continue;
+                } else if (! input.contains("/by")) {
+                    System.out.println("☹ OOPS!!! The deadline should have a due date.\n" +
+                            "e.g. deadline {name} /by {time}");
+                    continue;
+                }
                 taskList.addTask(input.substring(9), Task.TaskType.Deadline);
             } else {
-                System.out.println("Invalid input. Please enter again");
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
 
