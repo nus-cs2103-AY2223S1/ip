@@ -1,7 +1,6 @@
 package duke.command;
 
 import java.time.LocalDate;
-
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -43,15 +42,15 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = null;
         switch (taskType) {
-            case TODO:
-                task = new Todo(description);
-                break;
-            case DEADLINE:
-                task = new Deadline(description, taskDate);
-                break;
-            case EVENT:
-                task = new Event(description, taskDate);
-                break;
+        case TODO:
+            task = new Todo(description);
+            break;
+        case DEADLINE:
+            task = new Deadline(description, taskDate);
+            break;
+        case EVENT:
+            task = new Event(description, taskDate);
+            break;
         }
         tasks.add(task);
         storage.save(tasks);

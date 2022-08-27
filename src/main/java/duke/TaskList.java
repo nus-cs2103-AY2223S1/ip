@@ -2,7 +2,6 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import duke.task.Task;
 
 /**
@@ -84,6 +83,7 @@ public class TaskList {
         if (tasks.isEmpty()) {
             return "You have no tasks currently.";
         }
+
         String result = "";
         for (int i = 0; i < tasks.size(); i++) {
             result += (i + 1) + "." + tasks.get(i);

@@ -5,6 +5,7 @@
 
 # VSCode files
 /.vscode/
+java-style.xml
 
 # Gradle build files
 /.gradle/
