@@ -25,4 +25,8 @@ public class Task {
     public void markNotDone() {
         isDone = false;
     }
+
+    public String data() {
+        return type + ", " + (isDone ? 1 : 0) + ", " + description;
+    }
 }

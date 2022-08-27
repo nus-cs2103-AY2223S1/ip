@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -5,7 +9,7 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = initialize();
         while (true) {
             try {
                 String s = sc.next();
@@ -79,10 +83,61 @@ public class Duke {
                     String rest = sc.nextLine();
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+                modify(tasks);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
         sc.close();
+    }
+
+    private static ArrayList<Task> initialize() {
+        File file = new File("./duke.txt");
+        ArrayList<Task> tasks = new ArrayList<>();
+        Scanner sc;
+        try {
+            file.createNewFile();
+            sc = new Scanner(file);
+        } catch (IOException e) {
+            return tasks;
+        }
+        while (sc.hasNext()) {
+            String task = sc.nextLine();
+            String[] split = task.split(", ");
+            for (String element : split) {
+                System.out.println(element);
+            }
+            if (split[0].equals("T")) {
+                tasks.add(new Task(split[2]));
+                if (split[1].equals("1")) {
+                    tasks.get(tasks.size() - 1).markAsDone();
+                }
+            } else if (split[0].equals("D")) {
+                tasks.add(new Deadline(split[2], split[3]));
+                if (split[1].equals("1")) {
+                    tasks.get(tasks.size() - 1).markAsDone();
+                }
+            } else if (split[0].equals("E")) {
+                tasks.add(new Event(split[2], split[3]));
+                if (split[1].equals("1")) {
+                    tasks.get(tasks.size() - 1).markAsDone();
+                }
+            }
+        }
+        return tasks;
+    }
+
+    private static void modify(ArrayList<Task> tasks) {
+        String data = "";
+        try {
+            FileWriter fw = new FileWriter("./duke.txt");
+            for (Task task : tasks) {
+                data += task.data() + "\n";
+            }
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+
+        }
     }
 }
