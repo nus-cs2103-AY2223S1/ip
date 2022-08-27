@@ -10,15 +10,15 @@ public class Task {
     /**
      * Creates a Task object
      */
-    protected Task(String description) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     /**
-     * Creates a Task object
+     * Creates a Task object and set isDone property
      */
-    protected Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
