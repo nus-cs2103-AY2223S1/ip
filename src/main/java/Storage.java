@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,6 +9,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Storage {
+    private File file;
     private Scanner scanner;
 
     // for third arg, e.g. src/main/data/data.txt -> pass in src, main, data, data.txt
@@ -36,7 +38,7 @@ public class Storage {
         }
 
         // initialise the scanner for the file
-        File file = new File(pathString);
+        this.file = new File(pathString);
         try {
             this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
@@ -46,7 +48,7 @@ public class Storage {
     }
 
     // initialises the tasklist with commands from output file
-    public void load(TaskList taskList, Ui ui) {
+    public void load(TaskList taskList, Ui ui) throws IOException {
         if (!this.scanner.hasNext()) {
             ui.printWithDivider("No previous tasks found, starting with empty task list!");
             return;
@@ -83,11 +85,20 @@ public class Storage {
                 }
 
                 if (!Objects.isNull(command)) {
-                    command.execute(taskList);
+                    command.execute(taskList, this);
                 }
             }
+            ui.println("Successfully read previous tasks.");
             ui.printDivider();
+            ui.println("");
+            new ListCommand("list").execute(taskList, this, ui);
         }
+    }
+
+    public void write(String s) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        fw.write(s);
+        fw.close();
     }
 
 }
