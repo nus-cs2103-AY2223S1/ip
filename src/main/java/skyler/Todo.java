@@ -1,6 +1,14 @@
 package skyler;
 
+/**
+ * Represents a task without any date or time attached to it
+ */
 public class Todo extends Task {
+    /**
+     * Creates a todo object
+     *
+     * @param description Description of the task.
+     */
     public Todo(String description) {
         super(description);
     }

@@ -3,6 +3,9 @@ package skyler;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Represents a personal chat assistant
+ */
 public class Skyler {
 
     private Storage storage;
@@ -10,6 +13,11 @@ public class Skyler {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Creates a personal chat assistant object
+     *
+     * @param filePath Filepath for storage of task data, relative to project folder.
+     */
     public Skyler(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -23,6 +31,9 @@ public class Skyler {
         this.parser = new Parser(taskList);
     }
 
+    /**
+     * Activates the personal chat assistant
+     */
     public void run() {
         ui.greet();
 

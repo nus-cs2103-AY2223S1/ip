@@ -13,14 +13,28 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Represents the interface that loads tasks from and saves tasks in the specified file
+ */
 public class Storage {
 
     private String filePathChosen;
 
+    /**
+     * Creates a storage object
+     *
+     * @param filePathChosen Filepath for storage of task data, relative to project folder.
+     */
     public Storage(String filePathChosen) {
         this.filePathChosen = filePathChosen;
     }
 
+    /**
+     * Formats date and time information and returns a LocalDateTime object
+     *
+     * @param strDateTime String representation of date and time.
+     * @return Corresponding LocalDateTime object.
+     */
     public static LocalDateTime processDateTime(String strDateTime) {
         String[] timeInfo = strDateTime.split(" ", 2);
 
@@ -41,6 +55,14 @@ public class Storage {
     //https://www.geeksforgeeks.org/java-program-to-search-for-a-file-in-a-directory/ ,
     //https://www.educba.com/java-directories/ and
     //https://www.tutorialspoint.com/determine-if-file-or-directory-exists-in-java
+
+    /**
+     * Loads tasks from file and returns the corresponding list of tasks
+     *
+     * @return ArrayList of tasks previously stored in the file.
+     * @throws SkylerException If directory or file not found.
+     * @throws IOException If IO operation fails.
+     */
     public ArrayList<Task> load() throws SkylerException, IOException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -133,7 +155,13 @@ public class Storage {
         return tasks;
     }
 
-    public void saveTask(ArrayList<Task> task) throws java.io.IOException {
+    /**
+     * Saves tasks to file
+     *
+     * @param task ArrayList of tasks to save to file.
+     * @throws IOException If IO operation fails.
+     */
+    public void saveTask(ArrayList<Task> task) throws IOException {
         String filepath = new File(filePathChosen).getAbsolutePath();
         FileWriter fw = new FileWriter(filepath);
 

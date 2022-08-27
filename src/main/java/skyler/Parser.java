@@ -1,12 +1,29 @@
 package skyler;
+
+/**
+ * Represents an interpreter that makes sense of user commands
+ */
 public class Parser {
 
     private TaskList taskList;
 
+    /**
+     * Creates a parser object
+     *
+     * @param taskList TaskList to be manipulated with user commands.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
+    /**
+     * Returns status number based on input command detected
+     *
+     * @param command User command.
+     * @return 1 if user has more commands and 0 if user has completed commands.
+     * @throws EmptyDescriptionException If no input task is detected after command.
+     * @throws TaskNotRecognisedException If command is not recognised.
+     */
     public int parse(String command) throws EmptyDescriptionException, TaskNotRecognisedException {
         if (command.equals("bye")) {
             return 0;
