@@ -135,7 +135,6 @@ public class Duke {
                 input = sc.nextLine();
             }
         }
-
         System.out.println(EXIT_MESSAGE);
     }
 }

@@ -19,16 +19,16 @@ public class Document {
             writer.flush();
             for (Task curTask : taskList) {
                 if (curTask instanceof Event) {
-                    writer.write("Event | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + "|"
+                    writer.write("Event | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + " | "
                             + ((Event) curTask).getDatetime() + "\n");
                 } else if (curTask instanceof Todo) {
                     writer.write("Todo | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + "\n");
                 } else if (curTask instanceof Deadline) {
                     writer.write("Deadline | " + curTask.getStatusNumber() + " | " + curTask.getDescription()
-                            + "|" + ((Deadline) curTask).getDatetime() + "\n");
+                            + " | " + ((Deadline) curTask).getDatetime() + "\n");
                 }
             }
-        } catch(IOException err){
+        } catch(IOException err) {
             System.out.println("\n:( OOPS! I can't refresh the task file!");
         }
     }

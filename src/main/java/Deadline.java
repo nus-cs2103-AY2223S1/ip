@@ -9,7 +9,8 @@ public class Deadline extends Task {
     public Deadline(String description, String dt) {
         super(description);
         try {
-            LocalDateTime dtFormatted = LocalDateTime.parse(dt, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+            DateTimeFormatter parserFormats = DateTimeFormatter.ofPattern("[dd/MM/yyyy HHmm][dd MMMM yyyy HH:mm]");
+            LocalDateTime dtFormatted = LocalDateTime.parse(dt, parserFormats);
             this.dateTime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
         } catch (DateTimeParseException err) {
             System.out.println("I don't recognise this time format.\nTry using this format next time: dd/MM/yyyy HHmm");
@@ -17,7 +18,9 @@ public class Deadline extends Task {
         }
     }
 
-    public String getDatetime() { return this.dateTime; }
+    public String getDatetime() {
+        return this.dateTime;
+    }
 
     @Override
     public String toString() {
