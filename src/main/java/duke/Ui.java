@@ -79,4 +79,11 @@ public class Ui {
     public static void printTask(int i, Task currTask) {
         System.out.println(i + ". " + currTask);
     }
+
+    /**
+     * Print the starting message output when finding tasks.
+     */
+    public static void printFoundTasksStart() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }
