@@ -1,6 +1,6 @@
 package duke.storage;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 import duke.task.*;
 
 import java.io.*;
@@ -25,7 +25,7 @@ public class Storage {
                 f.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException("Error finding/creating data file");
+            throw new duke.exceptions.IOException("Error finding/creating data file");
         }
         return f;
     }
@@ -43,7 +43,7 @@ public class Storage {
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new DukeException("Error reading from data file");
+            throw new duke.exceptions.IOException("Error reading from data file");
         }
         return toReturn;
     }

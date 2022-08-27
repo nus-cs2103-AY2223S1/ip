@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exceptions.InvalidTaskException;
 import duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -23,16 +23,29 @@ public class TaskList {
 
     private void parseLine(String line) {
         String[] parts = line.split(" \\| ");
-        Task task = switch (parts[0]) {
-            case "T" -> new Todo(parts[2]);
-            case "D" -> new Deadline(parts[2], parts[3]);
-            case "E" -> new Event(parts[2], parts[3]);
-            default -> null;
-        };
+        Task task;
+        switch (parts[0]) {
+            case "T":
+                task = new Todo(parts[2]);
+                break;
+            case "D":
+                task = new Deadline(parts[2], parts[3]);
+                break;
+            case "E":
+                task = new Event(parts[2], parts[3]);
+                break;
+            default:
+                task = null;
+                break;
+        }
 
         switch (parts[1]) {
-            case "0" -> task.markAsUndone();
-            case "1" -> task.markAsDone();
+            case "0":
+                task.markAsUndone();
+                break;
+            case "1":
+                task.markAsDone();
+                break;
         }
         tasks.add(task);
     }
@@ -41,21 +54,22 @@ public class TaskList {
         ui.showList(tasks);
     }
 
-    public void markAsDone(int taskNumber, Ui ui) throws DukeException {
+    public void markAsDone(int taskNumber, Ui ui) {
         try {
+
             tasks.get(taskNumber).markAsDone();
             ui.showMessage("Nice! I've marked this task as done:\n  " + tasks.get(taskNumber));
         } catch (Exception e) {
-            throw new DukeException("Please give a valid task number");
+            throw new InvalidTaskException("Please give a valid task number");
         }
     }
 
-    public void markAsUndone(int taskNumber, Ui ui) throws DukeException {
+    public void markAsUndone(int taskNumber, Ui ui) {
         try {
             tasks.get(taskNumber).markAsUndone();
             ui.showMessage("OK, I've marked this task as not done yet:\n  " + tasks.get(taskNumber));
         } catch (Exception e) {
-            throw new DukeException("Please give a valid task number");
+            throw new InvalidTaskException("Please give a valid task number");
         }
     }
 
@@ -77,7 +91,7 @@ public class TaskList {
             printOnDelete(taskNumber, ui);
             tasks.remove(taskNumber);
         } else {
-            throw new DukeException("Please give a valid task number");
+            throw new InvalidTaskException("Please give a valid task number");
         }
     }
 }

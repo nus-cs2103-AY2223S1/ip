@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exceptions.InvalidDateTimeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -21,7 +21,7 @@ public class Task {
         try {
             this.date = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
-            throw new DukeException(e.getMessage());
+            throw new InvalidDateTimeException(e.getMessage());
         }
     }
 
