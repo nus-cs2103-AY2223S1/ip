@@ -19,10 +19,10 @@ public class Task {
         this(description, 'T', done);
     }
 
-    public static Task fromSaveString(String saveString) throws RuntimeException {
+    public static Task fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if(splitSaveString.length != 2) {
-            throw new RuntimeException("Tried to read unexpected save data.");
+            throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
         boolean done = splitSaveString[0].endsWith("1");

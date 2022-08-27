@@ -18,10 +18,10 @@ public class Event extends Task {
         this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
     }
 
-    public static Event fromSaveString(String saveString) throws RuntimeException {
+    public static Event fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if(splitSaveString.length != 3) {
-            throw new RuntimeException("Tried to read unexpected save data.");
+            throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
         String on = "on " + splitSaveString[2];

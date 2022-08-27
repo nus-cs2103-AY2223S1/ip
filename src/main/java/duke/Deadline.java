@@ -18,10 +18,10 @@ public class Deadline extends Task {
         this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
     }
 
-    public static Deadline fromSaveString(String saveString) throws RuntimeException {
+    public static Deadline fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if(splitSaveString.length != 3) {
-            throw new RuntimeException("Tried to read unexpected save data.");
+            throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
         String by = "by " + splitSaveString[2];
