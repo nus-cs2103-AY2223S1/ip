@@ -8,11 +8,20 @@ public class Storage {
     public String path;
     public TaskList taskList;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param path     Relative path of the file to store data in.
+     * @param taskList
+     */
     public Storage(String path, TaskList taskList) {
         this.path = path;
         this.taskList = taskList;
     }
 
+    /**
+     * Saves data in current taskList to local storage.
+     */
     public void save() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -22,11 +31,17 @@ public class Storage {
             }
             writer.write(tasks);
             writer.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Loads data from local storage into Duke.
+     * Only run on initial startup of Duke.
+     *
+     * @throws IOException Thrown when there is an IOException.
+     */
     public void load() throws IOException {
         createFile();
         File file = new File(path);
@@ -35,27 +50,27 @@ public class Storage {
 
         while (scanner.hasNext()) {
             String data = scanner.nextLine();
-            String type = data.substring(1,2);
-            String status = data.substring(4,5);
+            String type = data.substring(1, 2);
+            String status = data.substring(4, 5);
 
             switch (type) {
-                case "T":
-                    String todoDescription = data.substring(7);
-                    current = new ToDo(todoDescription);
-                    break;
-                case "D":
-                    String deadlineDescription = data.substring(7, data.indexOf("(") - 1);
-                    String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
-                    current = new Deadline(deadlineDescription, by);
-                    break;
-                case "E":
-                    String eventDescription = data.substring(7, data.indexOf("(") - 1 );
-                    String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
-                    current = new Deadline(eventDescription, at);
-                    break;
-                default:
-                    System.out.println("The file may be corrupted");
-                    break;
+            case "T":
+                String todoDescription = data.substring(7);
+                current = new ToDo(todoDescription);
+                break;
+            case "D":
+                String deadlineDescription = data.substring(7, data.indexOf("(") - 1);
+                String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                current = new Deadline(deadlineDescription, by);
+                break;
+            case "E":
+                String eventDescription = data.substring(7, data.indexOf("(") - 1);
+                String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
+                current = new Deadline(eventDescription, at);
+                break;
+            default:
+                System.out.println("The file may be corrupted");
+                break;
             }
             if (status.equals("X")) {
                 current.markAsDone();
@@ -65,7 +80,7 @@ public class Storage {
         scanner.close();
     }
 
-    public void createFile() {
+    private void createFile() {
         try {
             File file = new File(path);
             file.createNewFile();

@@ -5,12 +5,24 @@ public class EventHandler {
     public TaskList taskList;
     private UserInterface userInterface;
 
+    /**
+     * Contructor for EventHandler.
+     *
+     * @param taskList      TaskList for EventHandler to handle.
+     * @param userInterface UserInterface that EventHandler uses.
+     */
     public EventHandler(TaskList taskList, UserInterface userInterface) {
         this.taskList = taskList;
         this.userInterface = userInterface;
     }
 
-    void addTodo(String input) throws DukeNoDescriptionException {
+    /**
+     * Adds a ToDo into taskList.
+     *
+     * @param input User input
+     * @throws DukeNoDescriptionException Thrown when description is empty.
+     */
+    public void addTodo(String input) throws DukeNoDescriptionException {
         if (input.length() == 4) {
             throw new DukeNoDescriptionException();
         }
@@ -21,7 +33,13 @@ public class EventHandler {
         userInterface.addTaskMessage(tempTask);
     }
 
-    void addDeadline(String input) throws DukeNoDescriptionException {
+    /**
+     * Adds a Deadline into taskList.
+     *
+     * @param input User input
+     * @throws DukeNoDescriptionException Thrown when description is empty.
+     */
+    public void addDeadline(String input) throws DukeNoDescriptionException {
         if (input.length() == 8) {
             throw new DukeNoDescriptionException();
         }
@@ -36,7 +54,13 @@ public class EventHandler {
         userInterface.addTaskMessage(tempTask);
     }
 
-    void addEvent(String input) throws DukeNoDescriptionException {
+    /**
+     * Adds an Event into taskList.
+     *
+     * @param input User input.
+     * @throws DukeNoDescriptionException Thrown when description is empty.
+     */
+    public void addEvent(String input) throws DukeNoDescriptionException {
         if (input.length() == 5) {
             throw new DukeNoDescriptionException();
         }
@@ -51,18 +75,33 @@ public class EventHandler {
         userInterface.addTaskMessage(tempTask);
     }
 
+    /**
+     * Marks an item in taskList as done and prints the required message.
+     *
+     * @param input User input.
+     */
     public void markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
         taskList.get(taskIndex).markAsDone();
         userInterface.markTaskMessage(taskIndex);
     }
 
+    /**
+     * Unmarks an item in taskList as undone and prints the required message.
+     *
+     * @param input User input.
+     */
     public void unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
         taskList.get(taskIndex).markAsUndone();
         userInterface.unmarkTaskMessage(taskIndex);
     }
 
+    /**
+     * Deletes an item from taskList and prints the required message.
+     *
+     * @param taskIndex Index of the item to be deleted from taskList.
+     */
     public void deleteTask(int taskIndex) {
         UserInterface.taskDeletedMessage(this.taskList, taskIndex);
         this.taskList.remove(taskIndex);

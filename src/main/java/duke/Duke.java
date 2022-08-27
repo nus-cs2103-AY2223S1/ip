@@ -11,6 +11,11 @@ public class Duke {
     private TaskList taskList;
     private UserInterface userInterface;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param path Relative path in local storage to save data.
+     */
     public Duke(String path) {
         try {
             this.taskList = new TaskList();
@@ -27,7 +32,7 @@ public class Duke {
         new Duke("data/tasks.txt").run();
     }
 
-    public void run() throws DukeException {
+    private void run() throws DukeException {
         ArrayList<Task> myList = new ArrayList<>();
         boolean bye = false;
         Scanner scanner = new Scanner(System.in);
