@@ -13,6 +13,9 @@ import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
 
+/**
+ * Duke is a program that helps its user to store tasks.
+ */
 public class Duke {
 
     private void initialise() {
@@ -43,6 +46,10 @@ public class Duke {
         wrapWithLines("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Calls the initializer of Duke.
+     * @param args any command line arguments given.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.initialise();
