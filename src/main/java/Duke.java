@@ -13,6 +13,7 @@ public class Duke {
     private static final String FOLDER_LOCATION = "data";
     private static final String FILE_LOCATION = "data\\duke.txt";
     private static final String BANNER = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    private static boolean toClose = false;
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static void print(String msg) {
@@ -56,10 +57,11 @@ public class Duke {
                 boolean isDone = (line.charAt(4) == 'X' ? true : false);
                 String msg[] = line.split(" ", 3)[2].split(" \\(");
                 String name = msg[0];
-                String date = "";
+                LocalDateTime date = null;
 
                 if (msg.length > 1) {
-                    date = msg[1].split("\\)")[0];
+                    date = LocalDateTime.parse(msg[1].split("\\)")[0], 
+                            DateTimeFormatter.ofPattern("MMM dd yyyy H:m"));
                 }
 
                 Task task = createTask(tag, name, date);
@@ -93,7 +95,7 @@ public class Duke {
     public static void processInput(String input) throws Exception {
 
         if (input.equals("bye")) {
-
+            toClose = true;
             print("Cya!");
 
         } else if (input.equals("list")) {
@@ -196,10 +198,12 @@ public class Duke {
             String input = sc.nextLine();
             try {
                 processInput(input);
+                if (toClose) break;
                 save();
             } catch (Exception e){
                 print(e.getMessage());
             }
         }
+        sc.close();
     }
 }
