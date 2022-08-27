@@ -21,7 +21,7 @@ public class Storage {
      *
      * @param pathName Path name of the text file where the list of tasks is stored.
      * @param previousTaskList ArrayList of tasks.
-     * @throws IOException
+     * @throws IOException If an I/O error occurred.
      */
     public Storage(String pathName, TaskList previousTaskList) throws IOException {
         this.pathName = pathName;
@@ -36,7 +36,7 @@ public class Storage {
     /**
      * Updates the text file where the list of tasks is stored.
      *
-     * @throws IOException
+     * @throws IOException If an I/O error occurred.
      */
     public void writeToFile() throws IOException {
         FileWriter fw = new FileWriter("taskList.txt", false);
@@ -47,7 +47,7 @@ public class Storage {
     /**
      * Loads the list of tasks from the text file.
      *
-     * @throws IOException
+     * @throws IOException From writeToFile() method.
      */
     public void loadUpData() throws IOException {
         Scanner sc = new Scanner(this.file);
@@ -109,11 +109,11 @@ public class Storage {
     }
 
     /**
-     * Returns string of list of tasks with the keyword
+     * Returns string of list of tasks with the keyword.
      *
-     * @param keyword Keyword to find the relevant tasks
-     * @return List of tasks with the keyword
-     * @throws FileNotFoundException If file does not exist
+     * @param keyword Keyword to find the relevant tasks.
+     * @return List of tasks with the keyword.
+     * @throws FileNotFoundException If file does not exist.
      */
     public String findTasks(String keyword) throws FileNotFoundException {
         Scanner scanner = new Scanner(this.file);

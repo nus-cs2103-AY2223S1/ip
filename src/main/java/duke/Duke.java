@@ -18,7 +18,7 @@ public class Duke {
      *
      * @param taskList List of tasks.
      * @param pathName The path of the text file to store and load data.
-     * @throws IOException
+     * @throws IOException From loadUpData() method.
      */
     public Duke(TaskList taskList, String pathName) throws IOException {
         this.taskList = taskList;
@@ -47,7 +47,7 @@ public class Duke {
     /**
      * Runs the Duke bot.
      *
-     * @param args
+     * @param args Arguments passed to the main function.
      */
     public static void main(String[] args) {
         try {
