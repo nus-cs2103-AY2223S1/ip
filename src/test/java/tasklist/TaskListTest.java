@@ -1,5 +1,6 @@
 package tasklist;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import task.stub.MarkedTaskStub;
 import task.Task;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskListTest {
 
     @Test
+    @DisplayName("Testing addTask()")
     void addTask() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
@@ -22,6 +24,7 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing toString() when list is empty")
     void testToString_when_list_is_empty() {
         TaskList test = new TaskList();
         String expected = "\t " + "Here are the tasks in your list:" + "\n";
@@ -29,6 +32,7 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing toString() when list is not empty")
     void testToString_when_list_is_not_empty() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
@@ -41,6 +45,7 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing markItem()")
     void markItem() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
@@ -54,6 +59,7 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing unmarkItem()")
     void unmarkItem() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
@@ -65,6 +71,7 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing deleteItem()")
     void deleteItem_giving_empty_list() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();
@@ -76,12 +83,14 @@ class TaskListTest {
     }
 
     @Test
+    @DisplayName("Testing getTaskCount() when list is empty")
     void getTaskCount_when_list_is_empty() {
         TaskList test = new TaskList();
         assertEquals(test.getTaskCount(), 0);
     }
 
     @Test
+    @DisplayName("Testing getTaskCount() when list has one task")
     void getTaskCount_when_list_has_one_task() {
         TaskList test = new TaskList();
         Task stub = new TaskStub();

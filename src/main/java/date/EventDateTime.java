@@ -6,6 +6,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Stores a representation of a data, start time and end time based on ISO-8601
+ *
+ * @author Bryan Lim Jing Xiang
+ */
 public class EventDateTime extends Date {
     private LocalTime startTime;
     private LocalTime endTime;
@@ -16,6 +21,14 @@ public class EventDateTime extends Date {
         this.endTime = LocalTime.parse(endTime);
     }
 
+    /**
+     * Parses a given string and returns an object storing the Date and Time given
+     *
+     * @param dateTime A string with a date, start time and end time as per
+     *                 ISO-8601 format, delimited by a space
+     * @return EventDateTime object that stores the Date and Time passed in
+     * @throws DukeException If the dateTime passed in cannot be parsed
+     */
     public static EventDateTime parseDate(String dateTime) throws DukeException {
         String[] splitted = dateTime.split("\\s+", 3);
         if (splitted.length < 3 ||
@@ -31,6 +44,13 @@ public class EventDateTime extends Date {
         }
     }
 
+    /**
+     * Parses date from encoded data in save file
+     *
+     * @param storedDateTime An encoding of EventDateTime stored in the save file
+     * @return EventDateTime object that stores the Date and Time
+     * @throws DukeException If the storedDateTime cannot be parsed
+     */
     public static EventDateTime parseDateFromStorage(String storedDateTime) throws DukeException {
         String[] dateTime = storedDateTime.split("\\|", 3);
         try {
@@ -40,6 +60,9 @@ public class EventDateTime extends Date {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         String timeColonPattern = "HH:mm:ss";
@@ -48,6 +71,9 @@ public class EventDateTime extends Date {
         return super.toString() + ' ' + formattedStartTime + " - " + formattedEndTime;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String encode() {
         String timeColonPattern = "HH:mm:ss";

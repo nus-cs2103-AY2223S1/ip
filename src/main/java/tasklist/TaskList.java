@@ -2,16 +2,34 @@ package tasklist;
 
 import task.Task;
 import util.Ui;
+
 import java.util.ArrayList;
 
+/**
+ * A list that that handles the storing of tasks
+ *
+ * @author Bryan Lim Jing Xiang
+ */
 public class TaskList {
     private final ArrayList<Task> list = new ArrayList<>();
 
+    /**
+     * Adds a given task item to the list
+     *
+     * @param taskItem Task to be added
+     * @return The same task that is passed in
+     */
     public Task addTask(Task taskItem) {
         this.list.add(taskItem);
         return taskItem;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return A string representation of all tasks within the list
+     * formatted properly to be printed out as output
+     */
     @Override
     public String toString() {
         String res = Ui.formatLine("Here are the tasks in your list:");
@@ -22,28 +40,47 @@ public class TaskList {
         return res;
     }
 
+    /**
+     * @param index Index of the task to be marked, based on 1-index
+     * @return Task that is marked
+     */
     public Task markItem(int index) {
         Task taskItem = this.list.get(index - 1);
         taskItem.setIsMarked(true);
         return taskItem;
     }
 
+    /**
+     * @param index Index of the task to be unmarked, based on 1-index
+     * @return Task that is unmarked
+     */
     public Task unmarkItem(int index) {
         Task taskItem = this.list.get(index - 1);
         taskItem.setIsMarked(false);
         return taskItem;
     }
 
+    /**
+     * @param index Index of the task to be removed from list, based on 1-index
+     * @return Task that is deleted
+     */
     public Task deleteItem(int index) {
         Task taskItem = this.list.get(index - 1);
         this.list.remove(index - 1);
         return taskItem;
     }
 
+    /**
+     * @param index Index of the task to be retrieved, based on 1-index
+     * @return Task that is retrieved
+     */
     public Task getItem(int index) {
         return this.list.get(index - 1);
     }
 
+    /**
+     * @return Number of tasks within the list currently
+     */
     public int getTaskCount() {
         return this.list.size();
     }

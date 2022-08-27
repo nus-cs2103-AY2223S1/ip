@@ -1,6 +1,7 @@
 package task;
 
 import exception.DukeException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TodoTest {
 
     @Test
+    @DisplayName("Test for toString() method of unmarked todo")
     void testToString_for_unmarked_todo() {
         Todo test = new Todo("Testing!");
         String expected = "[T][ ] Testing!";
@@ -15,6 +17,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("Test validateInput throws exception when task item is not given")
     void validateInput_throws_exception_when_input_length_less_than_two() {
         String[] inputLengthLessThanOne = new String[] {
                 "Testing!"
@@ -25,6 +28,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("Test validateInput throws exception when task item is whitespace")
     void validateInput_throws_exception_when_second_string_is_whitespace() {
         String[] secondStringIsWhitespace = new String[] {
                 "Testing!",
@@ -36,6 +40,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("Test for encode() method of unmarked todo")
     void encode_unmarked_todo() {
         Todo test = new Todo("Testing!");
         String expected = "T,0,Testing!\n";
@@ -43,6 +48,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("Test for encode() method of marked todo")
     void encode_marked_todo() {
         Todo test = new Todo("Testing!");
         test.setIsMarked(true);
