@@ -13,6 +13,9 @@ import duke.task.TaskList;
 import duke.task.TaskType;
 import duke.task.ToDo;
 
+/**
+ * Represents a class which has custom methods to parse strings from .txt files
+ */
 public class StorageParser {
     static TaskList parseFile(List<String> lines) {
         List<Task> tasks = new ArrayList<>();

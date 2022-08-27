@@ -8,7 +8,7 @@ import duke.task.TaskType;
 
 
 
-public class EventStub extends Task {
+class EventStub extends Task {
     private LocalDateTime at;
     EventStub(LocalDateTime at) {
         super("", TaskType.EVENT);

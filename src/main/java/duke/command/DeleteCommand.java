@@ -6,6 +6,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents a DeleteCommand which extends Command
+ */
 public class DeleteCommand extends Command {
     public static final String COMMAND_ID = "DELETE";
     private final int targetIndex;

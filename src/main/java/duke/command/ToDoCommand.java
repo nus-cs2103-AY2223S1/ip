@@ -7,11 +7,15 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a ToDoCommand which extends Command
+ */
 public class ToDoCommand extends Command {
     public static final String COMMAND_ID = "TODO";
     private final Task task;
 
-    /** Constructor for ToDoCommand
+    /**
+     * Constructs a ToDoCommand
      */
     public ToDoCommand(Task task) {
         this.task = task;

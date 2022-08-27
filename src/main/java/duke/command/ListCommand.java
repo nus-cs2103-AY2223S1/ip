@@ -4,6 +4,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents a ListCommand which extends Command
+ */
 public class ListCommand extends Command {
     public static final String COMMAND_ID = "LIST";
 

@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import duke.exception.DukeException;
 
+/**
+ * Contains the logic for which a list of tasks works in Duke
+ */
 public class TaskList {
     private static final String NO_SUCH_INDEX = "No such index in the list, please try again.";
     private static final String NO_TASKS_LEFT = "List is empty, 0 items left !";

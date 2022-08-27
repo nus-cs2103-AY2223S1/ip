@@ -5,13 +5,16 @@ import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 
+/**
+ * Contains the logic for Duke
+ */
 public class Duke {
     public static final String DEFAULT_FILE_NAME = "todolist.txt";
     private final Ui ui;
     private final Storage storage;
 
     /**
-     * Constructs an instance of Duke, creates a Ui and Storage instance.
+     * Constructs an instance of Duke, creates Ui and Storage instance.
      * @return Duke object instance.
      * @see Ui
      * @see Storage

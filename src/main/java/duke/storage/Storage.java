@@ -8,6 +8,9 @@ import java.util.List;
 
 import duke.task.TaskList;
 
+/**
+ * Constructor for Storage class
+ */
 public class Storage {
     private final Path path;
 

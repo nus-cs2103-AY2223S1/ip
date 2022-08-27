@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import duke.task.Task;
 import duke.task.TaskType;
 
-public class DeadlineStub extends Task {
+class DeadlineStub extends Task {
     private LocalDateTime by;
     DeadlineStub(LocalDateTime by) {
         super("", TaskType.DEADLINE);

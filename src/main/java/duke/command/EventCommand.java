@@ -7,11 +7,15 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents an EventCommand which extends Command
+ */
 public class EventCommand extends Command {
     public static final String COMMAND_ID = "EVENT";
     private final Task task;
 
-    /** Constructor for EventCommand
+    /**
+     * Constructs a EventCommand
      */
     public EventCommand(Task task) {
         this.task = task;

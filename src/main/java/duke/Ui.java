@@ -4,6 +4,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * Contains user interface elements and logic for Duke
+ */
 public class Ui {
     public static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
     public static final String INSTRUCTIONS = "To see all tasks type list\nTo add a todo, type todo <taskname>\n"

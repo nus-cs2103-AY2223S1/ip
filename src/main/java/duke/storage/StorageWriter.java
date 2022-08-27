@@ -2,6 +2,9 @@ package duke.storage;
 
 import duke.task.Task;
 
+/**
+ * Represents a class for writing string lines to .txt
+ */
 public class StorageWriter {
     static String writeSingleTask(Task task) {
         int done = task.getDoneStatus();

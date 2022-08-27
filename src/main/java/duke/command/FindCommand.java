@@ -6,6 +6,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents a FindCommand which extends Command
+ */
 public class FindCommand extends Command {
     public static final String COMMAND_ID = "FIND";
     private final String query;

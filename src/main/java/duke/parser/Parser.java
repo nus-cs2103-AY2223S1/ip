@@ -21,6 +21,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * Represents a Parser for Duke
+ */
 public class Parser {
     private static final String NO_INDEX_SPECIFIED = "No index specified, try again";
     private static final String NO_TASK_NAME = "No task name defined, please try again";

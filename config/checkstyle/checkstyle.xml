@@ -349,8 +349,6 @@
             <property name="allowLineBreaks" value="true"/>
         </module>
 
-        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
-
         <!-- Checks that there is no whitespace between method/constructor name and open parenthesis. -->
         <module name="MethodParamPad"/>
 

@@ -6,6 +6,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents an UnMarkCommand which extends Command
+ */
 public class UnMarkCommand extends Command {
     public static final String COMMAND_ID = "UNMARK";
     private final int targetIndex;

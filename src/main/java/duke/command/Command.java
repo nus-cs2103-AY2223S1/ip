@@ -7,9 +7,12 @@ import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents a Command
+ */
 public class Command {
     /**
-     * Execute the particular command
+     * Executes the given command
      * @param taskList
      * @param ui
      * @param storage

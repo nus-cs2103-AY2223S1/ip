@@ -5,6 +5,9 @@ import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents an InvalidCommand which extends Command
+ */
 public class InvalidCommand extends Command {
     public static final String COMMAND_ID = "";
 

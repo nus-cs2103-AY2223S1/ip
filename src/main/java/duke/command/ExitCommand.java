@@ -4,6 +4,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents an ExitCommand which extends Command.
+ */
 public class ExitCommand extends Command {
     public static final String COMMAND_ID = "BYE";
     private static final String EXIT_MSG = "Bye. Hope to see you again soon!";

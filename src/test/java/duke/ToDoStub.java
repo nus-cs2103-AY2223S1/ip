@@ -3,7 +3,7 @@ package duke;
 import duke.task.Task;
 import duke.task.TaskType;
 
-public class ToDoStub extends Task {
+class ToDoStub extends Task {
     ToDoStub() {
         super("Test todo for Duke !", TaskType.TODO);
     }

@@ -7,11 +7,15 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a DeadlineCommand which extends Command
+ */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_ID = "DEADLINE";
     private final Task task;
 
-    /** Constructor for DeadlineCommand
+    /**
+     * Constructs a DeadlineCommand
      */
     public DeadlineCommand(Task task) {
         this.task = task;
