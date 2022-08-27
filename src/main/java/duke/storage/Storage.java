@@ -30,6 +30,12 @@ public class Storage {
         return f;
     }
 
+    /**
+     * Returns list of strings of tasks in TaskList.
+     *
+     * @return List of strings corresponding to tasks in TaskList
+     * @throws DukeException
+     */
     public ArrayList<String> load() throws DukeException {
         ArrayList<String> toReturn = new ArrayList<>();
         BufferedReader reader;
