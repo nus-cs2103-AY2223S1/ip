@@ -1,7 +1,6 @@
 package duke;
 
 import duke.events.Deadlines;
-import duke.events.ToDos;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
