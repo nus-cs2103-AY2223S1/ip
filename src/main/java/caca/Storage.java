@@ -35,7 +35,7 @@ public class Storage {
     private final String filePath;
 
     /**
-     * Constructor for creating a storage object.
+     * Constructor for creating a Storage.
      *
      * @param dirPath Directory path of file being read.
      * @param filePath Path of the file being read.
@@ -46,7 +46,7 @@ public class Storage {
     }
 
     /**
-     * Either displays all tasks stored in file (when applicable),
+     * Either displays all tasks stored in file (when applicable) as soon as the program starts,
      * or prompts user if file does not exist.
      *
      * @throws FileNotFoundException If file is not found.
@@ -127,6 +127,7 @@ public class Storage {
      * Reads tasks stored in file.
      *
      * @return A list of all the tasks stored.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
      */
     public TaskList readFile() throws InvalidDateException {
         TaskList tasks = new TaskList(null);

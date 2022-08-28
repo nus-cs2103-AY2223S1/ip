@@ -14,7 +14,7 @@ public class Ui {
     private static final String LINE = "____________________________________________________________\n";
 
     /**
-     * Greets user with CaCa logo and introduction.
+     * Greets user with CaCa logo and greeting.
      */
     public static void greet() {
         // ASCII text banner below created and adapted from
