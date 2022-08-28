@@ -63,7 +63,7 @@ public class TaskList {
 
     public void loadTasks(Parser parser) {
         String tasks = store.getPreviousText();
-        if (tasks.length() <= 0) {
+        if (tasks != null && tasks.length() <= 0) {
             return ;
         }
         for (String s: tasks.split("\n")) {
