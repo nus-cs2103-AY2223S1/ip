@@ -110,6 +110,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts the date to a new format
+     * @param date The date to reformat
+     * @param inFormat The current format
+     * @param outFormat The new format
+     * @return The reformatted date
+     * @throws IllegalArgumentException If date is in an incorrect format
+     */
     public static String reformatDate(String date, String inFormat, String outFormat) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .appendPattern(inFormat)
@@ -118,6 +126,14 @@ public class Parser {
         return ld.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
     }
 
+    /**
+     * Converts the datetime to a new format
+     * @param dateTime The datetime to reformat
+     * @param inFormat The current format
+     * @param outFormat The new format
+     * @return The reformatted datetime
+     * @throws IllegalArgumentException If datetime is in an incorrect format
+     */
     public static String reformatDateTime(String dateTime, String inFormat, String outFormat) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()

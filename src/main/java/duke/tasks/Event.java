@@ -21,6 +21,9 @@ public class Event extends Task {
         this.time = time;
     }
 
+    /**
+     * @return The time in the format that was entered
+     */
     public String getEnteredTime() {
         return (time.indexOf(',') == -1)
                 ? Parser.reformatDate(time, "d MMM yyyy", "d/M/yyyy")

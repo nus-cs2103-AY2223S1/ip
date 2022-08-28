@@ -21,6 +21,9 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    /**
+     * @return The deadline in the format that was entered
+     */
     public String getEnteredDeadline() {
         return (deadline.indexOf(',') == -1)
                 ? Parser.reformatDate(deadline, "d MMM yyyy", "d/M/yyyy")

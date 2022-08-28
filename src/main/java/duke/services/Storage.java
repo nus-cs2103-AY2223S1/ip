@@ -20,10 +20,12 @@ public class Storage {
     /** Saved data on the stored tasks */
     private static File saveData;
 
+    /** Is data going to be wiped on exit? */
     public static boolean wipingData = false;
 
     /**
      * Loads saved data on stored tasks from Duke_Tasks.txt if it exists, otherwise creates it
+     *
      * @throws IOException If an I/O error occurs or the parent directory doesn't exist
      */
     public static void LoadData() throws IOException {
@@ -36,7 +38,7 @@ public class Storage {
             String[] words;
             Task task;
             while (line != null) {
-                //[typeSymbol][statusIcon] [desc] [flag] [timing]
+                //[typeSymbol][1 or 0] [desc] [flag] [timing]
                 words = Arrays.stream(line.split(" ")).toArray(String[]::new);
                 if (line.charAt(0) == 'T') {
                     task = new Todo(Parser.getDescription(words, null));
@@ -69,7 +71,7 @@ public class Storage {
             BufferedWriter bf = new BufferedWriter(new FileWriter(saveData));
             StringBuilder sb = new StringBuilder();
             for (Task task : TaskList.tasks) {
-                //[typeSymbol][statusIcon] [desc] [flag] [timing]
+                //[typeSymbol][1 or 0] [desc] [flag] [timing]
                 sb.append(task.getTypeSymbol()).append(task.getStatusIcon().equals("X") ? '1' : '0').append(" ")
                         .append(task.getDescription());
                 if (task instanceof Deadline) {
