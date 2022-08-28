@@ -94,7 +94,7 @@ public class Storage {
                 : false;
         switch (taskSymbol) {
         case 'T':
-            return getTodoFromLine(line);
+            return getTodoFromLine(line, isDone);
         case 'D':
             return getTaskFromLine(line, isDone, " \\(by: ");
         case 'E':
@@ -126,8 +126,8 @@ public class Storage {
         }
     }
 
-    private Todo getTodoFromLine(String line) {
-        return new Todo(line.substring(7), false);
+    private Todo getTodoFromLine(String line, boolean isDone) {
+        return new Todo(line.substring(7), isDone);
     }
 
     private String getAbsolutePath(Path path) {

@@ -5,12 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
+import javafx.scene.layout.VBox;
 import parser.DateTimeParser;
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
+import ui.DialogBox;
 import ui.Ui;
 
 /**
@@ -73,18 +75,20 @@ public class Command {
     }
 
     /**
-     * Executes the Command based on the CommandType.
+     * Executes the Command based on the CommandType and updates the Ui.
      *
+     * @param dialogContainer the VBox to be updated with the corresponding DialogBox.
+     * @param userDialog the Dialog Box containing the user's input to be added to the Vbox.
      * @throws DukeException If an exception is encountered or if
-     *         an the input is invalid.
+     *         the input is invalid.
      */
-    public void execute() throws DukeException {
+    public void execute(VBox dialogContainer, DialogBox userDialog) throws DukeException {
         switch (this.commandType) {
         case BYE:
             break;
         case LIST:
             ui.printTasks(tasks, "Boss ah, this one your tasks:",
-                    "Boss, you got no task yet ah");
+                    "Boss, you got no task yet ah", dialogContainer, userDialog);
             break;
         case TODO:
             String todoDescription = input.substring(4).trim();
@@ -93,8 +97,8 @@ public class Command {
             } else {
                 Todo todo = new Todo(todoDescription, false);
                 this.addTask(todo);
-                ui.printAddedTaskMessage(todo);
-                ui.printTaskCountMessage(tasks);
+                ui.printAddedTaskMessage(todo, dialogContainer, userDialog);
+                ui.printTaskCountMessage(tasks, dialogContainer);
             }
             break;
         case EVENT:
@@ -110,8 +114,8 @@ public class Command {
                 LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
                 Event event = new Event(splittedEvent[0].trim(), false, eventDateTime);
                 this.addTask(event);
-                ui.printAddedTaskMessage(event);
-                ui.printTaskCountMessage(tasks);
+                ui.printAddedTaskMessage(event, dialogContainer, userDialog);
+                ui.printTaskCountMessage(tasks, dialogContainer);
             }
             break;
         case DEADLINE:
@@ -128,8 +132,8 @@ public class Command {
                     LocalDateTime deadlineDateTime = stringToLocalDateTime(splittedDeadline[1].trim());
                     Deadline deadline = new Deadline(splittedDeadline[0].trim(), false, deadlineDateTime);
                     this.addTask(deadline);
-                    ui.printAddedTaskMessage(deadline);
-                    ui.printTaskCountMessage(tasks);
+                    ui.printAddedTaskMessage(deadline, dialogContainer, userDialog);
+                    ui.printTaskCountMessage(tasks, dialogContainer);
                 } catch (DateTimeParseException e) {
                     throw new DukeException("Eh you never add a proper deadline date! \n"
                             + "Your deadline date should be like this lah: Jan 21 2023 04:10 AM");
@@ -147,7 +151,7 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(true);
-                    ui.printMarkedMessage(this.tasks.get(taskIndex - 1));
+                    ui.printMarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
                 } else {
                     throw new DukeException("Eh, you done that task alr lah");
                 }
@@ -164,7 +168,7 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(false);
-                    ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1));
+                    ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
                 } else {
                     throw new DukeException("Eh, your task alr not done lah");
                 }
@@ -179,7 +183,7 @@ public class Command {
                 if (!hasTaskIndex(taskIndex)) {
                     throw new DukeException("Eh, you got that task number meh?");
                 } else {
-                    ui.printDeletedTaskMessage(tasks.get(taskIndex - 1));
+                    ui.printDeletedTaskMessage(tasks.get(taskIndex - 1), dialogContainer, userDialog);
                     tasks.remove(taskIndex - 1);
                 }
             } catch (NumberFormatException e) {
@@ -190,7 +194,7 @@ public class Command {
             String keyword = input.substring(4).trim();
             TaskList newTaskList = getMatchingTasks(keyword);
             ui.printTasks(newTaskList, "Boss ah, this one all your tasks matching '" + keyword + "' : ",
-                    "Boss, no matching tasks ah");
+                    "Boss, no matching tasks ah", dialogContainer, userDialog);
             if (keyword.equals("")) {
                 throw new DukeException("Eh your keyword cannot be empty lah!");
             }
