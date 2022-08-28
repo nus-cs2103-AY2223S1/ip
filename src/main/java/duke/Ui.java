@@ -14,14 +14,28 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner scanner;
 
+    /**
+     * Creates a new UI object.
+     */
     protected Ui() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Returns the next line of user input.
+     *
+     * @return Next line of input from scanner.
+     */
     protected String getInput() {
         return scanner.nextLine();
     }
 
+    /**
+     * Returns the user's intended timezone.
+     *
+     * @param timeZone The stored timezone.
+     * @return The new timezone.
+     */
     protected ZoneId getTimeZone(ZoneId timeZone) {
         boolean isValidAnswer = false;
 
@@ -44,42 +58,64 @@ public class Ui {
         return timeZone;
     }
 
+    /**
+     * Returns the user's intended save file path as a {@code String}.
+     * The save file path will point to a {@code .txt} file.
+     *
+     * @param saveFilePath The stored save file path.
+     * @return The new save file path.
+     */
     protected String getSaveFile(String saveFilePath) {
-        boolean isValidAnswer = false;
+        boolean isValidFilePath = false;
 
         System.out.println("Your current save file is " + saveFilePath +
                 "\nWould you like to change your save file? Y/N");
 
         if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
-            while (!isValidAnswer) {
+            do {
                 System.out.println("What is the path of your save file?");
                 saveFilePath = scanner.nextLine();
-                try {
-                    Paths.get(saveFilePath);
-                    if (!saveFilePath.endsWith(".txt")) {
-                        System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file");
-                        continue;
-                    }
-                    File saveFile = new File(saveFilePath);
-                    if (saveFile.getParentFile() != null) {
-                        saveFile.getParentFile().mkdirs();
-                    }
-                    saveFile.createNewFile();
-                    if (saveFile.exists()) {
-                        System.out.println("Your save file is now " + saveFile);
-                        isValidAnswer = true;
-                    } else {
-                        System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file.");
-                    }
-                } catch (InvalidPathException | IOException e) {
-                    System.out.println("☹ OOPS!!! Please enter a valid path to a .txt file.");
-                }
-            }
+                isValidFilePath = validateFilePath(saveFilePath);
+            } while (!isValidFilePath);
         }
 
+        System.out.println("Your save file is now " + saveFilePath);
         return saveFilePath;
     }
 
+    /**
+     * Checks whether the given file path points to a {@code .txt} file.
+     *
+     * @param filePath The file path.
+     * @return {@code true} if the file path is valid, else {@code false}.
+     */
+    private boolean validateFilePath(String filePath) {
+        try {
+            Paths.get(filePath);
+            if (!filePath.endsWith(".txt")) {
+                return false;
+            }
+            File saveFile = new File(filePath);
+            if (saveFile.getParentFile() != null) {
+                saveFile.getParentFile().mkdirs();
+            }
+            saveFile.createNewFile();
+            if (saveFile.exists()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (InvalidPathException | IOException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Prints a message indicating that the specified new task has been added.
+     *
+     * @param task The new task that was added.
+     * @param size The current size of the list.
+     */
     protected void printNewTaskMessage(Task task, int size) {
         System.out.printf("Got it. I've added this task:\n" +
                         "\t%s\n" +
@@ -87,10 +123,19 @@ public class Ui {
                 task, size);
     }
 
-    protected void printByeMessage() {
+    /**
+     * Closes the scanner.
+     */
+    protected void close() {
         System.out.println("Bye. Hope to see you again soon!");
+        scanner.close();
     }
 
+    /**
+     * Prints all tasks in order from the given list of tasks.
+     *
+     * @param taskList The list of tasks.
+     */
     protected void printAllTasks(ArrayList<Task> taskList) {
         if (taskList.isEmpty()) {
             System.out.println("You have no tasks at the moment!");
@@ -100,9 +145,5 @@ public class Ui {
                 System.out.println(i + 1 + ". " + taskList.get(i));
             }
         }
-    }
-
-    protected void shutdown() {
-        scanner.close();
     }
 }

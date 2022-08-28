@@ -32,7 +32,11 @@ public class Duke {
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
+        BYE, LIST, MARK,
+        /**
+         *
+         */
+ UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
     }
     private final Storage storage;
     private TaskList tasks;
@@ -64,8 +68,7 @@ public class Duke {
      * Start a conversation with MakiBot
      */
     protected void eventLoop() {
-        boolean isDone = false;
-        while (!isDone) {
+        while (true) {
             try {
                 // Event loop
                 String input = ui.getInput();
@@ -76,16 +79,15 @@ public class Duke {
                 switch (command) {
                 // Exit command
                 case BYE:
-                    storage.updateSaveFile(tasks.getAll());
-                    ui.printByeMessage();
-                    isDone = true;
-                    break;
+                    storage.updateSaveFile(tasks.getTasks());
+                    ui.close();
+                    return;
                 case SAVE:
-                    storage.updateSaveFile(tasks.getAll());
+                    storage.updateSaveFile(tasks.getTasks());
                     break;
                 // List all tasks
                 case LIST:
-                    ui.printAllTasks(tasks.getAll());
+                    ui.printAllTasks(tasks.getTasks());
                     break;
                 // Mark task as done
                 case MARK:

@@ -26,6 +26,12 @@ public class Storage {
         this.saveFilePath = saveFilePath;
     }
 
+    /**
+     * Loads the tasks from the save file into a task list in the specified timezone.
+     *
+     * @param timeZone The timezone to display the tasks in.
+     * @return A list of loaded tasks.
+     */
     protected ArrayList<Task> loadTasks(ZoneId timeZone) {
         ArrayList<Task> taskList = new ArrayList<>();
 
@@ -61,11 +67,7 @@ public class Storage {
                 taskList.add(newTask);
             }
 
-            if (taskList.isEmpty()) {
-                System.out.println("No tasks to load.");
-            } else {
-                System.out.println("Tasks successfully loaded!");
-            }
+            System.out.println(taskList.size() + "task(s) successfully loaded!");
         } catch (FileNotFoundException e) {
             System.out.println("No tasks to load.");
         }
@@ -73,6 +75,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the current tasks from the given task list to the save file
+     *
+     * @param taskList A list of tasks to save.
+     */
     protected void updateSaveFile(ArrayList<Task> taskList) {
         try {
             System.out.println(saveFilePath);

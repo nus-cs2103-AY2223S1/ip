@@ -4,23 +4,46 @@ public class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Creates a new undone task with the specified description.
+     *
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         isDone = false;
     }
 
-    protected String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+    /**
+     * Returns a symbol representing whether the task is done.
+     * If the task is done, 'X' is returned.
+     * If the task is undone, ' ' is returned.
+     *
+     * @return The status symbol of the task.
+     */
+    protected char getStatusSymbol() {
+        return (isDone ? 'X' : ' '); // mark done task with X
     }
 
+    /**
+     * Sets the task's {@code isDone} attribute to {@code true}.
+     */
     public void markAsDone() {
         isDone = true;
     }
 
+    /**
+     * Sets the task's {@code isDone} attribute to {@code false}.
+     */
     public void markAsUndone() {
         isDone = false;
     }
 
+    /**
+     * Returns a {@code char} representing the task type.
+     *
+     * @return '0'
+     */
     public char getType() {
         return '0';
     }
@@ -35,6 +58,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), description);
+        return String.format("[%c] %s", getStatusSymbol(), description);
     }
 }

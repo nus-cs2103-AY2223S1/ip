@@ -6,6 +6,12 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private ZonedDateTime by;
 
+    /**
+     * Creates a new undone task with the specified description and deadline.
+     *
+     * @param description The description of the task.
+     * @param by The deadline of the task.
+     */
     public Deadline(String description, ZonedDateTime by) {
         super(description);
         this.by = by;
@@ -15,6 +21,11 @@ public class Deadline extends Task {
         return by;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return 'D'
+     */
     @Override
     public char getType() {
         return 'D';
