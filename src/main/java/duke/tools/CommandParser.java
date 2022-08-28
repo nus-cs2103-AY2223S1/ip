@@ -15,6 +15,7 @@ public class CommandParser extends Parser {
         MARK,
         UNMARK,
         DELETE,
+        FIND,
         TODO,
         DEADLINE,
         EVENT
@@ -29,6 +30,7 @@ public class CommandParser extends Parser {
         commandMap.put("todo", COMMANDS.TODO);
         commandMap.put("deadline", COMMANDS.DEADLINE);
         commandMap.put("event", COMMANDS.EVENT);
+        commandMap.put("find", COMMANDS.FIND);
         this.input = input;
         this.keywords = input.split(" ", 2);
     }
@@ -46,5 +48,13 @@ public class CommandParser extends Parser {
             return 0;
         }
         return Integer.parseInt(this.keywords[1].substring(0,1));
+    }
+
+    /**
+     * Returns target of search.
+     * @return Word that is searched for.
+     */
+    public String getWord() {
+        return this.keywords[1];
     }
 }

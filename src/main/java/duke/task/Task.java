@@ -23,6 +23,15 @@ public class Task {
         }
     }
 
+    /**
+     * Returns true if the description is contained in the task desc, false otherwise.
+     * @param desc Description searching for.
+     * @return True if desc can be found, false otherwise.
+     */
+    public boolean contains(String desc) {
+        return task.contains(desc);
+    }
+
     public Task(String task) {
         this.task = task;
         this.done = false;

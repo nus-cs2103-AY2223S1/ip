@@ -91,4 +91,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints task search result header.
+     */
+    public static void foundTaskToast() {
+        System.out.println("Here are the tasks that match your search: ");
+    }
+
 }

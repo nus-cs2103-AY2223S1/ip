@@ -9,6 +9,7 @@ import duke.tools.CommandParser;
 import duke.tools.Storage;
 import duke.tools.Ui;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -59,6 +60,11 @@ public class Duke {
                     case DELETE:
                         Task deleted = tasks.deleteTask(keywordParser.getTaskNo());
                         storage.saveTasks(tasks);
+                        break;
+                    case FIND:
+                        ArrayList<Task> result = tasks.findTasks(keywordParser.getWord());
+                        Ui.foundTaskToast();
+                        Ui.printList(result);
                         break;
                     default:
                         try {
