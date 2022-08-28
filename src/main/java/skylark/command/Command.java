@@ -6,7 +6,6 @@ import skylark.task.Event;
 import skylark.task.Task;
 import skylark.task.TaskList;
 import skylark.task.ToDo;
-import skylark.utils.Printer;
 
 /**
  * Represents a command based on user input. <br><br>
@@ -59,7 +58,7 @@ public abstract class Command {
      *
      * @param taskList List of Tasks that already exists.
      */
-    public abstract void run(TaskList taskList) throws SkylarkException;
+    public abstract String run(TaskList taskList) throws SkylarkException;
 
     /** Returns the exact input keyed by the user. */
     public String getInput() {
@@ -80,8 +79,8 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) {
-            Printer.printText(ByeCommand.TEXT);
+        public String run(TaskList taskList) {
+            return ByeCommand.TEXT;
         }
     }
 
@@ -96,12 +95,17 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) {
-            Printer.printText("Here are the tasks in your list:");
+        public String run(TaskList taskList) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Here are the tasks in your list:");
+            stringBuilder.append(System.lineSeparator());
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
-                Printer.printText((i + 1) + ". " + currentTask.toString());
+                stringBuilder.append(i + 1).append(". ").append(currentTask.toString());
+                stringBuilder.append(System.lineSeparator());
             }
+
+            return stringBuilder.toString();
         }
     }
 
@@ -116,17 +120,21 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             int index = Integer.parseInt(super.getInput().substring(5)) - 1;
+            String response;
             if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 currentTask.markAsDone();
-                Printer.printText("Nice! I've marked this task as done:");
-                Printer.printText(currentTask.toString());
+                response = "Nice! I've marked this task as done:"
+                        + System.lineSeparator()
+                        + currentTask;
                 taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }
+
+            return response;
         }
     }
 
@@ -141,17 +149,21 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             int index = Integer.parseInt(super.getInput().substring(7)) - 1;
+            String response;
             if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 currentTask.markAsUndone();
-                Printer.printText("OK, I've marked this task as not done yet:");
-                Printer.printText(currentTask.toString());
+                response = "OK, I've marked this task as not done yet:"
+                        + System.lineSeparator()
+                        + currentTask;
                 taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }
+
+            return response;
         }
     }
 
@@ -166,16 +178,22 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             if (super.getInput().equals(CommandList.COMMAND_TODO.toString())) {
-                throw new SkylarkException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new SkylarkException("The description of a todo cannot be empty.");
             }
             ToDo toDoTask = new ToDo(super.getInput().substring(5));
             taskList.add(toDoTask);
-            Printer.printText("Got it. I've added this task:");
-            Printer.printText(toDoTask.toString());
-            Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            String response = "Got it. I've added this task:"
+                    + System.lineSeparator()
+                    + toDoTask
+                    + System.lineSeparator()
+                    + "Now you have "
+                    + taskList.size()
+                    + " tasks in the list.";
             taskList.saveToFile();
+
+            return response;
         }
     }
 
@@ -190,7 +208,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
             String desc = command.substring(9, slashIndex - 1);
@@ -201,10 +219,15 @@ public abstract class Command {
             }
             Deadline deadlineTask = new Deadline(desc, endDate);
             taskList.add(deadlineTask);
-            Printer.printText("Got it. I've added this task:");
-            Printer.printText(deadlineTask.toString());
-            Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            String response = "Got it. I've added this task:"
+                    + System.lineSeparator()
+                    + deadlineTask
+                    + "Now you have "
+                    + taskList.size()
+                    + " tasks in the list.";
             taskList.saveToFile();
+
+            return response;
         }
     }
 
@@ -219,7 +242,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
             String desc = command.substring(6, slashIndex - 1);
@@ -230,10 +253,14 @@ public abstract class Command {
             }
             Event eventTask = new Event(desc, timing);
             taskList.add(eventTask);
-            Printer.printText("Got it. I've added this task:");
-            Printer.printText(eventTask.toString());
-            Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            String response = "Got it. I've added this task:"
+                    + System.lineSeparator()
+                    + eventTask
+                    + System.lineSeparator()
+                    + "Now you have " + taskList.size() + " tasks in the list.";
             taskList.saveToFile();
+
+            return response;
         }
     }
 
@@ -248,19 +275,26 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int index = Integer.parseInt(command.substring(7)) - 1;
+            String response;
             if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 taskList.remove(index);
-                Printer.printText("Noted. I've removed this task:");
-                Printer.printText(currentTask.toString());
-                Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+                response = "Noted. I've removed this task:"
+                        + System.lineSeparator()
+                        + currentTask
+                        + System.lineSeparator()
+                        + "Now you have "
+                        + taskList.size()
+                        + " tasks in the list.";
                 taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }
+
+            return response;
         }
     }
 
@@ -270,22 +304,26 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             String query = command.substring(5);
             if (query.isEmpty()) {
                 throw new SkylarkException("☹ OOPS!!! "
                         + "The find query cannot be empty.");
             }
-            Printer.printText("Here are the matching tasks in your list:");
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Here are the matching tasks in your list:");
+            stringBuilder.append(System.lineSeparator());
             int count = 1;
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
                 if (currentTask.toString().contains(query)) {
-                    Printer.printText((count) + ". " + currentTask);
+                    stringBuilder.append(count).append(". ").append(currentTask);
                     count += 1;
                 }
             }
+
+            return stringBuilder.toString();
         }
     }
 
@@ -303,7 +341,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(TaskList taskList) throws SkylarkException {
+        public String run(TaskList taskList) throws SkylarkException {
             throw new SkylarkException(TEXT);
         }
     }
