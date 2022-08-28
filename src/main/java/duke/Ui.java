@@ -1,5 +1,6 @@
 package duke;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*
@@ -54,6 +55,10 @@ public class Ui {
             }
         }
         System.out.println(line + makeList(scheduleList) + line);
+    }
+
+    public void showFoundTasks(ArrayList<Task> ls, String keyword) {
+        System.out.println(line + " I have found these tasks that contain \"" + keyword + "\"\n" + makeList(ls) + line);
     }
 
     public void showDoNotKnowMessage() {

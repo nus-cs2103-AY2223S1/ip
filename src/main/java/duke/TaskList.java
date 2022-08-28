@@ -2,6 +2,7 @@ package duke;
 
 import duke.DukeException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*
@@ -83,11 +84,25 @@ public class TaskList {
         if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
             throw new DukeException("the description of a task cannot be empty.");
         }
+        /* Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
+                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false); */
+        /* Task t = new Task(Parser.parseUserInput(userInput),
+                Parser.getTaskName(userInput), Parser.parseUserDate(userInput), false); */
         Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
                 userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
         this.taskList.add(t);
         System.out.println(line + " okie! i've added: \n " + t +
                 "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
+    }
+
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getTask().contains(keyword)) {
+                foundTasks.add(taskList.get(i));
+            }
+        }
+        return foundTasks;
     }
 
 }
