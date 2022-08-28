@@ -14,7 +14,7 @@ public abstract class Task {
     }
 
     public String getTaskName() {
-        return this.taskName;
+        return taskName;
     }
 
     public boolean hasCompleted() {
@@ -22,7 +22,7 @@ public abstract class Task {
     }
 
     public void setComplete() {
-        if (this.hasCompleted) {
+        if (hasCompleted) {
             System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
         }
         this.hasCompleted = true;
@@ -32,10 +32,10 @@ public abstract class Task {
     }
 
     public void setIncomplete() {
-        if (!this.hasCompleted) {
+        if (!hasCompleted) {
             System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
         }
-        this.hasCompleted = false;
+        hasCompleted = false;
         System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +
                 "This task has not been completed:");
         System.out.println(this + "\n");
@@ -49,12 +49,12 @@ public abstract class Task {
     @Override
     public String toString() {
         String checkbox;
-        if (this.hasCompleted()) {
+        if (hasCompleted()) {
             checkbox = "[X] ";
         } else {
             checkbox = "[ ] ";
         }
-        return checkbox + this.taskName;
+        return checkbox + taskName;
     }
 
 }
