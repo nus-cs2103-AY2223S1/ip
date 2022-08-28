@@ -1,8 +1,8 @@
-package duke.command;
+package tuna.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents a Bye command.
@@ -23,7 +23,7 @@ public class ByeCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printByeMessage();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.byeMessage();
     }
 }

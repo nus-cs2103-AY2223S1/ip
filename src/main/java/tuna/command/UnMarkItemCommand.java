@@ -1,8 +1,8 @@
-package duke.command;
+package tuna.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents a un-mark item command. A UnMarkItemCommand contains the index of the task to be un-marked.
@@ -29,8 +29,8 @@ public class UnMarkItemCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.unMarkItem(index);
-        ui.printUnMarkTaskMessage(tasks.getTask(index));
+        return ui.unMarkTaskMessage(tasks.getTask(index));
     }
 }

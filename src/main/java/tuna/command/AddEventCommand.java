@@ -1,11 +1,11 @@
-package duke.command;
+package tuna.command;
 
 import java.util.Arrays;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.TunaException;
+import tuna.Ui;
 
 /**
  * Represents an add Event Task command. An AddEventCommand object contains the index of the /at command,
@@ -37,15 +37,14 @@ public class AddEventCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
-     * @throws DukeException exception thrown when /at is missing.
+     * @throws TunaException exception thrown when /at is missing.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
         if (limit == -1) {
-            ui.printEventErrorMessage();
-            return;
+            return ui.eventErrorMessage();
         }
         tasks.addEvent(taskDescription, at);
-        ui.printTaskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
+        return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }
 }
 

@@ -1,19 +1,19 @@
-package duke;
+package tuna;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import duke.command.AddDeadLineCommand;
-import duke.command.AddEventCommand;
-import duke.command.AddTodoCommand;
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkItemCommand;
-import duke.command.UnMarkItemCommand;
+import tuna.command.AddDeadLineCommand;
+import tuna.command.AddEventCommand;
+import tuna.command.AddTodoCommand;
+import tuna.command.ByeCommand;
+import tuna.command.Command;
+import tuna.command.DeleteCommand;
+import tuna.command.FindCommand;
+import tuna.command.ListCommand;
+import tuna.command.MarkItemCommand;
+import tuna.command.UnMarkItemCommand;
 
 /**
  * Represents a Parser to parse user inputs.
@@ -27,10 +27,9 @@ public class Parser {
      *
      * @param command user input.
      * @return Command object for the next action.
-     * @throws DukeException exception thrown when inputs are not recognised.
+     * @throws TunaException exception thrown when inputs are not recognised.
      */
-    public Command parse(String command) throws DukeException {
-        String task;
+    public Command parse(String command) throws TunaException {
         String[] inputs = command.split(" ");
         if (inputs.length == 1) {
             if (command.equals("bye")) {
@@ -38,7 +37,7 @@ public class Parser {
             } else if (command.equals("list")) {
                 return new ListCommand();
             } else if (UNKNOWN_COMMANDS.contains(command)) {
-                throw new DukeException("☹ OOPS!!! The description of a " + command + " cannot be empty.");
+                throw new TunaException("OOPS!!! The description of a " + command + " cannot be empty.");
             }
         } else if (inputs.length == 2) {
             if (inputs[0].equals("mark")) {
@@ -48,7 +47,7 @@ public class Parser {
             } else if (inputs[0].equals("delete")) {
                 return new DeleteCommand(Integer.parseInt(inputs[1]));
             } else if (inputs[0].equals("list")) {
-                return new ListCommand(true, LocalDate.parse(inputs[1]));
+                return new ListCommand(LocalDate.parse(inputs[1]));
             } else if (inputs[0].equals("find")) {
                 return new FindCommand(inputs);
             }
@@ -61,9 +60,9 @@ public class Parser {
             case "event":
                 return new AddEventCommand(inputs);
             default:
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new TunaException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
-        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        throw new TunaException("OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 }

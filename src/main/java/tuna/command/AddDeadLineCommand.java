@@ -1,11 +1,11 @@
-package duke.command;
+package tuna.command;
 
 import java.util.Arrays;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.TunaException;
+import tuna.Ui;
 
 /**
  * Represents an add Deadline Task command. An AddDeadLineCommand object contains the index of the /by command,
@@ -38,14 +38,13 @@ public class AddDeadLineCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
-     * @throws DukeException exception thrown when /by is missing.
+     * @throws TunaException exception thrown when /by is missing.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
         if (limit == -1) {
-            ui.printDeadLineErrorMessage();
-            return;
+            return ui.deadLineErrorMessage();
         }
         tasks.addDeadLine(taskDescription, by);
-        ui.printTaskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
+        return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }
 }

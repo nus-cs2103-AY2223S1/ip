@@ -1,16 +1,16 @@
-package duke;
+package tuna;
 
 /**
  * Represents Exceptions related to Duke.
  */
-public class DukeException extends Exception {
+public class TunaException extends Exception {
 
     /**
      * Constructs a DukeException object with the given description.
      *
      * @param description description for the exception.
      */
-    public DukeException(String description) {
+    public TunaException(String description) {
         super(description);
     }
 }

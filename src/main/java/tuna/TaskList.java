@@ -1,12 +1,12 @@
-package duke;
+package tuna;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import tuna.task.Deadline;
+import tuna.task.Event;
+import tuna.task.Task;
+import tuna.task.Todo;
 
 /**
  * Represents a task list to handle task related functionalities. A TaskList object contains an ArrayList of the
@@ -92,33 +92,35 @@ public class TaskList {
 
     /**
      * Lists all the tasks in the task list.
+     *
+     * @return ArrayList of tasks.
      */
-    public void listTasks() {
-        for (int i = 0; i < data.size(); i++) {
-            int index = i + 1;
-            System.out.println(index + "." + data.get(i));
-        }
+    public ArrayList<Task> listTasks() {
+        return new ArrayList<Task>(data);
     }
 
     /**
      * Lists all the tasks that fall on the specified date.
      *
      * @param date date of tasks to be listed.
+     * @return ArrayList of tasks occurring on the specified date.
      */
-    public void listTasks(LocalDate date) {
+    public ArrayList<Task> listTasks(LocalDate date) {
+        ArrayList<Task> tasks = new ArrayList<Task>();
         for (Task task : data) {
             if (!task.getTaskType().equals("T")) {
                 if (task.getTaskType().equals("E")) {
                     if (LocalDate.parse(((Event) task).getAt().split(" ")[0]).equals(date)) {
-                        System.out.println(task);
+                        tasks.add(task);
                     }
                 } else if (task.getTaskType().equals("D")) {
                     if (LocalDate.parse(((Deadline) task).getBy().split(" ")[0]).equals(date)) {
-                        System.out.println(task);
+                        tasks.add(task);
                     }
                 }
             }
         }
+        return tasks;
     }
 
     /**
@@ -143,12 +145,15 @@ public class TaskList {
      * Finds and prints tasks which contain the specified keyword.
      *
      * @param keyword keyword to search for.
+     * @return ArrayList of tasks which contain the specified keyword.
      */
-    public void find(String keyword) {
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> tasksFound = new ArrayList<Task>();
         for (Task task : data) {
             if (task.getDescription().contains(keyword)) {
-                System.out.println(task);
+                tasksFound.add(task);
             }
         }
+        return tasksFound;
     }
 }

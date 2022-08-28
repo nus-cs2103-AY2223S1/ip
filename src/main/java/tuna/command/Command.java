@@ -1,9 +1,9 @@
-package duke.command;
+package tuna.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.TunaException;
+import tuna.Ui;
 
 /**
  * Represents a command.
@@ -23,14 +23,24 @@ public abstract class Command {
     }
 
     /**
+     * Returns the type of the command.
+     *
+     * @return type of the command.
+     */
+    public CommandType getType() {
+        return type;
+    }
+
+    /**
      * Executes the command.
      *
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
-     * @throws DukeException exception thrown when commands are missing.
+     * @return String indicating the task executed.
+     * @throws TunaException exception thrown when commands are missing.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException;
 
     /**
      * Finds an element within an array.

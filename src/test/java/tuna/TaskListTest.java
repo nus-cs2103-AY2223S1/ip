@@ -1,4 +1,4 @@
-package duke;
+package tuna;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

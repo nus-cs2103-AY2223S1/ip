@@ -1,8 +1,8 @@
-package duke.command;
+package tuna.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents a welcome command.
@@ -23,8 +23,8 @@ public class WelcomeCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printWelcomeMessage();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.welcomeMessage();
     }
 }
 

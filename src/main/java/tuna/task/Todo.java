@@ -1,4 +1,4 @@
-package duke.task;
+package tuna.task;
 
 /**
  * Represents a Todo task.

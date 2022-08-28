@@ -1,4 +1,4 @@
-package duke.command;
+package tuna.command;
 
 /**
  * Represents the different command types

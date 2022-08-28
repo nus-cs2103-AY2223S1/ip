@@ -1,4 +1,4 @@
-package duke;
+package tuna;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import tuna.task.Deadline;
+import tuna.task.Event;
+import tuna.task.Task;
+import tuna.task.Todo;
 
 /**
  * Represents a storage to handle file loading and saving.
@@ -22,8 +22,9 @@ public class Storage {
      * @param folderPath folder path of the data file.
      * @param filePath file path of the data file.
      * @param tasks task list to handle task related functionalities.
+     * @throws TunaException exception thrown when data file has incorrect formatting.
      */
-    public void loadFileContents(String folderPath, String filePath, TaskList tasks) throws DukeException {
+    public void loadFileContents(String folderPath, String filePath, TaskList tasks) throws TunaException {
         try {
             File directory = new File(folderPath);
             directory.mkdir();
@@ -50,7 +51,7 @@ public class Storage {
                         tasks.addDeadLine(task, by);
                         break;
                     default:
-                        throw new DukeException("Oops! Seems like the data file is not formatted correctly");
+                        throw new TunaException("Oops! Seems like the data file is not formatted correctly");
                     }
                     if (input[1].equals("X")) {
                         tasks.markItem(index);
@@ -68,8 +69,9 @@ public class Storage {
      *
      * @param filePath file path of the data file.
      * @param tasks task list containing tasks to be saved.
+     * @throws TunaException exception thrown when error occurs in processing the tasks.
      */
-    public void saveFileContents(String filePath, TaskList tasks) throws DukeException {
+    public void saveFileContents(String filePath, TaskList tasks) throws TunaException {
         try {
             FileWriter fw = new FileWriter(filePath);
             for (int i = 0; i < tasks.getTotalTasks(); i++) {
@@ -91,7 +93,7 @@ public class Storage {
                             + deadline.getDescription() + "|/by|" + deadline.getBy() + System.lineSeparator());
                     break;
                 default:
-                    throw new DukeException("Oops! Seems like something went wrong in the task list");
+                    throw new TunaException("Oops! Seems like something went wrong in the task list");
                 }
             }
             fw.close();

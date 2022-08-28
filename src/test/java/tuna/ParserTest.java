@@ -1,11 +1,11 @@
-package duke;
+package tuna;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import duke.command.ByeCommand;
-import duke.command.ListCommand;
+import tuna.command.ByeCommand;
+import tuna.command.ListCommand;
 
 /**
  * Tests to test the Parser class.
@@ -18,20 +18,20 @@ public class ParserTest {
     /**
      * Tests if the bye command works as intended, which should return a ByeCommand object.
      *
-     * @throws DukeException Exception thrown when unknown commands are detected.
+     * @throws TunaException Exception thrown when unknown commands are detected.
      */
     @Test
-    public void parse_byeCommand_byeCommandInstanceReturned() throws DukeException {
+    public void parse_byeCommand_byeCommandInstanceReturned() throws TunaException {
         assertTrue(parser.parse("bye") instanceof ByeCommand);
     }
 
     /**
      * Tests if the list command works as intended, which should return a ListCommand object.
      *
-     * @throws DukeException Exception thrown when unknown commands are detected.
+     * @throws TunaException Exception thrown when unknown commands are detected.
      */
     @Test
-    public void parse_listCommand_listCommandInstanceReturned() throws DukeException {
+    public void parse_listCommand_listCommandInstanceReturned() throws TunaException {
         assertTrue(parser.parse("list") instanceof ListCommand);
     }
 }

@@ -1,9 +1,9 @@
-package duke.command;
+package tuna.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.TunaException;
+import tuna.Ui;
 
 /**
  * Represents a load data command. A LoadDataCommand contains the folder path and file path.
@@ -34,7 +34,8 @@ public class LoadDataCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
         storage.loadFileContents(folderPath, filePath, tasks);
+        return ui.fileLoadedMessage();
     }
 }

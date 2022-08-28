@@ -1,8 +1,8 @@
-package duke.command;
+package tuna.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents a mark item command. A MarkItemCommand contains the index of the task to be marked.
@@ -29,8 +29,8 @@ public class MarkItemCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.markItem(index);
-        ui.printMarkTaskMessage(tasks.getTask(index));
+        return ui.markTaskMessage(tasks.getTask(index));
     }
 }

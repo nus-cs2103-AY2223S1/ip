@@ -1,10 +1,10 @@
-package duke.command;
+package tuna.command;
 
 import java.util.Arrays;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents an add Todo Task command. An AddTodoCommand object contains the task description.
@@ -31,8 +31,8 @@ public class AddTodoCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addTodo(taskDescription);
-        ui.printTaskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
+        return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }
 }

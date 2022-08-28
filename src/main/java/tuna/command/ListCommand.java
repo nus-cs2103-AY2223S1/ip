@@ -1,31 +1,26 @@
-package duke.command;
+package tuna.command;
 
 import java.time.LocalDate;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import tuna.Storage;
+import tuna.TaskList;
+import tuna.Ui;
 
 /**
  * Represents a List command. A ListCommand object contains a boolean indicating if a date is provided and the
  * given date.
  */
 public class ListCommand extends Command {
-
-    /** Boolean value indicating if a date is provided */
-    private boolean isDueListCommand;
     /** Date provided by the user */
     private LocalDate date;
 
     /**
      * Creates a ListCommand object.
      *
-     * @param isDueListCommand Indicates if a date is provided.
      * @param date Date to be compared with.
      */
-    public ListCommand(boolean isDueListCommand, LocalDate date) {
+    public ListCommand(LocalDate date) {
         super(CommandType.LIST);
-        this.isDueListCommand = isDueListCommand;
         this.date = date;
     }
 
@@ -34,7 +29,7 @@ public class ListCommand extends Command {
      */
     public ListCommand() {
         super(CommandType.LIST);
-        this.isDueListCommand = false;
+        this.date = null;
     }
 
     /**
@@ -45,13 +40,11 @@ public class ListCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if (isDueListCommand) {
-            ui.printListTasksDueOnDateMessage(date);
-            tasks.listTasks(date);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        if (date != null) {
+            return ui.listTasksDueOnDateMessage(date, tasks.listTasks(date));
         } else {
-            ui.printListTasksMessage();
-            tasks.listTasks();
+            return ui.listTasksMessage(tasks.listTasks());
         }
     }
 }
