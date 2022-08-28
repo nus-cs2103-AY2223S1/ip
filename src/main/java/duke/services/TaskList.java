@@ -107,4 +107,26 @@ public class TaskList {
         }
         UI.sayLines(taskDescriptions);
     }
+
+    /**
+     * Displays all tasks whose descriptions contain the keyword specified in words
+     * @param words The words of the command entered, first is always "find"
+     */
+    public static void findTasksContainingKeyword(String[] words)  {
+        StringBuilder keywordBuilder = new StringBuilder();
+        for (int i = 1; i < words.length; ++i) {
+            keywordBuilder.append(words[i]).append(" ");
+        }
+        String keyword = words.length == 1 ? "" : keywordBuilder.deleteCharAt(keywordBuilder.length() - 1).toString();
+
+        ArrayList<String> matchingTasks =  new ArrayList<String>();
+        matchingTasks.add("Here are the tasks containing the keyword \"" + keyword + "\" :");
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task currTask = tasks.get(i);
+            if (currTask.getDescription().contains(keyword)) {
+                matchingTasks.add("  " + (i + 1) + "." + currTask);
+            }
+        }
+        UI.sayLines(matchingTasks.toArray(String[]::new));
+    }
 }
