@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import java.io.IOException;
 
+/**
+ * Duke is main driver for storing and displaying Tasks
+ */
 public class Duke {
     private static final String SAVE_DIRECTORY_PATH = "../data";
     private static final String SAVE_FILE_PATH = "../data/duke.txt";
@@ -11,6 +14,10 @@ public class Duke {
     private static Storage storage = new Storage(SAVE_DIRECTORY_PATH, SAVE_FILE_PATH);
     private static Ui ui = new Ui();
 
+    /**
+     * Greets User, reads user inputs and handles each user command
+     * @param scanner reads user input
+     */
     private static void run(Scanner scanner) {
         ui.showGreeting();
 
@@ -76,6 +83,11 @@ public class Duke {
             }
         }
     }
+
+    /**
+     * Executes run method upon starting
+     * @param args optional arguments
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
