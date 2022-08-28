@@ -2,12 +2,19 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Encapsulates the main Duke program.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Creates a Duke object.
+     * @param filePath String representation of the relative path of the file.
+     */
     public Duke (String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -25,6 +32,9 @@ public class Duke {
         new Duke("data/tasks.txt").run();
     }
 
+    /**
+     * Runs the program.
+     */
     public void run() {
         this.ui.start();
         Scanner sc = new Scanner(System.in);

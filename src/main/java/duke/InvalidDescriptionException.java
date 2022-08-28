@@ -1,6 +1,12 @@
 package duke;
 
+/**
+ * Encapsulates a InvalidDescriptionException.
+ */
 public class InvalidDescriptionException extends DukeException {
+    /**
+     * Creates the InvalidDescriptionException object.
+     */
     public InvalidDescriptionException() {
         super("OOPS!!! I'm sorry, but I don't know what that means :-("
         + "\nCommands should be in the following format:"

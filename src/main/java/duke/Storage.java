@@ -10,14 +10,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Encapsulates a storage that stores tasks.
+ */
 public class Storage {
+
     private File file;
 
-
+    /**
+     * Creates a Storage object.
+     * @param filepath String representation of the path of the file.
+     */
     public Storage(String filepath) {
         this.file = new File(filepath);
     }
 
+    /**
+     * Loads tasks from the file to a TaskList object.
+     * @return An ArrayList of tasks.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> currList = new ArrayList<>();
 
@@ -51,6 +62,11 @@ public class Storage {
         return currList;
     }
 
+    /**
+     * Saves tasks in a TaskList object into the file.
+     * @param newTasks New TaskList that is going to be saved into the file.
+     * @throws DukeException Throws a DukeException.
+     */
     public void save(TaskList newTasks) throws DukeException {
 
         ArrayList<String> newFile = new ArrayList<>();
@@ -69,6 +85,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a file at the start for first time user.
+     */
     private void createFile() {
         this.file.getParentFile().mkdir();
         try {

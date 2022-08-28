@@ -7,16 +7,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.FileWriter;
 import java.io.IOException;
+
+/**
+ * Encapsulates a parser that reads the input and parse accordingly.
+ */
 public class Parser {
 
     private TaskList taskList;
     private Storage storage;
 
+    /**
+     * Creates a Parser object.
+     * @param taskList TaskList object that stores tasks.
+     * @param storage Storage object that stores and loads tasks.
+     */
     public Parser(TaskList taskList, Storage storage) {
         this.taskList = taskList;
         this.storage = storage;
     }
 
+    /**
+     * Evaluates the user input and parse accordingly.
+     * @param cmd String representation to be parsed.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parse(String cmd) throws DukeException {
         String[] temp = cmd.split(" ");
         String mainCmd = temp[0];
@@ -49,6 +63,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the list command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws InvalidDescriptionException Throws an invalidDescriptionException.
+     */
     public void parseList(String[] subCmd) throws InvalidDescriptionException {
         if (subCmd.length != 0) {
             throw new InvalidDescriptionException();
@@ -57,6 +76,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the mark command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseMark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
@@ -66,6 +90,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the unmark command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseUnmark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
@@ -75,6 +104,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the todo command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseTodo(String[] subCmd) throws DukeException {
 
         String tmp = String.join(" ", subCmd);
@@ -89,6 +123,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the deadline command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseDeadline(String[] subCmd) throws DukeException {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
@@ -110,6 +149,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the event command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseEvent(String[] subCmd) throws DukeException {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
@@ -123,6 +167,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the delete command.
+     * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @throws DukeException Throws a DukeException.
+     */
     public void parseDelete(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
