@@ -298,6 +298,7 @@ public abstract class Command {
                 Task currentTask = taskList.get(i);
                 if (currentTask.toString().contains(query)) {
                     stringBuilder.append(count).append(". ").append(currentTask);
+                    stringBuilder.append(System.lineSeparator());
                     count += 1;
                 }
             }
