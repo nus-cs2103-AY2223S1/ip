@@ -67,5 +67,12 @@ public class Ui {
     public void showError(String message) {
         System.out.println(message);
     }
+
+    /**
+     * Shows the find message.
+     */
+    public void showFind() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }
 
