@@ -3,8 +3,6 @@ package duke;
 import java.io.File;
 import java.io.IOException;
 
-
-
 /**
  *  duke.Duke Class
  *  The class which stores inputs and interacts with user
@@ -51,5 +49,6 @@ public class Duke {
 
         Duke dukeBot = new Duke("data/tasks.txt");
         dukeBot.run();
+        System.out.println("hello");
     }
 }

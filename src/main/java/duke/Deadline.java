@@ -40,5 +40,6 @@ public class Deadline extends Task {
         DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         String newFormat = dtFormatter.format(localDate);
         return "[D]" + super.toString() + " (by: " + newFormat + ")";
+
     }
 }

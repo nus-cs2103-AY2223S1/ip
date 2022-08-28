@@ -1,17 +1,9 @@
 package duke;
 
-import duke.Deadline;
-import duke.DukeException;
-import duke.Event;
-import duke.Storage;
-
 import java.io.IOException;
 import java.util.Scanner;
 
-
 public class Parser {
-
-
     Parser() {
 
     }

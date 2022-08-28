@@ -1,4 +1,2 @@
-[E][X] project meeting (at: Dec 12 2022)
-[E][ ] project meeting (at: Dec 12 2022)
 [T][ ] heloo
 [T][ ] hello
