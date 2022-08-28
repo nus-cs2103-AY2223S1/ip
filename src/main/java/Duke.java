@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +13,9 @@ public class Duke {
     private static int lineLength = 80;
     private static List<Task> taskList = new ArrayList<>();
     private static boolean isRunning;
+    private static final String DATA_FILE_PATH = "data";
+    private static final String DATA_FILE_NAME = "duke.txt";
+    private static FileWriter dataFileWriter;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,6 +28,14 @@ public class Duke {
         System.out.printf("Hello, I'm %s\n", botName);
         System.out.println("What can I do for you?");
 
+        try {
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error: Failed to access data");
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
 
         isRunning = true;
@@ -28,13 +45,57 @@ public class Duke {
             GenerateLine(lineLength);
 
             try {
+                if (ParseInput(input)) {
+                    dataFileWriter.append(input+"\n");
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Error: Failed to write to save file");
+            }
+        }
+
+        System.out.println("Goodbye.");
+        try {
+            dataFileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error: Failed to close file writer");
+        }
+    }
+
+    /**
+     * Attempts to load saved tasks from the hard disk.
+     * Creates the save file and directory if missing.
+     *
+     * @throws IOException
+     */
+    public static void loadData() throws IOException {
+        Path parentDir = Paths.get(DATA_FILE_PATH);
+        if (!Files.exists(parentDir)) {
+            Files.createDirectories(parentDir);
+        }
+
+        File dataFile = new File(Paths.get(parentDir.toString(), DATA_FILE_NAME).toString());
+        if (!dataFile.exists()) {
+            dataFile.createNewFile();
+        }
+
+        Scanner scanner = new Scanner(dataFile);
+        while (scanner.hasNextLine()) {
+            GenerateLine(lineLength);
+            String input = scanner.nextLine();
+            System.out.println(input);
+            GenerateLine(lineLength);
+
+            try {
                 ParseInput(input);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
+        scanner.close();
 
-        System.out.println("Goodbye.");
+        dataFileWriter = new FileWriter(dataFile, true);
     }
 
     /**
@@ -43,7 +104,7 @@ public class Duke {
      *
      * @param input - the input string to be parsed
      */
-    public static void ParseInput(String input) throws DukeException {
+    public static boolean ParseInput(String input) throws DukeException {
         String[] words = input.toLowerCase().split(" ", 2);
         String command = words[0];
         String args = "";
@@ -54,7 +115,7 @@ public class Duke {
         switch (command) {
             case "bye":
                 isRunning = false;
-                break;
+                return false;
             case "list":
                 DisplayList();
                 break;
@@ -79,6 +140,8 @@ public class Duke {
             default:
                 throw new DukeException("Command not recognised");
         }
+
+        return true;
     }
 
     /**
