@@ -1,5 +1,11 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+package duke;
+
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+import exception.DukeException;
+import parser.Parser;
+import command.Command;
 
 public class Duke {
 
@@ -8,7 +14,7 @@ public class Duke {
     private Ui ui;
 
     public Duke(String filePath) {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke.Duke\nWhat can I do for you?");
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());

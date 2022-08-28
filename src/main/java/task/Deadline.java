@@ -1,4 +1,8 @@
-public class Deadline extends Task{
+package task;
+
+import dateformat.DateFormat;
+
+public class Deadline extends Task {
     protected String description;
     protected boolean isDone;
     protected DateFormat date;

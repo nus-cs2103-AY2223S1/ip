@@ -1,9 +1,15 @@
-public class Todo extends Task {
+package task;
+
+import dateformat.DateFormat;
+
+public class Event extends Task {
     protected String description;
     protected boolean isDone;
+    protected DateFormat date;
 
-    public Todo(String description) {
+    public Event(String description, String date) {
         this.description = description;
+        this.date = new DateFormat(date);
     }
 
     public void isMark(boolean bool) {
@@ -16,7 +22,7 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[T][" + this.getStatusIcon() + "] " +
-                this.description;
+        return "[E][" + this.getStatusIcon() + "] " +
+                this.description + " (at: " + this.date.toString() + ")";
     }
 }

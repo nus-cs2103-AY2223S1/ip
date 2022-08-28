@@ -1,3 +1,10 @@
+package command;
+
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+import exception.DukeException;
+
 public class FalseCommand extends Command {
     protected String commandLine;
 

@@ -1,3 +1,14 @@
+package command;
+
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+import exception.DukeException;
+import task.Task;
+import task.Todo;
+import task.Deadline;
+import task.Event;
+
 public class AddCommand extends Command {
     protected String commandLine;
 

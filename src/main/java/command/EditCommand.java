@@ -1,3 +1,11 @@
+package command;
+
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+import exception.DukeException;
+import task.Task;
+
 public class EditCommand extends Command {
     protected String commandLine;
 

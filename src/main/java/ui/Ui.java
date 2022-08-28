@@ -1,3 +1,7 @@
+package ui;
+
+import exception.DukeException;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -15,7 +19,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?\n");
+        System.out.println("Hello! I'm Duke.Duke\nWhat can I do for you?\n");
     }
 
     public void showGoodbye() {

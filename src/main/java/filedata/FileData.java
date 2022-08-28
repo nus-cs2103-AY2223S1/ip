@@ -1,9 +1,16 @@
+package filedata;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import task.Task;
+import task.Todo;
+import task.Deadline;
+import task.Event;
 
 public class FileData {
     protected String fileName;
