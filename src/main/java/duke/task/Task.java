@@ -51,7 +51,7 @@ public class Task {
      */
     public String markNotDone() {
         this.isDone = false;
-        String output = "OK, I've marked this task as not done yet:";
+        String output = "OK, I've marked this task as not done yet:\n";
         output += this.toString();
         return output;
     }

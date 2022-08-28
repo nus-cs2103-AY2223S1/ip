@@ -20,10 +20,6 @@ public class Ui {
         return "Hello! I'm Snoopy\nWhat can I do for you?";
     }
 
-    public String collectUserInput() {
-        return myObj.nextLine();
-    }
-
     public String printList(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         int i = tasks.size();

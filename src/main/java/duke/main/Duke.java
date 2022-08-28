@@ -8,6 +8,7 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 import duke.ui.Ui;
 import duke.main.DialogBox;
@@ -25,6 +26,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Duke {
 
@@ -58,6 +60,12 @@ public class Duke {
         String dukeResponse = "";
             try {
                 switch (response) {
+                    case "find": {
+                        String keyword = parser.getKeyword();
+                        ArrayList<Task> matchingTasks = tasks.searchMatches(keyword);
+                        dukeResponse = ui.printMatchingList(matchingTasks);
+                        break;
+                    }
                     case "list": {
                         dukeResponse = ui.printList(tasks);
                         break;
