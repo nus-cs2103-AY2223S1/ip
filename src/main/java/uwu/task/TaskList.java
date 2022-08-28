@@ -3,7 +3,7 @@ package uwu.task;
 import java.util.ArrayList;
 
 public class TaskList {
-    ArrayList<Task> userToDoList;
+    public ArrayList<Task> userToDoList;
 
     public TaskList() {
         this.userToDoList = new ArrayList<Task>();
