@@ -5,11 +5,20 @@ import java.io.FileWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Represents Storage object, where tasks are saved and retrieved from when Bob restarts
+ */
 public class Storage {
 
     private File saveFile;
 
-    //referenced and adapted from https://stackoverflow.com/a/28620461
+    /**
+     * Constructor object for Storage,
+     * creates a path and file if it does not exist, then initializes that as the storage location,
+     * else initializes currently existing path
+     *
+     * referenced and adapted from https://stackoverflow.com/a/28620461
+     */
     public Storage() {
         String directoryPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "lists";
         File directory = new File(directoryPath);
@@ -42,6 +51,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads tasks from storage file and returns task list
+     *
+     * @return TaskList containing all tasks in storage file
+     */
     public TaskList read() {
         TaskList tasks = new TaskList();
         try {
@@ -88,6 +102,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves current TaskList to storage file
+     *
+     * @param tasks list of tasks to be saved
+     */
     public void save(TaskList tasks) {
         try {
             FileWriter fileWriter = new FileWriter(this.saveFile);
