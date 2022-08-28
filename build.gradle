@@ -9,7 +9,7 @@ repositories {
     mavenCentral()
 }
 
-
+// added stylecheck
 checkstyle {
     toolVersion = '10.2'
 }
