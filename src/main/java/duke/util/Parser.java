@@ -39,6 +39,17 @@ public class Parser {
             storedTasks.remove(taskNumber);
             System.out.println("  Now you have "
                     + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
+        } else if (command.split(" ").length == 2 && command.split(" ")[0].equals("find")) {
+            String keyword = command.split(" ")[1];
+            int counter = 0;
+            System.out.println(HORIZONTAL_LINE + "\n  Here are the matching tasks in your list:\n");
+            for (int i = 0; i < storedTasks.size(); i++) {
+                if (storedTasks.get(i).containsKeyword(keyword)) {
+                    counter++;
+                    System.out.println("  " + String.valueOf(counter) + ". " + storedTasks.get(i));
+                }
+            }
+            System.out.println(HORIZONTAL_LINE);
         } else if (command.split(" ").length > 1 && command.split(" ")[0].equals("todo")) {
             ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
             if (commandDelimited.size() == 1) {
