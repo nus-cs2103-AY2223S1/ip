@@ -46,6 +46,10 @@ public class Duke {
                     tasks.delete(num3, ui);
                     storage.update(ui.listAllItems(tasks.getTasks()));
                     break;
+                case "find":
+                    String target = input.split(" ")[1];
+                    tasks.find(target, ui);
+                    break;
                 default:
                     try {
                         tasks.addATask(input);

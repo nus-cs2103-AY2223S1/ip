@@ -21,7 +21,7 @@ public class Storage {
      */
     public void update(String str) {
         try {
-            System.out.println(filePath);
+            //System.out.println(filePath);
             FileWriter fw = new FileWriter(filePath);
             fw.write(str);
             fw.close();

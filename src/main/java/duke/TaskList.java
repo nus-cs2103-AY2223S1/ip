@@ -14,8 +14,9 @@ public class TaskList {
 
     /**
      * Marks a task as done
+     *
      * @param num Specifies which task to mark
-     * @param ui An object to print output
+     * @param ui  An object to print output
      */
     public void mark(int num, Ui ui) {
         tasks.get(num - 1).mark();
@@ -25,8 +26,9 @@ public class TaskList {
 
     /**
      * Unmarks a task
+     *
      * @param num Specifies which task to unmark
-     * @param ui An object to print output
+     * @param ui  An object to print output
      */
     public void unmark(int num, Ui ui) {
         tasks.get(num - 1).unMark();
@@ -36,6 +38,7 @@ public class TaskList {
 
     /**
      * Deletes a task
+     *
      * @param num Specifies which item to delete
      * @param ui  An object to print output
      */
@@ -48,6 +51,7 @@ public class TaskList {
 
     /**
      * Adds a task
+     *
      * @param item The String that needs to be parsed and add to the list
      * @throws DukeException Throws an exception
      */
@@ -89,8 +93,20 @@ public class TaskList {
         Ui.printLine();
     }
 
+    public void find(String str, Ui ui) {
+        //ArrayList<Task> result = new ArrayList<>();
+        String result = "";
+        for (Task task : tasks) {
+            if (task.name.contains(str)) {
+                result += task.toString() + "\n";
+            }
+        }
+        ui.printMessage(result);
+    }
+
     /**
      * Gets the size of the tasks
+     *
      * @return the size of the task
      */
     public int size() {
@@ -99,6 +115,7 @@ public class TaskList {
 
     /**
      * Gets a specific task
+     *
      * @param n The index of task wanted
      * @return The task wanted
      */
@@ -108,6 +125,7 @@ public class TaskList {
 
     /**
      * Removes a specific task
+     *
      * @param n The index of task to be removed
      */
     public void remove(int n) {
@@ -116,6 +134,7 @@ public class TaskList {
 
     /**
      * Gets an arraylist of tasks
+     *
      * @return an arraylist of tasks
      */
     public ArrayList<Task> getTasks() {
