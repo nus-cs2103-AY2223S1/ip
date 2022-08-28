@@ -3,6 +3,7 @@ package duke;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 /**
  * Represents the collection of Tasks set by a user of Duke, stored within a ArrayList.
@@ -70,5 +71,12 @@ public class TaskList {
             output.append(it.nextIndex() + 1).append(" ").append(it.next()).append("\n");
         }
         return output.toString();
+    }
+
+    protected String find(String term) {
+        List<Task> filteredTaskList = tasks.stream()
+                .filter(task -> task.getDesc().contains(term))
+                .collect(Collectors.toList());
+        return new TaskList(filteredTaskList).enumerateList();
     }
 }

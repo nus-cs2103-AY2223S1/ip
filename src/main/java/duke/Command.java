@@ -47,6 +47,8 @@ public class Command {
         } else {
             if (keyword.equals("list")) {
                 ui.display(tasks.enumerateList());
+            } else if (keyword.equals("find")){
+                ui.display(tasks.find(content));
             } else if (keyword.equals(EXIT)) {
                 ui.lineBreak();
                 ui.outro();
