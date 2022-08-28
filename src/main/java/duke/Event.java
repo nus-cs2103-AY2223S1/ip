@@ -1,10 +1,17 @@
 package duke;
 
+/**
+ * Event Class to represent a class that will store Event Objects
+ * @author Ashiqur Rahman A02030107Y
+ */
 public class Event extends Task {
-    protected String description;
-    protected boolean isDone;
     protected String eventTime;
 
+    /**
+     * Constructor for Event class
+     * @param description Details of Task
+     * @param eventTime Time of event
+     */
     public Event (String description, String eventTime) {
         super(description);
         this.eventTime = eventTime.replaceFirst(" ", ": ");

@@ -1,9 +1,14 @@
 package duke;
 
+/**
+ * Class to represent a class that will store TodoObjects
+ * @author Ashiqur Rahman A02030107Y
+ */
 public class Todo extends Task {
-    protected String description;
-    protected boolean isDone;
 
+    /**
+     * Constructor for Todo Class
+     */
     public Todo (String description) {
         super(description);
     }

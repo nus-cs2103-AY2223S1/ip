@@ -9,13 +9,26 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Class that deals with storing & loading of task in file
+ * @author Ashiqur Rahman A0230107Y
+ */
 public class Storage {
     protected String filePath;
 
+    /**
+     * Constructor for Storage class
+     * @param filePath Location of file with Tasks
+     */
     public Storage (String filePath){
         this.filePath = filePath;
     }
 
+    /**
+     * Method that loads data from the filePath
+     * @return ArrayList<Task> which was read from file
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws DukeException {
         BufferedReader reader;
         ArrayList<Task> tasklist = new ArrayList<>();

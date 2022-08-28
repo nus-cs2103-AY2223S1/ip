@@ -6,14 +6,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * Class that deals with making sense of the user command
+ * @author Ashiqur Rahman A0230107Y
+ */
 public class Parser {
 
+    /**
+     * Method that echos command
+     * @param echoCommand Command to be echoed
+     */
     public static void echo(String echoCommand) {
         System.out.println("--------------------------------------------------");
         System.out.println(echoCommand);
         System.out.println("--------------------------------------------------");
     }
 
+    /**
+     * Method that writes to file
+     * @param tasks List of task that has to written on in file
+     * @throws IOException
+     */
     private static void writeToFile(TaskList tasks) throws IOException {
         String filePath = "./././data/duke.txt";
         String directoryPath = "./././data";
