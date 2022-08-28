@@ -21,7 +21,7 @@ public class Storage {
     private static File saveData;
 
     /** Is data going to be wiped on exit? */
-    public static boolean wipingData = false;
+    public static boolean willWipeData = false;
 
     /**
      * Loads saved data on stored tasks from Duke_Tasks.txt if it exists, otherwise creates it
@@ -67,7 +67,7 @@ public class Storage {
      */
     public static void SaveData() throws IOException {
         new FileWriter(saveData).close();
-        if (!wipingData) {
+        if (!willWipeData) {
             BufferedWriter bf = new BufferedWriter(new FileWriter(saveData));
             StringBuilder sb = new StringBuilder();
             for (Task task : TaskList.tasks) {

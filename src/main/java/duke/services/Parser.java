@@ -27,10 +27,10 @@ public class Parser {
                     if (words.length == 1 && words[0].equals("list")) {
                         TaskList.listTasks(); //could put words.length == 1 cases all here
                     } else if (words.length == 1 && words[0].equals("SAVE")) {
-                        Storage.wipingData = false;
+                        Storage.willWipeData = false;
                         UI.sayLines(new String[] {"Data will be saved on exit"});
                     } else if (words.length == 1 && words[0].equals("WIPE")) {
-                        Storage.wipingData = true;
+                        Storage.willWipeData = true;
                         UI.sayLines(new String[] {"Data will be wiped on exit"});
                     } else if (words[0].equals("todo")) {
                         TaskList.addTodo(words);
