@@ -14,6 +14,7 @@ public class Tako {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private boolean isExit;
 
     /**
      * Constructor for Tako with the file path to save data at.
@@ -32,32 +33,26 @@ public class Tako {
     }
 
     /**
-     * Starts chatting with the user.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (TakoException | IOException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (TakoException | IOException e) {
+            ui.showError(e.getMessage());
         }
+        return ui.getResponse();
     }
 
-    /**
-     * Runs the Tako chatbot.
-     *
-     * @param args Command line arguments.
-     */
-    public static void main(String[] args) {
-        new Tako("data/tasks.txt").run();
+    public String getWelcome() {
+        ui.showWelcome();
+        return ui.getResponse();
+    }
+
+    public boolean isExit() {
+        return isExit;
     }
 }
