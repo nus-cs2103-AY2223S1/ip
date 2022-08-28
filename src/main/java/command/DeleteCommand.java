@@ -1,3 +1,10 @@
+package command;
+
+import exception.DukeException;
+import tasklist.TaskList;
+import utility.Storage;
+import utility.Ui;
+
 public class DeleteCommand extends Command {
     private int index;
     public DeleteCommand(int index) {
