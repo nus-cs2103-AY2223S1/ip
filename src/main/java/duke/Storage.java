@@ -34,7 +34,7 @@ public class Storage {
      * @return A list of loaded tasks.
      */
     protected ArrayList<Task> loadTasks(ZoneId timeZone) {
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         try {
             File saveFile = new File(saveFilePath);
@@ -65,27 +65,27 @@ public class Storage {
                     newTask.markAsDone();
                 }
 
-                taskList.add(newTask);
+                tasks.add(newTask);
             }
 
-            System.out.println(taskList.size() + "task(s) successfully loaded!");
+            System.out.println(tasks.size() + "task(s) successfully loaded!");
         } catch (FileNotFoundException e) {
             System.out.println("No tasks to load.");
         }
 
-        return taskList;
+        return tasks;
     }
 
     /**
      * Saves the current tasks from the given task list to the save file
      *
-     * @param taskList A list of tasks to save.
+     * @param tasks A list of tasks to save.
      */
-    protected void updateSaveFile(ArrayList<Task> taskList) {
+    protected void updateSaveFile(ArrayList<Task> tasks) {
         try {
             System.out.println(saveFilePath);
             FileWriter saveFileWriter = new FileWriter(saveFilePath);
-            taskList.forEach(task -> {
+            for (Task task : tasks) {
                 String saveMsg = String.format("%c | %s | %s", task.getType(), task.getIsDone(), task.getDescription());
                 if (task instanceof Deadline) {
                     saveMsg += " | " + ((Deadline) task).getBy();
@@ -98,7 +98,7 @@ public class Storage {
                     System.out.println("An error occurred while saving your tasks.");
                     e.printStackTrace();
                 }
-            });
+            }
             System.out.println("Tasks saved successfully!");
             saveFileWriter.close();
         } catch (IOException e) {

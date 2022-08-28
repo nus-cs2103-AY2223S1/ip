@@ -135,15 +135,15 @@ public class Ui {
     /**
      * Prints all tasks in order from the given list of tasks.
      *
-     * @param taskList The list of tasks.
+     * @param tasks The list of tasks.
      */
-    protected void printAllTasks(ArrayList<Task> taskList) {
-        if (taskList.isEmpty()) {
+    protected void printAllTasks(ArrayList<Task> tasks) {
+        if (tasks.isEmpty()) {
             System.out.println("You have no tasks at the moment!");
         } else {
             System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < taskList.size(); i++) {
-                System.out.println(i + 1 + ". " + taskList.get(i));
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(i + 1 + ". " + tasks.get(i));
             }
         }
     }
