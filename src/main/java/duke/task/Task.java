@@ -1,7 +1,15 @@
 package duke.task;
 
+
+/**
+ * Represents a task.
+ */
 public abstract class Task {
+
+    /** Status of this task */
     private boolean done;
+
+    /** Name of this task */
     private String name;
 
     public Task(String name) {
@@ -21,6 +29,11 @@ public abstract class Task {
         this.done = done;
     }
 
+    /**
+     * Returns a specially formatted string.
+     *
+     * @return Specially formatted string.
+     */
     public abstract String toMemoryString();
 
     @Override

@@ -50,7 +50,7 @@ public class Duke {
                 break;
             }
             try {
-                parser.checkAndPerformOperations(userInput);
+                parser.checkAndExecuteCommand(userInput);
             } catch (DukeException e) {
                 ui.showInvalidCommandError();
             }

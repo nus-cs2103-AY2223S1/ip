@@ -1,13 +1,21 @@
 package duke.task;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/**
+ * Represents an event which is a task with date and time.
+ */
 public class Event extends Task {
+
+    /** Date of the event */
     private String date;
+
+    /** Time of the event */
     private String time;
 
     public Event(String name, String dateAndTime) {

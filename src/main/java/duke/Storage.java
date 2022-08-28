@@ -6,24 +6,40 @@ import duke.task.Task;
 import duke.task.ToDos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
+
+    /** File that is saved */
     private File dataFile;
 
     public Storage(String filePath) {
         this.dataFile = new File(filePath);
     }
 
+    /**
+     * Loads data from the hard disk.
+     *
+     * @return list of tasks saved previously.
+     * @throws DukeException if the any of the tasks saved are not ToDos or Deadline or Event.
+     * @throws FileNotFoundException if file is not found in user's hard disk.
+     */
     public List<Task> load() throws DukeException, FileNotFoundException {
+
         List<Task> taskList = new ArrayList<>();
         Scanner scanner = new Scanner(dataFile);
+
         while (scanner.hasNext()) {
             String string = scanner.nextLine();
             String[] token = string.split(Pattern.quote(" | "));
@@ -61,6 +77,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the tasks in the hard disk.
+     *
+     * @param taskList list of tasks
+     */
     public void save(TaskList taskList) {
 
         try {

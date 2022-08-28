@@ -5,8 +5,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDos;
 
-import java.util.List;
-
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
     private TaskList taskList;
@@ -19,18 +20,24 @@ public class Parser {
         this.storage = storage;
     }
 
-    public void checkAndPerformOperations(String input) throws DukeException {
+    /**
+     * Checks whether command is valid and executes the command.
+     *
+     * @param input command input by user.
+     * @throws DukeException if command is invalid.
+     */
+    public void checkAndExecuteCommand(String input) throws DukeException {
         String userInput = input.trim();
         if (userInput.equals("list")) {
             ui.printTaskList(taskList);
         }else if (containsOperationWord(userInput)) {
-            performOperations(userInput.trim());
+            executeCommand(userInput.trim());
         } else {
             throw new DukeException();
         }
     }
 
-    public void performOperations(String userInput) {
+    private void executeCommand(String userInput) {
         try {
             String[] tokens = userInput.split("\\s+", 2);
             String firstWord = tokens[0];
@@ -91,7 +98,7 @@ public class Parser {
         }
     }
 
-    public boolean containsOperationWord(String userInput) {
+    private boolean containsOperationWord(String userInput) {
         return userInput.toLowerCase().contains("mark")
                 || userInput.toLowerCase().contains("unmark")
                 || userInput.toLowerCase().contains("todo")
