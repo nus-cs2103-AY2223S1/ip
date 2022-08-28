@@ -21,16 +21,16 @@ public class DateTimeParser {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter();
 
-    public LocalDateTime getDateTime(String dateStr) throws DateTimeException {
+    public static LocalDateTime getDateTime(String dateStr) throws DateTimeException {
         return LocalDateTime.parse(dateStr, FORMATTER);
     }
 
-    public String getDateTimeString(LocalDateTime dateTime) {
+    public static String getDateTimeString(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return dateTime.format(formatter);
     }
 
-    public String getDateTimeStorage(LocalDateTime dateTime) {
+    public static String getDateTimeStorage(LocalDateTime dateTime) {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(dateTime);
     }
 }
