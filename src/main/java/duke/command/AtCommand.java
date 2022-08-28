@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * At command for Duke application.
@@ -24,7 +24,7 @@ public class AtCommand implements Command {
      */
     public AtCommand(String description) throws DukeException {
         try {
-          this.selectedDate = LocalDate.parse(description);
+            this.selectedDate = LocalDate.parse(description);
         } catch (DateTimeParseException error) {
             throw new DukeException("The time given is not a valid date. "
                     + "Try to represent the time in yyyy-mm-dd format.");

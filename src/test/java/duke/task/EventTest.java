@@ -3,9 +3,9 @@ package duke.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.exception.EventException;
-
 import org.junit.jupiter.api.Test;
+
+import duke.exception.EventException;
 
 public class EventTest {
     @Test

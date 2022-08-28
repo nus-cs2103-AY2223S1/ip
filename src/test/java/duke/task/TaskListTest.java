@@ -1,7 +1,6 @@
 package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +34,13 @@ public class TaskListTest {
     @Test
     public void getStringRepresentation_emptyTaskList_getCorrectRepresentation() {
         TaskList emptyTaskList = new TaskList();
-        assertEquals(emptyTaskList.toString(), "You have no tasks at the moment.");
+        assertEquals(emptyTaskList.toString(), "");
     }
 
     @Test
     public void getStringRepresentation_nonEmptyTaskList_getCorrectRepresentation() {
         String taskListStringRepresentation = sampleTaskList.toString();
-        assertTrue(taskListStringRepresentation.startsWith(
-                "Here are the tasks in your list\n"));
+        assertEquals(taskListStringRepresentation.split("\n").length, 2);
     }
 
     @Test

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class Storage {
      * Transforms the txt file in storage to its corresponding TaskList.
      *
      * @return the resulting TaskList, else if the storage fails to transform the txt file,
-     * return an empty TaskList.
+     *     return an empty TaskList.
      */
     public TaskList loadTasksInStorage() {
         TaskList loadedTaskList;
@@ -66,7 +65,7 @@ public class Storage {
             BufferedReader storageReader = new BufferedReader(new FileReader(this.filePath));
             String taskString = storageReader.readLine();
 
-            while(taskString != null) {
+            while (taskString != null) {
                 int dateSeparatorIndex = taskString.lastIndexOf("|");
 
                 String taskType = taskString.substring(0, 1);

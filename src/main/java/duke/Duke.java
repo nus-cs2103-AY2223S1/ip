@@ -36,14 +36,16 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the duke application.
+     *
+     * @param args the arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.listenCommand();
     }
 
-    /**
-     * Runs the Duke application.
-     */
     private void listenCommand() {
         this.ui.printWelcomeMessage();
         Scanner sc = new Scanner(System.in);
