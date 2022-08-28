@@ -7,12 +7,12 @@ public class UI {
     private static final String LS = System.lineSeparator();
     private static final String DIVIDER = "____________________________________________________________";
     
-    private final Scanner in;
-    private final PrintStream out;
+    private final Scanner IN;
+    private final PrintStream OUT;
     
     UI() {
-        this.in = new Scanner(System.in);
-        this.out = System.out;
+        this.IN = new Scanner(System.in);
+        this.OUT = System.out;
     }
     
     private boolean shouldIgnore(String rawInput) {
@@ -20,21 +20,21 @@ public class UI {
     }
     
     public String getUserCommand() {
-        String rawInput = in.nextLine();
+        String rawInput = this.IN.nextLine();
         
         while (shouldIgnore(rawInput)) {
-            rawInput = in.nextLine();
+            rawInput = this.IN.nextLine();
         }
         
         return rawInput;
     }
     
     public void showToUser(String... message) {
-        out.println(DIVIDER);
+        this.OUT.println(DIVIDER);
         for (String m : message) {
-            out.println("\t" + m.replace("\n", LS + "\t"));
+            this.OUT.println("\t" + m.replace("\n", LS + "\t"));
         }
-        out.println(DIVIDER);
+        this.OUT.println(DIVIDER);
     }
     
     public void showIntroMsg() {
