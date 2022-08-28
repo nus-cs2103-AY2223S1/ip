@@ -4,8 +4,15 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private ZonedDateTime at;
+    /** Datetime of the event */
+    private final ZonedDateTime at;
 
+    /**
+     * Creates a new undone event with the specified description and datetime.
+     *
+     * @param description The description of the event.
+     * @param at The datetime of the event.
+     */
     public Event(String description, ZonedDateTime at) {
         super(description);
         this.at = at;
@@ -15,6 +22,12 @@ public class Event extends Task {
         return at;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     *
+     * @return 'E'
+     */
     @Override
     public char getType() {
         return 'E';
