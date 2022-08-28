@@ -37,16 +37,16 @@ public class TaskList {
      * Marks desired task as done.
      * @param taskNumber Task number.
      */
-    public void markAsDone(int taskNumber) {
-        taskList.get(taskNumber - 1).markAsDone();
+    public String markAsDone(int taskNumber) {
+        return taskList.get(taskNumber - 1).markAsDone();
     }
 
     /**
      * Marks desired task as not done.
      * @param taskNumber Task number.
      */
-    public void markNotDone(int taskNumber) {
-        taskList.get(taskNumber - 1).markNotDone();
+    public String markNotDone(int taskNumber) {
+        return taskList.get(taskNumber - 1).markNotDone();
     }
 
     /**
