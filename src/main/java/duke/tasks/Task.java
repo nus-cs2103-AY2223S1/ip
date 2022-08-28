@@ -43,18 +43,18 @@ public abstract class Task {
         return this;
     }
 
-    private char getTypeSymbol() {
+    public char getTypeSymbol() {
         return typeSymbol;
     }
 
     /**
      * @return "X" if the task is done, " " otherwise
      */
-    private String getStatusIcon() {
+    public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    private String getDescription() {
+    public String getDescription() {
         return description;
     }
 

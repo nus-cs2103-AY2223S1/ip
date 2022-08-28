@@ -8,7 +8,7 @@ import java.util.List;
 /** Handles tasks */
 public class TaskList {
     /** The tasks stored */
-    private static final List<Task> tasks = new ArrayList<>();
+    public static List<Task> tasks = new ArrayList<>();
 
     /**
      * Gets the number of tasks stored
