@@ -4,6 +4,9 @@ import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
+/**
+ * List command which inherits from Command
+ */
 public class ListCommand extends Command {
 
     public ListCommand() {

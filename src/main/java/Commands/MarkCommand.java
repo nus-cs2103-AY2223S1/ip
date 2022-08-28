@@ -8,6 +8,9 @@ import Duke.Ui;
 
 import Tasks.Task;
 
+/**
+ * Mark command which inherits from Command
+ */
 public class MarkCommand extends Command {
     private int idx;
 

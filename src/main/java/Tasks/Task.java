@@ -1,5 +1,8 @@
 package Tasks;
 
+/**
+ * Parent class for all types of items in task list
+ */
 public class Task {
     private boolean marked = false;
     private String taskName;

@@ -8,6 +8,9 @@ import Duke.Ui;
 
 import Tasks.Task;
 
+/**
+ * Delete command which inherits from Command
+ */
 public class DeleteCommand extends Command {
     private int idx;
 

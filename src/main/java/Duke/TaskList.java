@@ -5,9 +5,17 @@ import java.util.List;
 
 import Tasks.Task;
 
+/**
+ * Contains the logic for which a list of tasks work in Duke
+ */
 public class TaskList {
     private List<Task> lst;
 
+    /**
+     * Constructor for TaskList
+     *
+     * @param load
+     */
     public TaskList(ArrayList<Task> load) {
         this.lst = load;
     }
@@ -33,24 +41,12 @@ public class TaskList {
         return removed;
     }
 
-    /**
-     * Marks the specified task
-     *
-     * @param i
-     * @return Marked Task
-     */
     public Task markTask(int i) {
         Task t = lst.get(i - 1);
         t.setMarked();
         return t;
     }
 
-    /**
-     * Unmarks the specified task
-     *
-     * @param i
-     * @return Unmarked Task
-     */
     public Task unmarkTask(int i) {
         Task t = lst.get(i - 1);
         t.setUnmarked();
@@ -74,11 +70,6 @@ public class TaskList {
         return foundTasks;
     }
 
-    /**
-     * Gets the number of tasks in the taskList
-     *
-     * @return size of taskList
-     */
     public int getSize() {
         return lst.size();
     }

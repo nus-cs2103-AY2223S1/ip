@@ -4,6 +4,9 @@ import Tasks.Task;
 
 import java.util.Scanner;
 
+/**
+ * Handles all the text Ui Duke responds
+ */
 public class Ui {
     private Scanner scanner;
 

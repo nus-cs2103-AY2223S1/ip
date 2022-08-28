@@ -4,6 +4,9 @@ import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
+/**
+ * Exit command which inherits from Command
+ */
 public class ExitCommand extends Command {
 
     public ExitCommand() {

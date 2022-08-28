@@ -9,6 +9,9 @@ import Tasks.Task;
 
 import java.util.List;
 
+/**
+ * Find command which inherits from Command
+ */
 public class FindCommand extends Command {
     private String name;
 
