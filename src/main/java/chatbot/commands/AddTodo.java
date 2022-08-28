@@ -4,6 +4,10 @@ import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
+/**
+ * Represents the command to be executed by the chatbot which adds
+ * an Todo type task to the todo list.
+ */
 public class AddTodo implements Command {
     public String taskName;
 

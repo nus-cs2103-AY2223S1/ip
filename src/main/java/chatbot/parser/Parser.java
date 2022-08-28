@@ -10,12 +10,22 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The class is responsible for parsing user input and determining the consequent action.
+ */
 public class Parser {
     public static final Pattern EVENT_FORMAT = Pattern.compile("(?<taskName>.+)\\s+/at\\s+(?<date>\\S+)");
     public static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<taskName>.+)\\s+/by\\s+(?<date>\\S+)");
     public static final Pattern TASK_INDEX_FORMAT = Pattern.compile("(?<taskIndex>\\d+)");
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S+)(?<arguments>.*)");
 
+    /**
+     * The method parses the user input and determine the command that should be executed accordingly.
+     *
+     * @param userInput The user input to be parsed.
+     * @return The command to be executed
+     * @throws DukeException Raised shall the user input has format related error.
+     */
     public static Command parse(String userInput) throws DukeException {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -70,6 +80,13 @@ public class Parser {
         }
     }
 
+    /**
+     * The method parses the argument segment of the user input to look for an integer.
+     *
+     * @param args The argument to be parsed.
+     * @return The index of the task to be operated on.
+     * @throws DukeException Raised if the argument does not contain a valid index.
+     */
     public static int parseTargetIndex(String args) throws DukeException {
         Matcher indexMatcher = TASK_INDEX_FORMAT.matcher(args);
         if (!indexMatcher.matches()) {
@@ -84,6 +101,15 @@ public class Parser {
         return Integer.parseInt(index);
     }
 
+    /**
+     * The method parses the argument segment of the user input
+     * to look for the task name of a task.
+     *
+     * @param args The argument to be parsed.
+     * @return The task name.
+     * @throws DukeException Raised if the argument does not contain
+     * a task name.
+     */
     public static String parseTodo(String args) throws DukeException {
         String taskName = args.trim();
         if (taskName.isEmpty()) {
@@ -93,6 +119,16 @@ public class Parser {
         return taskName;
     }
 
+    /**
+     * The method parses the argument segment of the user input
+     * to look for the task name and date of a time sensitive task.
+     *
+     * @param type The type of time sensitive task.
+     * @param args The argument to be parsed.
+     * @return An array containing the name and date of the task.
+     * @throws DukeException Raised if the argument does not contain
+     * a task name and a date.
+     */
     public static String[] parseTimedTask(String type, String args) throws DukeException {
         Matcher matcher;
         if (type == Deadline.TYPE) {

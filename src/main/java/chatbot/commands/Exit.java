@@ -3,6 +3,10 @@ package chatbot.commands;
 import chatbot.ui.UI;
 import chatbot.tasks.TaskList;
 
+/**
+ * Represents the command to be executed by the chatbot which signals the end
+ * of the current chatbot session.
+ */
 public class Exit implements Command {
     public static final Exit EXIT = new Exit();
 

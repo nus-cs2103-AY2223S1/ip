@@ -5,8 +5,12 @@ import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
+/**
+ * Represents the command to be executed by the chatbot which deletes
+ * the specified task from the todo list.
+ */
 public class Delete implements Command {
-    private int target;
+    private final int target;
 
     public Delete(int target) {
         this.target = target;

@@ -38,5 +38,11 @@ public abstract class Task {
         return this.isComplete ? 1 : 0;
     }
 
+    /**
+     * The method should transform a task into the format it is to be saved
+     * in storage.
+     *
+     * @return The String representation of the task to be saved.
+     */
     public abstract String save();
 }

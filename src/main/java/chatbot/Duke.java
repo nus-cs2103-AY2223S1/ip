@@ -9,12 +9,24 @@ import chatbot.storage.Storage;
 import chatbot.tasks.*;
 import chatbot.ui.UI;
 
+/**
+ * The Duke chatbot named Zlimez functions as a task manager
+ * that helps users keep track of future tasks, their date
+ * and completion status.
+ *
+ * @author James Chiu
+ */
 public class Duke {
+    private boolean isActive = true;
     private UI ui;
     private Storage storage;
     private TaskList taskList;
     private Command currentCommand;
 
+    /**
+     * The Constructor initializes the duke chatbot instance
+     * equipped with UI, Storage and Task list components.
+     */
     public Duke() {
         ui = new UI();
         storage = new Storage();
@@ -28,6 +40,14 @@ public class Duke {
         bot.exit();
     }
 
+    /**
+     * The method is called immediately after the chatbot instance is created
+     * to kickstart the interaction with the user.
+     * If a task list is generated during a previous session, its data will be
+     * read by the current chatbot.
+     *
+     * @throws IOException
+     */
     public void start() throws IOException {
         ui.greet();
         try {
@@ -37,6 +57,12 @@ public class Duke {
         }
     }
 
+    /**
+     * The method is responsible for responding to user inputs during the chatbot session.
+     *
+     * @throws DukeException Exceptions that can be raised when interacting
+     *                       with the chatbot.
+     */
     public void respond() {
         do {
             String input = ui.getUserInput();
@@ -49,6 +75,12 @@ public class Duke {
         } while (!currentCommand.isExit());
     }
 
+    /**
+     * Ends the current chatbot session and demands the data in the current
+     * task list to be saved.
+     *
+     * @throws IOException
+     */
     public void exit() throws IOException {
         storage.saveData(taskList);
     }

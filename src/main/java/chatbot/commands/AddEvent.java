@@ -6,6 +6,10 @@ import chatbot.tasks.TaskList;
 
 import java.time.LocalDate;
 
+/**
+ * Represents the command to be executed by the chatbot which adds
+ * an Event type task to the todo list.
+ */
 public class AddEvent implements Command {
     public String taskName;
     public LocalDate date;

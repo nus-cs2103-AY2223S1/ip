@@ -5,8 +5,12 @@ import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
+/**
+ * Represents the command to be executed by the chatbot which marks
+ * the specified task in the todo list as completed.
+ */
 public class Mark implements Command {
-    private int target;
+    private final int target;
 
     public Mark(int target) {
         this.target = target;
