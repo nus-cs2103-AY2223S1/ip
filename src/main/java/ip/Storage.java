@@ -11,8 +11,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Encapsulates the task data file stored in hard disk.
+ *
+ * @author Jonathan Lam
+ */
 public class Storage {
+    /** Path of the task data file */
     private String path;
+    /** Task data file */
     private File file;
 
     public Storage(String path) {
@@ -20,6 +27,12 @@ public class Storage {
         file = new File(path);
     }
 
+    /**
+     * Loads the storage's file into a TaskList.
+     *
+     * @return The TaskList built from the task data file.
+     * @throws IOException If an issue was encountered in opening the file.
+     */
     public TaskList load() throws IOException {
         System.out.println("Searching for existing task data...");
         if (file.createNewFile()) {
@@ -52,12 +65,25 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads a task data file from an alternate path.
+     * Path is specified by the user.
+     *
+     * @param altPath The alternate path to source task data from.
+     * @return The TaskList built from task data file.
+     * @throws IOException If an issue was encountered in opening the file.
+     */
     public TaskList load(String altPath) throws IOException {
         this.path = altPath;
         this.file = new File(path);
         return load();
     }
 
+    /**
+     * Write data from given TaskList to task data file.
+     *
+     * @param taskList The TaskList to copy from.
+     */
     public void write(TaskList taskList) {
         try {
             FileWriter target = new FileWriter(path);
@@ -72,10 +98,18 @@ public class Storage {
         }
     }
 
+    /**
+     * Gets the absolute path to the current file that Storage holds.
+     *
+     * @return Absolute path of file.
+     */
     public String getPath() {
         return file.getAbsolutePath();
     }
 
+    /**
+     * Deletes the file that Storage holds.
+     */
     public void wipe() {
         file.delete();
     }

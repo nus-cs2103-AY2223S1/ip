@@ -2,6 +2,7 @@ package ip;
 
 import ip.command.ByeCommand;
 import ip.command.Command;
+
 import ip.exception.DukeException;
 import ip.exception.InvalidCommand;
 
@@ -14,13 +15,17 @@ import java.io.IOException;
  * Delete them when no longer needed!
  * 
  * @author Jonathan Lam
- * @since 2022-08-25
  */
 public class Duke {
-    private static Ui ui = new Ui();
-    private static Parser parser = new Parser();
+    /** Interacts with the user, take input and give output */
+    private static final Ui ui = new Ui();
+    /** Extract commands given to the ui */
+    private static final Parser parser = new Parser();
+    /** Encapsulation of tasks */
     private static TaskList taskList = new TaskList();
-    private static Storage storage = new Storage("src/main/java/ip/taskData.txt");
+    /** File that task data is read from and written to */
+    private static final Storage storage = new Storage("src/main/java/ip/taskData.txt");
+    /** Flag to determine if the task data file should be wiped after program end */
     private static boolean toWipe = false;
 
     public static void main(String[] args) {
