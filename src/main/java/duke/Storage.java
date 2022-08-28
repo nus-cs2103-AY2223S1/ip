@@ -96,10 +96,10 @@ public class Storage {
             reader.close();
         } catch(FileNotFoundException e){
             File file = new File(this.filePath);
-            Parser.echo("not found so let's create one!");
+            Parser.echo("File not found so let's create one!");
         } catch(IOException e){
             File file = new File(this.filePath);
-            Parser.echo("not found so let's create one!");
+            Parser.echo("File not found so let's create one!");
         }
         return tasklist;
     }
