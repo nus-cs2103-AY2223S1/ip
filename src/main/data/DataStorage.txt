@@ -1,3 +1,0 @@
-todo eat
-event party jazz /at 10pm
-deadline coding /by 12am
