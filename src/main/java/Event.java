@@ -6,12 +6,21 @@ public class Event extends Task {
 
     protected LocalDate at;
 
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, String at) throws UncException {
         super(description);
         try {
             this.at = LocalDate.parse(at);
         } catch (DateTimeParseException exception) {
-            throw new DukeException("Invalid datetime");
+            throw new UncException("Invalid datetime");
+        }
+    }
+
+    public Event(String description, String at, String done) throws UncException {
+        super(description, done == "true");
+        try {
+            this.at = LocalDate.parse(at);
+        } catch (DateTimeParseException exception) {
+            throw new UncException("Invalid datetime");
         }
     }
 
@@ -23,6 +32,6 @@ public class Event extends Task {
 
     @Override
     public String toStorageString() {
-        return "E" + "///" + this.description + "///" + this.at;
+        return "E" + "///" + this.description + "///" + this.at + "///" + this.isDone;
     }
 }

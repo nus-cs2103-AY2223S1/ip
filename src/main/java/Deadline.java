@@ -6,12 +6,21 @@ public class Deadline extends Task {
 
     protected LocalDate by;
 
-    public Deadline(String description, String by) throws DukeException{
+    public Deadline(String description, String by) throws UncException {
         super(description);
         try {
             this.by = LocalDate.parse(by);
         } catch (DateTimeParseException exception) {
-            throw new DukeException("Invalid datetime");
+            throw new UncException("Invalid datetime");
+        }
+    }
+
+    public Deadline(String description, String by, String done) throws UncException {
+        super(description, done == "true");
+        try {
+            this.by = LocalDate.parse(by);
+        } catch (DateTimeParseException exception) {
+            throw new UncException("Invalid datetime");
         }
     }
 
@@ -22,6 +31,6 @@ public class Deadline extends Task {
 
     @Override
     public String toStorageString() {
-        return "D" + "///" + this.description + "///" + this.by;
+        return "D" + "///" + this.description + "///" + this.by + "///" + this.isDone;
     }
 }

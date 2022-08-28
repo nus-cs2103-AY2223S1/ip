@@ -44,14 +44,14 @@ public class Duke {
                     case "D":
                         try {
                             taskList.add(new Deadline(oldTask[1], oldTask[2]));
-                        } catch (DukeException dukeException) {
+                        } catch (UncException uncException) {
                             System.out.println("Error creating saved list.");
                         }
                         break;
                     case "E":
                         try {
                             taskList.add(new Event(oldTask[1], oldTask[2]));
-                        } catch (DukeException dukeException) {
+                        } catch (UncException uncException) {
                             System.out.println("Error creating saved list.");
                         }
                         break;
@@ -79,34 +79,34 @@ public class Duke {
             try {
                 validInput verb = validInput.valueOf(words[0].toUpperCase());
                 switch (verb) {
-                    case LIST:
-                        displayList();
-                        break;
-                    case MARK:
-                        mark(Integer.parseInt(words[1]));
-                        break;
-                    case UNMARK:
-                        unmark(Integer.parseInt(words[1]));
-                        break;
-                    case DELETE:
-                        delete(Integer.parseInt(words[1]));
-                        break;
-                    case TODO:
-                        try {
-                            addToDo(words[1]);
-                        } catch (IndexOutOfBoundsException e) {
-                            throw new DukeException("You need something to do for Todo.");
-                        }
-                        break;
-                    case DEADLINE:
-                        addDeadline(words[1]);
-                        break;
-                    case EVENT:
-                        addEvent(words[1]);
-                        break;
+                case LIST:
+                    displayList();
+                    break;
+                case MARK:
+                    mark(Integer.parseInt(words[1]));
+                    break;
+                case UNMARK:
+                    unmark(Integer.parseInt(words[1]));
+                    break;
+                case DELETE:
+                    delete(Integer.parseInt(words[1]));
+                    break;
+                case TODO:
+                    try {
+                        addToDo(words[1]);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new UncException("You need something to do for Todo.");
+                    }
+                    break;
+                case DEADLINE:
+                    addDeadline(words[1]);
+                    break;
+                case EVENT:
+                    addEvent(words[1]);
+                    break;
                 }
-            } catch (DukeException dukeException) {
-                System.out.println(dukeException);
+            } catch (UncException uncException) {
+                System.out.println(uncException);
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.out.println("Invalid command.");
             } catch (Exception e) {
@@ -134,14 +134,14 @@ public class Duke {
 
     */
 
-    private static void addToDo(String input) throws DukeException {
+    private static void addToDo(String input) throws UncException {
         Todo newTodo = new Todo(input);
         taskList.add(newTodo);
         System.out.println("added: \n " + newTodo + "\nNow you have " + taskList.size() +
                 " tasks on the list.");
     }
 
-    private static void addDeadline(String input) throws DukeException {
+    private static void addDeadline(String input) throws UncException {
         String[] phrases = input.split(" /by ", 2);
         Deadline newDeadline = new Deadline(phrases[0], phrases[1]);
         taskList.add(newDeadline);
@@ -149,7 +149,7 @@ public class Duke {
                 " tasks on the list.");
     }
 
-    private static void addEvent(String input) throws DukeException {
+    private static void addEvent(String input) throws UncException {
         String[] phrases = input.split(" /at ", 2);
         Event newEvent = new Event(phrases[0], phrases[1]);
         taskList.add(newEvent);

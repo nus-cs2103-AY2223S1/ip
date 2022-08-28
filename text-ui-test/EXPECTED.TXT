@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Welcome to UNC
+Welcome to Unc
 
 added:
  [T][ ] Run

@@ -3,7 +3,10 @@ public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
+    }
 
+    public Todo(String description, String done) {
+        super(description, done == "true");
     }
 
     @Override
@@ -13,6 +16,6 @@ public class Todo extends Task {
 
     @Override
     public String toStorageString() {
-        return "T" + "///" + this.description + "///" + " ";
+        return "T" + "///" + this.description + "///" + " " + "///" + this.isDone;
     }
 }
