@@ -1,18 +1,24 @@
 package duke.task;
 
-import duke.exception.ContentNotFoundException;
-import duke.exception.DateNotFoundException;
-import duke.exception.TaskNotFoundException;
-import duke.tools.Ui;
-import duke.tools.TaskParser;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import duke.exception.ContentNotFoundException;
+import duke.exception.DateNotFoundException;
+import duke.exception.TaskNotFoundException;
+import duke.tools.TaskParser;
+import duke.tools.Ui;
+
 /**
- * List of tasks
+ * List of tasks.
  */
 public class TaskList {
     private ArrayList<Task> tasks;
+
+    public TaskList() {
+
+        tasks = new ArrayList<>();
+    }
 
     public ArrayList<Task> addTask(String input)
             throws TaskNotFoundException, ContentNotFoundException, DateNotFoundException, DateTimeParseException {
@@ -20,24 +26,24 @@ public class TaskList {
         String taskInfo = taskParser.getTaskInfo();
 
         switch (taskParser.getCommand()) {
-            case TODO:
-                ToDo todo = ToDo.of(taskInfo, "UI");
-                tasks.add(todo);
-                Ui.addTaskToast(TaskParser.TASKS.TODO, todo, tasks.size());
-                break;
-            case DEADLINE:
-                Deadline deadline = Deadline.of(taskInfo, "UI");
-                tasks.add(deadline);
-                Ui.addTaskToast(TaskParser.TASKS.DEADLINE, deadline, tasks.size());
-                break;
-            case EVENT:
-                Event event = Event.of(taskInfo, "UI");
-                tasks.add(event);
-                Ui.addTaskToast(TaskParser.TASKS.EVENT, event, tasks.size());
-                break;
-            default:
-                throw new TaskNotFoundException(
-                        "Command not found: " + taskParser.getCommand());
+        case TODO:
+            ToDo todo = ToDo.of(taskInfo, "UI");
+            tasks.add(todo);
+            Ui.addTaskToast(TaskParser.TASKS.TODO, todo, tasks.size());
+            break;
+        case DEADLINE:
+            Deadline deadline = Deadline.of(taskInfo, "UI");
+            tasks.add(deadline);
+            Ui.addTaskToast(TaskParser.TASKS.DEADLINE, deadline, tasks.size());
+            break;
+        case EVENT:
+            Event event = Event.of(taskInfo, "UI");
+            tasks.add(event);
+            Ui.addTaskToast(TaskParser.TASKS.EVENT, event, tasks.size());
+            break;
+        default:
+            throw new TaskNotFoundException(
+                    "Command not found: " + taskParser.getCommand());
         }
         return tasks;
     }
@@ -120,10 +126,5 @@ public class TaskList {
             }
         }
         return searchResult;
-    }
-
-    public TaskList() {
-
-        tasks = new ArrayList<>();
     }
 }
