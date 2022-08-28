@@ -1,15 +1,6 @@
 package Duke;
 
-import Commands.Command;
-import Commands.DeadlineCommand;
-import Commands.DeleteCommand;
-import Commands.ExitCommand;
-import Commands.EventCommand;
-import Commands.FindCommand;
-import Commands.ListCommand;
-import Commands.MarkCommand;
-import Commands.ToDoCommand;
-import Commands.UnmarkCommand;
+import Commands.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,6 +47,12 @@ public class Parser {
             checkInputLength(parse,2);
             assert parse.length == 2: "Error in input for find";
             return new FindCommand(parse[1]);
+        case "priority":
+            checkInputLength(parse,2);
+            assert parse.length == 2: "Error in input for priority";
+            String[] parse0 = parse[1].split(" ");
+            checkInputLength(parse0,2);
+            return new PriorityCommand(parseInt(parse0[0]), parse0[1]);
         case "todo":
             checkInputLength(parse,2);
             assert parse.length == 2: "Error in input for todo";

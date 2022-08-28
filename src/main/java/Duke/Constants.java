@@ -15,4 +15,5 @@ public class Constants {
 
     public static final String invalidDate = "Please format your date as (dd MMM YYYY)";
 
+    public static final String invalidPriority = "Invalid Priority (H, M or L)";
 }

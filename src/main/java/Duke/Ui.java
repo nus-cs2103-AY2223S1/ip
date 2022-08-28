@@ -57,6 +57,12 @@ public class Ui {
         return s;
     }
 
+    public String printPriority(Task t) {
+        String s = String.format("Ok, I've marked the priority of this task as %s: \n %s \n",
+                    t.getPriorityStatus(), t.toString());
+        return s;
+    }
+
     public String printMsg(String s) {
         System.out.println(s);
         return s;

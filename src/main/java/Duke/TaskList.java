@@ -54,6 +54,19 @@ public class TaskList {
     }
 
     /**
+     * Sets the priority of  the designated task
+     *
+     * @param i index of task in task list
+     * @param s priority of task
+     * @return designated task
+     */
+    public Task setTaskPriority(int i, String s) {
+        Task t = lst.get(i - 1);
+        t.setPriority(s);
+        return t;
+    }
+
+    /**
      * Returns list of Tasks with the corresponding name
      *
      * @param name
@@ -111,9 +124,10 @@ public class TaskList {
             Task t = lst.get(i);
             String type = t.toString().substring(1,2);
             if (type.equals("T")) {
-                content.add(String.format("%s - %s - %s\n", type, t.getMarkedStatus(), t.getTaskName()));
+                content.add(String.format("%s - %s - %s - %s\n", type, t.getPriorityStatus(),
+                        t.getMarkedStatus(), t.getTaskName()));
             } else {
-                content.add(String.format("%s - %s - %s - %s\n", type, t.getMarkedStatus(),
+                content.add(String.format("%s - %s - %s - %s - %s\n", type, t.getPriorityStatus(), t.getMarkedStatus(),
                         t.getTaskName(), t.getDate()));
             }
         }
