@@ -5,12 +5,11 @@ import bobthebot.tasks.Deadline;
 import bobthebot.tasks.Event;
 import bobthebot.tasks.Todo;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -60,19 +59,19 @@ public class Storage {
                 Task task;
 
                 switch (parsedInput[0]) {
-                    case "T":
-                        task = new Todo(parsedInput[2]);
-                        break;
-                    case "D":
-                        task = new Deadline(parsedInput[2], parsedInput[3]);
-                        break;
-                    case "E":
-                        task = new Event(parsedInput[2], parsedInput[3]);
-                        break;
-                    default:
-                        task = null;
-                        System.err.println("Error occurred during file loading. I do not process this task type.");
-                        break;
+                case "T":
+                    task = new Todo(parsedInput[2]);
+                    break;
+                case "D":
+                    task = new Deadline(parsedInput[2], parsedInput[3]);
+                    break;
+                case "E":
+                    task = new Event(parsedInput[2], parsedInput[3]);
+                    break;
+                default:
+                    task = null;
+                    System.err.println("Error occurred during file loading. I do not process this task type.");
+                    break;
                 }
 
                 // checking if the task is done

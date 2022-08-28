@@ -1,5 +1,6 @@
 package bobthebot.utils;
 
+import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 
 /**
