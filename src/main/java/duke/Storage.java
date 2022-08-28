@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.File;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 
 /**
@@ -75,8 +77,8 @@ public class Storage {
                         String deadlineDsc = modifiedLine.replace("[D][ ] ", "");
                         // get 2 substring for description and deadlineTime
                         String description = deadlineDsc.substring(0, deadlineDsc.indexOf("("));
-                        String deadlineTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
-                        String modDeadlineTime = deadlineTime.replaceFirst("by: ", "");
+                        String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
+                        String modDeadlineTime = dlTime.replaceFirst("by: ", "");
                         // to convert string to date
                         DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
                         LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
@@ -90,8 +92,8 @@ public class Storage {
                         String deadlineDsc = modifiedLine.replace("[D][X] ", "");
                         // get 2 substring for description and deadlineTime
                         String description = deadlineDsc.substring(0, deadlineDsc.indexOf("("));
-                        String deadlineTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
-                        String modDeadlineTime = deadlineTime.replaceFirst("by: ", "");
+                        String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
+                        String modDeadlineTime = dlTime.replaceFirst("by: ", "");
                         // to convert string to date
                         DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
                         LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
