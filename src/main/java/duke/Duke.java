@@ -21,12 +21,15 @@ public class Duke {
 
         storage.loadFile(tasks);
         isAcceptingInput = true;
-        ui.printStartupMessage();
     }
 
-    private void exit() {
+    private String exit() {
         isAcceptingInput = false;
-        ui.printExitMessage();
+        return ui.printExitMessage();
+    }
+
+    public boolean isAcceptingInput() {
+        return isAcceptingInput;
     }
 
     private int getTaskIndexFromParsedOutput(String[] parsedOutput, String cmd) throws InputIndexOutOfBoundsException {
@@ -43,52 +46,44 @@ public class Duke {
      *
      * @param input A user input string.
      */
-    private void processInput(String input) {
+    public String getResponse(String input) {
         try {
             String[] parsedOutput = Parser.parseInput(input);
             String cmd = parsedOutput[0];
             switch (cmd) {
             case "bye":
-                exit();
-                return;
+                return exit();
             case "list":
-                ui.listTasks(tasks.getTasks());
-                break;
+                return ui.listTasks(tasks.getTasks());
             case "find": {
                 ArrayList<Task> foundTasks = tasks.find(parsedOutput[1]);
-                ui.listFoundTasks(foundTasks);
-                break;
+                return ui.listFoundTasks(foundTasks);
             }
             case "mark": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task markedTask = tasks.markTask(taskIndex);
-                ui.printMarkedTask(markedTask);
-                break;
+                return ui.printMarkedTask(markedTask);
             }
             case "unmark": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task unmarkedTask = tasks.unmarkTask(taskIndex);
-                ui.printUnmarkedTask(unmarkedTask);
-                break;
+                return ui.printUnmarkedTask(unmarkedTask);
             }
             case "delete": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task removedTask = tasks.removeTask(taskIndex);
-                ui.printRemovedTask(removedTask, tasks.getTaskCount());
-                break;
+                return ui.printRemovedTask(removedTask, tasks.getTaskCount());
             }
             case "todo": {
                 Task addedTask = tasks.addTodo(parsedOutput[1]);
-                ui.printAddedTask(addedTask, tasks.getTaskCount());
-                break;
+                return ui.printAddedTask(addedTask, tasks.getTaskCount());
             }
             case "deadline": {
                 String description = parsedOutput[1];
                 String date = parsedOutput[2];
                 String time = parsedOutput[3];
                 Task addedTask = tasks.addDeadline(description, date, time);
-                ui.printAddedTask(addedTask, tasks.getTaskCount());
-                break;
+                return ui.printAddedTask(addedTask, tasks.getTaskCount());
             }
             case "event": {
                 String description = parsedOutput[1];
@@ -97,41 +92,44 @@ public class Duke {
                 String dateEnd = parsedOutput[4];
                 String timeEnd = parsedOutput[5];
                 Task addedTask = tasks.addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
-                ui.printAddedTask(addedTask, tasks.getTaskCount());
-                break;
+                return ui.printAddedTask(addedTask, tasks.getTaskCount());
             }
             default:
                 throw new InvalidDukeInputException();
             }
         } catch (BannedDukeCharacterException e) {
-            ui.printBannedCharacterInputResponse(e.getMessage());
+            return ui.printBannedCharacterInputResponse(e.getMessage());
         } catch (InvalidDukeInputException e) {
-            ui.printInvalidInputResponse();
+            return ui.printInvalidInputResponse();
         } catch (MissingDukeInputException e) {
-            ui.printMissingInputResponse(e.getMessage());
+            return ui.printMissingInputResponse(e.getMessage());
         } catch (InputIndexOutOfBoundsException e) {
             String[] cmdNum = e.getMessage().split(" ");
             String cmd = cmdNum[0];
             String inputNum = cmdNum[1];
-            ui.printInputIndexOutOfBoundsResponse(cmd, inputNum);
+            return ui.printInputIndexOutOfBoundsResponse(cmd, inputNum);
         } catch (DateTimeParseException e) {
-            ui.printDateTimeErrorResponse();
+            return ui.printDateTimeErrorResponse();
         }
     }
 
+    /*
     private void runDuke() {
         Scanner sc = new Scanner(System.in);
         while (isAcceptingInput) {
             String input = sc.nextLine();
-            processInput(input);
+            getResponse(input);
             storage.saveFile(tasks);
         }
         sc.close();
     }
+     */
 
+    /*
     public static void main(String[] args) {
         String savePath = "savedata/";
         String saveName = "duke.txt";
         new Duke(savePath, saveName).runDuke();
     }
+     */
 }
