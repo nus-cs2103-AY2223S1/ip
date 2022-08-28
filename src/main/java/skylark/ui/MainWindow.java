@@ -27,8 +27,8 @@ public class MainWindow extends AnchorPane {
     private Skylark skylark;
     private Stage stage;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private final Image skylarkImage = new Image(this.getClass().getResourceAsStream("/images/Skylark.png"));
 
     /**
      * Initialises the MainWindow by setting the scroll pane with the height of the container.
@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getSkylarkDialog(Skylark.TEXT_HELLO, dukeImage)
+                DialogBox.getSkylarkDialog(Skylark.TEXT_HELLO, skylarkImage)
         );
     }
 
@@ -65,7 +65,7 @@ public class MainWindow extends AnchorPane {
         String response = skylark.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getSkylarkDialog(response, dukeImage)
+                DialogBox.getSkylarkDialog(response, skylarkImage)
         );
         userInput.clear();
     }
