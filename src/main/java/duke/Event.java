@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * An event task with a description and an occurrence timing.
+ */
 public class Event extends Task {
 
     private LocalDate at;

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a storage that stores the task list in a file.
+ */
 public class Storage {
 
     private String filePath;

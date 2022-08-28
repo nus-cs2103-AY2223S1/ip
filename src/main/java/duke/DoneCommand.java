@@ -2,6 +2,9 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Marks a task as done.
+ */
 public class DoneCommand extends Command {
     private int index;
     public DoneCommand(int index) {

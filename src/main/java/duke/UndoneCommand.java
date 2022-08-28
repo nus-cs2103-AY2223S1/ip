@@ -2,6 +2,9 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Marks a task as not done.
+ */
 public class UndoneCommand extends Command {
     private int index;
     public UndoneCommand(int index) {

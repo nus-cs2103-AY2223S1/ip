@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Handles the parsing of user input.
+ */
 public class Parser {
     public enum CommandType {
         BYE,

@@ -2,6 +2,9 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Deletes a task from the task list.
+ */
 public class DeleteCommand extends Command {
     private int index;
     public DeleteCommand(int index) {

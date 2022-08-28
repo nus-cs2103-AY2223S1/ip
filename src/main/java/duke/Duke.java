@@ -2,6 +2,12 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Duke is a chatbot that helps you keep track of your tasks.
+ * It can add, delete, mark tasks as done, and list all your tasks.
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
 
     private Storage storage;

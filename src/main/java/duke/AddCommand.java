@@ -2,6 +2,9 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Adds a task to the task list.
+ */
 public class AddCommand extends Command {
     private Task task;
 
