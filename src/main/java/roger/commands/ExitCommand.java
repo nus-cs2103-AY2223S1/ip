@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)  {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showFarewell();
     }
 

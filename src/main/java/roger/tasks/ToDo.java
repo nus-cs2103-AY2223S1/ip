@@ -1,15 +1,16 @@
 package roger.tasks;
 
-import roger.tasks.Task;
-
+/**
+ * Encapsualtes a ToDo.
+ */
 public class ToDo extends Task {
 
+    /**
+     * Constructor for ToDo class. Sets the ToDo name.
+     *
+     * @param name The ToDo name.
+     */
     public ToDo(String name) {
-        /**
-         * Constructor for ToDo class. Sets the ToDo name.
-         *
-         * @param name The ToDo name.
-         */
         super(name);
     }
 

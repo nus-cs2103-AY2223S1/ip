@@ -2,6 +2,9 @@ package roger.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * Encapsulates a deadline.
+ */
 public class Deadline extends Task {
     private LocalDate date;
 

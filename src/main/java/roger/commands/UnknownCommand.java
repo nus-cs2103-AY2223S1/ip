@@ -4,6 +4,9 @@ import roger.Storage;
 import roger.TaskList;
 import roger.Ui;
 
+/**
+ * Encapsulates a command that the program does not understand.
+ */
 public class UnknownCommand extends Command {
 
     /**
