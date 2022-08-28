@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/*
+Main class that starts the running of Duke Chat Bot
+*/
 public class Duke {
 
     private Storage storage;
@@ -11,6 +14,11 @@ public class Duke {
     private Ui ui;
     private ArrayList<Task> list;
 
+    /**
+     * Constructor for Duke to initialise objects
+     *
+     * @param filePath path of txt file storing past tasks
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -26,6 +34,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Contains Scanner which gets user input and passes it into
+     * other objects for interpretation
+     */
     public void run() {
         ui.sayHello();
 

@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+Contains JUnit tests
+*/
 public class DukeTest {
 
     @Test

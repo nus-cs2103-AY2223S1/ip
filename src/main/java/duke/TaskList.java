@@ -4,6 +4,9 @@ import duke.DukeException;
 
 import java.util.ArrayList;
 
+/*
+Contains list of tasks and operations to edit them
+*/
 public class TaskList {
     ArrayList<Task> taskList;
 
@@ -19,6 +22,12 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Marks a task as done if it is present.
+     *
+     * @param task Name of the task to be marked as done.
+     * @return The success or unsuccessful message to be shown.
+     */
     public String markDone(String task) {
         for (int i = 0; i < this.taskList.size(); i++) {
             if (this.taskList.get(i).getTask().equals(task)) {
@@ -29,6 +38,12 @@ public class TaskList {
         return task + " not found :(\n";
     }
 
+    /**
+     * Marks a task as undone if it is present.
+     *
+     * @param task Name of the task to be marked as undone.
+     * @return The success or unsuccessful message to be shown.
+     */
     public String unmarkDone(String task) {
         for (int i = 0; i < this.taskList.size(); i++) {
             if (this.taskList.get(i).getTask().equals(task)) {
@@ -39,6 +54,12 @@ public class TaskList {
         return task + " not found :(\n";
     }
 
+    /**
+     * Deletes a task if it is present.
+     *
+     * @param userInput Index number of the task to be removed from list.
+     * @throws DukeException If task does not exist.
+     */
     public void deleteTask(String userInput) throws DukeException {
         String line = " _______________________________________ \n";
         int index = Integer.parseInt(userInput.trim());
@@ -50,7 +71,12 @@ public class TaskList {
         System.out.println(line + " okie! i've removed: \n " + taskRemoved + "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
     }
 
-
+    /**
+     * Adds a task to the task list.
+     *
+     * @param userInput Complete user input.
+     * @throws DukeException If task name does not exist.
+     */
     public void addTask(String userInput) throws DukeException {
         String line = " _______________________________________ \n";
         if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {

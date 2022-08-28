@@ -2,6 +2,9 @@ package duke;
 
 import java.util.ArrayList;
 
+/*
+Deals with interactions with the user
+*/
 public class Ui {
 
     String line = " _______________________________________ \n";

@@ -4,10 +4,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
+/*
+Possible types of tasks to be created
+*/
 enum TaskType {
     TODO, DEADLINE, EVENT;
 }
 
+/*
+Task object that gets created by the user
+*/
 public class Task {
     private boolean done;
     private String taskName;

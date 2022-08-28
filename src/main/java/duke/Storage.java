@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
 
+/*
+Deals with loading tasks from file and saving tasks to file
+*/
 public class Storage {
 
     private String filePath;
