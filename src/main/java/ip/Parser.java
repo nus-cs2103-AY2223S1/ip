@@ -59,7 +59,7 @@ public class Parser {
             case "unmark":
                 return new EditCommand(commandGiven, inputLine);
             case "find":
-                return new FindCommand(commandGiven, inputLine);
+                return new FindCommand(inputLine);
             default:
                 throw new InvalidCommand(commandGiven);
             }

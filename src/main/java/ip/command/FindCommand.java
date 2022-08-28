@@ -1,19 +1,26 @@
 package ip.command;
 
 import ip.TaskList;
-import ip.exception.*;
 import ip.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Command to find tasks matching specified keyword.
+ */
 public class FindCommand extends Command {
-    private String commandGiven;
+    /** Options following the find command */
     private Scanner options;
 
-    public FindCommand(String commandGiven, Scanner options) {
-        this.commandGiven = commandGiven;
+    public FindCommand(Scanner options) {
         this.options = options;
     }
+
+    /**
+     * Finds tasks with descriptions matching given keyword.
+     *
+     * @param taskList List to search.
+     */
     @Override
     public void execute(TaskList taskList) {
         String keyword = "";
