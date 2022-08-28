@@ -53,8 +53,12 @@ public class Storage {
 
         ArrayList<String> newFile = new ArrayList<>();
 
-        for(int i = 0; i < this.file.length(); i++) {
+        for(int i = 0; i < newTasks.size(); i++) {
             newFile.add(newTasks.getTask(i).toFileString());
+
+        }
+        for(int i = 0; i < newTasks.size(); i++) {
+            System.out.println(newFile.get(i));
         }
         try {
             FileWriter fw = new FileWriter(file);

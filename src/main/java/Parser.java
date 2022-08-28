@@ -47,27 +47,6 @@ public class Parser {
         }
     }
 
-    public void parseFile(String lineOfTask) {
-        String[] tempArray = lineOfTask.split(" \\| ");
-        String typeOfTask = tempArray[0];
-
-        switch (typeOfTask) {
-            case "T" :
-                this.taskList.addTask(new Todo(tempArray[2], tempArray[1].equals("1")));
-                break;
-            case "D" :
-                LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
-                this.taskList.addTask(tmpTask);
-                break;
-            case "E" :
-                this.taskList.addTask(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3]));
-                break;
-            default:
-                System.out.println("Error: Wrong type of task");
-        }
-    }
-
     public void parseList(String[] subCmd) throws InvalidDescriptionException {
         if (subCmd.length != 0) {
             throw new InvalidDescriptionException();
@@ -81,7 +60,7 @@ public class Parser {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).mark();
-            this.storage.save(taskList);
+            this.storage.save(this.taskList);
         }
     }
 
@@ -90,7 +69,7 @@ public class Parser {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).unmark();
-            this.storage.save(taskList);
+            this.storage.save(this.taskList);
         }
     }
 
@@ -101,9 +80,10 @@ public class Parser {
             throw new EmptyDescriptionException();
         } else {
             Todo tmpTask = new Todo(tmp, false);
-
+            System.out.println(tmpTask);
             this.taskList.addTask(tmpTask);
-            this.storage.save(taskList);
+
+            this.storage.save(this.taskList);
         }
     }
 
@@ -118,7 +98,7 @@ public class Parser {
                 Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate);
 
                 this.taskList.addTask(tmpTask);
-                this.storage.save(taskList);
+                this.storage.save(this.taskList);
 
             } catch (DateTimeParseException e) {
                 throw new DukeException("Please change Date format to dd/mm/yyyy");
@@ -135,7 +115,7 @@ public class Parser {
             Event tmpTask = new Event(tempSplit[0],false, tempSplit[1]);
 
             this.taskList.addTask(tmpTask);
-            this.storage.save(taskList);
+            this.storage.save(this.taskList);
         }
     }
 
@@ -144,7 +124,7 @@ public class Parser {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
-            this.storage.save(taskList);
+            this.storage.save(this.taskList);
         }
     }
 }
