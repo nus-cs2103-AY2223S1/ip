@@ -2,6 +2,7 @@ package uwu.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import uwu.exception.UwuException;
 
 public class Event extends Task {
@@ -15,8 +16,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-        return "[E]" + super.toString() + " (at: " +
-                at.format(formatter) + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(formatter) + ")";
     }
 
     @Override

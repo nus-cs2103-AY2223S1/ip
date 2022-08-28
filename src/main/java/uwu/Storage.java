@@ -50,21 +50,21 @@ public class Storage {
                 String[] taskData = task.split(",");
 
                 switch (taskData[0]) {
-                    case "T":
-                        ToDos todo = new ToDos(taskData[2]);
-                        todo.setIsDone(taskData[1].equals("1"));
-                        result.add(todo);
-                        break;
-                    case "D":
-                        Deadline deadline = new Deadline(taskData[2],taskData[3]);
-                        deadline.setIsDone(taskData[1].equals("1"));
-                        result.add(deadline);
-                        break;
-                    case "E":
-                        Event event = new Event(taskData[2], taskData[3]);
-                        event.setIsDone(taskData[1].equals("1"));
-                        result.add(event);
-                        break;
+                case "T":
+                    ToDos todo = new ToDos(taskData[2]);
+                    todo.setIsDone(taskData[1].equals("1"));
+                    result.add(todo);
+                    break;
+                case "D":
+                    Deadline deadline = new Deadline(taskData[2],taskData[3]);
+                    deadline.setIsDone(taskData[1].equals("1"));
+                    result.add(deadline);
+                    break;
+                case "E":
+                    Event event = new Event(taskData[2], taskData[3]);
+                    event.setIsDone(taskData[1].equals("1"));
+                    result.add(event);
+                    break;
                 }
             }
         } catch (IOException e) {

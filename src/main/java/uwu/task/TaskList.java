@@ -34,7 +34,7 @@ public class TaskList {
 
         String userToDoStr = "";
 
-        for (int i = 0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             String listItem = "\t" + String.valueOf(i + 1) + ".\t" + userToDoList.get(i).toString();
 
             userToDoStr = userToDoStr + "\n" + listItem;
@@ -47,7 +47,7 @@ public class TaskList {
         int count = userToDoList.size();
         String taskListStorage = "";
 
-        for (int i = 0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             String taskItem = userToDoList.get(i).toStorageString();
 
             if (i == 0) {
