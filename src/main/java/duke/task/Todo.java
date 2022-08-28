@@ -12,7 +12,7 @@ public class Todo extends Task {
     /**
      * Constructs a new Todo instance
      *
-     * @param title the name of the task
+     * @param title  the name of the task
      * @param status whether the task is completed or not
      */
     public Todo(String title, boolean status) {
