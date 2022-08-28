@@ -1,7 +1,8 @@
 package duke.tools;
 
-import duke.exception.TaskNotFoundException;
 import java.util.HashMap;
+
+import duke.exception.TaskNotFoundException;
 
 public class CommandParser extends Parser {
     private String[] keywords;
@@ -45,6 +46,6 @@ public class CommandParser extends Parser {
         if (keywords.length < 2) {
             return 0;
         }
-        return Integer.parseInt(this.keywords[1].substring(0,1));
+        return Integer.parseInt(this.keywords[1].substring(0, 1));
     }
 }

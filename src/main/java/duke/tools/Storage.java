@@ -1,12 +1,13 @@
 package duke.tools;
 
-import duke.task.TaskList;
-import duke.task.Task;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Saves Task List to memory

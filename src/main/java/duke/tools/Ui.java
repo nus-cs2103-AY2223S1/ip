@@ -1,19 +1,20 @@
 package duke.tools;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.EnumMap;
+
 import duke.exception.ContentNotFoundException;
 import duke.exception.DateNotFoundException;
 import duke.exception.TaskNotFoundException;
 import duke.task.Task;
-import java.util.ArrayList;
-import java.time.format.DateTimeParseException;
-import java.util.EnumMap;
 
 /**
  * Interaction with the user
  */
 public class Ui {
-    private static final String GREETING = "Hello! I'm Rio, the reality check you never asked for but really need.\n" +
-            "What can I help with today?";
+    private static final String GREETING = "Hello! I'm Rio, the reality check you never asked for but really need.\n"
+            + "What can I help with today?";
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
