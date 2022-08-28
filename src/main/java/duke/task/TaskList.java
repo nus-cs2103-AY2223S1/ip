@@ -51,7 +51,7 @@ public class TaskList {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
         Task task = this.tasks.get(taskIndex - 1);
-        tasks.remove(taskIndex);
+        tasks.remove(taskIndex - 1);
         return task;
     }
 
