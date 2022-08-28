@@ -15,7 +15,7 @@ public class TaskList {
         this.taskList = new ArrayList<Task>();
     }
 
-    public ArrayList<Task> list() {
+    public ArrayList<Task> getTaskList() {
         return taskList;
     }
 
@@ -47,7 +47,8 @@ public class TaskList {
         }
         Task taskRemoved = this.taskList.get(index - 1);
         this.taskList.remove(index - 1);
-        System.out.println(line + " okie! i've removed: \n " + taskRemoved + "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
+        System.out.println(line + " okie! i've removed: \n " + taskRemoved +
+                "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
     }
 
 
@@ -59,7 +60,8 @@ public class TaskList {
         Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
                 userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
         this.taskList.add(t);
-        System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
+        System.out.println(line + " okie! i've added: \n " + t +
+                "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
     }
 
 }
