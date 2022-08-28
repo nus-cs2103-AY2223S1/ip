@@ -127,16 +127,18 @@ public class TaskList {
     }
 
     /**
-     * A method that searches the TaskList for Task(s) with the specified keyword.
+     * A method that searches the TaskList for Task(s) with the specified keyword(s).
      *
-     * @param keyword The keyword to search for.
+     * @param keywords The keyword(s) to search for.
      * @return The list of Task(s) found with the specified keyword.
      */
-    public ArrayList<Task> findTask(String keyword) {
+    public ArrayList<Task> findTask(String ... keywords) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.hasKeyword(keyword)) {
-                foundTasks.add(task);
+            for (String keyword : keywords) {
+                if (task.hasKeyword(keyword)) {
+                    foundTasks.add(task);
+                }
             }
         }
         return foundTasks;
