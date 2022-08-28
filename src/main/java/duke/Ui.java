@@ -171,7 +171,7 @@ public class Ui {
         System.out.println("Deadline: adds a Deadline Task");
         System.out.println("Command: Deadline (description) /by (YYYY-MM-DD 24hr)\n");
 
-        System.out.println("Deadline: adds a Event Task");
+        System.out.println("Event: adds a Event Task");
         System.out.println("Command: Event (description) /at (YYYY-MM-DD 24hr)");
         System.out.println("-----------------------------------------\n");
     }
