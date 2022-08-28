@@ -1,19 +1,34 @@
 package duke;
 
 import java.io.File;
+
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import ui.UI;
-import task.*;
-import storage.Storage;
+
 import parser.Parser;
 
+<<<<<<< HEAD
 /**
  * Duke is a Personal ChatBot to help keep track of your Tasks.
  *
  * @author joelwong
  */
+=======
+import storage.Storage;
+
+import ui.UI;
+
+import task.TaskList;
+import task.Task;
+
+
+
+
+
+
+>>>>>>> branch-A-CodingStandard
 
 public class Duke {
 
@@ -35,15 +50,14 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.load());
-            //Ok got shit in the task
             this.tasks.printContent();
             ui.showGotTask();
         } catch (DukeException e) {
             ui.showNoTask();
+
             //does nothing but instantiate a object
             this.tasks = new TaskList();
         }
-
     }
 
     /**
@@ -60,13 +74,13 @@ public class Duke {
         while (end != 1) {
             //If user wants to check the list
             String output = list(tasks.getTaskList(), currentAction);
-            String[] input = userInput.split(" ");
+            String input[] = userInput.split(" ");
             try {
                 Parser parse = new Parser(tasks, userInput);
                 if (parse.isErreneous()) {
                     type = parse.getType();
                     ui.showInaccurateInput();
-                } else  {
+                } else {
                     //change from action to getAction()
                     if (parse.getIsAction()) {
                         currentAction++;
@@ -88,7 +102,6 @@ public class Duke {
             } catch (DukeException e) {
                 ui.showInaccurateInput();
             }
-
             userInput = sc.nextLine();
         }
     }
@@ -101,11 +114,11 @@ public class Duke {
     }
 
     public static String list(ArrayList<Task> listOfActions, int currentAction) {
-        String o = "";
+        String out = "";
         for (int i = 0; i < currentAction; i++) {
-            o = o + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
+            out = out + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
         }
-        return o;
+        return out;
     }
 
 

@@ -1,19 +1,20 @@
 package parser;
 
 import duke.DukeException;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.nio.file.Path;
+
+import java.util.ArrayList;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.Todo;
 import task.TaskList;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-
-
 
 public class Parser {
 

@@ -1,7 +1,6 @@
 package task;
 
 import duke.DukeException;
-import task.Task;
 
 import java.util.ArrayList;
 
@@ -107,11 +106,11 @@ public class TaskList {
      */
 
     public String getList() {
-        String o = "";
+        String out = "";
         for (int i = 0; i < size; i++) {
-            o = o + String.format("%d", i + 1) + "." + taskArray.get(i) + "\n";
+            out = out + String.format("%d", i + 1) + "." + taskArray.get(i) + "\n";
         }
-        this.list = o;
+        this.list = out;
         return this.list;
     }
 
