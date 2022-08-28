@@ -34,11 +34,12 @@ public class Duke {
     public enum Command {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
     }
+    private ZoneId timeZone = ZoneId.of("GMT+00:00");
+
     private final Storage storage;
-    private TaskList tasks;
     private final Ui ui;
     private final Parser parser;
-    private ZoneId timeZone = ZoneId.of("GMT+00:00");
+    private TaskList tasks;
 
     protected Duke() {
         ui = new Ui();
@@ -47,12 +48,11 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello from\n" + "MAKIBOT");
         new Duke().start();
     }
 
     protected void start() {
-        System.out.println("Hello! I'm MAKIBOT");
+        System.out.println("Hello! I'm MakiBot");
         timeZone = ui.getTimeZone(timeZone);
         storage.setSaveFilePath(ui.getSaveFile(storage.getSaveFilePath()));
         tasks = new TaskList(storage.loadTasks(timeZone));
