@@ -3,7 +3,7 @@ package duke.task;
 import duke.exception.TaskMarkException;
 import duke.exception.TaskUnmarkException;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
