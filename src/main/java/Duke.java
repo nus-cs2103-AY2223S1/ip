@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 public class Duke {
-
     private static final String saveDirectoryPath = "../data";
     private static final String saveFilePath = "../data/duke.txt";
     private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
@@ -18,7 +17,7 @@ public class Duke {
     private static final String addTask = "Got it. I've added this task: \n";
     private static final String deleteTask = "Noted. I've removed this task: \n";
 
-    private static ArrayList<Task> userTasks = new ArrayList<>();
+    private static TaskList tasklist = new TaskList();
 
     private static void wrapText(String content) {
         System.out.println("-".repeat(57));
@@ -27,75 +26,36 @@ public class Duke {
     }
 
     private static void taskWrapper() {
-        int length = userTasks.size();
-        String content = userTasks.get(length - 1).returnDescription();
+        String content = tasklist.getLastTask();
         content = addTask + content;
-        content += "\nNow you have " + length + " tasks in the list.";
+        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
         wrapText(content);
     }
 
     private static void wrapDelete(String content) {
         content = deleteTask + content;
-        content += "\nNow you have " + userTasks.size() + " tasks in the list.";
+        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
         wrapText(content);
     }
 
-    private static void appendToDo(String inputString) {
-        userTasks.add(new ToDo(inputString));
-    }
-
-    private static void appendDeadline(String taskDescription, String date) {
-        date = date.replace("by ","");
-        userTasks.add(new Deadline(taskDescription, date));
-    }
-    private static void appendEvent(String taskDescription, String dateTime) {
-        dateTime = dateTime.replace("at ","");
-        userTasks.add(new Event(taskDescription, dateTime));
-    }
-
-    private static String removeTask(String number) {
-        int index = Integer.parseInt(number) - 1;
-        Task deletedTask = userTasks.remove(index);
-        String taskMessage = deletedTask.returnDescription();
-        return taskMessage;
-    }
     private static String generateList() {
         String listInString = listMessage;
-        int index = userTasks.size();
-        for (int i = 0; i < index; i++) {
-            listInString += String.valueOf(i + 1) + ". " + userTasks.get(i).returnDescription();
-            if(i != index - 1) {
-                listInString += "\n";
-            }
-        }
+        listInString += tasklist.listOfTaskForDisplay();
         return listInString;
     }
 
     private static String generateMark(String taskNumber) {
-        int index = Integer.parseInt(taskNumber) - 1;
         String markInText = markText;
-        Task currentTask = userTasks.get(index);
-        currentTask.markTask();
-        markInText += currentTask.returnDescription();
+        markInText += tasklist.markSpecificTask(taskNumber);
         return markInText;
     }
 
     private static String generateUnmark(String taskNumber) {
-        int index = Integer.parseInt(taskNumber) - 1;
         String unmarkInText = unmarkText;
-        Task currentTask = userTasks.get(index);
-        currentTask.unmarkTask();
-        unmarkInText += currentTask.returnDescription();
+        unmarkInText += tasklist.unmarkSpecificTask(taskNumber);
         return unmarkInText;
     }
 
-    private static String generateTextToSave() {
-        String textToSave = "";
-        for (Task task: userTasks) {
-            textToSave += task.toWriteFile() + System.lineSeparator();
-        }
-        return textToSave;
-    }
     private static void writeToFile(String textToSave) throws IOException {
         FileWriter fw = new FileWriter(saveFilePath);
         fw.write(textToSave);
@@ -121,11 +81,11 @@ public class Duke {
             String[] tempWords = tempLine.split(" , ");
             boolean isCompleted = tempWords[1].contains("true");
             if (tempWords[0].equals("T")) {
-                userTasks.add(new ToDo(tempWords[2], isCompleted));
+                tasklist.appendToDoFromFile(tempWords[2], isCompleted);
             } else if (tempWords[0].equals("E")) {
-                userTasks.add(new Event(tempWords[2], tempWords[3], isCompleted));
+                tasklist.appendEventFromFile(tempWords[2], tempWords[3], isCompleted);
             } else if (tempWords[0].equals("D")) {
-                userTasks.add(new Deadline(tempWords[2], tempWords[3], isCompleted));
+                tasklist.appendDeadlineFromFile(tempWords[2], tempWords[3], isCompleted);
             }
         }
     }
@@ -150,37 +110,37 @@ public class Duke {
                     wrapText(generateList());
                 } else if (input.equals("mark")) {
                     wrapText(generateMark(inputs[1]));
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("unmark")) {
                     wrapText(generateUnmark(inputs[1]));
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("todo")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
-                    appendToDo(inputString);
+                    tasklist.appendToDo(inputString);
                     taskWrapper();
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("deadline")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                     }
                     String[] deadlineDescription = inputString.split("/");
-                    appendDeadline(deadlineDescription[0], deadlineDescription[1]);
+                    tasklist.appendDeadline(deadlineDescription[0], deadlineDescription[1]);
                     taskWrapper();
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("event")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
                     }
                     String[] eventDescription = inputString.split("/");
-                    appendEvent(eventDescription[0], eventDescription[1]);
+                    tasklist.appendEvent(eventDescription[0], eventDescription[1]);
                     taskWrapper();
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("delete")) {
-                    String taskMessage = removeTask(inputs[1]);
+                    String taskMessage = tasklist.removeTask(inputs[1]);
                     wrapDelete(taskMessage);
-                    writeToFile(generateTextToSave());
+                    writeToFile(tasklist.listOfTasksForSaving());
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
