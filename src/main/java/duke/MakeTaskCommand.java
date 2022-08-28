@@ -1,3 +1,5 @@
+package duke;
+
 abstract class MakeTaskCommand extends Command {
 
     private final String detail;

@@ -1,3 +1,5 @@
+package duke;
+
 public class UnmarkCommand extends TaskListCommand {
     UnmarkCommand(String cmd) {
         super(cmd);

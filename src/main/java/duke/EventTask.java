@@ -1,3 +1,5 @@
+package duke;
+
 public class EventTask extends TimeTask {
     private final String eventTime;
     EventTask(String taskname, String eventTime) {

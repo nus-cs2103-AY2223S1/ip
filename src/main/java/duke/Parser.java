@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
 
     static Command parse(String cmd) {

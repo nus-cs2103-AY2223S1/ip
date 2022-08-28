@@ -1,5 +1,7 @@
+package duke;
+
 abstract class TaskMaker {
-    static final String noSuchTaskLabelMessage = "No such Task label exists";
+    static final String noSuchTaskLabelMessage = "No such duke.Task label exists";
 
     private TaskMaker() {
     }

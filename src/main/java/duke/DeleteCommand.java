@@ -1,3 +1,5 @@
+package duke;
+
 public class DeleteCommand extends TaskListCommand {
 
     DeleteCommand(String cmd) {

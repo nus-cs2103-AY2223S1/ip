@@ -1,3 +1,5 @@
+package duke;
+
 public class DeadlineTask extends TimeTask {
     private final String deadline;
     DeadlineTask(String taskname, String deadline){

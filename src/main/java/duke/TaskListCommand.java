@@ -1,3 +1,5 @@
+package duke;
+
 abstract class TaskListCommand extends Command {
     private final String cmd;
 
