@@ -27,18 +27,22 @@ public class FindCommand extends Command {
      * Executes the FindCommand
      *
      * @param taskList the task list to be searched
-     * @param ui the user interface to be used
-     * @param storage not being used
+     * @param ui       the user interface to be used
+     * @param storage  not being used
+     * @return output to be shown
      * @throws DukeException if an error occurs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         TaskList filtered = taskList.filter(keyword);
         if (filtered.getTaskList().isEmpty()) {
             ui.showOutput("No matching task found!");
+            return "No matching task found!";
         } else {
             ui.showOutput("Here are the matching tasks in your list:");
             ui.showOutput(filtered.toString());
+
+            return "Here are the matching tasks in your list:\n" + filtered.toString();
         }
     }
 

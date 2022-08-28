@@ -17,9 +17,9 @@ public class Deadline extends Task {
     /**
      * Constructs a new Deadline instance
      *
-     * @param title the name of the task
+     * @param title  the name of the task
      * @param status whether the task is completed or not
-     * @param date the deadline of the task
+     * @param date   the deadline of the task
      */
     public Deadline(String title, boolean status, String date) throws DateTimeParseException {
         super(title, status);
@@ -33,8 +33,9 @@ public class Deadline extends Task {
      */
     @Override
     public String encode() {
-        return (SYMBOL + " | " + (this.status ? "1" : "0") + " | " + this.title + " | "
-                + this.date);
+        return (SYMBOL + " | " + (this.status ?
+                "1" :
+                "0") + " | " + this.title + " | " + this.date);
     }
 
     @Override

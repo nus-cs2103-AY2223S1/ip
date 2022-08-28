@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.common.DukeException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,7 +69,7 @@ public class TaskList {
     /**
      * Marks a task with status
      *
-     * @param index the index of the task to be marked
+     * @param index  the index of the task to be marked
      * @param status the status of the task to be marked
      * @return the task list after marking the task
      * @throws DukeException if an error occurs

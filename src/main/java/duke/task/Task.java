@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.common.DukeException;
+
 import java.time.format.DateTimeParseException;
 
 /**
@@ -16,7 +17,7 @@ public abstract class Task {
     /**
      * Constructs a new Task instance
      *
-     * @param title the name of the task
+     * @param title  the name of the task
      * @param status whether the task is completed or not
      */
     Task(String title, boolean status) {

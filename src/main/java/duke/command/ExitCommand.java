@@ -16,13 +16,16 @@ public class ExitCommand extends Command {
      * Executes the ExitCommand
      *
      * @param taskList not being used
-     * @param ui the user interface to be used
-     * @param storage not being used
+     * @param ui       the user interface to be used
+     * @param storage  not being used
+     * @return output to be shown
      * @throws DukeException if an error occurs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ui.showOutput("Goodbye!");
+
+        return "Goodbye!";
     }
 
     /**
