@@ -1,3 +1,5 @@
+package duke.support;
+
 /**
  * The DukeException class holds methods that will handle
  * checked exceptions that may arise in the Duke class

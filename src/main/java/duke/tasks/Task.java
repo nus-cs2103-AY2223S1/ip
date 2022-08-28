@@ -1,3 +1,7 @@
+package duke.tasks;
+
+import duke.functions.Ui;
+
 public class Task {
     private String name;
     private String type;

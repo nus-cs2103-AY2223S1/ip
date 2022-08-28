@@ -1,8 +1,8 @@
+package duke;
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.*;
+import duke.functions.*;
+
 public class Duke {
 
     private Ui newUser;

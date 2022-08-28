@@ -1,3 +1,7 @@
+package duke.functions;
+
+import duke.tasks.Task;
+
 /**
  * Class which holds the list of tasks inputted by a user.
  * @author lauralee
