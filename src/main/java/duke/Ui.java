@@ -144,4 +144,7 @@ public class Ui {
                 + filteredListString;
         printWithFormat(text);
     }
+<<<<<<< HEAD
+}
+=======
 }
