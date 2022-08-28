@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner sc;
-    private static final String HELLO = "Hello! I'm duke.Duke\nWhat can I do for you?";
+    private static final String HELLO = "Hello! I'm Duke\nWhat can I do for you?";
     private static final String BYE = "Bye! Hope to see you again soon!";
 
     Ui() {

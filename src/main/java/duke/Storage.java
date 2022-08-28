@@ -48,20 +48,25 @@ public class Storage {
             }
         }
 
-        Scanner sc = new Scanner(file);
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                lst.add(sc.nextLine());
+            }
+            sc.close();
+            return lst;
 
-        while (sc.hasNext()) {
-            lst.add(sc.nextLine());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
-        sc.close();
-        return lst;
+       return lst;
     }
 
     /**
      * Updates list of tasks in the storage file
      * @param lst latest list of tasks to be written into storage
      */
-    public void update(ArrayList<Task> lst) {
+    public void update(ArrayList<Task> lst) throws IOException{
         File file = new File(path);
         FileWriter fw = new FileWriter(this.path);
         for (int i = 0; i < lst.size(); i++) {
