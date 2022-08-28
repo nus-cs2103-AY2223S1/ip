@@ -7,6 +7,7 @@ import uwu.command.DeleteCommand;
 import uwu.command.ListCommand;
 import uwu.command.MarkCommand;
 
+import uwu.exception.EmptyInputException;
 import uwu.exception.UnknownCommandException;
 import uwu.exception.UwuException;
 
@@ -16,16 +17,22 @@ public class Parser {
                 return new ExitCommand();
             } else if (userCommand.trim().equals("list")) {
                 return new ListCommand();
-            } else if (userCommand.startsWith("mark ") || userCommand.startsWith("unmark ")) {
+            } else if (userCommand.startsWith("mark") || userCommand.startsWith("unmark")) {
                 return new MarkCommand(userCommand);
-            } else if (userCommand.startsWith("todo ") ||
-                        userCommand.startsWith("deadline ") ||
-                        userCommand.startsWith("event ")) {
+            } else if (userCommand.startsWith("todo") ||
+                        userCommand.startsWith("deadline") ||
+                        userCommand.startsWith("event")) {
+                if (userCommand.trim().endsWith("todo") ||
+                        userCommand.trim().endsWith("deadline") ||
+                        userCommand.trim().endsWith("event")) {
+                    throw new EmptyInputException("\tyour task description is empty TT\n\t" +
+                            "feed me a task description to get started! <:");
+                }
                 return new AddCommand(userCommand);
-            } else if (userCommand.startsWith("delete ")) {
+            } else if (userCommand.startsWith("delete")) {
                 return new DeleteCommand(userCommand);
             } else {
-                throw new UnknownCommandException("\n\tsorry >< \n\ti don't know what that means TT");
+                throw new UnknownCommandException("\tsorry >< \n\ti don't know what that means TT");
             }
     }
 }

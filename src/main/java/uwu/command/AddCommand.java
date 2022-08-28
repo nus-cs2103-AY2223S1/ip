@@ -29,7 +29,7 @@ public class AddCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (userCommand.replaceFirst(taskType, "").isBlank()) {
-            throw new EmptyInputException("\n\tyour task description is empty TT\n\t" +
+            throw new EmptyInputException("\tyour task description is empty TT\n\t" +
                                             "feed me a task description to get started! <:");
         }
 
