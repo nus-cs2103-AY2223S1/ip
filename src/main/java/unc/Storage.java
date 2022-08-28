@@ -12,14 +12,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that handles reading from and writing to files.
+ */
 public class Storage {
     private final File saveFile;
 
+    /**
+     * Constructor
+     *
+     * @param filePath Directory and name of file.
+     */
     public Storage(String filePath) {
         this.saveFile = new File(filePath);
-
     }
 
+    /**
+     * Reads from file to reconstruct list of tasks.
+     * Creates a file at directory if it doesn't exist.
+     *
+     * @return List of saved tasks.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
@@ -67,6 +80,11 @@ public class Storage {
 
     }
 
+    /**
+     * Writes the current TaskList into file.
+     *
+     * @param taskList Current TaskList.
+     */
     public void save(TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(saveFile);

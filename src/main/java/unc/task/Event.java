@@ -6,10 +6,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A type of task that happens at a specific date/time.
+ */
 public class Event extends Task {
 
     protected LocalDate at;
 
+    /**
+     * Constructor for new Events.
+     *
+     * @param description Description of task.
+     * @param at The date/time task happens.
+     * @throws UncException If the date/time can't be parsed correctly.
+     */
     public Event(String description, String at) throws UncException {
         super(description);
         try {
@@ -19,6 +29,14 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructor for saved Events.
+     *
+     * @param description Description of task.
+     * @param at The date/time task happens.
+     * @param done Whether the task was saved as done.
+     * @throws UncException If the date/time can't be parsed correctly.
+     */
     public Event(String description, String at, String done) throws UncException {
         super(description, done == "true");
         try {
@@ -34,6 +52,9 @@ public class Event extends Task {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStorageString() {
         return "E" + "///" + this.description + "///" + this.at + "///" + this.isDone;
