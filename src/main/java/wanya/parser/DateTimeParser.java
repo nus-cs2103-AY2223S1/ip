@@ -6,15 +6,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-//referenced from
+//Below code are referenced from
 //https://www.geeksforgeeks.org/java-time-format-datetimeformatterbuilder-class-in-java/
-//https://stackoverflow.com/questions/40175196/java-parsing-string-to-localdatetime-without-providing-time
-
 /**
  * Represents a parser that parses String to LocalDateTime in various patterns.
  */
 public class DateTimeParser {
     // only allow format of yyyy-MM-dd and yyyy-MM-dd HH:mm as of now
+    // Reused from
+    // https://stackoverflow.com/questions/40175196/java-parsing-string-to-localdatetime-without-providing-time
     private static final DateTimeFormatter FORMATTER =  new DateTimeFormatterBuilder()
             .appendPattern("yyyy-MM-dd")
             .optionalStart()
