@@ -5,8 +5,8 @@ import duke.exception.TaskNotFoundException;
 /**
  * Converter of user inputs to commands
  */
-abstract public class Parser {
+public abstract class Parser {
     private String[] keywords;
 
-    abstract public Enum getCommand() throws TaskNotFoundException;
+    public abstract Enum getCommand() throws TaskNotFoundException;
 }

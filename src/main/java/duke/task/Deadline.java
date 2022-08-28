@@ -1,8 +1,9 @@
 package duke.task;
 
+import java.time.format.DateTimeParseException;
+
 import duke.exception.DateNotFoundException;
 import duke.tools.DateTime;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     private String dateTime;
@@ -26,14 +27,14 @@ public class Deadline extends Task {
                 throw new DateNotFoundException(taskText);
             }
             String eventDetails = taskText.substring(0, taskText.indexOf('/'));
-            String dateTime = taskText.substring(taskText.indexOf('/')+3);
+            String dateTime = taskText.substring(taskText.indexOf('/') + 3);
             DateTime date = new DateTime(dateTime.trim());
             return new Deadline(eventDetails, date);
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         //ui : (by: date)
         return "D" + super.toString() + " | " + dateTime;
     }

@@ -1,8 +1,9 @@
 package duke.tools;
 
+import java.util.HashMap;
+
 import duke.exception.ContentNotFoundException;
 import duke.exception.TaskNotFoundException;
-import java.util.HashMap;
 
 public class TaskParser extends Parser {
     private String[] keywords;

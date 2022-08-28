@@ -4,24 +4,30 @@ public class Task {
     private String task;
     private boolean done;
 
+    public Task(String task) {
+        this.task = task;
+        this.done = false;
+    }
+
     public boolean done() {
         done = true;
         return true;
     }
 
-    public boolean notDone(){
+    public boolean notDone() {
         done = false;
         return false;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         if (done) {
             return " | X | " + task;
         } else {
             return " |   |  " + task;
         }
     }
+<<<<<<< HEAD
 
     /**
      * Returns true if the description is contained in the task desc, false otherwise.
@@ -36,4 +42,6 @@ public class Task {
         this.task = task;
         this.done = false;
     }
+=======
+>>>>>>> b68d198 (amend code based on coding style for A-CodingStyle, and integrate stylechecks for A-Stylecheck)
 }

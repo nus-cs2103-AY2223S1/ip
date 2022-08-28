@@ -1,8 +1,9 @@
 package duke.task;
 
+import java.time.format.DateTimeParseException;
+
 import duke.exception.DateNotFoundException;
 import duke.tools.DateTime;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     private String dateTime;
@@ -27,14 +28,14 @@ public class Event extends Task {
             }
 
             String eventDetails = taskText.substring(0, taskText.indexOf('/'));
-            String dateTime = taskText.substring(taskText.indexOf('/')+3);
+            String dateTime = taskText.substring(taskText.indexOf('/') + 3);
             DateTime date = new DateTime(dateTime.trim());
             return new Event(eventDetails, date);
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         //ui: (at: date)
         return "E" + super.toString() + " | " + dateTime;
     }
