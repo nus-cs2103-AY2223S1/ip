@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
  * The Event class represents a task
  * with a specific date or time.
  */
-public class Event extends Task{
+public class Event extends Task {
     private String eventAt;
     private LocalDate eventDate;
 
@@ -38,18 +38,14 @@ public class Event extends Task{
             }
         }
     }
-
-    @Override
-    public boolean compareDate(LocalDate date) {
-        return date.equals(this.eventDate);
-    }
-
+    
     /**
      * Constructor for Event when loaded from Storage.
      * @param i Mark status.
      * @param description Specified Event description.
      * @param eventAt Specified Event date.
      */
+
     public Event(int i, String description, String eventAt) {
         super(description);
         this.eventAt = eventAt;
@@ -57,6 +53,11 @@ public class Event extends Task{
             this.markDone();
         }
     }
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.eventDate);
+    }
+
 
     @Override
     public String toStore() {

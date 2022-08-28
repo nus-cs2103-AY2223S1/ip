@@ -1,9 +1,15 @@
 package duke;
 
-import duke.task.Task;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+
+/**
+ * The TaskList class contains the task list.
+ */
+
+import duke.task.Task;
+
 
 /**
  * The TaskList class contains the task list.

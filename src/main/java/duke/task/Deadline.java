@@ -39,23 +39,24 @@ public class Deadline extends Task {
         }
     }
 
-    @Override
-    public boolean compareDate(LocalDate date) {
-        return date.equals(this.deadline);
-    }
-
     /**
      * Constructor for Deadline when loaded from Storage.
      * @param i Mark status.
      * @param description Specified Deadline description.
      * @param deadline Specified Deadline date.
      */
+
     public Deadline(int i, String description, String deadline) {
         super(description);
         this.ddl = deadline;
         if (i == 1) {
             this.markDone();
         }
+    }
+
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.deadline);
     }
 
     @Override
