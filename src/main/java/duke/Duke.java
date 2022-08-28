@@ -1,8 +1,6 @@
 package duke;
 
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * A Personal Assistant Chatbot that helps a person keep track of several things like tasks.
@@ -15,6 +13,11 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * The constructor of the Duke class.
+     *
+     * @param filePath
+     */
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList();
@@ -23,6 +26,10 @@ public class Duke {
         this.parser = new Parser();
     }
 
+    /**
+     * Method which causes the chatbot to run.
+     *
+     */
     public void run() {
         this.ui.printStart();
 
@@ -35,6 +42,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method which instantiates the Duke chatbot and runs it.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
 

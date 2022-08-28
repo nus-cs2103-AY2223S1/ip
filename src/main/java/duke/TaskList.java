@@ -2,29 +2,62 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Encapsulates the list of tasks inputted by the user.
+ *
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Constructor.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Adds a task into the TaskList.
+     *
+     * @param task
+     */
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Returns the task specified by index from the TaskList.
+     *
+     * @param index
+     * @return task object
+     */
     public Task getTask(int index) {
         return this.tasks.get(index);
     }
 
+    /**
+     * Returns size of the TaskList.
+     *
+     * @return size of the TaskList
+     */
     public int size() {
         return this.tasks.size();
     }
 
+    /**
+     * Removes a task from the TaskList, specified by the index.
+     *
+     * @param index
+     */
     public void remove(int index) {
         this.tasks.remove(index);
     }
 
+    /**
+     * Returns String representation of the TaskList.
+     *
+     * @return String representation of the TaskList
+     */
     @Override
     public String toString() {
         String str = "";

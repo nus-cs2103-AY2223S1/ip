@@ -16,6 +16,11 @@ public class Storage {
     private String filePath;
     private File file;
 
+    /**
+     * Constructor.
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(this.filePath);
