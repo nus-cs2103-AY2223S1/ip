@@ -1,15 +1,15 @@
 package duke;
 
-public class DukeException extends Exception{
-    private final String MESSAGE;
+public class DukeException extends Exception {
+    private String message;
 
     public DukeException(String message) {
         super(message);
-        this.MESSAGE = message;
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return MESSAGE;
+        return message;
     }
 }
