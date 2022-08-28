@@ -20,11 +20,11 @@ public class TaskList {
         taskList = tl;
     }
 
-    public void AddTask(Task task) {
+    public void addTask(Task task) {
         taskList.add(task);
     }
 
-    public Task DeleteTask(int taskIndex) {
+    public Task deleteTask(int taskIndex) {
         return taskList.remove(taskIndex);
     }
 
