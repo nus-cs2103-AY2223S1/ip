@@ -40,9 +40,9 @@ public class Duke {
     private ZoneId timeZone = ZoneId.of("GMT+00:00");
 
     private final Storage storage;
-    private TaskList tasks;
     private final Ui ui;
     private final Parser parser;
+    private TaskList tasks;
 
     /**
      * Creates a new {@code Duke} object.
@@ -54,7 +54,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello from\n" + "MAKIBOT");
         new Duke().start();
     }
 
@@ -62,7 +61,7 @@ public class Duke {
      * Starts MakiBot.
      */
     protected void start() {
-        System.out.println("Hello! I'm MAKIBOT");
+        System.out.println("Hello! I'm MakiBot");
         timeZone = ui.getTimeZone(timeZone);
         storage.setSaveFilePath(ui.getSaveFile(storage.getSaveFilePath()));
         tasks = new TaskList(storage.loadTasks(timeZone));
