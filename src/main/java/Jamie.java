@@ -1,16 +1,19 @@
 public class Jamie {
-    private Storage storage;
-    private Ui ui;
-    private TaskList tasks;
+    protected final TaskList tasks;
+    protected final Ui ui;
+    private final Storage storage;
+
 
     public Jamie(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
-        storage.load();
+        ui = new Ui();
+        tasks = new TaskList(storage.load());
     }
-
     public void run() {
         ui.welcome();
+        Parser parser = new Parser(this);
+        parser.start();
+        ui.bye();
     }
 
     public static void main(String[] args) {
