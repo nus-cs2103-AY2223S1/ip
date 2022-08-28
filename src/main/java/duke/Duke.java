@@ -24,7 +24,7 @@ public class Duke {
         boolean fExit = false;
         while (!fExit) {
             String line = readLine();
-            fExit = Parser.execute(line, todos);
+            fExit = Parser.execute(line, todos).shouldExitAfter();
         }
     }
 }
