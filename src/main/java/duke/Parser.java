@@ -93,6 +93,8 @@ public class Parser {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
+        } else if (!Arrays.asList(subCmd).contains("/by")) {
+            throw new InvalidDescriptionException();
         } else {
             try {
                 String[] tempSplit = tmp.split(" /by ");

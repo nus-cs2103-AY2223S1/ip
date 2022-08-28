@@ -1,2 +1,5 @@
-D | 0 | read book | Jun 06 2020
+D | 1 | read book | Jun 06 2020
 T | 0 | sell book
+E | 0 | play valorant | 24 Aug 3-9 pm
+E | 0 | play valorant | 24 Aug 3-9 pm
+T | 0 | read book

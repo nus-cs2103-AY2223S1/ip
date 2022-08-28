@@ -59,9 +59,6 @@ public class Storage {
             newFile.add(newTasks.getTask(i).toFileString());
 
         }
-        for(int i = 0; i < newTasks.size(); i++) {
-            System.out.println(newFile.get(i));
-        }
         try {
             FileWriter fw = new FileWriter(file);
 

@@ -33,7 +33,6 @@ public class Duke {
 
         while (!message.equals("bye")) {
             try {
-                System.out.println(message);
                 this.parser.parse(message);
             } catch (DukeException e){
                 System.out.println(e);
