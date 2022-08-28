@@ -46,7 +46,9 @@ public class Parser {
                 Task task3 = tasks.get(Integer.parseInt(textArr[1]) - 1);
                 tasks.remove(task3);
                 break;
-
+        case "find":
+            tasks.findTasks(textArr[1]);
+            break;
             default:
                 throw new BloopException("I do not recognise your command.");
             }

@@ -83,4 +83,16 @@ public class TaskList {
         }
         ui.print("I've added this task -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
+
+    public void findTasks(String keyword) {
+        System.out.println(ui.getSeparator());
+        System.out.println("\tMatching tasks -");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.getTask().contains(keyword)) {
+                System.out.println("\t\t" + (i + 1) + ". " + task);
+            }
+        }
+        System.out.println(ui.getSeparator());
+    }
 }
