@@ -37,39 +37,6 @@ public class Storage {
         return fileStates.get(fileName);
     }
 
-    /*public String getContents() {
-        if (contents == null) {
-            try {
-                File f = new File(fileName);
-                Scanner s = new Scanner(f);
-                StringBuilder sb = new StringBuilder();
-                boolean isFirst = true;
-                while (s.hasNext()) {
-                    if (isFirst) {
-                        isFirst = false;
-                    } else {
-                        sb.append('\n');
-                    }
-                    sb.append(s.nextLine());
-                }
-                contents = sb.toString();
-            } catch (FileNotFoundException ex) {
-                // file not found or error
-                contents = "";
-            }
-        }
-        return contents;
-    }*/
-
-    ///**
-    // * Saves the string to the file on disk
-    // * @param str string to save
-    // */
-    /*public void saveContents(String str) {
-        contents = str;
-        // write to file TODO
-    }*/
-
     private static String convertToBase64(String input) {
         return Base64.getEncoder().encodeToString(input.getBytes(StandardCharsets.UTF_16));
     }
