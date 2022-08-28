@@ -11,6 +11,7 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
     public int getCount() {
         return tasks.size();
     }

@@ -35,7 +35,7 @@ public class Storage {
             System.out.println("Unable to read file.");
         }
 
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         Scanner s = new Scanner(f);
         while(s.hasNext()) {
             String nextTask = s.nextLine();
@@ -59,39 +59,39 @@ public class Storage {
             }
 
             switch(taskType) {
-                case 'T':
-                    addTask(taskList, new ToDo(task), marked);
-                    break;
+            case 'T':
+                addTask(tasks, new ToDo(task), marked);
+                break;
 
-                case 'D':
-                    addTask(taskList, new Deadline(task, date), marked);
-                    break;
+            case 'D':
+                addTask(tasks, new Deadline(task, date), marked);
+                break;
 
-                case 'E':
-                    addTask(taskList, new Event(task, date), marked);
-                    break;
+            case 'E':
+                addTask(tasks, new Event(task, date), marked);
+                break;
             }
         }
-        return taskList;
+        return tasks;
     }
 
-    private void addTask(ArrayList<Task> taskList, Task t, boolean b) {
+    private void addTask(ArrayList<Task> tasks, Task t, boolean b) {
         t.setMarked(b);
-        taskList.add(t);
+        tasks.add(t);
     }
 
     /**
      * Rewrites the tasks in storage to match the given task list.
      *
-     * @param taskList The given task list.
+     * @param tasks The given task list.
      * @throws IOException If an error occurs in writing to storage.
      */
-    public void rewriteFile(ArrayList<Task> taskList) throws IOException {
+    public void rewriteFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH);
         fw.write("");
-        for (int i = 0; i < taskList.size(); ++i) {
+        for (int i = 0; i < tasks.size(); ++i) {
             try {
-                appendTaskToFile(taskList.get(i));
+                appendTaskToFile(tasks.get(i));
             } catch (IOException e) {
                 System.out.println("Unable to rewrite file.");
             }
