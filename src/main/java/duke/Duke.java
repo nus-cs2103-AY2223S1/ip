@@ -34,7 +34,7 @@ public class Duke {
      * Constructor for a Duke instance.
      */
     public Duke() {
-        this.storage = new Storage("./../../../data/tasks.txt");
+        this.storage = new Storage("data/tasks.txt");
         try {
             this.taskList = new TaskList(storage.load());
         } catch (DukeException e) {

@@ -61,4 +61,8 @@ public class Ui {
         System.out.println("\t_________________________________________________");
         System.out.println();
     }
+
+    public static void printErrorWithoutFormatting(Exception e) {
+        System.out.print(e.getMessage());
+    }
 }
