@@ -6,9 +6,14 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     private final LocalDateTime occursAt;
 
-    public Event(String taskName, LocalDateTime occursAt, boolean isDone) {
+    public Event(String taskName, String occursAt, boolean isDone) {
         super(taskName.trim(), isDone);
-        this.occursAt = occursAt;
+        this.occursAt = Parser.dateParser(occursAt);
+    }
+
+    public Event(String taskName, String occursAt) {
+        super(taskName.trim(), false);
+        this.occursAt = Parser.dateParser(occursAt);
     }
 
     @Override

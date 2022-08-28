@@ -6,9 +6,14 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private final LocalDateTime dueBy;
 
-    public Deadline(String taskName, LocalDateTime dueBy, boolean isDone) {
+    public Deadline(String taskName, String dueBy, boolean isDone) {
         super(taskName.trim(), isDone);
-        this.dueBy = dueBy;
+        this.dueBy = Parser.dateParser(dueBy);
+    }
+
+    public Deadline(String taskName, String dueBy) {
+        super(taskName.trim(), false);
+        this.dueBy = Parser.dateParser(dueBy);
     }
 
     @Override

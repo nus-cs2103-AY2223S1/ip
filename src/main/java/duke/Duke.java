@@ -50,7 +50,7 @@ public class Duke {
                         break;
                     }
                     String item = curr.substring(4);
-                    Todo newTodo = new Todo(item, false);
+                    Todo newTodo = new Todo(item);
                     tl.add(newTodo);
                     ui.printTaskAddedMsg(newTodo, tl.size());
                     break;
@@ -62,7 +62,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/by");
                     String taskName = curr.substring(8, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Deadline newDL = new Deadline(taskName, Parser.dateParser(deadline), false);
+                    Deadline newDL = new Deadline(taskName, deadline);
                     tl.add(newDL);
                     ui.printTaskAddedMsg(newDL, tl.size());
                     break;
@@ -74,7 +74,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/at");
                     String taskName = curr.substring(5, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Event newEvent = new Event(taskName, Parser.dateParser(deadline), false);
+                    Event newEvent = new Event(taskName, deadline);
                     tl.add(newEvent);
                     ui.printTaskAddedMsg(newEvent, tl.size());
                     break;

@@ -6,6 +6,8 @@ public class Todo extends Task {
         super(taskName.trim(), isDone);
     }
 
+    public Todo(String taskName) { super(taskName.trim(), false); }
+
     @Override
     public String taskToFileString() {
         return " T " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName;
