@@ -23,6 +23,10 @@ public class Task {
         return false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String fileFormat() {
         return "T | " + (isDone ? "1" : "0") + " | " + description;
     }
