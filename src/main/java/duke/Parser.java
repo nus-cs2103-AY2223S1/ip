@@ -46,61 +46,61 @@ public class Parser {
                 return new ListCommand();
             case MARK:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tPlease enter the task number to mark!");
+                    throw new DukeException("Please enter the task number to mark!");
                 } else {
                     return new MarkCommand(Integer.parseInt(splitInputCommand[1].trim()) - 1);
                 }
             case UNMARK:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tPlease enter the task number to unmark!");
+                    throw new DukeException("Please enter the task number to unmark!");
                 } else {
                     return new UnmarkCommand(Integer.parseInt(splitInputCommand[1].trim()) - 1);
                 }
             case TODO:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tOOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                 } else {
                     return new ToDoCommand(splitInputCommand[1]);
                 }
             case DEADLINE:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tOOPS!!! The description of a deadline cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
                 } else {
                     String[] splitDescriptionArray = splitInputCommand[1].split(" /by ");
                     if (splitDescriptionArray.length == 1) {
-                        throw new DukeException("\tOOPS!!! The date of a deadline cannot be empty.");
+                        throw new DukeException("OOPS!!! The date of a deadline cannot be empty.");
                     }
                     return new DeadlineCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
             case EVENT:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tOOPS!!! The description of an event cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of an event cannot be empty.");
                 } else {
                     String[] splitDescriptionArray = splitInputCommand[1].split(" /at ");
                     if (splitDescriptionArray.length == 1) {
-                        throw new DukeException("\tOOPS!!! The date of an event cannot be empty.");
+                        throw new DukeException("OOPS!!! The date of an event cannot be empty.");
                     }
                     return new EventCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
             case DELETE:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tPlease enter the task number to delete!");
+                    throw new DukeException("Please enter the task number to delete!");
                 } else {
                     return new DeleteCommand(Integer.parseInt(splitInputCommand[1].trim()) - 1);
                 }
             case FIND:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\tPlease enter a keyword!");
+                    throw new DukeException("Please enter a keyword!");
                 } else {
                     return new FindCommand(splitInputCommand[1]);
                 }
             default:
-                throw new DukeException("\tERROR...ERROR...WHAT ARE YOU DOING HERE?!");
+                throw new DukeException("ERROR...ERROR...WHAT ARE YOU DOING HERE?!");
             }
         } catch (IllegalArgumentException e) {
-            throw new DukeException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (DateTimeParseException e) {
-            throw new DukeException("\tOOPS!!! Please enter your date in the format yyyy-mm-dd!");
+            throw new DukeException("OOPS!!! Please enter your date in the format yyyy-mm-dd!");
         }
     }
 }

@@ -1,12 +1,14 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.task.Task;
+import javafx.animation.PauseTransition;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
- * Ui deals with interactions with the user.
+ * Ui deals with interactions with the user
  *
  * @author Samsation
  * @version CS2103T AY 22/23 Sem 1
@@ -14,109 +16,90 @@ import duke.task.Task;
  */
 
 public class Ui {
-
-    private static final String LOGO = "\t ____        _\n"
-            + "\t|  _ \\ _   _| | _____\n"
-            + "\t| | | | | | | |/ / _ \\\n"
-            + "\t| |_| | |_| |   <  __/\n"
-            + "\t|____/ \\__,_|_|\\_\\___|\n";
-    private static final String LINE = "\t____________________________________________________________";
-
-    private Scanner sc;
+    private Stage stage;
 
     /**
      * A constructor for Ui.
-     */
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
-
-    /**
-     * A method that reads the next line of user input.
      *
-     * @return The user input.
+     * @param stage The current Stage of the Application.
      */
-    public String readCommand() {
-        return sc.nextLine();
+    public Ui(Stage stage) {
+        this.stage = stage;
     }
 
     /**
-     * A method that prints LINE.
+     * A method that returns the farewell message.
+     *
+     * @return The farewell message.
      */
-    public void showLine() {
-        System.out.println(LINE);
+    public String showBye() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(event -> stage.close());
+        delay.play();
+        return String.format("Bye. Hope to see you again soon!");
     }
 
     /**
-     * A method that prints the welcome message.
-     */
-    public void showWelcome() {
-        System.out.printf("%s%n%s%s%s%s%n", LINE, LOGO, LINE, "\n\tHello! I'm Duke\n\tWhat can I do for you?\n", LINE);
-    }
-
-    /**
-     * A method that prints the farewell message.
-     */
-    public void showBye() {
-        System.out.println("\tBye. Hope to see you again soon!");
-        sc.close();
-    }
-
-    /**
-     * A method that prints the TaskList.
+     * A method that returns the TaskList display.
      *
      * @param tasks TaskList to be displayed.
+     * @return The TaskList display.
      */
-    public void showList(TaskList tasks) {
-        System.out.printf("%s%n%s%n", "\tHere are the task(s) in your list: ", tasks.toString());
+    public String showList(TaskList tasks) {
+        return String.format("%s%n%s%n", "Here are the task(s) in your list: ", tasks.toString());
     }
 
     /**
-     * A method that prints the mark-message.
+     * A method that returns the mark-message.
      *
      * @param task The Task to be marked.
+     * @return The mark-message.
      */
-    public void showMark(Task task) {
-        System.out.printf("%s%s%n", "\tNice! I've marked this task as done:\n\t  ", task);
+    public String showMark(Task task) {
+        return String.format("%s%s%n", "Nice! I've marked this task as done:\n", task);
     }
 
     /**
-     * A method that prints the un-mark-message.
+     * A method that returns the un-mark-message.
      *
      * @param task The Task to be un-marked.
+     * @return The un-mark-message.
      */
-    public void showUnmark(Task task) {
-        System.out.printf("%s%s%n", "\tOK, I've marked this task as not done yet:\n\t  ", task);
+    public String showUnmark(Task task) {
+        return String.format("%s%s%n", "OK, I've marked this task as not done yet:\n", task);
     }
 
     /**
-     * A method that prints the add-message.
+     * A method that returns the add-message.
      *
      * @param task The Task to be added.
      * @param size Size of the TaskList after Task has been added.
+     * @return The add-message.
      */
-    public void showAdd(Task task, int size) {
-        System.out.printf("%s%s%s%s%s", "\tGot it. I've added this task:\n\t  ", task, "\n\tNow you have ",
+    public String showAdd(Task task, int size) {
+        return String.format("%s%s%s%s%s", "Got it. I've added this task:\n  ", task, "\nNow you have ",
                 size, " task(s) in the list.\n");
     }
 
     /**
-     * A method that prints the delete-message.
+     * A method that returns the delete-message.
      *
      * @param task The Task to be deleted.
      * @param size Size of the TaskList after Task has been deleted.
+     * @return The delete-message.
      */
-    public void showDelete(Task task, int size) {
-        System.out.printf("%s%s%s%s%s", "\tNoted. I've removed this task:\n\t  ", task, "\n\tNow you have ",
+    public String showDelete(Task task, int size) {
+        return String.format("%s%s%s%s%s", "Noted. I've removed this task:\n  ", task, "\nNow you have ",
                 size, " task(s) in the list.\n");
     }
 
     /**
-     * A method that prints the list of Task(s) containing the specified keyword.
+     * A method that returns the list of Task(s) containing the specified keyword.
      *
      * @param foundTasks The list of Task(s) to be displayed.
+     * @return The list of Task(s) containing the specified keyword.
      */
-    public void showFind(ArrayList<Task> foundTasks) {
+    public String showFind(ArrayList<Task> foundTasks) {
         String lst = "";
         int size = foundTasks.size();
         for (int i = 0; i < size; i++) {
@@ -126,20 +109,6 @@ public class Ui {
                 lst += String.format("\t%d.%s\n", i + 1, foundTasks.get(i));
             }
         }
-        System.out.printf("%s%n%s%n", "\tHere are the matching task(s) in your list: ", lst);
-    }
-
-    /**
-     * A method that prints the error message when data file cannot be found.
-     */
-    public void showLoadingError() {
-        System.out.printf("%s%s", LINE, "\n\tSave data does not exist.\n");
-    }
-
-    /**
-     * A method that prints an error message.
-     */
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
+        return String.format("%s%n%s%n", "Here are the matching task(s) in your list: ", lst);
     }
 }

@@ -21,7 +21,6 @@ public class ToDoCommand extends Command {
      * @param description The description of the ToDo.
      */
     public ToDoCommand(String description) {
-        super(false);
         this.description = description;
     }
 
@@ -31,12 +30,13 @@ public class ToDoCommand extends Command {
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.
      * @param storage The Storage dealing with loading tasks from the file and saving tasks in the file.
+     * @return The add-message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addToDo(description);
         int size = tasks.getSize();
-        ui.showAdd(tasks.getTask(size - 1), size);
         storage.save(tasks.saveToStorage());
+        return ui.showAdd(tasks.getTask(size - 1), size);
     }
 }
