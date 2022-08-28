@@ -186,7 +186,7 @@ public class Duke {
                 }
                 current = br.readLine();
             }
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException | DukeException e) {
             e.printStackTrace();
         }
         br.close();

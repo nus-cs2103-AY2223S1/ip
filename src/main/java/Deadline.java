@@ -2,13 +2,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    protected LocalDate by;
+    protected LocalDate date;
+    protected String by;
 
     public Deadline(String description, String by) throws DukeException {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
+        this.by = by;
         try {
-            this.by = LocalDate.parse(by, formatter);
+            this.date = LocalDate.parse(by, formatter);
         } catch (Exception e) {
             throw new DukeException("Please enter date in the format: dd/M/yyyy");
         }
@@ -18,6 +20,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
