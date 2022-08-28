@@ -19,23 +19,23 @@ public class EventDispatcher {
     private UiHandler ui;
     private FileHandler disk;
 
-    public EventDispatcher(Calendar table, UiHandler ui, FileHandler disk){
+    public EventDispatcher(Calendar table, UiHandler ui, FileHandler disk) {
         this.table=table;
         this.ui=ui;
         this.disk=disk;
     }
 
-    private int help(){
+    private int help() {
         ui.cout(UiHandler.generateSection(UiHandler.generateHelpMsg()));
         return 200;
     }
-    private int list(){
+    private int list() {
         ui.cout(UiHandler.generateSection(this.table.toString()));
         return 200;
     }
 
     @Deprecated
-    private int add(String[] entry_info) throws Exception{
+    private int add(String[] entry_info) throws Exception {
         CalendarEntry entry=new CalendarEntry(entry_info[0]);
         this.table.addEntry(entry);
         ui.cout(UiHandler.generateSection("Added: "+entry.toString()+"\n"));
@@ -43,9 +43,9 @@ public class EventDispatcher {
         return 200;
     }
 
-    private int markAsDoneUndone(String input) throws Exception{
+    private int markAsDoneUndone(String input) throws Exception {
         String[] args=input.toLowerCase().split(" ");
-        if (args.length!=2){
+        if (args.length!=2) {
             throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
             //return 400;
         }
