@@ -10,11 +10,11 @@ public class BadDeadline extends DukeException {
     @Override
     public String toString() {
         if (deadline.isEmpty()) {
-            return "Deadline not specified for event!\n" +
-                    "Correct example: `deadline Homework /by 2/5/2022 2359`";
+            return "Deadline not specified for event!\n"
+                   + "Correct example: `deadline Homework /by 2/5/2022 2359`";
         } else {
-            return "Deadline specified: \"" + deadline + "\" has incorrect formatting.\n" +
-                    "Correct example: `deadline Homework /by 2/5/2022 2359`";
+            return "Deadline specified: \"" + deadline + "\" has incorrect formatting.\n"
+                   + "Correct example: `deadline Homework /by 2/5/2022 2359`";
         }
     }
 }
