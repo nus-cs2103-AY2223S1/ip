@@ -113,6 +113,10 @@ public class Iana {
                     }
                 }
             }
+
+            if (!isActive) {
+                sc.close();
+            }
         }
     }
 }
