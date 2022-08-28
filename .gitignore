@@ -20,3 +20,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 *.class
 
 duke.txt
+data/duke.txt
