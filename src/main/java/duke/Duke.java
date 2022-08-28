@@ -25,6 +25,10 @@ public class Duke {
         }
     }
 
+    public String getResponse(String input) {
+        return "Hello";
+    }
+
     /**
      * Loops until user enters the exit command.
      * DukeExceptions are caught here and printed with Ui.
