@@ -94,6 +94,15 @@ public class Ui {
     }
 
     /**
+     * Prints out the Task provided.
+     *
+     * @param task
+     */
+    public void printTask(Task task) {
+        System.out.println(task.toString());
+    }
+
+    /**
      * Returns user input.
      *
      * @param sc

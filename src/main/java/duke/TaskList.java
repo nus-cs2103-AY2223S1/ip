@@ -66,4 +66,19 @@ public class TaskList {
         }
         return str.trim();
     }
+
+    /**
+     * Looks for tasks which contain the keyword, then passes the tasks to the Ui to be printed.
+     *
+     * @param keyword
+     * @param ui
+     */
+    public void printMatchingTasks(String keyword, Ui ui) {
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).getName().contains(keyword)) {
+                ui.printTask(tasks.get(i));
+            }
+        }
+    }
 }
+
