@@ -10,7 +10,7 @@ public class Bob {
     public Bob() {
         this.ui = new Ui();
         this.storage = new Storage();
-        this.taskList = new TaskList(this.storage.read());
+        this.taskList = this.storage.read();
         this.parser = new Parser();
     }
     public void run() {

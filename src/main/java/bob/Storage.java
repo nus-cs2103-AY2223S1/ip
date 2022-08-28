@@ -42,8 +42,8 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> read() {
-        ArrayList<Task> tasks = new ArrayList<>(100);
+    public TaskList read() {
+        TaskList tasks = new TaskList();
         try {
             Scanner reader = new Scanner(this.saveFile);
             while (reader.hasNextLine()) {
@@ -57,7 +57,7 @@ public class Storage {
                         if (temp[1].substring(1, 2).equals("1")) {
                             todo.toMark(true);
                         }
-                        tasks.add(todo);
+                        tasks.addTask(todo);
                         break;
                     case "D":
                         String deadlineTaskName = temp[2].substring(1);
@@ -67,7 +67,7 @@ public class Storage {
                         if (temp[1].substring(1, 2).equals("1")) {
                             deadline.toMark(true);
                         }
-                        tasks.add(deadline);
+                        tasks.addTask(deadline);
                         break;
                     case "E":
                         String eventTaskName = temp[2].substring(1);
@@ -77,7 +77,7 @@ public class Storage {
                         if (temp[1].substring(1, 2).equals("1")) {
                             event.toMark(true);
                         }
-                        tasks.add(event);
+                        tasks.addTask(event);
                         break;
                 }
             }

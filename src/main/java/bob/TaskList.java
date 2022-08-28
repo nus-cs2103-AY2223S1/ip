@@ -8,13 +8,9 @@ public class TaskList {
     private ArrayList<Task> tasks;
     private int length;
 
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-        int count = 0;
-        for (Task task: tasks) {
-            count += 1;
-        }
-        this.length = count;
+    public TaskList() {
+        this.tasks = new ArrayList<>(100);
+        this.length = 0;
     }
 
     public void addTask(Task task) {
