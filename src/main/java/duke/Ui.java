@@ -77,4 +77,18 @@ public class Ui {
         System.out.println(line_divider);
 
     }
+
+    public void printFilteredList(TaskList tl) {
+        System.out.println(line_divider);
+        if (tl.size() == 0) {
+            System.out.println("List is empty la");
+            System.out.println(line_divider);
+            return;
+        }
+        System.out.println("Matching one:");
+        for (int j = 0; j < tl.size(); j++) {
+            System.out.println(j + 1 + ":" + tl.get(j).toString());
+        }
+        System.out.println(line_divider);
+    }
 }

@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
@@ -81,6 +82,11 @@ public class Duke {
                 } else if (msgWords[i].equalsIgnoreCase("clear")) {
                     tl.clear();
                     ui.printClearMsg();
+                    break;
+                } else if (msgWords[i].equalsIgnoreCase("find")) {
+                    String words = curr.substring(5).trim();
+                    TaskList filteredTaskList = new TaskList(tl.findMatching(words));
+                    ui.printFilteredList(filteredTaskList);
                     break;
                 } else {
                     ui.printError();

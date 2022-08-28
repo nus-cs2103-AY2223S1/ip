@@ -1,6 +1,8 @@
 package duke;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TaskList {
     ArrayList<Task> taskList;
@@ -40,6 +42,13 @@ public class TaskList {
     public void clear() {
         this.taskList.clear();
         Parser.listToFile(this.taskList);
+    }
+
+    public ArrayList<Task> findMatching(String phrase) {
+        return taskList
+                .stream()
+                .filter(task -> task.taskName.contains(phrase))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }
