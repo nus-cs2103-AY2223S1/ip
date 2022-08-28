@@ -39,7 +39,7 @@ public class DukeTest {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n\n"
-                + "Hello! I'm duke.Duke\n"
+                + "Hello! I'm Duke\n"
                 + "What can I do for you?\n"
                 + "____________________________________________________________\n"
                 + "Bye. Hope to see you again soon!\n"

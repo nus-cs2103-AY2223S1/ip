@@ -9,7 +9,8 @@ public class Parser {
         LIST,
         TODO,
         DEADLINE,
-        EVENT
+        EVENT,
+        FIND
     }
 
     public static Command parse(String fullCommand) throws DukeException {
@@ -40,10 +41,8 @@ public class Parser {
         case EVENT:
             String[] event = description.split(" /at ", 2);
             return new AddCommand(new Event(event[0], event[1]));
-        /* case FIND:
+        case FIND:
             return new FindCommand(description);
-
-         */
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
