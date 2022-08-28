@@ -1,14 +1,18 @@
 abstract public class Task {
     protected String description;
+    protected String commandString;
     protected boolean isDone;
 
-    public Task(String description) {
-        this.description = description;
+    public Task() {
         this.isDone = false;
     }
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public String getStatus() {
+        return (isDone? "mark" : "unmark");
     }
 
     public void done() {
@@ -21,5 +25,9 @@ abstract public class Task {
 
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    public String toStorageString() {
+        return commandString + "\n" + getStatus();
     }
 }
