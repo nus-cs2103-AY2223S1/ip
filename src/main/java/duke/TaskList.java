@@ -6,6 +6,7 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 public class TaskList {
+    /** List of tasks */
     private final ArrayList<Task> tasks;
 
     /**

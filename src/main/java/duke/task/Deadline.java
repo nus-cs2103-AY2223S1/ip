@@ -4,7 +4,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private ZonedDateTime by;
+    /** Deadline of the task */
+    private final ZonedDateTime by;
 
     /**
      * Creates a new undone task with the specified description and deadline.

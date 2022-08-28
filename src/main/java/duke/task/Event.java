@@ -4,7 +4,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private ZonedDateTime at;
+    /** Datetime of the event */
+    private final ZonedDateTime at;
 
     /**
      * Creates a new undone event with the specified description and datetime.

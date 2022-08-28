@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
+    /** Path to {@code .txt} save file */
     private String saveFilePath = "data.txt";
 
     public String getSaveFilePath() {

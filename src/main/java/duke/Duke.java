@@ -21,6 +21,7 @@ import java.time.temporal.ChronoField;
  * MakiBot
  */
 public class Duke {
+    /** Datetime formatter for user input which accepts dd/MM/yyyy or dd/MM/yyyy HH:mm */
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
             .appendPattern("dd/MM/yyyy ")
             .optionalStart()
@@ -31,19 +32,21 @@ public class Duke {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
+    /** Commands accepted by Duke */
     public enum Command {
-        BYE, LIST, MARK,
-        /**
-         *
-         */
- UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
     }
+    /** User timezone */
+    private ZoneId timeZone = ZoneId.of("GMT+00:00");
+
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
     private final Parser parser;
-    private ZoneId timeZone = ZoneId.of("GMT+00:00");
 
+    /**
+     * Creates a new {@code Duke} object.
+     */
     protected Duke() {
         ui = new Ui();
         storage = new Storage();
@@ -55,6 +58,9 @@ public class Duke {
         new Duke().start();
     }
 
+    /**
+     * Starts MakiBot.
+     */
     protected void start() {
         System.out.println("Hello! I'm MAKIBOT");
         timeZone = ui.getTimeZone(timeZone);
@@ -65,7 +71,7 @@ public class Duke {
     }
 
     /**
-     * Start a conversation with MakiBot
+     * Starts a conversation with MakiBot.
      */
     protected void eventLoop() {
         while (true) {
@@ -118,6 +124,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Marks a task from the task list as done.
+     *
+     * @param fullCommand The full input from the user containing the task's index.
+     * @throws DukeException If the input is invalid.
+     */
     protected void mark(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("mark");
@@ -133,6 +145,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Marks a task from the task list as undone.
+     *
+     * @param fullCommand The full input from the user containing the task's index.
+     * @throws DukeException If the input is invalid.
+     */
     protected void unmark(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("unmark");
@@ -148,6 +166,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Deletes a task from the task list.
+     *
+     * @param fullCommand The full input from the user containing the task's index.
+     * @throws DukeException If the input is invalid.
+     */
     protected void delete(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("delete");
@@ -165,6 +189,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Adds a new {@code Todo} task to the task list.
+     *
+     * @param fullCommand The full input from the user containing the task's description.
+     * @throws DukeException If the input is invalid.
+     */
     protected void newTodo(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("todo");
@@ -175,6 +205,12 @@ public class Duke {
         ui.printNewTaskMessage(td, tasks.size());
     }
 
+    /**
+     * Adds a new {@code Deadline} task to the task list.
+     *
+     * @param fullCommand The full input from the user containing the task's description and deadline.
+     * @throws DukeException If the input is invalid.
+     */
     protected void newDeadline(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("deadline");
@@ -192,6 +228,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Adds a new {@code Event} task to the task list.
+     *
+     * @param fullCommand The full input from the user containing the task's description and datetime.
+     * @throws DukeException If the input is invalid.
+     */
     protected void newEvent(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("event");

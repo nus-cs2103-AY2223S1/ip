@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
+    /** Scanner */
     private final Scanner scanner;
 
     /**
