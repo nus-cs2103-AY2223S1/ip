@@ -7,17 +7,23 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * This class represents tasks that start at a specific time and ends at a specific time.
+ * This class represents events with date & time.
+ *
  * @author Carrie Zheng Jiarui
  * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Event extends Task {
+
+    /**
+     * Event date and time, i.e. at dd/MM/yyyy HHmm.
+     */
     protected LocalDateTime at;
 
     /**
-     * Constructor for creating an event.
-     * @param description caca.tasks.Task description from user input.
-     * @param dateTimeInput caca.tasks.Event date/time from user input.
+     * Constructor for creating an Event.
+     *
+     * @param description Task description from user input.
+     * @param dateTimeInput Event date & time from user input.
      * @throws InvalidDateException If date entered by user is not in the specified format.
      */
     public Event(String description, String dateTimeInput) throws InvalidDateException {
@@ -40,9 +46,10 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor for creating an event with given isDone status.
-     * @param description caca.tasks.Task description from user input.
-     * @param dateTimeInput caca.tasks.Event date/time from user input.
+     * Constructor for creating an Event with given isDone status.
+     *
+     * @param description Task description from user input.
+     * @param dateTimeInput Event date & time from user input.
      * @param isDone True if event is marked as done; false otherwise.
      * @throws InvalidDateException If date entered by user is not in the specified format.
      */
@@ -55,6 +62,7 @@ public class Event extends Task {
 
     /**
      * Displays the task type of event as E.
+     *
      * @return E.
      */
     @Override
@@ -63,8 +71,9 @@ public class Event extends Task {
     }
 
     /**
-     * Displays the event with its type, status (done or undone), description and time.
-     * @return caca.tasks.Task type, status, description and time.
+     * Displays the event with its type, status (done or undone), description and date & time.
+     *
+     * @return Task type, status, description and date & time.
      */
     @Override
     public String toString() {
@@ -78,7 +87,8 @@ public class Event extends Task {
 
     /**
      * Formats event in a file.
-     * @return caca.tasks.Event with task type, status, description and time.
+     *
+     * @return Event with task type, status, description and date & time.
      */
     @Override
     public String toFileFormat() {

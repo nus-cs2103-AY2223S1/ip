@@ -23,12 +23,13 @@ public class CaCa {
     private Ui ui;
 
     /**
-     * A caca.TaskList object containing all the tasks in a list..
+     * A TaskList object containing all the tasks in a list.
      */
     private TaskList tasks;
 
     /**
      * Constructor for CaCa chatbot program.
+     *
      * @param dirPath Directory path containing the file with stored tasks.
      * @param filePath Relative file path to store tasks locally.
      */
@@ -46,6 +47,7 @@ public class CaCa {
 
     /**
      * Runs CaCa chatbot program.
+     *
      * @throws IOException If there exists failed or interrupted I/O operations.
      */
     public void run() throws IOException {
@@ -77,4 +79,5 @@ public class CaCa {
     public static void main(String[] args) throws IOException {
         new CaCa("data/", "data/caca.txt").run();
     }
+
 }

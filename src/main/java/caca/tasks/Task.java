@@ -11,8 +11,9 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for creating a task.
-     * @param description caca.tasks.Task description from user input.
+     * Constructor for creating a Task.
+     *
+     * @param description Task description from user input.
      */
     //@@author carriezhengjr-reused
     // Reused code under subsection "Extension: A-Classes" of the section "Duke Level-3: Mark as Done"
@@ -23,8 +24,9 @@ public abstract class Task {
     }
 
     /**
-     * Checks task description.
-     * @return caca.tasks.Task description.
+     * Gets task description.
+     *
+     * @return Task description.
      */
     public String getDescription() {
         return this.description;
@@ -46,6 +48,7 @@ public abstract class Task {
 
     /**
      * The icon to display task status.
+     *
      * @return X when task is done; empty otherwise.
      */
     //@@author carriezhengjr-reused
@@ -57,13 +60,15 @@ public abstract class Task {
 
     /**
      * Displays the type of task.
+     *
      * @return A letter to represent the type of task.
      */
     public abstract String taskType();
 
     /**
      * Displays the task with its type, status (done or undone) and description.
-     * @return caca.tasks.Task type, status and description.
+     *
+     * @return Task type, status and description.
      */
     @Override
     public String toString() {
@@ -72,8 +77,9 @@ public abstract class Task {
 
     /**
      * Formats tasks in a file.
+     *
      * @return Format displayed in a file with task type, status (done or undone), description
-     * and date or time (when applicable).
+     * and date & time (when applicable).
      */
     public abstract String toFileFormat();
 

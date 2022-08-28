@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class contains the task list e.g., it has operations to add/delete tasks in the list.
+ * This class contains CaCa's task list.
  * <p>
  * The list of operations that CaCa can perform with the tasks are listed below as
  * Function (description): command. e.g...
  * <li>Add tasks:</li>
  * <ul>
- *     <li>ToDos (tasks without any date/time): todo taskDescription</li>
+ *     <li>ToDos (tasks without any date & time): todo taskDescription</li>
  *     e.g.todo borrow book
- *     <li>Deadlines (tasks to be done before date/time): deadline taskDescription /by dateTime</li>
- *     e.g. deadline return book /by Sunday
- *     <li>Events (tasks that start and end at a specific time): event taskDescription /at dateTime</li>
- *     e.g. event project meeting /at Mon 2-4pm
+ *     <li>Deadlines (deadlines by a date & time): deadline taskDescription /by dd/MM/yyyy HHmm</li>
+ *     e.g. deadline return book /by 01/09/2022 1200
+ *     <li>Events (events at a date & time): event taskDescription /at dd/MM/yyyy HHmm</li>
+ *     e.g. event project meeting /at 01/09/2022 1600
  * </ul>
  * <li>List task (displays a list of all tasks stored): list</li>
  * <li>Mark task (marks task as done with a "X"): mark taskIndex. e.g. mark 2</li>
@@ -44,6 +44,11 @@ public class TaskList {
      */
     private static List<Task> tasks = new ArrayList<>();
 
+    /**
+     * Constructor for creating a TaskList.
+     *
+     * @param tasks The list of tasks.
+     */
     public TaskList(ArrayList<Task> tasks) {
         if (tasks == null) {
             this.tasks = new ArrayList<>();
@@ -64,7 +69,7 @@ public class TaskList {
     /**
      * Adds a task to the list.
      *
-     * @param task caca.tasks.Task to be added to the list.
+     * @param task Task to be added to the list.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -73,7 +78,7 @@ public class TaskList {
     /**
      * Checks if task index is valid.
      *
-     * @param taskIndex caca.tasks.Task index entered by user.
+     * @param taskIndex Task index entered by user.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
     public static void isValid(int taskIndex) throws InvalidIndexException {
@@ -102,7 +107,7 @@ public class TaskList {
     /**
      * Adds a ToDo task to user list.
      *
-     * @param taskDescription caca.tasks.Task description entered by user.
+     * @param taskDescription Task description entered by user.
      */
     public static void addToDo(String taskDescription) {
         Task taskToAdd = new Todo(taskDescription);
@@ -114,10 +119,11 @@ public class TaskList {
     }
 
     /**
-     * Adds a caca.tasks.Deadline task to user list.
+     * Adds a Deadline to user list.
      *
-     * @param taskInfo caca.tasks.Task information with task description and task date & time.
+     * @param taskInfo Task information with task description and task date & time.
      * @throws MissingDetailException If task description or task date & time is missing.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
      */
     public static void addDeadline(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /by ", 2);
@@ -146,10 +152,11 @@ public class TaskList {
     }
 
     /**
-     * Adds an caca.tasks.Event task to user list.
+     * Adds an Event to user list.
      *
-     * @param taskInfo caca.tasks.Task information with task description and task date & time.
+     * @param taskInfo Task information with task description and task date & time.
      * @throws MissingDetailException If task description or task date & time is missing.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
      */
     public static void addEvent(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /at ", 2);
@@ -196,7 +203,7 @@ public class TaskList {
     /**
      * Marks a task as done in task list.
      *
-     * @param index caca.tasks.Task index entered by user.
+     * @param index Task index entered by user.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
     public static void markTask(String index) throws InvalidIndexException {
@@ -214,7 +221,7 @@ public class TaskList {
     /**
      * Marks a task as not done in task list.
      *
-     * @param index caca.tasks.Task index entered by user.
+     * @param index Task index entered by user.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
     public static void unmarkTask(String index) throws InvalidIndexException {
@@ -232,7 +239,7 @@ public class TaskList {
     /**
      * Deletes a task from task list.
      *
-     * @param index caca.tasks.Task index entered by user.
+     * @param index Task index entered by user.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
     public static void deleteTask(String index) throws InvalidIndexException {

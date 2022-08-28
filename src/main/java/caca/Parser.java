@@ -19,17 +19,18 @@ public class Parser {
     private static final String LINE = "____________________________________________________________\n";
 
     /**
-     * A caca.TaskList object containing all the tasks in a list.
+     * A TaskList object containing all the tasks in a list.
      */
     private final TaskList tasks;
 
     /**
-     * A caca.Storage object to update tasks in the local file.
+     * A Storage object to update tasks in the local file.
      */
     private final Storage storage;
 
     /**
-     * Constructor for creating a parser to deal with user command.
+     * Constructor for creating a Parser to deal with user command.
+     *
      * @param tasks A list of tasks to be updated according to user command.
      * @param storage The storage system to update tasks in the local file.
      */
@@ -40,6 +41,7 @@ public class Parser {
 
     /**
      * Indicates whether user command has stopped and ended the program.
+     *
      * @param input User input as command.
      * @return True if input has ended the program; false otherwise.
      * @throws IOException If there exists failed or interrupted I/O operations.
