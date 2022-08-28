@@ -1,5 +1,4 @@
 public abstract class Task {
-
     public static enum TaskType {
         ToDo,
         Deadline,
@@ -8,6 +7,10 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected TaskType taskType;
+
+    public Task(boolean isDone) {
+        this.isDone = isDone;
+    }
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -22,4 +25,6 @@ public abstract class Task {
     }
 
     public abstract TaskType getTaskType();
+
+    public abstract String toDataForm();
 }

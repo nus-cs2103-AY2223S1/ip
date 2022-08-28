@@ -1,21 +1,30 @@
+import java.io.IOException;
+
 public class TaskList {
     Task[] taskList = new Task[100];
     // The first index that is empty
     private int firstEmptyIndex = 0;
 
-    public void addTask(String input, Task.TaskType taskType) {
+    public void addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
         Task task = taskType == Task.TaskType.ToDo
-                ? new Todo(input)
+                ? new Todo(input, isDone)
                 : taskType == Task.TaskType.Event
-                ? new Event(input)
-                : new Deadline(input);
+                ? new Event(input, isDone)
+                : new Deadline(input, isDone);
 
         taskList[firstEmptyIndex] = task;
+        DataReadWriter.saveAddedTask(task);
 
         String msg = "Got it. I've added this task:\n" + "  "
                 + taskList[firstEmptyIndex].toString()
                 + "\n" + "Now you have " + (firstEmptyIndex + 1) + " tasks in the list";
         System.out.println(msg);
+        ++firstEmptyIndex;
+    }
+
+    public void appendLoadedTask(Task task) throws IOException {
+
+        taskList[firstEmptyIndex] = task;
         ++firstEmptyIndex;
     }
 
@@ -63,5 +72,13 @@ public class TaskList {
         for (int i = 0; i < firstEmptyIndex; i++) {
             System.out.println((i + 1) + ". " + taskList[i].toString());
         }
+    }
+
+    public Task getTask(int i) {
+        return taskList[i];
+    }
+
+    public int getTaskCount() {
+        return firstEmptyIndex;
     }
 }
