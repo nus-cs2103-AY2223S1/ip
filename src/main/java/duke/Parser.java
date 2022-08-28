@@ -73,6 +73,14 @@ public class Parser {
             taskList.remove(indToDelete);
             ui.printDelete(toDelete, taskList);
             break;
+        case "find":
+            String keyword = "";
+            for (int i = 1; i < commandBreakdown.length; i++) {
+                keyword += (commandBreakdown[i] + " ");
+            }
+            keyword = keyword.trim();
+            taskList.printMatchingTasks(keyword, ui);
+            break;
         default:
             ui.printDukeException(new UnknownCommandException());
         }

@@ -44,6 +44,16 @@ public class Ui {
         System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
     }
 
+    /**
+     * Prints out the Task provided.
+     *
+     * @param task
+     */
+    public void printTask(Task task) {
+        System.out.println(task.toString());
+    }
+
+
     public void printDukeException(DukeException e) {
         System.out.println(e.toString());
     }
