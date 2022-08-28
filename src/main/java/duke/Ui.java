@@ -1,7 +1,8 @@
 package duke;
 
-import duke.exceptions.DukeException;
 import java.util.ArrayList;
+
+import duke.exceptions.DukeException;
 
 public class Ui {
     private static final String DIVIDER = "-------------------------------------\n";
@@ -30,7 +31,7 @@ public class Ui {
     }
 
     /**
-     * Prints the TaskList ArrayList<Task> in pretty UI
+     * Prints the TaskList's Tasks in pretty UI
      */
     public void listPrint(ArrayList<Task> input) {
         if (input.isEmpty()) {
@@ -72,7 +73,7 @@ public class Ui {
      * @param currTask Task Object
      */
     public void toggleTask(Task currTask) {
-        if(currTask.isCompleted()) {
+        if (currTask.isCompleted()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
                     + "  " + currTask + "\n" + DIVIDER);
         } else {
@@ -91,7 +92,7 @@ public class Ui {
 
     /**
      * Prints out tasks matching regex in pretty UI
-     * @param input ArrayList<Task>
+     * @param input Tasks ArrayList
      * @param regex
      */
     public void find(ArrayList<Task> input, String regex) {

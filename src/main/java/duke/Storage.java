@@ -13,8 +13,8 @@ public class Storage {
     private static final String FILENAME = "SaveData.txt";
 
     /**
-     * Writes the ArrayList<Task> input to the specified save file
-     * @param  array ArrayList<Task>
+     * Writes the Tasks ArrayList input to the specified save file
+     * @param  array Tasks ArrayList
      */
     public void save(ArrayList<Task> array) {
         try {
@@ -29,8 +29,8 @@ public class Storage {
     }
 
     /**
-     * Returns an ArrayList<Task> retrieved from the specified save file
-     * @return ArrayList<Task>
+     * Returns a Tasks ArrayList retrieved from the specified save file
+     * @return Tasks ArrayList
      */
     public ArrayList<Task> read() {
         try {
