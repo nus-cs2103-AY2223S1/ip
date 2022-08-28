@@ -3,8 +3,8 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Event;
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TaskType;
@@ -24,7 +24,6 @@ public class AddCommand extends Command {
 
     /**
      * Constructor to initialise the add command with the task type and description.
-     * 
      * @param taskType The task type.
      * @param desc The task description.
      */
@@ -35,7 +34,6 @@ public class AddCommand extends Command {
 
     /**
      * Constructor to initialise the add command with the task type, description and date.
-     * 
      * @param taskType The task type.
      * @param desc The task description.
      * @param dateStr The task date.
@@ -45,7 +43,6 @@ public class AddCommand extends Command {
         this.desc = desc;
         this.dateStr = dateStr;
     }
-    
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = null;
@@ -68,12 +65,10 @@ public class AddCommand extends Command {
             }
             break;
         }
-        
         tasks.addTask(task);
         storage.save(tasks);
         ui.showAddMessage(task, tasks.getSize());
     }
-    
     @Override
     public boolean isExit() {
         return false;

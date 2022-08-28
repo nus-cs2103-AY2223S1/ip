@@ -1,8 +1,8 @@
 package duke.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Class that represents an event.
@@ -18,7 +18,6 @@ public class Event extends Task {
     /**
      * Constructor to initialize the description, completion status and date of the event.
      * Completion status is always false when event is first created.
-     * 
      * @param desc The event description.
      * @param atDate The event date.
      */
@@ -32,7 +31,6 @@ public class Event extends Task {
     /**
      * Constructor to initialize the description, completion status and date-time of the event.
      * Completion status is always false when event is first created.
-     * 
      * @param desc The event description.
      * @param atDateTime The event date-time.
      */
@@ -45,7 +43,6 @@ public class Event extends Task {
 
     /**
      * Constructor to initialize the description, completion status and date of the event.
-     *
      * @param desc The event description.
      * @param atDate The event date.
      * @param isDone The event completion status.
@@ -58,7 +55,6 @@ public class Event extends Task {
 
     /**
      * Constructor to initialize the description, completion status and date-time of the event.
-     *
      * @param desc The event description.
      * @param atDateTime The event date-time.
      * @param isDone The event completion status.
@@ -76,7 +72,6 @@ public class Event extends Task {
             return this.atDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         }
     }
-    
     private String saveFormatAt() {
         if (this.hasTime) {
             return this.atDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
@@ -87,7 +82,6 @@ public class Event extends Task {
 
     /**
      * Converts the event to its saved format.
-     * 
      * @return The string representation of the saved format of the event.
      */
     @Override
@@ -97,7 +91,6 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the event.
-     * 
      * @return The string representation of the event.
      */
     @Override

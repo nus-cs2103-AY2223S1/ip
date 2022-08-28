@@ -1,10 +1,13 @@
 package duke.ui;
 
+import java.util.Scanner;
+
 import duke.command.CommandWord;
 import duke.task.Task;
 
-import java.util.Scanner;
-
+/**
+ * Class that deals with user interactions.
+ */
 public class Ui {
     private static final String BORDER = ">>=========================="
             + "============[**]============="
@@ -20,49 +23,39 @@ public class Ui {
             + "                                      '//||\\\\`\n"
             + "                                        ''``";
     private Scanner sc;
-    
     public Ui() {
         this.sc = new Scanner(System.in);
     }
-    
     public String readCommand() {
         return this.sc.nextLine();
     }
-    
     public void showWelcome() {
         System.out.println(MORT);
         System.out.println("  Oh, it's you again...\n  Mort, begrudgingly at your service.");
         System.out.println("  Hmph, what do you want now?");
     }
-    
     public void exit() {
         this.sc.close();
         System.out.println("  With all due disrespect, leave me alone next time.");
     }
-    
     public void printBorder() {
         System.out.println(BORDER);
     }
-    
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
     }
-    
     public void showLoadingError() {
         System.out.println("  Error: Unable to load tasks. A new task list will be created.");
     }
-    
     public void showAddMessage(Task task, int size) {
         System.out.println("  Seriously? Another one?\n  Give me strength...\n"
                 + "    " + task + "\n" + "  You have " + size + " task"
                 + (size > 1 ? "s" : "") + ". Bummer.");
     }
-    
     public void showDeleteMessage(Task task, int size) {
         System.out.println("  Good riddance, I say.\n    " + task
                 + "\n  You have " + size + " task" + (size == 1 ? "" : "s") + ".");
     }
-    
     public void showListMessage(int size) {
         if (size == 0) {
             System.out.println("  You don't have any tasks. Make yourself useful.");
@@ -72,7 +65,6 @@ public class Ui {
                     + "  Fine. Here are your tasks:");
         }
     }
-    
     public String getMissingTaskError(CommandWord commandWord, int num) {
         StringBuilder sb = new StringBuilder();
         switch (commandWord) {
@@ -88,12 +80,10 @@ public class Ui {
         }
         return sb.append("  Task number ").append(num).append(" does not exist.").toString();
     }
-    
     public static String getUnknownCommandMessage(String command) {
         return "  '" + command + "' is not a valid command.\n  If you want my help, the least "
                 + "you could do is say something I understand.";
     }
-    
     public static String getCommandHelp(CommandWord keyword) {
         StringBuilder sb = new StringBuilder("  Type \"");
         switch (keyword) {
@@ -121,7 +111,6 @@ public class Ui {
         }
         return sb.toString();
     }
-    
     public void showFindMessage(String keyword, String result) {
         if (result.isBlank()) {
             System.out.println("  No matches found for '" + keyword + "'. Did you have fun wasting my time?");
