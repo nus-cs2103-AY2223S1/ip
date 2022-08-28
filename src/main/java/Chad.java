@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -36,6 +38,9 @@ public class Chad {
             } else if (userInput.startsWith("delete")) {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 deleteTask(userInputArray, taskID);
+
+            }else if (userInput.startsWith("date")) {
+                printTaskAtDate(userInputArray,userInput);
 
             } else {
                 try {
@@ -181,6 +186,39 @@ public class Chad {
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         outputText= formatText(outputText);
         System.out.println(outputText);
+    }
+
+    public static void printTaskAtDate(ArrayList<Task> tasks, String date) {
+        StringBuilder output = new StringBuilder();
+        date = date.split(" ", 2)[1];
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate theDate = LocalDate.parse(date, format);
+
+        if(theDate == null) {
+            return;
+        }
+
+        for (Task t: tasks) {
+            if (t instanceof Deadline) {
+                LocalDate d = ((Deadline) t).getDateTime().toLocalDate();
+                if(d.compareTo(theDate) == 0) {
+                    output.append(t);
+                    output.append(System.getProperty("line.separator"));
+                }
+            } else if (t instanceof Event) {
+                LocalDate d = ((Event) t).getDateTime().toLocalDate();
+                if(d.compareTo(theDate) == 0) {
+                    output.append(t);
+                    output.append(System.getProperty("line.separator"));
+                }
+            }
+        }
+        String text = output.toString().trim();
+        if(text.equals("")) {
+            text = "No such record for " + theDate;
+        }
+
+        System.out.println(formatText(text));
     }
 
     public static String formatText(String text) {
