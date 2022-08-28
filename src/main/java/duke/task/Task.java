@@ -6,12 +6,11 @@ import duke.exception.DukeException;
  * Task encapsulates a task with a description and a completion status.
  */
 public class Task {
+    protected static final String STORAGE_DELIMITER = " | ";
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";
     private static final String DONE_STORAGE = "1";
     private static final String NOT_DONE_STORAGE = "0";
-    protected static final String STORAGE_DELIMITER = " | ";
-
     protected String description;
     protected boolean isDone;
 
