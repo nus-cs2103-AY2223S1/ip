@@ -38,11 +38,11 @@ public abstract class Command {
     /**
      * Executes the task according to the command made by the user in the child classes
      *
-     * @param t which contains the current tasklist
+     * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
      * @throws DukeException which handles all the errors that could possibly happen
      *         if the program could not do the task
      */
-    public abstract void execute(TaskList t, Ui ui, Storage storage) throws DukeException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 }

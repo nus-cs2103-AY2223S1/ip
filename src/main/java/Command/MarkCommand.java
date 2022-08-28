@@ -24,18 +24,18 @@ public class MarkCommand extends Command {
      * the commands correctly.
      * After doing the command, it will save the new tasklist into the file.
      *
-     * @param t which contains the current tasklist
+     * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
      * @throws DukeException which handles the error of invalid index input by the user
      */
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) throws DukeException {
-        if (index <= 0 || index > t.getSize()) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        if (index <= 0 || index > taskList.getSize()) {
             throw new DukeException(Constants.INVALID_INDEX);
         }
-        Task tsk = t.markTask(index);
-        storage.writeFile(t.tasksToString());
-        ui.printMarkTask(tsk);
+        Task task = taskList.markTask(index);
+        storage.writeFile(taskList.tasksToString());
+        ui.printMarkTask(task);
     }
 }

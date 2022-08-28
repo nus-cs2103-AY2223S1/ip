@@ -14,7 +14,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -49,28 +49,28 @@ public class Storage {
      * Loads the existing saved file to task list
      */
     public ArrayList<Task> readFile() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(this.filepath));
-            String line = reader.readLine();
-            while (line != null) {
-                String[] parse = line.split(" > ");
-                Task t;
+            String readLine = reader.readLine();
+            while (readLine != null) {
+                String[] parse = readLine.split(" > ");
+                Task task;
                 if (parse[0].equals(Constants.TODO)) {
-                    t = new Todo(parse[2]);
+                    task = new Todo(parse[2]);
                 } else if (parse[0].equals(Constants.EVENT)) {
-                    t = new Event(parse[2], LocalDate.parse(parse[3], formatter));
+                    task = new Event(parse[2], LocalDateTime.parse(parse[3], formatter));
                 } else if (parse[0].equals(Constants.DEADLINE)) {
-                    t = new Deadline(parse[2], LocalDate.parse(parse[3], formatter));
+                    task = new Deadline(parse[2], LocalDateTime.parse(parse[3], formatter));
                 } else {
                     throw new DukeException(Constants.INVALID_FILE);
                 }
                 if (parse[1].equals("[X]")) {
-                    t.setMarked();
+                    task.setMarked();
                 }
-                tasks.add(t);
-                line = reader.readLine();
+                tasks.add(task);
+                readLine = reader.readLine();
             }
             reader.close();
         } catch (Exception e) {

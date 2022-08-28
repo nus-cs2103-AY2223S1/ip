@@ -115,7 +115,7 @@ public class TaskList {
             System.out.println(e.getMessage());
         }
     }
-    
+
     /**
      * Prints the tasks in the given taskList
      */
@@ -142,17 +142,17 @@ public class TaskList {
      * @return ArrayList containing all the tasks in Strings
      */
     public ArrayList<String> tasksToString() {
-        ArrayList<String> content = new ArrayList<String>();
+        ArrayList<String> tasksStrings = new ArrayList<String>();
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
             String type = t.toString().substring(1,2);
             if (type.equals(Constants.TODO)) {
-                content.add(String.format("%s > %s > %s\n", type, t.getStatusIcon(), t.getTaskName()));
+                tasksStrings.add(String.format("%s > %s > %s\n", type, t.getStatusIcon(), t.getTaskName()));
             } else {
-                content.add(String.format("%s > %s > %s > %s\n", type, t.getStatusIcon(),
+                tasksStrings.add(String.format("%s > %s > %s > %s\n", type, t.getStatusIcon(),
                         t.getTaskName(), t.getDateline()));
             }
         }
-        return content;
+        return tasksStrings;
     }
 }

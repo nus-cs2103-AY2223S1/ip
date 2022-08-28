@@ -14,7 +14,7 @@ import Command.EventCommand;
 import Command.DeadlineCommand;
 import Command.FindCommand;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static java.lang.Integer.parseInt;
@@ -24,6 +24,9 @@ public class Parser {
     /**
      * Returns the specific command that will execute the specific task according to
      * the user input
+     * @@author shaniceng-reused
+     * Reused from https://github.com/tinenhao/ip/blob/master/src/main/java/Duke/Parser.java
+     * with minor modifications
      *
      * @param command
      * @return Command that program should execute according to
@@ -33,7 +36,7 @@ public class Parser {
      */
     public static Command parse(String command) throws DukeException {
         String[] input = command.split(" ", 2);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
         switch (input[0]) {
         case "bye":
             return new ExitCommand();
@@ -58,12 +61,12 @@ public class Parser {
             checkInputError(input);
             String[] input2 = input[1].split(" /at ");
             checkInputError(input2);
-            return new EventCommand(input2[0], LocalDate.parse(input2[1], formatter));
+            return new EventCommand(input2[0], LocalDateTime.parse(input2[1], formatter));
         case "deadline":
             checkInputError(input);
             String[] input3 = input[1].split(" /by ");
             checkInputError(input3);
-            return new DeadlineCommand(input3[0], LocalDate.parse(input3[1], formatter));
+            return new DeadlineCommand(input3[0], LocalDateTime.parse(input3[1], formatter));
         case "find":
             checkInputError(input);
             return new FindCommand(input[1]);

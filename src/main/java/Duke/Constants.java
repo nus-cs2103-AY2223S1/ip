@@ -18,7 +18,7 @@ public class Constants {
 
     public static final String INVALID_INPUT = "Please input your description correctly.";
 
-    public static final String INVALID_DATE = "Please format your date as (dd MMM YYYY)";
+    public static final String INVALID_DATE = "Please format your date as (dd-MMM-yyyy hh:mm)";
 
     public static final String INVALID_FILE = "Invalid string file input";
 

@@ -16,12 +16,12 @@ public class ExitCommand extends Command {
     /**
      * Exits the program by printing the goodbye message
      *
-     * @param t which contains the current tasklist
+     * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
      */
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         super.setExit();
         ui.printBye();
     }

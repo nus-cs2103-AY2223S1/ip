@@ -16,12 +16,12 @@ public class ListCommand extends Command {
     /**
      * Prints all the current task in the tasklist
      *
-     * @param t which contains the current tasklist
+     * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
      */
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) {
-        t.printList();
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
+        taskList.printList();
     }
 }
