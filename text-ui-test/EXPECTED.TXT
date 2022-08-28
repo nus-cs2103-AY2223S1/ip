@@ -5,22 +5,14 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-added: [T][ ] plant tree
+Invalid command
+added: [T][ ] write diary
 Now you have 1 tasks in the list.
-added: [D][ ] send homework (by: 30th Feb 6pm)
+added: [D][ ] send homework|Aug 22 2022
 Now you have 2 tasks in the list.
-added: [E][ ] party (at: 18th Aug 9pm)
+added: [E][ ] watch movie|Aug 23 2022
 Now you have 3 tasks in the list.
-1. [T][ ] plant tree
-2. [D][ ] send homework (by: 30th Feb 6pm)
-3. [E][ ] party (at: 18th Aug 9pm)
-Nice! I've marked this task as done:
-[T][X] plant tree
-Nice! I've marked this task as done:
-[D][X] send homework (by: 30th Feb 6pm)
-OK, I've marked this task as not done yet:
-[T][ ] plant tree
-1. [T][ ] plant tree
-2. [D][X] send homework (by: 30th Feb 6pm)
-3. [E][ ] party (at: 18th Aug 9pm)
+1. [T][ ] write diary
+2. [D][ ] send homework|Aug 22 2022
+3. [E][ ] watch movie|Aug 23 2022
 Bye. Hope to see you again soon!

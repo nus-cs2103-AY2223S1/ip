@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 abstract class Task {
     String description;
     boolean isDone = false;
@@ -15,33 +18,33 @@ abstract class Task {
     }
 
     private static class Deadline extends Task {
-        String date;
+        LocalDate date;
         public Deadline(String description, String date) {
             super(description);
-            this.date = date;
+            this.date = LocalDate.parse(date);
         }
 
         @Override
         public String toString() {
             String res = "[D]";
             res += super.toString();
-            res += "(by: " + date+ ")";
+            res += "|" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             return res;
         }
     }
 
     private static class Event extends Task {
-        String date;
+        LocalDate date;
         public Event(String description, String date) {
             super(description);
-            this.date = date;
+            this.date = LocalDate.parse(date);
         }
 
         @Override
         public String toString() {
             String res = "[E]";
             res += super.toString();
-            res += "(at: " + date+ ")";
+            res += "|" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             return res;
         }
     }
@@ -66,7 +69,7 @@ abstract class Task {
     }
 
     public static Task Deadline(String argument) throws DukeException {
-        String arr[] = argument.split("/by ", 2);
+        String arr[] = argument.split("\\|", 2);
         if(arr.length < 2) {
             throw DukeException.invalidArgument;
         }
@@ -74,7 +77,7 @@ abstract class Task {
     }
 
     public static Task Event(String argument) throws DukeException {
-        String arr[] = argument.split("/at ", 2);
+        String arr[] = argument.split("\\|", 2);
         if(arr.length < 2) {
             throw DukeException.invalidArgument;
         }
