@@ -11,7 +11,6 @@ import duke.ui.Ui;
 public abstract class Command {
     /**
      * Executes the command.
-     * 
      * @param tasks The task list.
      * @param ui The user interactions.
      * @param storage The task storage.
@@ -21,7 +20,6 @@ public abstract class Command {
 
     /**
      * Indicates whether a command exits the Duke program.
-     * 
      * @return True if command is an exit command; false otherwise.
      */
     public abstract boolean isExit();

@@ -31,7 +31,6 @@ public class Duke {
             tasks = new TaskList();
         }
     }
-    
     /**
      * Runs the Duke program.
      */

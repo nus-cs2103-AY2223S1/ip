@@ -1,14 +1,22 @@
 package duke.parser;
 
-import duke.command.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.CommandWord;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.TaskType;
 import duke.ui.Ui;
-
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Parser for parsing user inputs, dates and tasks.
@@ -16,7 +24,6 @@ import java.time.LocalDateTime;
 public class Parser {
     /**
      * Parses and validates user input and returns a command to be executed.
-     *
      * @param fullCommand The command input by the user.
      * @return The Command to be executed.
      * @throws DukeException If command is invalid.
@@ -89,14 +96,12 @@ public class Parser {
 
     /**
      * Parses tasks from the saved text file.
-     *
      * @param savedTask The text string to be parsed.
      * @return An array of strings containing the details of the task.
      */
     public static String[] parseSavedTask(String savedTask) {
         return savedTask.split(" \\| ", 4);
     }
-    
     private static Command validateToDo(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) {
             throw new DukeException("  It seems you've invented a way to do nothing. Typical...\n"
@@ -176,7 +181,6 @@ public class Parser {
             return new FindCommand(parsedCommand[1]);
         }
     }
-    
     private static Command validateUnmark(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
             throw new DukeException("  Enter a task number, nitwit.\n"

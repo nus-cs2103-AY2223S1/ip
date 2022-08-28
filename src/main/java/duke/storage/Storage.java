@@ -1,13 +1,5 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.parser.Parser;
-import duke.task.Event;
-import duke.task.Deadline;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +9,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * Class that contains methods to save tasks to a file
@@ -45,7 +45,6 @@ public class Storage {
 
     /**
      * Saves the list of tasks to a text file.
-     * 
      * @param tasks List of tasks to be saved.
      * @throws DukeException If tasks list cannot be saved.
      */
@@ -65,7 +64,6 @@ public class Storage {
 
     /**
      * Loads the list of tasks from a given text file.
-     * 
      * @return List of tasks from the given text file.
      * @throws DukeException If task list cannot be loaded.
      */
@@ -108,5 +106,5 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException();
         }
-    }    
+    }
 }

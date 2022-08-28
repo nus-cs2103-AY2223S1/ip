@@ -1,19 +1,17 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class TaskTest {
     private final Task task1 = new Task("buy apples", true);
     private final Task task2 = new Task("buy 6 apples & chicken", false);
-    
     @Test
     public void testGetStatusIcon() {
         assertEquals("X", task1.getStatusIcon());
         assertEquals(" ", task2.getStatusIcon());
     }
-    
     @Test
     public void testGetSaveFormat() {
         assertEquals("| 1 | buy apples", task1.getSaveFormat());
@@ -25,7 +23,6 @@ public class TaskTest {
         assertEquals("[X] buy apples", task1.toString());
         assertEquals("[ ] buy 6 apples & chicken", task2.toString());
     }
-    
     @Test
     public void testIsMatch() {
         assertEquals(true, task2.isMatch("appl"));

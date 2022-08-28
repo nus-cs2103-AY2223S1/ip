@@ -12,7 +12,6 @@ public class DukeException extends Exception {
 
     /**
      * Constructor for DukeException with specified detail message.
-     * 
      * @param msg The error message to be displayed.
      */
     public DukeException(String msg) {
