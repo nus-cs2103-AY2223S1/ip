@@ -1,5 +1,5 @@
-public class IanaException extends Exception {
-    public IanaException(String errorMessage) {
+public class DukeException extends Exception {
+    public DukeException(String errorMessage) {
         super(errorMessage);
     }
 
