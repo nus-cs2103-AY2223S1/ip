@@ -42,13 +42,14 @@ public class TaskList {
     public void remove(Task task) throws IOException {
         tasks.remove(task);
         storage.rewriteFile(tasks);
-        ui.print("This task has been removed -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
+        ui.print("This task has been removed -\n\t\t" + task
+                + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
 
     public void listOut() {
         System.out.println(ui.getSeparator());
         System.out.println("\tTasks in your list -");
-        for(int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             System.out.println("\t\t" + (i + 1) + ". " + tasks.get(i));
         }
         System.out.println(ui.getSeparator());
@@ -56,20 +57,20 @@ public class TaskList {
 
     public void addTask(String input, char type) throws BloopException {
         Task task;
-        if(type == 'T') {
-            if(input.trim().length() == 4) {
+        if (type == 'T') {
+            if (input.trim().length() == 4) {
                 throw new BloopException("There is no task to do");
             }
             task = new ToDo(input.substring(5));
         } else {
             int index = input.indexOf('/');
-            if(type == 'E') {
-                if(input.trim().length() == 5) {
+            if (type == 'E') {
+                if (input.trim().length() == 5) {
                     throw new BloopException("No event specified");
                 }
                 task = new Event(input.substring(6, index), input.substring(index + 3));
             } else {
-                if(input.trim().length() == 8) {
+                if (input.trim().length() == 8) {
                     throw new BloopException("No deadline specified");
                 }
                 task = new Deadline(input.substring(9, index), input.substring(index + 3));

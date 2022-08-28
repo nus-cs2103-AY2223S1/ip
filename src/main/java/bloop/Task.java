@@ -3,7 +3,7 @@ package bloop;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-abstract public class Task {
+public abstract class Task {
     private String task;
     private boolean isDone;
 
@@ -28,9 +28,9 @@ abstract public class Task {
         isDone = false;
     }
 
-    abstract protected String getBy();
+    protected abstract String getBy();
 
-    abstract protected char getType();
+    protected abstract char getType();
 
     @Override
     public String toString() {

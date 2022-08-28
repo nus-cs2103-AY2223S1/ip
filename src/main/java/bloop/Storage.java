@@ -12,8 +12,8 @@ public class Storage {
     private String filePath;
     private Ui ui;
 
-    public Storage(String FilePath, Ui ui) {
-        this.filePath = FilePath;
+    public Storage(String filePath, Ui ui) {
+        this.filePath = filePath;
         this.ui = ui;
     }
 
@@ -21,11 +21,10 @@ public class Storage {
         try {
             File file = new File(filePath);
             boolean isCreated = file.createNewFile();
-            if(!isCreated) {
+            if (!isCreated) {
                 addPrevTasks(tasks);
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             ui.print("Couldn't create file. Sorry.");
             System.exit(0);
         }
@@ -41,7 +40,7 @@ public class Storage {
     public void rewriteFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write("");
-        for(Task task : tasks) {
+        for (Task task : tasks) {
             writeToFile(task);
         }
         fw.close();
@@ -50,18 +49,18 @@ public class Storage {
     private void addPrevTasks(ArrayList<Task> tasks) throws FileNotFoundException {
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
-        while(sc.hasNext()) {
+        while (sc.hasNext()) {
             String[] taskArr = sc.nextLine().split("-");
             String type = taskArr[0];
             Task task;
-            if(type.equals("T")) {
+            if (type.equals("T")) {
                 task = new ToDo(taskArr[2]);
-            } else if(type.equals("E")) {
+            } else if (type.equals("E")) {
                 task = new Event(taskArr[2], taskArr[3]);
             } else {
                 task = new Deadline(taskArr[2], taskArr[3]);
             }
-            if(Integer.parseInt(taskArr[1]) == 1) {
+            if (Integer.parseInt(taskArr[1]) == 1) {
                 task.mark();
             }
             tasks.add(task);
