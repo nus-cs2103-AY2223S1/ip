@@ -1,16 +1,13 @@
 package data;
 
-import models.Deadline;
-import models.Event;
-import models.Task;
-import models.Todo;
+import models.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static utils.DukePrint.dukePrint;
+import static services.Ui.dukePrint;
 
 public class LocalStorage {
     private final static String DIR_PATH = "./data";
@@ -26,7 +23,7 @@ public class LocalStorage {
         }
 
         try {
-            FileWriter myWriter = new FileWriter(this.FILE_PATH);
+            FileWriter myWriter = new FileWriter(FILE_PATH);
             for (Task task: tasklist) {
                 myWriter.write(task.toString() + "\n");
             }
@@ -36,9 +33,9 @@ public class LocalStorage {
         }
     }
 
-    public ArrayList<Task> load() {
+    public TaskList load() {
         try {
-            ArrayList<Task> result = new ArrayList<>();
+            TaskList result = new TaskList();
             File storageDirectory = new File(DIR_PATH);
             if (!storageDirectory.exists()) {
                 storageDirectory.mkdirs();
@@ -73,7 +70,7 @@ public class LocalStorage {
             return result;
         } catch (IOException ex) {
             dukePrint(String.format("File (%s) not found! Starting from empty ArrayListTask.", FILE_PATH));
-            return new ArrayList<>();
+            return new TaskList();
         }
     }
 }

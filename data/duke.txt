@@ -1,3 +1,4 @@
-[D][ ] test (by: Sep 12 2000)
-[T][ ] test2 /at 2000-09-13
-[E][ ] test3 (at: 2000-09-14)
+[T][X] todotest
+[T][ ] testtodotset
+[E][ ] me (at: Sep 15 2000)
+[T][ ] todos1
