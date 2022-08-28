@@ -1,7 +1,11 @@
 package duke;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
     private static Ui ui;
@@ -14,6 +18,12 @@ public class Parser {
         this.storage = storage;
     }
 
+    /**
+     * Parses user input to determine what Duke method to call.
+     *
+     * @param userInput input entered by user.
+     * @throws DukeException If user fails to specify what task they want to do.
+     */
     public void parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {
             showList();
@@ -41,19 +51,24 @@ public class Parser {
         } else if (userInput.length() > 7 && (userInput.substring(0, 6)).equals("delete")) {
             deleteTask(userInput);
             storage.save(tasklist);
+        } else if (userInput.startsWith("find ")) {
+            findTask(userInput);
         } else {
             System.out.println("I'm sorry, but I don't know what that means! Try typing something else!");
         }
     }
 
+    /**
+     * Displays list of tasks to user.
+     */
     public static void showList(){
         ui.printList(tasklist.listOfTasks());
     }
 
     /**
-     * Mark tasks as done
+     * Marks tasks as done.
      *
-     * @param task The string containing which task to be marked
+     * @param task The string containing which task to be marked.
      */
     public static void markDone(String task) {
         int taskToMark = 0;
@@ -67,9 +82,9 @@ public class Parser {
     }
 
     /**
-     * Change status of task back to not done
+     * Changes status of task back to not done.
      *
-     * @param task The string containing which task to be unmarked
+     * @param task The string containing which task to be unmarked.
      */
     public static void markUndone(String task) {
         int taskToUnmark = 0;
@@ -84,9 +99,9 @@ public class Parser {
     }
 
     /**
-     * Add Todo tasks
+     * Adds Todo tasks.
      *
-     * @param str The string containing task to be added
+     * @param str The string containing task to be added.
      */
     public static void addToDo(String str) {
         ToDos newToDo = new ToDos(str.substring(5, str.length()));
@@ -95,9 +110,9 @@ public class Parser {
     }
 
     /**
-     * Add Deadline tasks
+     * Adds Deadline tasks.
      *
-     * @param str The string containing task to be added
+     * @param str The string containing task to be added.
      */
     public static void addDeadline(String str) {
         int k = 9;
@@ -115,9 +130,9 @@ public class Parser {
     }
 
     /**
-     * Add Event tasks
+     * Adds Event tasks.
      *
-     * @param str The string containing task to be added
+     * @param str The string containing task to be added.
      */
     public static void addEvent(String str) {
         int k = 6;
@@ -129,16 +144,15 @@ public class Parser {
         }
 
         String eventTime = str.substring(k + 4, str.length());
-        //Events newEvent = new Events(desc, eventTime);
         Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
         ui.printTodo(tasklist.addTask(newEvent));
         ui.printTasksLeft(tasklist.getSize());
     }
 
     /**
-     * Delete task
+     * Deletes task.
      *
-     * @param str The string specifying which task to be deleted
+     * @param str The string specifying which task to be deleted.
      */
     public static void deleteTask(String str) {
         int taskToDel = 0;
@@ -150,5 +164,26 @@ public class Parser {
 
         ui.printDelete(tasklist.getTask(taskToDel));
         tasklist.deleteTask(taskToDel);
+        ui.printTasksLeft(tasklist.getSize());
+    }
+
+    /**
+     * Finds task with matching keyword
+     *
+     * @param str User input
+     */
+    public static void findTask(String str) {
+        String keyword = str.substring(5);
+        ArrayList<Task> matchedTasks = new ArrayList<>();
+
+        int i = 0;
+        while (i != tasklist.getSize()) {
+            if (tasklist.getTask(i).description.contains(keyword)) {
+                matchedTasks.add(tasklist.getTask(i));
+            }
+            i++;
+        }
+
+        ui.printFind(matchedTasks);
     }
 }

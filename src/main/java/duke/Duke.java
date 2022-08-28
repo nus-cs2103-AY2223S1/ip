@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Represents the Duke bot.
+ */
 public class Duke {
     private static Ui ui;
     private static Storage storage;
@@ -19,37 +22,18 @@ public class Duke {
 
         ui = new Ui();
         ui.printWelcomeMessage();
-        //storage = new Storage("src/main/java/duke/duke.txt");
         storage = new Storage("out/duke.txt");
 
         try {
             tasklist = storage.load();
             toDo();
-            //tasklist = storage.load();
         } catch (DukeException de) {
-            //System.out.println(de);
             ui.printLoadingError();
             tasklist = new TaskList();
         }
-
-        /**tasklist = new TaskList();
-        toDo();*/
     }
 
-    /**public Duke(String filePath) throws DukeException {
-        ui = new Ui();
-        ui.printWelcomeMessage();
-        storage = new Storage(filePath);
-        try {
-            tasklist = storage.load();
-        } catch (FileNotFoundException de) {
-            ui.printLoadingError();
-            tasklist = new TaskList();
-        }
-    }*/
-
     public static void toDo() throws DukeException {
-        //storage = new Storage(filePath);
         Parser parser = new Parser(ui, tasklist, storage);
 
         Scanner sc = new Scanner(System.in);
@@ -60,7 +44,6 @@ public class Duke {
             if (sc.hasNextLine()) { str2 = sc.nextLine();}
         }
         ui.printGoodbyeMessage();
-        //storage.save(tasklist);
     }
 
 }

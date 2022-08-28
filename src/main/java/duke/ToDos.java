@@ -6,10 +6,6 @@ public class ToDos extends Task {
         super(description);
     }
 
-    public String savedData() {
-        return "T | " + super.savedData() + "\n";
-    }
-
     @Override
     public String toString() {
         return "[T]" + super.toString();
