@@ -2,10 +2,18 @@ package duke.util;
 
 import java.util.Scanner;
 
+/**
+ * Class to deal with interactions with the user.
+ *
+ * @author Kavan
+ */
 public class Ui {
     private static final String HORIZONTAL_LINE = "  ____________________________________________________________";
     private Scanner commands;
 
+    /**
+     * Constructor for Ui Class.
+     */
     public Ui() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,6 +25,11 @@ public class Ui {
         this.commands = new Scanner(System.in);
     }
 
+    /**
+     * Returns the user input as a String.
+     *
+     * @return User Input.
+     */
     public String getUserCommand() {
         return commands.nextLine();
     }

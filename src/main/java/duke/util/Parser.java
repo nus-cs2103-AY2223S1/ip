@@ -10,9 +10,21 @@ import duke.task.Todos;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class to deal with making sense of the user's command.
+ *
+ * @author Kavan
+ */
 public class Parser {
     private static final String HORIZONTAL_LINE = "  ____________________________________________________________";
 
+    /**
+     * Handles the user's input accordingly.
+     *
+     * @param command     User input.
+     * @param storedTasks User's current TaskList object.
+     * @throws DukeException If command is not known.
+     */
     public static void handleCommand(String command, TaskList storedTasks) throws DukeException {
         if (command.equals("bye")) {
             System.out.println(HORIZONTAL_LINE + "\n  Bye. Hope to see you again soon!\n" + HORIZONTAL_LINE);
