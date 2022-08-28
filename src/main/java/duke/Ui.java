@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -98,5 +99,17 @@ public class Ui {
         taskList.deleteTask(taskToDelete);
         System.out.println("Noted. I've removed this task:\n  " + taskToDelete + "\nNow you have "
                 + taskList.getSize() + " tasks in the list");
+    }
+
+    /**
+     * This method prints out all the tasks
+     * with the user's search keyword
+     * @param taskListWithKeyword List of tasks containing user's search keyword
+     */
+    public void printTasksWithKeyword(List<Task> taskListWithKeyword) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 1; i <= taskListWithKeyword.size(); i++) {
+            System.out.println(i + "." + taskListWithKeyword.get(i - 1));
+        }
     }
 }

@@ -2,6 +2,8 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Parser class allows the Duke program
@@ -46,7 +48,7 @@ public class Parser {
                 Task taskToMark = getTaskToMark(splitStr, taskList);
                 Task taskToAdd = getTaskToAdd(command);
                 Task taskToDelete = getTaskToDelete(splitStr, taskList);
-
+                List<Task> taskListWithKeyWord = getAllTaskWithKeyword(command, taskList);
                 if (taskToMark != null) {
                     String action = splitStr[0];
                     if (action.equals("mark")) {
@@ -58,6 +60,8 @@ public class Parser {
                     ui.addTask(taskList, taskToAdd);
                 } else if (taskToDelete != null) {
                     ui.deleteTask(taskList, taskToDelete);
+                } else if (taskListWithKeyWord.size() != 0) {
+                    ui.printTasksWithKeyword(taskListWithKeyWord);
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 }
@@ -168,5 +172,31 @@ public class Parser {
         } else {
             return null;
         }
+    }
+
+    /**
+     * This method takes in the users string input
+     * and returns a list of tasks that contains
+     * the user's search keyword
+     * @param str Command input from user
+     * @param taskList User's complete task list
+     * @return list of tasks containing user's search keyword
+     * @throws DukeException This tells the user if no such task contains the user's search keyword
+     */
+    private static List<Task> getAllTaskWithKeyword(String str, TaskList taskList) throws DukeException {
+        String[] splitStr = str.split(" ");
+        List<Task> taskListWithKeyword = new ArrayList<>();
+        if (splitStr[0].equals("find")) {
+            String keyword = str.substring(5);
+            for (int i = 0; i < taskList.getSize(); i++) {
+                if (taskList.getTask(i).toString().contains(keyword)) {
+                    taskListWithKeyword.add(taskList.getTask(i));
+                }
+            }
+            if (taskListWithKeyword.size() == 0) {
+                throw new DukeException("☹ OOPS!!! No such task with keyword is found.");
+            }
+        }
+        return taskListWithKeyword;
     }
 }
