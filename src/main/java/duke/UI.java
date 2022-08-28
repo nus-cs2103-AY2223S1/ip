@@ -2,6 +2,9 @@ package duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * An input/output handler that deals with interaction with the user.
+ */
 public class UI {
     private Parser parser;
     private final String LINE_BREAK
@@ -11,6 +14,10 @@ public class UI {
         this.parser = new Parser();
     }
 
+    /**
+     * Starts the UI for the given Duke bot.
+     * @param duke The given Duke bot.
+     */
     public void run(Duke duke) {
         Scanner scanner = new Scanner(System.in);
         print("Hello! I'm Duke\nWhat can I do for you?");
