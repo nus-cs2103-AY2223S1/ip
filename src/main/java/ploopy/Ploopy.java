@@ -52,9 +52,11 @@ public class Ploopy {
      */
     private void command() {
         ui.promptUser();
+        ui.correctFormatForUser();
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
+            ui.correctFormatForUser();
             try {
                 Parser.parseInput(input, taskList);
             } catch (PloopyException e) {

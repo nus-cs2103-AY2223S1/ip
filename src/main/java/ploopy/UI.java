@@ -42,6 +42,13 @@ public class UI {
         System.out.println(messageFormatter(GREETING));
     }
 
+    public void correctFormatForUser() {
+        System.out.println(messageFormatter("Please use the following format\n"
+                + "[task type] [task name] / [at for event and by for deadline] [task date]\n"
+                + "e.g: event concert /at 12/12/2020 1800" ));
+    }
+
+
     /**
      * Prints a bye message to the user
      *
