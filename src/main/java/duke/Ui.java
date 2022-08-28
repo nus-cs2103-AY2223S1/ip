@@ -130,6 +130,19 @@ public class Ui {
         }
     }
 
+    public void showFoundTasks(ArrayList<Task> foundTasks) {
+        int count = foundTasks.size();
+        if (count == 0) {
+            System.out.println("There is no matching task in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+        }
+
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + "." + foundTasks.get(i));
+        }
+    }
+
     /**
      * Show error message.
      * @param error The description for the error.
