@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents a find command which given a search term,

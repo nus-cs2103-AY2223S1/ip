@@ -2,12 +2,12 @@ package duke.command;
 
 import java.time.LocalDateTime;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs deadline.
