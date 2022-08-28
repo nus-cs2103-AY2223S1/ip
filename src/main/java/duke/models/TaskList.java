@@ -44,10 +44,8 @@ public class TaskList {
     public TaskList findTasks(String pattern) {
         TaskList foundTasks = new TaskList();
         this.taskList.forEach(task -> {
-            System.out.println(task.content);
-            System.out.println(pattern);
             if (task.content.contains(pattern)) {
-                foundTasks.AddTask(task);
+                foundTasks.addTask(task);
             }
         });
         return foundTasks;
