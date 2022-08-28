@@ -1,3 +1,10 @@
+package unc;
+
+import unc.task.Deadline;
+import unc.task.Event;
+import unc.task.Task;
+import unc.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -19,7 +26,7 @@ public class Storage {
             Scanner scanner1 = new Scanner(saveFile);
             while (scanner1.hasNext()) {
                 String[] oldTask = scanner1.nextLine().split("///", 4);
-                // Task type saved in the third parameter
+                // unc.task.Task type saved in the third parameter
                 switch (oldTask[0]) {
                 case "T":
                     taskList.add(new Todo(oldTask[1], oldTask[3]));

@@ -1,3 +1,8 @@
+package unc.command;
+
+import unc.*;
+import unc.task.Deadline;
+
 public class DeadlineCommand extends Command {
     private final String description;
 

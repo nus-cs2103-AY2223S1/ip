@@ -1,24 +1,28 @@
+package unc.task;
+
+import unc.UncException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
+public class Deadline extends Task {
 
-    protected LocalDate at;
+    protected LocalDate by;
 
-    public Event(String description, String at) throws UncException {
+    public Deadline(String description, String by) throws UncException {
         super(description);
         try {
-            this.at = LocalDate.parse(at);
+            this.by = LocalDate.parse(by);
         } catch (DateTimeParseException exception) {
             throw new UncException("Invalid datetime");
         }
     }
 
-    public Event(String description, String at, String done) throws UncException {
+    public Deadline(String description, String by, String done) throws UncException {
         super(description, done == "true");
         try {
-            this.at = LocalDate.parse(at);
+            this.by = LocalDate.parse(by);
         } catch (DateTimeParseException exception) {
             throw new UncException("Invalid datetime");
         }
@@ -26,12 +30,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ")";
     }
-
 
     @Override
     public String toStorageString() {
-        return "E" + "///" + this.description + "///" + this.at + "///" + this.isDone;
+        return "D" + "///" + this.description + "///" + this.by + "///" + this.isDone;
     }
 }

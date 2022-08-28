@@ -1,3 +1,10 @@
+package unc;
+
+import unc.task.Deadline;
+import unc.task.Event;
+import unc.task.Task;
+import unc.task.Todo;
+
 import java.util.Scanner;
 
 public class Ui {

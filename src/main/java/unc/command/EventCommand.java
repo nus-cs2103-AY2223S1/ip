@@ -1,3 +1,8 @@
+package unc.command;
+
+import unc.*;
+import unc.task.Event;
+
 public class EventCommand extends Command{
     private final String description;
 

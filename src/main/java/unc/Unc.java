@@ -1,3 +1,7 @@
+package unc;
+
+import unc.command.Command;
+
 public class Unc {
     private Storage storage;
     private TaskList taskList;

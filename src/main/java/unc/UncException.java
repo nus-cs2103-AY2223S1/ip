@@ -1,3 +1,5 @@
+package unc;
+
 public class UncException extends Exception{
     public UncException(String message) {
         super(message);

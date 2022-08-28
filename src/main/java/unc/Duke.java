@@ -1,3 +1,10 @@
+package unc;
+
+import unc.task.Deadline;
+import unc.task.Event;
+import unc.task.Task;
+import unc.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -36,7 +43,7 @@ public class Duke {
             Scanner scanner1 = new Scanner(saveFile);
             while (scanner1.hasNext()) {
                 String[] oldTask = scanner1.nextLine().split("///", 3);
-                // Task type saved in the third parameter
+                // unc.task.Task type saved in the third parameter
                 switch (oldTask[0]) {
                     case "T":
                         taskList.add(new Todo(oldTask[1]));
@@ -95,7 +102,7 @@ public class Duke {
                     try {
                         addToDo(words[1]);
                     } catch (IndexOutOfBoundsException e) {
-                        throw new UncException("You need something to do for Todo.");
+                        throw new UncException("You need something to do for unc.task.Todo.");
                     }
                     break;
                 case DEADLINE:
@@ -129,7 +136,7 @@ public class Duke {
     /*
     private static void addToList(String input) {
         System.out.println("added: " + input);
-        taskList.add(new Task(input));
+        taskList.add(new unc.task.Task(input));
     }
 
     */
