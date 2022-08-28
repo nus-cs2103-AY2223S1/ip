@@ -1,11 +1,14 @@
-import java.util.Scanner;
+package Duke.tasks;
 
 public class Todo extends Task {
 
-    private String task;
-
     public Todo(String task) {
-        super(task.substring(5));
+        super(task);
+    }
+
+    @Override
+    public char getTaskType() {
+        return 'T';
     }
 
     public String toString() {
