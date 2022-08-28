@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Contains methods that deal with storing and loading Tasks from memory file.
+ */
 public class Storage {
     private String filePath;
     private String tempFilePath;
