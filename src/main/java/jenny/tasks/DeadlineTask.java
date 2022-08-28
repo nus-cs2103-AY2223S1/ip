@@ -1,7 +1,6 @@
 package jenny.tasks;
 
 import jenny.exceptions.JennyException;
-import jenny.exceptions.TaskException;
 
 import java.time.LocalDate;
 
@@ -12,16 +11,18 @@ import java.time.LocalDate;
  *
  * @author Deon
  */
-public class DeadlineTask extends AbstractTask {
+public class DeadlineTask extends Task {
     private static final String MESSAGE_SCOPE = DeadlineTask.class.getSimpleName();
     private final LocalDate dueDate;
 
     /**
-     * {@inheritDoc}
+     * Constructor for an instance of a new deadline task.
+     * Will initialise a new task with the provided {@code description} and {@code dueDate}.
+     * By default, the task is marked as incomplete.
      *
      * @param dueDate due date of the task.
      */
-    public DeadlineTask(String description, LocalDate dueDate) {
+    public DeadlineTask(String description, LocalDate dueDate) throws JennyException {
         super(description);
         if (description.trim().isEmpty()) {
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DESCRIPTION);

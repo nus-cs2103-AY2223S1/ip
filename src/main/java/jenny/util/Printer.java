@@ -4,34 +4,51 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 /**
- * Prints stuff to the console.
+ * Prints to the provided {@link PrintStream}.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-
 public final class Printer {
-    private static final PrintStream PRINT_STREAM = System.out;
+    private final PrintStream out;
     private static final String UNDERSCORE = "_";
     private static final int WINDOW_LENGTH = 60;
 
-    public static void printLine() {
-        PRINT_STREAM.println("\t" + UNDERSCORE.repeat(WINDOW_LENGTH));
+    /**
+     * Creates a new instance of a printer using the provided {@link PrintStream}.
+     *
+     * @param out a {@link PrintStream}.
+     */
+    public Printer(PrintStream out) {
+        this.out = out;
     }
 
-    public static void print(String[] messages) {
+    /**
+     * Sends a series of underscores to the output stream.
+     */
+    public void printLine() {
+        out.println("\t" + UNDERSCORE.repeat(WINDOW_LENGTH));
+    }
+
+    /**
+     * Sends a series of messages to the output stream.
+     */
+    public void print(String[] messages) {
         printLine();
         for (String message : messages) {
-            PRINT_STREAM.println("\t" + message);
+            out.println("\t" + message);
         }
         printLine();
     }
 
-    public static void print(ArrayList<String> messages) {
+    /**
+     * Sends a series of messages to the output stream.
+     */
+    public void print(ArrayList<String> messages) {
         printLine();
         for (String message : messages) {
-            PRINT_STREAM.println("\t" + message);
+            out.println("\t" + message);
         }
         printLine();
     }

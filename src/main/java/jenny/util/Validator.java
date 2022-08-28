@@ -3,6 +3,7 @@ package jenny.util;
 import jenny.exceptions.JennyException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,18 +22,21 @@ public class Validator {
     private static final String ERROR_INVALID_DATE = "Date is not in yyyy-MM-dd format.";
 
     /**
-     * Parse and return a {@link LocalDate} if successful, throws a {@link JennyException} on failure.
+     * Checks if a date is valid and parses it into a {@link LocalDate}.
      *
-     * @param date a string in yyyy-MM-dd format.
+     * @param date a string in {@code "yyyy-MM-dd"} format.
      * @return a {@link LocalDate}.
-     * @throws JennyException when string is not in yyyy-MM-dd format.
+     * @throws JennyException when runtime exceptions are thrown in the JennyBot application.
      */
     public static LocalDate parseDate(String date) throws JennyException {
         Matcher matcher = VALID_DATE_PATTERN.matcher(date);
         if (!matcher.find()) {
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DATE);
-        } else {
+        }
+        try {
             return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new JennyException(MESSAGE_SCOPE, e.getMessage());
         }
     }
 }

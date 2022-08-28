@@ -5,7 +5,7 @@
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] read book
-	Now you have 1 tasks in the list.
+	Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Date is not in yyyy-MM-dd format.
@@ -16,12 +16,12 @@
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] join sports club
-	Now you have 2 tasks in the list.
+	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] borrow book
-	Now you have 3 tasks in the list.
+	Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Date is not in yyyy-MM-dd format.
@@ -33,17 +33,17 @@
 	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	[[T][ ] read book, [T][ ] join sports club, [T][ ] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][ ] read book, [T][ ] join sports club, [T][ ] borrow book]
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
-	  [T][X] borrow book
+	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	No such record exists in your list.
+	Index 5 out of bounds for length 5
 	____________________________________________________________
 	____________________________________________________________
-	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club, [T][ ] borrow book]
 	____________________________________________________________
 	____________________________________________________________
 	The description of this task cannot be empty.
@@ -52,23 +52,25 @@
 	I'm sorry, but I don't know what that means.
 	____________________________________________________________
 	____________________________________________________________
-	No such record exists in your list.
+	Got it. I've deleted this task:
+	  [T][ ] borrow book
+	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club]
 	____________________________________________________________
 	____________________________________________________________
-	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club]
 	____________________________________________________________
 	____________________________________________________________
-	You have entered a invalid number for mark <number>.
+	For input string: "mark"
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
 	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	You have entered a invalid number for unmark <number>.
+	For input string: "unmark"
 	____________________________________________________________
 	____________________________________________________________
 	OK, I've marked this task as not done yet:
@@ -98,8 +100,11 @@
 	____________________________________________________________
 	Got it. I've deleted this task:
 	  [T][ ] read book
-	Now you have 2 tasks in the list.
+	Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Existing storage location found!
+	I'm sorry, but I don't know what that means.
+	____________________________________________________________
+	____________________________________________________________
+	Bye. Hope to see you again soon!
 	____________________________________________________________

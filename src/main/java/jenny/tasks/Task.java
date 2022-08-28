@@ -1,25 +1,29 @@
 package jenny.tasks;
 
+import jenny.exceptions.JennyException;
+
 /**
- * Serves as a base class for all other different types tasks.
+ * Abstract class for all other different types of tasks.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public abstract class AbstractTask {
-    private static final String MESSAGE_SCOPE = AbstractTask.class.getSimpleName();
+public abstract class Task {
+    private static final String MESSAGE_SCOPE = Task.class.getSimpleName();
     protected static final String ERROR_INVALID_DESCRIPTION = "The description of this task cannot be empty.";
     protected static final String ERROR_INVALID_DUE_DATE = "The due date of this task cannot be empty.";
     protected String description;
     protected boolean isDone;
 
     /**
-     * Creates an instance of a new task.
+     * Constructor for an instance of a new task.
+     * Will initialise a new task with the provided {@code description}.
+     * By default, the task is marked as incomplete.
      *
      * @param description a string to describe the task.
      */
-    public AbstractTask(String description) {
+    public Task(String description) throws JennyException {
         this.description = description;
         this.isDone = false;
     }
@@ -28,19 +32,24 @@ public abstract class AbstractTask {
      * Returns the status of the task as a string.
      * "X" to indicate completed, " " to indicate uncompleted.
      *
-     * @return the status of the task as a string.
+     * @return {@link String}
      */
     public String icon() {
         return (this.isDone ? "X" : " ");
     }
 
     /**
-     * Sets the status the task.
-     *
-     * @param isDone the status the task.
+     * Sets the status the task as complete.
      */
-    public void markAsDone(boolean isDone) {
-        this.isDone = isDone;
+    public void mark() {
+        this.isDone = true;
+    }
+
+    /**
+     * Sets the status the task as incomplete.
+     */
+    public void unmark() {
+        this.isDone = false;
     }
 
     /**

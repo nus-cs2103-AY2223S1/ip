@@ -1,11 +1,13 @@
 package jenny;
 
-import jenny.commands.AbstractCommand;
-import jenny.commands.ByeCommand;
+import jenny.commands.Command;
 import jenny.exceptions.JennyException;
-import jenny.tasks.AbstractTask;
+import jenny.storage.Storage;
+import jenny.storage.TaskStorage;
+import jenny.tasks.Task;
+import jenny.tasks.TaskList;
 import jenny.util.Parser;
-import jenny.util.UserInterface;
+import jenny.util.Ui;
 
 import java.util.ArrayList;
 
@@ -17,24 +19,37 @@ import java.util.ArrayList;
  * @author Deon
  */
 public final class JennyBot {
-    private static final ArrayList<AbstractTask> tasks = new ArrayList<>();
+    private final Storage<ArrayList<Task>> storage;
+    private TaskList tasks;
+    private final Ui ui;
+
+    public JennyBot(String filePath) {
+        ui = new Ui(System.in, System.out);
+        storage = new TaskStorage<>(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (JennyException e) {
+            ui.print(e.getMessage());
+            tasks = new TaskList();
+        }
+    }
 
     public void run() {
-        UserInterface.greet();
-        String nextLine = UserInterface.read();
-        AbstractCommand cmd = Parser.parse(nextLine);
-        while (!(cmd instanceof ByeCommand)) {
+        ui.greet();
+        boolean isExit = false;
+        while(!isExit) {
             try {
-                cmd.run(tasks);
+                String nextLine = ui.read();
+                Command cmd = Parser.parse(nextLine);
+                cmd.run(tasks, ui, storage); // throws JennyException
+                isExit = cmd.isExit();
             } catch (JennyException e) {
-                UserInterface.print(e.getMessage());
+                ui.print(e.getMessage());
             }
-            nextLine = UserInterface.read();
-            cmd = Parser.parse(nextLine);
         }
     }
 
     public static void main(String[] args) {
-        new JennyBot().run();
+        new JennyBot("tasks.txt").run();
     }
 }

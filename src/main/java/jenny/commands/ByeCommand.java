@@ -1,14 +1,14 @@
 package jenny.commands;
 
 import jenny.exceptions.JennyException;
-import jenny.storage.TaskStorage;
-import jenny.tasks.AbstractTask;
-import jenny.util.UserInterface;
+import jenny.storage.Storage;
+import jenny.tasks.Task;
+import jenny.tasks.TaskList;
+import jenny.util.Ui;
 
 import java.util.ArrayList;
 
-public class ByeCommand extends AbstractCommand {
-    private static final String MESSAGE_SCOPE = ByeCommand.class.getSimpleName();
+public class ByeCommand extends Command {
     public static final String COMMAND = "bye";
 
     public ByeCommand(String arguments) {
@@ -16,7 +16,12 @@ public class ByeCommand extends AbstractCommand {
     }
 
     @Override
-    public void run(ArrayList<AbstractTask> tasks) throws JennyException {
-        UserInterface.exit();
+    public boolean isExit() {
+        return true;
+    }
+
+    @Override
+    public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) throws JennyException {
+        ui.exit();
     }
 }

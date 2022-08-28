@@ -9,7 +9,7 @@ import jenny.exceptions.JennyException;
  *
  * @author Deon
  */
-public class TodoTask extends AbstractTask {
+public class TodoTask extends Task {
     private static final String MESSAGE_SCOPE = TodoTask.class.getSimpleName();
     private static final String ERROR_MISSING_DESCRIPTION = "The description of this task cannot be empty.";
 
