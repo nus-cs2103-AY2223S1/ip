@@ -1,7 +1,14 @@
+package command;
+
+import duke.Ui;
+import duke.Storage;
+import exception.InvalidFormatException;
+import task.DukeTask;
+
 import java.util.ArrayList;
 
 public class ToDoCommand extends Command {
-    String cmd;
+    private String cmd;
 
     public ToDoCommand(String cmd) {
         this.cmd = cmd;

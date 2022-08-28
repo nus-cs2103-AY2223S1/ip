@@ -1,10 +1,12 @@
+package task;
+
 import java.util.ArrayList;
 
 public class DukeTaskList {
     
     private final ArrayList<DukeTask> lst;
     
-    DukeTaskList (ArrayList<DukeTask> arrlst) {
+    public DukeTaskList (ArrayList<DukeTask> arrlst) {
         this.lst = arrlst;
     }
 

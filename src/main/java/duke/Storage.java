@@ -1,3 +1,9 @@
+package duke;
+
+import task.DukeTask;
+import task.DukeTaskDeadline;
+import task.DukeTaskEvent;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -48,14 +54,14 @@ public class Storage {
             
             for (int i = 0; i < tasklist.size(); i ++) {
                 DukeTask t = tasklist.get(i);
-                if (t.taskType == 'D') {
+                if (t.getTaskType() == 'D') {
                     DukeTaskDeadline tD = (DukeTaskDeadline) t;
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + "(" + tD.ldt.toString() + ")" +"\n");
-                } else if (t.taskType == 'E') {
+                    writer.write(tD.toStringSaveFile() +"\n");
+                } else if (t.getTaskType() == 'E') {
                     DukeTaskEvent tE = (DukeTaskEvent) t;
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + tE.time +"\n");
+                    writer.write(tE.toStringSaveFile() +"\n");
                 } else {
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task +"\n");
+                    writer.write(t.toStringSaveFile() + "\n");
                 }
                 
             }

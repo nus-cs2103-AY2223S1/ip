@@ -1,10 +1,18 @@
+package command;
+
+import duke.Ui;
+import duke.Storage;
+import exception.InvalidFormatException;
+import task.DukeTask;
+import task.DukeTaskDeadline;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class DeadlineCommand extends Command {
-    String cmd;
+    private String cmd;
 
     public DeadlineCommand(String cmd) {
         this.cmd = cmd;

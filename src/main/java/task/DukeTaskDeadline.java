@@ -1,10 +1,12 @@
+package task;
+
 import java.time.LocalDateTime;
 
 public class DukeTaskDeadline extends DukeTask {
     
-    LocalDateTime ldt;
+    private LocalDateTime ldt;
 
-    DukeTaskDeadline (String task, boolean mark, char type, LocalDateTime ldt) {
+    public DukeTaskDeadline (String task, boolean mark, char type, LocalDateTime ldt) {
         super(task, mark, type);
         this.ldt = ldt;
     }
@@ -12,6 +14,11 @@ public class DukeTaskDeadline extends DukeTask {
     @Override
     public String toString() {
         return super.toString() + "(" + ldt.toString() + ")";
+    }
+
+    @Override
+    public String toStringSaveFile() {
+        return super.toStringSaveFile() + "/" + "(" + this.ldt.toString() + ")";
     }
 
     public LocalDateTime getLDT() {

@@ -1,4 +1,6 @@
+package duke;
 
+import command.*;
 
 /**
  * Parse user inputs in Duke to return command object

@@ -1,3 +1,9 @@
+package duke;
+
+import command.ByeCommand;
+import command.Command;
+import task.DukeTask;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,7 +51,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("list.txt").run();
+        new Duke("data/list.txt").run();
     }
 }
 /* 

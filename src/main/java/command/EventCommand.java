@@ -1,7 +1,15 @@
+package command;
+
+import duke.Ui;
+import duke.Storage;
+import exception.InvalidFormatException;
+import task.DukeTask;
+import task.DukeTaskEvent;
+
 import java.util.ArrayList;
 
 public class EventCommand extends Command {
-    String cmd;
+    private String cmd;
 
     public EventCommand(String cmd) {
         this.cmd = cmd;
