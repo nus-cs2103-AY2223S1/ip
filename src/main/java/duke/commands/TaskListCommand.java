@@ -11,7 +11,7 @@ public abstract class TaskListCommand extends Command {
     /**
      * The string that is formatted when TaskListCommand::taskCountText is called.
      */
-    protected static final String taskListText = "Now you have %s tasks in the list.";
+    protected static final String TASK_LIST_TEXT = "Now you have %s tasks in the list.";
     protected final TaskList taskList;
 
     /**
@@ -31,6 +31,6 @@ public abstract class TaskListCommand extends Command {
      * @return Formatted text showing the number of tasks in the list.
      */
     protected String taskCountText() {
-        return String.format(taskListText, taskList.taskCount());
+        return String.format(TASK_LIST_TEXT, taskList.taskCount());
     }
 }

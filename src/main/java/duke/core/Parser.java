@@ -1,10 +1,15 @@
 package duke.core;
 
-import duke.commands.Command;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import duke.commands.Command;
+
+/**
+ * A class that encapsulates a parser of commands for Duke.
+ * Takes in a list of commands and with a given input, invokes the
+ * correct commands.
+ */
 public class Parser {
 
     /**

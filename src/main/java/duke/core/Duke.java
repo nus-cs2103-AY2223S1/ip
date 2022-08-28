@@ -1,8 +1,5 @@
 package duke.core;
 
-import duke.commands.*;
-import duke.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,6 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import duke.commands.AddTaskCommand;
+import duke.commands.DeleteTaskCommand;
+import duke.commands.Exit;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * A task manager bot that supports saving and loading.
@@ -22,6 +31,10 @@ public class Duke {
 
     private final String fileName;
 
+    /**
+     * Constructor for a Duke using a filename that it will write to.
+     * @param fileName File to write to.
+     */
     public Duke(String fileName) {
         this.parser = new Parser(new ArrayList<>(Arrays.asList(
                 new Exit("bye", this.ui),
@@ -41,7 +54,7 @@ public class Duke {
         new Duke("duke.txt").run();
     }
 
-    public void run() {
+    private void run() {
 
         File taskFile = new File(fileName);
 

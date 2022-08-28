@@ -12,7 +12,7 @@ public class DeleteTaskCommand extends TaskListIndexCommand {
     /**
      * The text that is displayed when a task is removed.
      */
-    public static final String removeTaskText = "Noted. I've removed this task:";
+    public static final String REMOVE_TASK_TEXT = "Noted. I've removed this task:";
 
     public DeleteTaskCommand(String invoker, TaskList taskList) {
         super(invoker, taskList);
@@ -28,6 +28,6 @@ public class DeleteTaskCommand extends TaskListIndexCommand {
     @Override
     public String execute(Task t) throws DukeException {
         this.taskList.removeTask(t);
-        return removeTaskText + "\n  " + t + "\n" + taskCountText();
+        return REMOVE_TASK_TEXT + "\n  " + t + "\n" + taskCountText();
     }
 }

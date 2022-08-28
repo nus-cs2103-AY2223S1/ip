@@ -1,13 +1,17 @@
 package duke.commands;
 
-import duke.core.DukeException;
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.function.Supplier;
 
+import duke.core.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+
+/**
+ * A command that adds a task of a specified type into a given list.
+ * @param <T>
+ */
 public class AddTaskCommand<T extends Task> extends TaskListCommand {
 
     /**
@@ -33,7 +37,8 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
      * @param argumentDelimiter The string that delimits the arguments of this command.
      * @param taskFactory       The supplier that suppleis new tasks whenever this command is executed.
      */
-    public AddTaskCommand(String invoker, TaskList taskList, String argumentDelimiter, Supplier<? extends T> taskFactory) {
+    public AddTaskCommand(String invoker, TaskList taskList, String argumentDelimiter,
+                          Supplier<? extends T> taskFactory) {
         super(invoker, taskList);
         this.argumentDelimiter = argumentDelimiter;
         this.taskFactory = taskFactory;

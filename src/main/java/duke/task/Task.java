@@ -1,11 +1,11 @@
 package duke.task;
 
-import duke.core.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
+
+import duke.core.DukeException;
 
 /**
  * A class that represents a task in the task list.
@@ -16,6 +16,11 @@ public abstract class Task {
     protected LocalDate details;
     protected boolean complete = false;
 
+    /**
+     * Deserializes the string version of a task into a Task object.
+     * @param serializedTask String to deserialize.
+     * @return Deserialized task.
+     */
     public static Task deserialize(String serializedTask) {
 
         Task task = null;
@@ -53,6 +58,7 @@ public abstract class Task {
                     if (task.getTaskType() == TaskType.ToDo) {
                         return task;
                     }
+                    System.out.println("fail 2");
                     return null;
                 }
             }
@@ -77,14 +83,18 @@ public abstract class Task {
         return new DukeException("Invalid parameters!");
     }
 
+    /**
+     * Serializes this task into a string format for saving.
+     * @return String format of task.
+     */
     public final String serialize() {
-        return getTaskType() +
-                serializerSeparator +
-                complete +
-                serializerSeparator +
-                text +
-                serializerSeparator +
-                details;
+        return getTaskType()
+                + serializerSeparator
+                + complete
+                + serializerSeparator
+                + text
+                + serializerSeparator
+                + details;
     }
 
     public abstract TaskType getTaskType();
@@ -114,5 +124,8 @@ public abstract class Task {
         return details.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
 
-    public enum TaskType {ToDo, Deadline, Event}
+    /**
+     * Enumeration for type of task.
+     */
+    public enum TaskType { ToDo, Deadline, Event }
 }
