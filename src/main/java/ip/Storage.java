@@ -12,8 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Storage {
-    private final String path;
-    private final File file;
+    private String path;
+    private File file;
 
     public Storage(String path) {
         this.path = path;
@@ -52,6 +52,12 @@ public class Storage {
         }
     }
 
+    public TaskList load(String altPath) throws IOException {
+        this.path = altPath;
+        this.file = new File(path);
+        return load();
+    }
+
     public void write(TaskList taskList) {
         try {
             FileWriter target = new FileWriter(path);
@@ -64,6 +70,10 @@ public class Storage {
             System.out.println("Error in writing file.");
             e.printStackTrace();
         }
+    }
+
+    public void wipe() {
+        file.delete();
     }
 
     @Override

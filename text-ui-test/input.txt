@@ -1,27 +1,30 @@
-todo take a dip
-todo and do a flip
-deadline conquer the world /by 2025 (hopefully)
-event dinner with mom /at 4pm later
+not a command
 list
-mark 1
+todo
+todo Feed the crocodiles
+list
+deadline
+deadline Math homework
+deadline Math homework /by 2/3/2022 2359
+deadline Math homework /by 22/3/2022 2400
+list
+event
+event Meeting /at
+event Meeting /at Some timespan here
+list
+mark
+mark 0
+mark 9
 mark 2
 list
+unmark
+unmark 0
 unmark 2
+unmark 9
 list
-delete 4
-list
-todo 
-deadline 
-deadline thingy but idk when
-event 
-event when is the meeting again?
-mark 4
-mark blahblah
-mark 
-unmark 4
-unmark blahblah
-unmark 
 delete
-delete something
-this is a random line
+delete 0
+delete 9
+delete 2
+list
 bye

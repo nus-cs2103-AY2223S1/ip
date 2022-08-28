@@ -21,36 +21,47 @@ public class Duke {
     private static Parser parser = new Parser();
     private static TaskList taskList = new TaskList();
     private static Storage storage = new Storage("src/main/java/ip/taskData.txt");
+    private static boolean toWipe = false;
 
     public static void main(String[] args) {
+        if (System.getProperty("user.dir").endsWith("text-ui-test")) {
+            toWipe = true;
+        }
         try {
             taskList = storage.load();
-            ui.divider();
-            while (true) {
-                try {
-                    parser.load(ui.getNextLine());
-                    Command command = parser.getCommand();
-                    if (command instanceof ByeCommand) {
-                        ui.sayBye();
-                        break;
-                    } else {
-                        ui.divider();
-                        try {
-                            command.execute(taskList);
-                            storage.write(taskList);
-                        } catch (DukeException e) {
-                            System.out.println(e);
-                        }
-                        parser.clear();
-                        ui.divider();
-                    }
-                } catch (InvalidCommand e) {
-                    System.out.println("You have entered an invalid command.");
-                    ui.say(e.toString());
-                }
-            }
         } catch (IOException e) {
-            // TODO
+            ui.say("Error in loading task data file. Using default location.");
+            ui.say("WARNING: Task data will be deleted after this run.");
+            storage = new Storage("taskList.txt");
+            toWipe = true;
+        }
+        ui.divider();
+        while (true) {
+            try {
+                parser.load(ui.getNextLine());
+                Command command = parser.getCommand();
+                if (command instanceof ByeCommand) {
+                    ui.sayBye();
+                    break;
+                } else {
+                    ui.divider();
+                    try {
+                        command.execute(taskList);
+                        storage.write(taskList);
+                    } catch (DukeException e) {
+                        System.out.println(e);
+                    }
+                    parser.clear();
+                    ui.divider();
+                }
+            } catch (InvalidCommand e) {
+                System.out.println("You have entered an invalid command.");
+                ui.say(e.toString());
+            }
+        }
+        if (toWipe) {
+            storage.wipe();
+            ui.say("Storage wiped.");
         }
     }
 
