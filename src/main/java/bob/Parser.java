@@ -4,10 +4,6 @@ import java.time.LocalDate;
 
 public class Parser {
 
-    public enum keyword {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, REMOVE, FILTER
-    }
-
     public boolean toExit = false;
 
     //referenced https://github.com/Donovan9617/ip/blob/master/src/main/java/Duke/Parser.java for structure
@@ -64,7 +60,7 @@ public class Parser {
                 break;
             case "todo":
                 try {
-                    String taskName = splitReply[1];
+                    String taskName = reply.substring(5);
                     ToDo newTask = new ToDo(taskName);
                     tasks.addTask(newTask);
                     ui.displayAddedTask(tasks, newTask);
@@ -75,8 +71,9 @@ public class Parser {
                 break;
             case "deadline":
                 try {
-                    String taskName = splitReply[1];
-                    String date = splitReply[3];
+                    String[] temp = reply.split("/");
+                    String taskName = temp[0].substring(9, -1);
+                    String date = temp[1].substring(3);
                     Deadline newTask = new Deadline(taskName, LocalDate.parse(date));
                     tasks.addTask(newTask);
                     ui.displayAddedTask(tasks, newTask);
@@ -87,8 +84,9 @@ public class Parser {
                 break;
             case "event":
                 try {
-                    String taskName = splitReply[1];
-                    String date = splitReply[3];
+                    String[] temp = reply.split("/");
+                    String taskName = temp[0].substring(6, -1);
+                    String date = temp[1].substring(3);
                     Event newTask = new Event(taskName, LocalDate.parse(date));
                     tasks.addTask(newTask);
                     ui.displayAddedTask(tasks, newTask);

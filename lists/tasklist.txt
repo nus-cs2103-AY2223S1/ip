@@ -1,6 +1,4 @@
-T | 0 | read
-T | 0 | play
-D | 0 | sleep| 2019-12-12
-D | 0 | event| 2019-12-12
-E | 0 | eat| 2019-12-12
-T | 0 | read
+D | 0 | read | 2019-12-12
+D | 0 | track submission | 2019-12-26
+D | 0 | math submission | 2022-08-28
+D | 0 | sleep submission | 2019-12-12
