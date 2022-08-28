@@ -17,6 +17,7 @@ public class Ui {
     private final static String LIST_MESSAGE = "Here are the tasks in your list: ";
     private final static String DELETE_MESSAGE = "OK, I have removed the following task from the list: ";
     private final static String ADD_MESSAGE = "Got it, I have added the following into the list: ";
+    private final static String FIND_MESSAGE = "Here are the matching tasks in your list: ";
 
     private final Scanner in;
     private final PrintStream out;
@@ -81,6 +82,16 @@ public class Ui {
 
     public void showText(String text) {
         out.println(text);
+    }
+
+    public void findMessage(TaskList list, String description) {
+        out.println(FIND_MESSAGE);
+        ArrayList<Task> tasks = list.getTasks();
+        for (Task task: tasks) {
+            if (task.getDescription().contains(description)) {
+                out.println(task.toString());
+            }
+        }
     }
 
 }

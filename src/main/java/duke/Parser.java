@@ -6,6 +6,7 @@ import duke.command.AddToDoCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NewCommand;
@@ -62,6 +63,16 @@ public class Parser {
         }
     }
 
+    public static Command parseFind(String message) {
+        Scanner sc = new Scanner(message);
+        String res = "";
+        while (sc.hasNext()) {
+            res += sc.next() + " ";
+        }
+        res = res.substring(0, res.length() - 1);
+        return new FindCommand(res);
+    }
+
     public static Command parse(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         String first = sc.next();
@@ -95,6 +106,10 @@ public class Parser {
             case "delete": {
                 int num = sc.nextInt();
                 return new DeleteCommand(num);
+            }
+            case "find": {
+                String description = sc.nextLine();
+                return parseFind(description);
             }
             default: {
                 throw new DukeException("OOPS! Sorry I do not know what that means...");
