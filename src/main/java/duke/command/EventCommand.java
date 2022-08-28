@@ -54,7 +54,7 @@ public class EventCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task event = new Event(description, atDateTime);
         tasks.add(event);
-        String message = ui.taskMarkedMessage(event, tasks);
+        String message = ui.taskAddedMessage(event, tasks);
         storage.save(tasks);
         return message;
     }

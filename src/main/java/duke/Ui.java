@@ -17,12 +17,7 @@ public class Ui {
      * Returns the greeting message when the application is launched.
      */
     public String greetingMessage() {
-        String greeting = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n"
-                + "Hello! I'm Duke. How may I assist you?";
+        String greeting = "Henlo! I'm Doge. How may I assist you?";
         return greeting;
     }
 
@@ -43,7 +38,7 @@ public class Ui {
      * @param tasks TaskList to remove the new Task from.
      */
     public String taskDeletedMessage(Task task, TaskList tasks) {
-       return String.format("Okie, I've deleted this task >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
+        return String.format("Okie, I've deleted this task >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
     }
 
     /**
@@ -53,7 +48,8 @@ public class Ui {
      * @param tasks TaskList containing the target Task to mark.
      */
     public String taskMarkedMessage(Task task, TaskList tasks) {
-       return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
+        return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s", getIndentedTask(task),
+               getNumTasks(tasks));
     }
 
     /**
@@ -63,7 +59,8 @@ public class Ui {
      * @param tasks TaskList containing the target Task to unmark.
      */
     public String taskUnmarkedMessage(Task task, TaskList tasks) {
-        return String.format("Sure! I've marked this task as done >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
+        return String.format("Sure! I've marked this task as done >_>: \n%s\n%s", getIndentedTask(task),
+                getNumTasks(tasks));
     }
 
     /**
@@ -72,7 +69,7 @@ public class Ui {
      * @param tasks Target TaskList
      */
     private String getNumTasks(TaskList tasks) {
-        return "You have " + tasks.size() + " tasks in the list";
+        return "You have " + tasks.size() + " tasks in the list O_O";
     }
 
     /**
@@ -89,6 +86,7 @@ public class Ui {
      * @return String representation of the TaskList.
      */
     public String getPrettyTaskList(TaskList tasks) {
-       return tasks.toString();
+        String divider = "===========================\n";
+        return divider + tasks.toString() + divider;
     }
 }

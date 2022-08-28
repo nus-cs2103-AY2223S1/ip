@@ -51,7 +51,7 @@ public class TaskList {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
         Task task = this.tasks.get(taskIndex - 1);
-        tasks.remove(taskIndex);
+        tasks.remove(taskIndex - 1);
         return task;
     }
 
@@ -130,11 +130,11 @@ public class TaskList {
         StringBuilder sb = new StringBuilder();
         int len = tasks.size();
         if (len == 0) {
-            return "       YOU HAVE NO TASKS";
+            return "YOU HAVE NO TASKS :<\n";
         } else {
             for (int i = 0; i < len; i++) {
                 Task task = tasks.get(i);
-                sb.append(String.format("   %d.%s%n", i + 1, task));
+                sb.append(String.format("%d.%s%n", i + 1, task));
             }
         }
         return sb.toString();

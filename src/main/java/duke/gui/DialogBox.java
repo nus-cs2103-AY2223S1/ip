@@ -1,70 +1,62 @@
 package duke.gui;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.Node;
+import javafx.scene.text.Text;
 
+/**
+ * An example of a custom control using FXML.
+ * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
+ * containing text from the speaker.
+ */
 public class DialogBox extends HBox {
-    /** Text accompanying the dialog. */
-    private Label text;
-
-    /** Display picture accompanying the dialog. */
+    @FXML
+    private Text dialog;
+    @FXML
     private ImageView displayPicture;
 
-    /**
-     * Creates a DialogBox.
-     *
-     * @param text Text accompanying the dialog.
-     * @param image Display picture accompanying the dialog.
-     */
-    public DialogBox(Label text, ImageView image) {
-        text = text;
-        displayPicture = image;
+    private DialogBox(String text, Image img) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        text.setWrapText(true);
-        displayPicture.setFitWidth(50.0);
-        displayPicture.setFitHeight(50.0);
-
-        this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(text, displayPicture);
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
     /**
-     * Returns a user dialog, which floats right.
-     *
-     * @param text Text accompanying the dialog.
-     * @param image Display picture of the user.
-     * @return Right-floating dialog box representing the user dialog.
-     */
-    public static DialogBox getUserDialog(Label text, ImageView image) {
-        DialogBox userDialog = new DialogBox(text, image);
-        return userDialog;
-    }
-
-    /**
-     * Returns a duke dialog, which floats left.
-     *
-     * @param text Text accompanying the dialog.
-     * @param image Display picture of the duke chat-bot.
-     * @return Left-floating dialog box representing the duke dialog.
-     */
-    public static DialogBox getDukeDialog(Label text, ImageView image) {
-        DialogBox dukeDialog = new DialogBox(text, image);
-        dukeDialog.flip();
-        return dukeDialog;
-    }
-
-    /**
-     * Flips the DialogBox horizontally.
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        Collections.reverse(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
+    }
+
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
+    }
+
+    public static DialogBox getDukeDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.flip();
+        return db;
     }
 }
