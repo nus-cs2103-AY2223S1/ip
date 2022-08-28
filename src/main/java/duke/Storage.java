@@ -4,13 +4,17 @@ import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.ToDo;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Storage is a class to load and save tasks.
@@ -31,38 +35,6 @@ public class Storage {
     }
 
     /**
-     * Returns whether a directory is present.
-     * @return true or false if directory is present.
-     */
-    public boolean isDirectoryPresent() {
-        return Files.exists(relativeDirectoryPath);
-    }
-
-    /**
-     * Returns whether a file is present.
-     * @return true or false if file is present.
-     */
-    public boolean isFilePresent() {
-        return Files.exists(relativeFilePath);
-    }
-
-    /**
-     * Creates a directory.
-     * @throws IOException
-     */
-    public void createDirectory() throws IOException {
-        Files.createDirectory(relativeDirectoryPath);
-    }
-
-    /**
-     * Creates a file.
-     * @throws IOException
-     */
-    public void createFile() throws IOException {
-        Files.createFile(relativeFilePath);
-    }
-
-    /**
      * Returns a task that is parsed from string form.
      * @param details details of the task.
      * @param taskType type of task.
@@ -71,25 +43,25 @@ public class Storage {
     public Task parseStringToTask(String details, String taskType) {
         Task task = null;
         switch (taskType) {
-            case "T": {
-                String[] taskDetails = details.split(" \\| ");
-                task = new ToDo(taskDetails[1]);
-                if (Integer.parseInt(taskDetails[0]) == 1) {
-                    task.markAsDone();
-                }
-                break;
+        case "T": {
+            String[] taskDetails = details.split(" \\| ");
+            task = new ToDo(taskDetails[1]);
+            if (Integer.parseInt(taskDetails[0]) == 1) {
+                task.markAsDone();
             }
-            case "D":
-            case "E": {
-                String[] taskDetails = details.split(" \\| ");
-                task = new Deadline(taskDetails[1], taskDetails[2]);
-                if (Integer.parseInt(taskDetails[0]) == 1) {
-                    task.markAsDone();
-                }
-                break;
+            break;
+        }
+        case "D":
+        case "E": {
+            String[] taskDetails = details.split(" \\| ");
+            task = new Deadline(taskDetails[1], taskDetails[2]);
+            if (Integer.parseInt(taskDetails[0]) == 1) {
+                task.markAsDone();
             }
-            default:
-                break;
+            break;
+        }
+        default:
+            break;
         }
         return task;
     }
@@ -100,27 +72,37 @@ public class Storage {
      * @throws IOException
      */
     public ArrayList<Task> load() throws IOException {
+        if (!Files.exists(relativeDirectoryPath)) {
+            Files.createDirectory(relativeDirectoryPath);
+        }
+        if (!Files.exists(relativeFilePath)) {
+            Files.createFile(relativeFilePath);
+        }
         ArrayList<Task> tasks = new ArrayList<>();
-        List<String> lines = Files.readAllLines(relativeFilePath);
-        for (String taskString : lines) {
-            String[] taskDetails = taskString.split(" \\| ", 2);
+        Scanner sc = new Scanner(new File(String.valueOf(relativeFilePath)));
+        ArrayList<String> stringTasks = new ArrayList<>();
+        while(sc.hasNextLine()) {
+            stringTasks.add(sc.nextLine());
+        }
+        for (String stringTask : stringTasks) {
+            String[] taskDetails = stringTask.split(" \\| ", 2);
             Task task = null;
             String taskType = taskDetails[0];
             switch (taskType) {
-                case "T": {
-                    task = parseStringToTask(taskDetails[1], "T");
-                    break;
-                }
-                case "D": {
-                    task = parseStringToTask(taskDetails[1], "D");
-                    break;
-                }
-                case "E": {
-                    task = parseStringToTask(taskDetails[1], "E");
-                    break;
-                }
-                default:
-                    break;
+            case "T": {
+                task = parseStringToTask(taskDetails[1], "T");
+                break;
+            }
+            case "D": {
+                task = parseStringToTask(taskDetails[1], "D");
+                break;
+            }
+            case "E": {
+                task = parseStringToTask(taskDetails[1], "E");
+                break;
+            }
+            default:
+                break;
             }
             if (task != null) {
                 tasks.add(task);
@@ -135,31 +117,32 @@ public class Storage {
      * @throws IOException
      */
     public void save(ArrayList<Task> tasks) throws IOException {
-        String data;
-        String[] lines = new String[tasks.size()];
-        int i = 0;
+        ArrayList<String> stringTasks = new ArrayList<>();
         for (Task task : tasks) {
             switch (task.getTaskType()) {
-                case "T": {
-                    data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
-                    lines[i] = data;
-                    break;
-                }
-                case "D": {
-                    data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
-                    lines[i] = data;
-                    break;
-                }
-                case "E": {
-                    data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
-                    lines[i] = data;
-                    break;
-                }
-                default:
-                    break;
+            case "T": {
+                String data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
+                stringTasks.add(data);
+                break;
             }
-            i++;
+            case "D": {
+                String data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
+                stringTasks.add(data);
+                break;
+            }
+            case"E": {
+                String data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
+                stringTasks.add(data);
+                break;
+            }
+            default:
+                break;
+            }
         }
-        Files.write(relativeFilePath, Arrays.asList(lines));
+        FileWriter fileWriter = new FileWriter(String.valueOf(relativeFilePath));
+        for (String stringTask : stringTasks) {
+            fileWriter.write(stringTask + System.lineSeparator());
+        }
+        fileWriter.close();
     }
 }

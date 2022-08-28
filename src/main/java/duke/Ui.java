@@ -39,7 +39,7 @@ public class Ui {
      */
     public void showWelcome() {
         System.out.println(INDENTATION + LINE);
-        System.out.println(INDENTATION + "Hello! I'm duke.Duke");
+        System.out.println(INDENTATION + "Hello! I'm Duke");
         System.out.println(INDENTATION + "What can I do for you?");
         System.out.println(INDENTATION + LINE);
     }

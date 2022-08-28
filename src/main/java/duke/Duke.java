@@ -20,7 +20,6 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            createSaveFile();
             tasks = new TaskList(storage.load());
         } catch (IOException e) {
             ui.showLoadingError();
@@ -53,20 +52,6 @@ public class Duke {
                 ui.showLine();
                 storage.save(tasks.getTasks());
             }
-        }
-    }
-
-    /**
-     * Checks if the filepath to save the tasks on already exists.
-     * If it does not exist, directory and file is created.
-     * @throws IOException
-     */
-    public void createSaveFile() throws IOException {
-        if (!storage.isDirectoryPresent()) {
-            storage.createDirectory();
-        }
-        if (!storage.isFilePresent()) {
-            storage.createFile();
         }
     }
 
