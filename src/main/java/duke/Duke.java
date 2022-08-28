@@ -1,5 +1,9 @@
 package duke;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+
 import duke.command.Command;
 
 /**
@@ -9,7 +13,13 @@ public class Duke {
     private static final String DEFAULT_FILE_NAME = "default.txt";
     private StorageList storageList;
     private Ui ui;
-
+    private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    /**
+     * Default constructor for Duke.
+     */
+    public Duke() {
+        this(DEFAULT_FILE_NAME);
+    }
     /**
      * Constructor for the Duke class.
      *
@@ -24,22 +34,11 @@ public class Duke {
             System.out.println(e.getMessage());
         }
     }
-
-
-    /**
-     * Main method that runs the program
-     *
-     * @param args Arguments passed to the program
-     */
-    public static void main(String[] args) {
-        new Duke(DEFAULT_FILE_NAME).run();
-    }
-
     /**
      * Runs the program.
      */
     public void run() {
-        Output.GREETINGS.print();
+        getGreetings();
         boolean isExit = false;
 
         while (!isExit) {
@@ -55,7 +54,6 @@ public class Duke {
             }
         }
     }
-
     /**
      * Returns the Default file name.
      *
@@ -63,5 +61,52 @@ public class Duke {
      */
     public static String getDefaultFileName() {
         return DEFAULT_FILE_NAME;
+    }
+
+    /**
+     * Returns the output stream.
+     * @param input the input stream
+     * @return the output stream
+     */
+    public String getResponse(String input) {
+        outputStream.reset();
+        try {
+            String commandStr = ui.readCommand(input);
+            Command command = Parser.parse(commandStr);
+            command.execute(ui, storageList);
+            if (command.isExit()) {
+                System.exit(0);
+            }
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return outputStream.toString(StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Set the output stream for the Duke program.
+     */
+    public void setOut() {
+        System.setOut(new PrintStream(outputStream, true, StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Gets the greeting message.
+     */
+    public String getGreetings() {
+        outputStream.reset();
+        Output.GREETINGS.print();
+        return outputStream.toString(StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Gets the help message.
+     */
+    public String getHelp() {
+        outputStream.reset();
+        Output.HELP.print();
+        return outputStream.toString(StandardCharsets.UTF_8);
     }
 }

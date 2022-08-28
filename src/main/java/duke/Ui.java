@@ -36,6 +36,18 @@ public class Ui {
         return command;
     }
 
+    /**
+     * Handles the user input passed in and calls the appropriate method.
+     *
+     * @return true if the user wants to continue, false otherwise
+     */
+    public String readCommand(String input) {
+        lastInput = input;
+        String command = input.split(" ")[0];
+        lastCommand = command;
+        return command;
+    }
+
 
     /**
      * Return the formatter for the DateTime input.
