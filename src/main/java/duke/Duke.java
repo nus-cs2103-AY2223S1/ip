@@ -1,9 +1,9 @@
-package Duke;
+package duke;
 
 public class Duke {
-    private Ui ui;
-    private TaskList tasks;
-    private Parser parser;
+    protected Ui ui;
+    protected TaskList tasks;
+    protected Parser parser;
 
     private boolean runningDuke;
 

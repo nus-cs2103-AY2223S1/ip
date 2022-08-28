@@ -1,6 +1,6 @@
-package Duke;
+package duke;
 
-import Duke.Task.Task;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Implements TaskList for Duke.
  */
 public class TaskList {
-    private final ArrayList<Task> taskList;
+    protected final ArrayList<Task> taskList;
     private final Storage store;
     private final Ui ui;
 
