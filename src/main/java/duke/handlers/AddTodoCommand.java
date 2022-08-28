@@ -12,7 +12,7 @@ public class AddTodoCommand implements DukeCommand {
             throw new DukeException("Todo must not be empty!");
         }
         Todo todo = new Todo(s);
-        taskList.AddTask(todo);
+        taskList.addTask(todo);
         return "Added a todo: " + todo;
     }
 }

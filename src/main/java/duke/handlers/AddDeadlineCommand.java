@@ -10,7 +10,7 @@ public class AddDeadlineCommand implements DukeCommand {
 
     public String run (TaskList taskList, String content) throws DukeException {
         Deadline deadline = deadlineParser.parseDeadline(content);
-        taskList.AddTask(deadline);
+        taskList.addTask(deadline);
         return "Added a deadline: " + deadline;
     }
 }

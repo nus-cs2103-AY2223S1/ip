@@ -10,9 +10,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String taskDirectoryName = "src/main/data/";
-    private static final String taskFileName = "tasklist.txt";
-    private static final String taskFilePath = taskDirectoryName + taskFileName;
+    private static final String TASK_DIRECTORY_NAME = "src/main/data/";
+    private static final String TASK_FILE_NAME = "tasklist.txt";
+    private static final String TASK_FILE_PATH = TASK_DIRECTORY_NAME + TASK_FILE_NAME;
 
     private static Task parseTextToTask(String text) throws DukeException{
         String[] taskDetails = text.split("\\s\\|\\s", 0);
@@ -36,11 +36,11 @@ public class Storage {
     public static TaskList loadTasksFromDisk() throws DukeException {
         try {
             // Create folder and file if not exist
-            File dir = new File(taskDirectoryName);
+            File dir = new File(TASK_DIRECTORY_NAME);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            File myFile = new File(taskFilePath);
+            File myFile = new File(TASK_FILE_PATH);
             myFile.createNewFile();
 
             Scanner fileReader = new Scanner(myFile);
@@ -48,7 +48,7 @@ public class Storage {
             TaskList taskList = new TaskList();
             while (fileReader.hasNextLine()) {
                 String data = fileReader.nextLine();
-                taskList.AddTask(parseTextToTask(data));
+                taskList.addTask(parseTextToTask(data));
             }
             fileReader.close();
             return taskList;
@@ -59,7 +59,7 @@ public class Storage {
 
     public static void saveTaskToDisk(TaskList tasks) throws DukeException{
         try {
-            FileWriter out = new FileWriter(taskFilePath);
+            FileWriter out = new FileWriter(TASK_FILE_PATH);
             tasks.forEach((task) -> {
                 try {
                     out.write(task.formatForSave() + "\n");
