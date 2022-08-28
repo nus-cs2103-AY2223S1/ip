@@ -1,4 +1,6 @@
-import jdk.swing.interop.SwingInterOpUtils;
+package duke;
+
+import duke.task.Task;
 
 public class Ui {
 
@@ -18,7 +20,7 @@ public class Ui {
     }
 
     public void printWelcomeMsg() {
-        String welcomeMsg = "Hello! I'm Duke\n\n     "
+        String welcomeMsg = "Hello! I'm duke.Duke\n\n     "
                 + "I'm capable of doing the following:\n     "
                 + "   todo <content>\n     "
                 + "   deadline <content> /by <YYYY-MM-DD>\n     "
@@ -38,35 +40,35 @@ public class Ui {
     }
 
     public void printTaskMarkedMsg(Task task) {
-        String markedMsg = "Nice! I've marked this task as done:\n     "
+        String markedMsg = "Nice! I've marked this duke.task as done:\n     "
                 + task;
         printWithFormat(markedMsg);
     }
 
     public void printTaskUnmarkedMsg(Task task) {
-        String unmarkedMsg = "OK, I've marked this task as not done yet:\n     "
+        String unmarkedMsg = "OK, I've marked this duke.task as not done yet:\n     "
                 + task;
         printWithFormat(unmarkedMsg);
     }
 
     public void printDeleteTaskMsg(Task task, TaskList listOfTasks) {
-        printWithFormat("Noted. I've removed this task:\n     "
+        printWithFormat("Noted. I've removed this duke.task:\n     "
                 + task
                 +"\n     Now you have "
                 + listOfTasks.getListSize()
-                + " task(s) in the list.");
+                + " duke.task(s) in the list.");
     }
 
     public void printAddTaskMsg(Task task, TaskList listOfTasks) {
-        printWithFormat("Got it, I've added this task:\n       "
+        printWithFormat("Got it, I've added this duke.task:\n       "
                 + task.toString()
                 + "\n     Now you have "
                 + listOfTasks.getListSize()
-                + " task(s) in the list.");
+                + " duke.task(s) in the list.");
     }
 
     public void showLoadingError() {
-        printWithFormat("There is some problem loading your task(s) ☹");
+        printWithFormat("There is some problem loading your duke.task(s) ☹");
     }
 
     public void showInvalidCommandError() {

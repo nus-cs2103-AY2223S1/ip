@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDos;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -64,7 +71,7 @@ public class Storage {
             }
             filewriter.close();
         } catch (IOException e) {
-            System.out.println("There is some problem saving your task(s) ☹");
+            System.out.println("There is some problem saving your duke.task(s) ☹");
         }
     }
 }

@@ -1,9 +1,10 @@
-import java.io.File;
+package duke;
+
+import duke.task.Task;
+
+
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**

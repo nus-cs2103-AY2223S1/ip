@@ -1,5 +1,7 @@
+package duke;
+
 public class DukeException extends Exception{
     public DukeException() {
-        super("DukeException");
+        super("duke.DukeException");
     }
 }

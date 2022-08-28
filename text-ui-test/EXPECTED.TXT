@@ -1,30 +1,30 @@
      _______________________________________________________
-     Hello! I'm Duke
+     Hello! I'm duke.Duke
      What can I do for you?
      _______________________________________________________
 
      _______________________________________________________
-     Got it, I've added this task:
+     Got it, I've added this duke.task:
        [T][ ] go to CLB
-     Now you have 1 task in the list.
+     Now you have 1 duke.task in the list.
      _______________________________________________________
 
      _______________________________________________________
-     Got it, I've added this task:
+     Got it, I've added this duke.task:
        [D][ ] CS2103T iP (by: Friday 1400)
-     Now you have 2 task in the list.
+     Now you have 2 duke.task in the list.
      _______________________________________________________
 
      _______________________________________________________
-     Got it, I've added this task:
+     Got it, I've added this duke.task:
        [E][ ] exams (by: Mon 1300-1500)
-     Now you have 3 task in the list.
+     Now you have 3 duke.task in the list.
      _______________________________________________________
 
      _______________________________________________________
-     Got it, I've added this task:
+     Got it, I've added this duke.task:
        [T][ ] shopping
-     Now you have 4 task in the list.
+     Now you have 4 duke.task in the list.
      _______________________________________________________
 
      _______________________________________________________
@@ -36,23 +36,23 @@
      _______________________________________________________
 
      _______________________________________________________
-     Noted. I've removed this task:
+     Noted. I've removed this duke.task:
      [D][ ] CS2103T iP (by: Friday 1400)
      Now you have 3 tasks in the list.
      _______________________________________________________
 
      _______________________________________________________
-     Nice! I've marked this task as done:
+     Nice! I've marked this duke.task as done:
      [T][X] go to CLB
      _______________________________________________________
 
      _______________________________________________________
-     Nice! I've marked this task as done:
+     Nice! I've marked this duke.task as done:
      [T][X] shopping
      _______________________________________________________
 
      _______________________________________________________
-     OK, I've marked this task as not done yet:
+     OK, I've marked this duke.task as not done yet:
      [T][ ] go to CLB
      _______________________________________________________
 
