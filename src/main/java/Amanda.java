@@ -54,7 +54,8 @@ public class Amanda {
             System.out.println("     Finally! I'll take a nap, please don't call me again.");
             System.out.println("    ............................................................\n");
 
-        } catch (IOException e) {
+        } catch (IOException | AmandaException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
