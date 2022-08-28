@@ -25,7 +25,6 @@ public class DateCommand extends Command {
         try {
             LocalDate targetDate = LocalDate.parse(userDescription);
             ArrayList<Task> onDateCount = tasks.getTasksOnDate(targetDate);
-            storage.save(tasks.getTaskList());
             ui.showGetDate(onDateCount);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please enter date in yyyy-M-d format.");

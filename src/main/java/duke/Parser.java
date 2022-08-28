@@ -97,6 +97,16 @@ public class Parser {
             }
             return new ByeCommand();
 
+        case FindCommand.COMMAND_WORD:
+            try {
+                if (strings.length > 2) {
+                    throw new DukeException("Invalid Input.");
+                }
+                return new FindCommand(strings[1]);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("Please enter a keyword.");
+            }
+
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
 

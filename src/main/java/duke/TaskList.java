@@ -57,6 +57,16 @@ public class TaskList {
         return temp;
     }
 
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> temp = new ArrayList<>();
+        for (Task t : taskList) {
+            if (t.toString().contains(keyword)) {
+                temp.add(t);
+            }
+        }
+        return temp;
+    }
+
     /**
      * Mark the specified task in the storage as done.
      * @param i Specified task.
