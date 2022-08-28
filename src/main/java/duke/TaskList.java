@@ -10,8 +10,8 @@ import duke.events.ToDo;
 public class TaskList {
     //Initialising task array for list cmd
     private static int numOfInputs = 0;
-    private ArrayList<Task> taskList;
-    private Storage storage;
+    private final ArrayList<Task> taskList;
+    private final Storage storage;
 
     TaskList(ArrayList<Task> loadSave, Storage storage) {
         this.taskList = loadSave;
@@ -51,7 +51,7 @@ public class TaskList {
                 System.out.println("You have " + numOfInputs + " tasks left now Owo");
             }
         } catch (DukeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -68,7 +68,7 @@ public class TaskList {
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
         } catch (DukeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -89,7 +89,7 @@ public class TaskList {
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
         } catch (DukeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -125,7 +125,7 @@ public class TaskList {
                 throw new DukeException("Meowmeow there isn't a task with that number uwu");
             }
         } catch (DukeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -142,7 +142,26 @@ public class TaskList {
             }
 
         } catch (DukeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
+        }
+    }
+
+    public void findTask(String userInput) {
+        try {
+            int numMatchingTasks = 0;
+            for (int i = 0; i < numOfInputs; i++) {
+                Task task = taskList.get(i);
+                String taskName = task.getName();
+                if (taskName.contains(userInput)) {
+                    System.out.println(task);
+                    numMatchingTasks += 1;
+                }
+            }
+            if (numMatchingTasks == 0) {
+                throw new DukeException("Meowmeow can't find any tasks that contain these words (=^0w0^=)");
+            }
+        } catch (DukeException e) {
+            System.out.println(e);
         }
     }
 }

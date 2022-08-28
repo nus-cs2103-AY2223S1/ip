@@ -61,4 +61,7 @@ public class Task {
         return taskName + " | " + isDone;
     }
 
+    public String getName() {
+        return taskName;
+    }
 }

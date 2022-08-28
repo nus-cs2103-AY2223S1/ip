@@ -48,7 +48,6 @@ public class Storage {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(saveFile);
         PrintWriter finalPrintWriter = printWriter;
 
         taskList.forEach((t) -> {

@@ -21,7 +21,6 @@ public class Duke {
         tasks = new TaskList(storage.load(), storage);
     }
 
-
     /**
      * Method that runs the program.
      */

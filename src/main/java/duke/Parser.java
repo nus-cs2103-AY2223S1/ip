@@ -5,6 +5,7 @@ import duke.commands.Command;
 import duke.commands.DefaultCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 
@@ -56,6 +57,10 @@ public class Parser {
                 case "delete":
                     int taskToDelete = Integer.parseInt(splitUserInput[1]);
                     return new DeleteCommand(taskToDelete);
+
+                case "find":
+                    String taskToFind = splitUserInput[1];
+                    return new FindCommand(taskToFind);
 
                 default:
                     System.out.println("Sowwie meowmeow doesn't understand what you said uwu");
