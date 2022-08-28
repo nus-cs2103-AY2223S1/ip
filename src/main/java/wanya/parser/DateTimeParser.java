@@ -13,6 +13,7 @@ import java.time.temporal.ChronoField;
  */
 public class DateTimeParser {
     // only allow format of yyyy-MM-dd and yyyy-MM-dd HH:mm as of now
+    // @@author laxus2308-reused
     // Reused from
     // https://stackoverflow.com/questions/40175196/java-parsing-string-to-localdatetime-without-providing-time
     private static final DateTimeFormatter FORMATTER =  new DateTimeFormatterBuilder()
