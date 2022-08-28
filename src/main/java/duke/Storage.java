@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -5,14 +12,14 @@ import java.util.Objects;
 
 public class Storage {
 
-    public enum Commands {
+    private enum Commands {
         DEADLINE,
         TODO,
         EVENT
     }
 
-    File file;
-    String filePath;
+    private final File file;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;

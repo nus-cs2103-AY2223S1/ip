@@ -1,10 +1,14 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    protected LocalDateTime date;
-    protected String at;
+    private final LocalDateTime date;
+    private final String at;
 
     public Event(String description, String at) throws DukeException {
         super(description);

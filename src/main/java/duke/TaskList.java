@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -7,7 +11,7 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    protected void list() {
+    public void list() {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
         }

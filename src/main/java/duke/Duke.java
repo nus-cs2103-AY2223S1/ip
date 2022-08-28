@@ -1,6 +1,8 @@
+package duke;
+
+import duke.command.Command;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 

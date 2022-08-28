@@ -1,15 +1,26 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 public class AddCommand extends Command {
     String[] str;
     Commands command;
-    public enum Commands {
+    private enum Commands {
         DEADLINE,
         TODO,
         EVENT
     }
-    public final Commands[] commands = new Commands[]{Commands.DEADLINE, Commands.TODO, Commands.EVENT};
 
     public AddCommand(String[] str, int i) {
         this.str = str;
+        Commands[] commands = new Commands[]{Commands.DEADLINE, Commands.TODO, Commands.EVENT};
         this.command = commands[i];
     }
 

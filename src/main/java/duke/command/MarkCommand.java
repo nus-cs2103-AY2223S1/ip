@@ -1,6 +1,14 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Task;
+
 public class MarkCommand extends Command {
-    String[] str;
-    boolean mark;
+    private final String[] str;
+    private final boolean mark;
 
     public MarkCommand(String[] str, boolean mark) {
         this.str = str;
