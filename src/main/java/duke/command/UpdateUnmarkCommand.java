@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Task;
+
 import java.io.IOException;
 
 public class UpdateUnmarkCommand extends UpdateCommand {

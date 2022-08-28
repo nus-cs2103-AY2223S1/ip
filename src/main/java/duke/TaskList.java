@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -24,7 +28,7 @@ public class TaskList {
         } catch (IOException e) {
             this.tasks.remove(task);
             this.addCommands.remove(command);
-            throw new IOException("There was a problem writing the change to the file. Task not added.");
+            throw new IOException("There was a problem writing the change to the file. duke.task.Task not added.");
         }
     }
 
@@ -50,7 +54,7 @@ public class TaskList {
         } catch (IOException e) {
             this.tasks.add(i, task);
             this.addCommands.add(i, commandString);
-            throw new IOException("There was a problem writing the change to the file. Task not removed.");
+            throw new IOException("There was a problem writing the change to the file. duke.task.Task not removed.");
         }
     }
 
@@ -68,7 +72,7 @@ public class TaskList {
         } catch (IOException e) {
             this.get(i).unmark();
             this.addCommands.set(i, commandString);
-            throw new IOException("There was a problem writing the change to the file. Task not marked.");
+            throw new IOException("There was a problem writing the change to the file. duke.task.Task not marked.");
         }
     }
 
@@ -86,7 +90,7 @@ public class TaskList {
         } catch (IOException e) {
             this.get(i).mark();
             this.addCommands.set(i, commandString);
-            throw new IOException("There was a problem writing the change to the file. Task not unmarked.");
+            throw new IOException("There was a problem writing the change to the file. duke.task.Task not unmarked.");
         }
     }
 

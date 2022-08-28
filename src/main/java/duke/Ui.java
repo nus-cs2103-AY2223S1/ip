@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.PrintStream;
 
 public class Ui {
@@ -19,7 +21,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        this.printWithDivider("Hello! I'm Duke\nWhat can I do for you?");
+        this.printWithDivider("Hello! I'm duke.Duke\nWhat can I do for you?");
     }
 
     public void showLoadingError() {
