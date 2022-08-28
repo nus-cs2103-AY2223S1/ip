@@ -3,11 +3,16 @@ package duke;
 import duke.command.Command;
 import duke.command.Parser;
 import duke.exception.DukeException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 
 /**
  * Creates a chatbot named Duke.
  */
-public class Duke {
+public class Duke extends Application {
 
     /** TaskList to handle all tasks related operations. */
     private TaskList taskList;
@@ -26,6 +31,16 @@ public class Duke {
     public Duke(String filePath) {
         this.taskList = new TaskList();
         this.storage = new Storage(filePath);
+        this.storage.readFromFile(this.taskList.getList());
+        this.ui = new Ui(this.taskList);
+    }
+
+    /**
+     * Constructor for a Duke chatbot.
+     */
+    public Duke() {
+        this.taskList = new TaskList();
+        this.storage = new Storage("./tasks.txt");
         this.storage.readFromFile(this.taskList.getList());
         this.ui = new Ui(this.taskList);
     }
@@ -59,4 +74,12 @@ public class Duke {
         new Duke("./tasks.txt").run();
     }
 
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage
+    }
 }
