@@ -10,24 +10,21 @@ public class Duke {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
 
-        this.parser = new Parser(tasks, storage);
         try {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             //ui.showLoadingError;
             tasks  = new TaskList();
         }
-
+        this.parser = new Parser(this.tasks, this.storage);
     }
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 
     public void run() {
-
+        this.ui.start();
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
 
         String message = sc.nextLine();
 
@@ -39,7 +36,7 @@ public class Duke {
             }
             message = sc.nextLine();
         }
-        System.out.println("\nBye. Hope to see you again soon!");
+        this.ui.end();
         sc.close();
-        }
     }
+}

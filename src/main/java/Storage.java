@@ -20,9 +20,9 @@ public class Storage {
         ArrayList<Task> currList = new ArrayList<>();
 
         try {
-            Scanner s = new Scanner(this.file);
-            while (s.hasNext()) {
-                String[] tempArray = s.nextLine().split(" \\| ");
+            Scanner sc = new Scanner(this.file);
+            while (sc.hasNext()) {
+                String[] tempArray = sc.nextLine().split(" \\| ");
                 String typeOfTask = tempArray[0];
 
                 switch (typeOfTask) {
@@ -41,10 +41,12 @@ public class Storage {
                         System.out.println("Error: Wrong type of task");
                     }
                 }
-            return currList;
-        } catch (IOException e) {
-            throw new DukeException("Error: file not loaded correctly");
+                sc.close();
+
+        } catch (FileNotFoundException e) {
+            this.createFile();
         }
+        return currList;
     }
 
     public void save(TaskList newTasks) throws DukeException {
@@ -61,6 +63,17 @@ public class Storage {
             fw.close();
         } catch(IOException e) {
             throw new DukeException("Error: File added wrongly");
+        }
+    }
+
+    private void createFile() {
+        this.file.getParentFile().mkdir();
+        try {
+            if (this.file.createNewFile()) {
+                System.out.println("File created: " + this.file.getPath());
+            }
+        } catch (IOException e) {
+            System.out.println("File not successfully created");
         }
     }
 }
