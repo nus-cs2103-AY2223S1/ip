@@ -52,21 +52,21 @@ public enum Command {
             }
             break;
 
-            case "find":
-                if (args.charAt(0) == '"' && args.charAt(args.length() - 1) == '"') {
-                    args = args.substring(1, args.length() - 1);
-                }
-                ArrayList<Task> matchingTasks = taskList.getMatchingTasks(args);
-                if (matchingTasks.isEmpty()) {
-                    ui.print("No results found for keyword '" + args + "'");
-                } else {
-                    ui.printTasks(matchingTasks, "Here are the matching tasks in your list:");
-                }
-                break;
+        case "find":
+            if (args.charAt(0) == '"' && args.charAt(args.length() - 1) == '"') {
+                args = args.substring(1, args.length() - 1);
+            }
+            ArrayList<Task> matchingTasks = taskList.getMatchingTasks(args);
+            if (matchingTasks.isEmpty()) {
+                ui.print("No results found for keyword '" + args + "'");
+            } else {
+                ui.printTasks(matchingTasks, "Here are the matching tasks in your list:");
+            }
+            break;
 
-            case "list":
-                ui.printTasks(duke.getTaskList().getTasks(), "Here are the tasks in your list:");
-                break;
+        case "list":
+            ui.printTasks(duke.getTaskList().getTasks(), "Here are the tasks in your list:");
+            break;
 
         case "deadline":
             String[] temp = args.split(" /by ", 2);
