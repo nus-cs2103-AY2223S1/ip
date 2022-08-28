@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (commandLine.startsWith("todo")) {
             try {
                 if (commandLine.length() <= 4) {

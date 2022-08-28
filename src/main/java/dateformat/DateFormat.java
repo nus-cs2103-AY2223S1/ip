@@ -47,7 +47,7 @@ public class DateFormat {
 
 
         if (this.afterBy.contains("/")) {
-            if (this.afterBy.indexOf("/") < 2) {
+            if (this.afterBy.indexOf("/") <= 2) {
                 int afterDaySlashIndex = afterBy.indexOf("/");
                 String afterDay;
                 if (afterDaySlashIndex == 1) {
@@ -55,16 +55,16 @@ public class DateFormat {
                     afterDay = afterBy.substring(afterDaySlashIndex + 1);
                 } else {
                     day = afterBy.substring(0, 2);
-                    afterDay = afterBy.substring(afterDaySlashIndex + 2);
+                    afterDay = afterBy.substring(afterDaySlashIndex + 1);
                 }
                 int afterMonthSlashIndex = afterDay.indexOf("/");
                 String afterMonth;
                 if (afterMonthSlashIndex == 1) {
                     month = "0" + afterDay.charAt(0);
-                    afterMonth = afterDay.substring(afterMonthSlashIndex + 1);
+                    afterMonth = afterDay.substring(afterDaySlashIndex + 1);
                 } else {
                     month = afterDay.substring(0, 2);
-                    afterMonth = afterDay.substring(afterMonthSlashIndex + 2);
+                    afterMonth = afterDay.substring(afterMonthSlashIndex + 1);
                 }
                 year = afterMonth.substring(0, 4);
                 if (afterMonth.length() > 5) {
@@ -85,7 +85,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterMonthSlashIndex + 2);
+                    afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 }
                 year = afterDay.substring(0, 4);
                 if (afterDay.length() > 5) {
@@ -106,7 +106,7 @@ public class DateFormat {
                     afterMonth = afterYear.substring(afterMonthSlashIndex + 1);
                 } else {
                     month = afterYear.substring(0, 2);
-                    afterMonth = afterYear.substring(afterMonthSlashIndex + 2);
+                    afterMonth = afterYear.substring(afterMonthSlashIndex + 1);
                 }
                 String afterDay;
                 if (afterMonth.charAt(1) == ' ') {
@@ -114,7 +114,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterMonthSlashIndex + 2);
+                    afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 }
                 if (afterDay.length() > 5) {
                     if (afterDay.charAt(7) == ':') {
@@ -133,7 +133,7 @@ public class DateFormat {
                     afterDay = afterBy.substring(afterDayDashIndex + 1);
                 } else {
                     day = afterBy.substring(0, 2);
-                    afterDay = afterBy.substring(afterDayDashIndex + 2);
+                    afterDay = afterBy.substring(afterDayDashIndex + 1);
                 }
                 int afterMonthDashIndex = afterDay.indexOf("-");
                 String afterMonth;
@@ -142,7 +142,7 @@ public class DateFormat {
                     afterMonth = afterDay.substring(afterMonthDashIndex + 1);
                 } else {
                     month = afterDay.substring(0, 2);
-                    afterMonth = afterDay.substring(afterMonthDashIndex + 2);
+                    afterMonth = afterDay.substring(afterMonthDashIndex + 1);
                 }
                 year = afterMonth.substring(0, 4);
                 if (afterMonth.length() > 5) {
@@ -163,7 +163,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterMonthSlashIndex + 2);
+                    afterDay = afterMonth.substring(afterMonthSlashIndex + 1);
                 }
                 year = afterDay.substring(0, 4);
                 if (afterDay.length() > 5) {
@@ -184,7 +184,7 @@ public class DateFormat {
                     afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
                 } else {
                     month = afterYear.substring(0, 2);
-                    afterMonth = afterYear.substring(afterMonthSpaceIndex + 2);
+                    afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
                 }
                 String afterDay;
                 if (afterMonth.charAt(1) == ' ') {
@@ -192,7 +192,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterMonthSpaceIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterMonthSpaceIndex + 2);
+                    afterDay = afterMonth.substring(afterMonthSpaceIndex + 1);
                 }
                 if (afterDay.length() > 2) {
                     if (afterDay.charAt(7) == ':') {
@@ -212,7 +212,7 @@ public class DateFormat {
                     afterDay = afterBy.substring(afterDaySpaceIndex + 1);
                 } else {
                     day = afterBy.substring(0, 2);
-                    afterDay = afterBy.substring(afterDaySpaceIndex + 2);
+                    afterDay = afterBy.substring(afterDaySpaceIndex + 1);
                 }
                 int afterMonthSpaceIndex = afterDay.indexOf(" ");
                 String afterMonth;
@@ -221,7 +221,7 @@ public class DateFormat {
                     afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
                 } else {
                     month = afterDay.substring(0, 2);
-                    afterMonth = afterDay.substring(afterMonthSpaceIndex + 2);
+                    afterMonth = afterDay.substring(afterMonthSpaceIndex + 1);
                 }
                 year = afterMonth.substring(0, 4);
                 if (afterMonth.length() > 5) {
@@ -243,7 +243,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterDaySpaceIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterDaySpaceIndex + 2);
+                    afterDay = afterMonth.substring(afterDaySpaceIndex + 1);
                 }
                 year = afterDay.substring(0, 4);
                 if (afterDay.length() > 5) {
@@ -265,7 +265,7 @@ public class DateFormat {
                     afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
                 } else {
                     month = afterYear.substring(0, 2);
-                    afterMonth = afterYear.substring(afterMonthSpaceIndex + 2);
+                    afterMonth = afterYear.substring(afterMonthSpaceIndex + 1);
                 }
                 String afterDay;
                 if (afterMonth.charAt(1) == ' ') {
@@ -273,7 +273,7 @@ public class DateFormat {
                     afterDay = afterMonth.substring(afterMonthSpaceIndex + 1);
                 } else {
                     day = afterMonth.substring(0, 2);
-                    afterDay = afterMonth.substring(afterMonthSpaceIndex + 2);
+                    afterDay = afterMonth.substring(afterMonthSpaceIndex + 1);
                 }
                 if (afterDay.length() > 2) {
                     if (afterDay.charAt(7) == ':') {
@@ -327,7 +327,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("6/7/2021 1800");
+        DateFormat d4 = new DateFormat("16/10/2021 1800");
         System.out.println(d4.formatDate("MMM d yyyy"));
         System.out.println(d4.formatTime());
     }
