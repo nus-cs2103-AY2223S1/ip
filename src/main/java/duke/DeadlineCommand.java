@@ -6,6 +6,13 @@ public class DeadlineCommand extends Command {
     private String description;
     private LocalDate by;
 
+    /**
+     * Constructor of deadline command
+     *
+     * @param description description of the deadline
+     * @param by date of the task
+     */
+
     public DeadlineCommand(String description, LocalDate by) {
         super();
         this.description = description;
