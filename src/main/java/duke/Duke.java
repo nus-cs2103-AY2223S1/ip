@@ -14,6 +14,10 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initializes the application.
+     * @param filePath the path to the file where the tasks are stored
+     */
 public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -28,6 +32,9 @@ public Duke(String filePath) {
         }
     }
 
+    /**
+     * Runs the application.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

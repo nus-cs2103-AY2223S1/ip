@@ -4,6 +4,9 @@ package duke;
  * Handles the parsing of user input.
  */
 public class Parser {
+    /**
+     * Enumerates the different commands that can be parsed.
+     */
     public enum CommandType {
         BYE,
         MARK,
@@ -15,6 +18,12 @@ public class Parser {
         EVENT
     }
 
+    /**
+     * Parses a user input and returns the corresponding command.
+     * @param fullCommand the user input
+     * @return the corresponding command
+     * @throws duke.DukeException if the input is invalid
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] split = fullCommand.split(" ", 2);
         CommandType command;

@@ -20,6 +20,10 @@ public class TaskList {
         tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the TaskList.
+     * @param index the index of task to delete
+     */
     public void delete(int index) {
         try {
             Task t = tasks.remove(index - 1);
@@ -32,6 +36,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as done.
+     * @param index the index of task to mark as done
+     */
     public void mark(int index) {
         try {
             Task t = tasks.get(index - 1);
@@ -42,6 +50,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task as not done.
+     * @param index the index of task to mark as not done
+     */
     public void unmark(int index) {
         try {
             Task t = tasks.get(index - 1);

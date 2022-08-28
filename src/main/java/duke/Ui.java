@@ -14,6 +14,10 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Returns the full command entered by the user.
+     * @return the next full line from the user input
+     */
     public String readCommand() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
@@ -31,12 +35,22 @@ public class Ui {
         System.out.println("You have no tasks.\n" + "What can I do for you?");
     }
 
+    /**
+     * Prints message after adding task with current TaskList size.
+     * @param task the task that was added
+     * @param size the size of the TaskList after adding the task
+     */
     public void showAddTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
         System.out.println("Got it. I've added this task:\n" + task
                 + "\nNow you have " + size + output);
     }
 
+    /**
+     * Prints message after deleting task with current TaskList size.
+     * @param task the task that was deleted
+     * @param size the size of the TaskList after deleting the task
+     */
     public void showDeleteTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
         System.out.println("Got it. I've deleted this task:\n" + task
@@ -55,6 +69,9 @@ public class Ui {
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
+    /**
+     * Prints welcome message.
+     */
     public void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

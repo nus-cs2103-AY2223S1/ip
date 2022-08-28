@@ -12,6 +12,10 @@ import java.util.Scanner;
 public class Storage {
 
     private String filePath;
+    /**
+     * Creates a new storage that stores the task list in the given file.
+     * @param filePath the path to the file where the task list is stored
+     */
     public Storage(String filePath) {
         String[] path = filePath.split("/");
         String fileName = path[path.length - 1];
@@ -20,6 +24,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the task list from the file.
+     * @return the task list as an ArrayList of tasks
+     * @throws IOException if the file cannot be read or opened
+     * @throws DukeException if the file is not in the correct format
+     */
     public ArrayList<Task> load() throws IOException, DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         File f = new File(filePath);
@@ -50,6 +60,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Creates a new file with the given name in the given directory.
+     * @param fileName the name of the file and path to be created
+     */
     public static void newFile(String fileName) {
         File file = new File(fileName);
         try {
@@ -59,6 +73,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a new directory with the given name.
+     * @param dirName the name of the directory to be created
+     */
     public static void newDir(String dirName) {
         File file = new File(dirName);
         try {
@@ -67,6 +85,11 @@ public class Storage {
             e.printStackTrace();
         }
     }
+    /**
+     * Saves the Tasklist to the file.
+     * @param tasklist the Tasklist to be saved
+     * @throws IOException if the file cannot be written to
+     */
     public void save(TaskList tasklist) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         ArrayList<Task> tasks = tasklist.getTasks();
