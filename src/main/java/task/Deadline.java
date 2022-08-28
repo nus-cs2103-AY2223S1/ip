@@ -1,20 +1,19 @@
 package task;
-import task.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * This class encapsulates the idea of a deadline
+ * This class encapsulates the idea of a deadline.
  */
 public class Deadline extends Task {
-    private LocalDateTime date;
+    private final LocalDateTime date;
 
     /**
-     * Constructor for a deadline
-     * @param description what is the task
-     * @param status whether it has been completed
-     * @param date when is the task due
+     * Creates a deadline.
+     * @param description what is the task.
+     * @param status whether it has been completed.
+     * @param date when is the task due.
      */
     public Deadline(String description, boolean status, LocalDateTime date) {
         super(description, status);
@@ -22,8 +21,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Converts the deadline to string representation to be stored in text file
-     * @return a string
+     * Converts the deadline to string representation to be stored in text file.
+     * @return a string in format D | T | deadline | 2022-10-15T18:00
      */
     @Override
     public String getDescription() {
@@ -32,8 +31,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Converts the deadline to string representation for user
-     * @return a string
+     * Converts the deadline to string representation for user.
+     * @return a string in format [D][ ] deadline (by: 18:00 Oct 15 2022)
      */
     @Override
     public String toString() {

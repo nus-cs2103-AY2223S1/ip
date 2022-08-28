@@ -1,6 +1,5 @@
 package myduke;
 
-import exception.DukeException;
 import exception.MarkException;
 import exception.UnMarkException;
 import exception.OutOfBoundIndexException;
@@ -28,7 +27,7 @@ public class TaskList {
 
     /**
      * Returns the task with the given index.
-     * @param index index of the task you want to retrieve
+     * @param index index of the task you want to retrieve.
      * @return the desired task.
      */
     public Task getTask(int index) {
@@ -45,7 +44,7 @@ public class TaskList {
 
     /**
      * Adds the given task into the taskList.
-     * @param task task to be saved
+     * @param task task to be saved.
      */
     public void add(Task task) {
         taskLists.add(task);
@@ -53,7 +52,7 @@ public class TaskList {
 
     /**
      * Saves the given task.
-     * @param task given task
+     * @param task given task.
      */
     public void saveTask(Task task) {
         taskLists.add(task);
@@ -61,8 +60,9 @@ public class TaskList {
 
     /**
      * Marks the task as completed.
-     * @param index given index of the task
-     * @throws DukeException
+     * @param index given index of the task.
+     * @throws MarkException thrown when task is already marked.
+     * @throws OutOfBoundIndexException thrown when index is out of bound.
      */
     public void markTask(int index) throws MarkException, OutOfBoundIndexException {
         if (checkValidIndex(index)) {
@@ -70,7 +70,7 @@ public class TaskList {
             if (current.getStatus()) {
                 throw new MarkException();
             }
-            current.markasDone();
+            current.markAsDone();
         } else {
             throw new OutOfBoundIndexException();
         }
@@ -78,8 +78,9 @@ public class TaskList {
 
     /**
      * Marks the task as incomplete.
-     * @param index given index of the task
-     * @throws DukeException
+     * @param index given index of the task.
+     * @throws UnMarkException thrown when task is already unmarked.
+     * @throws OutOfBoundIndexException thrown when index is out of bound.
      */
     public void unMarkTask(int index) throws UnMarkException, OutOfBoundIndexException {
         if (checkValidIndex(index)) {
@@ -87,17 +88,17 @@ public class TaskList {
             if (!current.getStatus()) {
                 throw new UnMarkException();
             }
-            current.markasNotDone();
+            current.markAsNotDone();
         } else {
             throw new OutOfBoundIndexException();
         }
     }
 
     /**
-     * Deletes the tasks with the given index and returns it
-     * @param index given index
-     * @throws DukeException
-     * @return the deleted task
+     * Deletes the tasks with the given index and returns it.
+     * @param index given index.
+     * @throws OutOfBoundIndexException thrown when index is out of bound.
+     * @return the deleted task.
      */
     public Task deleteTask(int index) throws OutOfBoundIndexException {
         if (checkValidIndex(index)) {
@@ -111,7 +112,7 @@ public class TaskList {
 
     /**
      * Returns the string representation of the stored tasks.
-     * @return a table listing all the stored tasks
+     * @return a table listing all the stored tasks.
      */
     public String toString() {
         String output = "";

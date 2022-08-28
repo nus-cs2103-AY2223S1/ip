@@ -6,7 +6,7 @@ package exception;
 public class OutOfBoundIndexException extends DukeException {
 
     /**
-     * Constructor for MissingTaskException.
+     * Creates a MissingTaskException.
      */
     public OutOfBoundIndexException() {
         super("☹ OOPS!!! The index you used is out of bound!");

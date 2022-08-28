@@ -23,7 +23,7 @@ public class Storage {
 
     /**
      * Constructor for the class.
-     * @param filepath file path of the storage file
+     * @param filepath file path of the storage file.
      */
     public Storage(String filepath) {
         STORAGEFILE = new File(filepath);
@@ -31,7 +31,7 @@ public class Storage {
 
     /**
      * This function reads the data from the file and stores it into the given taskList.
-     * @param taskLists the taskList you want to store the data in
+     * @param taskLists the taskList you want to store the data in.
      */
     public void loadFromFile(TaskList taskLists) {
         try {
@@ -67,8 +67,8 @@ public class Storage {
     }
 
     /**
-     * This functions stores the data from the taskList into the file
-     * @param taskLists given taskList
+     * This functions stores the data from the given taskList into the file.
+     * @param taskLists given taskList.
      */
     public void saveToFile(TaskList taskLists) {
         try {

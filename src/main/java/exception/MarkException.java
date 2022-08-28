@@ -6,7 +6,7 @@ package exception;
 public class MarkException extends DukeException {
 
     /**
-     * Constructor for MarkException.
+     * Creates a MarkException.
      */
     public MarkException() {
         super("☹ OOPS!!! The task you want to mark is already marked.");

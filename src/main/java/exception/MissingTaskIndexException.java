@@ -6,7 +6,7 @@ package exception;
 public class MissingTaskIndexException extends DukeException {
 
     /**
-     * Creates a MissingTaskIndexException
+     * Creates a MissingTaskIndexException.
      */
     public MissingTaskIndexException() {
         super("☹ OOPS!!! Missing task index!");

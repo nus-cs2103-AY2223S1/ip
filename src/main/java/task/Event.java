@@ -1,18 +1,16 @@
 package task;
 
-import task.Task;
-
 /**
  * This class encapsulates the idea of a event.
  */
 public class Event extends Task {
-    private String duration;
+    private final String duration;
 
     /**
-     * Constructor for a event.
-     * @param description what the event is
-     * @param status whether it has been done
-     * @param duration when the event will be held
+     * Creates an event.
+     * @param description what the event is.
+     * @param status whether it has been done.
+     * @param duration when the event will be held.
      */
     public Event(String description, boolean status, String duration) {
         super(description, status);
@@ -21,7 +19,7 @@ public class Event extends Task {
 
     /**
      * Converts the event to string representation to be stored in text file.
-     * @return a string
+     * @return a string in format E | F | party | sunday 5-11pm
      */
     @Override
     public String getDescription() {
@@ -31,7 +29,7 @@ public class Event extends Task {
 
     /**
      * Converts the event to string representation for user.
-     * @return a string
+     * @return a string in format [E][ ] party (at: sunday 5-11pm)
      */
     @Override
     public String toString() {

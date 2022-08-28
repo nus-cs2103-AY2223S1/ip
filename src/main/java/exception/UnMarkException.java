@@ -6,7 +6,7 @@ package exception;
 public class UnMarkException extends DukeException {
 
     /**
-     * Constructor for UnMarkException.
+     * Creates a UnMarkException.
      */
     public UnMarkException() {
         super("☹ OOPS!!! The task you want to unmark is already unmarked.");

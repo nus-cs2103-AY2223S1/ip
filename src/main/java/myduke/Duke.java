@@ -14,8 +14,8 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for duke
-     * @param filePath absolute file path of the storage file
+     * Constructor for duke.
+     * @param filePath absolute file path of the storage file.
      */
     public Duke(String filePath) {
         isEnd = false;
@@ -38,7 +38,7 @@ public class Duke {
                 System.out.println(e.getMessage());
             } catch (DateTimeParseException e) {
                 System.out.println("Please input the date in the ISO-8601 format\n" +
-                        "For example: 2022-08-20T12:00");
+                                   "For example: 2022-08-20T12:00");
             }
         }
         myScanner.close();

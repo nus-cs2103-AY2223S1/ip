@@ -1,6 +1,5 @@
 package myduke;
 
-import exception.DukeException;
 import exception.MarkException;
 import exception.MissingDateException;
 import exception.MissingDescriptionException;
@@ -27,8 +26,8 @@ public class Ui {
 
     /**
      * Constructor for ui.
-     * @param taskLists TaskList used to store the tasks
-     * @param storage Storage used to save to file
+     * @param taskLists TaskList used to store the tasks.
+     * @param storage Storage used to save to file.
      */
     public Ui (TaskList taskLists, Storage storage) {
         this.taskLists = taskLists;
@@ -40,7 +39,7 @@ public class Ui {
     }
 
     /**
-     * This prints the welcome message
+     * This prints the welcome message.
      */
     public void welcome() {
         String logo = " ____        _        \n"
@@ -52,14 +51,20 @@ public class Ui {
     }
 
     /**
-     * This handles how the Duke will respond based on user input
-     * @param input what the user typed into the terminal
-     * @throws DukeException
-     * @throws DateTimeParseException
+     * This handles how the Duke will respond based on user input.
+     * @param input what the user typed into the terminal.
+     * @throws DateTimeParseException Date entered is not following ISO-8601 format.
+     * @throws MarkException thrown when trying to mark an already marked task.
+     * @throws MissingDateException thrown when date of task is missing.
+     * @throws MissingDescriptionException thrown when description of task is missing.
+     * @throws MissingTaskIndexException thrown when index for task to be edited is missing.
+     * @throws OutOfBoundIndexException thrown when index entered is out of bound.
+     * @throws WrongCommandException thrown when user input is not a valid command.
+     * @throws UnMarkException thrown when trying to unmark an already unmarked task.
      */
-    public void Response(String input) throws MissingTaskIndexException, MissingDescriptionException,
-            WrongCommandException, MissingDateException, MarkException, UnMarkException,
-            OutOfBoundIndexException, DateTimeParseException {
+    public void Response(String input) throws DateTimeParseException, MarkException,
+            MissingTaskIndexException, MissingDescriptionException, MissingDateException,
+            OutOfBoundIndexException, WrongCommandException, UnMarkException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
             Duke.stop();
