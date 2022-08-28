@@ -1,8 +1,17 @@
 package duke;
 
+/**
+ * Event class which inherits from the Task class.
+ */
 public class Event extends Task {
     private String at;
 
+    /**
+     * Constructor for the deadline class.
+     *
+     * @param item The item that would be happening.
+     * @param at The date that the item is at.
+     */
     public Event(String item, String at) {
         super(item);
         this.at = JamieTime.reformatDateTime(at);

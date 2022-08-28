@@ -1,7 +1,8 @@
 package duke;
 
-import duke.Task;
-
+/**
+ * ToDo class which inherits from the Task class.
+ */
 public class ToDo extends Task {
 
     public ToDo(String item) {

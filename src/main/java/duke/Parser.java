@@ -1,15 +1,20 @@
 package duke;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The class that deals with user commands.
+ */
 public class Parser {
     private final Jamie jamie;
 
     public Parser(Jamie jamie) {
         this.jamie = jamie;
     }
+
+    /**
+     * Starts the parser object and carry out the user commands.
+     */
     public void start() {
         Scanner sc = new Scanner(System.in);
         for (String input = sc.nextLine(); !input.equals("bye"); input = sc.nextLine()) {
@@ -91,13 +96,6 @@ public class Parser {
                 jamie.ui.invalidCommand();
             }
         }
-
-        try {
-            FileWriter writer = new FileWriter("Data/JamieTasks.txt", false);
-            writer.write(jamie.tasks.taskListToText());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        jamie.storage.save(jamie.tasks);
     }
 }

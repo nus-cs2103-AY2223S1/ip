@@ -1,8 +1,17 @@
 package duke;
 
+/**
+ * Deadline class which inherits from the Task class.
+ */
 public class Deadline extends Task {
     private String by;
 
+    /**
+     * Constructor for the deadline class.
+     *
+     * @param item Item that has a deadline.
+     * @param by The date that the item is due by.
+     */
     public Deadline(String item, String by) {
         super(item);
         this.by = JamieTime.reformatDateTime(by);
