@@ -53,7 +53,7 @@ public class Storage {
                 } else if (modifiedLine.contains("[E]")) {
                     if (modifiedLine.contains("[ ]")) {
                         String evDescrip = modifiedLine.replace("[E][ ] ", "");
-                        String description = evDescrip.substring(0, evDescrip.indexOf("("));
+                        String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
                         String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
                         // data in textfile contains : after at, to replace it with whitespace
                         String modEventTime = eventTime.replaceFirst(": ", " ");
@@ -63,7 +63,7 @@ public class Storage {
                         // replace the formats with empty string
                         String evDescrip = modifiedLine.replace("[E][X] ", "");
                         // get 2 substring for description and eventTime
-                        String description = evDescrip.substring(0, evDescrip.indexOf("("));
+                        String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
                         String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
                         // data in textfile contains : after at, to replace it with whitespace
                         String modEventTime = eventTime.replaceFirst(": ", " ");

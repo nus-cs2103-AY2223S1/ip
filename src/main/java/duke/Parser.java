@@ -41,17 +41,7 @@ public class Parser {
         FileWriter fw = null;
         try {
             fw = new FileWriter(filePath);
-            String taskRecords = "";
-            for (int i = 0; i < tasks.size(); i++) {
-                String taskRecord="";
-                if (i == tasks.size() - 1) {
-                    taskRecord = String.format("%d.%s", i + 1, tasks.get(i));
-                } else {
-                    taskRecord = String.format("%d.%s\n", i + 1, tasks.get(i));
-                }
-                taskRecords += taskRecord;
-            }
-            fw.write(taskRecords);
+            fw.write(TaskList.printTaskList(tasks));
             fw.close();
         } catch (IOException e) {
 
@@ -67,17 +57,7 @@ public class Parser {
                 echo("Bye. Hope to see you again soon!");
                 break;
             } else if ("list".equals(command)) {
-                String taskRecords = "";
-                for (int i = 0; i < tasklist.size(); i++) {
-                    String taskRecord="";
-                    if (i == tasklist.size() - 1) {
-                        taskRecord = String.format("%d.%s", i + 1, tasklist.get(i));
-                    } else {
-                        taskRecord = String.format("%d.%s\n", i + 1, tasklist.get(i));
-                    }
-                    taskRecords += taskRecord;
-                }
-                echo(taskRecords);
+                echo(TaskList.printTaskList(tasklist));
             } else if (command.contains("unmark")) { // to detect unmark command
                 String number = command.replaceAll("[^\\d.]", "");
                 int n = Integer.parseInt(number);
@@ -147,7 +127,7 @@ public class Parser {
                     echo(taskStatus);
                     writeToFile(tasklist);
                 }
-            } else if (command.toLowerCase().contains("delete")) {
+            } else if (command.contains("delete")) {
                 String deleteTaskNumber = command.replace("delete ", "");
                 if (deleteTaskNumber.equals(command) || "".equals(deleteTaskNumber)) {
                     String error = DukeException.taskErrorMessage(command);
@@ -164,6 +144,16 @@ public class Parser {
                         echo(taskStatus);
                         writeToFile(tasklist);
                     }
+                }
+            } else if(command.contains("find")) {
+                String findWord = command.replace("find ", "");
+                if (findWord.equals(command) || "".equals(findWord)) {
+                    String error = DukeException.taskErrorMessage(command);
+                    echo(error);
+                } else {
+                    TaskList keywordList = tasklist.find(findWord);
+                    String stringList = TaskList.printTaskList(keywordList);
+                    echo("Here are the matching tasks in your list:\n" + stringList);
                 }
             } else {
                 echo(DukeException.taskErrorMessage());
