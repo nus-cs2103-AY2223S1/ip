@@ -18,7 +18,6 @@ public class Duke {
     }
 
     public String getResponse(String command) {
-        boolean isExit = false;
         try {
             Command c = Parser.parse(command);
             String output = c.execute(lst, ui, storage);
