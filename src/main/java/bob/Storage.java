@@ -60,7 +60,7 @@ public class Storage {
                         tasks.addTask(todo);
                         break;
                     case "D":
-                        String deadlineTaskName = temp[2].substring(1);
+                        String deadlineTaskName = temp[2].substring(1, temp[2].length() - 1);
                         String[] deadlineDetails = temp[3].substring(1).split(" ");
                         String deadlineDate = deadlineDetails[0];
                         Deadline deadline = new Deadline(deadlineTaskName, LocalDate.parse(deadlineDate));
@@ -70,7 +70,7 @@ public class Storage {
                         tasks.addTask(deadline);
                         break;
                     case "E":
-                        String eventTaskName = temp[2].substring(1);
+                        String eventTaskName = temp[2].substring(1, temp[2].length() - 1);
                         String[] eventDetails = temp[3].substring(1).split(" ");
                         String eventDate = eventDetails[0];
                         Event event = new Event(eventTaskName, LocalDate.parse(eventDate));

@@ -36,17 +36,27 @@ public class TaskList {
         this.tasks.get(index - 1).isDone = marker;
     }
 
-    public String filterTask(String dateString) {
+    public TaskList filterTask(String dateString) {
         LocalDate date = LocalDate.parse(dateString);
-        String list = "";
-        for (Task task : tasks) {
+        TaskList filteredTasks = new TaskList();
+        for (Task task: tasks) {
             if (task instanceof Event && ((Event) task).at.equals(date)) {
-                list = list + task.toString() + "\n";
+                filteredTasks.addTask(task);
             } else if (task instanceof Deadline && ((Deadline) task).by.equals(date)) {
-                list = list + task.toString() + "\n";
+                filteredTasks.addTask(task);
             }
         }
-        return list;
+        return filteredTasks;
+    }
+
+    public TaskList findTask(String searchWord) {
+        TaskList foundTasks = new TaskList();
+        for (Task task: tasks) {
+            if (task.description.contains(searchWord)) {
+                foundTasks.addTask(task);
+            }
+        }
+        return foundTasks;
     }
 
     public Task getTask(int index) {

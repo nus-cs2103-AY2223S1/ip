@@ -1,9 +1,6 @@
 package bob;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.time.LocalDate;
-
 
 //referenced https://github.com/Donovan9617/ip/blob/master/src/main/java/Duke/Ui.java for structure
 public class Ui {
@@ -14,17 +11,18 @@ public class Ui {
     }
 
     public void displayWelcomeMessage() {
-        System.out.println("hey, i'm bob!\ndo you need help?");
-        System.out.println("here's what you can do!\n" +
-                "    ❤️    ADD A TODO TASK: todo <task>\n" +
-                "    🌸    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n" +
-                "    ✨    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n" +
-                "    💕    VIEW LIST OF EVENTS: list\n" +
-                "    🌼    MARK AS DONE: mark <task number in list>\n" +
-                "    ❣️    UNMARK TASK: unmark <task number in list>\n" +
-                "    🌟    REMOVE TASK: remove <task number in list>\n" +
-                "    💞    TO END THE PROGRAM: bye\n" +
-                "hope this helps!");
+        System.out.println("hey, i'm bob!👻\ndo you need help?");
+        printLine();
+        System.out.println("    ↓ here's what you can do! ↓\n" +
+                "    ---------------------------\n" +
+                "❤️    ADD A TODO TASK: todo <task>\n" +
+                "🌸    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n" +
+                "✨    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n" +
+                "💕    VIEW LIST OF EVENTS: list\n" +
+                "🌼    MARK AS DONE: mark <task number in list>\n" +
+                "❣️    UNMARK TASK: unmark <task number in list>\n" +
+                "🌟    REMOVE TASK: remove <task number in list>\n" +
+                "💞    TO END THE PROGRAM: bye\n");
     }
 
     public String getReply() {
@@ -36,14 +34,18 @@ public class Ui {
         System.out.println("bye\nsee you again!");
     }
 
-    public void displayTaskList(TaskList taskList) {
+    public void printLine() {
+        System.out.println("-------------------------------------");
+    }
+
+    public void displayTaskList(TaskList taskList, String outputMessage) {
         int index = 1;
         String list = "";
         while (index < (taskList.getLength() + 1)) {
             list = list + "\n" + (index) + ". " + taskList.getTask(index).toString();
             index += 1;
         }
-        System.out.println("here are all your tasks!" + list);
+        System.out.println(outputMessage + "\n" + list);
     }
 
     public void displayMarked(TaskList tasks, int index) {
@@ -57,11 +59,6 @@ public class Ui {
     public void displayRemoved(TaskList tasks, Task task) {
         System.out.println("that's one less task for you! removed:" + "\n  "
                 + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!");
-    }
-
-    public void displayFiltered(LocalDate date, String list) {
-        System.out.print("here are your tasks on " +
-                date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + "\n" + list);
     }
 
     public void displayAddedTask (TaskList tasks, Task task) {

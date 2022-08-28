@@ -13,7 +13,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String toSave() { return "E | " + super.toSave() + "| " + at; }
+    public String toSave() { return "E | " + super.toSave() + " | " + at; }
 
     @Override
     public String toString() {
