@@ -69,10 +69,10 @@ public class Parser {
                 tasks.showTasks();
             } else if (command.equals("mark")) {
                 int indexToMark = checkTaskNumber(inputs, tasks);
-                tasks.get(indexToMark - 1).completedTask();
+                tasks.get(indexToMark - 1).setComplete();
             } else if (command.equals("unmark")) {
                 int indexToUnmark = checkTaskNumber(inputs, tasks);
-                tasks.get(indexToUnmark - 1).uncompletedTask();
+                tasks.get(indexToUnmark - 1).setIncomplete();
             } else if (command.equals("todo")) {
                 checkTask(inputs, command);
                 tasks.addToDo(inputs[1]);
