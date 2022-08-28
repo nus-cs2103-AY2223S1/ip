@@ -3,15 +3,24 @@ package duke;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The class that deals with loading and saving tasks in the file.
+ */
 public class Storage {
     private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
+    /**
+     * The method which loads the file.
+     * @return The list of tasks that were stored in the file.
+     */
     public ArrayList<Task> load() {
         File tasks = new File(filePath);
         tasks.getParentFile().mkdirs();
@@ -59,6 +68,20 @@ public class Storage {
             System.out.println("Error in locating/creating the save file");
         }
         return taskList;
+    }
+
+    /**
+     * Saves the tasks into a text file.
+     * @param tasks The tasks that are being saved.
+     */
+    public void save(TaskList tasks) {
+        try {
+            FileWriter writer = new FileWriter("Data/JamieTasks.txt", false);
+            writer.write(tasks.taskListToText());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
