@@ -29,7 +29,7 @@ public class Parser {
         String[] textArr = text.split(" ");
         String command = textArr[0];
         if (!command.equals("list") && textArr.length == 1) {
-            throw new BloopException("I don't know which task to perform " + textArr[0] + " on.");
+            throw new BloopException("I don't know how to perform your command.");
         }
         switch (command) {
         case "list":
