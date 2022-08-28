@@ -2,6 +2,11 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a Task.
+ * @author Aaron Pang
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -48,6 +53,11 @@ public class Task {
         return this.description;
     }
 
+    /**
+     * Loads the task.
+     * @param data the data to be loaded
+     * @return Tasks that have been loaded
+     */
     public static Task loadTask(String data) {
         String[] input = data.split( " \\| ", 4);
         char c = input[0].charAt(0);
@@ -64,6 +74,10 @@ public class Task {
         }
     }
 
+    /**
+     * Saves the task
+     * @return The string message of the saved task
+     */
     public String saveTask() {
         return String.format("%d | %s", isDone ? 1 : 0, description);
     }

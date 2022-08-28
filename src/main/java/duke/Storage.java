@@ -7,13 +7,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
+/**
+ * Storage is used to handle data saved.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs Storage.
+     * @param filePath filepath containing input from previous session.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the list containing input from previous session.
+     * @return List containing input from previous session.
+     * @throws FileNotFoundException If file does not exist.
+     */
     public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> list = new ArrayList<>();
         File f = new File(filePath);
@@ -31,6 +43,10 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Saves the input for next session.
+     * @param list List of input to be saved for next session.
+     */
     public void save(ArrayList<String> list) {
         try {
             new File(filePath).getParentFile().mkdirs();

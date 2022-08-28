@@ -9,12 +9,23 @@ import java.time.LocalDate;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Personal Assistant Chatbot used primarily as a notebook.
+ *
+ * @author Aaron Pang
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
 
+    /**
+     * Constructs the Duke.
+     *
+     * @param filePath filepath containing input from previous session.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -27,6 +38,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

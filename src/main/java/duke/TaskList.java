@@ -8,15 +8,28 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * TaskList that contains the list of Tasks and its operations.
+ *
+ * @author Aaron Pang
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private int size;
 
+    /**
+     * Constructs the TaskList
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.size = 0;
     }
 
+    /**
+     * Constructs the TaskList with previous inputs
+     * @param dataList Previous input data
+     */
     public TaskList(ArrayList<String> dataList) {
         this.tasks = new ArrayList<>();
         for (String data : dataList) {
@@ -25,11 +38,18 @@ public class TaskList {
         this.size = tasks.size();
     }
 
+    /**
+     * Saves the TaskList after user input bye.
+     * @return ArrayList of the input that has been saved.
+     */
     public ArrayList<String> bye() {
         return saveTasks();
     }
 
-
+    /**
+     * Saves the TaskList
+     * @return ArrayList of the input that has been saved.
+     */
     public ArrayList<String> saveTasks() {
         ArrayList<String> list = new ArrayList<>();
         for (Task task : tasks) {
@@ -92,10 +112,6 @@ public class TaskList {
         size -= 1;
         System.out.println("Now you have " + size + " tasks in the list");
     }
-
-
-
-
 
     /**
      * Adds a deadline event to the list.

@@ -3,7 +3,23 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Parser to parse user inputs
+ *
+ * @author Aaron Pang
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Parser {
+
+    /**
+     * Parses the input with the tasks, ui and storage
+     * @param in Input of the user
+     * @param tasks TaskList of which input is to be stored
+     * @param ui Ui needed for the input
+     * @param storage Storage needed for the input
+     * @return True if program should continue, false otherwise
+     * @throws DukeException If the user input is invalid
+     */
     public static boolean parse(String in, TaskList tasks, Ui ui, Storage storage)
         throws DukeException {
         if (!withinScope(in)) {

@@ -3,11 +3,16 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Task with a specific date/time it happens at.
+ * @author Aaron Pang
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Event extends Task {
     protected LocalDate at;
 
     /**
-     * Constructs an duke.task.Event task.
+     * Constructs a duke.task.Event task without isDone.
      *
      * @param description Description of the duke.task.Event task.
      * @param at Date the duke.task.Event task occurs at.
@@ -17,6 +22,13 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Constructs a duke.task.Event task without isDone.
+     *
+     * @param description Description of the duke.task.Event task.
+     * @param isDone True if task is done, false otherwise.
+     * @param at Date the duke.task.Event task occurs at.
+     */
     public Event(String description, boolean isDone, LocalDate at) {
         super(description);
         this.at = at;
