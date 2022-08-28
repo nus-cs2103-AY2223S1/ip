@@ -1,3 +1,5 @@
+package caca.exceptions;
+
 /**
  * This is an exception class when user input has missing details for deadline and event.
  * @author Carrie Zheng Jiarui

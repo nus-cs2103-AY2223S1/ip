@@ -1,3 +1,7 @@
+package caca.tasks;
+
+import caca.exceptions.InvalidDateException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,8 +16,8 @@ public class Event extends Task {
 
     /**
      * Constructor for creating an event.
-     * @param description Task description from user input.
-     * @param dateTimeInput Event date/time from user input.
+     * @param description caca.tasks.Task description from user input.
+     * @param dateTimeInput caca.tasks.Event date/time from user input.
      * @throws InvalidDateException If date entered by user is not in the specified format.
      */
     public Event(String description, String dateTimeInput) throws InvalidDateException {
@@ -37,8 +41,8 @@ public class Event extends Task {
 
     /**
      * Constructor for creating an event with given isDone status.
-     * @param description Task description from user input.
-     * @param dateTimeInput Event date/time from user input.
+     * @param description caca.tasks.Task description from user input.
+     * @param dateTimeInput caca.tasks.Event date/time from user input.
      * @param isDone True if event is marked as done; false otherwise.
      * @throws InvalidDateException If date entered by user is not in the specified format.
      */
@@ -60,7 +64,7 @@ public class Event extends Task {
 
     /**
      * Displays the event with its type, status (done or undone), description and time.
-     * @return Task type, status, description and time.
+     * @return caca.tasks.Task type, status, description and time.
      */
     @Override
     public String toString() {
@@ -74,7 +78,7 @@ public class Event extends Task {
 
     /**
      * Formats event in a file.
-     * @return Event with task type, status, description and time.
+     * @return caca.tasks.Event with task type, status, description and time.
      */
     @Override
     public String toFileFormat() {

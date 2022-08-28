@@ -1,3 +1,5 @@
+package caca.exceptions;
+
 /**
  * This is an exception class for empty user inputs into CaCa.
  * @author Carrie Zheng Jiarui

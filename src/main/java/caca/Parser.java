@@ -1,3 +1,8 @@
+package caca;
+
+import caca.exceptions.CaCaException;
+import caca.exceptions.EmptyInputException;
+
 import java.io.IOException;
 
 /**
@@ -14,12 +19,12 @@ public class Parser {
     private static final String LINE = "____________________________________________________________\n";
 
     /**
-     * A TaskList object containing all the tasks in a list.
+     * A caca.TaskList object containing all the tasks in a list.
      */
     private final TaskList tasks;
 
     /**
-     * A Storage object to update tasks in the local file.
+     * A caca.Storage object to update tasks in the local file.
      */
     private final Storage storage;
 

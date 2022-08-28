@@ -1,3 +1,5 @@
+package caca;
+
 /**
  * This class deals with interactions with the user.
  *

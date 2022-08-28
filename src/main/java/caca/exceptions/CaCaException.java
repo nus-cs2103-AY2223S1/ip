@@ -1,3 +1,5 @@
+package caca.exceptions;
+
 /**
  * This is an exception class for exceptions specific to CaCa.
  *

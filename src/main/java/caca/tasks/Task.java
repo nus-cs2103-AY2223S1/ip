@@ -1,3 +1,5 @@
+package caca.tasks;
+
 /**
  * This class represents tasks added by the user.
  *
@@ -10,7 +12,7 @@ public abstract class Task {
 
     /**
      * Constructor for creating a task.
-     * @param description Task description from user input.
+     * @param description caca.tasks.Task description from user input.
      */
     //@@author carriezhengjr-reused
     // Reused code under subsection "Extension: A-Classes" of the section "Duke Level-3: Mark as Done"
@@ -22,7 +24,7 @@ public abstract class Task {
 
     /**
      * Checks task description.
-     * @return Task description.
+     * @return caca.tasks.Task description.
      */
     public String getDescription() {
         return this.description;
@@ -61,7 +63,7 @@ public abstract class Task {
 
     /**
      * Displays the task with its type, status (done or undone) and description.
-     * @return Task type, status and description.
+     * @return caca.tasks.Task type, status and description.
      */
     @Override
     public String toString() {

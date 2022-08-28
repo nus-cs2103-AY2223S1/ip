@@ -1,3 +1,11 @@
+package caca;
+
+import caca.exceptions.InvalidDateException;
+import caca.tasks.Deadline;
+import caca.tasks.Event;
+import caca.tasks.Task;
+import caca.tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

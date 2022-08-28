@@ -1,3 +1,5 @@
+package caca.tasks;
+
 /**
  * This class represents tasks without any date/time attached to it.
  * @author Carrie Zheng Jiarui
@@ -7,7 +9,7 @@ public class Todo extends Task {
 
     /**
      * Constructor for creating a todo.
-     * @param description Task description from user input.
+     * @param description caca.tasks.Task description from user input.
      */
     public Todo(String description) {
         super(description);
@@ -15,7 +17,7 @@ public class Todo extends Task {
 
     /**
      * Constructor for creating a todo with given isDone status.
-     * @param description Task description.
+     * @param description caca.tasks.Task description.
      * @param isDone True if todo is marked as done; false otherwise.
      */
     public Todo (String description, boolean isDone) {
@@ -34,7 +36,7 @@ public class Todo extends Task {
 
     /**
      * Formats todo in a file.
-     * @return Todo with task type, status and description.
+     * @return caca.tasks.Todo with task type, status and description.
      */
     @Override
     public String toFileFormat() {

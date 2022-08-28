@@ -1,3 +1,5 @@
+package caca.exceptions;
+
 /**
  * This is an exception class when user has entered an invalid date and time for deadline or event.
  * @author Carrie Zheng Jiarui

@@ -1,3 +1,7 @@
+package caca;
+
+import caca.exceptions.InvalidDateException;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -19,7 +23,7 @@ public class CaCa {
     private Ui ui;
 
     /**
-     * A TaskList object containing all the tasks in a list..
+     * A caca.TaskList object containing all the tasks in a list..
      */
     private TaskList tasks;
 

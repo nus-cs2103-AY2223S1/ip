@@ -1,3 +1,14 @@
+package caca;
+
+import caca.exceptions.EmptyInputException;
+import caca.exceptions.InvalidDateException;
+import caca.exceptions.InvalidIndexException;
+import caca.exceptions.MissingDetailException;
+import caca.tasks.Deadline;
+import caca.tasks.Event;
+import caca.tasks.Task;
+import caca.tasks.Todo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +55,7 @@ public class TaskList {
     /**
      * Adds a task to the list.
      *
-     * @param task Task to be added to the list.
+     * @param task caca.tasks.Task to be added to the list.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -53,14 +64,14 @@ public class TaskList {
     /**
      * Checks if task index is valid.
      *
-     * @param taskIndex Task index entered by user.
-     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     * @param taskIndex caca.tasks.Task index entered by user.
+     * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void isValid(int taskIndex) throws InvalidTaskIndex {
+    public static void isValid(int taskIndex) throws InvalidIndexException {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
             String MESSAGE = String.format("OOPS!!! You have entered an invalid task index. " +
                     "It should be between 1 and %d.", tasks.size());
-            throw new InvalidTaskIndex(MESSAGE);
+            throw new InvalidIndexException(MESSAGE);
         }
     }
 
@@ -82,7 +93,7 @@ public class TaskList {
     /**
      * Adds a ToDo task to user list.
      *
-     * @param taskDescription Task description entered by user.
+     * @param taskDescription caca.tasks.Task description entered by user.
      */
     public static void addToDo(String taskDescription) {
         Task taskToAdd = new Todo(taskDescription);
@@ -94,9 +105,9 @@ public class TaskList {
     }
 
     /**
-     * Adds a Deadline task to user list.
+     * Adds a caca.tasks.Deadline task to user list.
      *
-     * @param taskInfo Task information with task description and task date & time.
+     * @param taskInfo caca.tasks.Task information with task description and task date & time.
      * @throws MissingDetailException If task description or task date & time is missing.
      */
     public static void addDeadline(String taskInfo) throws MissingDetailException, InvalidDateException {
@@ -126,9 +137,9 @@ public class TaskList {
     }
 
     /**
-     * Adds an Event task to user list.
+     * Adds an caca.tasks.Event task to user list.
      *
-     * @param taskInfo Task information with task description and task date & time.
+     * @param taskInfo caca.tasks.Task information with task description and task date & time.
      * @throws MissingDetailException If task description or task date & time is missing.
      */
     public static void addEvent(String taskInfo) throws MissingDetailException, InvalidDateException {
@@ -176,10 +187,10 @@ public class TaskList {
     /**
      * Marks a task as done in task list.
      *
-     * @param index Task index entered by user.
-     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     * @param index caca.tasks.Task index entered by user.
+     * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void markTask(String index) throws InvalidTaskIndex {
+    public static void markTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
@@ -194,10 +205,10 @@ public class TaskList {
     /**
      * Marks a task as not done in task list.
      *
-     * @param index Task index entered by user.
-     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     * @param index caca.tasks.Task index entered by user.
+     * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void unmarkTask(String index) throws InvalidTaskIndex {
+    public static void unmarkTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
@@ -212,10 +223,10 @@ public class TaskList {
     /**
      * Deletes a task from task list.
      *
-     * @param index Task index entered by user.
-     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     * @param index caca.tasks.Task index entered by user.
+     * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void deleteTask(String index) throws InvalidTaskIndex {
+    public static void deleteTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
