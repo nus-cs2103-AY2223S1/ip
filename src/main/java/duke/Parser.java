@@ -1,6 +1,7 @@
 package duke;
 
 import duke.dukeExceptions.DukeException;
+
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -40,31 +41,31 @@ public class Parser {
             }
             case "deadline": {
                 if (arguments == null) {
-                    throw new DukeException("duke.tasks.Deadline description cannot be empty");
+                    throw new DukeException("Deadline description cannot be empty");
                 }
                 
                 String[] deadlineArgs = arguments.split("/by", 2);
                 if (deadlineArgs.length == 1) {
-                    throw new DukeException("duke.tasks.Deadline requires a /by date");
+                    throw new DukeException("Deadline requires a /by date");
                 }
                 System.out.println(deadlineArgs[1]);
                 Task newTask = new Deadline(deadlineArgs[0].trim(), deadlineArgs[1].trim());
                 tl.addTask(newTask);
-                return "I've added: " + newTask + " you have " + tl.getTaskListSize() +" duke.tasks left";
+                return "I've added: " + newTask + " you have " + tl.getTaskListSize() +" tasks left";
             }
             case "event": {
                 if (arguments == null) {
-                    throw new DukeException("duke.tasks.Event description cannot be empty");
+                    throw new DukeException("Event description cannot be empty");
                 }
 
                 String[] deadlineArgs = arguments.split("/at", 2);
                 if (deadlineArgs.length == 1) {
-                    throw new DukeException("duke.tasks.Event requires a /at date");
+                    throw new DukeException("Event requires a /at date");
                 }
 
                 Task newTask = new Event(deadlineArgs[0].trim(), deadlineArgs[1].trim());
                 tl.addTask(newTask);
-                return "I've added: " + newTask + " you have " + tl.getTaskListSize() +" duke.tasks left";
+                return "I've added: " + newTask + " you have " + tl.getTaskListSize() +" tasks left";
             }
             case "mark": {
                 try {

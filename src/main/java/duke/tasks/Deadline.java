@@ -3,6 +3,7 @@ package duke.tasks;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import duke.dukeExceptions.DukeException;
 
 /**
@@ -11,8 +12,8 @@ import duke.dukeExceptions.DukeException;
  * @author Ramanathan Kumarappan
  */
 public class Deadline extends Task {
-    private LocalDate d;
-    private LocalTime t;
+    private LocalDate date;
+    private LocalTime time;
     private boolean hasTime;
 
     /**
@@ -26,9 +27,9 @@ public class Deadline extends Task {
         super(description);
         String[] dateAndTime = by.split(" ");
         try {
-            this.d = LocalDate.parse(dateAndTime[0]);
+            this.date = LocalDate.parse(dateAndTime[0]);
             if (dateAndTime.length == 2) {
-                this.t = LocalTime.parse(dateAndTime[1], DateTimeFormatter.ofPattern("HHmm"));
+                this.time = LocalTime.parse(dateAndTime[1], DateTimeFormatter.ofPattern("HHmm"));
                 this.hasTime = true;
             } else {
                 this.hasTime = false;
@@ -62,8 +63,8 @@ public class Deadline extends Task {
      */
     @Override
     public String saveString() {
-        return "D | " + super.saveString() + " | " + this.hasTime + " | " + this.d + " | " 
-                + (this.hasTime ? this.t.format(DateTimeFormatter.ofPattern("HHmm")) : "");
+        return "D | " + super.saveString() + " | " + this.hasTime + " | " + this.date + " | " 
+                + (this.hasTime ? this.time.format(DateTimeFormatter.ofPattern("HHmm")) : "");
     }
 
     /**
@@ -74,8 +75,8 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " 
-                + this.d.format(DateTimeFormatter.ofPattern(("MMM d yyyy"))) 
-                + (this.hasTime ? " " + this.t : "") 
+                + this.date.format(DateTimeFormatter.ofPattern(("MMM d yyyy"))) 
+                + (this.hasTime ? " " + this.time : "") 
                 + ")";
     }
 }

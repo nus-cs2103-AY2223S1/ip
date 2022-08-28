@@ -11,16 +11,16 @@ public class Duke {
     public static void main(String[] args) {
         UI ui = new UI();
         try {
-            TaskList tasks = new TaskList();
-            Storage storage = new Storage(tasks);
+            TaskList taskList = new TaskList();
+            Storage storage = new Storage(taskList);
             Parser parser = new Parser();
             
             String commandResult;
             ui.showIntroMsg();
             do {
-                String input = ui.getUserCommand();
-                commandResult = parser.parseInput(input, tasks);
-                storage.saveTaskList(tasks);
+                String userInput = ui.getUserCommand();
+                commandResult = parser.parseInput(userInput, taskList);
+                storage.saveTaskList(taskList);
                 ui.showToUser(commandResult);
             } while (!commandResult.equals("exit"));
             ui.showOutroMsg();
