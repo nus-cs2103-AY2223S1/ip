@@ -42,6 +42,16 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean containsKeyword(String keyword) {
+        String[] descriptionDelimited = this.description.split(" ");
+        for (String word : descriptionDelimited) {
+            if (keyword.equals(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Return Task as a String to be saved in a .txt file.
      *
