@@ -1,10 +1,6 @@
 package ip;
 
-import ip.command.Command;
-import ip.command.AddCommand;
-import ip.command.ByeCommand;
-import ip.command.EditCommand;
-import ip.command.ListCommand;
+import ip.command.*;
 
 import ip.exception.InvalidCommand;
 
