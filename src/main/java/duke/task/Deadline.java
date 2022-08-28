@@ -33,6 +33,10 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritdocs}
+     * @return {@inheritdocs}
+     */
     @Override
     public String toString() {
         //ui : (by: date)

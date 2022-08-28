@@ -13,16 +13,19 @@ import duke.tools.CommandParser;
 import duke.tools.Storage;
 import duke.tools.Ui;
 
+/**
+ * Task Master called Duke to manage those pesky tasks.
+ */
 public class Duke {
     private TaskList tasks;
     private Storage storage;
 
-    public Duke(String filePath) {
+    private Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.tasks = storage.load();
     }
 
-    public void run() {
+    private void run() {
         Ui.greet();
 
         Scanner userScan = new Scanner(System.in);
@@ -88,6 +91,10 @@ public class Duke {
 
     }
 
+    /**
+     * Drives Duke class.
+     * @param args array of arguments.
+     */
     public static void main(String[] args) {
         new Duke("./data/tasks.txt").run();
 
