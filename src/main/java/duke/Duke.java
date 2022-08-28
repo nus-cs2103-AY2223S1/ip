@@ -9,13 +9,9 @@ import java.util.Scanner;
 
 import parser.Parser;
 
-<<<<<<< HEAD
-/**
- * Duke is a Personal ChatBot to help keep track of your Tasks.
- *
- * @author joelwong
- */
-=======
+
+
+
 import storage.Storage;
 
 import ui.UI;
@@ -24,11 +20,11 @@ import task.TaskList;
 import task.Task;
 
 
-
-
-
-
->>>>>>> branch-A-CodingStandard
+/**
+ * Duke is a Personal ChatBot to help keep track of your Tasks.
+ *
+ * @author joelwong
+ */
 
 public class Duke {
 
