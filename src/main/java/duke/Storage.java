@@ -37,7 +37,7 @@ public class Storage {
             fw.write(taskList);
             fw.close();
         } catch (IOException err) {
-            System.out.println("TaskList not saved: " + err.getMessage());
+            System.out.println(":( TaskList not saved: " + err.getMessage());
         }
     }
 }
