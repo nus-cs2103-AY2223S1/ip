@@ -1,9 +1,8 @@
 package bob;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.time.LocalDate;
-
+import java.util.Scanner;
 
 //referenced https://github.com/Donovan9617/ip/blob/master/src/main/java/Duke/Ui.java for structure
 public class Ui {
@@ -60,8 +59,9 @@ public class Ui {
     }
 
     public void displayFiltered(LocalDate date, String list) {
-        System.out.print("here are your tasks on " +
-                date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + "\n" + list);
+
+        System.out.print("here are your tasks on "
+                + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + "\n" + list);
     }
 
     public void displayAddedTask (TaskList tasks, Task task) {

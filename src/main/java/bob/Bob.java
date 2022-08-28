@@ -15,7 +15,7 @@ public class Bob {
     }
     public void run() {
         ui.displayWelcomeMessage();
-        while (parser.toExit == false) {
+        while (parser.getToExit() == false) {
             parser.parse(ui.getReply(), taskList, storage, ui);
         }
     }

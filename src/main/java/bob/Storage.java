@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Storage {
 
     private File saveFile;
 
+    //referenced and adapted from https://stackoverflow.com/a/28620461
     public Storage() {
         String directoryPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "lists";
         File directory = new File(directoryPath);
@@ -51,34 +51,34 @@ public class Storage {
                 String[] temp = task.split("\\|");
                 String taskLabel = temp[0].substring(0, 1);
                 switch (taskLabel) {
-                    case "T":
-                        String todoTaskName = temp[2].substring(1);
-                        ToDo todo = new ToDo(todoTaskName);
-                        if (temp[1].substring(1, 2).equals("1")) {
-                            todo.toMark(true);
-                        }
-                        tasks.addTask(todo);
-                        break;
-                    case "D":
-                        String deadlineTaskName = temp[2].substring(1);
-                        String[] deadlineDetails = temp[3].substring(1).split(" ");
-                        String deadlineDate = deadlineDetails[0];
-                        Deadline deadline = new Deadline(deadlineTaskName, LocalDate.parse(deadlineDate));
-                        if (temp[1].substring(1, 2).equals("1")) {
-                            deadline.toMark(true);
-                        }
-                        tasks.addTask(deadline);
-                        break;
-                    case "E":
-                        String eventTaskName = temp[2].substring(1);
-                        String[] eventDetails = temp[3].substring(1).split(" ");
-                        String eventDate = eventDetails[0];
-                        Event event = new Event(eventTaskName, LocalDate.parse(eventDate));
-                        if (temp[1].substring(1, 2).equals("1")) {
-                            event.toMark(true);
-                        }
-                        tasks.addTask(event);
-                        break;
+                case "T":
+                    String todoTaskName = temp[2].substring(1);
+                    ToDo todo = new ToDo(todoTaskName);
+                    if (temp[1].substring(1, 2).equals("1")) {
+                        todo.toMark(true);
+                    }
+                    tasks.addTask(todo);
+                    break;
+                case "D" :
+                    String deadlineTaskName = temp[2].substring(1);
+                    String[] deadlineDetails = temp[3].substring(1).split(" ");
+                    String deadlineDate = deadlineDetails[0];
+                    Deadline deadline = new Deadline(deadlineTaskName, LocalDate.parse(deadlineDate));
+                    if (temp[1].substring(1, 2).equals("1")) {
+                        deadline.toMark(true);
+                    }
+                    tasks.addTask(deadline);
+                    break;
+                case "E":
+                    String eventTaskName = temp[2].substring(1);
+                    String[] eventDetails = temp[3].substring(1).split(" ");
+                    String eventDate = eventDetails[0];
+                    Event event = new Event(eventTaskName, LocalDate.parse(eventDate));
+                    if (temp[1].substring(1, 2).equals("1")) {
+                        event.toMark(true);
+                    }
+                    tasks.addTask(event);
+                    break;
                 }
             }
             return tasks;
