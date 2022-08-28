@@ -52,8 +52,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String toSaveFormat() {
-        return "D " + super.toSaveFormat() + " | " + this.saveFormatBy();
+    public String getSaveFormat() {
+        return "D " + super.getSaveFormat() + " | " + this.saveFormatBy();
     }
 
     @Override

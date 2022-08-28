@@ -1,7 +1,7 @@
 package duke.ui;
 
-import duke.task.Task;
 import duke.command.CommandWord;
+import duke.task.Task;
 
 import java.util.Scanner;
 

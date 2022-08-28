@@ -40,7 +40,7 @@ public class Task {
         System.out.println("    " + this);
     }
 
-    public String toSaveFormat() {
+    public String getSaveFormat() {
         return "| " + (isDone ? 1 : 0) + " | " + this.desc;
     }
 

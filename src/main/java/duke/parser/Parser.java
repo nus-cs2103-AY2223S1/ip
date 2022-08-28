@@ -12,10 +12,10 @@ import duke.exception.DukeException;
 import duke.task.TaskType;
 import duke.ui.Ui;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {

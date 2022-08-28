@@ -15,9 +15,9 @@ public class TaskTest {
     }
     
     @Test
-    public void testToSaveFormat() {
-        assertEquals("| 1 | buy apples", task1.toSaveFormat());
-        assertEquals("| 0 | buy chicken", task2.toSaveFormat());
+    public void testGetSaveFormat() {
+        assertEquals("| 1 | buy apples", task1.getSaveFormat());
+        assertEquals("| 0 | buy chicken", task2.getSaveFormat());
     }
 
     @Test

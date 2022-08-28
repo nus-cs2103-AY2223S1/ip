@@ -35,9 +35,9 @@ public class TaskList {
         this.tasks.get(index).unmark();
     }
     
-    public String toSaveFormat() {
+    public String getSaveFormat() {
         StringBuilder sb = new StringBuilder();
-        this.tasks.forEach(t -> sb.append(t.toSaveFormat()).append("\n"));
+        this.tasks.forEach(t -> sb.append(t.getSaveFormat()).append("\n"));
         return sb.toString();
     }
     

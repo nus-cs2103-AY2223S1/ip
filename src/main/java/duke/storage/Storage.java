@@ -22,20 +22,18 @@ public class Storage {
     private Path directory;
     private File fileDirectory;
     private Path filePath;
-    private File file;
     private ArrayList<Task> tasks;
     
     public Storage() {
         this.directory = Paths.get("data");
         this.fileDirectory = new File(this.directory.toString());
         this.filePath = Paths.get(this.directory.toString(), "duke.txt");
-        this.file = new File(this.filePath.toString());
         this.tasks = new ArrayList<>();
     }
     
     public void save(TaskList tasks) throws DukeException {
         try {
-            String savedTasks = tasks.toSaveFormat();
+            String savedTasks = tasks.getSaveFormat();
             if (Files.exists(this.directory)) {
                 Files.write(this.filePath, savedTasks.getBytes());
             } else {
