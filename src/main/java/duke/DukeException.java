@@ -6,7 +6,6 @@ public class DukeException extends Exception{
         super(error);
     }
 
-
     public static String taskErrorMessage(String command) {
         String modifiedComm = command.replace(" ", "");
         String errorText = String.format("OOPS!!! The description of a %s cannot be empty.", modifiedComm);
