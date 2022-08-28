@@ -26,8 +26,8 @@ public class Event extends Task {
         try {
             // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
             // https://codegym.cc/groups/posts/parse-methods-in-java
-            // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
-            // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+            // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times"
+            // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             at = LocalDateTime.parse(dateTimeInput, formatter);
 
@@ -70,8 +70,8 @@ public class Event extends Task {
     public String toString() {
         // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
         // https://codegym.cc/groups/posts/parse-methods-in-java
-        // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
-        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times"
+        // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
         String newDateTime = at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         return String.format("%s (at: %s)", super.toString(), newDateTime);
     }
@@ -84,10 +84,13 @@ public class Event extends Task {
     public String toFileFormat() {
         // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
         // https://codegym.cc/groups/posts/parse-methods-in-java
-        // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
-        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times"
+        // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
         String formattedDateTime = at.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-        return String.format("E | %s | %s | %s", this.getStatusIcon(), this.description, formattedDateTime);
+        return String.format("E | %s | %s | %s",
+                this.getStatusIcon(),
+                this.description,
+                formattedDateTime);
     }
 
 }

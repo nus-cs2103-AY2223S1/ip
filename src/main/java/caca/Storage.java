@@ -118,8 +118,9 @@ public class Storage {
         }
         fw.close();
 
-        // Solution below adapted from https://docs.oracle.com/javase/tutorial/essential/io/move.html and
-        // https://stackoverflow.com/questions/27749755/files-move-replace-existing-cannot-be-resolved-to-a-variable
+        // Solution below adapted from https://docs.oracle.com/javase/tutorial/essential/io/move.html
+        // and https://stackoverflow.com/questions/27749755/
+        // files-move-replace-existing-cannot-be-resolved-to-a-variable
         Files.move(Paths.get(newFilePath), Paths.get(filePath), REPLACE_EXISTING);
     }
 
@@ -141,7 +142,8 @@ public class Storage {
                 String task = sc.nextLine();
 
                 // Solution below adapted from
-                // https://stackoverflow.com/questions/10796160/splitting-a-java-string-by-the-pipe-symbol-using-split
+                // https://stackoverflow.com/questions/10796160/
+                // splitting-a-java-string-by-the-pipe-symbol-using-split
                 // and https://github.com/cheehongw/ip/blob/master/src/main/java/duke/Storage.java
                 String[] taskDetails = task.split(" \\| ");
                 String taskType = taskDetails[0];

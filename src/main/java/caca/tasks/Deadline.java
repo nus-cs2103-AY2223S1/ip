@@ -28,8 +28,8 @@ public class Deadline extends Task {
         try {
             // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
             // https://codegym.cc/groups/posts/parse-methods-in-java
-            // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
-            // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+            // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times"
+            // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             by = LocalDateTime.parse(dateTimeInput, formatter);
 
@@ -93,7 +93,10 @@ public class Deadline extends Task {
         // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
         // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
         String formattedDateTime = by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-        return String.format("D | %s | %s | %s", this.getStatusIcon(), this.description, formattedDateTime);
+        return String.format("D | %s | %s | %s",
+                this.getStatusIcon(),
+                this.description,
+                formattedDateTime);
     }
 
 }
