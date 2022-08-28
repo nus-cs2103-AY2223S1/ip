@@ -106,8 +106,8 @@ public class TaskList {
      * @param query The query inputted by the user.
      * @return An ArrayList of tasks matching the query.
      */
-    public ArrayList<Task> find(String query) {
-        ArrayList<Task> res = new ArrayList<>();
+    public TaskList find(String query) {
+        TaskList res = new TaskList();
         for (Task t : data) {
             String taskDescription = t.getDescription();
             if (taskDescription.contains(query)) {

@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.Task;
 
@@ -27,18 +26,17 @@ public class DeleteCommand extends Command {
     /**
      * Handles the execution behaviour of the delete command.
      *
-     * @param tasks The current list of tasks.
-     * @param ui The UI of the Duke bot.
+     * @param tasks   The current list of tasks.
      * @param storage The storage of data.
-     * @throws DukeException If there is an error that arise from the
-     *                       delete command.
+     * @return The reply of the Duke bot.
+     * @throws DukeException If there is an error that arise from the delete command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         Task deletedTask = tasks.deleteTask(indexString);
         storage.saveData(tasks);
-        ui.printMessage("Noted. I've removed this task:\n" + deletedTask
-                + "\nNow you have " + tasks.size() + " tasks.");
+        return "Noted. I've removed this task:\n" + deletedTask
+                + "\nNow you have " + tasks.size() + " tasks.";
     }
 
     /**

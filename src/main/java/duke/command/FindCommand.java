@@ -1,11 +1,7 @@
 package duke.command;
 
-import java.util.ArrayList;
-
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
-import duke.task.Task;
 
 /**
  * A class that encapsulates the find command.
@@ -27,20 +23,17 @@ public class FindCommand extends Command {
     /**
      * Handles the execution behaviour of the find command.
      *
-     * @param tasks The current list of tasks.
-     * @param ui The UI of the Duke bot.
+     * @param tasks   The current list of tasks.
      * @param storage The storage of data.
+     * @return The reply of the Duke bot.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> result = tasks.find(query);
+    public String execute(TaskList tasks, Storage storage) {
+        TaskList result = tasks.find(query);
         if (result.size() == 0) {
-            ui.printMessage("No results match your search :(");
+            return "No results match your search :(";
         } else {
-            ui.printMessage("Here are the matching tasks in your list:");
-        }
-        for (Task t : result) {
-            ui.printMessage(t.toString());
+            return "Here are the matching tasks in your list:\n" + result;
         }
     }
 

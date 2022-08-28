@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * A class that encapsulates the list command.
@@ -12,13 +11,13 @@ public class ListCommand extends Command {
     /**
      * Handles the execution behaviour of the list command.
      *
-     * @param tasks The current list of tasks.
-     * @param ui The UI of the Duke bot.
+     * @param tasks   The current list of tasks.
      * @param storage The storage of data.
+     * @return The reply of the Duke bot.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMessage(tasks.toString());
+    public String execute(TaskList tasks, Storage storage) {
+        return tasks.toString();
     }
 
     /**

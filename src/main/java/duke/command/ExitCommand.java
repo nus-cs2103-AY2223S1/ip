@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * A class that encapsulates the exit command.
@@ -12,14 +11,13 @@ public class ExitCommand extends Command {
     /**
      * Handles the execution behaviour of the exit command.
      *
-     * @param tasks The current list of tasks.
-     * @param ui The UI of the Duke bot.
+     * @param tasks   The current list of tasks.
      * @param storage The storage of data.
+     * @return The reply of the Duke bot.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.byeMessage();
-        ui.printDivider();
+    public String execute(TaskList tasks, Storage storage) {
+        return "Quack! Hope to see you again soon!";
     }
 
     /**
