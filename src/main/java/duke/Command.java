@@ -4,8 +4,8 @@ public class Command {
     private final String keyword;
     private final String content;
     private final String EXIT = "bye";
-    private final String COMPLETE = "done";
-    private final String INCOMPLETE = "not done";
+    private final String STATUS_COMPLETE = "done";
+    private final String STATUS_INCOMPLETE = "not done";
 
     public Command(String keyword, String content) {
         this.keyword = keyword.toLowerCase();
@@ -46,10 +46,10 @@ public class Command {
                 int index = getContentId() - 1;
                 if (keyword.equals("mark")) {
                     Task updatedTask = tasks.markTask(index);
-                    ui.updateTask(updatedTask, COMPLETE);
+                    ui.updateTask(updatedTask, STATUS_COMPLETE);
                 } else if (keyword.equals("unmark")) {
                     Task updatedTask = tasks.unmarkTask(index);
-                    ui.updateTask(updatedTask, INCOMPLETE);
+                    ui.updateTask(updatedTask, STATUS_INCOMPLETE);
                 } else if (keyword.equals("delete")) {
                     Task deletedTask = tasks.delete(index);
                     ui.deleteTaskConfirmation(deletedTask, tasks.getSize());

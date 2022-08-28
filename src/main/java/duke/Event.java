@@ -27,10 +27,10 @@ public class Event extends Task {
     }
 
     protected Event performTask() {
-        return new Event(this.getDesc(), 'X', this.getTaskType());
+        return new Event(getDesc(), 'X', getTaskType());
     }
 
     protected Event undoTask() {
-        return new Event(this.getDesc(), this.getTaskType());
+        return new Event(getDesc(), getTaskType());
     }
 }

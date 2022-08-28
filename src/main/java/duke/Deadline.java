@@ -21,10 +21,10 @@ public class Deadline extends Task {
     }
 
     protected Deadline performTask() {
-        return new Deadline(this.getDesc(), 'X', this.getTaskType());
+        return new Deadline(getDesc(), 'X', getTaskType());
     }
 
     protected Deadline undoTask() {
-        return new Deadline(this.getDesc(), this.getTaskType());
+        return new Deadline(getDesc(), getTaskType());
     }
 }
