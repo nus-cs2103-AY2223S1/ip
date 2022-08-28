@@ -44,6 +44,8 @@ public class Parser {
                         TaskList.markTaskAsNotDone(words);
                     } else if (words[0].equals("delete")) {
                         TaskList.deleteTask(words);
+                    } else if (words[0].equals("find")) {
+                        TaskList.findTasksContainingKeyword(words);
                     } else {
                         UI.sayLines(new String[]{"I'm sorry, I don't know what that means"});
                     }
