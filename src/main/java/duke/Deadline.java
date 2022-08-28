@@ -1,16 +1,17 @@
+package duke;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
-    public String eventTime;
+public class Deadline extends Task {
+    public String dl;
     public LocalDate exactTime;
 
-    public Event(String name, String eventTime) {
+    public Deadline(String name, String dl) {
         super(name);
-        this.eventTime = eventTime;
+        this.dl = dl;
         try {
-            this.exactTime = LocalDate.parse(eventTime);
+            this.exactTime = LocalDate.parse(dl);
         } catch (DateTimeParseException e) {
             System.out.println("Wrong input format!");
         }
@@ -18,7 +19,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(" + exactTime.getMonth() + " "
+        return "[D]" + super.toString() + "(" + exactTime.getMonth() + " "
                 + exactTime.getDayOfMonth() + " " + exactTime.getYear() + ")";
     }
 }
