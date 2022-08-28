@@ -71,8 +71,7 @@ public class Ui {
     public static void taskAddedMessage(Task t, ToDoList list) {
         String toPrint = "\tGot it. I've added this task: \n";
         toPrint += "\t" + t.toString() + "\n";
-        toPrint += "\tYou now have "
-                + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
+        toPrint += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
                 + " in the list.";
         formatMessage(toPrint);
     }
@@ -87,8 +86,7 @@ public class Ui {
         toPrint += "\t\t" + list.getTask(index).toString() + "\n";
         toPrint += "\tYou now have "
                 + (list.getLength() - 1)
-                + (list.getLength() - 1 == 1 ? " task" : "bobthebot/tasks")
-                + " in the list.";
+                + (list.getLength() - 1 == 1 ? " task" : "bobthebot/tasks");
         formatMessage(toPrint);
     }
 

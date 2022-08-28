@@ -1,6 +1,5 @@
 package bobthebot.utils;
 
-import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 
 /**
@@ -55,6 +54,17 @@ public class Parser {
                 result += "\tEg. delete 2 (where 2 is the index of the item you would like to delete)";
                 Ui.printErrorMessage(result);
             }
+        } else if (command.startsWith("find")) {
+            command = command.replace("find", "").trim();
+            String result = "\tHere are the matching items on your list: \n";
+            int index = 1;
+            for (int i = 0; i < list.getLength(); i++) {
+                if (list.getTask(i).toString().contains(command)) {
+                    result += "\t" + index + ". " + list.getTask(i).toString() + "\n";
+                    index++;
+                }
+            }
+            Ui.formatMessage(result);
         } else {
             list.addTask(command);
         }
