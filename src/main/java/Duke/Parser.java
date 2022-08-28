@@ -1,3 +1,10 @@
+package Duke;
+
+import Duke.Task.EventTask;
+import Duke.Task.Task;
+import Duke.Task.DeadlineTask;
+import Duke.Task.TodoTask;
+
 import java.time.format.DateTimeParseException;
 
 /**
