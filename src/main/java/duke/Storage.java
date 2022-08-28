@@ -7,16 +7,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the storage of the Duke application.
+ */
 public class Storage {
 
     private File file;
     private String filePath;
 
+    /**
+     * Initialises a storage object with given path to file.
+     * @param filePath Path to file where data should be stored.
+     */
     public Storage(String filePath) {
         this.file = new File(filePath);
         this.filePath = filePath;
     }
 
+    /**
+     * Updates the contents of this storage with the given task list.
+     * @param list Updated task list to be stored.
+     * @throws DukeException If the application is unable to edit the file.
+     */
     public void update(TaskList list) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
@@ -27,6 +39,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads content from the file specified in the filePath. Creates the file if it does not exist.
+     * @return A list with each element being each line of the file.
+     * @throws DukeException If unable to create the file from filepath.
+     */
     public ArrayList<String> load() throws DukeException{
         try {
             Scanner s = new Scanner(file).useDelimiter("\\r?\\n|\\r");

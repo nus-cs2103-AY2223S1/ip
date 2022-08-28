@@ -16,14 +16,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents the parser of the Duke application.
+ */
 public class Parser {
 
+    /**
+     * Parses the input.
+     * @param input Line of command that user has typed in.
+     * @return Command for taking the next action.
+     * @throws DukeException If the input is in the wrong format.
+     */
     public static Command parse(String input) throws DukeException {
-        Command successfulCommand = parseHelper(input);
-        return successfulCommand;
-    }
-
-    private static Command parseHelper(String input) throws DukeException {
         CommandWords commandWord = getCommand(input);
         switch (commandWord) {
             case BYE:
@@ -31,11 +35,11 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case MARK:
-                return new MarkCommand(getIndex(4, input));
+                return new MarkCommand(getTaskNumber(4, input));
             case UNMARK:
-                return new UnmarkCommand(getIndex(6, input));
+                return new UnmarkCommand(getTaskNumber(6, input));
             case DELETE:
-                return new DeleteCommand(getIndex(6, input));
+                return new DeleteCommand(getTaskNumber(6, input));
             case TODO:
                 if (input.length() < 6) {
                     throw new DukeException("The description of a todo cannot be empty.");
@@ -56,7 +60,7 @@ public class Parser {
         }
     }
 
-    private static int getIndex(int commandLength, String input) throws DukeException {
+    private static int getTaskNumber(int commandLength, String input) throws DukeException {
         if (input.length() == commandLength || (input.length() == commandLength + 1 && input.substring(commandLength, commandLength + 1).equals(" "))) {
             throw new DukeException("Task number cannot be empty.");
         }
@@ -64,8 +68,8 @@ public class Parser {
             throw new DukeException("Command and task number should be separated by a space.");
         }
         try {
-            int index = Integer.parseInt(input.substring(commandLength + 1)) - 1;
-            return index;
+            int taskNumber = Integer.parseInt(input.substring(commandLength + 1));
+            return taskNumber;
         } catch (NumberFormatException e) {
             throw new DukeException("Task number invalid.");
         }

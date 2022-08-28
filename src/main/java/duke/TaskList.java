@@ -8,14 +8,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Represents the list of tasks that have been created in the Duke application.
+ */
 public class TaskList {
 
     private ArrayList<Task> taskList;
 
+    /**
+     * Initialises an empty task list.
+     */
     public TaskList() {
         taskList = new ArrayList<Task>();
     }
 
+    /**
+     * Initialises a task list from an existing list of tasks.
+     * @param taskStringList List with each element containing details of a task.
+     */
     public TaskList(ArrayList<String> taskStringList) {
         taskList = new ArrayList<Task>();
         for (int i = 0; i < taskStringList.size(); i++) {
@@ -25,24 +35,53 @@ public class TaskList {
         }
     }
 
-    public String addTask(Task task) {
+    /**
+     * Adds a task to this task list.
+     * @param task Task to be added.
+     */
+    public void addTask(Task task) {
         taskList.add(task);
-        return task.toString();
     }
 
-    public Task deleteTask(int index) {
-        Task removedTask = taskList.remove(index);
+    /**
+     * Deletes a task from this task list.
+     * @param index Task number of task to be deleted.
+     * @return Deleted task.
+     * @throws DukeException If task number <= 0 or exceeds number of tasks.
+     */
+    public Task deleteTask(int i) throws DukeException {
+        if (i < 1 || i > taskList.size()) {
+            throw new DukeException("Invalid task number.");
+        }
+        Task removedTask = taskList.remove(i - 1);
         return removedTask;
     }
 
+    /**
+     * Gets the number of tasks in this task list.
+     * @return Number of tasks in this task list.
+     */
     public int getNumTasks() {
         return taskList.size();
     }
 
-    public Task getTask(int i) {
-        return taskList.get(i);
+    /**
+     * Gets the task at the provided number in this task list.
+     * @param i task number of task to be retrieved.
+     * @return Task with that task number i.
+     * @throws DukeException If task number <= 0 or exceeds number of tasks.
+     */
+    public Task getTask(int i) throws DukeException {
+        if (i < 1 || i > taskList.size()) {
+            throw new DukeException("Invalid task number.");
+        }
+        return taskList.get(i - 1);
     }
 
+    /**
+     * Gets String representation of this task list.
+     * @return string representation of this task list.
+     */
     @Override
     public String toString() {
         String tasks = "";
@@ -52,6 +91,11 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Creates a task object from its string description.
+     * @param taskString Task description in string.
+     * @return Task that is described by taskString.
+     */
     private Task parseTaskString(String taskString) {
         String withoutNumber = taskString.substring(taskString.indexOf(".") + 2);
         String typeOfTask = withoutNumber.substring(1, 2);
