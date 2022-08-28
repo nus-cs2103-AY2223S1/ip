@@ -42,6 +42,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns true if input keyword is found in Task description.
+     *
+     * @param keyword Keyword to search.
+     * @return Boolean determining presence of keyword in Task description.
+     */
     public boolean containsKeyword(String keyword) {
         String[] descriptionDelimited = this.description.split(" ");
         for (String word : descriptionDelimited) {
