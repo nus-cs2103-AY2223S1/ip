@@ -1,11 +1,6 @@
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
+
 public class Duke {
     private static final String saveDirectoryPath = "../data";
     private static final String saveFilePath = "../data/duke.txt";
@@ -13,7 +8,9 @@ public class Duke {
     private static Storage storage = new Storage(saveDirectoryPath, saveFilePath);
     private static Ui ui = new Ui();
 
-    private static void handleUserInputs(Scanner scanner) {
+    private static void run(Scanner scanner) {
+        ui.showGreeting();
+
         try {
             storage.checkExistsOrCreateNewFile(tasklist);
         } catch (Exception e) {
@@ -22,7 +19,7 @@ public class Duke {
 
         while(scanner.hasNext()) {
             String inputString = scanner.nextLine();
-            String[] inputs = inputString.split(" ");
+            String[] inputs = Parser.splitBySpace(inputString);
             String input = inputs[0];
 
             try {
@@ -48,7 +45,7 @@ public class Duke {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                     }
-                    String[] deadlineDescription = inputString.split("/");
+                    String[] deadlineDescription = Parser.splitBySlash(inputString);
                     tasklist.appendDeadline(deadlineDescription[0], deadlineDescription[1]);
                     ui.showAddedTask(tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
@@ -56,7 +53,7 @@ public class Duke {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
                     }
-                    String[] eventDescription = inputString.split("/");
+                    String[] eventDescription = Parser.splitBySlash(inputString);
                     tasklist.appendEvent(eventDescription[0], eventDescription[1]);
                     ui.showAddedTask(tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
@@ -82,8 +79,6 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         Scanner scanner = new Scanner(System.in);
-
-        ui.showGreeting();
-        handleUserInputs(scanner);
+        run(scanner);
     }
 }
