@@ -36,14 +36,14 @@ public class Task {
 
         switch(TaskType.valueOf(taskType)) {
             case event:
-            taskArray = textArray[1].split("/at", 2);
+            taskArray = textArray[1].split("/at ", 2);
             if (taskArray.length <= 1) {
                 throw new IanaException("Rejected! Add event again with the format EVENT <event> /at <event time> !! :-)");
             }
             break;
             
             case deadline:
-            taskArray = textArray[1].split("/by", 2);
+            taskArray = textArray[1].split("/by ", 2);
             if (taskArray.length <= 1) {
                 throw new IanaException("Use the format DEADLINE <deadline> /by <deadline time> to create a deadline!! :D");
             }
@@ -69,10 +69,6 @@ public class Task {
     
     public void toggleComplete(boolean isCompleted) {
         this.isCompleted = isCompleted;
-    }
-
-    public String toFileData() {
-        return String.format("%d | %s", this.isCompleted ? 1 : 0, this.task);
     }
 
     @Override

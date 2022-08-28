@@ -3,7 +3,7 @@ public class Deadline extends Task {
 
     public Deadline(String task, String endTime) {
         super(task, "deadline");
-        this.endTime = endTime;
+        this.endTime = DateTime.parseToString(endTime);
     }
 
     @Override
@@ -22,11 +22,6 @@ public class Deadline extends Task {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String toFileData() {
-        return "D | " + super.toFileData() + "|" + this.endTime;
     }
 
     @Override
