@@ -1,7 +1,8 @@
 package duke.task;
 
+import java.util.Locale;
+
 public class Task {
-    // consider making this an abstract class
     protected String desc;
     protected boolean isDone;
 
@@ -42,6 +43,11 @@ public class Task {
 
     public String toSaveFormat() {
         return "| " + (isDone ? 1 : 0) + " | " + this.desc;
+    }
+    
+    // case insensitive
+    public boolean isMatch(String keyword) {
+        return this.toString().toLowerCase().contains(keyword.toLowerCase());
     }
 
     @Override

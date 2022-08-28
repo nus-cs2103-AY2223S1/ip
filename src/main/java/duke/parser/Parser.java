@@ -1,13 +1,6 @@
 package duke.parser;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.CommandWord;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.TaskType;
 import duke.ui.Ui;
@@ -37,6 +30,8 @@ public class Parser {
                 return validateMark(parsedCommand);
             case "unmark":
                 return validateUnmark(parsedCommand);
+            case "find":
+                return validateFind(parsedCommand);
             case "list":
                 return validateList(strippedCommand);
             case "bye":
@@ -125,7 +120,8 @@ public class Parser {
 
     private static Command validateDelete(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.DELETE));
+            throw new DukeException("  Enter a task number, nitwit.\n"
+                    + Ui.getCommandHelp(CommandWord.DELETE));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new DeleteCommand(num);
@@ -134,16 +130,27 @@ public class Parser {
 
     private static Command validateMark(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.MARK));
+            throw new DukeException("  Enter a task number, nitwit.\n"
+                    + Ui.getCommandHelp(CommandWord.MARK));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new MarkCommand(num);
         }
     }
 
+    private static Command validateFind(String[] parsedCommand) throws DukeException {
+        if (parsedCommand.length < 2) {
+            throw new DukeException("  You're so helpful. What exactly am I supposed to look for?\n"
+                    + Ui.getCommandHelp(CommandWord.FIND));
+        } else {
+            return new FindCommand(parsedCommand[1]);
+        }
+    }
+    
     private static Command validateUnmark(String[] parsedCommand) throws DukeException {
         if (parsedCommand.length < 2) { // blank task number
-            throw new DukeException("  Enter a task number, nitwit.\n" + Ui.getCommandHelp(CommandWord.UNMARK));
+            throw new DukeException("  Enter a task number, nitwit.\n"
+                    + Ui.getCommandHelp(CommandWord.UNMARK));
         } else {
             int num = Integer.parseInt(parsedCommand[1]);
             return new UnmarkCommand(num);

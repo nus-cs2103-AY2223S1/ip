@@ -79,6 +79,16 @@ delete -1
 delete 60
 delete 3
 list
+find
+find  
+find zebra
+find BOOK
+find book   
+find    book
+find [d]
+find proj
+find [ ]
+find 7
 delete asdf
 mark asdwa
 unmark sawd
