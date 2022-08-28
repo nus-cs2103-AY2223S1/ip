@@ -7,7 +7,7 @@ public class Ui {
         System.out.println("_____________   _       _______________\n|___   __||  | | |     | |__  __| ____|"
                 + "\n    | |  | __ ||  \\   /  |  | | | |___\n _  | | | |__| |   \\_/   |  | | |  ___|"
                 + "\n| |_| | |  __  | |\\   /| |__| |_| |___\n|_____| |_|  |_|_| \\_/ |_|______|_____|");
-        System.out.println("Hi, I'm duke.Jamie.\nWhat do you want to do?\n"
+        System.out.println("Hi, I'm Jamie.\nWhat do you want to do?\n"
                 + "For dates and time, please enter in the format:\n"
                 + "dd/MM/yyyy HHmm eg. 29/10/2022 0000");
     }
