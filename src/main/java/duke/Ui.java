@@ -120,4 +120,18 @@ public class Ui {
         System.out.println("CLEAR ALL LIAO");
         System.out.println(LINE_DIVIDER);
     }
+
+    public void printFilteredList(TaskList tl) {
+        System.out.println(LINE_DIVIDER);
+        if (tl.size() == 0) {
+            System.out.println("List is empty la");
+            System.out.println(LINE_DIVIDER);
+            return;
+        }
+        System.out.println("Matching one:");
+        for (int j = 0; j < tl.size(); j++) {
+            System.out.println(j + 1 + ":" + tl.get(j).toString());
+        }
+        System.out.println(LINE_DIVIDER);
+    }
 }

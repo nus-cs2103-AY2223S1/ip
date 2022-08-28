@@ -3,6 +3,7 @@ package duke;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * A TaskList object containing the tasklist.
@@ -93,6 +94,13 @@ public class TaskList {
     public void clear() {
         this.taskList.clear();
         listToFile(this.taskList);
+    }
+
+    public ArrayList<Task> findMatching(String phrase) {
+        return taskList
+                .stream()
+                .filter(task -> task.taskName.contains(phrase))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

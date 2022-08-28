@@ -88,6 +88,11 @@ public class Duke {
                     tl.clear();
                     ui.printClearMsg();
                     break;
+                } else if (msgWords[i].equalsIgnoreCase("find")) {
+                    String words = curr.substring(5).trim();
+                    TaskList filteredTaskList = new TaskList(tl.findMatching(words));
+                    ui.printFilteredList(filteredTaskList);
+                    break;
                 } else {
                     ui.printError();
                     break;
