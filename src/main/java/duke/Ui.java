@@ -1,3 +1,6 @@
+package duke;
+
+
 public class Ui {
 
     public void greetings() {
