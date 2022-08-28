@@ -1,27 +1,37 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 
+import duke.exceptions.DukeException;
+import duke.exceptions.InputOutputException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+
+/**
+ * Class dealing with storage of tasks.
+ */
 public class Storage {
 
     private final String directory;
     private final String fileName;
-    File data;
+    private File data;
 
+    /**
+     * Initialises Storage object, creating specified file.
+     *
+     * @param directory Directory that the data file is located in.
+     * @param fileName  Filename of file to be loaded/saved to.
+     * @throws DukeException Exception thrown in case of error creating file/directory.
+     */
     public Storage(String directory, String fileName) throws DukeException {
         this.directory = directory;
         this.fileName = fileName;
@@ -35,7 +45,7 @@ public class Storage {
                 f.createNewFile();
             }
         } catch (IOException e) {
-            throw new duke.exceptions.IOException("Error finding/creating data file");
+            throw new InputOutputException("Error finding/creating data file");
         }
         return f;
     }
@@ -59,7 +69,7 @@ public class Storage {
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new duke.exceptions.IOException("Error reading from data file");
+            throw new InputOutputException("Error reading from data file");
         }
         return toReturn;
     }
@@ -91,6 +101,11 @@ public class Storage {
         return tasksAsStrings;
     }
 
+    /**
+     * Saves specified tasks to file that object was initialised with.
+     *
+     * @param tasks Tasks to be saved to file
+     */
     public void saveToFile(TaskList tasks) {
         try {
             data.delete();

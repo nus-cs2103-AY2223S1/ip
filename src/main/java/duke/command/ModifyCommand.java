@@ -4,7 +4,13 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command child class that lists tasks or marks task as done/undone.
+ */
 public class ModifyCommand extends Command {
+    /**
+     * Types of commands that can be executed by this class.
+     */
     public enum CommandType {
         LIST, UNDONE, DONE;
     }
@@ -32,6 +38,13 @@ public class ModifyCommand extends Command {
     }
 
 
+    /**
+     * Modifies/lists tasks as specified by stored command type/index.
+     *
+     * @param tasks   TaskList object corresponding to all tasks
+     * @param ui      Ui object to show user output/errors
+     * @param storage Storage object to save data after execution
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         switch (commandType) {
         case DONE:
@@ -42,6 +55,8 @@ public class ModifyCommand extends Command {
             break;
         case LIST:
             tasks.listTasks(ui);
+            break;
+        default:
             break;
         }
 

@@ -1,16 +1,21 @@
 package duke.task;
 
-import duke.exceptions.InvalidDateTimeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+import duke.exceptions.InvalidDateTimeException;
+
+/**
+ * Task parent class.
+ */
 public class Task {
+
+    protected LocalDate date;
+
     private final String description;
     private boolean isDone = false;
 
-    protected LocalDate date;
 
     /**
      * Creates new Task object with specified description.

@@ -1,5 +1,8 @@
 package duke.exceptions;
 
+/**
+ * DukeException child exception specifying error related to datetime.
+ */
 public class InvalidDateTimeException extends DukeException {
 
     /**

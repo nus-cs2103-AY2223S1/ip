@@ -1,5 +1,8 @@
 package duke.exceptions;
 
+/**
+ * Generic runtime exception.
+ */
 public class DukeException extends RuntimeException {
 
     /**

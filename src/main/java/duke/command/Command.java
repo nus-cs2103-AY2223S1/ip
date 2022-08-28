@@ -1,12 +1,16 @@
 package duke.command;
 
+import java.util.Objects;
+
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.util.Objects;
 
+/**
+ * Generic Command parent class.
+ */
 public class Command {
     protected Task task;
     protected int index;

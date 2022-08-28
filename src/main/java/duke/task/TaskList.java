@@ -1,11 +1,13 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 import duke.exceptions.InvalidTaskException;
 import duke.ui.Ui;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
+/**
+ * TaskList class that stores all tasks specified by user/file.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks = new ArrayList<>();
 
@@ -48,6 +50,8 @@ public class TaskList {
             break;
         case "1":
             task.markAsDone();
+            break;
+        default:
             break;
         }
         tasks.add(task);
@@ -94,7 +98,11 @@ public class TaskList {
     }
 
     private void printOnAdd(Task task, Ui ui) {
-        ui.showMessage("Got it. I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        ui.showMessage("Got it. I've added this task:\n  "
+                + task
+                + "\nNow you have "
+                + tasks.size()
+                + " tasks in the list.");
     }
 
     /**
@@ -109,7 +117,11 @@ public class TaskList {
     }
 
     private void printOnDelete(int taskNum, Ui ui) {
-        ui.showMessage("Noted. I've deleted this task:\n  " + tasks.get(taskNum) + "\nNow you have " + (tasks.size() - 1) + " tasks in the list.");
+        ui.showMessage("Noted. I've deleted this task:\n  "
+                + tasks.get(taskNum)
+                + "\nNow you have "
+                + (tasks.size() - 1)
+                + " tasks in the list.");
     }
 
     /**
@@ -127,6 +139,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns tasks that match specified search query.
+     *
+     * @param toFind String specifying search query.
+     * @return List of tasks matching search query.
+     */
     public ArrayList<Task> find(String toFind) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
@@ -134,7 +152,7 @@ public class TaskList {
                 foundTasks.add(task);
             }
         }
-        
+
         return foundTasks;
     }
 }

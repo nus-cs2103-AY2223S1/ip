@@ -1,20 +1,23 @@
 package duke;
 
 import duke.command.Command;
-import duke.parser.Parser;
 import duke.exceptions.DukeException;
+import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Creates main Duke class that runs main program
+ */
 public class Duke {
+
+    private static final String DIRECTORY = "./data/";
+    private static final String FILENAME = "todo.txt";
 
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
-
-    public final static String DIRECTORY = "./data/";
-    public final static String FILENAME = "todo.txt";
 
 
     /**
@@ -53,7 +56,7 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
-        
+
         ui.showExit();
     }
 

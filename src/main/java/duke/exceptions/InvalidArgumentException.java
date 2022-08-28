@@ -1,5 +1,8 @@
 package duke.exceptions;
 
+/**
+ * DukeException child exception specifying an invalid argument.
+ */
 public class InvalidArgumentException extends DukeException {
 
     /**

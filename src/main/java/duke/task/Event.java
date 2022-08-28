@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Task child class that specifies an event.
+ */
 public class Event extends Task {
 
     /**

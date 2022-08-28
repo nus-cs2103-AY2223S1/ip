@@ -1,11 +1,13 @@
 package duke.ui;
 
-import duke.task.Task;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Task;
+
+/**
+ * Ui class that handles output to be shown to user.
+ */
 public class Ui {
 
     private final Scanner input = new Scanner(System.in);

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Task child class that specifies a Todo task.
+ */
 public class Todo extends Task {
 
     protected String by;

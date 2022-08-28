@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Task child class that specifies a task with a deadline.
+ */
 public class Deadline extends Task {
 
     /**

@@ -6,14 +6,15 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ModifyCommand;
-
 import duke.exceptions.InvalidArgumentException;
 import duke.exceptions.InvalidCommandException;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
+/**
+ * Class to parse user input and return relevant command.
+ */
 public class Parser {
 
     /**
@@ -44,10 +45,9 @@ public class Parser {
             return createDeleteCommand(command);
         case "find":
             return createFindCommand(command);
+        default:
+            throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-
-
-        throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     private static String getSecondHalf(String command) {
