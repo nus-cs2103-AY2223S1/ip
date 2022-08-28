@@ -59,5 +59,16 @@ public abstract class Task {
      * @return Reformatted task.
      */
     public abstract String toStorageString();
+    public boolean hasKeyword(String keyword){
+        String[] words = this.toString().split("\\s+");
+        boolean isFound = false;
+        for (String word : words) {
+            if (word.equalsIgnoreCase(keyword)) {
+                isFound = true;
+                break;
+            }
+        }
+        return isFound;
+    }
 
 }

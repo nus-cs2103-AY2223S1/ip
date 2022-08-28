@@ -129,4 +129,7 @@ public class Ui {
                 " tasks on the list.");
     }
 
+    public void displayFoundList(TaskList taskList) {
+        displayList(taskList);
+    }
 }

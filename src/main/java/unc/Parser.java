@@ -5,6 +5,7 @@ import unc.command.DeadlineCommand;
 import unc.command.DeleteCommand;
 import unc.command.EventCommand;
 import unc.command.ExitCommand;
+import unc.command.FindCommand;
 import unc.command.ListCommand;
 import unc.command.MarkCommand;
 import unc.command.TodoCommand;
@@ -22,7 +23,8 @@ public class Parser {
         TODO,
         DEADLINE,
         EVENT,
-        BYE
+        BYE,
+        FIND
 
     }
 
@@ -60,6 +62,8 @@ public class Parser {
         //break;
         case BYE:
             return new ExitCommand();
+        case FIND:
+            return new FindCommand(words[1]);
         default:
             throw new RuntimeException();
         }
