@@ -76,7 +76,7 @@ public class Storage {
                         // replace the formats with empty string
                         String deadlineDsc = modifiedLine.replace("[D][ ] ", "");
                         // get 2 substring for description and deadlineTime
-                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("("));
+                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
                         String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
                         String modDeadlineTime = dlTime.replaceFirst("by: ", "");
                         // to convert string to date
@@ -91,7 +91,7 @@ public class Storage {
                         // replace the formats with empty string
                         String deadlineDsc = modifiedLine.replace("[D][X] ", "");
                         // get 2 substring for description and deadlineTime
-                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("("));
+                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
                         String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
                         String modDeadlineTime = dlTime.replaceFirst("by: ", "");
                         // to convert string to date
