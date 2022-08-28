@@ -72,6 +72,10 @@ public class Storage {
         }
     }
 
+    public String getPath() {
+        return file.getAbsolutePath();
+    }
+
     public void wipe() {
         file.delete();
     }

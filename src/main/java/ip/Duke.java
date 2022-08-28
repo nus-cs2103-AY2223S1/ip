@@ -28,12 +28,16 @@ public class Duke {
             toWipe = true;
         }
         try {
+            // Try loading tasklist from default storage location.
             taskList = storage.load();
         } catch (IOException e) {
-            ui.say("Error in loading task data file. Using default location.");
-            ui.say("WARNING: Task data will be deleted after this run.");
-            storage = new Storage("taskList.txt");
-            toWipe = true;
+            ui.say("Error in loading task data file. Searching for file in default location.");
+            try {
+                taskList = storage.load("taskList.txt");
+                ui.say("Task data file located in " + storage.getPath());
+            } catch (IOException ee) {
+                ui.say(ee.toString());
+            }
         }
         ui.divider();
         while (true) {
