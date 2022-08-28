@@ -16,7 +16,7 @@ public class Ui {
     }
 
     public String printWelcome() {
-        String s = "Hello! I'm Duke.Duke \n What can I do for you?";
+        String s = "Hello! I'm Duke.Duke \nWhat can I do for you?";
         System.out.println(s);
         return s;
     }
