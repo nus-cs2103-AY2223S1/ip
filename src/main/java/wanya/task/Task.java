@@ -21,7 +21,7 @@ public abstract class Task {
         return hasCompleted;
     }
 
-    public void completedTask() {
+    public void setComplete() {
         if (this.hasCompleted) {
             System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
         }
@@ -31,7 +31,7 @@ public abstract class Task {
         System.out.println(this + "\n");
     }
 
-    public void uncompletedTask() {
+    public void setIncomplete() {
         if (!this.hasCompleted) {
             System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
         }
