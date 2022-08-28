@@ -179,6 +179,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds tasks in list
+     * @param in Input of the user
+     * @throws DukeException If there is an error in the input
+     */
     public void find(String in) throws DukeException {
         String toBeFound = in.replaceFirst("find", "");
         if (toBeFound.trim().isEmpty()) {

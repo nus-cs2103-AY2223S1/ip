@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @version CS2103T AY22/23 Sem 1
  */
 public class Ui {
-    private static final String LINE = "_______" ;
+    private static final String LINE = "_________" ;
 
     private Scanner input;
 
