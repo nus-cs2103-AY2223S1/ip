@@ -50,10 +50,7 @@ public class Control {
                     this.evalDelete(subCmd);
                     break;
                 default:
-                    this.dir.add(new Task(cmd));
-
-                    System.out.println(String.format("added: %s\n", cmd));
-
+                    System.out.println(String.format("Error: Wrong format of command"));
             }
         }
 
@@ -92,7 +89,7 @@ public class Control {
             if (tmp.equals("")) {
                 throw new EmptyDescriptionException();
             } else {
-                Todo tmpTask = new Todo(tmp);
+                Todo tmpTask = new Todo(tmp, false);
 
                 this.dir.add(tmpTask);
                 System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
@@ -109,7 +106,7 @@ public class Control {
                 try {
                     String[] tempSplit = tmp.split(" /by ");
                     LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                    Deadline tmpTask = new Deadline(tempSplit[0], tempDate);
+                    Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate);
 
                     this.addDir(tmpTask);
                     System.out.println(String.format(
@@ -130,7 +127,7 @@ public class Control {
             } else {
                 String[] tempSplit = tmp.split(" /at ");
 
-                Event tmpTask = new Event(tempSplit[0],tempSplit[1]);
+                Event tmpTask = new Event(tempSplit[0], false, tempSplit[1]);
 
                 this.addDir(tmpTask);
                 System.out.println(String.format(

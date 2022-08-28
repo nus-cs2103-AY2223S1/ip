@@ -1,13 +1,19 @@
 public class Event extends Task {
     public String time;
 
-    public Event(String description, String time) {
-        super(description);
+    public Event(String description, boolean isDone, String time) {
+        super(description, isDone);
         this.time = time;
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.time);
+        return String.format("[E][%s]%s (at: %s)", super.getStatusIcon(),
+                super.toString(), this.time);
+    }
+
+    @Override
+    public String toFileString() {
+        return String.format("E | %s | %s | %s", super.getFileIcon(), super.toString(), this.time);
     }
 }
