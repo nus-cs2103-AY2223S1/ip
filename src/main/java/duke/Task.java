@@ -14,7 +14,7 @@ public class Task {
     }
 
     public String savedData() {
-        return getStatusIcon() + "| " + description + " | ";
+        return getStatusIcon() + " | " + description + " | ";
     }
 
     @Override
