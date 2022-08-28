@@ -13,6 +13,9 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
     protected String returnDescription(){
         String cross = " ";
         if (isCompleted) {
