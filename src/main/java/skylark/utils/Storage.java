@@ -103,7 +103,7 @@ public class Storage {
                 throw new SkylarkException("Cannot find file!");
             }
         } catch (SkylarkException skylarkException) {
-            Printer.printText(skylarkException.toString());
+            return new ArrayList<>();
         }
 
         return taskArrayList;
