@@ -29,22 +29,33 @@ public class UI {
         System.out.print("Yes? I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<\n\n");
     }
 
-    public void list(List<Task> tasks) {
+    public void listAll(List<Task> tasks) {
         System.out.println("\tReally? If you are so forgetful...");
 
-        for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println("\t" + i + ". " + tasks.get(i - 1));
-        }
+        list(tasks);
     }
 
     public void listTaskOn(List<Task> tasks) {
         if (tasks != null) {
             System.out.println("\tThese are your tasks for that day");
-            for (int i = 1; i <= tasks.size(); i++) {
-                System.out.println("\t" + i + ". " + tasks.get(i - 1));
-            }
+            list(tasks);
         } else {
             System.out.println("\tWell you are a lazy bum, you have nothing on the day");
+        }
+    }
+
+    public void listFound(List<Task> tasks) {
+        if (!tasks.isEmpty()) {
+            System.out.println("\tThese are the tasks that match your description");
+            list(tasks);
+        } else {
+            System.out.println("\t You like to search for nothing and waste time huh?");
+        }
+    }
+
+    private void list(List<Task> tasks) {
+        for (int i = 1; i <= tasks.size(); i++) {
+            System.out.println("\t" + i + ". " + tasks.get(i - 1));
         }
     }
 

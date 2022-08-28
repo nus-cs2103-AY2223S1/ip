@@ -39,6 +39,8 @@ public class Parser {
             return new Mark(parseTargetIndex(args));
         case "unmark":
             return new Unmark(parseTargetIndex(args));
+        case "find":
+            return new Find(parseFindKeyword(args));
         case "todo":
             return new AddTodo(parseTodo(args));
         case "event":
@@ -121,5 +123,14 @@ public class Parser {
                 throw DukeException.INVALID_DATE_FORMAT;
             }
         }
+    }
+
+    public static String parseFindKeyword(String args) throws DukeException {
+        String trimmed = args.trim();
+        if (trimmed.isEmpty()) {
+            throw DukeException.MISSING_FIND_KEYWORD;
+        }
+
+        return trimmed;
     }
 }

@@ -8,7 +8,7 @@ public class List implements Command {
 
     @Override
     public void execute(TaskList todos, UI ui) {
-        ui.list(todos.listTasks());
+        ui.listAll(todos.listTasks());
     }
 
     @Override
