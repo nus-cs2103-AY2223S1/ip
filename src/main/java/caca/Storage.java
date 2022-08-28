@@ -129,7 +129,7 @@ public class Storage {
      * @return A list of all the tasks stored.
      */
     public TaskList readFile() throws InvalidDateException {
-        TaskList tasks = new TaskList();
+        TaskList tasks = new TaskList(null);
         File file = new File(filePath);
 
         // Surround with try-catch block as suggested by IDE.
@@ -171,7 +171,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             // Creates a new list to store subsequent tasks entered by user
             // if data file does not exist at the start.
-            tasks = new TaskList();
+            tasks = new TaskList(null);
 
         } finally {
             // Prevents NullPointerException as suggested by IDE.

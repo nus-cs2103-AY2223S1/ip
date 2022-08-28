@@ -41,7 +41,15 @@ public class TaskList {
     /**
      * An array to store the list of tasks input by user.
      */
-    private static final List<Task> tasks = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
+
+    public TaskList(ArrayList<Task> tasks) {
+        if (tasks == null) {
+            this.tasks = new ArrayList<>();
+        } else {
+            this.tasks = tasks;
+        }
+    }
 
     /**
      * Gets the list of tasks.
