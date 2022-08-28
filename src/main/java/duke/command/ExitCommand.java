@@ -4,6 +4,11 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Encapsulates saving and quitting Apollo.
+ *
+ * @author Kartikeya
+ */
 public class ExitCommand implements Command {
     /**
      * {@inheritDoc}

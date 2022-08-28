@@ -5,6 +5,11 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Abstraction to list all tasks stored in a TaskList.
+ *
+ * @author Kartikeya
+ */
 public class ListItemsCommand implements Command {
     /**
      * {@inheritDoc}

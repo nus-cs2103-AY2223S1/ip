@@ -1,37 +1,62 @@
 package duke.ui;
 
-import duke.exception.DukeException;
-
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+
+/**
+ * Abstraction for user interactions, used to print out responses
+ * from user commands.
+ */
 public class Ui {
-  private final Scanner s;
-  private static final String DIVIDER =
-      "\n-----------------------------------------------";
+    private static final String DIVIDER =
+            "\n-----------------------------------------------";
+    private final Scanner s;
 
-  public Ui() {
-    s = new Scanner(System.in);
-  }
+    public Ui() {
+        s = new Scanner(System.in);
+    }
 
-  public void showIntro() {
-    String intro = "Welcome to Apollo!\n" +
-        "How can I help you today?";
-    System.out.println(intro + DIVIDER);
-  }
+    /**
+     * Shows intro message to user.
+     */
+    public void showIntro() {
+        String intro = "Welcome to Apollo!\n"
+                + "How can I help you today?";
+        System.out.println(intro + DIVIDER);
+    }
 
-  public void showError(DukeException e) {
-    System.out.println(e.getMessage() + DIVIDER);
-  }
+    /**
+     * Shows error message to user.
+     *
+     * @param e error encountered
+     */
+    public void showError(DukeException e) {
+        System.out.println(e.getMessage() + DIVIDER);
+    }
 
-  public void showOutro() {
-    System.out.println("Goodbye, see you soon!" + DIVIDER);
-  }
+    /**
+     * Shows outro message to user.
+     */
+    public void showOutro() {
+        System.out.println("Goodbye, see you soon!" + DIVIDER);
+    }
 
-  public void showToUser(String s) {
-    System.out.println(s + DIVIDER);
-  }
+    /**
+     * Shows input string to user as a message.
+     *
+     * @param s input string to be shown to user
+     */
+    public void showToUser(String s) {
+        System.out.println(s + DIVIDER);
+    }
 
-  public String getUserInput() {
-    return s.nextLine();
-  }
+    /**
+     * Accepts user input and returns it as a string.
+     *
+     * @return user input as a string
+     */
+    public String getUserInput() {
+        return s.nextLine();
+    }
 }

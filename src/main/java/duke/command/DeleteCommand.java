@@ -5,6 +5,11 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Encapsulates deleting items from a TaskList object.
+ *
+ * @author Kartikeya
+ */
 public class DeleteCommand implements Command {
     private final String index;
 
@@ -18,6 +23,10 @@ public class DeleteCommand implements Command {
      */
     @Override
     public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
-        ui.showToUser(itemList.deleteItem(Integer.parseInt(index)));
+        try {
+            ui.showToUser(itemList.deleteItem(Integer.parseInt(index)));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please attach a valid number to the command.");
+        }
     }
 }

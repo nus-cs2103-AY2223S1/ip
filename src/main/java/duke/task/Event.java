@@ -1,7 +1,7 @@
 package duke.task;
 
-import duke.parser.DukeDateTimeFormatter;
 import duke.exception.DukeException;
+import duke.parser.DukeDateTimeFormatter;
 
 /**
  * Encapsulates an event task stored by Apollo.
@@ -14,6 +14,13 @@ public class Event extends DukeTask {
     private final String description;
     private String formattedAt;
 
+    /**
+     * Constructor for an Event task.
+     *
+     * @param description description of the event
+     * @param at          when the event will occur
+     * @throws DukeException if the input is erroneous
+     */
     public Event(String description, String at) throws DukeException {
         super(description);
         this.description = description;
@@ -23,6 +30,7 @@ public class Event extends DukeTask {
 
     /**
      * Formats time to the specified format of `MMM d, yyyy | h:mma`
+     *
      * @throws DukeException if the input is erroneous
      */
     private void formatTime() throws DukeException {

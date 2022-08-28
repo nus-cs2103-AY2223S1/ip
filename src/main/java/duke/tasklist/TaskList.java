@@ -1,10 +1,10 @@
 package duke.tasklist;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.DukeTask;
-
-import java.util.ArrayList;
 
 /**
  * Encapsulates the list of items stored by Apollo.
@@ -25,6 +25,7 @@ public class TaskList {
 
     /**
      * Adds given DukeTask to the list of items.
+     *
      * @param newItem DukeTask that needs to be added to the list of items
      */
     public void add(DukeTask newItem) {
@@ -35,7 +36,7 @@ public class TaskList {
      * Deletes an item from the items list.
      *
      * @param i 1-indexed position of item to be deleted
-     * @return String signifying successful deletion
+     * @return string signifying successful deletion
      * @throws DukeException Indicates incorrect index
      */
     public String deleteItem(int i) throws DukeException {
@@ -81,15 +82,17 @@ public class TaskList {
 
     /**
      * Returns number of items in the list as a string.
+     *
      * @return string signifying number of items stored
      */
     public String listCount() {
-        return "\nNow you have " + items.size() + " task" +
-                (items.size() == 1 ? "" : "s") + " in the list.";
+        return "\nNow you have " + items.size() + " task"
+                + (items.size() == 1 ? "" : "s") + " in the list.";
     }
 
     /**
      * Saves list of items to storage.
+     *
      * @param s storage object that is used to save
      */
     public void save(Storage s) {
@@ -98,6 +101,7 @@ public class TaskList {
 
     /**
      * Returns list of DukeTasks whose descriptions match the check string.
+     *
      * @param check string to compare descriptions against
      * @return list of DukeTasks whose descriptions match check string
      */
@@ -113,6 +117,7 @@ public class TaskList {
 
     /**
      * Returns string signifying the items stored in the list.
+     *
      * @return string signifying stored items
      */
     @Override

@@ -8,6 +8,11 @@ package duke.task;
 public class ToDo extends DukeTask {
     private final String description;
 
+    /**
+     * Constructor for a ToDo task.
+     *
+     * @param description description of todo task
+     */
     public ToDo(String description) {
         super(description);
         this.description = description;

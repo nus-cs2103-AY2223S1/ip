@@ -5,6 +5,11 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Abstraction to mark a task as complete.
+ *
+ * @author Kartikeya
+ */
 public class MarkCommand implements Command {
     private final String index;
 
@@ -18,6 +23,10 @@ public class MarkCommand implements Command {
      */
     @Override
     public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
-        ui.showToUser(itemList.mark(Integer.parseInt(index)));
+        try {
+            ui.showToUser(itemList.mark(Integer.parseInt(index)));
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please attach a valid number to the command.");
+        }
     }
 }

@@ -1,7 +1,7 @@
 package duke.task;
 
-import duke.parser.DukeDateTimeFormatter;
 import duke.exception.DukeException;
+import duke.parser.DukeDateTimeFormatter;
 
 /**
  * Encapsulates a deadline task stored by Apollo.
@@ -14,6 +14,13 @@ public class Deadline extends DukeTask {
     private final String description;
     private String formattedBy;
 
+    /**
+     * Constructor for a Deadline task.
+     *
+     * @param description description of the deadline
+     * @param by          when the deadline is due
+     * @throws DukeException if the input is erroneous
+     */
     public Deadline(String description, String by) throws DukeException {
         super(description);
         this.description = description;
@@ -23,6 +30,7 @@ public class Deadline extends DukeTask {
 
     /**
      * Formats time to the specified format of `MMM d, yyyy | h:mma`
+     *
      * @throws DukeException if the input is erroneous
      */
     private void formatTime() throws DukeException {

@@ -1,20 +1,21 @@
 package duke.parser;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.exception.DukeException;
+
 /**
- * Encapsulates date-time formatting for duke.Duke tasks.
+ * Encapsulates date-time formatting for Apollo tasks.
  *
  * @author Kartikeya
  */
 public class DukeDateTimeFormatter {
     /**
      * Formats date-time inputs to the required `MMM d, yyyy | h:mma` format
+     *
      * @param input input string from event
      * @return formatted string
      */
@@ -33,7 +34,7 @@ public class DukeDateTimeFormatter {
             return returnDate + " | " + returnTime;
         } catch (DateTimeParseException | IndexOutOfBoundsException f) {
             throw new DukeException(
-                    "Please format your date/time in this format: \"yyyy-mm-dd hhmm\""
+                    "Please format your date/time in this 24-hour format: \"yyyy-mm-dd hhmm\""
             );
         }
     }

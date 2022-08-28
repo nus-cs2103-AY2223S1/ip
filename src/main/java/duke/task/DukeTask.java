@@ -12,6 +12,11 @@ public abstract class DukeTask {
     // Indicates if the task has been completed
     private boolean isDone;
 
+    /**
+     * Constructor for a DukeTask object.
+     *
+     * @param description description of the task
+     */
     public DukeTask(String description) {
         this.description = description;
         this.isDone = false;
@@ -20,7 +25,7 @@ public abstract class DukeTask {
     /**
      * Returns status of task completion.
      *
-     * @return String signifying status of task completion
+     * @return string signifying status of task completion
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -29,7 +34,7 @@ public abstract class DukeTask {
     /**
      * Marks a task as complete and returns a string signifying this.
      *
-     * @return String signifying task completion
+     * @return string signifying task completion
      */
     public String markAsDone() {
         isDone = true;
@@ -40,7 +45,7 @@ public abstract class DukeTask {
     /**
      * Marks a task as not complete and returns a string signifying this.
      *
-     * @return String signifying incomplete task
+     * @return string signifying incomplete task
      */
     public String markAsNotDone() {
         isDone = false;
@@ -50,6 +55,7 @@ public abstract class DukeTask {
 
     /**
      * Checks if a task is marked as completed.
+     *
      * @return true if task is marked as complete; false otherwise
      */
     public boolean isDone() {
@@ -58,12 +64,14 @@ public abstract class DukeTask {
 
     /**
      * Converts task representation to a string suitable for saving in storage
+     *
      * @return string representation of task suitable for storage
      */
     public abstract String getStorageString();
 
     /**
      * Returns description of task.
+     *
      * @return description of task
      */
     public String getDescription() {

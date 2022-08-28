@@ -9,7 +9,7 @@ import duke.ui.Ui;
 
 /**
  * Apollo is a chatbot that keeps tracks of various items, encapsulated
- * as a duke.Duke instance.
+ * as a Duke instance.
  *
  * @author Kartikeya
  */
@@ -17,8 +17,11 @@ public class Duke {
     private Storage storage;
     private TaskList itemList;
     private final Ui ui;
-    private final Parser parser;
 
+    /**
+     * Constructor for an instance of Apollo.
+     * Initialises storage, itemList, ui and parser.
+     */
     public Duke() {
         try {
             storage = new Storage();
@@ -27,7 +30,6 @@ public class Duke {
             itemList = new TaskList();
         } finally {
             ui = new Ui();
-            parser = new Parser(itemList, storage, ui);
         }
     }
 
@@ -38,7 +40,7 @@ public class Duke {
         ui.showIntro();
         while (true) {
             try {
-                Command c = parser.parseUserInput(ui.getUserInput());
+                Command c = Parser.parseUserInput(ui.getUserInput());
                 c.execute(itemList, ui, storage);
             } catch (DukeException e) {
                 ui.showError(e);

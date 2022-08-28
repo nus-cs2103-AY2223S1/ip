@@ -1,17 +1,17 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.DukeTask;
-import duke.task.Event;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.DukeTask;
+import duke.task.Event;
+import duke.task.ToDo;
 
 /**
  * Encapsulates saving/loading data from storage.
@@ -45,6 +45,7 @@ public class Storage {
     /**
      * Loads saved TaskList data from the storage file. Parses saved data
      * into required format that complies with the ui.
+     *
      * @return list of DukeTasks that were saved in local storage
      * @throws DukeException if the storage file cannot be found
      */
@@ -80,6 +81,9 @@ public class Storage {
                     taskList.add(task);
                     break;
                 }
+                default: {
+                    throw new DukeException("Invalid storage configuration encountered.");
+                }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -91,6 +95,7 @@ public class Storage {
     /**
      * Saves TaskList data to the storage file. Uses a getter for specified
      * storage strings to achieve this in a consistent format.
+     *
      * @param itemList list of DukeTasks
      */
     public void save(ArrayList<DukeTask> itemList) {
