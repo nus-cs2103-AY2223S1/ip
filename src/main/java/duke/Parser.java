@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 import duke.tasks.Deadline;
 import duke.tasks.Event;
@@ -18,6 +17,10 @@ public class Parser {
     private final String command;
     private final Ui ui;
 
+    /**
+     * Constructor for parser
+     * @param command user's inputted command
+     */
     public Parser(String command) {
         this.command = command;
         this.ui = new Ui();
@@ -103,10 +106,12 @@ public class Parser {
                     throw new EmptyDescriptionException("find");
                 }
                 return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(commands[1]), 0);
+            default:
+                throw new UnknownCommandException();
             }
+
         } catch (UnknownCommandException | EmptyDescriptionException e) {
             return ui.getErrorMessage(e.getMessage());
         }
-        return null;
     }
 }

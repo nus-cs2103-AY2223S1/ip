@@ -7,6 +7,11 @@ public class Deadline extends Task {
 
     protected String deadline;
 
+    /**
+     * Constructor of deadline
+     * @param description description of deadline task
+     * @param deadline date signifying deadline of task
+     */
     public Deadline(String description, String deadline) {
         super(description);
         this.deadline = deadline;
