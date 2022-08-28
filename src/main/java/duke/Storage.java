@@ -6,7 +6,9 @@ import java.util.Scanner;
 
 import duke.task.Task;
 
-
+/**
+ * Class to encapsulate the Storage of the program.
+ */
 public class Storage {
 
     /**
@@ -21,7 +23,7 @@ public class Storage {
             Scanner sc = new Scanner(f);
             while (sc.hasNext()) {
                 Task task = p.fileLoadParser(sc.nextLine());
-                taskList.add(task);
+                taskList.add(task, false);
             }
         } catch (IOException e) {
             System.out.println("file not found, we will create one for you");

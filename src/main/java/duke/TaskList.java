@@ -7,7 +7,9 @@ import duke.exception.InvalidInputException;
 import duke.task.Task;
 
 
-
+/**
+ * Class to encapsulate the temporary list of items.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 
@@ -57,11 +59,13 @@ public class TaskList {
      *
      * @param task The task to be added.
      */
-    public void add(Task task) {
+    public void add(Task task, Boolean bool) {
         this.list.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + this.list.size() + " tasks in the list");
+        if (bool) {
+            System.out.println("Got it. I've added this task:");
+            System.out.println(task);
+            System.out.println("Now you have " + this.list.size() + " tasks in the list");
+        }
     }
 
     /**

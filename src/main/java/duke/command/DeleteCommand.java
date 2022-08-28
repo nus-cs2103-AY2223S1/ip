@@ -8,7 +8,9 @@ import duke.exception.InvalidInputException;
 import duke.task.Task;
 
 
-
+/**
+ * Class to encapsulate a command that removes Task from list.
+ */
 public class DeleteCommand extends Command {
     private String index;
 

@@ -1,6 +1,9 @@
 package duke.task;
 import java.time.LocalDateTime;
 
+/**
+ * Class to encapsulate a Task with deadline.
+ */
 public class Deadline extends Task {
     private LocalDateTime deadline;
 

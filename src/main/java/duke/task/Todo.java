@@ -1,4 +1,8 @@
 package duke.task;
+
+/**
+ * Class to encapsulate an Task to be done.
+ */
 public class Todo extends Task {
 
     /**

@@ -6,9 +6,11 @@ import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.Task;
 
-
+/**
+ * Class to encapsulate a command to be executed.
+ */
 public abstract class Command {
-    public Task task;
+    private Task task;
     /**
      * Constructor for Command.
      *
@@ -25,6 +27,16 @@ public abstract class Command {
      */
     public Command() {
     }
+
+    /**
+     * Retrieve the task of this command.
+     *
+     * @return The task of this Command.
+     */
+    public Task getTask() {
+        return this.task;
+    }
+
 
     /**
      * Carry out the command instruction.

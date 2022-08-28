@@ -5,7 +5,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 
-
+/**
+ * Class to encapsulate a command that exits the program.
+ */
 public class ExitCommand extends Command {
 
     /**

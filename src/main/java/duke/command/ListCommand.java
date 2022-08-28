@@ -3,8 +3,11 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeException;
 
+
+/**
+ * Class to encapsulate a command that prints the list.
+ */
 public class ListCommand extends Command {
 
     /**

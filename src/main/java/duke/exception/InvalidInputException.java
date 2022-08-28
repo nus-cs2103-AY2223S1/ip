@@ -1,5 +1,8 @@
 package duke.exception;
 
+/**
+ * Class to encapsulate error thrown when the input is not valid.
+ */
 public class InvalidInputException extends DukeException {
 
     /**

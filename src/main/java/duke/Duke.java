@@ -2,7 +2,9 @@ package duke;
 import duke.command.Command;
 import duke.exception.DukeException;
 
-
+/**
+ * Class to simulate the entire program.
+ */
 public class Duke {
     private static String filePath = "data/list.txt";
     private Ui ui;

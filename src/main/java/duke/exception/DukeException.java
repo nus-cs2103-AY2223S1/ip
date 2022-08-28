@@ -1,4 +1,8 @@
 package duke.exception;
+
+/**
+ * Class to encapsulate exceptions thrown by program.
+ */
 public class DukeException extends Exception {
     /**
      * Constructor for DukeException.

@@ -7,7 +7,9 @@ import duke.exception.DukeException;
 import duke.exception.InvalidInputException;
 import duke.task.Task;
 
-
+/**
+ * Class to encapsulate a command that marks a Task as not completed.
+ */
 public class UnmarkCommand extends Command {
     private String index;
 

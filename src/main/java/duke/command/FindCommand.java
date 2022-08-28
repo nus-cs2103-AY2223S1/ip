@@ -1,11 +1,14 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 
+/**
+ * Class to encapsulate a command to search for a Task.
+ */
 public class FindCommand extends Command {
     private String keywords;
 

@@ -1,12 +1,13 @@
 package duke.command;
 import duke.Storage;
-import duke.exception.DukeException;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 
-
+/**
+ * Class to encapsulate a command that adds Task to list.
+ */
 public class AddCommand extends Command {
 
     /**
@@ -28,6 +29,6 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(this.task);
+        tasks.add(this.getTask(), true);
     }
 }

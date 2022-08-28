@@ -1,4 +1,8 @@
 package duke.exception;
+
+/**
+ * Class to encapsulate the error thrown when a input is missing.
+ */
 public class MissingInputException extends DukeException {
 
     /**

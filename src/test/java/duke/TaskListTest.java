@@ -1,12 +1,18 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Class to test TaskList Class.
+ */
 public class TaskListTest {
+    /**
+     * Test to test getTask method.
+     */
     @Test
-    public void getTaskTest(){
+    public void getTaskTest() {
         TaskList list = new TaskList();
         try {
             list.get(-1);

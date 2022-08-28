@@ -1,4 +1,8 @@
 package duke.task;
+
+/**
+ * Class to encapsulate a Task with scheduled time.
+ */
 public class Event extends Task {
     private String date;
 
@@ -7,7 +11,7 @@ public class Event extends Task {
      *
      * @param command The String array containing description and date of event.
      */
-    public Event (String[] command) {
+    public Event(String[] command) {
 
         super(command[0]);
         this.date = command[1];

@@ -1,5 +1,8 @@
 package duke.exception;
 
+/**
+ * Class to encapsulate error when date is not of right format.
+ */
 public class InvalidDateException extends DukeException {
 
     /**

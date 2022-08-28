@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.exception.DukeException;
 
+/**
+ * Class to encapsulate a unrecognized command.
+ */
 public class UnknownCommand extends DukeException {
 
     /**

@@ -1,6 +1,9 @@
 package duke;
 import java.util.Scanner;
 
+/**
+ * Class to encapsulate a User Interface.
+ */
 public class Ui {
     private Scanner sc;
 
