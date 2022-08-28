@@ -10,9 +10,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Represents a storage system that is responsible
+ * for the saving and loading of data.
+ * @author Justin Cheng.
+ */
 public class Storage {
     private String fileName;
 
+    /**
+     * Constructor for the Storage class.
+     * @param filePath The path in String.
+     * @throws DukeException if there is an IOException.
+     */
     public Storage(String filePath) throws DukeException {
         this.fileName = filePath;
         try {
@@ -23,10 +33,24 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns a String representation of the data file.
+     * @return the data file in String.
+     * @throws IOException if the file does not exist.
+     */
     public String read() throws IOException {
         return Files.readString(Path.of(this.fileName));
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Saves changes made to the TaskList to the data file.
+     * @param list The TaskList being changed.
+     * @throws DukeException if the file or directory does not
+     * exist.
+     */
+>>>>>>> branch-A-JavaDoc
     public void save(TaskList list) throws DukeException {
         try {
             File f = new File(this.fileName);
@@ -43,6 +67,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns an ArrayList of Tasks after reading
+     * the data from the data file.
+     * @param ui The Ui to print outputs.
+     * @return an ArrayList of Tasks.
+     */
     public ArrayList<Task> load(Ui ui) {
         TaskList tasks = new TaskList(new ArrayList<>());
         String tasksStr = null;
