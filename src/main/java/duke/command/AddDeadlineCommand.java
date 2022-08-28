@@ -28,7 +28,7 @@ public class AddDeadlineCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        Task newTask = new Deadline(this.desc, this.by);
+        Task newTask = new Deadline(desc, by);
         tasks.addTask(newTask);
         storage.write(tasks);
         return "Got it. I've added this task:\n\t" + newTask + "\nNow you have " + tasks.size() + " tasks in the list.";

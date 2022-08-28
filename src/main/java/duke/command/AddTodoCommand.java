@@ -19,7 +19,7 @@ public class AddTodoCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        Task newTask = new Todo(this.desc);
+        Task newTask = new Todo(desc);
         tasks.addTask(newTask);
         storage.write(tasks);
         return "Got it. I've added this task:\n\t" + newTask + "\nNow you have " + tasks.size() + " tasks in the list.";

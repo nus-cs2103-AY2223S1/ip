@@ -24,9 +24,9 @@ public class Duke {
      * @param filePath Path to storage file.
      */
     public Duke(Path filePath) {
-        this.storage = new Storage(filePath);
-        this.tasks = new TaskList();
-        this.running = true;
+        storage = new Storage(filePath);
+        tasks = new TaskList();
+        running = true;
     }
 
     public Duke() {
@@ -36,7 +36,7 @@ public class Duke {
     public String loadTasks() {
         String ret = "Loaded tasks from storage";
         try {
-            this.tasks.loadTasksFromStorage(storage);
+            tasks.loadTasksFromStorage(storage);
         } catch (DukeException e) {
             ret = "Error loading tasks from storage: " + e.getMessage();
         }
@@ -47,7 +47,7 @@ public class Duke {
         String out;
         try {
             Command c = Parser.parseCommand(input);
-            out = c.execute(this.tasks, this.storage);
+            out = c.execute(tasks, storage);
             if (c.isExit()) {
                 running = false;
             }

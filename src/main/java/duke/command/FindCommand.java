@@ -19,7 +19,7 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        List<Integer> matches = tasks.search(this.keyword);
+        List<Integer> matches = tasks.search(keyword);
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:");
         for (int i : matches) {
             sb.append("\n\t").append(i).append(".").append(tasks.getTask(i));

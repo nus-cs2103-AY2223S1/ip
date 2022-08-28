@@ -20,11 +20,11 @@ public class Deadline extends Task {
 
     @Override
     public String toStorage() {
-        return "D|" + super.toStorage() + "|" + this.by.format(Deadline.INPUT_DATE_FORMAT);
+        return "D|" + super.toStorage() + "|" + by.format(Deadline.INPUT_DATE_FORMAT);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by.format(Deadline.OUTPUT_DATE_FORMAT) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(Deadline.OUTPUT_DATE_FORMAT) + ")";
     }
 }

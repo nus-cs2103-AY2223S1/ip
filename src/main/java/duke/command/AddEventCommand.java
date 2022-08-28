@@ -28,7 +28,7 @@ public class AddEventCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        Task newTask = new Event(this.desc, this.at);
+        Task newTask = new Event(desc, at);
         tasks.addTask(newTask);
         storage.write(tasks);
         return "Got it. I've added this task:\n\t" + newTask + "\nNow you have " + tasks.size() + " tasks in the list.";

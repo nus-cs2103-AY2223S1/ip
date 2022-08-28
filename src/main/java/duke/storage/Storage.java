@@ -39,9 +39,9 @@ public class Storage {
     public List<String> read() {
         List<String> lines;
         try {
-            lines = Files.readAllLines(this.filePath);
+            lines = Files.readAllLines(filePath);
         } catch (IOException e) {
-            throw new DukeException("Unable to read " + this.filePath);
+            throw new DukeException("Unable to read " + filePath);
         }
         return lines;
     }
@@ -56,9 +56,9 @@ public class Storage {
             taskStrings.add(tasks.getTask(i).toStorage());
         }
         try {
-            Files.write(this.filePath, taskStrings);
+            Files.write(filePath, taskStrings);
         } catch (IOException e) {
-            throw new DukeException("Unable to write to " + this.filePath);
+            throw new DukeException("Unable to write to " + filePath);
         }
     }
 }
