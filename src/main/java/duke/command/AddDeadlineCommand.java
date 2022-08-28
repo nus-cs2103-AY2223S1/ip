@@ -10,7 +10,6 @@ import duke.ui.Ui;
 
 /**
  * Command to add a Deadline to the list of tasks.
- * @author neosunhan
  */
 public class AddDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";

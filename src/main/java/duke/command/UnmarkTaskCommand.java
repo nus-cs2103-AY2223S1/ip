@@ -6,7 +6,6 @@ import duke.ui.Ui;
 
 /**
  * Command to mark a task as not done.
- * @author neosunhan
  */
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";

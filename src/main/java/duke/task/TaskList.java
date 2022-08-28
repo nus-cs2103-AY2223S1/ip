@@ -9,7 +9,6 @@ import duke.parser.Parser;
 
 /**
  * Represents a list of tasks.
- * @author neosunhan
  */
 public class TaskList {
     private final ArrayList<Task> tasks;

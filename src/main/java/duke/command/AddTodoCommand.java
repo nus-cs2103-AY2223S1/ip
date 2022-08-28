@@ -8,7 +8,6 @@ import duke.ui.Ui;
 
 /**
  * Command to add an Todo to the list of the tasks.
- * @author neosunhan
  */
 public class AddTodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";

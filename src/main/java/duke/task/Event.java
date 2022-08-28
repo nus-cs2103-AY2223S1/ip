@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 /**
  * Represents an event occurring on a specific date.
- * @author neosunhan
  */
 public class Event extends Task {
     private final LocalDate at;

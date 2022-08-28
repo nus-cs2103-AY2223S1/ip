@@ -6,7 +6,6 @@ import duke.ui.Ui;
 
 /**
  * Command to mark a task as done.
- * @author neosunhan
  */
 public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "mark";

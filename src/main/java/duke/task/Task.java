@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Abstract representation of a task.
- * @author neosunhan
  */
 public abstract class Task {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -7,7 +7,6 @@ import duke.ui.Ui;
 
 /**
  * Command to delete a task from the list of tasks.
- * @author neosunhan
  */
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete";

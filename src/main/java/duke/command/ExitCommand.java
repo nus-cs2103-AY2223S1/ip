@@ -6,7 +6,6 @@ import duke.ui.Ui;
 
 /**
  * Command to exit the Duke app.
- * @author neosunhan
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";

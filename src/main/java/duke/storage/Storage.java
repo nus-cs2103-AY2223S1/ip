@@ -10,7 +10,6 @@ import duke.task.TaskList;
 
 /**
  * Hard disk storage for the Duke program.
- * @author neosunhan
  */
 public class Storage {
     private final Path filePath;

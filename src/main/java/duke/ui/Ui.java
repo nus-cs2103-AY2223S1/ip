@@ -8,7 +8,6 @@ import duke.task.TaskList;
 
 /**
  * User interface of the Duke program.
- * @author neosunhan
  */
 public class Ui {
     private final Scanner sc;

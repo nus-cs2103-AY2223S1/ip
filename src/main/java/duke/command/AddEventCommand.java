@@ -10,7 +10,6 @@ import duke.ui.Ui;
 
 /**
  * Command to add an Event to the list of tasks
- * @author neosunhan
  */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "event";
