@@ -9,13 +9,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Saves Task List to memory
+ * Storage for list of tasks.
  */
 public class Storage {
     private File data;
     private FileWriter writer;
     private String PATH;
 
+    /**
+     * Creates a Storage object to save tasks to memory.
+     * @param filePath Path to txt file where tasks will be saved.
+     */
     public Storage(String filePath) {
         this.PATH = filePath;
         this.data = new File(PATH);
@@ -32,6 +36,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves tasks to memory on computer, in a txt file.
+     * @param tasks List of tasks to be saved.
+     */
     public void saveTasks(TaskList tasks) {
         try {
             this.writer = new FileWriter(this.data);
@@ -48,6 +56,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns a list of tasks read from existing data file.
+     * @return A list of tasks.
+     */
     public TaskList load() {
         TaskList dataTasks = new TaskList();
         try {
