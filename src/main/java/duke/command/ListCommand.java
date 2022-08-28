@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
-import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 
@@ -10,6 +9,7 @@ public class ListCommand extends Command{
 
     /**
      * Lists the tasks that the user has.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.

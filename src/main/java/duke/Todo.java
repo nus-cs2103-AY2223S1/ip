@@ -18,6 +18,7 @@ public class Todo extends Task{
 
     /**
      * Returns the tag for the task type.
+     *
      * @return The 'T' tag for Todo task.
      */
     @Override
@@ -36,6 +37,7 @@ public class Todo extends Task{
 
     /**
      * Returns string representation of the task.
+     *
      * @return Todo task string representaion.
      */
     @Override

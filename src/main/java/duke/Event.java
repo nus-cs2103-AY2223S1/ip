@@ -20,6 +20,7 @@ public class Event extends Task {
 
     /**
      * Returns the tag for the type of event.
+     *
      * @return The 'E' tag for event task.
      */
     @Override
@@ -30,6 +31,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the event task.
+     *
      * @return Event string representation.
      */
     @Override

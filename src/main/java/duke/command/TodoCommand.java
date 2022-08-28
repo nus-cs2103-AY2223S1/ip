@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Task;
 import duke.TaskList;
 import duke.Todo;
 import duke.Ui;
@@ -18,6 +17,7 @@ public class TodoCommand extends Command {
 
     /**
      * Creates a todo task and stores it.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.

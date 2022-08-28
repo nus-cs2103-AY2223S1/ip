@@ -1,11 +1,22 @@
 package duke;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnknownCommand;
+import duke.command.UnmarkCommand;
 
 public class Parser {
 
     /**
      * Checks if the command line input is a proper argument.
+     *
      * @param arr String array that contains the seperate parts of the command line argument.
      * @return True if the command line input is of the correct form.
      */
@@ -21,11 +32,12 @@ public class Parser {
 
     /**
      * Converts the command line input to call the command.
+     *
      * @param input The commmand line input.
      * @return Command with respect ot the command line input.
      */
     public static Command parse (String input) throws DukeException{
-        String arr[] = input.split(" ", 2);
+        String[] arr = input.split(" ", 2);
 
         if (input.equals("bye")) {
             return new ExitCommand();

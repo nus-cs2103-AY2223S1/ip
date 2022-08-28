@@ -18,11 +18,11 @@ public abstract class Task {
     }
 
 
-    public void complete() {
+    public void setComplete() {
         this.completed = true;
     }
 
-    public void incomplete() {
+    public void setIncomplete() {
         this.completed = false;
     }
 
@@ -46,6 +46,7 @@ public abstract class Task {
 
     /**
      * Returns the string representation of the task
+     *
      * @return Task information.
      */
     @Override

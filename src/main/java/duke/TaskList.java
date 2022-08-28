@@ -23,6 +23,7 @@ public class TaskList {
 
     /**
      * Returns the task at the specified index.
+     *
      * @param i index in the list.
      * @return Task at specified index.
      */
@@ -32,14 +33,16 @@ public class TaskList {
 
     /**
      * Adds task to list.
+     *
      * @param t Task to be added.
      */
-    public void add (Task t) {
+    public void add(Task t) {
         tasks.add(t);
     }
 
     /**
      * Removes task at specified index from the list.
+     *
      * @param i Index to remove task.
      * @return Task removed from list.
      */
@@ -49,6 +52,7 @@ public class TaskList {
 
     /**
      * Finds tasks in the list that match the input string.
+     *
      * @param input String to match.
      * @return List of tasks that match the input.
      */

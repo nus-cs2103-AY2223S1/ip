@@ -9,6 +9,7 @@ public class Deadline extends Task{
      * Information of the date of deadline.
      */
     private LocalDate date;
+
     /**
      * Time corresponding to the deadline.
      */

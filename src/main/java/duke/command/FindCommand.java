@@ -1,7 +1,5 @@
 package duke.command;
 
-import duke.Deadline;
-import duke.DukeException;
 import duke.Storage;
 import duke.Task;
 import duke.TaskList;
@@ -19,8 +17,10 @@ public class FindCommand extends Command{
     public FindCommand(String input) {
         this.input = input;
     }
+
     /**
      * Finds tasks in the list that contain the matching command.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
@@ -28,6 +28,7 @@ public class FindCommand extends Command{
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> found = tasks.find(input);
+
         if (found.isEmpty()) {
             System.out.println("There are no matching tasks in your list!");
         } else {
@@ -36,6 +37,5 @@ public class FindCommand extends Command{
                 System.out.println((i+1) + ". " + found.get(i).toString());
             }
         }
-
     }
 }

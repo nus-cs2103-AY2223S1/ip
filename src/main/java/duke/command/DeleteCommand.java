@@ -18,6 +18,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes the task from the task list.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.

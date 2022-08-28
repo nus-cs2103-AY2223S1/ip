@@ -17,7 +17,7 @@ public class Ui {
     /**
      * Divider to print.
      */
-    private final String divider = "------------------------";
+    private final String DIVIDER = "------------------------";
 
     public Ui() {
         this(System.in, System.out);
@@ -34,11 +34,12 @@ public class Ui {
     public void showWelcomeMessage() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        System.out.println(divider);
+        System.out.println(DIVIDER);
     }
 
     /**
      * Reads the command line input.
+     *
      * @return
      */
     public String readCommand() {
@@ -49,11 +50,12 @@ public class Ui {
      * Shows the divider.
      */
     public void showLine() {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
     }
 
     /**
      * Shows the error message.
+     *
      * @param e DukeException type exception.
      */
     public void showError (DukeException e) {

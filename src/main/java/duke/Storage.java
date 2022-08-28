@@ -54,7 +54,7 @@ public class Storage {
                 case "T":
                     toAdd = new Todo(info[2]);
                     if (Integer.parseInt(info[1]) == 1) {
-                        toAdd.complete();
+                        toAdd.setComplete();
                     }
                     tasks.add(toAdd);
                     break;
@@ -66,7 +66,7 @@ public class Storage {
                         toAdd.setTime(dateArr[1]);
                     }
                     if (Integer.parseInt(info[1]) == 1) {
-                        toAdd.complete();
+                        toAdd.setComplete();
                     }
                     tasks.add(toAdd);
                     break;
@@ -78,7 +78,7 @@ public class Storage {
                         toAdd.setTime(dateArrEvent[1]);
                     }
                     if (Integer.parseInt(info[1]) == 1) {
-                        toAdd.complete();
+                        toAdd.setComplete();
                     }
                     tasks.add(toAdd);
                     break;

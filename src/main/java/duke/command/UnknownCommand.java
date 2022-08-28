@@ -9,6 +9,7 @@ public class UnknownCommand extends Command {
 
     /**
      * Returns an exception when the command line input does not match the required input.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.

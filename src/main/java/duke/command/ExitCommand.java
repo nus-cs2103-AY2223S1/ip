@@ -8,6 +8,7 @@ public class ExitCommand extends Command{
 
     /**
      * Exits from duke and closes the application.
+     *
      * @param tasks List of tasks.
      * @param ui User interface for duke.
      * @param storage Storage information for tasks.
