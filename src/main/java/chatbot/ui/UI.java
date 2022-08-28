@@ -55,6 +55,10 @@ public class UI {
         }
     }
 
+    /**
+     * Displays the tasks that contain a given keyword.
+     * @param tasks The list containing the relevant tasks.
+     */
     public void listFound(List<Task> tasks) {
         if (!tasks.isEmpty()) {
             System.out.println("\tThese are the tasks that match your description");

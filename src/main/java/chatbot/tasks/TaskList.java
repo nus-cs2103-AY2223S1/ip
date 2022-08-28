@@ -129,6 +129,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds all the tasks in the todo list containing the keyword.
+     *
+     * @param keyword The keyword in user's search
+     * @return The list of tasks containing the keyword.
+     */
     public List<Task> find(String keyword) {
         List<Task> matches = new ArrayList<>();
         for (Task task : todos) {
