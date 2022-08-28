@@ -2,12 +2,7 @@ package duke;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
