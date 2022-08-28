@@ -43,7 +43,6 @@ public class Parser {
             String firstWord = tokens[0];
 
             switch (firstWord) {
-<<<<<<< HEAD
             case "find" :
                 String wordToFind = tokens[1];
                 String filteredListString = taskList.getTaskStringFiltered(wordToFind);
@@ -55,19 +54,6 @@ public class Parser {
                 markingOfTasks(firstWord, taskNumber); //and print
                 storage.save(taskList);
                 break;
-=======
-                case "find" :
-                    String filteredListString = taskList.getTaskStringFiltered(wordToFind);
-                    ui.printFilteredList(filteredListString);
-                    break;
-                case "mark":
-                case "unmark":
-                    int taskNumber = Integer.parseInt(tokens[1]);
-                    markingOfTasks(firstWord, taskNumber); //and print
-                    storage.save(taskList);
-                    break;
->>>>>>> branch-A-JavaDoc
-
             case "delete":
                 int taskNo = Integer.parseInt(tokens[1]);
                 Task task = taskList.getTask(taskNo);

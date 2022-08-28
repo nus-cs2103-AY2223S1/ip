@@ -64,7 +64,7 @@ public class Ui {
      * Prints a message to indicate a task is done.
      *
      * @param task to be marked done.
-     * */
+     */
     public void printTaskMarkedMsg(Task task) {
         String markedMsg = "Nice! I've marked this task as done:\n     "
                 + task;
@@ -73,6 +73,7 @@ public class Ui {
 
     /**
      * Prints a message to indicate a task is not done yet.
+     *
      * @param task to be marked un-done.
      */
     public void printTaskUnmarkedMsg(Task task) {
@@ -84,13 +85,13 @@ public class Ui {
     /**
      * Prints a message to indicate a task is deleted from the task list.
      *
-     * @param task to be deleted.
+     * @param task        to be deleted.
      * @param listOfTasks task list that the task will be removed from.
      */
     public void printDeleteTaskMsg(Task task, TaskList listOfTasks) {
         printWithFormat("Noted. I've removed this task:\n     "
                 + task
-                +"\n     Now you have "
+                + "\n     Now you have "
                 + listOfTasks.getListSize()
                 + " task(s) in the list.");
     }
@@ -98,7 +99,7 @@ public class Ui {
     /**
      * Prints a message to indicate a task is added to the task list.
      *
-     * @param task to be added.
+     * @param task        to be added.
      * @param listOfTasks task list that the task will be added to.
      */
     public void printAddTaskMsg(Task task, TaskList listOfTasks) {
@@ -144,7 +145,4 @@ public class Ui {
                 + filteredListString;
         printWithFormat(text);
     }
-<<<<<<< HEAD
-}
-=======
 }
