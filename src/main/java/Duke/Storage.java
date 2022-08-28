@@ -45,10 +45,13 @@ public class Storage {
                 String[] parse = line.split(" - ");
                 Task t = null;
                 if (parse[0].equals("T")) {
+                    assert parse.length == 3 : "Invalid ToDo Input";
                     t = new ToDo(parse[2]);
                 } else if (parse[0].equals("E")) {
+                    assert parse.length == 4 : "Invalid Event Input";
                     t = new Event(parse[2], LocalDate.parse(parse[3], formatter));
                 } else if (parse[0].equals("D")) {
+                    assert parse.length == 4 : "Invalid Deadline Input";
                     t = new Deadline(parse[2], LocalDate.parse(parse[3], formatter));
                 } else {
                     throw new DukeException(Constants.invalidFile);
