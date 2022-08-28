@@ -28,6 +28,7 @@ public class Bloop {
     private static void chat() {
         Bloop bloop = new Bloop();
         ui.startMessage();
+        ui.formatSpecifier();
         storage.makeFile(tasks.getList());
         parser = new Parser(tasks);
         Scanner sc = new Scanner(System.in);

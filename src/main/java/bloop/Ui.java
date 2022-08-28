@@ -32,6 +32,10 @@ public class Ui {
         print(HI_MESSAGE);
     }
 
+    public void formatSpecifier() {
+        print("Enter all date and time in the format dd/mm/yyyy 2400(military time)");
+    }
+
     /**
      * Displays the message when it is terminated.
      */
