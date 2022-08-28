@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
     private static final String byeMessage = "Bye. Hope to see you again soon!";
