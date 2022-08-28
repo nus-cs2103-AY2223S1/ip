@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="duke.task.DeadlineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-08-28T09:18:13" hostname="DESKTOP-OKGMC7S" time="0.029">
-  <properties/>
-  <testcase name="constructor_acceptableConstructor_success()" classname="duke.task.DeadlineTest" time="0.027"/>
-  <testcase name="constructor_acceptableConstructor_exceptionThrown()" classname="duke.task.DeadlineTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

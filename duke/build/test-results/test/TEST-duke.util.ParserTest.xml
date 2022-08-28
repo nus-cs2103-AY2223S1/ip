@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="duke.util.ParserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-28T09:18:13" hostname="DESKTOP-OKGMC7S" time="0.006">
-  <properties/>
-  <testcase name="parse_acceptableCommand_success()" classname="duke.util.ParserTest" time="0.006"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

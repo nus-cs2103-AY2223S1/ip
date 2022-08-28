@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
 group 'org.example'
@@ -12,6 +14,15 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+application {
+    mainClassName = "duke.Main"
+}
+
+shadowJar {
+    archiveBaseName = ("duke")
+    archiveClassifier = (null)
 }
 
 test {

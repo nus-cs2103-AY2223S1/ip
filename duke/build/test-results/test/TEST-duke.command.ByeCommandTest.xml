@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="duke.command.ByeCommandTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-28T09:18:13" hostname="DESKTOP-OKGMC7S" time="0.018">
-  <properties/>
-  <testcase name="execute_acceptableExcecution_success()" classname="duke.command.ByeCommandTest" time="0.018"/>
-  <system-out><![CDATA[Pleasure to be at your service! Run me again if you need more assistance! :)
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
