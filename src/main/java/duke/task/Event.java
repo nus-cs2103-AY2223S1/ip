@@ -17,10 +17,12 @@ public class Event extends Task {
 
     @Override
     public String formatTask() {
-        return "[E] [" +super.getStatusIcon() + "] " + super.description + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E] [" + super.getStatusIcon() + "] " + super.description + " (at: "
+                + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
     @Override
     public String toString() {
-        return "E/" +super.getStatusIcon() + "/" + super.description + "/" + at;
+        return "E/" + super.getStatusIcon() + "/" + super.description + "/" + at;
     }
 }
+

@@ -36,11 +36,11 @@ public class Task {
 
         } else if (entry[0].equals("E")) {
             LocalDate d = LocalDate.parse(entry[3]);
-            return new Event(entry[2],  Boolean.parseBoolean(entry[1]), d);
+            return new Event(entry[2], Boolean.parseBoolean(entry[1]), d);
 
         } else {
             LocalDate d = LocalDate.parse(entry[3]);
-            return new Deadline(entry[2],  Boolean.parseBoolean(entry[1]), d);
+            return new Deadline(entry[2], Boolean.parseBoolean(entry[1]), d);
         }
     }
     public boolean match(String toFind) {

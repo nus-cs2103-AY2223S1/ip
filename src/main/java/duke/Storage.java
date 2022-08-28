@@ -1,13 +1,13 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Class that contains methods to manipulate the list of tasks
@@ -38,9 +38,7 @@ public class Storage {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        }
-
-        else if (!file.exists()) {
+        } else if (!file.exists()) {
             try {
                 new File(path).createNewFile();
             } catch (IOException e) {
@@ -59,7 +57,8 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-       return lst;
+
+        return lst;
     }
 
     /**
@@ -70,7 +69,7 @@ public class Storage {
         File file = new File(path);
         FileWriter fw = new FileWriter(this.path);
         for (int i = 0; i < lst.size(); i++) {
-            fw.write(lst.get(i).toString() +"\n");
+            fw.write(lst.get(i).toString() + "\n");
         }
         fw.close();
     }

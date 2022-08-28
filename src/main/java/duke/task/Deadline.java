@@ -19,11 +19,12 @@ public class Deadline extends Task {
 
     @Override
     public String formatTask() {
-        return "[D] [" +super.getStatusIcon() + "] " + super.description + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D] [" + super.getStatusIcon() + "] " + super.description + " (by: "
+                + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
     @Override
     public String toString() {
-        return "D/" +super.getStatusIcon() + "/" + super.description + "/" + by;
+        return "D/" + super.getStatusIcon() + "/" + super.description + "/" + by;
     }
 
     public static class ToDo extends Task {

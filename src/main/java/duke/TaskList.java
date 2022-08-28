@@ -1,9 +1,9 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * Class to store list of tasks
@@ -35,13 +35,15 @@ public class TaskList {
         this.lst.add(task);
     }
 
+
     public void deleteTask(int index) throws DukeException {
         if (index > lst.size() - 1 || index == 0) {
-            throw new DukeException("There is no such duke.task");
+            throw new DukeException("There is no such task");
         }
         Task t = lst.get(index);
         this.lst.remove(index);
-        System.out.println("Noted. I've removed this duke.task: \n" + t.formatTask() + "\nNow you have " + lst.size() + " tasks in the list.");
+        System.out.println("Noted. I've removed this task: \n" + t.formatTask() + "\nNow you have "
+                + lst.size() + " tasks in the list.");
     }
 
     public int size() {
@@ -60,7 +62,7 @@ public class TaskList {
         Task t = lst.get(index);
         t.markAsDone();
         lst.set(index, t);
-        System.out.println("Nice! I've marked this duke.task as done:");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(lst.get(index).formatTask());
 
     }
@@ -69,7 +71,7 @@ public class TaskList {
         Task t = lst.get(index);
         t.unMark();
         lst.set(index, t);
-        System.out.println("OK, I've marked this duke.task as not done yet:");
+        System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(lst.get(index).formatTask());
     }
 
