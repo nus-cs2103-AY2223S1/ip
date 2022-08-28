@@ -1,14 +1,4 @@
+[D][ ] return book  (by: Feb 02 2022)
 
-
-[D][ ] return book  (by:  Sunday)
-
-[D][ ] return book  (by:  Sat)
-
-[D][ ] return book  (by:  to)
-
-[D][ ] return book  (by:  2022-02-03)
-
-[D][ ] return book  (by:  2022-02-02)
-
-[D][ ] return book  (by:  Sunday)
+[D][ ] return book  (by: Feb 03 2022)
 
