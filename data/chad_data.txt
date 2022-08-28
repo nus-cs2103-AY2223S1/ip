@@ -1,3 +1,2 @@
 T | 1 | write
 T | 0 | seat
-T | 0 | run

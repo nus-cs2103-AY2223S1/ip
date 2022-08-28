@@ -1,7 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileHelper {
@@ -64,7 +61,7 @@ public class FileHelper {
             }
             reader.close();
         } catch (IOException e) {
-            System.out.println((e));
+            e.printStackTrace();
         }
 
         return taskList;
@@ -83,7 +80,7 @@ public class FileHelper {
             writer.newLine();
             writer.close();
         } catch (IOException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
     public static void deleteTaskInFile(int index) throws IOException {
@@ -110,7 +107,7 @@ public class FileHelper {
             tempFile.renameTo(currentFile);
 
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -153,7 +150,7 @@ public class FileHelper {
             currentFile.delete();
             tempFile.renameTo(currentFile);
         } catch (IOException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }

@@ -120,7 +120,7 @@ public class Chad {
         if (taskDescription.isEmpty()) {
             throw new ChadException("The description of a todo cannot be empty.");
         }
-        Task newTask = new Todo(taskDescription);
+        Todo newTask = new Todo(taskDescription);
         tasks.add(newTask);
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
@@ -153,7 +153,7 @@ public class Chad {
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
         FileHelper.writeToFile("D | " + strIsDone + " | " + newTask.getDescription()
-                        + " | " + newTask.getByDate());
+                        + " | " + newTask.getDateTime());
 
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
@@ -180,7 +180,7 @@ public class Chad {
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
         FileHelper.writeToFile("E | " + strIsDone + " | " + newTask.getDescription()
-                + " | " + newTask.getByDateTime());
+                + " | " + newTask.getDateTime());
 
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
