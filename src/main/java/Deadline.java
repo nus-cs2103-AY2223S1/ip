@@ -3,7 +3,7 @@ public class Deadline extends Task {
 
     public Deadline(String task, String endTime) {
         super(task, "deadline");
-        this.endTime = endTime;
+        this.endTime = DateTime.parseToString(endTime);
     }
 
     @Override

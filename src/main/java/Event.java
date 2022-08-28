@@ -4,7 +4,7 @@ public class Event extends Task {
 
     public Event(String event, String eventTime) {
         super(event, "event");
-        this.eventTime = eventTime;
+        this.eventTime = DateTime.parseToString(eventTime);
     }
 
     @Override

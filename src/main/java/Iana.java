@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Iana {
     static ArrayList<Task> vocabList = new ArrayList<Task>();
@@ -37,19 +33,6 @@ public class Iana {
     }
 
     public static void main(String[] args) {
-        Path storagePath = Paths.get("src", "main/data", "DataStorage.txt");
-        String absPath = storagePath.toAbsolutePath().toString();
-
-        try {
-            vocabList = DataLoader.loadData(absPath);
-        } catch (IanaException e) {
-            echo(e.getMessage());
-            return;
-        } catch (FileNotFoundException e) {
-            echo("File DataStorage.txt not found in [project_root]/src/main/data");
-            return;
-        }
-
         String printText = "\t> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )\n";
         System.out.println(printText);
         boolean isActive = true;
@@ -64,11 +47,6 @@ public class Iana {
 
                 switch(action) {
                     case "bye":
-                    try {
-                        DataWriter.writeData(vocabList, absPath);
-                    } catch (IOException e) {
-                        echo("File DataStorage.txt not found in [project_root]/src/main/data. Cannot store data!");
-                    }
                     echo("Goodbye! :P");
                     isActive = false;
                     break;
