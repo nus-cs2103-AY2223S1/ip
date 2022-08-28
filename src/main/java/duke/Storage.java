@@ -39,6 +39,8 @@ public class Storage {
             case "E":
                 tasks.add(new Event(task[2], task[3]));
                 break;
+            default:
+                throw new DukeException("☹ OOPS!!! The file is corrupted.");
             }
             if (task[1].equals("1")) {
                 tasks.get(tasks.size() - 1).markAsDone();
