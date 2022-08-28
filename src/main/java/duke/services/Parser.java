@@ -1,6 +1,12 @@
 package duke.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 /** Handles reading of user commands */
@@ -73,34 +79,52 @@ public class Parser {
         }
 
         if (emptyDesc) {
-            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
+            throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
         return descBuilder.deleteCharAt(descBuilder.length()-1).toString();
     }
 
     /**
-     * Retrieves the timing argument in the command
+     * Retrieves the timing argument in the command, which must be of the form d/M/yyyy followed by an optional (h:mm)am/pm
      * @param words The words of the command entered, first is some valid command name
      * @param flag The flag that the timing belongs to
      * @return The timing specified in words
-     * @throws IllegalArgumentException If words specifies an empty timing or is missing flag
+     * @throws IllegalArgumentException If words is missing flag or the timing is empty/incorrect format
      */
     public static String getTiming(String[] words, String flag) {
         if (currWordIndex >= words.length) {
-            throw new IllegalArgumentException("☹ OOPS!!! " + flag + " not found");
+            throw new IllegalArgumentException("OOPS!!! " + flag + " not found");
         } else if (currWordIndex == words.length - 1) {
-            throw new IllegalArgumentException("☹ OOPS!!! Timing for " + flag + " can't be empty");
+            throw new IllegalArgumentException("OOPS!!! Timing for " + flag + " can't be empty");
         }
 
         ++currWordIndex;
-        StringBuilder timingBuilder = new StringBuilder();
-
-        while (currWordIndex < words.length) {
-            timingBuilder.append(words[currWordIndex++]).append(" ");
+        String inFormat, outFormat, timing;
+        try {
+            if (currWordIndex == words.length - 1) {
+                inFormat = "d/M/yyyy";
+                outFormat = "d MMM yyyy";
+                timing = words[currWordIndex];
+                DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                        .appendPattern(inFormat)
+                        .toFormatter(Locale.getDefault());
+                LocalDate dateTime = LocalDate.parse(timing, formatter);
+                return dateTime.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+            } else {
+                inFormat = "d/M/yyyy h:mma";
+                outFormat = "d MMM yyyy, h:mma";
+                timing = words[currWordIndex] + " " + words[++currWordIndex];
+                DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .appendPattern(inFormat)
+                        .toFormatter(Locale.getDefault());
+                LocalDateTime dateTime = LocalDateTime.parse(timing, formatter);
+                return dateTime.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+            }
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("OOPS!!! I don't understand that date or time");
         }
-
-        return timingBuilder.deleteCharAt(timingBuilder.length()-1).toString();
     }
 
     /**
@@ -112,7 +136,7 @@ public class Parser {
      */
     public static int getTaskNumber(String[] words) {
         if (TaskList.getTaskCount() == 0) {
-            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
+            throw new IllegalArgumentException("OOPS!!! No tasks stored for me to do that");
         }
 
         int taskNumber = 0;
@@ -123,7 +147,7 @@ public class Parser {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + TaskList.getTaskCount());
+            throw new IllegalArgumentException("OOPS!!! The task number must be from 1 to " + TaskList.getTaskCount());
         }
 
         return taskNumber;
