@@ -122,6 +122,7 @@ public class Parser {
             // Prints a line to end CaCa response.
             System.out.println(LINE);
         }
+
         return true;
     }
 
