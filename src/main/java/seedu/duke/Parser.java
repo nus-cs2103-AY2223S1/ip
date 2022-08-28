@@ -37,11 +37,11 @@ public class Parser {
     }
 
     private final String[] commandWords = new String[]{"list", "mark",
-            "unmark", "todo", "event", "deadline", "delete", "bye"};
+            "unmark", "todo", "event", "deadline", "delete", "bye", "find"};
 
     public void parse(String text) throws EmptyMessageException, InvalidCommandException {
         if (checkCommand(text, 0)) {
-            this.ui.displayList(this.tasks);
+            this.ui.displayList(this.tasks.getTasks());
 
         } else if (checkCommand(text, 1)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
@@ -61,6 +61,10 @@ public class Parser {
 
         } else if (checkCommand(text, 7)) {
             this.ui.end();
+
+        } else if (checkCommand(text, 8)) {
+            text = text.substring(commandWords[8].length() + 1);
+            this.ui.displayList(this.tasks.filter(text));
 
         } else { // is a task, commandwords index 3-5 inclusive
             boolean isSent = false;

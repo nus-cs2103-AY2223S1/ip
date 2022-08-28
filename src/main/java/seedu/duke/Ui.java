@@ -49,13 +49,12 @@ public class Ui {
     }
 
     /**
-     * Displays the Tasks in a given TaskList
+     * Displays the Tasks in a given ArrayList
      *
-     * @param tasks TaskList containing Tasks
+     * @param l ArrayList containing Tasks
      */
-    public void displayList(TaskList tasks) {
+    public void displayList(ArrayList<Task> l) {
         String result = "";
-        ArrayList<Task> l = tasks.getTasks();
         if (l.isEmpty()) {
             msg("");
             return;

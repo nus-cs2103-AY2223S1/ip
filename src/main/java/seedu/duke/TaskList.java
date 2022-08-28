@@ -86,4 +86,21 @@ public class TaskList {
         task.setStatusIcon(false);
         return task;
     }
+
+    /**
+     * Filters the Tasks in this TaskList and return an ArrayList containing Tasks
+     * containing the specified substring
+     *
+     * @param s substring to be compared to the description of Tasks
+     * @return an ArrayList containing filtered Tasks
+     */
+    public ArrayList<Task> filter(String s) {
+        ArrayList<Task> result = new ArrayList<Task>();
+        for (Task task : this.tasks) {
+            if (task.description.contains(s)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
 }
