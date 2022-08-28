@@ -14,9 +14,9 @@ public class Duke {
     private final Ui UI;
 
     /**
-     * Constructor for duke
+     * Constructor for duke.
      *
-     * @param filePath absolute file path of the storage file
+     * @param filePath absolute file path of the storage file.
      */
     public Duke(String filePath) {
         isEnd = false;

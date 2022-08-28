@@ -10,8 +10,8 @@ public class Task {
     /**
      * Constructor for a task.
      *
-     * @param DESCRIPTION what the task is
-     * @param status      whether the task is completed
+     * @param DESCRIPTION what the task is.
+     * @param status      whether the task is completed.
      */
     public Task(String DESCRIPTION, boolean status) {
         this.DESCRIPTION = DESCRIPTION;
@@ -21,7 +21,7 @@ public class Task {
     /**
      * Returns a string representation of the status of the task.
      *
-     * @return status representation in the form [X] or [ ]
+     * @return status representation in the form [X] or [ ].
      */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
@@ -30,7 +30,7 @@ public class Task {
     /**
      * Returns a string representation to be stored in text file.
      *
-     * @return a string
+     * @return a string.
      */
     public String getDESCRIPTION() {
         return DESCRIPTION;
@@ -39,7 +39,7 @@ public class Task {
     /**
      * String representation of the task.
      *
-     * @return a string
+     * @return task description.
      */
     public String toString() {
         return DESCRIPTION;
@@ -48,7 +48,7 @@ public class Task {
     /**
      * Returns the status of the task.
      *
-     * @return a boolean
+     * @return a boolean stating whether is task is done.
      */
     public boolean getStatus() {
         return this.isDone;
@@ -57,14 +57,14 @@ public class Task {
     /**
      * Marks the current task as completed.
      */
-    public void markasDone() {
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * Marks the current task as incomplete.
      */
-    public void markasNotDone() {
+    public void markAsNotDone() {
         this.isDone = false;
     }
 }

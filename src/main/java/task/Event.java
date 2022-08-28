@@ -7,11 +7,11 @@ public class Event extends Task {
     private final String DURATION;
 
     /**
-     * Constructor for a event.
+     * Creates an event.
      *
-     * @param description what the event is
-     * @param status      whether it has been done
-     * @param DURATION    when the event will be held
+     * @param description what the event is.
+     * @param status      whether it has been done.
+     * @param DURATION    when the event will be held.
      */
     public Event(String description, boolean status, String DURATION) {
         super(description, status);
@@ -21,7 +21,7 @@ public class Event extends Task {
     /**
      * Converts the event to string representation to be stored in text file.
      *
-     * @return a string
+     * @return a string in format E | F | party | sunday 5-11pm
      */
     @Override
     public String getDESCRIPTION() {
@@ -32,7 +32,7 @@ public class Event extends Task {
     /**
      * Converts the event to string representation for user.
      *
-     * @return a string
+     * @return a string in format [E][ ] party (at: sunday 5-11pm)
      */
     @Override
     public String toString() {

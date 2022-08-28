@@ -22,8 +22,12 @@ public class Storage {
 
     /**
      * Constructor for the class.
+<<<<<<< HEAD
      *
      * @param filepath file path of the storage file
+=======
+     * @param filepath file path of the storage file.
+>>>>>>> branch-A-JavaDoc
      */
     public Storage(String filepath) {
         STORAGEFILE = new File(filepath);
@@ -31,8 +35,12 @@ public class Storage {
 
     /**
      * This function reads the data from the file and stores it into the given taskList.
+<<<<<<< HEAD
      *
      * @param taskLists the taskList you want to store the data in
+=======
+     * @param taskLists the taskList you want to store the data in.
+>>>>>>> branch-A-JavaDoc
      */
     public void loadFromFile(TaskList taskLists) {
         try {
@@ -67,9 +75,14 @@ public class Storage {
     }
 
     /**
+<<<<<<< HEAD
      * This functions stores the data from the taskList into the file
      *
      * @param taskLists given taskList
+=======
+     * This functions stores the data from the given taskList into the file.
+     * @param taskLists given taskList.
+>>>>>>> branch-A-JavaDoc
      */
     public void saveToFile(TaskList taskLists) {
         try {

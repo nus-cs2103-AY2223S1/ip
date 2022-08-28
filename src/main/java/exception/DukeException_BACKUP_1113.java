@@ -6,9 +6,14 @@ package exception;
 public class DukeException extends Exception {
 
     /**
-     * Creates a DukeException.
+<<<<<<< HEAD
+     * Constructor for exception
      *
+     * @param message what is the error
+=======
+     * Creates a DukeException.
      * @param message what is the error.
+>>>>>>> branch-A-JavaDoc
      */
     public DukeException(String message) {
         super(message);
