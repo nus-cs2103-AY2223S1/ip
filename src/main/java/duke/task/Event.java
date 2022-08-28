@@ -16,7 +16,7 @@ public class Event extends Task {
     public static Event of(String taskText, String source) throws DateNotFoundException, DateTimeParseException {
         if (source.contentEquals("FILE")) {
             String[] detailArr = taskText.replace('|', '/').split("/", 3);
-            DateTime date = new DateTime(detailArr[2]);
+            DateTime date = new DateTime(DateTime.convertDate(detailArr[2].trim()));
             Event event = new Event(detailArr[1], date);
             if (detailArr[0].contains("X")) {
                 event.done();

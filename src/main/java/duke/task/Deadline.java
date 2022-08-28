@@ -16,7 +16,7 @@ public class Deadline extends Task {
     public static Deadline of(String taskText, String source) throws DateNotFoundException, DateTimeParseException {
         if (source.contentEquals("FILE")) {
             String[] detailArr = taskText.replace('|', '/').split("/", 3);
-            DateTime date = new DateTime(detailArr[2]);
+            DateTime date = new DateTime(DateTime.convertDate(detailArr[2].trim()));
             Deadline deadline = new Deadline(detailArr[1], date);
             if (detailArr[0].contains("X")) {
                 deadline.done();
@@ -33,6 +33,10 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritdocs}
+     * @return {@inheritdocs}
+     */
     @Override
     public String toString() {
         //ui : (by: date)
