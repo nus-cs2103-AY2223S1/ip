@@ -1,15 +1,16 @@
 package utils;
 
-import entities.Deadline;
-import entities.Event;
-import entities.Task;
-import entities.Todo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import entities.Deadline;
+import entities.Event;
+import entities.Task;
+import entities.Todo;
 
 public class StorageTest {
     @Test

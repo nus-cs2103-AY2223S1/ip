@@ -1,12 +1,12 @@
 package duke;
 
+import java.util.Scanner;
+
 import exceptions.DukeException;
 import utils.Parser;
 import utils.Storage;
 import utils.TaskList;
 import utils.Ui;
-
-import java.util.Scanner;
 
 /**
  * A basic CLI application for managing tasks.

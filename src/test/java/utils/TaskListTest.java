@@ -1,14 +1,15 @@
 package utils;
 
-import entities.Task;
-import entities.Todo;
-import exceptions.DukeException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import entities.Task;
+import entities.Todo;
+import exceptions.DukeException;
 
 public class TaskListTest {
     @Test
