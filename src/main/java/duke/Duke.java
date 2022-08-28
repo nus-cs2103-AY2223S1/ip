@@ -33,7 +33,7 @@ public class Duke {
         this(STORAGE_PATH);
     }
 
-    protected String loadTasks() {
+    public String loadTasks() {
         String ret = "Loaded tasks from storage";
         try {
             this.tasks.loadTasksFromStorage(storage);
@@ -43,7 +43,7 @@ public class Duke {
         return ret;
     }
 
-    protected String getResponse(String input) {
+    public String getResponse(String input) {
         String out;
         try {
             Command c = Parser.parseCommand(input);
@@ -57,7 +57,7 @@ public class Duke {
         return out;
     }
 
-    protected String getWelcome() {
+    public String getWelcome() {
         return "Hello! I'm Duke.\nWhat can I do for you?";
     }
 
