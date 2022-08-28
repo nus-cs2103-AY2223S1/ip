@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ListResourceBundle;
 import java.util.NoSuchElementException;
@@ -44,22 +48,32 @@ public class Duke {
             case DEADLINE:
                 int deadlineChar = taskToAdd.indexOf("/");
                 String taskDesc = taskToAdd.substring(9, deadlineChar);
-                String deadline = taskToAdd.substring(deadlineChar + 4);
-                if (taskDesc.isBlank() || deadline.isBlank()) {
+                String deadlineInput = taskToAdd.substring(deadlineChar + 4);
+                if (taskDesc.isBlank() || deadlineInput.isBlank()) {
                     throw new DukeException.EmptyTaskException();
                 } else {
-                    tasks.add(new Deadline(taskDesc, deadline));
+                    try {
+                        LocalDate deadline = LocalDate.parse(deadlineInput);
+                        tasks.add(new Deadline(taskDesc, deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                    } catch (DateTimeParseException e) {
+                        throw new DateTimeParseException("", "", 0);
+                    }
                 }
                 break;
 
             case EVENT:
                 int eventChar = taskToAdd.indexOf("/");
                 String eventDesc = taskToAdd.substring(6, eventChar);
-                String eventTime = taskToAdd.substring(eventChar + 4);
-                if (eventDesc.isBlank() || eventTime.isBlank()) {
+                String eventTimeInput = taskToAdd.substring(eventChar + 4);
+                if (eventDesc.isBlank() || eventTimeInput.isBlank()) {
                     throw new DukeException.EmptyTaskException();
                 } else {
-                    tasks.add(new Event(eventDesc, eventTime));
+                    try {
+                        LocalDate eventTime = LocalDate.parse(eventTimeInput);
+                        tasks.add(new Event(eventDesc, eventTime.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                    } catch (DateTimeParseException e) {
+                        throw new DateTimeParseException("", "", 0);
+                    }
                 }
                 break;
         }
@@ -182,6 +196,9 @@ public class Duke {
                     } catch (java.io.IOException e) {
                         System.out.println(" oops, your task is added, but I couldn't save your task to your " +
                                 "Task file :(\n" + divider);
+                    } catch (DateTimeParseException e) {
+                        System.out.println(indent + "Sorry :( You have given me an invalid date, please check"
+                                + " your date format again!\n" + divider);
                         continue;
                     }
                 } else {
