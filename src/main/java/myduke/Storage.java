@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * This class deals with loading and reading tasks from the file, and also saving to the file
+ * This class deals with reading tasks from the file to Duke, and also saving tasks from Duke to the file.
  */
 public class Storage {
     //this is the physical file saving the items
@@ -22,7 +22,8 @@ public class Storage {
     private BufferedWriter writer;
 
     /**
-     * Constructor for the memory
+     * Constructor for the class.
+     * @param filepath file path of the storage file
      */
     public Storage(String filepath) {
         STORAGEFILE = new File(filepath);
@@ -38,7 +39,9 @@ public class Storage {
             String currentLine;
             boolean status;
             while((currentLine = reader.readLine()) != null) {
+                //type of task
                 String type = currentLine.substring(0, 1);
+                //whether the task is completed
                 status = currentLine.substring(4, 5).equals("T");
                 switch(type) {
                     case "T":

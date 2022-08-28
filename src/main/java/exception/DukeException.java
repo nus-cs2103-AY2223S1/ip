@@ -1,8 +1,9 @@
-package myduke;
+package exception;
 /**
- * This class encapsulates the exceptions that are specific to chatbot
+ * This class encapsulates the exceptions that are specific to Duke.
  */
 public class DukeException extends Exception{
+
     /**
      * Constructor for exception
      * @param message what is the error

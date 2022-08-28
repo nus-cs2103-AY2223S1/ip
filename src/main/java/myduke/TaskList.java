@@ -1,4 +1,9 @@
 package myduke;
+
+import exception.DukeException;
+import exception.MarkException;
+import exception.UnMarkException;
+import exception.OutOfBoundIndexException;
 import task.Task;
 
 import java.util.ArrayList;
@@ -8,35 +13,39 @@ import java.util.ArrayList;
  */
 public class TaskList {
     //this is where the tasks are stored
-    private ArrayList<Task> taskLists;
+    private final ArrayList<Task> taskLists;
 
     /**
      * Constructor for tasklist.
      */
     public TaskList() {
-        this.taskLists = new ArrayList<Task>();
+        this.taskLists = new ArrayList<>();
+    }
+
+    private boolean checkValidIndex(int index) {
+        return index > - 1 && index < taskLists.size();
     }
 
     /**
      * Returns the task with the given index.
      * @param index index of the task you want to retrieve
-     * @return the stored task
+     * @return the desired task.
      */
     public Task getTask(int index) {
         return taskLists.get(index);
     }
 
     /**
-     * Returns the number of tasks stored
-     * @return number of tasks stored
+     * Returns the number of tasks stored.
+     * @return number of tasks stored.
      */
     public int getNumOfTask() {
         return taskLists.size();
     }
 
     /**
-     * Adds the given task into the taskList
-     * @param task given task
+     * Adds the given task into the taskList.
+     * @param task task to be saved
      */
     public void add(Task task) {
         taskLists.add(task);
@@ -55,15 +64,15 @@ public class TaskList {
      * @param index given index of the task
      * @throws DukeException
      */
-    public void markTask(int index) throws DukeException {
+    public void markTask(int index) throws MarkException, OutOfBoundIndexException {
         if (checkValidIndex(index)) {
             Task current = taskLists.get(index);
             if (current.getStatus()) {
-                throw new DukeException("☹ OOPS!!! The task you want to mark is already marked.");
+                throw new MarkException();
             }
             current.markasDone();
         } else {
-            throw new DukeException("☹ OOPS!!! The task you want to mark is not here.");
+            throw new OutOfBoundIndexException();
         }
     }
 
@@ -72,15 +81,15 @@ public class TaskList {
      * @param index given index of the task
      * @throws DukeException
      */
-    public void unMarkTask(int index) throws DukeException {
-        if (index > -1 && index < taskLists.size()) {
+    public void unMarkTask(int index) throws UnMarkException, OutOfBoundIndexException {
+        if (checkValidIndex(index)) {
             Task current = taskLists.get(index);
             if (!current.getStatus()) {
-                throw new DukeException("☹ OOPS!!! The task you want to mark is already marked.");
+                throw new UnMarkException();
             }
             current.markasNotDone();
         } else {
-            throw new DukeException("☹ OOPS!!! The task you want to mark is not here.");
+            throw new OutOfBoundIndexException();
         }
     }
 
@@ -90,18 +99,14 @@ public class TaskList {
      * @throws DukeException
      * @return the deleted task
      */
-    public Task deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws OutOfBoundIndexException {
         if (checkValidIndex(index)) {
             Task task = taskLists.get(index);
             taskLists.remove(index);
             return task;
         } else {
-            throw new DukeException("☹ OOPS!!! The The task you want to delete is not here.");
+            throw new OutOfBoundIndexException();
         }
-    }
-
-    private boolean checkValidIndex(int index) {
-        return index > -1 && index < taskLists.size();
     }
 
     /**
@@ -112,7 +117,7 @@ public class TaskList {
         String output = "";
         for (int i = 0; i < taskLists.size(); i ++) {
             Task current = taskLists.get(i);
-            output = output + String.valueOf(i + 1) + "." + current.toString();
+            output += (i + 1) + "." + current.toString();
             if (i != taskLists.size() - 1) {
                 output = output + "\n";
             }
@@ -122,9 +127,9 @@ public class TaskList {
 
     /**
      * Returns a string detailing how many tasks are stored.
-     * @return a string
+     * @return a string telling user how many tasks are in the list.
      */
     public String numOfTaskToString() {
-        return "\n" + "Now you have " + String.valueOf(taskLists.size()) + " tasks in the list.";
+        return "\n" + "Now you have " + taskLists.size() + " tasks in the list.";
     }
 }

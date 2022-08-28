@@ -1,4 +1,6 @@
 package myduke;
+import exception.DukeException;
+
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
