@@ -1,41 +1,43 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
-    private LocalDateTime date;
+public class Deadline extends Task {
+    private LocalDateTime deadline;
 
-    public Event(String description, String dateStr) {
+    public Deadline(String description, String deadlineStr) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.date = LocalDateTime.parse(dateStr, formatter);
+        this.deadline = LocalDateTime.parse(deadlineStr, formatter);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.getDateStr() + ")";
+        return "[D]" + super.toString() + " (by: " + this.getDeadlineStr() + ")";
     }
 
-    public LocalDateTime getDate() {
-        return this.date;
+    public LocalDateTime getDeadline() {
+        return this.deadline;
     }
 
-    public String getDateStr() {
+    public String getDeadlineStr() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE, hh:mma dd MMMM yyyy");
-        return this.date.format(formatter);
+        return this.deadline.format(formatter);
     }
 
     @Override
     public String save() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        String dateStr = this.date.format(formatter);
-        return "E" + super.save() + " | " + dateStr;
+        String deadlineStr = this.deadline.format(formatter);
+        return "D" + super.save() + " | " + deadlineStr;
     }
 
     public boolean isOnDate(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(dateStr, formatter);
-        LocalDate other = this.date.toLocalDate();
+        LocalDate other = this.deadline.toLocalDate();
         return date.equals(other);
     }
 }
