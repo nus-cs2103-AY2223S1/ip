@@ -6,13 +6,24 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private final List<Task> tasks;
 
+    /**
+     * Initialises an array of Task.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
+    /**
+     * Initialises an array of Task when given a list of Strings.
+     *
+     * @param data encoded data from storage.
+     */
     public TaskList(List<String> data) {
         this();
         for (String encodedTask : data) {
@@ -51,11 +62,23 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    /**
+     * Adds a ToDo task to the TaskList.
+     *
+     * @param taskName name of ToDo task.
+     */
     public void addToDo(String taskName)  {
         Task newTask = new ToDo(taskName);
         addTask(newTask);
     }
 
+    /**
+     * Adds a Deadline task to the TaskList.
+     *
+     * @param commandInput user input with command deadline.
+     * @throws WanyaException if input does not contain /by and date.
+     * @throws DateTimeException if invalid date time format is provided.
+     */
     public void addDeadline(String commandInput) throws WanyaException, DateTimeException {
         String[] inputs = commandInput.split("/by");
         //no deadline provided
@@ -70,6 +93,13 @@ public class TaskList {
         addTask(newTask);
     }
 
+    /**
+     * Adds an Event task to the TaskList.
+     *
+     * @param commandInput user input with command event.
+     * @throws WanyaException if input does not contain /at and date.
+     * @throws DateTimeException if invalid date time format is provided.
+     */
     public void addEvent(String commandInput) throws WanyaException, DateTimeException {
         String[] inputs = commandInput.split("/at");
         //no date provided
@@ -84,12 +114,22 @@ public class TaskList {
         addTask(newTask);
     }
 
-    public void addTask(Task task) {
+    /**
+     * Adds the task to the TaskList and display task added.
+     *
+     * @param task task to be added.
+     */
+    private void addTask(Task task) {
         tasks.add(task);
         System.out.println("You have added: \n" + task);
         System.out.println("Now you have " + size() + " tasks in your list. \n");
     }
 
+    /**
+     * Deletes a task from the TaskList.
+     *
+     * @param index the task number to be deleted.
+     */
     public void deleteTask(int index) {
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
@@ -97,6 +137,9 @@ public class TaskList {
         System.out.println("Now you have " + size() + " tasks in your list. \n");
     }
 
+    /**
+     * Displays the list of tasks in TaskList.
+     */
     public void showTasks() {
         if (isEmpty()) {
             System.out.println("List is empty! Wheee slack time!");
@@ -108,6 +151,11 @@ public class TaskList {
         System.out.println("");
     }
 
+    /**
+     * Encodes the list of tasks in TaskList.
+     *
+     * @return List of Strings of the tasks in TaskList to be stored.
+     */
     public List<String> saveToStorage() {
         List<String> data = new ArrayList<>();
         for (int i = 0; i < size(); i++) {
