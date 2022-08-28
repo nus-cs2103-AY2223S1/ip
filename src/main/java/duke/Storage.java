@@ -42,15 +42,14 @@ public class Storage {
         return Files.readString(Path.of(this.fileName));
     }
 
-<<<<<<< HEAD
-=======
+
+
     /**
      * Saves changes made to the TaskList to the data file.
      * @param list The TaskList being changed.
      * @throws DukeException if the file or directory does not
      * exist.
      */
->>>>>>> branch-A-JavaDoc
     public void save(TaskList list) throws DukeException {
         try {
             File f = new File(this.fileName);

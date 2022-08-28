@@ -86,14 +86,7 @@ public class Parser {
         }
     }
 
-<<<<<<< HEAD
-    /**
-     * Returns a command from scanning the inputs of users.
-     * @param message The description of the command.
-     * @return a Command.
-     * @throws DukeException if the input is invalid.
-     */
-=======
+
     public static Command parseFind(String message) {
         Scanner sc = new Scanner(message);
         String res = "";
@@ -104,7 +97,12 @@ public class Parser {
         return new FindCommand(res);
     }
 
->>>>>>> branch-Level-9
+    /**
+     * Returns a command from scanning the inputs of users.
+     * @param message The description of the command.
+     * @return a Command.
+     * @throws DukeException if the input is invalid.
+     */
     public static Command parse(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         String first = sc.next();
