@@ -33,6 +33,10 @@ public class Duke {
         this(STORAGE_PATH);
     }
 
+    /**
+     * Attempts to load tasks from storage into the list of tasks.
+     * @return A string representing the outcome of the attempt.
+     */
     public String loadTasks() {
         String ret = "Loaded tasks from storage";
         try {
