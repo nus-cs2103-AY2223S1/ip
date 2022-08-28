@@ -2,6 +2,12 @@ package duke.command;
 
 import duke.*;
 
+/**
+ * AddEventCommand class to represent an instruction to add a new Event task to the TaskList.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
+
 public class AddEventCommand extends Command { //Creating an duke.Event duke.Task and adding to the taskList
     String description;
     boolean isDone;

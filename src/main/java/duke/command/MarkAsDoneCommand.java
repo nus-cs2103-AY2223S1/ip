@@ -5,7 +5,11 @@ import duke.UI;
 import duke.DukeException;
 import duke.Task;
 
-
+/**
+ * MarkAsDoneCommand class to represent an instruction to mark a task as done.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public class MarkAsDoneCommand extends Command {
     int taskNo;

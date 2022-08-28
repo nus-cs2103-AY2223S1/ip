@@ -1,5 +1,3 @@
-T | X | read book
-D | X | homework | 01 Jan 2022
 T |   | a
 E |   | bday | 01 Jan 2022
-E |   | bday | 01 Jan 2022
+D |   | homework | 03 Feb 2022

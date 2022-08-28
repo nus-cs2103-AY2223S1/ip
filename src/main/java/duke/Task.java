@@ -1,9 +1,15 @@
 package duke;
 
+/**
+ * Task class to represent a generic task.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
+
 public class Task {
     protected String description;
     protected boolean isDone;
-    public static int taskCount = 0;
+    private static int taskCount = 0;
 
     public Task(String description) {
         this.description = description;
@@ -17,6 +23,8 @@ public class Task {
     public static void minusTaskCount() {
         taskCount--;
     }
+
+    public static int getTaskCount() { return Task.taskCount; }
 
     public String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
@@ -33,7 +41,7 @@ public class Task {
     public String added() {
         return String.format("New task added:\n" +
                 "  %s\n" +
-                "Now you have %d tasks in the list.\n", this, Task.taskCount);
+                "Now you have %d tasks in the list.\n", this, Task.getTaskCount());
     }
 
     public String toString() {

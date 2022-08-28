@@ -8,6 +8,12 @@ import duke.Task;
 import duke.Deadline;
 import duke.Parser;
 
+/**
+ * AddDeadlineCommand class to represent an instruction to add a new Deadline task to the TaskList.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
+
 public class AddDeadlineCommand extends Command { //Creating a duke.Deadline duke.Task and adding to the taskList
     String description;
     boolean isDone;

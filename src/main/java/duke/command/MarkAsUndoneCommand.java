@@ -1,6 +1,11 @@
 package duke.command;
 import duke.*;
 
+/**
+ * MarkAsUndoneCommand class to represent an instruction to mark a task as undone.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public class MarkAsUndoneCommand extends Command {
     int taskNo;

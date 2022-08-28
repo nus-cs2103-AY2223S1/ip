@@ -6,6 +6,11 @@ import duke.UI;
 import duke.DukeException;
 import duke.Task;
 
+/**
+ * DeleteCommand class to represent an instruction to delete a task from the TaskList.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public class DeleteCommand extends Command {
     int taskNo;

@@ -7,8 +7,13 @@ import duke.DukeException;
 import duke.Task;
 import duke.ToDo;
 
+/**
+ * AddToDoCommand class to represent an instruction to add a new ToDo task to the TaskList.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
-public class AddCommand extends Command { //Creating a duke.ToDo duke.Task and adding to the taskList
+public class AddCommand extends Command {
     String description;
     boolean isDone;
 

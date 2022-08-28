@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 import duke.command.*;
 
+/**
+ * Parser class to parse texts into commands.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
+
 public class Parser {
 
     public static Command parseTodo(String desc) throws DukeException {
@@ -47,7 +53,7 @@ public class Parser {
             throw new DukeException("OOPS!! Please enter a valid task number to mark!");
         }
         int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.taskCount) {
+        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
             throw new DukeException("OOPS!! Please enter a valid task number to mark!");
         }
         return new MarkAsDoneCommand(taskNo);
@@ -59,7 +65,7 @@ public class Parser {
             throw new DukeException("OOPS!! Please enter a valid task number to unmark!");
         }
         int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.taskCount) {
+        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
             throw new DukeException("OOPS!! Please enter a valid task number to unmark!");
         }
         return new MarkAsUndoneCommand(taskNo);
@@ -72,10 +78,14 @@ public class Parser {
             throw new DukeException("OOPS!! Please enter a valid task number to delete!");
         }
         int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.taskCount) {
+        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
             throw new DukeException("OOPS!! Please enter a valid task number to delete!");
         }
         return new DeleteCommand(taskNo);
+    }
+
+    public static Command parseFind(String desc) {
+        return new FindCommand(desc);
     }
 
     public static String parseDate(String date) {
@@ -116,6 +126,9 @@ public class Parser {
 
             case ("delete"):
                 return Parser.parseDelete(desc);
+
+            case ("find") :
+                return Parser.parseFind(desc);
 
             default:
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");

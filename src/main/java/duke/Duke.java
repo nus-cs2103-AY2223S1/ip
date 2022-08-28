@@ -2,8 +2,13 @@ package duke;
 
 import java.io.IOException;
 import java.util.Scanner;
-
 import duke.command.Command;
+
+/**
+ * Main class of the Duke program
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public class Duke {
 
@@ -19,7 +24,7 @@ public class Duke {
         }
     }
 
-    public void run() throws DukeException, IOException {
+    public void run() {
         UI.welcome();
         boolean isExit = false;
         while (!isExit) {
@@ -30,7 +35,7 @@ public class Duke {
                 c.execute(taskList, storage);
                 isExit = c.isByeCommand();
             } catch (DukeException de) {
-                System.out.println(de.toString());
+                System.out.println(de);
             }
         }
 

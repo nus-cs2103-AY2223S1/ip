@@ -4,11 +4,13 @@ import duke.Storage;
 import duke.TaskList;
 import duke.DukeException;
 
+/**
+ * Abstract Command class to represent an instruction to be executed.
+ *
+ * @author Sheryl Kong (A0240686Y)
+ */
 
 public abstract class Command {
-    private String description;
-    private boolean isDone;
-    private String date;
 
     private boolean isByeCommand = false;
 
