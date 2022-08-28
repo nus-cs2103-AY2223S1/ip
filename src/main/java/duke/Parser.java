@@ -5,6 +5,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDos;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
     private TaskList taskList;
@@ -17,23 +20,34 @@ public class Parser {
         this.storage = storage;
     }
 
-    public void checkAndPerformOperations(String userInput) throws DukeException {
+    /**
+     * Checks whether command is valid and executes the command.
+     *
+     * @param input command input by user.
+     * @throws DukeException if command is invalid.
+     */
+    public void checkAndExecuteCommand(String input) throws DukeException {
+        String userInput = input.trim();
         if (userInput.equals("list")) {
             ui.printTaskList(taskList);
-
-        } else if (containsOperationWord(userInput)) {
-            performOperations(userInput.trim());
+        }else if (containsOperationWord(userInput)) {
+            executeCommand(userInput.trim());
         } else {
             throw new DukeException();
         }
     }
 
-    public void performOperations(String userInput) {
+    private void executeCommand(String userInput) {
         try {
             String[] tokens = userInput.split("\\s+", 2);
             String firstWord = tokens[0];
 
             switch (firstWord) {
+                case "find" :
+                    String wordToFind = tokens[1];
+                    String filteredListString = taskList.getTaskStringFiltered(wordToFind);
+                    ui.printFilteredList(filteredListString);
+                    break;
                 case "mark":
                 case "unmark":
                     int taskNumber = Integer.parseInt(tokens[1]);
@@ -84,13 +98,14 @@ public class Parser {
         }
     }
 
-    public boolean containsOperationWord(String userInput) {
+    private boolean containsOperationWord(String userInput) {
         return userInput.toLowerCase().contains("mark")
                 || userInput.toLowerCase().contains("unmark")
                 || userInput.toLowerCase().contains("todo")
                 || userInput.toLowerCase().contains("deadline")
                 || userInput.toLowerCase().contains("event")
-                || userInput.toLowerCase().contains("delete");
+                || userInput.toLowerCase().contains("delete")
+                || userInput.toLowerCase().contains("find");
     }
 
     private String[] splitDeadlineInput(String userInput) {
