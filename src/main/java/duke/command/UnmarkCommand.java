@@ -24,18 +24,24 @@ public class UnmarkCommand extends Command {
 
     /**
      * A function that executes the effect of unmarking a task
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
-
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
         taskList.markNotDone(index);
-        ui.showUnmark(taskList.getTask(index));
+        returnString = ui.showUnmark(taskList.getTask(index));
         storage.writeFile(taskList.getTaskList(),"duke.txt");
+        return returnString;
+    }
+
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }
 

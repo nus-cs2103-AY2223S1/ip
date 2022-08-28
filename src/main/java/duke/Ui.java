@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.List;
-import java.util.Scanner;
 
 
 /**
@@ -17,37 +16,29 @@ public class Ui {
 
 
 
-    /**
-     * Prints the startup message
-     */
-    public void showWelcome() {
-        System.out.println(GREETING);
-    }
+
 
     /**
      * Prints the ending message
+     * @return
      */
-    public void goodbyeMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String goodbyeMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Reads the User's input
      * @return The String representation of the user's input
      */
-    public String readCommand() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        return userInput;
-    }
+
 
     /**
      * Prints the appropriate message for adding a Task
      * @param task The task added
      * @param size The current number of tasks
      */
-    public void showAddCommand(Task task,int size) {
-        System.out.println("Got it. I've added this task:\n " + task.toString() + "\nNow you have " + size +" tasks in the list.");
+    public String showAddCommand(Task task,int size) {
+        return "Got it. I've added this task:\n " + task.toString() + "\nNow you have " + size +" tasks in the list.";
     }
 
     /**
@@ -55,35 +46,32 @@ public class Ui {
      * @param task The task deleted
      * @param size The current number of tasks
      */
-    public void showDelete(Task task,int size) {
-        System.out.println(" Noted. I've removed this task:");
-        System.out.println(" " + task.toString() +"\nNow you have " + size +" tasks in the list.");
+    public String showDelete(Task task,int size) {
+        return " Noted. I've removed this task:\n" + " " + task.toString() +"\nNow you have " + size +" tasks in the list." ;
     }
 
     /**
      * Prints the appropriate message for marking a Task
      * @param task The task to be marked
      */
-    public void showMark(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(" " + task.toString());
+    public String showMark(Task task) {
+        return "Nice! I've marked this task as done:" + " " + task.toString();
     }
 
     /**
      * Prints the appropriate message for unmarking a Task
      * @param task The task to be unmarked
      */
-    public void showUnmark(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(" " + task.toString());
+    public String showUnmark(Task task) {
+        return "OK, I've marked this task as not done yet:" + " " + task.toString();
     }
 
-    public void showFindResult(List<Integer> indexList, TaskList taskList) throws DukeException {
-        System.out.println("Here are the matching tasks in your list:");
+    public String showFindResult(List<Integer> indexList, TaskList taskList) throws DukeException {
+        String returnString = "Here are the matching tasks in your list:";
         for (Integer index : indexList) {
-            System.out.println(taskList.getTask(index).toString());
+            returnString += "\n" + taskList.getTask(index).toString();
         }
-
+        return returnString;
     }
 
 

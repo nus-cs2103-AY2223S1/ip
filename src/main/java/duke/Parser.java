@@ -55,7 +55,7 @@ public class Parser {
             case "find" :
                 return new FindCommand(input[1]);
         }
-        throw new DukeException("☹ OOPS!!! I don't understand what that means");
+        throw new DukeException("OOPS!!! I don't understand what that means");
     }
 
     /**
@@ -67,7 +67,7 @@ public class Parser {
         if (input.length == 2 && input[1].matches("^[0-9]*$")) {
             return parseInt(input[1]);
         }
-        throw new DukeException("☹ OOPS!!! That index is not valid");
+        throw new DukeException("OOPS!!! That index is not valid");
     }
 
     /**
@@ -81,7 +81,7 @@ public class Parser {
                 return i;
             }
         }
-        throw new DukeException("☹ OOPS!!! Please add a date for your event with /at.");
+        throw new DukeException("OOPS!!! Please add a date for your event with /at.");
     }
 
     /**
@@ -94,9 +94,9 @@ public class Parser {
             if (input.length == 2 && input[1].matches("^[0-9]*$")) {
                 return LocalDate.parse(input[1]);
             }
-            throw new DukeException("☹ OOPS!!! I didn't understand that");
+            throw new DukeException("OOPS!!! I didn't understand that");
         } catch (DateTimeParseException e){
-            throw new DukeException("☹ OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
+            throw new DukeException("OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
         }
     }
 
@@ -109,7 +109,7 @@ public class Parser {
         try {
             return LocalDate.parse(input);
         } catch (DateTimeParseException e){
-            throw new DukeException("☹ OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
+            throw new DukeException("OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
         }
     }
 

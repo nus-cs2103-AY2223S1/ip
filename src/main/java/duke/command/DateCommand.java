@@ -26,13 +26,14 @@ public class DateCommand extends Command {
 
     /**
      * A function that executes the effect of printing all the relevant events and deadlines on a day
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
         LocalDate date = this.date;
         List<String> onThisDate = new ArrayList<>();
         List<String> byThisDate = new ArrayList<>();
@@ -50,14 +51,15 @@ public class DateCommand extends Command {
                 }
             }
         }
-        System.out.println("Things on this day :" );
+        returnString = "Things on this day :" ;
         for(String s : onThisDate) {
-            System.out.println(s + "\n");
+            returnString += (s + "\n");
         }
         System.out.println("Things to do by this day :" );
         for(String s : byThisDate) {
-            System.out.println(s + "\n");
+            returnString += (s + "\n");
         }
+        return returnString;
     }
 
 
