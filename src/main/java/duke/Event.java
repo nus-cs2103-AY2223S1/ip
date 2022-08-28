@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task{
     private String dateTime = "";
     private LocalDateTime dateTimeProper;
+
     public Event(String taskDescription, String dateTime) {
         super(taskDescription.replace("event ", ""));
         this.dateTime = dateTime;
