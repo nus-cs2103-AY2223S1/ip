@@ -6,6 +6,10 @@ public class Task {
     protected String splitDesscription[];
     protected boolean isDone;
 
+    /**
+     * Creates a new Task.
+     * @param description Full description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -21,14 +25,26 @@ public class Task {
         return false;
     }
 
+
+    /**
+     * Returns an X if the task when activity is done.
+     * @return X if task is done, else blank.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Unmarks the Task by setting isDone to false.
+     */
     public void unMark() {
         this.isDone = false;
     }
 
+
+    /**
+     * Marks the Task by setting isDone to True.
+     */
     public void mark() {
         this.isDone = true;
     }

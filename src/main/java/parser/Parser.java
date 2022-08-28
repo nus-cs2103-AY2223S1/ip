@@ -27,6 +27,13 @@ public class Parser {
 
     private String type = "error";
 
+    /**
+     * Creates a new Parser.
+     * @param list The TaskList to be read to.
+     * @param str The userInput to be interpreted.
+     * @throws DukeException
+     */
+
     public Parser(TaskList list, String str) throws DukeException {
         String input[] = str.split(" ");
         this.taskList = list;
@@ -118,14 +125,27 @@ public class Parser {
         }
     }
 
+    /**
+     * Gets the type of userInput.
+     * @return The String representation of the type of userInput.
+     */
+
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Gets the Boolean value of whether the input is valid.
+     * @return The Boolean value of the input if valid.
+     */
     public Boolean isErreneous() {
         return this.isErreneous;
     }
 
+    /**
+     * Gets the Boolean value if userInput is a Task.
+     * @return The Boolean value if userInput is a Task.
+     */
     public Boolean getIsAction() {
         return this.isAction;
     }

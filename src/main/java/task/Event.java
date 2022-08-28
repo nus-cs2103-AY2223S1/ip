@@ -5,6 +5,12 @@ public class Event extends Task {
     protected String string_Date;
     protected String string_Time;
 
+    /**
+     * Creates a new Event
+     * @param description The activity of the event.
+     * @param at The date of the event.
+     */
+
     public Event(String description, String at) {
         super(description);
         this.at = at;

@@ -16,6 +16,12 @@ public class Deadline extends Task {
 
     protected String string_Time;
 
+
+    /**
+     * Creates a new Deadline.
+     * @param description The name of activity.
+     * @param by The time to do the deadline by.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
