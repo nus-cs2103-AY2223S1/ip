@@ -1,3 +1,4 @@
+package neo;
 import java.io.IOException;
 
 abstract class Command {

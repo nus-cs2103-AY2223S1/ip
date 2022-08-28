@@ -1,6 +1,7 @@
+package neo;
 import java.io.IOException;
 
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
 
     private TaskList arrayLL;
     private Ui ui;

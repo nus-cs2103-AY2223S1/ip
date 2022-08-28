@@ -1,6 +1,6 @@
+package neo;
 import java.io.IOException;
-
-public class AddCommand extends Command{
+public class AddCommand extends Command {
 
     private TaskList arrayLL;
     private Ui ui;

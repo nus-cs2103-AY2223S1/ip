@@ -1,5 +1,5 @@
 
-Hello! I'm Neo
+Hello! I'm neo
 What can I do for you?
 Please enter items you want to add to the list, if you want to quit enter bye
 

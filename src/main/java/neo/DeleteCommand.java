@@ -1,6 +1,7 @@
+package neo;
 import java.io.IOException;
 
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
 
     private TaskList arrayLL;
     private Ui ui;

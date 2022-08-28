@@ -1,3 +1,4 @@
+package neo;
 public class Ui {
     protected String inp;
     public Ui() {}
