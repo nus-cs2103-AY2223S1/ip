@@ -11,7 +11,7 @@ import java.nio.file.Path;
 public class CommandTest {
 
     @Test
-    public void testExecute(){
+    public void execute_createEventAndMarkDone_eventSaved(){
         try {
             String filePath = "/Users/shaune/Desktop/NUS/CS2103T/ip-1/src/test/actualOutput.txt";
             ToDoList toDoList = new ToDoList();

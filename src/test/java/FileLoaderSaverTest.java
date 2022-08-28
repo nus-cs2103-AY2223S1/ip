@@ -10,7 +10,7 @@ public class FileLoaderSaverTest {
     private String createFilePath = "/Users/shaune/Desktop/NUS/CS2103T/ip-1/src/test/actualOutput.txt";
 
     @Test
-    public void testLoadFile(){
+    public void loadFile_properlyStoredTwoTasks_tasksExtractedProperly(){
         try{
             FileLoaderSaver fls = new FileLoaderSaver(filePath);
             List<String> taskList = fls.loadFile();
@@ -23,7 +23,7 @@ public class FileLoaderSaverTest {
     }
 
     @Test
-    public void testWriteToFile()
+    public void writeToFile_writeTwoTasks_tasksStoredProperly()
     {
         try{
             FileLoaderSaver fls = new FileLoaderSaver(createFilePath);
