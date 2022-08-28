@@ -8,7 +8,7 @@ public class Deadline extends Task {
 
     @Override
     public String toFileData() {
-        return "D | " + super.toFileData() + "|" + this.endTime;
+        return "D | " + super.toFileData() + "| " + this.endTime;
     }
 
     @Override

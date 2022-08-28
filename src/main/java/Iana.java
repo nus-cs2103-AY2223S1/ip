@@ -59,11 +59,6 @@ public class Iana {
 
                 switch(action) {
                     case "bye":
-                    try {
-                        DataWriter.writeData(vocabList, absPath);
-                    } catch (IOException e) {
-                        echo("File DataStorage.txt not found in [project_root]/src/main/data. Cannot store data!");
-                    }
                     echo("Goodbye! :P");
                     isActive = false;
                     break;

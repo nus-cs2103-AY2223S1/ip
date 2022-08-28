@@ -9,7 +9,7 @@ public class Event extends Task {
 
     @Override
     public String toFileData() {
-        return "E | " + super.toFileData() + "|" + this.eventTime;
+        return "E | " + super.toFileData() + "| " + this.eventTime;
     }
 
 
