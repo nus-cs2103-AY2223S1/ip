@@ -62,8 +62,8 @@ public class TaskListReader {
         return taskList;
     }
 
-    public void writeTaskListToFile(List<Task> taskList) throws IOException {
-        Files.write(filePath, taskList.stream()
+    public void writeTaskListToFile(TaskList taskList) throws IOException {
+        Files.write(filePath, taskList.getTasks().stream()
                 .map(x -> x.toDataString(SEPARATOR))
                 .collect(Collectors.toList())
         );

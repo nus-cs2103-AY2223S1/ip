@@ -15,7 +15,7 @@ public class Dan {
         Scanner sc = new Scanner(System.in);
         TaskListReader tlr = new TaskListReader(DATA_FILE);
         try {
-            List<Task> tasks = tlr.readTaskListFromFile();
+            TaskList tasks = new TaskList(tlr.readTaskListFromFile());
             greet();
 
             while (true) {
@@ -28,19 +28,22 @@ public class Dan {
                         return;
 
                     case "list":
-                        showTasks(tasks);
+                        printLine();
+                        printIndent("Here are the tasks in your list:");
+                        tasks.showTasks();
+                        printLine();
                         break;
 
                     case "mark":
-                        markTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        tasks.markTask(Integer.parseInt(input.split(" ")[1]));
                         break;
 
                     case "unmark":
-                        unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        tasks.unMarkTask(Integer.parseInt(input.split(" ")[1]));
                         break;
 
                     case "delete":
-                        deleteTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
                         break;
 
                     case "todo":
@@ -48,7 +51,7 @@ public class Dan {
                     case "deadline":
                         //fall through
                     case "event":
-                        addTask(tasks, input);
+                        tasks.addTask(input);
                         break;
 
                     default:
@@ -123,89 +126,7 @@ public class Dan {
         printBlock("Boo! Bye bye... :(");
     }
 
-    public static void addTask(List<Task> tasks, String input) throws DanException {
-        String description;
-        String dateString;
-        if (input.startsWith("todo")) {
-            description = input.replace("todo", "").strip();
-            if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your todo item");
-            }
-            tasks.add(new ToDo(description));
 
-        } else if (input.startsWith("deadline")) {
-            String[] temp = input.replace("deadline","").strip().split("/by");
-            if (temp.length != 2) {
-                throw new DanException("Please follow the following format:\n deadline <description> /by <due date>");
-            }
-            description = temp[0].strip();
-            dateString = temp[1].strip();
-            if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your deadline");
-            }
-            tasks.add(new Deadline(description, dateString));
 
-        } else if (input.startsWith("event")) {
-            String[] temp = input.replace("event", "").strip().split("/at");
-            if (temp.length != 2) {
-                throw new DanException("Please follow the following format:\n event <description> /at <time/date>");
-            }
-            description = temp[0].strip();
-            dateString = temp[1].strip();
-            if (description.isEmpty()) {
-                throw new DanException("Please provide me a description for your event");
-            }
-            tasks.add(new Event(description, dateString));
-        }
-        printLine();
-        printIndent("Okay okay, I'll add this task then:");
-        printIndent(tasks.get(tasks.size() -1).toString());
-        printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
-        printLine();
-    }
 
-    public static void showTasks(List<Task> tasks) throws DanException {
-        if (tasks.isEmpty()) {
-            throw new DanException("Your list is empty!");
-        }
-        printLine();
-        printIndent("Here are the tasks in your list:");
-        for (int i =1; i <= tasks.size(); i++) {
-            printIndent(i + "." + tasks.get(i - 1));
-        }
-        printLine();
-    }
-
-    public static void markTask(List<Task> tasks, int index) throws DanException {
-        if (index > tasks.size()) {
-            printIndent("tasks.size(): " + tasks.size());
-            throw new DanException("This task number doesn't exist!");
-        }
-        Task task = tasks.get(index - 1);
-        task.setDone(true);
-        printBlock(String.format("Hehe okay guess this is now done\n"
-                + "  %s", task));
-    }
-
-    public static void unMarkTask(List<Task> tasks, int index) throws DanException {
-        if (index > tasks.size()) {
-            throw new DanException("This task number doesn't exist!");
-        }
-        Task task = tasks.get(index - 1);
-        task.setDone(false);
-        printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
-                + "  %s", task));
-    }
-
-    public static void deleteTask(List<Task> tasks, int index) throws DanException {
-        if (index >= tasks.size()) {
-            throw new DanException("This task number doesn't exist!");
-        }
-        printLine();
-        printIndent("Alright then, I'll remove this task from your list:");
-        printIndent(tasks.get(index - 1).toString());
-        tasks.remove(index - 1);
-        printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
-        printLine();
-    }
 }
