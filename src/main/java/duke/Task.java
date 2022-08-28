@@ -43,4 +43,13 @@ public abstract class Task {
     public void setUnDone() {
         this.done = false;
     }
+
+    /**
+     * Checks if the task contains the keyword.
+     * @param keyWord The keyword that is being checked.
+     * @return True if the task contains the keyword, false otherwise.
+     */
+    public boolean contains(String keyWord) {
+        return item.contains(keyWord);
+    }
 }

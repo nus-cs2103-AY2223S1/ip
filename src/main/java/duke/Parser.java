@@ -92,6 +92,14 @@ public class Parser {
                 } catch (StringIndexOutOfBoundsException e) {
                     jamie.ui.missingNumberAfterCommand("delete");
                 }
+            } else if (input.startsWith("find ")) {
+                try {
+                    String keyWord = input.substring(5);
+                    TaskList tempList = jamie.tasks.find(keyWord);
+                    jamie.ui.printTaskList(tempList);
+                } catch (DukeException e) {
+                    jamie.ui.noSuchTaskError();
+                }
             } else {
                 jamie.ui.invalidCommand();
             }
