@@ -4,7 +4,7 @@ package duke;
  * Encapsulates an Exception related to the Duke chatbot.
  *
  */
-abstract public class DukeException {
+public abstract class DukeException {
     private String message;
 
     /**

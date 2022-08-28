@@ -4,7 +4,7 @@ package duke;
  * Abstract class which encapsulates a Task inputted by the user.
  *
  */
-abstract public class Task {
+public abstract class Task {
     private String name;
     private boolean isDone;
 

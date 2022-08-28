@@ -56,30 +56,30 @@ public class Storage {
                 String className = lineArr[0];
                 String name = lineArr[1];
                 switch(className) {
-                    case "Event":
-                        String duration = lineArr[2];
-                        Event newEvent = new Event(name, duration);
-                        taskList.addTask(newEvent);
-                        if (lineArr[3].equals("true")) {
-                            newEvent.markDone();
-                        }
-                        break;
-                    case "Deadline":
-                        String deadline = lineArr[2];
-                        Deadline newDeadline = new Deadline(name, deadline);
-                        taskList.addTask(newDeadline);
-                        if (lineArr[3].equals("true")) {
-                            newDeadline.markDone();
-                        }
-                        break;
-                    case "ToDo":
-                        ToDo newToDo = new ToDo(name);
-                        taskList.addTask(newToDo);
-                        if (lineArr[2].equals("true")) {
-                            newToDo.markDone();
-                        }
-                        break;
-                    default:
+                case "Event":
+                    String duration = lineArr[2];
+                    Event newEvent = new Event(name, duration);
+                    taskList.addTask(newEvent);
+                    if (lineArr[3].equals("true")) {
+                        newEvent.markDone();
+                    }
+                    break;
+                case "Deadline":
+                    String deadline = lineArr[2];
+                    Deadline newDeadline = new Deadline(name, deadline);
+                    taskList.addTask(newDeadline);
+                    if (lineArr[3].equals("true")) {
+                        newDeadline.markDone();
+                    }
+                    break;
+                case "ToDo":
+                    ToDo newToDo = new ToDo(name);
+                    taskList.addTask(newToDo);
+                    if (lineArr[2].equals("true")) {
+                        newToDo.markDone();
+                    }
+                    break;
+                default:
 
                 }
             }

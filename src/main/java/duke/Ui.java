@@ -29,7 +29,7 @@ public class Ui {
      */
     public void printTasks(TaskList taskList) {
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(String.format("%d. %s", i+1, taskList.getTask(i).toString()));
+            System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i).toString()));
         }
     }
 
