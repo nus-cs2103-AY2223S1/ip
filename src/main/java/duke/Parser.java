@@ -53,6 +53,9 @@ public abstract class Parser {
                 case list:
                     command = new ListCommand(commandString);
                     break;
+                case find:
+                    command = FindCommand.of(commandString);
+                    break;
             }
         }
 

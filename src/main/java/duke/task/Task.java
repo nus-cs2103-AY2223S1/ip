@@ -17,6 +17,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean textContains(String s) {
+        return this.text.contains(s);
+    }
+
     @Override
     public String toString() {
         return String.format("[%c] %s", isDone ? 'X' : ' ', this.text);

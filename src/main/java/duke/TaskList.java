@@ -5,6 +5,7 @@ import duke.task.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -20,6 +21,11 @@ public class TaskList {
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.addCommands = new ArrayList<>();
+    }
+
+    private TaskList(ArrayList<Task> tasks, ArrayList<String> addCommands) {
+        this.tasks = tasks;
+        this.addCommands = addCommands;
     }
 
     /**
@@ -128,6 +134,19 @@ public class TaskList {
             this.addCommands.set(i, commandString);
             throw new IOException("There was a problem writing the change to the file. duke.task.Task not unmarked.");
         }
+    }
+
+    public TaskList search(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        ArrayList<String> matchingAddCommands = new ArrayList<>();
+
+        IntStream.range(0, tasks.size())
+                .filter(i -> tasks.get(i).textContains(keyword))
+                .forEach(i -> {
+                    matchingTasks.add(tasks.get(i));
+                    matchingAddCommands.add(addCommands.get(i));
+                });
+        return new TaskList(matchingTasks, matchingAddCommands);
     }
 
     @Override

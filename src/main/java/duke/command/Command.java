@@ -15,7 +15,7 @@ public abstract class Command {
      * All possible command words that user can use.
      */
     public enum Commands {
-        mark, unmark, todo, deadline, event, delete, bye, list
+        mark, unmark, todo, deadline, event, delete, bye, list, find
     }
 
     protected String command;
