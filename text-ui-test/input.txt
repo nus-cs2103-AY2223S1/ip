@@ -13,4 +13,9 @@ event item 5
 list
 delete 2
 list
+todo item 3
+event 3423423423423432
+delete asdasdasasdas
+mark asdasdasdsadas
+unmark asdasdsadsadasdas
 bye

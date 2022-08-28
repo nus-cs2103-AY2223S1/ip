@@ -44,5 +44,16 @@ Your current tasks:
   1. [T][X] item 1
   2. [E][ ] item 3 (at: 4pm)
 -----------------------------------------------
+Item added: [T][ ] item 3
+Now you have 3 tasks in the list.
+-----------------------------------------------
+Hang on! An incorrect event description was entered.
+-----------------------------------------------
+Hang on! Please recheck your number input, including trailing spaces.
+-----------------------------------------------
+Hang on! Please recheck your number input, including trailing spaces.
+-----------------------------------------------
+Hang on! Please recheck your number input, including trailing spaces.
+-----------------------------------------------
 Goodbye, see you soon!
 -----------------------------------------------
