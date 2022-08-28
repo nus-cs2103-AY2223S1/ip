@@ -10,7 +10,9 @@ import uwu.task.TaskList;
 
 import uwu.Ui;
 
-/** Marks or unmarks a task in the task list. */
+/**
+ * Marks or unmarks a task in the task list.
+ */
 public class MarkCommand extends Command {
     /** The index of the task to be marked or unmarked. */
     int index;
@@ -40,23 +42,23 @@ public class MarkCommand extends Command {
      */
     public void execute (TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (index >= tasks.size()) {
-            throw new NullTaskException("\thm...it seems that task " + String.valueOf(index + 1) + " does not exist ><" +
-                    "\n\tplease check that you have keyed in the right task number~ <:");
+            throw new NullTaskException("\thm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
+                    + "\n\tplease check that you have keyed in the right task number~ <:");
         }
 
         switch (taskType) {
-            case "mark":
-                Task markedTask = tasks.get(index);
-                markedTask.setIsDone(true);
-                ui.markTask(markedTask);
-                storage.save(tasks.taskListToStorageString());
-                break;
-            case "unmark":
-                Task unmarkedTask = tasks.get(index);
-                unmarkedTask.setIsDone(false);
-                ui.unmarkTask(unmarkedTask);
-                storage.save(tasks.taskListToStorageString());
-                break;
+        case "mark":
+            Task markedTask = tasks.get(index);
+            markedTask.setIsDone(true);
+            ui.markTask(markedTask);
+            storage.save(tasks.taskListToStorageString());
+            break;
+        case "unmark":
+            Task unmarkedTask = tasks.get(index);
+            unmarkedTask.setIsDone(false);
+            ui.unmarkTask(unmarkedTask);
+            storage.save(tasks.taskListToStorageString());
+            break;
         }
     };
 

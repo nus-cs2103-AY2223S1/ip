@@ -1,8 +1,9 @@
 package uwu;
 
-import java.util.Scanner;
 import uwu.task.Task;
 import uwu.task.TaskList;
+
+import java.util.Scanner;
 
 /**
  * Text UI of the application.
@@ -33,9 +34,7 @@ public class Ui {
      * Greets users.
      */
     public void greetUsers() {
-        String greetings = "\thellu!" +
-                           "\n\ti am oo woo <:" +
-                           "\n\thow can i be of service today?";
+        String greetings = "\thellu!\n\ti am oo woo <:\n\thow can i be of service today?";
         System.out.println(greetings);
     }
 
@@ -43,8 +42,7 @@ public class Ui {
      * Leaves chat.
      */
     public void leaveChat() {
-        String farewellWords = "\tgood work today!" +
-                                "\n\thope to see you again soon~";
+        String farewellWords = "\tgood work today!\n\thope to see you again soon~";
         System.out.println(farewellWords);
     }
 
@@ -55,9 +53,9 @@ public class Ui {
      * @param tasksLength The length of the task list.
      */
     public void addTask(Task task, int tasksLength) {
-        String addToDoString = "\too new task! ^^" +
-                "\n\t\tadded:\t" + task.toString() +
-                "\n\tyou have " + String.valueOf(tasksLength) + " task(s) <:";
+        String addToDoString = "\too new task! ^^"
+                + "\n\t\tadded:\t" + task.toString()
+                + "\n\tyou have " + String.valueOf(tasksLength) + " task(s) <:";
         System.out.println(addToDoString);
     }
 
@@ -68,8 +66,8 @@ public class Ui {
      */
     public void listTasks(TaskList tasks) {
         if (tasks.size() == 0) {
-            System.out.println("\tlooks like there are no tasks on your list uwu" +
-                                "\n\tfeed me a task to get started~ <:");
+            System.out.println("\tlooks like there are no tasks on your list uwu"
+                    + "\n\tfeed me a task to get started~ <:");
         } else {
             System.out.println("\there are your tasks~ you've got this!" + tasks.taskListToString());
         }
@@ -102,9 +100,9 @@ public class Ui {
      * @param tasksLength The length of the task list.
      */
     public void deleteTask(Task task, int tasksLength) {
-        System.out.println("\tremoving this task from your list...\n\t\t" +
-                task.toString() +
-                "\n\ttask removed~! now you have " + String.valueOf(tasksLength) + " task(s) <:");
+        System.out.println("\tremoving this task from your list...\n\t\t"
+                + task.toString()
+                + "\n\ttask removed~! now you have " + String.valueOf(tasksLength) + " task(s) <:");
     }
 
     /**

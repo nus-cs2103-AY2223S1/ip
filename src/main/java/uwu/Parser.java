@@ -2,8 +2,8 @@ package uwu;
 
 import uwu.command.AddCommand;
 import uwu.command.Command;
-import uwu.command.ExitCommand;
 import uwu.command.DeleteCommand;
+import uwu.command.ExitCommand;
 import uwu.command.ListCommand;
 import uwu.command.MarkCommand;
 
@@ -30,14 +30,14 @@ public class Parser {
                 return new ListCommand();
             } else if (userCommand.startsWith("mark") || userCommand.startsWith("unmark")) {
                 return new MarkCommand(userCommand);
-            } else if (userCommand.startsWith("todo") ||
-                        userCommand.startsWith("deadline") ||
-                        userCommand.startsWith("event")) {
-                if (userCommand.trim().endsWith("todo") ||
-                        userCommand.trim().endsWith("deadline") ||
-                        userCommand.trim().endsWith("event")) {
-                    throw new EmptyInputException("\tyour task description is empty TT\n\t" +
-                            "feed me a task description to get started! <:");
+            } else if (userCommand.startsWith("todo")
+                    || userCommand.startsWith("deadline")
+                    || userCommand.startsWith("event")) {
+                if (userCommand.trim().endsWith("todo")
+                        || userCommand.trim().endsWith("deadline")
+                        || userCommand.trim().endsWith("event")) {
+                    throw new EmptyInputException("\tyour task description is empty TT\n\t"
+                            + "feed me a task description to get started! <:");
                 }
                 return new AddCommand(userCommand);
             } else if (userCommand.startsWith("delete")) {

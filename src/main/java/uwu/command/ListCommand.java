@@ -1,10 +1,14 @@
 package uwu.command;
 
 import uwu.Storage;
+
 import uwu.task.TaskList;
+
 import uwu.Ui;
 
-/** Lists all the tasks in the task list. */
+/**
+ * Lists all the tasks in the task list.
+ */
 public class ListCommand extends Command {
     /**
      * Executes the ListCommand which is to list all tasks stored in user's hard disk.

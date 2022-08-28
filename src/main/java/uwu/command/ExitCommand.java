@@ -1,10 +1,14 @@
 package uwu.command;
 
 import uwu.Storage;
+
 import uwu.task.TaskList;
+
 import uwu.Ui;
 
-/** Exits the program. */
+/**
+ * Exits the program.
+ */
 public class ExitCommand extends Command {
     /**
      * Executes the ExitCommand which is to exit the program.

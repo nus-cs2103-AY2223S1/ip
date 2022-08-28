@@ -1,11 +1,16 @@
 package uwu.command;
 
 import uwu.exception.UwuException;
+
 import uwu.Storage;
+
 import uwu.task.TaskList;
+
 import uwu.Ui;
 
-/** The Command class is an abstract class that represents an exxecutable command. */
+/**
+ * The Command class is an abstract class that represents an executable command.
+ */
 public abstract class Command {
     /**
      * Executes the user command.
