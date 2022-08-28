@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Contains methods that deal with storing and loading Tasks from memory file.
+ * Contains methods that deal with storing and loading Tasks from memory.
  */
 public class Storage {
     private String filePath;
