@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * Ui deals with interactions with the user
+ * Ui deals with interactions with the user.
  *
  * @author Samsation
  * @version CS2103T AY 22/23 Sem 1
