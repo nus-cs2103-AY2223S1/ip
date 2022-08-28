@@ -79,9 +79,21 @@ public class Task {
         return "[ ]";
     }
 
+    private String getTypeLetter() {
+        switch (this.taskType) {
+            case TODO:
+                return "T";
+            case EVENT:
+                return "E";
+            case DEADLINE:
+                return "D";
+        }
+        return " ";
+    }
+
     @Override
     public String toString() {
-        return "[" + this.taskType.toString().charAt(0) + "]" + isDoneString() + " " + this.taskName + " " + this.date;
+        return "[" + getTypeLetter() + "]" + isDoneString() + " " + this.taskName + " " + this.date;
     }
 
     public String toTxt() {

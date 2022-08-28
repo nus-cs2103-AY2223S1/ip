@@ -63,6 +63,12 @@ public class Duke {
                     String date = Parser.getDate(userInput);
                     ui.showSchedule(date, list);
                     break;
+                case "find":
+                    String keyword = Parser.getTaskName(userInput);
+                    ArrayList<Task> foundTasks = this.tasks.find(keyword);
+                    //ui.showMessage("Here are the matching tasks in your list:\n");
+                    //ui.showList(foundTasks);
+                    ui.showFoundTasks(foundTasks, keyword);
                 case "todo":
                 case "deadline":
                 case "event":
