@@ -75,6 +75,5 @@ public class Ui {
         System.out.println(line_divider);
         System.out.println("CLEAR ALL LIAO");
         System.out.println(line_divider);
-
     }
 }

@@ -18,7 +18,8 @@ public class Event extends Task {
 
     @Override
     public String taskToFileString() {
-        return " E " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | " + Parser.dateTimeToString(occursAt);
+        return " E " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | "
+                + Parser.dateTimeToString(occursAt);
     }
 
     @Override

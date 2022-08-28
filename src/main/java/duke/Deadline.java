@@ -18,7 +18,8 @@ public class Deadline extends Task {
 
     @Override
     public String taskToFileString() {
-        return " D " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | " + Parser.dateTimeToString(dueBy);
+        return " D " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | "
+                + Parser.dateTimeToString(dueBy);
     }
 
     @Override

@@ -27,10 +27,10 @@ public class Parser {
         return dt.format(formatter);
     }
 
-    public static void listToFile(ArrayList<Task> tasklist) {
+    public static void listToFile(ArrayList<Task> taskList) {
         try {
             FileWriter fw = new FileWriter("./data/dukedata.txt");
-            for (Task t : tasklist) {
+            for (Task t : taskList) {
                 fw.write(t.taskToFileString() + System.lineSeparator());
             }
             fw.close();
