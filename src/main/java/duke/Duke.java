@@ -1,8 +1,6 @@
 package duke;
 
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * A Personal Assistant Chatbot that helps a person keep track of several things like tasks.

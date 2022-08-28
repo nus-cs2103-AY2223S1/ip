@@ -1,6 +1,6 @@
 package duke;
 
-abstract public class DukeException {
+public abstract class DukeException {
     private String message;
 
     public DukeException(String message) {

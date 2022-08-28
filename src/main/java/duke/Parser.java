@@ -24,13 +24,13 @@ public class Parser {
             ui.printTasks(taskList);
             break;
         case "mark":
-            int taskNo = Integer.valueOf(commandBreakdown[1])-1;
+            int taskNo = Integer.valueOf(commandBreakdown[1]) - 1;
             Task task = taskList.getTask(taskNo);
             taskList.getTask(taskNo).markDone();
             ui.printMarked(task);
             break;
         case "unmark":
-            taskNo = Integer.valueOf(commandBreakdown[1])-1;
+            taskNo = Integer.valueOf(commandBreakdown[1]) - 1;
             task = taskList.getTask(taskNo);
             taskList.getTask(taskNo).markUndone();
             ui.printUnmarked(task);
