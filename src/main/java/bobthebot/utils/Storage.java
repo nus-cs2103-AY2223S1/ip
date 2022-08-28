@@ -13,18 +13,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * A class which handles the interaction of the BobTheBot with the file storing the ToDo List items.
+ * */
 public class Storage {
     private String filePath;
     private String dirPath;
 
+    /**
+     * Constructs a storage object.
+     * */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.dirPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
 
-    // method for loading whatever is in the file to an array list
-    // returns an array list
-    // if the file is not found, then return an empty list
+    /**
+     * Method which loads data from the specified file into an ArrayList, which can be used for the ToDo List object.
+     * If the file is not found, an empty ArrayList is returned.
+     * @return An ArrayList containing the tasks in the specified file, or an empty ArrayList if there is no
+     * file or the file is empty.
+     * */
     public ArrayList<Task> load() {
         ArrayList<Task> list = new ArrayList<>();
         File dir = new File(this.dirPath);
@@ -83,7 +92,10 @@ public class Storage {
         return list;
     }
 
-    // function to make a task stored in the storage file
+    /**
+     * Method which takes in an ArrayList of tasks and stores it into the specified file.
+     * @param list An ArrayList containing the Tasks in the ToDo list object.
+     * */
     public void store(ArrayList<Task> list) {
         File dir = new File(this.dirPath);
         if (!dir.exists()) {

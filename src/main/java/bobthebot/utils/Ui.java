@@ -3,9 +3,13 @@ package bobthebot.utils;
 import bobthebot.tasks.ToDoList;
 import bobthebot.tasks.Task;
 
-
+/**
+ * Class which handles the interaction of BobTheBot and the user.
+ * */
 public class Ui {
-
+    /**
+     * Method which welcomes the user.
+     * */
     public static void welcome() {
         String result = "\tHello! I am Bob the Bot, your friendly task manager! \uD83D\uDE0A\n";
         result += "\tWhen using me, please stick to the following commands:\n" +
@@ -21,6 +25,10 @@ public class Ui {
         formatMessage(result);
     }
 
+    /**
+     * Method which says goodbye to the user.
+     * @param list ToDoList of the items the user still has to accomplish.
+     * */
     public static void goodbye(ToDoList list) {
         String result = "\tBye! Hope to see you again soon! ";
         String haveMoreTasks = "You still have " + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
@@ -31,6 +39,10 @@ public class Ui {
         formatMessage(list.getLength() == 0 ? result + completedAllTasks : result + haveMoreTasks);
     }
 
+    /**
+     * Method which formats and prints the message to the user.
+     * @param s The String to be formatted.
+     * */
     public static void formatMessage(String s) {
         String result = "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 +
@@ -39,6 +51,10 @@ public class Ui {
         System.out.println(result);
     }
 
+    /**
+     * Method which formats and prints an error message to the user.
+     * @param s The error message to be formatted.
+     * */
     public static void printErrorMessage(String s) {
         String result = "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 +
@@ -47,6 +63,11 @@ public class Ui {
         System.err.println(result);
     }
 
+    /**
+     * Method which informs the user that the specified task was successfully added.
+     * @param t The task that was added.
+     * @param list The ToDo List the task was added to.
+     * */
     public static void taskAddedMessage(Task t, ToDoList list) {
         String toPrint = "\tGot it. I've added this task: \n";
         toPrint += "\t" + t.toString() + "\n";
@@ -55,6 +76,11 @@ public class Ui {
         formatMessage(toPrint);
     }
 
+    /**
+     * Method which informs the user that the specified task was successfully deleted.
+     * @param index The index of the task to be deleted.
+     * @param list The ToDo list which the task is to be deleted from.
+     */
     public static void taskDeletedMessage(int index, ToDoList list) {
         String toPrint = "\tGot it. I've removed this task: \n";
         toPrint += "\t\t" + list.getTask(index).toString() + "\n";
@@ -63,13 +89,22 @@ public class Ui {
         formatMessage(toPrint);
     }
 
-    /* takes in 0 index */
+    /**
+     * Takes in the 0 index of the item done and prints a message informing the user that their item is successfully marked done.
+     * @param list ToDo List the item is in.
+     * @param index The index of the item to be marked as done.
+     * */
     public static void markItemDoneMessage(ToDoList list, int index) {
         String toPrint = "\tGOOD JOB! I'm marking this task as done: \n";
         toPrint += "\t" + list.getTask(index).toString();
         formatMessage(toPrint);
     }
 
+    /**
+     * Takes in the 0 index of the item done and prints a message informing the user that their item is successfully marked undone.
+     * @param list ToDo List the item is in.
+     * @param index The index of the item to be marked as undone.
+     * */
     public static void markItemUndoneMessage(ToDoList list, int index) {
         String toPrint = "\tIt's sad that you thought you finished your work but didnt.\n";
         toPrint += "\t" + "But alright, marking this task as undone: \n";
@@ -77,6 +112,10 @@ public class Ui {
         formatMessage(toPrint);
     }
 
+    /**
+     * Returns items in the list.
+     * @param list Tasks to be printed from this TODO list.
+     * */
     public static void listMessage(ToDoList list) {
         if (list.getLength() == 0) {
             String toPrint = "\tYAY! There are no items in your list!";
