@@ -12,7 +12,7 @@ public class Ui {
      * @param msg A String to be printed.
      * @return The string with a border.
      */
-    public static String printMessage(String msg) {
+    public static String getMessage(String msg) {
         return msg;
     }
 
@@ -21,9 +21,9 @@ public class Ui {
      *
      * @return The Duke exit String.
      */
-    public String printExitMessage() {
+    public String getExitMessage() {
         String exitMsg = "Bye. Hope to see you again soon!";
-        return printMessage(exitMsg);
+        return getMessage(exitMsg);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Ui {
      */
     public String listTasks(ArrayList<Task> tasks) {
         String reply = "Here are the tasks in your list:";
-        return printMessage(enumerateTasks(tasks, reply));
+        return getMessage(enumerateTasks(tasks, reply));
     }
 
     /**
@@ -45,7 +45,7 @@ public class Ui {
      */
     public String listFoundTasks(ArrayList<Task> tasks) {
         String reply = "Here are the matching tasks in your list:";
-        return printMessage(enumerateTasks(tasks, reply));
+        return getMessage(enumerateTasks(tasks, reply));
     }
 
     private String enumerateTasks(ArrayList<Task> tasks, String str) {
@@ -63,8 +63,8 @@ public class Ui {
      * @param task The task that is marked.
      * @return A string acknowledging the marked task.
      */
-    public String printMarkedTask(Task task) {
-        return printMessage("Nice! I've marked this task as done:\n" + task);
+    public String getMarkedTask(Task task) {
+        return getMessage("Nice! I've marked this task as done:\n" + task);
     }
 
     /**
@@ -73,8 +73,8 @@ public class Ui {
      * @param task The task that is unmarked.
      * @return A string acknowledging the unmarked task.
      */
-    public String printUnmarkedTask(Task task) {
-        return printMessage("OK, I've marked this task as not done yet:\n" + task);
+    public String getUnmarkedTask(Task task) {
+        return getMessage("OK, I've marked this task as not done yet:\n" + task);
     }
 
     private String getTaskCountReply(int count) {
@@ -88,11 +88,11 @@ public class Ui {
      * @param tasksCountLeft The number of tasks left after the task is removed.
      * @return A string acknowledging the removed task along with the number of tasks remaining.
      */
-    public String printRemovedTask(Task removedTask, int tasksCountLeft) {
+    public String getRemovedTask(Task removedTask, int tasksCountLeft) {
         String msg = "Noted. I've removed this task:\n"
                 + removedTask + "\n"
                 + getTaskCountReply(tasksCountLeft);
-        return printMessage(msg);
+        return getMessage(msg);
     }
 
     /**
@@ -102,11 +102,11 @@ public class Ui {
      * @param tasksCountLeft The number of tasks present after the task is added.
      * @return A String acknowledging the removed task along with the number of tasks left.
      */
-    public String printAddedTask(Task task, int tasksCountLeft) {
+    public String getAddedTask(Task task, int tasksCountLeft) {
         String msg = "Got it. I've added this task:\n"
                 + task + "\n"
                 + getTaskCountReply(tasksCountLeft);
-        return printMessage(msg);
+        return getMessage(msg);
     }
 
     /**
@@ -115,8 +115,8 @@ public class Ui {
      * @param s The forbidden String.
      * @return A String containing an error message.
      */
-    public String printBannedCharacterInputResponse(String s) {
-        return printMessage("☹ Woah there!!! Your input contains a \"" + s
+    public String getBannedCharacterInputResponse(String s) {
+        return getMessage("Woah there!!! Your input contains a \"" + s
                 + "\" character which is not allowed!!");
     }
 
@@ -125,8 +125,8 @@ public class Ui {
      *
      * @return A String containing an error message.
      */
-    public String printInvalidInputResponse() {
-        return printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    public String getInvalidInputResponse() {
+        return getMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     /**
@@ -135,8 +135,8 @@ public class Ui {
      * @param s The input command.
      * @return A String containing an error message.
      */
-    public String printMissingInputResponse(String s) {
-        return printMessage("☹ OOPS!!! The description after a \""
+    public String getMissingInputResponse(String s) {
+        return getMessage("OOPS!!! The description after a \""
                 + s + "\" is missing or incomplete!!");
     }
 
@@ -148,8 +148,8 @@ public class Ui {
      * @param inputNum The inputted number.
      * @return A String containing an error message.
      */
-    public String printInputIndexOutOfBoundsResponse(String cmd, String inputNum) {
-        return printMessage("☹ OOPS!!! You tried to " + cmd + " task " + inputNum
+    public String getInputIndexOutOfBoundsResponse(String cmd, String inputNum) {
+        return getMessage("OOPS!!! You tried to " + cmd + " task " + inputNum
                 + " but it doesn't exist in the list!");
     }
 
@@ -158,8 +158,8 @@ public class Ui {
      *
      * @return A String containing an error message.
      */
-    public String printDateTimeErrorResponse() {
-        return printMessage("☹ OOPS!!! I can't recognise the date you just inputted :-(\n"
+    public String getDateTimeErrorResponse() {
+        return getMessage("OOPS!!! I can't recognise the date you just inputted :-(\n"
                 + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.");
     }
 }

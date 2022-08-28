@@ -2,7 +2,8 @@ package duke;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Represents the main part of the Duke program and is in charge of coordinating all the various supporting classes in
@@ -25,7 +26,19 @@ public class Duke {
 
     private String exit() {
         isAcceptingInput = false;
-        return ui.printExitMessage();
+        closeApplicationAfterDelay();
+        return ui.getExitMessage();
+    }
+
+    private void closeApplicationAfterDelay() {
+        int delay = 1000;
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        new Timer().schedule(timerTask, delay);
     }
 
     public boolean isAcceptingInput() {
@@ -62,28 +75,28 @@ public class Duke {
             case "mark": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task markedTask = tasks.markTask(taskIndex);
-                return ui.printMarkedTask(markedTask);
+                return ui.getMarkedTask(markedTask);
             }
             case "unmark": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task unmarkedTask = tasks.unmarkTask(taskIndex);
-                return ui.printUnmarkedTask(unmarkedTask);
+                return ui.getUnmarkedTask(unmarkedTask);
             }
             case "delete": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task removedTask = tasks.removeTask(taskIndex);
-                return ui.printRemovedTask(removedTask, tasks.getTaskCount());
+                return ui.getRemovedTask(removedTask, tasks.getTaskCount());
             }
             case "todo": {
                 Task addedTask = tasks.addTodo(parsedOutput[1]);
-                return ui.printAddedTask(addedTask, tasks.getTaskCount());
+                return ui.getAddedTask(addedTask, tasks.getTaskCount());
             }
             case "deadline": {
                 String description = parsedOutput[1];
                 String date = parsedOutput[2];
                 String time = parsedOutput[3];
                 Task addedTask = tasks.addDeadline(description, date, time);
-                return ui.printAddedTask(addedTask, tasks.getTaskCount());
+                return ui.getAddedTask(addedTask, tasks.getTaskCount());
             }
             case "event": {
                 String description = parsedOutput[1];
@@ -92,44 +105,26 @@ public class Duke {
                 String dateEnd = parsedOutput[4];
                 String timeEnd = parsedOutput[5];
                 Task addedTask = tasks.addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
-                return ui.printAddedTask(addedTask, tasks.getTaskCount());
+                return ui.getAddedTask(addedTask, tasks.getTaskCount());
             }
             default:
                 throw new InvalidDukeInputException();
             }
         } catch (BannedDukeCharacterException e) {
-            return ui.printBannedCharacterInputResponse(e.getMessage());
+            return ui.getBannedCharacterInputResponse(e.getMessage());
         } catch (InvalidDukeInputException e) {
-            return ui.printInvalidInputResponse();
+            return ui.getInvalidInputResponse();
         } catch (MissingDukeInputException e) {
-            return ui.printMissingInputResponse(e.getMessage());
+            return ui.getMissingInputResponse(e.getMessage());
         } catch (InputIndexOutOfBoundsException e) {
             String[] cmdNum = e.getMessage().split(" ");
             String cmd = cmdNum[0];
             String inputNum = cmdNum[1];
-            return ui.printInputIndexOutOfBoundsResponse(cmd, inputNum);
+            return ui.getInputIndexOutOfBoundsResponse(cmd, inputNum);
         } catch (DateTimeParseException e) {
-            return ui.printDateTimeErrorResponse();
-        }
-    }
-
-    /*
-    private void runDuke() {
-        Scanner sc = new Scanner(System.in);
-        while (isAcceptingInput) {
-            String input = sc.nextLine();
-            getResponse(input);
+            return ui.getDateTimeErrorResponse();
+        } finally {
             storage.saveFile(tasks);
         }
-        sc.close();
     }
-     */
-
-    /*
-    public static void main(String[] args) {
-        String savePath = "savedata/";
-        String saveName = "duke.txt";
-        new Duke(savePath, saveName).runDuke();
-    }
-     */
 }
