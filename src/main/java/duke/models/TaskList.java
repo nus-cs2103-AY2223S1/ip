@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * The TaskList class is a wrapper around a List of Task objects.
+ *
+ * @author Zhu Yuanxi
+ */
 public class TaskList {
     public static List<Task> taskList;
 

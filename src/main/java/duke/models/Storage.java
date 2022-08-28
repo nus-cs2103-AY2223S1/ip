@@ -9,11 +9,23 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * The storage class provides methods to load and save tasks to disk.
+ *
+ * @author Zhu Yuanxi
+ */
 public class Storage {
     private static final String taskDirectoryName = "src/main/data/";
     private static final String taskFileName = "tasklist.txt";
     private static final String taskFilePath = taskDirectoryName + taskFileName;
 
+    /**
+     * Parses the saved string as a task object.
+     *
+     * @param text The string containing the task object representation to be parsed.
+     * @return The task object represented by the saved string.
+     * @throws DukeException If the saved string does not match with the required patterns.
+     */
     private static Task parseTextToTask(String text) throws DukeException{
         String[] taskDetails = text.split("\\s\\|\\s", 0);
         for (String t : taskDetails) {
@@ -33,6 +45,12 @@ public class Storage {
         throw new DukeException("Cannot parse saved tasks!");
     }
 
+    /**
+     * Loads the tasks from disk.
+     *
+     * @return The Tasklist containing all the saved tasks.
+     * @throws DukeException If the path to file does not exist and the file cannot be created.
+     */
     public static TaskList loadTasksFromDisk() throws DukeException {
         try {
             // Create folder and file if not exist
@@ -57,6 +75,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves tasks to disk.
+     *
+     * @param tasks The TaskList to be converted to strings and saved to disk.
+     * @throws DukeException If and I/O error occurs.
+     */
     public static void saveTaskToDisk(TaskList tasks) throws DukeException{
         try {
             FileWriter out = new FileWriter(taskFilePath);
@@ -69,8 +93,6 @@ public class Storage {
                 }
             });
             out.close();
-        } catch (FileNotFoundException e) {
-            throw new DukeException("Cannot write task to disk!");
         } catch (IOException e) {
             // TODO: Add error handling
             System.out.println("An error occurred.");
