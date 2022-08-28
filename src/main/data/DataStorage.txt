@@ -1,5 +1,5 @@
 T | 1 | read book
-D | 1 | return book | June 6th
+D | 0 | return book | June 6th
 E | 0 | project meeting | Aug 6th 2-4pm
 E | 0 | badminton | 10pm
 T | 1 | eat dinner
