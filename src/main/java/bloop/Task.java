@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Task that is to be performed.
  */
-abstract public class Task {
+public abstract class Task {
     private String task;
     private boolean isDone;
 
@@ -42,9 +42,9 @@ abstract public class Task {
         isDone = false;
     }
 
-    abstract public String getBy();
+    protected abstract String getBy();
 
-    abstract public char getType();
+    protected abstract char getType();
 
     @Override
     public String toString() {

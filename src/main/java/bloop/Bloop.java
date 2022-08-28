@@ -32,12 +32,12 @@ public class Bloop {
         parser = new Parser(tasks);
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
-        while(text.compareTo("bye") != 0) {
+        while (text.compareTo("bye") != 0) {
             try {
                 parser.parse(text);
-            } catch(BloopException be) {
+            } catch (BloopException be) {
                 ui.print(be.getMessage());
-            } catch(IOException e) {
+            } catch (IOException e) {
                 ui.print(e.getMessage());
             }
             text = sc.nextLine();
