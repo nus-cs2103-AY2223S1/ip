@@ -18,7 +18,7 @@ public class Duke {
     private TaskList tasks;
 
     public static final String FOLDER_LOCATION = "data";
-    public static final String FILE_LOCATION = "data\\duke.txt";
+    public static final String FILE_LOCATION = "data/duke.txt";
     private boolean toClose = false;
 
     public Duke(String filePath, String folderPath) {
