@@ -25,7 +25,6 @@ public class EventCommand extends Command {
      * @param date The date of when the Event is at.
      */
     public EventCommand(String description, LocalDate date) {
-        super(false);
         this.description = description;
         this.date = date;
     }
@@ -36,12 +35,13 @@ public class EventCommand extends Command {
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.
      * @param storage The Storage dealing with loading tasks from the file and saving tasks in the file.
+     * @return The add-message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addEvent(description, date);
         int size = tasks.getSize();
-        ui.showAdd(tasks.getTask(size - 1), size);
         storage.save(tasks.saveToStorage());
+        return ui.showAdd(tasks.getTask(size - 1), size);
     }
 }
