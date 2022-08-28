@@ -22,12 +22,12 @@ public class Storage {
 
     /**
      * Constructor for the class.
-<<<<<<< HEAD
+     * <<<<<<< HEAD
      *
      * @param filepath file path of the storage file
-=======
+     *                 =======
      * @param filepath file path of the storage file.
->>>>>>> branch-A-JavaDoc
+     *                 >>>>>>> branch-A-JavaDoc
      */
     public Storage(String filepath) {
         STORAGEFILE = new File(filepath);
@@ -35,12 +35,12 @@ public class Storage {
 
     /**
      * This function reads the data from the file and stores it into the given taskList.
-<<<<<<< HEAD
+     * <<<<<<< HEAD
      *
      * @param taskLists the taskList you want to store the data in
-=======
+     *                  =======
      * @param taskLists the taskList you want to store the data in.
->>>>>>> branch-A-JavaDoc
+     *                  >>>>>>> branch-A-JavaDoc
      */
     public void loadFromFile(TaskList taskLists) {
         try {
@@ -75,20 +75,20 @@ public class Storage {
     }
 
     /**
-<<<<<<< HEAD
+     * <<<<<<< HEAD
      * This functions stores the data from the taskList into the file
      *
      * @param taskLists given taskList
-=======
-     * This functions stores the data from the given taskList into the file.
+     *                  =======
+     *                  This functions stores the data from the given taskList into the file.
      * @param taskLists given taskList.
->>>>>>> branch-A-JavaDoc
+     *                  >>>>>>> branch-A-JavaDoc
      */
     public void saveToFile(TaskList taskLists) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(STORAGEFILE));
             for (int i = 0; i < taskLists.getNumOfTask(); i++) {
-                writer.write(taskLists.getTask(i).getDESCRIPTION());
+                writer.write(taskLists.getTask(i).getDescription());
             }
             writer.close();
         } catch (IOException e) {

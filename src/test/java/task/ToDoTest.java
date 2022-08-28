@@ -12,6 +12,6 @@ public class ToDoTest {
 
     @Test
     public void testGetDescription() {
-        assertEquals("T | F | homework\n", new ToDo("homework", false).getDESCRIPTION());
+        assertEquals("T | F | homework\n", new ToDo("homework", false).getDescription());
     }
 }

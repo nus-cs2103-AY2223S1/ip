@@ -14,6 +14,6 @@ public class EventTest {
     @Test
     public void testGetDescription() {
         assertEquals("E | F | birthday party | friday 6-11pm\n",
-                new Event("birthday party", false, "friday 6-11pm").getDESCRIPTION());
+                new Event("birthday party", false, "friday 6-11pm").getDescription());
     }
 }

@@ -17,7 +17,7 @@ public class DeadlineTest {
     @Test
     public void testGetDescription() {
         assertEquals("D | F | ps1 | 2022-09-03T23:59\n",
-                new Deadline("ps1", false, LocalDateTime.parse("2022-09-03T23:59")).getDESCRIPTION());
+                new Deadline("ps1", false, LocalDateTime.parse("2022-09-03T23:59")).getDescription());
     }
 }
 

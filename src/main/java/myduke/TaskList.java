@@ -63,10 +63,15 @@ public class TaskList {
      */
     public void markTask(int index) throws MarkException, OutOfBoundIndexException {
         if (checkValidIndex(index)) {
+            //getting the task
             Task current = taskLists.get(index);
+
+            //if already marked, throw exception
             if (current.getStatus()) {
                 throw new MarkException();
             }
+
+            //else mark it
             current.markAsDone();
         } else {
             throw new OutOfBoundIndexException();
@@ -82,10 +87,15 @@ public class TaskList {
      */
     public void unMarkTask(int index) throws UnMarkException, OutOfBoundIndexException {
         if (checkValidIndex(index)) {
+            //getting the task
             Task current = taskLists.get(index);
+
+            //if already unmarked, throw exception
             if (!current.getStatus()) {
                 throw new UnMarkException();
             }
+
+            //else unmark task
             current.markAsNotDone();
         } else {
             throw new OutOfBoundIndexException();
@@ -101,7 +111,10 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws OutOfBoundIndexException {
         if (checkValidIndex(index)) {
+            //get the task
             Task task = taskLists.get(index);
+
+            //remove from taskList
             taskLists.remove(index);
             return task;
         } else {
@@ -123,6 +136,7 @@ public class TaskList {
         for (int i = 0; i < taskLists.size(); i++) {
             Task current = taskLists.get(i);
             if (current.toString().contains(keyword)) {
+
                 //if current task contains keyword, add it to filter TaskList
                 filteredTaskList.saveTask(current);
             }
@@ -138,7 +152,10 @@ public class TaskList {
     public String toString() {
         String output = "";
         for (int i = 0; i < taskLists.size(); i++) {
+            //get current ask
             Task current = taskLists.get(i);
+
+            //concatenate String expression of current task
             output += (i + 1) + "." + current.toString();
             if (i != taskLists.size() - 1) {
                 output = output + "\n";

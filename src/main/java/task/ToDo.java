@@ -21,7 +21,7 @@ public class ToDo extends Task {
      * @return a string in format T | F | read book
      */
     @Override
-    public String getDESCRIPTION() {
+    public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
         return "T | " + status + " | " + super.toString() + "\n";
     }

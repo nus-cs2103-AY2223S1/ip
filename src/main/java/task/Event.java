@@ -24,7 +24,7 @@ public class Event extends Task {
      * @return a string in format E | F | party | sunday 5-11pm
      */
     @Override
-    public String getDESCRIPTION() {
+    public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
         return "E | " + status + " | " + super.toString() + " | " + DURATION + "\n";
     }

@@ -32,7 +32,7 @@ public class Task {
      *
      * @return a string.
      */
-    public String getDESCRIPTION() {
+    public String getDescription() {
         return DESCRIPTION;
     }
 

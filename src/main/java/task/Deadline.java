@@ -27,7 +27,7 @@ public class Deadline extends Task {
      * @return a string in format D | T | deadline | 2022-10-15T18:00
      */
     @Override
-    public String getDESCRIPTION() {
+    public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
         return "D | " + status + " | " + super.toString() + " | " + DATE.toString() + "\n";
     }
