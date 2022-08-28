@@ -26,9 +26,4 @@ public class IoHelper {
     public void print(Object Message) {
         System.out.println(Message);
     }
-
-    public void printError(Exception e) {
-        System.err.println(e);
-    }
-
 }

@@ -34,7 +34,7 @@ public class Ui {
     }
 
     public void showError(Exception e) {
-        ioHelper.printError(e);
+        ioHelper.print(e.getMessage());
     }
 
     public void show(Object message) {

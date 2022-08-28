@@ -30,7 +30,7 @@ public class Storage {
         try {
             dukeFile.createNewFile();
         } catch (IOException e) {
-            ioHelper.printError(e);
+            ioHelper.print(e);
         } finally {
             return new TaskList();
         }
@@ -43,7 +43,7 @@ public class Storage {
             ioHelper.print("Storage: duke.txt updated");
             fileWriter.close();
         } catch (IOException e) {
-            ioHelper.printError(e);
+            ioHelper.print(e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class Storage {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            ioHelper.printError(e);
+            ioHelper.print(e.getMessage());
         }
         return data;
     }
