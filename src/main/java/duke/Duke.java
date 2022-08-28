@@ -1,6 +1,11 @@
 package duke;
 
 import java.util.Scanner;
+
+/**
+ * Class containing the main Duke application.
+ * Initialises the application.
+ */
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -15,6 +20,7 @@ public class Duke {
             String[] msgWords = curr.split("\\b");
             for (int i = 0; i < msgWords.length; i++) {
                 if (msgWords[i].equalsIgnoreCase("bye")) {
+                    sc.close();
                     ui.goodByeMessage();
                     return;
                 } else if (msgWords[i].equalsIgnoreCase("list")) {
