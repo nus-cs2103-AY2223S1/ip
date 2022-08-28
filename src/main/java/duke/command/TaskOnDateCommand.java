@@ -28,15 +28,18 @@ public class TaskOnDateCommand extends Command {
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
+     * @return Duke's response
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
         ArrayList<Task> filteredTasks = tasks.getTasksOn(date);
-        ui.printWithIndent(String.format("Here are the tasks on %s:", formattedDate));
+        ArrayList<String> responseLines = new ArrayList<>();
+        responseLines.add(String.format("Here are the tasks on %s:", formattedDate));
         for (int i = 0; i < filteredTasks.size(); i++) {
             Task task = filteredTasks.get(i);
-            ui.printWithIndent(i + 1 + ". " + task);
+            responseLines.add(i + 1 + ". " + task);
         }
+        return String.join("\n", responseLines);
     }
 }

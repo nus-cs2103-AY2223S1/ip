@@ -20,34 +20,22 @@ public class Duke {
         try {
             tasks = new TaskList(storage.loadFile());
         } catch (DukeException e) {
-            ui.printError(e.toString());
+            System.out.println(e);
             tasks = new TaskList();
         }
     }
 
-    /**
-     * Loops until user enters the exit command.
-     * DukeExceptions are caught here and printed with Ui.
-     */
-    public void run() {
-        ui.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.printError(e.toString());
-            } finally {
-                ui.printLine();
-            }
+    public Message getResponse(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return new Message(c.execute(tasks, ui, storage), c.isExit(), false);
+        } catch (DukeException e) {
+            return new Message(ui.getError(e.toString()), false, true);
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+    public Message getGreeting() {
+        return new Message(ui.getGreeting(), false, false);
     }
+
 }

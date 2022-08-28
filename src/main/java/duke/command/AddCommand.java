@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.Task;
@@ -22,14 +24,18 @@ public class AddCommand extends Command {
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
+     * @return Duke's response
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.addTask(task);
-        ui.printWithIndent("Got it. I've added this task:");
-        ui.printWithIndent(" " + task);
-        ui.printTaskCount(tasks.taskCount());
         storage.saveFile(tasks);
+
+        ArrayList<String> responseLines = new ArrayList<>();
+        responseLines.add("Got it. I've added this task:");
+        responseLines.add(" " + task);
+        responseLines.add(ui.getTaskCount(tasks.taskCount()));
+        return String.join("\n", responseLines);
     }
 }
