@@ -1,6 +1,14 @@
 package uwu.task;
 
+/**
+ * Represents a task of type ToDos.
+ */
 public class ToDos extends Task {
+    /**
+     * Constructor for ToDos object.
+     *
+     * @param description The description of the ToDos task.
+     */
     public ToDos(String description) {
         super(description);
     }

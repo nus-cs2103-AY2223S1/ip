@@ -13,13 +13,27 @@ import uwu.task.Event;
 import uwu.task.TaskList;
 import uwu.task.ToDos;
 
+/**
+ * Represents the file used to store task list data.
+ */
 public class Storage {
+    /** The path to the file where the task list is stored. */
     protected String filePath;
 
+    /**
+     * Constructor for Storage object.
+     *
+     * @param filePath The path to the file where the task list is stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the updated task list to the file located at the filePath.
+     *
+     * @param taskList The string representation of the stored task list.
+     */
     public void save(String taskList) {
         try {
             FileWriter fileWriter = new FileWriter("data/taskList.txt");
@@ -30,6 +44,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the saved task list in the file located at the filePath when UwuBot starts.
+     * Else, creates a new file to store task list in the filePath.
+     *
+     * @return The TaskList stored in the file.
+     * @throws UwuException If there are any problems loading the file.
+     */
     public TaskList load() throws UwuException {
         TaskList result = new TaskList();
 

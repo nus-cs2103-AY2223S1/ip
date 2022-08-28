@@ -11,7 +11,18 @@ import uwu.exception.EmptyInputException;
 import uwu.exception.UnknownCommandException;
 import uwu.exception.UwuException;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
+    /**
+     * Parses the user input to determine which command to execute.
+     *
+     * @param userCommand The user input.
+     * @return The command to be executed.
+     * @throws UwuException If the command is unknown;
+     *                      If the task description is empty.
+     */
     public static Command parse(String userCommand) throws UwuException {
             if (userCommand.equals("bye")) {
                 return new ExitCommand();

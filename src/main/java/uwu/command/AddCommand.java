@@ -15,11 +15,22 @@ import uwu.task.ToDos;
 
 import uwu.Ui;
 
+/** Adds a task to the task list. */
 public class AddCommand extends Command {
+    /** The description of the task. */
     String description;
+
+    /** The type of task to be added. */
     String taskType;
+
+    /** The user command parsed into AddCommand. */
     String userCommand;
 
+    /**
+     * Constructor for an AddCommand object.
+     *
+     * @param userCommand The command the user typed.
+     */
     public AddCommand(String userCommand) {
         this.userCommand = userCommand;
         String[] taskData = userCommand.split(" ", 2);
@@ -27,6 +38,16 @@ public class AddCommand extends Command {
         this.description = taskData[1];
     }
 
+    /**
+     * Executes the AddCommand which adds a task of taskType into a stored task list.
+     *
+     * @param tasks The list where tasks are added to.
+     * @param ui The ui to print out UwuBot's response.
+     * @param storage The task list that is stored in the user's hard disk.
+     * @throws UwuException If task description is empty;
+     *                      If task does not contain keyword;
+     *                      If date is empty for deadline and event tasks.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (userCommand.replaceFirst(taskType, "").isBlank()) {
             throw new EmptyInputException("\tyour task description is empty TT\n\t" +
@@ -77,6 +98,11 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Returns whether AddCommand exits the program.
+     *
+     * @return false as AddCommand does not exit the program.
+     */
     public boolean isExit() {
         return false;
     }
