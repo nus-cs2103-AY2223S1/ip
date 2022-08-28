@@ -4,7 +4,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the Ui object responsible for printing messages to the user interface.
+ * Represents the Ui object responsible for printing messages to the graphic user interface.
  *
  * @author njxue
  * @version v0.1

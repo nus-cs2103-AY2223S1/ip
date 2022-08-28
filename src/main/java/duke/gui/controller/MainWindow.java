@@ -30,13 +30,17 @@ public class MainWindow extends AnchorPane {
     /** Duke object associated with the JavaFx application. */
     private Duke duke;
 
-    /** Scrolls the ScrollPane automatically to the bottom. */
+    /**
+     * Scrolls the ScrollPane automatically to the bottom.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Initialises the duke object, then display the greet message. */
+    /**
+     * Initialises the duke object, then displays the greet message.
+     */
     public void setDuke(Duke d) {
         duke = d;
         DialogBox greetingDialog = DialogBox.getDukeDialog(duke.getGreetingMessage(), dukeImage);

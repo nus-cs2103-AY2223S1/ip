@@ -20,11 +20,20 @@ import javafx.scene.text.Text;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    /** Text section of the dialog. */
     @FXML
     private Text dialog;
+
+    /** Display picture of the dialog. */
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Returns a DialogBox with text and a display picture.
+     *
+     * @param text Text of the dialog.
+     * @param img Display picture of the dialog.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -34,7 +43,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -49,10 +57,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a dialog representing the user.
+     *
+     * @param text Text of the dialog.
+     * @param img Display picture of the user.
+     * @return DialogBox FXML element representing the user's dialog.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a dialog representing the duke chat-bot.
+     *
+     * @param text Text of the dialog.
+     * @param img Display picture of the duke chat-bot.
+     * @return DialogBox FXML element representing the chat-bot's dialog.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
