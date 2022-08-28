@@ -9,53 +9,9 @@ import java.io.File;
 public class Duke {
     private static final String saveDirectoryPath = "../data";
     private static final String saveFilePath = "../data/duke.txt";
-    private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
-    private static final String byeMessage = "Bye. Hope to see you again soon!";
-    private static final String listMessage = "Here are the tasks in your list: \n";
-    private static final String markText = "Nice! I've marked this task as done: \n";
-    private static final String unmarkText = "OK, I've marked this task as not done yet: \n";
-    private static final String addTask = "Got it. I've added this task: \n";
-    private static final String deleteTask = "Noted. I've removed this task: \n";
-
     private static TaskList tasklist = new TaskList();
     private static Storage storage = new Storage(saveDirectoryPath, saveFilePath);
-
-    private static void wrapText(String content) {
-        System.out.println("-".repeat(57));
-        System.out.println(content);
-        System.out.println("-".repeat(57));
-    }
-
-    private static void taskWrapper() {
-        String content = tasklist.getLastTask();
-        content = addTask + content;
-        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
-        wrapText(content);
-    }
-
-    private static void wrapDelete(String content) {
-        content = deleteTask + content;
-        content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
-        wrapText(content);
-    }
-
-    private static String generateList() {
-        String listInString = listMessage;
-        listInString += tasklist.listOfTaskForDisplay();
-        return listInString;
-    }
-
-    private static String generateMark(String taskNumber) {
-        String markInText = markText;
-        markInText += tasklist.markSpecificTask(taskNumber);
-        return markInText;
-    }
-
-    private static String generateUnmark(String taskNumber) {
-        String unmarkInText = unmarkText;
-        unmarkInText += tasklist.unmarkSpecificTask(taskNumber);
-        return unmarkInText;
-    }
+    private static Ui ui = new Ui();
 
     private static void handleUserInputs(Scanner scanner) {
         try {
@@ -71,22 +27,22 @@ public class Duke {
 
             try {
                 if (input.equals("bye")) {
-                    wrapText(byeMessage);
+                    ui.showBye();
                     break;
                 } else if (input.equals("list")) {
-                    wrapText(generateList());
+                    ui.showList(tasklist);
                 } else if (input.equals("mark")) {
-                    wrapText(generateMark(inputs[1]));
+                    ui.showMark(tasklist, inputs[1]);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("unmark")) {
-                    wrapText(generateUnmark(inputs[1]));
+                    ui.showUnmark(tasklist, inputs[1]);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("todo")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
                     tasklist.appendToDo(inputString);
-                    taskWrapper();
+                    ui.showAddedTask(tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("deadline")) {
                     if (inputs.length <= 1) {
@@ -94,7 +50,7 @@ public class Duke {
                     }
                     String[] deadlineDescription = inputString.split("/");
                     tasklist.appendDeadline(deadlineDescription[0], deadlineDescription[1]);
-                    taskWrapper();
+                    ui.showAddedTask(tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("event")) {
                     if (inputs.length <= 1) {
@@ -102,19 +58,19 @@ public class Duke {
                     }
                     String[] eventDescription = inputString.split("/");
                     tasklist.appendEvent(eventDescription[0], eventDescription[1]);
-                    taskWrapper();
+                    ui.showAddedTask(tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else if (input.equals("delete")) {
                     String taskMessage = tasklist.removeTask(inputs[1]);
-                    wrapDelete(taskMessage);
+                    ui.showDeletedTask(taskMessage, tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
-                wrapText(e.getMessage());
+                ui.showError(e.getMessage());
             } catch (IOException e) {
-                wrapText(e.getMessage());
+                ui.showError(e.getMessage());
             }
         }
     }
@@ -125,8 +81,9 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        wrapText(greetMessage);
         Scanner scanner = new Scanner(System.in);
+
+        ui.showGreeting();
         handleUserInputs(scanner);
     }
 }
