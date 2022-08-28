@@ -8,22 +8,36 @@ package duke;
  * @version 0.1
  * @since   2022-08-28
  */
-public class Deadline extends  Task{
-  protected String by;
-  public Deadline(String description,String date, boolean isDone) {
-    super(description,isDone);
-    this.by = date;
-  }
-  public Deadline(String description,String date) {
-    super(description);
-    this.by = date;
-  }
+public class Deadline extends Task {
+    protected String by;
 
-  /**
-   * Returns the task's type, completion status, description and due date
-   * @return String This returns the string of the deadline in the specified format
-   */
-  public String toString() {
-    return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + by + ")";
-  }
+    /**
+     * Constructor for Deadline class
+     * @param description Description of deadline
+     * @param date Due date of deadline
+     * @param isDone Completion status of deadline
+     */
+    public Deadline(String description, String date, boolean isDone) {
+        super(description, isDone);
+        this.by = date;
+    }
+
+    /**
+     * Constructor for Deadline class without
+     * specifying completion status
+     * @param description Description of deadline
+     * @param date Due date of deadline
+     */
+    public Deadline(String description, String date) {
+        super(description);
+        this.by = date;
+    }
+
+    /**
+     * Returns the task's type, completion status, description and due date
+     * @return String This returns the string of the deadline in the specified format
+     */
+    public String toString() {
+        return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + by + ")";
+    }
 }
