@@ -30,6 +30,7 @@ import java.util.List;
  * <li>Mark task (marks task as done with a "X"): mark taskIndex. e.g. mark 2</li>
  * <li>Unmark task (marks task as not done and removes "X"): unmark taskIndex. e.g. unmark 2</li>
  * <li>Delete task (deletes task from list): delete taskIndex. e.g. delete 3</li>
+ * <li>Find task (finds all matching tasks from list): find task. e.g. find book</li>
  * </ul>
  * </p>
  *
@@ -244,5 +245,33 @@ public class TaskList {
 
         System.out.println("Noted. I've removed this task:\n" + taskToDelete);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+    }
+
+    /**
+     * Finds all matching tasks from the list with the given keyword.
+     *
+     * @param keyword Keyword entered by user.
+     */
+    public static void findTask(String keyword) {
+        List<Task> matchingTasks = new ArrayList<>();
+
+        System.out.println("Here are the matching tasks in your list:");
+
+        int taskCount = 1;
+
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.printf("%d.%s%n", taskCount, task);
+                taskCount += 1;
+
+                // Add all matching tasks into the array.
+                matchingTasks.add(task);
+            }
+        }
+
+        if (matchingTasks.size() < 1) {
+            System.out.println("OOPS!!! There is no matching task in your list.");
+        }
+
     }
 }

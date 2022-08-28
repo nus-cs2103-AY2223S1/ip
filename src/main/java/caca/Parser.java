@@ -103,6 +103,9 @@ public class Parser {
 
                 storage.updateFile(tasks);
 
+            } else if (commandType.equals("find")) {
+                TaskList.findTask(command[1]);
+
             } else {
                 // Invalid input.
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
