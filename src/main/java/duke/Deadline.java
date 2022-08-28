@@ -4,7 +4,7 @@ package duke;
  * Deadline class which inherits from the Task class.
  */
 public class Deadline extends Task {
-    private String by;
+    private final String by;
 
     /**
      * Constructor for the deadline class.

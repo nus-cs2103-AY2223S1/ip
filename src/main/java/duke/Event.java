@@ -4,7 +4,7 @@ package duke;
  * Event class which inherits from the Task class.
  */
 public class Event extends Task {
-    private String at;
+    private final String at;
 
     /**
      * Constructor for the deadline class.
