@@ -47,6 +47,7 @@ public class Duke {
             if (userInput.equals("bye")) {
                 ui.printEndingMsg();
                 isRunning = false;
+                break;
             }
             try {
                 parser.checkAndPerformOperations(userInput);

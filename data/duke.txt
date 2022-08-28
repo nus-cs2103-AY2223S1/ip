@@ -1,0 +1,6 @@
+T | 1 | borrow book
+E | 0 | book festival | 2022-10-10 1000
+T | 0 | lalala
+D | 0 | dafsadf | 2022-07-04
+E | 0 | dsdfsdf | 2002-06-06 1000
+E | 0 | sdfasd | 2002-02-03 2000

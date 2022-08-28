@@ -33,7 +33,7 @@ public class TaskList {
         String text = "";
         for (int i = 0; i < list.size(); i++) {
 
-            if(i == list.size() - 1) {
+            if (i == list.size() - 1) {
                 text += i + 1 + ". " + list.get(i);
             } else {
                 text += i + 1 + ". " + list.get(i) +"\n     ";
@@ -44,5 +44,23 @@ public class TaskList {
 
     public Task getTask(int number) {
         return this.list.get(number - 1);
+    }
+
+    public String getTaskStringFiltered(String wordToFind) {
+        List<Task> resultList = new ArrayList<>();
+        for (Task task : this.list) {
+            if (task.getName().contains(wordToFind)) {
+                resultList.add(task);
+            }
+        }
+        String text = "";
+        for (int i = 0; i < resultList.size(); i++) {
+            if (i == resultList.size() - 1) {
+                text += i + 1 + ". " + resultList.get(i);
+            } else {
+                text += i + 1 + ". " + resultList.get(i) +"\n     ";
+            }
+        }
+        return text;
     }
 }
