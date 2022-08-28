@@ -1,40 +1,41 @@
 package task;
 
-import task.Task;
-
 /**
  * This class encapsulates the idea of a event.
  */
 public class Event extends Task {
-    private String duration;
+    private final String DURATION;
 
     /**
      * Constructor for a event.
+     *
      * @param description what the event is
-     * @param status whether it has been done
-     * @param duration when the event will be held
+     * @param status      whether it has been done
+     * @param DURATION    when the event will be held
      */
-    public Event(String description, boolean status, String duration) {
+    public Event(String description, boolean status, String DURATION) {
         super(description, status);
-        this.duration = duration;
+        this.DURATION = DURATION;
     }
 
     /**
      * Converts the event to string representation to be stored in text file.
+     *
      * @return a string
      */
     @Override
-    public String getDescription() {
+    public String getDESCRIPTION() {
         String status = super.getStatus() ? "T" : "F";
-        return "E | " + status + " | " + super.toString() + " | " + duration + "\n";
+        return "E | " + status + " | " + super.toString() + " | " + DURATION + "\n";
     }
 
     /**
      * Converts the event to string representation for user.
+     *
      * @return a string
      */
     @Override
     public String toString() {
-        return "[E]" + super.getStatusIcon() + " " + super.toString() + " (at: " + this.duration + ")";
+        return "[E]" + super.getStatusIcon() + " " + super.toString() + " (at: " + this.DURATION + ")";
     }
 }

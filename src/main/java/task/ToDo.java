@@ -1,7 +1,5 @@
 package task;
 
-import task.Task;
-
 /**
  * This class encapsulates the idea of a todo.
  */
@@ -9,17 +7,18 @@ public class ToDo extends Task {
 
     /**
      * Constructor for ToDo.
+     *
      * @param description what the todo is
-     * @param status whether it has been completed
+     * @param status      whether it has been completed
      */
     public ToDo(String description, boolean status) {
         super(description, status);
     }
 
     @Override
-    public String getDescription() {
+    public String getDESCRIPTION() {
         String status = super.getStatus() ? "T" : "F";
-        return "T | " + status + " | " + super.toString() +  "\n";
+        return "T | " + status + " | " + super.toString() + "\n";
     }
 
     @Override

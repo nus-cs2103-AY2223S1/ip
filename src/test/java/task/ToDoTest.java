@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToDoTest {
     @Test
-    public void testToString(){
+    public void testToString() {
         assertEquals("[T][ ] homework", new ToDo("homework", false).toString());
     }
 
     @Test
-    public void testGetDescription(){
-        assertEquals("T | F | homework\n", new ToDo("homework", false).getDescription());
+    public void testGetDescription() {
+        assertEquals("T | F | homework\n", new ToDo("homework", false).getDESCRIPTION());
     }
 }

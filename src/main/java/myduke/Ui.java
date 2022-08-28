@@ -9,13 +9,13 @@ import exception.OutOfBoundIndexException;
 import exception.UnMarkException;
 import exception.WrongCommandException;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.ToDo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * This class deals with interaction with the user.
@@ -27,10 +27,11 @@ public class Ui {
 
     /**
      * Constructor for ui.
+     *
      * @param taskLists TaskList used to store the tasks
-     * @param storage Storage used to save to file
+     * @param storage   Storage used to save to file
      */
-    public Ui (TaskList taskLists, Storage storage) {
+    public Ui(TaskList taskLists, Storage storage) {
         this.taskLists = taskLists;
         this.storage = storage;
     }
@@ -53,6 +54,7 @@ public class Ui {
 
     /**
      * This handles how the Duke will respond based on user input
+     *
      * @param input what the user typed into the terminal
      * @throws DukeException
      * @throws DateTimeParseException
@@ -62,7 +64,9 @@ public class Ui {
             OutOfBoundIndexException, DateTimeParseException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
+            //stops the chat bot
             Duke.stop();
+
             System.out.println(wrapper("Bye. Hope to see you again soon!"));
         } else if (input.equals("list")) {
             System.out.println(wrapper(taskLists.toString()));
@@ -73,11 +77,14 @@ public class Ui {
             String indexString = input.substring(5);
             //index of task
             int index = Integer.valueOf(indexString) - 1;
+
             //marking task
             taskLists.markTask(index);
             Task current = taskLists.getTask(index);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String content = "Nice! I've marked this task as done:\n" + current.toString();
             System.out.println(wrapper(content));
         } else if (input.startsWith("unmark")) {
@@ -87,24 +94,30 @@ public class Ui {
             String indexString = input.substring(7);
             //index of task
             int index = Integer.valueOf(indexString) - 1;
+
             //unmarking task
             taskLists.unMarkTask(index);
             Task current = taskLists.getTask(index);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String content = "OK, I've marked this task as not done yet:\n" + current.toString();
             System.out.println(wrapper(content));
-        } else if(input.startsWith("delete")) {
+        } else if (input.startsWith("delete")) {
             if (input.length() == 6) {
                 throw new MissingTaskIndexException();
             }
             String indexString = input.substring(7);
             //index of task
             int index = Integer.valueOf(indexString) - 1;
+
             //deleting task
             Task deletedTask = taskLists.deleteTask(index);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String content = "Noted. I've removed this task:\n" + deletedTask.toString()
                     + "\nNow you have " + taskLists.getNumOfTask() + " tasks in the list.";
             System.out.println(wrapper(content));
@@ -113,10 +126,13 @@ public class Ui {
                 throw new MissingDescriptionException("todo");
             }
             Task todo = new ToDo(input.substring(5), false);
+
             //saving the To-Do
             taskLists.saveTask(todo);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String message = done + "  " + todo + taskLists.numOfTaskToString();
             System.out.println(wrapper(message));
         } else if (input.startsWith("deadline")) {
@@ -127,13 +143,17 @@ public class Ui {
                 throw new MissingDateException();
             }
             int divider = input.indexOf("/");
+
             //reading date
             LocalDateTime date = LocalDateTime.parse(input.substring(divider + 4));
             Task deadline = new Deadline(input.substring(9, divider), false, date);
+
             //saving the deadline
             taskLists.saveTask(deadline);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String message = done + "  " + deadline + taskLists.numOfTaskToString();
             System.out.println(wrapper(message));
         } else if (input.startsWith("event")) {
@@ -145,10 +165,13 @@ public class Ui {
             }
             int divider = input.indexOf("/");
             Task event = new Event(input.substring(6, divider), false, input.substring(divider + 4));
+
             //saving the event
             taskLists.saveTask(event);
+
             //saving changes to file
             storage.saveToFile(taskLists);
+
             String message = done + "  " + event + taskLists.numOfTaskToString();
             System.out.println(wrapper(message));
         } else {
