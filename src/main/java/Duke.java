@@ -1,10 +1,13 @@
 import exceptions.DukeException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    private static List<Task> tasks = new ArrayList<>();
+
     private static void printSeparator() {
         System.out.println("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
@@ -23,8 +26,30 @@ public class Duke {
         printSeparator();
     }
 
+    private static void saveTasksToFile() {
+        try (FileOutputStream fos = new FileOutputStream("./duke.dat");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(tasks);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void loadTasksFromFile() {
+        try (FileInputStream fis = new FileInputStream("./duke.dat");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Object o = ois.readObject();
+            if (o instanceof List) {
+                tasks = (List<Task>) o;
+            }
+        } catch (FileNotFoundException ignored) {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        List<Task> tasks = new ArrayList<>();
+        loadTasksFromFile();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -103,6 +128,8 @@ public class Duke {
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+
+                saveTasksToFile();
             } catch (DukeException e) {
                 printMsg(e.getMessage());
             }
