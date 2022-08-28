@@ -17,7 +17,6 @@ public class Duke {
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
-
         Scanner sc = new Scanner(System.in);
         input = sc.nextLine();
     }
@@ -26,11 +25,9 @@ public class Duke {
         while (!input.equals("bye")) {
             try {
                 Parser.parseInput(input,taskArr);
-
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
-
             input = ui.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!\n");
