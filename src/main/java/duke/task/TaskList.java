@@ -1,7 +1,7 @@
 package duke.task;
 
-import duke.util.DateAndTimeParser;
 import duke.DukeException;
+import duke.util.DateAndTimeParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @author Kavan
  */
 public class TaskList {
-    private final int TASKTYPE = 0;
-    private final int ISTASKDONE = 1;
-    private final int TASKDESCRIPTION = 2;
-    private final int TASKTIME = 3;
+    private final int TASK_TYPE = 0;
+    private final int IS_TASK_DONE = 1;
+    private final int TASK_DESCRIPTION = 2;
+    private final int TASK_TIME = 3;
 
     private ArrayList<Task> tasks;
     private BufferedReader br;
@@ -101,25 +101,25 @@ public class TaskList {
             String line = this.br.readLine();
             while (line != null) {
                 String[] taskArr = line.split("\\|");
-                switch (taskArr[TASKTYPE]) {
+                switch (taskArr[TASK_TYPE]) {
                 case "T":
-                    Todos todo = new Todos(taskArr[TASKDESCRIPTION]);
-                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                    Todos todo = new Todos(taskArr[TASK_DESCRIPTION]);
+                    if (Boolean.parseBoolean(taskArr[IS_TASK_DONE])) {
                         todo.markAsDone();
                     }
                     storedTasks.add(todo);
                     break;
                 case "D":
-                    Deadlines deadline = new Deadlines(taskArr[TASKDESCRIPTION], taskArr[TASKTIME],
-                            DateAndTimeParser.validateAndParse(taskArr[TASKTIME]));
-                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                    Deadlines deadline = new Deadlines(taskArr[TASK_DESCRIPTION], taskArr[TASK_TIME],
+                            DateAndTimeParser.validateAndParse(taskArr[TASK_TIME]));
+                    if (Boolean.parseBoolean(taskArr[IS_TASK_DONE])) {
                         deadline.markAsDone();
                     }
                     storedTasks.add(deadline);
                     break;
                 case "E":
-                    Events event = new Events(taskArr[TASKDESCRIPTION], taskArr[TASKTIME]);
-                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                    Events event = new Events(taskArr[TASK_DESCRIPTION], taskArr[TASK_TIME]);
+                    if (Boolean.parseBoolean(taskArr[IS_TASK_DONE])) {
                         event.markAsDone();
                     }
                     storedTasks.add(event);
