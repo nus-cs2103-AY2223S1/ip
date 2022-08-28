@@ -50,6 +50,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public boolean hasString(String s) {
+        return super.description.contains(s);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (Deadline: " + deadline.format(outputFormat) + ")";
     }

@@ -32,6 +32,8 @@ public class Parser {
             case "mark":
             case "unmark":
                 return new EditCommand(commandGiven, inputLine);
+            case "find":
+                return new FindCommand(commandGiven, inputLine);
             default:
                 throw new InvalidCommand(commandGiven);
             }

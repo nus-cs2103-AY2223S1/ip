@@ -39,6 +39,11 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean hasString(String s) {
+        return super.description.contains(s);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (At: " + timespan + ")";
     }
