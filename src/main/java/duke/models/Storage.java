@@ -20,15 +20,15 @@ public class Storage {
             System.out.println(t);
         }
         switch (taskDetails[0]) {
-            case("T"):
-                // TODO: Replace with Enums
-                return new Todo(taskDetails[2], taskDetails[1].equals("1"));
-            case("D"):
-                // TODO: Replace with Enums
-                return new Deadline(taskDetails[2], LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
-            case("E"):
-                // TODO: Replace with Enums
-                return new Event(taskDetails[2],LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
+        case("T"):
+            // TODO: Replace with Enums
+            return new Todo(taskDetails[2], taskDetails[1].equals("1"));
+        case("D"):
+            // TODO: Replace with Enums
+            return new Deadline(taskDetails[2], LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
+        case("E"):
+            // TODO: Replace with Enums
+            return new Event(taskDetails[2],LocalDate.parse(taskDetails[3]), taskDetails[1].equals("1"));
         }
         throw new DukeException("Cannot parse saved tasks!");
     }
