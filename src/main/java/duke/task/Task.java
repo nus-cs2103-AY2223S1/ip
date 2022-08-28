@@ -73,6 +73,7 @@ public class Task {
 
     /**
      * Returns the task as a string in its saved format.
+     * 
      * @return The string representation of the saved format of the task.
      */
     public String getSaveFormat() {
@@ -80,7 +81,18 @@ public class Task {
     }
 
     /**
+     * Checks if the given keyword is contained within the task.
+     * 
+     * @param keyword The given keyword to be matched.
+     * @return True if there is a match; false otherwise.
+     */
+    public boolean isMatch(String keyword) {
+        return this.toString().toLowerCase().contains(keyword.toLowerCase());
+    }
+
+    /**
      * Returns the string representation of the task.
+     * 
      * @return The string representation of the task.
      */
     @Override

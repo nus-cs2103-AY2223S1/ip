@@ -26,6 +26,7 @@ public class ToDo extends Task {
 
     /**
      * Converts the to-do to its saved format.
+     * 
      * @return The string representation of the saved format of the to-do.
      */
     @Override
@@ -35,6 +36,7 @@ public class ToDo extends Task {
 
     /**
      * Returns the string representation of the to-do.
+     * 
      * @return The string representation of the to-do.
      */
     @Override

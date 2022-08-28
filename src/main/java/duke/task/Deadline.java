@@ -87,6 +87,7 @@ public class Deadline extends Task {
 
     /**
      * Converts the deadline to its saved format.
+     * 
      * @return The string representation of the saved format of the deadline.
      */
     @Override
@@ -96,6 +97,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the string representation of the deadline.
+     * 
      * @return The string representation of the deadline.
      */
     @Override

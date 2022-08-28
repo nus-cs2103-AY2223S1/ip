@@ -65,6 +65,20 @@ public class ParserTest {
     }
     
     @Test
+    public void parse_emptyFindKeyword_exceptionThrown() {
+        Exception e1 = assertThrows(DukeException.class, () -> Parser.parse("find"));
+        Exception e2 = assertThrows(DukeException.class, () -> Parser.parse("find "));
+        Exception e3 = assertThrows(DukeException.class, () -> Parser.parse("find  "));
+
+        String expected = "  You're so helpful. What exactly am I supposed to look for?\n"
+                + "  Type \"find <keyword>\" to search for a task.";
+        
+        assertEquals(expected, e1.getMessage());
+        assertEquals(expected, e2.getMessage());
+        assertEquals(expected, e3.getMessage());
+    }
+    
+    @Test
     public void parse_wrongNumberFormat_exceptionThrown() {
         Exception e1 = assertThrows(DukeException.class, () -> Parser.parse("delete asdf"));
         Exception e2 = assertThrows(DukeException.class, () -> Parser.parse("mark a2a"));
@@ -162,7 +176,6 @@ public class ParserTest {
         );
     }
     
-
     @Test
     public void parse_missingDeadlineDateTime_exceptionThrown() {
         Exception e1 = assertThrows(DukeException.class, () -> Parser.parse("deadline / by 1/4/2022 0815"));

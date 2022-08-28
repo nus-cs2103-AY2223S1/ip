@@ -87,6 +87,7 @@ public class Event extends Task {
 
     /**
      * Converts the event to its saved format.
+     * 
      * @return The string representation of the saved format of the event.
      */
     @Override
@@ -96,6 +97,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the event.
+     * 
      * @return The string representation of the event.
      */
     @Override

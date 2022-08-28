@@ -598,6 +598,91 @@
 
 
 >>======================================[**]======================================<<
+  You're so helpful. What exactly am I supposed to look for?
+  Type "find <keyword>" to search for a task.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  You're so helpful. What exactly am I supposed to look for?
+  Type "find <keyword>" to search for a task.
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  No matches found for 'zebra'. Did you have fun wasting my time?
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Really? Find them yourself next time.
+  Here's what I found for 'BOOK':
+  1. [T][ ] read a book
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Really? Find them yourself next time.
+  Here's what I found for 'book':
+  1. [T][ ] read a book
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  No matches found for '   book'. Did you have fun wasting my time?
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Really? Find them yourself next time.
+  Here's what I found for '[d]':
+  9. [D][ ] spanish homework (by: 1 Apr 2022)
+  10. [D][ ] assignment 2 (by: 1 Apr 2022)
+  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  12. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022)
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Really? Find them yourself next time.
+  Here's what I found for 'proj':
+  4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022)
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  Really? Find them yourself next time.
+  Here's what I found for '[ ]':
+  1. [T][ ] read a book
+  2. [T][ ] buy pen refill
+  3. [E][ ] birthday party (at: 1 Jan 2022)
+  4. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  5. [E][ ] birthday party (at: 1 Jan 2022, 4:30 PM)
+  6. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  7. [E][ ] project meeting (at: 1 Jan 2022, 4:30 PM)
+  8. [E][ ] project meeting (at: 1 Jan 2022)
+  9. [D][ ] spanish homework (by: 1 Apr 2022)
+  10. [D][ ] assignment 2 (by: 1 Apr 2022)
+  11. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  12. [D][ ] assignment 2 (by: 1 Apr 2022, 8:15 AM)
+  13. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  14. [D][ ] spanish homework (by: 1 Apr 2022, 8:15 AM)
+  15. [D][ ] spanish homework (by: 1 Apr 2022)
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
+  No matches found for '7'. Did you have fun wasting my time?
+>>======================================[**]======================================<<
+
+
+>>======================================[**]======================================<<
   Do you need me to teach you what a number is?
   'asdf' is not a number.
 >>======================================[**]======================================<<

@@ -115,7 +115,19 @@ public class Ui {
         case DELETE:
             sb.append("delete <task number>\" to delete a task.");
             break;
+        case FIND:
+            sb.append("find <keyword>\" to search for a task.");
+            break;
         }
         return sb.toString();
+    }
+    
+    public void showFindMessage(String keyword, String result) {
+        if (result.isBlank()) {
+            System.out.println("  No matches found for '" + keyword + "'. Did you have fun wasting my time?");
+        } else {
+            System.out.print("  Really? Find them yourself next time.\n  Here's what I found for '"
+                    + keyword + "':\n" + result);
+        }
     }
 }

@@ -87,4 +87,14 @@ public class TaskList {
     public int getSize() {
         return this.tasks.size();
     } 
+    
+    public String find(String keyword) {
+        StringBuilder sb = new StringBuilder();
+        this.tasks.forEach(t -> {
+            if (t.isMatch(keyword)) {
+                sb.append("  ").append(this.tasks.indexOf(t) + 1).append(". ").append(t).append("\n");
+            }
+        });
+        return sb.toString();
+    }
 }
