@@ -1,3 +1,12 @@
+package duke.command;
+import duke.Storage;
+import duke.TaskList;
+import duke.UI;
+import duke.DukeException;
+import duke.Task;
+
+
+
 public class MarkAsDoneCommand extends Command {
     int taskNo;
 
@@ -9,7 +18,6 @@ public class MarkAsDoneCommand extends Command {
     public void execute(TaskList taskList, Storage storage) throws DukeException {
         Task task = taskList.getTask(taskNo);
         task.markAsDone();
-        System.out.printf("Nice! I've marked this task as done: \n" +
-                "%s\n", task);
+        UI.markAsDone(task);
     }
 }

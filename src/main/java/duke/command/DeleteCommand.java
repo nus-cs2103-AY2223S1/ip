@@ -1,5 +1,11 @@
-import java.io.IOException;
-import java.util.Scanner;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.UI;
+import duke.DukeException;
+import duke.Task;
+
 
 public class DeleteCommand extends Command {
     int taskNo;
@@ -10,11 +16,9 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
-        Task t = taskList.getTask(taskNo);
+        Task task = taskList.getTask(taskNo);
         taskList.delete(taskNo);
         Task.minusTaskCount();
-        System.out.printf("Noted. I've removed this task:\n" +
-                "  %s\n" +
-                "Now you have %d tasks in the list.\n", t, Task.taskCount);
+        UI.delete(task);
     }
 }

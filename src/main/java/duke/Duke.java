@@ -1,5 +1,9 @@
+package duke;
+
 import java.io.IOException;
 import java.util.Scanner;
+
+import duke.command.Command;
 
 public class Duke {
 
@@ -11,20 +15,20 @@ public class Duke {
         try {
             taskList = this.storage.load();
         } catch (DukeException de) {
-            System.out.println("Duke exception!!");
+            System.out.println("duke.Duke exception!!");
         }
     }
 
     public void run() throws DukeException, IOException {
         UI.welcome();
-        boolean isByeCommand = false;
-        while (!isByeCommand) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
                 Scanner sc = new Scanner(System.in);
                 String rawCommand = sc.nextLine();
                 Command c = Parser.parse(rawCommand);
                 c.execute(taskList, storage);
-                isByeCommand = c.isByeCommand;
+                isExit = c.isByeCommand();
             } catch (DukeException de) {
                 System.out.println(de.toString());
             }

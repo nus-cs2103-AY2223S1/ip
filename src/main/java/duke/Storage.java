@@ -1,12 +1,14 @@
+package duke;
+
+import duke.command.Command;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Storage {
     private final String filePath;
+    private static boolean isLoadingFile = false;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -18,11 +20,16 @@ public class Storage {
         }
     }
 
+    public boolean checkIsLoadingFile() {
+        return isLoadingFile;
+    }
+
     public String read() throws IOException {
         return Files.readString(Path.of(this.filePath));
     }
 
     public TaskList load() throws DukeException {
+        isLoadingFile = true;
         TaskList taskList = new TaskList();
         try {
             String fileContent = this.read();
@@ -43,15 +50,15 @@ public class Storage {
 //                }
 //                switch (typeOfTask) {
 //                    case ("T"):
-//                        Command addTodo =  new AddCommand(description, isDone);
+//                        duke.command.Command addTodo =  new duke.command.AddCommand(description, isDone);
 //                        addTodo.execute(taskList, this);
 //                        break;
 //                    case ("D"):
-//                        Command addDeadline =  new AddDeadlineCommand(description, isDone, date);
+//                        duke.command.Command addDeadline =  new duke.command.AddDeadlineCommand(description, isDone, date);
 //                        addDeadline.execute(taskList, this);
 //                        break;
 //                    case ("E"):
-//                        Command addEvent =  new AddEventCommand(description, isDone, date);
+//                        duke.command.Command addEvent =  new duke.command.AddEventCommand(description, isDone, date);
 //                        addEvent.execute(taskList, this);
 //                }
 
@@ -60,6 +67,7 @@ public class Storage {
         } catch (IOException i) {
             throw new DukeException("IO exception");
         }
+        isLoadingFile = false;
         return taskList;
     }
 
@@ -82,7 +90,7 @@ public class Storage {
 
 }
 
-//    public void load() throws DukeException {
+//    public void load() throws duke.DukeException {
 //        try {
 //            File file = new File(filePath);
 //            FileReader fr = new FileReader(file);   //reads the file
@@ -110,25 +118,25 @@ public class Storage {
 //
 //                switch (typeOfTask) {
 //                    case ("T"):
-//                        this.taskList.add(new ToDo(description));
+//                        this.taskList.add(new duke.ToDo(description));
 //                        break;
 //                    case ("D"):
-//                        this.taskList.add(new Deadline(description, date));
+//                        this.taskList.add(new duke.Deadline(description, date));
 //                        break;
 //                    case ("E"):
 //
-//                        this.taskList.add(new Event(description, date));
+//                        this.taskList.add(new duke.Event(description, date));
 //                }
 //            }
 //        } catch (FileNotFoundException f) {
-//            throw new DukeException("File not found");
+//            throw new duke.DukeException("File not found");
 //        } catch (IOException i) {
-//            throw new DukeException("IO exception");
+//            throw new duke.DukeException("IO exception");
 //        }
 //    }
 
 
-//    public void load() throws DukeException{
+//    public void load() throws duke.DukeException{
 //        File f = new File(this.filePath);
 //        try {
 //            if (f.exists()) {
@@ -148,23 +156,23 @@ public class Storage {
 //                    char typeOfTask = rawTask.charAt(1);
 //                    switch (typeOfTask) {
 //                        case ('T'):
-//                            this.taskList.add(new ToDo(description));
+//                            this.taskList.add(new duke.ToDo(description));
 //                            break;
 //                        case ('D'):
-//                            this.taskList.add(new Deadline(description, date));
+//                            this.taskList.add(new duke.Deadline(description, date));
 //                            break;
 //                        case ('E'):
 //
-//                            this.taskList.add(new Event(description, date));
+//                            this.taskList.add(new duke.Event(description, date));
 //                    }
 //                }
 //            } else {
 //                f.createNewFile();
 //            }
 //        } catch (FileNotFoundException e) {
-//            throw new DukeException("File not found!!");
+//            throw new duke.DukeException("File not found!!");
 //        } catch (IOException i) {
-//            throw new DukeException("IO Exception!!");
+//            throw new duke.DukeException("IO Exception!!");
 //        }
 //    }
 

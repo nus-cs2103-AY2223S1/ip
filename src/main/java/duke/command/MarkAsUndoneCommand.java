@@ -1,3 +1,7 @@
+package duke.command;
+import duke.*;
+
+
 public class MarkAsUndoneCommand extends Command {
     int taskNo;
 
@@ -9,8 +13,7 @@ public class MarkAsUndoneCommand extends Command {
     public void execute(TaskList taskList, Storage storage) throws DukeException {
         Task task = taskList.getTask(taskNo);
         task.markAsUndone();
-        System.out.printf("OK, I've marked this task as not done yet: \n" +
-                            "%s\n", task);
+        UI.markAsUndone(task);
 
     }
 }

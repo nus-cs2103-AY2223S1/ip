@@ -1,7 +1,10 @@
+package duke;
+
 public class ToDo extends Task {
 
-    public ToDo(String description) {
+    public ToDo(String description, boolean isDone) {
         super(description.trim());
+        this.isDone = isDone;
         Task.taskCount++;
     }
 

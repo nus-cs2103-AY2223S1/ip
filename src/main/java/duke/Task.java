@@ -1,3 +1,5 @@
+package duke;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,7 +19,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (this.isDone ? "X" : " "); // mark done task with X
     }
 
     public void markAsDone() {
@@ -29,8 +31,8 @@ public class Task {
     }
 
     public String added() {
-        return String.format("Task added:\n" +
-                "%s\n" +
+        return String.format("New task added:\n" +
+                "  %s\n" +
                 "Now you have %d tasks in the list.\n", this, Task.taskCount);
     }
 
