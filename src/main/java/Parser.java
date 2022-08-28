@@ -6,6 +6,10 @@ import task.ToDo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The Parser takes in a string and detects keywords.
+ * This will be used to execute methods that handle task creation, storage, deletion etc.
+ */
 public class Parser {
     private static Ui ui = new Ui();
     public static void parseInput(String input, ArrayList<Task> taskArr) throws DukeException {
