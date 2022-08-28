@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.FileWriter;

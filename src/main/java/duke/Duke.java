@@ -1,4 +1,7 @@
+package duke;
+
 import java.io.IOException;
+
 
 public class Duke {
 
@@ -9,10 +12,6 @@ public class Duke {
     private TaskList tasklist;
 
     private boolean isRunning = false;
-
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
 
     public Duke(String filePath) {
         this.filePath = filePath;
