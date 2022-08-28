@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.task.Task;
+import duke.util.Ui;
 
 /**
  * Command to add a {@code Task} to a {@code TaskList}.
@@ -21,8 +22,8 @@ public class AddCommand extends Command {
      * Adds the given task to the {@code TaskList}, and prints a success message.
      */
     @Override
-    public void execute() {
+    public String execute() {
         Command.taskList.addTask(this.task);
-        Command.ui.printTaskListChange("Got it. I've added this task:", this.task, Command.taskList);
+        return Ui.formatTaskListChangeMessage("Got it. I've added this task:", this.task, Command.taskList);
     }
 }

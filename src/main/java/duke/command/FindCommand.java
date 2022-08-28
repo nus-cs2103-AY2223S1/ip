@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.task.TaskList;
+import duke.util.Ui;
 
 /**
  * Command to search tasks.
@@ -21,10 +22,10 @@ public class FindCommand extends Command {
      * Searches the {@code TaskList} using the given keyword, and prints the tasks found, if any.
      */
     @Override
-    public void execute() {
+    public String execute() {
         TaskList tasksFound = Command.taskList.find(keyword);
         if (tasksFound.size() == 0) {
-            Command.ui.printMessages(new String[]{"No tasks found with keyword: " + keyword});
+            return Ui.formatMessages(new String[]{"No tasks found with keyword: " + keyword});
         } else {
             String[] toPrint = new String[tasksFound.size() + 1];
             toPrint[0] = "Tasks found with keyword: " + keyword;
@@ -33,7 +34,7 @@ public class FindCommand extends Command {
                 toPrint[i] = line;
                 i++;
             }
-            Command.ui.printMessages(toPrint);
+            return Ui.formatMessages(toPrint);
         }
     }
 }

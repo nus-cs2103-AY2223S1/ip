@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.util.Ui;
+
 import java.util.ArrayList;
 
 /**
@@ -27,7 +29,7 @@ public class HelpCommand extends Command {
      * Prints the list of available user commands and their usage.
      */
     @Override
-    public void execute() {
-        Command.ui.printMessages(HelpCommand.getHelpGuide());
+    public String execute() {
+        return Ui.formatMessages(HelpCommand.getHelpGuide());
     }
 }

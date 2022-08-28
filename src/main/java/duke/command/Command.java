@@ -8,18 +8,8 @@ import duke.util.Ui;
  * Abstract superclass of a command that can be executed upon user request.
  */
 public abstract class Command {
-    protected static Ui ui;
     protected static TaskList taskList;
     protected boolean isExit = false;
-
-    /**
-     * Sets the Ui object that all commands use.
-     *
-     * @param ui {@code Ui} object to use.
-     */
-    public static void setUi(Ui ui) {
-        Command.ui = ui;
-    }
 
     /**
      * Sets the TaskList object that all commands use.
@@ -35,7 +25,7 @@ public abstract class Command {
      *
      * @throws DukeException Checked exceptions that may occur during command execution.
      */
-    public abstract void execute() throws DukeException;
+    public abstract String execute() throws DukeException;
 
     /**
      * Returns if the {@code Command} is a application terminating command.
