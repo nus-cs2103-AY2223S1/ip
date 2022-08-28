@@ -1,3 +1,5 @@
+package general.ui;
+
 import java.util.stream.Stream;
 
 public interface Text {

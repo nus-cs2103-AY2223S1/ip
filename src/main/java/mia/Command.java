@@ -1,3 +1,5 @@
+package mia;
+
 abstract class Command {
     private final Mia context;
     private final boolean isExit;
