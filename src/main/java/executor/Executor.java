@@ -38,7 +38,7 @@ public class Executor {
      */
     public String showBrain(String commandDescription) throws DukeException {
         if (!commandDescription.equals("")) {
-            throw DukeException.shouldHaveNoDescriptionError();
+            throw DukeException.shouldHaveNoDescriptionError("list");
         }
 
         return brain.show();
@@ -231,9 +231,15 @@ public class Executor {
     /**
      * Returns a {@link String} indicating the hibernating.
      *
+     * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
+     * @throws DukeException If {@code commandDescription} is not empty.
      */
-    public String hibernate() {
+    public String hibernate(String commandDescription) throws DukeException {
+        if (!commandDescription.equals("")) {
+            throw DukeException.shouldHaveNoDescriptionError("bye");
+        }
+
         String result = "";
         result += "Byeee! Tob Tob is sick of you\n";
         result += "Don't you dare come back\n";

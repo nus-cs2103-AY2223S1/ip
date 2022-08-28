@@ -14,7 +14,7 @@ public class DukeException extends Exception {
     private static final String COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE =
             "Oopsieee! Command \"%s\" is not in Tob Tob Dictionary";
     private static final String SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE =
-            "Oopsieee! Command \"list\" shouldn't have any description";
+            "Oopsieee! Command \"%s\" shouldn't have any description";
     private static final String INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE =
             "Oopsieee! There are only %s tasks in Tob Tob Brain.\n"
             + "Index should be a positive number and less than %s.\n"
@@ -79,8 +79,8 @@ public class DukeException extends Exception {
      *
      * @return {@link DukeException}
      */
-    public static DukeException shouldHaveNoDescriptionError() {
-        return new DukeException(SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE);
+    public static DukeException shouldHaveNoDescriptionError(String command) {
+        return new DukeException(String.format(SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE, command));
     }
 
     /**

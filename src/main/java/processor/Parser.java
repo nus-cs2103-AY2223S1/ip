@@ -69,7 +69,7 @@ public class Parser {
         case "delete":
             return executor.trashFromBrain(commandDescription);
         case "bye":
-            return executor.hibernate();
+            return executor.hibernate(commandDescription);
         case "find":
             return executor.findInBrain(commandDescription);
         default:
