@@ -29,9 +29,7 @@ public abstract class Command {
      * @return A Command object based on interpreted input.
      */
     public static Command createCommand(String command) {
-        if (command.equals(CommandList.COMMAND_BYE.toString())) {
-            return new ByeCommand(command);
-        } else if (command.equals(CommandList.COMMAND_LIST.toString())) {
+        if (command.equals(CommandList.COMMAND_LIST.toString())) {
             return new ListCommand(command);
         } else if (command.length() >= 4 && command.startsWith(CommandList.COMMAND_DONE.toString())) {
             return new DoneCommand(command);
@@ -63,25 +61,6 @@ public abstract class Command {
     /** Returns the exact input keyed by the user. */
     public String getInput() {
         return this.input;
-    }
-
-    private static class ByeCommand extends Command {
-        /** Text that is displayed when the user issues the Bye command. */
-        private static final String TEXT = "Bye. Hope to see you again soon!";
-
-        /**
-         * Returns a ByeCommand object.
-         *
-         * @param input String that is input by the user.
-         */
-        public ByeCommand(String input) {
-            super(input);
-        }
-
-        @Override
-        public String run(TaskList taskList) {
-            return ByeCommand.TEXT;
-        }
     }
 
     private static class ListCommand extends Command {

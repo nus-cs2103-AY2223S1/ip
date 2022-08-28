@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import skylark.command.CommandList;
 import skylark.skylark.Skylark;
 
 /**
@@ -23,6 +25,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Skylark skylark;
+    private Stage stage;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -43,6 +46,10 @@ public class MainWindow extends AnchorPane {
         this.skylark = skylark;
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
@@ -50,6 +57,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+
+        if (input.equals(CommandList.COMMAND_BYE.toString())) {
+            this.stage.close();
+        }
+
         String response = skylark.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
