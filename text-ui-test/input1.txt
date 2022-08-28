@@ -1,2 +1,7 @@
 list
+find book
+find BOOK
+find coding
+find j
+find RE
 bye

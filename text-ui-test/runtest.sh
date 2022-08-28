@@ -26,8 +26,8 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin CaCa < input.txt > ACTUAL.TXT
-java -classpath ../bin CaCa < input1.txt >> ACTUAL.TXT
+java -classpath ../bin caca.CaCa < input.txt > ACTUAL.TXT
+java -classpath ../bin caca.CaCa < input1.txt >> ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT

@@ -52,4 +52,6 @@ todo exercise
 mark 7
 delete 7
 list
+find book
+find RETURN
 bye
