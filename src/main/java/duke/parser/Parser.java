@@ -38,28 +38,28 @@ public class Parser {
                 command = new ListCommand();
                 break;
             case "mark":
-                command = new MarkCommand(handleMark(argument));
+                command = new MarkCommand(markHandler(argument));
                 break;
             case "unmark":
-                command = new UnMarkCommand(handleMark(argument));
+                command = new UnMarkCommand(markHandler(argument));
                 break;
             case "todo":
-                ToDo todo = handleToDo(argument);
+                ToDo todo = toDoHandler(argument);
                 command = new AddCommand(todo);
                 break;
             case "deadline":
-                Deadline deadline = handleDeadline(argument);
+                Deadline deadline = deadlineHandler(argument);
                 command = new AddCommand(deadline);
                 break;
             case "event":
-                Event event = handleEvent(argument);
+                Event event = eventHandler(argument);
                 command = new AddCommand(event);
                 break;
             case "delete":
-                command = new DeleteCommand(handleDelete(argument));
+                command = new DeleteCommand(deleteHandler(argument));
                 break;
             case "find":
-                command = new FindCommand(handleFind(argument));
+                command = new FindCommand(findHandler(argument));
                 break;
             default:
                 throw new InvalidCommandException(keyPhrase);
@@ -74,7 +74,7 @@ public class Parser {
      * @return An instance of ToDo which contains the information.
      * @throws EmptyArgumentException If no details of the task is provided.
      */
-    public static ToDo handleToDo(String information) throws EmptyArgumentException {
+    public static ToDo toDoHandler(String information) throws EmptyArgumentException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.ToDo);
         }
@@ -89,7 +89,7 @@ public class Parser {
      * @return An instance of Deadline which contains the information.
      * @throws DukeException If the information provided is in the wrong format.
      */
-    public static Deadline handleDeadline(String information) throws DukeException {
+    public static Deadline deadlineHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Deadline);
         }
@@ -114,7 +114,7 @@ public class Parser {
      * @return An instance of Event with the provided details.
      * @throws DukeException If the information provided is in the wrong format.
      */
-    public static Event handleEvent(String information) throws DukeException {
+    public static Event eventHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Event);
         }
@@ -133,7 +133,7 @@ public class Parser {
      * @return the index of the task in int.
      * @throws DukeException If the information provided is not an int.
      */
-    public static int handleMark(String information) throws DukeException {
+    public static int markHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Mark);
         }
@@ -154,7 +154,7 @@ public class Parser {
      * @return The index of the task to be deleted in int.
      * @throws DukeException If the information provided is not a valid int.
      */
-    public static int handleDelete(String information) throws DukeException {
+    public static int deleteHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Delete);
         }
@@ -168,7 +168,7 @@ public class Parser {
         return index;
     }
 
-    public static String handleFind(String information) throws DukeException {
+    public static String findHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Find);
         }
