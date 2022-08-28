@@ -2,10 +2,21 @@ package bob;
 
 import java.time.LocalDate;
 
+/**
+ * Represents Parser object, to read and respond to user input
+ */
 public class Parser {
 
     public boolean toExit = false;
 
+    /**
+     * Parses through user input and determines response
+     *
+     * @param reply user input
+     * @param tasks current list of tasks
+     * @param storage storage to save and read files
+     * @param ui ui to determine text responses to user
+     */
     //referenced https://github.com/Donovan9617/ip/blob/master/src/main/java/Duke/Parser.java for structure
     public void parse(String reply, TaskList tasks, Storage storage, Ui ui) {
         String[] splitReply = reply.split(" ");
