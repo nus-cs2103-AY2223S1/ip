@@ -112,4 +112,12 @@ public class Ui {
     public void showError(String e) {
         System.out.println(e);
     }
+
+    public void findTask(TaskList tasks) {
+        if (tasks.size() == 0) {
+            System.out.println("\thm...looks like there are no tasks matching the keyword ><\n\ttry another one~");
+        } else {
+            System.out.println("\there are the tasks i found that match your keyword~ <:" + tasks.taskListToString());
+        }
+    }
 }

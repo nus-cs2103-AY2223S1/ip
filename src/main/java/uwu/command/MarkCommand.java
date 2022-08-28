@@ -20,6 +20,9 @@ public class MarkCommand extends Command {
     /** The user command parsed into MarkCommand. */
     String userCommand;
 
+    /** The type of command, mark or unmark. */
+    String taskType;
+
     /**
      * Constructor for a MarkCommand object.
      *
@@ -28,6 +31,7 @@ public class MarkCommand extends Command {
     public MarkCommand(String userCommand) {
         this.userCommand = userCommand;
         String[] taskData = userCommand.split(" ", 2);
+        this.taskType = taskData[0];
         this.index = Integer.parseInt(taskData[1].trim()) - 1;
     }
 
