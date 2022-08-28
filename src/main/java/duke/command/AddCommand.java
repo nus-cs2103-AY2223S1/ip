@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -40,14 +39,14 @@ public class AddCommand extends Command {
     /**
      * Handles the execution behaviour of the adding of tasks.
      *
-     * @param tasks The list of tasks to add to.
-     * @param ui The UI of the Duke bot.
+     * @param tasks   The list of tasks to add to.
      * @param storage The storage of data.
+     * @return The reply of the Duke bot.
      * @throws DukeException If there is an error saving the
      *                       new data to the text file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         Task task = null;
         switch (taskType) {
         case "T":
@@ -64,7 +63,7 @@ public class AddCommand extends Command {
         }
         tasks.add(task);
         storage.saveData(tasks);
-        ui.printMessage("Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks.");
+        return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks.";
     }
 
     /**

@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exception.DukeException;
 
 /**
@@ -13,12 +12,11 @@ public abstract class Command {
      * Handles the execution behaviour of the associated command.
      *
      * @param tasks The current list of tasks.
-     * @param ui The UI of the Duke bot.
      * @param storage The storage of data.
      * @throws DukeException If there is an error that arise from the
      *                       associated behaviour of the command.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Storage storage) throws DukeException;
 
     /**
      * Returns the command type.
