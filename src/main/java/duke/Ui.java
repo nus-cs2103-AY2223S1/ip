@@ -12,7 +12,7 @@ public class Ui {
      */
     public void printIntro() {
         System.out.println(LINE_DIVIDER);
-        System.out.println("Wassup la I'm duke.Duke\nWhat you want?\n" + LINE_DIVIDER);
+        System.out.println("Wassup la I'm Duke\nWhat you want?\n" + LINE_DIVIDER);
     }
 
     /**
@@ -119,6 +119,5 @@ public class Ui {
         System.out.println(LINE_DIVIDER);
         System.out.println("CLEAR ALL LIAO");
         System.out.println(LINE_DIVIDER);
-
     }
 }

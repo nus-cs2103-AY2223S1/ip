@@ -10,6 +10,10 @@ import java.util.ArrayList;
  * Class containing parsing methods, or conversions.
  */
 public class Parser {
+    static final String TASK_TODO = " T ";
+    static final String TASK_EVENT = " E ";
+    static final String TASK_DEADLINE = " D ";
+
 
     /**
      * Parses date and time string and converts it into a LocalDateTime.
@@ -39,11 +43,11 @@ public class Parser {
         String[] taskSplit = task.split("\\|");
         String type = taskSplit[0];
         switch (type) {
-            case " T ":
+            case TASK_TODO:
                 return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
-            case " E ":
+            case TASK_EVENT:
                 return new Event(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
-            case " D ":
+            case TASK_DEADLINE:
                 return new Deadline(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
             default:
                 return null;
