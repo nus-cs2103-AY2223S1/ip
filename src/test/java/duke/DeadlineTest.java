@@ -8,22 +8,14 @@ public class DeadlineTest {
 
     @Test
     public void dummyTest1() {
-        Deadline task = new Deadline("homework", new String[]{" ", "2022-02-20", "23:59"});
-        assertEquals("[D][ ] homework (by: Feb 20 2022 11:59PM)", task.toString());
+        Deadline task = new Deadline("homework", false, "2022-02-03", "22:00");
+        assertEquals("D | O | homework | Feb 3 2022 1000PM", task.toString());
     }
 
     @Test
     public void dummyTest2() {
-        Deadline task = new Deadline("homework", new String[]{" ", "2022-02-20", "23:59"});
+        Deadline task = new Deadline("homework", false, "2022-02-10", "10:00");
         task.mark();
-        assertEquals("[D][X] homework (by: Feb 20 2022 11:59PM)", task.toString());
-    }
-
-    @Test
-    public void dummyTest3() {
-        Deadline task = new Deadline("coding assignment", new String[]{" ", "2022-04-22", "22:00"});
-        task.mark();
-        task.unmark();
-        assertEquals("[D][ ] coding assignment (by: Apr 22 2022 10:00PM)", task.toString());
+        assertEquals("D | X | homework | Feb 10 2022 1000AM", task.toString());
     }
 }
