@@ -1,7 +1,7 @@
 package duke;
 
 public class Deadline extends Task {
-    private String by;
+    private final String by;
 
     public Deadline(String item, String by) {
         super(item);
