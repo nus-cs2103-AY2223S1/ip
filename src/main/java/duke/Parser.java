@@ -92,6 +92,21 @@ public class Parser {
                     throw new DukeException("Please enter a valid task number");
                 }
             }
+            case "find": {
+//                try {
+                    if (arguments == null) {
+                        throw new DukeException("Please enter a keyword to search");
+                    }
+                    TaskList matchingTasks = new TaskList();
+                    for (int i = 0; i < tl.getTaskListSize(); i++) {
+                        if (tl.getTask(i).containsKeyword(arguments.trim())) {
+                            matchingTasks.addTask(tl.getTask(i));
+                        }
+                    }
+                    
+                    return "Here are your matching tasks:\n" + matchingTasks.listTasks();
+//                } catch ()
+            }
             default:
                 return "I don't know that command please enter a valid command";
         }

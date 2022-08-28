@@ -20,6 +20,10 @@ public class Task {
     public String saveString() {
         return (isDone ? 1 : 0) + " | " + description;
     }
+    
+    public boolean containsKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 
     @Override
     public String toString() {
