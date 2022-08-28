@@ -11,7 +11,7 @@ public class Parser {
         //handle the error where no task name
         if (inputs.length == 1 || inputs[1].trim().startsWith("/at")
                 || inputs[1].trim().startsWith("/by") || inputs[1].trim().equals("")) {
-            throw new WanyaException("The description of a " + command + " cannot be empty");
+            throw new WanyaException("The description of " + command + " cannot be empty");
         }
     }
 
@@ -67,6 +67,9 @@ public class Parser {
             } else if (command.equals("delete")) {
                 int index = checkTaskNumber(inputs, tasks);
                 tasks.deleteTask(index);
+            } else if (command.equals("find")) {
+                checkTask(inputs, command);
+                tasks.findTasks(inputs[1]);
             } else {
                 throw new WanyaException("I am sorry. Wanya doesn't like to study " +
                         "so Wanya don't know what that means.");

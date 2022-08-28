@@ -116,4 +116,25 @@ public class TaskList {
         }
         return data;
     }
+
+    /**
+     * Finds a list of tasks that contains the keyword and print it.
+     *
+     * @param keyword word to find matching tasks.
+     */
+    public void findTasks(String keyword) {
+        List<Task> matchingTasks = new ArrayList<>();
+
+        for (Task task: tasks) {
+            String taskName = task.getTaskName();
+            if (taskName.contains(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task task: matchingTasks) {
+            System.out.println(task);
+        }
+    }
 }

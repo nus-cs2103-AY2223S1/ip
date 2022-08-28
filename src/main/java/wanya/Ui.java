@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner SC = new Scanner(System.in);
     private boolean isActive = true;
-    private final String HEADER = "WANYA: ";
     private final String DIVIDER = "\n";
 
     public void greet() {
