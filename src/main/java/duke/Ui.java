@@ -85,7 +85,7 @@ public class Ui {
             return "No task matched your query!";
         }
         return "Here is what I found:" + "\n"
-                + formatTaskList(tasks);
+                + joinTextsWithNewLine(formatTaskList(tasks));
     }
 
     /**
