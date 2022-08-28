@@ -18,21 +18,37 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that contains methods to save tasks to a file
+ * and load tasks from a file.
+ */
 public class Storage {
+    /** Path to directory of saved file */
     private Path directory;
+    /** Directory where file is saved */
     private File fileDirectory;
+    /** Path to the saved file */
     private Path filePath;
-    private File file;
+    /** List containing tasks loaded from file */
     private ArrayList<Task> tasks;
-    
+
+    /**
+     * Constructor to initialize directory and path of the saved file and
+     * the list of tasks.
+     */
     public Storage() {
         this.directory = Paths.get("data");
         this.fileDirectory = new File(this.directory.toString());
         this.filePath = Paths.get(this.directory.toString(), "duke.txt");
-        this.file = new File(this.filePath.toString());
         this.tasks = new ArrayList<>();
     }
-    
+
+    /**
+     * Saves the list of tasks to a text file.
+     * 
+     * @param tasks List of tasks to be saved.
+     * @throws DukeException If tasks list cannot be saved.
+     */
     public void save(TaskList tasks) throws DukeException {
         try {
             String savedTasks = tasks.toSaveFormat();
@@ -46,7 +62,13 @@ public class Storage {
             throw new DukeException("  Error: Unable to save tasks.");
         }
     }
-    
+
+    /**
+     * Loads the list of tasks from a given text file.
+     * 
+     * @return List of tasks from the given text file.
+     * @throws DukeException If task list cannot be loaded.
+     */
     public ArrayList<Task> load() throws DukeException {
         try {
             if (Files.exists(this.directory) && Files.exists(this.filePath)) {

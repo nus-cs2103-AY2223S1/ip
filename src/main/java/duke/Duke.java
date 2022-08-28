@@ -7,11 +7,20 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Main class for Duke application
+ */
 public class Duke {
+    /** Contains methods that deal with loading and saving of tasks */
     private Storage storage;
+    /** List of tasks */
     private TaskList tasks;
+    /** Deals with interactions with user */
     private Ui ui;
-    
+
+    /**
+     * Constructor to initialize Storage, TaskList and Ui.
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -23,6 +32,9 @@ public class Duke {
         }
     }
     
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -43,6 +55,11 @@ public class Duke {
         ui.printBorder();
     }
 
+    /**
+     * Main method for Duke.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }
