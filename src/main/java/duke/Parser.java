@@ -63,11 +63,10 @@ public abstract class Parser {
      * Parses the second word of the input string from user as an integer, and returns -1 of that value
      *
      * @param command input string from user.
-     * @param taskList TaskList containing current tasks.
      * @return integer representing a 0-based task index from the 1-based task index given.
      * @throws IllegalArgumentException if second word is not an integer.
      */
-    public static int getTaskIndex(String command, TaskList taskList) throws IllegalArgumentException {
+    public static int getTaskIndex(String command) throws IllegalArgumentException {
         int i;
         String[] commandArr = command.split(" ");
         try {

@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     public static DeleteCommand of(String command, TaskList taskList) throws IllegalArgumentException {
         int taskIndex;
         try {
-            taskIndex = Parser.getTaskIndex(command, taskList);
+            taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to delete a task.\n");
         }

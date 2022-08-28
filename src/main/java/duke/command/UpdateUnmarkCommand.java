@@ -26,7 +26,7 @@ public class UpdateUnmarkCommand extends UpdateCommand {
     public static UpdateUnmarkCommand of(String command, TaskList taskList) throws IllegalArgumentException {
         int taskIndex;
         try {
-            taskIndex = Parser.getTaskIndex(command, taskList);
+            taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to unmark a task.\n");
         }
