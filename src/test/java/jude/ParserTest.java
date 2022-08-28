@@ -1,12 +1,10 @@
 package jude;
 
+import java.io.IOException;
+
 // Test template adapted from https://se-education.org/guides/tutorials/junit.html
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests functionality of Deadline class.
@@ -80,6 +78,7 @@ public class ParserTest {
             parser.convertToDate("Apr 32 2022");
             Assertions.fail();
         } catch (IllegalCommandException ex) {
+            return;
         }
     }
 
@@ -95,6 +94,7 @@ public class ParserTest {
             parser.convertToDate("Monday");
             Assertions.fail();
         } catch (IllegalCommandException ex) {
+            return;
         }
     }
 
@@ -110,6 +110,7 @@ public class ParserTest {
             parser.convertToDate(null);
             Assertions.fail();
         } catch (IllegalCommandException ex) {
+            return;
         }
     }
 
@@ -147,6 +148,7 @@ public class ParserTest {
             parser.convertToDate("22 Aug 2022 13:01 am");
             Assertions.fail();
         } catch (IllegalCommandException ex) {
+            return;
         }
     }
 
@@ -162,6 +164,7 @@ public class ParserTest {
             parser.convertToDate("Aug 24 2022 24:01");
             Assertions.fail();
         } catch (IllegalCommandException ex) {
+            return;
         }
     }
 

@@ -1,10 +1,5 @@
 package jude;
 
-import jude.task.Deadline;
-import jude.task.Event;
-import jude.task.Task;
-import jude.task.Todo;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+
+import jude.task.Deadline;
+import jude.task.Event;
+import jude.task.Task;
+import jude.task.Todo;
 
 /**
  * The {@code Parser} class parses user commands in the task tracker chatbot and executes them.
@@ -53,15 +53,15 @@ public class Parser {
         } catch (DateTimeParseException ex) {
             boolean valid = false;
             String[] dateTimeFormats = {
-                    "yyyy-MM-dd",
-                    "yyyy-MM-dd H:mm",
-                    "yyyy-MM-dd h:mm a",
-                    "d MMM yyyy",
-                    "d MMM yyyy H:mm",
-                    "d MMM yyyy h:mm a",
-                    "MMM d yyyy",
-                    "MMM d yyyy H:mm",
-                    "MMM d yyyy h:mm a",
+                "yyyy-MM-dd",
+                "yyyy-MM-dd H:mm",
+                "yyyy-MM-dd h:mm a",
+                "d MMM yyyy",
+                "d MMM yyyy H:mm",
+                "d MMM yyyy h:mm a",
+                "MMM d yyyy",
+                "MMM d yyyy H:mm",
+                "MMM d yyyy h:mm a",
             };
             boolean[] isDateFormats = { true, false, false, true, false, false, true, false, false };
             for (int i = 0; i < dateTimeFormats.length; i++) {
@@ -88,8 +88,8 @@ public class Parser {
                 }
             }
             if (!valid) {
-                throw new IllegalCommandException("Please input a valid date, e.g. 21 Aug 2022, " +
-                        "Aug 21 2022 or 2022-08-21.");
+                throw new IllegalCommandException("Please input a valid date, e.g. 21 Aug 2022, "
+                        + "Aug 21 2022 or 2022-08-21.");
             }
         }
         return dateObject.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
@@ -105,8 +105,8 @@ public class Parser {
     public boolean parse(String command) throws IOException {
         String[] tokens = command.split(" ", 2);
         try {
-            if (tokens[0].equals("todo") || tokens[0].equals("deadline") ||
-                    tokens[0].equals("event")) {
+            if (tokens[0].equals("todo") || tokens[0].equals("deadline")
+                    || tokens[0].equals("event")) {
                 Task taskAdded = null;
                 if (tokens.length == 1 || tokens[1].isBlank()) {
                     throw new IllegalCommandException(
@@ -124,14 +124,14 @@ public class Parser {
                             throw new IllegalCommandException(
                                     "Description of deadline task cannot be empty.");
                         } else if (deadline.isBlank()) {
-                            throw new IllegalCommandException("A deadline task must have a " +
-                                    "deadline.");
+                            throw new IllegalCommandException("A deadline task must have a "
+                                    + "deadline.");
                         }
                         deadline = convertToDate(deadline);
                         taskAdded = new Deadline(description, false, deadline);
                     } else {
-                        throw new IllegalCommandException("A deadline task must have a " +
-                                "deadline.");
+                        throw new IllegalCommandException("A deadline task must have a "
+                                + "deadline.");
                     }
                 } else if (tokens[0].equals("event")) {
                     String remText = tokens[1];
@@ -143,13 +143,13 @@ public class Parser {
                             throw new IllegalCommandException(
                                     "Description of event task cannot be empty.");
                         } else if (when.isBlank()) {
-                            throw new IllegalCommandException("An event task must have a " +
-                                    "time at which the event takes place.");
+                            throw new IllegalCommandException("An event task must have a "
+                                    + "time at which the event takes place.");
                         }
                         taskAdded = new Event(description, false, when);
                     } else {
-                        throw new IllegalCommandException("An event task must have a time at " +
-                                "which the event takes place.");
+                        throw new IllegalCommandException("An event task must have a time at "
+                                + "which the event takes place.");
                     }
                 }
 

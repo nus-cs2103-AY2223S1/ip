@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
 import jude.task.Deadline;
 import jude.task.Event;
 import jude.task.Task;
@@ -43,6 +44,8 @@ public class Storage {
             // https://www.w3schools.com/java/java_files_create.asp
             file.createNewFile();
         } catch (FileAlreadyExistsException ex) {
+            // If file already exists, then the new file should not be created.
+            return;
         }
     }
 
@@ -81,7 +84,7 @@ public class Storage {
             } else if (taskType.equals("D")) {
                 String deadline = sc.nextLine();
                 task = new Deadline(taskName, isDone, deadline);
-            } else if (taskType.equals("E")){
+            } else if (taskType.equals("E")) {
                 String eventTime = sc.nextLine();
                 task = new Event(taskName, isDone, eventTime);
             } else {

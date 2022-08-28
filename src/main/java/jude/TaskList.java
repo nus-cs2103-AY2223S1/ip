@@ -1,9 +1,9 @@
 package jude;
 
-import jude.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import jude.task.Task;
 
 /**
  * TaskList is a class which stores a list of tasks.
@@ -41,7 +41,7 @@ public class TaskList {
      */
     public void delete(int index) {
         checkIndex(index);
-        tasks.remove(index-1);
+        tasks.remove(index - 1);
     }
 
     /**
@@ -52,7 +52,7 @@ public class TaskList {
      */
     public Task get(int index) {
         checkIndex(index);
-        return tasks.get(index-1);
+        return tasks.get(index - 1);
     }
 
     /**

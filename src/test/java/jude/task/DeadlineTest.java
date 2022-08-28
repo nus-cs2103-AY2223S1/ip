@@ -1,10 +1,9 @@
 package jude.task;
 
-// Test template adapted from https://se-education.org/guides/tutorials/junit.html
-import jude.task.Deadline;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+// Test template adapted from https://se-education.org/guides/tutorials/junit.html
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests functionality of Deadline class.
@@ -48,10 +47,10 @@ public class DeadlineTest {
     @Test
     public void testToFileSaveString1() {
         Deadline deadline = new Deadline("Deadline Task 4", true, "24 Aug 2022 12:00");
-        assertEquals("D\n" +
-                "Deadline Task 4\n" +
-                "1\n" +
-                "24 Aug 2022 12:00\n", deadline.toFileSaveString());
+        assertEquals("D\n"
+                + "Deadline Task 4\n"
+                + "1\n"
+                + "24 Aug 2022 12:00\n", deadline.toFileSaveString());
     }
 
     /**
@@ -61,9 +60,9 @@ public class DeadlineTest {
     @Test
     public void testToFileSaveString2() {
         Deadline deadline = new Deadline("Deadline Task 5", false, "8 Dec 2022 15:00");
-        assertEquals("D\n" +
-                "Deadline Task 5\n" +
-                "0\n" +
-                "8 Dec 2022 15:00\n", deadline.toFileSaveString());
+        assertEquals("D\n"
+                + "Deadline Task 5\n"
+                + "0\n"
+                + "8 Dec 2022 15:00\n", deadline.toFileSaveString());
     }
 }
