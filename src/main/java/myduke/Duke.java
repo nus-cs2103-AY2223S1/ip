@@ -1,7 +1,9 @@
 package myduke;
+
 import exception.DukeException;
 
 import java.time.format.DateTimeParseException;
+
 import java.util.Scanner;
 
 /**
@@ -9,20 +11,19 @@ import java.util.Scanner;
  */
 public class Duke {
     private static boolean isEnd;
-    private Storage storage;
-    private TaskList tasks;
-    private Ui ui;
+    private final Ui UI;
 
     /**
      * Constructor for duke
+     *
      * @param filePath absolute file path of the storage file
      */
     public Duke(String filePath) {
         isEnd = false;
-        storage = new Storage(filePath);
-        tasks = new TaskList();
+        Storage storage = new Storage(filePath);
+        TaskList tasks = new TaskList();
         storage.loadFromFile(tasks);
-        ui = new Ui(tasks, storage);
+        UI = new Ui(tasks, storage);
     }
 
     /**
@@ -30,11 +31,11 @@ public class Duke {
      */
     public void run() {
         Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
-        ui.welcome();
+        UI.welcome();
         while (!isEnd) {
             try {
-                ui.Response(myScanner.nextLine());
-            } catch (DukeException e){
+                UI.Response(myScanner.nextLine());
+            } catch (DukeException e) {
                 System.out.println(e.getMessage());
             } catch (DateTimeParseException e) {
                 System.out.println("Please input the date in the ISO-8601 format\n" +
