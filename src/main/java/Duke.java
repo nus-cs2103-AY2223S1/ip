@@ -70,11 +70,5 @@ public class Duke {
             }
         }
 
-        //Level 4
-        //Level 5
-        //Level 6
-        //A-TextUiTesting
-        //Test commit
-
     }
 }
