@@ -23,6 +23,11 @@ public final class JennyBot {
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructor for a JennyBot application.
+     * Will initialise a storage at the default location under the specified name.
+     * @param filePath the name of the storage file.
+     */
     public JennyBot(String filePath) {
         ui = new Ui(System.in, System.out);
         storage = new TaskStorage<>(filePath);
@@ -34,6 +39,9 @@ public final class JennyBot {
         }
     }
 
+    /**
+     * Run the JennyBot Application
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;
