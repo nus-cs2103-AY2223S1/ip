@@ -12,6 +12,7 @@ public class DukeException extends Exception {
     public static final DukeException INVALID_COMMAND = new DukeException("Your command lacks the keyword for me to act upon");
     public static final DukeException INVALID_TASK_INDEX = new DukeException("Read the index of the existing tasks carefully...");
     public static final DukeException INVALID_DATE_FORMAT = new DukeException("Your date is rubbish");
+    public static final DukeException MISSING_FIND_KEYWORD = new DukeException("What you want me to find? Nothing?");
 
     public DukeException(String message) {
         super(message);
