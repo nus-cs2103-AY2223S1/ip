@@ -6,9 +6,9 @@ import java.util.Scanner;
  * Class to deal with user interface
  */
 public class Ui {
-    private Scanner sc;
     private static final String HELLO = "Hello! I'm Duke\nWhat can I do for you?";
     private static final String BYE = "Bye! Hope to see you again soon!";
+    private Scanner sc;
 
     Ui() {
         this.sc = new Scanner(System.in);

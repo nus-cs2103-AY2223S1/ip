@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 /**
  * Main class for Duke
@@ -12,7 +11,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     *Constructor for Duke class
+     * Constructor for Duke class
      *
      * Creates Ui and Storage instance
      * @param filePath File path for storage list
@@ -32,7 +31,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         boolean isExit = false;
 
-        while(!isExit) {
+        while (!isExit) {
             try {
                 isExit = Parser.parse(sc.nextLine(), tasks, ui, storage);
 
