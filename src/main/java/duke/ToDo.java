@@ -1,7 +1,5 @@
 package duke;
 
-import duke.Task;
-
 public class ToDo extends Task {
 
     public ToDo(String item) {

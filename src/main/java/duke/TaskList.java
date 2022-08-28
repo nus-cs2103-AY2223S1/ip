@@ -1,8 +1,5 @@
 package duke;
 
-import duke.DukeException;
-import duke.Task;
-
 import java.util.ArrayList;
 
 public class TaskList {
@@ -45,7 +42,25 @@ public class TaskList {
         for (Task task : taskList) {
             lines.append(task.toLine()).append("\n");
         }
-
         return lines.toString();
+    }
+
+    /**
+     * Returns a list of tasks that contains the keyword.
+     * @param keyWord Keyword that is being searched for.
+     * @return A taskList containing tasks that contains the keyword.
+     * @throws DukeException If the new taskList is empty.
+     */
+    public TaskList find(String keyWord) throws DukeException {
+        ArrayList<Task> containingKeyWordList = new ArrayList<>();
+        for (Task t : taskList) {
+            if (t.contains(keyWord)) {
+                containingKeyWordList.add(t);
+            }
+        }
+        if (containingKeyWordList.isEmpty()) {
+            throw new DukeException("");
+        }
+        return new TaskList(containingKeyWordList);
     }
 }
