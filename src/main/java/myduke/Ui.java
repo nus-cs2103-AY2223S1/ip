@@ -4,6 +4,7 @@ import exception.DukeException;
 import exception.MarkException;
 import exception.MissingDateException;
 import exception.MissingDescriptionException;
+import exception.MissingKeyWordException;
 import exception.MissingTaskIndexException;
 import exception.OutOfBoundIndexException;
 import exception.UnMarkException;
@@ -60,7 +61,7 @@ public class Ui {
      * @throws DateTimeParseException
      */
     public void Response(String input) throws MissingTaskIndexException, MissingDescriptionException,
-            WrongCommandException, MissingDateException, MarkException, UnMarkException,
+            WrongCommandException, MissingDateException, MissingKeyWordException, MarkException, UnMarkException,
             OutOfBoundIndexException, DateTimeParseException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
@@ -174,6 +175,17 @@ public class Ui {
 
             String message = done + "  " + event + taskLists.numOfTaskToString();
             System.out.println(wrapper(message));
+        } else if (input.startsWith("find")) {
+            if (input.length() == 4) {
+                throw new MissingKeyWordException();
+            }
+            //getting keyword
+            String keyword = input.substring(5);
+
+            //filter taskList with keyword
+            TaskList tempTaskList = taskLists.findTask(keyword);
+
+            System.out.println(wrapper(tempTaskList.toString()));
         } else {
             throw new WrongCommandException();
         }

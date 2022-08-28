@@ -47,15 +47,6 @@ public class TaskList {
     }
 
     /**
-     * Adds the given task into the taskList.
-     *
-     * @param task task to be saved
-     */
-    public void add(Task task) {
-        taskLists.add(task);
-    }
-
-    /**
      * Saves the given task.
      *
      * @param task given task
@@ -115,6 +106,27 @@ public class TaskList {
         } else {
             throw new OutOfBoundIndexException();
         }
+    }
+
+    /**
+     * Finds all tasks stored containing keyword and saves them in new TaskLists to be returned.
+     *
+     * @param keyword given keyword to find with.
+     * @return a TaskList containing all tasks with the keyword.
+     */
+    public TaskList findTask(String keyword) {
+        //taskList to be returned
+        TaskList filteredTaskList = new TaskList();
+
+        //filter saved Tasks with keyword
+        for (int i = 0; i < taskLists.size(); i++) {
+            Task current = taskLists.get(i);
+            if (current.toString().contains(keyword)) {
+                //if current task contains keyword, add it to filter TaskList
+                filteredTaskList.saveTask(current);
+            }
+        }
+        return filteredTaskList;
     }
 
     /**

@@ -46,16 +46,16 @@ public class Storage {
                 status = currentLine.substring(4, 5).equals("T");
                 switch (type) {
                 case "T":
-                    taskLists.add(new ToDo(currentLine.substring(8), status));
+                    taskLists.saveTask(new ToDo(currentLine.substring(8), status));
                     break;
                 case "D":
                     int divider = currentLine.substring(8).indexOf("|") + 8;
-                    taskLists.add(new Deadline(currentLine.substring(8, divider - 1),
+                    taskLists.saveTask(new Deadline(currentLine.substring(8, divider - 1),
                             status, LocalDateTime.parse(currentLine.substring(divider + 2))));
                     break;
                 case "E":
                     int divider_2 = currentLine.substring(8).indexOf("|") + 8;
-                    taskLists.add(new Event(currentLine.substring(8, divider_2 - 1),
+                    taskLists.saveTask(new Event(currentLine.substring(8, divider_2 - 1),
                             status, currentLine.substring(divider_2 + 2)));
                     break;
                 }
