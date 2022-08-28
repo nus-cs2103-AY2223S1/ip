@@ -1,6 +1,12 @@
 import exceptions.DukeException;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -106,8 +112,9 @@ public class Duke {
                 } else if (command.equals("deadline")) {
                     String[] splitArgs = description.split(" /by ", 2);
                     String title = splitArgs[0];
-                    String by = splitArgs[1];
-                    Task task = new Deadline(title, false, by);
+                    String stringBy = splitArgs[1];
+                    LocalDate dateBy = LocalDate.parse(stringBy);
+                    Task task = new Deadline(title, false, dateBy);
                     tasks.add(task);
                     printMultiMsg(new String[]{
                             "Got it. I've added this task:",
@@ -117,8 +124,9 @@ public class Duke {
                 } else if (command.equals("event")) {
                     String[] splitArgs = description.split(" /at ", 2);
                     String title = splitArgs[0];
-                    String at = splitArgs[1];
-                    Task task = new Event(title, false, at);
+                    String stringAt = splitArgs[1];
+                    LocalDate dateAt = LocalDate.parse(stringAt);
+                    Task task = new Event(title, false, dateAt);
                     tasks.add(task);
                     printMultiMsg(new String[]{
                             "Got it. I've added this task:",
