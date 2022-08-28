@@ -100,31 +100,31 @@ public class Parser {
         }
 
         ++currWordIndex;
-        String inFormat, outFormat, timing;
         try {
-            if (currWordIndex == words.length - 1) {
-                inFormat = "d/M/yyyy";
-                outFormat = "d MMM yyyy";
-                timing = words[currWordIndex];
-                DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                        .appendPattern(inFormat)
-                        .toFormatter(Locale.getDefault());
-                LocalDate dateTime = LocalDate.parse(timing, formatter);
-                return dateTime.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
-            } else {
-                inFormat = "d/M/yyyy h:mma";
-                outFormat = "d MMM yyyy, h:mma";
-                timing = words[currWordIndex] + " " + words[++currWordIndex];
-                DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                        .parseCaseInsensitive()
-                        .appendPattern(inFormat)
-                        .toFormatter(Locale.getDefault());
-                LocalDateTime dateTime = LocalDateTime.parse(timing, formatter);
-                return dateTime.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
-            }
+            return (currWordIndex == words.length - 1)
+                    ? reformatDate(words[currWordIndex], "d/M/yyyy", "d MMM yyyy")
+                    : reformatDateTime(words[currWordIndex] + " " + words[++currWordIndex],
+                    "d/M/yyyy h:mma", "d MMM yyyy, h:mma");
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("OOPS!!! I don't understand that date or time");
         }
+    }
+
+    public static String reformatDate(String date, String inFormat, String outFormat) {
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern(inFormat)
+                .toFormatter(Locale.getDefault());
+        LocalDate ld = LocalDate.parse(date, formatter);
+        return ld.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
+    }
+
+    public static String reformatDateTime(String dateTime, String inFormat, String outFormat) {
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .appendPattern(inFormat)
+                .toFormatter(Locale.getDefault());
+        LocalDateTime ldt = LocalDateTime.parse(dateTime, formatter);
+        return ldt.format(DateTimeFormatter.ofPattern(outFormat, Locale.getDefault()));
     }
 
     /**

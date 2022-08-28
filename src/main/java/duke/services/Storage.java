@@ -47,7 +47,7 @@ public class Storage {
                 } else {
                     throw new IllegalArgumentException("OOPS!!! Found a stored task of unknown type");
                 }
-                if (line.charAt(1) == 'X') {
+                if (line.charAt(1) == '1') {
                     task.markAsDone();
                 }
                 TaskList.tasks.add(task);
@@ -70,12 +70,12 @@ public class Storage {
             StringBuilder sb = new StringBuilder();
             for (Task task : TaskList.tasks) {
                 //[typeSymbol][statusIcon] [desc] [flag] [timing]
-                sb.append(task.getTypeSymbol()).append(task.getStatusIcon()).append(" ")
+                sb.append(task.getTypeSymbol()).append(task.getStatusIcon().equals("X") ? '1' : '0').append(" ")
                         .append(task.getDescription());
                 if (task instanceof Deadline) {
-                    sb.append(" /by ").append(((Deadline) task).getBy());
+                    sb.append(" /by ").append(((Deadline) task).getEnteredDeadline());
                 } else if (task instanceof Event) {
-                    sb.append(" /at ").append(((Event) task).getAt());
+                    sb.append(" /at ").append(((Event) task).getEnteredTime());
                 }
                 bf.write(sb.toString());
                 bf.newLine();
