@@ -20,9 +20,19 @@ import duke.exception.IndexNotSpecifyException;
 import duke.exception.ScheduleTaskKeywordNotFoundException;
 import duke.exception.UnexpectedDateTimeFormatException;
 
-
-
+/**
+ * Handles the command given by the user.
+ */
 public class Parser {
+    /**
+     * Parses the command given by the user.
+     * Return a command based on the user's input.
+     *
+     * @param command user's input.
+     * @return Command object based on the user's input.
+     * @throws DukeException when there is an error in the user's input.
+     * @throws NumberFormatException when integer is expected but not given.
+     */
     public static Command parse(String command) throws DukeException, NumberFormatException {
         Command c;
         String commandWord = getCommandWord(command);
