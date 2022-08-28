@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 abstract class Task {
     private String description;
     private boolean isDone = false;
@@ -15,34 +18,33 @@ abstract class Task {
     }
 
     private static class Deadline extends Task {
-        private String date;
+        LocalDate date;
         public Deadline(String description, String date) {
             super(description);
-            this.date = date;
+            this.date = LocalDate.parse(date);
         }
 
         @Override
         public String toString() {
             String res = "[D]";
             res += super.toString();
-            res += "|" + date+ ")";
+            res += "|" + date;
             return res;
         }
     }
 
     private static class Event extends Task {
-        String date;
+        LocalDate date;
         public Event(String description, String date) {
             super(description);
-            this.date = date;
+            this.date = LocalDate.parse(date);
         }
 
         @Override
         public String toString() {
             String res = "[E]";
             res += super.toString();
-            res += "|";
-            res += date;
+            res += "|" + date;
             return res;
         }
     }
@@ -53,7 +55,7 @@ abstract class Task {
 
     public void changeMark(boolean arg) throws DukeException {
         if(isDone == arg) {
-            if (arg == true) {
+            if (arg) {
                 throw DukeException.taskAlreadyMarked;
             } else {
                 throw DukeException.taskAlreadyUnmarked;

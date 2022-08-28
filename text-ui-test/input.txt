@@ -1,8 +1,8 @@
+invalid command
 todo read book
-event watch movie|2022-08-22
-deadline send mail|2022-08-30
-list
-mark 2
-delete 3
+deadline send homework|2022-08-22
+event watch movie|2022-08-23
+mark 3
+delete 2
 list
 bye
