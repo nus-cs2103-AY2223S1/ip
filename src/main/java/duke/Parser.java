@@ -19,7 +19,7 @@ public class Parser {
      * Initialises the parser.
      *
      * @param taskList TaskList
-     * @param ui Ui
+     * @param ui       Ui
      */
     public Parser(TaskList taskList, Ui ui) {
         this.taskList = taskList;
@@ -126,10 +126,10 @@ public class Parser {
             try {
                 String withoutPrefix = inputArray[1];
                 TaskList filteredList = taskList.findTask(withoutPrefix);
-                String[] strArray = IntStream.range(0, filteredList.size())
-                        .mapToObj(i -> taskList.get(i).toString()).toArray(String[]::new);
+                String[] strArray = IntStream.range(0, filteredList.size()).mapToObj(i -> taskList.get(i).toString())
+                        .toArray(String[]::new);
                 ui.printMessage(strArray, "Here are the matching tasks in your list:");
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 ui.printMessage("Please use the format: find <description>");
             }
             break;
