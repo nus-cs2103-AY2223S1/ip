@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a given command by a user in Duke. A command is consists of 2 parts,
+ * keyword and content, both of which are String type.
+ */
 public class Command {
     private final String keyword;
     private final String content;
@@ -12,6 +16,10 @@ public class Command {
         this.content = content;
     }
 
+    /**
+     * Returns the ID of a Command object in int type.
+     * @return Command ID
+     */
     protected int getContentId() {
         int index = content.indexOf(' ');
         if (index > 0) {
@@ -59,6 +67,10 @@ public class Command {
         storage.save(tasks.enumerateList());
     }
 
+    /**
+     * Check whether a given Command instance is consists of the keyword bye (non case-sensitive).
+     * @return true if the command instance is a bye command, false otherwise.
+     */
     protected boolean isBye(){
         return keyword.equals(EXIT);
     }

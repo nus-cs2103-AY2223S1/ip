@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents the outward class used by users to interact with Duke application.
+ */
 public class Duke {
 
     private final Storage storage;
