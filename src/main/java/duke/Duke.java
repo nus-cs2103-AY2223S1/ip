@@ -1,11 +1,14 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Parser;
+import duke.util.Storage;
+import javafx.application.Platform;
 
 /**
  * Represents the Duke application.
@@ -14,60 +17,53 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class Duke {
-    /** Ui object which interacts with the user. **/
+    /** Ui object which prints the contents in the duke dialog. */
     private final Ui ui;
 
-    /** Storage object which loads and saves the list of tasks. **/
+    /** Storage object which loads and saves the list of tasks. */
     private final Storage storage;
 
-    /** TaskList object containing user's list of tasks. **/
+    /** TaskList object containing user's list of tasks. */
     private TaskList tasks;
 
     /**
      * Creates a new Duke object.
-     *
-     * @param pathString Relative path to the file containing the list of tasks.
      */
-    public Duke(String pathString) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(pathString);
-        ui.showIsLoading();
+        storage = new Storage("storage/tasks.txt");
         try {
             tasks = new TaskList(storage.load());
-            ui.showLoadingSuccess();
         } catch (FileNotFoundException fnfe) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
     /**
-     * Starts the Duke application.
+     * Parses the user's input and returns the corresponding response from the duke chat-bot. If the user inputs an
+     * application terminating command (eg. the bye command), the application window closes.
+     *
+     * @param input Full user input.
+     * @return Response from the duke chat-bot.
      */
-    public void start() {
-        Scanner scanner = new Scanner(System.in);
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                ui.showPrompt();
-                String fullCommand = scanner.nextLine();
-                Command command = Parser.parse(fullCommand);
-                command.execute(tasks, ui, storage);
-                isExit = command.isExit();
-            } catch (DukeException de) {
-                ui.showError(de.getMessage());
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            if (command.isExit()) {
+                Platform.exit();
             }
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException de) {
+            return de.getMessage();
         }
     }
 
     /**
-     * The main method. Entry point of the Duke application.
+     * Returns the greeting message from duke.
      *
-     * @param args The command line arguments.
+     * @return Duke greeting message.
      */
-    public static void main(String[] args) {
-        Duke duke = new Duke("storage/tasks.txt");
-        duke.start();
+    public String getGreetingMessage() {
+        return ui.greetingMessage();
     }
 }

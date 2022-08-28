@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs todo.
@@ -43,11 +43,12 @@ public class TodoCommand extends Command {
      * @param storage Storage object which loads and saves tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task todo = new Todo(description);
         tasks.add(todo);
-        ui.showAddTask(todo, tasks);
+        String message = ui.taskAddedMessage(todo, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

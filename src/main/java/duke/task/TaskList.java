@@ -123,18 +123,21 @@ public class TaskList {
     }
 
     /**
-     * Prints all the tasks in the List of tasks.
+     * Returns the string representation of the TaskList.
      */
-    public void listTasks() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         int len = tasks.size();
         if (len == 0) {
-            System.out.println("       YOU HAVE NO TASKS");
+            return "YOU HAVE NO TASKS :<\n";
         } else {
             for (int i = 0; i < len; i++) {
                 Task task = tasks.get(i);
-                System.out.printf("   %d.%s%n", i + 1, task);
+                sb.append(String.format("%d.%s%n", i + 1, task));
             }
         }
+        return sb.toString();
     }
 
     /**

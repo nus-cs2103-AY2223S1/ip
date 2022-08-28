@@ -2,12 +2,12 @@ package duke.command;
 
 import java.time.LocalDateTime;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs deadline.
@@ -51,11 +51,12 @@ public class DeadlineCommand extends Command {
      * @throws DukeException If storage object is unable to save the newly created deadline task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deadline = new Deadline(description, byDateTime);
         tasks.add(deadline);
-        ui.showAddTask(deadline, tasks);
+        String message = ui.taskAddedMessage(deadline, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

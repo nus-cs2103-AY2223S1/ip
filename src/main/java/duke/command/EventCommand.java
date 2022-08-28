@@ -2,12 +2,12 @@ package duke.command;
 
 import java.time.LocalDateTime;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs event.
@@ -51,11 +51,12 @@ public class EventCommand extends Command {
      * @throws DukeException If storage object is unable to save the newly created event task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task event = new Event(description, atDateTime);
         tasks.add(event);
-        ui.showAddTask(event, tasks);
+        String message = ui.taskAddedMessage(event, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**

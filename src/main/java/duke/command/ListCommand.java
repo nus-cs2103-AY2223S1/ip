@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.Storage;
-import duke.Ui;
+import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs list.
@@ -19,10 +19,8 @@ public class ListCommand extends Command {
      * @param storage Storage object which loads and saves tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("===============================");
-        tasks.listTasks();
-        System.out.println("===============================");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.getPrettyTaskList(tasks);
     }
 
     /**

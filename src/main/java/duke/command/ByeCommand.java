@@ -1,8 +1,9 @@
 package duke.command;
 
-import duke.Storage;
-import duke.Ui;
+import duke.gui.Ui;
 import duke.task.TaskList;
+import duke.util.Storage;
+
 
 /**
  * Represents the application terminating command that is executed when the user inputs bye.
@@ -19,8 +20,8 @@ public class ByeCommand extends Command {
      * @param storage Storage object which loads and saves tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "^_^ Goodbye!";
     }
 
     /**

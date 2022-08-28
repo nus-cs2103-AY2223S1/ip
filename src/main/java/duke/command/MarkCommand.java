@@ -1,10 +1,10 @@
 package duke.command;
 
-import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 
 /**
  * Represents the command that is executed when the user inputs mark.
@@ -44,10 +44,11 @@ public class MarkCommand extends Command {
      *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.mark(taskIndex);
-        ui.showMarkTask(task, tasks);
+        String message = ui.taskMarkedMessage(task, tasks);
         storage.save(tasks);
+        return message;
     }
 
     /**
