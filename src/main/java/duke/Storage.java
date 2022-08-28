@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Storage {
 
     private String filePath;
-
     public Storage(String filePath) {
         String[] path = filePath.split("/");
         String fileName = path[path.length - 1];

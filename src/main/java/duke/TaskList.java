@@ -22,8 +22,8 @@ public class TaskList {
             Task t = tasks.remove(index - 1);
             int length = tasks.size();
             String output = length == 1 ? " task in the list." : " tasks in the list.";
-            System.out.println("Got it. I've deleted this task:\n" + t +
-                    "\nNow you have " + length + output);
+            System.out.println("Got it. I've deleted this task:\n" + t
+                    + "\nNow you have " + length + output);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("☹ OOPS!!! The index is out of bounds.");
         }

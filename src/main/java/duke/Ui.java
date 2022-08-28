@@ -30,14 +30,14 @@ public class Ui {
 
     public void showAddTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
-        System.out.println("Got it. I've added this task:\n" + task +
-                "\nNow you have " + size + output);
+        System.out.println("Got it. I've added this task:\n" + task
+                + "\nNow you have " + size + output);
     }
 
     public void showDeleteTask(Task task, int size) {
         String output = size == 1 ? " task in the list." : " tasks in the list.";
-        System.out.println("Got it. I've deleted this task:\n" + task +
-                "\nNow you have " + size + output);
+        System.out.println("Got it. I've deleted this task:\n" + task
+                + "\nNow you have " + size + output);
     }
 
     public void showList(TaskList tasks) {

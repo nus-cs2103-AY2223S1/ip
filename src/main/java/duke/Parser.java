@@ -35,11 +35,11 @@ public class Parser {
         case TODO:
             return new AddCommand(new Todo(description));
         case DEADLINE:
-            String[] Deadline = description.split(" /by ", 2);
-            return new AddCommand(new Deadline(Deadline[0], Deadline[1]));
+            String[] deadline = description.split(" /by ", 2);
+            return new AddCommand(new Deadline(deadline[0], deadline[1]));
         case EVENT:
-            String[] Event = description.split(" /at ", 2);
-            return new AddCommand(new Event(Event[0], Event[1]));
+            String[] event = description.split(" /at ", 2);
+            return new AddCommand(new Event(event[0], event[1]));
         /* case FIND:
             return new FindCommand(description);
 
