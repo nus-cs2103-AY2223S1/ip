@@ -27,7 +27,7 @@ public class Storage {
     }
 
     protected ArrayList<Task> loadTasks(ZoneId timeZone) {
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         try {
             File saveFile = new File(saveFilePath);
@@ -58,10 +58,10 @@ public class Storage {
                     newTask.markAsDone();
                 }
 
-                taskList.add(newTask);
+                tasks.add(newTask);
             }
 
-            if (taskList.isEmpty()) {
+            if (tasks.isEmpty()) {
                 System.out.println("No tasks to load.");
             } else {
                 System.out.println("Tasks successfully loaded!");
@@ -70,14 +70,14 @@ public class Storage {
             System.out.println("No tasks to load.");
         }
 
-        return taskList;
+        return tasks;
     }
 
-    protected void updateSaveFile(ArrayList<Task> taskList) {
+    protected void updateSaveFile(ArrayList<Task> tasks) {
         try {
             System.out.println(saveFilePath);
             FileWriter saveFileWriter = new FileWriter(saveFilePath);
-            taskList.forEach(task -> {
+            for (Task task : tasks) {
                 String saveMsg = String.format("%c | %s | %s", task.getType(), task.getIsDone(), task.getDescription());
                 if (task instanceof Deadline) {
                     saveMsg += " | " + ((Deadline) task).getBy();
@@ -90,7 +90,7 @@ public class Storage {
                     System.out.println("An error occurred while saving your tasks.");
                     e.printStackTrace();
                 }
-            });
+            }
             System.out.println("Tasks saved successfully!");
             saveFileWriter.close();
         } catch (IOException e) {

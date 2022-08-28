@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
+import java.util.ArrayList;
 
 /**
  * MakiBot
@@ -32,7 +33,7 @@ public class Duke {
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE, FIND
     }
     private final Storage storage;
     private TaskList tasks;
@@ -98,6 +99,9 @@ public class Duke {
                 case DELETE:
                     delete(fullCommand);
                     break;
+                case FIND:
+                    find(fullCommand);
+                    break;
                 case TODO:
                     newTodo(fullCommand);
                     break;
@@ -161,6 +165,20 @@ public class Duke {
         } catch (NumberFormatException e) {
             throw new DukeIndexErrorException(tasks.size());
         }
+    }
+
+    /**
+     * Display tasks containing the keywords in the user input.
+     *
+     * @param fullCommand The input from the user containing keywords to search for.
+     */
+    protected void find(String[] fullCommand) throws DukeException {
+        if (fullCommand.length < 2 || fullCommand[1].equals("")) {
+            throw new DukeFormatCommandException("find");
+        }
+
+        ArrayList<Task> results = tasks.find(fullCommand[1].split(" "));
+        ui.printAllTasks(results);
     }
 
     protected void newTodo(String[] fullCommand) throws DukeException {

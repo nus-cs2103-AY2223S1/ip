@@ -28,6 +28,25 @@ public class TaskList {
         }
     }
 
+    protected ArrayList<Task> find(String[] keywords) {
+        ArrayList<Task> results = new ArrayList<>();
+        for (Task task : tasks) {
+            if (containsAllKeywords(task, keywords)) {
+                results.add(task);
+            }
+        }
+        return results;
+    }
+
+    private boolean containsAllKeywords(Task task, String[] keywords) {
+        String description = task.getDescription();
+        for (String keyword : keywords)
+            if (!description.contains(keyword)) {
+                return false;
+            }
+        return true;
+    }
+
     protected void add(Task newTask) {
         tasks.add(newTask);
     }
