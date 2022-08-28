@@ -3,14 +3,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.io.FileWriter;
+import java.io.IOException;
 public class Parser {
 
     private TaskList taskList;
+    private Storage storage;
 
-
-    public Parser(TaskList taskList) {
+    public Parser(TaskList taskList, Storage storage) {
         this.taskList = taskList;
+        this.storage = storage;
     }
 
     public void parse(String cmd) throws DukeException {
@@ -41,10 +43,28 @@ public class Parser {
                 this.parseDelete(subCmd);
                 break;
             default:
-                this.taskList.addTask(new Task(cmd));
+                throw new InvalidDescriptionException();
+        }
+    }
 
-                System.out.println(String.format("added: %s\n", cmd));
+    public void parseFile(String lineOfTask) {
+        String[] tempArray = lineOfTask.split(" \\| ");
+        String typeOfTask = tempArray[0];
 
+        switch (typeOfTask) {
+            case "T" :
+                this.taskList.addTask(new Todo(tempArray[2], tempArray[1].equals("1")));
+                break;
+            case "D" :
+                LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
+                this.taskList.addTask(tmpTask);
+                break;
+            case "E" :
+                this.taskList.addTask(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3]));
+                break;
+            default:
+                System.out.println("Error: Wrong type of task");
         }
     }
 
@@ -56,31 +76,34 @@ public class Parser {
         }
     }
 
-    public void parseMark(String[] subCmd) throws InvalidDescriptionException {
+    public void parseMark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).mark();
+            this.storage.save(taskList);
         }
     }
 
-    public void parseUnmark(String[] subCmd) throws InvalidDescriptionException {
+    public void parseUnmark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).unmark();
+            this.storage.save(taskList);
         }
     }
 
-    public void parseTodo(String[] subCmd) throws EmptyDescriptionException {
+    public void parseTodo(String[] subCmd) throws DukeException {
 
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
         } else {
-            Todo tmpTask = new Todo(tmp);
+            Todo tmpTask = new Todo(tmp, false);
 
             this.taskList.addTask(tmpTask);
+            this.storage.save(taskList);
         }
     }
 
@@ -92,9 +115,10 @@ public class Parser {
             try {
                 String[] tempSplit = tmp.split(" /by ");
                 LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                Deadline tmpTask = new Deadline(tempSplit[0], tempDate);
+                Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate);
 
                 this.taskList.addTask(tmpTask);
+                this.storage.save(taskList);
 
             } catch (DateTimeParseException e) {
                 throw new DukeException("Please change Date format to dd/mm/yyyy");
@@ -102,23 +126,25 @@ public class Parser {
         }
     }
 
-    public void parseEvent(String[] subCmd) throws EmptyDescriptionException{
+    public void parseEvent(String[] subCmd) throws DukeException {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
         } else {
             String[] tempSplit = tmp.split(" /at ");
-            Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
+            Event tmpTask = new Event(tempSplit[0],false, tempSplit[1]);
 
             this.taskList.addTask(tmpTask);
+            this.storage.save(taskList);
         }
     }
 
-    public void parseDelete(String[] subCmd) throws InvalidDescriptionException {
+    public void parseDelete(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
             this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
+            this.storage.save(taskList);
         }
     }
 }
