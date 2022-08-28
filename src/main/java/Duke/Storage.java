@@ -15,10 +15,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Storage class to load and save task list
+ */
 public class Storage {
     String filepath;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filepath
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }

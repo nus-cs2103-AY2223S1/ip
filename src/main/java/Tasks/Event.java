@@ -1,8 +1,11 @@
 package Tasks;
 
 import java.time.LocalDate;
-import java.time.format.*;
+import java.time.format.DateTimeFormatter;
 
+/**
+ * Event Class which inherits Task
+ */
 public class Event extends Task {
     private LocalDate date;
 

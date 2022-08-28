@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Represents the parser for Duke
+ */
 public class Parser {
 
     /**
@@ -74,6 +77,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if length of array is as expected
+     *
+     * @param arr
+     * @throws DukeException
+     */
     private static void checkInputLength(String[] arr, int length) throws DukeException {
         if (arr.length != length) {
             throw new DukeException(Constants.invalidInput);

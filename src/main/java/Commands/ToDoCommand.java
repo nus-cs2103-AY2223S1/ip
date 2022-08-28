@@ -6,6 +6,9 @@ import Duke.Ui;
 
 import Tasks.ToDo;
 
+/**
+ * ToDo command which inherits from Command
+ */
 public class ToDoCommand extends Command {
     private String desc;
 

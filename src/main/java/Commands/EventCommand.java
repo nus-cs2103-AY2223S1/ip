@@ -7,6 +7,9 @@ import Tasks.Event;
 
 import java.time.LocalDate;
 
+/**
+ * Event command which inherits from Command
+ */
 public class EventCommand extends Command {
     private String desc;
     private LocalDate date;

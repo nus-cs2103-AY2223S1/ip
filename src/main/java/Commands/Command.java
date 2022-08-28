@@ -5,6 +5,9 @@ import Duke.TaskList;
 import Duke.Ui;
 import Duke.Storage;
 
+/**
+ * Parent class of all Duke Commands
+ */
 public abstract class Command {
     private boolean isExit;
 
@@ -20,5 +23,14 @@ public abstract class Command {
         return this.isExit;
     }
 
+    /**
+     * Executes the corresponding command
+     *
+     * @param t
+     * @param ui
+     * @param storage
+     * @return string of the executed command
+     * @throws DukeException
+     */
     public abstract String execute(TaskList t, Ui ui, Storage storage) throws DukeException;
 }

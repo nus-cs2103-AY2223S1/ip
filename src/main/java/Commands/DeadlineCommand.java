@@ -7,6 +7,9 @@ import Tasks.Deadline;
 
 import java.time.LocalDate;
 
+/**
+ * Deadline command which inherits from Command
+ */
 public class DeadlineCommand extends Command {
     private String desc;
     private LocalDate date;
