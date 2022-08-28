@@ -1,13 +1,13 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
 import duke.exceptions.DukeException;
-import duke.exceptions.DukeListOOBException;
+import duke.exceptions.DukeListOobException;
 import duke.exceptions.DukeMissingInputException;
 import duke.exceptions.DukeUnknownDateException;
 import duke.exceptions.DukeWrongInputException;
-
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 public class TaskList {
 
@@ -16,7 +16,7 @@ public class TaskList {
     private ArrayList<Task> tasks;
 
     /**
-     * Creates a TaskList object from a reference input ArrayList<Task>
+     * Creates a TaskList object from a reference input Tasks ArrayList
      * @param ui a UI Object
      * @param storage a Storage object
      */
@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /**
-     * Commands Ui class to print out the ArrayList<Task> in pretty UI
+     * Commands Ui class to print out the Tasks ArrayList in pretty UI
      */
     public void list() {
         //move Ui calls to Parser instead. Function is redundant.
@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a Task item to the ArrayList<Task> accounting for the Type and Item
+     * Adds a Task item to the Tasks ArrayList accounting for the Type and Item
      * @param type Type of Task
      * @param item Additional Arguments for specified Task
      * @throws DukeException if inputs are missing or dates are incorrect
@@ -54,7 +54,7 @@ public class TaskList {
             break;
         case "deadline":
             args = item.split("/by ");
-            try{
+            try {
                 currTask = new Deadline(args[0], args[1]);
                 tasks.add(currTask);
                 ui.addTask("deadline", currTask, tasks.size());
@@ -67,7 +67,7 @@ public class TaskList {
             break;
         case "event":
             args = item.split("/at ");
-            try{
+            try {
                 currTask = new Event(args[0], args[1]);
                 tasks.add(currTask);
                 ui.addTask("event", currTask, tasks.size());
@@ -78,11 +78,13 @@ public class TaskList {
                 throw new DukeUnknownDateException(type);
             }
             break;
-         }
+        default:
+            break;
+        }
     }
 
     /**
-     * Deletes the Task item from the ArrayList<Task> at specified index (1-indexed)
+     * Deletes the Task item from the Tasks ArrayList at specified index (1-indexed)
      * @param indexString String representation of 1-indexed index
      * @throws DukeException if argument is of wrong format or OOB error
      */
@@ -94,7 +96,7 @@ public class TaskList {
             throw new DukeWrongInputException("delete");
         }
         if (index >= tasks.size() || index < 0) {
-            throw new DukeListOOBException(index + 1);
+            throw new DukeListOobException(index + 1);
         }
         Task currTask = tasks.remove(index);
         ui.deleteTask(currTask, tasks.size());
@@ -102,11 +104,11 @@ public class TaskList {
     }
 
     /**
-     * Toggles the Task item completion from ArrayList<Task> at specified index (1-indexed)
+     * Toggles the Task item completion from Tasks ArrayList at specified index (1-indexed)
      * @param indexString String representation of 1-indexed index
      * @throws DukeException if argument is of wrong format or OOB error
      */
-    public void listToggle(String indexString) throws DukeException{
+    public void listToggle(String indexString) throws DukeException {
         int index = 0;
         try {
             index = Integer.parseInt(indexString) - 1;
@@ -114,7 +116,7 @@ public class TaskList {
             throw new DukeWrongInputException("mark");
         }
         if (index >= tasks.size() || index < 0) {
-            throw new DukeListOOBException(index + 1);
+            throw new DukeListOobException(index + 1);
         }
         Task currTask = tasks.get(index);
         currTask.completeToggle();
