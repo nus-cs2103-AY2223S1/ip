@@ -53,6 +53,11 @@ public class UI {
         System.out.println("    " + " Now you have " + listSize + " tasks in the list.");
     }
 
+    public void deleteAllMessage() {
+        System.out.println("    " + " Got it. I've removed all tasks");
+        System.out.println("    " + " Now you have 0 tasks in the list.");
+    }
+
     public void showLoadingError() {
         System.out.println("    " + " Loading error!");
     }

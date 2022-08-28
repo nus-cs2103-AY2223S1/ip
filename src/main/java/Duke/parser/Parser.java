@@ -7,44 +7,32 @@ public class Parser {
 
     public static Command parse(String input) throws DukeException {
         //Fetch and display taskList
-        if (input.equals("list")) {
-            return new PrintListCommand();
-        }
+        if (input.equals("list")) return new PrintListCommand();
 
         // Mark a task
-        if (input.startsWith("mark")) {
-            return new MarkTaskCommand(input);
-        }
+        if (input.startsWith("mark")) return new MarkTaskCommand(input);
 
         // Unmark a task
-        if (input.startsWith("unmark")) {
-            return new UnmarkTaskCommand(input);
-        }
+        if (input.startsWith("unmark")) return new UnmarkTaskCommand(input);
+
+        // Deletes all tasks from the list
+        if (input.equals("delete all")) return new DeleteAllCommand();
 
         // Delete a task
-        if (input.startsWith("delete")) {
-            return new DeleteTaskCommand(input);
-        }
+        if (input.startsWith("delete")) return new DeleteTaskCommand(input);
 
         // Add todo to taskList
-        if (input.startsWith("todo")) {
-            return new AddTodoCommand(input);
-        }
+        if (input.startsWith("todo")) return new AddTodoCommand(input);
 
         // Add deadline to taskList
-        if (input.startsWith("deadline")) {
-            return new AddDeadlineCommand(input);
-        }
+        if (input.startsWith("deadline")) return new AddDeadlineCommand(input);
 
         // Add event to taskList
-        if (input.startsWith("event")) {
-            return new AddEventCommand(input);
-        }
+        if (input.startsWith("event")) return new AddEventCommand(input);
 
         // Exits program
-        if (input.startsWith("exit")) {
-            return new ExitCommand();
-        }
+        if (input.startsWith("exit")) return new ExitCommand();
+
         return new IncorrectCommand();
     }
 }

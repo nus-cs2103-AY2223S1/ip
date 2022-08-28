@@ -1,14 +1,17 @@
 package Duke.tasks;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
 
     private final String date;
-    private String taskDesc;
+    private final String taskDesc;
 
     public Deadline(String taskDesc, String date) {
         super(taskDesc);
-        this.date = date;
         this.taskDesc = taskDesc;
+        this.date = date;
     }
 
     @Override

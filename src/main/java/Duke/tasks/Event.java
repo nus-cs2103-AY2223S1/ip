@@ -1,14 +1,17 @@
 package Duke.tasks;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Event extends Task {
 
-    private String deadline;
-    private String taskDesc;
+    private final String deadline;
+    private final String taskDesc;
 
     public Event(String taskDesc, String deadline) {
         super(taskDesc);
-        this.deadline = deadline;
         this.taskDesc = taskDesc;
+        this.deadline = deadline;
     }
 
     @Override

@@ -56,7 +56,6 @@ public class Storage {
             }
             reader.close();
             result =  TaskListDecoder.decodeTaskList(encodedTaskList);
-            System.out.println(result);
         } catch (IOException e) {
             e.printStackTrace();
         }

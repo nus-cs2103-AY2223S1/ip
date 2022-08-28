@@ -5,9 +5,6 @@ import Duke.storage.Storage;
 import Duke.tasks.TaskList;
 import Duke.ui.UI;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class Duke {
 
     private final Storage storage;

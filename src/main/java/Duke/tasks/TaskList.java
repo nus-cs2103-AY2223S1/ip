@@ -9,11 +9,7 @@ public class TaskList {
     private static ArrayList<Task> taskList;
 
     public TaskList(ArrayList<Task> taskArrayList) throws DukeException {
-        if (taskArrayList.isEmpty()) {
-            throw new DukeException(" ☹ OOPS!!! Seems like your list is empty.");
-        } else {
-            taskList = taskArrayList;
-        }
+        taskList = taskArrayList;
     }
 
     public TaskList() {
@@ -58,6 +54,10 @@ public class TaskList {
 
     public void deleteTask(int index) {
         taskList.remove(index);
+    }
+
+    public void deleteAll() {
+        taskList = new ArrayList<>();
     }
 
     public ArrayList<Task> getAllTasks() {
