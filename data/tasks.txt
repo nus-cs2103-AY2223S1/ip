@@ -1,2 +1,2 @@
-T | 1 | read book
-D | 0 | readbook | Jul 06 2010
+D | 0 | read book | Jun 06 2020
+T | 0 | sell book

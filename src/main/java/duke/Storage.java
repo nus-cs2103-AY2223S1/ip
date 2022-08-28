@@ -32,7 +32,7 @@ public class Storage {
                         currList.add(new Todo(tempArray[2], tempArray[1].equals("1")));
                         break;
                     case "D" :
-                        LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("MMM dd yyyy"));
                         Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
                         currList.add(tmpTask);
                         break;

@@ -20,6 +20,7 @@ public class Duke {
         }
         this.parser = new Parser(this.tasks, this.storage);
     }
+
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
