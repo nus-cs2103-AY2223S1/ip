@@ -6,8 +6,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Class containing parsing methods, or conversions.
+ */
 public class Parser {
 
+    /**
+     * Parses date and time string and converts it into a LocalDateTime.
+     * @param dateTime string with date and time in format (dd/mm/yyyy hhmm).
+     * @return LocalDateTime object containing date and time.
+     */
     public static LocalDateTime dateParser(String dateTime) {
         String[] splitDateTime = dateTime.trim().split(" ");
         String[] dateArray = splitDateTime[0].split("/");
@@ -22,20 +30,24 @@ public class Parser {
         );
     }
 
-    public static String dateTimeToString(LocalDateTime dt) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        return dt.format(formatter);
-    }
-
-    public static void listToFile(ArrayList<Task> tasklist) {
-        try {
-            FileWriter fw = new FileWriter("./data/dukedata.txt");
-            for (Task t : tasklist) {
-                fw.write(t.taskToFileString() + System.lineSeparator());
-            }
-            fw.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    /**
+     * Parses string containing task into a Task object.
+     * @param task string containing task.
+     * @return Task object.
+     */
+    public static Task fileStringToTask(String task) {
+        String[] taskSplit = task.split("\\|");
+        String type = taskSplit[0];
+        switch (type) {
+            case " T ":
+                return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
+            case " E ":
+                return new Event(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
+            case " D ":
+                return new Deadline(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
+            default:
+                return null;
         }
     }
+
 }

@@ -1,34 +1,46 @@
 package duke;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Parent class for common attributes between tasks.
+ */
 public abstract class Task {
     protected String taskName;
     protected boolean done;
     public abstract String taskToFileString();
 
-    public static Task fileStringToTask(String task) {
-        String[] taskSplit = task.split("\\|");
-        String type = taskSplit[0];
-        switch (type) {
-            case " T ":
-                return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
-            case " E ":
-                return new Event(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
-            case " D ":
-                return new Deadline(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
-            default:
-                return null;
-        }
-    }
-
+    /**
+     * Constructor for a task object.
+     * @param taskName name of task.
+     * @param isDone task marked done or not.
+     */
     public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
         this.done = isDone;
     }
 
+    /**
+     * Converts LocalDateTime into a string.
+     * @param dt LocalDateTime Object.
+     * @return string of format (dd/mm/yyyy hhmm).
+     */
+    public static String dateTimeToString(LocalDateTime dt) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return dt.format(formatter);
+    }
+
+    /**
+     * Marks a task object as done.
+     */
     public void mark() {
         this.done = true;
     }
 
+    /**
+     * Marks a task object as not done.
+     */
     public void unMark() {
         this.done = false;
     }
