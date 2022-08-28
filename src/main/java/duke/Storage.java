@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * A storage handler that loads/saves tasks to the file.
+ */
 public class Storage {
     private final String FILEPATH;
 
@@ -15,6 +18,12 @@ public class Storage {
         this.FILEPATH = FILEPATH;
     }
 
+    /**
+     * Reads tasks from storage and returns them in an ArrayList.
+     *
+     * @return An ArrayList of Tasks.
+     * @throws FileNotFoundException If the storage file cannot be found.
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         File f = new File(FILEPATH);
         f.getParentFile().mkdirs();
@@ -71,6 +80,12 @@ public class Storage {
         taskList.add(t);
     }
 
+    /**
+     * Rewrites the tasks in storage to match the given task list.
+     *
+     * @param taskList The given task list.
+     * @throws IOException If an error occurs in writing to storage.
+     */
     public void rewriteFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH);
         fw.write("");
@@ -83,6 +98,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends the given task to storage.
+     *
+     * @param t The task to append.
+     * @throws IOException If an error occurs in writing to storage.
+     */
     public void appendTaskToFile(Task t) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH, true);
         String type = t.getType();

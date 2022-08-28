@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * An abstraction for a command to Duke.
+ */
 public enum Command {
     DEADLINE("deadline"),
     DELETE("delete"),
@@ -21,6 +24,12 @@ public enum Command {
         this.name = name;
     }
 
+    /**
+     * Runs the command with the given Duke bot.
+     *
+     * @param args Command arguments.
+     * @param duke Duke bot executing the command.
+     */
     public void run(String args, Duke duke) {
         UI ui = duke.getUI();
         TaskList taskList = duke.getTaskList();
@@ -99,7 +108,7 @@ public enum Command {
         }
     }
 
-    public boolean isValidDate(String date) {
+    private boolean isValidDate(String date) {
         try {
             LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT));
             return true;
@@ -108,7 +117,7 @@ public enum Command {
         }
     }
 
-    public boolean isCorrectUse(String args, Duke duke) {
+    private boolean isCorrectUse(String args, Duke duke) {
         UI ui = duke.getUI();
         TaskList taskList = duke.getTaskList();
         String usage = correctUsage();
@@ -186,7 +195,7 @@ public enum Command {
         return false;
     }
 
-    public String correctUsage() {
+    private String correctUsage() {
         String ret = "Correct usage: ";
         switch(name) {
             case "deadline":

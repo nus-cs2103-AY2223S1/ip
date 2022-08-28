@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * An abstraction for a task with a date.
+ */
 public class Event extends Task {
     private LocalDate eventDate;
     public Event(String description, LocalDate eventDate) {

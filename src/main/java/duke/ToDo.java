@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * An abstraction for a task that has to be done.
+ */
 public class ToDo extends Task {
     public ToDo(String description) {
         super(description);

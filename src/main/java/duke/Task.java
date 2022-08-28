@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * An abstraction for a task in Duke.
+ */
 public abstract class Task {
     private String description;
     private boolean marked;

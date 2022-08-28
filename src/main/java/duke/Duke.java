@@ -1,6 +1,9 @@
 package duke;
 import java.io.FileNotFoundException;
 
+/**
+ * A Duke bot.
+ */
 public class Duke {
     private UI ui;
     private Storage storage;
@@ -23,6 +26,9 @@ public class Duke {
         return storage;
     }
 
+    /**
+     * Starts the Duke bot.
+     */
     public void run() {
         try {
             taskList = new TaskList(storage.load());
