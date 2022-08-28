@@ -63,6 +63,8 @@ public class Duke {
                     String taskMessage = tasklist.removeTask(inputs[1]);
                     ui.showDeletedTask(taskMessage, tasklist);
                     storage.writeToFile(tasklist.listOfTasksForSaving());
+                } else if (input.equals("find")) {
+                    ui.showMatch(tasklist, inputString.replace("find ", ""));
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }

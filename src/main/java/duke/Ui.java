@@ -8,7 +8,7 @@ public class Ui {
     private static final String listMessage = "Here are the tasks in your list: \n";
     private static final String markText = "Nice! I've marked this task as done: \n";
     private static final String unmarkText = "OK, I've marked this task as not done yet: \n";
-
+    private static final String matchTest = "Here are the matching tasks in your list: \n";
     private void wrapText(String content) {
         System.out.println("-".repeat(57));
         System.out.println(content);
@@ -52,6 +52,12 @@ public class Ui {
         String listInString = listMessage;
         listInString += tasklist.listOfTaskForDisplay();
         wrapText(listInString);
+    }
+
+    public void showMatch(TaskList tasklist, String substring) {
+        String matchInString = matchTest;
+        matchInString += tasklist.listOfMatchedTasks(substring);
+        wrapText(matchInString);
     }
 
     public void showError(String errorMessage) {

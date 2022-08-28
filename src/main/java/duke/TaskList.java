@@ -76,6 +76,18 @@ public class TaskList {
         return content;
     }
 
+    public String listOfMatchedTasks(String substring) {
+        String content = "";
+        int index = userTasks.size();
+        for (int i = 0; i < index; i++) {
+            if (userTasks.get(i).getTaskDescription().contains(substring)) {
+                content += userTasks.get(i).returnDescription();
+                content += "\n";
+            }
+        }
+        return content;
+    }
+
     public String listOfTasksForSaving() {
         String content = "";
         for (Task task: userTasks) {
