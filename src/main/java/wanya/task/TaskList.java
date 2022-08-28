@@ -180,6 +180,12 @@ public class TaskList {
             }
         }
 
+        if (matchingTasks.isEmpty()) {
+            System.out.println("Oopsie! There are no matching tasks in your list?\n" +
+                    "Maybe you have typed in wrongly...");
+            return;
+        }
+
         System.out.println("Here are the matching tasks in your list:");
         for (Task task: matchingTasks) {
             System.out.println(task);
