@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 public class Chad {
     private static final String[] taskTypes = {"todo", "deadline", "event"};
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> userInputArray = FileHelper.initializeArrayList();
+        ArrayList<Task> userInputArray = Storage.initializeArrayList();
         String startChat = "Hello! I'm Chadbot\nWhat can I do for you?";
         String exitChat = "Bye. Hope to see you again soon!";
 
@@ -88,7 +87,7 @@ public class Chad {
         Task currentTask = tasks.get(taskID);
         currentTask.markAsDone();
         outputText +=  "  " + currentTask;
-        FileHelper.toggleMarkTaskInFile(taskID);
+        Storage.toggleMarkTaskInFile(taskID);
         System.out.println(formatText(outputText));
     }
 
@@ -98,7 +97,7 @@ public class Chad {
         Task currentTask = tasks.get(taskID);
         currentTask.markAsUndone();
         outputText +=  "  " + currentTask;
-        FileHelper.toggleMarkTaskInFile(taskID);
+        Storage.toggleMarkTaskInFile(taskID);
         System.out.println(formatText(outputText));
     }
 
@@ -109,7 +108,7 @@ public class Chad {
         tasks.remove(taskID);
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
         outputText= formatText(outputText);
-        FileHelper.deleteTaskInFile(taskID);
+        Storage.deleteTaskInFile(taskID);
         System.out.println(outputText);
     }
 
@@ -124,7 +123,7 @@ public class Chad {
         tasks.add(newTask);
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
-        FileHelper.writeToFile("T | " + strIsDone + " | " + newTask.getDescription());
+        Storage.writeToFile("T | " + strIsDone + " | " + newTask.getDescription());
 
         outputText += " " + newTask + "\n";
         outputText += "Now you have " + tasks.size() + " tasks in the list.";
@@ -152,7 +151,7 @@ public class Chad {
         tasks.add(newTask);
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
-        FileHelper.writeToFile("D | " + strIsDone + " | " + newTask.getDescription()
+        Storage.writeToFile("D | " + strIsDone + " | " + newTask.getDescription()
                         + " | " + newTask.getDateTime());
 
         outputText += " " + newTask + "\n";
@@ -179,7 +178,7 @@ public class Chad {
         tasks.add(newTask);
 
         String strIsDone = newTask.getIsDone() ? "1" : "0";
-        FileHelper.writeToFile("E | " + strIsDone + " | " + newTask.getDescription()
+        Storage.writeToFile("E | " + strIsDone + " | " + newTask.getDescription()
                 + " | " + newTask.getDateTime());
 
         outputText += " " + newTask + "\n";

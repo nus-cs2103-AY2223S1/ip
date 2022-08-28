@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileHelper {
+public class Storage {
     /**
      * Returns an empty array list if no saved array list else read line by line
      * @return ArrayList of Task
