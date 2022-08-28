@@ -1,5 +1,8 @@
 package duke.task;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -19,6 +22,16 @@ public abstract class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public boolean containsKeyword(String keyword) {
+        ArrayList<String> descriptionDelimited = new ArrayList<String>(Arrays.asList(this.description.split(" ")));
+        for (String word : descriptionDelimited) {
+            if (keyword.equals(word)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     abstract String storedTaskString();
