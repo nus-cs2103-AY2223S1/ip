@@ -3,6 +3,10 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Class which parses commands and executes code based off the commands.
+ *
+ */
 public class Parser {
 
     /** Returns String date in a nicer format.
@@ -15,6 +19,15 @@ public class Parser {
         return localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    /**
+     * Parses the command and executes code based off the command.
+     *
+     * @param fullCommand
+     * @param ui
+     * @param taskList
+     * @param storage
+     * @return true if "bye" command was given
+     */
     public boolean parse(String fullCommand, Ui ui, TaskList taskList, Storage storage) {
         String[] commandBreakdown = fullCommand.split(" ");
         String command = commandBreakdown[0];
