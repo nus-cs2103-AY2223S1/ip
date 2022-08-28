@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents the Deadline Task object.
  */
 public class Deadline extends Task {
-    public static String DELIMITER = " /by ";
+    public static final String DELIMITER = " /by ";
 
     private LocalDate time;
 

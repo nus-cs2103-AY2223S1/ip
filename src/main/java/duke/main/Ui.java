@@ -1,9 +1,9 @@
 package duke.main;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * A class to handle user input and output for the user.

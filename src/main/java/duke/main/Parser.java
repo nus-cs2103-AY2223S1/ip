@@ -1,6 +1,17 @@
 package duke.main;
 
-import duke.command.*;
+import java.time.LocalDate;
+
+import duke.command.Command;
+import duke.command.DeleteTaskCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.InvalidCommand;
+import duke.command.MakeDeadlineCommand;
+import duke.command.MakeEventCommand;
+import duke.command.MakeToDoCommand;
+import duke.command.MarkTaskCommand;
+import duke.command.ShowListCommand;
 import duke.exception.MissingArgumentException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingIndexException;
@@ -8,8 +19,9 @@ import duke.exception.MissingTimeException;
 import duke.task.Deadline;
 import duke.task.Event;
 
-import java.time.LocalDate;
-
+/**
+ * Class which parses the input by the user.
+ */
 public class Parser {
 
     /**

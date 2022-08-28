@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * A Command for finding Task objects containing a certain string.
