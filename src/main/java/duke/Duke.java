@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * The Main class of Duke. Runs the entire program.
+ */
 public class Duke {
     /** The storage component. */
     private Storage storage;

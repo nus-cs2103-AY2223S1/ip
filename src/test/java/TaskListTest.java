@@ -1,6 +1,13 @@
-import duke.*;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import duke.Deadline;
+import duke.DukeException;
+import duke.Event;
+import duke.Task;
+import duke.TaskList;
+import duke.Todo;
 
 /**
  * To unit test the TaskList class.

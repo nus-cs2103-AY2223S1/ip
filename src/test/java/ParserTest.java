@@ -1,7 +1,13 @@
-import duke.*;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import duke.Deadline;
+import duke.DukeException;
+import duke.Parser;
+import duke.TaskList;
+import duke.Todo;
 
 /**
  * To unit test the Parser class.

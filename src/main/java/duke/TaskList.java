@@ -118,7 +118,7 @@ public class TaskList {
      * @param input from the Parser.
      * @throws DukeException thrown if there is no description or /by field.
      */
-    public void createDeadline(String input) throws DukeException{
+    public void createDeadline(String input) throws DukeException {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a deadline cannot be empty.");
@@ -186,7 +186,7 @@ public class TaskList {
         System.out.println("Here are the tasks in your list:");
         if (inputList.size() != 0) {
             for (int i = 0; i < inputList.size(); i++) {
-                String s = String.format ("%s. %s", i + 1, inputList.get(i).toString());
+                String s = String.format("%s. %s", i + 1, inputList.get(i).toString());
                 System.out.println(s);
             }
         } else {

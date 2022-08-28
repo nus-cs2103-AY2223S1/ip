@@ -1,6 +1,9 @@
-import duke.*;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import duke.Todo;
+
 
 /**
  * To unit test the Todo class.

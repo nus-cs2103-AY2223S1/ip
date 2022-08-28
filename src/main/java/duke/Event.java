@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Event is a subclass of Task. It allows the user the add an additional input
+ * parameter which specifies the time or location of the task.
+ */
 public class Event extends Task {
     /** The time of the event. */
     protected String at;

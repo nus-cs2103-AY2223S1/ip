@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * This class is superclass of all task objects that
+ * can be initialized in Duke.
+ */
 public class Task {
     /** The title or description of a task. */
     protected String description;

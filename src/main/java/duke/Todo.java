@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Todo is a subclass of Task. There are no additional parameters
+ * except the description of a task.
+ */
 public class Todo extends Task {
 
     /**

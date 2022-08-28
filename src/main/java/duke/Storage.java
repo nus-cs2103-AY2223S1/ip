@@ -80,7 +80,7 @@ public class Storage {
         try {
             Scanner s = new Scanner(this.file);
             while (s.hasNext()) {
-                String[] task = s.nextLine().split(" \\| ",-1);
+                String[] task = s.nextLine().split(" \\| ", -1);
                 switch (task[0]) {
                 case "T": // create event task
                     String taskString = String.format("todo %s", task[2]);
@@ -106,6 +106,7 @@ public class Storage {
                     }
                     list.add(newEvent);
                     break;
+                default:
                 }
             }
             return list;
@@ -121,10 +122,12 @@ public class Storage {
      * @param filePath where tasks are saved to and loaded from.
      * @param inputList the TaskList where all tasks are to be saved.
      */
-    public static void writeToFile(String filePath, TaskList inputList)  {
+    public static void writeToFile(String filePath, TaskList inputList) {
         try {
             File dir = new File(filePath);
-            if (!dir.exists()) dir.mkdirs();
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             File textFile = new File(filePath + "/tasks.txt");
             textFile.createNewFile();
             FileWriter fw = new FileWriter(textFile);

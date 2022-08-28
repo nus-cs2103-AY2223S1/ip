@@ -3,6 +3,10 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline is a subclass of Task. It allows the user the add an additional input
+ * parameter which specifies the deadline of the task.
+ */
 public class Deadline extends Task {
     /** The deadline of the task. */
     protected LocalDateTime by;

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * A custom exception class specifically used for exceptions incurred
+ * by the methods of the class.
+ */
 public class DukeException extends Exception {
 
     /**
