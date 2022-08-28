@@ -7,19 +7,19 @@ import java.util.List;
  * Represents a tasklist to track existing tasks to be completed.
  */
 public class TaskList {
-    private List<String> oldTasks;
-    private List<String> newTasks = new ArrayList<>();
+    private List<Task> oldTasks;
+    private List<Task> newTasks = new ArrayList<>();
 
-    public TaskList(List<String> oldTasks) {
+    public TaskList(List<Task> oldTasks) {
         this.oldTasks = oldTasks;
     }
 
     /**
      * Adds a task to the tasklist.
-     * @param str Task to be added.
+     * @param Task Task to be added.
      */
-    public void addTask(String str) {
-        newTasks.add(str);
+    public void addTask(Task task) {
+        newTasks.add(task);
     }
 
     /**
@@ -27,8 +27,8 @@ public class TaskList {
      * @param index Task number to remove.
      * @return String representation of task removed.
      */
-    public String removeTask(int index) {
-        String task;
+    public Task removeTask(int index) {
+        Task task;
         if (index > oldTasks.size()) {
             task = newTasks.remove(index-oldTasks.size()-1);
         } else {
@@ -61,13 +61,13 @@ public class TaskList {
     public List<String> findMatches(String str) {
         List<String> lst = new ArrayList<>();
         for (int i = 0; i < oldTasks.size(); i++) {
-            String task = oldTasks.get(i);
+            String task = oldTasks.get(i).toString();
             if (task.contains(str)) {
                 lst.add(task);
             }
         }
         for(int i=0; i < newTasks.size(); i++) {
-            String task = newTasks.get(i);
+            String task = newTasks.get(i).toString();
             if (task.contains(str)) {
                 lst.add(task);
             }
@@ -80,7 +80,7 @@ public class TaskList {
      * @param num Index of Task in newTasks.
      * @return Task in new Tasklist
      */
-    public String getNewTasks(int num) {
+    public Task getNewTasks(int num) {
         return newTasks.get(num);
     }
 
@@ -89,27 +89,27 @@ public class TaskList {
      * @param num num Index of Task in oldTasks.
      * @return Task in old Tasklist
      */
-    public String getOldTasks(int num) {
+    public Task getOldTasks(int num) {
         return oldTasks.get(num);
     }
 
     /**
      * Replacing the Task of oldtask.
      * @param index Position of task in list.
-     * @param str Task.
+     * @param Task Task.
      */
-    public void setOldTasks(int index, String str) {
-        oldTasks.set(index,str);
+    public void setOldTasks(int index, Task task) {
+        oldTasks.set(index,task);
         return;
     }
 
     /**
      * Replacing the Task of newtask.
      * @param index Position of task in list.
-     * @param str Task.
+     * @param Task Task.
      */
-    public void setNewTasks(int index, String str) {
-        oldTasks.set(index,str);
+    public void setNewTasks(int index, Task task) {
+        newTasks.set(index,task);
         return;
     }
 
@@ -117,7 +117,7 @@ public class TaskList {
      * Returns list of new tasks.
      * @return List of new tasks.
      */
-    public List<String> getNewTasks() {
+    public List<Task> getNewTasks() {
         return newTasks;
     }
 
@@ -125,7 +125,7 @@ public class TaskList {
      * Return list of old tasks.
      * @return List of old tasks.
      */
-    public List<String> getOldTasks() {
+    public List<Task> getOldTasks() {
         return oldTasks;
     }
 

@@ -18,6 +18,12 @@ public class Task {
     public String getStatusIcon() {
         return (isDone? "X": " ");
     }
+    public void markDone() {
+        this.isDone = true;
+    }
+    public void markUndone() {
+        this.isDone = false;
+    }
 
     /**
      * Returns a string representation of Task.

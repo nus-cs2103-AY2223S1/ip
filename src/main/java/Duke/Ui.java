@@ -51,9 +51,9 @@ public class Ui {
      * @param total Number of tasks in total.
      * @param task Task removed.
      */
-    public void removeTask(int total, String task) {
+    public void removeTask(int total, Task task) {
         System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
+        System.out.println(task.toString());
         System.out.println("Now you have "+ total + " tasks in the list.");
 
     }
@@ -63,14 +63,14 @@ public class Ui {
      * @param oldTasks Tasks that were previously created.
      * @param newTasks Tasks that were just created.
      */
-    public void printTasks(List<String> oldTasks, List<String> newTasks){
+    public void printTasks(List<Task> oldTasks, List<Task> newTasks){
         System.out.println("Here are the tasks in your list");
         for(int i = 0; i < oldTasks.size(); i++) {
-            System.out.println(i+1+"."+oldTasks.get(i));
+            System.out.println(i+1+"."+oldTasks.get(i).toString());
         }
         if (!newTasks.isEmpty()) {
             for (int i = 0; i < newTasks.size(); i++) {
-                System.out.println(i + 1+ oldTasks.size() + "." + newTasks.get(i));
+                System.out.println(i + 1+ oldTasks.size() + "." + newTasks.get(i).toString());
             }
         }
     }

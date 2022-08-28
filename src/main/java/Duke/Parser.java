@@ -40,7 +40,7 @@ public class Parser {
             else if (str.equals("delete")) {
                 int index = scanner.nextInt();
                 scanner.nextLine();
-                String deleted = tasklist.removeTask(index);
+                Task deleted = tasklist.removeTask(index);
                 bot.removeTask(tasklist.size(), deleted);
             }else if (str.equals("deadline")) {
                 String description = "";
@@ -55,7 +55,7 @@ public class Parser {
                 dateline = scanner.nextLine();
                 LocalDate d1 = LocalDate.parse(dateline.substring(1));
                 Task task = new Deadline(description, d1);
-                tasklist.addTask(task.toString());
+                tasklist.addTask(task);
                 int total = tasklist.size();
                 bot.addTask(total,task);
             } else if (str.equals("todo")) {
@@ -63,8 +63,8 @@ public class Parser {
                 if (todoDes.equals("")) {
                     bot.displayError();
                 }
-                Task task = new ToDo(todoDes);
-                tasklist.addTask(task.toString());
+                Task task = new ToDo(todoDes.substring(1));
+                tasklist.addTask(task);
                 int total = tasklist.size();
                 bot.addTask(total,task);
             } else if (str.equals("event")) {
@@ -80,7 +80,7 @@ public class Parser {
                 time = scanner.nextLine();
                 LocalDate d1 = LocalDate.parse(time.substring(1));
                 Task task = new Event(description, d1);
-                tasklist.addTask(task.toString());
+                tasklist.addTask(task);
                 int total = tasklist.size();
                 bot.addTask(total,task);
             }
@@ -91,34 +91,34 @@ public class Parser {
             else if (str.equals("unmark")) {
                 String strnum = scanner.next();
                 int num = Integer.valueOf(strnum);
-                String task;
-                if (num > tasklist.oldTasksSize()) {
+                Task task;
+                if (num > tasklist.oldTasksSize()) {;
                     task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
-                    String newTask = task.substring(0,4)+" "+task.substring(5);
-                    System.out.println(newTask);
-                    tasklist.setNewTasks(num-1,newTask);
+                    task.markUndone();
+                    tasklist.setNewTasks(num-tasklist.oldTasksSize()-1,task);
                 } else {
                     task = tasklist.getOldTasks(num-1);
-                    String newTask = task.substring(0,4)+" "+task.substring(5);
-                    System.out.println(newTask);
-                    tasklist.setOldTasks(num-1,newTask);
+                    task.markUndone();;
+                    tasklist.setOldTasks(num-1,task);
                 }
+                bot.markTask(false);
+                System.out.println(task);
                 scanner.nextLine();
-            }else if (str.equals("mark")) {
+            } else if (str.equals("mark")) {
                 String strnum = scanner.next();
                 int num = Integer.valueOf(strnum);
-                String task;
+                Task task;
                 if (num > tasklist.oldTasksSize()) {
                     task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
-                    String newTask = task.substring(0, 4) + "X" + task.substring(5);
-                    System.out.println(newTask);
-                    tasklist.setNewTasks(num-1, newTask);
+                    task.markDone();
+                    tasklist.setNewTasks(num-tasklist.oldTasksSize()-1, task);
                 } else {
                     task = tasklist.getOldTasks(num-1);
-                    String newTask = task.substring(0, 4) + "X" + task.substring(5);
-                    System.out.println(newTask);
-                    tasklist.setOldTasks(num-1, newTask);
+                    task.markDone();
+                    tasklist.setOldTasks(num-1, task);
                 }
+                bot.markTask(true);
+                System.out.println(task);
                 scanner.nextLine();
             }
             else{
