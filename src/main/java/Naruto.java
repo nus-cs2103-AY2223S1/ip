@@ -1,4 +1,14 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Naruto {
     private final ArrayList<Item> storedItems;
@@ -6,6 +16,30 @@ public class Naruto {
     public Naruto() {
         this.storedItems = new ArrayList<>(100);
     }
+
+    public boolean loadItems() throws IOException{
+        String currPath = System.getProperty("user.dir");
+        currPath += "/../data/items.json";
+
+        try (FileReader reader = new FileReader(currPath)) {
+            JSONParser parser = new JSONParser();
+            JSONArray itemsJson = (JSONArray) parser.parse(reader);
+        } catch (FileNotFoundException e) {
+            System.out.println("Save File does not exist, starting with a new list.");
+        } catch (IOException e) {
+            System.out.println("Error whilst opening file, please try again later.");
+        }  catch (ParseException e) {
+            System.out.println("Error loading save file, save may be corrupted, please try again later.");
+        }
+
+
+    }
+
+
+    public boolean saveItems() throws IOException {
+        FileWriter file = new FileWriter("employees.json");
+    }
+
 
     private String addItem(Item item) {
         this.storedItems.add(item);

@@ -102,8 +102,8 @@ public class Duke {
                     break;
 
                 default:
-                    System.out.println("Sorry I don't understand what that means Dattebayo, " +
-                            "use help to view the available commands.");
+                    System.out.println("I have no clue whats going on here, but I'll act like i do Dattebayo, " +
+                            "use help to view the available commands desu.");
             }
             System.out.println(lineBreak);
         }
