@@ -17,7 +17,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser for parsing user inputs, dates and tasks.
+ */
 public class Parser {
+    /**
+     * Parses and validates user input and returns a command to be executed.
+     *
+     * @param fullCommand The command input by the user.
+     * @return The Command to be executed.
+     * @throws DukeException If command is invalid.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String strippedCommand = fullCommand.stripTrailing();
         String[] parsedCommand = strippedCommand.split(" ", 2);
@@ -50,6 +60,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a given text string to a LocalDateTime object.
+     *
+     * @param dateTime The text string with the format dd/M/yyyy HHmm.
+     * @return The LocalDateTime object representing the date-time given in the string.
+     * @throws DukeException If the input string does not follow the format or contains an invalid date-time.
+     */
     public static LocalDateTime convertStringToDateTime(String dateTime) throws DukeException {
         try {
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
@@ -59,6 +76,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a given text string to a LocalDate object.
+     *
+     * @param date The text string with the format dd/M/yyyy.
+     * @return The LocalDate object representing the date given in the string.
+     * @throws DukeException If the input string does not follow the format or contains an invalid date.
+     */
     public static LocalDate convertStringToDate(String date) throws DukeException {
         try {
             return LocalDate.parse(date, DateTimeFormatter.ofPattern("d/M/yyyy"));
@@ -67,7 +91,13 @@ public class Parser {
                     + "  Please enter a date with the following format: 'dd/mm/yyyy'");
         }
     }
-    
+
+    /**
+     * Parses tasks from the saved text file.
+     *
+     * @param savedTask The text string to be parsed.
+     * @return An array of strings containing the details of the task.
+     */
     public static String[] parseSavedTask(String savedTask) {
         return savedTask.split(" \\| ", 4);
     }

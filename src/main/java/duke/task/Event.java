@@ -4,11 +4,24 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Class that represents an event.
+ */
 public class Event extends Task {
+    /** Date of the event */
     private LocalDate atDate;
+    /** Date-time of the event */
     private LocalDateTime atDateTime;
-    private boolean hasTime;
+    /** If event has a specified time */
+    private final boolean hasTime;
 
+    /**
+     * Constructor to initialize the description, completion status and date of the event.
+     * Completion status is always false when event is first created.
+     * 
+     * @param desc The event description.
+     * @param atDate The event date.
+     */
     public Event(String desc, LocalDate atDate) {
         super(desc);
         this.atDate = atDate;
@@ -16,6 +29,13 @@ public class Event extends Task {
         this.hasTime = false;
     }
 
+    /**
+     * Constructor to initialize the description, completion status and date-time of the event.
+     * Completion status is always false when event is first created.
+     * 
+     * @param desc The event description.
+     * @param atDateTime The event date-time.
+     */
     public Event(String desc, LocalDateTime atDateTime) {
         super(desc);
         this.atDateTime = atDateTime;
@@ -23,12 +43,26 @@ public class Event extends Task {
         this.hasTime = true;
     }
 
+    /**
+     * Constructor to initialize the description, completion status and date of the event.
+     *
+     * @param desc The event description.
+     * @param atDate The event date.
+     * @param isDone The event completion status.
+     */
     public Event(String desc, LocalDate atDate, boolean isDone) {
         super(desc, isDone);
         this.atDate = atDate;
         this.hasTime = false;
     }
 
+    /**
+     * Constructor to initialize the description, completion status and date-time of the event.
+     *
+     * @param desc The event description.
+     * @param atDateTime The event date-time.
+     * @param isDone The event completion status.
+     */
     public Event(String desc, LocalDateTime atDateTime, boolean isDone) {
         super(desc, isDone);
         this.atDateTime = atDateTime;
@@ -51,11 +85,19 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Converts the event to its saved format.
+     * @return The string representation of the saved format of the event.
+     */
     @Override
     public String toSaveFormat() {
         return "E " + super.toSaveFormat() + " | " + this.saveFormatAt();
     }
 
+    /**
+     * Returns the string representation of the event.
+     * @return The string representation of the event.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.formatAt() + ")";
