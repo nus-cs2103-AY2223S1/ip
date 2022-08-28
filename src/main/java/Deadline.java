@@ -7,6 +7,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String toFileData() {
+        return "D | " + super.toFileData() + "|" + this.endTime;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;

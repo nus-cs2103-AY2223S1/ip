@@ -8,6 +8,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String toFileData() {
+        return "E | " + super.toFileData() + "|" + this.eventTime;
+    }
+
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;

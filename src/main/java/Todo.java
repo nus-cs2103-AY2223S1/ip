@@ -4,6 +4,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String toFileData() {
+        return "T | " + super.toFileData();
+    }
+
+    @Override
     public String toString() { 
         return String.format("[T]%s", super.toString());
     }

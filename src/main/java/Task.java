@@ -38,7 +38,7 @@ public class Task {
             case event:
             taskArray = textArray[1].split("/at ", 2);
             if (taskArray.length <= 1) {
-                throw new IanaException("Rejected! Add event again with the format <event> /at <event time> !! :-)");
+                throw new IanaException("Add event again with the format EVENT <event> /at <event time> !! :-)");
             }
             break;
             
@@ -55,7 +55,7 @@ public class Task {
             break;
 
             default:
-            throw new IanaException("This is an invalid task type!! D-:");
+            throw new IanaException("Sorry, this is an invalid task type!! D-:");
         }
 
         return taskArray;
@@ -71,10 +71,13 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    public String toFileData() {
+        return String.format("%d | %s", this.isCompleted ? 1 : 0, this.task);
+    }
+
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.isCompleted ? "X" : " ", this.task);
-    }
+        return String.format("%s %s", this.isCompleted ? "[X]" : "[ ]", this.task);    }
 
     @Override
     public boolean equals(Object obj) {
