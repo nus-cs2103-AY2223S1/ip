@@ -25,11 +25,15 @@ public class Parser {
             case "list":
                 return new ListCommand();
             case "todo":
+                // Fallthrough
             case "deadline":
+                // Fallthrough
             case "event":
                 return new AddCommand(commandGiven, inputLine);
             case "delete":
+                // Fallthrough
             case "mark":
+                // Fallthrough
             case "unmark":
                 return new EditCommand(commandGiven, inputLine);
             default:
