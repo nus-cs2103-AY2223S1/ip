@@ -1,5 +1,6 @@
 package org.Olivia.calendar;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Calendar {
     private ArrayList<CalendarEntry> cache;
@@ -43,6 +44,16 @@ public class Calendar {
     public int clearAllEntries(){
         this.cache.clear();
         return 200;
+    }
+
+    public List<CalendarEntry> getEntriesContains(String keyword) {
+        List<CalendarEntry> ans=new ArrayList<>();
+        for (CalendarEntry e: this.cache) {
+            if (e.toString().indexOf(keyword)!=-1){
+                ans.add((e));
+            }
+        }
+        return ans;
     }
 
     public int size(){
