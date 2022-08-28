@@ -22,11 +22,8 @@ import task.TaskList;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    @FXML
     private VBox dialogContainer;
-    @FXML
     private TextField userInput;
-    @FXML
     private Button sendButton;
     private Storage storage;
     private Ui ui;
