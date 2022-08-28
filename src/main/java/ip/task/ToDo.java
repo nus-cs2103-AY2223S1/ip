@@ -28,6 +28,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public boolean hasString(String s) {
+        return super.description.contains(s);
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

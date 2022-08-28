@@ -62,6 +62,8 @@ public class Parser {
                 // Fallthrough
             case "unmark":
                 return new EditCommand(commandGiven, inputLine);
+            case "find":
+                return new FindCommand(commandGiven, inputLine);
             default:
                 throw new InvalidCommand(commandGiven);
             }

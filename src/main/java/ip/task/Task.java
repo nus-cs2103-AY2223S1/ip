@@ -26,11 +26,13 @@ public abstract class Task {
         isComplete = false;
     }
 
+
     private String check() {
         return isComplete ? "[X]" : "[ ]";
     }
 
     public abstract String writeFormat();
+    public abstract boolean hasString(String s);
 
     @Override
     public String toString() {
