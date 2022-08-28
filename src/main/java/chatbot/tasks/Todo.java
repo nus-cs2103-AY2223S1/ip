@@ -4,8 +4,6 @@ package chatbot.tasks;
  * The Todo class is a subclass of Task.
  */
 public class Todo extends Task {
-    public static final String TYPE = "todo";
-
     public Todo(String taskName) {
         super(taskName);
     }

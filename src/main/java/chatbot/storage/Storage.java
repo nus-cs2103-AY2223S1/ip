@@ -13,15 +13,15 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String divider = " \\| ";
-    private static final String root = System.getProperty("user.dir");
-    private static final Path dataPath = Paths.get(root, "data", "data.txt");
+    private static final String DIVIDER = " \\| ";
+    private static final String ROOT = System.getProperty("user.dir");
+    private static final Path DATA_PATH = Paths.get(ROOT, "data", "data.txt");
 
     public void initData(TaskList todos) throws IOException, DukeException {
-        if (Files.exists(dataPath)) {
-            Scanner in = new Scanner(dataPath);
+        if (Files.exists(DATA_PATH)) {
+            Scanner in = new Scanner(DATA_PATH);
             while (in.hasNextLine()) {
-                String[] nextTaskInfo = in.nextLine().split(divider);
+                String[] nextTaskInfo = in.nextLine().split(DIVIDER);
                 Task newTask;
                 switch (nextTaskInfo[0]) {
                 case "T":
@@ -52,7 +52,7 @@ public class Storage {
     }
 
     public void saveData(TaskList todos) throws IOException {
-        File targetFile = dataPath.toFile();
+        File targetFile = DATA_PATH.toFile();
         if (targetFile.getParentFile().mkdirs()) {
             targetFile.createNewFile();
         }

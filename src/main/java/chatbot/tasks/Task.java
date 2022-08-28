@@ -7,22 +7,16 @@ package chatbot.tasks;
  */
 public abstract class Task {
     private boolean isComplete = false;
-    private final String taskName;
+    private String taskName;
 
     public Task(String taskName) {
         this.taskName = taskName;
     }
 
-    /**
-     * The method marks this task as completed
-     */
     public void mark() {
         this.isComplete = true;
     }
 
-    /**
-     * The method marks this task as incomplete
-     */
     public void unmark() {
         this.isComplete = false;
     }
