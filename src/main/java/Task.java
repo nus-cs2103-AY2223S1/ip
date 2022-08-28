@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private boolean done;
     private String name;
 
@@ -18,6 +18,8 @@ public class Task {
     public void setDone(boolean done) {
         this.done = done;
     }
+
+    public abstract String toMemoryString();
 
     @Override
     public String toString() {
