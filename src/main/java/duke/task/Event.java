@@ -90,8 +90,8 @@ public class Event extends Task {
      * @return The string representation of the saved format of the event.
      */
     @Override
-    public String toSaveFormat() {
-        return "E " + super.toSaveFormat() + " | " + this.saveFormatAt();
+    public String getSaveFormat() {
+        return "E " + super.getSaveFormat() + " | " + this.saveFormatAt();
     }
 
     /**

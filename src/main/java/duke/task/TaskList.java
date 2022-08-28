@@ -70,12 +70,12 @@ public class TaskList {
     }
 
     /**
-     * Converts the task list to its saved format.
+     * Returns the task list as a string in its saved format.
      * @return The string representation of the saved format of the task list.
      */
-    public String toSaveFormat() {
+    public String getSaveFormat() {
         StringBuilder sb = new StringBuilder();
-        this.tasks.forEach(t -> sb.append(t.toSaveFormat()).append("\n"));
+        this.tasks.forEach(t -> sb.append(t.getSaveFormat()).append("\n"));
         return sb.toString();
     }
 

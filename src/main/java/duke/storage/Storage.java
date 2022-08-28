@@ -51,7 +51,7 @@ public class Storage {
      */
     public void save(TaskList tasks) throws DukeException {
         try {
-            String savedTasks = tasks.toSaveFormat();
+            String savedTasks = tasks.getSaveFormat();
             if (Files.exists(this.directory)) {
                 Files.write(this.filePath, savedTasks.getBytes());
             } else {

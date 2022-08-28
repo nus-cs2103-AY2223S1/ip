@@ -72,10 +72,10 @@ public class Task {
     }
 
     /**
-     * Converts the task to its saved format.
+     * Returns the task as a string in its saved format.
      * @return The string representation of the saved format of the task.
      */
-    public String toSaveFormat() {
+    public String getSaveFormat() {
         return "| " + (isDone ? 1 : 0) + " | " + this.desc;
     }
 
