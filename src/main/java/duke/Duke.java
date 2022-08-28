@@ -3,6 +3,10 @@ package duke;
 import java.io.IOException;
 
 /**
+ * Duke is a chatbot that helps you keep track of your tasks.
+ * It can add, delete, mark tasks as done, and list all your tasks.
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
  * @author Marcus Tan
  */
 public class Duke {
@@ -10,6 +14,10 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    /**
+     * Initializes the application.
+     * @param filePath the path to the file where the tasks are stored
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +32,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the application.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

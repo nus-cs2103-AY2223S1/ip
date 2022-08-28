@@ -4,10 +4,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * An event task with a description and an occurrence date.
+ */
 public class Event extends Task {
 
     private LocalDate at;
 
+    /**
+     * Creates a new event task with a description and an occurrence date.
+     * @param description the description of the task
+     * @param at the occurrence date of the task
+     */
     public Event(String description, String at) throws DukeException {
         super(description);
         try {

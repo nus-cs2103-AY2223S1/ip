@@ -4,9 +4,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A deadline task with a description and a deadline.
+ */
 public class Deadline extends Task {
     private LocalDate by;
 
+    /**
+     * Creates a new deadline task with a description and a deadline.
+     * @param description the description of the task
+     * @param by the deadline of the task
+     */
     public Deadline(String description, String by) throws DukeException {
         super(description);
         try {
