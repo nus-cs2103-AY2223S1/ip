@@ -87,10 +87,11 @@ public class TaskList {
     public void findTasks(String keyword) {
         System.out.println(ui.getSeparator());
         System.out.println("\tMatching tasks -");
+        int counter = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             if (task.getTask().contains(keyword)) {
-                System.out.println("\t\t" + (i + 1) + ". " + task);
+                System.out.println("\t\t" + (++counter) + ". " + task);
             }
         }
         System.out.println(ui.getSeparator());
