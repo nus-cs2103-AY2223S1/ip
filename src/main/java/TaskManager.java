@@ -1,8 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,10 +6,11 @@ import java.util.stream.Stream;
 
 public class TaskManager {
     private final List<Task> tasks;
+    private final StoredFile storedFile;
 
     public TaskManager(String saveFile) {
         List<Task> tasks;
-        StoredFile storedFile = StoredFile.from(saveFile);
+        storedFile = StoredFile.from(saveFile);
         if (storedFile.fileExists()) {
             try {
                 tasks = storedFile.getTextContent().lines().map(String::strip).flatMap(
@@ -106,30 +103,12 @@ public class TaskManager {
     }
 
     private void saveToDisk() {
-        final String dataDirectory = "data";
-        final String dataPath = "data/Mia.txt";
-        if (tasks.size() > 0) {
-            try {
-                File directory = new File(dataDirectory);
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-                File file = new File(dataPath);
-                file.createNewFile();
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataPath))) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < tasks.size(); i++) {
-                        sb.append(tasks.get(i).toSaveFormat());
-                        sb.append("\n");
-                    }
-                    writer.write(sb.toString()); // do something with the file we've opened
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append(tasks.get(i).toSaveFormat());
+            sb.append("\n");
         }
+        storedFile.writeText(sb.toString());
     }
 
     @Override

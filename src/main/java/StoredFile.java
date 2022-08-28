@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 abstract public class StoredFile {
@@ -11,9 +10,24 @@ abstract public class StoredFile {
         return new NonExistentFile(filePath);
     }
 
+    private static void createFileIfNotExists(String filePath) {
+        try {
+            File directory = new File(filePath.replaceFirst("/[^/\\\\]+$", ""));
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+            File file = new File(filePath);
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     abstract public boolean fileExists();
 
     abstract public String getTextContent() throws FileNotFoundException;
+
+    abstract public void writeText(String text);
 
     private static class ExistentFile extends StoredFile {
         private final String filePath;
@@ -38,12 +52,24 @@ abstract public class StoredFile {
             }
             return sb.toString();
         }
+
+        @Override
+        public void writeText(String text) {
+            StoredFile.createFileIfNotExists(filePath);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                writer.write(text);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static class NonExistentFile extends StoredFile {
+        private final String filePath;
 
         private NonExistentFile(String filePath) {
             super();
+            this.filePath = filePath;
         }
 
         @Override
@@ -54,6 +80,16 @@ abstract public class StoredFile {
         @Override
         public String getTextContent() throws FileNotFoundException {
             throw new FileNotFoundException("File does not exist!");
+        }
+
+        @Override
+        public void writeText(String text) {
+            StoredFile.createFileIfNotExists(filePath);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                writer.write(text);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
