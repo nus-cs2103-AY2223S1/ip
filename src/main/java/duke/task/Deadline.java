@@ -38,18 +38,17 @@ public class Deadline extends Task {
             }
         }
     }
-
-    @Override
-    public boolean compareDate(LocalDate date) {
-        return date.equals(this.deadline);
-    }
-
     public Deadline(int i, String description, String deadline) {
         super(description);
         this.ddl = deadline;
         if (i == 1) {
             this.markDone();
         }
+    }
+
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.deadline);
     }
 
     @Override

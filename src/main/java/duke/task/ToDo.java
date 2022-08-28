@@ -30,7 +30,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public boolean compareDate (LocalDate date){
+    public boolean compareDate(LocalDate date) {
         return false;
     }
 
@@ -39,7 +39,7 @@ public class ToDo extends Task {
      * @return the string representing duke.task.ToDo task.
      */
     @Override
-    public String toString () {
+    public String toString() {
         return "[T]" + super.toString();
     }
 }

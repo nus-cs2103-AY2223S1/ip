@@ -1,11 +1,10 @@
 package duke;
 
-import duke.commands.Command;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import duke.commands.Command;
 
 /**
  * The duke.Duke is a personalized chatbot.
@@ -16,12 +15,12 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-    public Duke(String filePath) {
+    private Duke(String filePath) {
         ui = new Ui();
         myStorage = new Storage(filePath);
         try {
             tasks = new TaskList(myStorage.load());
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             ui.showLoadingError();
             File path = new File(filePath);
             tasks = new TaskList();
@@ -32,13 +31,7 @@ public class Duke {
             }
         }
     }
-
-
-
-
-
-
-    public void run() {
+    private void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

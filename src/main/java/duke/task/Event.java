@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The duke.task.Event class represents a task
+ * The Event class represents a task
  * with a specific date or time.
  */
-public class Event extends Task{
+public class Event extends Task {
     private String eventAt;
     private LocalDate eventDate;
 
@@ -38,12 +38,6 @@ public class Event extends Task{
             }
         }
     }
-
-    @Override
-    public boolean compareDate(LocalDate date) {
-        return date.equals(this.eventDate);
-    }
-
     public Event(int i, String description, String eventAt) {
         super(description);
         this.eventAt = eventAt;
@@ -51,6 +45,11 @@ public class Event extends Task{
             this.markDone();
         }
     }
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.eventDate);
+    }
+
 
     @Override
     public String toStore() {
