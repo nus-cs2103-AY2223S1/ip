@@ -31,7 +31,7 @@ public class Storage {
      *
      * @return An ArrayList of Tasks added previously.
      */
-    public ArrayList<Task> startUp() {
+    public ArrayList<Task> load() {
         // Ensure file exists
         File hardDiskTasks = new File(filePath);
         File tempTasks = new File(tempFilePath);
@@ -127,8 +127,9 @@ public class Storage {
      * Stores Task information onto memory.
      *
      * @param task Task information.
+     * @throws IOException if unable to write to file.
      */
-    public void addTaskToDisk(String task) {
+    public void addTaskToDisk(String task) throws IOException {
         appendToFile(filePath, task);
     }
 
@@ -137,56 +138,50 @@ public class Storage {
      *
      * @param taskNumber the row of Task which changed status.
      * @param isDone the new status of the task.
+     * @throws IOException if unable to write to file.
      */
-    public void setTaskStatusOnDisk(int taskNumber, boolean isDone) {
+    public void setTaskStatusOnDisk(int taskNumber, boolean isDone)throws IOException {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
-        try {
-            Scanner s = new Scanner(inputFile);
-            while (s.hasNext()) {
-                String currentLine = s.nextLine();
-                if (taskNumber == 1) {
-                    // before status "x | description"
-                    int indexOfFirstBreak = currentLine.indexOf("|");
-                    String beforeStatus = currentLine.substring(0, indexOfFirstBreak + 2);
+        Scanner s = new Scanner(inputFile);
+        while (s.hasNext()) {
+            String currentLine = s.nextLine();
+            if (taskNumber == 1) {
+                // before status "x | description"
+                int indexOfFirstBreak = currentLine.indexOf("|");
+                String beforeStatus = currentLine.substring(0, indexOfFirstBreak + 2);
 
-                    // after " X | x"
-                    String afterStatus = currentLine.substring(indexOfFirstBreak + 3);
-                    String status = isDone ? "1" : "0";
-                    currentLine = beforeStatus + status + afterStatus;
-                }
-                appendToFile(tempFilePath, currentLine + System.lineSeparator());
-                taskNumber -= 1;
+                // after " X | x"
+                String afterStatus = currentLine.substring(indexOfFirstBreak + 3);
+                String status = isDone ? "1" : "0";
+                currentLine = beforeStatus + status + afterStatus;
             }
-            s.close();
-            boolean successful = tempFile.renameTo(inputFile);
-        } catch (FileNotFoundException e) {
-            System.out.println("     " + e.getMessage());
+            appendToFile(tempFilePath, currentLine + System.lineSeparator());
+            taskNumber -= 1;
         }
+        s.close();
+        boolean successful = tempFile.renameTo(inputFile);
     }
 
     /**
      * Removes Task information from memory.
      *
      * @param taskNumber Row of Task to delete from memory.
+     * @throws IOException if unable to write to file.
      */
-    public void deleteTaskFromDisk(int taskNumber) {
+    public void deleteTaskFromDisk(int taskNumber) throws IOException {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
-        try {
-            Scanner s = new Scanner(inputFile);
-            while (s.hasNext()) {
-                String currentLine = s.nextLine();
-                if (taskNumber != 1) {
-                    appendToFile(tempFilePath, currentLine + System.lineSeparator());
-                }
-                taskNumber -= 1;
+        Scanner s = new Scanner(inputFile);
+        while (s.hasNext()) {
+            String currentLine = s.nextLine();
+            if (taskNumber != 1) {
+                appendToFile(tempFilePath, currentLine + System.lineSeparator());
             }
-            s.close();
-            boolean successful = tempFile.renameTo(inputFile);
-        } catch (FileNotFoundException e) {
-            System.out.println("     " + e.getMessage());
+            taskNumber -= 1;
         }
+        s.close();
+        boolean successful = tempFile.renameTo(inputFile);
     }
 
     /**
@@ -194,14 +189,11 @@ public class Storage {
      *
      * @param file The filepath of file to be appended.
      * @param textToAdd The String to be appended to file.
+     * @throws IOException if unable to write to file.
      */
-    public void appendToFile(String file, String textToAdd) {
-        try {
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(textToAdd);
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
-        }
+    public void appendToFile(String file, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(file, true);
+        fw.write(textToAdd);
+        fw.close();
     }
 }
