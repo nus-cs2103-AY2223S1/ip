@@ -45,9 +45,9 @@ public class UI {
         System.out.println();
     }
 
-    public void printTasks(ArrayList<Task> tasks) {
+    public void printTasks(ArrayList<Task> tasks, String headerMessage) {
         System.out.println(LINE_BREAK);
-        System.out.println("Here are the tasks in your list:");
+        System.out.println(headerMessage);
         for (int i = 0; i < tasks.size(); ++i) {
             System.out.println((i + 1) + ". " + tasks.get(i));
         }
