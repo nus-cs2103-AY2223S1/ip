@@ -92,7 +92,7 @@ public class Parser {
                 if (splitInputCommand.length == 1) {
                     throw new DukeException("Please enter a keyword!");
                 } else {
-                    return new FindCommand(splitInputCommand[1]);
+                    return new FindCommand(splitInputCommand[1].split(" "));
                 }
             default:
                 throw new DukeException("ERROR...ERROR...WHAT ARE YOU DOING HERE?!");
