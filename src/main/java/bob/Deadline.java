@@ -1,7 +1,7 @@
 package bob;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 /**
  * Represents Deadline object, a task with a specific completion date

@@ -144,6 +144,9 @@ public class Parser {
         }
     }
 
+    /**
+     * Retrieves boolean value toExit
+     */
     public boolean getToExit() {
         return this.toExit;
     }
