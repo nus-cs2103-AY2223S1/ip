@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner sc;
-    private static final String logo = " ____        _        \n"
+    private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -15,15 +15,15 @@ public class Ui {
     private static final String GREETINGS = "Hello! I'm Duke\nWhat can I do for you?\n";
 
     public Ui() {
-        this.sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
     }
 
     public String nextLine() {
-        return this.sc.nextLine();
+        return sc.nextLine();
     }
 
     public void printGreetings() {
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + LOGO);
         System.out.println(GREETINGS);
     }
 

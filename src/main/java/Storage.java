@@ -21,7 +21,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public static void loadFileData(ArrayList<Task> taskArr) throws DukeException {
+    public static void loadFileData(ArrayList<Task> tasks) throws DukeException {
         try {
             File file = new File("data/duke.txt");
             Scanner sc = new Scanner(file);
@@ -42,7 +42,7 @@ public class Storage {
                 if (split[1].equals("Y")) {
                     task.toggleDone();
                 }
-                taskArr.add(task);
+                tasks.add(task);
             }
         } catch (FileNotFoundException e) {
             try {
@@ -58,10 +58,10 @@ public class Storage {
     }
 
 
-    public static void saveFileData(ArrayList<Task> taskArr) throws DukeException {
+    public static void saveFileData(ArrayList<Task> tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter("data/duke.txt");
-            for (Task task : taskArr) {
+            for (Task task : tasks) {
                 String str = task.stringify();
                 fw.write(str + "\n");
             }
