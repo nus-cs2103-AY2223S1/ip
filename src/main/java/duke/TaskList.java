@@ -51,8 +51,8 @@ public class TaskList {
      */
     public void add(Task task) {
         TaskList.savedTasks.add(task);
-        System.out.println("Got it. I've added this task:\n" + task.getStatus() +
-                String.format("\nNow you have %d tasks in the list.", TaskList.savedTasks.size()));
+        System.out.println("Got it. I've added this task:\n" + task.getStatus()
+                + String.format("\nNow you have %d tasks in the list.", TaskList.savedTasks.size()));
     }
 
     /**

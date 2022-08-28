@@ -33,7 +33,7 @@ public class Parser {
         } else if (commandWord.equals("delete")) {
             return CommandType.DELETE;
         } else if (commandWord.equals("find")) {
-          return CommandType.FIND;
+            return CommandType.FIND;
         } else {
             return CommandType.UNABLE;
         }

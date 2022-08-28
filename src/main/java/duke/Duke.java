@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-
 import java.util.Scanner;
 
 public class Duke {
@@ -94,6 +93,7 @@ public class Duke {
                 }
                 ui.drawLine();
                 break;
+            default:
             }
 
             if (newTask != null) {

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a deadline task which needs to be completed by a certain date.
  */
 public class DeadLine extends Task {
-    LocalDate byWhen = null;
+    private LocalDate byWhen = null;
 
     public DeadLine() {
         super();

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a event task which will occur on a certain date.
  */
 public class Event extends Task {
-    LocalDate atWhen = null;
+    private LocalDate atWhen = null;
 
     public Event() {
         super();
