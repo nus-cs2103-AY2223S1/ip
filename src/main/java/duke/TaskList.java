@@ -62,6 +62,4 @@ public class TaskList {
         System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
     }
 
-
-
 }

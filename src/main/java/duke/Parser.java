@@ -10,7 +10,9 @@ public class Parser {
     }
 
     public static String getTaskName(String userInput) {
-        return userInput.substring(userInput.indexOf(" ") + 1).trim();
+        String[] splitString = userInput.split(" ");
+        return splitString[1];
+        // return userInput.substring(userInput.indexOf(" ") + 1).trim();
     }
 
     public static String getDate(String userInput) {

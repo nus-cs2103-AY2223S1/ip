@@ -17,6 +17,7 @@ public class Task {
 
     public Task (String taskName, String taskType, boolean done) {
         this.done = done;
+        this.time = null;
         if (taskType.equals("TODO")) {
             this.taskType = TaskType.TODO;
             this.taskName = taskName;
@@ -51,6 +52,7 @@ public class Task {
     public Task (String taskName, String taskType, String timing, boolean done) {
         this.done = done;
         this.taskName = taskName;
+        this.time = null;
         switch (taskType) {
             case "T":
                 this.taskType = TaskType.TODO;
@@ -79,7 +81,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + taskType.toString().charAt(0) + "]" + isDoneString() + " " + this.taskName + " " + this.date;
+        return "[" + this.taskType.toString().charAt(0) + "]" + isDoneString() + " " + this.taskName + " " + this.date;
     }
 
     public String toTxt() {
@@ -92,7 +94,7 @@ public class Task {
         if (done) {
             return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
         }
-        return taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
+        return this.taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
     }
 
     public void markDone() {
