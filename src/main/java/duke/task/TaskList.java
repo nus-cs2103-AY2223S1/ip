@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.Storage;
-import duke.exception.DukeException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.Storage;
+import duke.exception.DukeException;
 
 /**
  * TaskList represents the list of tasks.
@@ -26,7 +26,7 @@ public class TaskList {
      * @return List of Tasks.
      */
     private List<Task> getSavedTasks() {
-        String storageTasks= this.storage.read();
+        String storageTasks = this.storage.read();
         return this.parse(storageTasks);
     }
 

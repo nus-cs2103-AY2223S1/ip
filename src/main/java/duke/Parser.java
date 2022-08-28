@@ -6,12 +6,12 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
-import duke.command.FindCommand;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -50,11 +50,12 @@ public class Parser {
                 return new DeleteCommand(taskList, inputArr);
             case FIND:
                 return new FindCommand(taskList, inputArr);
+            default:
+                return new InvalidCommand("Invalid command.");
             }
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         }
-        return new InvalidCommand("Invalid command.");
     }
 }
 

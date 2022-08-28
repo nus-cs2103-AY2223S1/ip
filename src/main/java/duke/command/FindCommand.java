@@ -1,9 +1,11 @@
 package duke.command;
 
+import java.util.List;
+
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
-import java.util.List;
+
 
 /**
  * FindCommand represents a command to find all tasks that match a keyword.

@@ -1,11 +1,9 @@
 package duke.exception;
 
-import java.lang.Exception;
-
 /**
  * DukeException represents an Exception thrown because of an invalid input by the user.
  */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
 
     /**
      * Create a DukeException with the specified Message.

@@ -20,11 +20,15 @@ public class Ui {
     /**
      * Prints a welcome message to the user.
      */
-    public void welcomeMessage() {System.out.println(BORDER + GREETING + BORDER);}
+    public void welcomeMessage() {
+        System.out.println(BORDER + GREETING + BORDER);
+    }
 
     /**
      * Prints an error message to the user.
      * @param error The error message to be printed.
      */
-    public void invalidMessage(String error) {System.out.println(BORDER + INVALID + error + "\n" + BORDER);}
+    public void invalidMessage(String error) {
+        System.out.println(BORDER + INVALID + error + "\n" + BORDER);
+    }
 }

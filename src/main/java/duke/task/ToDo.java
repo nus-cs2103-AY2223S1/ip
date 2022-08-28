@@ -1,8 +1,14 @@
 package duke.task;
 
-public class ToDo extends Task{
+/**
+ * ToDo is a task without a specified date/time.
+ */
+public class ToDo extends Task {
+
     /**
-     * ToDo is a task without a specified date/time.
+     * Constructor for ToDo.
+     *
+     * @param description Description of the Deadline.
      */
     public ToDo(String description) {
         super(description);
