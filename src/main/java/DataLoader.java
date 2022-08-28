@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DataLoader {
     
-    public static ArrayList<Task> loadData(String path) throws FileNotFoundException, DukeException {
+    public static ArrayList<Task> loadData(String path) throws FileNotFoundException, IanaException {
         ArrayList<Task> todoList = new ArrayList<Task>();
 
         try{
@@ -19,8 +19,8 @@ public class DataLoader {
                 try {
                     Task newTask = Task.of(input);
                     todoList.add(newTask);
-                } catch (DukeException e) {
-                    throw new DukeException("File is corrupted!");
+                } catch (IanaException e) {
+                    throw new IanaException("File is corrupted!");
                 }
             }
             return todoList;
