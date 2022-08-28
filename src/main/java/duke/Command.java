@@ -131,7 +131,7 @@ public enum Command {
         }
     }
 
-    public boolean isCorrectUsage(String args, Duke duke) {
+    private boolean isCorrectUsage(String args, Duke duke) {
         UI ui = duke.getUI();
         TaskList taskList = duke.getTaskList();
         String usage = getCorrectUsage();
@@ -223,7 +223,7 @@ public enum Command {
         }
     }
 
-    public String getCorrectUsage() {
+    private String getCorrectUsage() {
         String ret = "Correct usage: ";
         switch(name) {
         case "delete":
