@@ -32,6 +32,10 @@ public class CalendarEntry {
         return 200;
     }
 
+    public String getTitle(){
+        return this.title;
+    }
+
     @Override
     public String toString(){
         String ans="";

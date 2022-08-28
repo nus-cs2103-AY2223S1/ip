@@ -11,6 +11,7 @@ import org.Olivia.IO.UiHandler;
 import org.Olivia.calendar.*;
 import java.io.File;
 import java.security.InvalidParameterException;
+import java.util.List;
 
 
 public class EventDispatcher {
@@ -132,6 +133,17 @@ public class EventDispatcher {
         //return 500;
     }
 
+    private int find(String input){
+        input=input.substring(5);
+        List<CalendarEntry> entries = this.table.getEntriesContains(input);
+        String content="";
+        for (CalendarEntry e: entries){
+            content=content+e.toString()+"\n";
+        }
+        ui.cout((UiHandler.generateSection(content)));
+        return 200;
+    }
+
     /**
      * calls corresponding functions based on the input command
      * @param input the array of string that contains the command and parameters
@@ -153,6 +165,9 @@ public class EventDispatcher {
         }
 
         String[] splited_input=input.toLowerCase().split(" ");
+        if (splited_input.length==0) {
+            throw new IllegalArgumentException("Sorry, I don't seem to understand you");
+        }
         if (splited_input[0].equals("help")){
             return help();
         }
@@ -164,6 +179,9 @@ public class EventDispatcher {
         }
         if (splited_input[0].equals("delete")){
             return delete(input);
+        }
+        if (splited_input[0].equals("find") && splited_input.length>1){
+            return find(input);
         }
         throw new IllegalArgumentException("Sorry, I don't seem to understand you");
         //return 500; //not implemented
