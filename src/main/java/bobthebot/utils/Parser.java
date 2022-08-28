@@ -1,10 +1,9 @@
-package utils;
+package bobthebot.utils;
 
-import tasks.ToDoList;
-import exceptions.BobException;
+import bobthebot.exceptions.BobException;
+import bobthebot.tasks.ToDoList;
 
 public class Parser {
-
     public void parseCommand(String command, ToDoList list) throws BobException {
         if (command.toLowerCase().equals("list")) {
             Ui.listMessage(list);

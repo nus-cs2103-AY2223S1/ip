@@ -1,13 +1,13 @@
-package bob;
-
-import utils.Storage;
-import utils.Parser;
-import utils.Ui;
-import tasks.ToDoList;
-import exceptions.BobException;
+package bobthebot.bob;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import bobthebot.utils.Parser;
+import bobthebot.utils.Storage;
+import bobthebot.tasks.ToDoList;
+import bobthebot.exceptions.BobException;
+import bobthebot.utils.Ui;
 
 public class BobTheBot {
     private Storage storage;

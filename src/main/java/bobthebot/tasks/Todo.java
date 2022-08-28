@@ -1,6 +1,4 @@
-package tasks;
-
-import tasks.Task;
+package bobthebot.tasks;
 
 public class Todo extends Task {
 
