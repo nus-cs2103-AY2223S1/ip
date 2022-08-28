@@ -25,7 +25,11 @@ public class Iana {
 
         for (int i = 0; i < vocabList.size(); i++) {
             Task nextTask = vocabList.get(i);
+<<<<<<< HEAD:src/main/java/Iana.java
             System.out.println(String.format("\t   %d. %s", i+1, nextTask.toString()));
+=======
+            System.out.println(String.format("     %d. %s", i+1, nextTask.toString()));
+>>>>>>> parent of 76caced (Change UI):src/main/java/Duke.java
         }
         System.out.println(LINEBLOCK);
     }
