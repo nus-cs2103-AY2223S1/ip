@@ -1,12 +1,12 @@
 package bobthebot.tasks;
 
-import bobthebot.utils.Storage;
-import bobthebot.utils.Ui;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import bobthebot.utils.Storage;
+import bobthebot.utils.Ui;
 
 /**
  * Class which represents a ToDoList.
@@ -146,17 +146,17 @@ public class ToDoList {
                 Ui.printErrorMessage(errorString);
             }
         } else {
-            String errorString = "\tDeepest apologies, I am a mere automated bot.\n" +
-                    "\tPlease stick to input that start with \n" +
-                    "\t1. todo - for items that you have to do\n" +
-                    "\t2. deadline - for items which have an upcoming deadline\n" +
-                    "\t3. event - for events with a date and time\n" +
-                    "\n" +
-                    "\t4. mark - to mark an event as done\n" +
-                    "\t5. unmark - to mark an event as undone\n" +
-                    "\t6. delete - to delete an event\n" +
-                    "\t7. list - to view all the events on your todo list\n" +
-                    "\t8. bye - to wish me a (temporary) farewell\n";
+            String errorString = "\tDeepest apologies, I am a mere automated bot.\n"
+                    + "\tPlease stick to input that start with \n"
+                    + "\t1. todo - for items that you have to do\n"
+                    + "\t2. deadline - for items which have an upcoming deadline\n"
+                    + "\t3. event - for events with a date and time\n"
+                    + "\n"
+                    + "\t4. mark - to mark an event as done\n"
+                    + "\t5. unmark - to mark an event as undone\n"
+                    + "\t6. delete - to delete an event\n"
+                    + "\t7. list - to view all the events on your todo list\n"
+                    + "\t8. bye - to wish me a (temporary) farewell\n";
             Ui.printErrorMessage(errorString);
         }
     }
@@ -165,7 +165,6 @@ public class ToDoList {
      * Method for deleting a specific event from the list, and updating the storage.
      * @param index Specifies 0 index of task to be deleted.
      * */
-    /* Method for deleting a specific event */
     public void deleteTask(int index) {
         Ui.taskDeletedMessage(index, this);
         this.list.remove(index);

@@ -1,16 +1,16 @@
 package bobthebot.utils;
 
-import bobthebot.tasks.Task;
-import bobthebot.tasks.Deadline;
-import bobthebot.tasks.Event;
-import bobthebot.tasks.Todo;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import bobthebot.tasks.Deadline;
+import bobthebot.tasks.Event;
+import bobthebot.tasks.Task;
+import bobthebot.tasks.Todo;
 
 /**
  * A class which handles the interaction of the BobTheBot with the file storing the ToDo List items.
@@ -31,7 +31,7 @@ public class Storage {
      * Method which loads data from the specified file into an ArrayList, which can be used for the ToDo List object.
      * If the file is not found, an empty ArrayList is returned.
      * @return An ArrayList containing the tasks in the specified file, or an empty ArrayList if there is no
-     * file or the file is empty.
+     *     file or the file is empty.
      * */
     public ArrayList<Task> load() {
         ArrayList<Task> list = new ArrayList<>();

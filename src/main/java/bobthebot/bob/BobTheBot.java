@@ -1,13 +1,13 @@
 package bobthebot.bob;
 
-import bobthebot.exceptions.BobException;
-import bobthebot.utils.Storage;
-import bobthebot.utils.Parser;
-import bobthebot.utils.Ui;
-import bobthebot.tasks.ToDoList;
-
 import java.io.IOException;
 import java.util.Scanner;
+
+import bobthebot.exceptions.BobException;
+import bobthebot.tasks.ToDoList;
+import bobthebot.utils.Parser;
+import bobthebot.utils.Storage;
+import bobthebot.utils.Ui;
 
 /**
  * BobTheBot is a friendly CLI Bot that can help with managing tasks.

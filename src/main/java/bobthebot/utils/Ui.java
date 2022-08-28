@@ -1,7 +1,7 @@
 package bobthebot.utils;
 
-import bobthebot.tasks.ToDoList;
 import bobthebot.tasks.Task;
+import bobthebot.tasks.ToDoList;
 
 /**
  * Class which handles the interaction of BobTheBot and the user.
@@ -32,10 +32,11 @@ public class Ui {
      * */
     public static void goodbye(ToDoList list) {
         String result = "\tBye! Hope to see you again soon! ";
-        String haveMoreTasks = "You still have " + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
+        String haveMoreTasks = "You still have " + list.getLength()
+                + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
                 + " to do! \uD83D\uDE0A";
-        String completedAllTasks = "I'm so happy that you've completed all your tasks! \n\tCome back soon " +
-                "if you want to accomplish more things! \uD83D\uDE0A";
+        String completedAllTasks = "I'm so happy that you've completed all your tasks! \n\tCome back soon "
+                + "if you want to accomplish more things! \uD83D\uDE0A";
 
         formatMessage(list.getLength() == 0 ? result + completedAllTasks : result + haveMoreTasks);
     }
@@ -91,18 +92,21 @@ public class Ui {
     }
 
     /**
-     * Takes in the 0 index of the item done and prints a message informing the user that their item is successfully marked done.
+     * Takes in the 0 index of the item done and prints a message informing the user that their item is
+     *      successfully marked done.
      * @param list ToDo List the item is in.
      * @param index The index of the item to be marked as done.
      * */
     public static void markItemDoneMessage(ToDoList list, int index) {
         String toPrint = "\tGOOD JOB! I'm marking this task as done: \n";
-        toPrint += "\t" + list.getTask(index).toString();
+        toPrint += "\t"
+                + list.getTask(index).toString();
         formatMessage(toPrint);
     }
 
     /**
-     * Takes in the 0 index of the item done and prints a message informing the user that their item is successfully marked undone.
+     * Takes in the 0 index of the item done and prints a message informing the user that their item is
+     *      successfully marked undone.
      * @param list ToDo List the item is in.
      * @param index The index of the item to be marked as undone.
      * */
