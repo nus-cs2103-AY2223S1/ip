@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class Storage {
 
+    public Storage(Task[] taskArr, String filePath) throws IOException {
+        saveFile(taskArr, filePath);
+    }
+
     /**
      * Adds tasks from tasks array in Duke.main into a file.
      * A new file will be created if no existing files with the specified pathname

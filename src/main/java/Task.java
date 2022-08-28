@@ -13,14 +13,12 @@ public class Task {
 
     public void mark() {
         this.status = 1;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[" + this.type + "][X] " + this.name);
+        Ui.printMark(this.type, this.name);
     }
 
     public void unMark() {
         this.status = 0;
-        System.out.println("OK, I've marked this task as not done yet: ");
-        System.out.println("[" + this.type + "][ ] " + this.name);
+        Ui.printUnmark(this.type, this.name);
     }
 
     public static int getNumberTasks() {
