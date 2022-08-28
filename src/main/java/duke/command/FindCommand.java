@@ -25,6 +25,7 @@ public class FindCommand extends Command {
      * @param keyword The keyword to search for.
      */
     public FindCommand(String keyword) {
+        super(false);
         this.keyword = keyword;
     }
 
@@ -34,16 +35,15 @@ public class FindCommand extends Command {
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.
      * @param storage The Storage dealing with loading tasks from the file and saving tasks in the file.
-     * @return The list of Task(s) containing the specified keyword.
      * @throws DukeException If there are no matching Task(s) found with the specified keyword.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> foundTasks = tasks.findTask(keyword);
         if (foundTasks.isEmpty()) {
-            throw new DukeException("No matching tasks found!");
+            throw new DukeException("\tNo matching tasks found!");
         } else {
-            return ui.showFind(foundTasks);
+            ui.showFind(foundTasks);
         }
     }
 }

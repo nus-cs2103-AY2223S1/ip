@@ -3,7 +3,6 @@ package duke;
 import java.io.FileNotFoundException;
 
 import duke.command.Command;
-import javafx.stage.Stage;
 
 /**
  * Duke is a Personal Assistant Chatbot that helps a person to keep track of various things.
@@ -17,19 +16,19 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private boolean isTerminated = false;
 
     /**
      * A constructor for Duke.
      *
-     * @param stage The current Stage of the Application.
+     * @param filePath The filepath in which the saved data is stored.
      */
-    public Duke(Stage stage) {
-        this.ui = new Ui(stage);
-        this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
+    public Duke(String filePath) {
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
+            ui.showLoadingError();
             this.tasks = new TaskList();
         } catch (DukeException e) {
             System.out.println(e.getMessage());
@@ -37,16 +36,27 @@ public class Duke {
     }
 
     /**
-     * A method that generates a response from Duke.
-     *
-     * @param fullCommand The input command by the user.
+     * A method that runs Duke.
      */
-    public String getResponse(String fullCommand) {
-        try {
-            Command c = Parser.parse(fullCommand);
-            return c.execute(tasks, ui, storage);
-        } catch (DukeException e) {
-            return e.getMessage();
+    public void run() {
+        ui.showWelcome();
+        boolean isExited = false;
+        while (!isExited) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExited = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke(System.getProperty("user.home") + "/data/duke.txt").run();
     }
 }

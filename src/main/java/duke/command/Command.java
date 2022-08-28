@@ -14,14 +14,31 @@ import duke.Ui;
  */
 
 public abstract class Command {
+    private boolean isExit;
+
+    /**
+     * A constructor for Command.
+     * @param isExit Has the Command ended the session with Duke.
+     */
+    public Command(boolean isExit) {
+        this.isExit = isExit;
+    }
+
+    /**
+     * A method that checks if the Command ended the session with Duke.
+     * @return Has the Command ended the session with Duke.
+     */
+    public boolean isExit() {
+        return this.isExit;
+    }
+
     /**
      * A method that executes the Command according to its type.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.
      * @param storage The Storage dealing with loading tasks from the file and saving tasks in the file.
-     * @return A response fron Duke.
      * @throws DukeException Depending on type of Command.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

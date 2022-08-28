@@ -23,6 +23,7 @@ public class DeleteCommand extends Command {
      * @param index The index of the Task to be deleted, with respect to the TaskList.
      */
     public DeleteCommand(int index) {
+        super(false);
         this.index = index;
     }
 
@@ -33,21 +34,20 @@ public class DeleteCommand extends Command {
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.
      * @param storage The Storage dealing with loading tasks from the file and saving tasks in the file.
-     * @return The delete-message.
      * @throws DukeException If TaskList is empty, or if index specified is out-of-bounds.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.isEmpty()) {
-            throw new DukeException("You currently have no tasks in your list to delete.");
+            throw new DukeException("\tYou currently have no tasks in your list to delete.");
         } else {
             try {
                 Task deletedTask = tasks.deleteTask(index);
                 int size = tasks.getSize();
+                ui.showDelete(deletedTask, size);
                 storage.save(tasks.saveToStorage());
-                return ui.showDelete(deletedTask, size);
             } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Task number does not exist!");
+                throw new DukeException("\tTask number does not exist!");
             }
         }
     }
