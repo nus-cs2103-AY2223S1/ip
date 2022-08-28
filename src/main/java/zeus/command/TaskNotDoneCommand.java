@@ -37,10 +37,8 @@ public class TaskNotDoneCommand extends Command {
         }
         taskList.setTaskNotDone(this.idx);
 
-        ui.generateLine();
-        ui.printFormatted("OK, I've marked this task as not done yet:");
-        System.out.println("\t   " + taskList.getTask(this.idx));
-        ui.generateLine();
+        ui.addMessageToResponse("OK, I've marked this task as not done yet:\n");
+        ui.addMessageToResponse("\t   " + taskList.getTask(this.idx));
 
         storage.saveTasksToDisk(taskList.getTaskList());
     }

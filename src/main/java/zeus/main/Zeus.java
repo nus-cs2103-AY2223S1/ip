@@ -8,48 +8,38 @@ import zeus.exception.ZeusException;
  */
 public class Zeus {
 
+    private static final String filePath = "data/tasks.txt";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private boolean isExit = false;
 
     /**
      * Constructor of chatbot class.
      */
-    public Zeus(String filePath) {
+    public Zeus() {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (ZeusException e) {
-            ui.showLoadingError();
+            System.out.println(e.getMessage());
             tasks = new TaskList();
         }
     }
 
-    private void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.generateLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (ZeusException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.generateLine();
-            }
+    public String getResponse(String input) {
+        if (isExit) {
+            return "You have exited.";
         }
-    }
-
-    /**
-     * Main method that initialises chatbot and starts the chat.
-     *
-     * @param args a String array of input arguments
-     */
-    public static void main(String[] args) {
-        new Zeus("data/tasks.txt").run();
+        try {
+            ui.newResponse();
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+            return ui.getResponse();
+        } catch (ZeusException e) {
+            return e.getMessage();
+        }
     }
 }

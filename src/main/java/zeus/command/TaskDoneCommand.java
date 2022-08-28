@@ -16,7 +16,7 @@ public class TaskDoneCommand extends Command {
     /**
      * Constructor for TaskDoneCommand.
      *
-     * @param idx
+     * @param idx Index of task in task list to be marked as Done
      */
     public TaskDoneCommand(int idx) {
         this.idx = idx;
@@ -37,10 +37,8 @@ public class TaskDoneCommand extends Command {
         }
         taskList.setTaskDone(this.idx);
 
-        ui.generateLine();
-        ui.printFormatted("Nice! I've marked this task as done:");
-        System.out.println("\t   " + taskList.getTask(this.idx));
-        ui.generateLine();
+        ui.addMessageToResponse("Nice! I've marked this task as done:\n");
+        ui.addMessageToResponse("\t   " + taskList.getTask(this.idx));
 
         storage.saveTasksToDisk(taskList.getTaskList());
     }

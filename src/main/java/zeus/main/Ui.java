@@ -1,7 +1,6 @@
 package zeus.main;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import zeus.task.Task;
 
@@ -10,37 +9,57 @@ import zeus.task.Task;
  */
 public class Ui {
 
-    private Scanner scanner;
+    private StringBuilder response;
 
     /**
      * Constructor of Ui class.
      */
     public Ui() {
-        this.scanner = new Scanner(System.in);
+        this.response = new StringBuilder();
     }
 
     /**
-     * Print message to indicated task is added and size of task list.
+     * Initialises a new output.
+     */
+    public void newResponse() {
+        this.response.setLength(0);
+    }
+
+    /**
+     * Returns String of output.
+     *
+     * @return String of output
+     */
+    public String getResponse() {
+        return this.response.toString();
+    }
+
+    private void addToResponse(String s) {
+        this.response.append(s);
+    }
+
+    /**
+     * Prints message to indicate task is added and size of task list.
      *
      * @param task Task to be added
      * @param size Size of list after task is added
      */
     public void printAddTask(Task task, int size) {
-        printFormatted("Got it. I've added this task:");
-        printFormatted("  " + task);
-        printFormatted("Now you have " + size + " tasks in the list.");
+        addToResponse("Very well. Your task has been added:\n");
+        addToResponse("\t" + task + "\n");
+        addToResponse("Now you have " + size + " tasks in the list.\n");
     }
 
     /**
-     * Print message to indicated task is deleted and size of task list.
+     * Prints message to indicated task is deleted and size of task list.
      *
      * @param task Task to be deleted
      * @param size Size of list after task is deleted
      */
     public void printDeleteTask(Task task, int size) {
-        printFormatted("Noted. I've removed this task:");
-        printFormatted("  " + task);
-        printFormatted("Now you have " + size + " tasks in the list.");
+        addToResponse("Very well. I've removed this task:\n");
+        addToResponse("  " + task + "\n");
+        addToResponse("Now you have " + size + " tasks in the list.\n");
     }
 
     /**
@@ -49,11 +68,11 @@ public class Ui {
      * @param taskList ArrayList containing tasks.
      */
     public void printList(ArrayList<Task> taskList) {
-        printFormatted("Here are the tasks in your list:");
+        addToResponse("These are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
             Task t = taskList.get(i);
-            String currLine = "\t " + (i + 1) + "." + t;
-            System.out.println(currLine);
+            String currLine = "\t " + (i + 1) + "." + t + "\n";
+            addToResponse(currLine);
         }
     }
 
@@ -63,71 +82,28 @@ public class Ui {
      * @param taskList ArrayList of tasks matching user search
      */
     public void printMatchingTasks(ArrayList<Task> taskList) {
-        printFormatted("Here are the matching tasks in your list:");
+        addToResponse("These are the matching tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
             Task t = taskList.get(i);
-            String currLine = "\t " + (i + 1) + "." + t;
-            System.out.println(currLine);
+            String currLine = "\t " + (i + 1) + "." + t + "\n";
+            addToResponse(currLine);
         }
     }
 
 
     /**
-     * Prints text to welcome user.
+     * Adds exit message to response.
      */
-    public void showWelcome() {
-        generateLine();
-        printFormatted("Hello! I'm Zeus");
-        printFormatted("What can I do for you?");
-        generateLine();
+    public void addExitMessage() {
+        addToResponse("It has been a pleasure. I’m sure you’ll be coming back soon enough.");
     }
 
-    /**
-     * Prints exit message for user.
-     */
-    public void exitMessage() {
-        printFormatted("Bye. Hope to see you again soon!");
-    }
 
     /**
-     * Prints line.
+     * Adds message to response.
      */
-    public void generateLine() {
-        System.out.println("\t____________________________________________________________");
-    }
-
-    /**
-     * Adds tab before message
-     *
-     * @param message String message to format
-     */
-    public void printFormatted(String message) {
-        System.out.println("\t " + message);
-    }
-
-    /**
-     * Reads line using Scanner.
-     *
-     * @return String representing the line read
-     */
-    public String readCommand() {
-        return this.scanner.nextLine();
-    }
-
-    /**
-     * Print error message formatted.
-     *
-     * @param message Error message to be printed
-     */
-    public void showError(String message) {
-        printFormatted(message);
-    }
-
-    /**
-     * Print error message for file loading errors.
-     */
-    public void showLoadingError() {
-        System.out.println("Error loading file.");
+    public void addMessageToResponse(String message) {
+        addToResponse(message);
     }
 
 }
