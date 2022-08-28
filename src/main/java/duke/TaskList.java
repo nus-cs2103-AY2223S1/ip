@@ -52,4 +52,22 @@ public class TaskList {
         t.setMarked(b);
         return tasks;
     }
+
+    /**
+     * Returns a list of tasks from the task list that contain the given keyword(s).
+     *
+     * @param keyword The given keyword(s)
+     * @return The list of matching tasks.
+     */
+    public ArrayList<Task> getMatchingTasks(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task t = tasks.get(i);
+            String s = t.getDescription();
+            if (s.contains(keyword)) {
+                matchingTasks.add(t);
+            }
+        }
+        return matchingTasks;
+    }
 }

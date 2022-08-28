@@ -17,7 +17,7 @@ public abstract class Task {
     public abstract String getType();
     public abstract LocalDate getDate();
 
-    public String getTask() {
+    public String getDescription() {
         return description;
     }
 

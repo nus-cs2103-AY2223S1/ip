@@ -108,7 +108,7 @@ public class Storage {
         FileWriter fw = new FileWriter(FILEPATH, true);
         String type = t.getType();
         String marked = t.getMarked() ? "X" : " ";
-        String description = t.getTask();
+        String description = t.getDescription();
         LocalDate date = t.getDate();
 
         String dateString = date == null ? "" : date.toString();
