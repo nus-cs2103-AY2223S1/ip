@@ -1,11 +1,8 @@
 package utils;
 
-import tasks.Deadline;
-import tasks.Task;
-import tasks.Todo;
-import tasks.Event;
-import tasks.ToDoList;
-import utils.Storage;
+import bobthebot.tasks.Deadline;
+import bobthebot.tasks.Task;
+import bobthebot.utils.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

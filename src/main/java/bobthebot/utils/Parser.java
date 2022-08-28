@@ -1,11 +1,18 @@
-package utils;
+package bobthebot.utils;
 
-import tasks.ToDoList;
-import exceptions.BobException;
+import bobthebot.tasks.ToDoList;
 
+/**
+ * Parser class which primarily handles the logic of how the handle the input.
+ * */
 public class Parser {
-
-    public void parseCommand(String command, ToDoList list) throws BobException {
+    /**
+     * Function which takes in the user's command and handles the logic of the output.
+     * @param command A String containing the user's input.
+     * @param list The Todo List which the command will act on.
+     *
+     * */
+    public void parseCommand(String command, ToDoList list) {
         if (command.toLowerCase().equals("list")) {
             Ui.listMessage(list);
         } else if (command.startsWith("mark")) {

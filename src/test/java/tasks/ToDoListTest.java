@@ -1,9 +1,9 @@
 package tasks;
 
-import tasks.Task;
-import tasks.Todo;
-import tasks.ToDoList;
-import utils.Storage;
+import bobthebot.tasks.Task;
+import bobthebot.tasks.Todo;
+import bobthebot.tasks.ToDoList;
+import bobthebot.utils.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
