@@ -1,12 +1,13 @@
 package dukeprogram;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import dukeprogram.command.Command;
+import dukeprogram.command.HomePageCommand;
 import dukeprogram.facilities.TaskList;
 import dukeprogram.storage.SaveManager;
-import dukeprogram.ui.UserInterface;
-import exceptions.KeyNotFoundException;
-import utilities.SerializedNamesFormatter;
+
 
 /**
  * This is the main Duke Program
@@ -14,85 +15,61 @@ import utilities.SerializedNamesFormatter;
 public class Duke {
     private static User user;
 
+    private static Command currentContext;
+
+    private static final ArrayList<String> responseLog = new ArrayList<>();
+
+
     /**
-     * Runs the main program.
-     * @param args
+     * Begins the Duke program from GUI
+     * @return the welcoming message of the beginning of the program
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    public static String[] start() {
+        currentContext = new HomePageCommand();
+        return new String[] { currentContext.onInvoke().getDisplayText() };
+    }
 
-        String userName = UserInterface.askForInput("Who are you?");
 
-        if (SaveManager.deserialize(
-                SerializedNamesFormatter.createFileNameForUser(userName)
-        )) {
-            user = loadCurrentUser();
-        } else {
-            beginNewUser(userName);
-        }
+    /**
+     * Gets responses from Duke
+     * @param input the input to hand to Duke
+     * @return all the responses from Duke
+     */
+    public static String[] getResponses(String input) {
+        InternalAction internalAction = currentContext.onParse(input);
+        responseLog.add(internalAction.getDisplayText());
+        internalAction.doRunnable();
+        String[] responses = responseLog.stream().filter(x -> !x.equals("")).toArray(String[]::new);
+        responseLog.clear();
 
-        initialiseFacilities();
+        return responses;
+    }
 
-        UserInterface.advanceLocation("Home");
 
-        //main loop
-        UserInterface.requestCommands();
-
-        // on exit
-        UserInterface.retreatLocation();
-        UserInterface.printInStyle("Goodbye! Hope to see you again soon!");
-
+    /**
+     * Exits the current state
+     */
+    public static void exitCurrentState() {
         try {
-            SaveManager.serialize(SerializedNamesFormatter.createFileNameForUser(userName));
+            SaveManager.serialize("saveFile");
         } catch (IOException e) {
-            UserInterface.printInStyle(e.getMessage());
+            responseLog.add("Wait... I had some issues saving your progress");
         }
+        currentContext = currentContext.onExit();
+        InternalAction internalAction = currentContext.onInvoke();
+        responseLog.add(internalAction.getDisplayText());
+        internalAction.doRunnable();
     }
 
     /**
-     * Loads the current user from existing deserialized data
-     * @return The User profile that has been loaded
+     * Sets the current state
+     * @param state the state to be in
      */
-    private static User loadCurrentUser() {
-        try {
-            user = SaveManager.load("user");
-            UserInterface.printInStyle(String.format("Welcome back %s", user.getName()));
-        } catch (KeyNotFoundException e) {
-            UserInterface.printInStyle(
-                    "Hmm...",
-                    "I can't seem to remember your name. Can you remind me?"
-            );
-            String userName = UserInterface.askForInput("What is your name?");
-            user.setName(userName);
-            SaveManager.save("user", user);
-        }
-        return user;
-    }
-
-    /**
-     * Begins a new user profile
-     * @param userName the user's name that the profile is created for
-     */
-    private static void beginNewUser(String userName) {
-        UserInterface.printInStyle(
-                String.format("This is the first time we've met, %s!", userName),
-                "Nice to meet you!"
-        );
-        user = new User(userName);
-
-        SaveManager.save("user", user);
-    }
-
-    /**
-     * Initialises the facilities of the program
-     */
-    private static void initialiseFacilities() {
-        TaskList.initialise();
+    public static void setState(Command state) {
+        currentContext = state;
+        InternalAction internalAction = currentContext.onInvoke();
+        responseLog.add(internalAction.getDisplayText());
+        internalAction.doRunnable();
     }
 
     /**

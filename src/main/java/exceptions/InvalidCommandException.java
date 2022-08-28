@@ -1,7 +1,7 @@
 package exceptions;
 
 import dukeprogram.UiMessage;
-import dukeprogram.commands.Command;
+import dukeprogram.command.Command;
 
 /**
  * InvalidCommandException is thrown when no such command is valid
