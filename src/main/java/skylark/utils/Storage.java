@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import skylark.main.SkylarkException;
+import skylark.skylark.SkylarkException;
 import skylark.task.Deadline;
 import skylark.task.Event;
 import skylark.task.Task;

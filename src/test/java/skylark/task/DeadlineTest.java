@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import skylark.main.SkylarkException;
+import skylark.skylark.SkylarkException;
 
 public class DeadlineTest {
 

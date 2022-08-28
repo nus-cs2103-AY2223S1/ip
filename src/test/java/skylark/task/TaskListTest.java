@@ -9,7 +9,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import skylark.main.SkylarkException;
+import skylark.skylark.SkylarkException;
 
 public class TaskListTest {
 

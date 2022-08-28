@@ -1,4 +1,4 @@
-package skylark.main;
+package skylark.skylark;
 
 import java.io.File;
 import java.util.Scanner;
