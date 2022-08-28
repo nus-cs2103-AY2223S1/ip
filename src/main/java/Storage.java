@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class SavingFiles {
+public class Storage {
 
     /**
      * Adds tasks from tasks array in Duke.main into a file.

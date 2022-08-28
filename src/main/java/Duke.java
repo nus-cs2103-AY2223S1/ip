@@ -7,7 +7,7 @@ public class Duke {
     public static void main(String[] args) throws IOException {
         Ui newUser = new Ui();
         newUser.userInput();
-        SavingFiles.saveFile(newUser.getTaskArr(), "duke.txt");
+        Storage.saveFile(newUser.getTaskArr(), "duke.txt");
     }
 
 }
