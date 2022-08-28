@@ -38,7 +38,7 @@ public class Event extends Task {
      * @return An identical Event object that is marked as complete.
      */
     protected Event performTask() {
-        return new Event(this.getDesc(), 'X', this.getTaskType());
+        return new Event(getDesc(), 'X', getTaskType());
     }
 
     /**
@@ -46,6 +46,6 @@ public class Event extends Task {
      * @return An identical Event object that is marked as incomplete.
      */
     protected Event undoTask() {
-        return new Event(this.getDesc(), this.getTaskType());
+        return new Event(getDesc(), getTaskType());
     }
 }

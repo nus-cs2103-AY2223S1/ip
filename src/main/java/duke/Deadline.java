@@ -32,7 +32,7 @@ public class Deadline extends Task {
      * @return An identical Deadline object that is marked as complete.
      */
     protected Deadline performTask() {
-        return new Deadline(this.getDesc(), 'X', this.getTaskType());
+        return new Deadline(getDesc(), 'X', getTaskType());
     }
 
     /**
@@ -40,6 +40,6 @@ public class Deadline extends Task {
      * @return An identical Deadline object that is marked as incomplete.
      */
     protected Deadline undoTask() {
-        return new Deadline(this.getDesc(), this.getTaskType());
+        return new Deadline(getDesc(), getTaskType());
     }
 }
