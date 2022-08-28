@@ -3,6 +3,7 @@ package duke;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private final List<Task> tasks;
@@ -46,5 +47,12 @@ public class TaskList {
             output.append(it.nextIndex() + 1).append(" ").append(it.next()).append("\n");
         }
         return output.toString();
+    }
+
+    protected String find(String term) {
+        List<Task> filteredTaskList = tasks.stream()
+                .filter(task -> task.getDesc().contains(term))
+                .collect(Collectors.toList());
+        return new TaskList(filteredTaskList).enumerateList();
     }
 }

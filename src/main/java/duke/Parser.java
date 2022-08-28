@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Parser {
 
     enum Keyword {
-        bye, list, mark, unmark, todo, deadline, event, delete
+        bye, list, mark, unmark, todo, deadline, event, delete, find
     }
 
     enum TaskKeyword {
