@@ -29,7 +29,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", Event.TASK_SYMBOL, super.toString(), this.getFormattedDate());
+        return String.format("[%s]%s (by: %s)", Event.TASK_SYMBOL, super.toString(), getFormattedDate());
     }
 
     /**
@@ -47,11 +47,11 @@ public class Event extends Task {
      */
     @Override
     public String getDate() {
-        return this.at;
+        return at;
     }
 
     private String getFormattedDate() {
-        LocalDate date = Parser.parseDate(this.at);
+        LocalDate date = Parser.parseDate(at);
         return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
     }
 }

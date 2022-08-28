@@ -48,7 +48,7 @@ public class Ui {
      */
     public void showGoodbye() {
         show(Messages.MESSAGE_GOODBYE);
-        this.in.close();
+        in.close();
     }
 
     /**

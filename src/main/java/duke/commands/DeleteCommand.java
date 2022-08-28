@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int taskNum) {
         super();
-        this.taskIndex = taskNum - 1;
+        taskIndex = taskNum - 1;
     }
 
     /**
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task deletedTask = taskList.deleteTask(this.taskIndex);
+        Task deletedTask = taskList.deleteTask(taskIndex);
         storage.save(taskList);
         ui.showTaskRemoved(deletedTask);
     }

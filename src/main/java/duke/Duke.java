@@ -19,13 +19,13 @@ public class Duke {
      * Constructor for a Duke.
      */
     public Duke() {
-        this.ui = new Ui();
-        this.storage = new Storage();
+        ui = new Ui();
+        storage = new Storage();
         try {
-            this.tasks = new TaskList(this.storage.load());
+            tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            this.ui.show(e.getMessage());
-            this.tasks = new TaskList();
+            ui.show(e.getMessage());
+            tasks = new TaskList();
         }
     }
 
@@ -33,16 +33,16 @@ public class Duke {
      * Runs the Duke chatbot.
      */
     public void run() {
-        this.ui.showGreeting();
+        ui.showGreeting();
         boolean isBye = false;
         while (!isBye) {
             try {
-                String input = this.ui.readInput();
+                String input = ui.readInput();
                 Command command = Parser.parse(input);
-                command.execute(this.tasks, this.ui, this.storage);
+                command.execute(tasks, ui, storage);
                 isBye = command.isBye();
             } catch (DukeException e) {
-                this.ui.show(e.getMessage());
+                ui.show(e.getMessage());
             }
         }
     }

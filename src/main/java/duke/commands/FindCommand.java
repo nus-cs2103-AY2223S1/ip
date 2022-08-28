@@ -40,7 +40,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ArrayList<Task> matchingTasks = taskList.getMatchingTasks(this.keyword);
+        ArrayList<Task> matchingTasks = taskList.getMatchingTasks(keyword);
         ui.showMatchingTasks(matchingTasks);
     }
 }

@@ -29,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", Deadline.TASK_SYMBOL, super.toString(), this.getFormattedDate());
+        return String.format("[%s]%s (by: %s)", Deadline.TASK_SYMBOL, super.toString(), getFormattedDate());
     }
 
     /**
@@ -47,11 +47,11 @@ public class Deadline extends Task {
      */
     @Override
     public String getDate() {
-        return this.by;
+        return by;
     }
 
     private String getFormattedDate() {
-        LocalDate date = Parser.parseDate(this.by);
+        LocalDate date = Parser.parseDate(by);
         return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
     }
 }

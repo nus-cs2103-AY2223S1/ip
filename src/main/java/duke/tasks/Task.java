@@ -21,7 +21,7 @@ public abstract class Task {
      * @return "X" if the Task is done or an empty String is the Task is not done.
      */
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " ");
+        return (isDone ? "X" : " ");
     }
 
     /**
@@ -38,7 +38,7 @@ public abstract class Task {
      * @return The description of the Task.
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**
@@ -47,7 +47,7 @@ public abstract class Task {
      * @return True if the description of the Task contains the keyword.
      */
     public boolean hasKeyword(String keyword) {
-        return this.description.contains(keyword);
+        return description.contains(keyword);
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), this.description);
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
 
     /**

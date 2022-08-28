@@ -43,7 +43,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Event event = new Event(this.description, this.at);
+        Event event = new Event(description, at);
         taskList.addTask(event);
         storage.save(taskList);
         ui.showTaskAdded(event);

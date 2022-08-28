@@ -43,7 +43,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Deadline deadline = new Deadline(this.description, this.by);
+        Deadline deadline = new Deadline(description, by);
         taskList.addTask(deadline);
         storage.save(taskList);
         ui.showTaskAdded(deadline);

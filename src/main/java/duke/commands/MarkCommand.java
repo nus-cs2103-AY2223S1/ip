@@ -19,7 +19,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(int taskNum) {
         super();
-        this.taskIndex = taskNum - 1;
+        taskIndex = taskNum - 1;
     }
 
     /**
@@ -41,7 +41,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task markedTask = taskList.changeTaskStatus(this.taskIndex, true);
+        Task markedTask = taskList.changeTaskStatus(taskIndex, true);
         storage.save(taskList);
         ui.showTaskDone(markedTask);
     }

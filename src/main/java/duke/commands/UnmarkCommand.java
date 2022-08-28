@@ -19,7 +19,7 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(int taskNum) {
         super();
-        this.taskIndex = taskNum - 1;
+        taskIndex = taskNum - 1;
     }
 
     /**
@@ -41,7 +41,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task unmarkedTask = taskList.changeTaskStatus(this.taskIndex, false);
+        Task unmarkedTask = taskList.changeTaskStatus(taskIndex, false);
         storage.save(taskList);
         ui.showTaskNotDone(unmarkedTask);
     }

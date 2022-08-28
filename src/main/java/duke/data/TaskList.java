@@ -24,7 +24,7 @@ public class TaskList {
      * Constructor for a TaskList when there is an error loading the list of tasks.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -32,7 +32,7 @@ public class TaskList {
      * @return The number of tasks in the list.
      */
     public int numTasks() {
-        return this.tasks.size();
+        return tasks.size();
     }
 
     /**
@@ -41,7 +41,7 @@ public class TaskList {
      * @return The Task at the given index on the list.
      */
     public Task getTask(int index) {
-        return this.tasks.get(index);
+        return tasks.get(index);
     }
 
     /**
@@ -52,8 +52,8 @@ public class TaskList {
      * @return The Task that has been marked as done or not done.
      */
     public Task changeTaskStatus(int index, boolean isDone) throws DukeException {
-        if (index >= 0 && index < this.tasks.size()) {
-            Task task = this.tasks.get(index);
+        if (index >= 0 && index < tasks.size()) {
+            Task task = tasks.get(index);
             task.changeStatus(isDone);
             return task;
         } else {
@@ -66,7 +66,7 @@ public class TaskList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -75,9 +75,9 @@ public class TaskList {
      * @return The Task that has been deleted.
      */
     public Task deleteTask(int index) throws DukeException {
-        if (index >= 0 && index < this.tasks.size()) {
-            Task task = this.tasks.get(index);
-            this.tasks.remove(task);
+        if (index >= 0 && index < tasks.size()) {
+            Task task = tasks.get(index);
+            tasks.remove(task);
             return task;
         } else {
             throw new DukeException(Messages.MESSAGE_NO_SUCH_TASK);
@@ -91,7 +91,7 @@ public class TaskList {
      */
     public ArrayList<Task> getMatchingTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : this.tasks) {
+        for (Task task : tasks) {
             if (task.hasKeyword(keyword)) {
                 matchingTasks.add(task);
             }
