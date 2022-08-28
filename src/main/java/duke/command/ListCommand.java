@@ -13,9 +13,10 @@ public class ListCommand extends Command {
      * @param taskList TaskList object containing ArrayList of Task.
      * @param ui Ui object.
      * @param storage Storage object.
+     * @return String.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showListMessage(taskList.enumerateList());
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.showListMessage(taskList.enumerateList());
     }
 }

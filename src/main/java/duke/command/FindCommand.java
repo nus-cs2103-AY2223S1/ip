@@ -16,9 +16,17 @@ public class FindCommand extends Command {
         this.wanted = wanted;
     }
 
+    /**
+     * Find the list of wanted tasks and displays them.
+     *
+     * @param taskList TaskList object containing ArrayList of Task.
+     * @param ui Ui object.
+     * @param storage Storage object.
+     * @return String.
+     */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         ArrayList<Integer> ls = taskList.findListOfTaskIDs(wanted);
-        ui.showFoundTask(taskList.getSpecificListOfTasks(ls));
+        return ui.showFoundTask(taskList.getSpecificListOfTasks(ls));
     }
 }

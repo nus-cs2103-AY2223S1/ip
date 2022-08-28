@@ -20,16 +20,18 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
+
     /**
      * Adds the task to the list and displays a message.
      *
      * @param taskList TaskList object containing ArrayList of Task.
      * @param ui Ui object.
      * @param storage Storage object.
+     * @return String.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addToList(task);
-        ui.showAddingTaskMessage(task, taskList.getSize());
+        return ui.showAddingTaskMessage(task, taskList.getSize());
     }
 }

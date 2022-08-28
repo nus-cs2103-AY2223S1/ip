@@ -9,21 +9,20 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+
 /** Contains storage, tasks and ui to help interact with user and execute commands */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-
     /**
      * Initialises the Storage object with the saved tasks.
      *
-     * @param filePath
      * @throws IOException
      */
-    public Duke(String filePath) throws IOException {
+    public Duke() throws IOException {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("data/tasks.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -39,7 +38,7 @@ public class Duke {
      *
      * @throws IOException
      */
-    public void run() throws IOException {
+ /*   public void run() throws IOException {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
@@ -59,7 +58,23 @@ public class Duke {
     }
 
     public static void main(String[] args) throws IOException {
-        new Duke("data/tasks.txt").run();
-    }
+        new Duke().run();
+    }*/
 
+    /**
+     * Displays response in GUI.
+     * @param input is the command input.
+     * @return the response for the command.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            if (c.isExit()) {
+               storage.updateFile(tasks);
+            }
+            return c.execute(tasks,ui, storage);
+        } catch (DukeException | IOException e) {
+            return e.getMessage();
+        }
+    }
 }

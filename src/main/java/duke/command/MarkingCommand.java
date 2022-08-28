@@ -24,15 +24,16 @@ public class MarkingCommand extends Command {
      * @param taskList TaskList object containing ArrayList of Task.
      * @param ui Ui object.
      * @param storage Storage object.
+     * @return String.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         if (wantsToMark == true) {
             taskList.markTheTask(taskID);
-            ui.showMarkTaskMessage(taskList.getTask(taskID));
+            return ui.showMarkTaskMessage(taskList.getTask(taskID));
         } else {
             taskList.unmarkTheTask(taskID);
-            ui.showUnmarkTaskMessage(taskList.getTask(taskID));
+            return ui.showUnmarkTaskMessage(taskList.getTask(taskID));
         }
     }
 }

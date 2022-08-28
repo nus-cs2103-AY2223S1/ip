@@ -55,10 +55,10 @@ public class Ui {
      * @param t Task that has been removed.
      * @param size Size of taskList.
      */
-    public void showRemovingTaskMessage(Task t, int size) {
-        showToUser("\nNoted. I've removed this task:\n  "
+    public String showRemovingTaskMessage(Task t, int size) {
+        return "\nNoted. I've removed this task:\n  "
                 + t.toString()
-                + "\n Now you have " + size + " tasks in the list\n");
+                + "\n Now you have " + size + " tasks in the list\n";
     }
 
     /**
@@ -67,10 +67,10 @@ public class Ui {
      * @param t Task that has been added.
      * @param size Size of taskList.
      */
-    public void showAddingTaskMessage(Task t, int size) {
-        showToUser(" Got it. I've added this task:\n  "
+    public String showAddingTaskMessage(Task t, int size) {
+        return " Got it. I've added this task:\n  "
                 + t.toString()
-                + "\n Now you have " + size + " tasks in the list");
+                + "\n Now you have " + size + " tasks in the list";
     }
 
     public void showLoadingError(DukeException e) {
@@ -82,10 +82,10 @@ public class Ui {
      *
      * @param t Task that has been marked.
      */
-    public void showMarkTaskMessage(Task t) {
-        showToUser(" Nice! I've marked this task as done:\n"
+    public String showMarkTaskMessage(Task t) {
+        return " Nice! I've marked this task as done:\n"
                 + "  [X] "
-                + t.getDescription());
+                + t.getDescription();
     }
 
     /**
@@ -93,10 +93,10 @@ public class Ui {
      *
      * @param t Task that has been unmarked.
      */
-    public void showUnmarkTaskMessage(Task t) {
-        showToUser(" OK, I've marked this task as not done yet:\n"
+    public String showUnmarkTaskMessage(Task t) {
+        return " OK, I've marked this task as not done yet:\n"
                 + "  [ ] "
-                + t.getDescription());
+                + t.getDescription();
     }
 
     /**
@@ -104,15 +104,15 @@ public class Ui {
      *
      * @param s String of tasks.
      */
-    public void showListMessage(String s) {
-        showToUser(" Here are the tasks in your list:" + s);
+    public String showListMessage(String s) {
+        return " Here are the tasks in your list:" + s;
     }
 
     /**
      * Display message to user, showing exit message.
      */
-    public void showExitMessage() {
-        showToUser(" Bye ! hope to see you soon.");
+    public String showExitMessage() {
+        return " Bye ! hope to see you soon.";
     }
 
     /**
@@ -120,7 +120,7 @@ public class Ui {
      *
      * @param s String of located tasks.
      */
-    public void showFoundTask(String s) {
-        showToUser(" Here are the matching tasks in your list:" + s);
+    public String showFoundTask(String s) {
+        return " Here are the matching tasks in your list:" + s;
     }
 }

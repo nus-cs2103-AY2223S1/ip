@@ -9,8 +9,10 @@ public abstract class Command {
 
     /**
      * Executes the command.
+     *
+     * @return String.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
 
     /**
      * Returns True if is a exit command. False otherwise.
