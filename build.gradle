@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "skylark.main.Skylark"
+    mainClassName = "skylark.main.Launcher"
 }
 
 shadowJar {

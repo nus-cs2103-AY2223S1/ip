@@ -329,7 +329,7 @@ public abstract class Command {
 
     private static class UnknownCommand extends Command {
         /** Text that is displayed when the user issues an unknown command. */
-        private static final String TEXT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        private static final String TEXT = "I'm sorry, but I don't know what that means.";
 
         /**
          * Returns a UnknownCommand object.

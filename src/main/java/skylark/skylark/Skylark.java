@@ -9,7 +9,7 @@ import skylark.task.TaskList;
 public class Skylark {
 
     /** Text that is shown to the user when they first access Skylark. */
-    private static final String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";
+    public static final String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";
 
     /** Represents the TaskList object that stores the list of Tasks created by the user. */
     private final TaskList taskList;

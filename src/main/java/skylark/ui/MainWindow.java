@@ -27,9 +27,16 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initialises the MainWindow by setting the scroll pane with the height of the container.
+     * Displays a Hello message to the user.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getSkylarkDialog(Skylark.TEXT_HELLO, dukeImage)
+        );
     }
 
     public void setSkylark(Skylark skylark) {
@@ -43,11 +50,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        // String response = duke.getResponse(input);
-        String response = "Hello world!";
+        String response = skylark.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getSkylarkDialog(response, dukeImage)
         );
         userInput.clear();
     }
