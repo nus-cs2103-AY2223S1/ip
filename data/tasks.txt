@@ -2,4 +2,3 @@
 [D][ ] groceries (by: 12/12/2022 1200)
 [T][ ] shopping
 [D][ ] laundry (by: 12/12/2222 1500)
-[D][ ] laundry (by: 12/12/2222 1500)

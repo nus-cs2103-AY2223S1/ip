@@ -37,7 +37,7 @@ public class Duke {
         boolean bye = false;
         Scanner scanner = new Scanner(System.in);
         EventHandler handler = new EventHandler(this.taskList, this.userInterface);
-        System.out.println("Hello my name is uncle raymond");
+        System.out.println("Hello I am Duke!");
 
         while (!bye) {
             String input = scanner.nextLine();
