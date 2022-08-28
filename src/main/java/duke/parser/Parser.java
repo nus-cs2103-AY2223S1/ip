@@ -23,7 +23,6 @@ import duke.task.Todo;
 
 /**
  * Parser for the Duke program.
- * @author neosunhan
  */
 public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");

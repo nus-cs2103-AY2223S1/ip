@@ -2,11 +2,9 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to mark a task as not done.
- * @author neosunhan
  */
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
@@ -18,9 +16,9 @@ public class UnmarkTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.markTaskAsNotDone(taskIndex);
-        ui.showUnmarkTask(tasks.getTask(taskIndex));
         storage.write(tasks);
+        return "Nice! I've marked this task as not done yet:\n\t" + tasks.getTask(taskIndex);
     }
 }

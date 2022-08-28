@@ -3,11 +3,9 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to delete a task from the list of tasks.
- * @author neosunhan
  */
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -19,9 +17,9 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task t = tasks.deleteTask(taskIndex);
-        ui.showDeleteTask(t, tasks);
+    public String execute(TaskList tasks, Storage storage) {
+        Task del = tasks.deleteTask(taskIndex);
         storage.write(tasks);
+        return "Noted. I've removed this task:\n\t" + del + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

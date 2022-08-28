@@ -8,58 +8,64 @@ import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * App to store and keep track of tasks.
- * @author neosunhan
  */
 public class Duke {
+    public static final Path STORAGE_PATH = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
+
     private final Storage storage;
-    private TaskList tasks;
-    private final Ui ui;
+    private final TaskList tasks;
+    private boolean running;
 
     /**
      * Constructor for Duke.
      * @param filePath Path to storage file.
      */
     public Duke(Path filePath) {
-        this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        storage = new Storage(filePath);
+        tasks = new TaskList();
+        running = true;
+    }
+
+    public Duke() {
+        this(STORAGE_PATH);
+    }
+
+    /**
+     * Attempts to load tasks from storage into the list of tasks.
+     * @return A string representing the outcome of the attempt.
+     */
+    public String loadTasks() {
+        String ret = "Loaded tasks from storage";
         try {
-            this.tasks = new TaskList(storage.load());
+            tasks.loadTasksFromStorage(storage);
         } catch (DukeException e) {
-            this.ui.showLoadingError(e.getMessage());
-            this.tasks = new TaskList();
+            ret = "Error loading tasks from storage: " + e.getMessage();
         }
+        return ret;
     }
 
-    /**
-     * Function to start the app.
-     */
-    public void run() {
-        this.ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = this.ui.readCommand();
-                Command c = Parser.parseCommand(fullCommand);
-                c.execute(this.tasks, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.emptyLine();
+    public String getResponse(String input) {
+        String out;
+        try {
+            Command c = Parser.parseCommand(input);
+            out = c.execute(tasks, storage);
+            if (c.isExit()) {
+                running = false;
             }
+        } catch (DukeException e) {
+            out = "Error: " + e.getMessage();
         }
+        return out;
     }
 
-    /**
-     * Entry point for the Duke class.
-     * @param args Unused parameter.
-     */
-    public static void main(String[] args) {
-        Path storagePath = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
-        new Duke(storagePath).run();
+    public String getWelcome() {
+        return "Hello! I'm Duke.\nWhat can I do for you?";
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 }

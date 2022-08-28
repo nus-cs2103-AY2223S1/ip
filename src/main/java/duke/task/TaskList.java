@@ -2,39 +2,38 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import duke.exception.DukeException;
 import duke.exception.TaskIndexOutOfBoundsException;
 import duke.parser.Parser;
+import duke.storage.Storage;
 
 /**
  * Represents a list of tasks.
- * @author neosunhan
  */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
-     * Constructs a list of tasks from a list of strings stored in the hard disk.
-     * @param taskStrings List of strings, each representing a task.
+     * Loads a list of tasks from storage.
+     * @param storage Hard disk storage that contains tasks.
      */
-    public TaskList(List<String> taskStrings) {
-        this();
+    public void loadTasksFromStorage(Storage storage) {
+        if (size() != 0) {
+            throw new DukeException("Current list of tasks is not empty!");
+        }
+        List<String> taskStrings = storage.read();
         for (String taskStr : taskStrings) {
-            this.tasks.add(Parser.fromStorage(taskStr));
+            tasks.add(Parser.fromStorage(taskStr));
         }
     }
 
-    public List<String> toStorage() {
-        return this.tasks.stream().map(Task::toStorage).collect(Collectors.toList());
-    }
-
     public void addTask(Task t) {
-        this.tasks.add(t);
+        tasks.add(t);
     }
 
     /**
@@ -43,18 +42,18 @@ public class TaskList {
      * @return The deleted task.
      */
     public Task deleteTask(int taskIndex) {
-        if (taskIndex < 1 || taskIndex > this.tasks.size()) {
+        if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new TaskIndexOutOfBoundsException(taskIndex);
         }
-        return this.tasks.remove(taskIndex - 1);
+        return tasks.remove(taskIndex - 1);
     }
 
     public void markTaskAsDone(int taskIndex) {
-        this.getTask(taskIndex).markAsDone();
+        getTask(taskIndex).markAsDone();
     }
 
     public void markTaskAsNotDone(int taskIndex) {
-        this.getTask(taskIndex).markAsNotDone();
+        getTask(taskIndex).markAsNotDone();
     }
 
     /**
@@ -64,8 +63,8 @@ public class TaskList {
      */
     public List<Integer> search(String keyword) {
         ArrayList<Integer> matches = new ArrayList<>();
-        for (int i = 1; i <= this.size(); i++) {
-            if (this.getTask(i).toString().contains(keyword)) {
+        for (int i = 1; i <= size(); i++) {
+            if (getTask(i).toString().contains(keyword)) {
                 matches.add(i);
             }
         }
@@ -75,7 +74,7 @@ public class TaskList {
     public Task getTask(int i) {
         Task t;
         try {
-            t = this.tasks.get(i - 1);
+            t = tasks.get(i - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new TaskIndexOutOfBoundsException(i);
         }
@@ -83,6 +82,6 @@ public class TaskList {
     }
 
     public int size() {
-        return this.tasks.size();
+        return tasks.size();
     }
 }

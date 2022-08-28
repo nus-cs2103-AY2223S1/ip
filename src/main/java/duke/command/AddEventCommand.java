@@ -6,11 +6,9 @@ import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to add an Event to the list of tasks
- * @author neosunhan
  */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "event";
@@ -29,10 +27,10 @@ public class AddEventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task newTask = new Event(this.desc, this.at);
+    public String execute(TaskList tasks, Storage storage) {
+        Task newTask = new Event(desc, at);
         tasks.addTask(newTask);
-        ui.showAddTask(newTask, tasks);
         storage.write(tasks);
+        return "Got it. I've added this task:\n\t" + newTask + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

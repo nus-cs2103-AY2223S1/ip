@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Abstract representation of a task.
- * @author neosunhan
  */
 public abstract class Task {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -19,7 +18,7 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     public String getStatusIcon() {
@@ -27,19 +26,19 @@ public abstract class Task {
     }
 
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void markAsNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     public String toStorage() {
-        return (isDone ? "1" : "0") + "|" + this.description;
+        return (isDone ? "1" : "0") + "|" + description;
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + description;
     }
 }
