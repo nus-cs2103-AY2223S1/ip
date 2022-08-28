@@ -6,8 +6,13 @@ import java.util.Scanner;
 
 public class Storage {
 
-    public Storage(Task[] taskArr, String filePath) throws IOException {
-        saveFile(taskArr, filePath);
+    /**
+     * Constructor for storage class which initiates file saving process to store user input.
+     * @param taskList
+     * @param filePath
+     */
+    public Storage(TaskList taskList, String filePath) throws IOException {
+        saveFile(taskList, filePath);
     }
 
     /**
@@ -15,22 +20,28 @@ public class Storage {
      * A new file will be created if no existing files with the specified pathname
      * exists currently.
      *
-     * @param taskArr A Task array which contains the list of tasks inputted by the user.
+     * @param taskList A Task array which contains the list of tasks inputted by the user.
      * @param pathname The path which the user wants to store their file containing their lists
      *                 of task in.
      * @throws IOException
      */
-    public static void saveFile(Task[] taskArr, String pathname) throws IOException {
+    public static void saveFile(TaskList taskList, String pathname) throws IOException {
 
-        File dukeFile = new File(pathname);
-        dukeFile.createNewFile();
-        Scanner a = new Scanner(dukeFile);;
+        try {
+            Task[] taskArr = taskList.getTaskArr();
 
-        FileWriter fileWriter = new FileWriter(pathname);
-        for (int i = 1; i <= Task.getNumberTasks(); i++) {
-            fileWriter.write(taskArr[i].output() + "\n");
+            File dukeFile = new File(pathname);
+            dukeFile.createNewFile();
+            Scanner a = new Scanner(dukeFile);;
+
+            FileWriter fileWriter = new FileWriter(pathname);
+            for (int i = 1; i <= Task.getNumberTasks(); i++) {
+                fileWriter.write(taskArr[i].output() + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException ioException) {
+            Ui.printFileSavingError();
         }
-        fileWriter.close();
 
     }
 
@@ -46,6 +57,17 @@ public class Storage {
         Scanner s = new Scanner(dukeFile); // create a Scanner using the File as the source
         while (s.hasNext()) {
             System.out.println(s.nextLine());
+        }
+    }
+
+    public static void loadFile(String filePath) throws FileNotFoundException {
+        TaskList taskList = new TaskList();
+        File dukeFile = new File(filePath);
+        Scanner s = new Scanner(dukeFile);
+        int i = 1;
+        while (s.hasNext()) {
+            taskList.getTaskArr()[i] = new Task(s.nextLine());
+            i++;
         }
     }
 }

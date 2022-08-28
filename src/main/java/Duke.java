@@ -6,11 +6,13 @@ import java.util.*;
 public class Duke {
 
     private Ui newUser;
+    private TaskList userTaskList;
     private Storage data;
 
     public Duke(String filePath) throws IOException {
-        newUser = new Ui();
-        data = new Storage(newUser.getTaskArr(), filePath);
+        this.newUser = new Ui();
+        this.userTaskList = newUser.getTaskList();
+        this.data = new Storage(this.userTaskList, filePath);
     }
 
     public static void main(String[] args) throws IOException {

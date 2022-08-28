@@ -6,17 +6,17 @@ public class Ui {
 
     private Parser parser;
 
-    private Task[] taskArr;
+    private TaskList taskList;
 
 
     public Ui() {
         this.parser = new Parser();
         this.parser.userInput();
-        this.taskArr = this.parser.getTaskArr();
+        this.taskList = this.parser.getTaskList();
     }
 
-    public Task[] getTaskArr() {
-        return this.taskArr;
+    public TaskList getTaskList() {
+        return this.taskList;
     }
 
     /**
@@ -29,13 +29,13 @@ public class Ui {
 
     /**
      * Prints list of tasks descriptions that has been added by user.
-     * @param taskArr The array whose elements are the tasks that
+     * @param taskList The array whose elements are the tasks that
      *                the user has added to his task list.
      */
-    public static void printList(Task[] taskArr) {
+    public static void printList(TaskList taskList) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= Task.getNumberTasks(); i++) {
-            System.out.println(i + "." + taskArr[i].output());
+            System.out.println(i + "." + taskList.getTaskArr()[i].output());
         }
     }
 
@@ -100,6 +100,13 @@ public class Ui {
     public static void printUnmark(String type, String name) {
         System.out.println("OK, I've marked this task as not done yet: ");
         System.out.println("[" + type + "][ ] " + name);
+    }
+
+    /**
+     * Prints message displayed when there is an error saving the users input into a file.
+     */
+    public static void printFileSavingError() {
+        System.out.println("Error saving file.");
     }
 
     /**

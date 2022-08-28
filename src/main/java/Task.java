@@ -4,11 +4,17 @@ public class Task {
     private int status;
     public static int numberTasks = 0;
 
+    private String description;
+
     public Task(String name, String type) {
         this.name = name;
         this.type = type;
         this.status = 0;
         numberTasks++;
+    }
+
+    public Task(String description) {
+        this.description = description;
     }
 
     public void mark() {
