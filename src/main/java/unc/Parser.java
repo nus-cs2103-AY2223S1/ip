@@ -10,6 +10,9 @@ import unc.command.MarkCommand;
 import unc.command.TodoCommand;
 import unc.command.UnmarkCommand;
 
+/**
+ * Class to create commands from input strings.
+ */
 public class Parser {
     private enum validInput {
         LIST,
@@ -22,6 +25,13 @@ public class Parser {
         BYE
 
     }
+
+    /**
+     * Reads the user input to translate to valid commands.
+     *
+     * @param input Entire line of user input.
+     * @return Adequate command based on keyword.
+     */
     public static Command parse(String input) {
         String[] words = input.split("\\s+", 2);
         validInput verb = validInput.valueOf(words[0].toUpperCase());
