@@ -1,17 +1,36 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FilterOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListResourceBundle;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
 public class Duke {
 
     private static String indent = "        ";
     private static String divider = " ___________________________________________________________________";
-    private enum taskTypes {TODO, DEADLINE, EVENT}
+    private enum TaskTypes {TODO, DEADLINE, EVENT, TASK}
+    private static final String DUKE_FILEPATH = "data/duke.txt";
+    private static Scanner sFile = null;
+    private static File dukeFile = null;
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
-    private static void addTask(taskTypes taskType, String taskToAdd) throws DukeException.EmptyTaskException {
+    private static void addTask(String taskToAdd) throws DukeException.EmptyTaskException {
+        if (taskToAdd.isBlank()) {
+            throw new DukeException.EmptyTaskException();
+        }
+        TaskTypes taskType = TaskTypes.TASK;
+        if (taskToAdd.contains("todo")) {
+            taskType = TaskTypes.TODO;
+        } else if (taskToAdd.contains("deadline")) {
+            taskType = TaskTypes.DEADLINE;
+        } else if (taskToAdd.contains("event")) {
+            taskType = TaskTypes.EVENT;
+        }
         switch (taskType) {
             case TODO:
                 String task = taskToAdd.substring(5);
@@ -46,22 +65,83 @@ public class Duke {
         }
     }
 
+    private static void writeToFile(String file, String toWrite) throws IOException {
+        try {
+            FileWriter dukeWriter = new FileWriter(file, true);
+            dukeWriter.append(toWrite + "\n");
+            dukeWriter.close();
+        } catch (java.io.IOException e) {
+            throw new java.io.IOException();
+        }
+    }
+
+    private static void removeFromFile(String file, int taskNoToRemove) throws IOException {
+        Scanner s = new Scanner(dukeFile);
+        String toReplace = "";
+        int taskCounter = 0;
+        while (s.hasNextLine()) {
+            String nextTask = s.nextLine();
+            taskCounter++;
+            if (taskCounter != taskNoToRemove) {
+                toReplace = toReplace + nextTask + "\n";
+            }
+        }
+        try {
+            FileWriter dukeWriter = new FileWriter(file);
+            dukeWriter.write(toReplace);
+            dukeWriter.close();
+        } catch (java.io.IOException e) {
+            throw new java.io.IOException();
+        }
+        s.close();
+    }
+
     public static void main(String[] args) {
         System.out.println("\n Hello there!\n"
-                + "\n My name is Zelk, nice to meet you :D\n"
-                + " What can I do for you?\n"
-                + divider);
+                + "\n My name is Zelk, nice to meet you :)\n");
+
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        try {
+            dukeFile = new File(DUKE_FILEPATH);
+            if (dukeFile.createNewFile()) {
+                System.out.println(" A new Task file is created! What can I do for you?\n" + divider);
+            } else {
+                System.out.println(" Your Task file already exists! Welcome back :D\n"
+                        + " What can I do for you today?\n" + divider);
+            }
+            sFile = new Scanner(dukeFile);
+            while (sFile.hasNextLine()) {
+                String nextTask = sFile.nextLine();
+                try {
+                    addTask(nextTask);
+                } catch (DukeException.EmptyTaskException e) {
+                    //Do nothing, ignore empty lines
+                    continue;
+                }
+            }
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
 
         Scanner s = new Scanner(System.in);
+        if (sFile == null) {
+            System.out.println(" ohno, I can't seem to find your Task list :(\n" + divider);
+            return;
+        }
+
         String input = "";
 
         while ((input = s.nextLine()) != null) {
             if (input.equals("bye")) {
                 break;
             } else if (input.equals("list")) {
-                System.out.println(indent + "These are the tasks in your list so far!");
+                System.out.println(indent + "These are the tasks in your list so far!\n"
+                        + indent + "You currently have " + tasks.size() + " tasks in your list:");
                 for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println(indent + (i+1) + ". " + tasks.get(i));
+                    System.out.println(indent + (i + 1) + ". " + tasks.get(i));
                 }
                 System.out.println(divider);
             } else if (input.contains("unmark")) {
@@ -79,34 +159,29 @@ public class Duke {
             } else if (input.contains("delete")) {
                 Integer taskNo = Integer.valueOf(input.substring(7));
                 Task taskToRemove = tasks.get(taskNo - 1);
-                System.out.println(indent + "got it, i'll remove this task from your list: \n"
-                        + indent + " " + taskToRemove);
+                System.out.println(indent + "got it, removing this task from your list... \n"
+                        + indent + "   " + taskToRemove);
                 tasks.remove(taskToRemove);
+                try {
+                    removeFromFile(DUKE_FILEPATH, taskNo);
+                } catch (java.io.IOException e) {
+                    System.out.println(indent + "Sorry, I can't seem to remove this task from your Task list :(\n" + divider);
+                    continue;
+                }
                 System.out.println(indent + "You now have " + tasks.size() + " total tasks in your list \n"
                         + divider);
             } else {
-                if (input.contains("todo")) {
+                if (input.contains("todo") || input.contains("deadline") || input.contains("event")) {
                     try {
-                        addTask(taskTypes.TODO, input);
+                        addTask(input);
+                        writeToFile(DUKE_FILEPATH, input);
                     } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
-                        System.out.println(indent + "oops, the description of your todo seems to be incomplete!\n"
+                        System.out.println(indent + "oops, the description of your task seems to be incomplete!\n"
                                 + divider);
                         continue;
-                    }
-                } else if (input.contains("deadline")) {
-                    try {
-                        addTask(taskTypes.DEADLINE, input);
-                    } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
-                        System.out.println(indent + "oops, the description of the deadline seems to be incomplete!\n"
-                            + divider);
-                        continue;
-                    }
-                } else if (input.contains("event")) {
-                    try {
-                        addTask(taskTypes.EVENT, input);
-                    } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
-                        System.out.println(indent + "oops, the description of the event seems to be incomplete!\n"
-                            + divider);
+                    } catch (java.io.IOException e) {
+                        System.out.println(" oops, your task is added, but I couldn't save your task to your " +
+                                "Task file :(\n" + divider);
                         continue;
                     }
                 } else {
@@ -115,11 +190,13 @@ public class Duke {
                 }
 
                 System.out.println(indent + "new task added: " + tasks.get(tasks.size() - 1)
-                        + "\n" + indent + "You now have " + tasks.size() + " total tasks in your list"
+                        + "\n" + indent + "You now have " + tasks.size() + " tasks in your list"
+                        + "\n" + indent + "Task is saved in memory :)"
                         + "\n" + divider);
             }
         }
 
         System.out.println(indent + "Bye! Hope to see you again soon! Thank you for chatting with me :)");
+        sFile.close();
     }
 }
