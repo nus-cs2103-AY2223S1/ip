@@ -1,13 +1,13 @@
-package data;
+package duke.data;
 
-import models.*;
+import duke.models.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class LocalStorage {
     private final static String DIR_PATH = "./data";

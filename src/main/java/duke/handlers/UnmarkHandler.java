@@ -1,11 +1,11 @@
-package handlers;
+package duke.handlers;
 
-import models.Task;
-import models.TaskList;
+import duke.models.Task;
+import duke.models.TaskList;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
-public class MarkHandler {
+public class UnmarkHandler {
     public static void handle(TaskList list, String input) {
         int taskNum = Integer.parseInt(input) - 1;
         try {

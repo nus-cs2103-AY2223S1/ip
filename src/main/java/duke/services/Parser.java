@@ -1,8 +1,8 @@
-package services;
+package duke.services;
 
-import utils.Commands;
+import duke.utils.Commands;
 
-import static utils.Commands.UNKNOWN;
+import static duke.utils.Commands.UNKNOWN;
 
 public class Parser {
 

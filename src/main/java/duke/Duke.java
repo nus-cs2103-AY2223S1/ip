@@ -1,13 +1,14 @@
-import exceptions.DukeException;
-import data.LocalStorage;
-import handlers.*;
-import models.*;
-import services.Parser;
-import utils.Commands;
+package duke;
 
-import java.util.Arrays;
+import duke.exceptions.DukeException;
+import duke.data.LocalStorage;
+import duke.handlers.*;
+import duke.models.*;
+import duke.services.Parser;
+import duke.utils.Commands;
+
 import java.util.Scanner;
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class Duke {
 
@@ -25,7 +26,7 @@ public class Duke {
         list = storage.load();
         Scanner dukeSc = new Scanner(System.in);
 
-        String greeting = "Hello! Imma Duke!\n What can I do for you?";
+        String greeting = "Hello! Imma duke.Duke!\n What can I do for you?";
         dukePrint(greeting);
 
         while (true) {

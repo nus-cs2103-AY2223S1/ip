@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import models.Task;
-import models.TaskList;
+import duke.models.Task;
+import duke.models.TaskList;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class DeleteHandler {
     public static void handle(TaskList list, String input) {
@@ -12,7 +12,7 @@ public class DeleteHandler {
             Task t = list.remove(taskNum);
             String tasksLeft = String.format("Now you have %d task(s) in the list.", list.size());
             String printStr = String.join("\n",
-                    "Got it. I've added this task:",
+                    "Got it. I've deleted this task:",
                     t.toString(),
                     tasksLeft);
             dukePrint(printStr);

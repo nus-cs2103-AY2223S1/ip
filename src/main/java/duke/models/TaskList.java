@@ -1,6 +1,4 @@
-package models;
-
-import exceptions.DukeException;
+package duke.models;
 
 import java.util.ArrayList;
 

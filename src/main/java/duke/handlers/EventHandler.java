@@ -1,12 +1,11 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.Deadline;
-import models.Event;
-import models.Task;
-import models.TaskList;
+import duke.exceptions.DukeException;
+import duke.models.Event;
+import duke.models.Task;
+import duke.models.TaskList;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class EventHandler {
     public static void handle(TaskList list, String input) throws DukeException {
