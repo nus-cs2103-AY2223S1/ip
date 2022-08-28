@@ -19,17 +19,13 @@ public class ListCommand extends Command {
      *
      * @param date Date to be compared with.
      */
-    public ListCommand(LocalDate date) {
+    public ListCommand(LocalDate ... date) {
         super(CommandType.LIST);
-        this.date = date;
-    }
-
-    /**
-     * Creates a ListCommand object.
-     */
-    public ListCommand() {
-        super(CommandType.LIST);
-        this.date = null;
+        if (date.length == 1) {
+            this.date = date[0];
+        } else {
+            this.date = null;
+        }
     }
 
     /**
