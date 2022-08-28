@@ -13,11 +13,11 @@ public class TaskList {
     private ArrayList<Task> taskList;
 
     public TaskList() {
-        taskList = new ArrayList<>();
+        taskList = new ArrayList<Task>();
     }
 
     public TaskList(ArrayList<String> taskStringList) {
-        taskList = new ArrayList<>();
+        taskList = new ArrayList<Task>();
         for (int i = 0; i < taskStringList.size(); i++) {
             String taskString = taskStringList.get(i);
             Task task = parseTaskString(taskString);
