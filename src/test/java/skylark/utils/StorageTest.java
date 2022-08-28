@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import skylark.main.SkylarkException;
+import skylark.skylark.SkylarkException;
 import skylark.task.Deadline;
 import skylark.task.Event;
 import skylark.task.Task;

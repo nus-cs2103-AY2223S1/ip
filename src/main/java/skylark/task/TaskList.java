@@ -2,7 +2,7 @@ package skylark.task;
 
 import java.util.ArrayList;
 
-import skylark.main.SkylarkException;
+import skylark.skylark.SkylarkException;
 import skylark.utils.Storage;
 
 /** Represents a list of Tasks that is stored in the system. */

@@ -1,4 +1,4 @@
-package skylark.main;
+package skylark.skylark;
 
 /** Represents an Exception whenever an error occurs in Skylark. */
 public class SkylarkException extends Exception {
