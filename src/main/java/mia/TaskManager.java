@@ -1,5 +1,7 @@
 package mia;
 
+import general.utils.StoredFile;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
