@@ -4,6 +4,7 @@ import exception.DukeException;
 import exception.MarkException;
 import exception.MissingDateException;
 import exception.MissingDescriptionException;
+import exception.MissingKeyWordException;
 import exception.MissingTaskIndexException;
 import exception.OutOfBoundIndexException;
 import exception.UnMarkException;
@@ -27,10 +28,11 @@ public class Ui {
 
     /**
      * Constructor for ui.
+     *
      * @param taskLists TaskList used to store the tasks
-     * @param storage Storage used to save to file
+     * @param storage   Storage used to save to file
      */
-    public Ui (TaskList taskLists, Storage storage) {
+    public Ui(TaskList taskLists, Storage storage) {
         this.taskLists = taskLists;
         this.storage = storage;
     }
@@ -53,12 +55,13 @@ public class Ui {
 
     /**
      * This handles how the Duke will respond based on user input
+     *
      * @param input what the user typed into the terminal
      * @throws DukeException
      * @throws DateTimeParseException
      */
     public void Response(String input) throws MissingTaskIndexException, MissingDescriptionException,
-            WrongCommandException, MissingDateException, MarkException, UnMarkException,
+            WrongCommandException, MissingDateException, MissingKeyWordException, MarkException, UnMarkException,
             OutOfBoundIndexException, DateTimeParseException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
@@ -94,7 +97,7 @@ public class Ui {
             storage.saveToFile(taskLists);
             String content = "OK, I've marked this task as not done yet:\n" + current.toString();
             System.out.println(wrapper(content));
-        } else if(input.startsWith("delete")) {
+        } else if (input.startsWith("delete")) {
             if (input.length() == 6) {
                 throw new MissingTaskIndexException();
             }
@@ -151,6 +154,17 @@ public class Ui {
             storage.saveToFile(taskLists);
             String message = done + "  " + event + taskLists.numOfTaskToString();
             System.out.println(wrapper(message));
+        } else if (input.startsWith("find")) {
+            if (input.length() == 4) {
+                throw new MissingKeyWordException();
+            }
+            //getting keyword
+            String keyword = input.substring(5);
+
+            //filter taskList with keyword
+            TaskList tempTaskList = taskLists.findTask(keyword);
+
+            System.out.println(wrapper(tempTaskList.toString()));
         } else {
             throw new WrongCommandException();
         }
