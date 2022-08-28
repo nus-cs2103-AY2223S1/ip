@@ -33,10 +33,6 @@ public class Ui {
         ioHelper.print(divider);
     }
 
-    public void showError(Exception e) {
-        ioHelper.print(e.getMessage());
-    }
-
     public void show(Object message) {
         ioHelper.print(message);
     }

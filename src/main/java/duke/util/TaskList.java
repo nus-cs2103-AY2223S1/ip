@@ -30,7 +30,7 @@ public class TaskList {
                 switch (taskType) {
                 case "[T]":
                     description = texts[i].substring(10);
-                    tasks.add(new Todo(texts[i].substring(10), texts[i].charAt(7) == 'X'));
+                    tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
                     break;
                 case "[D]":
                     description = texts[i].substring(10);

@@ -30,7 +30,7 @@ public class Storage {
         try {
             dukeFile.createNewFile();
         } catch (IOException e) {
-            ioHelper.print(e);
+            ioHelper.print(e.getMessage());
         } finally {
             return new TaskList();
         }
