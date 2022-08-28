@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Access and modification to local directory where content of Duke is stored.
+ */
 public class Storage {
     private final String filepath;
     Storage(String filepath) {
@@ -31,6 +34,10 @@ public class Storage {
         return new TaskList(tasks);
     }
 
+    /**
+     * Saves a given instance of a Task List to the user's local directory.
+     * @param taskList Task List formatted as String type.
+     */
     protected void save(String taskList) {
         try {
             FileWriter fw = new FileWriter(filepath);

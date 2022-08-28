@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents a Task to be completed by a user of Duke. A task has String body, a task type and completion status.
+ */
 public class Task {
     private final String desc;
     private final char completed;
@@ -25,10 +28,18 @@ public class Task {
         desc = taskString.substring(7);
     }
 
+    /**
+     * Creates a Task instance that is identical to a given Task object, and then marked as complete.
+     * @return An identical Task object that is marked as complete.
+     */
     protected Task performTask() {
         return new Task(desc, 'X', taskType);
     }
 
+    /**
+     * Creates a Task instance that is identical to a given Task object, and then marked as incomplete.
+     * @return An identical Task object that is marked as incomplete.
+     */
     protected Task undoTask() {
         return new Task(desc, taskType);
     }
