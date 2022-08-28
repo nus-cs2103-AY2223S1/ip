@@ -106,6 +106,22 @@ public class TaskList {
         return deletedTask;
     }
 
+    /**
+     * Returns ArrayList of tasks that contain the given word.
+     * @param word Word user is searching for.
+     * @return ArrayList containing tasks that contain the given word.
+     */
+    public ArrayList<Task> findTasks(String word) {
+        ArrayList<Task> searchResult = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            if (curr.contains(word)) {
+                searchResult.add(curr);
+            }
+        }
+        return searchResult;
+    }
+
     public TaskList() {
 
         tasks = new ArrayList<>();
