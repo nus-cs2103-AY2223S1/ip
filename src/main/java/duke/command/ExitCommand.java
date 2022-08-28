@@ -21,8 +21,9 @@ public class ExitCommand extends Command {
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
+     * @return Duke's response
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printWithIndent("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "Bye. Hope to see you again soon!";
     }
 }
