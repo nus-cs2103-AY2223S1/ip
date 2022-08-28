@@ -8,14 +8,14 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner input = new Scanner(System.in);
-    private final String greeting = "  ___          ___  \n" +
-                                    " (o o)        (o o) \n" +
-                                    "(  V  ) DUKE (  V  )\n" +
-                                    "--m-m----------m-m--";
-    private final String bye = " ^ ^         \n" +
-                                  "(O,O)        \n" +
-                                  "(   ) BYE?   \n" +
-                                  "-\"-\"---------";
+    private final String greeting = "  ___          ___  \n"
+                                   + " (o o)        (o o) \n"
+                                   + "(  V  ) DUKE (  V  )\n"
+                                   + "--m-m----------m-m--";
+    private final String bye = " ^ ^         \n"
+                                 + "(O,O)        \n"
+                                 + "(   ) BYE?   \n"
+                                 + "-\"-\"---------";
 
     public Scanner getNextLine() {
         return new Scanner(input.nextLine());

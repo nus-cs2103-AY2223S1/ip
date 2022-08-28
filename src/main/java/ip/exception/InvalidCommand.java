@@ -9,8 +9,8 @@ public class InvalidCommand extends DukeException {
 
     @Override
     public String toString() {
-        return commandGiven + " is an invalid command.\n" +
-                "List of valid commands:\n" +
-                "list\ntodo\ndeadline\nevent\nmark\nunmark\ndelete\nbye";
+        return commandGiven + " is an invalid command.\n"
+               + "List of valid commands:\n"
+               + "list\ntodo\ndeadline\nevent\nmark\nunmark\ndelete\nbye";
     }
 }

@@ -8,13 +8,12 @@ import ip.exception.InvalidCommand;
 import java.io.IOException;
 
 /**
- * <h1>Task management program<h2>
+ * <h1>Task management program</h1>
  * Record to-do's, deadlines, and events.
  * Mark them as done or not.
  * Delete them when no longer needed!
  * 
  * @author Jonathan Lam
- * @since 2022-08-25
  */
 public class Duke {
     private static Ui ui = new Ui();
@@ -24,17 +23,18 @@ public class Duke {
     private static boolean toWipe = false;
 
     public static void main(String[] args) {
+        // Set Duke to wipe stored task data on termination.
         if (System.getProperty("user.dir").endsWith("text-ui-test")) {
             toWipe = true;
         }
+        // Load task list from default storage location.
         try {
-            // Try loading tasklist from default storage location.
             taskList = storage.load();
+        // Try to find task list from fallback location.
         } catch (IOException e) {
-            ui.say("Error in loading task data file. Searching for file in default location.");
+            ui.say("Error in loading task data file. Searching for file in fallback location.");
             try {
                 taskList = storage.load("taskList.txt");
-                ui.say("Task data file located in " + storage.getPath());
             } catch (IOException ee) {
                 ui.say(ee.toString());
             }
