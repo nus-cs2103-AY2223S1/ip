@@ -1,7 +1,7 @@
-package utils;
+package bobthebot.utils;
 
-import tasks.ToDoList;
-import tasks.Task;
+import bobthebot.tasks.ToDoList;
+import bobthebot.tasks.Task;
 
 
 public class Ui {
@@ -23,7 +23,7 @@ public class Ui {
 
     public static void goodbye(ToDoList list) {
         String result = "\tBye! Hope to see you again soon! ";
-        String haveMoreTasks = "You still have " + list.getLength() + (list.getLength() == 1 ? " task" : " tasks")
+        String haveMoreTasks = "You still have " + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
                 + " to do! \uD83D\uDE0A";
         String completedAllTasks = "I'm so happy that you've completed all your tasks! \n\tCome back soon " +
                 "if you want to accomplish more things! \uD83D\uDE0A";
@@ -50,7 +50,7 @@ public class Ui {
     public static void taskAddedMessage(Task t, ToDoList list) {
         String toPrint = "\tGot it. I've added this task: \n";
         toPrint += "\t" + t.toString() + "\n";
-        toPrint += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " task" : " tasks")
+        toPrint += "\tYou now have " + list.getLength() + (list.getLength() == 1 ? " task" : "bobthebot/tasks")
                 + " in the list.";
         formatMessage(toPrint);
     }
@@ -58,7 +58,7 @@ public class Ui {
     public static void taskDeletedMessage(int index, ToDoList list) {
         String toPrint = "\tGot it. I've removed this task: \n";
         toPrint += "\t\t" + list.getTask(index).toString() + "\n";
-        toPrint += "\tYou now have " + (list.getLength() - 1) + (list.getLength() - 1 == 1 ? " task" : " tasks")
+        toPrint += "\tYou now have " + (list.getLength() - 1) + (list.getLength() - 1 == 1 ? " task" : "bobthebot/tasks")
                 + " in the list.";
         formatMessage(toPrint);
     }

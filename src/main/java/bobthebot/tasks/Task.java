@@ -1,8 +1,8 @@
-package tasks;
+package bobthebot.tasks;
 
 public class Task {
-    public boolean isDone;
-    public String taskName;
+    protected boolean isDone;
+    protected String taskName;
 
     public Task(String name) {
         this.isDone = false;

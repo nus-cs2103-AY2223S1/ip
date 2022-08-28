@@ -1,10 +1,10 @@
-package bob;
+package bobthebot.bob;
 
-import utils.Storage;
-import utils.Parser;
-import utils.Ui;
-import tasks.ToDoList;
-import exceptions.BobException;
+import bobthebot.utils.Storage;
+import bobthebot.utils.Parser;
+import bobthebot.utils.Ui;
+import bobthebot.tasks.ToDoList;
+import bobthebot.exceptions.BobException;
 
 import java.io.IOException;
 import java.util.Scanner;
