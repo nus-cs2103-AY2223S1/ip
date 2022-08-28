@@ -178,4 +178,20 @@ public class TaskList {
             System.out.println("Now you have " + size + " tasks in the list");
         }
     }
+
+    public void find(String in) throws DukeException {
+        String toBeFound = in.replaceFirst("find", "");
+        if (toBeFound.trim().isEmpty()) {
+            throw new DukeException("☹ OOPS!!! The description of what is to be found cannot be empty.");
+        } else {
+            int count = 1;
+            System.out.println("Here are the matching tasks in your list:");
+            for ( Task task : tasks ) {
+                if (task.getDescription().contains(toBeFound.trim())) {
+                    System.out.println(count + ". " + task.toString());
+                    count += 1;
+                }
+            }
+        }
+    }
 }

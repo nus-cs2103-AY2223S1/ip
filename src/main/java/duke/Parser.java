@@ -30,6 +30,9 @@ public class Parser {
         } else if (in.startsWith("delete")) {
             tasks.delete(in);
             return false;
+        } else if (in.startsWith("find")) {
+            tasks.find(in);
+            return false;
         } else if (in.startsWith("unmark")) {
             tasks.unmarkTask(in);
             return false;
@@ -42,9 +45,11 @@ public class Parser {
         } else if (in.startsWith("event")) {
             tasks.event(in);
             return false;
-        } else {
+        } else if (in.startsWith("todo")) {
             tasks.todo(in);
             return false;
+        } else {
+            throw new DukeException("☹ OOPS!!! I'm sorry but please check spelling :-(");
         }
     }
 
@@ -57,7 +62,7 @@ public class Parser {
      */
     public static boolean withinScope(String in) {
         return (in.startsWith("list") || in.startsWith("mark") || in.startsWith("unmark") || in.startsWith("deadline")
-                || in.startsWith("event") || in.startsWith("todo") || in.startsWith("delete"));
+                || in.startsWith("event") || in.startsWith("todo") || in.startsWith("delete") || in.startsWith("find"));
     }
 
 
