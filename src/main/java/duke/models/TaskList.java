@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * @author Zhu Yuanxi
  */
 public class TaskList {
-    public static List<Task> taskList;
+    public List<Task> taskList;
 
     public TaskList() {
         taskList = new ArrayList<>();
@@ -40,5 +40,29 @@ public class TaskList {
         for(Task task : taskList) {
             action.accept(task);
         }
+    }
+    public TaskList findTasks(String pattern) {
+        TaskList foundTasks = new TaskList();
+        this.taskList.forEach(task -> {
+            System.out.println(task.content);
+            System.out.println(pattern);
+            if (task.content.contains(pattern)) {
+                foundTasks.AddTask(task);
+            }
+        });
+        return foundTasks;
+    }
+
+    @Override
+    public String toString() {
+        if (taskList.size() == 0) {
+            return "No tasks found!\n";
+        }
+
+        StringBuilder fullList = new StringBuilder();
+        for (int i = 0; i < taskList.size(); i++) {
+            fullList.append(i + 1).append(". ").append(taskList.get(i));
+        }
+        return fullList.toString();
     }
 }
