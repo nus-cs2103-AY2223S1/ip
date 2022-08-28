@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Handles input and output.
  */
 public class Ui {
-    private String logo = " ____        _        \n"
+    private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -30,7 +30,7 @@ public class Ui {
      */
     public void showWelcome() {
 
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + LOGO);
         System.out.println("Welcome to UNC\n");
     }
 
@@ -71,7 +71,7 @@ public class Ui {
      * @param taskList List.
      * @param todo Added task.
      */
-    public void addToDo (TaskList taskList, Todo todo) {
+    public void addTodo (TaskList taskList, Todo todo) {
         System.out.println("added: \n " + todo + "\nNow you have " + taskList.size() +
                 " tasks on the list.");
     }
