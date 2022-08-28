@@ -1,13 +1,14 @@
 package duke;
 
 import java.util.Scanner;
+
 import java.io.IOException;
 
 public class Duke {
-    private static final String saveDirectoryPath = "../data";
-    private static final String saveFilePath = "../data/duke.txt";
+    private static final String SAVE_DIRECTORY_PATH = "../data";
+    private static final String SAVE_FILE_PATH = "../data/duke.txt";
     private static TaskList tasklist = new TaskList();
-    private static Storage storage = new Storage(saveDirectoryPath, saveFilePath);
+    private static Storage storage = new Storage(SAVE_DIRECTORY_PATH, SAVE_FILE_PATH);
     private static Ui ui = new Ui();
 
     private static void run(Scanner scanner) {

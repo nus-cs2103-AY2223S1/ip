@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task{
     private String date = "";
     private LocalDate dateProper;
+
     public Deadline(String taskDescription, String date) {
         super(taskDescription.replace("deadline ", ""));
         this.date = date;
