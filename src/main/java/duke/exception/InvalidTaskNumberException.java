@@ -29,7 +29,7 @@ public class InvalidTaskNumberException extends DukeException {
      */
     @Override
     public String toString() {
-        return super.toString() + (number.equals("") ? "The command " + this.cmd + " requires a task number after!" :
-                " The task \"" + this.number + "\" does not exist!");
+        return super.toString() + (number.equals("") ? "The command " + this.cmd + " requires a task number after!"
+                : " The task \"" + this.number + "\" does not exist!");
     }
 }

@@ -34,6 +34,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the input list to the file stored.
+     *
+     * @param lst The input list to be stored in the file.
+     */
     public void writeToFile(List<Task> lst) {
         try {
             FileWriter fileWriter = new FileWriter(this.file);
@@ -49,13 +54,18 @@ public class Storage {
 
     }
 
+    /**
+     * Reads from the file stored to the given list.
+     *
+     * @param lst The input list to store the file contents.
+     */
     public void readFromFile(List<Task> lst) {
         try {
             Scanner fileScanner = new Scanner(this.file);
             while (fileScanner.hasNextLine()) {
                 String currLine = fileScanner.nextLine();
-                String lineSplit[] = currLine.split(" \\| ");
-                Task temp = null;
+                String[] lineSplit = currLine.split(" \\| ");
+                Task temp;
                 switch (lineSplit[0]) {
                 case "T":
                     temp = new Todo(lineSplit[2]);
@@ -65,6 +75,9 @@ public class Storage {
                     break;
                 case "E":
                     temp = new Event(lineSplit[2], lineSplit[3]);
+                    break;
+                default:
+                    temp = null;
                 }
                 if (lineSplit[1].equals("1")) {
                     temp.setDone();

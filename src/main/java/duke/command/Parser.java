@@ -10,8 +10,8 @@ import java.util.Set;
 public class Parser {
 
     /** Set to store all known commands. */
-    private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo"
-            , "deadline", "event", "delete", "find");
+    private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo",
+            "deadline", "event", "delete", "find");
 
     /**
      * Returns a command based on the input string.
@@ -21,8 +21,9 @@ public class Parser {
      * @throws UnknownCommandException If the input command is invalid.
      */
     public static Command parse(String input) throws UnknownCommandException {
-        String cmd = null, postCmd = null;
-        String postSplit[];
+        String cmd = null;
+        String postCmd = null;
+        String[] postSplit;
         postSplit = input.split(" ");
         cmd = postSplit[0];
         if (!commandList.contains(cmd)) {
@@ -48,8 +49,8 @@ public class Parser {
             return new DeleteCommand(postCmd);
         case "find":
             return new FindCommand(postCmd);
+        default:
+            return null;
         }
-
-        return null;
     }
 }

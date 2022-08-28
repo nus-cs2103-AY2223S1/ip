@@ -15,7 +15,7 @@ public abstract class Command {
      * @param ui       The ui responsible for interactions with the user.
      * @throws DukeException If there are any errors that cause exceptions to be thrown.
      */
-    abstract public void execute(TaskList taskList, Ui ui) throws DukeException;
+    public abstract void execute(TaskList taskList, Ui ui) throws DukeException;
 
     /**
      * Returns true if the command is "bye", and false otherwise.

@@ -6,21 +6,39 @@ import duke.task.Task;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A Ui class to handle interactions with the user.
+ */
 public class Ui {
 
+    /** The scanner that is used to read from the system input. */
     private Scanner sc;
 
+    /** TaskList to handle all tasks related operations. */
     private TaskList taskList;
 
+    /**
+     * Constructor for a Ui object.
+     *
+     * @param taskList TaskList to handle all tasks related operations.
+     */
     public Ui(TaskList taskList) {
         sc = new Scanner(System.in);
         this.taskList = taskList;
     }
 
+    /**
+     * Reads the next command input by the user.
+     * @return The next command input by the user.
+     */
     public String readCommand() {
         return sc.nextLine();
     }
 
+    /**
+     * Prints the input exception to the command line.
+     * @param e The exception to be printed.
+     */
     public void showError(DukeException e) {
         System.out.println(e);
     }
@@ -30,7 +48,8 @@ public class Ui {
      * Prints the number of current tasks, as well as how many are completed.
      */
     public void printListCount() {
-        System.out.println("  You have " + this.taskList.size() + " tasks currently, " + Task.totalDone + " are completed");
+        System.out.println("  You have " + this.taskList.size() + " tasks currently, "
+                + Task.totalDone + " are completed");
     }
 
     /**
@@ -76,12 +95,15 @@ public class Ui {
      * Prints the hello introduction to Duke.
      */
     public void startMessage() {
-        String logo = " _    _ ______ _      _      ____     ______ _____   ____  __  __    _____  _    _ _  ________ \n"
-                + "| |  | |  ____| |    | |    / __ \\   |  ____|  __ \\ / __ \\|  \\/  |  |  __ \\| |  | | |/ /  ____|\n"
+        String logo = " _    _ ______ _      _      ____     ______ _____   ____  __  __  "
+                + "  _____  _    _ _  ________ \n"
+                + "| |  | |  ____| |    | |    / __ \\   |  ____|  __ \\ / __ \\|  \\/  |  |"
+                + "  __ \\| |  | | |/ /  ____|\n"
                 + "| |__| | |__  | |    | |   | |  | |  | |__  | |__) | |  | | \\  / |  | |  | | |  | | ' /| |__   \n"
                 + "|  __  |  __| | |    | |   | |  | |  |  __| |  _  /| |  | | |\\/| |  | |  | | |  | |  < |  __| \n"
                 + "| |  | | |____| |____| |___| |__| |  | |    | | \\ \\| |__| | |  | |  | |__| | |__| | . \\| |____\n"
-                + "|_|  |_|______|______|______\\____/   |_|    |_|  \\_\\\\____/|_|  |_|  |_____/ \\____/|_|\\_\\______|\n";
+                + "|_|  |_|______|______|______\\____/   |_|    |_|  \\_\\\\____/|_|  |_|  |_"
+                + "____/ \\____/|_|\\_\\______|\n";
         System.out.println(logo);
         System.out.println("  How may I help you today?");
         newLine();
@@ -99,7 +121,7 @@ public class Ui {
      * Prints a new line.
      */
     public void newLine() {
-        System.out.println("________________________________________________________________________" +
-                "_______________________");
+        System.out.println("________________________________________________________________________"
+                + "_______________________");
     }
 }

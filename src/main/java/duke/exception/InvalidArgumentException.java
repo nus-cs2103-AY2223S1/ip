@@ -29,7 +29,7 @@ public class InvalidArgumentException extends DukeException {
      */
     @Override
     public String toString() {
-        return super.toString() + " The task " + this.task + " requires the command " + this.cmd +
-                " after the description of the task!";
+        return super.toString() + " The task " + this.task + " requires the command " + this.cmd
+                + " after the description of the task!";
     }
 }

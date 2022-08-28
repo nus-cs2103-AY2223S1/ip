@@ -8,6 +8,9 @@ import duke.task.Task;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A class for the find command.
+ */
 public class FindCommand extends Command {
 
 
@@ -47,8 +50,8 @@ public class FindCommand extends Command {
             System.out.println("  Here are the tasks with \"" + this.query + "\" in the description!");
             ui.printTasks(result);
         } else {
-            System.out.println("  There was no tasks found with \"" + this.query + "\" in the description!\n" +
-                    "  Try entering \"list\" to see what your task list looks like!");
+            System.out.println("  There was no tasks found with \"" + this.query + "\" in the description!\n"
+                    + "  Try entering \"list\" to see what your task list looks like!");
         }
     }
 }

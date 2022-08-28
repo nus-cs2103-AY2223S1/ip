@@ -29,7 +29,7 @@ public class EmptyDurationException extends DukeException {
      */
     @Override
     public String toString() {
-        return super.toString() + " The time/date for the task " + this.task + " after the command " + this.cmd +
-                " is empty! Please add the\n  task time/date:)";
+        return super.toString() + " The time/date for the task " + this.task + " after the command " + this.cmd
+                + " is empty! Please add the\n  task time/date:)";
     }
 }

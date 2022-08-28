@@ -9,10 +9,6 @@ import duke.exception.DukeException;
  */
 public class Duke {
 
-    public static void main(String[] args) {
-        new Duke("./tasks.txt").run();
-    }
-
     /** TaskList to handle all tasks related operations. */
     private TaskList taskList;
 
@@ -28,8 +24,8 @@ public class Duke {
      * @param filePath The file path to read the file from.
      */
     public Duke(String filePath) {
-        this.storage = new Storage(filePath);
         this.taskList = new TaskList();
+        this.storage = new Storage(filePath);
         this.storage.readFromFile(this.taskList.getList());
         this.ui = new Ui(this.taskList);
     }
@@ -57,6 +53,10 @@ public class Duke {
         }
         ui.exitMessage();
         storage.writeToFile(this.taskList.getList());
+    }
+
+    public static void main(String[] args) {
+        new Duke("./tasks.txt").run();
     }
 
 }

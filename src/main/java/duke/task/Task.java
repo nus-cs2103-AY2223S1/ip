@@ -5,21 +5,14 @@ package duke.task;
  */
 public abstract class Task {
 
+    /** A total count of how many tasks are done. */
+    public static int totalDone = 0;
+
     /** The description of the task. */
     protected String description;
 
     /** A boolean to indicate if the task is done. */
     protected boolean isDone;
-
-    /** A total count of how many tasks are done. */
-    public static int totalDone = 0;
-
-    /**
-     * Returns the string representation of the Task object to be stored in the file.
-     *
-     * @return The string representation of the Task object to be stored in the file.
-     */
-    public abstract String toFile();
 
     /**
      * Constructor for a Task.
@@ -30,6 +23,13 @@ public abstract class Task {
         this.description = description;
         this.isDone = false;
     }
+
+    /**
+     * Returns the string representation of the Task object to be stored in the file.
+     *
+     * @return The string representation of the Task object to be stored in the file.
+     */
+    public abstract String toFile();
 
     /**
      * Returns the status of the Task.
