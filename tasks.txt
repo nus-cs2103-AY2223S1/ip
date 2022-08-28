@@ -1,6 +1,6 @@
 T|0|borrow book
 D|1|read book|Oct 2 2020
-E|0|return book|Nov 22 2021
+E|1|return book|Nov 22 2021
 T|0|go school
 T|0|go home
 T|0|hello

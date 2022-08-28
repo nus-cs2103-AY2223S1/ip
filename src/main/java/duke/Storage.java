@@ -8,6 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage class allows the user to load/save
+ * all its tasks and their respective states in a txt file.
+ * The txt file will be created if it does not exist in the filePath
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 0.1
+ * @since 2022-08-28
+ */
 public class Storage {
 
   private String filePath;
@@ -16,6 +25,12 @@ public class Storage {
     this.filePath = filePath;
   }
 
+  /**
+   * This method gets the existing txt file in the
+   * file path and creates the txt file if it
+   * does not exist
+   * @return File This is the txtfile that stores all the user's task information
+   */
   public File getFile() {
     File file = new File(filePath);
     try {
@@ -30,6 +45,11 @@ public class Storage {
     return file;
   }
 
+  /**
+   * This method gets the existing text file and
+   * converts the text into a list of the user's tasks
+   * @return List This is the current list of the user's tasks
+   */
   public List<Task> load() {
     File file = this.getFile();
     List<Task> taskList = new ArrayList<>();
@@ -66,6 +86,11 @@ public class Storage {
       return taskList;
   }
 
+  /**
+   * This method saves the latest version of the user's task
+   * list to the txt file
+   * @param taskList This is the latest version of user's task list
+   */
   public void save(List<Task> taskList) {
     try {
       FileWriter fw = new FileWriter(filePath);

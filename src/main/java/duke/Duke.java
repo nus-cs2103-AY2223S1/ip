@@ -2,6 +2,16 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * The Duke program implements an application that
+ * acts as your to-do list. It can add, delete, mark/unmark
+ * and search for tasks.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 0.1
+ * @since 2022-08-28
+ */
+
 public class Duke {
 
     private Storage storage;
@@ -13,7 +23,12 @@ public class Duke {
       this.ui = new Ui();
     }
 
-    public void run() {
+  /**
+   * This method is used to run the Duke program. Duke will
+   * respond after each command is entered. Entering command
+   * "bye" will exit the program.
+   */
+  public void run() {
       this.taskList.printList();
       Scanner sc = new Scanner(System.in);
       ui.greet();
