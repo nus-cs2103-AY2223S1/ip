@@ -5,6 +5,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.command.Command;
 
+/**
+ * A command that reads and prints all of the tasks in the task list.
+ */
 public class ListCommand extends Command {
     public ListCommand(String command) {
         super(command);

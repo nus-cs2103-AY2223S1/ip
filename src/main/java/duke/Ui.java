@@ -2,6 +2,9 @@ package duke;
 
 import java.io.PrintStream;
 
+/**
+ * Prints messages for user.
+ */
 public class Ui {
     private final PrintStream OUTPUT = System.out;
 

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
+/**
+ * Stores taskList and the list of addCommands to be written into output file.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private ArrayList<String> addCommands;   // running these commands will always give the tasks array

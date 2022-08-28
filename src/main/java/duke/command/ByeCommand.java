@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * A command that exits the program.
+ */
 public class ByeCommand extends Command {
     public ByeCommand(String command) {
         super(command);

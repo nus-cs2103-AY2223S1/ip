@@ -7,6 +7,9 @@ import duke.Ui;
 
 import java.io.IOException;
 
+/**
+ * A command that adds tasks to the task list.
+ */
 public abstract class AddCommand extends Command {
     protected Task task;
 

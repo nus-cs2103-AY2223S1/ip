@@ -5,6 +5,9 @@ import duke.task.Task;
 
 import java.io.IOException;
 
+/**
+ * A command that marks a task in the task list.
+ */
 public class UpdateMarkCommand extends UpdateCommand {
     private UpdateMarkCommand(String command, Task task, int taskIndex) {
         super(command, task, taskIndex);

@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A command that adds a Deadline to the task list.
+ */
 public class AddDeadlineCommand extends AddCommand {
     private AddDeadlineCommand(String command, Deadline deadline) {
         super(command, deadline);

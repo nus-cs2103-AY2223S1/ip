@@ -4,6 +4,9 @@ import duke.command.*;
 
 import java.util.Objects;
 
+/**
+ * Contains methods to parse user input.
+ */
 public abstract class Parser {
     // should return the command, or throw an exception if command is wrong
     public static Command parse(String commandString, TaskList taskList) throws IllegalArgumentException {

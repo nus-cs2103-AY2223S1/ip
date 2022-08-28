@@ -5,6 +5,9 @@ import duke.task.Task;
 
 import java.io.IOException;
 
+/**
+ * A command that unmarks a task in the task list.
+ */
 public class UpdateUnmarkCommand extends UpdateCommand {
     private UpdateUnmarkCommand(String command, Task task, int taskIndex) {
         super(command, task, taskIndex);

@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Interacts with output file that saves the task list.
+ */
 public class Storage {
     private File file;
     private Scanner scanner;

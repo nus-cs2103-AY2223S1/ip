@@ -5,6 +5,10 @@ import duke.command.Command;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * A program that keeps track of a task list defined by the user.
+ * This task list is stored in an output file, and loaded on program start.
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;

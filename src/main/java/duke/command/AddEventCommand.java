@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A command that adds an Event to the task list.
+ */
 public class AddEventCommand extends AddCommand {
     private AddEventCommand(String command, Event event) {
         super(command, event);

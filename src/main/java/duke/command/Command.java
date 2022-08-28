@@ -6,6 +6,10 @@ import duke.Ui;
 
 import java.io.IOException;
 
+/**
+ * A command encapsulates the required actions of a valid command made by the user.
+ * This action can then be executed with execute().
+ */
 public abstract class Command {
     public enum Commands {
         mark, unmark, todo, deadline, event, delete, bye, list
