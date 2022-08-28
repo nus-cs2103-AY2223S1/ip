@@ -1,6 +1,14 @@
 package unc;
 
-import unc.command.*;
+import unc.command.Command;
+import unc.command.DeadlineCommand;
+import unc.command.DeleteCommand;
+import unc.command.EventCommand;
+import unc.command.ExitCommand;
+import unc.command.ListCommand;
+import unc.command.MarkCommand;
+import unc.command.TodoCommand;
+import unc.command.UnmarkCommand;
 
 public class Parser {
     private enum validInput {
