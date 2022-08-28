@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 /**
  * Duke with a GUI! Responds to messages sent as per the CLI version
+ * Launch Duke from Duke Entry point to avoid JavaFx errors
  */
 public class Duke extends Application {
     /* Store tasks from user */

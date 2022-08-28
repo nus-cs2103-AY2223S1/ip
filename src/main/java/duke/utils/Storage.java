@@ -85,7 +85,6 @@ public class Storage {
         String line = reader.readLine();
         // Read task and add to tasks
         while (line != null) {
-            System.out.println(line);
             Matcher m = loadRegex.matcher(line);
             m.find();
             String taskType = m.group(1);
