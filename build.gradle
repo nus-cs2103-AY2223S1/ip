@@ -1,5 +1,10 @@
 plugins {
+    id 'checkstyle'
     id 'java'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 group 'org.example'
