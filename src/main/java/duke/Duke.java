@@ -8,7 +8,7 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
-    public Duke (String filePath) {
+    public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
 
@@ -16,7 +16,7 @@ public class Duke {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             //ui.showLoadingError;
-            tasks  = new TaskList();
+            tasks = new TaskList();
         }
         this.parser = new Parser(this.tasks, this.storage);
     }
@@ -34,7 +34,7 @@ public class Duke {
         while (!message.equals("bye")) {
             try {
                 this.parser.parse(message);
-            } catch (DukeException e){
+            } catch (DukeException e) {
                 System.out.println(e);
             }
             message = sc.nextLine();
