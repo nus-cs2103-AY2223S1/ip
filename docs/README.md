@@ -1,6 +1,6 @@
 # User Guide
 
-## Features 
+## Features
 
 ### Feature-ABC
 
@@ -16,7 +16,7 @@ Description of the feature.
 
 Describe the action and its outcome.
 
-Example of usage: 
+Example of usage:
 
 `keyword (optional arguments)`
 
@@ -27,3 +27,7 @@ Description of the outcome.
 ```
 expected output
 ```
+
+# References
+
+JavaFX GUI: https://se-education.org/guides/tutorials/javaFxPart1.html
