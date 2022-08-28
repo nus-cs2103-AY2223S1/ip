@@ -6,7 +6,17 @@ import wanya.WanyaException;
 
 import java.time.DateTimeException;
 
+/**
+ * Represents a parser that helps to understand user's input commands.
+ */
 public class Parser {
+    /**
+     * Checks for empty description of tasks inputted.
+     *
+     * @param inputs list of Strings that user has inputted.
+     * @param command the first word of the user input.
+     * @throws WanyaException if description of task is empty.
+     */
     public static void checkTask(String[] inputs, String command) throws WanyaException {
         //handle the error where no task name
         if (inputs.length == 1 || inputs[1].trim().startsWith("/at")
@@ -15,9 +25,18 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks for task number to be valid and within the size of task list.
+     *
+     * @param inputs list of Strings that user has inputted.
+     * @param tasks TaskList that contains all the tasks.
+     * @return task number if it is valid.
+     * @throws WanyaException if task number provided is negative or
+     *         greater than the number of tasks in TaskList.
+     */
     public static int checkTaskNumber(String[] inputs, TaskList tasks) throws WanyaException {
         //handle error without task number
-        if (inputs.length == 1) {
+        if (inputs.length == 1 || inputs[1].trim().equals("")) {
             throw new WanyaException("You didn't put the task number at the back :(.\n" +
                     "Wanya isn't Anya. I can't read your mind!");
         }
@@ -32,6 +51,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Instructs the bot to take actions based on the command given by users.
+     *
+     * @param commandInput String that user inputs.
+     * @param tasks TaskList that contains all the tasks.
+     * @param ui Ui that handles the strings to print.
+     */
     public static void parseCommand(String commandInput, TaskList tasks, Ui ui) {
         try {
             String[] inputs = commandInput.split(" ", 2);
