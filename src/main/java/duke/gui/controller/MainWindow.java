@@ -16,7 +16,7 @@ public class MainWindow extends AnchorPane {
     /** Display image of the client. */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/angrydoge.png"));
     /** Display image of the duke chat-bot. */
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/derpydoge.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/smirkdog.png"));
 
     @FXML
     private ScrollPane scrollPane;

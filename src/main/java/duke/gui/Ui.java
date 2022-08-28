@@ -10,6 +10,30 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class Ui {
+    private enum Divider {
+        THICK_DIVIDER("===========================\n"),
+        THIN_DIVIDER("___________________________________\n");
+
+        private String divider;
+
+        /**
+         * Returns a divider.
+         * @param divider String representation of the divider.
+         */
+        private Divider(String divider) {
+            this.divider = divider;
+        }
+
+        /**
+         * Returns the string representation of the divider.
+         * @return String representation of the divider.
+         */
+        @Override
+        public String toString() {
+            return divider;
+        }
+    }
+
     /** Left padding to a string for pretty printing. */
     private String leftPadding = "   ";
 
@@ -17,7 +41,12 @@ public class Ui {
      * Returns the greeting message when the application is launched.
      */
     public String greetingMessage() {
-        String greeting = "Henlo! I'm Doge. How may I assist you?";
+        String logo = "    __                    \n"
+                + ".--|  |.-----.-----.-----.\n"
+                + "|  _  ||  _  |  _  |  -__|\n"
+                + "|___||___|__  |___|\n"
+                + "         |______|      \n";
+        String greeting = "Henlo! I'm \n" + addBetweenDividers(Divider.THICK_DIVIDER, logo) + "How may I assist you?";
         return greeting;
     }
 
@@ -28,7 +57,8 @@ public class Ui {
      * @param tasks TaskList to add the new Task into.
      */
     public String taskAddedMessage(Task task, TaskList tasks) {
-        return String.format("Got it. I've added this task ^_^: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
+        return String.format("Got it. I've added this task ^_^: \n%s\n%s",
+                addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
     /**
@@ -38,7 +68,8 @@ public class Ui {
      * @param tasks TaskList to remove the new Task from.
      */
     public String taskDeletedMessage(Task task, TaskList tasks) {
-        return String.format("Okie, I've deleted this task >_>: \n%s\n%s", getIndentedTask(task), getNumTasks(tasks));
+        return String.format("Okie. I've deleted this task >_>: \n%s\n%s",
+                addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
     /**
@@ -48,8 +79,8 @@ public class Ui {
      * @param tasks TaskList containing the target Task to mark.
      */
     public String taskMarkedMessage(Task task, TaskList tasks) {
-        return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s", getIndentedTask(task),
-               getNumTasks(tasks));
+        return String.format("Sure! I've marked this task as done ^O^: \n%s\n%s",
+                addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
     /**
@@ -59,8 +90,8 @@ public class Ui {
      * @param tasks TaskList containing the target Task to unmark.
      */
     public String taskUnmarkedMessage(Task task, TaskList tasks) {
-        return String.format("Sure! I've marked this task as done >_>: \n%s\n%s", getIndentedTask(task),
-                getNumTasks(tasks));
+        return String.format("Sure! I've unmarked this task as done ^O^: \n%s\n%s",
+                addBetweenDividers(Divider.THIN_DIVIDER, getIndentedTask(task)), getNumTasks(tasks));
     }
 
     /**
@@ -69,7 +100,7 @@ public class Ui {
      * @param tasks Target TaskList
      */
     private String getNumTasks(TaskList tasks) {
-        return "You have " + tasks.size() + " tasks in the list O_O";
+        return "You have [" + tasks.size() + "] tasks in the list O_O";
     }
 
     /**
@@ -86,7 +117,17 @@ public class Ui {
      * @return String representation of the TaskList.
      */
     public String getPrettyTaskList(TaskList tasks) {
-        String divider = "===========================\n";
-        return divider + tasks.toString() + divider;
+        return addBetweenDividers(Divider.THICK_DIVIDER, tasks.toString());
+    }
+
+    /**
+     * Returns a string that is between two upper and lower dividers.
+     *
+     * @param divider Divider sandwiching the given string.
+     * @param string String to be put between the dividers.
+     * @return String that is between two upper and lower dividers.
+     */
+    public String addBetweenDividers(Divider divider, String string) {
+        return String.format("%s\n%s\n%s", divider, string, divider);
     }
 }
