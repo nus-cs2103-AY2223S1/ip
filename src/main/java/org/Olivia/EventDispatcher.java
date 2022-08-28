@@ -1,9 +1,14 @@
 package org.Olivia;
+/**
+ * Listens command from a given UiHandler
+ * parse the command and execute the corresponding function
+ * syncs with hard disk after each execution
+ * @author ZHANG TONGJUN (albertZhangTJ)
+ */
 
 import org.Olivia.IO.FileHandler;
 import org.Olivia.IO.UiHandler;
 import org.Olivia.calendar.*;
-
 import java.io.File;
 import java.security.InvalidParameterException;
 

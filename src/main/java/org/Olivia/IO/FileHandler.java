@@ -10,6 +10,7 @@ import java.util.Scanner;
 /**
  * Read and write data files
  * it also parses the files and directly output the parsed information
+ * @author ZHANG TONGJUN (albertZhangTJ)
  */
 public class FileHandler {
     private String fileName="./stored/default.dat";

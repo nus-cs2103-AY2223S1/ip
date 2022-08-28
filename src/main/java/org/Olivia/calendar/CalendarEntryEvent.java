@@ -1,4 +1,10 @@
 package org.Olivia.calendar;
+
+/**
+ * represents an event on the calendar (i.e. a task with a start-time and an end-time)
+ * It takes all the parameters as Strings and parse them using CalendarTime.parseInput()
+ * @author ZHANG TONGJUN (albertZhangTJ)
+ */
 public class CalendarEntryEvent extends CalendarEntry {
     private CalendarTime startTime;
     private CalendarTime endTime;
