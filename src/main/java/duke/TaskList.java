@@ -42,10 +42,12 @@ public class TaskList {
     /**
      * Prints list of all current tasks
      */
-    public void printTaskList() {
+    public String getTaskList() {
+        StringBuilder taskList = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println(i + 1 + "." + this.tasks.get(i));
+            taskList.append(i + 1).append(".").append(this.tasks.get(i)).append("\n");
         }
+        return taskList.toString();
     }
 
     /**
@@ -68,8 +70,8 @@ public class TaskList {
      * Prints a specified task on the task list
      * @param index index of task to be printed
      */
-    public void printByIndex(int index) {
-        System.out.println(tasks.get(index));
+    public String getByIndex(int index) {
+        return tasks.get(index).toString();
     }
 
     /**

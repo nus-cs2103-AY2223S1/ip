@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,9 +18,9 @@ public class Parser {
     private final String command;
     private final Ui ui;
 
-    public Parser(String command, Ui ui) {
+    public Parser(String command) {
         this.command = command;
-        this.ui = ui;
+        this.ui = new Ui();
     }
 
     /**
@@ -28,101 +29,84 @@ public class Parser {
      * @param tasks ArrayList of current tasks stored on the chatbot
      * @return boolean true if bye command entered and chatbot should be stopped, false otherwise
      */
-    public boolean executeCommand(TaskList tasks) {
-        String[] commands = command.split(" ");
+    public String executeCommand(TaskList tasks, Storage storage) throws IOException {
+        String[] commands = command.strip().split(" ", 2);
         try {
-            if (command.equals("bye")) {
-                ui.showBye();
-                return true;
-            } else if (command.equals("list")) {
-                ui.printCorrectMessage(Ui.Commands.LIST, tasks, 0);
-            } else if (commands[0].equals("mark")) {
+            switch (commands[0]) {
+            case "bye":
+                storage.saveTasks(tasks);
+                return ui.showBye();
+            case "list":
+                return ui.getCorrectMessage(Ui.Commands.LIST, tasks, 0);
+            case "mark":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("mark");
                 }
-                int index = Integer.parseInt(commands[1]) - 1;
-                tasks.markIndex(index);
-                ui.printCorrectMessage(Ui.Commands.MARK, tasks, index);
-            } else if (commands[0].equals("unmark")) {
+                int indexMark = Integer.parseInt(commands[1]) - 1;
+                tasks.markIndex(indexMark);
+                return ui.getCorrectMessage(Ui.Commands.MARK, tasks, indexMark);
+            case "unmark":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("unmark");
                 }
-                int index = Integer.parseInt(commands[1]) - 1;
-                tasks.unmarkIndex(index);
-                ui.printCorrectMessage(Ui.Commands.UNMARK, tasks, index);
-            } else if (commands[0].equals("todo")) {
+                int indexUnmark = Integer.parseInt(commands[1]) - 1;
+                tasks.unmarkIndex(indexUnmark);
+                return ui.getCorrectMessage(Ui.Commands.UNMARK, tasks, indexUnmark);
+            case "todo":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("todo");
                 }
-                String[] newCommands = Arrays.copyOfRange(commands, 1, commands.length);
-                String newCommand = String.join(" ", newCommands);
-                tasks.add(new Todo(newCommand));
-                ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
-            } else if (commands[0].equals("event")) {
+                tasks.add(new Todo(commands[1]));
+                return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+            case "event":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("event");
                 }
-                int atMarker = 1;
-                for (int i = 0; i < commands.length; i++) {
-                    if (commands[i].equals("/at")) {
-                        atMarker = i;
-                    }
+                String[] eventCommands = commands[1].split(" /at ", 2);
+                if (eventCommands.length == 1) {
+                    return ui.getErrorMessage("datetime");
                 }
-                String[] newCommands = Arrays.copyOfRange(commands, 1, atMarker);
-                String newCommand = String.join(" ", newCommands);
-                String[] time = Arrays.copyOfRange(commands, atMarker + 1, commands.length);
-                String timeString = String.join(" ", time);
                 try {
-                    LocalDate timeStringParsed = LocalDate.parse(timeString);
-                    tasks.add(new Event(newCommand,
+                    LocalDate timeStringParsed = LocalDate.parse(eventCommands[1]);
+                    tasks.add(new Event(eventCommands[0],
                             timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
-                    ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+                    return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
                 } catch (DateTimeParseException error) {
-                    ui.printErrorMessage("datetime");
+                    return ui.getErrorMessage("datetime");
                 }
-            } else if (commands[0].equals("deadline")) {
+            case "deadline":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("deadline");
                 }
-                int atMarker = 1;
-
-                for (int i = 0; i < commands.length; i++) {
-                    if (commands[i].equals("/by")) {
-                        atMarker = i;
-                    }
+                String[] deadlineCommands = commands[1].split(" /by ", 2);
+                if (deadlineCommands.length == 1) {
+                    return ui.getErrorMessage("datetime");
                 }
-                String[] newCommands = Arrays.copyOfRange(commands, 1, atMarker);
-                String newCommand = String.join(" ", newCommands);
-                String[] deadline = Arrays.copyOfRange(commands, atMarker + 1, commands.length);
-                String deadlineString = String.join(" ", deadline);
                 try {
-                    LocalDate deadlineParsed = LocalDate.parse(deadlineString);
-                    tasks.add(new Deadline(newCommand,
-                            deadlineParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
-                    ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
-                } catch (DateTimeParseException e) {
-                    ui.printErrorMessage("datetime");
+                    LocalDate timeStringParsed = LocalDate.parse(deadlineCommands[1]);
+                    tasks.add(new Deadline(deadlineCommands[0],
+                            timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
+                    return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+                } catch (DateTimeParseException error) {
+                    return ui.getErrorMessage("datetime");
                 }
-            } else if (commands[0].equals("delete")) {
+            case "delete":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("delete");
                 }
                 int index = Integer.parseInt(commands[1]) - 1;
+                String response = ui.getCorrectMessage(Ui.Commands.DELETE, tasks, index);
                 tasks.delete(index);
-                ui.printCorrectMessage(Ui.Commands.DELETE, tasks, index);
-            } else if (commands[0].equals("find")) {
+                return response;
+            case "find":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("find");
                 }
-                String[] keyword = Arrays.copyOfRange(commands, 1, commands.length);
-                String keywordString = String.join(" ", keyword);
-                ui.printCorrectMessage(Ui.Commands.FIND, tasks.find(keywordString), 0);
-            } else {
-                throw new UnknownCommandException();
+                return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(commands[1]), 0);
             }
         } catch (UnknownCommandException | EmptyDescriptionException e) {
-            ui.printErrorMessage(e.getMessage());
+            return ui.getErrorMessage(e.getMessage());
         }
-        return false;
+        return null;
     }
 }
