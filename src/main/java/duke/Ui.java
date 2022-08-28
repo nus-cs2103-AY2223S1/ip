@@ -6,7 +6,7 @@ import java.util.Scanner;
 import duke.task.Task;
 
 /**
- * Ui deals with interactions with the user
+ * Ui deals with interactions with the user.
  *
  * @author Samsation
  * @version CS2103T AY 22/23 Sem 1
