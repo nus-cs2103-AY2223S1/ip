@@ -5,6 +5,10 @@ import chatbot.tasks.TaskList;
 
 import java.time.LocalDate;
 
+/**
+ * Represents the command to be executed by the chatbot which lists
+ * all the tasks in the todo list.
+ */
 public class ListOn implements Command {
     private LocalDate date;
 

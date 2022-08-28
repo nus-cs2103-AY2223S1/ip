@@ -5,8 +5,12 @@ import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
 
+/**
+ * Represents the command to be executed by the chatbot which marks
+ * the specified task in the todo list as incomplete.
+ */
 public class Unmark implements Command {
-    private int target;
+    private final int target;
 
     public Unmark(int target) {
         this.target = target;
