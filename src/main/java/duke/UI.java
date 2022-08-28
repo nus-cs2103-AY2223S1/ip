@@ -57,11 +57,11 @@ public class UI {
 
     public static void find(TaskList tasks, String desc) {
         System.out.println(DIVIDER);
-        System.out.printf("Here are the matching tasks in your list:\n");
+        System.out.println("Here are the matching tasks in your list:");
         int count = 1;
         for(Task task : tasks.getList()) {
             if (task.toString().contains(desc)) {
-                System.out.printf(" %d. %s\n", count, tasks.getTask(count));
+                System.out.printf(" %d. %s\n", count, task);
                 count++;
             }
         }
