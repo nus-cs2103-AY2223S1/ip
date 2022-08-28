@@ -25,7 +25,7 @@ public abstract class Task {
     }
 
     public boolean containsKeyword(String keyword) {
-        ArrayList<String> descriptionDelimited = new ArrayList<String>(Arrays.asList(this.description.split(" ")));
+        String[] descriptionDelimited = this.description.split(" ");
         for (String word : descriptionDelimited) {
             if (keyword.equals(word)) {
                 return true;
