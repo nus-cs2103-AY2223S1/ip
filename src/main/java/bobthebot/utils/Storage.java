@@ -1,11 +1,9 @@
-package utils;
+package bobthebot.utils;
 
-import utils.Parser;
-import tasks.ToDoList;
-import tasks.Task;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Todo;
+import bobthebot.tasks.Task;
+import bobthebot.tasks.Deadline;
+import bobthebot.tasks.Event;
+import bobthebot.tasks.Todo;
 
 
 import java.util.ArrayList;

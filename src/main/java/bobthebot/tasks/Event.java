@@ -1,21 +1,19 @@
-package tasks;
-
-import tasks.Task;
+package bobthebot.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
-    private String by;
+public class Event extends Task {
+    private String at;
 
-    public Deadline(String description, String by) {
+    public Event(String description, String at) {
         super(description);
-        this.by = by;
+        this.at = at.trim();
     }
 
-    public String changeByFormat(String by) {
+    public String changeAtFormat(String at) {
         // split the date and the time
-        String[] splitDeadline = by.split(" ");
+        String[] splitDeadline = at.split(" ");
         String givenDate = splitDeadline[0].trim();
         LocalDate outputDate = LocalDate.parse(givenDate);
 
@@ -27,13 +25,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + changeByFormat(this.by) + ")";
+        return "[E]" + super.toString() + " (at: " + this.changeAtFormat(at) + ")";
     }
 
     @Override
     public String toStorageFormat() {
         int done = isDone ? 1 : 0;
-        String res = String.format("D | %d | %s | %s", done, taskName, by);
+        String res = String.format("D | %d | %s | %s", done, taskName, at);
         return res;
     }
 }

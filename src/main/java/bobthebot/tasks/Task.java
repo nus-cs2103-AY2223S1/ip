@@ -1,4 +1,4 @@
-package tasks;
+package bobthebot.tasks;
 
 public class Task {
     public boolean isDone;

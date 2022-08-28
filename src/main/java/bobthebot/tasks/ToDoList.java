@@ -1,12 +1,7 @@
-package tasks;
+package bobthebot.tasks;
 
-import utils.Storage;
-import tasks.Task;
-import exceptions.BobException;
-import utils.Ui;
-import tasks.Todo;
-import tasks.Event;
-import tasks.Deadline;
+import bobthebot.utils.Storage;
+import bobthebot.utils.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
