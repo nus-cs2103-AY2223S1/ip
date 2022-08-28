@@ -8,6 +8,11 @@ import duke.Ui;
  * A command that exits the program.
  */
 public class ByeCommand extends Command {
+    /**
+     * Constructor for ByeCommand.
+     *
+     * @param command "bye".
+     */
     public ByeCommand(String command) {
         super(command);
     }

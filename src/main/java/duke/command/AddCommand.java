@@ -13,6 +13,12 @@ import java.io.IOException;
 public abstract class AddCommand extends Command {
     protected Task task;
 
+    /**
+     * Constructor that takes in the command string and the task to be added.
+     *
+     * @param command input string from user
+     * @param task task to be added
+     */
     public AddCommand(String command, Task task) {
         super(command);
         this.task = task;

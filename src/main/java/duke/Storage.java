@@ -19,7 +19,14 @@ public class Storage {
     private File file;
     private Scanner scanner;
 
-    // for third arg, e.g. src/main/data/data.txt -> pass in src, main, data, data.txt
+    /**
+     * Constructor for Storage.
+     * Creates the output file and its parent directories if not present yet.
+     *
+     * @param ui Ui to print messages for user if IOException occurs.
+     * @param fileName name of output file.
+     * @param directories output file path's directory names in order.
+     */
     public Storage(Ui ui, String fileName, String... directories) {
         // platform independent paths
         String directoriesString = Arrays
@@ -54,7 +61,14 @@ public class Storage {
         }
     }
 
-    // initialises the tasklist with commands from output file
+    /**
+     * Loads the TaskList by treating the text from output file
+     * as input strings from user to be parsed, and its resulting commands executed.
+     *
+     * @param taskList TaskList with no tasks, to be initialised with previous tasks from output file.
+     * @param ui Ui to print messages to user.
+     * @throws IOException if writing change to output file is unsuccessful while executing a command.
+     */
     public void load(TaskList taskList, Ui ui) throws IOException {
         if (!this.scanner.hasNext()) {
             ui.printWithDivider("No previous tasks found, starting with empty task list!");
@@ -102,6 +116,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the given string to the output file.
+     *
+     * @param s string to be written.
+     * @throws IOException if an error occurs while writing to the output file.
+     */
     public void write(String s) throws IOException {
         FileWriter fw = new FileWriter(file);
         fw.write(s);

@@ -14,6 +14,12 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for Duke that initialises Storage, TaskList and Ui.
+     *
+     * @param fileName name of output file for task list.
+     * @param directories output file path's directory names in order.
+     */
     public Duke(String fileName, String... directories) {
         this.ui = new Ui();
         this.storage = new Storage(ui, fileName, directories);
@@ -27,7 +33,10 @@ public class Duke {
         }
     }
 
-    // starts taking in the user's commands
+    /**
+     * Starts parsing user input as commands from System.in, line by line.
+     * Returns when a Command's isExit field is true.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         boolean isExit = false;
@@ -45,6 +54,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialises and runs Duke.
+     * @param args command line arguments.
+     */
     public static void main(String[] args) {
         new Duke("data.txt", "data").run();
     }

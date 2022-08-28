@@ -9,6 +9,11 @@ import duke.command.Command;
  * A command that reads and prints all of the tasks in the task list.
  */
 public class ListCommand extends Command {
+    /**
+     * Constructor for ListCommand.
+     *
+     * @param command "list".
+     */
     public ListCommand(String command) {
         super(command);
     }

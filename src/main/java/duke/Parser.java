@@ -8,7 +8,15 @@ import java.util.Objects;
  * Contains methods to parse user input.
  */
 public abstract class Parser {
-    // should return the command, or throw an exception if command is wrong
+    /**
+     * Parses the input string from user and if valid, returns a Command,
+     * else throws IllegalArgumentException.
+     *
+     * @param commandString input string from user.
+     * @param taskList TaskList containing current tasks.
+     * @return Command instance representing the commandString.
+     * @throws IllegalArgumentException if input string from user is invalid.
+     */
     public static Command parse(String commandString, TaskList taskList) throws IllegalArgumentException {
         String[] commandArr = commandString.split(" ");
         Command.Commands commandWord = null;
@@ -51,7 +59,14 @@ public abstract class Parser {
         return command;
     }
 
-    // returns the 0-based index of task
+    /**
+     * Parses the second word of the input string from user as an integer, and returns -1 of that value
+     *
+     * @param command input string from user.
+     * @param taskList TaskList containing current tasks.
+     * @return integer representing a 0-based task index from the 1-based task index given.
+     * @throws IllegalArgumentException if second word is not an integer.
+     */
     public static int getTaskIndex(String command, TaskList taskList) throws IllegalArgumentException {
         int i;
         String[] commandArr = command.split(" ");

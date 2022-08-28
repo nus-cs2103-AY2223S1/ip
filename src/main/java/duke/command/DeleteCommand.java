@@ -20,6 +20,16 @@ public class DeleteCommand extends Command {
         this.taskList = taskList;
     }
 
+    /**
+     * Factory method taking in input string from user and a TaskList.
+     * Throws IllegalArgumentException if the index for the task to be deleted is not given,
+     * or if the index is out of bounds of the task list.
+     *
+     * @param command "delete k", where k is the 1-based index of the task to be deleted in the task list.
+     * @param taskList TaskList containing the current tasks.
+     * @return DeleteCommand instance that deletes a task from the task list when executed.
+     * @throws IllegalArgumentException if input string from user is invalid.
+     */
     public static DeleteCommand of(String command, TaskList taskList) throws IllegalArgumentException {
         int taskIndex;
         try {

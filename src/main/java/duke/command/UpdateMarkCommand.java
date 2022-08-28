@@ -13,6 +13,16 @@ public class UpdateMarkCommand extends UpdateCommand {
         super(command, task, taskIndex);
     }
 
+    /**
+     * Factory method taking in input string from user and a TaskList.
+     * Throws IllegalArgumentException if the index for the task to be marked is not given,
+     * or if the index is out of bounds of the task list.
+     *
+     * @param command "mark k", where k is the 1-based index of the task to be marked in the task list.
+     * @param taskList TaskList containing the current tasks.
+     * @return UpdateMarkCommand instance that marks a task from the task list when executed.
+     * @throws IllegalArgumentException if input string from user is invalid.
+     */
     public static UpdateMarkCommand of(String command, TaskList taskList) throws IllegalArgumentException {
         int taskIndex;
         try {

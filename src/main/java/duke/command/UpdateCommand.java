@@ -7,8 +7,15 @@ import duke.task.Task;
  */
 public abstract class UpdateCommand extends Command {
     protected Task task;
-    protected int taskIndex;  // stores 0-based index of task in duke.TaskList
+    protected int taskIndex;
 
+    /**
+     * Constructor for UpdateCommand.
+     *
+     * @param command input string from user.
+     * @param task Task to be updated.
+     * @param taskIndex 0-based index of task to be updated in task list.
+     */
     public UpdateCommand(String command, Task task, int taskIndex) {
         super(command);
         this.task = task;

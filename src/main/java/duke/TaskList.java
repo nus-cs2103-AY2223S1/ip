@@ -13,13 +13,23 @@ import java.util.stream.IntStream;
 public class TaskList {
     private ArrayList<Task> tasks;
     private ArrayList<String> addCommands;   // running these commands will always give the tasks array
-    // delete, update, list functions
 
+    /**
+     * Constructor for TaskList that initialises an empty task list.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.addCommands = new ArrayList<>();
     }
 
+    /**
+     * Adds a task to the task list, and writes the change to the output file.
+     *
+     * @param task Task to be added.
+     * @param command input string from user, that returns the Task's AddCommand when passed into Parser.parse().
+     * @param storage Storage to write the changes after adding.
+     * @throws IOException if an error occurs while writing to the output file.
+     */
     public void add(Task task, String command, Storage storage) throws IOException {
         this.tasks.add(task);
         this.addCommands.add(command);
@@ -35,15 +45,24 @@ public class TaskList {
         }
     }
 
-    // gets the (i-1)th task in tasks
     public Task get(int i) throws IndexOutOfBoundsException {
         return this.tasks.get(i);
     }
 
+    /**
+     * Returns the length of the task list.
+     */
     public int size() {
         return this.tasks.size();
     }
 
+    /**
+     * Removes a task from the task list, and writes the change to the output file.
+     *
+     * @param i 0-based index of task to be removed.
+     * @param storage Storage to write the changes after removing.
+     * @throws IOException if an error occurs while writing to the output file.
+     */
     public void remove(int i, Storage storage) throws IOException {
         Task task = this.get(i);
         String commandString = this.addCommands.get(i);
@@ -61,6 +80,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task from the task list, and writes the change to the output file.
+     *
+     * @param i 0-based index of task to be marked.
+     * @param storage Storage to write the changes after marked.
+     * @throws IOException if an error occurs while writing to the output file.
+     */
     public void mark(int i, Storage storage) throws IOException {
         this.get(i).mark();
         String commandString = this.addCommands.get(i);
@@ -79,6 +105,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks a task from the task list, and writes the change to the output file.
+     *
+     * @param i 0-based index of task to be unmarked.
+     * @param storage Storage to write the changes after unmarked.
+     * @throws IOException if an error occurs while writing to the output file.
+     */
     public void unmark(int i, Storage storage) throws IOException {
         this.get(i).unmark();
         String commandString = this.addCommands.get(i);

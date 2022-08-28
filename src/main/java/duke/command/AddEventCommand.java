@@ -14,6 +14,15 @@ public class AddEventCommand extends AddCommand {
         super(command, event);
     }
 
+    /**
+     * Factory method taking in input string from user.
+     * Throws IllegalArgumentException if the event's description is not given,
+     * or a time is not given after "/at", or the time given is in the incorrect format.
+     *
+     * @param command input string from user, prefixed with "event".
+     * @return AddEventCommand instance that adds an event to the task list when executed.
+     * @throws IllegalArgumentException if input string from user is invalid.
+     */
     public static AddEventCommand of(String command) throws IllegalArgumentException {
         boolean isDone = command.contains("/done");
         if (isDone) {

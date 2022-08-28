@@ -14,6 +14,15 @@ public class AddDeadlineCommand extends AddCommand {
         super(command, deadline);
     }
 
+    /**
+     * Factory method taking in input string from user.
+     * Throws IllegalArgumentException if the deadline's description is not given,
+     * or a time is not given after "/by", or the time given is in the incorrect format.
+     *
+     * @param command input string from user, prefixed with "deadline".
+     * @return AddDeadlineCommand instance that adds a deadline to the task list when executed.
+     * @throws IllegalArgumentException if input string from user is invalid.
+     */
     public static AddDeadlineCommand of(String command) throws IllegalArgumentException {
         boolean isDone = command.contains("/done");
         if (isDone) {
