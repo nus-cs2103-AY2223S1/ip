@@ -1,3 +1,5 @@
+package duke;
+
 public abstract class Task {
     protected String item;
     protected boolean done;
@@ -8,9 +10,9 @@ public abstract class Task {
     }
 
     /**
-     * The toString method of the Task class.
+     * The toString method of the duke.Task class.
      *
-     * @return The string representation of the Task object.
+     * @return The string representation of the duke.Task object.
      */
     @Override
     public String toString() {

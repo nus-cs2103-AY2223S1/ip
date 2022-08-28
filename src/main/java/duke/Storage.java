@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -45,7 +47,6 @@ public class Storage {
                                 taskList.add(event);
                                 break;
                             default:
-                                System.out.println("Error in file" + tasks.getAbsolutePath());
                                 break label;
                         }
                     }

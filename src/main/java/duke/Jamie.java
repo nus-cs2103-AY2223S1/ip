@@ -1,3 +1,5 @@
+package duke;
+
 public class Jamie {
     protected final TaskList tasks;
     protected final Ui ui;
@@ -17,6 +19,6 @@ public class Jamie {
     }
 
     public static void main(String[] args) {
-        new Jamie("Data/Jamie.txt").run();
+        new Jamie("Data/JamieTasks.txt").run();
     }
 }

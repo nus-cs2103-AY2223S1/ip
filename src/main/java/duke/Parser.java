@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -91,7 +93,7 @@ public class Parser {
         }
 
         try {
-            FileWriter writer = new FileWriter("Data/Jamie.txt", false);
+            FileWriter writer = new FileWriter("Data/JamieTasks.txt", false);
             writer.write(jamie.tasks.taskListToText());
             writer.close();
         } catch (IOException e) {
