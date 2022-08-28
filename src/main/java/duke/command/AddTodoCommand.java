@@ -4,7 +4,6 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.Ui;
 
 /**
  * Command to add an Todo to the list of the tasks.
@@ -19,10 +18,10 @@ public class AddTodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Task newTask = new Todo(this.desc);
         tasks.addTask(newTask);
-        ui.showAddTask(newTask, tasks);
         storage.write(tasks);
+        return "Got it. I've added this task:\n\t" + newTask + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 }

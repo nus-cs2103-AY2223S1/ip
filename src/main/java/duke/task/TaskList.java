@@ -2,10 +2,11 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import duke.exception.DukeException;
 import duke.exception.TaskIndexOutOfBoundsException;
 import duke.parser.Parser;
+import duke.storage.Storage;
 
 /**
  * Represents a list of tasks.
@@ -18,18 +19,17 @@ public class TaskList {
     }
 
     /**
-     * Constructs a list of tasks from a list of strings stored in the hard disk.
-     * @param taskStrings List of strings, each representing a task.
+     * Loads a list of tasks from storage.
+     * @param storage Hard disk storage that contains tasks.
      */
-    public TaskList(List<String> taskStrings) {
-        this();
+    public void loadTasksFromStorage(Storage storage) {
+        if (this.size() != 0) {
+            throw new DukeException("Current list of tasks is not empty!");
+        }
+        List<String> taskStrings = storage.read();
         for (String taskStr : taskStrings) {
             this.tasks.add(Parser.fromStorage(taskStr));
         }
-    }
-
-    public List<String> toStorage() {
-        return this.tasks.stream().map(Task::toStorage).collect(Collectors.toList());
     }
 
     public void addTask(Task t) {

@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to mark a task as done.
@@ -17,9 +16,9 @@ public class MarkTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.markTaskAsDone(taskIndex);
-        ui.showMarkTask(tasks.getTask(taskIndex));
         storage.write(tasks);
+        return "Nice! I've marked this task as done:\n\t" + tasks.getTask(taskIndex);
     }
 }

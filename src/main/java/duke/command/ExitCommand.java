@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to exit the Duke app.
@@ -16,7 +15,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showExit();
+    public String execute(TaskList tasks, Storage storage) {
+        return "Bye. Hope to see you again soon!";
     }
 }
