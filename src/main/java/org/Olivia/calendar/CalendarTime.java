@@ -1,4 +1,11 @@
 package org.Olivia.calendar;
+/**
+ * Represents time
+ * Can either be just a date, just a time of day, or both
+ * Can be created using the factory method parseInput
+ * Can handle string in DD/MM/YYYY hh:mm format
+ * @author ZHANG TONGJUN (albertZhangTJ)
+ */
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -10,14 +17,19 @@ public class CalendarTime {
     private LocalTime time;
 
     // The constructors are set to public for ease of testing
+    // should not be used in actual production
+    @Deprecated
     public CalendarTime(LocalDate date) {
         this.date=date;
         this.time=null;
     }
+
+    @Deprecated
     public CalendarTime(LocalTime time) {
         this.time=time;
         this.date=null;
     }
+    @Deprecated
     public CalendarTime(LocalDate date, LocalTime time) {
         this.date=date;
         this.time=time;
@@ -54,6 +66,13 @@ public class CalendarTime {
         return LocalDate.of(year,month,day);
     }
 
+    /**
+     * Take in a string in "DD/MM/YYYY", "hh:mm", or "DD/MM/YYYY hh:mm" format
+     * and parse that string into a time, return as a CalendarTime object
+     * @param input e input string
+     * @return a CalendarTime object
+     * @throws Exception cannot parse e input string
+     */
     public static CalendarTime parseInput(String input) throws Exception{
         input=stripPaddingBlanks(input);
         //both date (/) and time(:) are present but no blank is present
@@ -88,6 +107,9 @@ public class CalendarTime {
         return this.time==null;
     }
 
+    /**
+     * @return String in "DD/MM/YYYY", "hh:mm", or "DD/MM/YYYY hh:mm" format
+     */
     @Override
     public String toString(){
         if (hasOnlyDate()){
