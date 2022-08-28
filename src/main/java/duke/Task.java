@@ -60,16 +60,16 @@ public class Task {
         this.taskName = taskName;
         this.time = null;
         switch (taskType) {
-            case "T":
-                this.taskType = TaskType.TODO;
-                return;
-            case "D":
-                this.taskType = TaskType.DEADLINE;
-                this.date = LocalDate.parse(timing);
-                return;
-            case "E":
-                this.taskType = TaskType.EVENT;
-                this.date = LocalDate.parse(timing);
+        case "T":
+            this.taskType = TaskType.TODO;
+            return;
+        case "D":
+            this.taskType = TaskType.DEADLINE;
+            this.date = LocalDate.parse(timing);
+            return;
+        case "E":
+            this.taskType = TaskType.EVENT;
+            this.date = LocalDate.parse(timing);
         }
     }
 
@@ -98,9 +98,11 @@ public class Task {
             return taskType.toString().charAt(0) + " | 0 | " + this.taskName + "\n";
         } */
         if (done) {
-            return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
+            return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " +
+                    this.date + timeToString(this.time) + "\n";
         }
-        return this.taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
+        return this.taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " +
+                this.date + timeToString(this.time) + "\n";
     }
 
     public void markDone() {
