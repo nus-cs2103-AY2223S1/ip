@@ -8,8 +8,8 @@ import duke.util.Ui;
 import java.io.File;
 
 public class Duke {
-    private static final String FILEDIR = "data";
-    private static final String FILEPATH = FILEDIR + File.separator + "duke.txt";
+    private static final String FILE_DIR = "data";
+    private static final String FILE_PATH = FILE_DIR + File.separator + "duke.txt";
 
     private StoredTasks storedTasks;
     private TaskList tasks;
@@ -25,7 +25,7 @@ public class Duke {
         }
     }
 
-    public void run() {
+    public void runDuke() {
         while (true) {
             String command = this.ui.getUserCommand();
             try {
@@ -43,6 +43,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(FILEDIR, FILEPATH).run();
+        new Duke(FILE_DIR, FILE_PATH).runDuke();
     }
 }
