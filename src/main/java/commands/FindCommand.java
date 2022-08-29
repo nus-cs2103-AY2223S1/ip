@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Find command for finding all tasks containing given keyword.
+ */
 public class FindCommand extends Command {
 
     protected String keyword;

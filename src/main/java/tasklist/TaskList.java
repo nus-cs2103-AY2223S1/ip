@@ -120,6 +120,12 @@ public class TaskList {
         taskList.remove(index - 1);
     }
 
+    /**
+     * Find all tasks containing given keyword and list them.
+     * @param keyword Keyword to be found in tasks.
+     * @return String containing a list of tasks that contain the given keyword.
+     * @throws FredException
+     */
     public String find(String keyword) throws FredException {
         int counter = 1;
         String list = "Here are matching tasks in your list:\n";
