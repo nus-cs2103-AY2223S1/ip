@@ -43,14 +43,14 @@ public class Ui {
     /**
      * Formats and prints a string.
      * 
-     * @param m Message string to be printed.
+     * @param message Message string to be printed.
      */
-    public void printMessage(String m) {
-        String message = "    ____________________________________________________________\n    "
-                + m
+    public void printMessage(String message) {
+        String formattedMessage = "    ____________________________________________________________\n    "
+                + message
                 + "\n    ____________________________________________________________\n";
         if (verbose) {
-            System.out.println(message);
+            System.out.println(formattedMessage);
         }
     }
 
@@ -58,9 +58,9 @@ public class Ui {
      * Sets the verbosity of user interface.
      * Verbosity determines whether the user interface prints messages.
      * 
-     * @param v Value of verbosity.
+     * @param verbosity Value of verbosity.
      */
-    public void setVerbose(boolean v) {
-        verbose = v;
+    public void setVerbose(boolean verbosity) {
+        verbose = verbosity;
     }
 }

@@ -26,12 +26,12 @@ public class TaskList {
     /**
      * Adds a task to TaskList.
      * 
-     * @param t Task to be added.
+     * @param task Task to be added.
      */
-    public void addTask(Task t) {
-        taskList.add(t);
+    public void addTask(Task task) {
+        taskList.add(task);
         ui.printMessage("Got it. I've added this task:\n      " +
-                t +
+                task +
                 "\n    Now you have " +
                 taskList.size() +
                 " tasks in the list.");

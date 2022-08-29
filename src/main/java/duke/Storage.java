@@ -52,12 +52,12 @@ public class Storage {
     /**
      * Writes a string to save file of Duke Bot.
      * 
-     * @param s String to be written to save file.
+     * @param text String to be written to save file.
      * @param nextLine Boolean, if true newline character will be written after string is written.
      */
-    public void writeText(String s, boolean nextLine) {
+    public void writeText(String text, boolean nextLine) {
         try {
-            output.write(s);
+            output.write(text);
             if (nextLine) {
                 output.write("\n");
             }
