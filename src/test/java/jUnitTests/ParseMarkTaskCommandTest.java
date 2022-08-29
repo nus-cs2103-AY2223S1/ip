@@ -1,0 +1,18 @@
+package jUnitTests;
+
+import Duke.commands.Command;
+import Duke.exceptions.DukeException;
+import Duke.parser.Parser;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class ParseMarkTaskCommandTest {
+
+    @Test
+    void shouldParseMarkTask() throws DukeException {
+        Command c = Parser.parse("mark 1");
+        assertFalse(c.isExit());
+    }
+}

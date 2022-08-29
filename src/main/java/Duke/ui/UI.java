@@ -29,8 +29,7 @@ public class UI {
     }
 
     public String readCommand() {
-        String input = sc.nextLine();
-        return input;
+        return sc.nextLine();
     }
 
     public void printListMessage() {
@@ -38,7 +37,7 @@ public class UI {
 
     public boolean checkValid(String input) {
         String[] str = input.split(" ");
-        return ((str.length != 1) &&  (str.length != 0));
+        return (str.length > 1);
     }
 
     public void addTaskMessage(Task task, int listSize) {
