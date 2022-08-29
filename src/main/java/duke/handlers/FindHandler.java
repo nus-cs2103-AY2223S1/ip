@@ -5,8 +5,6 @@ import duke.exceptions.DukeException;
 import duke.service.Service;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FindHandler implements IHandler{
     private String taskName;
