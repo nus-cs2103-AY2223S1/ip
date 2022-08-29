@@ -11,19 +11,19 @@ import java.util.ArrayList;
  * @version CS2103T AY22/23 Semester 1
  */
 public class TaskList {
-    private ArrayList<Task> list;
+    private ArrayList<Task> tasks;
     private Ui ui;
     private Storage storage;
 
     /**
      * Constructor for a TaskList instance.
      *
-     * @param list The ArrayList storing the tasks
+     * @param tasks The ArrayList storing the tasks
      * @param ui The Ui handling the user inputs
      * @param storage The Storage instance handling the file saving and loading
      */
-    public TaskList(ArrayList<Task> list, Ui ui, Storage storage) {
-        this.list = list;
+    public TaskList(ArrayList<Task> tasks, Ui ui, Storage storage) {
+        this.tasks = tasks;
         this.ui = ui;
         this.storage = storage;
     }
@@ -45,13 +45,13 @@ public class TaskList {
         Task newTodo = new Todo(input);
 
         // Add to list
-        this.list.add(newTodo);
+        this.tasks.add(newTodo);
 
         // Print message
         this.printAddedTask(newTodo);
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -81,13 +81,13 @@ public class TaskList {
         Task newDeadline = new Deadline(desc, by);
 
         // Add to list
-        this.list.add(newDeadline);
+        this.tasks.add(newDeadline);
 
         // Print message
         this.printAddedTask(newDeadline);
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -117,13 +117,13 @@ public class TaskList {
         Task newDeadline = new Event(desc, at);
 
         // Add to list
-        this.list.add(newDeadline);
+        this.tasks.add(newDeadline);
 
         // Print message
         this.printAddedTask(newDeadline);
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -135,7 +135,7 @@ public class TaskList {
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newTask);
         System.out.println(String.format("Now you have %d tasks in the list.",
-                this.list.size()));
+                this.tasks.size()));
     }
 
     /**
@@ -145,8 +145,8 @@ public class TaskList {
         System.out.println("Here are the tasks in your list:");
 
         // Print every task in the list
-        for (int i = 0; i < this.list.size(); i++) {
-            String output = String.format("%s. %s", i + 1, this.list.get(i));
+        for (int i = 0; i < this.tasks.size(); i++) {
+            String output = String.format("%s. %s", i + 1, this.tasks.get(i));
             System.out.println(output);
         }
 
@@ -163,7 +163,7 @@ public class TaskList {
         System.out.println("Here are the tasks on "
                            + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
 
-        for (Task task : this.list) {
+        for (Task task : this.tasks) {
             // Check that task is not a To-do which has no deadline
             if (task instanceof Todo) {
                 continue;
@@ -185,12 +185,12 @@ public class TaskList {
      */
     public void mark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index <= 0 || index > this.list.size()) {
+        if (index <= 0 || index > this.tasks.size()) {
             throw new DukeException("Invalid index");
         }
 
         // Get the task to be marked
-        Task selectedTask = this.list.get(index - 1);
+        Task selectedTask = this.tasks.get(index - 1);
 
         // Mark it as done
         selectedTask.mark();
@@ -200,7 +200,7 @@ public class TaskList {
                            + selectedTask);
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -212,12 +212,12 @@ public class TaskList {
      */
     public void unmark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index <= 0 || index > this.list.size()) {
+        if (index <= 0 || index > this.tasks.size()) {
             throw new DukeException("Invalid index");
         }
 
         // Get the task to be marked
-        Task selectedTask = this.list.get(index - 1);
+        Task selectedTask = this.tasks.get(index - 1);
 
         // Mark it as not done
         selectedTask.unmark();
@@ -227,7 +227,7 @@ public class TaskList {
                            + selectedTask);
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -239,21 +239,21 @@ public class TaskList {
      */
     public void delete(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index <= 0 || index > this.list.size()) {
+        if (index <= 0 || index > this.tasks.size()) {
             throw new DukeException("Invalid index");
         }
 
         // Remove task from list and get removed task
-        Task removedTask = this.list.remove(index - 1);
+        Task removedTask = this.tasks.remove(index - 1);
 
         // Print message
         System.out.println("Noted. I've removed this task:");
         System.out.println(removedTask);
         System.out.println(String.format("Now you have %d tasks in the list.",
-                           this.list.size()));
+                           this.tasks.size()));
 
         // Update data file
-        this.storage.saveTasks(this.list);
+        this.storage.saveTasks(this.tasks);
     }
 
     /**
@@ -264,7 +264,7 @@ public class TaskList {
     public void find(String key) {
         System.out.println("Here are the matching tasks in your list:");
 
-        for (Task task : this.list) {
+        for (Task task : this.tasks) {
             if (task.toString().contains(key)) {
                 System.out.println(task);
             }
