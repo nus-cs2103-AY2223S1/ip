@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-import Duke.Task.Task;
+import duke.Task.Task;
 public class Storage {
     boolean directoryExist;
     java.nio.file.Path path;

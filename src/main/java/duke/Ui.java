@@ -1,5 +1,5 @@
-package Duke;
-import Duke.Task.Task;
+package duke;
+import duke.Task.Task;
 public class Ui {
     public Ui() {
 

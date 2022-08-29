@@ -1,17 +1,12 @@
-package Duke;
+package duke;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
-import Duke.Storage;
-import Duke.Parser;
-import Duke.TaskList;
-import Duke.Ui;
-import Duke.Task.Task;
-import Duke.Task.Deadline;
-import Duke.Task.Event;
-import Duke.Exceptions.descriptionException;
-import Duke.Exceptions.NoSuchCommandException;
+
+import duke.Task.Task;
+import duke.Exceptions.descriptionException;
+import duke.Exceptions.NoSuchCommandException;
 public class Duke {
     private static Storage storage = new Storage();
     private static ArrayList<Task> todo;

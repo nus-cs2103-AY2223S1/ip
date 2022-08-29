@@ -1,4 +1,4 @@
-package Duke.Exceptions;
+package duke.Exceptions;
 
 public class NoSuchCommandException extends Exception{
     public NoSuchCommandException() {
