@@ -26,18 +26,18 @@ public class TaskList {
     }
 
     /**
-     * Prints all tasks from task arraylist
+     * Returns a string listing all tasks in Tasklist
      */
-    public void printTasks() {
-        Ui.separationLine();
+    public String listTasks() {
+        String tasks = "";
         if (TaskList.tasks.isEmpty()) {
-            System.out.println("You have no tasks! :D");
+            tasks = "You have no tasks! :D";
         } else {
             for (int i = 0; i < TaskList.tasks.size(); i++) {
-                System.out.println((i + 1) + "." + TaskList.tasks.get(i));
+                tasks += (i + 1) + "." + TaskList.tasks.get(i) + "\n";
             }
         }
-        Ui.separationLine();
+        return tasks;
     }
 
     /**
@@ -66,8 +66,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a string containing
-     * tasks that have been found
+     * Returns a string containing tasks that have been found
      * after searching using text
      */
     public String findTask(String text) {
