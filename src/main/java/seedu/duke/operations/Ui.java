@@ -101,6 +101,20 @@ public class Ui {
     }
 
     /**
+     * Message printed when matching tasks are found.
+     */
+    public void showSearchResult() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
+
+    /**
+     * Message printed when no matching task found.
+     */
+    public void showNoSearchResult() {
+        System.out.println("Sorry! I did not find any matching task.");
+    }
+
+    /**
      * Prints the error message into the command line.
      *
      * @param errorMessage  Error message returned by Duke
@@ -167,6 +181,16 @@ public class Ui {
      */
     public String getInvalidTimeFormatErrorMessage() {
         return "Invalid date provided.\nPlease format the date in YYYY-MM-DD";
+    }
+
+    /**
+     * Returns an error message when find Command has an empty String as a
+     * key word.
+     *
+     * @return  Invalid input error message
+     */
+    public String getEmptyKeywordErrorMessage() {
+        return "Please input a key word after the \"find\" command.";
     }
 
     /**

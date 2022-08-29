@@ -1,15 +1,6 @@
 package seedu.duke.operations;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.MarkCommand;
-import seedu.duke.command.UnmarkCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.MakeTodoCommand;
-import seedu.duke.command.MakeDeadlineCommand;
-import seedu.duke.command.MakeEventCommand;
-import seedu.duke.command.InvalidCommand;
+import seedu.duke.command.*;
 
 /**
  * Parser parses the user input and returns the relevant
@@ -41,6 +32,8 @@ public class Parser {
                 return new UnmarkCommand(cmd);
             case "delete":
                 return new DeleteCommand(cmd);
+            case "find":
+                return new FindCommand(cmd.substring("find".length()).strip());
             case "todo":
                 return new MakeTodoCommand(cmd.substring("todo".length()));
             case "deadline":
