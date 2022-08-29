@@ -4,6 +4,8 @@ import java.util.stream.Stream;
 
 /**
  * Base class substitute for String that is compatible with general.ui.Text
+ *
+ * @author Richard Dominick
  */
 public class Span implements Text {
     private final String text;
