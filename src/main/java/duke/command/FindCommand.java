@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     /**
      * Creates a Delete Command object
      */
-    public FindCommand(String text){
+    public FindCommand(String text) {
         this.text = text;
     }
 

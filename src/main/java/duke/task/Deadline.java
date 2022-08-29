@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
  * Represents a Deadline Task
  */
 public class Deadline extends Task {
-    String by;
+    private String by;
 
     /**
      * Creates a Deadline Task object

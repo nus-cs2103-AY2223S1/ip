@@ -23,15 +23,18 @@ import javafx.scene.paint.Paint;
  * Represents a dialog box in the GUI
  */
 public class DialogBox extends HBox {
+    private static Background dukeBg = new Background(new BackgroundFill(Paint.valueOf("70FFEC"),
+            CornerRadii.EMPTY, Insets.EMPTY));
+    private static Background userBg = new Background(new BackgroundFill(Paint.valueOf("79FF67"),
+            CornerRadii.EMPTY, Insets.EMPTY));
+
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
-    private static Background userBg = new Background(new BackgroundFill(Paint.valueOf("79FF67"),
-            CornerRadii.EMPTY, Insets.EMPTY));
-    private static Background dukeBg = new Background(new BackgroundFill(Paint.valueOf("70FFEC"),
-            CornerRadii.EMPTY, Insets.EMPTY));
+
+
 
     private DialogBox(String text, Image img) {
         try {

@@ -9,7 +9,7 @@ import duke.task.ToDo;
  * Represents a ToDo Command
  */
 public class TodoCommand extends Command {
-    String desc;
+    private String desc;
 
     /**
      * Creates a ToDo Command object

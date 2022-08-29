@@ -1,11 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,15 +7,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * Class that handles saving and loading
  * tasks in a file on the hard drive
  */
 public class Storage {
-    private String fileLocation;
-    private static final int ISDONE_MARKER = 4;
     private static final int DESC_MARKER = 8;
+    private static final int ISDONE_MARKER = 4;
+
+    private String fileLocation;
 
     /**
      * Creates a storage object
@@ -52,12 +52,12 @@ public class Storage {
             Scanner sc = new Scanner(taskFile);
             while (sc.hasNext()) {
                 String line = sc.nextLine();
-                char TaskType = line.charAt(0);
+                char taskType = line.charAt(0);
                 boolean taskIsDone = line.charAt(ISDONE_MARKER) == '1';
                 String taskDesc;
                 String taskTime;
 
-                switch (TaskType) {
+                switch (taskType) {
                 case 'T':
                     taskDesc = line.substring(DESC_MARKER).trim();
                     tasks.add(new ToDo(taskDesc, taskIsDone));
@@ -76,6 +76,8 @@ public class Storage {
 
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
+
+                default:
                 }
             }
             sc.close();

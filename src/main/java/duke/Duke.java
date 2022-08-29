@@ -1,5 +1,7 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+
 import duke.command.Command;
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidIndexException;
@@ -7,7 +9,7 @@ import duke.exception.InvalidInputException;
 import duke.exception.InvalidTimeException;
 import duke.task.TaskList;
 
-import java.time.format.DateTimeParseException;
+
 
 
 /**
@@ -15,9 +17,9 @@ import java.time.format.DateTimeParseException;
  */
 public class Duke {
 
-    Storage storage;
-    TaskList taskList;
-    Ui ui;
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
 
     /**
      * Creates a Duke object
