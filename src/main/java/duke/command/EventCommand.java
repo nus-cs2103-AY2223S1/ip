@@ -21,13 +21,13 @@ public class EventCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingSpecifierException, DukeInvalidDateException {
         String[] splitDescription = description.split(" /at ", 2);
         if (splitDescription[0].equals(description)) {
-            throw new DukeMissingSpecifierException("deadline", " /at ");
+            throw new DukeMissingSpecifierException("event", " /at ");
         }
         try {
             String instruction = splitDescription[0];
             String at = splitDescription[1];
             this.at = at;
-            Task event = tasks.addDeadline(instruction, at);
+            Task event = tasks.addEvent(instruction, at);
             ui.displayAdd(event, tasks.getSize());
         } catch (DateTimeParseException dtp) {
             throw new DukeInvalidDateException();
