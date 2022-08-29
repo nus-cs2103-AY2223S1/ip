@@ -1,13 +1,18 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
-
+/**
+ * The findcommand class that helps the user find tasks.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class FindCommand extends Command {
 
     private String keyWord;

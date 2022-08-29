@@ -1,18 +1,17 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 /**
  * Represents the duke.storage.Storage class which stores data for duke.Duke.
  *
@@ -52,20 +51,20 @@ public class Storage {
                     char taskType = string.charAt(0);
                     try {
                         switch (taskType) {
-                            case 'T':
-                                ToDo todo = ToDo.parseFile(string);
-                                temp.add(todo);
-                                break;
-                            case 'D':
-                                Deadline deadline = Deadline.parseFile(string);
-                                temp.add(deadline);
-                                break;
-                            case 'E':
-                                Event event = Event.parseFile(string);
-                                temp.add(event);
-                                break;
-                            default:
-                                throw new DukeException("Error in storage!");
+                        case 'T':
+                            ToDo todo = ToDo.parseFile(string);
+                            temp.add(todo);
+                            break;
+                        case 'D':
+                            Deadline deadline = Deadline.parseFile(string);
+                            temp.add(deadline);
+                            break;
+                        case 'E':
+                            Event event = Event.parseFile(string);
+                            temp.add(event);
+                            break;
+                        default:
+                            throw new DukeException("Error in storage!");
                         }
                     } catch (DukeException e) {
                         e.printStackTrace();
@@ -74,7 +73,7 @@ public class Storage {
             } else {
                 data.createNewFile();
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return temp;

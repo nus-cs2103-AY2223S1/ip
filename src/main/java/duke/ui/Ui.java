@@ -1,10 +1,9 @@
 package duke.ui;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Task;
 /**
  * Represents the user interface class that
  * deals with interactions with the user.
@@ -101,6 +100,11 @@ public class Ui {
         formatMessage(display);
     }
 
+    /**
+     * Displays the list of tasks which matches the keyword.
+     *
+     * @param arrayList The arraylist which tracks the task.
+     */
     public void displayMatchingList(ArrayList<Task> arrayList) {
         int i = 1;
         String display = "Here are the matching tasks in your list: ";
