@@ -19,61 +19,52 @@ public class Parser {
      *
      * @param next The user's input.
      */
-    public void processCommand(String next) {
+    public String processCommand(String next) {
         String[] nextWords = next.split(" ");
         switch(nextWords[0]) {
         case "mark":
             try {
                 int index = Integer.parseInt(nextWords[1]) - 1;
                 tasks.markTaskAsDone(index);
-                ui.printOut("I've marked this as done:\n" + tasks.taskToString(index));
-                break;
+                return "I've marked this as done:\n" + tasks.taskToString(index);
             } catch(IndexOutOfBoundsException e) {
-                ui.showInvalidTaskIndexError();
-                break;
+                return ui.showInvalidTaskIndexError();
             }
         case "unmark":
             try {
                 int index = Integer.parseInt(nextWords[1]) - 1;
                 tasks.markTaskAsUndone(index);
-                ui.printOut("I've marked this as undone:\n" + tasks.taskToString(index));
-                break;
+                return "I've marked this as undone:\n" + tasks.taskToString(index);
             } catch(IndexOutOfBoundsException e) {
-                ui.showInvalidTaskIndexError();
-                break;
+                return ui.showInvalidTaskIndexError();
             }
         case "delete":
             try {
                 int index = Integer.parseInt(nextWords[1]) - 1;
-                ui.printOut("I'll remove this task:\n" + tasks.taskToString(index) +
-                        "\nYou now have " + (tasks.size() - 1) + " tasks.");
+                Task toDelete = tasks.get(index);
                 tasks.remove(index);
-                break;
+                return "I'll remove this task:\n" + toDelete.toString() +
+                        "\nYou now have " + (tasks.size()) + " tasks.";
             } catch(IndexOutOfBoundsException e) {
-                ui.showInvalidTaskIndexError();
-                break;
+                return ui.showInvalidTaskIndexError();
             }
         case "list":
-            ui.printOut("Here are your tasks:" + tasks.toString());
-            break;
+            return "Here are your tasks:" + tasks.toString();
         case "todo":
             //Fallthrough
         case "deadline":
             //Fallthrough
         case "event":
-            processTask(next, nextWords[0]);
-            break;
+            return processTask(next, nextWords[0]);
         case "find":
             try {
                 String found = tasks.find(next.split(" ")[1]);
-                ui.printOut("Here's what I found:" + found);
+                return "Here's what I found:" + found;
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printOut("Please enter a word after 'find'!");
+                return "Please enter a word after 'find'!";
             }
-            break;
-        default:
-            ui.printOut("I don't know this command. Try another one!");
         }
+        return "I don't know this command. Try another one!";
     }
 
     /**
@@ -82,7 +73,7 @@ public class Parser {
      * @param input The user's input.
      * @param type The type of task.
      */
-    public void processTask(String input, String type) {
+    public String processTask(String input, String type) {
         DateTimeFormatter parserFormats = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
                 .appendOptional(DateTimeFormatter.ofPattern("d MMM uuuu"))
@@ -94,14 +85,13 @@ public class Parser {
         try {
             desc = arr[1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            ui.printOut("Please enter a description for your task!");
-            return;
+            return "Please enter a description for your task!";
         }
 
         if (type.equals("todo")) {
             Todo temp = new Todo(desc);
             tasks.add(temp);
-            ui.showTaskAddedMessage(temp, tasks);
+            return ui.showTaskAddedMessage(temp, tasks);
         }
         if (type.equals("deadline")) {
             try {
@@ -110,11 +100,11 @@ public class Parser {
                         format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Deadline temp = new Deadline(details[0], by);
                 tasks.add(temp);
-                ui.showTaskAddedMessage(temp, tasks);
+                return ui.showTaskAddedMessage(temp, tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printOut("Oops! Your deadline should have a due date after /by.");
+                return "Oops! Your deadline should have a due date after /by.";
             } catch (DateTimeParseException e) {
-                ui.printOut("Please enter a valid date!");
+                return "Please enter a valid date!";
             }
         }
         if (type.equals("event")) {
@@ -124,12 +114,13 @@ public class Parser {
                         format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Event temp = new Event(details[0], at);
                 tasks.add(temp);
-                ui.showTaskAddedMessage(temp, tasks);
+                return ui.showTaskAddedMessage(temp, tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printOut("Oops! Your event should have a date after /at.");
+                return "Oops! Your event should have a date after /at.";
             } catch (DateTimeParseException e) {
-                ui.printOut("Please enter a valid date!");
+                return "Please enter a valid date!";
             }
         }
+        return "There was a problem entering your task. Try again!";
     }
 }

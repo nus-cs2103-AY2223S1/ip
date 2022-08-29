@@ -24,6 +24,16 @@ public class Duke {
         ui.showGoodbye();
     }
 
+    /**
+     * Generates appropriate response from Duke.
+     *
+     * @param input Input from the user.
+     * @return Response from Duke.
+     */
+    public String getResponse(String input) {
+        return parser.processCommand(input);
+    }
+
     public static void main(String[] args) {
         new Duke().run();
     }
