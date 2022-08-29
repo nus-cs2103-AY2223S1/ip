@@ -5,8 +5,6 @@ package duke.exception;
  */
 public class InvalidInputException extends Exception {
     public InvalidInputException() {
-        super("____________________________________________________________\n"
-                + "I do not recognise this command :(\n"
-                    + "____________________________________________________________");
+        super("I do not recognise this command :(\n");
     }
 }
