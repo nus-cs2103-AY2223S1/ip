@@ -3,7 +3,10 @@ package duke.commands;
 import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * This class encapsulates a Tasks Command
@@ -38,7 +41,7 @@ public class TasksCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) {
-        String list = taskList.getTasks(this.date);
-        return ui.printList(list);
+        ArrayList<Task> list = taskList.getTasks(this.date);
+        return ui.printTasks(list, date);
     }
 }

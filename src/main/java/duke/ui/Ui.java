@@ -1,5 +1,7 @@
 package duke.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +34,7 @@ public class Ui {
      */
     public String printExit() {
         this.scanner.close();
-        return "\tBye. Hope to see you again soon :D";
+        return "Bye. Hope to see you again soon :D";
     }
 
     /**
@@ -41,8 +43,8 @@ public class Ui {
      * @param numOfTasks The number of tasks in the list
      */
     public String printAddTask(Task addedTask, int numOfTasks) {
-        String header = "\tGot it! I have added this task:\n\t\t" + addedTask;
-        String tasks = String.format("\n\tNow you have %d %s in the list!", numOfTasks,
+        String header = "Got it! I have added this task:\n\n" + addedTask;
+        String tasks = String.format("\n\nNow you have %d %s in the list!", numOfTasks,
                 numOfTasks < 2 ? "task" : "tasks");
         return header + tasks;
     }
@@ -53,8 +55,8 @@ public class Ui {
      * @param numOfTasks The number of tasks remaining
      */
     public String printDeleteTask(Task deletedTask, int numOfTasks) {
-        String msg = String.format("\tNoted, I have removed this task:\n\t\t%s", deletedTask);
-        String tasks = String.format("\n\tNow you have %d %s in the list!", numOfTasks,
+        String msg = String.format("Noted, I have removed this task:\n\n%s", deletedTask);
+        String tasks = String.format("\n\nNow you have %d %s in the list!", numOfTasks,
                 numOfTasks < 2 ? "task" : "tasks");
         return msg + tasks;
     }
@@ -64,7 +66,7 @@ public class Ui {
      * @param task The task that is marked as completed
      */
     public String printMarkTask(Task task) {
-        String msg = String.format("\tNice! I have marked this task as done:\n\t\t%s",
+        String msg = String.format("Nice! I have marked this task as done:\n\n%s",
                 task);
         return msg;
     }
@@ -74,7 +76,7 @@ public class Ui {
      * @param task The task that is marked as not completed
      */
     public String printUnmarkTask(Task task) {
-        String msg = String.format("\tOkay! I have marked this task as not done:\n\t\t%s",
+        String msg = String.format("Okay! I have marked this task as not done:\n\n%s",
                 task);
        return msg;
     }
@@ -84,7 +86,7 @@ public class Ui {
      * @param exception The exception thrown and caught
      */
     public String printException(Exception exception) {
-        return "\t" + exception.getMessage();
+        return exception.getMessage();
     }
 
     /**
@@ -107,20 +109,60 @@ public class Ui {
      * Prints the list of tasks
      * @param list The list of tasks
      */
-    public String printList(String list) {
-        return list;
+    public String printList(ArrayList<Task> list) {
+        int len = list.size();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            String task = String.format("\n%d. %s", i + 1, list.get(i));
+            stringBuilder.append(task);
+        }
+
+        if (len == 0) {
+            return "There are no tasks added!";
+        }
+
+        String header = String.format("Here %s the %s in your list :D\n", len == 1 ? "is" : "are",
+                len == 1 ? "task" : "tasks");
+        return header + stringBuilder;
+    }
+
+    public String printTasks(ArrayList<Task> list, String date) {
+        StringBuilder stringBuilder = new StringBuilder();
+        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        int len = list.size();
+        for (int i = 0; i < len; i++) {
+            Task t = list.get(i);
+            if (t.getTaskType().equals("D") || t.getTaskType().equals("E")) {
+                String formatted = String.format("\n%d. %s", i + 1, t);
+                stringBuilder.append(formatted);
+            }
+        }
+
+        if (len == 0) {
+            return String.format("No tasks on %s!", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        } else {
+            String header = String.format("Your %s for today include:\n", len == 1 ? "task" : "tasks");
+            return header + stringBuilder;
+        }
     }
 
     public String printFind(ArrayList<Task> list) {
-        StringBuilder stringBuilder = new StringBuilder("\tHere are the matching tasks in your list:");
+        StringBuilder stringBuilder = new StringBuilder();
         int count = 1;
         for (Task task: list) {
-            String item = String.format("\n\t%d. %s", count, task);
+            String item = String.format("\n%d. %s", count, task);
             stringBuilder.append(item);
             count++;
         }
 
-        return stringBuilder.toString();
+        if (count == 1) {
+            return "No matching tasks!";
+        }
+
+        String header = String.format("Here %s the matching %s in your list:\n", count == 2 ? "is" : "are",
+                count == 2 ? "task" : "tasks");
+
+        return header + stringBuilder;
     }
 
     public String print(String input) {

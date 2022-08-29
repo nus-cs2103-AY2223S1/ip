@@ -25,22 +25,16 @@ public abstract class Task {
 
     /**
      * To mark a task as completed.
-     * @return A string that notifies the user if the task has been marked as done.
      */
-    public String markAsDone() {
+    public void markAsDone() {
         this.isDone = true;
-        return String.format("\tNice! I have marked this task as done:\n\t\t%s",
-                this);
     }
 
     /**
      * To mark a task as not completed.
-     * @return A string that notifies the user if the task has been marked as not done.
      */
-    public String markAsNotDone() {
+    public void markAsNotDone() {
         this.isDone = false;
-        return String.format("\tOkay! I have marked this task as not done:\n\t\t%s",
-                this);
     }
 
     @Override

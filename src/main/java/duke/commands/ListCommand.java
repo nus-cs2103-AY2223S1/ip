@@ -2,7 +2,11 @@ package duke.commands;
 
 import duke.data.TaskList;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.ui.Ui;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * This class encapsulates an Exit Command
@@ -26,7 +30,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) {
-        String list = taskList.list();
+        ArrayList<Task> list = taskList.list();
         return ui.printList(list);
     }
 }
