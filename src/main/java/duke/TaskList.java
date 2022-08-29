@@ -126,10 +126,10 @@ public class TaskList {
 
     /**
      * Method to get a task from the list.
-     * @param i Index of the task.
+     * @param index Index of the task.
      * @return The task of the index given.
      */
-    public Task get(int i) {
-        return this.inputList.get(i);
+    public Task get(int index) {
+        return this.inputList.get(index);
     }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /**
  * Main class.
+ *
  * @author Safwan A0235287X
  */
 public class Duke {

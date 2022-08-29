@@ -27,7 +27,4 @@ public class Ui {
     public void showLoadingError() {
         System.out.println("The file is empty! Let's create a new file :)");
     }
-
-
-
 }

@@ -6,6 +6,7 @@ package duke;
  * @author Safwan A0235287X
  */
 public class Todo extends Task{
+
     protected String by;
 
     /**

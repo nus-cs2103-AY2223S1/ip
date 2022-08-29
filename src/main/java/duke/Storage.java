@@ -56,7 +56,6 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException{
 
-
         try {
             Scanner scanner = new Scanner(file);
             if (file.length() == 0) {
@@ -85,7 +84,6 @@ public class Storage {
                     } else {
                         break;
                     }
-
                 }
             }
         } catch (FileNotFoundException e) {
@@ -94,8 +92,6 @@ public class Storage {
             File file = new File(filePath);
             throw new DukeException ("File is empty!");
         }
-
         return inputList;
-
     }
 }

@@ -7,6 +7,7 @@ package duke;
  * @author Safwan A0235287X
  */
 public class Event extends Task{
+
     protected String at;
 
     /**
