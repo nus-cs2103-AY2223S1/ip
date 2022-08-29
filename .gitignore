@@ -17,7 +17,7 @@ src/main/resources/docs/
 text-ui-test/EXPECTED-UNIX.TXT
 
 # Java stuff
-*.class
+**/*.class
 .java-version
 .settings/
 
