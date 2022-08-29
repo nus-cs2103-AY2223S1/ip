@@ -1,8 +1,13 @@
-package duke;
+package duke.command;
+
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.operations.Ui;
 
 public class MakeTodoCommand extends MakeTaskCommand {
 
-    MakeTodoCommand(String detail) {
+    public MakeTodoCommand(String detail) {
         super(detail);
     }
 

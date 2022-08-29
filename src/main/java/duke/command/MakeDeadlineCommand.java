@@ -1,10 +1,15 @@
-package duke;
+package duke.command;
+
+import duke.task.DeadlineTask;
+import duke.DukeException;
+import duke.task.Task;
+import duke.operations.Ui;
 
 import java.time.format.DateTimeParseException;
 
 public class MakeDeadlineCommand extends MakeTaskCommand {
 
-    MakeDeadlineCommand(String detail) {
+    public MakeDeadlineCommand(String detail) {
         super(detail);
     }
 

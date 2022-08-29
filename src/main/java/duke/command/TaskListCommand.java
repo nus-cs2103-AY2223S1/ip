@@ -1,4 +1,9 @@
-package duke;
+package duke.command;
+
+import duke.DukeException;
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
 
 abstract class TaskListCommand extends Command {
     private final String cmd;
@@ -11,7 +16,7 @@ abstract class TaskListCommand extends Command {
 
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] split = cmd.split(" ");
         if (split.length == 2) {
             try {

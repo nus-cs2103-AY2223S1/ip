@@ -1,8 +1,19 @@
-package duke;
+package duke.operations;
+
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.DeleteCommand;
+import duke.command.MakeTodoCommand;
+import duke.command.MakeDeadlineCommand;
+import duke.command.MakeEventCommand;
+import duke.command.InvalidCommand;
 
 public class Parser {
 
-    static Command parse(String cmd) {
+    public static Command parse(String cmd) {
         cmd = cmd.strip();
         int separator = cmd.indexOf(' ');
         String keyWord = cmd;

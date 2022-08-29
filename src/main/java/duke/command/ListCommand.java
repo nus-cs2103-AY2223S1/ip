@@ -1,8 +1,12 @@
-package duke;
+package duke.command;
+
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
 
 public class ListCommand extends Command {
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.isEmpty()) {
             ui.showNoTask();
         }

@@ -1,8 +1,12 @@
-package duke;
+package duke.command;
+
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
 
 public class MarkCommand extends TaskListCommand {
 
-    MarkCommand(String cmd) {
+    public MarkCommand(String cmd) {
         super(cmd);
     }
 

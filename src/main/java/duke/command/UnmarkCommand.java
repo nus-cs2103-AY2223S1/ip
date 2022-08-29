@@ -1,7 +1,11 @@
-package duke;
+package duke.command;
+
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
 
 public class UnmarkCommand extends TaskListCommand {
-    UnmarkCommand(String cmd) {
+    public UnmarkCommand(String cmd) {
         super(cmd);
     }
 

@@ -1,8 +1,8 @@
-package duke;
+package duke.task;
 
 public class EventTask extends TimeTask {
     private final String eventTime;
-    EventTask(String taskname, String eventTime) {
+    public EventTask(String taskname, String eventTime) {
         super(taskname, eventTime);
         this.eventTime = super.toDisplayDate();
     }
@@ -13,7 +13,7 @@ public class EventTask extends TimeTask {
     }
 
     @Override
-    String saveFileFormat() {
+    public String saveFileFormat() {
         return "E###" + super.saveFileFormat();
     }
 }

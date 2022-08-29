@@ -1,5 +1,12 @@
 package duke;
 
+import duke.command.Command;
+import duke.operations.Parser;
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class Duke {

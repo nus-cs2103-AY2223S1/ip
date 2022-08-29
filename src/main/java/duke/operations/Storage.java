@@ -1,4 +1,10 @@
-package duke;
+package duke.operations;
+
+import duke.DukeException;
+import duke.task.DeadlineTask;
+import duke.task.Task;
+import duke.task.EventTask;
+import duke.task.TodoTask;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,11 +17,11 @@ import java.util.Scanner;
 public class Storage {
     private final String filePath;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws DukeException {
         File dataFile = new File(filePath);
         if (!dataFile.exists()) {
             setupDirectory();
@@ -31,7 +37,7 @@ public class Storage {
                         if (split.length != 3) {
                             throw new DukeException("Error");
                         }
-                        Task loadTask = TaskMaker.createTask(split[0], split[1], split[2]);
+                        Task loadTask = createTask(split[0], split[1], split[2]);
                         loadedTasks.add(loadTask);
                     } catch (DukeException e) {
                     } catch (DateTimeParseException e) {
@@ -62,7 +68,7 @@ public class Storage {
         }
     }
 
-    void updateSave(TaskList tasks) throws DukeException {
+    public void updateSave(TaskList tasks) throws DukeException {
         try {
             FileWriter writer = new FileWriter(filePath);
             StringBuilder toWrite = new StringBuilder();
@@ -74,5 +80,36 @@ public class Storage {
         } catch (IOException e) {
             setupDirectory();
         }
+    }
+
+    static Task createTask(String taskType, String check, String description) throws DukeException {
+        Task newTask;
+        switch (taskType) {
+            case "T":
+                newTask = new TodoTask(description);
+                break;
+            case "D":
+                String[] splitD = timeSpliter(description);
+                newTask = new DeadlineTask(splitD[0], splitD[1]);
+                break;
+            case "E":
+                String[] splitE = timeSpliter(description);
+                newTask = new EventTask(splitE[0], splitE[1]);
+                break;
+            default:
+                throw new DukeException("No such task label");
+        }
+        if (check.equals("1")) {
+            newTask.check();
+        }
+        return newTask;
+    }
+
+    static String[] timeSpliter(String description) {
+        int index = description.lastIndexOf('/');
+        String[] split = new String[2];
+        split[0] = description.substring(0, index);
+        split[1] = description.substring(index + 1);
+        return split;
     }
 }

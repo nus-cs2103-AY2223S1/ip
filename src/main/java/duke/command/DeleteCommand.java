@@ -1,8 +1,13 @@
-package duke;
+package duke.command;
+
+import duke.operations.Storage;
+import duke.task.Task;
+import duke.operations.TaskList;
+import duke.operations.Ui;
 
 public class DeleteCommand extends TaskListCommand {
 
-    DeleteCommand(String cmd) {
+    public DeleteCommand(String cmd) {
         super(cmd);
     }
 

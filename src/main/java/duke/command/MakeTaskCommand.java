@@ -1,4 +1,10 @@
-package duke;
+package duke.command;
+
+import duke.DukeException;
+import duke.operations.Storage;
+import duke.operations.TaskList;
+import duke.operations.Ui;
+import duke.task.Task;
 
 abstract class MakeTaskCommand extends Command {
 
@@ -8,7 +14,7 @@ abstract class MakeTaskCommand extends Command {
         this.detail = detail;
     }
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task newTask = makeNewTask(detail, ui);
         tasks.addTask(newTask);
         ui.showNewTask();

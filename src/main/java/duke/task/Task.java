@@ -1,6 +1,6 @@
-package duke;
+package duke.task;
 
-abstract class Task {
+public abstract class Task {
     private final String taskName;
     private boolean taskDone;
 
@@ -9,7 +9,7 @@ abstract class Task {
         this.taskDone = false;
     }
 
-    boolean check() {
+    public boolean check() {
         if (taskDone) {
             return false;
         } else {
@@ -18,7 +18,7 @@ abstract class Task {
         }
     }
 
-    boolean uncheck() {
+    public boolean uncheck() {
         if (taskDone) {
             taskDone = false;
             return true;
@@ -32,7 +32,7 @@ abstract class Task {
         return String.format("[%c] %s", (taskDone ? 'X' : ' '), taskName);
     }
 
-    String saveFileFormat() {
+    public String saveFileFormat() {
         return String.format("%d###%s", taskDone ? 1 : 0, taskName);
     }
 }

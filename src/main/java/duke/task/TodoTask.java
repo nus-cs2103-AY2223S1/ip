@@ -1,7 +1,7 @@
-package duke;
+package duke.task;
 
 public class TodoTask extends Task {
-    TodoTask(String taskname) {
+    public TodoTask(String taskname) {
         super(taskname);
     }
 
@@ -11,7 +11,7 @@ public class TodoTask extends Task {
     }
 
     @Override
-    String saveFileFormat() {
+    public String saveFileFormat() {
         return "T###" + super.saveFileFormat();
     }
 }

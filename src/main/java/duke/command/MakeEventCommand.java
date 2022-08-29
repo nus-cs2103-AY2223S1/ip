@@ -1,10 +1,15 @@
-package duke;
+package duke.command;
+
+import duke.DukeException;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.operations.Ui;
 
 import java.time.format.DateTimeParseException;
 
 public class MakeEventCommand extends MakeTaskCommand {
 
-    MakeEventCommand(String detail) {
+    public MakeEventCommand(String detail) {
         super(detail);
     }
 
