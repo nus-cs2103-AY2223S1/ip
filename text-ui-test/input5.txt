@@ -1,7 +1,0 @@
-deadline send email /by afternoon
-todo have lunch
-mark 1
-list
-unmark 1
-list
-bye
