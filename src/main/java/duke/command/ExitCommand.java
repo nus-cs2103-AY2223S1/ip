@@ -22,5 +22,6 @@ public class ExitCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {
         super.flagExit();
         ui.printExit();
+        System.exit(0);
     }
 }
