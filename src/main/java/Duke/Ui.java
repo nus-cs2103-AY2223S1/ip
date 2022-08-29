@@ -20,7 +20,7 @@ public class Ui {
      * Prints welcome message to console.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm Don\nHow may I help you?\n");
+        System.out.println("Hello! I'm Duke\nHow may I help you?\n");
         System.out.println("list - lists out your tasks\nbye - quit\ntodo - todo task\n" +
                 "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n" +
                 "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");

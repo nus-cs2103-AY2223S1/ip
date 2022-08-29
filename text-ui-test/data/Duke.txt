@@ -1,6 +1,0 @@
-D | 1 | return book | Mar 21 2022
-T | 0 | read book
-T | 1 | borrow book
-T | 1 | sleep
-T | 0 | laundry
-T | 0 | cry

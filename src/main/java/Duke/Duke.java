@@ -20,13 +20,14 @@ public class Duke {
     public Duke(String filePath) throws FileNotFoundException, DukeException {
         ui = new Ui();
         storage = new Storage(filePath);
-        tasks = new TaskList(storage.load());
+        TaskList currentTasks;
         try {
-            tasks = new TaskList(storage.load());
+            currentTasks = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new TaskList();
+            currentTasks = new TaskList();
         }
+        this.tasks = currentTasks;
     }
 
     /**
@@ -58,7 +59,7 @@ public class Duke {
      * @throws DukeException If the line in file contains incorrect format.
      */
     public static void main(String[] args) throws IOException, DukeException {
-        Duke duke = new Duke("text-ui-test/data/Duke.txt");
+        Duke duke = new Duke("data/tasks.txt");
         duke.run();
     }
 }
