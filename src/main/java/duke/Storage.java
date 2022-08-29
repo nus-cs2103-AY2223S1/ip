@@ -9,30 +9,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/**
- * Storage class containing all the logic for loading and saving to file.
- */
 public class Storage {
     private String fileName;
     private String folderPath;
 
-    /**
-     * Creates new Storage object.
-     *
-     * @param fileName Path to save file.
-     * @param folderPath Path to folder containing save file.
-     */
     public Storage(String fileName, String folderPath) {
         this.fileName = fileName;
         this.folderPath = folderPath;
     }
 
-    /**
-     * Loads text from save file.
-     *
-     * @return A list of strings containing lines in save file.
-     * @throws DukeException if save file is not found or cannot be parsed.
-     */
     public List<String> load() throws DukeException {
         try {
             List<String> res = Files.readAllLines(Paths.get(fileName));
@@ -42,12 +27,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Saves text containing task data into save file.
-     *
-     * @param tasks A list of strings containing lines to save.
-     * @throws Exception if save file cannot be written.
-     */
     public void save(TaskList tasks) throws Exception {
         String res = "";
         for (Task task : tasks.tasks) {
