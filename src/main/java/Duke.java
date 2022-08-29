@@ -5,7 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class Duke {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Duke extends Application {
     // IMPORTANT: Configure isTest to true if you are running ./runtest.sh in text-ui-test
     private static final String JAR_FILE_PATH = "data/tasks.txt";
     private static final Boolean IS_TEST = false;
@@ -50,5 +55,14 @@ public class Duke {
                 storage.saveTasks(FILE_PATH, tasks);
             }
         }
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
