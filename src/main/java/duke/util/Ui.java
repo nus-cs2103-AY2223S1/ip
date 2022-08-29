@@ -37,4 +37,8 @@ public class Ui {
         ioHelper.print(message);
     }
 
+    public void show(Exception exception) {
+        ioHelper.print(exception.getMessage());
+    }
+
 }

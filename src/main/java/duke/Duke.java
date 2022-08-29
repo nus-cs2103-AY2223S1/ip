@@ -25,7 +25,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        tasks = storage.setUp();
+        tasks = storage.setUp(ui);
     }
 
     public void run() {

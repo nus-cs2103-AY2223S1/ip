@@ -1,16 +1,19 @@
 package duke.util;
 
+//import io
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
+
+//import util
 import java.util.Scanner;
 
+//import iohelper
 import iohelper.IoHelper;
 
 
 public class Storage {
-    private final IoHelper ioHelper = new IoHelper();
     private File dukeFile;
     private FileWriter fileWriter;
     private Scanner scanner;
@@ -23,31 +26,31 @@ public class Storage {
         return dukeFile.isFile();
     }
 
-    public TaskList setUp() {
+    public TaskList setUp(Ui ui) {
         if (isFilePresent()) {
-            return new TaskList(load());
+            return new TaskList(load(ui));
         }
         try {
             dukeFile.createNewFile();
         } catch (IOException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         } finally {
             return new TaskList();
         }
     }
 
-    public void update(Object obj) {
+    public void update(Object obj, Ui ui) {
         try {
             fileWriter = new FileWriter(dukeFile);
             fileWriter.write(obj.toString());
-            ioHelper.print("Storage: duke.txt updated");
+            ui.show("Storage: duke.txt updated");
             fileWriter.close();
         } catch (IOException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         }
     }
 
-    private String load() {
+    private String load(Ui ui) {
         String data = "";
         try {
             scanner = new Scanner(dukeFile);
@@ -56,7 +59,7 @@ public class Storage {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         }
         return data;
     }

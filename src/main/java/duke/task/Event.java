@@ -8,8 +8,8 @@ public class Event extends ScheduleTask {
         super(description, at);
     }
 
-    public Event(String description, String at, boolean done) {
-        super(description, at, done);
+    public Event(String description, String at, boolean isDone) {
+        super(description, at, isDone);
     }
 
     @Override

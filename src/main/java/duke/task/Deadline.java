@@ -1,5 +1,6 @@
 package duke.task;
 
+//import exception
 import duke.exception.UnexpectedDateTimeFormatException;
 
 public class Deadline extends ScheduleTask {
@@ -8,8 +9,8 @@ public class Deadline extends ScheduleTask {
         super(description, by);
     }
 
-    public Deadline(String description, String by, boolean done) {
-        super(description, by, done);
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, by, isDone);
     }
 
     @Override

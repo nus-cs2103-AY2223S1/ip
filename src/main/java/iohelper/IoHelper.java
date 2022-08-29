@@ -1,5 +1,6 @@
 package iohelper;
 
+//import util
 import java.util.Scanner;
 
 public class IoHelper {
@@ -23,7 +24,7 @@ public class IoHelper {
         scanner.close();
     }
 
-    public void print(Object Message) {
-        System.out.println(Message);
+    public void print(Object message) {
+        System.out.println(message);
     }
 }

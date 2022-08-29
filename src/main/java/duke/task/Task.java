@@ -1,5 +1,6 @@
 package duke.task;
 
+//import exception
 import duke.exception.TaskMarkException;
 import duke.exception.TaskUnmarkException;
 
@@ -12,13 +13,13 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public Task(String description, boolean done) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = done;
+        this.isDone = isDone;
     }
 
     private String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public void mark() throws TaskMarkException{

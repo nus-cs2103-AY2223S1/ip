@@ -1,5 +1,6 @@
 package duke.util;
 
+//import command
 import duke.command.Command;
 import duke.command.ListCommand;
 import duke.command.ByeCommand;
@@ -11,6 +12,7 @@ import duke.command.EventCommand;
 import duke.command.DeleteCommand;
 import duke.command.InvalidCommand;
 
+//import exception
 import duke.exception.DukeException;
 import duke.exception.IntegerExpectedException;
 import duke.exception.DateTimeNotFoundException;
@@ -20,42 +22,30 @@ import duke.exception.IndexNotSpecifyException;
 import duke.exception.ScheduleTaskKeywordNotFoundException;
 import duke.exception.UnexpectedDateTimeFormatException;
 
-
-
 public class Parser {
     public static Command parse(String command) throws DukeException, NumberFormatException {
-        Command c;
         String commandWord = getCommandWord(command);
         String description = getDescription(command);
         switch (commandWord) {
         case ListCommand.COMMAND_WORD:
-            c = prepareList(commandWord, description);
-            break;
+            return prepareList(commandWord, description);
         case ByeCommand.COMMAND_WORD:
-            c = prepareBye(commandWord, description);
-            break;
+            return prepareBye(commandWord, description);
         case MarkCommand.COMMAND_WORD:
-            c = prepareMark(commandWord, description);
-            break;
+            return prepareMark(commandWord, description);
         case UnmarkCommand.COMMAND_WORD:
-            c = prepareUnmark(commandWord, description);
-            break;
+            return prepareUnmark(commandWord, description);
         case TodoCommand.COMMAND_WORD:
-            c = prepareTodo(commandWord, description);
-            break;
+            return prepareTodo(commandWord, description);
         case DeadlineCommand.COMMAND_WORD:
-            c = prepareDeadline(commandWord, description);
-            break;
+            return prepareDeadline(commandWord, description);
         case EventCommand.COMMAND_WORD:
-            c = prepareEvent(commandWord, description);
-            break;
+            return prepareEvent(commandWord, description);
         case DeleteCommand.COMMAND_WORD:
-            c = prepareDelete(commandWord, description);
-            break;
+            return prepareDelete(commandWord, description);
         default:
-            c = prepareInvalid();
+            return prepareInvalid();
         }
-        return c;
     }
 
     private static String getCommandWord(String command) {
