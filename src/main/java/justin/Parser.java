@@ -1,16 +1,16 @@
-package duke;
+package justin;
 
-import duke.command.AddDeadlineCommand;
-import duke.command.AddEventCommand;
-import duke.command.AddToDoCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.NewCommand;
-import duke.command.UnmarkCommand;
+import justin.command.AddDeadlineCommand;
+import justin.command.AddEventCommand;
+import justin.command.AddToDoCommand;
+import justin.command.Command;
+import justin.command.DeleteCommand;
+import justin.command.ExitCommand;
+import justin.command.FindCommand;
+import justin.command.ListCommand;
+import justin.command.MarkCommand;
+import justin.command.NewCommand;
+import justin.command.UnmarkCommand;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

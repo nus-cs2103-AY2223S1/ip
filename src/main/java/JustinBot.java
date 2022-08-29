@@ -1,16 +1,16 @@
-import duke.command.Command;
-import duke.DukeException;
-import duke.Parser;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import justin.command.Command;
+import justin.DukeException;
+import justin.Parser;
+import justin.Storage;
+import justin.TaskList;
+import justin.Ui;
 
 /**
  * Represents the main class in which
  * the program is run.
  * @author Justin Cheng.
  */
-public class Duke {
+public class JustinBot {
 
     private Storage storage;
     private TaskList tasks;
@@ -21,7 +21,7 @@ public class Duke {
      * @param filePath The path of the data file
      *                 in String.
      */
-    public Duke(String filePath) {
+    public JustinBot(String filePath) {
         this.ui = new Ui();
         try {
             this.storage = new Storage(filePath);
@@ -59,6 +59,6 @@ public class Duke {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+        new JustinBot("data/justin.txt").run();
     }
 }

@@ -1,8 +1,8 @@
-package duke.command;
+package justin.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import justin.Storage;
+import justin.TaskList;
+import justin.Ui;
 
 public class FindCommand extends Command {
     private String description;

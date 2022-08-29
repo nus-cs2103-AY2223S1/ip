@@ -1,11 +1,11 @@
-package duke.command;
+package justin.command;
 
-import duke.DukeException;
-import duke.Event;
-import duke.Storage;
-import duke.Task;
-import duke.TaskList;
-import duke.Ui;
+import justin.DukeException;
+import justin.task.Event;
+import justin.Storage;
+import justin.task.Task;
+import justin.TaskList;
+import justin.Ui;
 
 /**
  * Represents a command that is called to add an event

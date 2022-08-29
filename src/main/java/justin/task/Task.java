@@ -1,4 +1,4 @@
-package duke;
+package justin.task;
 
 /**
  * Represents the superclass of Deadline, Event and ToDo

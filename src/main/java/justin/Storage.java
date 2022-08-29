@@ -1,6 +1,7 @@
-package duke;
+package justin;
 
-import duke.command.Command;
+import justin.command.Command;
+import justin.task.Task;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * @author Justin Cheng.
  */
 public class Storage {
-    private String fileName;
+    private final String fileName;
 
     /**
      * Constructor for the Storage class.

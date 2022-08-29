@@ -1,4 +1,6 @@
-package duke;
+package justin;
+
+import justin.task.Task;
 
 import java.util.ArrayList;
 

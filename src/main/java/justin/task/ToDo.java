@@ -1,4 +1,6 @@
-package duke;
+package justin.task;
+
+import justin.task.Task;
 
 /**
  * Represents a task that is to be done

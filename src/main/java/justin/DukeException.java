@@ -1,4 +1,4 @@
-package duke;
+package justin;
 
 /**
  * Represents the exception thrown in the Duke program.
