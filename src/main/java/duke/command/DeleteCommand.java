@@ -5,6 +5,7 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Delete command for Duke application.
@@ -29,21 +30,24 @@ public class DeleteCommand implements Command {
     }
 
     /**
-     * Executes the DeleteCommand.
+     * Executes the DeleteCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the DeleteCommand.
      * @param taskList the task list used by the DeleteCommand.
+     * @return the response pair.
      * @throws DukeException If Duke fails to execute the DeleteCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList)
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
             throws DukeException {
         try {
             Task deletedTask = taskList.removeTaskWithIndex(this.index);
-            ui.printTaskDeletionSuccessMessage(deletedTask,
-                    taskList.getTaskListSize());
+            String responseMessage = "Noted. I've removed this task:\n " + deletedTask
+                    + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
+            ui.printMessage(responseMessage);
             storage.saveTasksInStorage(taskList.toStorageRepresentation());
+            return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();
         }

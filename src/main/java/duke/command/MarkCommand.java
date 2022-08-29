@@ -5,6 +5,7 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Mark command for Duke application.
@@ -29,19 +30,24 @@ public class MarkCommand implements Command {
     }
 
     /**
-     * Executes the MarkCommand.
+     * Executes the MarkCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the MarkCommand.
      * @param taskList the task list used by the MarkCommand.
+     * @return the response pair.
      * @throws DukeException If Duke fails to execute the MarkCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException {
         try {
             Task markedTask = taskList.markTaskWithIndex(this.index);
-            ui.printTaskMarkSuccessMessage(markedTask);
+            String responseMessage = "This task has been marked as done:\n "
+                    + markedTask;
+            ui.printMessage(responseMessage);
             storage.saveTasksInStorage(taskList.toStorageRepresentation());
+            return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();
         }

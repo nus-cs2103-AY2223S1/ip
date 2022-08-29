@@ -7,6 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * ToDo command for Duke application
@@ -26,15 +27,16 @@ public class ToDoCommand implements Command {
     }
 
     /**
-     * Executes the ToDoCommand.
+     * Executes the ToDoCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the ToDoCommand.
      * @param taskList the task list used by the ToDoCommand.
+     * @return the response pair.
      * @throws DukeException If Duke fails to execute the ToDoCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList)
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
             throws DukeException {
         if (this.description.isEmpty()) {
             throw new ToDoException();
@@ -42,8 +44,10 @@ public class ToDoCommand implements Command {
 
         Task newTask = new ToDo(this.description);
         taskList.addTask(newTask);
-        ui.printTaskCreationSuccessMessage(newTask,
-                taskList.getTaskListSize());
+        String responseMessage = "This task is successfully added:\n " + newTask
+                + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
+        ui.printMessage(responseMessage);
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
+        return new Pair<>(true, responseMessage);
     }
 }

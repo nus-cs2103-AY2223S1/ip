@@ -5,6 +5,7 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Unmark command for Duke application.
@@ -29,20 +30,24 @@ public class UnmarkCommand implements Command {
     }
 
     /**
-     * Executes the UnmarkCommand.
+     * Executes the UnmarkCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the UnmarkCommand.
      * @param taskList the task list used by the UnmarkCommand.
+     * @return the response pair.
      * @throws DukeException If Duke fails to execute the UnmarkCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList)
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
             throws DukeException {
         try {
             Task unmarkedTask = taskList.unmarkTaskWithIndex(index);
-            ui.printTaskUnmarkSuccessMessage(unmarkedTask);
+            String responseMessage = "This task has been marked as not done yet:\n "
+                    + unmarkedTask;
+            ui.printMessage(responseMessage);
             storage.saveTasksInStorage(taskList.toStorageRepresentation());
+            return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();
         }

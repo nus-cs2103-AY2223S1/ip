@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.util.Pair;
+
 import duke.exception.DeadlineException;
 import duke.exception.DukeException;
 import duke.storage.Storage;
@@ -30,15 +32,16 @@ public class DeadlineCommand implements Command {
     }
 
     /**
-     * Executes the DeadlineCommand.
+     * Executes the DeadlineCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the DeadlineCommand.
      * @param taskList the task list used by the DeadlineCommand.
+     * @return the response pair.
      * @throws DukeException If Duke fails to execute the DeadlineCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList)
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
             throws DukeException {
         List<String> deadlineInfo = Arrays.stream(description.split("/by", 2))
                 .map(String::trim)
@@ -51,8 +54,12 @@ public class DeadlineCommand implements Command {
 
         Task newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
         taskList.addTask(newTask);
-        ui.printTaskCreationSuccessMessage(newTask,
-                taskList.getTaskListSize());
+
+        String responseMessage = "This task is successfully added:\n " + newTask
+                + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
+        ui.printMessage(responseMessage);
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
+        return new Pair<>(true, responseMessage);
     }
 }
