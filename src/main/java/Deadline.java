@@ -1,8 +1,8 @@
 public class Deadline extends Task {
     protected String endTime;
 
-    public Deadline(String task, String endTime) {
-        super(task, "deadline");
+    public Deadline(String task, String endTime, boolean isCompleted) {
+        super(task, "deadline", isCompleted);
         this.endTime = DateTime.parseToString(endTime);
     }
 

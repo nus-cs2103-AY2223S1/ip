@@ -2,8 +2,8 @@ public class Event extends Task {
     protected String eventTime;
     protected String event;
 
-    public Event(String event, String eventTime) {
-        super(event, "event");
+    public Event(String event, String eventTime, boolean isCompleted) {
+        super(event, "event", isCompleted);
         this.eventTime = DateTime.parseToString(eventTime);
     }
 

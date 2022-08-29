@@ -1,22 +1,27 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class DataLoader {
+public class Storage {
+    private String filePath;
     
-    public static ArrayList<Task> loadData(String path) throws IanaException {
-        ArrayList<Task> todoList = new ArrayList<Task>();
+    public Storage(String path) {
+        this.filePath = path;
+    }
+
+    public TaskList load() throws IanaException {
+        TaskList taskList = new TaskList(new ArrayList<Task>());
 
         try{
-            File file = new File(path);
+            File file = new File(this.filePath);
             Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 String[] taskArray = input.split(" \\| ", 4);
-                String taskTime;
-                String taskString;
 
                 String taskClass = taskArray[0];
                 boolean isCompleted = Integer.parseInt(taskArray[1]) == 1; // cannot just check int val as string
@@ -24,35 +29,40 @@ public class DataLoader {
 
                 switch(taskClass) {
                     case "T":
-                    taskString = String.format("todo %s", taskDescription);
-                    Task todo = Task.of(taskString);
-                    todo.toggleComplete(isCompleted);
-                    todoList.add(todo);
+                    String taskString = String.format("todo %s", taskDescription);
+                    taskList.add(Task.of(taskString, isCompleted));
                     break;
 
                     case "E":
-                    taskTime = taskArray[3];
+                    String taskTime = taskArray[3];
                     taskString = String.format("event %s /at %s", taskDescription, taskTime);
-                    Task event = Task.of(taskString);
-                    event.toggleComplete(isCompleted);
-                    todoList.add(event);
+                    taskList.add(Task.of(taskString, isCompleted));
                     break;
 
                     case "D":
                     taskTime = taskArray[3];
                     taskString = String.format("deadline %s /by %s", taskDescription, taskTime);
-                    Task deadline = Task.of(taskString);
-                    deadline.toggleComplete(isCompleted);
-                    todoList.add(deadline);
+                    taskList.add(Task.of(taskString, isCompleted));
                     break;
 
                     default:
                     throw new IanaException("File is corrupted");
                 }
             }
+            sc.close();
         } catch (FileNotFoundException e) {
             throw new IanaException("File DataStorage.txt not found in [project_root]/src/main/data. Cannot read data!");
         }
-        return todoList;
+        return taskList;
     } 
+
+    public void write(TaskList taskList) throws IanaException {
+        try {
+            FileWriter fw = new FileWriter(this.filePath);
+            fw.write(taskList.toFileData());
+            fw.close();
+        } catch (IOException e) {
+            throw new IanaException("File DataStorage.txt not found in [project_root]/src/main/data. Cannot write data!");
+        }
+    }
 }

@@ -3,31 +3,37 @@ public class Task {
     protected final String taskType;
     private boolean isCompleted;
 
-    public static Task of (String taskString) throws IanaException {
+    public static Task of(String taskString, boolean isCompleted) throws IanaException {
         String[] textArr = taskString.split(" ", 2);
         String startText = textArr[0];
 
         String[] taskArray;
+        try {
+            switch(TaskType.valueOf(startText)) {
+                case todo:
+                taskArray = check(textArr, "todo");
+                Todo newTodo = new Todo(taskArray[0], isCompleted);
+                return newTodo;
+                    
+                case event:
+                taskArray = check(textArr, "event");
+                Event newEvent = new Event(taskArray[0], taskArray[1], isCompleted);
+                return newEvent;
 
-        switch(startText) {
-            case "todo":
-            taskArray = isValidTask(textArr, "todo");
-            return new Todo(taskArray[0]);
-                
-            case "event":
-            taskArray = isValidTask(textArr, "event");
-            return new Event(taskArray[0], taskArray[1]);
+                case deadline:
+                taskArray = check(textArr, "deadline");
+                Deadline newDeadline = new Deadline(taskArray[0], taskArray[1], isCompleted);
+                return newDeadline;
 
-            case "deadline":
-            taskArray = isValidTask(textArr, "deadline");
-            return new Deadline(taskArray[0], taskArray[1]);
-
-            default:
-            throw new IanaException("Sorry, I don't know how to perform your request!! :C");
+                default:
+                throw new IanaException("Invalid tasks!");
+            } 
+        } catch (IllegalArgumentException e) {
+            throw new IanaException("Invalid task!! >:C");
         }
     }
 
-    private static String[] isValidTask(String[] textArray, String taskType) throws IanaException {
+    private static String[] check(String[] textArray, String taskType) throws IanaException {
         if (textArray.length <= 1) {
             throw new IanaException(String.format("Oops! Your %s cannot be empty! :-(", taskType));
         }
@@ -61,10 +67,10 @@ public class Task {
         return taskArray;
     }
 
-    protected Task(String task, String taskType) {
+    protected Task(String task, String taskType, boolean isCompleted) {
         this.task = task;
         this.taskType = taskType;
-        this.isCompleted = false;
+        this.isCompleted = isCompleted;
     }
     
     public void toggleComplete(boolean isCompleted) {
