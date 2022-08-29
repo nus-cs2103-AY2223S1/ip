@@ -20,12 +20,6 @@ public class TaskList implements Iterable<Task> {
         this.list = list;
     }
 
-    /**
-     * Gets a <code>Task</code> in the <code>TaskList</code>.
-     *
-     * @param index the index of the task to retrieve.
-     */
-
     public Task getTask(int index) {
         return list.get(index);
     }

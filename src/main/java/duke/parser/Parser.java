@@ -26,30 +26,14 @@ public class Parser {
         this.input = input;
     }
 
-    /**
-     * Getter for Command.
-     *
-     * @return the Command.
-     */
     public Command getCommand() {
         return command;
     }
-
-    /**
-     * Getter for task index, if any.
-     *
-     * @return the task index if applicable, else return -1.
-     */
 
     public int getTaskIndex() {
         return taskIndex;
     }
 
-    /**
-     * Getter for the arguments of the user input, if any.
-     *
-     * @return a String array containing the command arguments.
-     */
     public String[] getArgs() {
         return args;
     }
