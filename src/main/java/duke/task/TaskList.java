@@ -82,6 +82,12 @@ public class TaskList {
         return unmarkedTask;
     }
 
+    public Task addTask(Task task) {
+        tasks.add(task);
+        size++;
+        return task;
+    }
+
     /**
      * Adds Todo task.
      *

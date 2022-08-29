@@ -1,14 +1,6 @@
 package duke.parser;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.DukeEmptyDescriptionException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
@@ -35,7 +27,7 @@ public class Parser {
         } else if (command.equals("list")) {
             return new ListCommand();
         } else if (command.startsWith("mark")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("mark")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -50,7 +42,7 @@ public class Parser {
                 throw new DukeNumberFormatException();
             }
         } else if (command.startsWith("unmark")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("unmark")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -65,7 +57,7 @@ public class Parser {
                 throw new DukeNumberFormatException();
             }
         } else if (command.startsWith("delete")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("delete")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -80,7 +72,7 @@ public class Parser {
                 throw new DukeNumberFormatException();
             }
         } else if (command.startsWith("todo")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("todo")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -90,7 +82,7 @@ public class Parser {
             String desc = splitCommand[1];
             return new TodoCommand(desc);
         } else if (command.startsWith("deadline")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("deadline")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -100,7 +92,7 @@ public class Parser {
             String desc = splitCommand[1];
             return new DeadlineCommand(desc);
         } else if (command.startsWith("event")) {
-            String[] splitCommand = command.split("\\s+",2);
+            String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("event")) {
                 throw new DukeInvalidCommandException(splitCommand[0]);
             }
@@ -109,6 +101,16 @@ public class Parser {
             }
             String desc = splitCommand[1];
             return new EventCommand(desc);
+        } else if (command.startsWith("find")) {
+            String[] splitCommand = command.split("\\s+", 2);
+            if (!splitCommand[0].equals("find")) {
+                throw new DukeInvalidCommandException(splitCommand[0]);
+            }
+            if (splitCommand.length < 2) {
+                throw new DukeEmptyDescriptionException("find");
+            }
+            String keyword = splitCommand[1];
+            return new FindCommand(keyword);
         } else {
             throw new DukeInvalidCommandException(command);
         }
