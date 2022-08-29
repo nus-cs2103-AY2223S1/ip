@@ -14,24 +14,32 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+
         String hello = "____________________________________________________________\n" +
                 "     Hello! I'm Duke\n" +
                 "     What can I do for you?\n" +
                 "____________________________________________________________\n";
+        System.out.println(hello);
+
+        List<String> list = new ArrayList<>();
+        int size = 0;
+
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        while(!input.equals("bye")) {
-            System.out.println(input);
+        while (!input.equals("bye")) {
+            if (input.equals("list")) {
+                for (int i = 0; i < size; i++) {
+                    System.out.println(i + 1 + "." + list.get(i));
+                }
+            } else {
+                System.out.println("Added: " + input);
+                list.add(input);
+                size++;
+            }
             input = sc.nextLine();
         }
 
-        List<String> list = new ArrayList<String>();
+
 
         String strlst = "____________________________________________________________\n" +
                 "     Here are the tasks in your list:";
