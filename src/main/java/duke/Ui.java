@@ -29,16 +29,16 @@ public class Ui {
         }
     }
 
-    public void printMessage(String m) {
-        String message = "    ____________________________________________________________\n    "
-                + m
+    public void printMessage(String message) {
+        String formattedMessage = "    ____________________________________________________________\n    "
+                + message
                 + "\n    ____________________________________________________________\n";
         if (verbose) {
-            System.out.println(message);
+            System.out.println(formattedMessage);
         }
     }
 
-    public void setVerbose(boolean v) {
-        verbose = v;
+    public void setVerbose(boolean verbosity) {
+        verbose = verbosity;
     }
 }

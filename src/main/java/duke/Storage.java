@@ -33,9 +33,9 @@ public class Storage {
         return previousText;
     }
 
-    public void writeText(String s, boolean nextLine) {
+    public void writeText(String text, boolean nextLine) {
         try {
-            output.write(s);
+            output.write(text);
             if (nextLine) {
                 output.write("\n");
             }
