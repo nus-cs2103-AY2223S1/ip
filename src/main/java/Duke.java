@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.FileWriter;
@@ -22,91 +23,102 @@ public class Duke {
         while (true) {
             try {
                 String input = scanner.nextLine();
-                Commands command = Commands.parseCommand(input.split(" ")[0])
+                String[] inputArray = input.split(" ", 2);
+                Commands command = Commands.parseCommand(inputArray[0])
                         .orElseThrow(() -> new DukeException("Sorry, I don't understand you. Please try again."));
+                String instructions = inputArray.length > 1 ? inputArray[1] : "";
                 if (command == Commands.bye) {
                     printWithLineBreak("Goodbye! Hope to see you again!");
                     break;
                 } else if (command == Commands.list) {
                     printWithLineBreak(printArray(list));
                 } else if (command == Commands.mark) {
-                    try {
-                        int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                        list.get(index).setDone();
-                        printWithLineBreak("Nice! I've marked this task as done:\n" + "[X] " + list.get(index));
-                    } catch (Exception e) {
-                        throw new DukeException("Invalid Index given!");
+                    // Throw exception if no index is provided
+                    if (instructions.isEmpty()) {
+                        throw new DukeException("Please specify an index.");
                     }
+                    // Throw exception if instruction is not a number
+                    if (!instructions.matches("[0-9]+")) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    int index = Integer.parseInt(instructions) - 1;
+                    if (list.size() <= index) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    list.get(index).setDone();
+                    printWithLineBreak("Nice! I've marked this task as done:\n" + "[X] " + list.get(index));
                 } else if (command == Commands.unmark) {
-                    try {
-                        int index = Integer.parseInt(input.split(" ")[1]) - 1;
-
-                        list.get(index).setUndone();
-                        printWithLineBreak("OK, I've marked this task as not done yet:\n" + "[ ] " + list.get(index));
-                    } catch (Exception e) {
-                        throw new DukeException("Invalid Index given!");
+                    // Throw exception if no index is provided
+                    if (instructions.isEmpty()) {
+                        throw new DukeException("Please specify an index.");
                     }
+                    // Throw exception if instruction is not a number
+                    if (!instructions.matches("[0-9]+")) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    int index = Integer.parseInt(instructions) - 1;
+                    if (list.size() <= index) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    list.get(index).setUndone();
+                    printWithLineBreak("OK, I've marked this task as not done yet:\n" + "[ ] " + list.get(index));
                 } else if (command == Commands.todo) {
-                    try {
-                        String description = input.split(" ", 2)[1];
-                        Todo todo = new Todo(description);
-                        list.add(todo);
-
-                        printWithLineBreak("Got it. I've added this task:\n" + todo + "\nNow you have " + list.size()
-                                + " tasks in your list.");
-                    } catch (Exception e) {
-                        if (input.split(" ", 2).length == 1) {
-                            throw new DukeException("The description of a todo cannot be empty.");
-                        }
+                    if (instructions == "") {
+                        throw new DukeException("The description of a todo cannot be empty.");
                     }
+                    Todo todo = new Todo(instructions);
+                    list.add(todo);
+
+                    printWithLineBreak("Got it. I've added this task:\n" + todo + "\nNow you have " + list.size()
+                            + " tasks in your list.");
                 } else if (command == Commands.deadline) {
-                    try {
-                        String description = input.split(" ", 2)[1].split("/")[0];
-                        String date = input.split(" ", 2)[1].split("/")[1].split(" ")[1];
-                        Deadline deadline = new Deadline(description, date);
-                        list.add(deadline);
-
-                        printWithLineBreak(
-                                "Got it. I've added this task:\n" + deadline + "\nNow you have " + list.size()
-                                        + " tasks in your list.");
-                    } catch (Exception e) {
-                        if (input.split(" ", 2).length == 1) {
-                            throw new DukeException("The description of a deadline cannot be empty.");
-                        }
+                    if (instructions == "") {
+                        throw new DukeException("The description of a deadline cannot be empty.");
                     }
+                    // Parse input into description and deadline, based on the /by keyword
+                    String description = instructions.split("/by")[0];
+                    String date = instructions.split("/by")[1].trim().split(" ")[0];
+                    String time = instructions.split("/by")[1].trim().split(" ")[1];
+                    Deadline deadline = new Deadline(description, date, time);
+                    list.add(deadline);
+
+                    printWithLineBreak(
+                            "Got it. I've added this task:\n" + deadline + "\nNow you have " + list.size()
+                                    + " tasks in your list.");
                 } else if (command == Commands.event) {
-                    try {
-                        String description = input.split(" ", 2)[1].split("/")[0];
-                        String date = input.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
-                        Event event = new Event(description, date);
-                        list.add(event);
+                    String description = input.split(" ", 2)[1].split("/")[0];
+                    String date = input.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+                    Event event = new Event(description, date);
+                    list.add(event);
 
-                        printWithLineBreak("Got it. I've added this task:\n" + event + "\nNow you have " + list.size()
-                                + " tasks in your list.");
-                    } catch (Exception e) {
-                        if (input.split(" ", 2).length == 1) {
-                            throw new DukeException("The description of a event cannot be empty.");
-                        }
-                    }
+                    printWithLineBreak("Got it. I've added this task:\n" + event + "\nNow you have " + list.size()
+                            + " tasks in your list.");
                 } else if (command == Commands.delete) {
-                    try {
-                        int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                        Task deleted = list.get(index);
-                        list.remove(index);
-                        printWithLineBreak(
-                                "Noted, I've removed this task:\n" + deleted + "\nNow you have " + list.size()
-                                        + " tasks in your list.");
-                    } catch (Exception e) {
-                        throw new DukeException("Invalid Index given!");
+                    // Throw exception if no index is provided
+                    if (instructions.isEmpty()) {
+                        throw new DukeException("Please specify an index.");
                     }
-                } else {
-                    throw new DukeException("Sorry, I don't understand you. Please try again.");
+                    // Throw exception if instruction is not a number
+                    if (!instructions.matches("[0-9]+]")) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    int index = Integer.parseInt(instructions) - 1;
+                    if (list.size() <= index) {
+                        throw new DukeException("Please specify a valid index.");
+                    }
+                    Task deleted = list.get(index);
+                    list.remove(index);
+                    printWithLineBreak(
+                            "Noted, I've removed this task:\n" + deleted + "\nNow you have " + list.size()
+                                    + " tasks in your list.");
                 }
 
                 // Saves list to file ./data/duke.txt
                 saveList(list);
             } catch (DukeException e) {
                 printWithLineBreak(e.getMessage());
+            } catch (Exception e) {
+                printWithLineBreak("Sorry, I don't understand you. Please try again.");
             }
         }
 

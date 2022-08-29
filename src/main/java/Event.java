@@ -1,17 +1,21 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String date;
+    private LocalDate date;
 
     public Event(String description, String date) {
         super(description);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
 
+    // prints date in MMM d yyyy format
     public String getDate() {
-        return date;
+        return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + date + ")";
+        return "[E]" + super.toString() + "(at: " + getDate() + ")";
     }
 }
