@@ -1,14 +1,16 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Duke {
 
     enum Ability {
-        bye,
-        list,
-        mark,
-        unmark,
-        todo,
-        delete
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        TODO,
+        DELETE
     }
 
     public static void main(String[] args) {
@@ -22,7 +24,12 @@ public class Duke {
                 "     Hello! I'm Duke\n" +
                 "     What can I do for you?\n" +
                 "____________________________________________________________\n";
-        System.out.println(hello);
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        while(!input.equals("bye")) {
+            System.out.println(input);
+            input = sc.nextLine();
+        }
 
         List<String> list = new ArrayList<String>();
 
@@ -30,7 +37,6 @@ public class Duke {
                 "     Here are the tasks in your list:";
 
         System.out.println(strlst);
-
 
         String todolist = "____________________________________________________________\n" +
                 "     Got it. I've added this task:";
