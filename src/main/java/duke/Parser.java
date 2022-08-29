@@ -111,7 +111,8 @@ public class Parser {
                     return new DeleteCommand(Integer.parseInt(com[1]));
 
                 case FIND:
-                    return new FindCommand(com[1]);
+                    String[] keywordSplit = com[1].split("\\s");
+                    return new FindCommand(keywordSplit);
 
                 default:
                     throw new DukeException("No such command exist... please try again");

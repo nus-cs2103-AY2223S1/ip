@@ -92,18 +92,29 @@ public class TaskList {
     }
 
     /**
-     * public method findTask to search for description of task that match keyword in the TaskList.
-     * @param keyword
-     * @return list of tasks that match keyword.
+     * public method findTask to search for description of task that match keywords in the TaskList.
+     * @param keywords
+     * @return list of tasks that match keywords.
      */
-    public String findTask(String keyword) {
+    public String findTask(String... keywords) {
         String result = "Here are the matching tasks in your list:";
         int count = 0;
         String check;
+
         for (Task t: this.memo) {
             check = t.getTaskName();
-            if (check.contains(keyword)) {
-                count ++;
+            boolean hasKeywords = true;
+
+            for (String keyword : keywords) {
+                if (!check.contains(keyword)) {
+                    hasKeywords = false;
+                    break;
+
+                }
+            }
+
+            if (hasKeywords) {
+                count++;
                 result += "\n    " + count + ". " + t.toString();
             }
         }

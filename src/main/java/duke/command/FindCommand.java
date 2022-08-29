@@ -9,18 +9,18 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * public class FindCommand to search for relevant command based on given keyword.
+ * public class FindCommand to search for relevant command based on given keywords.
  */
 public class FindCommand extends Command {
-    private String keyword;
+    private String[] keywords;
 
-    public FindCommand(String keyword) {
+    public FindCommand(String... keywords) {
         super();
-        this.keyword = keyword;
+        this.keywords = keywords;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMessage(tasks.findTask(this.keyword));
+        ui.printMessage(tasks.findTask(this.keywords));
     }
 }
