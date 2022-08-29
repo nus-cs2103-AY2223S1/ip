@@ -67,6 +67,11 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * To find tasks that matches the user input
+     * @param s user input searching criteria
+     * @return an {@code ArrayList} of matching tasks
+     */
     public ArrayList<Task> find(String s) {
         ArrayList<Task> temp = new ArrayList<>();
         for (Task task: tasks) {

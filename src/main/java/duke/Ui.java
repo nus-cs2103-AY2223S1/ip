@@ -1,6 +1,9 @@
 package duke;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.Event;
+import duke.task.Todo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -110,7 +113,7 @@ public class Ui {
         System.out.println("\t   " + event.toString());
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
-    
+
     /**
      * To display a message after a {@code Task} has been successfully marked
      * @param task the marked {@code Task}

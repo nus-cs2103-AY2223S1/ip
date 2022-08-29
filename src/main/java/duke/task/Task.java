@@ -17,6 +17,10 @@ public abstract class Task implements Serializable {
         this.description = description;
     }
 
+    /**
+     * To retrieve the description of a {@code Task}
+     * @return the description of the task
+     */
     public String getDescription() {
         return this.description;
     }
