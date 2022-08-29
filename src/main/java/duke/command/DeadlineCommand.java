@@ -1,13 +1,12 @@
 package duke.command;
 
-import duke.Storage;
+import duke.storage.Storage;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidDateException;
 import duke.exception.DukeMissingSpecifierException;
-import duke.task.Deadline;
 import duke.task.Task;
-import duke.TaskList;
-import duke.Ui;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
