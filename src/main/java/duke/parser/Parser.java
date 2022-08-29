@@ -9,6 +9,9 @@ import duke.exceptions.EmptyTaskException;
 import duke.exceptions.InvalidCommandException;
 import duke.ui.Ui;
 
+import java.time.LocalDate;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +66,17 @@ public class Parser {
             String keyword = tempArr[1]; //the remainder of the input minus whitespace
             return taskList.findTask(keyword);
 
-        //Case 6: Add a valid task
+        //Case 6: extension method: viewSchedule for a day
+        } else if (input.startsWith("viewSchedule")) {
+            String[] inputTempArr = input.split(" ", 2);
+            String date = inputTempArr[1];
+            String successfulDate = validateDate(date);
+            if (! successfulDate.equals("")) { //an error occured somewhere
+                return successfulDate;
+            }
+            return taskList.viewSchedule(date);
+
+        //Case 7: Add a valid task
         } else {
 
             try {
@@ -82,7 +95,7 @@ public class Parser {
                             Ui.displayMessage("todo requires at least a task description");
                 } else {
                     return message + "\n" +
-                            Ui.displayMessage("Event/Deadline requires both a task description and a date");
+                            Ui.displayMessage("Event & Deadline requires both a task description and a date");
                 }
             }
 
@@ -113,6 +126,15 @@ public class Parser {
 
     }
 
+    private static String validateDate(String dateInput) {
+        try {
+            LocalDate.parse(dateInput);
+        } catch (DateTimeParseException e){
+            return "Invalid date entered! Ensure you enter date in the format: " +
+                    "YYYY-MM-DD";
+        }
+        return "";
+    }
 
     //changed to public for testing, TODO: change private after validation
     public static Task generateTask(String input) {

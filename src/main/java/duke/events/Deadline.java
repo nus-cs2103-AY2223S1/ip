@@ -7,6 +7,7 @@ package duke.events;
  */
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
@@ -48,6 +49,11 @@ public class Deadline extends Task {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    @Override
+    public boolean compareDate(String date) {
+        LocalDate formattedDate = LocalDate.parse(date);
+        return formattedDate.isEqual(by);
+    }
     @Override
     public String toString() {
 

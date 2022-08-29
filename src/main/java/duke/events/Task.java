@@ -30,6 +30,16 @@ public class Task implements Serializable {
         return "[" + getStatusIcon() + "]";
     }
 
+    /**
+     * Default method when comparing whether a date clashes with the above
+     * To be overriden by tasks that are bound by date (e.g: Event/Deadline)
+     * Returns True if the task occurs on the same date as given
+     * @param date
+     * @return
+     */
+    public boolean compareDate(String date) {
+        return false;
+    }
     public static Task readTask(String[] values) {
         boolean isDone = values[1].equals("0") ? true : false;
         String description = values[2];

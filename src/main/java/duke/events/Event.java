@@ -48,6 +48,11 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean compareDate(String date) {
+        LocalDate formattedDate = LocalDate.parse(date);
+        return formattedDate.isEqual(at);
+    }
+    @Override
     public String toString() {
 
         return TYPE + super.toString() + "(at: " + customFormatter(at) + ")";
