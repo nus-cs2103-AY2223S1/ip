@@ -8,144 +8,147 @@ import java.util.ArrayList;
 public class Ui {
 
     /**
-     * Method that prints to screen a line for ease of reading.
-     */
-    public void line() {
-        System.out.println("----------------------");
-    }
-
-    /**
-     * Method that prints the farewell message.
-     */
-    public void printFarewell() {
-        line();
-        System.out.println("Bye, hope to see you again!");
-        line();
-    }
-
-    /**
-     * Method that prints the exception encountered.
+     * Method that returns a string of lines for ease of reading.
      *
-     * @param e The exception to be printed.
+     * @return String of a line
      */
-    public void printException(Exception e) {
-        line();
-        System.out.println(e.toString());
-        line();
+    public String line() {
+        return "----------------------";
     }
 
     /**
-     * Method that prints a custom error message.
+     * Method that returns the string in the correct format.
+     *
+     * @param output The string to be formatted.
+     * @return The string after formatting.
+     */
+    public String formatOutput(String output) {
+        return line() + "\n" + output + "\n" + line();
+    }
+
+    /**
+     * Method that returns the farewell message.
+     *
+     * @return The farewell message.
+     */
+    public String printFarewell() {
+        return formatOutput("Bye, hope to see you again!");
+
+    }
+
+
+    /**
+     * Method that returns the exception message encountered.
+     * @param e The exception.
+     * @return String of exception message.
+     */
+    public String printException(Exception e) {
+        return formatOutput(e.toString());
+    }
+
+    /**
+     * Method that returns a custom error message.
      *
      * @param s Error message to be printed.
+     * @return String of error message.
      */
-    public void printErrorMessage(String s) {
-        line();
-        System.out.println(s);
-        line();
+    public String printErrorMessage(String s) {
+        return formatOutput(s);
 
     }
 
     /**
-     * Prints to the user the task added and count in updated TaskList.
+     * Returns to the user the task added and count in updated TaskList in a String.
      *
      * @param a Task to be added.
      * @param tList TaskList to be added to.
+     * @return String of tasks added.
      */
-    public void printTaskAdded(Task a, TaskList tList) {
-        line();
-        System.out.println("added: " + a.toString());
-        System.out.println(String.format("Now you have %d tasks in the list", tList.getCount()));
-        line();
+    public String printTaskAdded(Task a, TaskList tList) {
+        return formatOutput("added: " + a.toString() + "\n"
+                + String.format("Now you have %d tasks in the list", tList.getCount()));
 
     }
 
     /**
-     * Prints all the tasks in the TaskList.
+     * String of all the tasks in the TaskList.
      *
      * @param tList TaskList to be printed.
+     * @return String of all the tasks.
      */
-    public void printList(TaskList tList) {
-        line();
+    public String printList(TaskList tList) {
+        String output = "Here are your tasks :";
         for (int i = 0; i < tList.getCount(); i++) {
             String display = String.format("%d.%s", i + 1, tList.getTask(i).toString());
-            System.out.println(display);
+            output += "\n" + display;
         }
-        line();
+        return formatOutput(output);
     }
 
     /**
-     * Prints all the tasks matching keyword.
+     * Return all the tasks matching keyword.
+     *
      * @param t The ArrayList containing all matching tasks.
+     * @return The tasks found in a String.
      */
-    public void printFind(ArrayList<Task> t) {
+    public String printFind(ArrayList<Task> t) {
         if (t.size() == 0) {
-            line();
-            System.out.println("Opps! No matching tasks");
-            line();
+            return formatOutput("Opps! No matching tasks.");
         } else {
-            line();
-            System.out.println("Here are the matching tasks in your list:");
+            String output = "Here are the matching tasks in your list:";
             for (int i = 0; i < t.size(); i++) {
                 String display = String.format("%d.%s", i + 1, t.get(i).toString());
-                System.out.println(display);
+                output += "\n" + display;
             }
-            line();
+            return formatOutput(output);
         }
     }
 
     /**
-     * Prints the task to be marked undone.
+     * Method that returns the String of the task to be marked undone.
      *
-     * @param a Task to be marked undone
+     * @param a Task to be marked undone.
+     * @return String of task being marked undone.
      */
-    public void printMarkTestUndone(Task a) {
-        line();
-        System.out.println("Ok! I've marked this task as undone");
-        System.out.println(a.toString());
-        line();
+    public String printMarkTestUndone(Task a) {
+        String output = "Ok! I've marked this task as undone" + "\n" + a.toString();
+        return formatOutput(output);
     }
 
     /**
-     * Prints the task to be deleted.
+     * Method that returns the String of the task to be deleted.
      *
      * @param a Task to be deleted
      * @param tList TaskList to be deleted from.
+     * @return String of task deleted and count of tasks left.
      */
-    public void printDelete(Task a, TaskList tList) {
-        line();
-        System.out.println("Noted! I've removed this task");
-        System.out.println(a.toString());
-        System.out.println("Now you have " + tList.getCount() + " tasks!");
-        line();
+    public String printDelete(Task a, TaskList tList) {
+        String output = "Noted! I've removed this task" + "\n" + a.toString() + "\n"
+                + "Now you have " + tList.getCount() + " tasks!";
+        return formatOutput(output);
     }
 
     /**
-     * Prints the task to be marked done
+     * Method that returns the task to be marked done.
+     *
      * @param a The task being marked.
+     * @return String of task being marked done and count of tasks left.
      */
-    public void printMarkTaskDone(Task a) {
-        line();
-        System.out.println("Ok! I've marked this task as done");
-        System.out.println(a.toString());
-        line();
+    public String printMarkTaskDone(Task a) {
+        String output = "Ok! I've marked this task as done" + "\n" + a.toString();
+        return formatOutput(output);
     }
 
     /**
-     * Prints the greeting message.
+     * Method that returns the String of the greeting message.
+     *
+     * @return String of greeting message.
      */
-    public void printGreetings() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    public static String printGreetings() {
 
-        line();
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can i do for you?");
-        line();
+        String output = "----------------------" + "\n"
+                + "Hello! I'm Duke" + "\n" + "What can i do for you?" + "\n" + "----------------------";
+        return output;
 
     }
 }
