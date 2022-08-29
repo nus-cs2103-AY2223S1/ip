@@ -20,7 +20,9 @@ public class Parser {
         return input;
     }
 
-    public List<Task> getTasks() { return taskList.getTasks(); }
+    public List<Task> getTasks() {
+        return taskList.getTasks();
+    }
 
     /**
      * This function will parse the input given by the user and try to match the

@@ -25,7 +25,9 @@ public class Task {
         return this.name;
     }
 
-    public Boolean getIsDone() { return this.isDone; }
+    public Boolean getIsDone() {
+        return this.isDone;
+    }
 
     public String getStatus() {
         return this.isDone ? "[X]" : "[ ]";
