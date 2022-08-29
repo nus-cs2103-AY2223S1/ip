@@ -82,4 +82,20 @@ public class TaskList {
         taskList.remove(index - 1);
     }
 
+    public String find(String keyword) throws FredException {
+        int counter = 1;
+        String list = "Here are matching tasks in your list:\n";
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getDescription().contains(keyword)) {
+                list += counter++ + "." + taskList.get(i) + "\n";
+            }
+
+        }
+
+        if (list.equals("Here are matching tasks in your list:\n")) {
+            throw new FredException("Could not find task with this keyword!");
+        }
+        return list;
+    }
+
 }
