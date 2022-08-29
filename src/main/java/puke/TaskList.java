@@ -16,8 +16,6 @@ public class TaskList {
     /**
      * how many tasks in the list
      */
-    protected int numTasks = tasks.size();
-    protected int removed = 0;
 
     /**
      * Creates a TaskList
