@@ -23,4 +23,6 @@ public class DeleteCommand extends Command {
         storage.update(tasks);
         displayCommand(ui, TASK_DELETE, task, tasks.getStatus());
     }
+
+
 }

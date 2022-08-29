@@ -10,11 +10,12 @@ import duke.command.DeadlineCommand;
 import duke.command.EventCommand;
 import duke.command.DeleteCommand;
 import duke.command.InvalidCommand;
+import duke.command.FindCommand;
 
 import duke.exception.DukeException;
 import duke.exception.IntegerExpectedException;
 import duke.exception.DateTimeNotFoundException;
-import duke.exception.TaskNotSpecifyException;
+import duke.exception.DescriptionNotSpecifyException;
 import duke.exception.NoCommandException;
 import duke.exception.IndexNotSpecifyException;
 import duke.exception.ScheduleTaskKeywordNotFoundException;
@@ -52,6 +53,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             c = prepareDelete(commandWord, description);
             break;
+        case FindCommand.COMMAND_WORD:
+            c = prepareFind(commandWord, description);
+            break;
         default:
             c = prepareInvalid();
         }
@@ -83,6 +87,9 @@ public class Parser {
         if (command.startsWith("delete")) {
             return "delete";
         }
+        if (command.startsWith("find")) {
+            return "find";
+        }
         return "invalid";
     }
 
@@ -104,13 +111,13 @@ public class Parser {
     }
 
     private static String[] splitBy(String command, String description, String splitCommand)
-            throws DateTimeNotFoundException, TaskNotSpecifyException {
+            throws DateTimeNotFoundException, DescriptionNotSpecifyException {
         String[] descriptions = description.split(splitCommand);
         if (descriptions.length == 1) {
             throw new DateTimeNotFoundException(command, splitCommand);
         }
         if (descriptions.length > 1 && descriptions[0].strip() == "") {
-            throw new TaskNotSpecifyException(command);
+            throw new DescriptionNotSpecifyException(command);
         }
         return descriptions;
     }
@@ -145,18 +152,18 @@ public class Parser {
         return new UnmarkCommand(convertStringToInt(description));
     }
 
-    private static Command prepareTodo(String command, String description) throws TaskNotSpecifyException {
+    private static Command prepareTodo(String command, String description) throws DescriptionNotSpecifyException {
         if (description.equals("")) {
-            throw new TaskNotSpecifyException(command);
+            throw new DescriptionNotSpecifyException(command);
         }
         return new TodoCommand(description);
     }
 
     private static Command prepareDeadline(String command, String description)
-            throws TaskNotSpecifyException, ScheduleTaskKeywordNotFoundException,
+            throws DescriptionNotSpecifyException, ScheduleTaskKeywordNotFoundException,
             DateTimeNotFoundException, UnexpectedDateTimeFormatException {
         if (description.equals("")) {
-            throw new TaskNotSpecifyException(command);
+            throw new DescriptionNotSpecifyException(command);
         }
         if (!description.contains("/by")) {
             throw new ScheduleTaskKeywordNotFoundException(command, "/by");
@@ -166,10 +173,10 @@ public class Parser {
     }
 
     private static Command prepareEvent(String command, String description)
-            throws TaskNotSpecifyException, ScheduleTaskKeywordNotFoundException,
+            throws DescriptionNotSpecifyException, ScheduleTaskKeywordNotFoundException,
             DateTimeNotFoundException, UnexpectedDateTimeFormatException {
         if (description.equals("")) {
-            throw new TaskNotSpecifyException(command);
+            throw new DescriptionNotSpecifyException(command);
         }
         if (!description.contains("/at")) {
             throw new ScheduleTaskKeywordNotFoundException(command, "/at");
@@ -184,6 +191,13 @@ public class Parser {
             throw new IndexNotSpecifyException(command);
         }
         return new DeleteCommand(convertStringToInt(description));
+    }
+
+    private static Command prepareFind(String command, String description) throws DescriptionNotSpecifyException {
+        if (description.equals("")) {
+            throw new DescriptionNotSpecifyException(command);
+        }
+        return new FindCommand(description);
     }
 
     private static Command prepareInvalid() {

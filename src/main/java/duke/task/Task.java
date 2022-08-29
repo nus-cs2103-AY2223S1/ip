@@ -39,6 +39,10 @@ public abstract class Task {
         return isDone;
     }
 
+    public boolean doesContain(String findKeyword) {
+        return description.contains(findKeyword);
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

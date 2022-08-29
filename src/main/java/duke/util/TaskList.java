@@ -105,6 +105,17 @@ public class TaskList {
         return count;
     }
 
+    public TaskList findTask(String description) {
+        TaskList filteredTasks = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.doesContain(description)) {
+                filteredTasks.addTask(task);
+            }
+        }
+        return filteredTasks;
+    }
+
     @Override
     public String toString() {
         int size = tasks.size();
