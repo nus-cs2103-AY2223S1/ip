@@ -53,7 +53,7 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
         if (response.isExit()) {
-            roger.shutDown();
+            roger.saveTasksToDatabase();
             Platform.exit();
         }
     }

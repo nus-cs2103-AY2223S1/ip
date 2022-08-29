@@ -12,7 +12,7 @@ import roger.ui.Parser;
 import roger.ui.Response;
 
 /**
- * Main class for the Roger task-tracking CLI program.
+ * Main class for the Roger task-tracking GUI program.
  */
 public class Roger {
     private TaskList tasks;
@@ -38,7 +38,10 @@ public class Roger {
         }
     }
 
-    public void shutDown() {
+    /**
+     * Save tasks to the database.
+     */
+    public void saveTasksToDatabase() {
         try {
             List<String> newTaskStrings = this.tasks.toTaskStrings();
             storage.write(newTaskStrings);
@@ -47,6 +50,12 @@ public class Roger {
         }
     }
 
+    /**
+     * Returns Roger's response to the user input
+     *
+     * @param input User input
+     * @return Roger's response.
+     */
     public Response getResponse(String input) {
         try {
             Command command = this.parser.parse(input);

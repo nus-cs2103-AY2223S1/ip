@@ -3,8 +3,8 @@ package roger.commands;
 import java.util.List;
 
 import roger.storage.Storage;
-import roger.tasks.TaskList;
 import roger.tasks.Task;
+import roger.tasks.TaskList;
 
 
 /**
@@ -26,7 +26,6 @@ public class FindCommand extends Command {
      * Find and return any tasks that contain the given query string.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
     @Override

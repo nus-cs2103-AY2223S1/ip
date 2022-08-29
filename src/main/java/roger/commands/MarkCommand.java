@@ -1,8 +1,8 @@
 package roger.commands;
 
 import roger.storage.Storage;
-import roger.tasks.TaskList;
 import roger.tasks.Task;
+import roger.tasks.TaskList;
 
 /**
  * Encapsulates the command to mark a task as done.

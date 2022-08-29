@@ -13,7 +13,7 @@ public abstract class Command {
     protected Command() {}
 
     /**
-     * Execute the command and show the end user and relevant information.
+     * Execute the command and return any relevant information.
      *
      * @param tasks The TaskList of the Roger program.
      * @param storage The storage to read and load to.
