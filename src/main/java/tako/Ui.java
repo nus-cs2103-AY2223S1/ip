@@ -8,14 +8,7 @@ import tako.task.Task;
  * Deals with user interaction.
  */
 public class Ui {
-    private Scanner sc;
-
-    /**
-     * Constructor for Ui.
-     */
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
+    private String response;
 
     /**
      * Informs the user that their task is added.
@@ -24,8 +17,8 @@ public class Ui {
      * @param taskCount Total number of tasks in the task list.
      */
     public void showAdd(Task task, int taskCount) {
-        System.out.println("added: " + task);
-        System.out.println("Total tasks: " + taskCount);
+        response = String.format(
+                "added: %s\nTotal tasks: %d",task ,taskCount);
     }
 
     /**
@@ -35,8 +28,8 @@ public class Ui {
      * @param taskCount Total number of tasks in the task list.
      */
     public void showDelete(Task task, int taskCount) {
-        System.out.println("deleted: " + task);
-        System.out.println("Total tasks: " + taskCount);
+        response = String.format(
+                "deleted: %s\nTotal tasks: %d",task ,taskCount);
     }
 
     /**
@@ -45,8 +38,7 @@ public class Ui {
      * @param message Error message.
      */
     public void showError(String message) {
-        System.out.println("An error has occurred.");
-        System.out.println(message);
+        response = "An error has occurred.\n" + message;
     }
 
     /**
@@ -56,18 +48,11 @@ public class Ui {
      */
     public void showFind(TaskList tasks) {
         if (tasks.getSize() == 0) {
-            System.out.println("There are no matching tasks in your list.");
+            response = "There are no matching tasks in your list.";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
             showList(tasks);
+            response = "Here are the matching tasks in your list:\n" + response;
         }
-    }
-
-    /**
-     * Prints a line.
-     */
-    public void showLine() {
-        System.out.println("_______________");
     }
 
     /**
@@ -76,9 +61,10 @@ public class Ui {
      * @param tasks Task list to show.
      */
     public void showList(TaskList tasks) {
+        response = "";
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.get(i);
-            System.out.printf("%d.%s\n", i + 1, task);
+            response = String.format("%s%d.%s\n", response, i + 1, task);
         }
     }
 
@@ -86,8 +72,7 @@ public class Ui {
      * Informs the user that a loading error has occurred.
      */
     public void showLoadingError() {
-        System.out.println("Tasks failed to load.");
-        System.out.println("A new task list will be used instead.");
+        response = "Tasks failed to load." + "A new task list will be used instead.";
     }
 
     /**
@@ -96,31 +81,17 @@ public class Ui {
      * @param task Task to mark.
      */
     public void showMark(Task task) {
-        System.out.println("marked: " + task);
+        response = "marked: " + task;
     }
 
     /**
      * Displays a welcome message to the user.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm Tako.");
-        System.out.println("What do you want?");
+        response = "Hello! I'm Tako.\n" + "What do you want?";
     }
 
-    /**
-     * Reads the user command.
-     *
-     * @return String representation of command.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    /**
-     * Informs the user that no further commands will be read.
-     */
-    public void exit() {
-        System.out.println("Bye, until next time...");
-        sc.close();
+    public String getResponse() {
+        return response;
     }
 }

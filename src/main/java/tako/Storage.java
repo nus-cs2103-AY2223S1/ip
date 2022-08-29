@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,18 +82,19 @@ public class Storage {
         String[] splitLine = line.split(" \\| ");
         String taskType = splitLine[0];
         Task task = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         switch (taskType) {
         case "T":
             task = new Todo(splitLine[2]);
             break;
         case "D":
             LocalDateTime deadlineDateTime = LocalDateTime.parse(
-                    splitLine[3].replace(' ', 'T'));
+                    splitLine[3], formatter);
             task = new Deadline(splitLine[2], deadlineDateTime);
             break;
         case "E":
             LocalDateTime eventDateTime = LocalDateTime.parse(
-                    splitLine[3].replace(' ', 'T'));
+                    splitLine[3], formatter);
             task = (new Event(splitLine[2], eventDateTime));
             break;
         default:

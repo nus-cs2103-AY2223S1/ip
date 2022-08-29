@@ -17,9 +17,7 @@ public class ExitCommand extends Command {
      * @param storage Task storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.exit();
-    }
+    public void execute(TaskList tasks, Ui ui, Storage storage) { }
 
     /**
      * Returns true as Tako can exit after this command.
