@@ -23,7 +23,7 @@ public class FindCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         String res = "Here are the matching tasks in your list:";
-        for (Task task : tasks.tasks) {
+        for (Task task : tasks.tasks()) {
             if (task.getDescription().contains(input)) {
                 res += "\n" + task;
             }
