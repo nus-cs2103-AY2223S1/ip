@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Encapsulates all the interactions between the Duke interface and the user.
  */
 public class Ui {
+    public static String BORDER = "_________________________________________________";
     /**
      * Returns a string with the inputted message on the Duke interface.
      *
@@ -13,13 +14,13 @@ public class Ui {
      * @return The string with a border.
      */
     public static String getMessage(String msg) {
-        return msg;
+        return BORDER + "\n" + msg + "\n" + BORDER;
     }
 
     /**
      * Returns a string containing the Duke exit message.
      *
-     * @return The Duke exit String.
+     * @return The Duke exit String with a border.
      */
     public String getExitMessage() {
         String exitMsg = "Bye. Hope to see you again soon!";
@@ -30,7 +31,7 @@ public class Ui {
      * Returns a string containing the list of tasks stored in Duke.
      *
      * @param tasks A list of tasks stored.
-     * @return A String detailing the list of tasks stored.
+     * @return A String detailing the list of tasks stored with a border.
      */
     public String listTasks(ArrayList<Task> tasks) {
         String reply = "Here are the tasks in your list:";
@@ -41,7 +42,7 @@ public class Ui {
      * Returns a string containing the list of tasks that matches a certain requirement in Duke.
      *
      * @param tasks A list of tasks stored that matches a certain requirement.
-     * @return A String detailing the list of tasks that matches a certain requirement.
+     * @return A String detailing the list of tasks that matches a certain requirement with a border.
      */
     public String listFoundTasks(ArrayList<Task> tasks) {
         String reply = "Here are the matching tasks in your list:";
@@ -61,7 +62,7 @@ public class Ui {
      * Returns a string containing an acknowledgment message that a task has been marked.
      *
      * @param task The task that is marked.
-     * @return A string acknowledging the marked task.
+     * @return A string acknowledging the marked task with a border.
      */
     public String getMarkedTask(Task task) {
         return getMessage("Nice! I've marked this task as done:\n" + task);
@@ -71,7 +72,7 @@ public class Ui {
      * Returns a string with an acknowledgment message that a task has been unmarked.
      *
      * @param task The task that is unmarked.
-     * @return A string acknowledging the unmarked task.
+     * @return A string acknowledging the unmarked task with a border.
      */
     public String getUnmarkedTask(Task task) {
         return getMessage("OK, I've marked this task as not done yet:\n" + task);
@@ -86,7 +87,7 @@ public class Ui {
      *
      * @param removedTask The task that is removed.
      * @param tasksCountLeft The number of tasks left after the task is removed.
-     * @return A string acknowledging the removed task along with the number of tasks remaining.
+     * @return A string acknowledging the removed task along with the number of tasks remaining with a border.
      */
     public String getRemovedTask(Task removedTask, int tasksCountLeft) {
         String msg = "Noted. I've removed this task:\n"
@@ -100,7 +101,7 @@ public class Ui {
      *
      * @param task The task that is added.
      * @param tasksCountLeft The number of tasks present after the task is added.
-     * @return A String acknowledging the removed task along with the number of tasks left.
+     * @return A String acknowledging the removed task along with the number of tasks left with a border.
      */
     public String getAddedTask(Task task, int tasksCountLeft) {
         String msg = "Got it. I've added this task:\n"
@@ -113,7 +114,7 @@ public class Ui {
      * Returns a String with an error message caused by usage of a forbidden character/string.
      *
      * @param s The forbidden String.
-     * @return A String containing an error message.
+     * @return A String containing an error message with a border.
      */
     public String getBannedCharacterInputResponse(String s) {
         return getMessage("Woah there!!! Your input contains a \"" + s
@@ -123,7 +124,7 @@ public class Ui {
     /**
      * Returns a String with an error message caused by invalid input.
      *
-     * @return A String containing an error message.
+     * @return A String containing an error message with a border.
      */
     public String getInvalidInputResponse() {
         return getMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -133,7 +134,7 @@ public class Ui {
      * Returns a string containing an error message caused by an input command missing some key information.
      *
      * @param s The input command.
-     * @return A String containing an error message.
+     * @return A String containing an error message with a border.
      */
     public String getMissingInputResponse(String s) {
         return getMessage("OOPS!!! The description after a \""
@@ -146,7 +147,7 @@ public class Ui {
      *
      * @param cmd The attempted command.
      * @param inputNum The inputted number.
-     * @return A String containing an error message.
+     * @return A String containing an error message with a border.
      */
     public String getInputIndexOutOfBoundsResponse(String cmd, String inputNum) {
         return getMessage("OOPS!!! You tried to " + cmd + " task " + inputNum
@@ -156,7 +157,7 @@ public class Ui {
     /**
      * Prints an error message caused by having date input that is unable to be parsed by the program.
      *
-     * @return A String containing an error message.
+     * @return A String containing an error message with a border.
      */
     public String getDateTimeErrorResponse() {
         return getMessage("OOPS!!! I can't recognise the date you just inputted :-(\n"
