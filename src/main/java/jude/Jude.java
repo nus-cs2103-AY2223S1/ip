@@ -6,12 +6,13 @@ import java.io.IOException;
  * Jude is a task tracker which appears like a command line interface. The name is a Beatles
  * reference, referring to the hit song Hey Jude.
  * When > shows up, you can type a command.
+ * <br>
  *
  * There are three types of tasks, namely the todo, deadline and event.
  * Todo tasks are tasks without an associated date/time.
  * Deadline tasks have a specific deadline by which the task must be completed.
  * Event tasks have a start time and an end time.
- *
+ * <br>
  * Here are the list of commands:
  * todo (description) - adds a todo task with some description
  * deadline (description) /by (deadline) - adds a deadline task with the specified description and
@@ -30,13 +31,16 @@ import java.io.IOException;
  * delete - delete the task corresponding to a specified index (from list command)
  *   e.g. delete 2 deletes second task
  * bye - exits the program
+ * <br>
  *
  * If the command does not have these prefixes, an error will be thrown saying that the bot does
  * not understand.
  */
 public class Jude {
-    private final Storage storage;
+    private Storage storage;
     private final Ui ui = new Ui();
+    private Parser parser;
+    private TaskList tasks;
 
     /**
      * Creates an instance of Jude chatbot.
@@ -46,6 +50,8 @@ public class Jude {
      */
     public Jude(String filePath) throws IOException {
         storage = new Storage(filePath);
+        tasks = storage.load();
+        parser = new Parser(tasks, storage);
     }
 
     /**
@@ -56,26 +62,32 @@ public class Jude {
     public void run() throws IOException {
         // Overall project structure code for main class adapted from
         // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
-        TaskList tasks = storage.load();
-        Parser parser = new Parser(tasks, storage);
+        tasks = storage.load();
+        parser = new Parser(tasks, storage);
         ui.showWelcome();
 
         while (true) {
             ui.showCommandReadReady();
             String str = ui.readCommand();
-            boolean canContinue = parser.parse(str);
-            if (!canContinue) {
+            boolean isTerminationCommand = parser.isTerminationCommand(str);
+            if (isTerminationCommand) {
                 break;
             }
+            String response = parser.parse(str);
+            System.out.println(response);
         }
     }
 
-    /**
+    public String getResponse(String input) throws IOException {
+        return parser.parse(input);
+    }
+
+    /*
      * Runs the task tracker chatbot.
      *
      * @param args Not used for now.
      */
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         new Jude("data/tasks.txt").run();
-    }
+    }*/
 }
