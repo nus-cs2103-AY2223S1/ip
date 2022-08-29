@@ -52,6 +52,7 @@ public class DialogBox extends HBox {
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
+    // @@author
 
     /**
      * Returns the dialog box for the user.
@@ -76,5 +77,4 @@ public class DialogBox extends HBox {
         dialogBox.flip();
         return dialogBox;
     }
-    // @@author
 }

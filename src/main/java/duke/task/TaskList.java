@@ -89,6 +89,9 @@ public class TaskList {
         return encodedTasks;
     }
 
+    // @@author jorrdansoh-reused
+    // Reused from https://github.com/teikjun/duke
+    // with minor modifications
     /**
      * Returns the decoded TaskList from the given list of Strings.
      *
@@ -118,6 +121,7 @@ public class TaskList {
         }
         return decodedTasks;
     }
+    // @@author
 
     /**
      * Returns the String representation of this TaskList.

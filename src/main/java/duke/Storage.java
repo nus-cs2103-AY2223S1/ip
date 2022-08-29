@@ -14,11 +14,15 @@ public class Storage {
     private final Path filePath;
     private final Path folderPath;
 
+    // @@author jorrdansoh-reused
+    // Reused from https://github.com/teikjun/duke
+    // with minor modifications
     Storage() {
         String userDir = System.getProperty("user.dir");
         this.filePath = Paths.get(userDir + "/data/duke.txt");
         this.folderPath = Paths.get(userDir + "/data");
     }
+    // @@author
 
     /**
      * Loads the TaskList that is stored in the filePath.
@@ -49,6 +53,9 @@ public class Storage {
         }
     }
 
+    // @@author jorrdansoh-reused
+    // Reused from https://github.com/teikjun/duke
+    // with minor modifications
     /**
      * Creates the directory and/or file if they have not been created yet.
      *
@@ -62,4 +69,5 @@ public class Storage {
             Files.createFile(this.filePath);
         }
     }
+    // @@author
 }
