@@ -1,5 +1,9 @@
 package parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 // Import Commands
 import command.AddCommand;
 import command.Command;
@@ -8,27 +12,18 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.UpdateCommand;
-
 // Import Luna Exceptions
 import exception.LunaException;
 import exception.LunaInvalidCommandException;
 import exception.LunaInvalidDateException;
 import exception.LunaInvalidDescriptionException;
 import exception.LunaInvalidIndexException;
-
-// Import other exceptions
-import java.time.format.DateTimeParseException;
-
 // Import Tasks;
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
-
-// Imports for dates
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Deals with making sense of the user command.

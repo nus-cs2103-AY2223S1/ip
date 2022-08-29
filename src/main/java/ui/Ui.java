@@ -1,16 +1,15 @@
 package ui;
 
-import exception.LunaException;
-import exception.LunaLoadingException;
-
-import task.Task;
-import task.TaskList;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
+import exception.LunaException;
+import exception.LunaLoadingException;
+import task.Task;
+import task.TaskList;
 
 /**
  * Deals with interactions with the user.

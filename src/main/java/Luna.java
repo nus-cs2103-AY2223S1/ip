@@ -1,3 +1,8 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import command.Command;
 import exception.LunaException;
 import parser.Parser;

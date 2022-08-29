@@ -1,18 +1,15 @@
 package command;
 
-import exception.LunaException;
-
 import java.time.LocalDate;
 
+import exception.LunaException;
 import storage.Storage;
-
 // Import Tasks
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
-
 import ui.Ui;
 
 /**
@@ -47,7 +44,7 @@ public class AddCommand extends Command {
         case "event":
             this.task = new Event(des, date);
             break;
-            default:
+        default:
         }
     }
 

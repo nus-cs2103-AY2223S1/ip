@@ -1,15 +1,11 @@
 package command;
 
 import exception.LunaException;
-
 import storage.Storage;
-
 // Import Tasks
 import task.Task;
 import task.TaskList;
-
 import ui.Ui;
-
 
 /**
  * Encapsulates a user instruction to delete a saved task.

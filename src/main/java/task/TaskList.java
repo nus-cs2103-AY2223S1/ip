@@ -1,8 +1,8 @@
 package task;
 
-import exception.LunaException;
-
 import java.util.ArrayList;
+
+import exception.LunaException;
 
 /**
  * Represents a list of tasks saved by the user.
