@@ -23,7 +23,7 @@ public class FindCommand extends Command {
      * contains the text String
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        System.out.println(taskList.findTask(text));
+    public void execute(TaskList taskList, Storage storage) {
+        Ui.dukeResponse += taskList.findTask(text);
     }
 }

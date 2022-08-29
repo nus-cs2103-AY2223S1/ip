@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.InvalidDescriptionException;
 import duke.task.TaskList;
 import duke.task.ToDo;
@@ -29,7 +28,7 @@ public class TodoCommand extends Command {
      * saves tasklist to task file
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Storage storage) {
         taskList.addTask(new ToDo(this.desc));
         storage.saveTaskFile(taskList);
     }

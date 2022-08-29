@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidTimeException;
 import duke.task.Event;
@@ -36,7 +35,7 @@ public class EventCommand extends Command {
      * saves tasklist to task file
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Storage storage) {
         Event event = new Event(this.desc, this.time);
         taskList.addTask(event);
         storage.saveTaskFile(taskList);
