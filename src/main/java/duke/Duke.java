@@ -20,7 +20,7 @@ public class Duke {
         Parser parser = new Parser(true);
 
 
-        while (parser.getIsAcceptingInput()) {
+        while (parser.isAcceptingInput()) {
             String input = inputScanner.nextLine();
             try {
                 Command command = parser.parseInput(input);
