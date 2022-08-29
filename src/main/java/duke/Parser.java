@@ -41,6 +41,9 @@ public class Parser {
         case "event":
             return new EventCommand(fullCommand.substring(5).trim());
 
+        case "find":
+            return new FindCommand(fullCommand.substring(4).trim());
+
         default:
             return new NoCommand();
         }
