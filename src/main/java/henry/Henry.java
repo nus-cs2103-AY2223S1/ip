@@ -1,6 +1,7 @@
 package henry;
 
 import java.nio.file.Path;
+import java.util.Objects;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -29,8 +30,10 @@ public class Henry extends Application {
     private static final String home = System.getProperty("user.home");
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image user =
+        new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
+    private final Image duke =
+        new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
 
     private Ui ui;
     private Storage storage;
@@ -43,19 +46,6 @@ public class Henry extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-
-//    /**
-//     * When a new instance of Henry is created,
-//     * a new UI object, a new Storage object,
-//     * a new TaskList object and a new Parser object
-//     * is instantiated.
-//     */
-//    public Henry() {
-//        ui = new Ui();
-//        storage = new Storage(FILE_PATH.toString());
-//        taskList = new TaskList(storage.load());
-//        parser = new Parser();
-//    }
 
     @Override
     public void start(Stage stage) {
@@ -158,8 +148,8 @@ public class Henry extends Application {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-            new DialogBox(userText, new ImageView(user)),
-            new DialogBox(dukeText, new ImageView(duke))
+            DialogBox.getUserDialog(userText, new ImageView(user)),
+            DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
     }
@@ -171,10 +161,11 @@ public class Henry extends Application {
     private String getResponse(String input) {
         if (input.equalsIgnoreCase("bye")) {
             Platform.exit();
+            return "";
         }
         Command parsed = parser.parseCommand(input);
-        parsed.setData(taskList);
-        return parsed.execute().toString();
+        CommandResult result = executeCommand(parsed);
+        return result.toString();
     }
 
     /**
@@ -214,10 +205,5 @@ public class Henry extends Application {
 
     private void close() {
         ui.close();
-    }
-
-    private String formatResponse(String input) {
-        return "____________________________________________________________" + "\n HENRY: "
-               + input + "\n" + "____________________________________________________________";
     }
 }
