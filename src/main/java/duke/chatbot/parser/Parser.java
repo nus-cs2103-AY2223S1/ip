@@ -1,5 +1,15 @@
 package duke.chatbot.parser;
 
+import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import duke.chatbot.command.AddDeadlineCommand;
 import duke.chatbot.command.AddEventCommand;
 import duke.chatbot.command.AddToDoCommand;
@@ -18,27 +28,16 @@ import duke.chatbot.data.task.Event;
 import duke.chatbot.data.task.TaskList;
 import duke.chatbot.data.task.ToDo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
-
-
 /**
  * A parser class to extract information from strings.
  */
 public class Parser {
     /**
      * Returns an instance of Command, which contains all the arguments
-     * of the command string parsed in an instance List<String>.
+     * of the command string parsed in an instance of list of string.
      * @param line The string to be parsed.
      * @return An instance of Command which corresponds to the command
-     * string parsed.
+     *     string parsed.
      * @throws InvalidInputException If line is not a valid command string.
      */
     public static Command parseCommand(String line) throws InvalidInputException {
@@ -102,9 +101,9 @@ public class Parser {
      * string parsed.
      * @param dateTime A string containing date and time information.
      * @return An instance of LocalDateTime that corresponds to the
-     * string parsed.
+     *     string parsed.
      * @throws InvalidInputException If the argument string does not
-     * follow the format.
+     *     follow the format.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws InvalidInputException {
         try {
@@ -120,7 +119,7 @@ public class Parser {
      * @return A list of tasks that was stored in the file.
      * @throws FileNotFoundException If a file is not found.
      * @throws InvalidInputException If the date and time portion
-     * of the encoded task is not in the correct format.
+     *     of the encoded task is not in the correct format.
      */
     public static TaskList parseFile(File file) throws FileNotFoundException, InvalidInputException {
         Scanner fileScanner = new Scanner(file);

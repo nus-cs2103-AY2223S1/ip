@@ -1,12 +1,12 @@
 package duke.chatbot.command;
 
-import duke.chatbot.data.task.Task;
+import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import static duke.chatbot.common.Message.MESSAGE_LIST;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
-import static duke.chatbot.common.Message.MESSAGE_LIST;
+import duke.chatbot.data.task.Task;
 
 /**
  * A command that prints the list of tasks in the application. Prints

@@ -1,11 +1,11 @@
 package duke.chatbot.storage;
 
-import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.task.TaskList;
 
 /**
  * A storage for any task data that requires storing between
@@ -27,7 +27,7 @@ public class Storage {
      * Factory method to create an instance of Storage.
      * @param path The file name for the data to be saved on.
      * @return An instance of storage corresponding to the path
-     * provided.
+     *     provided.
      */
     public static Storage of(String path) {
         try {
@@ -51,7 +51,7 @@ public class Storage {
      * @return A list of tasks loaded from the stored file.
      * @throws FileNotFoundException If a file is not found.
      * @throws InvalidInputException If the date and time portion
-     * of the encoded task is not in the correct format.
+     *     of the encoded task is not in the correct format.
      */
     public TaskList getTaskList() throws FileNotFoundException, InvalidInputException {
         return fileLoader.getTaskList();

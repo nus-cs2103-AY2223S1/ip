@@ -1,12 +1,12 @@
 package duke.chatbot.ui;
 
-import duke.chatbot.command.CommandResult;
-
-import java.util.Scanner;
-
 import static duke.chatbot.common.Message.MESSAGE_INIT_FAILED;
 import static duke.chatbot.common.Message.MESSAGE_SEPARATOR;
 import static duke.chatbot.common.Message.MESSAGE_WELCOME;
+
+import java.util.Scanner;
+
+import duke.chatbot.command.CommandResult;
 
 /**
  * Manages user input and also the output of the application.
@@ -27,7 +27,7 @@ public class Ui {
     /**
      * Prints a message that corresponds to the CommandResult argument.
      * @param result The result of a command to be outputted for
-     *               the user to witness.
+     *     the user to witness.
      */
     public void showMessage(CommandResult result) {
         System.out.println(MESSAGE_SEPARATOR);

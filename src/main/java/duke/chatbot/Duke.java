@@ -1,5 +1,7 @@
 package duke.chatbot;
 
+import java.io.FileNotFoundException;
+
 import duke.chatbot.command.Command;
 import duke.chatbot.command.CommandResult;
 import duke.chatbot.command.InvalidInputCommand;
@@ -8,8 +10,6 @@ import duke.chatbot.data.task.TaskList;
 import duke.chatbot.parser.Parser;
 import duke.chatbot.storage.Storage;
 import duke.chatbot.ui.Ui;
-
-import java.io.FileNotFoundException;
 
 /**
  * The main application class.

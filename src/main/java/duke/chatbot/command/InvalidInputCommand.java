@@ -1,9 +1,9 @@
 package duke.chatbot.command;
 
+import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
 
 /**
  * A command that prints an error message.

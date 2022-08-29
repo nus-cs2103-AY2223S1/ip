@@ -1,9 +1,9 @@
 package duke.chatbot.command;
 
+import java.util.List;
+
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
-
-import java.util.List;
 
 /**
  * A command to be executed and outputs a result.
@@ -23,7 +23,7 @@ public abstract class Command {
      * @return boolean
      */
     public static boolean isExit(Command command) {
-        return command != null && command instanceof ExitCommand;
+        return command instanceof ExitCommand;
     }
 
     /**
