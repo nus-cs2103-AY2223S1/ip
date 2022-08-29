@@ -106,6 +106,18 @@ public class TaskManager {
         }
     }
 
+    public String search(String query) {
+        final List<Task> matches = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            final Task t = tasks.get(i);
+            if (t.matches(query)) {
+                matches.add(t);
+            }
+        }
+        final StringBuilder sb = new StringBuilder("Matching Tasks:\n");
+        return getStringFromTasksList(matches, sb);
+    }
+
     private void saveToDisk() {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
