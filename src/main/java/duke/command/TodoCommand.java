@@ -16,7 +16,7 @@ public class TodoCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Todo todo = new Todo(description);
         tasks.add(todo);
-        ui.TodoTask(tasks, todo);
+        ui.todoTask(tasks, todo);
         storage.update(tasks.getTasks());
     }
 }

@@ -21,7 +21,7 @@ public class MarkCommand extends Command {
         try {
             task = tasks.get(idx);
             task.markAsDone();
-            ui.MarkTask(task);
+            ui.markTask(task);
             storage.update(tasks.getTasks());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid index.");
