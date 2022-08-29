@@ -25,6 +25,8 @@ public class Parser {
             return new DeadlineCommand(fullCommand);
         } else if (fullCommand.contains("event")) {
             return new EventCommand(fullCommand);
+        } else if (fullCommand.contains("find")) {
+            return new FindCommand(fullCommand);
         } else if (fullCommand.equals("bye")) {
             return new ExitCommand();
         } else {
