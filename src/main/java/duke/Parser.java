@@ -32,7 +32,7 @@ public class Parser {
             return new MarkCommand(fullCommand);            
 
         case "delete":
-            return new DeleteCommand(fullCommand);            
+            return new DeleteCommand(fullCommand.trim());            
 
         case "todo":
             return new ToDoCommand(fullCommand);            
