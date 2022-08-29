@@ -42,6 +42,8 @@ public class Parser {
             parseTask(command);
         } else if (command.startsWith("mark") || command.startsWith("unmark") || command.startsWith("delete")) {
             parseTwo(command);
+        } else if (command.startsWith("find")) {
+            parseFind(command);
         } else if (command.startsWith("list") || command.startsWith("bye")) {
             parseOne(command);
         } else {
@@ -104,9 +106,23 @@ public class Parser {
     }
 
     /**
+     * Parses and executes find command for Duke Bot.
+     * 
+     * @param command Find command.
+     * @throws DukeException If command cannot be parsed or is invalid.
+     */
+    public void parseFind(String command) throws DukeException {
+        String[] split = command.split(" ", 2);
+        if (split.length < 2) {
+            throw new DukeException("Please input string for find.");
+        }
+        tasks.findTask(split[1]);
+    }
+    
+    /**
      * Parses and executes commands that are one part long for Duke Bot.
      * One part long commands are in the format "command".
-     * 
+     *
      * @param command One part long command.
      * @throws DukeException If command cannot be parsed or is invalid.
      */

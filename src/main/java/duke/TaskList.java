@@ -74,8 +74,24 @@ public class TaskList {
     }
 
     /**
-     * Returns number of tasks in TaskList
+     * Prints list of tasks in TaskList that contains identifier.
      * 
+     * @param identifier String to search for tasks.
+     */
+    public void findTask(String identifier) {
+        String messageList = "";
+        int count = 1;
+        for (Task t: taskList) {
+            if (t.toString().contains(identifier)) {
+                messageList += "\n    " + count++ + ". " + t;
+            }
+        }
+        ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
+    }
+
+    /**
+     * Returns number of tasks in TaskList
+     *
      * @return Size of TaskList.
      */
     public int getSize() {
