@@ -12,7 +12,7 @@ public class deadlineTest {
     }
 
     @Test
-    public void testSetDay() {
+    public void testSetDate() {
         deadline deadline = new deadline("testing");
         deadline.setDate(new formatDate("2022-08-26"));
         assertEquals("Aug 26 2022", deadline.date.toString());
