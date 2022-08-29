@@ -3,6 +3,9 @@ package roger.tasks;
 import java.time.LocalDate;
 
 
+/**
+ * Encapsulates an event.
+ */
 public class Event extends Task {
     private LocalDate date;
 

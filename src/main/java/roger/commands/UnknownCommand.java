@@ -3,6 +3,9 @@ package roger.commands;
 import roger.storage.Storage;
 import roger.tasks.TaskList;
 
+/**
+ * Encapsulates a command that the program does not understand.
+ */
 public class UnknownCommand extends Command {
 
     /**
