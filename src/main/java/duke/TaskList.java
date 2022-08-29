@@ -16,20 +16,8 @@ public class TaskList {
         task.toggleStatus();
     }
 
-    public void addTask(Duke.Commands type, String description) {
-        Task task = new Task(description);
-        list.add(task);
-    }
-
-    public void addTask(Duke.Commands type, String description, LocalDateTime time) {
-        switch (type) {
-            case DEADLINE:
-                list.add(new Deadline(description, time));
-                break;
-            case EVENT:
-                list.add(new Event(description, time));
-                break;
-        }
+    public void addTask(Task task) {
+        this.list.add(task);
     }
 
     public void deleteTask(Integer index) {
