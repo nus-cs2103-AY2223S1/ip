@@ -21,11 +21,6 @@ public class TaskList {
         return tasks.size();
     }
 
-    protected String numberOfTasks() {
-        int size = getSize();
-        return "Now you have " + size + (size < 2 ? " task" : " tasks") + " in your list.";
-    }
-
     protected Task getTask(int taskIndex) {
         return tasks.get(taskIndex);
     }
