@@ -132,24 +132,28 @@ public class TaskList {
      * @param newTask The recently added task
      */
     public void printAddedTask(Task newTask) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newTask);
-        System.out.println(String.format("Now you have %d tasks in the list.",
-                this.tasks.size()));
+        String output = "Got it. I've added this task: \n"
+                        + "  \n"
+                        + newTask
+                        + String.format("\nNow you have %d tasks in the list.",
+                                        this.tasks.size());
+
+        this.ui.handleOutput(output);
     }
 
     /**
      * Prints all items in the items list.
      */
     public void printItems() {
-        System.out.println("Here are the tasks in your list:");
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
 
         // Print every task in the list
         for (int i = 0; i < this.tasks.size(); i++) {
-            String output = String.format("%s. %s", i + 1, this.tasks.get(i));
-            System.out.println(output);
+            String listItem = String.format("%s. %s\n", i + 1, this.tasks.get(i));
+            output.append(listItem);
         }
 
+        this.ui.handleOutput(output.toString());
     }
 
     /**
@@ -160,8 +164,9 @@ public class TaskList {
     public void printAllOnDate(String input) {
         LocalDate date = LocalDate.parse(input);
 
-        System.out.println("Here are the tasks on "
-                           + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        StringBuilder output = new StringBuilder("Here are the tasks on "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + "\n");
 
         for (Task task : this.tasks) {
             // Check that task is not a To-do which has no deadline
@@ -171,9 +176,11 @@ public class TaskList {
 
             // If the deadline is equal to the date, print it
             if (task.getDeadline().equals(date)) {
-                System.out.println(task);
+                output.append(task).append("\n");
             }
         }
+
+        this.ui.handleOutput(output.toString());
     }
 
     /**
@@ -196,8 +203,8 @@ public class TaskList {
         selectedTask.mark();
 
         // Print message
-        System.out.println("Nice! I've marked this task as done:\n"
-                           + selectedTask);
+        this.ui.handleOutput("Nice! I've marked this task as done:\n"
+                             + selectedTask);
 
         // Update data file
         this.storage.saveTasks(this.tasks);
@@ -223,8 +230,8 @@ public class TaskList {
         selectedTask.unmark();
 
         // Print message
-        System.out.println("OK, I've marked this task as not done yet:\n"
-                           + selectedTask);
+        this.ui.handleOutput("OK, I've marked this task as not done yet:\n"
+                             + selectedTask);
 
         // Update data file
         this.storage.saveTasks(this.tasks);
@@ -247,10 +254,12 @@ public class TaskList {
         Task removedTask = this.tasks.remove(index - 1);
 
         // Print message
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(removedTask);
-        System.out.println(String.format("Now you have %d tasks in the list.",
-                           this.tasks.size()));
+        String output = "Noted. I've removed this task:\n"
+                        + removedTask
+                        + "\n"
+                        + String.format("Now you have %d tasks in the list.",
+                                        this.tasks.size());
+        this.ui.handleOutput(output);
 
         // Update data file
         this.storage.saveTasks(this.tasks);
@@ -262,12 +271,14 @@ public class TaskList {
      * @param key a String that is contained within the desired tasks
      */
     public void find(String key) {
-        System.out.println("Here are the matching tasks in your list:");
+        StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
 
         for (Task task : this.tasks) {
             if (task.toString().contains(key)) {
-                System.out.println(task);
+                output.append(task);
             }
         }
+
+        this.ui.handleOutput(output.toString());
     }
 }

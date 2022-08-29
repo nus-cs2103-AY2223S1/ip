@@ -2,6 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,7 +43,7 @@ public class Duke extends Application {
      */
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
-        this.ui = new Ui();
+        this.ui = new Ui(this);
         this.taskList = new TaskList(this.storage.getTasks(), this.ui, this.storage);
         this.ui.updateTaskList(this.taskList);
     }
@@ -57,18 +58,18 @@ public class Duke extends Application {
     /**
      * The main application.
      */
-    public void run() {
-        this.ui.printGreeting();
-
-        boolean exit = false;
-        while (!exit) {
-            try {
-                exit = this.ui.handleInput();
-            } catch (DukeException e) {
-                System.out.println(e);
-            }
-        }
-    }
+//    public void run() {
+//        this.ui.printGreeting();
+//
+//        boolean exit = false;
+//        while (!exit) {
+//            try {
+//                exit = this.ui.handleInput();
+//            } catch (DukeException e) {
+//                System.out.println(e);
+//            }
+//        }
+//    }
 
     @Override
     public void start(Stage stage) {
@@ -87,9 +88,6 @@ public class Duke extends Application {
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
 
         // Formatting the window
         stage.setTitle("Duke");
@@ -121,16 +119,25 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         //Part 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
+        sendButton.setOnMouseClicked((event) -> handleUserInput());
 
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        userInput.setOnAction((event) -> handleUserInput());
 
         // Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+        dialogContainer.heightProperty().addListener(
+                (observable) -> scrollPane.setVvalue(1.0));
+
+        this.showGreeting(); // Greet the user
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
+    private void showGreeting() {
+        Label greeting = new Label(this.ui.getGreeting());
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(greeting,
+                                        new ImageView(duke))
+        );
     }
 
     /**
@@ -140,30 +147,29 @@ public class Duke extends Application {
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        dialogContainer.getChildren().add(
+                DialogBox.getUserDialog(userText, new ImageView(user))
         );
-        userInput.clear();
+
+        try {
+            if (this.ui.handleInput(userInput.getText())) {
+                // exit
+                Platform.exit();
+            }
+        } catch (DukeException e) {
+            this.updateResponse(e.toString());
+        } finally {
+            userInput.clear();
+        }
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * TODO javadocs
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+    public void updateResponse(String response) {
+        Label dukeTxt = new Label(response);
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(dukeTxt, new ImageView(duke))
+        );
     }
-
-    /**
-     * The main program loop.
-     *
-     * @param args
-     */
-//    public static void main(String[] args) {
-//        String filePath = System.getProperty("user.home") + "/duke.txt";
-//        Duke duke = new Duke(filePath);
-//        duke.run();
-//    }
 }

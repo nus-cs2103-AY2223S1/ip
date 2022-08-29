@@ -59,7 +59,6 @@ public class Parser {
         // Determine the action to perform
         switch (command) {
         case BYE:
-            System.out.println("Bye. Hope to see you again soon!");
             return true;
         case LIST:
             this.taskList.printItems();
