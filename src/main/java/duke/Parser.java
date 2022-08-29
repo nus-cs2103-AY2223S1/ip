@@ -3,6 +3,8 @@ package duke;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parser {
 
@@ -74,6 +76,9 @@ public class Parser {
                 Integer num = Integer.parseInt(word[1]);
                 taskList.delete(num);
 
+            } else if (word[0].equals("find")) {
+                String content = s.replace("find", "");
+                taskList.find(content);
 
             } else {
                 throw new DukeException("Oooops, sorry I don't know what you are talking about :(");

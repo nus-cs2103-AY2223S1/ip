@@ -78,6 +78,19 @@ public class TaskList {
         Storage.writeToFile(inputList);
     }
 
+    public void find(String str) {
+        ArrayList<Task> list = new ArrayList<>();
+        for (int i = 0; i < inputList.size(); i++) {
+            if (inputList.get(i).toString().contains(str)) {
+                list.add(inputList.get(i));
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (Task item : list) {
+            System.out.println(list.indexOf(item) + 1 + "." + item);
+        }
+    }
+
     public Task get(int i) {
         return this.inputList.get(i);
     }
