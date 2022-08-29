@@ -14,6 +14,7 @@ public class Storage {
 
     /**
      * Creates a new Storage object with the specified path.
+     *
      * @param path The path to the file to store data in.
      */
     public Storage(String path) {
@@ -31,6 +32,7 @@ public class Storage {
 
     /**
      * Reads and return the tasks of the file.
+     *
      * @return The String tasks of the file.
      */
     public String read() {
@@ -54,6 +56,7 @@ public class Storage {
 
     /**
      * Writes the tasks into the Storage file.
+     *
      * @param contents The String tasks to write to the Storage file.
      */
     public void write(String contents) {

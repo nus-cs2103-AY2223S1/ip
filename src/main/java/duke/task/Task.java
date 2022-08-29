@@ -68,6 +68,7 @@ public class Task {
 
     /**
      * Creates a Task object from a storage String.
+     *
      * @param string The Storage String representing the Task.
      * @return The Task represented by the Storage String.
      */
@@ -106,6 +107,7 @@ public class Task {
 
     /**
      * Checks whether the Task description matches the given keyword.
+     *
      * @param keyword The keyword to match.
      * @return Boolean indicating whether the description contains the keyword.
      */

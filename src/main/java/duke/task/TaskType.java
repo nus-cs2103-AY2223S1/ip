@@ -12,6 +12,7 @@ public enum TaskType {
 
     /**
      * Creates a TaskType with the corresponding Task name.
+     *
      * @param task The corresponding Task name.
      */
     TaskType(String task) {
@@ -21,6 +22,7 @@ public enum TaskType {
 
     /**
      * Returns the corresponding TaskType based on the input String.
+     *
      * @return The corresponding TaskType.
      */
     public static TaskType parse(String string) {

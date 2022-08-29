@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.task.TaskList;
 
 /**
@@ -18,10 +19,10 @@ public class ListCommand extends Command {
 
     /**
      * Displays the Tasks in the TaskList.
-     * @return The String representing the TaskList.
+     * @return The Response to be displayed.
      */
     @Override
-    public String action() {
-        return this.taskList.toString();
+    public Response action() {
+        return new Response(this.taskList.toString());
     }
 }

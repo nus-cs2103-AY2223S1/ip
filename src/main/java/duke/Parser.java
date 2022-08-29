@@ -27,7 +27,7 @@ public class Parser {
      * @param taskList The task list to pass in to the Command.
      * @return The command corresponding to the user input.
      */
-    public Command parseCommand(String userInput, TaskList taskList) {
+    public static Command parseCommand(String userInput, TaskList taskList) {
         try {
             String [] inputArr = userInput.split(" ", 2);
             CommandType command = CommandType.parse(inputArr[0]);

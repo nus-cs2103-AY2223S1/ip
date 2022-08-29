@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 import duke.task.ToDo;
@@ -13,6 +14,7 @@ public class ToDoCommand extends Command {
 
     /**
      * Creates a ToDoCommand to add a ToDo to the TaskList.
+     *
      * @param taskList The TaskList to add the ToDo to.
      * @param inputArr The input String array.
      */
@@ -23,17 +25,18 @@ public class ToDoCommand extends Command {
 
     /**
      * Adds the ToDo to the TaskList.
-     * @return The message to be displayed.
+     *
+     * @return The Response to be displayed.
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public String action() throws DukeException {
+    public Response action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of a todo cannot be empty.");
         }
         ToDo toDo = new ToDo(this.inputArr[1]);
         this.taskList.addTask(toDo);
-        return ("Got it. I've added this task: " + "\n"
+        return new Response("Got it. I've added this task: " + "\n"
                 + toDo + "\n"
                 + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
     }

@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -13,6 +14,7 @@ public class MarkCommand extends Command {
 
     /**
      * Creates a MarkCommand to mark a task as completed.
+     *
      * @param taskList The TaskList that the task belongs to.
      * @param inputArr The input String array.
      */
@@ -23,18 +25,19 @@ public class MarkCommand extends Command {
 
     /**
      * Marks the task in the TaskList as completed.
-     * @return The message to be displayed.
+     *
+     * @return The Response to be displayed.
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public String action() throws DukeException {
+    public Response action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("Missing task number.");
         }
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
             Task task = this.taskList.markDone(index);
-            return ("Nice! I've marked this task as done:" + "\n"
+            return new Response("Nice! I've marked this task as done:" + "\n"
                     + task + "\n");
         } catch (NumberFormatException exception) {
             throw new DukeException("Invalid task number.");

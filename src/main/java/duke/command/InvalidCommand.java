@@ -1,14 +1,17 @@
 package duke.command;
 
+import duke.Response;
+
 /**
  * InvalidCommand represents a command that is invalid.
  */
 public class InvalidCommand extends Command {
-    private static final String INVALID = "☹ OOPS!!! ";
+    private static final String INVALID = "OOPS!!! ";
     private String message;
 
     /**
      * Creates a InvalidCommand to inform the user that the command is invalid.
+     *
      * @param message The error message.
      */
     public InvalidCommand(String message) {
@@ -17,10 +20,11 @@ public class InvalidCommand extends Command {
 
     /**
      * Returns an error message.
-     * @return The message to be displayed.
+     *
+     * @return The Response to be displayed.
      */
     @Override
-    public String action() {
-        return INVALID + this.message + "\n";
+    public Response action() {
+        return new Response(INVALID + this.message + "\n");
     }
 }
