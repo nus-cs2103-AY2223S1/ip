@@ -17,6 +17,10 @@ test {
     useJUnitPlatform()
 
     def logging = testLogging {
+
+    }
+    testLogging {
+
         events "passed", "skipped", "failed"
 
         showExceptions true
@@ -25,7 +29,7 @@ test {
         showStackTraces true
         showStandardStreams = false
     }
-    logging
+
 }
 
 application {

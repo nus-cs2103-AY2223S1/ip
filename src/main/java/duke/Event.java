@@ -17,7 +17,6 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = at;
-
         try {
             //reverts the format for file reading
             //not good to use exceptions as conditions though...
@@ -28,7 +27,7 @@ public class Event extends Task {
             this.localDate = LocalDate.parse(this.at);
         } catch (DateTimeParseException e) {
             try {
-                this.localDate = LocalDate.parse(at.trim(), DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+                this.localDate = LocalDate.parse(at.trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e1) {
                 System.out.println("Please provide the date in the correct format, which is yyyy-mm-dd");
                 return;

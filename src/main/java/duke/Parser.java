@@ -36,6 +36,8 @@ public class Parser {
             throw new DukeException(("OOPS!!! The description of a duke.Deadline cannot be empty/incomplete."));
         }
     }
+
+    //deadline hello /by 2022-12-12
     private static void parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
@@ -46,17 +48,15 @@ public class Parser {
             Event taskEvent = new Event(desc, at);
             taskList.addTask(taskEvent);
             System.out.println(ui.printAddedTask(taskEvent.toString()));
-            ;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException(("OOPS!!! The description of an duke.Event cannot be empty/incomplete."));
         }
     }
-
+//event hello /at 2022-12-12
     private static void parseDelete(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         str = str.split(" ", 2)[1].trim();
         int index = Integer.valueOf(str) - 1;
-        //duke.Task content = inputs.get(index);
         String msg = taskList.getTask(index).toString();
         System.out.println(ui.printRemovedTask(msg));
         taskList.removeTask(index);
