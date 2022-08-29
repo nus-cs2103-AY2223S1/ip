@@ -4,7 +4,6 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
-import duke.command.ExitCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NoCommand;
@@ -33,9 +32,6 @@ public class Parser {
         String command = fullCommand.substring(0, fullCommand.indexOf(' ')).trim();
 
         switch (command) {
-        case "bye":
-            return new ExitCommand();
-
         case "list":
             return new ListCommand();
 
