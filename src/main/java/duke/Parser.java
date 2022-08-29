@@ -91,6 +91,10 @@ public class Parser {
                 int taskIndex = Integer.parseInt(substring) - 1;
                 return new DeleteCommand(taskIndex);
             }
+            if (input.indexOf("find") == 0) {
+                String search = input.substring(5);
+                return new FindCommand(search);
+            }
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Please indicate which task to mark!");
         } catch (NumberFormatException e) {
