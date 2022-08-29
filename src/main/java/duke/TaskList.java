@@ -52,4 +52,21 @@ public class TaskList {
     public int getSize() {
         return this.taskList.size();
     }
+
+    /**
+     * Return the TaskList with Tasks containing the search keyword.
+     * @param searchKeyword Keyword found inside the task.
+     * @return TaskList with Tasks containing the search keyword.
+     */
+    public TaskList search(String searchKeyword) {
+        TaskList taskListWithKeyword = new TaskList();
+        for (int i = 0; i < this.getSize(); i++) {
+            Task task = this.get(i);
+            if (task.getName().contains(searchKeyword)) {
+                taskListWithKeyword.add(task);
+            }
+        }
+
+        return taskListWithKeyword;
+    }
 }
