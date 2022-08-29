@@ -1,6 +1,7 @@
 package duke.command;
 
-import duke.exception.DukeException;
+import javafx.util.Pair;
+
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -17,14 +18,16 @@ public class ByeCommand implements Command {
     public ByeCommand() {}
 
     /**
-     * Executes the ByeCommand
+     * Executes the ByeCommand and returns the response pair.
      *
      * @param ui the Ui object to handle user interface.
      * @param storage the storage used by the ByeCommand.
      * @param taskList the task list used by the ByeCommand.
+     * @return the response pair.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
+    public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList) {
         ui.printFarewellMessage();
+        return new Pair<>(false, "Bye!");
     }
 }

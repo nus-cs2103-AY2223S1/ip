@@ -9,6 +9,7 @@ import duke.storage.Config;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Duke is a personal assistant chat-bot.
@@ -59,6 +60,16 @@ public class Duke {
         }
 
         sc.close();
+    }
+
+    public Pair<Boolean, String> getResponse(String input) {
+        try {
+            Command command = this.parser.parseText(input);
+            return command.execute(this.ui, this.storage, this.taskList);
+        } catch (DukeException error) {
+            this.ui.printError(error);
+            return new Pair<>(true, error.getMessage());
+        }
     }
 
 }
