@@ -1,9 +1,5 @@
 package ted;
 
-import ted.exception.InvalidEncodingException;
-import ted.task.Task;
-import ted.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ted.exception.InvalidEncodingException;
+import ted.task.Task;
+import ted.task.TaskList;
+
+/**
+ * This class acts as a helper to load tasks from file
+ * and save tasks to file.
+ */
 public class Storage {
 
     private String filePath;
@@ -23,7 +27,7 @@ public class Storage {
      * Load tasks from storage, return empty array if file not found
      * or cannot be opened.
      *
-     * @return ArrayList<Task>
+     * @return TaskList
      */
     public TaskList loadTasks() throws InvalidEncodingException {
         File file = new File(filePath);

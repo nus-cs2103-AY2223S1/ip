@@ -2,6 +2,9 @@ package ted.task;
 
 import java.util.ArrayList;
 
+/**
+ * A class that encapsulate a collection of tasks.
+ */
 public class TaskList {
 
     /**

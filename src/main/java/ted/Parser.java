@@ -1,8 +1,22 @@
 package ted;
 
-import ted.command.*;
+import ted.command.ByeCommand;
+import ted.command.Command;
+import ted.command.DeadlineCommand;
+import ted.command.DeleteCommand;
+import ted.command.EventCommand;
+import ted.command.FindCommand;
+import ted.command.ListCommand;
+import ted.command.MarkCommand;
+import ted.command.TodoCommand;
+import ted.command.UnknownCommand;
+import ted.command.UnmarkCommand;
 import ted.exception.TedException;
 
+/**
+ * A class to parse the command and argument from user
+ * input
+ */
 public class Parser {
     /**
      * CommandEnum to indicate the set of command that can be
@@ -70,6 +84,9 @@ public class Parser {
                 break;
             case FIND:
                 command = new FindCommand(args);
+                break;
+            default:
+                command = new UnknownCommand(args);
                 break;
             }
         }

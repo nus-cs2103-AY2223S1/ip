@@ -5,6 +5,10 @@ import ted.Ui;
 import ted.exception.TedException;
 import ted.task.TaskList;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * find a task in given tasks list
+ */
 public class FindCommand extends Command {
 
     /**
@@ -33,7 +37,7 @@ public class FindCommand extends Command {
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         TaskList matchedTasks = TaskList.empty();
 
-        for (int index = 0;index < tasks.size();index++) {
+        for (int index = 0; index < tasks.size(); index++) {
             if (tasks.get(index).contains(this.searchString)) {
                 matchedTasks.add(tasks.get(index));
             }

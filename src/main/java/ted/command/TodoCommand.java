@@ -1,10 +1,15 @@
 package ted.command;
 
-import ted.*;
+import ted.Storage;
+import ted.Ui;
 import ted.exception.TedException;
 import ted.task.TaskList;
 import ted.task.ToDo;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * create a todo task
+ */
 public class TodoCommand extends Command {
 
     /**

@@ -1,10 +1,14 @@
 package ted.command;
 
 import ted.Storage;
-import ted.task.TaskList;
-import ted.exception.TedException;
 import ted.Ui;
+import ted.exception.TedException;
+import ted.task.TaskList;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * mark a task in tasks list
+ */
 public class MarkCommand extends Command {
 
     /**

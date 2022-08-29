@@ -1,10 +1,15 @@
 package ted.command;
 
-import ted.*;
+import ted.Storage;
+import ted.Ui;
 import ted.exception.TedException;
 import ted.task.Task;
 import ted.task.TaskList;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * delete a task from given task list
+ */
 public class DeleteCommand extends Command {
 
     /**

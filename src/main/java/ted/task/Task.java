@@ -1,14 +1,12 @@
 package ted.task;
 
+import java.util.Arrays;
+
 import ted.exception.InvalidEncodingException;
 import ted.exception.TedException;
 
-import java.util.Arrays;
-import java.util.Locale;
-
 /**
  * A class that encapsulate a task
- * <p>
  * Task's encoding format
  * Type | isDone | Message | ...other arguments
  */

@@ -5,6 +5,9 @@ import ted.exception.InvalidEncodingException;
 import ted.exception.TedException;
 import ted.task.TaskList;
 
+/**
+ * A class that is entry point of program
+ */
 public class Ted {
 
     private TaskList tasks;
@@ -13,6 +16,11 @@ public class Ted {
 
     private Ui ui;
 
+    /**
+     * To construct a Ted instance
+     * @param ui
+     * @param storage
+     */
     public Ted(Ui ui, Storage storage) {
         this.ui = ui;
         this.storage = storage;
@@ -41,6 +49,10 @@ public class Ted {
 
     }
 
+    /**
+     * Entry point of the program
+     * @param args
+     */
     public static void main(String[] args) {
         Ui ui = new Ui();
         Storage storage = new Storage("./data/tasks.txt");
