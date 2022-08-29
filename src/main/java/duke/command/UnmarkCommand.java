@@ -1,4 +1,8 @@
-package duke;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * Stores the index of the Task to be unmarked when executed.
@@ -10,12 +14,12 @@ public class UnmarkCommand extends Command{
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.unmark(indexToUnmark);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "Task unmarked: " + tasks.unmark(indexToUnmark);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

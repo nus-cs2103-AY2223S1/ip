@@ -1,4 +1,8 @@
-package duke;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * Abstract Class that is parent class of AddCommand, DeleteCommand,
@@ -11,10 +15,10 @@ public abstract class Command {
      * @param ui Ui object for decorative purposes.
      * @param storage Storage of app information.
      */
-    abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    abstract public String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * @return boolean of whether the app should stop running.
      */
-    abstract boolean isExit();
+    abstract public boolean isExit();
 }

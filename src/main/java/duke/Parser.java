@@ -1,5 +1,7 @@
 package duke;
 
+import duke.command.*;
+
 public class Parser {
 
     static final int TLENGTH = 5;
@@ -16,6 +18,7 @@ public class Parser {
     static final String UNMARK_SYNTAX = "unmark";
     static final String[] ADD_COMMANDS = {"todo", "event", "deadline"};
     static final String FIND_SYNTAX = "find";
+
     private static String getFirstWord(String input) {
         return input.split(" ")[0].toLowerCase();
     }
@@ -56,21 +59,28 @@ public class Parser {
      * @param fullCommand input Command from the user.
      * @return Task object
      */
-    public static Task commandToTask(String fullCommand) {
+    public static Task commandToTask(String fullCommand) throws DukeException {
         if (isAddTodoCommand(fullCommand)) {
             String desc = fullCommand.substring(TLENGTH);
             return new Todo(desc);
         } else if (isAddEventCommand(fullCommand)) {
-            String desc = fullCommand.substring(ELENGTH).split(" /at ")[0];
-            String time = fullCommand.substring(ELENGTH).split(" /at ")[1];
+            String[] commandParts = fullCommand.substring(ELENGTH).split(" /at ");
+            if (commandParts.length != 2) {
+                throw new DukeException("Give the right syntax");
+            }
+            String desc = commandParts[0];
+            String time = commandParts[1];
             return new Event(desc, time);
         } else if (isAddDeadlineCommand(fullCommand)) {
-            String desc = fullCommand.substring(DLENGTH).split(" /by ")[0];
-            String time = fullCommand.substring(DLENGTH).split(" /by ")[1];
+            String[] commandParts = fullCommand.substring(ELENGTH).split(" /by ");
+            if (commandParts.length != 2) {
+                throw new DukeException("Give the right syntax");
+            }
+            String desc = commandParts[0];
+            String time = commandParts[1];
             return new Deadline(desc, time);
         } else {
-            System.out.println("not planned task parser");
-            return null;
+            throw new DukeException("not planned task parser");
         }
     }
 
@@ -94,20 +104,20 @@ public class Parser {
             return new AddCommand(fullCommand);
         }
         switch (getFirstWord(fullCommand)) {
-        case FIND_SYNTAX:
-            return new FindCommand(fullCommand.substring(FIND_LENGTH));
-        case LIST_SYNTAX:
-            return new ListCommand();
-        case EXIT_SYNTAX:
-            return new ExitCommand();
-        case DELETE_SYNTAX:
-            return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
-        case MARK_SYNTAX:
-            return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
-        case UNMARK_SYNTAX:
-            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
-        default:
-            throw new DukeException("Parsing error");
+            case FIND_SYNTAX:
+                return new FindCommand(fullCommand.substring(FIND_LENGTH));
+            case LIST_SYNTAX:
+                return new ListCommand();
+            case EXIT_SYNTAX:
+                return new ExitCommand();
+            case DELETE_SYNTAX:
+                return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
+            case MARK_SYNTAX:
+                return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
+            case UNMARK_SYNTAX:
+                return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
+            default:
+                throw new DukeException("Parsing error");
         }
 //        else if (isListCommand(fullCommand)) {
 //            return new ListCommand();

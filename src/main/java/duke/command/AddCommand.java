@@ -1,4 +1,6 @@
-package duke;
+package duke.command;
+
+import duke.*;
 
 /**
  * AddCommand stores the Task to be executed.
@@ -28,7 +30,7 @@ public class AddCommand extends Command {
      * Initialises an AddCommand object.
      * @param fullCommand the input string that the user provide through the Console.
      */
-    AddCommand(String fullCommand) {
+    public AddCommand(String fullCommand) throws DukeException {
         this.task = Parser.commandToTask(fullCommand);
     }
 
@@ -38,14 +40,12 @@ public class AddCommand extends Command {
      * @param storage Storage of app information.
      */
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (task == null) {
-            System.out.println("task in addcomand is null");
-            return;
+            return "task in addcomand is null";
         }
-        System.out.println("duke.Task added: " + task);
         tasks.add(task);
-        task = null;
+        return "duke.Task added: " + task;
     }
 
     /**
@@ -57,7 +57,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * @param o Object we comparing with.
+     * @param o Object we're comparing with.
      * @return whether compared object is equal.
      */
     @Override

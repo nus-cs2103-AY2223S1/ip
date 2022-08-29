@@ -1,4 +1,8 @@
-package duke;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * Stores the index of the task to be deleted from TaskList.
@@ -9,17 +13,17 @@ public class DeleteCommand extends Command {
     /**
      * @param number 1 based indexing for the task to be deleted.
      */
-    DeleteCommand(int number) {
+    public DeleteCommand(int number) {
         this.indexToDelete = number - 1;
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("duke.Task deleted: " + tasks.remove(indexToDelete));
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "Task deleted: " + tasks.remove(indexToDelete);
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

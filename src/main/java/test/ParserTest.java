@@ -1,5 +1,10 @@
-package duke;
+package test;
 
+import duke.command.AddCommand;
+import duke.DukeException;
+import duke.Parser;
+import duke.Todo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,8 +18,8 @@ class ParserTest {
      * Test the Parser's commandToTask method.
      */
     @Test
-    public void commandToTask() {
-        assertEquals(new Todo("123"), Parser.commandToTask("todo 123"));
+    public void commandToTask() throws DukeException {
+        Assertions.assertEquals(new Todo("123"), Parser.commandToTask("todo 123"));
         assertNotEquals(new Todo(" 123"), Parser.commandToTask("todo 123"));
     }
 
@@ -24,7 +29,7 @@ class ParserTest {
     @Test
     public void parse() {
         try {
-            assertEquals(
+            Assertions.assertEquals(
                     new AddCommand("todo 123"),
                     Parser.parse("todo 123")
             );

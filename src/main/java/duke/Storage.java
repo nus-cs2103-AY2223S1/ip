@@ -51,7 +51,7 @@ public class Storage {
      */
     private void parseFileToTasks(String filepath) {
         try {
-            new File("data").mkdir();
+            new File(filepath).getParentFile().mkdir();
             Scanner in = new Scanner(new FileReader(filepath));
             while (in.hasNextLine()) {
                 String line = in.nextLine();
@@ -76,17 +76,11 @@ public class Storage {
                 }
                 this.tasks.add(task);
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | DukeException e) {
             try {
                 (new File(filepath)).createNewFile();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
-            }
-        } catch (DukeException e) {
-            try {
-                (new File(filepath)).createNewFile();
-            } catch (IOException ex) {
-                System.out.println("something went wrong creating taskfile");
             }
         }
     }

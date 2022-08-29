@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 public class TaskList {
     List<Task> tasks;
 
-    TaskList() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    TaskList(List<Task> tasks) throws DukeException {
+    public TaskList(List<Task> tasks) throws DukeException {
 
         this.tasks = tasks;
         if (tasks == null) {
@@ -19,23 +19,25 @@ public class TaskList {
         }
     }
 
-    void add(Task task) {
+    public void add(Task task) {
         this.tasks.add(task);
     }
 
-    Task remove(int i) {
+    public Task remove(int i) {
         return this.tasks.remove(i);
     }
 
-    void mark(int i) {
+    public String mark(int i) {
         this.tasks.get(i).mark();
+        return this.tasks.get(i).toString();
     }
 
-    void unmark(int i) {
+    public String unmark(int i) {
         this.tasks.get(i).unMark();
+        return this.tasks.get(i).toString();
     }
 
-    String find(String word) {
+    public String find(String word) {
         String filtered = tasks.stream()
                 .filter(task ->
                         task.description

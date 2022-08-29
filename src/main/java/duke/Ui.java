@@ -14,6 +14,10 @@ public class Ui {
     public Ui() {
     }
 
+    public void showOutput(String output) {
+        System.out.println(output);
+    }
+
     /**
      * User experience when an error happens.
      */

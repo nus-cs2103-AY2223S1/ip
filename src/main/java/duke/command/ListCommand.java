@@ -1,14 +1,18 @@
-package duke;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 public class ListCommand extends Command {
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.toString();
     }
 
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 

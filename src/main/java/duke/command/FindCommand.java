@@ -1,4 +1,8 @@
-package duke;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  *
@@ -6,7 +10,7 @@ package duke;
 public class FindCommand extends Command {
     String wordToFind;
 
-    FindCommand(String word) {
+    public FindCommand(String word) {
         this.wordToFind = word;
     }
 
@@ -16,15 +20,15 @@ public class FindCommand extends Command {
      * @param storage
      */
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println(tasks.find(this.wordToFind));
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.find(this.wordToFind);
     }
 
     /**
      * @return
      */
     @Override
-    boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

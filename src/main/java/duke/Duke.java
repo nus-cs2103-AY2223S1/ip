@@ -2,6 +2,8 @@ package duke;
 
 import java.io.IOException;
 
+import duke.command.Command;
+
 /**
  * A console App.
  */
@@ -11,9 +13,14 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    public Duke() {
+        this("data/duke.txt");
+    }
+
     /**
      * @param filePath file location to store and access information stored for Duke.
      */
+
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -46,18 +53,28 @@ public class Duke {
                 ui.showLine();
             }
         }
-        try {
-            storage.save(tasks);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
      * Driver of Duke app.
+     *
      * @param args arguments from the commandline.
      */
     public static void main(String[] args) {
-        new Duke("data//Duke.txt").run();
+        new Duke("data//duke.txt").run();
+    }
+
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

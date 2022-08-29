@@ -1,5 +1,9 @@
-package duke;
+package test;
 
+import duke.Deadline;
+import duke.DukeException;
+import duke.TaskList;
+import duke.Todo;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,16 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
 
-    //    @Test
-//    void add() {
-//    }
-//
-//    @Test
-//    void remove() {
-//    }
-//
     @Test
-    void mark() {
+    public void mark() {
         try {
             TaskList taskList = new TaskList(
                     Arrays.asList(new Todo("123")));
@@ -30,7 +26,7 @@ class TaskListTest {
     }
 
     @Test
-    void unmark() {
+    public void unmark() {
         try {
             TaskList taskList = new TaskList(
                     Arrays.asList(new Deadline("123", "2020-10-10")));
