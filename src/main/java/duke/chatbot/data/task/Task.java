@@ -6,13 +6,13 @@ package duke.chatbot.data.task;
  */
 public abstract class Task {
     /** A description of the task */
-    private String description;
+    private final String description;
 
     /** A boolean describing whether the task is done */
     private boolean isDone = false;
 
     /**
-     * A constructor used to construct a task that is not done.
+     * Constructs a task that is not done.
      * @param description A string that describes the task.
      */
     public Task(String description) {
@@ -20,11 +20,10 @@ public abstract class Task {
     }
 
     /**
-     * A constructor used to construct a task that can be done
-     * depending on the isDone argument.
+     * Constructs a task that may be done depending on the isDone argument.
      * @param description A string that describes the task.
      * @param isDone A boolean value that describes whether the
-     *               task is done.
+     *     task is done.
      */
     public Task(String description, boolean isDone) {
         this(description);

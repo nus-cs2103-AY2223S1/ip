@@ -1,13 +1,13 @@
 package duke.chatbot.command;
 
-import duke.chatbot.data.task.Task;
-import duke.chatbot.data.task.TaskList;
+import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import static duke.chatbot.common.Message.MESSAGE_FIND_KEYWORD;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
-import static duke.chatbot.common.Message.MESSAGE_FIND_KEYWORD;
+import duke.chatbot.data.task.Task;
+import duke.chatbot.data.task.TaskList;
 
 /**
  * A command that prints a list of tasks that have the argument

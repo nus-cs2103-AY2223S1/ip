@@ -1,13 +1,13 @@
 package duke.chatbot.command;
 
-import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.task.Deadline;
-import duke.chatbot.parser.Parser;
+import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
+import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.task.Deadline;
+import duke.chatbot.parser.Parser;
 
 /**
  * A command that adds an instance of Deadline to the list of tasks

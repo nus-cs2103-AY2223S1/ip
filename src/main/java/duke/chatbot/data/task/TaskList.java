@@ -80,7 +80,7 @@ public class TaskList extends ArrayList<Task> {
      * to the date argument string.
      * @param date The date to compare the tasks in the list with.
      * @return A TaskList that contains the tasks that corresponds
-     * to the date argument string.
+     *     to the date argument string.
      */
     public TaskList filterTaskListByDate(String date) {
         TaskList result = new TaskList();
@@ -100,7 +100,7 @@ public class TaskList extends ArrayList<Task> {
      * containing a substring that is the same as the argument string.
      * @param substring The substring to look for in the task description.
      * @return A TaskList that contains the tasks with substrings that
-     * are the same as the argument string.
+     *     are the same as the argument string.
      */
     public TaskList filterTaskListBySubstring(String substring) {
         TaskList result = new TaskList();

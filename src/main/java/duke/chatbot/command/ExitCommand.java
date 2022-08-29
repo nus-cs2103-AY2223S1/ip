@@ -1,9 +1,9 @@
 package duke.chatbot.command;
 
+import static duke.chatbot.common.Message.MESSAGE_BYE;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static duke.chatbot.common.Message.MESSAGE_BYE;
 
 /**
  * A command that prints a farewell message and closes

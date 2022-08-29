@@ -1,11 +1,11 @@
 package duke.chatbot.command;
 
-import duke.chatbot.data.task.Task;
+import static duke.chatbot.common.Message.MESSAGE_UNMARKED;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static duke.chatbot.common.Message.MESSAGE_UNMARKED;
+import duke.chatbot.data.task.Task;
 
 /**
  * A command that unmarks the targeted task from the

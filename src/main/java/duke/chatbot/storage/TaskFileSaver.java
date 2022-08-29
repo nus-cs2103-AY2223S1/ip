@@ -1,10 +1,10 @@
 package duke.chatbot.storage;
 
-import duke.chatbot.data.task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import duke.chatbot.data.task.TaskList;
 
 /**
  * A file saver which saves a list of tasks onto a file.

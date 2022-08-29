@@ -1,11 +1,11 @@
 package duke.chatbot.storage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
 import duke.chatbot.parser.Parser;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * A file loader which loads tasks into the application task list
@@ -24,7 +24,7 @@ public class TaskFileLoader {
      * @return A list of tasks loaded from the stored file.
      * @throws FileNotFoundException If a file is not found.
      * @throws InvalidInputException If the date and time portion
-     * of the encoded task is not in the correct format.
+     *     of the encoded task is not in the correct format.
      */
     public TaskList getTaskList() throws FileNotFoundException, InvalidInputException {
         return Parser.parseFile(file);

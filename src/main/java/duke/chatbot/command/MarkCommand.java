@@ -1,11 +1,11 @@
 package duke.chatbot.command;
 
-import duke.chatbot.data.task.Task;
+import static duke.chatbot.common.Message.MESSAGE_MARKED;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static duke.chatbot.common.Message.MESSAGE_MARKED;
+import duke.chatbot.data.task.Task;
 
 /**
  * A command that marks the targeted task from the
