@@ -11,8 +11,18 @@ import seedu.duke.command.MakeDeadlineCommand;
 import seedu.duke.command.MakeEventCommand;
 import seedu.duke.command.InvalidCommand;
 
+/**
+ * Parser parses the user input and returns the relevant
+ * Command to execute.
+ */
 public class Parser {
 
+    /**
+     * This method parse the user input.
+     *
+     * @param cmd   User input
+     * @return      Command
+     */
     public static Command parse(String cmd) {
         cmd = cmd.strip();
         int separator = cmd.indexOf(' ');

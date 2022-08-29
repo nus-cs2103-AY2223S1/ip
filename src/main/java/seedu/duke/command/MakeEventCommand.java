@@ -7,6 +7,10 @@ import seedu.duke.operations.Ui;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Command handles the "event" user input. Creates an EventTask that
+ * is then added into the TaskList.
+ */
 public class MakeEventCommand extends MakeTaskCommand {
 
     public MakeEventCommand(String detail) {

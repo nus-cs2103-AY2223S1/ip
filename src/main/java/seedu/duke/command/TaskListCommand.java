@@ -12,9 +12,15 @@ abstract class TaskListCommand extends Command {
         this.cmd = cmd;
     }
 
-
-
-
+    /**
+     * This method will handle operations that involve manipulating
+     * the TaskList.
+     *
+     * @param tasks             TaskList of Duke
+     * @param ui                Ui of Duke
+     * @param storage           Storage of Duke
+     * @throws DukeException    Thrown when encountering invalid inputs/index
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] split = cmd.split(" ");
@@ -30,7 +36,7 @@ abstract class TaskListCommand extends Command {
                 throw new DukeException(ui.getInvalidInputMessage());
             }
         } else if (split.length == 1) {
-            throw new DukeException(ui.noIndexProvdedErrorMessage());
+            throw new DukeException(ui.noIndexProvidedErrorMessage());
         } else {
             throw new DukeException(ui.getInvalidInputMessage());
         }

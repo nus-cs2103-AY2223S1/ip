@@ -9,11 +9,35 @@ import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Duke is the main class for the chatbot application. It is designed to be
+ * able to take in inputs within command line, keep track of a list of tasks
+ * the user had typed.
+ *
+ * Duke is able to take the following commands:
+ * <ul>
+ *     <li>list</li>
+ *     <li>mark</li>
+ *     <li>unmark</li>
+ *     <li>delete</li>
+ *     <li>bye</li>
+ *     <li>todo</li>
+ *     <li>deadline</li>
+ *     <li>event</li>
+ * </ul>>
+ *
+ * @author Su Peigeng
+ */
 public class Duke {
     private final TaskList tasks;
     private final Storage storage;
     private final Ui ui;
 
+    /**
+     * Constructor for Duke instance
+     *
+     * @param filename      Pathname to the file where the task-list is stored
+     */
     Duke(String filename) {
         this.ui = new Ui();
         this.storage = new Storage(filename);
@@ -26,6 +50,9 @@ public class Duke {
         this.tasks = new TaskList(tasks);
     }
 
+    /**
+     * Runs Duke's chat-bot functionality.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

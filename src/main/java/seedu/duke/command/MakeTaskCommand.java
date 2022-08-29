@@ -13,6 +13,15 @@ abstract class MakeTaskCommand extends Command {
     MakeTaskCommand(String detail) {
         this.detail = detail;
     }
+
+    /**
+     * This method will handle operations that involves making a Task.
+     *
+     * @param tasks             TaskList of Duke
+     * @param ui                Ui of Duke
+     * @param storage           Storage of Duke
+     * @throws DukeException    Thrown when the input is invalid
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task newTask = makeNewTask(detail, ui);

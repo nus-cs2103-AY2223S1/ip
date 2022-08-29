@@ -7,6 +7,10 @@ import seedu.duke.operations.Ui;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Command handles "deadline" user inputs. Creates a DeadlineTask that
+ * is then added into the TaskList.
+ */
 public class MakeDeadlineCommand extends MakeTaskCommand {
 
     public MakeDeadlineCommand(String detail) {

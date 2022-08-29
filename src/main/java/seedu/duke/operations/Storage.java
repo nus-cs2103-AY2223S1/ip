@@ -14,13 +14,29 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage provides a way for Duke to store and load TaskList in
+ * between sessions.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * To initialize a Storage, a filepath to the data file is needed.
+     *
+     * @param filePath      Filepath to data file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the previous session's TaskList from data file indicated
+     * within Storage's filePath attribute.
+     *
+     * @return                  ArrayList of past saved tasks
+     * @throws DukeException    Thrown when Storage has issue loading data
+     */
     public ArrayList<Task> load() throws DukeException {
         File dataFile = new File(filePath);
         if (!dataFile.exists()) {
@@ -50,6 +66,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates the directory and data file in the event where they do
+     * not exist.
+     *
+     * @throws DukeException    Thrown when there are issues setting up
+     */
     void setupDirectory() throws DukeException {
         String[] dataPath = filePath.split("/");
         String pathBuilder = "";
@@ -68,6 +90,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates data file when there are changes within TaskList.
+     *
+     * @param tasks             TaskList to be saved to data file
+     * @throws DukeException    Thrown when there's issue updating
+     */
     public void updateSave(TaskList tasks) throws DukeException {
         try {
             FileWriter writer = new FileWriter(filePath);
@@ -82,18 +110,18 @@ public class Storage {
         }
     }
 
-    static Task createTask(String taskType, String check, String description) throws DukeException {
+    private static Task createTask(String taskType, String check, String description) throws DukeException {
         Task newTask;
         switch (taskType) {
             case "T":
                 newTask = new TodoTask(description);
                 break;
             case "D":
-                String[] splitD = timeSpliter(description);
+                String[] splitD = timeSplit(description);
                 newTask = new DeadlineTask(splitD[0], splitD[1]);
                 break;
             case "E":
-                String[] splitE = timeSpliter(description);
+                String[] splitE = timeSplit(description);
                 newTask = new EventTask(splitE[0], splitE[1]);
                 break;
             default:
@@ -105,7 +133,7 @@ public class Storage {
         return newTask;
     }
 
-    static String[] timeSpliter(String description) {
+    private static String[] timeSplit(String description) {
         int index = description.lastIndexOf('/');
         String[] split = new String[2];
         split[0] = description.substring(0, index);

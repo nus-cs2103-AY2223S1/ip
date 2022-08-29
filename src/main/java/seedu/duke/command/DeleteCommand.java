@@ -5,8 +5,17 @@ import seedu.duke.task.Task;
 import seedu.duke.operations.TaskList;
 import seedu.duke.operations.Ui;
 
+/**
+ * Command that handles the "delete" user input.
+ * Deletes a Task from TaskList.
+ */
 public class DeleteCommand extends TaskListCommand {
 
+    /**
+     * Constructor for DeleteCommand
+     *
+     * @param cmd   User input
+     */
     public DeleteCommand(String cmd) {
         super(cmd);
     }
