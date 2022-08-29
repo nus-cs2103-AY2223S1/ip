@@ -10,6 +10,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Parser {
+    /**
+     * Returns Command enumeration according to what the input is parsed as
+     * @param input input string
+     * @return Command enumeration
+     */
     public static Command parse(String input) {
         List<String> inputList = Stream.of(input.split(" "))
                 .map(e -> new String(e))
@@ -37,10 +42,22 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns index of the intended task from command input string
+     * @param input String input
+     * @return integer index of task
+     */
     public static int getTaskIndex(String input) {
         return Integer.parseInt(input.substring(input.length() - 1)) - 1;
     }
 
+    /**
+     * Returns a Task object according to the code of the task.
+     * "D" is for deadline, "T" is for todo, and "E" is for event.
+     * @param input String input
+     * @param code String code of task
+     * @return parsed Task object
+     */
     public static Task parseTask(String input, String code) {
         Task newTask = null;
         if (code == "T") {
@@ -63,6 +80,11 @@ public class Parser {
         return newTask;
     }
 
+    /**
+     * Parses LocalDateTime object from a String formatted date time.
+     * @param stringDateTime String formatted date and time
+     * @return LocalDateTime parsed date time
+     */
     public static LocalDateTime processDateTime(String stringDateTime) {
         LocalDateTime dateTime = LocalDateTime.now();
         String date = "None";

@@ -23,6 +23,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads task data from TXT file in directory
+     * @return text array from which the document was loaded
+     */
     public ArrayList<String> load() {
         BufferedReader bufferedReader = null;
         ArrayList<String> result = new ArrayList<>();
@@ -47,6 +51,10 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Saves the current TaskList to a TXT file called "task-list.txt"
+     * @param list TaskList object that stores the current tasks
+     */
     public void saveData(TaskList list) {
         ArrayList<String> textArray = list.extractToStringArray();
         try {
@@ -61,6 +69,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates file object at the current directory
+     * @param path Path of the directory
+     * @param filename name of the file
+     * @return File object
+     */
     public File createFile(Path path, String filename) {
         File file = new File(path.toString(), filename);
         return file;

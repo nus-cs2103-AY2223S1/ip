@@ -39,8 +39,11 @@ public class TaskList {
         }
     }
 
-    
 
+    /**
+     * Returns formatted tasks to be written or saved to a document
+     * @return ArrayList of printed tasks
+     */
     public ArrayList<String> extractToStringArray() {
         ArrayList<String> textArray = new ArrayList<>();
         for (Task task : this.list) {
@@ -50,26 +53,50 @@ public class TaskList {
         return textArray;
     }
 
+    /**
+     * Adds task to the current task list
+     * @param task Task object
+     * @return boolean response
+     */
     public boolean addTask(Task task) {
         boolean response = this.list.add(task);
         return response;
     }
 
+    /**
+     * Deletes a task in the list and returns the deleted task
+     * @param taskIndex index of the current task
+     * @return deleted Task object
+     */
     public Task deleteTask(int taskIndex) {
         Task removedTask = this.list.remove(taskIndex);
         return removedTask;
     }
 
+    /**
+     * Marks a task as done
+     * @param taskIndex index of the current task
+     * @return marked Task object
+     */
     public Task markTask(int taskIndex) {
         this.list.get(taskIndex).markAsDone();
         return this.list.get(taskIndex);        
     }
 
+    /**
+     * Unmarks a task as undone
+     * @param taskIndex index of the current task
+     * @return unmarked Task object
+     */
     public Task unmarkTask(int taskIndex) {
         this.list.get(taskIndex).unmarkAsDone();
         return this.list.get(taskIndex);
     }
 
+    /**
+     * Returns the number of tasks in the task list
+     * @return number of tasks
+     */
     public int getNumberOfTasks() {
         return this.list.size();
     }
