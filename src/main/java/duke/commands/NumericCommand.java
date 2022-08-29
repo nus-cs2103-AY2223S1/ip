@@ -2,15 +2,36 @@ package duke.commands;
 import duke.TaskList;
 import duke.Storage;
 import duke.DukeException;
+
+/**
+ * Command that represents a command with a numeric argument, mark, unmark and delete.
+ */
 public class NumericCommand implements Command {
     private String command;
     private int index;
 
+    /**
+     * Default constructor of the Numeric Command.
+     * Command can be either mark, unmark or delete.
+     *
+     * @param command Command that the numeric command represents
+     * @param index Numerical argument of the command.
+     */
     public NumericCommand(String command, int index) {
         this.command = command;
         this.index = index;
     }
 
+    /**
+     * Runs the numeric command with the task at specified index.
+     * If the command is mark, the task at specified index is marked.
+     * If the command is unmark, the task at the specified index is unmarked.
+     * If the command is delete, the task at the specified index is deleted.
+     *
+     * @param tasks TaskList that contains the temporary tasks.
+     * @param storage Storage that the tasks are saved at.
+     * @throws DukeException If any error occur.
+     */
     @Override
     public void execute(TaskList tasks, Storage storage) throws DukeException {
         if (index < 0 || index >= tasks.getSize()) {

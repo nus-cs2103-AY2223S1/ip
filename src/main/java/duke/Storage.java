@@ -12,14 +12,27 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * Class that manages the storage of tasks into the text file.
+ */
 public class Storage {
     private String directory;
     private final String fileName = "/duke.txt";
 
+    /**
+     * Default constructor of the Storage class.
+     *
+     * @param directory Location of the text file.
+     */
     public Storage(String directory) {
         this.directory = directory;
     }
 
+    /**
+     * Returns the TaskList object represented in the text file.
+     *
+     * @return TaskList object.
+     */
     public TaskList load() {
         File fileDir =  new File(directory);
         fileDir.mkdir();
@@ -62,6 +75,11 @@ public class Storage {
         return newTask;
     }
 
+    /**
+     * Saves all tasks in the TaskList to the text file.
+     *
+     * @param tasks TaskList containing the list of all the tasks.
+     */
     public void writeAll(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(directory + "/duke.txt");

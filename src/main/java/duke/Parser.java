@@ -12,9 +12,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+/**
+ * Class that manages the input text.
+ */
 public class Parser {
     private boolean isAcceptingInput;
 
+    /**
+     * Default constructor of the Parser class.
+     *
+     * @param isAcceptingInput boolean on whether the Parse should be accepting input.
+     */
     public Parser(boolean isAcceptingInput) {
         this.isAcceptingInput = isAcceptingInput;
     }
@@ -23,6 +31,14 @@ public class Parser {
         return this.isAcceptingInput;
     }
 
+    /**
+     * Returns the Command object after processing an input text.
+     * List of commands include: bye, list, mark, unmark, delete, todo, deadline, event.
+     *
+     * @param input Input text to be parsed into a command.
+     * @return Command object to be executed.
+     * @throws DukeException If input text is not in the correct form.
+     */
     public Command parseInput(String input) throws DukeException {
         String[] inputStringArray = input.split(" ");
         String commandText = inputStringArray[0];
@@ -64,13 +80,13 @@ public class Parser {
         }
     }
 
-    public void validateArgument(String[] inputStringArray) throws DukeException {
+    private void validateArgument(String[] inputStringArray) throws DukeException {
         if (inputStringArray.length == 1) {
             throw new DukeException("Please enter an argument (number) after mark!");
         }
     }
 
-    public String combineStringArray(String[] inputStringArray, int start, int end) {
+    private String combineStringArray(String[] inputStringArray, int start, int end) {
         String[] subArray =  Arrays.asList(inputStringArray).subList(start,end).toArray(new String[0]);
         String combinedString = Arrays.stream(subArray).reduce("", (a,b) -> a + " "+ b).trim();
         return combinedString;
