@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import chad.exception.ChadException;
-import chad.task.Task;
 import chad.task.Deadline;
 import chad.task.Event;
+import chad.task.Task;
 import chad.task.Todo;
 
 /**
@@ -38,7 +38,7 @@ public class TaskList {
      */
     public static void addTodoTask(ArrayList<Task> tasks, String userInput) throws ChadException, IOException {
         String outputText = "Got it. I've added this task:\n";
-        String taskDescription = userInput.replaceFirst("todo","").strip();
+        String taskDescription = userInput.replaceFirst("todo", "").strip();
 
         if (taskDescription.isEmpty()) {
             throw new ChadException("The description of a todo cannot be empty.");
@@ -65,7 +65,7 @@ public class TaskList {
     public static void addDeadlineTask(ArrayList<Task> tasks, String userInput) throws ChadException, IOException {
         String outputText = "Got it. I've added this task:\n";
 
-        String[] temp = userInput.replaceFirst("deadline","").strip().split("/by");
+        String[] temp = userInput.replaceFirst("deadline", "").strip().split("/by");
         String taskDescription = temp[0].strip();
         String dateTime = temp[1].strip();
 
@@ -98,7 +98,7 @@ public class TaskList {
      */
     public static void addEventTask(ArrayList<Task> tasks, String userInput) throws ChadException, IOException {
         String outputText = "Got it. I've added this task:\n";
-        String[] temp = userInput.replaceFirst("event","").strip().split("/at");
+        String[] temp = userInput.replaceFirst("event", "").strip().split("/at");
         String taskDescription = temp[0].strip();
         String dateTime = temp[1].strip();
 

@@ -55,7 +55,7 @@ public class Ui {
         outputText += "Nice! I've marked this task as done:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsDone();
-        outputText +=  "  " + currentTask;
+        outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
         Utility.printText(outputText);
     }
@@ -71,7 +71,7 @@ public class Ui {
         outputText += "OK, I've marked this task as not done yet:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsUndone();
-        outputText +=  "  " + currentTask;
+        outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
         Utility.printText(outputText);
     }
@@ -109,27 +109,27 @@ public class Ui {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("d/MM/yyyy");
         LocalDate theDate = LocalDate.parse(date, format);
 
-        if(theDate == null) {
+        if (theDate == null) {
             return;
         }
 
         for (Task t: tasks) {
             if (t instanceof Deadline) {
                 LocalDate d = ((Deadline) t).getDateTime().toLocalDate();
-                if(d.compareTo(theDate) == 0) {
+                if (d.compareTo(theDate) == 0) {
                     output.append(t);
                     output.append(System.getProperty("line.separator"));
                 }
             } else if (t instanceof Event) {
                 LocalDate d = ((Event) t).getDateTime().toLocalDate();
-                if(d.compareTo(theDate) == 0) {
+                if (d.compareTo(theDate) == 0) {
                     output.append(t);
                     output.append(System.getProperty("line.separator"));
                 }
             }
         }
         String text = output.toString().trim();
-        if(text.equals("")) {
+        if (text.equals("")) {
             text = "No such record for " + theDate;
         }
 
