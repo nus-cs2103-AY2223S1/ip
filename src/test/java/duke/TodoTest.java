@@ -1,12 +1,12 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class TodoTest {
 
-    Todo test = new Todo("Homework");
+    private Todo test = new Todo("Homework");
 
     @Test
     public void toStringTest() {

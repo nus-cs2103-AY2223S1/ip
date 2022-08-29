@@ -4,6 +4,9 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main DukeBot class.
+ */
 public class Duke {
 
     private Storage storage;
@@ -27,7 +30,7 @@ public class Duke {
     /**
      * Simple method that exits the Duke's run method.
      */
-    public void exit(){
+    public void exit() {
         this.active = false;
     }
 
@@ -121,6 +124,10 @@ public class Duke {
 
     }
 
+    /**
+     * Main method that creates and run a duke object.
+     * @param args main method parameter.
+     */
     public static void main(String[] args) {
         Duke d = new Duke("data/", "save.txt");
 

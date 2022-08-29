@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Exception thrown when Duke detects missing description.
+ */
 public class EmptyDescriptionException extends DukeException {
 
     private String typeOf;

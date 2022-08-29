@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Storage that helps to store and load current tasks.
+ */
 public class Storage {
     private File dirFile;
     private File dataFile;

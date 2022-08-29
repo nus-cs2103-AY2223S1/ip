@@ -1,9 +1,10 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 
 public class ParserTest {
 
@@ -23,8 +24,7 @@ public class ParserTest {
 
     @Test
     public void wrongFormat_exceptionThrown() {
-        assertThrows(InvalidFormatException.class,
-                () -> Parser.parseInput("deadline read book 2000-01-01 10:10"));
+        assertThrows(InvalidFormatException.class, () -> Parser.parseInput("deadline read book 2000-01-01 10:10"));
     }
 
 

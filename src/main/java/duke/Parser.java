@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Parser that takes user input and outputs commands DukeBot can understand.
+ */
 public class Parser {
 
     /**

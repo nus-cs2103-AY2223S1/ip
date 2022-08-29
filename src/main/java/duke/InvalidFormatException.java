@@ -1,6 +1,9 @@
 package duke;
 
-public class InvalidFormatException extends DukeException{
+/**
+ * Exception that is thrown when format of date or time is incorrect.
+ */
+public class InvalidFormatException extends DukeException {
     public InvalidFormatException(String message) {
         super(message);
     }
