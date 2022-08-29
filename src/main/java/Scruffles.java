@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -21,22 +24,21 @@ public class Scruffles {
             String taskString = scan.nextLine();
             String[] inputArray = taskString.split(" / ");
             Task task = new Task("");
-            boolean isDone = false;
+            boolean isDone = inputArray[1].equals("X");
 
-            if (inputArray[1].equals("X")) {
-                isDone = true;
-            }
-
-            if (inputArray[0].equals("T")) {
-                task = new Todo(inputArray[2], isDone);
-            } else if (inputArray[0].equals("D")) {
-                String[] deadline = inputArray[2].split(" /by ");
-                task = new Deadline(deadline[0], deadline[1], isDone);
-            } else if (inputArray[0].equals("E")) {
-                String[] event = inputArray[2].split(" /at ");
-                task = new Event(event[0], event[1], isDone);
-            } else {
-                continue;
+            switch (inputArray[0]) {
+                case "T":
+                    task = new Todo(inputArray[2], isDone);
+                    break;
+                case "D":
+                    task = new Deadline(inputArray[2], LocalDate.parse(inputArray[3]), isDone);
+                    break;
+                case "E":
+                    task = new Event(inputArray[2], LocalDate.parse(inputArray[3]), LocalTime.parse(inputArray[4]),
+                            LocalTime.parse(inputArray[5]), isDone);
+                    break;
+                default:
+                    continue;
             }
 
             array.add(task);
@@ -59,7 +61,7 @@ public class Scruffles {
 
         String textPath = "/Users/shamustan/Desktop/University/AY22:23 S1/CS2103T/list.txt";
 
-        ArrayList<Task> list = new ArrayList<Task>(100);
+        ArrayList<Task> list = new ArrayList<>(100);
         int taskCount = 0;
 
         try {
@@ -75,19 +77,20 @@ public class Scruffles {
 
             if (input.equals("bye")) {
                 try {
-                    for (int i = 0; i < list.size(); i++) {
+                    for (Task task : list) {
                         String textInput = "";
                         String isDone = "O / ";
-                        if (list.get(i).isDone) {
+                        if (task.isDone) {
                             isDone = "X / ";
                         }
 
-                        if (list.get(i) instanceof Todo) {
-                            textInput = "T / " + isDone + list.get(i).taskName + "\n";
-                        } else if (list.get(i) instanceof Deadline) {
-                            textInput = "D / " + isDone + list.get(i).taskName + " /by " + ((Deadline) list.get(i)).by + "\n";
-                        } else if (list.get(i) instanceof Event) {
-                            textInput = "E / " + isDone + list.get(i).taskName + " /at " + ((Event) list.get(i)).at + "\n";
+                        if (task instanceof Todo) {
+                            textInput = "T / " + isDone + task.taskName + "\n";
+                        } else if (task instanceof Deadline) {
+                            textInput = "D / " + isDone + task.taskName + " / " + ((Deadline) task).by + "\n";
+                        } else if (task instanceof Event) {
+                            textInput = "E / " + isDone + task.taskName + " / " + ((Event) task).at + " / "
+                                    + ((Event) task).startTime + " / " + ((Event) task).endTime + "\n";
                         }
                         addToList(textPath, textInput);
                     }
@@ -100,6 +103,9 @@ public class Scruffles {
                 for (int i = 0; i < list.size(); i++) {
                     String output = (i + 1) + "." + list.get(i).toString();
                     System.out.println(output);
+                }
+                if (list.isEmpty()) {
+                    System.out.println("you have no tasks woof woof!");
                 }
             } else if (input.startsWith("mark")) {
                 try {
@@ -147,7 +153,8 @@ public class Scruffles {
                     } else {
                         input = input.replaceFirst("deadline ", "");
                         String[] inputArray = input.split(" /by ");
-                        list.add(new Deadline(inputArray[0], inputArray[1]));
+                        LocalDate date = LocalDate.parse(inputArray[1]);
+                        list.add(new Deadline(inputArray[0], date));
 
                         System.out.println("woof! the task is added woof!");
                         System.out.println(list.get(taskCount).toString());
@@ -157,6 +164,8 @@ public class Scruffles {
                     }
                 } catch (DescriptionEmptyException e) {
                     System.out.println(e.getMessage());
+                } catch (DateTimeParseException e) {
+                    System.out.println("grrrr >:( please input deadline in yyyy-mm-dd format woof woof!");
                 }
             } else if (input.startsWith("event")) {
                 try {
@@ -177,6 +186,8 @@ public class Scruffles {
                     }
                 } catch (DescriptionEmptyException e) {
                     System.out.println(e.getMessage());
+                } catch (DateTimeParseException e) {
+                    System.out.println("grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format woof woof!");
                 }
             } else if (input.startsWith("delete")) {
                 try {
