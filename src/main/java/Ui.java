@@ -9,16 +9,15 @@ public class Ui {
     private final PrintStream out;
     private static final String END_CMD = "bye";
 
-    public Ui(InputStream in, PrintStream out, TaskList list){
+    public Ui(InputStream in, PrintStream out){
         this.in = new Scanner(in);
         this.out = out;
-
     }
 
     /**
      * Method to print Duke's self-introduction and to customise its personality.
      */
-    public static void introduceDuke(){
+    public void introduceDuke(){
         String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
         String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself..." +
                 "\nBut you are young blood. What brings you to these ancient halls?"
@@ -56,13 +55,13 @@ public class Ui {
         System.out.println("\n***********************************************************************");
     }
 
-    public void readAndRespond(String response){
+    public void readAndRespond(){
 
         Scanner readInput = this.in;
 
         while(true){
             String userMsg = readInput.nextLine();
-            if(response.equals(END_CMD)){
+            if(userMsg.equals(END_CMD)){
                 bidFarewell();
                 break;
             } else {
