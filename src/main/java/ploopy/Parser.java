@@ -53,7 +53,7 @@ public class Parser {
             break;
         case "deadline":
             if (!isEmptyCommand(input, "deadline".length())) {
-                String date = input.split("/by ")[1];
+                String date = getDate(input);
                 String name = input.split("deadline ")[1].split(" /")[0];
                 taskList.createDeadline(name, date);
             } else {
@@ -62,7 +62,7 @@ public class Parser {
             break;
         case "event":
             if (!isEmptyCommand(input, "mark".length())) {
-                String date = input.split("/at ")[1];
+                String date = getDate(input);
                 String name = input.split("event ")[1].split(" /")[0];
                 taskList.createEvent(name, date);
             } else {
@@ -82,6 +82,11 @@ public class Parser {
 
     }
 
+    private static String getDate(String input) {
+        String dateString = input.split(" /")[1];
+        String[] separate = dateString.split(" ");
+        return separate[1] + " " + separate[2];
+    }
 
     private static boolean isEmptyCommand(String command, int size) {
         return command.trim().length() == size;

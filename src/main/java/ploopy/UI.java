@@ -44,7 +44,7 @@ public class UI {
 
     public void correctFormatForUser() {
         System.out.println(messageFormatter("Please use the following format\n"
-                + "[task type] [task name] / [at for event and by for deadline] [task date]\n"
+                + "[task type] [task name] / [at or by] [task date]\n"
                 + "e.g: event concert /at 12/12/2020 1800" ));
     }
 
