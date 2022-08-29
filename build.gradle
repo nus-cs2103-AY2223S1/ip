@@ -15,6 +15,17 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    def logging = testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+    logging
 }
 
 application {

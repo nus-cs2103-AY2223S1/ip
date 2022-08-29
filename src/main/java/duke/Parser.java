@@ -9,6 +9,7 @@ public class Parser {
     }
 
     private static void parseToDo(String str, TaskList taskList) throws DukeException {
+        //parses a string to obtain a to do event description and its date  and adds it to the task list
         Ui ui = new Ui(taskList);
         try {
             str = str.split(" ", 2)[1].trim();
@@ -62,7 +63,6 @@ public class Parser {
     }
 
     public void parseInstruction(Storage storage, TaskList taskList) throws DukeException {
-        //if i change it into a if then how does a while loop iter?
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         Ui ui = new Ui(taskList);
