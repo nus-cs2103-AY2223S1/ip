@@ -2,10 +2,11 @@ package duke.tasklist;
 
 import duke.listobjects.ListObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class TaskList {
+public class TaskList implements Serializable {
 
     private ArrayList<ListObject> tasksList;
     private static int numberOfTodos;
@@ -14,6 +15,10 @@ public class TaskList {
 
     public TaskList() {
         this.tasksList = new ArrayList<ListObject>();
+    }
+
+    public void setTasks(ArrayList<ListObject> list){
+        this.tasksList = list;
     }
 
     public void addTask(ListObject task) {
@@ -50,6 +55,10 @@ public class TaskList {
 
     public String knowTaskCount(){
         return tasksList.size() + " tasks ";
+    }
+
+    public ArrayList<ListObject> storeAllTasks(){
+        return this.tasksList;
     }
 
 

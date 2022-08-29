@@ -20,6 +20,7 @@ public class Duke {
 
     public void interact(){
         this.ui.introduceDuke();
+
         this.ui.readAndRespond();
     }
 
