@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from the file and saving tasks in the file
+ * Deals with loading tasks from the hard disk and saving tasks in the hard disk.
+ *
+ * @author ish1506
  */
 public class Storage {
 
@@ -17,8 +19,10 @@ public class Storage {
     private static final String PATH_NAME = "data/duke.txt";
 
     /**
-     * Reads duke.task data from hard disk.
+     * Reads <code>Task</code> data from hard disk.
      * If there's no existing directory or file, a new directory and/or file is created.
+     *
+     * @return  an ArrayList containing the Tasks.
      */
     public static ArrayList<Task> readData() {
         try {
@@ -43,10 +47,10 @@ public class Storage {
     }
 
     /**
-     * Writes duke.task data from duke.Duke chatbot to hard disk.
+     * Writes <code>Task</code> data from the <code>Duke</code> chatbot to hard disk.
      * If there's no existing directory or file, a new directory and/or file is created.
      *
-     * @param data The duke.task data to be written to hard disk.
+     * @param data The <code>Task</code> data to be written to hard disk.
      */
     public static void writeData(String data) {
         try {
