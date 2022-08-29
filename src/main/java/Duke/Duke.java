@@ -38,21 +38,21 @@ public class Duke {
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
-        while (!isExit) {
-            /*
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-
-
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-*/
-        }
+//        while (!isExit) {
+//            /*
+//            try {
+//                String fullCommand = ui.readCommand();
+//                ui.showLine();
+//                Command c = Parser.parse(fullCommand);
+//
+//
+//            } catch (DukeException e) {
+//                ui.showError(e.getMessage());
+//            } finally {
+//                ui.showLine();
+//            }
+//*/
+//        }
 
 
     }
