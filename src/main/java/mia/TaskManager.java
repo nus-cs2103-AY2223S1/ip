@@ -106,6 +106,18 @@ public class TaskManager {
         }
     }
 
+    public String search(String query) {
+        final List<Task> matches = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            final Task t = tasks.get(i);
+            if (t.matches(query)) {
+                matches.add(t);
+            }
+        }
+        final StringBuilder sb = new StringBuilder("Matching Tasks:\n");
+        return getStringFromTasksList(matches, sb);
+    }
+
     private void saveToDisk() {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
@@ -115,15 +127,19 @@ public class TaskManager {
         storedFile.writeText(sb.toString());
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Your Tasks:\n");
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append(i + 1).append(". ").append(tasks.get(i).toString());
-            if (i != tasks.size() - 1) {
+    private static String getStringFromTasksList(List<Task> matches, StringBuilder sb) {
+        for (int i = 0; i < matches.size(); i++) {
+            sb.append(i + 1).append(". ").append(matches.get(i).toString());
+            if (i != matches.size() - 1) {
                 sb.append("\n");
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Your Tasks:\n");
+        return getStringFromTasksList(tasks, sb);
     }
 }

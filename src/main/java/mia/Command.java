@@ -40,6 +40,9 @@ abstract class Command {
         } else if (input.startsWith("unmark ")) {
             final String[] args = Command.getArguments(input);
             return new UpdateTaskCommand(context, false, args);
+        } else if (input.startsWith("find ")) {
+            final String[] args = Command.getArguments(input);
+            return new FindTaskCommand(context, args);
         }
         throw new IllegalArgumentException("Sorry boss, I don't know what you are trying to say 😟");
     }
@@ -209,6 +212,22 @@ abstract class Command {
                         "Something went wrong when deleting task %d! Likely, you specified a task number that is out of range.",
                         number));
             }
+        }
+    }
+
+    private static class FindTaskCommand extends Command {
+        private final String[] args;
+
+        private FindTaskCommand(Mia context, String[] args) {
+            super(context);
+            assert args.length == 1;
+            this.args = args;
+        }
+
+        @Override
+        public void run() {
+            super.context.respond(String.format("Finding tasks that match \"%s\"...", args[0]));
+            super.context.respond(super.context.getTasks().search(args[0]));
         }
     }
 }

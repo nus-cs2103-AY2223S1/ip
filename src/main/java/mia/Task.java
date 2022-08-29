@@ -30,6 +30,16 @@ abstract public class Task {
         return true;
     }
 
+    public boolean matches(String query) {
+        final String[] queryWords = query.toLowerCase().split("\\s");
+        for (String word : queryWords) {
+            if (!title.toLowerCase().contains(word)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String toSaveFormat() {
         return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);
     }
