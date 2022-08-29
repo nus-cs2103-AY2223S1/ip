@@ -11,6 +11,9 @@ import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Main class that is executed.
+ */
 public class Duke {
 
     private Ui ui;
@@ -21,6 +24,12 @@ public class Duke {
     public static final String FILE_LOCATION = "data/duke.txt";
     private boolean toClose = false;
 
+    /**
+     * Creates a new Duke Object, initializing Ui, Storage and TaskList.
+     *
+     * @param filePath Path to save file.
+     * @param folderPath Path to folder containing save file.
+     */
     public Duke(String filePath, String folderPath) {
         ui = new Ui();
         storage = new Storage(filePath, folderPath);
@@ -32,6 +41,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes main loop of program.
+     */
     public void run() {
 
         ui.printGreetings();
@@ -50,6 +62,11 @@ public class Duke {
         ui.close();
     }
 
+    /**
+     * Main method for Duke.
+     *
+     * @param args Command Line arguments.
+     */
     public static void main(String[] args) {
         new Duke(FILE_LOCATION, FOLDER_LOCATION).run();
     }

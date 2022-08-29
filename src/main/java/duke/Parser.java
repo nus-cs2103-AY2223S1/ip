@@ -13,6 +13,9 @@ import duke.command.TodoCommand;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Parser helper to read and parse raw text input into commands.
+ */
 public class Parser {
 
     private static String getTaskName(String[] msg) {
@@ -24,6 +27,13 @@ public class Parser {
         return input;
     }
 
+    /**
+     * Parses raw input and returns corresponding command.
+     *
+     * @param input Raw input string.
+     * @return Command to be executed.
+     * @throws Exception  If there is an error in parsing.
+     */
     public static Command parse(String input) throws Exception {
 
         if (input.equals("bye")) {
