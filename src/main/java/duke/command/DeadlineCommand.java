@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javafx.util.Pair;
-
 import duke.exception.DeadlineException;
 import duke.exception.DukeException;
 import duke.storage.Storage;
@@ -13,6 +11,7 @@ import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Deadline command for Duke application

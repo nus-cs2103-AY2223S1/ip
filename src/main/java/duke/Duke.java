@@ -38,7 +38,7 @@ public class Duke {
     }
 
     /**
-     * Runs the duke application.
+     * Runs the duke CLI application.
      *
      * @param args the arguments.
      */

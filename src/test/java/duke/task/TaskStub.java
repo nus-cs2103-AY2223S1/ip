@@ -13,7 +13,7 @@ public class TaskStub extends Task {
     }
 
     @Override
-    public boolean isOnGivenDate(LocalDate selectedDate) {
+    public boolean isOnGivenDate(LocalDate ... selectedDates) {
         return false;
     }
 }

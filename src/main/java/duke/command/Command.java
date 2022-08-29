@@ -1,11 +1,10 @@
 package duke.command;
 
-import javafx.util.Pair;
-
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.util.Pair;
 
 /**
  * Command for Duke application.
