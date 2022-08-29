@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
 import java.util.Locale;
 
-
+/**
+ * Represents DateFormat to format date and time.
+ */
 public class DateFormat {
     protected String date;
     protected LocalDate dateFormatted;
@@ -19,18 +21,18 @@ public class DateFormat {
     protected LocalDateTime dateAndTime;
     protected HashMap<String, String> months = new HashMap<>();
 
+    /**
+     * Constructor for DateFormat that takes in a date
+     * as a String.
+     *
+     * @param date Date in the format of a String.
+     */
     public DateFormat(String date) {
         this.afterBy = date;
         this.date = date;
         this.dateFormatted = null;
         this.timeFormatted = null;
-
-        String day;
-        String month;
-        String year;
-        String hour;
-        String minutes;
-        String time = "";
+        dateAndTimeFormatter();
 
         months.put("JAN", "1");
         months.put("FEB", "2");
@@ -44,8 +46,19 @@ public class DateFormat {
         months.put("OCT", "10");
         months.put("NOV", "11");
         months.put("DEC", "12");
+    }
 
-
+    /**
+     * A formatter to format the date and time
+     * into a readable String for the DateTimeFormatterBuilder.
+     */
+    public void dateAndTimeFormatter() {
+        String day;
+        String month;
+        String year;
+        String hour;
+        String minutes;
+        String time = "";
         if (this.afterBy.contains("/")) {
             if (this.afterBy.indexOf("/") <= 2) {
                 int afterDaySlashIndex = afterBy.indexOf("/");
@@ -307,16 +320,39 @@ public class DateFormat {
         }
     }
 
+
+    /**
+     * Formats the date in the form of a String into
+     * a date in the form of LocalDate.
+     *
+     * @param pattern The pattern in which the date will be formatted to.
+     * @return Returns the String version of the date after it has been
+     * formatted.
+     */
     public String formatDate(String pattern) {
         DateTimeFormatter df = new DateTimeFormatterBuilder().parseCaseInsensitive()
                 .appendPattern(pattern).toFormatter(Locale.ENGLISH);
         return this.dateFormatted.format(df);
     }
 
+    /**
+     * Formats the time in the form of a String into
+     * a time in the form of LocalTime.
+     *
+     * @return Returns the String version of the time after it has
+     * been formatted.
+     */
     public String formatTime() {
         return this.timeFormatted.format(DateTimeFormatter.ISO_TIME);
     }
 
+    /**
+     * Returns the string representation of the formatted date
+     * and time.
+     *
+     * @return The string representation of the formatted date
+     * and time.
+     */
     @Override
     public String toString() {
         if (this.timeFormatted == null) {

@@ -9,18 +9,45 @@ import task.Todo;
 import task.Deadline;
 import task.Event;
 
+/**
+ * Represents an Add Command that inherits from
+ * the abstract class Command.
+ */
+
 public class AddCommand extends Command {
     protected String commandLine;
 
-    public AddCommand(String str) {
-        this.commandLine = str;
+    /**
+     * Constructor for this AddCommand that takes in a
+     * commandLine as a String.
+     *
+     * @param commandLine Command from the user.
+     */
+    public AddCommand(String commandLine) {
+        this.commandLine = commandLine;
     }
 
+    /**
+     * Returns a boolean false to show that this
+     * is not the last command.
+     *
+     * @return false.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Executes the command depending on which type of
+     * task it is and prints a string to tell the user that
+     * the task has been added.
+     *
+     * @param taskList The ArrayList that contains all the tasks.
+     * @param ui The Ui that interacts with the next command from the user.
+     * @param storage The Storage used to store the tasks.
+     * @throws DukeException If the description of task is empty.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (commandLine.startsWith("todo")) {

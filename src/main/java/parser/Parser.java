@@ -8,13 +8,31 @@ import command.EditCommand;
 import command.FalseCommand;
 import command.ListCommand;
 
+/**
+ * Represents a parser to parse commands from
+ * the user.
+ */
 public class Parser {
     protected String fullCommand;
 
+    /**
+     * Constructor for this Parser that takes in
+     * a command as a string.
+     *
+     * @param fullCommand Command from the user.
+     */
     public Parser(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
+    /**
+     * Returns different types of commands depending on what
+     * command the user input.
+     *
+     * @param fullCommand Command from the user.
+     * @return Different types of commands depending on the
+     * user input.
+     */
     public Command parse(String fullCommand) {
         if (fullCommand.isEmpty() || fullCommand.equals("bye")) {
             return new ByeCommand(fullCommand);
