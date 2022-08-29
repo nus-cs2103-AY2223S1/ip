@@ -44,6 +44,9 @@ public class Parser {
             case "delete" :
                 this.parseDelete(subCmd);
                 break;
+            case "find":
+                this.parseFind(subCmd);
+                break;
             default:
                 throw new InvalidDescriptionException();
         }
@@ -129,6 +132,20 @@ public class Parser {
         } else {
             this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
             this.storage.save(this.taskList);
+        }
+    }
+
+    /**
+     * Parses the find command.
+     * @param subCmd String representation of the command.
+     * @throws DukeException Throws DukeException.
+     */
+    public void parseFind(String[] subCmd) throws DukeException {
+        String temp = String.join(" ",subCmd);
+        if (temp.equals("")) {
+            throw new EmptyDescriptionException();
+        } else {
+            this.taskList.findKeyword(temp);
         }
     }
 }
