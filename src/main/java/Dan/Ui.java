@@ -1,3 +1,5 @@
+package Dan;
+
 public class Ui {
     public static void printIndent(String s) {
         System.out.println("    " + s);
