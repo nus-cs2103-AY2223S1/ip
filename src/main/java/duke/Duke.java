@@ -1,13 +1,15 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.exceptions.DukeException;
 import duke.parser.DukeParser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
-import java.util.Scanner;
-
-
+/**
+ * Main Duke class.
+ */
 public class Duke {
 
     private static final String FILE_PATH = "src/main/java/duke/data.txt";
@@ -38,14 +40,14 @@ public class Duke {
         try {
             taskList = st.load();
         } catch (Exception e) {
-            System.out.println("I found some previously entered data on your disk, but " +
-                    "encountered the following error when trying to load it:\n" +
-                    e.getMessage());
+            System.out.println("I found some previously entered data on your disk, but "
+                    + "encountered the following error when trying to load it:\n"
+                    + e.getMessage());
         }
         DukeParser parser = new DukeParser(taskList);
         System.out.println("What can I do for you? :)\n=================================");
 
-        while(!parser.exitDuke()) {
+        while (!parser.exitDuke()) {
             String input = sc.nextLine();
             parser.parseInput(input);
             try {

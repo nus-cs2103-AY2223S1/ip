@@ -1,14 +1,17 @@
 package duke.parser;
 
+import java.time.format.DateTimeParseException;
+
 import duke.storage.Storage;
-import duke.tasks.Task;
 import duke.tasks.Deadline;
-import duke.tasks.Todo;
 import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+
 import duke.exceptions.DukeException;
 import duke.tasklist.TaskList;
 
-import java.time.format.DateTimeParseException;
+
 
 /**
  * Handler class that manages user input to duke.Duke.
@@ -152,8 +155,8 @@ public class DukeParser {
         try {
             instructionNum = Integer.valueOf(this.restOfInputString) - 1;
         } catch (Exception e) {
-            throw new DukeException("Error when parsing user input - did you supply a valid " +
-                    "number as an index?" );
+            throw new DukeException("Error when parsing user input - did you supply a valid "
+                    + "number as an index?");
         }
 
         // Actual logic
@@ -228,28 +231,28 @@ public class DukeParser {
             break;
         case "event":
             if (divider == null || !divider.equals("/at")) {
-                throw new DukeException("Oops! To create an event, please format your input in " +
-                        "this manner:\n<Event Name> /at dd-mm-yyyy hh:mm");
+                throw new DukeException("Oops! To create an event, please format your input in "
+                        + "this manner:\n<Event Name> /at dd-mm-yyyy hh:mm");
             }
             try {
                 newTask = new Event(this.restOfInputString.substring(0, slashIndex - 1),
                         this.restOfInputString.substring(slashIndex + 4));
             } catch (DateTimeParseException e) {
-                throw new DukeException("Oops! Events must have a date of occurrence, formatted " +
-                        "as dd-mm-yyyy hh:mm.");
+                throw new DukeException("Oops! Events must have a date of occurrence, formatted "
+                        + "as dd-mm-yyyy hh:mm.");
             }
             break;
         case "deadline":
             if (divider == null || !divider.equals("/by")) {
-                throw new DukeException("Oops! To create a deadline, please format your input in " +
-                        "this manner:\n<Deadline Name> /by dd-mm-yyyy hh:mm");
+                throw new DukeException("Oops! To create a deadline, please format your input in "
+                        + "this manner:\n<Deadline Name> /by dd-mm-yyyy hh:mm");
             }
             try {
                 newTask = new Deadline(this.restOfInputString.substring(0, slashIndex - 1),
                         this.restOfInputString.substring(slashIndex + 4));
             } catch (DateTimeParseException e) {
-                throw new DukeException("Oops! Deadlines must have a valid deadline, " +
-                        "formatted as dd-mm-yyyy hh:mm.");
+                throw new DukeException("Oops! Deadlines must have a valid deadline, "
+                        + "formatted as dd-mm-yyyy hh:mm.");
             }
 
             break;
