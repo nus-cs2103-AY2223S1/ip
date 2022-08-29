@@ -1,4 +1,4 @@
-package Dan;
+package dan;
 
 public class ToDo extends Task {
     private static final String ICON = "T";

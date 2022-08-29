@@ -1,4 +1,4 @@
-package Dan;
+package dan;
 
 public class DanException extends Exception {
     public DanException(String message) {

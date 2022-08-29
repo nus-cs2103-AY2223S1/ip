@@ -1,4 +1,4 @@
-package Dan;
+package dan;
 
 import java.io.File;
 import java.io.FileNotFoundException;

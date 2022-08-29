@@ -1,4 +1,4 @@
-package Dan;
+package dan;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
