@@ -16,6 +16,11 @@ public class TaskList {
         this.inputList = new ArrayList<>();
     }
 
+    public void add(Task t) throws IOException {
+        this.inputList.add(t);
+        Storage.writeToFile(inputList);
+    }
+
     public void delete(int index) throws IOException {
         System.out.println("Noted I have removed this task:");
         System.out.println(inputList.get(index - 1));
@@ -71,5 +76,9 @@ public class TaskList {
         inputList.add(ev);
         System.out.println("Now you have " + inputList.size() + " tasks in the list.");
         Storage.writeToFile(inputList);
+    }
+
+    public Task get(int i) {
+        return this.inputList.get(i);
     }
 }
