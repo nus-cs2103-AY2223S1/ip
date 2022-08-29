@@ -1,7 +1,8 @@
 package duke;
 
-import duke.task.Task;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Represents the UI of Duke.
@@ -64,7 +65,7 @@ public class UI {
     public void printTaskList(TaskList ls, String title) {
         print(DIVIDER);
         print(title);
-        for (int i = 0; i < ls.getSize() ; i++) {
+        for (int i = 0; i < ls.getSize(); i++) {
             print((i + 1) + ". " + ls.taskToString(i));
         }
         print(DIVIDER);

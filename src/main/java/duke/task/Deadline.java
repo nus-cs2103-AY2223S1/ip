@@ -1,7 +1,8 @@
 package duke.task;
 
-import duke.DateConverter;
 import java.time.LocalDate;
+
+import duke.DateConverter;
 
 /**
  * Deadline, a type of Task.
