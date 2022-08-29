@@ -1,9 +1,9 @@
 package duke.tools;
 
+import java.util.List;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
-
-import java.util.List;
 
 /**
  * This class manages the list of tasks that has been registered by the user.

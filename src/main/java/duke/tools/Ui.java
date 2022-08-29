@@ -1,9 +1,9 @@
 package duke.tools;
 
+import java.util.Scanner;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
-
-import java.util.Scanner;
 
 /**
  * This class takes care of the interaction with the user.
@@ -11,9 +11,10 @@ import java.util.Scanner;
  */
 public class Ui {
 
+    private static Scanner sc = new Scanner(System.in);
+
     /** This variable controls the continuation of the Duke program. */
     private boolean isContinue = true;
-    private static Scanner sc = new Scanner(System.in);
 
     /**
      * Reads the next line of command from the user.

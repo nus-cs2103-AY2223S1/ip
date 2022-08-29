@@ -1,14 +1,13 @@
 package duke.tools;
 
-import duke.tasks.Deadline;
-import duke.tasks.Task;
-import duke.tasks.Todo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import duke.tasks.Task;
 
 class TaskListTest {
 

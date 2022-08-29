@@ -1,8 +1,8 @@
 package duke.tasks;
 
-import duke.tools.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.tools.Parser;
 
 /**
  * This class encapsulates a task with a deadline from the user.

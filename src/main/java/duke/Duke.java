@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.tools.Parser;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Duke is an interactive robot that helps to keep track of your tasks.

@@ -1,13 +1,21 @@
 package duke.tools;
 
-import duke.commands.*;
-import duke.exceptions.DukeException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import duke.commands.ByeCommand;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+import duke.exceptions.DukeException;
 
 class ParserTest {
 
@@ -54,21 +62,21 @@ class ParserTest {
             Parser.parseCommand("mark sp");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Wrong command parameters.", e.getMessage());
+            assertEquals("Exception: Incorrect command parameters.", e.getMessage());
         }
 
         try {
             Parser.parseCommand("unmark ");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Wrong command parameters.", e.getMessage());
+            assertEquals("Exception: Incorrect command parameters.", e.getMessage());
         }
 
         try {
             Parser.parseCommand("deadline exception thrown /at 22-08-25 2525");
             fail();
         } catch (DukeException e) {
-            assertEquals("Exception: Wrong command parameters.", e.getMessage());
+            assertEquals("Exception: Insufficient command parameters.", e.getMessage());
         }
 
         try {

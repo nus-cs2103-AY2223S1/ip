@@ -1,12 +1,12 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Deadline;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
-
-import java.time.LocalDateTime;
 
 /**
  * This class tells Duke to store a new task with a deadline.

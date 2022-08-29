@@ -1,5 +1,9 @@
 package duke.tools;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
@@ -12,15 +16,16 @@ import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 /**
  * This class makes sense of the user's input commands.
  * Text commands from the user are being understood and translated into instructions sets for Duke.
  */
 public class Parser {
+
+    /** The user's input date and time format. */
+    private static final DateTimeFormatter DT_PARSE_FORMAT = DateTimeFormatter.ofPattern("[yyyy][yy]-M-d HHmm");
+    /** The date and time format printed out by Duke. */
+    private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
 
     /**
      * Returns the Command representing the user's input.
@@ -102,11 +107,6 @@ public class Parser {
             throw new DukeException("Exception: Insufficient command parameters.");
         }
     }
-
-    /** The user's input date and time format. */
-    private static final DateTimeFormatter DT_PARSE_FORMAT = DateTimeFormatter.ofPattern("[yyyy][yy]-M-d HHmm");
-    /** The date and time format printed out by Duke. */
-    private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
 
     /**
      * Makes sense of the user's input date and time.

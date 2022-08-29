@@ -6,13 +6,16 @@ import duke.exceptions.DukeException;
  * This abstract class encapsulates the task that the user is trying to store on Duke.
  */
 public abstract class Task {
+    /**
+     * This enum class encapsulates the different types of tasks.
+     */
     public enum TaskType {
         TODO("T"),
         DEADLINE("D"),
         EVENT("E");
 
         /** String representation of the type of task. */
-        public final String VALUE;
+        public final String value;
 
         /**
          * Constructs a TaskType object of the corresponding string representation.
@@ -20,7 +23,7 @@ public abstract class Task {
          * @param value String representation of the task.
          */
         TaskType(String value) {
-            VALUE = value;
+            this.value = value;
         }
 
         /**
@@ -96,7 +99,7 @@ public abstract class Task {
      * @return String representation of the type of task.
      */
     public String getTaskIcon() {
-        return taskType.VALUE;
+        return taskType.value;
     }
 
     /**

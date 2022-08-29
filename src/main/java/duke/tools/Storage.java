@@ -1,11 +1,6 @@
 package duke.tools;
 
-import duke.exceptions.DukeException;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.Task.TaskType;
-import duke.tasks.Todo;
+import static duke.tasks.Task.TaskType.parseTaskType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static duke.tasks.Task.TaskType.parseTaskType;
+import duke.exceptions.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Task.TaskType;
+import duke.tasks.Todo;
 
 /**
  * This class manages the storage of the user's task list.
