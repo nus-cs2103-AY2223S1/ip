@@ -115,15 +115,19 @@ public class TaskManager {
         storedFile.writeText(sb.toString());
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Your Tasks:\n");
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append(i + 1).append(". ").append(tasks.get(i).toString());
-            if (i != tasks.size() - 1) {
+    private static String getStringFromTasksList(List<Task> matches, StringBuilder sb) {
+        for (int i = 0; i < matches.size(); i++) {
+            sb.append(i + 1).append(". ").append(matches.get(i).toString());
+            if (i != matches.size() - 1) {
                 sb.append("\n");
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Your Tasks:\n");
+        return getStringFromTasksList(tasks, sb);
     }
 }
