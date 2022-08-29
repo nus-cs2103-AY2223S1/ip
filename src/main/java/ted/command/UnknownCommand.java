@@ -1,9 +1,9 @@
 package ted.command;
 
 import ted.Storage;
-import ted.task.TaskList;
 import ted.exception.TedException;
-import ted.Ui;
+import ted.task.TaskList;
+import ted.ui.UiController;
 
 /**
  * UnknownCommand does nothing but telling user we don't
@@ -16,7 +16,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         ui.showUnknownCommandError();
     }
 }

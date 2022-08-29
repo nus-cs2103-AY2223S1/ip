@@ -1,10 +1,15 @@
 package ted.command;
 
-import ted.*;
+import ted.Storage;
 import ted.exception.TedException;
 import ted.task.TaskList;
 import ted.task.ToDo;
+import ted.ui.UiController;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * create a todo task
+ */
 public class TodoCommand extends Command {
 
     /**
@@ -34,7 +39,7 @@ public class TodoCommand extends Command {
      * @param storage
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
+    public void run(TaskList tasks, UiController ui, Storage storage) {
         tasks.add(new ToDo(description));
         ui.showAddedTaskSuccess(tasks);
 

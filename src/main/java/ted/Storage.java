@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -33,13 +32,12 @@ public class Storage {
 
         try {
             Scanner s = new Scanner(file);
-            ArrayList<Task> tasks = new ArrayList<>();
+            TaskList tasks = TaskList.empty();
             while (s.hasNext()) {
                 String encoded = s.nextLine();
                 tasks.add(Task.decode(encoded));
             }
-
-            return TaskList.empty();
+            return tasks;
         } catch (FileNotFoundException e) {
             return TaskList.empty();
         }

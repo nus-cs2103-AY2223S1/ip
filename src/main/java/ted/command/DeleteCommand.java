@@ -1,10 +1,15 @@
 package ted.command;
 
-import ted.*;
+import ted.Storage;
 import ted.exception.TedException;
 import ted.task.Task;
 import ted.task.TaskList;
+import ted.ui.UiController;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * delete a task from given task list
+ */
 public class DeleteCommand extends Command {
 
     /**
@@ -35,7 +40,7 @@ public class DeleteCommand extends Command {
      * @throws TedException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         if (tasks.size() == 0) {
             throw new TedException("There is no tasks here. Feel free to add a task.");
         }

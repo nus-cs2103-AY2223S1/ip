@@ -1,10 +1,14 @@
 package ted.command;
 
 import ted.Storage;
-import ted.task.TaskList;
 import ted.exception.TedException;
-import ted.Ui;
+import ted.task.TaskList;
+import ted.ui.UiController;
 
+/**
+ * A class that encapsulate a ByeCommand, to
+ * exit the ui
+ */
 public class ByeCommand extends Command {
 
     public ByeCommand(String args) {
@@ -19,7 +23,7 @@ public class ByeCommand extends Command {
      * @throws TedException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         ui.exit();
     }
 

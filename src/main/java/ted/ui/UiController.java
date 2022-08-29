@@ -1,46 +1,41 @@
-package ted;
+package ted.ui;
 
-import java.util.Scanner;
-
+import javafx.application.Platform;
+import ted.Ted;
 import ted.exception.TedException;
 import ted.task.Task;
 import ted.task.TaskList;
 
 /**
- * Ui is use for terminal interaction with user
+ * UiController is acts as an controller abstraction
+ * between Ted and MainWindow or any GUI node
+ *
+ * Ted <-> UiController <-> MainWindow
  */
-public class Ui {
+public class UiController {
 
-    private static final String GREETING = "##################################################\n"
-            + "||                                              ||\n"
-            + "||                Hello! I'm Ted                ||\n"
-            + "||            What can I do for you?            ||\n"
-            + "||                                              ||\n"
-            + "##################################################\n";
+    private Ted ted;
 
-    private static final String INPUT_PREFIX = "> ";
+    private MainWindow mainWindow;
 
-    /**
-     * Scanner to scan user input
-     */
-    private Scanner scanner = new Scanner(System.in);
-
-    public void showGreeting() {
-        output(GREETING);
+    public void setTed(Ted ted) {
+        this.ted = ted;
     }
 
-    /**
-     * Prompt input from user
-     * @return user input
-     */
-    public String promptInput() {
-        output(INPUT_PREFIX);
-        scanner.hasNextLine();
-        return scanner.nextLine();
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
     }
 
     public void output(String message) {
-        System.out.print(message);
+        mainWindow.output(message);
+    }
+
+    public void handleInput(String input) {
+        this.ted.handleInput(input);
+    }
+
+    public void showGreeting() {
+        output("Hello! I'm Ted.\nWhat can I do for you?");
     }
 
     public void outputLine(String message) {
@@ -92,7 +87,7 @@ public class Ui {
      * Exit the ui
      */
     public void exit() {
-        this.scanner.close();
         outputLine("Bye. Hope to see you again!");
+        Platform.exit();
     }
 }

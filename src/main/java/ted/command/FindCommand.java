@@ -1,9 +1,9 @@
 package ted.command;
 
 import ted.Storage;
-import ted.Ui;
 import ted.exception.TedException;
 import ted.task.TaskList;
+import ted.ui.UiController;
 
 public class FindCommand extends Command {
 
@@ -30,7 +30,7 @@ public class FindCommand extends Command {
      * @throws TedException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         TaskList matchedTasks = TaskList.empty();
 
         for (int index = 0;index < tasks.size();index++) {

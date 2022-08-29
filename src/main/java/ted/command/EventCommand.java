@@ -1,10 +1,15 @@
 package ted.command;
 
-import ted.*;
+import ted.Storage;
 import ted.exception.TedException;
 import ted.task.Event;
 import ted.task.TaskList;
+import ted.ui.UiController;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * create a event task
+ */
 public class EventCommand extends Command {
 
     /**
@@ -48,7 +53,7 @@ public class EventCommand extends Command {
      * @throws TedException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         tasks.add(new Event(description, at));
         ui.showAddedTaskSuccess(tasks);
 

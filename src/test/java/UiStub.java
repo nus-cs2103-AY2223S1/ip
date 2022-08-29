@@ -1,8 +1,8 @@
-import ted.Ui;
+import ted.ui.UiController;
 
 import java.util.ArrayList;
 
-public class UiStub extends Ui {
+public class UiStub extends UiController {
 
     private ArrayList<String> messages = new ArrayList<>();
 

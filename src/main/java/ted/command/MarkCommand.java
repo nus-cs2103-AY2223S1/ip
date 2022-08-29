@@ -1,10 +1,14 @@
 package ted.command;
 
 import ted.Storage;
-import ted.task.TaskList;
 import ted.exception.TedException;
-import ted.Ui;
+import ted.task.TaskList;
+import ted.ui.UiController;
 
+/**
+ * A class that encapsulate a DeadlineCommand, to
+ * mark a task in tasks list
+ */
 public class MarkCommand extends Command {
 
     /**
@@ -34,7 +38,7 @@ public class MarkCommand extends Command {
      * @throws TedException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+    public void run(TaskList tasks, UiController ui, Storage storage) throws TedException {
         try {
             if (tasks.size() == 0) {
                 throw new TedException("There is no tasks here. Feel free to add a task.");
