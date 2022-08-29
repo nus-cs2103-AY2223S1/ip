@@ -1,3 +1,5 @@
+package task;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +19,10 @@ public abstract class Task {
 
     public void unmarkAsDone() {
         this.isDone = false;
+    }
+
+    public String saveTask() {
+        return String.format("%d | %s", isDone ? 1 : 0, description);
     }
 
     @Override
