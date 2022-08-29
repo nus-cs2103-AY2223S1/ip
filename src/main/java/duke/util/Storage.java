@@ -34,7 +34,7 @@ public class Storage {
     }
 
     /**
-     * Reads existing tasks from dataFile and adds them to tasks
+     * Reads existing tasks from dataFile and adds them to tasks.
      */
     public void loadTasks(TaskList taskList) {
         try {
@@ -50,7 +50,7 @@ public class Storage {
     }
 
     /**
-     * Saves tasks to dataFile
+     * Saves tasks to dataFile.
      */
     public void saveTasks(TaskList taskList) {
         try {

@@ -10,10 +10,10 @@ public class Deadline extends Task {
     private Date deadline;
 
     /**
-     * Constructor to create new Deadline
+     * Constructor to create new Deadline.
      * 
-     * @param description Description of deadline you want to create
-     * @param deadline    Deadline of the task
+     * @param description Description of deadline you want to create.
+     * @param deadline    Deadline of the task.
      */
     public Deadline(String description, Date deadline) {
         super(description);
@@ -21,11 +21,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor to create new Deadline with isDone
+     * Constructor to create new Deadline with isDone.
      * 
-     * @param description Description of deadline you want to create
-     * @param deadline    Deadline of the task
-     * @param isDone      Whether the task is done or not
+     * @param description Description of deadline you want to create.
+     * @param deadline    Deadline of the task.
+     * @param isDone      Whether the task is done or not.
      */
     public Deadline(String description, Date deadline, boolean isDone) {
         super(description, isDone);
@@ -33,12 +33,12 @@ public class Deadline extends Task {
     }
 
     /**
-     * Factory method to create new Deadline
+     * Factory method to create new Deadline.
      * 
      * @param input String including task description and deadline specified after
-     *              /by
-     * @return New Deadline
-     * @throws DukeException if deadline is not specified using /by
+     *              /by.
+     * @return New Deadline.
+     * @throws DukeException if deadline is not specified using /by.
      */
     public static Deadline createDeadline(String input) throws DukeException {
         if (input.indexOf("/by ") == -1) {
