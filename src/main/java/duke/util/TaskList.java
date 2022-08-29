@@ -170,6 +170,23 @@ public class TaskList {
     }
 
     /**
+     * Returns a list of task that contains description in it.
+     *
+     * @param description filter out task with description in it.
+     * @return TaskList containing all filtered out task with description in it.
+     */
+    public TaskList findTask(String description) {
+        TaskList filteredTasks = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.doesContain(description)) {
+                filteredTasks.addTask(task);
+            }
+        }
+        return filteredTasks;
+    }
+
+    /**
      * Returns a string representation of tasks.
      *
      * @return tasks in string representation.

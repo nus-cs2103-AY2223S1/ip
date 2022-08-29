@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
     private int index;
 
     /**
-     * Constructs a Delete object with the index of the element to delete.
+     * Constructs DeleteCommand object with the index of the element to delete.
      *
      * @param index index of the element to delete.
      */
@@ -42,4 +42,6 @@ public class DeleteCommand extends Command {
         storage.update(tasks, ui);
         displayCommand(ui, TASK_DELETE, task, tasks.getStatus());
     }
+
+
 }

@@ -72,6 +72,15 @@ public abstract class Task {
     }
 
     /**
+     * Checks whether the task description contains the findKeyword.
+     * @param findKeyword use to check if the description has the keyword.
+     * @return true if description contains the keyword else false.
+     */
+    public boolean doesContain(String findKeyword) {
+        return description.contains(findKeyword);
+    }
+
+    /**
      * Returns a String Representation of a task.
      *
      * @return String Representation of a task.
