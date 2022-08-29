@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class DukeIndexOutOfBoundsException extends DukeException{
     
     public DukeIndexOutOfBoundsException(int size) {

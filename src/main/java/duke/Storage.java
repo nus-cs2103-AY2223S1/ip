@@ -1,3 +1,11 @@
+package duke;
+
+import duke.exception.DukeException;
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.task.ToDos;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -5,7 +13,7 @@ import java.util.ArrayList;
 
 public class Storage {
     private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    private final static String FILEPATH = "data/Duke.txt";
+    private final static String FILEPATH = "data/duke.Duke.txt";
     
     public Storage() {
     }
@@ -57,18 +65,18 @@ public class Storage {
             for (Task task : tasks) {
                 if (task instanceof ToDos) {
                     writer.write("T|");
-                    writer.write(task.isDone ? "1|" : "0|");
-                    writer.write(task.description);
+                    writer.write(task.getStatus() ? "1|" : "0|");
+                    writer.write(task.getDescription());
                 } else if (task instanceof Deadlines) {
                     writer.write("D|");
-                    writer.write(task.isDone ? "1|" : "0|");
-                    writer.write(task.description + "|");
-                    writer.write(((Deadlines) task).by.format(DATE_TIME_FORMATTER));
+                    writer.write(task.getStatus() ? "1|" : "0|");
+                    writer.write(task.getDescription() + "|");
+                    writer.write(((Deadlines) task).getBy().format(DATE_TIME_FORMATTER));
                 } else if (task instanceof Events) {
                     writer.write("E|");
-                    writer.write(task.isDone ? "1|" : "0|");
-                    writer.write(task.description + "|");
-                    writer.write(((Events) task).duration.format(DATE_TIME_FORMATTER));
+                    writer.write(task.getStatus() ? "1|" : "0|");
+                    writer.write(task.getDescription() + "|");
+                    writer.write(((Events) task).getDuration().format(DATE_TIME_FORMATTER));
                 }
                 writer.write("\n");
             }

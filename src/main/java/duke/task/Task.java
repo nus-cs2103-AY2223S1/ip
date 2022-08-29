@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
 
 public class Task {
@@ -8,6 +10,10 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+    
+    public boolean getStatus() {
+        return isDone;
     }
 
     public String getStatusIcon() {
