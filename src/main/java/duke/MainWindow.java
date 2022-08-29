@@ -37,7 +37,7 @@ public class MainWindow extends AnchorPane {
     }
 
     private void printStartupMessage() {
-        String startupMsg = Ui.getMessage("Hello! I'm duke.\n" + "What can I do for you?");
+        String startupMsg = Ui.getWelcomeMessage();
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(startupMsg, dukeImage));
     }
 

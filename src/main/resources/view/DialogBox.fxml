@@ -10,7 +10,7 @@
     <children>
       <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="283.0" vmax="999.0">
          <content>
-              <Label fx:id="dialog" alignment="TOP_LEFT" prefHeight="495.0" prefWidth="266.0" text="Label" wrapText="true" />
+              <Label fx:id="dialog" alignment="TOP_LEFT" prefHeight="495.0" prefWidth="264.0" text="Label" wrapText="true" />
          </content>
       </ScrollPane>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />

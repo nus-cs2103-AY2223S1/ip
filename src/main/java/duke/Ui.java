@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Ui {
     public static String BORDER = "_________________________________________________";
+
     /**
      * Returns a string with the inputted message on the Duke interface.
      *
@@ -15,6 +16,16 @@ public class Ui {
      */
     public static String getMessage(String msg) {
         return BORDER + "\n" + msg + "\n" + BORDER;
+    }
+
+    /**
+     * Returns a string with the Duke startup welcome message.
+     *
+     * @return The Duke welcome message string with a border.
+     */
+    public static String getWelcomeMessage() {
+        String welcomeMsg = "Hello! I'm duke.\n" + "What can I do for you?";
+        return getMessage(welcomeMsg);
     }
 
     /**
