@@ -45,6 +45,7 @@ public class DeleteTaskCommand extends Command {
 
         if (index == -1) {
             return new InternalAction(
+                    //CHECKSTYLE.OFF: SeparatorWrap
                     () -> Duke.setState(new Command() {
                         @Override
                         protected InternalAction onEnter() {
