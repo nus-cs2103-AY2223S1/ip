@@ -98,15 +98,4 @@ public class Jude {
     public String getResponse(String input) throws IOException {
         return parser.parse(input);
     }
-
-
-
-    /*
-     * Runs the task tracker chatbot.
-     *
-     * @param args Not used for now.
-     */
-    /*public static void main(String[] args) throws IOException {
-        new Jude("data/tasks.txt").run();
-    }*/
 }
