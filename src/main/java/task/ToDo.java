@@ -1,7 +1,9 @@
 package task;
 
-import task.Task;
-
+/**
+ * A Todo is a type of task that only has a description.
+ *
+ */
 public class ToDo extends Task {
     public ToDo(String description) {
         super(description);

@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * List command for listing out all tasks from taskList.
+ */
 public class ListCommand extends Command {
 
     public ListCommand() {

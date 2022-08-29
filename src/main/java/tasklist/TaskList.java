@@ -18,14 +18,28 @@ public class TaskList {
         this.taskList = taskList;
     }
 
+    /**
+     * Returns taskList so that it can be modified.
+     * @return Reference to the ArrayList in TaskList.
+     */
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
 
+    /**
+     * Returns size of taskList.
+     * @return Size of taskList.
+     */
     public int size() {
         return taskList.size();
     }
 
+    /**
+     * Retrieve a task with the specified index from taskList.
+     * @param index Index of the wanted task.
+     * @return Task that was wanted.
+     * @throws FredException
+     */
     public Task getTask(int index) throws FredException {
         if (index > taskList.size()) {
             throw new FredException("Your list has only " + taskList.size() + " items!");
@@ -36,6 +50,11 @@ public class TaskList {
         return taskList.get(index - 1);
     }
 
+    /**
+     * Lists out all the tasks in taskList.
+     * @return String containing a list of the tasks in taskList.
+     * @throws FredException
+     */
     public String list() throws FredException {
         if (taskList.size() == 0) {
             throw new FredException("There are no items in your list!");
@@ -48,6 +67,11 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Mark given task as done.
+     * @param index Index of task to be marked.
+     * @throws FredException
+     */
     public void mark(int index) throws FredException {
         if (index > taskList.size()) {
             throw new FredException("Your list has only " + taskList.size() + " items!");
@@ -58,6 +82,11 @@ public class TaskList {
         taskList.get(index - 1).setStatus(true);
     }
 
+    /**
+     * Unmark given task.
+     * @param index Index of task to be unmarked.
+     * @throws FredException
+     */
     public void unmark(int index) throws FredException {
         if (index > taskList.size()) {
             throw new FredException("Your list has only " + taskList.size() + " items!");
@@ -68,10 +97,19 @@ public class TaskList {
         taskList.get(index - 1).setStatus(false);
     }
 
+    /**
+     * Add given task to taskList.
+     * @param task Task to be added to taskList.
+     */
     public void add(Task task) {
         taskList.add(task);
     }
 
+    /**
+     * Delete given task from taskList.
+     * @param index Index of task to be deleted.
+     * @throws FredException
+     */
     public void delete(int index) throws FredException {
         if (index > taskList.size()) {
             throw new FredException("Your list has only " + taskList.size() + " items!");

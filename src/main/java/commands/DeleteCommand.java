@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Delete command for deleting item from taskList.
+ */
 public class DeleteCommand extends Command {
 
     protected int index;

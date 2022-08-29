@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Save command for saving tasks from taskList to date file on hard drive.
+ */
 public class SaveCommand extends Command {
 
     public SaveCommand() {

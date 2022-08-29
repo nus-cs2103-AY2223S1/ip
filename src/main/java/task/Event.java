@@ -1,10 +1,12 @@
 package task;
 
-import task.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * An Event is a type of task that has a date that the event is
+ * occurring on and a description of the event.
+ */
 public class Event extends Task {
     protected LocalDate at;
 

@@ -10,6 +10,10 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Fred is a chat bot that helps users to maintain a task list for future reference.
+ * Tasks in the task list can be marked as done or not done.
+ */
 public class Fred {
 
     private Storage storage;
