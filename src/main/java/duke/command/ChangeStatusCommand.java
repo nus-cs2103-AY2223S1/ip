@@ -9,9 +9,13 @@ public class ChangeStatusCommand extends Command {
     int taskIndex;
     boolean isDone;
 
-    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, int taskIndex, boolean isDone) {
+    public ChangeStatusCommand(Storage storage, Ui ui, TaskList taskList, String input, boolean isDone)
+            throws DukeException {
         super(storage, ui, taskList);
-        this.taskIndex = taskIndex;
+        if (input.split(" ").length == 1) {
+            throw new DukeException("Please enter a valid task number!");
+        }
+        this.taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
         this.isDone = isDone;
     }
 

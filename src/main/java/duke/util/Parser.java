@@ -32,11 +32,9 @@ public class Parser {
         int taskIndex;
         switch (CommandName.valueOf(tokens[0])) {
         case mark:
-            taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            return new ChangeStatusCommand(storage, ui, taskList, taskIndex, true);
+            return new ChangeStatusCommand(storage, ui, taskList, input, true);
         case unmark:
-            taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            return new ChangeStatusCommand(storage, ui, taskList, taskIndex, false);
+            return new ChangeStatusCommand(storage, ui, taskList, input, false);
         case list:
             return new ListCommand(storage, ui, taskList);
         case delete:
