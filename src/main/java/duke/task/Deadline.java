@@ -32,6 +32,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the description of a deadline with its date for writing purposes.
+     *
      * @return The string containing the description.
      */
     @Override

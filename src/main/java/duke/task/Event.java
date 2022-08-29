@@ -30,6 +30,7 @@ public class Event extends Task {
 
     /**
      * Returns the description of an event with its date and duration for writing purposes.
+     *
      * @return The string containing the description.
      */
     @Override

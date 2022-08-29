@@ -15,8 +15,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes a task from the taskList, saves to file.
-     *     and prints out the corresponding message to the user.
+     * Deletes a task from the taskList, saves to file
+     * and returns the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

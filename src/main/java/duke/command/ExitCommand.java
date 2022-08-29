@@ -9,8 +9,9 @@ import duke.task.TaskList;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     /**
-     * Ends the session with the user, returning
-     *     the corresponding message to the GUI.
+     * Ends the session with the user by returning
+     * the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

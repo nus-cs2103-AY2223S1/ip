@@ -7,7 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Command used to query tasks that matches the keyword in the taskList.
+ * Command used to query tasks that matches the keywords in the taskList.
  */
 public class FindCommand extends Command {
 
@@ -18,8 +18,9 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds the matching tasks from the taskList.
-     *     and returns the corresponding message to the GUI.
+     * Finds the matching tasks from the taskList
+     * and returns the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

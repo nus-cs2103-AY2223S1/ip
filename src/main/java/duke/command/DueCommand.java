@@ -19,8 +19,9 @@ public class DueCommand extends Command {
     }
 
     /**
-     * Finds the due tasks from the taskList.
-     *     and prints out the corresponding message to the user.
+     * Finds the due tasks from the taskList
+     * and returns the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

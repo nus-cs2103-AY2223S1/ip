@@ -21,6 +21,7 @@ public class FileStorage {
 
     /**
      * Creates a fileStorage object with the given OS path.
+     *
      * @param home The string for the OS of the user.
      */
     public FileStorage(String home) {
@@ -39,6 +40,7 @@ public class FileStorage {
 
     /**
      * Creates a directory using the directoryPath.
+     *
      * @throws DukeFileException The exception that occurs when the directory can't be created.
      */
     public void createDirectory() {
@@ -51,6 +53,7 @@ public class FileStorage {
 
     /**
      * Creates a file using the filePath.
+     *
      * @throws DukeFileException The exception that occurs when the file can't be created.
      */
     public void createFile() {
@@ -63,6 +66,7 @@ public class FileStorage {
 
     /**
      * Retrieves the data of the file, converting and returning an arraylist of the saved tasks.
+     *
      * @return An arraylist consisting of saved tasks from a past session.
      */
     public ArrayList<Task> retrieveFileContents() {
@@ -78,6 +82,7 @@ public class FileStorage {
 
     /**
      * Converts the given taskList into data that is to be written into the file.
+     *
      * @param taskList The given taskList with tasks to be written and saved.
      */
     public void writeToFile(ArrayList<Task> taskList) {

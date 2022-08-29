@@ -16,8 +16,9 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Adds a todo task to the taskList, saves to file.
-     *     and returns the corresponding message to the GUI.
+     * Adds a todo task to the taskList, saves to file
+     * and returns the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

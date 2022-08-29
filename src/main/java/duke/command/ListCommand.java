@@ -11,8 +11,9 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     /**
-     * Lists all tasks from the taskList.
-     *     and returns the corresponding message to the GUI.
+     * Lists all tasks from the taskList
+     * and returns the corresponding message to the GUI.
+     *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      */

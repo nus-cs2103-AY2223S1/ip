@@ -9,6 +9,7 @@ public class ToDo extends Task {
 
     /**
      * Creates a todo object upon receiving a todo command by the user.
+     *
      * @param description The description of the todo.
      * @param type The type of task created.
      */

@@ -34,6 +34,7 @@ public abstract class Task {
 
     /**
      * Returns a 1 for completed tasks and 0 for uncompleted tasks for writing purposes.
+     *
      * @return The integer signifying the task's status.
      */
     public Integer getDoneStatus() {
@@ -46,6 +47,7 @@ public abstract class Task {
 
     /**
      * Returns the description of the task for writing purposes.
+     *
      * @return The string containing the description.
      */
     public String getDescription() {
@@ -54,6 +56,7 @@ public abstract class Task {
 
     /**
      * Returns true when the provided date matches the task's date.
+     *
      * @param date The given LocalDate.
      * @return The boolean value of whether the date matches.
      */
@@ -61,6 +64,7 @@ public abstract class Task {
 
     /**
      * Returns true when the description contains the queried keyword.
+     *
      * @param query The keyword queried.
      * @return The boolean value of whether the description contains the keyword.
      */

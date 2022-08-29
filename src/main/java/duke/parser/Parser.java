@@ -34,6 +34,7 @@ public class Parser {
 
     /**
      * Parses the user input and returns a command if the input is valid.
+     *
      * @param input The given user input.
      * @return The specified command of the user.
      * @throws MissingDescriptionException The exception that occurs.
@@ -180,6 +181,7 @@ public class Parser {
 
     /**
      * Parses the data from the file into an arraylist containing the saved tasks.
+     *
      * @param contents The list of strings that is read from the file.
      * @return An arraylist containing the saved tasks.
      */
@@ -213,6 +215,7 @@ public class Parser {
 
     /**
      * Converts the given taskList into a list of strings to be written into a file.
+     *
      * @param taskList The given taskList containing tasks to be saved.
      * @return An arraylist of strings to be written.
      */

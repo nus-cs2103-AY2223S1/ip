@@ -26,6 +26,7 @@ public class TaskList {
 
     /**
      * Returns the task located at the given index.
+     *
      * @param index The given index for the ArrayList.
      * @return The task located at the index of the ArrayList.
      * @throws InvalidIndexException The exception that occurs when the index given is invalid.
@@ -43,6 +44,7 @@ public class TaskList {
 
     /**
      * Deletes the task located at the given index.
+     *
      * @param index The given index for the ArrayList.
      * @throws InvalidIndexException The exception that occurs when the index given is invalid.
      */
@@ -56,6 +58,7 @@ public class TaskList {
 
     /**
      * Marks the task located at the given index as completed.
+     *
      * @param index The given index for the ArrayList.
      * @throws InvalidIndexException The exception that occurs when the index given is invalid.
      */
@@ -70,6 +73,7 @@ public class TaskList {
 
     /**
      * Returns the list of tasks due/occurring at a given date.
+     *
      * @param time The given date.
      * @return An arraylist containing the tasks that matches the criteria.
      */
@@ -84,6 +88,7 @@ public class TaskList {
     }
     /**
      * Marks the task located at the given index as uncompleted.
+     *
      * @param index The given index for the ArrayList.
      * @throws InvalidIndexException The exception that occurs when the index given is invalid.
      */
@@ -98,6 +103,7 @@ public class TaskList {
 
     /**
      * Returns the list of tasks that matches the queried keyword.
+     *
      * @param queries The given query keyword.
      * @return An arraylist containing the tasks that matches the query.
      */

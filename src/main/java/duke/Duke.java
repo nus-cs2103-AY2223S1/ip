@@ -6,7 +6,7 @@ import duke.parser.Parser;
 import duke.task.TaskList;
 
 /**
- * Represents the chatbot Duke.
+ * Represents the chatBot Duke.
  */
 public class Duke {
     private TaskList listOfTasks;
@@ -42,6 +42,7 @@ public class Duke {
 
     /**
      * Returns Duke's response for the user's input to the GUI.
+     *
      * @param input The given user input.
      * @return The string containing Duke's response.
      */
