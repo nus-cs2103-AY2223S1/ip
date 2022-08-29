@@ -1,6 +1,8 @@
 package duke.commands;
 
 import duke.*;
+import duke.tasks.Deadline;
+import duke.tasks.Task;
 
 import java.io.IOException;
 import java.time.LocalDate;

@@ -1,6 +1,8 @@
 package duke.commands;
 
 import duke.*;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 import java.io.IOException;
 
