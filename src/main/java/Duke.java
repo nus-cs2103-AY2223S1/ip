@@ -186,6 +186,19 @@ public class Duke {
                 Task this_task = new Task.TodoTask(task_name);
                 LIST_OF_THINGS.add(this_task);
                 System.out.printf("I've added this task:%n%s%n", this_task);
+            } else if (message.startsWith("delete")) {
+                try {
+                    int task_index = Integer.parseInt(message.substring(7)) - 1;
+                    Task removed = LIST_OF_THINGS.remove(task_index);
+                    System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d tasks in the list%n",
+                            removed, LIST_OF_THINGS.size());
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Please indicate which task you would like to delete");
+                } catch (NumberFormatException e) {
+                    System.out.println("You need to enter a number!");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.printf("You only have %d tasks!%n", LIST_OF_THINGS.size());
+                }
             } else {
                 System.out.println("Sorry, I don't know what that means :(");
             }
