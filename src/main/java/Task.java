@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +20,10 @@ public class Task {
 
     public void unmarkAsDone() {
         isDone = false;
+    }
+
+    public void writeToFile(FileWriter writer) throws IOException {
+        writer.write(String.format("T;%s;%s\n", getStatusIcon(), description));
     }
 
     @Override

@@ -1,3 +1,7 @@
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -5,7 +9,7 @@ import java.util.Scanner;
 
 public class Drake {
 
-    public static void main(String[] args) throws DrakeException {
+    public static void main(String[] args) throws DrakeException, IOException {
 
 
         System.out.println("------------------------------------------------------");
@@ -27,6 +31,42 @@ public class Drake {
         String command = sc.nextLine();
 
         ArrayList<Task> list = new ArrayList<>();
+
+        File taskFile = new File("data/tasks.txt");
+        if (taskFile.createNewFile()) {
+            System.out.println("Task file created: " + taskFile.getName());
+        } else {
+            System.out.println("Task file already exists.");
+            Scanner fileReader = new Scanner(taskFile);
+            while (fileReader.hasNext()) {
+                String[] taskParts = fileReader.nextLine().split(";");
+                switch (taskParts[0]) {
+                    case "D":
+                        Deadline deadline = new Deadline(taskParts[2], taskParts[3]);
+                        if (taskParts[1].equals("X")) {
+                            deadline.markAsDone();
+                        }
+                        list.add(deadline);
+                        break;
+                    case "T":
+                        Task task = new Task(taskParts[2]);
+                        if (taskParts[1].equals("X")) {
+                            task.markAsDone();
+                        }
+                        list.add(task);
+                        break;
+                    case "E":
+                        Event event = new Event(taskParts[2], taskParts[3]);
+                        if (taskParts[1].equals("X")) {
+                            event.markAsDone();
+                        }
+                        list.add(event);
+                        break;
+                    default:
+                        throw new UnknownCommandException();
+                }
+            }
+        }
 
         while (!Objects.equals(command, "bye")) {
             int firstSpace = command.indexOf(' ');
@@ -130,6 +170,13 @@ public class Drake {
             System.out.println("------------------------------------------------------");
             command = sc.nextLine();
         }
+        taskFile.delete();
+        File updatedTaskFile = new File("data/tasks.txt");
+        FileWriter updatedTaskFileWriter = new FileWriter(updatedTaskFile);
+        for (Task task : list) {
+            task.writeToFile(updatedTaskFileWriter);
+        }
+        updatedTaskFileWriter.close();
         System.out.println("I'm down for you always. See you <3");
     }
 

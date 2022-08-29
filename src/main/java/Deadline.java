@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Deadline extends Task {
 
     protected String by;
@@ -5,6 +8,10 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+    }
+
+    public void writeToFile(FileWriter writer) throws IOException {
+        writer.write(String.format("D;%s;%s;%s\n", getStatusIcon(), description, by));
     }
 
     @Override
