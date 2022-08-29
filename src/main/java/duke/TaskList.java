@@ -80,6 +80,19 @@ public class TaskList {
     }
 
     /**
+     * Method returns true if the specified string is present in the description of the task at the specified index
+     * of the task list.
+     *
+     * @param index Index of the task to be searched.
+     * @param search String to be checked if present in the task.
+     * @return True if string is present, false otherwise.
+     */
+    public boolean isDescriptionAt(int index, String search) {
+        String description = this.get(index).getDescription();
+        return description.contains(search);
+    }
+
+    /**
      * Method gets the current size of the task list.
      *
      * @return Size of the task list.

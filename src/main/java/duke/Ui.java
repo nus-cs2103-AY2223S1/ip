@@ -78,6 +78,22 @@ public class Ui {
     }
 
     /**
+     * Prints notification whether tasks have been found.
+     */
+    public void notifyFound() {
+        System.out.println("I've found these tasks:");
+    }
+
+    /**
+     * Prints out string representation of task.
+     *
+     * @param task Task whose string representation is to be printed out.
+     */
+    public void printTask(Task task) {
+        System.out.println(task);
+    }
+
+    /**
      * Method prints out the information currently stored in the task list.
      * @param tasks duke.TaskList object whose information will be printed.
      */

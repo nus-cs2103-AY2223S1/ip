@@ -3,5 +3,4 @@ T|false|your mother|0|
 D|true|your mate|20/02/2000 1900|
 T|false|your mother|0|
 T|false|your mother|0|
-T|false|your mother|0|
 T|false|your sister|0|
