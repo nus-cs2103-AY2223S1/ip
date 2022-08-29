@@ -67,6 +67,13 @@ public class Ui {
         System.out.println(this.divider + this.indent + "Wait, which task are you referring to?\n" + this.divider);
     }
 
+    public void ShowFoundTasks(TaskList tasks) {
+        String command = "Here are the matching tasks in your list:\n";
+        System.out.println(this.divider + this.indent + command);
+        System.out.println(tasks);
+        System.out.println(this.divider);
+    }
+
     public void showUnknownCommand() {
         System.out.println(this.divider + this.indent + "Oops, sorry! I don't know what that means :(\n" + this.divider);
     }

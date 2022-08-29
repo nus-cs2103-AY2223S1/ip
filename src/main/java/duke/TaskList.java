@@ -39,8 +39,6 @@ public class TaskList {
         }
     }
 
-    
-
     public ArrayList<String> extractToStringArray() {
         ArrayList<String> textArray = new ArrayList<>();
         for (Task task : this.list) {
@@ -68,6 +66,16 @@ public class TaskList {
     public Task unmarkTask(int taskIndex) {
         this.list.get(taskIndex).unmarkAsDone();
         return this.list.get(taskIndex);
+    }
+
+    public TaskList findTasks(String keyword) {
+        TaskList foundTasks = new TaskList();
+        for (Task task : this.list) {
+            if (task.description.contains(keyword)) {
+                foundTasks.addTask(task);
+            }
+        }
+        return foundTasks;
     }
 
     public int getNumberOfTasks() {

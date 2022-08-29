@@ -83,6 +83,10 @@ public class Duke {
                 tasks.addTask(newTask);
                 ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
                 storage.saveData(tasks);
+            } else if (Parser.parse(input).equals(Command.FIND)) {
+                String keyword = Parser.getKeyword(input);
+                TaskList foundTasks = tasks.findTasks(keyword);
+                ui.ShowFoundTasks(foundTasks);
             } else if (Parser.parse(input).equals(Command.UNKNOWN)) {
                 ui.showUnknownCommand();
             }
