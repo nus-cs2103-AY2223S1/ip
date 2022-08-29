@@ -7,13 +7,13 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor for task
+     * @param description description of task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-    }
-    public Task(String description, boolean done) {
-        this.description = description;
-        this.isDone = done;
     }
 
     public boolean getDone() {

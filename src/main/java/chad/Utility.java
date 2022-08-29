@@ -10,7 +10,7 @@ public class Utility {
      */
     public static void printText(String text) {
         String line = "____________________________________________________________";
-        String output = line + "\n" + text+ "\n" + line;
+        String output = line + "\n" + text + "\n" + line;
         System.out.println(output);
     }
 }

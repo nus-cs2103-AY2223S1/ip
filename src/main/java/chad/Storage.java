@@ -40,7 +40,7 @@ public class Storage {
                 String desc = tempArr[2].trim();
 
 
-                switch (taskType){
+                switch (taskType) {
                 case "D": {
                     String byDate = tempArr[3].trim();
                     Task t = new Deadline(desc, byDate);
