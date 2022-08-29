@@ -73,6 +73,10 @@ public class Duke {
                     tasks.add(newEventTask);
                     ui.printAdd(newEventTask);
                     break;
+                case FIND:
+                    TaskList newList = tasks.find(args[0]);
+                    ui.printFoundTasksList(newList);
+                    break;
                 default:
                     throw new DukeException("Unrecognized command");
                 }

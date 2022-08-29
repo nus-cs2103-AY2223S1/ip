@@ -1,6 +1,7 @@
 package duke.ui;
 
 import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Deals with interactions with the user.
@@ -29,5 +30,18 @@ public class Ui {
 
     public void printDelete(Task task) {
         System.out.println("Noted. I've removed this task:\n" + task);
+    }
+
+    public void printFoundTasksList(TaskList list) {
+        if (list.isEmpty()) {
+            System.out.println("OOPS!! No matching tasks found :( ");
+            return;
+        }
+        System.out.println("Here are the matching tasks in your list: ");
+        int i = 1;
+        for (Task task : list) {
+            System.out.println(i + ". " + task);
+            i++;
+        }
     }
 }
