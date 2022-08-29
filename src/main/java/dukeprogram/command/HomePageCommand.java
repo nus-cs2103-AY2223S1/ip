@@ -3,8 +3,6 @@ package dukeprogram.command;
 import dukeprogram.Duke;
 import dukeprogram.InternalAction;
 import dukeprogram.User;
-import dukeprogram.command.AccessTasksCommand;
-import dukeprogram.command.Command;
 import dukeprogram.facilities.TaskList;
 import dukeprogram.storage.SaveManager;
 import exceptions.KeyNotFoundException;
@@ -14,17 +12,17 @@ import exceptions.KeyNotFoundException;
  */
 public class HomePageCommand extends Command {
 
+    private User user;
     private Command commandToExitTo;
 
     @Override
     protected InternalAction onEnter() {
         if (SaveManager.deserialize("saveFile")) {
             try {
-                User user = SaveManager.load("user");
+                user = SaveManager.load("user");
                 TaskList.initialise();
                 return new InternalAction(
-                        "Welcome back " + user.getName(),
-                        Duke::exitCurrentState
+                        "Welcome back " + user.getName()
                 );
             } catch (KeyNotFoundException e) {
                 return new InternalAction(
@@ -37,8 +35,7 @@ public class HomePageCommand extends Command {
 
             return new InternalAction(
                     String.format("This is the first time we've met, %s.", user.getName())
-                            + "\nNice to meet you! What would you like to do?",
-                    Duke::exitCurrentState
+                            + "\nNice to meet you! What would you like to do?"
             );
         }
     }
@@ -54,21 +51,19 @@ public class HomePageCommand extends Command {
         case "tasks":
             commandToExitTo = new AccessTasksCommand();
             return new InternalAction(
-                    "Accessing tasks",
                     Duke::exitCurrentState
             );
 
         case "factory reset":
             commandToExitTo = this;
             return new InternalAction(
-                    "Accessing tasks",
                     Duke::exitCurrentState
             );
 
         case "exit":
             commandToExitTo = this;
             return new InternalAction(
-                    "Accessing tasks",
+                    "Exiting",
                     Duke::exitCurrentState
             );
 
@@ -84,5 +79,9 @@ public class HomePageCommand extends Command {
     @Override
     public Command onExit() {
         return commandToExitTo;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

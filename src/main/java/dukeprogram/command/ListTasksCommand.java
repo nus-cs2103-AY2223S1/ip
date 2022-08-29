@@ -2,6 +2,7 @@ package dukeprogram.command;
 
 import dukeprogram.InternalAction;
 import dukeprogram.facilities.TaskList;
+import dukeprogram.userinterface.Ui;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,11 +12,13 @@ public class ListTasksCommand extends Command {
     protected InternalAction onEnter() {
         TaskList currentTaskList = TaskList.current();
 
+        String formattedTaskListString = IntStream.range(0, currentTaskList.getSize())
+                        .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
+                        .collect(Collectors.joining("\n"));
+
         return new InternalAction(
                 "This is your task list: \n"
-                        + IntStream.range(0, currentTaskList.getSize())
-                        .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
-                        .collect(Collectors.joining("\n"))
+                        + formattedTaskListString
         );
     }
 

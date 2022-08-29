@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import dukeprogram.command.Command;
 import dukeprogram.command.HomePageCommand;
-import dukeprogram.facilities.TaskList;
 import dukeprogram.storage.SaveManager;
 
 
@@ -26,7 +25,9 @@ public class Duke {
      */
     public static String[] start() {
         currentContext = new HomePageCommand();
-        return new String[] { currentContext.onInvoke().getDisplayText() };
+        InternalAction internalAction = currentContext.onInvoke();
+        user = ((HomePageCommand) currentContext).getUser();
+        return new String[] { internalAction.getDisplayText() };
     }
 
 

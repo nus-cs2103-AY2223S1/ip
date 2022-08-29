@@ -14,7 +14,7 @@ public class Parser {
      * @return a new command that is valid within the current context
      * @throws InvalidCommandException if no such command is possible in this context
      */
-    public static Command parse(String commandString) throws InvalidCommandException {
+    public static String parse(String... commandString) throws InvalidCommandException {
         return parse(commandString);
     }
 }

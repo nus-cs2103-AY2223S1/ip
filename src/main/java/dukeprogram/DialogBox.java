@@ -1,9 +1,7 @@
 package dukeprogram;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Random;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +18,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 
 /**
  * An example of a custom control using FXML.
@@ -30,20 +29,19 @@ import javafx.scene.shape.StrokeType;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
+    @FXML
+    private Label name;
     @FXML
     private Label dialog;
+
+    @FXML
+    private VBox dialogLayout;
+
     @FXML
     private ImageView displayPicture;
 
-    private Color[] colors = new Color[]
-    { Color.BLANCHEDALMOND,
-      Color.TURQUOISE,
-      Color.CHARTREUSE,
-      Color.AQUAMARINE,
-      Color.BURLYWOOD
-    };
-
-    private DialogBox(String text, Image img) {
+    private DialogBox(String dialogText, String nameText, Image img, Color color) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -53,7 +51,9 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
+        name.setText(nameText);
+        dialog.setText(dialogText);
+
         displayPicture.setImage(img);
         double width = displayPicture.getFitWidth() / 2;
         double height = displayPicture.getFitHeight() / 2;
@@ -72,7 +72,7 @@ public class DialogBox extends HBox {
         dialog.setPadding(new Insets(5, 5, 5, 5));
 
         this.setBackground(new Background(new BackgroundFill(
-                colors[new Random().nextInt(colors.length)],
+                color,
                 new CornerRadii(10),
                 new Insets(5, 5, 5, 5)))
         );
@@ -86,14 +86,15 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        dialogLayout.setAlignment(Pos.TOP_LEFT);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, Duke.getUser().getName(), img, Color.TURQUOISE);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, "Duke", img, Color.BURLYWOOD);
         db.flip();
         return db;
     }

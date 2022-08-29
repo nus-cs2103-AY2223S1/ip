@@ -32,7 +32,6 @@ public class SaveManager {
      * @param obj the saved object
      */
     public static void save(String header, Serializable obj) {
-        System.out.println("SAVED " + header);
         dataInMemory.put(header, obj);
     }
 
