@@ -1,3 +1,11 @@
+package main.stashy.commands;
+
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.Event;
+import main.stashy.data.task.TaskList;
+import main.stashy.storage.Storage;
+import main.stashy.ui.Ui;
+
 public class AddEventCommand extends Command {
     public static final String KEYWORD = "event";
     private Event event;

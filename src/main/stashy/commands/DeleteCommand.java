@@ -1,3 +1,10 @@
+package main.stashy.commands;
+
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.TaskList;
+import main.stashy.storage.Storage;
+import main.stashy.ui.Ui;
+
 public class DeleteCommand extends Command {
     public static final String KEYWORD = "delete";
     private int taskId;

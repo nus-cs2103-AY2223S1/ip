@@ -1,3 +1,9 @@
+package main.stashy.storage;
+
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.Task;
+import main.stashy.data.task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;

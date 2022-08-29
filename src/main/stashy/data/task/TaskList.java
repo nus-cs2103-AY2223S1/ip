@@ -1,3 +1,8 @@
+package main.stashy.data.task;
+
+import main.stashy.data.exception.StashyException;
+import main.stashy.parser.Parser;
+
 import java.util.ArrayList;
 
 public class TaskList {

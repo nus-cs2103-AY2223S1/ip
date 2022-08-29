@@ -1,4 +1,6 @@
-abstract class Task {
+package main.stashy.data.task;
+
+public abstract class Task {
     private String description;
     private boolean isDone;
 

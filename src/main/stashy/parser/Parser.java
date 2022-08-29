@@ -1,3 +1,20 @@
+package main.stashy.parser;
+
+import main.stashy.commands.AddDeadlineCommand;
+import main.stashy.commands.AddEventCommand;
+import main.stashy.commands.AddTodoCommand;
+import main.stashy.commands.Command;
+import main.stashy.commands.DeleteCommand;
+import main.stashy.commands.ExitCommand;
+import main.stashy.commands.ListCommand;
+import main.stashy.commands.MarkCommand;
+import main.stashy.commands.UnmarkCommand;
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.Deadline;
+import main.stashy.data.task.Event;
+import main.stashy.data.task.Task;
+import main.stashy.data.task.ToDo;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +42,14 @@ public class Parser {
             "dd MMM yyyy HHmm", "dd MMM yyyy HH:mm",
             "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"};
 
-    static Command parseCommand(String fullCommand) throws StashyException {
+    /**
+     * Parses the user command into a Command object.
+     *
+     * @param fullCommand The full command provided by the user
+     * @return A Command object to be executed
+     * @throws StashyException If there is any issue encountered
+     */
+    public static Command parseCommand(String fullCommand) throws StashyException {
         String[] splitCommand = fullCommand.strip().split(" ");
         String keyword = splitCommand[0];
         String[] remainingCommand = IntStream.range(1, splitCommand.length)
@@ -59,7 +83,7 @@ public class Parser {
      * @param rawLine The line from raw input data
      * @return The Task object as a parse result
      */
-    static Task parseTask(String rawLine) throws StashyException {
+    public static Task parseTask(String rawLine) throws StashyException {
         final Matcher matcher = TASK_DATA_FORMAT.matcher(rawLine);
         if (!matcher.matches()) {
             throw new StashyException("Input data does not match task parser!");

@@ -1,3 +1,7 @@
+package main.stashy.ui;
+
+import main.stashy.data.task.TaskList;
+
 import java.util.Scanner;
 
 /**

@@ -1,3 +1,5 @@
+package main.stashy.data.task;
+
 /**
  * One of the task types, specifically those with
  * no specific timing or deadline.

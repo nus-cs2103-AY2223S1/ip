@@ -1,3 +1,10 @@
+package main.stashy.commands;
+
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.TaskList;
+import main.stashy.storage.Storage;
+import main.stashy.ui.Ui;
+
 public class MarkCommand extends Command {
     public static final String KEYWORD = "mark";
     private int taskId;

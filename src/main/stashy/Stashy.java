@@ -1,3 +1,12 @@
+package main.stashy;
+
+import main.stashy.commands.Command;
+import main.stashy.data.exception.StashyException;
+import main.stashy.data.task.TaskList;
+import main.stashy.parser.Parser;
+import main.stashy.storage.Storage;
+import main.stashy.ui.Ui;
+
 /**
  * Represents a chatbot that can do many things, just like
  * what a regular chatbot should be able to do.
