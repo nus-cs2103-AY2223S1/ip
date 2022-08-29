@@ -6,6 +6,7 @@ import duke.command.ChangeStatusCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 
 /**
@@ -31,7 +32,7 @@ public class Parser {
     }
 
     public static enum CommandName {
-        bye, list, mark, unmark, delete, todo, deadline, event
+        bye, list, mark, unmark, delete, todo, deadline, event, find
     }
 
     /**
@@ -49,11 +50,9 @@ public class Parser {
         int taskIndex;
         switch (CommandName.valueOf(tokens[0])) {
         case mark:
-            taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            return new ChangeStatusCommand(storage, ui, taskList, taskIndex, true);
+            return new ChangeStatusCommand(storage, ui, taskList, input, true);
         case unmark:
-            taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            return new ChangeStatusCommand(storage, ui, taskList, taskIndex, false);
+            return new ChangeStatusCommand(storage, ui, taskList, input, false);
         case list:
             return new ListCommand(storage, ui, taskList);
         case delete:
@@ -61,6 +60,8 @@ public class Parser {
             return new DeleteCommand(storage, ui, taskList, taskIndex);
         case bye:
             return new ExitCommand(storage, ui, taskList);
+        case find:
+            return new FindCommand(storage, ui, taskList, input);
         default:
             return new AddCommand(storage, ui, taskList, input);
         }

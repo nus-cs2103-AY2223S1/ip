@@ -15,7 +15,8 @@ public class ParserTest {
     @Test
     public void parseMarkCommand() {
         taskList.addTask(new Todo("task1"));
-        assertAll(() -> assertEquals(new ChangeStatusCommand(null, null, null, 0, true), parser.parse("mark 1")));
+        assertAll(
+                () -> assertEquals(new ChangeStatusCommand(null, null, null, "mark 1", true), parser.parse("mark 1")));
     }
 
     @Test
@@ -26,6 +27,7 @@ public class ParserTest {
     @Test
     public void parseUnmarkCommand() {
         taskList.addTask(new Todo("task2"));
-        assertAll(() -> assertEquals(new ChangeStatusCommand(null, null, null, 1, false), parser.parse("unmark 2")));
+        assertAll(() -> assertEquals(new ChangeStatusCommand(null, null, null, "unmark 2", false),
+                parser.parse("unmark 2")));
     }
 }

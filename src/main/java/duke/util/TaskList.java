@@ -96,4 +96,24 @@ public class TaskList {
         }
         return fileString;
     }
+
+    /**
+     * Finds the tasks matching the search text and displays them.
+     * 
+     * @param searchText Search text to be searched for
+     */
+    public void findTask(String searchText) {
+        int i = 0;
+        String res = " Here are the matching tasks in your list: \n";
+        for (Task task : tasks) {
+            if (task.containsSearchText(searchText)) {
+                res += "\t" + (++i) + ". " + task.toString() + "\n";
+            }
+        }
+        if (i == 0) {
+            System.out.println("Sorry, no matching tasks were found!");
+        } else {
+            System.out.println(res);
+        }
+    }
 }
