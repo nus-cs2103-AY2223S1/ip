@@ -45,8 +45,12 @@ public class Ekud {
             try {
                 String command = sc.nextLine();
                 ParseResult result = this.parser.parseCommand(command, this.taskList);
-                if (result.terminate) active = false;
-                if (result.saveStorage) storage.writeTasksToFile(this.taskList.getTaskList());
+                if (result.terminate) {
+                    active = false;
+                } 
+                if (result.saveStorage) {
+                    storage.writeTasksToFile(this.taskList.getTaskList());
+                }
                 this.ui.sendMessage(result.message);
             } catch (EkudException exception) {
                 this.ui.showErrorMessage(exception);
