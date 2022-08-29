@@ -1,6 +1,9 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline task that inherits from task
+ */
 public class Deadline extends Task{
     protected LocalDateTime dateTime;
 

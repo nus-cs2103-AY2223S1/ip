@@ -8,6 +8,12 @@ import java.util.Scanner;
  */
 public class Chad {
 
+    /**
+     * Main Function of Chad
+     * @param args Reads input
+     * @throws IOException Thrown when helper file cannot be open
+     * @throws ChadException Thrown when invalid error occurs
+     */
     public static void main(String[] args) throws IOException, ChadException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> taskList = Storage.initializeArrayList();

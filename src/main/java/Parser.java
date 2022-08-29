@@ -6,6 +6,13 @@ import java.util.ArrayList;
  */
 public class Parser {
 
+    /**
+     * Reads user input in command line
+     * @param taskList arraylist of tasks
+     * @param userInput user input
+     * @throws ChadException Thrown when invalid error occurs
+     * @throws IOException Thrown when helper file cannot be open
+     */
     public static void readUserInput(ArrayList<Task> taskList, String userInput) throws ChadException, IOException {
         String[] tempArr = userInput.split(" ");
         String keyword = tempArr[0];

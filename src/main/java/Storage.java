@@ -2,12 +2,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- *
+ * Deals with opening, writing and creating new files to manage task list
  */
 public class Storage {
     /**
      * Returns an empty array list if no saved array list else read line by line
-     * @return ArrayList of Task
+     * @return arraylist of tasks
      * @throws IOException If there is trouble opening the file
      */
     public static ArrayList<Task> initializeArrayList() throws IOException {
@@ -72,8 +72,8 @@ public class Storage {
 
     /**
      * Writes task to text file
-     * @param str
-     * @throws IOException
+     * @param str formatted string
+     * @throws IOException Thrown when file cannot be opened
      */
     public static void writeToFile(String str) throws IOException {
         try {
@@ -86,6 +86,12 @@ public class Storage {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Delete task in text file
+     * @param index index of text to be deleted
+     * @throws IOException Thrown when file cannot be opened
+     */
     public static void deleteTaskInFile(int index) throws IOException {
         try {
             File tempFile = new File("tempFile.txt");
@@ -114,6 +120,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Toggles done attribute in task list based on index
+     * @param index index of task
+     * @throws IOException Thrown when file cannot be opened
+     */
     public static void toggleMarkTaskInFile(int index) throws IOException {
         try {
             File tempFile = new File("tempFile.txt");
