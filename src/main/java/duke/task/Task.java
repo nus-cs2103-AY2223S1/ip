@@ -8,6 +8,9 @@ import duke.util.Parser.CommandName;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Represents a task.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -71,22 +74,40 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns a string representation of whether task is done or not.
+     * 
+     * @return "X" if task is done, " " if not done
+     */
     public String getStatusIcon() {
         return this.isDone ? "X" : " ";
     }
 
+    /**
+     * Marks task as done and prints info to user.
+     */
     public void markAsDone() {
         this.isDone = true;
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("\t" + this);
     }
 
+    /**
+     * Marks task as not done and prints info to user.
+     */
     public void markAsNotDone() {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("\t" + this);
     }
 
+    /**
+     * Parses a date string and returns a Date object.
+     * 
+     * @param input Date string
+     * @return Date object
+     * @throws DukeException if date string has invalid format
+     */
     public static Date parseDate(String input) throws DukeException {
         SimpleDateFormat formatter;
         if (input.indexOf("/") != -1) {
