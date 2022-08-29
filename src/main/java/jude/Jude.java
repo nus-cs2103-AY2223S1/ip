@@ -78,9 +78,26 @@ public class Jude {
         }
     }
 
+    /**
+     * Returns whether the command terminates the chatbot.
+     * @param command The user input command.
+     * @return true if the command terminates the chatbot, i.e. bye command, false otherwise.
+     */
+    public boolean isTerminationCommand(String command) {
+        return parser.isTerminationCommand(command);
+    }
+
+    /**
+     * Returns the reply from the chatbot.
+     * @param input The user command input.
+     * @return The reply from the chatbot.
+     * @throws IOException When system I/O fails.
+     */
     public String getResponse(String input) throws IOException {
         return parser.parse(input);
     }
+
+
 
     /*
      * Runs the task tracker chatbot.
