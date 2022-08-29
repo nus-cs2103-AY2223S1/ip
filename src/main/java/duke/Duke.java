@@ -1,13 +1,15 @@
 package duke;
 
+import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.ui.Ui;
+import javafx.application.Platform;
 
 /**
  * Represents Duke that converses with a user.
  */
-class Duke {
-  private static final String FILEPATH = "./data/duke.txt";
+public class Duke {
   private TaskList taskList;
   private Storage storage;
   private Ui ui;
@@ -26,37 +28,15 @@ class Duke {
     } catch (DukeException e) {
       e.printStackTrace();
     }
-    parser = new Parser(ui);
+    parser = new Parser(ui, storage);
   }
 
-  private void run() {
-    ui.greet();
-
-    String input = "";
-    boolean continueToRun = true;
-
-    while (continueToRun) {
-      input = ui.readCommand();
-      if (input == null || input.equals("bye")) {
-        continueToRun = false;
-      } else {
-        Command command = parser.parse(input);
-        command.execute(taskList, ui);
-      }
+  public String getResponse(String input) {
+    Command command = parser.parse(input);
+    String result = command.execute(taskList);
+    if (command instanceof ByeCommand) {
+      Platform.exit();
     }
-
-    try {
-      storage.saveFile(taskList);
-    } catch (DukeException e) {
-      e.printStackTrace();
-    }
-    ui.exitMessage();
-  }
-
-  /**
-   * Main function of the application.
-   */
-  public static void main(String[] args) {
-    new Duke(FILEPATH).run();
+    return result;
   }
 }

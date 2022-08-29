@@ -3,6 +3,7 @@ package duke;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
@@ -13,6 +14,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
+import duke.ui.Ui;
 
 /**
  * Represents an abstraction that handles inputs from the user.
@@ -20,14 +22,16 @@ import duke.command.UnmarkCommand;
 public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<argument>.*)");
     private Ui ui;
+    private Storage storage;
 
     /**
      * Initialises the parser.
      *
      * @param ui Ui
      */
-    public Parser(Ui ui) {
+    public Parser(Ui ui, Storage storage) {
         this.ui = ui;
+        this.storage = storage;
     }
 
     private Command prepareTodo(String argument) {
@@ -131,6 +135,9 @@ public class Parser {
         }
         case FindCommand.COMMAND_WORD: {
             return prepareFind(argument);
+        }
+        case ByeCommand.COMMAND_WORD: {
+            return new ByeCommand(storage);
         }
         default:
             return new HelpCommand();

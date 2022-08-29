@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -16,13 +15,13 @@ public class MarkCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         try {
             Task task = taskList.get(this.index);
             task.markAsDone();
-            ui.printMessage(String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString()));
+            return String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString());
         } catch (IndexOutOfBoundsException e) {
-            ui.printMessage("Invalid task index");
+            return "Invalid task index";
         }
     }
 }

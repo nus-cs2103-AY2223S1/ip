@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.Event;
 import duke.task.TaskList;
 
@@ -19,9 +18,8 @@ public class EventCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         Event event = new Event(description, dateTime);
-        taskList.add(event);
-        ui.printMessage(ui.wrapMessage("Got it. I've added this task:", event.toString(), taskList));
+        return taskList.add(event);
     }
 }

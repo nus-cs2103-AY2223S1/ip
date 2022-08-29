@@ -1,8 +1,5 @@
 package duke.command;
 
-import java.util.stream.IntStream;
-
-import duke.Ui;
 import duke.task.TaskList;
 
 public class FindCommand implements Command {
@@ -17,10 +14,8 @@ public class FindCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         TaskList filteredList = taskList.findTask(description);
-        String[] strArray = IntStream.range(0, filteredList.size()).mapToObj(i -> taskList.get(i).toString())
-                .toArray(String[]::new);
-        ui.printMessage(strArray, "Here are the matching tasks in your list:");
+        return filteredList.printListWithMessage("Here are the matching tasks in your list:");
     }
 }

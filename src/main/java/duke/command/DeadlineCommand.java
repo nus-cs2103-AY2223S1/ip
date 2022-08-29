@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
@@ -19,9 +18,8 @@ public class DeadlineCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         Deadline deadline = new Deadline(description, dateTime);
-        taskList.add(deadline);
-        ui.printMessage(ui.wrapMessage("Got it. I've added this task:", deadline.toString(), taskList));
+        return taskList.add(deadline);
     }
 }

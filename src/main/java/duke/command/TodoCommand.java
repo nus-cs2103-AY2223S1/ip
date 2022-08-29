@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.TaskList;
 import duke.task.Todo;
 
@@ -16,9 +15,8 @@ public class TodoCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         Todo todo = new Todo(description);
-        taskList.add(todo);
-        ui.printMessage(ui.wrapMessage("Got it. I've added this task:", todo.toString(), taskList));
+        return taskList.add(todo);
     }
 }

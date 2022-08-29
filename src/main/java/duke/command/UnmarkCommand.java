@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -16,13 +15,13 @@ public class UnmarkCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList) {
         try {
             Task task = taskList.get(this.index);
             task.markNotDone();
-            ui.printMessage(String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString()));
+            return String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString());
         } catch (IndexOutOfBoundsException e) {
-            ui.printMessage("Invalid task index");
+            return "Invalid task index";
         }
     }
 }

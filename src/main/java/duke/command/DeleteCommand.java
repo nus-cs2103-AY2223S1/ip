@@ -1,7 +1,5 @@
 package duke.command;
 
-import duke.Ui;
-import duke.task.Task;
 import duke.task.TaskList;
 
 public class DeleteCommand implements Command {
@@ -16,9 +14,7 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        Task task = taskList.get(index - 1);
-        taskList.remove(index - 1);
-        ui.printMessage(ui.wrapMessage("Noted. I've removed this task:", task.toString(), taskList));
+    public String execute(TaskList taskList) {
+        return taskList.remove(index - 1);
     }
 }

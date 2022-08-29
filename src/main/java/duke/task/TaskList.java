@@ -1,11 +1,14 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 /**
  * Represents a task list.
  */
 public class TaskList {
+    private static final String MESSAGE_AFTER_ADD = "Got it. I've added this task:";
+    private static final String MESSAGE_AFTER_DELETE = "Noted. I've removed this task:";
     private ArrayList<Task> taskList;
 
     /**
@@ -28,9 +31,12 @@ public class TaskList {
      * Method to add a task to the task list.
      *
      * @param task
+     * @return message
      */
-    public void add(Task task) {
+    public String add(Task task) {
         taskList.add(task);
+        return String.format(MESSAGE_AFTER_ADD + "\n\t\t" + task.toString() + "\n\tNow you have " + taskList.size()
+                + " tasks in the list.");
     }
 
     /**
@@ -46,9 +52,13 @@ public class TaskList {
      * Method to remove a task from the task list.
      *
      * @param index
+     * @return message
      */
-    public void remove(int index) {
+    public String remove(int index) {
+        Task task = taskList.get(index);
         taskList.remove(index);
+        return String.format(MESSAGE_AFTER_DELETE + "\n\t\t" + task.toString() + "\n\tNow you have " + taskList.size()
+                + " tasks in the list.");
     }
 
     /**
@@ -69,6 +79,11 @@ public class TaskList {
         return taskList.size();
     }
 
+    /**
+     * Filters and returns a new TaskList object based on a search term.
+     *
+     * @return the filtered TaskList
+     */
     public TaskList findTask(String description) {
         ArrayList<Task> list = new ArrayList<>();
 
@@ -79,5 +94,31 @@ public class TaskList {
         }
 
         return new TaskList(list);
+    }
+
+    /**
+     * Returns a string representation to a TaskList object with a message.
+     *
+     * @param message
+     * @return str
+     */
+    public String printListWithMessage(String message) {
+        String[] strArray = IntStream.range(0, taskList.size())
+                .mapToObj(i -> String.format("%d.%s", i + 1, taskList.get(i).toString())).toArray(String[]::new);
+        StringBuilder sb = new StringBuilder(message + "\n");
+        for (String str : strArray) {
+            sb.append(str + "\n");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns a string representation to a TaskList object.
+     *
+     * @return str
+     */
+    @Override
+    public String toString() {
+        return this.printListWithMessage("Here are the tasks in your list:");
     }
 }
