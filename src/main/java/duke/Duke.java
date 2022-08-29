@@ -1,7 +1,8 @@
-import java.io.IOException;
-import java.util.ArrayList;
+package duke;
 
-class Duke {
+import java.io.IOException;
+
+public class Duke {
     private TaskList taskList = new TaskList();
     private Parser parser = new Parser();
 

@@ -1,3 +1,5 @@
+package duke;
+
 class DukeException extends Exception{
     private DukeException(String text){
         super(text);
