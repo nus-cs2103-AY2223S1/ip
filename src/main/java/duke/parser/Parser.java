@@ -32,7 +32,7 @@ public class Parser {
     }
 
     /**
-     * Parses the user input to get the command and arguments
+     * Parses the user input to get the command and arguments.
      */
     public void parse() throws DukeException {
         List<String> listOfInputs = Arrays.asList(input.split(" "));
