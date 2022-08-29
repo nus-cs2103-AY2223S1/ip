@@ -1,13 +1,13 @@
 package chad;
 
-import chad.task.Deadline;
-import chad.task.Event;
-import chad.task.Task;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import chad.task.Deadline;
+import chad.task.Event;
+import chad.task.Task;
 
 /**
  * Contains input methods for user to interact with Chadbot
