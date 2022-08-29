@@ -15,7 +15,7 @@ public class DukeException extends Exception {
      * @param message the error message
      */
     public DukeException(String message) {
-        super("☹ OOPS!!!" + message);
+        super("OOPS!!!" + message);
         this.message = message;
     }
 
@@ -26,6 +26,6 @@ public class DukeException extends Exception {
      */
     @Override
     public String toString() {
-        return "☹ OOPS!!! " + this.message;
+        return "OOPS!!! " + this.message;
     }
 }

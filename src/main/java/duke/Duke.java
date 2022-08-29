@@ -156,12 +156,14 @@ public class Duke extends Application {
     /**
      * Displays a Dialog Box representing Duke's response.
      *
-     * @param response the response to the previously parsed command
+     * @param responses the responses to be displayed
      */
-    public void updateResponse(String response) {
-        Label dukeTxt = new Label(response);
-        dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(dukeTxt, new ImageView(duke))
-        );
+    public void updateResponse(String... responses) {
+        for (String response : responses) {
+            Label dukeTxt = new Label(response);
+            dialogContainer.getChildren().add(
+                    DialogBox.getDukeDialog(dukeTxt, new ImageView(duke))
+            );
+        }
     }
 }
