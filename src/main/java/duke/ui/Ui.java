@@ -28,8 +28,8 @@ public class Ui {
      * Shows Greetings Ui
      */
     public String showGreetings() {
-        String greetings = "_________________________________________________\nHello! I'm Duke"
-                + "\nWhat can I do for you?\n_________________________________________________";
+        String greetings = "_______________________________________\nHello! I'm Duke"
+                + "\nWhat can I do for you?\n_______________________________________";
         return greetings;
     }
 
@@ -38,8 +38,8 @@ public class Ui {
      * @return string that contains bye message
      */
     public static String showBye() {
-        return ("_________________________________________________\nBye. Hope to see you again soon!\n"
-                + "_________________________________________________\n");
+        return ("_______________________________________\nBye. Hope to see you again soon!\n"
+                + "_______________________________________\n");
     }
 
     /**
@@ -120,7 +120,7 @@ public class Ui {
     public String showTaskDeleted(TaskList taskList, Task deletedTask) {
         return ("Noted. I've removed this task:\n"
                 + deletedTask) +
-                ("\nNow you have " + (taskList.taskListSize() - 1) + " tasks in the list.");
+                ("\nNow you have " + (taskList.taskListSize()) + " tasks in the list.");
     }
 
     /**
