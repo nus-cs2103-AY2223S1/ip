@@ -1,4 +1,4 @@
-Fred: Hello! I'm Fred!
+Fred: Hello! I'm fred.Fred!
 Fred: What can I do for you?
 Fred: Got it. I've added this task:
 Fred: [T][ ] borrow book

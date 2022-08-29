@@ -1,3 +1,5 @@
+package fred;
+
 import commands.Command;
 
 import exception.FredException;

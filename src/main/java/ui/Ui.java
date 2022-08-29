@@ -19,7 +19,7 @@ public class Ui {
      * Shows welcome message upon starting Fred chat bot.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm Fred! What can I do for you?");
+        System.out.println("Hello! I'm fred.Fred! What can I do for you?");
     }
 
     /**
