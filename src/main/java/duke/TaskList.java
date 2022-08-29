@@ -45,9 +45,10 @@ public class TaskList {
      * if the task is found to be non-existent.
      *
      * @param parts sliced String input.
+     * @return String confirming the marking ot a task in the list.
      * @throws DukeException thrown if there is no such task.
      */
-    public void markTask(String[] parts) throws DukeException {
+    public String markTask(String[] parts) throws DukeException {
         if (parts.length == 1) {
             throw new DukeException("Please specify the index of the task (i.e. mark 2).");
         } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > this.inputList.size()) {
@@ -55,7 +56,7 @@ public class TaskList {
         } else {
             int index = Integer.parseInt(parts[1]);
             Task task = inputList.get(index - 1);
-            System.out.println(task.markAsDone());
+            return task.markAsDone();
         }
     }
 
@@ -64,9 +65,10 @@ public class TaskList {
      * if the task is found to be non-existent.
      *
      * @param parts sliced String input.
+     * @return String confirming the deletion of a task from the list.
      * @throws DukeException thrown if there is no such task.
      */
-    public void deleteTask(String[] parts) throws DukeException {
+    public String deleteTask(String[] parts) throws DukeException {
         if (parts.length == 1) {
             throw new DukeException("Please specify the index of the task (i.e. delete 2).");
         } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > inputList.size()) {
@@ -78,7 +80,7 @@ public class TaskList {
             String output = String.format("Noted, I've removed this task:\n%s\nNow you have %s tasks in the list.",
                     task.toString(),
                     inputList.size());
-            System.out.println(output);
+            return output;
         }
     }
 
@@ -87,28 +89,30 @@ public class TaskList {
      * that is to be printed along with the task representation and size of list.
      *
      * @param task from the TaskList.
+     * @return String confirming the addition of the task into the list.
      */
-    public void taskAdd(Task task) {
+    public String taskAdd(Task task) {
         this.inputList.add(task);
         String output = String.format("Got it. I've added this task:\n%s\nNow you have %s tasks in the list.",
                 task.toString(),
                 inputList.size());
-        System.out.println(output);
+        return output;
     }
 
     /**
      * Abstracts the creation of a todo object, with exception handling.
      *
      * @param input from the Parser.
+     * @return String representation of the Todo.
      * @throws DukeException thrown if there is no description.
      */
-    public void createTodo(String input) throws DukeException {
+    public String createTodo(String input) throws DukeException {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a todo cannot be empty.");
         } else {
             Todo todo = new Todo(taskType[1]);
-            taskAdd(todo);
+            return taskAdd(todo);
         }
     }
 
@@ -116,9 +120,10 @@ public class TaskList {
      * Abstracts the creation of a Deadline object, with exception handling.
      *
      * @param input from the Parser.
+     * @return String representation of the Deadline.
      * @throws DukeException thrown if there is no description or /by field.
      */
-    public void createDeadline(String input) throws DukeException {
+    public String createDeadline(String input) throws DukeException {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a deadline cannot be empty.");
@@ -127,17 +132,18 @@ public class TaskList {
         } else {
             String[] taskBy = taskType[1].split(" /by ", 2);
             Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
-            taskAdd(deadline);
+            return taskAdd(deadline);
         }
     }
 
     /**
      * Abstracts the creation of a Event object, with exception handling.
-     * @param input from the Parser.
      *
+     * @param input from the Parser.
+     * @return String representation of the Event.
      * @throws DukeException thrown if there is no description or /at field
      */
-    public void createEvent(String input) throws DukeException {
+    public String createEvent(String input) throws DukeException {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a event cannot be empty.");
@@ -146,52 +152,58 @@ public class TaskList {
         } else {
             String[] taskBy = taskType[1].split(" /at ", 2);
             Event event = new Event(taskBy[0], taskBy[1]);
-            taskAdd(event);
+            return taskAdd(event);
         }
     }
 
     /**
-     * Outputs a list of all tasks that contains the keyword provided by the user.
+     * Returns a single String with the string representation of all tasks
+     * that contains the keyword provided by the user.
      *
      * @param parts sliced String input.
+     * @return String output of all tasks found with the given keyword.
      * @throws DukeException thrown if no keyword is given.
      */
-    public void findTasks(String[] parts) throws DukeException {
+    public String findTasks(String[] parts) throws DukeException {
+        String output = "Here are the matching tasks in your list:\n";
         if (parts.length == 1) {
             throw new DukeException("Please enter a keyword (i.e. find book).");
         } else {
-            System.out.println("Here are the matching tasks in your list:");
             ArrayList<Task> match = new ArrayList<Task>();
             inputList.forEach(task -> {
                 if (task.getDescription().contains(parts[1])) {
                     match.add(task);
                 }
             });
-
             if (match.size() != 0) {
                 for (int i = 0; i < match.size(); i++) {
-                    String s = String.format("%s. %s", i + 1, match.get(i).toString());
-                    System.out.println(s);
+                    String s = String.format("%s. %s\n", i + 1, match.get(i).toString());
+                    output += s;
                 }
             } else {
-                System.out.println("You do not have any tasks matching that keyword.");
+                output += "You do not have any tasks matching that keyword.";
             }
         }
+        return output;
     }
 
     /**
-     * Outputs all String representation of tasks in the list.
+     * Returns a single String with the string representation of all tasks
+     * in the users' list concatenated together.
+     *
+     * @return String output of all tasks contained in the list.
      */
-    public void showTasks() {
-        System.out.println("Here are the tasks in your list:");
+    public String showTasks() {
+        String output = "Here are the tasks in your list:\n";
         if (inputList.size() != 0) {
             for (int i = 0; i < inputList.size(); i++) {
-                String s = String.format("%s. %s", i + 1, inputList.get(i).toString());
-                System.out.println(s);
+                String s = String.format("%s. %s\n", i + 1, inputList.get(i).toString());
+                output += s;
             }
         } else {
-            System.out.println("You have no tasks.");
+            output += "You have no tasks.";
         }
+        return output;
     }
 
 }

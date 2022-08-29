@@ -22,22 +22,23 @@ public class Parser {
      * core functionality.
      *
      * @param input String from the user.
+     * @return String of Duke's response.
      * @throws DukeException when the input is not known.
      */
-    public void parse(String input) throws DukeException {
+    public String parse(String input) throws DukeException {
         String[] parts = input.split(" ");
         if (parts[0].equals("mark")) {
-            tasks.markTask(parts);
+            return tasks.markTask(parts);
         } else if (parts[0].equals("todo")) {
-            tasks.createTodo(input);
+            return tasks.createTodo(input);
         } else if (parts[0].equals("deadline")) {
-            tasks.createDeadline(input);
+            return tasks.createDeadline(input);
         } else if (parts[0].equals("event")) {
-            tasks.createEvent(input);
+            return tasks.createEvent(input);
         } else if (parts[0].equals("delete")) {
-            tasks.deleteTask(parts);
+            return tasks.deleteTask(parts);
         } else if (parts[0].equals("find")) {
-            tasks.findTasks(parts);
+            return tasks.findTasks(parts);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :(");
         }

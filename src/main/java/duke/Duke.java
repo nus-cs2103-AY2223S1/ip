@@ -1,9 +1,7 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
- * The Main class of Duke. Runs the entire program.
+ * The duke.Main class of Duke. Runs the entire program.
  */
 public class Duke {
     /** The storage component. */
@@ -35,35 +33,40 @@ public class Duke {
      * Initializes the core functionality of Duke. One-half of the decision making
      * tree of Duke. Application terminates when it encounters "bye".
      */
-    public void run() {
-        this.ui.start();
-        Scanner myObj = new Scanner(System.in);
-        String input = myObj.nextLine();
-
+    public String run(String input) {
         while (!input.equals("bye")) {
             if (input.equals("list")) {
-                ui.printList(this.tasks);
+                return ui.printList(this.tasks);
             } else {
                 try {
-                    this.parser.parse(input);
+                    String response = this.parser.parse(input);
                     storage.writeToFile("./data", this.tasks);
+                    return response;
                 } catch (DukeException e) {
-                    ui.showError(e);
+                    return ui.showError(e);
                 }
             }
-            input = myObj.nextLine();
         }
-
-        this.ui.close();
-        myObj.close();
+        System.exit(0);
+        return this.ui.close();
     }
 
     /**
-     * Starts the Duke application.
+     * Returns a string where Duke introduces itself to the user.
      *
-     * @param args of user input.
+     * @return String output of salutation.
      */
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+    public String start() {
+        return this.ui.start();
     }
+
+    /**
+     * Returns the response of Duke after parsing the user input.
+     *
+     * @return String output of Duke's response.
+     */
+    public String getResponse(String input) {
+        return this.run(input);
+    }
+
 }
