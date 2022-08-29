@@ -25,30 +25,28 @@ public class Storage {
                 String keyword = words[0];
                 String isDone = words[1];
                 String taskDetails = words[2];
+                Task task = null;
+                
                 if (keyword.equals("T")) {
-                    Task newTask = new ToDos(taskDetails);
-                    if (isDone.equals("1")) newTask.markAsDone();
-                    tasks.add(newTask);
+                    task = new ToDos(taskDetails);
                 } else {
-                    LocalDateTime dateTime = LocalDateTime.parse(words[3], DATE_TIME_FORMATTER);
                     if (keyword.equals("D")) {
-                        Task newTask = new Deadlines(taskDetails, dateTime);
-                        if (isDone.equals("1")) newTask.markAsDone();
-                        tasks.add(newTask);
+                        LocalDateTime dateTime = LocalDateTime.parse(words[3], DATE_TIME_FORMATTER);
+                        task = new Deadlines(taskDetails, dateTime);
                     } else if (keyword.equals("E")) {
-                        Task newTask = new Events(taskDetails, dateTime);
-                        if (isDone.equals("1")) newTask.markAsDone();
-                        tasks.add(newTask);
+                        LocalDateTime dateTime = LocalDateTime.parse(words[3], DATE_TIME_FORMATTER);
+                        task = new Events(taskDetails, dateTime);
                     } else {
                         System.out.println("SoCCat cannot recognise the type of this task: " + keyword);
                     }
                 }
+                if (isDone.equals("1") && task != null) task.markAsDone();
+                tasks.add(task);
             }
             reader.close();
         } catch (IOException ex) {
             throw new DukeException(ex.getMessage());
         }
-        
         return tasks;
     }
 

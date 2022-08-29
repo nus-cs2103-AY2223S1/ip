@@ -1,8 +1,6 @@
-import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -65,10 +63,6 @@ public class Duke {
                 System.out.println(ex.getMessage());
             }
         }
-    }
-
-    private void bye() {
-        System.out.println("Bye. Hope to see you again soon!");
     }
 
     private void mark(String[] currInput) throws DukeException {
