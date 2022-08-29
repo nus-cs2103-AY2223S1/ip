@@ -1,13 +1,14 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Represents the list of Tasks in the Duke program.
  *
  * @author ish1506
  */
-public class TaskList {
+public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> list;
 
     /**
@@ -26,7 +27,7 @@ public class TaskList {
      */
 
     public Task getTask(int index) {
-        return this.list.get(index);
+        return list.get(index);
     }
 
     /**
@@ -35,11 +36,11 @@ public class TaskList {
      * @param task the task to be added.
      */
     public void add(Task task) {
-        this.list.add(task);
+        list.add(task);
     }
 
     public void remove(int index) {
-        this.list.remove(index);
+        list.remove(index);
     }
 
     /**
@@ -48,7 +49,7 @@ public class TaskList {
      * @param index the index of the task.
      */
     public void mark(int index) {
-        this.list.get(index).mark();
+        list.get(index).mark();
     }
 
     /**
@@ -57,7 +58,32 @@ public class TaskList {
      * @param index the index of the task.
      */
     public void unmark(int index) {
-        this.list.get(index).unmark();
+        list.get(index).unmark();
+    }
+
+    /**
+     * Returns true if this <code>TaskList</code> contains no <code>Task</code>s.
+     *
+     * @return returns true if this <code>TaskList</code> contains no <code>Task</code>s.
+     */
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    /**
+     * Finds all <code>Task</code>s which match a given keyword.
+     *
+     * @param keyword the keyword to match.
+     * @return a new <code>TaskList</code> containing all matching <code>Task</code>s.
+     */
+    public TaskList find(String keyword) {
+        TaskList newList = new TaskList(new ArrayList<>());
+        for (Task task : list) {
+            if (task.isNameContaining(keyword)) {
+                newList.add(task);
+            }
+        }
+        return newList;
     }
 
     /**
@@ -67,5 +93,10 @@ public class TaskList {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(i + 1 + ". " + list.get(i));
         }
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return list.iterator();
     }
 }

@@ -45,6 +45,16 @@ public abstract class Task {
     }
 
     /**
+     * Checks if <code>Task</code> name contains keyword.
+     *
+     * @param keyword the keyword to check.
+     * @return true if <code>keyword</code> is found in name.
+     */
+    public boolean isNameContaining(String keyword) {
+        return name.contains(keyword);
+    }
+
+    /**
      * Returns a concrete <code>Task</code> instance from its string representation.
      *
      * @param inputString the string representation of the <code>Task</code>.

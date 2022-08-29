@@ -101,6 +101,12 @@ public class Parser {
                 } catch (NumberFormatException e) {
                     throw new DukeException("Input format: delete (task number)");
                 }
+            } else if (firstArg.equals("find")) {
+                if (numArgs != 2) {
+                    throw new DukeException("Input format: find (keyword)");
+                }
+                command = Command.FIND;
+                args = new String[] {listOfInputs.get(1)};
             } else if (firstArg.equals("todo")) {
                 if (numArgs == 1) {
                     throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
