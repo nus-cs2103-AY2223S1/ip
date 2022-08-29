@@ -14,20 +14,26 @@ public class Event extends Task {
      *
      * @param description The event description
      * @param at The time of the event
+     * @param isDone Whether the task is done or not
      */
-    public Event(String description, LocalDateTime at) {
-        super(description);
+    public Event(String description, LocalDateTime at, boolean isDone) {
+        super(description, isDone);
         this.at = at;
     }
 
     /**
-     * The stringtified version of this event.
+     * Constructor method.
      *
-     * @return The print format of this event
+     * @param description The event description
+     * @param at The time of the event
      */
+    public Event(String description, LocalDateTime at) {
+        this(description, at, false);
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " +
-                at.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")) + ")";
+                at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
     }
 }

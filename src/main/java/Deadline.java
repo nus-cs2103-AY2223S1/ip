@@ -14,20 +14,26 @@ public class Deadline extends Task {
      *
      * @param description The event description
      * @param by The deadline of this task
+     * @param isDone Whether the task is done or not
      */
-    public Deadline(String description, LocalDateTime by) {
-        super(description);
+    public Deadline(String description, LocalDateTime by, boolean isDone) {
+        super(description, isDone);
         this.by = by;
     }
 
     /**
-     * The stringtified version of this deadline.
+     * Constructor method.
      *
-     * @return The print format of this deadline
+     * @param description The event description
+     * @param by The deadline of this task
      */
+    public Deadline(String description, LocalDateTime by) {
+        this(description, by, false);
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " +
-                by.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")) + ")";
+                by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
     }
 }
