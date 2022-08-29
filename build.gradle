@@ -3,10 +3,17 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'checkstyle'
+
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 checkstyle {
     toolVersion = '10.2'
+}
+
+javafx {
+    version = "18.0.2"
+    modules = [ 'javafx.controls' ]
 }
 
 repositories {
@@ -16,6 +23,7 @@ repositories {
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+
 }
 
 test {
@@ -33,7 +41,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
