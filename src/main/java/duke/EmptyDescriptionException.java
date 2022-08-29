@@ -1,5 +1,6 @@
 package duke;
 
+
 /**
  * Encapsulates a EmptyDescriptionException
  */

@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    public LocalDate deadlineDate;
+    private LocalDate deadlineDate;
 
     /**
      * Creates a Deadline object.

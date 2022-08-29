@@ -4,7 +4,7 @@ package duke;
  * Encapsulates an Event task.
  */
 public class Event extends Task {
-    public String time;
+    private String time;
 
     /**
      * Creates an Event object.

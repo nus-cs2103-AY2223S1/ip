@@ -3,10 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Encapsulates a parser that reads the input and parse accordingly.
@@ -37,29 +34,29 @@ public class Parser {
         String[] subCmd = Arrays.copyOfRange(temp, 1, temp.length);
 
         switch (mainCmd) {
-            case "list" :
-                this.parseList(subCmd);
-                break;
-            case "mark" :
-                this.parseMark(subCmd);
-                break;
-            case "unmark" :
-                this.parseUnmark(subCmd);
-                break;
-            case "todo" :
-                this.parseTodo(subCmd);
-                break;
-            case "deadline" :
-                this.parseDeadline(subCmd);
-                break;
-            case "event" :
-                this.parseEvent(subCmd);
-                break;
-            case "delete" :
-                this.parseDelete(subCmd);
-                break;
-            default:
-                throw new InvalidDescriptionException();
+        case "list":
+            this.parseList(subCmd);
+            break;
+        case "mark":
+            this.parseMark(subCmd);
+            break;
+        case "unmark":
+            this.parseUnmark(subCmd);
+            break;
+        case "todo":
+            this.parseTodo(subCmd);
+            break;
+        case "deadline":
+            this.parseDeadline(subCmd);
+            break;
+        case "event":
+            this.parseEvent(subCmd);
+            break;
+        case "delete":
+            this.parseDelete(subCmd);
+            break;
+        default:
+            throw new InvalidDescriptionException();
         }
     }
 
@@ -160,7 +157,7 @@ public class Parser {
             throw new EmptyDescriptionException();
         } else {
             String[] tempSplit = tmp.split(" /at ");
-            Event tmpTask = new Event(tempSplit[0],false, tempSplit[1]);
+            Event tmpTask = new Event(tempSplit[0], false, tempSplit[1]);
 
             this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);

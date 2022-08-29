@@ -34,8 +34,8 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.arrayList.add(task);
-        System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                        "Now you have %d task%s in the list.\n", task, this.arrayList.size(),
+        System.out.println(String.format("Got it. I've added this task:\n\t%s\n"
+                        + "Now you have %d task%s in the list.\n", task, this.arrayList.size(),
                 this.arrayList.size() == 1 ? "" : "s"));
     }
 

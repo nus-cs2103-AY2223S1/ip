@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -39,23 +38,22 @@ public class Storage {
                 String typeOfTask = tempArray[0];
 
                 switch (typeOfTask) {
-                    case "T" :
-                        currList.add(new Todo(tempArray[2], tempArray[1].equals("1")));
-                        break;
-                    case "D" :
-                        LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                        Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
-                        currList.add(tmpTask);
-                        break;
-                    case "E" :
-                        currList.add(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3]));
-                        break;
-                    default:
-                        System.out.println("Error: Wrong type of task");
-                    }
+                case "T":
+                    currList.add(new Todo(tempArray[2], tempArray[1].equals("1")));
+                    break;
+                case "D":
+                    LocalDate tempDate = LocalDate.parse(tempArray[3], DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                    Deadline tmpTask = new Deadline(tempArray[2], tempArray[1].equals("1"), tempDate);
+                    currList.add(tmpTask);
+                    break;
+                case "E":
+                    currList.add(new Event(tempArray[2], tempArray[1].equals("1"), tempArray[3]));
+                    break;
+                default:
+                    System.out.println("Error: Wrong type of task");
                 }
-                sc.close();
-
+            }
+            sc.close();
         } catch (FileNotFoundException e) {
             this.createFile();
         }
@@ -71,7 +69,7 @@ public class Storage {
 
         ArrayList<String> newFile = new ArrayList<>();
 
-        for(int i = 0; i < newTasks.size(); i++) {
+        for (int i = 0; i < newTasks.size(); i++) {
             newFile.add(newTasks.getTask(i).toFileString());
 
         }
@@ -80,7 +78,7 @@ public class Storage {
 
             fw.write(String.join("\n", newFile));
             fw.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new DukeException("Error: File added wrongly");
         }
     }
