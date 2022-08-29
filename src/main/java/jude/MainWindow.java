@@ -5,6 +5,7 @@ package jude;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,11 +29,11 @@ public class MainWindow {
     private Button sendButton;
 
     private Jude jude;
-    /*private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image chatbotImage = new Image(this.getClass().getResourceAsStream(
-            "/images/ManSmilingBehindWall.png"));*/
-    private Image userImage = null;
-    private Image chatbotImage = null;
+            "/images/ManSmilingBehindWall.jpg"));
+    //private Image userImage = null;
+    //private Image chatbotImage = null;
 
     @FXML
     public void initialize() {
@@ -51,10 +52,18 @@ public class MainWindow {
      * @throws IOException When system I/O fails.
      */
     public void handleUserInput(ActionEvent actionEvent) throws IOException {
-        String input = userInput.getText();
-        String response = jude.getResponse(input);
+        String command = userInput.getText();
+        if (jude.isTerminationCommand(command)) {
+            //@@author cheeheng-reused
+            //Code adapted from
+            //https://www.javaguides.net/2020/09/javafx-quit-button-example-terminate.html
+            // Exit the program when a termination command such as 'bye' is passed to the chatbot.
+            Platform.exit();
+            return;
+        }
+        String response = jude.getResponse(command);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getUserDialog(command, userImage),
                 DialogBox.getChatbotDialog(response, chatbotImage)
         );
         userInput.clear();

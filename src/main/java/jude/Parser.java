@@ -172,7 +172,12 @@ public class Parser {
                             response, tokens[0], taskAdded, tasks.size());
                 }
             } else if (tokens[0].equals("mark")) {
-                int index = Integer.parseInt(tokens[1]);
+                int index;
+                try {
+                    index = Integer.parseInt(tokens[1]);
+                } catch (NumberFormatException ex) {
+                    throw new IllegalCommandException("Invalid index.");
+                }
                 Task task = tasks.get(index);
 
                 // Solution below adapted from
@@ -184,7 +189,12 @@ public class Parser {
                                 + "The task list now contains %d task(s).\n",
                         response, task, tasks.size());
             } else if (tokens[0].equals("unmark")) {
-                int index = Integer.parseInt(tokens[1]);
+                int index;
+                try {
+                    index = Integer.parseInt(tokens[1]);
+                } catch (NumberFormatException ex) {
+                    throw new IllegalCommandException("Invalid index.");
+                }
                 Task task = tasks.get(index);
 
                 task.markAsUndone();
@@ -207,9 +217,9 @@ public class Parser {
                 if (tokens.length == 1) {
                     throw new IllegalCommandException("Please enter a keyword to search.");
                 }
-                find(tokens[1].trim());
+                response = String.format("%s%s\n", response, find(tokens[1].trim()));
             } else if (command.equals("list")) {
-                list(tasks);
+                response = String.format("%s%s\n", response, list(tasks));
             } else if (command.equals("bye")) {
                 response = String.format("%sGoodbye! Have a nice day!", response);
                 return response;
