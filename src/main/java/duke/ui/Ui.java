@@ -78,7 +78,7 @@ public class Ui {
     public String printUnmarkTask(Task task) {
         String msg = String.format("Okay! I have marked this task as not done:\n\n%s",
                 task);
-       return msg;
+        return msg;
     }
 
     /**
@@ -126,6 +126,12 @@ public class Ui {
         return header + stringBuilder;
     }
 
+    /**
+     * Prints the tasks after executing the tasks command
+     * @param list The list of tasks to be printed
+     * @param date Date of the tasks
+     * @return A string consisting of the tasks
+     */
     public String printTasks(ArrayList<Task> list, String date) {
         StringBuilder stringBuilder = new StringBuilder();
         LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -146,6 +152,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the tasks returned after executing the find command
+     * @param list List of tasks to print
+     * @return A string of the tasks
+     */
     public String printFind(ArrayList<Task> list) {
         StringBuilder stringBuilder = new StringBuilder();
         int count = 1;
@@ -165,6 +176,11 @@ public class Ui {
         return header + stringBuilder;
     }
 
+    /**
+     * Prints the input
+     * @param input A string to be printed
+     * @return
+     */
     public String print(String input) {
         return input;
     }

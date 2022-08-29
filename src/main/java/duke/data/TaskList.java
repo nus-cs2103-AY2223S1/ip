@@ -46,24 +46,6 @@ public class TaskList {
         }
 
         return list;
-//        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//        StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
-//        int count = 1;
-//        for (Task task : this.tasks) {
-//            if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
-//                if (task.getDate().equals(parsedDate)) {
-//                    String formatted = String.format("\n\t%d. %s", count, task);
-//                    stringBuilder.append(formatted);
-//                    count++;
-//                }
-//            }
-//        }
-//
-//        if (count == 1) {
-//            return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
-//        } else {
-//            return stringBuilder.toString();
-//        }
     }
 
     /**
