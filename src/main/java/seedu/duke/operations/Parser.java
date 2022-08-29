@@ -1,15 +1,15 @@
-package duke.operations;
+package seedu.duke.operations;
 
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.DeleteCommand;
-import duke.command.MakeTodoCommand;
-import duke.command.MakeDeadlineCommand;
-import duke.command.MakeEventCommand;
-import duke.command.InvalidCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ListCommand;
+import seedu.duke.command.MarkCommand;
+import seedu.duke.command.UnmarkCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.MakeTodoCommand;
+import seedu.duke.command.MakeDeadlineCommand;
+import seedu.duke.command.MakeEventCommand;
+import seedu.duke.command.InvalidCommand;
 
 public class Parser {
 

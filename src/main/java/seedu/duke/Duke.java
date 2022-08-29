@@ -1,11 +1,11 @@
-package duke;
+package seedu.duke;
 
-import duke.command.Command;
-import duke.operations.Parser;
-import duke.operations.Storage;
-import duke.operations.TaskList;
-import duke.operations.Ui;
-import duke.task.Task;
+import seedu.duke.command.Command;
+import seedu.duke.operations.Parser;
+import seedu.duke.operations.Storage;
+import seedu.duke.operations.TaskList;
+import seedu.duke.operations.Ui;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 

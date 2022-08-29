@@ -1,9 +1,9 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.task.DeadlineTask;
-import duke.DukeException;
-import duke.task.Task;
-import duke.operations.Ui;
+import seedu.duke.task.DeadlineTask;
+import seedu.duke.DukeException;
+import seedu.duke.task.Task;
+import seedu.duke.operations.Ui;
 
 import java.time.format.DateTimeParseException;
 

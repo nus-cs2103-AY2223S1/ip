@@ -1,6 +1,6 @@
-package duke.operations;
+package seedu.duke.operations;
 
-import duke.task.Task;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 

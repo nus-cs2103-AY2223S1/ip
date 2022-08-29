@@ -1,9 +1,9 @@
-package duke.operations;
+package seedu.duke.operations;
 
-import duke.DukeException;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.TodoTask;
+import seedu.duke.DukeException;
+import seedu.duke.task.DeadlineTask;
+import seedu.duke.task.EventTask;
+import seedu.duke.task.TodoTask;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

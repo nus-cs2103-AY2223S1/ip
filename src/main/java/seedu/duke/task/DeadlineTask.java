@@ -1,4 +1,4 @@
-package duke.task;
+package seedu.duke.task;
 
 public class DeadlineTask extends TimeTask {
     private final String deadline;

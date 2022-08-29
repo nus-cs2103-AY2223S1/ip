@@ -1,9 +1,9 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.DukeException;
-import duke.task.Task;
-import duke.task.TodoTask;
-import duke.operations.Ui;
+import seedu.duke.DukeException;
+import seedu.duke.task.Task;
+import seedu.duke.task.TodoTask;
+import seedu.duke.operations.Ui;
 
 public class MakeTodoCommand extends MakeTaskCommand {
 

@@ -1,9 +1,9 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.operations.Storage;
-import duke.task.Task;
-import duke.operations.TaskList;
-import duke.operations.Ui;
+import seedu.duke.operations.Storage;
+import seedu.duke.task.Task;
+import seedu.duke.operations.TaskList;
+import seedu.duke.operations.Ui;
 
 public class DeleteCommand extends TaskListCommand {
 

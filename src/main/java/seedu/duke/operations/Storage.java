@@ -1,10 +1,10 @@
-package duke.operations;
+package seedu.duke.operations;
 
-import duke.DukeException;
-import duke.task.DeadlineTask;
-import duke.task.Task;
-import duke.task.EventTask;
-import duke.task.TodoTask;
+import seedu.duke.DukeException;
+import seedu.duke.task.DeadlineTask;
+import seedu.duke.task.Task;
+import seedu.duke.task.EventTask;
+import seedu.duke.task.TodoTask;
 
 import java.io.File;
 import java.io.FileNotFoundException;

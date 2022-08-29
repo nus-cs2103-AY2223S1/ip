@@ -1,4 +1,4 @@
-package duke.task;
+package seedu.duke.task;
 
 public class TodoTask extends Task {
     public TodoTask(String taskname) {

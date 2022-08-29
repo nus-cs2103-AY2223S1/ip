@@ -1,10 +1,10 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.DukeException;
-import duke.operations.Storage;
-import duke.operations.TaskList;
-import duke.operations.Ui;
-import duke.task.Task;
+import seedu.duke.DukeException;
+import seedu.duke.operations.Storage;
+import seedu.duke.operations.TaskList;
+import seedu.duke.operations.Ui;
+import seedu.duke.task.Task;
 
 abstract class MakeTaskCommand extends Command {
 
