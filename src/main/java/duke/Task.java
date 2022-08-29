@@ -41,22 +41,27 @@ public class Task {
 
     /**
      * Marks a task as completed.
+     *
+     * @return Associated message from Duke.
      */
-    public void markTask() {
+    public String markTask() {
         this.isDone = true;
-        System.out.println("Successfully marked this task as done: " + this);
+        return "Successfully marked this task as done: " + this;
     }
 
     /**
      * Marks a task as not completed.
+     *
+     * @return Associated message from Duke.
      */
-    public void unmarkTask() {
+    public String unmarkTask() {
         this.isDone = false;
-        System.out.println("Successfully marked this task as not done: " + this);
+        return "Successfully marked this task as not done: " + this;
     }
 
     /**
      * Returns the string representation of a task.
+     *
      * @return String representation of a task.
      */
     @Override

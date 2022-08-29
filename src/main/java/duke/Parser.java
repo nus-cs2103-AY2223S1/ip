@@ -20,6 +20,152 @@ public class Parser {
     private String delete = "delete";
     private String space = " ";
     private String find = "find";
+    private String saveError = "\nThis command could not be saved due to an unknown error.";
+    private String errorMessage = "Sorry, I cannot understand what you exactly mean.\n"
+            + "Certain commands require input parameters.";
+    private String mark(Duke d, String input, boolean isLoading) {
+        try {
+            String parameter = input.substring((this.mark + this.space).length());
+            int param = Integer.parseInt(parameter);
+            boolean hasFailedToSave = false;
+            try {
+                d.getStorage().writeToFile(this.mark + this.space + param + "\n", isLoading);
+            } catch (IOException e) {
+                hasFailedToSave = true;
+            }
+            return hasFailedToSave ? d.markTask(param) + this.saveError : d.markTask(param);
+        } catch (NumberFormatException e) {
+            return this.errorMessage;
+        }
+    }
+    private String unmark(Duke d, String input, boolean isLoading) {
+        try {
+            String parameter = input.substring((this.unmark + this.space).length());
+            int param = Integer.parseInt(parameter);
+            boolean hasFailedToSave = false;
+            try {
+                d.getStorage().writeToFile(this.unmark + this.space + param + "\n", isLoading);
+            } catch (IOException e) {
+                hasFailedToSave = true;
+            }
+            return hasFailedToSave ? d.unmarkTask(param) + this.saveError : d.unmarkTask(param);
+        } catch (NumberFormatException e) {
+            return this.errorMessage;
+        }
+    }
+    private String todo(Duke d, String input, boolean isLoading) {
+        String s = input.substring((this.todo + this.space).length());
+        if (s.isBlank()) {
+            return "The task is empty, what do you really mean?";
+        } else {
+            boolean hasFailedToSave = false;
+            try {
+                d.getStorage().writeToFile(this.todo + this.space + s + "\n", isLoading);
+            } catch (IOException e) {
+                hasFailedToSave = true;
+            }
+            return hasFailedToSave ? d.addTodo(s) + this.saveError : d.addTodo(s);
+        }
+    }
+    private String deadline(Duke d, String input, boolean isLoading) {
+        String s = input.substring((this.deadline + this.space).length());
+        // deadline flag is not in command
+        if (!s.contains(this.space + this.deadlineBy + this.space)) {
+            if (s.startsWith(this.deadlineBy)) {
+                return "The task is empty, what do you really mean?";
+            } else {
+                return "The deadline is empty, do you mean it has no deadline?\n"
+                        + "If it is, please add it as a todo instead.";
+            }
+        } else {
+            // split task name and deadline
+            String task = s.substring(0, s.indexOf(this.deadlineBy) - this.space.length());
+            String deadline = s.substring(s.indexOf(this.deadlineBy)
+                    + this.deadlineBy.length() + this.space.length());
+            if (task.isBlank()) {
+                return "The task is empty, what do you really mean?";
+            } else if (deadline.isBlank()) {
+                return "The deadline is empty, do you mean it has no deadline?\n"
+                        + "If it is, please add it as a todo instead.";
+            } else {
+                // save command to file
+                boolean hasFailedToSave = false;
+                try {
+                    d.getStorage().writeToFile(this.deadline + this.space + s + "\n", isLoading);
+                } catch (IOException ex) {
+                    hasFailedToSave = true;
+                }
+                // perform the actual addition into task list
+                try {
+                    LocalDate date = LocalDate.parse(deadline);
+                    return hasFailedToSave ? d.addDeadline(task, date) + this.saveError
+                            : d.addDeadline(task, date);
+                } catch (DateTimeParseException e) {
+                    return hasFailedToSave ? d.addDeadline(task, deadline) + this.saveError
+                            : d.addDeadline(task, deadline);
+                }
+            }
+        }
+    }
+    private String event(Duke d, String input, boolean isLoading) {
+        String s = input.substring((this.event + this.space).length());
+        // event time flag not found
+        if (!s.contains(space + eventAt + space)) {
+            if (s.startsWith(eventAt)) {
+                return "The event is empty, what do you really mean?";
+            } else {
+                return "The time is empty, do you mean it never starts?";
+            }
+        } else {
+            String event = s.substring(0, s.indexOf(eventAt) - space.length());
+            String time = s.substring(s.indexOf(eventAt) + eventAt.length()
+                    + space.length());
+            if (event.isBlank()) {
+                return "The event is empty, what do you really mean?";
+            } else if (time.isBlank()) {
+                return "The time is empty, do you mean it never starts?";
+            } else {
+                // save command to file
+                boolean hasFailedToSave = false;
+                try {
+                    d.getStorage().writeToFile(this.event + this.space + s + "\n", isLoading);
+                } catch (IOException e) {
+                    hasFailedToSave = true;
+                }
+                // perform the actual addition to task list
+                try {
+                    LocalDate t = LocalDate.parse(time);
+                    return d.addEvent(event, t);
+                } catch (DateTimeParseException e) {
+                    return hasFailedToSave ? d.addEvent(event, time) + this.saveError
+                            : d.addEvent(event, time);
+                }
+            }
+        }
+    }
+    private String delete(Duke d, String input, boolean isLoading) {
+        try {
+            String parameter = input.substring((this.delete + this.space).length());
+            int param = Integer.parseInt(parameter);
+            boolean hasFailedToSave = false;
+            try {
+                d.getStorage().writeToFile(this.delete + this.space + parameter + "\n", isLoading);
+            } catch (IOException e) {
+                hasFailedToSave = true;
+            }
+            return hasFailedToSave ? d.deleteTask(param) + this.saveError : d.deleteTask(param);
+        } catch (NumberFormatException e) {
+            return this.errorMessage;
+        }
+    }
+    private String find(Duke d, String input) {
+        String s = input.substring((this.find + this.space).length());
+        if (s.isBlank()) {
+            return "The query is empty, what do you really mean?";
+        } else {
+            return d.find(s);
+        }
+    }
 
     /**
      * Parses an input to decode it.
@@ -27,138 +173,29 @@ public class Parser {
      * @param d Duke bot to be instructed.
      * @param input Input to be parsed.
      * @param isLoading Boolean to indicate if the Duke bot is loading.
+     * @return Associated message from Duke.
      */
-    public void parse(Duke d, String input, boolean isLoading) {
+    public String parse(Duke d, String input, boolean isLoading) {
         if (input.equals(this.bye)) {
-            System.out.println("Byebye! See you again soon!");
-            d.stop();
+            return d.stopBot();
         } else if (input.equals(this.list)) {
-            d.getList();
+            return d.getList();
         } else if (input.startsWith(this.mark + this.space)) {
-            try {
-                String parameter = input.substring((this.mark + this.space).length());
-                int param = Integer.parseInt(parameter);
-                d.markTask(param);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid task.");
-            }
+            return this.mark(d, input, isLoading);
         } else if (input.startsWith(this.unmark + this.space)) {
-            try {
-                String parameter = input.substring((this.unmark + this.space).length());
-                int param = Integer.parseInt(parameter);
-                d.unmarkTask(param);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid task.");
-            }
+            return this.unmark(d, input, isLoading);
         } else if (input.startsWith(this.todo + this.space)) {
-            String s = input.substring((this.todo + this.space).length());
-            if (s.isBlank()) {
-                System.out.println("The task is empty, what do you really mean?");
-            } else {
-                d.addTodo(s);
-                try {
-                    d.getStorage().writeToFile(this.todo + this.space + s + "\n", isLoading);
-                } catch (IOException e) {
-                    System.err.println("This command could not be saved due to an unknown error.");
-                }
-            }
+            return this.todo(d, input, isLoading);
         } else if (input.startsWith(this.deadline + this.space)) {
-            String s = input.substring((this.deadline + this.space).length());
-            if (!s.contains(this.space + this.deadlineBy + this.space)) {
-                if (s.startsWith(this.deadlineBy)) {
-                    System.out.println("The task is empty, what do you really mean?");
-                } else {
-                    System.out.println("The deadline is empty, do you mean it has no deadline?");
-                    System.out.println("If it is, please add it as a todo instead.");
-                }
-            } else {
-                String task = s.substring(0, s.indexOf(this.deadlineBy) - this.space.length());
-                String deadline = s.substring(s.indexOf(this.deadlineBy) + this.deadlineBy.length()
-                        + this.space.length());
-                if (task.isBlank()) {
-                    System.out.println("The task is empty, what do you really mean?");
-                } else if (deadline.isBlank()) {
-                    System.out.println("The deadline is empty, do you mean it has no deadline?");
-                    System.out.println("If it is, please add it as a todo instead.");
-                } else {
-                    LocalDate date = null;
-                    try {
-                        date = LocalDate.parse(deadline);
-                        d.addDeadline(task, date);
-                        try {
-                            d.getStorage().writeToFile(this.deadline + this.space + s + "\n", isLoading);
-                        } catch (IOException e) {
-                            System.err.println("This command could not be saved due to an unknown error.");
-                        }
-                    } catch (DateTimeParseException e) {
-                        d.addDeadline(task, deadline);
-                        try {
-                            d.getStorage().writeToFile(this.deadline + this.space + s + "\n", isLoading);
-                        } catch (IOException ex) {
-                            System.err.println("This command could not be saved due to an unknown error.");
-                        }
-                    }
-                }
-            }
+            return this.deadline(d, input, isLoading);
         } else if (input.startsWith(this.event + this.space)) {
-            String s = input.substring((this.event + this.space).length());
-            if (!s.contains(space + eventAt + space)) {
-                if (s.startsWith(eventAt)) {
-                    System.out.println("The event is empty, what do you really mean?");
-                } else {
-                    System.out.println("The time is empty, do you mean it never starts?");
-                }
-            } else {
-                String event = s.substring(0, s.indexOf(eventAt) - space.length());
-                String time = s.substring(s.indexOf(eventAt) + eventAt.length()
-                        + space.length());
-                if (event.isBlank()) {
-                    System.out.println("The event is empty, what do you really mean?");
-                } else if (time.isBlank()) {
-                    System.out.println("The time is empty, do you mean it never starts?");
-                } else {
-                    LocalDate t = null;
-                    try {
-                        t = LocalDate.parse(time);
-                        d.addEvent(event, t);
-                        try {
-                            d.getStorage().writeToFile(this.event + this.space + s + "\n", isLoading);
-                        } catch (IOException e) {
-                            System.err.println("This command could not be saved due to an unknown error.");
-                        }
-                    } catch (DateTimeParseException e) {
-                        d.addEvent(event, time);
-                        try {
-                            d.getStorage().writeToFile(this.event + this.space + s + "\n", isLoading);
-                        } catch (IOException ex) {
-                            System.err.println("This command could not be saved due to an unknown error.");
-                        }
-                    }
-                }
-            }
+            return this.event(d, input, isLoading);
         } else if (input.startsWith(this.delete + this.space)) {
-            try {
-                String parameter = input.substring((this.delete + this.space).length());
-                int param = Integer.parseInt(parameter);
-                d.deleteTask(param);
-                try {
-                    d.getStorage().writeToFile(this.delete + this.space + parameter + "\n", isLoading);
-                } catch (IOException e) {
-                    System.err.println("This command could not be saved due to an unknown error.");
-                }
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid task.");
-            }
+            return this.delete(d, input, isLoading);
         } else if (input.startsWith(this.find + this.space)) {
-            String s = input.substring((this.find + this.space).length());
-            if (s.isBlank()) {
-                System.out.println("The query is empty, what do you really mean?");
-            } else {
-                d.find(s);
-            }
-        } else {
-            System.out.println("Sorry, I cannot understand what you exactly mean.");
-            System.out.println("Certain commands require input parameters.");
+            return this.find(d, input);
         }
+        return "Sorry, I cannot understand what you exactly mean.\n"
+                + "Certain commands require input parameters.";
     }
 }

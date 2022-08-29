@@ -13,12 +13,13 @@ public class TaskList {
      * Adds a task without deadline to the list.
      *
      * @param s Task description.
+     * @return Associated message from Duke.
      */
-    public void addTodo(String s) {
+    public String addTodo(String s) {
         Todo t = new Todo(s);
         tasks.add(t);
-        System.out.println("Successfully added: " + t);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        return "Successfully added: " + t + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
@@ -26,12 +27,13 @@ public class TaskList {
      *
      * @param s Task description.
      * @param d Deadline in LocalDate format.
+     * @return Associated message from Duke.
      */
-    public void addDeadline(String s, LocalDate d) {
+    public String addDeadline(String s, LocalDate d) {
         Deadline deadline = new Deadline(s, d);
         tasks.add(deadline);
-        System.out.println("Successfully added: " + deadline);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        return "Successfully added: " + deadline + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
@@ -39,12 +41,13 @@ public class TaskList {
      *
      * @param s Task description.
      * @param d Deadline in String format.
+     * @return Associated message from Duke.
      */
-    public void addDeadline(String s, String d) {
+    public String addDeadline(String s, String d) {
         Deadline deadline = new Deadline(s, d);
         tasks.add(deadline);
-        System.out.println("Successfully added: " + deadline);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        return "Successfully added: " + deadline + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
@@ -52,12 +55,13 @@ public class TaskList {
      *
      * @param s Event description.
      * @param time Event time in LocalDate format.
+     * @return Associated message from Duke.
      */
-    public void addEvent(String s, LocalDate time) {
+    public String addEvent(String s, LocalDate time) {
         Event event = new Event(s, time);
         tasks.add(event);
-        System.out.println("Successfully added: " + event);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        return "Successfully added: " + event + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
@@ -65,41 +69,43 @@ public class TaskList {
      *
      * @param s Event description.
      * @param time Event time in String format.
+     * @return Associated message from Duke.
      */
-    public void addEvent(String s, String time) {
+    public String addEvent(String s, String time) {
         Event event = new Event(s, time);
         tasks.add(event);
-        System.out.println("Successfully added: " + event);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        return "Successfully added: " + event + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
      * Prints the list of tasks.
+     *
+     * @return List of tasks.
      */
-    public void getList() {
+    public String getList() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + "." + tasks.get(i));
+            sb.append(i + 1 + "." + tasks.get(i) + "\n");
         }
-        System.out.println("There are " + tasks.size() + " tasks in the list.");
+        return sb + "\nYou have " + this.tasks.size()
+            + " tasks in the list now";
     }
 
     /**
-     * Delete a task from the list.
+     * Deletes a task from the list.
      *
      * @param index Index of the task in the list.
+     * @return Associated message from Duke.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         try {
-            if (index >= tasks.size() || index < 0) {
-                System.out.println("I cannot delete a task that does not exist!");
-            } else {
-                Task t = tasks.get(index);
-                tasks.remove(t);
-                System.out.println("Successfully deleted: " + t);
-                System.out.println("You have " + tasks.size() + " tasks in the list now");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("I cannot delete a task that does not exist!");
+            Task t = tasks.get(index);
+            tasks.remove(t);
+            return "Successfully deleted: " + t + "\nYou have " + this.tasks.size()
+                    + " tasks in the list now";
+        } catch (IndexOutOfBoundsException e) {
+            return "I cannot delete a task that does not exist!";
         }
     }
 
@@ -107,13 +113,14 @@ public class TaskList {
      * Marks a task as completed.
      *
      * @param i Index of task to be marked as completed.
+     * @return Associated message from Duke.
      */
-    public void markTask(int i) {
+    public String markTask(int i) {
         try {
             Task t = this.tasks.get(i);
-            t.markTask();
+            return t.markTask();
         } catch (IndexOutOfBoundsException e) {
-            System.err.println("I cannot mark a task that does not exist!");
+            return "I cannot mark a task that does not exist!";
         }
     }
 
@@ -121,13 +128,14 @@ public class TaskList {
      * Marks a task as not completed.
      *
      * @param i Index of task to be marked as not completed.
+     * @return Associated message from Duke.
      */
-    public void unmarkTask(int i) {
+    public String unmarkTask(int i) {
         try {
             Task t = this.tasks.get(i);
-            t.unmarkTask();
+            return t.unmarkTask();
         } catch (IndexOutOfBoundsException e) {
-            System.err.println("I cannot mark a task that does not exist!");
+            return "I cannot mark a task that does not exist!";
         }
     }
 
@@ -135,15 +143,17 @@ public class TaskList {
      * Prints a list of tasks containing the string.
      *
      * @param s String to find tasks with the matching string.
+     * @return List of tasks with matching string.
      */
-    public void find(String s) {
+    public String find(String s) {
         int count = 0;
+        StringBuilder sb = new StringBuilder();
         for (Task t : tasks) {
             if (t.getDescription().contains(s)) {
                 count++;
-                System.out.println(count + "." + t);
+                sb.append(count + "." + t + "\n");
             }
         }
-        System.out.println("There are " + count + " tasks that contains: " + s);
+        return sb + "There are " + count + " tasks that contains: " + s;
     }
 }

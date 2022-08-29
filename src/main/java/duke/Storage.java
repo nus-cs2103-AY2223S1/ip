@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.Scanner;
 
 /**
@@ -25,7 +24,6 @@ public class Storage {
     //@@author chengda300
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
     // with minor modifications
-
     /**
      * Loads data from the file to restore the last run status.
      *
@@ -44,7 +42,6 @@ public class Storage {
 
     //@@author chengda300
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
-
     /**
      * Writes to the file to save the new valid instruction.
      *
