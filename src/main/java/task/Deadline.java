@@ -1,10 +1,12 @@
 package task;
 
-import task.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A Deadline is a type of task that has a deadline for task and
+ * a description of the deadline.
+ */
 public class Deadline extends Task {
     protected LocalDate by;
 

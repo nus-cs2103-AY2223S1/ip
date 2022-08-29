@@ -19,6 +19,12 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    /**
+     * Parses command string and return the parsed Command object for further execution of program.
+     * @param command Command string to be parsed by parser.
+     * @return Command that is form the parsed command string.
+     * @throws FredException
+     */
     public static Command parse(String command) throws FredException {
         if (command.equals("bye")) {
             return new ExitCommand();

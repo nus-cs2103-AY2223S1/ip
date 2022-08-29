@@ -15,6 +15,9 @@ import ui.Ui;
 
 import java.time.LocalDate;
 
+/**
+ * Add command for adding item to taskList.
+ */
 public class AddCommand extends Command {
 
     protected TaskType type;

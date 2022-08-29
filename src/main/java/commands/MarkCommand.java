@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Mark command to mark a given task in the taskList.
+ */
 public class MarkCommand extends Command {
 
     protected int index;

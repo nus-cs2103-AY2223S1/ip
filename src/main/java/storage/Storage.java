@@ -25,6 +25,12 @@ public class Storage {
         this.filePath = filepath;
     }
 
+    /**
+     * Save tasks in list into data file on hard drive.
+     * @param taskList taskList from the program.
+     * @param ui Ui that interacts with the user.
+     * @throws FredException
+     */
     public void save(ArrayList<Task> taskList, Ui ui) throws FredException {
 
         try {
@@ -48,6 +54,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Load tasks into list from data file on hard drive.
+     * @throws FredException
+     */
     public ArrayList<Task> load() throws FredException {
         try {
             ArrayList<Task> taskList = new ArrayList<>();

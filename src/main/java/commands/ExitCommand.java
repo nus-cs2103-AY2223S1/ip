@@ -6,6 +6,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Exit command for exiting chat bot.
+ */
 public class ExitCommand extends Command {
 
     public ExitCommand() {

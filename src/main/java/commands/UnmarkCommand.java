@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Unmark command to unmark a given task in the taskList.
+ */
 public class UnmarkCommand extends Command {
 
     protected int index;
