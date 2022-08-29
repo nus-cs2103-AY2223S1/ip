@@ -1,22 +1,30 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+
 class Deadline extends Task {
 
-    private String completeBy;
+    private LocalDateTime completeBy;
 
     Deadline(String description, String completeBy) {
         super(description, false);
-        this.completeBy = completeBy;
+        this.completeBy = LocalDateTime.parse(completeBy,
+                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
     }
 
-    Deadline(String descrpiton, boolean isDone, String completeBy) {
+    Deadline(String description, boolean isDone, String completeBy) {
 
-        super(descrpiton, isDone);
-        this.completeBy = completeBy;
+        super(description, isDone);
+        this.completeBy = LocalDateTime.parse(completeBy,
+                DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
     }
 
     @Override
     public String toString() {
 
-        return "[D]" + super.toString() + " (by: " + this.completeBy + ")";
+        return "[D]" + super.toString() + " (by: " +
+                completeBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + ")";
     }
 
 }
