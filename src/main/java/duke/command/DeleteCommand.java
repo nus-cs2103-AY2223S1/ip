@@ -6,7 +6,7 @@ import duke.util.TaskList;
 /**
  * Handles the command 'delete'.
  */
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     private String input;
 
     /**

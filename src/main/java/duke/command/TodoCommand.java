@@ -7,7 +7,7 @@ import duke.util.TaskList;
 /**
  * Handles the command 'todo'.
  */
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
     private String input;
 
     /**

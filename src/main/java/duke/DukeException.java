@@ -3,7 +3,7 @@ package duke;
 /**
  * Exception class specific to Duke chatbot.
  */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
     private String message;
 
     /**

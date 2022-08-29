@@ -7,7 +7,7 @@ import duke.util.Ui;
 /**
  * Handles the command 'mark'.
  */
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     private String input;
 
     /**

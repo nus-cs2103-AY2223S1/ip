@@ -6,7 +6,7 @@ import duke.util.TaskList;
 /**
  * Handles the command 'unknown'.
  */
-public class UnknownCommand extends Command{
+public class UnknownCommand extends Command {
 
     /**
      * Runs the command 'unknown'.
