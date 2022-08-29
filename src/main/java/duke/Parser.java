@@ -4,15 +4,28 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * A class that deals with the interaction of the user.
+ *
+ * @author Safwan A0235287X
+ */
 public class Parser {
 
     private TaskList taskList;
 
+    /**
+     * Constructor to create Parser object.
+     * @param taskList the input list for the storage of data.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
-
+    /**
+     * Method to read and process input given by the user.
+     * @throws DukeException
+     * @throws IOException
+     */
     public void readInput() throws DukeException, IOException {
         while (true) {
 
@@ -29,16 +42,13 @@ public class Parser {
             if (s.equals("list")) {
                 taskList.list();
 
-
             } else if (word[0].equals("mark")) {
                 Integer num = Integer.parseInt(word[1]);
                 taskList.mark(num);
 
-
             } else if (word[0].equals("unmark")) {
                 Integer num = Integer.parseInt(word[1]);
                 taskList.unmark(num);
-
 
             } else if (word[0].equals("todo")) {
                 if (s.endsWith("todo")) {
@@ -47,7 +57,6 @@ public class Parser {
 
                 String substringtd = s.replaceAll("todo ", "");
                 taskList.todo(substringtd);
-
 
             } else if (word[0].equals("deadline")) {
                 if (s.endsWith("deadline")) {
@@ -58,7 +67,6 @@ public class Parser {
                 String substringdl1 = phrase[0].replaceAll("deadline", "");
                 String substringdl2 = phrase[1];
                 taskList.deadline(substringdl1, substringdl2);
-
 
             } else if (word[0].equals("event")) {
                 if (s.endsWith("event")) {
@@ -74,11 +82,9 @@ public class Parser {
                 Integer num = Integer.parseInt(word[1]);
                 taskList.delete(num);
 
-
             } else {
                 throw new DukeException("Oooops, sorry I don't know what you are talking about :(");
             }
-
         }
     }
 }

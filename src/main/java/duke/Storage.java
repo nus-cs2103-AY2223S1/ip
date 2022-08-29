@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A class that is used to store the data in a file.
+ *
+ * @author Safwan A0235287X
+ */
 public class Storage {
 
     private static String filePath;
@@ -14,13 +19,21 @@ public class Storage {
     private FileWriter fw;
     private static ArrayList<Task> inputList;
 
-
+    /**
+     * Constructor to create Storage object.
+     * @param filePath Location of the file that stores the data as a result of running the main class.
+     */
     public Storage (String filePath) {
         this.filePath = filePath;
         this.inputList = new ArrayList<>();
         this.file = new File(filePath);
     }
 
+    /**
+     * Method that takes the data stored in the list and inputs it in a text file.
+     * @param textToAdd The input list of data.
+     * @throws IOException
+     */
     public static void writeToFile(ArrayList<Task> textToAdd) throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -36,8 +49,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Method to load the contents of the file in a list.
+     * @return A list of all the tasks in the file, in the type of an ArrayList.
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws DukeException{
-
 
         try {
             Scanner scanner = new Scanner(file);
@@ -67,7 +84,6 @@ public class Storage {
                     } else {
                         break;
                     }
-
                 }
             }
         } catch (FileNotFoundException e) {
@@ -76,8 +92,6 @@ public class Storage {
             File file = new File(filePath);
             throw new DukeException ("File is empty!");
         }
-
         return inputList;
-
     }
 }
