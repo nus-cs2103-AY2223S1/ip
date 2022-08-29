@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,14 +26,13 @@ public class Storage {
      * @return List of array of strings from the lines in the file path specified
      * @throws StashyException If there is an (I/O) issue, e.g. file not found
      */
-    public ArrayList<String[]> load() throws StashyException {
+    public ArrayList<String> load() throws StashyException {
         try {
             File f = new File(this.filePath);
             Scanner s = new Scanner(f);
-            ArrayList<String[]> loadResult = new ArrayList<String[]>();
+            ArrayList<String> loadResult = new ArrayList<String>();
             while (s.hasNext()) {
-                String[] lineSplit = s.nextLine().split("\\|");
-                loadResult.add(lineSplit);
+                loadResult.add(s.nextLine());
             }
             return loadResult;
         } catch (Exception e) {
@@ -78,11 +76,11 @@ public class Storage {
      * @param taskList The list of tasks
      * @throws StashyException If any (I/O) issue happens
      */
-    public void writeTaskListToFile(ArrayList<Task> taskList)
+    public void writeTaskListToFile(TaskList taskList)
             throws StashyException {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for (Task task : taskList) {
+            for (Task task : taskList.toArrayList()) {
                 fw.write(task + System.lineSeparator());
             }
             fw.close();
