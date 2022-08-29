@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline task with a date and time.
+ */
 public class Deadline extends Task {
 
     private String by;
@@ -25,10 +28,10 @@ public class Deadline extends Task {
         if (split.length == 1) {
             throw new DateTimeException("Missing time/date");
         }
-        String date_s = split[0];
-        String time_s = split[1];
-        this.date = LocalDate.parse(date_s);
-        this.time = LocalTime.parse(time_s);
+        String dateString = split[0];
+        String timeString = split[1];
+        this.date = LocalDate.parse(dateString);
+        this.time = LocalTime.parse(timeString);
     }
 
     @Override
@@ -38,9 +41,9 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        String s_date = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        String s_time = time.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String dateMessage = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String timeMessage = time.format(DateTimeFormatter.ofPattern("HH:mm"));
 
-        return "[D]" + super.toString() + " (by: " + s_date + " " + s_time + ")";
+        return "[D]" + super.toString() + " (by: " + dateMessage + " " + timeMessage + ")";
     }
 }

@@ -1,8 +1,10 @@
 package duke;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Ui class that helps to print message to the user.
+ */
 public class Ui {
 
     /**
@@ -72,6 +74,10 @@ public class Ui {
         line();
     }
 
+    /**
+     * Prints all the tasks matching keyword.
+     * @param t The ArrayList containing all matching tasks.
+     */
     public void printFind(ArrayList<Task> t) {
         if (t.size() == 0) {
             line();
@@ -114,6 +120,10 @@ public class Ui {
         line();
     }
 
+    /**
+     * Prints the task to be marked done
+     * @param a The task being marked.
+     */
     public void printMarkTaskDone(Task a) {
         line();
         System.out.println("Ok! I've marked this task as done");

@@ -5,13 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event task that contains a duration.
+ */
 public class Event extends Task {
 
     private String at;
-    private LocalDate start_date;
-    private LocalDate end_date;
-    private LocalTime start_time;
-    private LocalTime end_time;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     /**
      * Constructor for an Event task
@@ -27,19 +30,19 @@ public class Event extends Task {
         if (split.length < 4) {
             throw new DateTimeException("Missing time/date");
         }
-        this.start_date = LocalDate.parse(split[0]);
-        this.start_time = LocalTime.parse(split[1]);
-        this.end_date = LocalDate.parse(split[2]);
-        this.end_time = LocalTime.parse(split[3]);
+        this.startDate = LocalDate.parse(split[0]);
+        this.startTime = LocalTime.parse(split[1]);
+        this.endDate = LocalDate.parse(split[2]);
+        this.endTime = LocalTime.parse(split[3]);
     }
 
     @Override
     public String toString() {
-        String start_d = start_date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        String end_d = end_date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String startDateMessage = startDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String endDateMessage = endDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
 
-        return "[E]" + super.toString() + " (at: " + start_d + " " + start_time + " - "
-                + end_d + " " + end_time + ")";
+        return "[E]" + super.toString() + " (at: " + startDateMessage + " " + startTime + " - "
+                + endDateMessage + " " + endTime + ")";
     }
 
     @Override

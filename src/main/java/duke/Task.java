@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * General task class
+ */
 public class Task {
 
     private String description;

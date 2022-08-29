@@ -2,6 +2,9 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Encapsulated TaskList.
+ */
 public class TaskList {
 
     private ArrayList<Task> tasks;
@@ -53,6 +56,11 @@ public class TaskList {
         this.tasks.remove(index);
     }
 
+    /**
+     * Method that finds all tasks matching keyword.
+     * @param keyword The keyword used to match.
+     * @return An ArrayList containing all matching tasks.
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> result = new ArrayList<>();
 
