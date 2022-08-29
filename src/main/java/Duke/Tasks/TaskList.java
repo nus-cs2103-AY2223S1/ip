@@ -7,11 +7,9 @@ import java.util.ArrayList;
 public class TaskList {
     protected List<Task> taskList;
 
-    public boolean checkTaskContent(String content) throws EmptyContentException
 
-
-    public TaskList(ArrayList<Task> tasks) {
-        this.taskList = tasks;
+    public TaskList() {
+        this.taskList = new ArrayList<>();
     }
 
     public String showTasks(){

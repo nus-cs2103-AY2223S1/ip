@@ -12,11 +12,7 @@ import java.util.List;
 
 public class DukeTest {
     @Test
-    public void getTaskTest() {
-        ToDo task1 = new ToDo("SSSS");
-        ArrayList<Task> tasks = new ArrayList<>();
-        tasks.add(task1);
-
-
+    public void anotherDummyTest(){
+        assertEquals(4, 4);
     }
 }
