@@ -25,11 +25,17 @@ public abstract class Task {
         return (isDone ? "1" : "0");
     }
 
+    /**
+     * Changes the status of task to be done.
+     */
     public void mark() {
         this.isDone = true;
         System.out.println(String.format("Nice! I've marked this task as done:\n    %s\n", this));
     }
 
+    /**
+     * Changes the status of the task to be undone.
+     */
     public void unmark() {
         this.isDone = false;
         System.out.println(String.format("Ok, I've marked this task as not done yet:\n    %s\n", this));

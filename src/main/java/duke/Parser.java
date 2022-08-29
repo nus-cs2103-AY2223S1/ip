@@ -58,9 +58,6 @@ public class Parser {
         case "find":
             this.parseFind(subCmd);
             break;
-        case "find":
-            this.parseFind(subCmd);
-            break;
         default:
             throw new InvalidDescriptionException();
         }
@@ -190,7 +187,7 @@ public class Parser {
      * @throws DukeException Throws DukeException.
      */
     public void parseFind(String[] subCmd) throws DukeException {
-        String temp = String.join(" ",subCmd);
+        String temp = String.join(" ", subCmd);
         if (temp.equals("")) {
             throw new EmptyDescriptionException();
         } else {

@@ -16,8 +16,7 @@ public class Duke {
      * Creates a Duke object.
      * @param filePath String representation of the relative path of the file.
      */
-    public Duke (String filePath) {
-
+    public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
 
