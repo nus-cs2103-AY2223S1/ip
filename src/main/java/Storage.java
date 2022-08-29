@@ -3,18 +3,18 @@ import java.util.ArrayList;
 import java.nio.file.Path;
 
 public class Storage {
-    private static ArrayList<ListObject> tasksStored;
+    private static TaskList tasksStored;
 
     public Storage(String filePath){
         this.tasksStored = readFromFile(filePath);
     }
 
-    private static ArrayList<ListObject> readFromFile(String path){
-        ArrayList<ListObject> inList = new ArrayList<>();
+    public static TaskList readFromFile(String path){
+        TaskList inList = new TaskList();
         try {
             File listFile = new File(path);
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
-            inList = (ArrayList<ListObject>) in.readObject();
+            inList = (TaskList) in.readObject();
             in.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -24,7 +24,7 @@ public class Storage {
         }
     }
 
-    public static void makeListFile(String path, ArrayList<ListObject> lst){
+    public static void makeListFile(String path, TaskList lst){
         try {
             File listFile = new File(path);
             //adapted from https://stackoverflow.com/questions/10404698/saving-arrays-to-the-hard-disk

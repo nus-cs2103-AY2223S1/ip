@@ -1,24 +1,18 @@
-import jdk.nashorn.api.tree.Parser;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
 
 public class Ui {
 
     private final Scanner in;
     private final PrintStream out;
+    private static final String END_CMD = "bye";
 
-    private static final String END_CMD = "END";
-
-    //adapted from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java
-    public Ui(){
-        this(System.in, System.out);
-    }
-
-    public Ui(InputStream in, PrintStream out){
+    public Ui(InputStream in, PrintStream out, TaskList list){
         this.in = new Scanner(in);
         this.out = out;
+
     }
 
     /**
@@ -56,6 +50,12 @@ public class Ui {
         System.out.println("\n***********************************************************************");
     }
 
+    public void askForClarification(String userMsg){
+        System.out.print("Did you say..." + userMsg + "?\n");
+        System.out.println("The shadow of my memory is long...State what you would ask clearly.");
+        System.out.println("\n***********************************************************************");
+    }
+
     public void readAndRespond(String response){
 
         Scanner readInput = this.in;
@@ -66,7 +66,8 @@ public class Ui {
                 bidFarewell();
                 break;
             } else {
-                Parser parser = new Parser(String userMsg);
+                ParserDuke parseCmd = new ParserDuke(userMsg);
+                parseCmd.parseCommand();
             }
         }
 
