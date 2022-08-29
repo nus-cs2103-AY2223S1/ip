@@ -1,25 +1,84 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 
 public class Duke {
 
     private final String horizontalLine = "-------------------------";
     private ArrayList<Task> taskList;
     private Scanner sc;
+    private static File saveFile = new File("duke.txt");
     
     public Duke() {
         this.taskList = new ArrayList<>();
-        this.sc = new Scanner(System.in);
     }
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.greeting();
-        duke.initialise();
+        duke.run();
         duke.goodBye();
     }
     //Solution below adapted from https://github.com/24Donovan24/ip
     
+    private void run() {
+        if (saveFile.exists()) {
+            load();
+        } else {
+            initialise();
+        }
+    }
+
+    public void load() {
+        try {
+            sc = new Scanner(this.saveFile);
+            while (sc.hasNextLine()) {
+                String taskInFile = sc.nextLine();
+                String[] taskInArray = taskInFile.split(" \\| "); //The \\ is really equivalent to a single \ (the first \ is required as a Java escape sequence in string literals).
+                // It is then a special character in regular expressions which means "use the next character literally, don't interpret its special meaning"
+                String taskType = taskInArray[0];
+                switch (taskType) {
+                    case "T": {
+                        Task task = new ToDo(taskInArray[2]);
+                        taskList.add(task);
+                        if (taskInArray[1].equals("1")) {
+                            task.markAsDone();
+                        }
+                        break;
+                    }
+
+                    case "D": {
+                        Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                        taskList.add(task);
+                        if (taskInArray[1].equals("1")) {
+                            task.markAsDone();
+                        }
+                        break;
+                    }
+
+                    case "E": {
+                        Task task = new Event(taskInArray[2], taskInArray[3]);
+                        taskList.add(task);
+                        if (taskInArray[1].equals("1")) {
+                            task.markAsDone();
+                        }
+                        break;
+                    }
+                    
+                }
+            }
+            initialise();
+        } catch (FileNotFoundException exception) {
+            System.out.println("File not found!");
+        }
+    }
+    
+    
     private void initialise() {
+        sc = new Scanner(System.in);
         String command = sc.next();
         
         while (!command.equals("bye")) {
@@ -35,18 +94,21 @@ public class Duke {
                     case "mark": {
                         int index = sc.nextInt() - 1;
                         markTask(index);
+                        save(taskList);
                         break;
                     }
 
                     case "unmark": {
                         int index = sc.nextInt() - 1;
                         unMarkTask(index);
+                        save(taskList);
                         break;
                     }
 
                     case "todo": {
                         String description = sc.nextLine();
                         setToDo(description);
+                        save(taskList);
                         break;
                     }
 
@@ -55,6 +117,7 @@ public class Duke {
                         String description = input.substring(0, input.indexOf("/") - 1);
                         String by = input.substring(input.indexOf("/") + 4);
                         setDeadLine(description, by);
+                        save(taskList);
                         break;
                     }
 
@@ -63,12 +126,14 @@ public class Duke {
                         String description = input.substring(0, input.indexOf("/") - 1);
                         String at = input.substring(input.indexOf("/") + 4);
                         setEvent(description, at);
+                        save(taskList);
                         break;
                     }
                     
                     case "delete": {
                         int index = sc.nextInt() - 1;
                         deleteTask(index);
+                        save(taskList);
                         break;
                     }
 
@@ -153,6 +218,18 @@ public class Duke {
         System.out.println("Noted. I've removed this task:" + "\n" + toBeDeleted + "\n" + "Now you have " + taskList.size()
                 + " tasks in your list.");
         System.out.println(horizontalLine);
+    }
+    
+    public void save(List<Task> list) {
+        try {
+            FileWriter writer = new FileWriter(saveFile.getPath());
+            for (Task task : list) {
+                writer.write(task.saveString() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException exception) {
+            System.out.println("I cannot save your tasks in the file.");
+        }
     }
     
 }
