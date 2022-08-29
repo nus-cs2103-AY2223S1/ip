@@ -8,6 +8,9 @@ import task.DukeTaskEvent;
 
 import java.util.ArrayList;
 
+/**
+ * Represent an Event command
+ */
 public class EventCommand extends Command {
     private String cmd;
 
@@ -15,6 +18,13 @@ public class EventCommand extends Command {
         this.cmd = cmd;
     }
 
+    /**
+     * Deconstruct an event command based on cmd
+     * @param tasklist
+     * @param ui
+     * @param storage
+     * @throws InvalidFormatException
+     */
     @Override
     public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {

@@ -7,6 +7,9 @@ import task.DukeTask;
 
 import java.util.ArrayList;
 
+/**
+ * Represent a delete command
+ */
 public class DeleteCommand extends Command {
     private String cmd;
 
@@ -14,6 +17,13 @@ public class DeleteCommand extends Command {
         this.cmd = cmd;
     }
 
+    /**
+     * Deconstruct a delete command based on cmd
+     * @param tasklist
+     * @param ui
+     * @param storage
+     * @throws InvalidFormatException
+     */
     @Override
     public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {

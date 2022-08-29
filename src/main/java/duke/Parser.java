@@ -9,8 +9,6 @@ public class Parser {
     
     /**
      * Parse user input and returns a command
-     * throws InvalidInputException, InvalidIndexException,
-            DateTimeParseException, InvalidDescriptionException, InvalidTimeException 
      */
     public static Command parse(String fullCommand) {
 

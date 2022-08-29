@@ -7,13 +7,23 @@ import task.DukeTask;
 
 import java.util.ArrayList;
 
+/**
+ * Represent a mark commmand
+ */
 public class MarkCommand extends Command {
     private String cmd;
 
     public MarkCommand(String cmd) {
         this.cmd = cmd;
     }
-    
+
+    /**
+     * Deconstruct a mark command based on cmd
+     * @param tasklist
+     * @param ui
+     * @param storage
+     * @throws InvalidFormatException
+     */
     @Override
     public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {

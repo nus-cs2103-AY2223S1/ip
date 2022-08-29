@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * A class that writes and read from files
+ */
 public class Storage {
 
     private static String FILEPATH;
@@ -19,11 +22,19 @@ public class Storage {
     
     Storage() {}
 
+    /**
+     * Set FILEPATH and tasklist
+     * @param lst
+     * @param filePath
+     */
     public static void setOnce(ArrayList<DukeTask> lst, String filePath) {
         tasklist = lst;
         FILEPATH = filePath;
     }
 
+    /**
+     * Read list from available file
+     */
     public void read() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILEPATH));
@@ -48,6 +59,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Save current list items into file
+     */
     public void save() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH));
