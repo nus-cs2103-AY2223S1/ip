@@ -9,5 +9,6 @@ public enum Command {
     UNMARK,
     LIST,
     EXIT,
+    FIND,
     UNKNOWN
 }

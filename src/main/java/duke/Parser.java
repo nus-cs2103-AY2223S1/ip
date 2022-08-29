@@ -30,6 +30,8 @@ public class Parser {
             return Command.UNMARK;
         case "list":
             return Command.LIST;
+        case "find":
+            return Command.FIND;
         case "bye":
             return Command.EXIT;
         default:
@@ -39,6 +41,10 @@ public class Parser {
 
     public static int getTaskIndex(String input) {
         return Integer.parseInt(input.substring(input.length() - 1)) - 1;
+    }
+
+    public static String getKeyword(String input) {
+        return input.substring(6);
     }
 
     public static Task parseTask(String input, String code) {
