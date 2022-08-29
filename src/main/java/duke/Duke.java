@@ -2,7 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.parser.Parser;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
  * Represents Duke Bot that functions and responds according to user's commands.
@@ -10,39 +10,21 @@ import duke.task.TasksList;
 public class Duke {
     private Storage storage;
     private Ui ui;
-    private TasksList tasksList;
+    private TaskList taskList;
 
     /**
-     * Creates a Duke bot and initialise the Storage, Ui and TasksList.
+     * Creates a Duke bot and initialise the Storage, Ui and TaskList.
      */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
         try {
             this.storage.initialiseSaveFile();
-            this.tasksList = storage.createTaskList();
+            this.taskList = storage.createTaskList();
             this.ui.showMessage("Loading from save...\n");
         } catch (DukeException e) {
             this.ui.showError(e);
-            tasksList = new TasksList();
-        }
-    }
-
-    /**
-     * Runs the Duke bot.
-     */
-    public void run() {
-        this.ui.showGreeting();
-        while (this.ui.isActive()) {
-            try {
-                String input = this.ui.getUserCommand();
-                Command command = Parser.parse(input, this.storage, this.tasksList, this.ui);
-                command.execute();
-            } catch (DukeException e) {
-                this.ui.showError(e);
-            } finally {
-                System.out.println();
-            }
+            taskList = new TaskList();
         }
     }
 
@@ -56,13 +38,15 @@ public class Duke {
         return "Duke";
     }
 
-    /**
-     * Creates and initiates Duke to run.
-     *
-     * @param args Ignore.
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public String getResponse(String input) {
+        while (this.ui.isActive()) {
+            try {
+                Command command = Parser.parse(input, this.storage, this.taskList, this.ui);
+                return command.execute();
+            } catch (DukeException e) {
+                return this.ui.showError(e);
+            }
+        }
+        return "";
     }
 }

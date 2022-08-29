@@ -1,32 +1,32 @@
 package duke.command;
 
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
- * Represents the command to list all the tasks in the given TasksList.
+ * Represents the command to list all the tasks in the given TaskList.
  */
 public class ListCommand extends Command {
-    private TasksList tasksList;
+    private TaskList taskList;
 
     /**
-     * Creates ListCommand with the given TasksList.
+     * Creates ListCommand with the given TaskList.
      *
-     * @param tasksList The TasksList to list the tasks from.
+     * @param taskList The TaskList to list the tasks from.
      */
-    public ListCommand(TasksList tasksList) {
-        this.tasksList = tasksList;
+    public ListCommand(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void execute() {
-        this.tasksList.listTasks();
+    public String execute() {
+        return this.taskList.listTasks();
     }
 
     /**
-     * Checks if the command given refers to listing all the tasks from the TasksList.
+     * Checks if the command given refers to listing all the tasks from the TaskList.
      *
      * @param s The command word (if any) from the user's input.
      * @return true if the command to list is valid, false otherwise.

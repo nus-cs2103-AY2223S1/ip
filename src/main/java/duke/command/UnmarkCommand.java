@@ -2,25 +2,25 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
- * Represents the command to mark a task as not done in the TasksList.
+ * Represents the command to mark a task as not done in the TaskList.
  */
 public class UnmarkCommand extends Command {
-    private TasksList tasksList;
+    private TaskList taskList;
     private Storage storage;
     private String[] command;
 
     /**
-     * Creates UnmarkCommand with the given TasksList, Storage and command.
+     * Creates UnmarkCommand with the given TaskList, Storage and command.
      *
-     * @param tasksList The TasksList to unmark the task from.
-     * @param storage The Storage associated with the TasksList.
+     * @param taskList The TaskList to unmark the task from.
+     * @param storage The Storage associated with the TaskList.
      * @param command The String array of the user's command.
      */
-    public UnmarkCommand(TasksList tasksList, Storage storage, String[] command) {
-        this.tasksList = tasksList;
+    public UnmarkCommand(TaskList taskList, Storage storage, String[] command) {
+        this.taskList = taskList;
         this.storage = storage;
         this.command = command;
     }
@@ -29,8 +29,8 @@ public class UnmarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute() throws DukeException {
-        tasksList.unmarkTask(command, storage);
+    public String execute() throws DukeException {
+        return taskList.unmarkTask(command, storage) + "\n";
     }
 
     /**

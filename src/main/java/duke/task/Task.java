@@ -49,29 +49,29 @@ public abstract class Task {
     /**
      * Marks the task as completed and prints the task's description.
      * If the task was already marked as completed, tell the user.
+     *
+     * @return The String message for successfully marking a task.
      */
-    public void mark() {
+    public String mark() {
         if (this.isDone) {
-            System.out.println("Duke: This task has already been marked as done.");
-            return;
+            return "Duke: This task has already been marked as done.";
         }
         completeTask();
-        System.out.println("Duke: Nice! I've marked this task as done:");
-        System.out.println(this);
+        return "Duke: Nice! I've marked this task as done:\n" + this;
     }
 
     /**
      * Marks the task as completed and prints the task's description.
      * If the task was already marked as completed, tell the user.
+     *
+     * @return The String message for successfully marking a task.
      */
-    public void unmark() {
+    public String unmark() {
         if (!this.isDone) {
-            System.out.println("Duke: This task has already been marked as not done.");
-            return;
+            return "Duke: This task has already been marked as not done.";
         }
         this.isDone = false;
-        System.out.println("Duke: OK, I've marked this task as not done yet:");
-        System.out.println(this);
+        return "Duke: OK, I've marked this task as not done yet:\n" + this;
     }
 
     /**

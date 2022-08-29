@@ -2,25 +2,25 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
- * Represents the command to mark a task as done in the TasksList.
+ * Represents the command to mark a task as done in the TaskList.
  */
 public class MarkCommand extends Command {
-    private TasksList tasksList;
+    private TaskList taskList;
     private Storage storage;
     private String[] command;
 
     /**
-     * Creates MarkCommand with the given TasksList, Storage and command.
+     * Creates MarkCommand with the given TaskList, Storage and command.
      *
-     * @param tasksList The TasksList to mark the task from.
-     * @param storage The Storage associated with the TasksList.
+     * @param taskList The TaskList to mark the task from.
+     * @param storage The Storage associated with the TaskList.
      * @param command The String array of the user's command.
      */
-    public MarkCommand(TasksList tasksList, Storage storage, String[] command) {
-        this.tasksList = tasksList;
+    public MarkCommand(TaskList taskList, Storage storage, String[] command) {
+        this.taskList = taskList;
         this.storage = storage;
         this.command = command;
     }
@@ -29,8 +29,8 @@ public class MarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute() throws DukeException {
-        this.tasksList.markTask(command, storage);
+    public String execute() throws DukeException {
+        return this.taskList.markTask(command, storage) + "\n";
     }
 
     /**

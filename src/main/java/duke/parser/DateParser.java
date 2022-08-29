@@ -29,7 +29,9 @@ public class DateParser {
      * @throws DateTimeException if the text cannot be parsed
      */
     public static LocalDateTime parseToDate(String date) throws DateTimeException {
-        // https://stackoverflow.com/questions/48280447/java-8-datetimeformatter-with-optional-part
+        // @@author HowSuen-reused
+        // Reused from https://stackoverflow.com/questions/48280447/java-8-datetimeformatter-with-optional-part
+        // with minor modifications.
         LocalDateTime dateTime;
         TemporalAccessor temporalAccessor = DateParser.FORMAT.parseBest(date, LocalDateTime::from, LocalDate::from);
         if (temporalAccessor instanceof LocalDateTime) {
@@ -38,6 +40,7 @@ public class DateParser {
             dateTime = ((LocalDate) temporalAccessor).atStartOfDay();
         }
         return dateTime;
+        // @@author
     }
 
     /**
