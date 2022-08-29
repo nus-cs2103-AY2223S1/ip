@@ -36,7 +36,7 @@ public class Storage {
 
             File dukeFile = new File(pathname);
             dukeFile.createNewFile();
-            Scanner a = new Scanner(dukeFile);;
+            Scanner a = new Scanner(dukeFile);
 
             FileWriter fileWriter = new FileWriter(pathname);
             for (int i = 1; i <= Task.getNumberTasks(); i++) {
