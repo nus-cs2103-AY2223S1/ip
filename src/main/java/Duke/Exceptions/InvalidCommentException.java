@@ -1,6 +1,5 @@
-package Exceptions;
+package Duke.Exceptions;
 
-import Exceptions.DukeException;
 
 public class InvalidCommentException extends DukeException {
 

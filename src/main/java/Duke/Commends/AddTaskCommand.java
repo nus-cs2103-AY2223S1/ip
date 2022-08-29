@@ -1,4 +1,4 @@
-package Commends;
+package Duke.Commends;
 
 public class AddTaskCommand {
 }

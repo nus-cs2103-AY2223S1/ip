@@ -1,12 +1,11 @@
 
+package Duke;
+import Duke.Exceptions.DukeException;
+import Duke.Tasks.TaskList;
 
-import Exceptions.DukeException;
-import Tasks.Task;
-import Tasks.TaskList;
+import Duke.UI.Ui;
 
-import UI.Ui;
-
-import Storage.Storage;
+import Duke.Storage.Storage;
 
 
 import java.io.IOException;

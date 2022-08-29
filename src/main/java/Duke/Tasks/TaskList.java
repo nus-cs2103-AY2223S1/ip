@@ -1,15 +1,17 @@
-package Tasks;
+package Duke.Tasks;
 
-
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.ArrayList;
 
 public class TaskList {
-
     protected List<Task> taskList;
 
-    public TaskList(){
-        this.taskList = new ArrayList<>();
+    public boolean checkTaskContent(String content) throws EmptyContentException
+
+
+    public TaskList(ArrayList<Task> tasks) {
+        this.taskList = tasks;
     }
 
     public String showTasks(){

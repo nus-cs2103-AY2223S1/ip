@@ -1,8 +1,9 @@
-package Storage;
+package Duke.Storage;
 
-import Exceptions.StoredFileException;
+import Duke.Exceptions.StoredFileException;
 
-import Tasks.*;
+
+import Duke.Tasks.*;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
