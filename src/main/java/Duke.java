@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.FileWriter;
 
 public class Duke {
     public static void main(String[] args) {
@@ -99,6 +102,9 @@ public class Duke {
                 } else {
                     throw new DukeException("Sorry, I don't understand you. Please try again.");
                 }
+
+                // Saves list to file ./data/duke.txt
+                saveList(list);
             } catch (DukeException e) {
                 printWithLineBreak(e.getMessage());
             }
@@ -122,5 +128,23 @@ public class Duke {
             result += "\t" + (i + 1) + ". " + list.get(i) + "\n";
         }
         return result;
+    }
+
+    public static void saveList(ArrayList<Task> list) {
+        try {
+            // Checks if directory ./data/ exists and creates it if not
+            Path path = Path.of("./data/");
+            if (Files.notExists(path)) {
+                Files.createDirectory(path);
+            }
+            // Saves to file duke.txt
+            FileWriter writer = new FileWriter("./data/duke.txt", false);
+            for (int i = 0; i < list.size(); i++) {
+                writer.write(list.get(i).toString() + "\n");
+                writer.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Error while saving list to file.");
+        }
     }
 }
