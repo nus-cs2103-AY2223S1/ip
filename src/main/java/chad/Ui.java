@@ -1,3 +1,9 @@
+package chad;
+
+import chad.task.Deadline;
+import chad.task.Event;
+import chad.task.Task;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -42,7 +48,7 @@ public class Ui {
      * Marks the task at specific index as done
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws IOException throws error if file can't be open in Storage
+     * @throws IOException throws error if file can't be open in chad.Storage
      */
     public static void markTask(ArrayList<Task> tasks, int taskID) throws IOException {
         String outputText = "";
@@ -58,7 +64,7 @@ public class Ui {
      * Unmarks the task at specific index as done
      * @param tasks arraylist of tasks
      * @param taskID index of task
-     * @throws IOException throws error if file can't be open in Storage
+     * @throws IOException throws error if file can't be open in chad.Storage
      */
     public static void unmarkTask(ArrayList<Task> tasks, int taskID) throws IOException {
         String outputText = "";

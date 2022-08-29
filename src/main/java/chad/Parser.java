@@ -1,3 +1,10 @@
+package chad;
+
+import chad.Ui;
+import chad.Utility;
+import chad.exception.ChadException;
+import chad.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

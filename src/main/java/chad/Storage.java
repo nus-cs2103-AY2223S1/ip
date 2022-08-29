@@ -1,3 +1,10 @@
+package chad;
+
+import chad.task.Deadline;
+import chad.task.Event;
+import chad.task.Task;
+import chad.task.Todo;
+
 import java.io.*;
 import java.util.ArrayList;
 

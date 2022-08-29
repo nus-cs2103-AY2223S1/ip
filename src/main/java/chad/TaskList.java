@@ -1,3 +1,11 @@
+package chad;
+
+import chad.exception.ChadException;
+import chad.task.Task;
+import chad.task.Deadline;
+import chad.task.Event;
+import chad.task.Todo;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

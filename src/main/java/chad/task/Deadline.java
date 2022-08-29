@@ -1,16 +1,18 @@
+package chad.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Event task that is a child of task
+ * Deadline task that inherits from task
  */
-public class Event extends Task{
+public class Deadline extends Task{
     protected LocalDateTime dateTime;
 
-    Event(String description, String dateTime) {
+    public Deadline(String description, String byDate) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+        this.dateTime = LocalDateTime.parse(byDate,formatter);
     }
 
     public LocalDateTime getDateTime() {
@@ -19,8 +21,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " +
+        return "[D]" + super.toString() + " (by: " +
                 this.dateTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm a")) +")";
     }
-
 }

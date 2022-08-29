@@ -1,5 +1,7 @@
+package chad.task;
+
 /**
- * Task is the core functionality of the Chadbot
+ * chad.Task is the core functionality of the Chadbot
  */
 public class Task {
     protected String description;

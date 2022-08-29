@@ -1,3 +1,5 @@
+package chad;
+
 /**
  * Contains general functions for use across all files
  */

@@ -1,3 +1,5 @@
+package chad.exception;
+
 /**
  * Custom Exception
  */
