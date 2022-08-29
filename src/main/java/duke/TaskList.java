@@ -10,13 +10,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TaskList class containing all the logic for interactions with the list of tasks.
+ */
 public class TaskList {
+    /** List of tasks */
     public ArrayList<Task> tasks;
 
+    /**
+     * Creates empty TaskList.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
+    /**
+     * Creates TaskList and populates the list with text from a list of strings.
+     *
+     * @param res List of strings to be populated into list.
+     * @throws DukeException if data cannot be parsed properly.
+     */
     public TaskList(List<String> res) throws DukeException {
         tasks = new ArrayList<>();
         for (String line: res) {
@@ -46,6 +59,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates new Task object given a list of descriptors.
+     *
+     * @param tag Character indicating type of task.
+     * @param description Title of task.
+     * @param time Time of task in LocalDateTime format.
+     * @return New Task containing above details.
+     */
     public Task createTask(char tag, String description, LocalDateTime time) {
         switch (tag) {
             case 'T':
