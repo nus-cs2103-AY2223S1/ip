@@ -33,13 +33,13 @@ public class Duke {
         while (true) {
             try {
                 String fullCommand = this.ui.readInput();
-                this.ui.line(); // show the divider line ("_______")
+                this.ui.printLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
                 c.execute(this.tasks, this.ui, this.storage);
             } catch (DukeException e) {
                 System.out.println("That command was not valid. Try again!");
             } finally {
-                this.ui.line();
+                this.ui.printLine();
             }
         }
     }

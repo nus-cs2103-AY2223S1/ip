@@ -25,7 +25,7 @@ public class Ui {
     /**
      * Method to encapsulate the printing of seperator lines.
      */
-    public void line() {
+    public void printLine() {
         System.out.println("------------------------------------------------------------------------------------");
     }
 
