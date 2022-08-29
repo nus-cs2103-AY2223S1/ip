@@ -8,11 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * The DialogBox class to render a label and image in a horizontal box.
+ */
 public class DialogBox extends HBox {
 
     private Label text;
     private ImageView displayPicture;
 
+    /**
+     * Dialog box constructor
+     *
+     * @param l The corresponding label.
+     * @param iv The corresponding ImageView object containing the image.
+     */
     public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;

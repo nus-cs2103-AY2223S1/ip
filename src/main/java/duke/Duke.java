@@ -1,14 +1,15 @@
 package duke;
 
 import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,9 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+    /**
+     * Constructor for Duke program.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage("data.txt");
@@ -171,6 +175,6 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return Parser.checkExit(input)? "Have a nice day!" : Parser.parse(input, tasks, storage);
+        return Parser.checkExit(input) ? "Have a nice day!" : Parser.parse(input, tasks, storage);
     }
 }
