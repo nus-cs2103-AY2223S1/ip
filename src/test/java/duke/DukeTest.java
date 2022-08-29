@@ -13,7 +13,7 @@ public class DukeTest {
     @Test
     public void parserTest(){
         Storage storage = new Storage("./data/duke.txt");
-        Ui ui = new Ui();
+        Ui ui = new Ui(new Duke());
         TaskList taskList = new TaskList(storage.getTasks(), ui, storage);
         ui.updateTaskList(taskList);
         Parser parser = new Parser(taskList);
