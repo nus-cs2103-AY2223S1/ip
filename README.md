@@ -9,10 +9,10 @@ DukeHam helps you to prepare by remembering the things you have to do, It's,
 
 All you need to do is,
 
-1.Download
-2.Run DukeHam
-3.Add your tasks
-4.Let it handle the rest :star_struck:
+1. Download
+2. Run DukeHam
+3. Add your tasks
+4. Let it handle the rest :star_struck:
 
 AND IT IS **FREE**
 
