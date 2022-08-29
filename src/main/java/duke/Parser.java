@@ -4,15 +4,28 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * A class that deals with the interaction of the user.
+ *
+ * @author Safwan A0235287X
+ */
 public class Parser {
 
     private TaskList taskList;
 
+    /**
+     * Constructor to create Parser object.
+     * @param taskList the input list for the storage of data.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
-
+    /**
+     * Method to read and process input given by the user.
+     * @throws DukeException
+     * @throws IOException
+     */
     public void readInput() throws DukeException, IOException {
         while (true) {
 
