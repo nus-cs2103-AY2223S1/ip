@@ -3,13 +3,25 @@ package duke;
 import duke.command.Command;
 import duke.exception.DukeException;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 /**
  * Main file of Duke to be run to initiate the program.
  */
-public class Duke {
+public class Duke extends Application {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+    /**
+     * Constructs a Duke instance by default with no properties initialised
+     */
+    public Duke() {
+
+    }
 
     /**
      * Constructs a Duke instance and load the previous stored TaskList from the filePath.
@@ -53,6 +65,15 @@ public class Duke {
             }
         }
         this.ui.showGoodbyeMessage();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
 }
