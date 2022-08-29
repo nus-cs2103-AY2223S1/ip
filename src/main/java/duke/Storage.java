@@ -18,6 +18,7 @@ public class Storage {
 
     private static File savedFile = null;
 
+    /** Constructor for a Storage object */
     protected Storage() {
 
     }
@@ -29,7 +30,7 @@ public class Storage {
      *
      * @return Arraylist of tasks that is created when reading contents of save file.
      */
-    protected ArrayList<Task> ReadFileAtStart() {
+    protected ArrayList<Task> readFileAtStart() {
         File dataDir = new File(System.getProperty("user.dir") + File.separator + "data");
 
         if (!dataDir.exists()) {
@@ -46,7 +47,7 @@ public class Storage {
 
             if (!fileCreated) {
                 System.out.println("Save file detected, reading it...");
-                arrayList = ReadData();
+                arrayList = readData();
             } else {
                 System.out.println("Creating save file for first time use");
                 arrayList = new ArrayList<>();
@@ -67,7 +68,7 @@ public class Storage {
      * @return Arraylist of tasks that is created when reading contents of save file.
      * @throws FileNotFoundException If scanner is unable to read save file.
      */
-    private ArrayList<Task> ReadData() throws FileNotFoundException {
+    private ArrayList<Task> readData() throws FileNotFoundException {
 
         Scanner sc = new Scanner(savedFile);
         ArrayList<Task> arrayList = new ArrayList<>();
@@ -116,7 +117,7 @@ public class Storage {
      * @param arrayList Current arraylist of tasks to be saved.
      * @throws IOException If unable to write to save file.
      */
-    protected void SaveDataToFile(ArrayList<Task> arrayList) throws IOException {
+    protected void saveDataToFile(ArrayList<Task> arrayList) throws IOException {
 
         FileWriter fileWriter = new FileWriter(savedFile, false);
 

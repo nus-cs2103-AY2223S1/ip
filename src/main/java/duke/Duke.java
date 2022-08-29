@@ -9,12 +9,13 @@ import java.util.Scanner;
  *
  */
 public class Duke {
-    
+
     protected static ArrayList<Task> arrayList = null;
 
     private Ui ui;
     private Parser parser;
 
+    /** Constructor for Duke */
     private Duke() {
         this.ui = new Ui();
         this.parser = new Parser();

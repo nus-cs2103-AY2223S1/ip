@@ -1,12 +1,14 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 
 public class TodoTest {
 
     @Test
-    public void toString_newTodo_correctString(){
+    public void toString_newTodo_correctString() {
         String actualString = new Todo("Hello").toString();
         String expectedString = "[T] [ ] Hello";
 
@@ -14,7 +16,7 @@ public class TodoTest {
     }
 
     @Test
-    public void toSavedString_newTodo_correctString(){
+    public void toSavedString_newTodo_correctString() {
         Todo todo = new Todo("Hello there");
 
         String actualString = todo.toSavedString();
@@ -24,7 +26,7 @@ public class TodoTest {
     }
 
     @Test
-    public void toSavedString_newTodoWithMark_correctString(){
+    public void toSavedString_newTodoWithMark_correctString() {
         Todo todo = new Todo("Hello there");
         todo.markDone();
 

@@ -10,6 +10,7 @@ public abstract class Task {
     private final String taskname;
     private boolean isDone;
 
+    /** Constructor for a Task object */
     public Task(String taskname) {
         this.taskname = taskname;
         this.isDone = false;

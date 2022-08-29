@@ -6,8 +6,8 @@ package duke;
  */
 public class Ui {
 
+    /** Constructor for a Ui object */
     protected Ui() {
-
 
     }
 

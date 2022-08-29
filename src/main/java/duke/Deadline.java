@@ -13,6 +13,7 @@ public class Deadline extends Task {
     private LocalDate time;
     private final char type = 'D';
 
+    /** Constructor for a Deadline object */
     public Deadline(String taskname, LocalDate time) {
         super(taskname);
         this.time = time;

@@ -13,9 +13,10 @@ public class TaskList {
     private ArrayList<Task> arrayList;
     private final Storage storage;
 
+    /** Constructor for a Tasklist object */
     protected TaskList() {
         this.storage = new Storage();
-        this.arrayList = this.storage.ReadFileAtStart();
+        this.arrayList = this.storage.readFileAtStart();
     }
 
     /**
@@ -23,15 +24,15 @@ public class TaskList {
      *
      * @throws IOException If unable to save changes to file.
      */
-    private void SaveChangesToFile() throws IOException {
-        this.storage.SaveDataToFile(this.arrayList);
+    private void saveChangesToFile() throws IOException {
+        this.storage.saveDataToFile(this.arrayList);
     }
 
     /**
      * Prints out all tasks with the specified taskname.
      *
      */
-    protected void FindAllTasksWith(String name) {
+    protected void findAllTasksWith(String name) {
 
         ArrayList<Task> foundTasks = new ArrayList<>();
 
@@ -58,7 +59,7 @@ public class TaskList {
      * Prints out all the contents of the tasks in the arraylist.
      *
      */
-    protected void ListTasks() {
+    protected void listTasks() {
         System.out.println("Here are the tasks in your current list:");
 
         if (arrayList.size() == 0) {
@@ -77,9 +78,9 @@ public class TaskList {
      * @param i Index of the task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void MarkTaskDoneAt(int i) throws IOException {
+    protected void markTaskDoneAt(int i) throws IOException {
         this.arrayList.get(i).markDone();
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("Nice! You actually did something:");
         System.out.println(" " + this.arrayList.get(i));
@@ -91,9 +92,9 @@ public class TaskList {
      * @param i Index of the task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void MarkTaskNotDoneAt(int i) throws IOException {
+    protected void markTaskNotDoneAt(int i) throws IOException {
         this.arrayList.get(i).markNotDone();
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(" " + this.arrayList.get(i));
@@ -105,10 +106,10 @@ public class TaskList {
      * @param i Index of the task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void DeleteTaskAt(int i) throws IOException {
+    protected void deleteTaskAt(int i) throws IOException {
         this.arrayList.get(i).markNotDone();
         Task deletedTask = arrayList.remove(i);
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("Noted. I've removed this task:");
         System.out.println(" " + deletedTask);
@@ -121,10 +122,10 @@ public class TaskList {
      * @param taskname Name of the task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void AddToDo(String taskname) throws IOException {
+    protected void addToDo(String taskname) throws IOException {
         Task todo = new Todo(taskname.trim());
         arrayList.add(todo);
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + todo);
@@ -138,10 +139,10 @@ public class TaskList {
      * @param localDate Date of the deadline.
      * @throws IOException If unable to save changes to file.
      */
-    protected void AddDeadline(String taskname, LocalDate localDate) throws IOException {
+    protected void addDeadline(String taskname, LocalDate localDate) throws IOException {
         Task deadline = new Deadline(taskname.trim(), localDate);
         arrayList.add(deadline);
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + deadline);
@@ -155,10 +156,10 @@ public class TaskList {
      * @param localDate Date of the deadline.
      * @throws IOException If unable to save changes to file.
      */
-    protected void AddEvent(String taskname, LocalDate localDate) throws IOException {
+    protected void addEvent(String taskname, LocalDate localDate) throws IOException {
         Task event = new Event(taskname.trim(), localDate);
         arrayList.add(event);
-        this.SaveChangesToFile();
+        this.saveChangesToFile();
 
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + event);

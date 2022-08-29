@@ -9,6 +9,7 @@ public class Todo extends Task {
 
     private final char type = 'T';
 
+    /** Constructor for a Todo object */
     public Todo(String taskname) {
         super(taskname);
     }

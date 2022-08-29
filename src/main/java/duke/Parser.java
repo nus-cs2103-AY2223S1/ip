@@ -14,6 +14,7 @@ public class Parser {
 
     private final TaskList taskList;
 
+    /** Constructor for a Parser object */
     public Parser() {
         this.taskList = new TaskList();
     }
@@ -30,21 +31,21 @@ public class Parser {
         String str = strArray[0];
 
         if (str.equals("list")) {
-            this.taskList.ListTasks();
+            this.taskList.listTasks();
         } else if (str.equals("mark")) {
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.MarkTaskDoneAt(i);
+            this.taskList.markTaskDoneAt(i);
 
         } else if (str.equals("unmark")) {
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.MarkTaskNotDoneAt(i);
+            this.taskList.markTaskNotDoneAt(i);
 
         } else if (str.equals("delete")) {
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.DeleteTaskAt(i);
+            this.taskList.deleteTaskAt(i);
 
         } else if (str.equals("find")) {
-            this.taskList.FindAllTasksWith(strArray[1]);
+            this.taskList.findAllTasksWith(strArray[1]);
 
         } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
 
@@ -71,7 +72,7 @@ public class Parser {
             }
 
             if (str.equals("todo")) {
-                this.taskList.AddToDo(taskname);
+                this.taskList.addToDo(taskname);
             } else {
                 if (date.equals("")) {
                     throw new DukeException("Date/Time cannot be empty!");
@@ -88,9 +89,9 @@ public class Parser {
                 date = tArray[0];
 
                 //matches the yyyy-MMM-d format
-                if (!date.trim().matches("[0-9]{4}-" +
-                        "((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))" +
-                        "-[0-9]{1,2}")) {
+                if (!date.trim().matches("[0-9]{4}-"
+                        + "((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))"
+                        + "-[0-9]{1,2}")) {
                     throw new DukeException("Date/Time must match the YYYY-MMM-DD format!");
                 }
 
@@ -105,9 +106,9 @@ public class Parser {
                 }
 
                 if (str.equals("deadline")) {
-                    this.taskList.AddDeadline(taskname, localDate);
+                    this.taskList.addDeadline(taskname, localDate);
                 } else {
-                    this.taskList.AddEvent(taskname, localDate);
+                    this.taskList.addEvent(taskname, localDate);
                 }
             }
 
