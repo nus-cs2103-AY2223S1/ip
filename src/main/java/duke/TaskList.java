@@ -12,6 +12,15 @@ public class TaskList {
     }
 
     /**
+     * Returns task at the given index from the list.
+     *
+     * @param index Index of the task.
+     */
+    public Task get(int index) {
+        return tasks.get(index);
+    }
+
+    /**
      * Removes task at the given index from the list.
      *
      * @param index Index of the task.

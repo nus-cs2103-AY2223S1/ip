@@ -25,11 +25,13 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates appropriate response from Duke.
+     *
+     * @param input Input from the user.
+     * @return Response from Duke.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        return parser.processCommand(input);
     }
 
     public static void main(String[] args) {

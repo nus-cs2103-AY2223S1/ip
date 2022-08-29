@@ -16,27 +16,27 @@ public class Ui {
     /**
      * Prints out welcome message.
      */
-    public void showWelcome() {
-        printOut("Hello! I'm Duke.\n" +
-                "What can I do for you?");
+    public String showWelcome() {
+        return "Hello! I'm Duke.\n" +
+                "What can I do for you?";
     }
 
     /**
      * Prints out goodbye message.
      */
-    public void showGoodbye() {
-        printOut("See you later. Bye!");
+    public String showGoodbye() {
+        return "See you later. Bye!";
     }
 
     /**
      * Prints out error message for invalid task index.
      */
-    public void showInvalidTaskIndexError() {
-        printOut("This task number is invalid!");
+    public String showInvalidTaskIndexError() {
+        return "This task number is invalid!";
     }
 
-    public void showTaskAddedMessage(Task task, TaskList tasks) {
-        printOut("Okay, I've added this task:\n" + task.toString() +
-                "\nYou now have " + tasks.size() + " tasks.");
+    public String showTaskAddedMessage(Task task, TaskList tasks) {
+        return "Okay, I've added this task:\n" + task.toString() +
+                "\nYou now have " + tasks.size() + " tasks.";
     }
 }
