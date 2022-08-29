@@ -44,7 +44,7 @@ public class Duke {
                 switch (command) {
                 case BYE:
                     // Write tasks data to storage before terminating program
-                    Storage.writeData(tasks.toString());
+                    Storage.writeData(tasks.toStorageString());
                     ui.printGoodbye();
                     return;
                 case LIST:

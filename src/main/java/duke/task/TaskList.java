@@ -95,6 +95,19 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Converts <code>TaskList</code> to a string that is formatted to be written to <code>Storage</code>.
+     *
+     * @return the formatted string.
+     */
+    public String toStorageString() {
+        StringBuilder data = new StringBuilder();
+        for (Task task : this.list) {
+            data.append(task.toString() + "\n");
+        }
+        return data.toString();
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return list.iterator();
