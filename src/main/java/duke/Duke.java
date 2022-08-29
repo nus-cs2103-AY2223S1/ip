@@ -8,18 +8,27 @@ import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
+/**
+ * Main class for duke.
+ */
 public class Duke {
 
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Constructs a Duke object.
+     */
     public Duke() {
         storage = new Storage("data/duke.txt");
         ui = new Ui();
         taskList = new TaskList();
     }
 
+    /**
+     * Runs the duke program.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Parser parser = new Parser(storage, ui, taskList);

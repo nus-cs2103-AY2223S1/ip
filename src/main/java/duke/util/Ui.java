@@ -41,6 +41,9 @@ public class Ui {
         System.out.println("🙁 OOPS! " + e.getMessage());
     }
 
+    /**
+     * Displays the start of the input line to user.
+     */
     public void showInputLine() {
         System.out.print("--> ");
     }

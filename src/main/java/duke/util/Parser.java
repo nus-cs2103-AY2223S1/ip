@@ -8,12 +8,22 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.ListCommand;
 
+/**
+ * Parser to make sense of user input.
+ */
 public class Parser {
 
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
 
+    /**
+     * Constructs a Parser object.
+     * 
+     * @param storage  Storage class to be used
+     * @param ui       Ui class to be used
+     * @param taskList TaskList to be used
+     */
     public Parser(Storage storage, Ui ui, TaskList taskList) {
         this.storage = storage;
         this.ui = ui;
@@ -24,6 +34,13 @@ public class Parser {
         bye, list, mark, unmark, delete, todo, deadline, event
     }
 
+    /**
+     * Parses the user input and returns a Command object.
+     * 
+     * @param input User input
+     * @return Command object after parsing input
+     * @throws DukeException if user input is invalid
+     */
     public Command parse(String input) throws DukeException {
         String[] tokens = input.split(" ");
         if (tokens.length == 0) {

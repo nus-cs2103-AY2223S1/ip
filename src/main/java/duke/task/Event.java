@@ -1,9 +1,11 @@
 package duke.task;
 
 import java.util.Date;
-
 import duke.DukeException;
 
+/**
+ * Represents an Event task.
+ */
 public class Event extends Task {
     private Date timing;
 

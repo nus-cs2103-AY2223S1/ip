@@ -1,9 +1,11 @@
 package duke.task;
 
 import java.util.Date;
-
 import duke.DukeException;
 
+/**
+ * Represents a Deadline task.
+ */
 public class Deadline extends Task {
     private Date deadline;
 
