@@ -11,6 +11,7 @@ public class Ui {
      * Method that displays a string as a starting message.
      */
     public void greetings() {
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
