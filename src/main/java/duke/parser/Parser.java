@@ -1,17 +1,27 @@
 package duke.parser;
 
-import duke.command.*;
+import static java.lang.Integer.parseInt;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 import duke.tasklist.TaskList;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-import static java.lang.Integer.parseInt;
+
 
 /**
  * Parser class for parsing inputs from user
@@ -47,27 +57,27 @@ public class Parser {
             } else {
                 return new ListCommand();
             }
-        } else if (fullCommand.length() >= 5 && (fullCommand.startsWith("mark") &&
-                (Character.isWhitespace(fullCommand.charAt(4))) &&
-                fullCommand.substring(5).chars().allMatch(Character::isDigit))) {
+        } else if (fullCommand.length() >= 5 && (fullCommand.startsWith("mark")
+                && (Character.isWhitespace(fullCommand.charAt(4)))
+                && fullCommand.substring(5).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(5));
             if (number > taskList.taskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new MarkCommand(number);
             }
-        } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("unmark") &&
-                (Character.isWhitespace(fullCommand.charAt(6))) &&
-                fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
+        } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("unmark")
+                && (Character.isWhitespace(fullCommand.charAt(6)))
+                && fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
             if (number > taskList.taskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new UnmarkCommand(number);
             }
-        } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("delete") &&
-                (Character.isWhitespace(fullCommand.charAt(6))) &&
-                fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
+        } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("delete")
+                && (Character.isWhitespace(fullCommand.charAt(6)))
+                && fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
             if (number > taskList.taskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");

@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
+    protected String at = description.substring(description.lastIndexOf("/") + 4);
+    private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private LocalDate date = LocalDate.parse(at, formatted);
+
     /**
      * Constructor of Event
      *
@@ -17,10 +21,7 @@ public class Event extends Task {
         super(description);
     }
 
-    protected String at = description.substring(description.lastIndexOf("/") + 4);
 
-    private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private LocalDate date = LocalDate.parse(at, formatted);
 
 
     /**
@@ -30,8 +31,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-            return "[E]" + super.toString().substring(0, 4) + getSubstring()
-                    +  "(at: " +  date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[E]" + super.toString().substring(0, 4) + getSubstring()
+                + "(at: " + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     /**
@@ -41,7 +42,7 @@ public class Event extends Task {
      */
     private String getSubstring() {
         int index = description.indexOf("/");
-        if (index != - 1) {
+        if (index != -1) {
             return description.substring(6, index);
         }
         return null;

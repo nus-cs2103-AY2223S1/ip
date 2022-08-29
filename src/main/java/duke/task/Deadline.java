@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
+    protected String by = description.substring(description.lastIndexOf("/") + 4);
+    private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private LocalDate date = LocalDate.parse(by, formatted);
+
     /**
      * Constructor of Deadline
      *
@@ -19,12 +23,10 @@ public class Deadline extends Task {
 
 
     // Adapted from
-    // https://stackoverflow.com/questions/14316487/java-getting-a-substring-from-a-string-starting-after-a-particular-character
+    // https://stackoverflow.com/questions/14316487/
+    // java-getting-a-substring-from-a-string-starting-after-a-particular-character
 
-    protected String by = description.substring(description.lastIndexOf("/") + 4);
 
-    private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private LocalDate date = LocalDate.parse(by, formatted);
 
     /**
      * Returns the string representation of deadline
@@ -48,7 +50,7 @@ public class Deadline extends Task {
      */
     private String getSubstring() {
         int index = description.indexOf("/");
-        if (index != - 1) {
+        if (index != -1) {
             return description.substring(9, index);
         }
         return null;

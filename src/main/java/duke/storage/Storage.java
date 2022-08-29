@@ -1,15 +1,22 @@
 package duke.storage;
 
-import duke.tasklist.TaskList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.io.*;
-import java.util.ArrayList;
+
 
 /**
  * Storage class that is used to save and load files
@@ -29,10 +36,9 @@ public class Storage {
     }
 
     /**
-     * Loads /data/duke.txt and converts it to a command that is parsable, enters the commands line by line and
-     * returns ArrayList<Task>
+     * Loads /data/duke.txt and converts it to a command that is parsable, enters the commands line by line
      *
-     * @return ArrayList<Task> filled with tasks that were previously saved
+     * @return ArrayList of tasks filled with tasks that were previously saved
      * @throws IOException
      */
     public static ArrayList<Task> loadFile() throws IOException {

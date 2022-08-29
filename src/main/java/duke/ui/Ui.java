@@ -1,8 +1,11 @@
 package duke.ui;
-import duke.tasklist.TaskList;
 
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import duke.tasklist.TaskList;
+
+
 
 /**
  * Ui class responsible for handling Ui and error messages
@@ -98,8 +101,8 @@ public class Ui {
      */
     public void showTaskAdded(TaskList taskList) {
         System.out.println("Got it. I've added this task:");
-        System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize() +
-                " tasks in the list.");
+        System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize()
+                + " tasks in the list.");
     }
 
     /**

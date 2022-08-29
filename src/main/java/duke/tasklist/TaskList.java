@@ -1,8 +1,10 @@
 package duke.tasklist;
 
+import java.util.ArrayList;
+
 import duke.task.Task;
 
-import java.util.ArrayList;
+
 
 /**
  * TaskList class that contains arraylist of tasks
@@ -101,7 +103,7 @@ public class TaskList {
 
     /**
      * Marks task indexed at integer to be not done
-     * 
+     *
      * @param integer the task array index
      */
     public void markAsNotDone(int integer) {
