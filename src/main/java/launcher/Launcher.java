@@ -11,7 +11,7 @@ public class Launcher {
     /**
      * Launches the application using the Duke class.
      *
-     * @param args
+     * @param args the command line arguments.
      */
     public static void main(String[] args) {
         try {
