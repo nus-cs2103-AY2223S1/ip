@@ -1,15 +1,15 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.DukeException;
 import duke.util.TaskList;
 import duke.util.Ui;
 
-import java.util.ArrayList;
-
 /**
  * Handles the command 'event'.
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
     private String findWord;
 
     /**

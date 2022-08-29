@@ -1,15 +1,15 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 import duke.task.Deadline;
 import duke.util.TaskList;
 
-import java.time.LocalDate;
-
 /**
  * Handles the command 'deadline'.
  */
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
     private String input;
 
     /**

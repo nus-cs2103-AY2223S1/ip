@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 import duke.task.Event;
 import duke.util.TaskList;
-
-import java.time.LocalDate;
 
 /**
  * Handles the command 'event'.

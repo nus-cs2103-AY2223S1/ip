@@ -7,7 +7,7 @@ import duke.util.Ui;
 /**
  * Handles the command 'unmark'.
  */
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     private String input;
 
     /**
