@@ -12,7 +12,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.DukeException;
+import duke.DukeException;
 
 /**
  * Class that loads in file data and save file data of the program.

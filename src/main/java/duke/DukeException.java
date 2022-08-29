@@ -1,4 +1,4 @@
-package duke.ui;
+package duke;
 
 /**
  * An Exception class for Duke related problems.

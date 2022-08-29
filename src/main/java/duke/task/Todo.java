@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.ui.DukeException;
+import duke.DukeException;
 
 /**
  * The Todo Task.

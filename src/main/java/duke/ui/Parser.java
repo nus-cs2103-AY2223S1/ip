@@ -3,6 +3,7 @@ package duke.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.DukeException;
 import duke.command.AddCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;

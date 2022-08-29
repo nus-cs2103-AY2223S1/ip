@@ -16,9 +16,10 @@ public class ListCommand extends Command {
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.
+     * @return The String response of Duke after running command.
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
-        ui.printTasks(tasks);
+    public String run(TaskList tasks, Ui ui, Storage storage) {
+        return ui.printTasks(tasks);
     }
 }

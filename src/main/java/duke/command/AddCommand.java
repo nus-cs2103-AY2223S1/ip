@@ -29,12 +29,13 @@ public class AddCommand extends Command {
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.
+     * @return The String response of Duke after running command.
      * @throws IOException If there is an error when updating the file.
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String run(TaskList tasks, Ui ui, Storage storage) throws IOException {
         tasks.addTask(this.task);
-        ui.printAddTasks(this.task, tasks);
         storage.writeFile(tasks);
+        return ui.printAddTasks(this.task, tasks);
     }
 }

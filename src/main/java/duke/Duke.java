@@ -6,7 +6,6 @@ import java.time.format.DateTimeParseException;
 import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.DukeException;
 import duke.ui.Parser;
 import duke.ui.Ui;
 
@@ -60,11 +59,17 @@ public class Duke {
     }
 
     /**
-     * Main that runs the program.
-     * @param args
+     * Returns Duke bot response to input.
+     * @param input User input into bot.
+     * @return Duke bot response
      */
-    public static void main(String[] args) {
-        Duke d = new Duke();
-        d.run();
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.run(this.tasks, this.ui, this.storage);
+        } catch (DukeException | IOException | DateTimeParseException e) {
+            this.ui.printException(e);
+        }
+        return "Sorry didn't catch that.";
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.ui.DukeException;
+import duke.DukeException;
 
 class TaskTest {
 

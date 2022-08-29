@@ -2,4 +2,4 @@ T|1| hi
 D|0| ps1|2022-08-31
 E|1| party|1800-12-11
 T|0| book
-T|0| hi
+T|0| buy books

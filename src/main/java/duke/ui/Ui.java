@@ -54,80 +54,93 @@ public class Ui {
 
     /**
      * Prints out the Exit message of Duke program.
+     * @return Exit message.
      */
-    public void printExit() {
-        print("Bye. Hope to see you again soon!");
+    public String printExit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Prints out all the Tasks at hand.
      * @param tasks A list of all the Tasks at hand.
+     * @return String showcasing all Tasks.
      */
-    public void printTasks(TaskList tasks) {
-        print("Here are the tasks in your list:");
+    public String printTasks(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.getSize(); i++) {
-            print(String.format("%d. %s", i + 1, tasks.getTask(i)));
+            sb.append(String.format(" %d. %s\n", i + 1, tasks.getTask(i)));
         }
+        return sb.toString();
     }
 
     /**
      * Prints out message that a Task has been added.
      * @param task The Task to be added.
      * @param tasks The list of all Tasks.
+     * @return String message indicating task has been added.
      */
-    public void printAddTasks(Task task, TaskList tasks) {
-        print("Got it. I've added this duke.task:");
-        print("  " + task.toString());
-        print("Now you have " + tasks.getSize() + " tasks in the list.");
+    public String printAddTasks(Task task, TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Got it. I've added this duke.task:\n");
+        sb.append(String.format("  %s\n", task.toString()));
+        sb.append(String.format("Now you have %d tasks in the list.", tasks.getSize()));
+        return sb.toString();
     }
 
     /**
      * Prints out message that a Task was marked done.
      * @param task The Task that has been marked.
+     * @return String message indicating the Task has been marked.
      */
-    public void printMark(Task task) {
-        print("Nice! I've marked this duke.task as done:");
-        print("  " + task.toString());
+    public String printMark(Task task) {
+        return String.format("Nice! I've marked this duke.task as done:\n %s", task.toString());
     }
 
     /**
      * Prints out message that a Task was marked not done.
      * @param task The Task that has been marked.
+     * @return String message indicating that Task has been unmarked.
      */
-    public void printUnMark(Task task) {
-        print("OK, I've marked this duke.task as not done yet:");
-        print("  " + task.toString());
+    public String printUnMark(Task task) {
+        return String.format("OK, I've marked this duke.task as not done yet:\n %s", task.toString());
     }
 
     /**
      * Prints out message that Task has been deleted.
      * @param task The Task that has been deleted.
      * @param tasks The list of all Tasks.
+     * @return String message indicating that Task has been deleted.
      */
-    public void printDeleteTask(Task task, TaskList tasks) {
-        print("Noted. I've removed this task:");
-        print("  " + task.toString());
-        print("Now you have " + tasks.getSize() + " tasks in the list.");
+    public String printDeleteTask(Task task, TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted. I've removed this task:\n");
+        sb.append(String.format("  %s\n", task.toString()));
+        sb.append(String.format("Now you have %d tasks in the list.", tasks.getSize()));
+        return sb.toString();
     }
 
     /**
      * Prints out the Exception message.
      * @param e The exception caught.
+     * @return String message of exception.
      */
-    public void printException(Exception e) {
-        printLine();
-        print(e.getMessage());
+    public String printException(Exception e) {
+        return e.getMessage();
     }
 
     /**
      * Prints out all the Tasks that matches the filter.
      * @param tasks The list of Tasks that match filter.
+     * @return String message showcasing all the Tasks that has been filtered.
      */
-    public void printFilteredTasks(ArrayList<Task> tasks) {
-        print("Here are the matching tasks in your list:");
+    public String printFilteredTasks(ArrayList<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            print(String.format("%d. %s", i + 1, tasks.get(i)));
+            sb.append(String.format(" %d. %s\n", i + 1, tasks.get(i)));
         }
+        return sb.toString();
     }
 
     /**
