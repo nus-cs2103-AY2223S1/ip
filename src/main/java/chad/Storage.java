@@ -1,12 +1,17 @@
 package chad;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import chad.task.Deadline;
 import chad.task.Event;
 import chad.task.Task;
 import chad.task.Todo;
-
-import java.io.*;
-import java.util.ArrayList;
 
 /**
  * Deals with opening, writing and creating new files to manage task list
@@ -22,13 +27,13 @@ public class Storage {
         try {
             File currentFile = new File("./data/chad_data.txt");
 
-            if(currentFile.createNewFile()) {
+            if (currentFile.createNewFile()) {
                 System.out.println("Created new file");
             }
             BufferedReader reader = new BufferedReader(new FileReader(currentFile));
             String line = reader.readLine();
 
-            while(line != null) {
+            while (line != null) {
                 String[] tempArr = line.split("\\|");
                 String taskType = tempArr[0].trim();
                 String strIsMark = tempArr[1].trim();
@@ -39,7 +44,7 @@ public class Storage {
                 case "D": {
                     String byDate = tempArr[3].trim();
                     Task t = new Deadline(desc, byDate);
-                    if(strIsMark.equals("1")) {
+                    if (strIsMark.equals("1")) {
                         t.markAsDone();
                     }
                     taskList.add(t);
@@ -48,7 +53,7 @@ public class Storage {
                 case "E": {
                     String byDateTime = tempArr[3].trim();
                     Task t = new Event(desc, byDateTime);
-                    if(strIsMark.equals("1")) {
+                    if (strIsMark.equals("1")) {
                         t.markAsDone();
                     }
                     taskList.add(t);
@@ -56,7 +61,7 @@ public class Storage {
                 }
                 case "T": {
                     Task t = new Todo(desc);
-                    if(strIsMark.equals("1")) {
+                    if (strIsMark.equals("1")) {
                         t.markAsDone();
                     }
                     taskList.add(t);
@@ -89,7 +94,7 @@ public class Storage {
             writer.write(str);
             writer.newLine();
             writer.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -156,7 +161,7 @@ public class Storage {
                     StringBuilder line = new StringBuilder();
                     for (int i = 0; i < tempArr.length; i++) {
                         line.append(tempArr[i].trim());
-                        if (i != tempArr.length -1) {
+                        if (i != tempArr.length - 1) {
                             line.append(" | ");
                         }
                     }
@@ -170,7 +175,7 @@ public class Storage {
 
             currentFile.delete();
             tempFile.renameTo(currentFile);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
