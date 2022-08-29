@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClassName = "mia.Mia"
+    mainClassName = "mia.Main"
 }
 
 shadowJar {
