@@ -2,6 +2,7 @@ package duke.tasklist;
 
 import duke.listobjects.ListObject;
 
+import javax.print.DocFlavor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,7 +42,7 @@ public class TaskList implements Serializable {
         }
     }
 
-    public void handleItemAdditon(ListObject obj){
+    public void handleItemAddition(ListObject obj){
         this.tasksList.add(obj);
     }
 
@@ -61,5 +62,13 @@ public class TaskList implements Serializable {
         return this.tasksList;
     }
 
+    @Override
+    public String toString(){
+        String str = "";
+        for (int i = 0; i < this.tasksList.size(); i++) {
+            str = str + i + ". " + tasksList.get(i).toString();
+        }
+        return str;
+    }
 
 }

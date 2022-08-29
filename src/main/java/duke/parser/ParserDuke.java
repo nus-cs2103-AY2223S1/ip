@@ -7,9 +7,6 @@ import duke.listobjects.ToDo;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
-import java.util.ArrayList;
-import java.util.SortedMap;
-
 public class ParserDuke{
 
     private String command;
@@ -71,7 +68,7 @@ public class ParserDuke{
                     System.out.println("***********************************************************************");
                 } else {
                     ListObject newItem = new ToDo(todo, 0);
-                    listOfItems.handleItemAdditon(newItem);
+                    listOfItems.handleItemAddition(newItem);
                     Storage.makeListFile(FILE_PATH, listOfItems);
                     System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!"
@@ -84,7 +81,7 @@ public class ParserDuke{
                 String deadline = words[1];
                 if(!task.isEmpty()) {
                     ListObject newItem = new Deadline(task, 0, deadline);
-                    listOfItems.handleItemAdditon(newItem);
+                    listOfItems.handleItemAddition(newItem);
                     Storage.makeListFile(FILE_PATH, listOfItems);
                     System.out.println("Mark this on your calendar! \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!"
@@ -101,7 +98,7 @@ public class ParserDuke{
                 String event = words[1];
                 if(!task.isEmpty()) {
                     ListObject newItem = new Event(task, 0, event);
-                    listOfItems.handleItemAdditon(newItem);
+                    listOfItems.handleItemAddition(newItem);
                     Storage.makeListFile(FILE_PATH, listOfItems);
                     System.out.println("Another moment to mark... \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.knowTaskCount() + " tasks to do!"
