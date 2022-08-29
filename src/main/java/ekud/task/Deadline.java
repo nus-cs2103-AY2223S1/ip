@@ -18,9 +18,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String dueDateString) throws EkudException {
         super(description);
-        this.dueDate =
-
-                this.getDateFromString(dueDateString);
+        this.dueDate = this.getDateFromString(dueDateString);
     }
 
     /**
@@ -44,7 +42,7 @@ public class Deadline extends Task {
      * {@inheritDoc}
      */
     @Override
-    public String toFileFormat() {
+    public String getFileFormat() {
         int isDone = this.getStatusIcon() == "X" ? 1 : 0;
         return String.format("D|%d|%s|%s", isDone, this.getDescription(), this.dueDate.toString());
     }

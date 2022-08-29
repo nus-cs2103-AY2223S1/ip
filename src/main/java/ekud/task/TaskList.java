@@ -155,11 +155,12 @@ public class TaskList {
         case TODO:
             if (parts.length < 2) {
                 throw new EkudException("Description of a TODO cannot be empty.");
-            } else {
-                task = Optional.of(new ToDo(String.join(" ", Arrays.copyOfRange(parts, 1, parts.length))));
             }
+            task = Optional.of(new ToDo(String.join(" ", Arrays.copyOfRange(parts, 1, parts.length))));
             break;
-        default:
+        case DEADLINE:
+            // Fallthrough
+        case EVENT:
             int idxOfSeparator = 0;
             for (int i = 0; i < parts.length; i++) {
                 if (type == TaskType.EVENT && parts[i].equals("/at")) {
@@ -176,16 +177,18 @@ public class TaskList {
                 throw new EkudException(String.format("Description of an %s cannot be empty.", type.toString()));
             } else if (idxOfSeparator == parts.length - 1) {
                 throw new EkudException("Date/Time cannot be empty.");
-            } else {
-                String taskDesc = String.join(" ", Arrays.copyOfRange(parts, 1, idxOfSeparator));
-                String taskDueDate = String.join(" ", Arrays.copyOfRange(parts, idxOfSeparator + 1, parts.length));
-                if (type == TaskType.EVENT) {
-                    task = Optional.of(new Event(taskDesc, taskDueDate));
-                } else {
-                    task = Optional.of(new Deadline(taskDesc, taskDueDate));
-                }
             }
+            String taskDesc = String.join(" ", Arrays.copyOfRange(parts, 1, idxOfSeparator));
+            String taskDueDate = String.join(" ", Arrays.copyOfRange(parts, idxOfSeparator + 1, parts.length));
+            if (type == TaskType.EVENT) {
+                task = Optional.of(new Event(taskDesc, taskDueDate));
+            } else {
+                task = Optional.of(new Deadline(taskDesc, taskDueDate));
+            }
+
             break;
+        default:
+            throw new EkudException("Invalid task type.");
         }
         if (task.isEmpty()) {
             throw new EkudException("Unexpected error.");

@@ -14,7 +14,7 @@ public class ToDo extends Task {
      * {@inheritDoc}
      */
     @Override
-    public String toFileFormat() {
+    public String getFileFormat() {
         int isDone = this.getStatusIcon() == "X" ? 1 : 0;
         return String.format("T|%d|%s", isDone, this.getDescription());
     }

@@ -67,7 +67,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(this.file);
             for (int i = 0; i < tasks.size(); i++) {
-                writer.write(String.format("%s\n", tasks.get(i).toFileFormat()));
+                writer.write(String.format("%s\n", tasks.get(i).getFileFormat()));
             }
             writer.close();
         } catch (IOException exception) {

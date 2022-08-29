@@ -62,7 +62,7 @@ public abstract class Task {
      * 
      * @return String representing details of Task
      */
-    public abstract String toFileFormat();
+    public abstract String getFileFormat();
 
     /**
      * Gets string representation of task.

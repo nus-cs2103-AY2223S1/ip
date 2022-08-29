@@ -18,7 +18,7 @@ public class Event extends Task {
      * {@inheritDoc}
      */
     @Override
-    public String toFileFormat() {
+    public String getFileFormat() {
         int isDone = this.getStatusIcon() == "X" ? 1 : 0;
         return String.format("E|%d|%s|%s", isDone, this.getDescription(), this.at);
     }
