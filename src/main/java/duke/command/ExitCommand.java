@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.Storage;
 
 public class ExitCommand extends Command {
 
@@ -10,7 +10,7 @@ public class ExitCommand extends Command {
         ui.print("Cya!");
     }
 
-    public boolean toClose() {
+    public boolean isClose() {
         return true;
     }
 }

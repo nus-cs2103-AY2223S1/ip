@@ -14,8 +14,7 @@ import java.util.List;
  * TaskList class containing all the logic for interactions with the list of tasks.
  */
 public class TaskList {
-    /** List of tasks */
-    public ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Creates empty TaskList.
@@ -69,14 +68,14 @@ public class TaskList {
      */
     public Task createTask(char tag, String description, LocalDateTime time) {
         switch (tag) {
-            case 'T':
-                return new Todo(description);
-            case 'E':
-                return new Event(description, time);
-            case 'D':
-                return new Deadline(description, time);
-            default:
-                return null;
+        case 'T':
+            return new Todo(description);
+        case 'E':
+            return new Event(description, time);
+        case 'D':
+            return new Deadline(description, time);
+        default:
+            return null;
         }
     }
 
@@ -94,6 +93,10 @@ public class TaskList {
 
     public int size() {
         return tasks.size();
+    }
+
+    public ArrayList<Task> tasks() {
+        return tasks;
     }
 
 }
