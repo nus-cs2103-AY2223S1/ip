@@ -37,12 +37,12 @@ public class AddCommand extends Command {
      * @param taskList tasklist that tasks are added to
      * @param ui ui that displays results of user commands
      * @param storage storage that saves the taskList
+     * @return string that contains ui message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.add(task);
         storage.saveFile(taskList);
-        ui.showTaskAdded(taskList);
+        return ui.showTaskAdded(taskList);
     }
-
 }

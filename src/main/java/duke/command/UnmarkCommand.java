@@ -36,11 +36,12 @@ public class UnmarkCommand extends Command {
      * @param taskList tasklist that contains tasks to be marked as done
      * @param ui ui that displays results of marking tasks in taskList
      * @param storage storage that saves the taskList
+     * @return string that contains ui message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markAsNotDone(integer);
-        ui.showMarkAsNotDone(taskList, integer);
         storage.saveFile(taskList);
+        return ui.showMarkAsNotDone(taskList, integer);
     }
 }

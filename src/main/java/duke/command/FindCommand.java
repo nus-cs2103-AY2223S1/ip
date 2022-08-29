@@ -33,10 +33,11 @@ public class FindCommand extends Command {
      * @param taskList the tasklist to be executed
      * @param ui the ui to be executed
      * @param storage the storage to be executed
+     * @return string that contains ui message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tempList = taskList.findTasks(string);
-        ui.showTaskFound(tempList);
+        return ui.showTaskFound(tempList);
     }
 }

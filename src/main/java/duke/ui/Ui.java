@@ -3,6 +3,7 @@ package duke.ui;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import duke.task.Task;
 import duke.tasklist.TaskList;
 
 
@@ -26,17 +27,18 @@ public class Ui {
     /**
      * Shows Greetings Ui
      */
-    public void showGreetings() {
+    public String showGreetings() {
         String greetings = "_________________________________________________\nHello! I'm Duke"
                 + "\nWhat can I do for you?\n_________________________________________________";
-        this.out.println(greetings);
+        return greetings;
     }
 
     /**
      * Shows Bye Ui
+     * @return string that contains bye message
      */
-    public static void showBye() {
-        System.out.println("_________________________________________________\nBye. Hope to see you again soon!\n"
+    public static String showBye() {
+        return ("_________________________________________________\nBye. Hope to see you again soon!\n"
                 + "_________________________________________________\n");
     }
 
@@ -71,12 +73,14 @@ public class Ui {
     /**
      * Shows the tasks in taskList
      * @param taskList the tasks to be shown
+     * @return string that contains tasks in list
      */
-    public static void showTasksInList(TaskList taskList) {
-        System.out.println("Here are the tasks in your list:\n");
+    public static String showTasksInList(TaskList taskList) {
+        StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.taskListSize(); i++) {
-            System.out.println(i + 1 + ". " + taskList.getTask(i).toString());
+            stringBuilder.append(i + 1 + ". " + taskList.getTask(i).toString() + "\n");
         }
+        return stringBuilder.toString();
     }
 
     /**
@@ -90,39 +94,43 @@ public class Ui {
     /**
      * Shows the error message
      * @param message the error message
+     * @return string that contains error message
      */
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return message;
     }
 
     /**
      * Shows when task is added
      * @param taskList the taskList that the task is added to
+     * @return string that contains task added
      */
-    public void showTaskAdded(TaskList taskList) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize()
+    public String showTaskAdded(TaskList taskList) {
+        return ("Got it. I've added this task:")
+                + "\n" + (taskList.latestTask() + "\nNow you have " + taskList.taskListSize()
                 + " tasks in the list.");
     }
 
     /**
      * Shows when task is deleted
      * @param taskList the taskList that the task is deleted from
-     * @param integer the index of the task which is deleted
+     * @param deletedTask the task which is deleted
+     * @return string that shows task deleted
      */
-    public void showTaskDeleted(TaskList taskList, int integer) {
-        System.out.println("Noted. I've removed this task:\n"
-                + taskList.getTask(integer));
-        System.out.println("Now you have " + (taskList.taskListSize() - 1) + " tasks in the list.");
+    public String showTaskDeleted(TaskList taskList, Task deletedTask) {
+        return ("Noted. I've removed this task:\n"
+                + deletedTask) +
+                ("\nNow you have " + (taskList.taskListSize() - 1) + " tasks in the list.");
     }
 
     /**
      * Shows when task is marked as done
      * @param taskList the taskList that the task is marked from
      * @param integer the index of the task which is marked
+     * @return string that shows task marked as done
      */
-    public void showMarkAsDone(TaskList taskList, int integer) {
-        System.out.println("Nice! I've marked this task as done:\n"
+    public String showMarkAsDone(TaskList taskList, int integer) {
+        return ("Nice! I've marked this task as done:\n"
                 + taskList.getTask(integer - 1).toString());
     }
 
@@ -130,20 +138,23 @@ public class Ui {
      * Shows when task is marked as not done
      * @param taskList the taskList that the task is marked from
      * @param integer the index of the task which is marked as not done
+     * @return string that shows task marked as not done
      */
-    public void showMarkAsNotDone(TaskList taskList, int integer) {
-        System.out.println("OK, I've marked this task as not done yet:\n"
+    public String showMarkAsNotDone(TaskList taskList, int integer) {
+        return ("OK, I've marked this task as not done yet:\n"
                 + taskList.getTask(integer - 1).toString());
     }
 
     /**
      * Displays Ui when task is found
      * @param taskList the tasklist to be displayed
+     * @return string that contains tasks found
      */
-    public void showTaskFound(TaskList taskList) {
-        System.out.println("Here are the matching tasks in your list:\n");
+    public String showTaskFound(TaskList taskList) {
+        StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < taskList.taskListSize(); i++) {
-            System.out.println(i + 1 + ". " + taskList.getTask(i).toString());
+            stringBuilder.append(i + 1 + ". " + taskList.getTask(i).toString() + "\n");
         }
+        return stringBuilder.toString();
     }
 }

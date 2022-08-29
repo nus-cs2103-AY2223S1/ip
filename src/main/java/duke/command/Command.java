@@ -15,8 +15,9 @@ public abstract class Command {
      * @param taskList tasklist that contains tasks to be modified, added, or removed
      * @param ui ui that displays results of user commands
      * @param storage storage that saves or loads the taskList
+     * @return string that contains ui message
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
 
     /**
      * Abstract method that determines if the commands will end the program.

@@ -36,11 +36,12 @@ public class MarkCommand extends Command {
      * @param taskList tasklist that contains tasks to be marked as done
      * @param ui ui that displays results of marking tasks in taskList
      * @param storage storage that saves the taskList
+     * @return string that contains ui message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markAsDone(integer);
-        ui.showMarkAsDone(taskList, integer);
         storage.saveFile(taskList);
+        return ui.showMarkAsDone(taskList, integer);
     }
 }

@@ -1,6 +1,7 @@
-[T][X] bye tile
-[T][X] ms
-[T][ ] explode tomorrow
-[D][ ] die (by: Aug 06 2018)
-[T][ ] die tile
-[D][X] tile yo (by: Aug 09 2018)
+[T][ ] bye tile
+[D][ ] tile yo (by: Aug 09 2018)
+[D][X] live (by: Sep 09 2019)
+[E][ ] start writing (at: Jun 03 2018)
+[D][ ] try eating (by: Aug 07 2018)
+[T][ ] pop a balloon
+[T][X] yell

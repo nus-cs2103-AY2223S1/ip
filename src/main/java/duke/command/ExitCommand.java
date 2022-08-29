@@ -24,9 +24,10 @@ public class ExitCommand extends Command {
      * @param taskList tasklist that contains tasks to be modified, added, or removed
      * @param ui ui that displays results of user commands
      * @param storage storage that saves or loads the taskList
+     * @return string that contains ui message
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.showBye();
     }
 }
