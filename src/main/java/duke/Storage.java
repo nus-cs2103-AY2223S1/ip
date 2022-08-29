@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Storage {
     private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    private final static String FILEPATH = "data/duke.Duke.txt";
+    private final static String FILEPATH = "data/Duke.txt";
     
     public Storage() {
     }
@@ -48,8 +48,10 @@ public class Storage {
                         System.out.println("SoCCat cannot recognise the type of this task: " + keyword);
                     }
                 }
-                if (isDone.equals("1") && task != null) task.markAsDone();
-                tasks.add(task);
+                if (isDone.equals("1") && task != null) {
+                    task.markAsDone();
+                    tasks.add(task);
+                }
             }
             reader.close();
         } catch (IOException ex) {
