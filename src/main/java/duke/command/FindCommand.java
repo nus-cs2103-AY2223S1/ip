@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.NoTaskFoundExcpetion;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
@@ -22,8 +23,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws NoTaskFoundExcpetion {
         TaskList filterTasks = tasks.findTask(description);
+        if (filterTasks.isEmpty()) {
+            throw new NoTaskFoundExcpetion();
+        }
         displayCommand(ui, TASK_FIND, filterTasks, filterTasks.getStatus());
     }
 }
