@@ -31,6 +31,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+    // @@author jorrdansoh-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     /**
      * Initialize the main window.
      */
@@ -42,6 +45,7 @@ public class MainWindow extends AnchorPane {
         this.dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(welcomeText, this.dukeImage));
     }
+    // @@author
 
     /**
      * Sets the given Duke as this Duke.

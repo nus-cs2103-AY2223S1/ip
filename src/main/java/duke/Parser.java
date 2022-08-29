@@ -28,9 +28,13 @@ public class Parser {
      * @return The Command corresponding to the user input.
      */
     public static Command parseText(String text, TaskList taskList) {
+        // @@author jorrdansoh-reused
+        // Reused from https://github.com/teikjun/duke
+        // with minor modifications
         String[] words = text.split(" ", 2);
         String commandWord = words[0];
         String argument = words.length > 1 ? words[1] : "";
+        // @@author
 
         try {
             switch (commandWord) {
