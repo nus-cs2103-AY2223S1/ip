@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
     public static void main(String[] args) {
@@ -72,9 +73,10 @@ public class Duke {
                         throw new DukeException("The description of a deadline cannot be empty.");
                     }
                     // Parse input into description and deadline, based on the /by keyword
-                    String description = instructions.split("/")[0];
-                    String date = instructions.split("/by")[1].trim();
-                    Deadline deadline = new Deadline(description, date);
+                    String description = instructions.split("/by")[0];
+                    String date = instructions.split("/by")[1].trim().split(" ")[0];
+                    String time = instructions.split("/by")[1].trim().split(" ")[1];
+                    Deadline deadline = new Deadline(description, date, time);
                     list.add(deadline);
 
                     printWithLineBreak(
