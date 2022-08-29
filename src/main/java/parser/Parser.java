@@ -1,17 +1,9 @@
 package parser;
 
+import commands.*;
 import exception.FredException;
 
 import task.TaskType;
-
-import commands.Command;
-import commands.AddCommand;
-import commands.DeleteCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.MarkCommand;
-import commands.UnmarkCommand;
-import commands.SaveCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -116,6 +108,12 @@ public class Parser {
 
         } else if (command.equals("save")) {
             return new SaveCommand();
+
+        } else if (command.startsWith("find")) {
+            if (command.trim().equals("find")) {
+                throw new FredException("The input of delete cannot be empty!");
+            }
+            return new FindCommand(command.substring(5));
 
         } else {
             throw new FredException("I'm sorry, but I don't know what that means :(");
