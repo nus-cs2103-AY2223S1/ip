@@ -122,6 +122,7 @@ public class Parser {
             } catch (Exception e) {
                 throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
             }
+            break;
         case EVENT:
             try {
                 String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
@@ -145,5 +146,6 @@ public class Parser {
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+        return null;
     }
 }
