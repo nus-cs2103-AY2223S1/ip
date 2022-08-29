@@ -1,7 +1,7 @@
 package duke.util;
 
 /**
- * Text UI for Duke app
+ * Text UI for Duke app.
  */
 public class Ui {
     /**
@@ -17,7 +17,7 @@ public class Ui {
     }
 
     /**
-     * Printsa goodbye message to the user.
+     * Prints a goodbye message to the user.
      */
     public void bye() {
         System.out.println("Goodbye! See you soon!");
@@ -26,7 +26,7 @@ public class Ui {
     /**
      * Displays the error to the user.
      * 
-     * @param error Error message to be shown to user
+     * @param error Error message to be shown to user.
      */
     public void showError(String error) {
         System.out.println("🙁 OOPS! " + error);
@@ -35,7 +35,7 @@ public class Ui {
     /**
      * Displays the error to the user.
      * 
-     * @param e Exception to be shown to user
+     * @param e Exception to be shown to user.
      */
     public void showError(Exception e) {
         System.out.println("🙁 OOPS! " + e.getMessage());

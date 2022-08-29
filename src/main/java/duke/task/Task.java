@@ -13,9 +13,9 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor to create new Task
+     * Constructor to create new Task.
      * 
-     * @param description Task Description
+     * @param description Task Description.
      */
     public Task(String description) {
         this.description = description.trim();
@@ -23,10 +23,10 @@ public abstract class Task {
     }
 
     /**
-     * Constructor to create new Task with isDone
+     * Constructor to create new Task with isDone.
      * 
-     * @param description Task Description
-     * @param isDone      Whether the task is done or not
+     * @param description Task Description.
+     * @param isDone      Whether the task is done or not.
      */
     public Task(String description, boolean isDone) {
         this.description = description.trim();
@@ -34,10 +34,10 @@ public abstract class Task {
     }
 
     /**
-     * Checks if the input string contains a description
+     * Checks if the input string contains a description.
      * 
-     * @param splitInput String split by " " and limited to 2
-     * @throws DukeException if no description is present
+     * @param splitInput String split by " " and limited to 2.
+     * @throws DukeException if no description is present.
      */
     public static void checkDescription(String[] splitInput) throws DukeException {
         if (splitInput.length == 1) {
@@ -46,12 +46,12 @@ public abstract class Task {
     }
 
     /**
-     * Factory method to create new Task
+     * Factory method to create new Task.
      * 
      * @param input String containing task type, description and deadline/timing if
-     *              needed
-     * @return new Task
-     * @throws DukeException if invalid task type or wrong parameters
+     *              needed.
+     * @return new Task.
+     * @throws DukeException if invalid task type or wrong parameters.
      */
     public static Task createTask(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
@@ -118,9 +118,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns the string represetation of task when saving to file
+     * Returns the string represetation of task when saving to file.
      * 
-     * @return String representation of task when saving to file
+     * @return String representation of task when saving to file.
      */
     public abstract String getFileString();
 

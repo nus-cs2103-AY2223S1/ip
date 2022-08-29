@@ -16,7 +16,7 @@ public class TaskList {
     }
 
     /**
-     * Display all stored tasks
+     * Display all stored tasks.
      */
     public void displayList() {
         System.out.println("Here are the tasks in your list.");
@@ -26,9 +26,9 @@ public class TaskList {
     }
 
     /**
-     * Add task to tasks list
+     * Add task to tasks list.
      * 
-     * @param task Task to be stored in task list
+     * @param task Task to be stored in task list.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -39,19 +39,19 @@ public class TaskList {
 
     /**
      * Add task to task list without any user messages (Used when loading data from
-     * file)
+     * file).
      * 
-     * @param task Task to be pushed into task list
+     * @param task Task to be pushed into task list.
      */
     public void pushTask(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Removes specified task from tasks list
+     * Removes specified task from tasks list.
      * 
-     * @param taskIndex Index of task to be removed
-     * @throws DukeException if given index is out of bounds
+     * @param taskIndex Index of task to be removed.
+     * @throws DukeException if given index is out of bounds.
      */
     public void removeTask(int taskIndex) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -63,11 +63,11 @@ public class TaskList {
     }
 
     /**
-     * Changes the completed status of specified task
+     * Changes the completed status of specified task.
      * 
-     * @param taskIndex Index of task to be changed
-     * @param isDone    true if task is completed, false otherwise
-     * @throws DukeException if given index is out of bounds
+     * @param taskIndex Index of task to be changed.
+     * @param isDone    true if task is completed, false otherwise.
+     * @throws DukeException if given index is out of bounds.
      */
     public void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -82,9 +82,9 @@ public class TaskList {
 
     /**
      * Return the string representation of all tasks in list to be stored in local
-     * file
+     * file.
      * 
-     * @return String representation of all tasks in list
+     * @return String representation of all tasks in list.
      */
     public String getFileText() {
         String fileString = "";

@@ -8,10 +8,10 @@ public class Event extends Task {
     private Date timing;
 
     /**
-     * Constructor to create new Event
+     * Constructor to create new Event.
      * 
-     * @param description Task description
-     * @param timing      Timing of Event
+     * @param description Task description.
+     * @param timing      Timing of Event.
      */
     public Event(String description, Date timing) {
         super(description);
@@ -19,11 +19,11 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor to create new Event with isDone
+     * Constructor to create new Event with isDone.
      * 
-     * @param description Task description
-     * @param timing      Timing of Event
-     * @param isDone      Whether the task is done or not
+     * @param description Task description.
+     * @param timing      Timing of Event.
+     * @param isDone      Whether the task is done or not.
      */
     public Event(String description, Date timing, boolean isDone) {
         super(description, isDone);
@@ -31,12 +31,12 @@ public class Event extends Task {
     }
 
     /**
-     * Factory method to create new Event
+     * Factory method to create new Event.
      * 
      * @param input String including task description and event timing specified
-     *              after /at
-     * @return new Event
-     * @throws DukeException if event timing is not specified using /at
+     *              after /at.
+     * @return new Event.
+     * @throws DukeException if event timing is not specified using /at.
      */
     public static Event createEvent(String input) throws DukeException {
         if (input.indexOf("/at ") == -1) {
