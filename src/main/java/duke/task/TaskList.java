@@ -153,17 +153,23 @@ public class TaskList {
         return String.join("", stringList);
     }
 
-
     /**
      * Returns a List of Tasks that matches the given keyword.
      *
-     * @param keyword The keyword to match with.
+     * @param keywords The keywords to match with.
      * @return The List of matching Tasks.
      */
-    public List<Task> findTasks(String keyword) {
+    public List<Task> findTasks(String ... keywords) {
         List<Task> matchedTasks = new ArrayList<>();
         for (Task task : this.taskList) {
-            if (task.hasKeyword(keyword)) {
+            boolean matchAllKeywords = true;
+            for (String keyword : keywords) {
+                if (!task.hasKeyword(keyword)) {
+                    matchAllKeywords = false;
+                    break;
+                }
+            }
+            if (matchAllKeywords) {
                 matchedTasks.add(task);
             }
         }
