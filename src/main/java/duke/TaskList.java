@@ -61,4 +61,23 @@ public class TaskList {
             System.out.println(String.format("    %d. %s", i + 1, currTask));
         }
     }
+
+    /**
+     * Finds the tasks given by a keyword inputted by the user.
+     * @param keyword Keyword used to search for tasks.
+     */
+    public void findKeyword(String keyword) {
+        ArrayList<Integer> tempArray = new ArrayList<>();
+        for (int i = 0; i < this.arrayList.size(); i++) {
+            if (this.arrayList.get(i).description.toLowerCase().contains(keyword.toLowerCase())) {
+                tempArray.add(i);
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        for (int j = 0; j < tempArray.size(); j++) {
+            int tempIndex = tempArray.get(j);
+            Task foundTask = this.arrayList.get(tempIndex);
+            System.out.println(String.format("\t%d. %s", j + 1, foundTask));
+        }
+    }
 }
