@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+
 import duke.exception.DukeException;
 
 /**
@@ -58,7 +59,7 @@ public class TaskList {
             throw new DukeException("\t You do not have any tasks.");
         } else if (index < 1) {
             throw new DukeException("\t duke.task.Task number starts from one.");
-        } else if (index > numTasks){
+        } else if (index > numTasks) {
             if (numTasks == 1) {
                 throw new DukeException(String.format("You only have %d task.", numTasks));
             } else {

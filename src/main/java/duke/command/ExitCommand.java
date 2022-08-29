@@ -10,7 +10,7 @@ import duke.ui.Ui;
  *
  * @author Bryan Ng Zi Hao
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     /**
      * Displays the exit message.
@@ -21,7 +21,7 @@ public class ExitCommand extends Command{
      * @throws DukeException There is an error in execution.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList tasklist) throws DukeException {
+    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         ui.formatMessage("Bye. Hope to see you again soon!");
     }
 

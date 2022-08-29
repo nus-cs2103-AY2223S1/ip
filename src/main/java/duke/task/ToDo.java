@@ -46,7 +46,7 @@ public class ToDo extends Task {
         } else {
             completed = "0";
         }
-        return "T | " +  completed + " | " + this.getDescription();
+        return "T | " + completed + " | " + this.getDescription();
     }
 
     /**

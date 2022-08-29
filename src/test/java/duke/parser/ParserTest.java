@@ -1,10 +1,12 @@
 package duke.parser;
 
-import duke.command.OnDateCommand;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+import duke.command.OnDateCommand;
 
 public class ParserTest {
 

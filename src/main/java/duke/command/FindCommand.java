@@ -1,23 +1,21 @@
 package duke.command;
 
-import duke.exception.DukeException;
-
-import duke.storage.Storage;
-
-import duke.task.Task;
-import duke.task.TaskList;
-
-import duke.ui.Ui;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 
 /**
  * Command that finds a task by searching for a keyword.
  *
  * @author Bryan Ng Zi Hao
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
     private String keyword;
 
     /**

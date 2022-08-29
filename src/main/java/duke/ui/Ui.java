@@ -34,8 +34,8 @@ public class Ui {
                 + "\t" + " | |_| | |_| |   <  __/\n"
                 + "\t" + " |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("\t" + " Hello from\n" + logo);
-        System.out.println("\t" +" Hello! I'm Duke\n");
-        System.out.println("\t" +" What can I do for you?");
+        System.out.println("\t" + " Hello! I'm Duke\n");
+        System.out.println("\t" + " What can I do for you?");
         printLine();
     }
 

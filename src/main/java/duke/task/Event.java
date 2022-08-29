@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
 import duke.exception.DukeException;
 
 /**
@@ -59,7 +60,7 @@ public class Event extends Task {
         } else {
             completed = "0";
         }
-        return "E | " +  completed + " | " + this.getDescription() + " | " + this.at;
+        return "E | " + completed + " | " + this.getDescription() + " | " + this.at;
     }
 
     /**

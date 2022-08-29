@@ -60,7 +60,7 @@ public class Deadline extends Task {
         } else {
             completed = "0";
         }
-        return "D | " +  completed + " | " + this.getDescription() + " | " + this.by;
+        return "D | " + completed + " | " + this.getDescription() + " | " + this.by;
     }
 
     /**

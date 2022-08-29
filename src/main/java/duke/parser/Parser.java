@@ -3,21 +3,19 @@ package duke.parser;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.OnDateCommand;
+import duke.command.UnMarkCommand;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
-import duke.command.FindCommand;
-
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkCommand;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.OnDateCommand;
-import duke.command.Command;
-
-import duke.exception.DukeException;
 
 /**
  * Deals with making sense of user commands.
