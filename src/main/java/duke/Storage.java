@@ -5,10 +5,19 @@ import java.io.*;
 public class Storage {
     private File file;
 
+    /**
+     *
+     * @param file textfile where tasks are written into
+     */
     public Storage(File file) {
         this.file = file;
     }
 
+    /**
+     *
+     * @param tasks tasks from taskList which are written into the textfile
+     * @throws IOException
+     */
     public void writeToFile(TaskList tasks) throws IOException {
        //file = new File("src/main/java/duke.txt");
 
@@ -20,6 +29,12 @@ public class Storage {
         System.out.println("Auto-saved.");
         fw.close();
     }
+
+    /**
+     *
+     * @return tasks from textfile are loaded and stored into the TaskList upon restarting the bot
+     * @throws IOException
+     */
     public TaskList loadFile() throws IOException {
         //file = new File("src/main/java/duke.txt");
 

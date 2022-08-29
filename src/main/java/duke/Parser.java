@@ -2,6 +2,15 @@ package duke;
 
 import java.io.IOException;
 public class Parser {
+    /**
+     *
+     * @param str description of the task
+     * @param taskList the taskList where tasks are stored and loaded from
+     * @param ui the interactive UI system
+     * @param storage storage deals with the writing and loading of files
+     * @return boolean
+     * @throws DukeException
+     */
     public static boolean parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
 
             try {

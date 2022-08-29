@@ -10,12 +10,20 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     *
+     * @param file textfile where the descriptions are stored
+     * @throws IOException
+     */
     public Duke(File file) throws IOException {
         ui = new Ui();
         storage = new Storage(file);
         taskList = storage.loadFile();
     }
 
+    /**
+     * runs the main logic and program of the bot
+     */
     public void run() {
         ui.greet();
         Scanner sc = new Scanner(System.in);

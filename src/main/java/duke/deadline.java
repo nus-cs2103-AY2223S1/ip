@@ -7,24 +7,36 @@ import java.util.Date;
 public class deadline extends Task {
     protected formatDate date;
 
+    /**
+     *
+     * @param desc description of task
+     */
     public deadline(String desc) {
         super(desc);
     }
 
-    public deadline(String desc, formatDate date) {
-        super(desc);
-        this.date = date;
-    }
-
+    /**
+     *
+     * @return String : [D][ ] with the description and due date
+     */
     @Override
     public String toString() {
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: " + date + ")";
     }
 
+    /**
+     *
+     * @param date set the due date of the task
+     */
     public void setDate(formatDate date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @param str "MMM dd yyyy"
+     * @return the correct String format "yyyy-MM-dd" which can be interpreted by the parser
+     */
     public String correctDateFormat(String str) {
         SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat from = new SimpleDateFormat("MMM dd yyyy");

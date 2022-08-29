@@ -4,18 +4,33 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     *
+     * @param description task's description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     *
+     * @return marked X if its done else dont mark
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    /**
+     * set isDone to true
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * set isDone to false
+     */
     public void unmark() {
         this.isDone = false;
     }

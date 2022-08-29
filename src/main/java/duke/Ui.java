@@ -28,7 +28,7 @@ public class Ui {
     /**
      * Prints the task list.
      *
-     * @param tasks
+     * @param tasks prints the tasks in the taskList
      */
     public static void printList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
@@ -37,6 +37,11 @@ public class Ui {
         }
     }
 
+    /**
+     *
+     * @param tasks add task into this taskList
+     * @param input prints out the task added
+     */
     public static void addedTask(TaskList tasks, Task input) {
         tasks.add(input);
         System.out.println("Got it. I've added this task:");
