@@ -1,6 +1,4 @@
-package exception;
-
-import exception.DukeException;
+package duke.exception;
 
 public class DukeOutOfBoundsException extends DukeException {
     public DukeOutOfBoundsException(int start, int end) {

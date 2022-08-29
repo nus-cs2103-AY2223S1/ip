@@ -1,8 +1,20 @@
-package command;
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
+import java.io.IOException;
 
 public class ByeCommand extends Command {
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.displayBye();
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
+        storage.save(tasks);
+        ui.displayBye();
+    }
+
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }

@@ -1,6 +1,4 @@
-package exception;
-
-import exception.DukeException;
+package duke.exception;
 
 public class DukeNumberFormatException extends DukeException {
     public DukeNumberFormatException() {

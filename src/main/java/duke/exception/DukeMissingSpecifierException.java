@@ -1,6 +1,4 @@
-package exception;
-
-import exception.DukeException;
+package duke.exception;
 
 public class DukeMissingSpecifierException extends DukeException {
     public DukeMissingSpecifierException(String command, String specifier) {

@@ -1,20 +1,38 @@
-package command;
+package duke.command;
 
-import command.Command;
+import duke.Storage;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidDateException;
+import duke.exception.DukeMissingSpecifierException;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.TaskList;
+import duke.Ui;
+
+import java.time.format.DateTimeParseException;
 
 public class DeadlineCommand extends Command {
     private String description;
     private String by;
 
-    public DeadlineCommand(String description, String by) {
+    public DeadlineCommand(String description) {
         this.description = description;
-        this.by = by;
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        Task task = tasks.addDeadline(description, by);
-        storage.save(tasks.saveTasks());
-        return ui.displayAdd(task, tasks.getSize());
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String[] splitDescription = description.split(" /by ", 2);
+        if (splitDescription[0].equals(description)) {
+            throw new DukeMissingSpecifierException("deadline", " /by ");
+        }
+        try {
+            String instruction = splitDescription[0];
+            String by = splitDescription[1];
+            this.by = by;
+            Task deadline = tasks.addDeadline(instruction, by);
+            ui.displayAdd(deadline, tasks.getSize());
+        } catch (DateTimeParseException dtp) {
+            throw new DukeInvalidDateException();
+        }
     }
 }

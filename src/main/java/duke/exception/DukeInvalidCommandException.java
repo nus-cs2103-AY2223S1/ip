@@ -1,9 +1,7 @@
-package exception;
-
-import exception.DukeException;
+package duke.exception;
 
 public class DukeInvalidCommandException extends DukeException {
     public DukeInvalidCommandException(String command) {
-        super("command.Command " + command + " not found. Please try again.");
+        super("Command " + command + " not found. Please try again.");
     }
 }

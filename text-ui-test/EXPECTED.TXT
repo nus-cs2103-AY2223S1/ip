@@ -6,17 +6,17 @@
      Here are the tasks in your list:
     ____________________________________________________________
     ____________________________________________________________
-     Sure thing! I've added this task:
+     Sure thing! I've added this duke.task:
      [E][ ] go to class (at: Friday 2-6 pm)
      Now you have 1 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Sure thing! I've added this task:
+     Sure thing! I've added this duke.task:
      [D][ ] finish homework (by: tonight)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Sure thing! I've added this task:
+     Sure thing! I've added this duke.task:
      [T][ ] have a good night's sleep
      Now you have 3 tasks in the list.
     ____________________________________________________________
@@ -27,10 +27,10 @@
      3. [T][ ] have a good night's sleep
     ____________________________________________________________
     ____________________________________________________________
-     Uh oh!!! ☹Please add a description for the command event.
+     Uh oh!!! ☹Please add a description for the duke.command event.
     ____________________________________________________________
     ____________________________________________________________
-     Uh oh!!! ☹Command something not found. Please try again.
+     Uh oh!!! ☹duke.command.Command something not found. Please try again.
     ____________________________________________________________
     ____________________________________________________________
      Uh oh!!! ☹You have entered an invalid number format. Please try again.
@@ -39,11 +39,11 @@
      Uh oh!!! ☹Your input is out of bounds. Please try a number between 1 and 3.
     ____________________________________________________________
     ____________________________________________________________
-     Alright then! This task is marked as done:
+     Alright then! This duke.task is marked as done:
      [D][X] finish homework (by: tonight)
     ____________________________________________________________
     ____________________________________________________________
-     Fine. I've removed this task:
+     Fine. I've removed this duke.task:
      [T][ ] have a good night's sleep
     ____________________________________________________________
     ____________________________________________________________

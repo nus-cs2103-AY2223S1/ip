@@ -1,16 +1,18 @@
-import command.Command;
-import exception.DukeEmptyDescriptionException;
-import exception.DukeException;
-import exception.DukeInvalidCommandException;
-import exception.DukeNumberFormatException;
+package duke;
+
+import duke.command.*;
+import duke.exception.DukeEmptyDescriptionException;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidCommandException;
+import duke.exception.DukeNumberFormatException;
 
 public class Parser {
 
     public static Command parse(String command) throws DukeException {
         if (command.equals("bye")) {
-            bye();
+            return new ByeCommand();
         } else if (command.equals("list")) {
-            displayList();
+            return new ListCommand();
         } else if (command.startsWith("mark")) {
             String[] splitCommand = command.split("\\s+",2);
             if (!splitCommand[0].equals("mark")) {
@@ -22,7 +24,7 @@ public class Parser {
             try {
                 String markItem = splitCommand[1];
                 int itemNumber = Integer.parseInt(markItem);
-                mark(itemNumber);
+                return new MarkCommand(itemNumber - 1);
             } catch (NumberFormatException nfe) {
                 throw new DukeNumberFormatException();
             }
@@ -37,7 +39,7 @@ public class Parser {
             try {
                 String unmarkItem = splitCommand[1];
                 int itemNumber = Integer.parseInt(unmarkItem);
-                unmark(itemNumber);
+                return new UnmarkCommand(itemNumber);
             } catch (NumberFormatException nfe) {
                 throw new DukeNumberFormatException();
             }
@@ -52,7 +54,7 @@ public class Parser {
             try {
                 String deleteItem = splitCommand[1];
                 int itemNumber = Integer.parseInt(deleteItem);
-                delete(itemNumber);
+                return new DeleteCommand(itemNumber);
             } catch (NumberFormatException nfe) {
                 throw new DukeNumberFormatException();
             }
@@ -65,7 +67,7 @@ public class Parser {
                 throw new DukeEmptyDescriptionException("todo");
             }
             String desc = splitCommand[1];
-            addTodo(desc);
+            return new TodoCommand(desc);
         } else if (command.startsWith("deadline")) {
             String[] splitCommand = command.split("\\s+",2);
             if (!splitCommand[0].equals("deadline")) {
@@ -75,7 +77,7 @@ public class Parser {
                 throw new DukeEmptyDescriptionException("deadline");
             }
             String desc = splitCommand[1];
-            addDeadline(desc);
+            return new DeadlineCommand(desc);
         } else if (command.startsWith("event")) {
             String[] splitCommand = command.split("\\s+",2);
             if (!splitCommand[0].equals("event")) {
@@ -85,7 +87,7 @@ public class Parser {
                 throw new DukeEmptyDescriptionException("event");
             }
             String desc = splitCommand[1];
-            addEvent(desc);
+            return new EventCommand(desc);
         } else {
             throw new DukeInvalidCommandException(command);
         }

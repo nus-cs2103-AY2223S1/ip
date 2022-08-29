@@ -1,4 +1,4 @@
-package task;
+package duke.task;
 
 public abstract class Task {
     protected String description;
@@ -23,6 +23,10 @@ public abstract class Task {
 
     public String saveTask() {
         return String.format("%d | %s", isDone ? 1 : 0, description);
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override

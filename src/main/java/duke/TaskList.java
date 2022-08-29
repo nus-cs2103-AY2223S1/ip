@@ -1,7 +1,9 @@
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ public class TaskList {
         this.size = 0;
     }
 
-    public TaskList(ArrayList<String> dukeList) {
+    public TaskList(ArrayList<Task> dukeList) {
         this.tasks = new ArrayList<>();
         int len = dukeList.size();
         for (int i = 0; i < len; i++) {
@@ -73,8 +75,9 @@ public class TaskList {
     public ArrayList<Task> saveTasks() {
         ArrayList<Task> dukeList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            dukeList.add(tasks.)
+            dukeList.add(tasks.get(i));
         }
+        return dukeList;
     }
 
     @Override
