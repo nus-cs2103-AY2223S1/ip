@@ -1,7 +1,7 @@
 public class Task {
 
-    private String description;
-    private boolean isDone;
+    protected String description;
+    protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -21,6 +21,13 @@ public class Task {
     public void done(boolean done) {
 
         this.isDone = done;
+    }
+
+
+    public String toFileString() {
+
+        return " | " + (this.isDone ? 1 : 0) + " | " +
+                this.description;
     }
 
     @Override

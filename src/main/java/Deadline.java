@@ -7,10 +7,17 @@ class Deadline extends Task {
         this.completeBy = completeBy;
     }
 
-    Deadline(String descrpiton, boolean isDone, String completeBy) {
+    Deadline(String description, boolean isDone, String completeBy) {
 
-        super(descrpiton, isDone);
+        super(description, isDone);
         this.completeBy = completeBy;
+    }
+
+    @Override
+    public String toFileString() {
+
+        return "D | " + (this.isDone ? 1 : 0) + " | " +
+                this.description + " | " + this.completeBy;
     }
 
     @Override

@@ -8,13 +8,8 @@ import java.util.Scanner;
 
 class Storage {
 
-    private final String DATA_FILEPATH = "src/main/data/duke.txt";
+    private final String DATA_FILEPATH = "ip/src/main/data/duke.txt";
 
-    Storage() throws IOException {
-
-        createDataFile();
-
-    }
 
     public void createDataFile() throws IOException {
 

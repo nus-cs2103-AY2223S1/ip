@@ -16,6 +16,13 @@ class Events extends Task {
     }
 
     @Override
+    public String toFileString() {
+
+        return "E | " + (this.isDone ? 1 : 0) + " | " +
+                this.description + " | " + this.eventTime;
+    }
+
+    @Override
     public String toString() {
 
         return "[E]" + super.toString() + " (at: " + eventTime + ")";
