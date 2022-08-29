@@ -7,6 +7,7 @@ import duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 /**
  * At command for Duke application.
@@ -14,7 +15,7 @@ import java.time.format.DateTimeParseException;
  * @author Farrel Dwireswara Salim
  */
 public class AtCommand implements Command {
-    private LocalDate selectedDate;
+    private LocalDate[] selectedDates;
 
     /**
      * Constructs a new AtCommand based on description.
@@ -24,7 +25,12 @@ public class AtCommand implements Command {
      */
     public AtCommand(String description) throws DukeException {
         try {
-          this.selectedDate = LocalDate.parse(description);
+            String[] candidateDates = description.split(",");
+            this.selectedDates = new LocalDate[candidateDates.length];
+
+            for (int i = 0; i < candidateDates.length; i++) {
+                this.selectedDates[i] = LocalDate.parse(candidateDates[i].trim());
+            }
         } catch (DateTimeParseException error) {
             throw new DukeException("The time given is not a valid date. "
                     + "Try to represent the time in yyyy-mm-dd format.");
@@ -40,7 +46,7 @@ public class AtCommand implements Command {
      */
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {
-        TaskList filteredTasks = taskList.findByDate(this.selectedDate);
+        TaskList filteredTasks = taskList.findByDate(this.selectedDates);
         ui.printMatchedTaskList(filteredTasks);
     }
 }

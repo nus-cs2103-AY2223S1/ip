@@ -41,11 +41,11 @@ public class ToDo extends Task {
     /**
      * Returns false as ToDo task doesn't have any date associated with it.
      *
-     * @param selectedDate the date t
+     * @param selectedDates the selected dates.
      * @return false.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate selectedDate) {
+    public boolean isOnGivenDate(LocalDate ... selectedDates) {
         return false;
     }
 }

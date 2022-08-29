@@ -11,7 +11,7 @@ import duke.ui.Ui;
  * @author Farrel Dwireswara Salim
  */
 public class FindCommand implements Command {
-    private final String keyWord;
+    private final String[] keyWords;
 
     /**
      * Constructs a new FindCommand instance based on keyword.
@@ -25,7 +25,8 @@ public class FindCommand implements Command {
                     + "must be a non-empty string!");
         }
 
-        this.keyWord = keyWord;
+
+        this.keyWords = keyWord.split(",");
     }
 
     /**
@@ -37,7 +38,7 @@ public class FindCommand implements Command {
      */
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {
-        TaskList filteredTasks = taskList.filterByKeyWord(this.keyWord);
+        TaskList filteredTasks = taskList.filterByKeyWord(this.keyWords);
         ui.printMatchedTaskList(filteredTasks);
     }
 }

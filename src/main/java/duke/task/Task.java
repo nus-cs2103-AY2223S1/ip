@@ -61,19 +61,25 @@ public abstract class Task {
     /**
      * Returns true if the description of current Task matches with the keyword.
      *
-     * @param keyWord the keyword string.
+     * @param keyWords the strings of keyword.
      * @return true if Task matches the keyword, false otherwise.
      */
-    public boolean isContainKeyWord(String keyWord) {
-        return this.description.contains(keyWord);
+    public boolean isContainKeyWord(String ... keyWords) {
+        for (int i = 0; i < keyWords.length; i++) {
+            if (this.description.contains(keyWords[i].trim())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
      * Returns true if the task happens on the given date.
      *
-     * @param selectedDate the date object.
+     * @param selectedDates the selected dates.
      * @return true if the task happens on the selected date, false otherwise.
      */
-    public abstract boolean isOnGivenDate(LocalDate selectedDate);
+    public abstract boolean isOnGivenDate(LocalDate ... selectedDates);
 
 }

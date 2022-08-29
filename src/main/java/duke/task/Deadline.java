@@ -58,11 +58,17 @@ public class Deadline extends Task {
     /**
      * Returns true if the Deadline is on the given date.
      *
-     * @param selectedDate the date object.
+     * @param selectedDates the date objects.
      * @return true if the Deadline is on the selected date, false otherwise.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate selectedDate) {
-        return this.deadline.equals(selectedDate);
+    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+        for (int i = 0; i < selectedDates.length; i++) {
+            if (this.deadline.equals(selectedDates[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
