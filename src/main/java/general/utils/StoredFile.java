@@ -3,6 +3,11 @@ package general.utils;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * A utility class that wraps abstracts the boilerplate of reading and writing to a file.
+ *
+ * @author Richard Dominick
+ */
 abstract public class StoredFile {
     public static StoredFile from(String filePath) {
         final File file = new File(filePath);
