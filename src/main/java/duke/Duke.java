@@ -1,13 +1,12 @@
 package duke;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.utils.Parser;
 import duke.utils.Storage;
 import duke.utils.Ui;
-
-import java.io.IOException;
-
-import java.util.Scanner;
 
 /**
  * Stores the main logic of the AIlfred bot.
@@ -18,7 +17,9 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
 
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
     private final String PATH_FILE = "src/data/duke.txt";
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
     private final String PATH_DIRECTORY = "src/data";
 
 
@@ -41,7 +42,7 @@ public class Duke {
         String input; // initializing the input
 
         // Reading user inputs
-        while(scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             input = scanner.nextLine();
             Command command = Parser.parseCommand(input);
             command.run(taskList, storage);
