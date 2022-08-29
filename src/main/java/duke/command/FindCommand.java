@@ -27,7 +27,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds all the tasks that match the keyword.
+     * Finds all the tasks that match the keywords.
      *
      * @return String representing the list of matching tasks.
      * @throws DukeException If the input array is invalid.
@@ -37,7 +37,7 @@ public class FindCommand extends Command {
         if (this.inputArr.length < 2) {
             throw new DukeException("Missing keyword.");
         }
-        List<Task> tasks = this.taskList.findTasks(this.inputArr[1]);
+        List<Task> tasks = this.taskList.findTasks(this.inputArr[1].split(" "));
         int size = tasks.size();
         if (size == 0) {
             return new Response("There are no matching tasks in your list.\n");
