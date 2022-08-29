@@ -1,2 +1,4 @@
-T | 1 | write
+T | 0 | write
 T | 0 | seat
+T | 0 | s
+T | 0 | sssa

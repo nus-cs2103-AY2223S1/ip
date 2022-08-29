@@ -3,7 +3,7 @@ public class ChadException extends Exception{
         super("☹ OOPS!!! " + message);
     }
 
-//    public String getMessage() {
-//        return super.toString();
-//    }
+    public String getMessage() {
+        return super.toString();
+    }
 }
