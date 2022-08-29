@@ -12,14 +12,14 @@ import duke.ui.Ui;
  */
 public class FindCommand extends Command {
 
-    private final String keyWord;
+    private final String[] keywords;
 
     /**
      * Constructor for FindCommand.
-     * @param keyWord The keyword to filter.
+     * @param keywords The keyword to filter.
      */
-    public FindCommand(String keyWord) {
-        this.keyWord = keyWord;
+    public FindCommand(String ... keywords) {
+        this.keywords = keywords;
     }
 
     /**
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String run(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> result = tasks.filterTasks(this.keyWord);
+        ArrayList<Task> result = tasks.filterTasks(this.keywords);
         return ui.printFilteredTasks(result);
     }
 }

@@ -67,14 +67,17 @@ public class TaskList {
 
     /**
      * Returns the list of Tasks containing the keyword.
-     * @param keyWord The keyword used for filtering the list.
+     * @param keywords The keywords used for filtering the list.
      * @return Filtered Task list.
      */
-    public ArrayList<Task> filterTasks(String keyWord) {
+    public ArrayList<Task> filterTasks(String[] keywords) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task t : this.tasks) {
-            if (t.getDescription().contains(keyWord)) {
-                result.add(t);
+            for (String keyword : keywords) {
+                if (t.getDescription().contains(keyword)) {
+                    result.add(t);
+                    break;
+                }
             }
         }
         return result;

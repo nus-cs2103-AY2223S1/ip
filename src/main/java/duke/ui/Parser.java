@@ -74,8 +74,8 @@ public class Parser {
             return new DeleteCommand(delNum - 1);
             // Fallthrough
         case FIND:
-            String findKey = command.replace("find ", "");
-            return new FindCommand(findKey);
+            String[] findKeys = command.replace("find ", "").split(" ");
+            return new FindCommand(findKeys);
             // Fallthrough
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
