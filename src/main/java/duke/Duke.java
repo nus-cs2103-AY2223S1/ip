@@ -56,21 +56,10 @@ public class Duke extends Application {
     }
 
     /**
-     * The main application.
+     * Starts up the JavaFX GUI.
+     *
+     * @param stage The starting stage
      */
-//    public void run() {
-//        this.ui.printGreeting();
-//
-//        boolean exit = false;
-//        while (!exit) {
-//            try {
-//                exit = this.ui.handleInput();
-//            } catch (DukeException e) {
-//                System.out.println(e);
-//            }
-//        }
-//    }
-
     @Override
     public void start(Stage stage) {
         // Setting up required components
@@ -132,6 +121,9 @@ public class Duke extends Application {
         stage.show(); // Render the stage.
     }
 
+    /**
+     * Display the greeting message on the GUI.
+     */
     private void showGreeting() {
         Label greeting = new Label(this.ui.getGreeting());
         dialogContainer.getChildren().add(
@@ -141,9 +133,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Displays and processes the user's input.
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
@@ -164,7 +154,9 @@ public class Duke extends Application {
     }
 
     /**
-     * TODO javadocs
+     * Displays a Dialog Box representing Duke's response.
+     *
+     * @param response the response to the previously parsed command
      */
     public void updateResponse(String response) {
         Label dukeTxt = new Label(response);

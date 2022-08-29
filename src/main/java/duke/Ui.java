@@ -65,9 +65,9 @@ public class Ui {
     }
 
     /**
-     * TODO javadocs
+     * Passes the command response to the GUI in duke.
      *
-     * @param output
+     * @param output The response to be displayed in the GUI
      */
     public void handleOutput(String output) {
         this.duke.updateResponse(output);
