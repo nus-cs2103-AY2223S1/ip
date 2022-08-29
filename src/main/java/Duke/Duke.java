@@ -1,10 +1,19 @@
+package Duke;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
-
+import Duke.Storage;
+import Duke.Parser;
+import Duke.TaskList;
+import Duke.Ui;
+import Duke.Task.Task;
+import Duke.Task.Deadline;
+import Duke.Task.Event;
+import Duke.Exceptions.descriptionException;
+import Duke.Exceptions.NoSuchCommandException;
 public class Duke {
-    private static FileReader fileReader = new FileReader();
+    private static Storage storage = new Storage();
     private static ArrayList<Task> todo;
     private static String[] commandList = new String[]{"list", "Bye", "todo", "mark", "unmark", "event", "deadline", "delete"};
     enum Commands {
@@ -42,7 +51,7 @@ public class Duke {
         Ui ui = new Ui();
         Scanner scanner = new Scanner((System.in));
         Parser parser = new Parser();
-        TaskList taskList = new TaskList(fileReader.readFile());
+        TaskList taskList = new TaskList(storage.readFile());
 
         ui.showGreeting();
         loop: while (true) {
@@ -58,7 +67,7 @@ public class Duke {
                 switch (command) {
                     case BYE:
                         ui.showBye();
-                        fileReader.writeFile(taskList.list);
+                        storage.writeFile(taskList.list);
                         break loop;
                     case LIST:
                         ui.showAllTask(taskList);

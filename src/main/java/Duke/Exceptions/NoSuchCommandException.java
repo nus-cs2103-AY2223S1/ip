@@ -1,3 +1,5 @@
+package Duke.Exceptions;
+
 public class NoSuchCommandException extends Exception{
     public NoSuchCommandException() {
         super("No such command");

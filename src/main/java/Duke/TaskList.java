@@ -1,6 +1,9 @@
+package Duke;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import Duke.Task.Task;
+import Duke.Task.Deadline;
+import Duke.Task.Event;
 public class TaskList {
     public ArrayList<Task> list;
 

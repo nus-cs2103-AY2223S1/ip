@@ -1,3 +1,4 @@
+package Duke.Exceptions;
 public class descriptionException extends Exception {
     public descriptionException() {
         super("Empty Description not allowed");
