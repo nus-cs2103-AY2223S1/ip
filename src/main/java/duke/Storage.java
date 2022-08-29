@@ -5,8 +5,6 @@ import duke.task.Task;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Storage {
@@ -29,7 +27,7 @@ public class Storage {
 
     public void save(TaskList tasks) throws Exception {
         String res = "";
-        for (Task task : tasks.tasks) {
+        for (Task task : tasks.tasks()) {
             res += task;
             res += "\n";
         }

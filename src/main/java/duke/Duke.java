@@ -2,15 +2,6 @@ package duke;
 
 import duke.command.Command;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Duke {
 
     private Ui ui;
@@ -41,7 +32,7 @@ public class Duke {
             try {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                if (c.toClose()) break;
+                if (c.isClose()) break;
                 storage.save(tasks);
             } catch (Exception e){
                 ui.print(e.getMessage());

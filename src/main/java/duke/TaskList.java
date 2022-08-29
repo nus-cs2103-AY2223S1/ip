@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    public ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<>();
@@ -48,14 +48,14 @@ public class TaskList {
 
     public Task createTask(char tag, String description, LocalDateTime time) {
         switch (tag) {
-            case 'T':
-                return new Todo(description);
-            case 'E':
-                return new Event(description, time);
-            case 'D':
-                return new Deadline(description, time);
-            default:
-                return null;
+        case 'T':
+            return new Todo(description);
+        case 'E':
+            return new Event(description, time);
+        case 'D':
+            return new Deadline(description, time);
+        default:
+            return null;
         }
     }
 
@@ -73,6 +73,10 @@ public class TaskList {
 
     public int size() {
         return tasks.size();
+    }
+
+    public ArrayList<Task> tasks() {
+        return tasks;
     }
 
 }
