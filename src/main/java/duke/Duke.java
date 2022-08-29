@@ -36,10 +36,10 @@ public class Duke {
             Command c = Parser.parse(input);
             c.execute(taskList, storage);
         } catch (InvalidInputException | InvalidIndexException | InvalidDescriptionException | InvalidTimeException e) {
-            Ui.dukeResponse += e.getMessage();
+            Ui.appendDukeResponse(e.getMessage());
         } catch (DateTimeParseException e) {
-            Ui.dukeResponse += "Enter a valid date and time! (Eg. 2020-12-25 1330)";
+            Ui.appendDukeResponse("Enter a valid date and time! (Eg. 2020-12-25 1330)");
         }
-        return Ui.dukeResponse;
+        return Ui.getDukeResponse();
     }
 }

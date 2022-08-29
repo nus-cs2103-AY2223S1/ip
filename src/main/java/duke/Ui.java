@@ -7,7 +7,7 @@ import duke.task.TaskList;
  * Class that handles interactions with the user
  */
 public class Ui {
-    public static String dukeResponse = "";
+    private static String dukeResponse = "";
 
     /**
      * Updates dukeResponse when adding a task
@@ -37,5 +37,17 @@ public class Ui {
             dukeResponse += "This task hasn't been done yet? I've updated it for you\n";
         }
         dukeResponse += task;
+    }
+
+    public static void appendDukeResponse(String text) {
+        dukeResponse += text;
+    }
+
+    public static void clearDukeResponse() {
+        dukeResponse = "";
+    }
+
+    public static String getDukeResponse() {
+        return dukeResponse;
     }
 }

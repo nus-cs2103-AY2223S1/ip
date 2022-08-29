@@ -14,6 +14,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {
-        Ui.dukeResponse += taskList.listTasks();
+        Ui.appendDukeResponse(taskList.listTasks());
     }
 }

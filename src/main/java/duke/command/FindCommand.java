@@ -24,6 +24,6 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {
-        Ui.dukeResponse += taskList.findTask(text);
+        Ui.appendDukeResponse(taskList.findTask(text));
     }
 }
