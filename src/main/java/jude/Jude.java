@@ -80,6 +80,7 @@ public class Jude {
 
     /**
      * Returns whether the command terminates the chatbot.
+     *
      * @param command The user input command.
      * @return true if the command terminates the chatbot, i.e. bye command, false otherwise.
      */
@@ -89,6 +90,7 @@ public class Jude {
 
     /**
      * Returns the reply from the chatbot.
+     *
      * @param input The user command input.
      * @return The reply from the chatbot.
      * @throws IOException When system I/O fails.

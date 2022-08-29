@@ -55,6 +55,7 @@ public class DialogBox extends HBox {
     /**
      * Returns a DialogBox node which corresponds to the user command, i.e. what the user
      * provided as input to the chatbot.
+     *
      * @param text The text which represents the user command.
      * @param img The image which represents the user.
      * @return The DialogBox node corresponding to the user command.
@@ -65,6 +66,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns a DialogBox node which corresponds to the response made by the chatbot.
+     *
      * @param text The text which represents the reply made by the chatbot.
      * @param img The image which represents the chatbot.
      * @return The DialogBox node corresponding to the response by the chatbot.

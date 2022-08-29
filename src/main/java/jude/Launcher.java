@@ -9,7 +9,8 @@ import javafx.application.Application;
  */
 public class Launcher {
     /**
-     * Launches the GUI
+     * Launches the GUI.
+     *
      * @param args Not user for now.
      */
     public static void main(String[] args) {

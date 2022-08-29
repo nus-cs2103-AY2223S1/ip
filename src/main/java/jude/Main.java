@@ -20,6 +20,7 @@ public class Main extends Application {
 
     /**
      * Creates a new GUI instance for Jude the chatbot.
+     *
      * @throws IOException When system I/O fails.
      */
     public Main() throws IOException {

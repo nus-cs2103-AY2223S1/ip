@@ -97,6 +97,7 @@ public class Parser {
 
     /**
      * Returns whether the command terminates the program.
+     *
      * @param command The user input command.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
      */

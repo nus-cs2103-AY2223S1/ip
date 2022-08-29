@@ -47,6 +47,7 @@ public class MainWindow {
     /**
      * Handles the user input when the user presses the Enter button or clicks the Send button.
      * Clears the user input after procsessing.
+     *
      * @param actionEvent An event which triggers the method call, such as pressing Enter and
      *                    clicking the Send button.
      * @throws IOException When system I/O fails.
