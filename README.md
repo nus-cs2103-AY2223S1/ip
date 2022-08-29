@@ -22,6 +22,8 @@ Features:
 - [x] Managing Events 
 - [ ] Reminders (coming soon)
 
+Here's the main method: 
+
 ```ruby
 public class Main {
     public static void main(String[] args) {
