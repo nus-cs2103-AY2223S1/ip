@@ -67,7 +67,7 @@ public class Ui {
         System.out.println(this.divider + this.indent + "Wait, which task are you referring to?\n" + this.divider);
     }
 
-    public void ShowFoundTasks(TaskList tasks) {
+    public void showFoundTasks(TaskList tasks) {
         String command = "Here are the matching tasks in your list:\n";
         System.out.println(this.divider + this.indent + command);
         System.out.println(tasks);
