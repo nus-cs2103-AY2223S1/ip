@@ -29,6 +29,7 @@ public class Deadline extends Task {
 
 
     public static Deadline readTask(String[] values) {
+        assert values.length == 4: "Save data was not parsed correctly, incorrect number of elements read";
         boolean isDone = values[1].equals("0");
         String description = values[2];
         String unformattedDate = values[3];
