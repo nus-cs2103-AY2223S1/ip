@@ -1,5 +1,12 @@
 package mia;
 
+/**
+ * A {@code Task} contains a title and a completed status. It
+ * is abstract and should be extended by other classes that implement
+ * additional features.
+ *
+ * @author Richard Dominick
+ */
 abstract public class Task {
     private String title;
     private boolean isCompleted = false;

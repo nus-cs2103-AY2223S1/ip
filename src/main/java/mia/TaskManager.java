@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * A {@code TaskManager} contains a list of tasks that the user can add, edit, view, and delete.
+ *
+ * @author Richard Dominick
+ */
 public class TaskManager {
     private final List<Task> tasks;
     private final StoredFile storedFile;
