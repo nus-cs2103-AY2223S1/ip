@@ -23,10 +23,10 @@ public class Event extends ScheduleTask {
      *
      * @param description description of task.
      * @param at date and time to complete the task at.
-     * @param done task done or not.
+     * @param isDone task done or not.
      */
-    public Event(String description, String at, boolean done) {
-        super(description, at, done);
+    public Event(String description, String at, boolean isDone) {
+        super(description, at, isDone);
     }
 
     /**

@@ -1,11 +1,14 @@
 package duke.command;
 
+//import util
 import duke.util.TaskList;
 import duke.util.Ui;
 import duke.util.Storage;
 
+//import exception
 import duke.exception.TaskNotFoundException;
 
+//import task
 import duke.task.Task;
 
 /**
@@ -36,7 +39,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TaskNotFoundException {
         Task task = tasks.deleteTask(index);
-        storage.update(tasks);
+        storage.update(tasks, ui);
         displayCommand(ui, TASK_DELETE, task, tasks.getStatus());
     }
 }

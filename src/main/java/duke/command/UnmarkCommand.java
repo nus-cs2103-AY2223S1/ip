@@ -1,14 +1,15 @@
 package duke.command;
 
-
-import duke.exception.TaskMarkException;
+//import util
 import duke.util.TaskList;
 import duke.util.Ui;
 import duke.util.Storage;
 
+//import exception
 import duke.exception.TaskNotFoundException;
 import duke.exception.TaskUnmarkException;
 
+//import task
 import duke.task.Task;
 
 /**
@@ -40,7 +41,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TaskUnmarkException, TaskNotFoundException {
         Task task = tasks.unmarkTask(index);
-        storage.update(tasks);
+        storage.update(tasks, ui);
         displayCommand(ui, TASK_UNMARK, task, tasks.getStatus());
     }
 

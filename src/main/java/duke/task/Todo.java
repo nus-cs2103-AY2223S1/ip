@@ -17,10 +17,10 @@ public class Todo extends Task{
      * Constructs a Todo object with a description and done.
      *
      * @param description description of the task.
-     * @param done task done or not.
+     * @param isDone task done or not.
      */
-    public Todo(String description, boolean done) {
-        super(description, done);
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     /**

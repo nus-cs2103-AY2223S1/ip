@@ -1,8 +1,12 @@
 package duke.task;
 
+//import time
 import java.time.LocalDateTime;
 
+//import exception
 import duke.exception.UnexpectedDateTimeFormatException;
+
+//import util
 import duke.util.DateTimeHandler;
 
 /**
@@ -28,12 +32,12 @@ public abstract class ScheduleTask extends Task {
      *
      * @param description description of the task.
      * @param dateTime the deadline of the task.
-     * @param done task done or not.
+     * @param isDone task done or not.
      */
-    public ScheduleTask(String description, String dateTime, boolean done) {
+    public ScheduleTask(String description, String dateTime, boolean isDone) {
         super(description);
         this.dateTime = DateTimeHandler.formatStorageDateTime(dateTime);
-        isDone = done;
+        this.isDone = isDone;
     }
 
     /**

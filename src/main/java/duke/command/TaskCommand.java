@@ -1,9 +1,11 @@
 package duke.command;
 
+//import util
 import duke.util.TaskList;
 import duke.util.Ui;
 import duke.util.Storage;
 
+//import task
 import duke.task.Task;
 
 /**
@@ -32,7 +34,7 @@ public abstract class TaskCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addTask(task);
-        storage.update(tasks);
+        storage.update(tasks, ui);
         displayCommand(ui, TASK_ADD, task, tasks.getStatus());
     }
 }

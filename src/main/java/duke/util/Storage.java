@@ -1,18 +1,18 @@
 package duke.util;
 
+//import io
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
-import java.util.Scanner;
 
-import iohelper.IoHelper;
+//import util
+import java.util.Scanner;
 
 /**
  * Represents a Storage to store task input by the user.
  */
 public class Storage {
-    private final IoHelper ioHelper = new IoHelper();
     private File dukeFile;
     private FileWriter fileWriter;
     private Scanner scanner;
@@ -39,16 +39,17 @@ public class Storage {
      * if file not present, create file.
      * if file present, load the content in the file.
      *
+     * @param ui Ui object to display message from storage
      * @return TaskList with either task stored in the file or empty TaskList
      */
-    public TaskList setUp() {
+    public TaskList setUp(Ui ui) {
         if (isFilePresent()) {
-            return new TaskList(load());
+            return new TaskList(load(ui));
         }
         try {
             dukeFile.createNewFile();
         } catch (IOException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         } finally {
             return new TaskList();
         }
@@ -57,25 +58,27 @@ public class Storage {
     /**
      * Updates the file with the new contents in TaskList.
      *
+     * @param ui Ui object to display message from storage
      * @param obj Object to be written into the file.
      */
-    public void update(Object obj) {
+    public void update(Object obj, Ui ui) {
         try {
             fileWriter = new FileWriter(dukeFile);
             fileWriter.write(obj.toString());
-            ioHelper.print("Storage: duke.txt updated");
+            ui.show("Storage: duke.txt updated");
             fileWriter.close();
         } catch (IOException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         }
     }
 
     /**
      * Loads the file content into a String Representation.
      *
+     * @param ui Ui object to display message from storage
      * @return String representation of the content in the file.
      */
-    private String load() {
+    private String load(Ui ui) {
         String data = "";
         try {
             scanner = new Scanner(dukeFile);
@@ -84,7 +87,7 @@ public class Storage {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            ioHelper.print(e.getMessage());
+            ui.show(e);
         }
         return data;
     }

@@ -1,5 +1,6 @@
 package duke.task;
 
+//import exception
 import duke.exception.UnexpectedDateTimeFormatException;
 
 /**
@@ -23,10 +24,10 @@ public class Deadline extends ScheduleTask {
      *
      * @param description description of task.
      * @param by date and time to complete the task by.
-     * @param done task is done or not.
+     * @param isDone task is done or not.
      */
-    public Deadline(String description, String by, boolean done) {
-        super(description, by, done);
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, by, isDone);
     }
 
     /**
