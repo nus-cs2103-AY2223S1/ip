@@ -1,3 +1,7 @@
+package duke;
+
+import duke.ui.Ui;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.file.Files;

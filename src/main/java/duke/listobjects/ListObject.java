@@ -1,3 +1,5 @@
+package duke.listobjects;
+
 import java.io.Serializable;
 
 /**
