@@ -83,7 +83,7 @@ public class Storage {
      */
     public void save(TaskList tasks) throws IOException {
         try {
-            File createFile = new File("Duke.txt");
+            File createFile = new File("src/dukesave/Duke.txt");
             if (createFile.createNewFile()) {
                 System.out.println("Creating Duke.txt...");
             } else {
@@ -94,7 +94,7 @@ public class Storage {
                 writer.write(tasks.get(i) + "\n");
             }
             writer.close();
-            System.out.println("duke.Duke.txt is fully updated.");
+            System.out.println("Duke.txt is fully updated.");
         } catch (IOException e) {
             System.out.println("An error occurred when trying to save your task list. Please try again.");
         }

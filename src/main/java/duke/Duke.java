@@ -63,6 +63,6 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        new Duke("Duke.txt").run();
+        new Duke("src/dukesave/Duke.txt").run();
     }
 }
