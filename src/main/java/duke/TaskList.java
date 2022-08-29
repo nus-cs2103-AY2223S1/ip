@@ -132,4 +132,21 @@ public class TaskList {
     public Task get(int index) {
         return this.inputList.get(index);
     }
+
+    /**
+     * Method to search for tasks that have the keyword that is given by user.
+     * @param str Keyword given by user.
+     */
+    public void find(String str) {
+        ArrayList<Task> list = new ArrayList<>();
+        for (int i = 0; i < inputList.size(); i++) {
+            if (inputList.get(i).toString().contains(str)) {
+                list.add(inputList.get(i));
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (Task item : list) {
+            System.out.println(list.indexOf(item) + 1 + "." + item);
+        }
+    }
 }
