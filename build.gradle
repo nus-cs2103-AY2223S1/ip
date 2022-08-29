@@ -16,15 +16,7 @@ dependencies {
 test {
     useJUnitPlatform()
 
-<<<<<<< HEAD
-    def logging = testLogging {
-
-    }
     testLogging {
-
-=======
-    testLogging {
->>>>>>> ef6f343d79c41d9327ebadbe9af369dd07a79ea9
         events "passed", "skipped", "failed"
 
         showExceptions true
@@ -33,10 +25,6 @@ test {
         showStackTraces true
         showStandardStreams = false
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> ef6f343d79c41d9327ebadbe9af369dd07a79ea9
 }
 
 application {
