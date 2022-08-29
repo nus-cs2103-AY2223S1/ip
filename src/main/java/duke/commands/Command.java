@@ -3,7 +3,7 @@ package duke.commands;
 import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.main.Ui;
-import duke.tasks.*;
+import duke.tasks.TaskList;
 
 /**
  * Parent class of all commands with single execute method
@@ -11,21 +11,24 @@ import duke.tasks.*;
 
 public abstract class Command {
 
+    private boolean isExit = false;
 
-  boolean isExit = false;
+    /**
+     * Executes a command that may or may not modify the TaskList
+     *
+     * @param tasks   TaskList containing all tasks so far
+     * @param storage Storage with dataFile of tasks
+     * @param ui      Ui which prints out messages to users
+     * @throws DukeException If command is not executable due to errors in user input
+     */
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage)
+            throws DukeException;
 
-  /**
-   * Executes a command that may or may not modify the TaskList
-   *
-   * @param tasks TaskList containing all tasks so far
-   * @param storage Storage with dataFile of tasks
-   * @param ui Ui which prints out messages to users
-   * @throws DukeException If command is not executable due to errors in user input
-   */
-  public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public boolean isExit() {
+        return this.isExit;
+    }
 
-  public boolean isExit() {
-    return this.isExit;
-  }
-
+    public void makeTrueExit() {
+        this.isExit = true;
+    }
 }

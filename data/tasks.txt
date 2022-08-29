@@ -1,4 +1,4 @@
 E | 0 | event fad | 2022-09-18
 D | 0 | deadline adfij | 2022-08-23
 T | 0 | read book
-D | 0 | deadline return book  | 2022-06-07
+T | 0 | read book
