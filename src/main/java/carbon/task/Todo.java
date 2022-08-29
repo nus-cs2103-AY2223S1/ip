@@ -7,7 +7,11 @@ import carbon.error.InvalidParamException;
  * Enapsulates information regarding Todos.
  */
 public class Todo extends Task {
-    private static int TYPEKEY = Task.getTypeKey(Task.Type.TODO);
+    private static final int TYPEKEY = Task.getTypeKey(Task.Type.TODO);
+
+    private Todo(String name, Boolean isDone) {
+        super(name, isDone);
+    }
 
     private static String extractName(String input) throws CarbonException {
         int len = input.length();
@@ -35,7 +39,7 @@ public class Todo extends Task {
 
     /**
      * Loads a task that was saved.
-     * 
+     *
      * @param name Name of the task.
      * @param isDone Whether the task is done or not.
      * @return Task object.
@@ -45,16 +49,12 @@ public class Todo extends Task {
         return todo;
     }
 
-    private Todo(String name, Boolean isDone) {
-        super(name, isDone);
-    }
-
     /** @inheritDoc */
     @Override
     public String encode() {
         int typeKey = Todo.TYPEKEY;
         int isDone = this.isDone ? 1 : 0;
-        String result = String.format("%d|%d|%s\n", typeKey, isDone, this.name); 
+        String result = String.format("%d|%d|%s\n", typeKey, isDone, this.name);
         return result;
     }
 

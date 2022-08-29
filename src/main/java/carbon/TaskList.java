@@ -1,15 +1,15 @@
 package carbon;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import carbon.error.CarbonException;
+import carbon.error.InvalidParamException;
+import carbon.error.OutOfBoundsException;
 import carbon.task.Deadline;
 import carbon.task.Event;
 import carbon.task.Task;
 import carbon.task.Todo;
-import carbon.error.CarbonException;
-import carbon.error.InvalidParamException;
-import carbon.error.OutOfBoundsException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains and manages user-declared tasks.
@@ -44,7 +44,7 @@ public class TaskList {
     /**
      * Encodes the task into text data to be stored.
      * Does not use any actual encoding format, but simplifies the text.
-     * 
+     *
      * @return Encoded task data.
      */
     public String encodeTasks() {
@@ -113,26 +113,26 @@ public class TaskList {
     public String addTask(String input, Task.Type type) throws CarbonException {
         Task newTask;
         switch (type) {
-            case TODO: {
-                newTask = Todo.createTask(input);
-                break;
-            }
-            case DEADLINE: {
-                newTask = Deadline.createTask(input);
-                break;
-            }
-            case EVENT: {
-                newTask = Event.createTask(input);
-                break;
-            }
-            default:
-                // should never reach here
-                newTask = null;
+        case TODO: {
+            newTask = Todo.createTask(input);
+            break;
+        }
+        case DEADLINE: {
+            newTask = Deadline.createTask(input);
+            break;
+        }
+        case EVENT: {
+            newTask = Event.createTask(input);
+            break;
+        }
+        default:
+            // should never reach here
+            newTask = null;
         }
         this.tasks.add(newTask);
         String log = String.format(
-                "I have added: \n    %s\n\n    We've got %s so far.", 
-                newTask, 
+                "I have added: \n    %s\n\n    We've got %s so far.",
+                newTask,
                 this.countTasks()
                 );
         return log;
@@ -214,8 +214,8 @@ public class TaskList {
     private String arrangeTasks(List<Task> tasks, String log) {
         for (int i = 0; i < tasks.size(); i++) {
             String taskLog = String.format(
-                    "\n    %d: %s", 
-                    i + 1, 
+                    "\n    %d: %s",
+                    i + 1,
                     tasks.get(i)
                     );
             log += taskLog;

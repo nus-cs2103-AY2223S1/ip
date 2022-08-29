@@ -1,9 +1,10 @@
 package carbon;
 
-import carbon.task.Task;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import carbon.task.Task;
 
 public class TaskListTest {
     private TaskList taskList = new TaskList();
@@ -16,7 +17,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void addTask_Todo_returnsAddedTask() {
+    public void addTask_todo_returnsAddedTask() {
         String input = "todo Complete Assignment";
         String expectedOutput = "I have added: \n"
                 + "    \u001B[35m(TODO)\u001B[0m [ ] Complete Assignment !\n\n"

@@ -1,8 +1,8 @@
 package carbon;
 
-import carbon.task.Task;
 import carbon.error.CarbonException;
 import carbon.error.InvalidInputException;
+import carbon.task.Task;
 
 /**
  * Parses user inputs, and processes them.
@@ -16,7 +16,7 @@ public class Parser {
 
     /**
      * Constructs an instance of Parser class.
-     * 
+     *
      * @param ui An instance of the Ui class.
      * @param storage An instance of the Storage class.
      * @return Parser object.
@@ -34,7 +34,7 @@ public class Parser {
     /**
      * Parses and processes a user input text.
      * If the command is not a basic command, this method will call the processAdvanced method.
-     * 
+     *
      * @param input User input text.
      * @return Execution log.
      * @throws CarbonException  If an error is encountered during processing or execution.
