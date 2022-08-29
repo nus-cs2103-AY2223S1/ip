@@ -35,10 +35,11 @@ public class TaskList {
      *
      * @param index The index of the task to be marked as complete
      */
-    public void markTaskComplete(int index) {
+    public String markTaskComplete(int index) {
         taskList.get(index).markAsDone();
-        System.out.println("Nice! I've marked this task as having been completed:");
-        System.out.println(taskList.get(index));
+        String res = "Nice! I've marked this task as having been completed:\n";
+        res += taskList.get(index).toString();
+        return res;
     }
 
     /**
@@ -46,10 +47,11 @@ public class TaskList {
      *
      * @param index The index of the task to be marked as incomplete.
      */
-    public void markTaskIncomplete(int index) {
+    public String markTaskIncomplete(int index) {
         taskList.get(index).markAsUndone();
-        System.out.println("Okay, I've marked this task as not done yet:");
-        System.out.println(taskList.get(index));
+        String res = "Okay, I've marked this task as not done yet:\n";
+        res += taskList.get(index).toString();
+        return res;
     }
 
     /**
@@ -57,10 +59,11 @@ public class TaskList {
      *
      * @param task The task that is to be added to the List.
      */
-    public void addTaskToList(Task task) {
+    public String addTaskToList(Task task) {
         taskList.add(task);
-        System.out.println("Got it, i've added this task to your list:\n  " + task);
-        System.out.println("You now have " + taskList.size() + " tasks in your list.");
+        String res = "Got it, i've added this task to your list:\n  " + task + "\n";
+        res += "You now have " + taskList.size() + " tasks in your list.";
+        return res;
     }
 
     /**
@@ -68,12 +71,13 @@ public class TaskList {
      *
      * @param index The index of the task to be deleted.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task removedTask = taskList.get(index);
         taskList.remove(index);
-        System.out.println("Okay, I've removed this task:");
-        System.out.println(removedTask);
-        System.out.println("You now have " + taskList.size() + " tasks in your list.");
+        String res = "Okay, I've removed this task:\n";
+        res += removedTask.toString();
+        res += "\nYou now have " + taskList.size() + " tasks in your list.";
+        return res;
     }
 
     /**

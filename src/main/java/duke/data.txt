@@ -1,3 +1,4 @@
 TODO,,true,,a new todo task,,null
 DEADLINE,,false,,a new deadline,,01-09-2000 00:00
-EVENT,,false,,a new event,,06-10-1999 00:00
+EVENT,,true,,a new event,,06-10-1999 00:00
+TODO,,false,,new task,,null

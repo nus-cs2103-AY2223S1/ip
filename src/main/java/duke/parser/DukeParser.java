@@ -2,6 +2,7 @@ package duke.parser;
 
 import java.time.format.DateTimeParseException;
 
+import duke.commands.*;
 import duke.storage.Storage;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
@@ -24,7 +25,6 @@ public class DukeParser {
     private TaskList taskList;
     private String keyword;
     private String restOfInputString;
-    private Boolean shouldExit = false;
 
     /**
      * Default constructor for the DukeParser object.
@@ -35,13 +35,6 @@ public class DukeParser {
         this.taskList = taskList;
     }
 
-    /**
-     * Checks if an exit command has been given to Duke
-     * @return whether Duke should be exited or not
-     */
-    public boolean exitDuke() {
-        return this.shouldExit;
-    }
 
     /**
      * Handles user input, and preps parser for instruction execution.
@@ -68,7 +61,7 @@ public class DukeParser {
      * @param st Storage that we want to save data to after the instruction has been executed
      * @throws DukeException if instruction execution fails
      */
-    public void execute(Storage st) throws DukeException {
+    public Command execute() throws DukeException {
         if (this.keyword == null) {
             throw new DukeException("Error: Parser has not been loaded with an instruction yet!");
         }
@@ -80,35 +73,30 @@ public class DukeParser {
 
         switch (this.keyword) {
         case "list":
-            this.listInstructionHandler();
-            break;
+            return this.listInstructionHandler();
+            // Intentional Fallthrough
         case "bye":
-            this.byeInstructionHandler();
-            break;
+            return this.byeInstructionHandler();
+            // Intentional Fallthrough
         case "find":
-            this.findInstructionHandler();
-            break;
+            return this.findInstructionHandler();
+            // Intentional Fallthrough
         case "mark":
-            // Intentional fallthrough
+            // Intentional Fallthrough
         case "unmark":
-            // Intentional fallthrough
+            // Intentional Fallthrough
         case "delete":
-            this.numericalInstructionHandler();
-            st.save(this.taskList);
-            break;
+            return this.numericalInstructionHandler();
+            // Intentional Fallthrough
         case "todo":
             // Intentional fallthrough
         case "event":
             // Intentional fallthrough
         case "deadline":
-            this.addTaskInstructionHandler();
-            st.save(this.taskList);
-            break;
+            return this.addTaskInstructionHandler();
+            // Intentional Fallthrough
         default:
-            System.out.println(BREAK_LINES);
-            System.out.println("Command not recognised. Try again?");
-            System.out.println(BREAK_LINES);
-            break;
+            throw new DukeException("Command not recognised. Try again?");
         }
     }
 
@@ -127,20 +115,15 @@ public class DukeParser {
     /**
      * Handles a list instruction by printing user's tasks to the screen.
      */
-    public void listInstructionHandler() {
-        System.out.println(BREAK_LINES);
-        System.out.println(this.taskList);
-        System.out.println(BREAK_LINES);
+    public Command listInstructionHandler() {
+        return new ListCommand();
     }
 
     /**
      * Handles a bye instruction by exiting Duke.
      */
-    public void byeInstructionHandler() {
-        System.out.println(BREAK_LINES);
-        System.out.println("Bye! Hope to see you again soon!");
-        System.out.println(BREAK_LINES);
-        this.shouldExit = true;
+    public Command byeInstructionHandler() {
+        return new ByeCommand();
     }
 
     /**
@@ -148,7 +131,7 @@ public class DukeParser {
      *
      * @throws DukeException Index is invalid
      */
-    public void numericalInstructionHandler() throws DukeException {
+    public Command numericalInstructionHandler() throws DukeException {
 
         // First, try to parse the numerical part of the instruction, if error, throw it
         int instructionNum;
@@ -167,17 +150,16 @@ public class DukeParser {
 
         switch (this.keyword) {
         case "mark":
-            this.taskList.markTaskComplete(instructionNum);
-            break;
+            return new MarkCommand(instructionNum);
+            // Intentional Fallthrough
         case "unmark":
-            this.taskList.markTaskIncomplete(instructionNum);
-            break;
-        case "delete":
-            this.taskList.deleteTask(instructionNum);
-            break;
+            return new UnmarkCommand(instructionNum);
+            // Intentional Fallthrough
+        default:
+            return new DeleteCommand(instructionNum);
+            // Intentional Fallthrough
         }
 
-        System.out.println(BREAK_LINES);
     }
 
     /**
@@ -185,22 +167,11 @@ public class DukeParser {
      *
      * @throws DukeException If no valid search parameters are found in user input
      */
-    public void findInstructionHandler() throws DukeException {
-        System.out.println(BREAK_LINES);
+    public Command findInstructionHandler() throws DukeException {
         if (this.restOfInputString.equals("")) {
             throw new DukeException("Oops! Please provide a valid string to search for.");
         }
-        String[] searchTerms = this.restOfInputString.split(" ");
-        String found = taskList.search(searchTerms);
-        if (found.equals("")) {
-            System.out.println("Hmm... I couldn't find any tasks matching your queries :(");
-            System.out.println(BREAK_LINES);
-            return;
-        }
-        System.out.println("Here are the matching tasks in your list that I found!");
-        System.out.println(found);
-        System.out.println(BREAK_LINES);
-
+        return new FindCommand(this.restOfInputString);
     }
 
     /**
@@ -208,8 +179,7 @@ public class DukeParser {
      *
      * @throws DukeException User input provided is incomplete / does not match required format.
      */
-    public void addTaskInstructionHandler() throws DukeException {
-        System.out.println(BREAK_LINES);
+    public Command addTaskInstructionHandler() throws DukeException {
         if (this.restOfInputString.equals("")) {
             throw new DukeException("Oops! Descriptions for tasks cannot be blank!");
         }
@@ -258,8 +228,8 @@ public class DukeParser {
             break;
         }
 
-        this.taskList.addTaskToList(newTask);
-        System.out.println(BREAK_LINES);
+        return new AddCommand(newTask);
+
     }
 
 }
