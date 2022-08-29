@@ -5,6 +5,8 @@ import Duke.storage.Storage;
 import Duke.tasks.TaskList;
 import Duke.ui.UI;
 
+import java.time.LocalDate;
+
 public class Duke {
 
     private final Storage storage;
@@ -42,7 +44,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-
-        new Duke("/Users/iz/Documents/Github/ip/src/main/data/tasks.txt").run();
+        new Duke("data/tasks.txt").run();
     }
 }

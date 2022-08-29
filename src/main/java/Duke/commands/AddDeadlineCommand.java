@@ -22,13 +22,16 @@ public class AddDeadlineCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         String taskDesc = input.substring(9, input.indexOf('/') - 1);
-        String date = input.substring(input.indexOf('/') + 3);
-        String[] dateArray = date.split(" ");
+        StringBuilder date = new StringBuilder(input.substring(input.indexOf('/') + 3));
+        String[] dateArray = date.toString().split(" ");
         if (isDate(dateArray[0])) {
             LocalDateTime ld = LocalDateTime.parse(dateArray[0]);
-            date = ld.format(DTF) + "  " + ld.getDayOfWeek() + " " + dateArray[1];
+            date = new StringBuilder(ld.format(DTF) + "  " + ld.getDayOfWeek());
+            for (int i = 1; i < dateArray.length; i++) {
+                date.append(" ").append(dateArray[i]);
+            }
         }
-        Deadline deadline = new Deadline(taskDesc, date);
+        Deadline deadline = new Deadline(taskDesc, date.toString());
         taskList.addTask(deadline);
         ui.addTaskMessage(deadline, taskList.size());
         storage.store(taskList);

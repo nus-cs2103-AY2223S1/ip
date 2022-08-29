@@ -3,6 +3,7 @@ package Duke.storage;
 import Duke.tasks.*;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,19 +13,20 @@ import java.util.List;
 public class Storage {
 
     /** Default file path used if the user does not provide the file name. */
-    public static final String DEFAULT_FILEPATH = "/Users/iz/Documents/Github/ip/src/main/data/tasks.txt";
+    static String path = Paths.get(".").toAbsolutePath().toString();
+    private static final String DEFAULT_FILEPATH = path.substring(0, path.length() - 1) + "src/main/";
 
     private String filePath = "";
 
     public Storage() {
-        this.filePath = DEFAULT_FILEPATH;
+        this.filePath = DEFAULT_FILEPATH + "data/tasks.txt";
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public Storage(String filePath) {
         try {
-            this.filePath = filePath;
-            File file = new File(filePath);
+            this.filePath = DEFAULT_FILEPATH + filePath;
+            File file = new File(this.filePath);
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();

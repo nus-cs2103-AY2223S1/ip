@@ -23,13 +23,16 @@ public class AddEventCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         String taskDesc = input.substring(6, input.indexOf('/') - 1);
-        String deadline = input.substring(input.indexOf('/') + 3);
-        String[] deadlineArray = deadline.split(" ");
+        StringBuilder deadline = new StringBuilder(input.substring(input.indexOf('/') + 3));
+        String[] deadlineArray = deadline.toString().split(" ");
         if (isDate(deadlineArray[0])) {
             LocalDateTime ld = LocalDateTime.parse(deadlineArray[0]);
-            deadline = ld.format(DTF) + "  " + ld.getDayOfWeek() + " " + deadlineArray[1];
+            deadline = new StringBuilder(ld.format(DTF) + "  " + ld.getDayOfWeek());
+            for (int i = 1; i < deadlineArray.length; i++) {
+                deadline.append(" ").append(deadlineArray[i]);
+            }
         }
-        Event event = new Event(taskDesc, deadline);
+        Event event = new Event(taskDesc, deadline.toString());
         taskList.addTask(event);
         ui.addTaskMessage(event, taskList.size());
         storage.store(taskList);
