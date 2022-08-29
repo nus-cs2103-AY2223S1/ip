@@ -50,6 +50,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        Ui.dukeResponse = "";
+        Ui.clearDukeResponse();
     }
 }

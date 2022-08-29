@@ -10,9 +10,8 @@ import duke.task.TaskList;
  * Represents an Event Command
  */
 public class EventCommand extends Command {
-
-    String desc;
-    String time;
+    private String desc;
+    private String time;
 
     /**
      * Creates an Event Command object
@@ -39,6 +38,5 @@ public class EventCommand extends Command {
         Event event = new Event(this.desc, this.time);
         taskList.addTask(event);
         storage.saveTaskFile(taskList);
-
     }
 }

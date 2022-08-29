@@ -1,21 +1,20 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NoCommand;
 import duke.command.TodoCommand;
-import duke.command.FindCommand;
-
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidIndexException;
 import duke.exception.InvalidInputException;
 import duke.exception.InvalidTimeException;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Class that parses user inputs in Duke to return an appropriate command object

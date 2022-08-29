@@ -10,8 +10,8 @@ import duke.task.TaskList;
  * Represents a Deadline Command
  */
 public class DeadlineCommand extends Command {
-    String desc;
-    String time;
+    private String desc;
+    private String time;
 
     /**
      * Creates a Deadline Command object

@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
  * Represents an Event Task
  */
 public class Event extends Task {
-    String at;
+    private String at;
 
     /**
      * Creates an Event Task object
