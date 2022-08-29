@@ -162,7 +162,7 @@ public class Duke {
             } else if (message.startsWith("deadline")) {
                 int slash_char_pos = message.indexOf("/by");
                 if (slash_char_pos < 13) {
-                    System.out.println("Please enter something valid");
+                    System.out.println("Deadline tasks require a task name and a deadline specified by /by");
                 } else {
                     String task_name = message.substring(9, slash_char_pos);
                     String deadline = message.substring(slash_char_pos + 4);
@@ -173,7 +173,7 @@ public class Duke {
             } else if (message.startsWith(("event"))) {
                 int slash_char_pos = message.indexOf("/at");
                 if (slash_char_pos < 10) {
-                    System.out.println("Please enter something valid");
+                    System.out.println("Event tasks require a task name and a datetime specified by /at");
                 } else {
                     String task_name = message.substring(6, slash_char_pos);
                     String date = message.substring(slash_char_pos + 4);
@@ -187,7 +187,7 @@ public class Duke {
                 LIST_OF_THINGS.add(this_task);
                 System.out.printf("I've added this task:%n%s%n", this_task);
             } else {
-                System.out.println("Sorry, please specify a task type");
+                System.out.println("Sorry, I don't know what that means :(");
             }
             message = keyboard.nextLine();
         }
