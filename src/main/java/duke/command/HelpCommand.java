@@ -10,7 +10,7 @@ public class HelpCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         StringBuilder sb = new StringBuilder();
         sb.append("Duke: Here is a list of commands Duke knows!\n");
         sb.append("1. list\n- View all the tasks in your list.\n\n");
@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
         sb.append("6. mark <task_id>\n- Mark the task with the given id in your list as done.\n\n");
         sb.append("7. unmark <task_id>\n- Mark the task with the given id in your list as not done.\n\n");
         sb.append("8. bye\n- Exit Duke bot.");
-        System.out.println(sb);
+        return sb.toString();
     }
 
     /**

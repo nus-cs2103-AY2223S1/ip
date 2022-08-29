@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import duke.task.Task;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
  * Represents the Storage to deal with loading tasks from and saving tasks to the save file in the user's hard disk.
@@ -53,10 +53,10 @@ public class Storage {
      * @return TaskList from history of commands
      * @throws DukeException if error occurs in reading file or when adding previous commands
      */
-    public TasksList createTaskList() throws DukeException {
+    public TaskList createTaskList() throws DukeException {
         try {
             List<String> history = Files.readAllLines(this.path);
-            TasksList taskList = new TasksList();
+            TaskList taskList = new TaskList();
             for (String s : history) {
                 taskList.loadFromSave(s);
             }
@@ -69,16 +69,16 @@ public class Storage {
     /**
      * Overwrites the user's save file with the current tasks in the list.
      *
-     * @param tasksList The TasksList to save.
+     * @param taskList The TaskList to save.
      * @throws DukeException if error occurs while writing to save file.
      */
-    public void writeToSave(TasksList tasksList) throws DukeException {
+    public void writeToSave(TaskList taskList) throws DukeException {
         try {
-            if (tasksList.isEmpty()) {
+            if (taskList.isEmpty()) {
                 Files.write(this.path, new byte[0]);
                 return;
             }
-            StringBuilder sb = tasksList.toStringBuilder();
+            StringBuilder sb = taskList.toStringBuilder();
             byte[] byteArray = sb.toString().getBytes();
             Files.write(this.path, byteArray);
         } catch (IOException e) {

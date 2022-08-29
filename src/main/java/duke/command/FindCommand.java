@@ -1,23 +1,23 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
  * Represents the command to find a task by searching for a keyword.
  */
 public class FindCommand extends Command {
-    private TasksList tasksList;
+    private TaskList taskList;
     private String[] command;
 
     /**
-     * Creates FindCommand with the given TasksList and command.
+     * Creates FindCommand with the given TaskList and command.
      *
-     * @param tasksList The TasksList to search the task from.
+     * @param taskList The TaskList to search the task from.
      * @param command The String array of the user's command.
      */
-    public FindCommand(TasksList tasksList, String[] command) {
-        this.tasksList = tasksList;
+    public FindCommand(TaskList taskList, String[] command) {
+        this.taskList = taskList;
         this.command = command;
     }
 
@@ -25,12 +25,12 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute() throws DukeException {
-        tasksList.findTask(command);
+    public String execute() throws DukeException {
+        return taskList.findTask(command) + "\n";
     }
 
     /**
-     * Checks if the command given refers to finding a task from the TasksList.
+     * Checks if the command given refers to finding a task from the TaskList.
      *
      * @param s The command word (if any) from the user's input.
      * @return true if the command to find is valid, false otherwise.

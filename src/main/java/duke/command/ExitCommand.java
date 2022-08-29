@@ -3,35 +3,36 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
  * Represents the command to exit and close Duke.
  */
 public class ExitCommand extends Command {
-    private TasksList tasksList;
+    private TaskList taskList;
     private Storage storage;
     private Ui ui;
 
     /**
-     * Creates ExitCommand with the given TasksList, Storage, and Ui.
+     * Creates ExitCommand with the given TaskList, Storage, and Ui.
      *
      * @param ui The Ui to end the session with.
-     * @param storage The Storage associated with the TasksList.
-     * @param tasksList The TasksList to save to Storage.
+     * @param storage The Storage associated with the TaskList.
+     * @param taskList The TaskList to save to Storage.
      */
-    public ExitCommand(Ui ui, Storage storage, TasksList tasksList) {
+    public ExitCommand(Ui ui, Storage storage, TaskList taskList) {
         this.ui = ui;
         this.storage = storage;
-        this.tasksList = tasksList;
+        this.taskList = taskList;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void execute() throws DukeException {
-        this.ui.endSession(this.storage, this.tasksList);
+    public String execute() throws DukeException {
+        this.ui.endSession(this.storage, this.taskList);
+        return "Duke: Bye! Hope to see you again soon!";
     }
 
     /**

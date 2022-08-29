@@ -2,7 +2,7 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.task.TasksList;
+import duke.task.TaskList;
 
 /**
  * Represents the Ui that deals with interactions with the user.
@@ -20,21 +20,12 @@ public class Ui {
     }
 
     /**
-     * Retrieves the input command given by the user.
-     *
-     * @return The String representation of the command.
-     */
-    public String getUserCommand() {
-        return this.sc.nextLine();
-    }
-
-    /**
      * Checks if the scanner is active.
      *
      * @return true if the scanner has next, false otherwise.
      */
     public boolean isActive() {
-        return this.isActive && this.sc.hasNext();
+        return this.isActive;
     }
 
     /**
@@ -47,38 +38,40 @@ public class Ui {
     }
 
     /**
-     * Prints the greeting message.
+     * Returns the String of the greeting message.
+     *
+     * @return The String message of the greeting.
      */
-    public void showGreeting() {
+    public String showGreeting() {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello, I'm Duke!\n" + logo);
-        System.out.println("Duke: What can I do for you?\n");
+        String greetMessage = "Hello, I'm Duke!\n" + logo + "\nDuke: What can I do for you?\n";
+        return greetMessage;
     }
 
     /**
      * Prints the error message when DukeException occurs.
      *
      * @param e The DukeException for this error.
+     * @return The String message of the DukeException.
      */
-    public void showError(DukeException e) {
-        System.out.println(e);
+    public String showError(DukeException e) {
+        return e.toString() + "\n";
     }
 
     /**
      * Ends the current Duke session.
      *
      * @param storage The storage associated with Duke.
-     * @param tasksList The TasksList associated with Duke.
+     * @param taskList The TaskList associated with Duke.
      * @throws DukeException if DukeException occurs when saving to file.
      */
-    public void endSession(Storage storage, TasksList tasksList) throws DukeException {
+    public void endSession(Storage storage, TaskList taskList) throws DukeException {
         this.isActive = false;
-        System.out.println("Duke: Bye! Hope to see you again soon!");
-        sc.close();
-        storage.writeToSave(tasksList);
+        this.sc.close();
+        storage.writeToSave(taskList);
     }
 }
