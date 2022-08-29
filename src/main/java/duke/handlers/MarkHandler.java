@@ -11,6 +11,12 @@ public class MarkHandler implements IHandler{
         this.taskIndex = factory.taskName;
     }
 
+    /**
+     * Handles the "mark" command which marks a task as done.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.taskIndex == null) {

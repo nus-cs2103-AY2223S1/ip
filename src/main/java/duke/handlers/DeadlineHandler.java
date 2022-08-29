@@ -18,6 +18,12 @@ public class DeadlineHandler implements IHandler{
         this.flagOption = factory.flagOption;
     }
 
+    /**
+     * Handles the "deadline" command by adding a new deadline to service's tasklist
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.deadlineName == null) {

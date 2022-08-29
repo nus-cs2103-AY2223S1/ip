@@ -37,6 +37,11 @@ public class HandlerFactory {
         return this;
     }
 
+    /**
+     * Returns a Hander based on the command input from the user
+     *
+     * @return IHandler
+     */
     public IHandler build() {
         try {
             Command commandEnum = Command.valueOf(this.command.toUpperCase());

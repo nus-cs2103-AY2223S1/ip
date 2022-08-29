@@ -13,6 +13,12 @@ public class FindHandler implements IHandler{
         this.taskName = factory.taskName;
     }
 
+    /**
+     * Handles the "find" command which finds the task using the keyword input from the user.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         ArrayList<Task> results = new ArrayList<>();

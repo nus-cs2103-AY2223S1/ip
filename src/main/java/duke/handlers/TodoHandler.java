@@ -12,6 +12,12 @@ public class TodoHandler implements IHandler{
         this.todoName = factory.taskName;
     }
 
+    /**
+     * Handles the "todo" command which adds a new Todo to the users task list.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.todoName == null) {

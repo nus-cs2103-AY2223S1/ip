@@ -7,6 +7,12 @@ public class ListHandler implements IHandler{
     public ListHandler() {
     }
 
+    /**
+     * Handles the "list" command which lists all tasks currently in the user's tasklist.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         StringBuilder stringBuilder = new StringBuilder();

@@ -17,6 +17,12 @@ public class EventHandler implements IHandler{
         this.flagOption = factory.flagOption;
     }
 
+    /**
+     * Handles the "event" command by adding a new event to the service's tasklist.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.eventName == null) {

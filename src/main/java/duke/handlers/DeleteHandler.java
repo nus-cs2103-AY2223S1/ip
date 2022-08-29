@@ -11,6 +11,12 @@ public class DeleteHandler implements IHandler{
         this.taskIndex = factory.taskName;
     }
 
+    /**
+     * Handles the "delete" command by deleting the index input by the user
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.taskIndex == null) {

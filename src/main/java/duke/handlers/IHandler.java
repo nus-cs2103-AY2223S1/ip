@@ -4,5 +4,10 @@ import duke.exceptions.DukeException;
 import duke.service.Service;
 
 public interface IHandler {
-    void handle(Service list) throws DukeException;
+    /**
+     * Handles the command
+     * @param s Service object of the application
+     * @throws DukeException
+     */
+    void handle(Service s) throws DukeException;
 }

@@ -11,6 +11,12 @@ public class UnmarkHandler implements IHandler{
         this.taskIndex = factory.taskName;
     }
 
+    /**
+     * Handles the "unmark" command which marks a task as not done.
+     *
+     * @param s Service object of the application
+     * @throws DukeException
+     */
     @Override
     public void handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
