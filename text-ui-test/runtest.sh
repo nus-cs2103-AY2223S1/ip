@@ -29,7 +29,7 @@ mkdir data
 cp data.txt data/tasks.txt
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin jduke.Jduke < input.txt > ACTUAL.TXT
+java -classpath ../bin john.John < input.txt > ACTUAL.TXT
 
 # copies the final saved data
 cp data/tasks.txt ACTUAL_DATA.txt

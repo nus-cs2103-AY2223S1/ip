@@ -33,11 +33,11 @@ checkstyle {
 }
 
 application {
-    mainClassName = "jduke.Jduke"
+    mainClassName = "john.John"
 }
 
 shadowJar {
-    archiveBaseName = "jduke"
+    archiveBaseName = "john"
     archiveClassifier = null
 }
 
