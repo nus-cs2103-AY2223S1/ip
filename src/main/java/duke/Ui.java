@@ -110,7 +110,7 @@ public class Ui {
         System.out.println("\t   " + event.toString());
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
-
+    
     /**
      * To display a message after a {@code Task} has been successfully marked
      * @param task the marked {@code Task}
