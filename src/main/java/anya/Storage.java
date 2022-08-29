@@ -73,7 +73,7 @@ public class Storage {
         FileWriter saveTask = new FileWriter(this.filePath);
         for (int i = 0; i < tasks.getLength(); i++) {
             Task task = tasks.getTaskFromIndex(i + 1);
-            saveTask.write(task.toSave() + "\n");
+            saveTask.write(task.toSaveFormat() + "\n");
         }
         saveTask.close();
     }

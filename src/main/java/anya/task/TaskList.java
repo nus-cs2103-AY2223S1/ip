@@ -64,7 +64,7 @@ public class TaskList {
     public TaskList getMatchingTasks(String keyword) {
         ArrayList<Task> filteredTasks = new ArrayList<>();
         for (Task task: this.tasks) {
-            if (task.nameContains(keyword)) {
+            if (task.doesNameContains(keyword)) {
                 filteredTasks.add(task);
             }
         }

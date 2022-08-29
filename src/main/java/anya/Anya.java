@@ -27,12 +27,11 @@ public class Anya {
             this.tasks = new TaskList();
         } finally {
             this.ui.loadFileSuccessMessage();
-            list(tasks);
+            getList(tasks);
         }
     }
 
     public void run() {
-        Scanner sc = new Scanner(System.in);
         String userInput;
         String command;
 
@@ -46,7 +45,7 @@ public class Anya {
             try {
                 command = Parser.parseCommand(userInput);
                 if (command.equals("list")) {
-                    list(tasks);
+                    getList(tasks);
                 } else if (command.equals("find")) {
                     String keyword = Parser.parseKeyword(userInput);
                     find(tasks, keyword);
@@ -131,7 +130,7 @@ public class Anya {
      *
      * @param tasks A collection of Tasks.
      */
-    public void list(TaskList tasks) {
+    public void getList(TaskList tasks) {
         this.ui.getListMessage(tasks);
     }
 

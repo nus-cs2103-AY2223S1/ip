@@ -24,7 +24,7 @@ public class Todo extends Task {
      * @return T, an integer representing whether the task is completed, and the task name.
      */
     @Override
-    public String toSave() {
+    public String toSaveFormat() {
         String doneVar = super.isDone ? "1" : "0";
         return "T | " + doneVar + " | " + super.name;
     }

@@ -49,7 +49,7 @@ public class Event extends Task {
      *     and the location of the event.
      */
     @Override
-    public String toSave() {
+    public String toSaveFormat() {
         String doneVar = super.isDone ? "1" : "0";
         return "E | " + doneVar + " | " + super.name + " | " + this.eventAt;
     }

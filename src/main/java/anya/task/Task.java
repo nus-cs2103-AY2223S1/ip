@@ -38,9 +38,10 @@ public abstract class Task {
      * @param keyword The word that the task must contain.
      * @return true if the task name contains the keyword; false otherwise.
      */
-    public boolean nameContains(String keyword) {
+    public boolean doesNameContains(String keyword) {
         return this.name.contains(keyword);
     }
+
     /**
      * Returns the status icon and name of the task.
      *
@@ -57,5 +58,5 @@ public abstract class Task {
      *
      * @return the task information to be stored in the database.
      */
-    public abstract String toSave();
+    public abstract String toSaveFormat();
 }

@@ -33,7 +33,7 @@ public class Deadline extends Task {
      *     the date and time to complete the task by.
      */
     @Override
-    public String toSave() {
+    public String toSaveFormat() {
         String doneVar = super.isDone ? "1" : "0";
         String dateTime = completeBy.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
         return "D | " + doneVar + " | " + super.name + " | " + dateTime;
