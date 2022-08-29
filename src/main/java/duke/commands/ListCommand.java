@@ -2,10 +2,18 @@ package duke.commands;
 import duke.TaskList;
 import duke.Storage;
 import duke.DukeException;
+
+/**
+ * Command that represents the list command.
+ */
 public class ListCommand implements Command {
-
-    public ListCommand() {}
-
+    /**
+     * Runs the list command by listing all tasks in the tasklist.
+     *
+     * @param tasks TaskList that contains the temporary tasks.
+     * @param storage Storage that the tasks are saved at.
+     * @throws DukeException If any error occur.
+     */
     @Override
     public void execute(TaskList tasks, Storage storage) throws DukeException {
         for (int i = 0; i < tasks.getSize(); i++) {
