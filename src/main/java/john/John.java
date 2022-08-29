@@ -1,17 +1,25 @@
 package john;
 
-import john.commands.ByeCommand;
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import john.commands.Command;
 import john.data.TaskList;
 import john.data.exception.JohnException;
 import john.parser.Parser;
 import john.storage.Storage;
+import john.ui.MainWindow;
 import john.ui.Ui;
 
+
 /**
- * The main entry point to the program.
+ * The main logic of the John chatbot.
  */
-public class John {
+public class John extends Application {
     private TaskList tasklist;
     private Storage storage;
     private Ui ui;
@@ -22,47 +30,45 @@ public class John {
         try {
             this.tasklist = new TaskList(storage.load());
         } catch (JohnException e) {
-            this.ui.showErrorMessage(e.getMessage());
             this.tasklist = new TaskList();
+            e.printStackTrace();
         }
     }
 
-    private void start() {
-        this.ui.showGreeting();
-    }
-    private void exit() {
-        this.ui.showGoodbye();
-        System.exit(0);
+    public John() {
+        this("data/tasks.txt");
     }
 
-    private void runCommandLoop() {
-        Command command;
-        do {
-            String input = this.ui.getUserCommand();
-            command = new Parser().parseCommand(input);
-            String result = executeCommand(command);
-            this.ui.showToUser(result);
-        } while (!ByeCommand.isBye(command));
+    @Override
+    public void start(Stage stage) {
+        John john = new John();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(John.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            stage.setTitle("John");
+            fxmlLoader.<MainWindow>getController().setJohn(john);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String executeCommand(Command command) {
         try {
-            command.setData(tasklist);
+            command.setData(tasklist, ui);
             String result = command.execute();
             storage.saveAllTasks(tasklist.getTasksToStore());
             return result;
         } catch (JohnException e) {
-            this.ui.showErrorMessage(e.getMessage());
+            return e.getMessage();
         }
-        return "";
     }
 
-    private void run() {
-        start();
-        runCommandLoop();
-        exit();
+    public String getResponse(String input) {
+        Command command = new Parser().parseCommand(input);
+        return executeCommand(command);
     }
-    public static void main(String[] args) {
-        new John("data/tasks.txt").run();
-    }
+
 }

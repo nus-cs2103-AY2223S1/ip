@@ -17,11 +17,24 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Returns an empty string.
-     * @return An empty string.
+     * Returns a string representing the goodbye message, and exits the program.
+     * @return A string representing the goodbye message.
      */
     @Override
     public String execute() {
-        return "";
+        setTimeout(() -> System.exit(0), 250);
+        return ui.showGoodbye();
+    }
+
+    // https://stackoverflow.com/questions/26311470/what-is-the-equivalent-of-javascript-settimeout-in-java
+    private static void setTimeout(Runnable runnable, int delay) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }).start();
     }
 }

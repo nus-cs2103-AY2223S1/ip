@@ -4,21 +4,25 @@ package john.commands;
  * Represents an incorrect command.
  */
 public class IncorrectCommand extends Command {
-    private final String feedback;
+    private String command;
+    private String format;
 
     /**
-     * Constructor for an incorrect command without a feedback.
+     * Constructor for an IncorrectCommand.
+     * @param command The unknown command entered.
      */
-    public IncorrectCommand() {
-        this.feedback = "";
+    public IncorrectCommand(String command) {
+        this.command = command;
     }
 
     /**
      * Constructor for an IncorrectCommand.
-     * @param feedback The error feedback to display to users.
+     * @param command The known command entered.
+     * @param format The correct format of the command.
      */
-    public IncorrectCommand(String feedback) {
-        this.feedback = feedback;
+    public IncorrectCommand(String command, String format) {
+        this.command = command;
+        this.format = format;
     }
 
     /**
@@ -27,6 +31,9 @@ public class IncorrectCommand extends Command {
      */
     @Override
     public String execute() {
-        return feedback.equals("") ? "|  cannot understand command\n" : feedback;
+        if (this.format == null) {
+            return ui.showIncorrectCommand(command);
+        }
+        return ui.showIncorrectCommandWithFormat(command, format);
     }
 }

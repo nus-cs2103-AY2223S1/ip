@@ -7,7 +7,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String FORMAT = "find <keyword>";
 
-    private final String findParams;
+    private String findParams;
 
     /**
      * Constructor for a FindCommand.
@@ -23,6 +23,10 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute() {
-        return tasklist.findTasks(this.findParams);
+        String[] tasksToShow = tasklist.findTasks(this.findParams);
+        if (tasksToShow == null) {
+            return ui.showNoTasks(tasklist, this.findParams);
+        }
+        return ui.showTasks(tasksToShow);
     }
 }

@@ -7,8 +7,8 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     public static final String FORMAT = "deadline <description> /by <dd/mm/yyyy> <hhmm | optional>";
 
-    private final String description;
-    private final String timing;
+    private String description;
+    private String timing;
 
     /**
      * Constructor for a Deadline command.
@@ -26,6 +26,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute() {
-        return this.tasklist.addDeadline(this.description, this.timing);
+        String task = tasklist.addDeadline(this.description, this.timing);
+        return ui.showAddedTask(task, tasklist);
     }
 }

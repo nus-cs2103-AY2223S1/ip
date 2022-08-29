@@ -57,7 +57,7 @@ public class Parser {
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:
-            return new IncorrectCommand();
+            return new IncorrectCommand(input);
         }
     }
     private String parseParams(String input) {
@@ -69,57 +69,56 @@ public class Parser {
 
     private Command prepareTodo(String params) {
         if (!params.matches("[^ ](.*)")) {
-            return new IncorrectCommand(String.format("|  invalid TODO format%n|    %s%n", TodoCommand.FORMAT));
+            return new IncorrectCommand(TodoCommand.COMMAND_WORD, TodoCommand.FORMAT);
         }
         return new TodoCommand(params);
     }
 
     private Command prepareDeadline(String params) {
         if (!Pattern.matches(REGEX_DEADLINE, params.toLowerCase())) {
-            return new IncorrectCommand(
-                    String.format("|  invalid DEADLINE format%n|    %s%n", DeadlineCommand.FORMAT));
+            return new IncorrectCommand(DeadlineCommand.COMMAND_WORD, DeadlineCommand.FORMAT);
         }
         return new DeadlineCommand(params);
     }
 
     private Command prepareEvent(String params) {
         if (!Pattern.matches(REGEX_EVENT, params.toLowerCase())) {
-            return new IncorrectCommand(String.format("|  invalid EVENT format%n|    %s%n", EventCommand.FORMAT));
+            return new IncorrectCommand(EventCommand.COMMAND_WORD, EventCommand.FORMAT);
         }
         return new EventCommand(params);
     }
 
     private Command prepareList(String params) {
         if (!Pattern.matches(REGEX_LIST, params.toLowerCase())) {
-            return new IncorrectCommand(String.format("|  invalid LIST format%n|    %s%n", ListCommand.FORMAT));
+            return new IncorrectCommand(ListCommand.COMMAND_WORD, ListCommand.FORMAT);
         }
         return new ListCommand(params);
     }
 
     private Command prepareMark(String params) {
         if (!params.matches("([0-9]+)")) {
-            return new IncorrectCommand(String.format("|  invalid MARK format%n|    %s%n", MarkCommand.FORMAT));
+            return new IncorrectCommand(MarkCommand.COMMAND_WORD, MarkCommand.FORMAT);
         }
         return new MarkCommand(params);
     }
 
     private Command prepareUnmark(String params) {
         if (!params.matches("([0-9]+)")) {
-            return new IncorrectCommand(String.format("|  invalid UNMARK format%n|    %s%n", UnmarkCommand.FORMAT));
+            return new IncorrectCommand(UnmarkCommand.COMMAND_WORD, UnmarkCommand.FORMAT);
         }
         return new UnmarkCommand(params);
     }
 
     private Command prepareDelete(String params) {
         if (!params.matches("([0-9]+)")) {
-            return new IncorrectCommand(String.format("|  invalid DELETE format%n|    %s%n", DeleteCommand.FORMAT));
+            return new IncorrectCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.FORMAT);
         }
         return new DeleteCommand(params);
     }
 
     private Command prepareFind(String params) {
         if (!params.matches("[^ ](.*)")) {
-            return new IncorrectCommand(String.format("|  invalid FIND format%n|    %s%n", FindCommand.FORMAT));
+            return new IncorrectCommand(FindCommand.COMMAND_WORD, FindCommand.FORMAT);
         }
         return new FindCommand(params);
     }

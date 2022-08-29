@@ -7,7 +7,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String FORMAT = "list <dd/mm/yyyy | optional>";
 
-    private final String listParams;
+    private String listParams;
 
     /**
      * Constructor for a ListCommand.
@@ -23,6 +23,10 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute() {
-        return tasklist.listTasks(listParams);
+        String[] tasksToShow = tasklist.listTasks(this.listParams);
+        if (tasksToShow == null) {
+            return ui.showNoTasks(tasklist, this.listParams);
+        }
+        return ui.showTasks(tasksToShow);
     }
 }

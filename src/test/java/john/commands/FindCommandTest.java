@@ -2,6 +2,7 @@ package john.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import john.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import john.data.TaskList;
@@ -11,7 +12,7 @@ public class FindCommandTest {
     public void executeTestNoResults() {
         FindCommand cmd = new FindCommand("hello");
         TaskList tl = new TaskList();
-        cmd.setData(tl);
+        cmd.setData(tl, new Ui());
         assertEquals("|  no tasks found\n", cmd.execute());
     }
 
@@ -19,7 +20,7 @@ public class FindCommandTest {
     public void executeTest() {
         FindCommand cmd = new FindCommand("hello");
         TaskList tl = new TaskList();
-        cmd.setData(tl);
+        cmd.setData(tl, new Ui());
         tl.addTodo("hello world");
         tl.addTodo("goodbye");
         tl.addTodo("~~ hello ~~");
