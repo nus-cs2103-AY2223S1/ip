@@ -3,6 +3,7 @@ package roger;
 import org.junit.jupiter.api.Test;
 import roger.commands.AddEventCommand;
 import roger.exceptions.RogerInvalidInputException;
+import roger.ui.Parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 

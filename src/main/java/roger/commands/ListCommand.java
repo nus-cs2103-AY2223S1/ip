@@ -1,8 +1,7 @@
 package roger.commands;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.Task;
 
 /**
@@ -14,21 +13,20 @@ public class ListCommand extends Command {
      * List all tasks.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         if (tasks.isEmpty()) {
-            ui.show("No tasks. Nephew must be a failure.");
-            return;
+            return "No tasks. Nephew must be a failure.";
         }
 
-        ui.show("Nephew got a lot of things to do:");
+        StringBuilder response = new StringBuilder("Nephew got a lot of things to do:\n");
 
         for (int taskNum = 1; taskNum < tasks.getLength() + 1; ++taskNum) {
             Task task = tasks.get(taskNum);
-            ui.show(String.valueOf(taskNum) + ". " + task.toString());
+            response.append(String.valueOf(taskNum) + ". " + task.toString() + "\n");
         }
+        return response.toString();
     }
 }

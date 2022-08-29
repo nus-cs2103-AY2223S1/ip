@@ -1,4 +1,4 @@
-package roger;
+package roger.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

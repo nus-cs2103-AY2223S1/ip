@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 repositories {
@@ -29,7 +30,7 @@ test {
 }
 
 application {
-    mainClassName = "roger.Roger"
+    mainClassName = "roger.Launcher"
 }
 
 shadowJar {
@@ -41,6 +42,11 @@ checkstyle {
     toolVersion = "10.2"
     sourceSets = []  // Only run checkstyle when we explicitly call it
 
+}
+
+javafx {
+    version = "18.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 run{

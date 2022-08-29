@@ -2,9 +2,8 @@ package roger.commands;
 
 import java.time.LocalDate;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.Event;
 
 
@@ -30,13 +29,13 @@ public class AddEventCommand extends Command {
      * Add the event.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Event event = new Event(this.taskName, this.date);
         tasks.add(event);
-        ui.showcase("Nephew so busy, got new event:", event.toString());
-        ui.show("Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.");
+        return "Nephew so busy, got new event:\n"
+                + event.toString() + "\n"
+                + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
     }
 }

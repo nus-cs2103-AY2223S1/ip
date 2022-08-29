@@ -1,4 +1,4 @@
-package roger;
+package roger.storage;
 
 import java.io.File;
 import java.io.FileWriter;

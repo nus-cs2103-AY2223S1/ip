@@ -1,8 +1,7 @@
 package roger.commands;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 
 /**
  * Encapsulates a command that the user gives to the Roger program.
@@ -17,10 +16,9 @@ public abstract class Command {
      * Execute the command and show the end user and relevant information.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Storage storage);
 
     /**
      * Returns true only if the command should cause Roger to exit.

@@ -1,8 +1,7 @@
 package roger.commands;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.Task;
 
 /**
@@ -24,13 +23,13 @@ public class DeleteTaskCommand extends Command {
      * Delete the task.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Task task = tasks.delete(taskNum);
-        ui.showcase("Haiya so lazy. Deleted this task:", task.toString());
-        ui.show("Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.");
+        return "Haiya so lazy. Deleted this task:\n"
+                + task.toString() + "\n"
+                + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
     }
 }

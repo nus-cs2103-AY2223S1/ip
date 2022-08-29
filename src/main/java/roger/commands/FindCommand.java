@@ -2,9 +2,8 @@ package roger.commands;
 
 import java.util.List;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.Task;
 
 
@@ -16,17 +15,17 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         List<Task> tasksMatched = tasks.search(this.query);
 
         if (tasksMatched.isEmpty()) {
-            ui.show("No tasks matching that string.");
-            return;
+            return "No tasks matching that string.";
         }
 
-        ui.show("Here are the matching tasks in your list:");
+        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
         for (Task task: tasksMatched) {
-            ui.show(String.valueOf(tasks.getTaskNum(task)) + ". " + task.toString());
+            response.append(String.valueOf(tasks.getTaskNum(task)) + ". " + task.toString() + "\n");
         }
+        return response.toString();
     }
 }

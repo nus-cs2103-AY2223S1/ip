@@ -1,8 +1,7 @@
 package roger.commands;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.ToDo;
 
 
@@ -25,14 +24,14 @@ public class AddToDoCommand extends Command {
      * Add the to-do.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         ToDo toDo = new ToDo(taskName);
         tasks.add(toDo);
-        ui.showcase("Nephew got new to-do:", toDo.toString());
-        ui.show("Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.");
+        return "Nephew got new to-do:\n"
+                + toDo.toString() + "\n"
+                + "Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.";
     }
 }

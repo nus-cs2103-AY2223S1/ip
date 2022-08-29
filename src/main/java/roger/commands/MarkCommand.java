@@ -1,8 +1,7 @@
 package roger.commands;
 
-import roger.Storage;
-import roger.TaskList;
-import roger.Ui;
+import roger.storage.Storage;
+import roger.tasks.TaskList;
 import roger.tasks.Task;
 
 /**
@@ -24,20 +23,19 @@ public class MarkCommand extends Command {
      * Mark the task as done.
      *
      * @param tasks The TaskList of the Roger program.
-     * @param ui The Ui used.
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Task task;
         try {
             task = tasks.get(this.taskNum);
         } catch (IndexOutOfBoundsException e) {
-            ui.show("That task does not exist!");
-            return;
+            return "That task does not exist!";
         }
         task.markAsDone();
-        ui.showcase("Fuiyoh, nephew so efficient! Finished this task:", task.toString());
+        return "Fuiyoh, nephew so efficient! Finished this task:\n"
+                + task.toString();
     }
 }
 
