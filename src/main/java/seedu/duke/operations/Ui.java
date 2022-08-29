@@ -124,7 +124,7 @@ public class Ui {
      *
      * @return Invalid input error message
      */
-    public String noIndexProvidedErrorMessage() {
+    public String getNoIndexProvidedErrorMessage() {
         return "Please provide the index of he relevant task after the\ncommand.";
     }
 

@@ -21,7 +21,7 @@ public class TaskList {
     }
 
     /**
-     * Indicate the amount of tasks within this TaskList.
+     * Returns the amount of tasks within this TaskList.
      *
      * @return      Amount of tasks in TaskList
      */
@@ -30,8 +30,7 @@ public class TaskList {
     }
 
     /**
-     * Return the task with the given index (1-indexed as per
-     * what the user will see in command line.
+     * Returns the task with the given index
      *
      * @param taskIndex     int index
      * @return              Task
@@ -41,16 +40,16 @@ public class TaskList {
     }
 
     /**
-     * Indicate if the current TaskList is empty.
+     * returns true if the current TaskList is empty.
      *
-     * @return  true if TaskList is empty, false otherwise
+     * @return  true or false
      */
     public boolean isEmpty() {
         return numOfTasks() == 0;
     }
 
     /**
-     * Removes a Task from TaskList given its index.
+     * Returns the removed Task after removing it from TaskList.
      *
      * @param index     int index
      * @return          Removed Task

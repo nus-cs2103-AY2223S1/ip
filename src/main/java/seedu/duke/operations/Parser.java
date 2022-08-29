@@ -18,7 +18,7 @@ import seedu.duke.command.InvalidCommand;
 public class Parser {
 
     /**
-     * This method parse the user input.
+     * Returns a Command after parsing user input.
      *
      * @param cmd   User input
      * @return      Command

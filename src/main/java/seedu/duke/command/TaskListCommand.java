@@ -36,7 +36,7 @@ abstract class TaskListCommand extends Command {
                 throw new DukeException(ui.getInvalidInputMessage());
             }
         } else if (split.length == 1) {
-            throw new DukeException(ui.noIndexProvidedErrorMessage());
+            throw new DukeException(ui.getNoIndexProvidedErrorMessage());
         } else {
             throw new DukeException(ui.getInvalidInputMessage());
         }

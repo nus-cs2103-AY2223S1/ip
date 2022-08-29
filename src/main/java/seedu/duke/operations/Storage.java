@@ -31,7 +31,7 @@ public class Storage {
     }
 
     /**
-     * Loads the previous session's TaskList from data file indicated
+     * Returns the previous session's TaskList from data file indicated
      * within Storage's filePath attribute.
      *
      * @return                  ArrayList of past saved tasks
