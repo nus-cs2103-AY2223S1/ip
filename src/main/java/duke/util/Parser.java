@@ -6,6 +6,7 @@ import duke.command.ChangeStatusCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 
 public class Parser {
@@ -21,7 +22,7 @@ public class Parser {
     }
 
     public static enum CommandName {
-        bye, list, mark, unmark, delete, todo, deadline, event
+        bye, list, mark, unmark, delete, todo, deadline, event, find
     }
 
     public Command parse(String input) throws DukeException {
@@ -42,6 +43,8 @@ public class Parser {
             return new DeleteCommand(storage, ui, taskList, taskIndex);
         case bye:
             return new ExitCommand(storage, ui, taskList);
+        case find:
+            return new FindCommand(storage, ui, taskList, input);
         default:
             return new AddCommand(storage, ui, taskList, input);
         }

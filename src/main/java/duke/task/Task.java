@@ -112,6 +112,16 @@ public abstract class Task {
         return standardDateFormat.format(date);
     }
 
+    /**
+     * Checks if the task description contains the given search text
+     * 
+     * @param searchText Search text to be searched for
+     * @return true if the task description contains the search text
+     */
+    public boolean containsSearchText(String searchText) {
+        return this.description.contains(searchText);
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
