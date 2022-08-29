@@ -40,6 +40,7 @@ public class UpdateCommand extends Command {
         case "unmark":
             ui.showUnmark(tasks.unmark(this.num));
             break;
+        default:
         }
         try {
             storage.updateStorage(tasks);

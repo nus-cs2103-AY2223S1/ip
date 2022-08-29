@@ -1,8 +1,8 @@
 package command;
 
+import storage.Storage;
 import task.TaskList;
 import ui.Ui;
-import storage.Storage;
 
 /**
  * Encapsulates the type of instruction made by user.

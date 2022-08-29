@@ -1,7 +1,6 @@
 package task;
 
 import exception.LunaException;
-import exception.LunaLoadingException;
 
 import java.util.ArrayList;
 
@@ -118,7 +117,8 @@ public class TaskList {
      * Returns the string representation of the TaskList with indices.
      *
      * @return String representation of the TaskList.
-     */    @Override
+     */
+    @Override
     public String toString() {
         String list = "";
         for (int i = 0; i < tasks.size(); i++) {

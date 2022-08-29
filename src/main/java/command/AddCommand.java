@@ -1,10 +1,10 @@
 package command;
 
+import exception.LunaException;
+
 import java.time.LocalDate;
 
 import storage.Storage;
-
-import exception.LunaException;
 
 // Import Tasks
 import task.Deadline;
@@ -15,12 +15,12 @@ import task.Todo;
 
 import ui.Ui;
 
-
 /**
  * Encapsulates a user instruction to create a new task.
  *
  * @author fannyjian
- */public class AddCommand extends Command {
+ */
+public class AddCommand extends Command {
     private Task task;
 
     /**
@@ -46,6 +46,8 @@ import ui.Ui;
             break;
         case "event":
             this.task = new Event(des, date);
+            break;
+            default:
         }
     }
 

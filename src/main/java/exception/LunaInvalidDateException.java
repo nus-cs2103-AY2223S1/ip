@@ -5,7 +5,7 @@ package exception;
  *
  * @author fannyjian
  */
-public class LunaInvalidDateException extends LunaException{
+public class LunaInvalidDateException extends LunaException {
     @Override
     public String toString() {
         return "Luna only reads dates in yyyy-MM-dd format 🍂";

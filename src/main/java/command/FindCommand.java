@@ -1,9 +1,8 @@
 package command;
 
+import storage.Storage;
 import task.TaskList;
 import ui.Ui;
-import storage.Storage;
-
 
 /**
  * Encapsulates a user instruction to find tasks according to a search keyword.

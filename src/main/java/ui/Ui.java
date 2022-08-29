@@ -49,15 +49,15 @@ public class Ui {
         System.out.println(SEP + "\nHello. ⛅️\n   This is\n" + logo);
 
         // Print available commands
-        System.out.println("  Luna commands" +
-                    "\n    🌸 list                             | View all tasks on your agenda" +
-                    "\n    🌷 todo <task>                      | Add a task to your agenda" +
-                    "\n    🌺 deadline <task> /by <yyyy-mm-dd> | Add a task to complete by the specified deadline" +
-                    "\n    🌹 event <event> /at <yyyy-mm-dd>   | Add an event on the specified date" +
-                    "\n    🪷 mark <num>                       | Mark the (num)th item in your list as completed"+
-                    "\n    🌻 unmark <num>                     | Mark the (num)th item in your list as uncompleted" +
-                    "\n    💐 find <keyword>                   | Find a task by searching for a keyword" +
-                    "\n    🥀 bye                              | Quit Luna\n");
+        System.out.println("  Luna commands"
+                + "\n    🌸 list                             | View all tasks on your agenda"
+                + "\n    🌷 todo <task>                      | Add a task to your agenda"
+                + "\n    🌺 deadline <task> /by <yyyy-mm-dd> | Add a task to complete by the specified deadline"
+                + "\n    🌹 event <event> /at <yyyy-mm-dd>   | Add an event on the specified date"
+                + "\n    🪷 mark <num>                       | Mark the (num)th item in your list as completed"
+                + "\n    🌻 unmark <num>                     | Mark the (num)th item in your list as uncompleted"
+                + "\n    💐 find <keyword>                   | Find a task by searching for a keyword"
+                + "\n    🥀 bye                              | Quit Luna\n");
 
         // Print items in storage
         if (!this.loaded) {
@@ -92,7 +92,7 @@ public class Ui {
     /**
      * Prints out error message formatted with line divider.
      *
-     * @param message Error message.
+     * @param e An Exception to be displayed to user
      */
     public void showError(LunaException e) {
         showLine();
@@ -108,7 +108,8 @@ public class Ui {
      */
     public void showAdded(TaskList tasks, Task task) {
         showLine();
-        System.out.println("Luna has added:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻");
+        System.out.println("Luna has added:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻");
         showLine();
     }
 
@@ -120,7 +121,8 @@ public class Ui {
      */
     public void showDeleted(TaskList tasks, Task task) {
         showLine();
-        System.out.println("Luna has removed:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻)");
+        System.out.println("Luna has removed:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻)");
         showLine();
 
     }

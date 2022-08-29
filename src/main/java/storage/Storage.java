@@ -1,7 +1,7 @@
 package storage;
 
-import java.util.ArrayList;
-import java.util.stream.Stream;
+import exception.LunaException;
+import exception.LunaStorageUpdateException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,15 +10,15 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import exception.LunaException;
-import exception.LunaStorageUpdateException;
-
-import ui.Ui;
+import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import parser.Parser;
 
 import task.Task;
 import task.TaskList;
+
+import ui.Ui;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
