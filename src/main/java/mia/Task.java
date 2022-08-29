@@ -17,10 +17,6 @@ abstract public class Task {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     /**
      * Sets whether the task is completed.
      * @param completed the task status
