@@ -3,7 +3,7 @@ package duke.commands;
 import java.util.Objects;
 
 import duke.DukeException;
-import duke.Ui;
+import duke.Message;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -21,9 +21,9 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public Message execute(TaskList tasks) throws DukeException {
         Task task = tasks.setCompletion(this.indexToMark, false);
-        ui.displayText(MESSAGE_SUCCESS, task);
+        return new Message(String.format(MESSAGE_SUCCESS, task), false, Message.User.DUKE);
     }
 
     @Override

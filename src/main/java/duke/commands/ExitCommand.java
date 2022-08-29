@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.Ui;
+import duke.Message;
 import duke.task.TaskList;
 
 /**
@@ -10,13 +10,8 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        ui.showGoodbye();
-    }
-
-    @Override
-    public boolean getShouldExit() {
-        return true;
+    public Message execute(TaskList tasks) {
+        return new Message("Bye. Hope to see you again soon!", true, Message.User.DUKE);
     }
 
     @Override

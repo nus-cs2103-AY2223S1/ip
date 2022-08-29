@@ -3,7 +3,7 @@ package duke.commands;
 import java.util.ArrayList;
 
 import duke.DukeException;
-import duke.Ui;
+import duke.Message;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -23,12 +23,12 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public Message execute(TaskList tasks) throws DukeException {
         ArrayList<Task> filteredTasks = tasks.filterByKeyword(this.keyword);
         if (filteredTasks.size() == 0) {
-            ui.displayText(MESSAGE_FAILURE);
+            throw new DukeException(MESSAGE_FAILURE);
         } else {
-            ui.displayText(MESSAGE_SUCCESS + filteredTasks);
+            return new Message(MESSAGE_SUCCESS + filteredTasks, false, Message.User.DUKE);
         }
     }
 }

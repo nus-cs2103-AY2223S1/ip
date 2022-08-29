@@ -3,7 +3,7 @@ package duke.commands;
 import java.util.Objects;
 
 import duke.DukeException;
-import duke.Ui;
+import duke.Message;
 import duke.task.Event;
 import duke.task.TaskList;
 
@@ -25,11 +25,12 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public Message execute(TaskList tasks) throws DukeException {
         if (tasks.addTask(this.toAdd)) {
-            ui.displayText(MESSAGE_SUCCESS, this.toAdd, tasks.size());
+            return new Message(String.format(MESSAGE_SUCCESS, this.toAdd, tasks.size()),
+                    false, Message.User.DUKE);
         } else {
-            ui.displayText(MESSAGE_FAILURE);
+            throw new DukeException(MESSAGE_FAILURE);
         }
     }
 

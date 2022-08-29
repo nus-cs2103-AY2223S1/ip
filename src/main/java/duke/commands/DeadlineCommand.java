@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import duke.DukeException;
-import duke.Ui;
+import duke.Message;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
@@ -31,11 +31,11 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public Message execute(TaskList tasks) throws DukeException {
         if (tasks.addTask(this.toAdd)) {
-            ui.displayText(MESSAGE_SUCCESS, this.toAdd, tasks.size());
+            return new Message(String.format(MESSAGE_SUCCESS, this.toAdd, tasks.size()), false, Message.User.DUKE);
         } else {
-            ui.displayText(MESSAGE_FAILURE);
+            return new Message(MESSAGE_FAILURE, false, Message.User.DUKE);
         }
     }
 

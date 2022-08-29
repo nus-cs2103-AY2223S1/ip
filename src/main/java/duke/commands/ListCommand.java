@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.Ui;
+import duke.Message;
 import duke.task.TaskList;
 
 /**
@@ -9,8 +9,11 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
+
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        ui.displayText("Here are the tasks in your list:\n" + tasks.toString());
+    public Message execute(TaskList tasks) {
+        return new Message("Here are the tasks in your list:\n" + tasks.toString(),
+                false,
+                Message.User.DUKE);
     }
 }

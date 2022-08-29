@@ -3,7 +3,7 @@ package duke.commands;
 import java.util.Objects;
 
 import duke.DukeException;
-import duke.Ui;
+import duke.Message;
 import duke.task.TaskList;
 
 
@@ -22,7 +22,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public Message execute(TaskList tasks) throws DukeException {
         throw new DukeException(this.errorMessage);
     }
 
