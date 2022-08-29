@@ -12,24 +12,13 @@ public class Duke {
     static TaskList taskList = new TaskList(storage.readFile("duke.txt"));
 
 
-    public static void main(String[] args) {
-        Duke.run();
-    }
-
-    public static void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, storage, ui);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(taskList, storage, ui);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
-
 }
 

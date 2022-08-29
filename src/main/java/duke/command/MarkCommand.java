@@ -26,16 +26,17 @@ public class MarkCommand extends Command{
 
     /**
      * A function that executes the effect of marking a task
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
-
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
         taskList.markDone(index);
-        ui.showMark(taskList.getTask(index));
+        returnString = ui.showMark(taskList.getTask(index));
         storage.writeFile(taskList.getTaskList(),"duke.txt");
+        return returnString;
     }
 }

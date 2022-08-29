@@ -3,7 +3,6 @@ package duke.command;
 import duke.*;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 
 /**
@@ -40,13 +39,14 @@ public class AddCommand extends Command {
 
     /**
      * A function that executes the effect of adding a task
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
         Task task = null;
         if(description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -65,7 +65,8 @@ public class AddCommand extends Command {
         }
 
         taskList.addTask(task);
-        ui.showAddCommand(task, taskList.size());
+        returnString = ui.showAddCommand(task, taskList.size());
         storage.writeFile(taskList.getTaskList(),"duke.txt");
+        return returnString;
     }
 }

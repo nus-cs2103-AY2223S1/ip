@@ -10,14 +10,16 @@ public class EndCommand extends Command {
 
     /**
      * A function that closes the programme and prints the relevant messages
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
-        ui.goodbyeMessage();
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
+        returnString = ui.goodbyeMessage();
+        return returnString;
     }
 
     @Override

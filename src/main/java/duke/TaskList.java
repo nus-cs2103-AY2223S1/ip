@@ -27,11 +27,13 @@ public class TaskList {
     /**
      * Prints the list of Tasks
      */
-    public void printTaskList(){
+    public String printTaskList(){
+        String returnString = "";
         for(int i = 0; i<taskList.size(); i++){
             Integer index = i+1;
-            System.out.println(index + ". " + taskList.get(i));
+            returnString += (index + ". " + taskList.get(i));
         }
+        return returnString;
     }
 
     /**

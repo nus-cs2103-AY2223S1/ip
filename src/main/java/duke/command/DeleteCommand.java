@@ -23,15 +23,17 @@ public class DeleteCommand extends Command {
 
     /**
      * A function that executes the effect of deleting a task
-     *
-     * @param taskList stores the tasks of the program
+     *  @param taskList stores the tasks of the program
      * @param storage reads and writes from the text file which stores the tasks in memory
      * @param ui interfaces with the user using the commandline
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
-        ui.showDelete(taskList.getTask(index), taskList.size()-1);
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+        String returnString;
+        returnString = ui.showDelete(taskList.getTask(index), taskList.size()-1);
         taskList.delete(this.index);
         storage.writeFile(taskList.getTaskList(),"duke.txt");
+        return returnString;
     }
 }

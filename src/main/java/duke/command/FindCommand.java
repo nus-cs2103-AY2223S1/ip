@@ -14,14 +14,14 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         List<Integer> indexList = new ArrayList<>();
         for (int i = 0; i < taskList.size() ; i++ ) {
             if (taskList.getTask(i+1).hasName(this.name)) {
                 indexList.add(i+1);
             }
         }
-        ui.showFindResult(indexList,taskList);
+        return ui.showFindResult(indexList,taskList);
     }
 
 }
