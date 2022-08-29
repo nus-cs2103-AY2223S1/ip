@@ -5,6 +5,7 @@
         "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <!--
+    ADD suppressions
     This configuration file enforces rules for the coding standard at
     https://se-education.org/guides/conventions/java/intermediate.html
     Taken from https://github.com/se-edu/addressbook-level3/blob/master/config/checkstyle/checkstyle.xml
