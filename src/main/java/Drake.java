@@ -74,7 +74,7 @@ public class Drake {
                 if (commands.length == 1)
                     throw new IncompatibleCommandException("A deadline task without a deadline?");
                 System.out.println("I've added this task:");
-                list.add(new Deadline(commands[0], commands[1]));
+                list.add(new Deadline(commands[0], commands[1].trim()));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
             } else if (command.startsWith("event")) {
@@ -83,7 +83,7 @@ public class Drake {
                 if (commands.length == 1)
                     throw new IncompatibleCommandException("An event task without an event time?");
                 System.out.println("I've added this task:");
-                list.add(new Event(commands[0], commands[1]));
+                list.add(new Event(commands[0], commands[1].trim()));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
             } else if (command.startsWith("delete")) {
