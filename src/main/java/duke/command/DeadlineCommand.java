@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.TaskList;
@@ -13,6 +14,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Creates a DeadlineCommand to add a DeadLine to the TaskList.
+     *
      * @param taskList The TaskList to add the DeadLine to.
      * @param inputArr The input String array.
      */
@@ -23,11 +25,12 @@ public class DeadlineCommand extends Command {
 
     /**
      * Adds the Deadline to the TaskList.
-     * @return The message to be displayed.
+     *
+     * @return The Response to be displayed.
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public String action() throws DukeException {
+    public Response action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
@@ -39,7 +42,7 @@ public class DeadlineCommand extends Command {
         String date = descriptionDate[1];
         Deadline event = new Deadline(task, date);
         this.taskList.addTask(event);
-        return ("Got it. I've added this task: " + "\n"
+        return new Response("Got it. I've added this task: " + "\n"
                 + event + "\n"
                 + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
     }

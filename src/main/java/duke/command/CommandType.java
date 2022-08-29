@@ -20,6 +20,7 @@ public enum CommandType {
 
     /**
      * Creates a CommandType with the corresponding command type.
+     *
      * @param commandType Type of the Command.
      */
     CommandType(String commandType) {
@@ -28,6 +29,7 @@ public enum CommandType {
 
     /**
      * Returns the corresponding CommandType based on the input String.
+     *
      * @return The corresponding CommandType.
      * @throws DukeException If the command type String is invalid.
      */

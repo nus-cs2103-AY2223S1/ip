@@ -11,6 +11,7 @@ public class Ui {
 
     /**
      * Prints a message to the user.
+     *
      * @param message The message to be printed.
      */
     public void printMessage(String message) {
@@ -26,6 +27,7 @@ public class Ui {
 
     /**
      * Prints an error message to the user.
+     *
      * @param error The error message to be printed.
      */
     public void invalidMessage(String error) {

@@ -1,9 +1,7 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.command.Command;
-import duke.command.ExitCommand;
+import duke.command.WelcomeCommand;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -13,7 +11,6 @@ import duke.task.TaskList;
 public class Duke {
     private static final String TASKS_STORAGE_PATH = "./data/duke.txt";
     private TaskList taskList;
-    private Ui ui;
 
 
     /**
@@ -21,36 +18,37 @@ public class Duke {
      */
     public Duke() {
         this.taskList = new TaskList(TASKS_STORAGE_PATH);
-        this.ui = new Ui();
     }
 
 
     /**
-     * Runs the Duke chat-bot.
+     * Returns the welcome message string.
+     *
+     * @return The String to greet the user.
      */
-    public void run() {
-        boolean hasEnded = false;
-        Scanner scanner = new Scanner(System.in);
-        this.ui.welcomeMessage();
-
-        while (!hasEnded) {
-            try {
-                String input = scanner.nextLine();
-                Command command = new Parser().parseCommand(input, taskList);
-                String message = command.action();
-                this.ui.printMessage(message);
-                if (command instanceof ExitCommand) {
-                    scanner.close();
-                    hasEnded = true;
-                    break;
-                }
-                taskList.saveTasks();
-            } catch (DukeException e) {
-                this.ui.invalidMessage(e.getMessage());
-            }
+    public static String greetUser() {
+        try {
+            Command welcomeCommand = new WelcomeCommand();
+            Response response = welcomeCommand.action();
+            return response.toString();
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
-    public static void main(String[] args) {
-        new Duke().run();
+
+    /**
+     * Performs an action in response to the command and return the response.
+     *
+     * @return The Response to be displayed.
+     */
+    public Response getResponse(String input) {
+        try {
+            Command command = Parser.parseCommand(input, taskList);
+            Response response = command.action();
+            taskList.saveTasks();
+            return response;
+        } catch (DukeException e) {
+            return new Response(e.getMessage());
+        }
     }
 }

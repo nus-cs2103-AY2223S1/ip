@@ -15,6 +15,7 @@ public class TaskList {
 
     /**
      * Creates a TaskList with the corresponding Storage file and list of saved tasks.
+     *
      * @param path The path of the Storage file.
      */
     public TaskList(String path) {
@@ -23,6 +24,7 @@ public class TaskList {
     }
     /**
      * Returns a List of the Tasks saved.
+     *
      * @return List of Tasks.
      */
     private List<Task> getSavedTasks() {
@@ -32,6 +34,7 @@ public class TaskList {
 
     /**
      * Parses a String of Tasks into a List of Tasks.
+     *
      * @param string The String of Tasks.
      * @return List of Tasks.
      */
@@ -69,6 +72,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the TaskList.
+     *
      * @param task The task to be added.
      */
     public void addTask(Task task) {
@@ -152,6 +156,7 @@ public class TaskList {
 
     /**
      * Returns a List of Tasks that matches the given keyword.
+     *
      * @param keyword The keyword to match with.
      * @return The List of matching Tasks.
      */
