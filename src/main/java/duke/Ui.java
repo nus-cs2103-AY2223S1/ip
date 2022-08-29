@@ -1,61 +1,55 @@
 package duke;
 
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import duke.ui.MainWindow;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
- * Handle all user interaction.
+ * A GUI for Duke using FXML.
  */
-public class Ui {
-    public static final String LINE = "_____________________";
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    private final Scanner sc = new Scanner(System.in);
-    public void showLoadingError() {
-        System.out.println("Failed to load tasks from storage.");
-    }
+public class Ui extends Application {
 
-    /**
-     * Display the given text.
-     *
-     * @param text The text to display.
-     */
-    public void displayText(String text) {
-        System.out.println(text);
-    }
-    /**
-     * Displays the specified text defined by its format and arguments.
-     *
-     * @param format A format string
-     * @param args   Arguments referenced by the format specifiers in the format string.
-     */
-    public void displayText(String format, Object... args) {
-        displayText(String.format(format, args));
-    }
+    private MainWindow mainWindow;
 
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
-
-    /**
-     * Displays the welcome message.
-     */
-    public void showWelcome() {
-        showLine();
-        String name = "Duke";
-        displayText("Hello! I'm %s\nWhat do you need to do?", name);
-        showLine();
-    }
-
-    public void showGoodbye() {
-        displayText("Bye. Hope to see you again soon!");
-    }
-
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    public void showError(String message) {
-        displayText(ANSI_RED + message + ANSI_RESET);
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Ui.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            mainWindow = fxmlLoader.getController();
+            Duke duke;
+            try {
+                duke = new Duke("tasks.txt", (Message message) -> {
+                    mainWindow.sendMessage(message);
+                    if (message.shouldExit) {
+                        new Timer().schedule(
+                                new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        Platform.exit();
+                                    }
+                                },
+                                1500
+                        );
+                    }
+                });
+            } catch (DukeException e) {
+                throw new RuntimeException(e);
+            }
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
