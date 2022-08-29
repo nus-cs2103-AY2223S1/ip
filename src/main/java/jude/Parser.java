@@ -96,14 +96,25 @@ public class Parser {
     }
 
     /**
-     * Parses the command provided and executes it.
+     * Returns whether the command terminates the program.
+     * @param command The user input command.
+     * @return true if the command terminates the program, i.e. bye command, false otherwise.
+     */
+    public boolean isTerminationCommand(String command) {
+        return command.equals("bye");
+    }
+
+    /**
+     * Parses the command provided and executes it. The return value will be the response by the
+     * chatbot.
      *
      * @param command The command which will be provided to the parser.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
      * @throws IOException When system I/O fails.
      */
-    public boolean parse(String command) throws IOException {
+    public String parse(String command) throws IOException {
         String[] tokens = command.split(" ", 2);
+        String response = "";
         try {
             if (tokens[0].equals("todo") || tokens[0].equals("deadline")
                     || tokens[0].equals("event")) {
@@ -156,9 +167,9 @@ public class Parser {
                 if (taskAdded != null) {
                     tasks.add(taskAdded);
                     storage.save(tasks);
-                    System.out.printf("The following %s task has been added:\n  ", tokens[0]);
-                    System.out.println(taskAdded);
-                    System.out.printf("The task list now contains %d task(s).\n", tasks.size());
+                    response = String.format("%sThe following %s task has been added:\n  %s\n"
+                                            + "The task list now contains %d task(s).\n",
+                            response, tokens[0], taskAdded, tasks.size());
                 }
             } else if (tokens[0].equals("mark")) {
                 int index = Integer.parseInt(tokens[1]);
@@ -169,8 +180,9 @@ public class Parser {
                 task.markAsDone();
                 storage.save(tasks);
 
-                System.out.println("The following task has been marked as done");
-                System.out.println(task);
+                response = String.format("%sThe following task has been marked as done:\n  %s\n"
+                                + "The task list now contains %d task(s).\n",
+                        response, task, tasks.size());
             } else if (tokens[0].equals("unmark")) {
                 int index = Integer.parseInt(tokens[1]);
                 Task task = tasks.get(index);
@@ -178,8 +190,9 @@ public class Parser {
                 task.markAsUndone();
                 storage.save(tasks);
 
-                System.out.println("The following task has been marked as undone");
-                System.out.println(task);
+                response = String.format("%sThe following task has been marked as undone:\n  %s\n"
+                                + "The task list now contains %d task(s).\n",
+                        response, task, tasks.size());
             } else if (tokens[0].equals("delete")) {
                 int index = Integer.parseInt(tokens[1]);
                 Task task = tasks.get(index);
@@ -187,9 +200,9 @@ public class Parser {
                 tasks.delete(index);
                 storage.save(tasks);
 
-                System.out.println("The following task has been removed:");
-                System.out.println(task);
-                System.out.printf("The task list now contains %d task(s).\n", tasks.size());
+                response = String.format("%sThe following task has been removed:\n  %s\n"
+                                + "The task list now contains %d task(s).\n",
+                        response, task, tasks.size());
             } else if (tokens[0].equals("find")) {
                 if (tokens.length == 1) {
                     throw new IllegalCommandException("Please enter a keyword to search.");
@@ -198,15 +211,15 @@ public class Parser {
             } else if (command.equals("list")) {
                 list(tasks);
             } else if (command.equals("bye")) {
-                System.out.println("Goodbye! Have a nice day!");
-                return false;
+                response = String.format("%sGoodbye! Have a nice day!", response);
+                return response;
             } else {
-                System.out.println("Sorry, I don't understand what this means!");
+                response = String.format("%sSorry, I don't understand what this means!\n", response);
             }
         } catch (IllegalCommandException ex) {
-            System.out.println(ex.getMessage());
+            response = String.format("%s%s\n", response, ex.getMessage());
         }
-        return true;
+        return response;
     }
 
     /**
@@ -214,11 +227,13 @@ public class Parser {
      *
      * @param tasks The tasks to display.
      */
-    private void list(TaskList tasks) {
+    private String list(TaskList tasks) {
+        String response = "";
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i);
-            System.out.printf("%d.%s\n", i, task);
+            response = String.format("%s%d.%s\n", response, i, task);
         }
+        return response;
     }
 
     /**
@@ -226,8 +241,9 @@ public class Parser {
      * provided string, and prints the result, via {@code list} method.
      *
      * @param str The string to search for.
+     * @return The string which will be printed by the chatbot.
      */
-    private void find(String str) {
+    private String find(String str) {
         TaskList results = new TaskList();
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i);
@@ -246,8 +262,8 @@ public class Parser {
                 results.add(task);
             }
         }
-        System.out.printf("Here are the matching results in your task list (%d in total):\n",
-                results.size());
-        list(results);
+        String response = String.format("Here are the matching results in your task list (%d in "
+                + "total):\n%s", results.size(), list(results));
+        return response;
     }
 }
