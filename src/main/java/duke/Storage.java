@@ -1,11 +1,11 @@
 package duke;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 public class Storage {
     private final File file;
@@ -50,7 +50,8 @@ public class Storage {
                 } else if (info.startsWith("  [D]")) {
                     String[] infoData = info.split("] ");
                     String[] descBy = infoData[infoData.length - 1].split("by: ");
-                    Deadline toAdd = new Deadline(descBy[0].substring(0, descBy[0].length() - 2), descBy[1].substring(0, descBy[1].length() - 1));
+                    Deadline toAdd = new Deadline(descBy[0].substring(0, descBy[0].length() - 2),
+                            descBy[1].substring(0, descBy[1].length() - 1));
                     if (isMarked(infoData[infoData.length - 2])) {
                         toAdd.mark();
                     }
@@ -58,7 +59,8 @@ public class Storage {
                 } else if (info.startsWith("  [E]")) {
                     String[] infoData = info.split("] ");
                     String[] descAt = infoData[infoData.length - 1].split("at: ");
-                    Event toAdd = new Event(descAt[0].substring(0, descAt[0].length() - 2), descAt[1].substring(0, descAt[1].length() - 1));
+                    Event toAdd = new Event(descAt[0].substring(0, descAt[0].length() - 2),
+                            descAt[1].substring(0, descAt[1].length() - 1));
                     if (isMarked(infoData[infoData.length - 2])) {
                         toAdd.mark();
                     }

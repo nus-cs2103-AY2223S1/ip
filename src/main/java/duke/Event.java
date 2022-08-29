@@ -1,9 +1,9 @@
 package duke;
 
+
 public class Event extends Task {
 
     private final String time;
-
 
     /**
      * Creates a new Event object with a specified description and timing.
@@ -16,7 +16,8 @@ public class Event extends Task {
     }
 
     /**
-     * String representation of this Event, with details such as its type, description, timing, and whether it is completed or not.
+     * String representation of this Event, with details such as its type, description,
+     * timing, and whether it is completed or not.
      * @return String representation of this Event.
      */
     @Override
