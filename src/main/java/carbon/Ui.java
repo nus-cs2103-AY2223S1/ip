@@ -1,9 +1,9 @@
 package carbon;
 
-import carbon.error.CarbonException;
-
 import java.util.Random;
 import java.util.Scanner;
+
+import carbon.error.CarbonException;
 
 /**
  * Provides the user interface for Carbon to interact with the user.
@@ -13,18 +13,18 @@ public class Ui {
     // chat-bot specific displays
     // ascii art generated from patorjk.com
     // logo for Carbon
-    private static final String LOGO = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
-        "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
-        "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
-        "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
-        " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
-        " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-        " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n" + 
-        " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n" +
-        " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n" + 
-        " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-        " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
-        "                           ███    ███                                   \n";
+    private static final String LOGO = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n"
+        + "                 | | | |___ |    |    |  | |\\/| |___ \n"
+        + "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n"
+        + "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n"
+        + " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n"
+        + " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n"
+        + " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n"
+        + " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n"
+        + " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n"
+        + " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n"
+        + " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n"
+        + "                           ███    ███                                   \n";
 
     // actual introduction
     private static final String INTRO = "Hey, Carbon here. ";
@@ -53,13 +53,13 @@ public class Ui {
 
     /**
      * Constructs an instance of the Ui class.
-     * 
+     *
      * @return Ui object.
      */
     public Ui() {
         this.rand = new Random();
         this.sysScanner = new Scanner(System.in);
-        
+
         // String randomPrompt = Carbon.initPrompts[
         //     this.rand.nextInt(Carbon.initPrompts.length)
         // ];
@@ -104,7 +104,7 @@ public class Ui {
         // String randomGoodbye = Carbon.goodbyes[
         //     this.rand.nextInt(Carbon.goodbyes.length)
         // ];
-        
+
         String randomGoodbye = Ui.GOODBYES[0] + "\n";
         this.printOut(randomGoodbye);
     }

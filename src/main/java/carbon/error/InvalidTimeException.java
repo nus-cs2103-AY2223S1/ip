@@ -1,10 +1,15 @@
 package carbon.error;
 
+/**
+ * Exception Class for invalid inputs regarding date and time.
+ */
 public class InvalidTimeException extends CarbonException {
+    /** @inheritDoc */
     public InvalidTimeException(String input) {
         super(input);
     }
 
+    /** @inheritDoc */
     @Override
     public String toString() {
         return String.format(

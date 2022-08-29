@@ -1,10 +1,11 @@
 package carbon;
 
-import org.junit.jupiter.api.Test;
-import carbon.error.InvalidInputException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import carbon.error.InvalidInputException;
 
 public class ParserTest {
     private Ui ui = new Ui();

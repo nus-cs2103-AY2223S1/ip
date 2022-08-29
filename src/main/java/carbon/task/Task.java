@@ -1,18 +1,23 @@
 package carbon.task;
 
-import carbon.error.CarbonException;
-import carbon.error.CorruptedSavefileException;
-
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import java.time.format.DateTimeFormatter;
+import carbon.error.CarbonException;
+import carbon.error.CorruptedSavefileException;
 
 /**
  * Enapsulates information regarding tasks.
  * This is an abstract class, and is extended by Todo, Event, and Deadline.
  */
 public abstract class Task {
+    /**
+     * Represents the types of Tasks that Carbon supports.
+     * Todo is for tasks without any deadlines.
+     * Deadline is for a task with a deadline.
+     * Event is for an item that takes place at a date and time.
+     */
     public static enum Type {
         TODO,
         DEADLINE,
@@ -23,17 +28,33 @@ public abstract class Task {
         READ,
         PRINT
     };
-    
-    protected static final DateTimeFormatter dateFormat = DateTimeFormatter
+
+    protected static final DateTimeFormatter DATEFORMAT = DateTimeFormatter
             .ofPattern("yyyy-MM-dd");
-    protected static final DateTimeFormatter dateFormatPrint = DateTimeFormatter
+    protected static final DateTimeFormatter DATEFORMATPRINT = DateTimeFormatter
             .ofPattern("MMM dd yyyy");
-    protected static final DateTimeFormatter dateTimeFormat = DateTimeFormatter
+    protected static final DateTimeFormatter DATETIMEFORMAT = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HHmm");
-    protected static final DateTimeFormatter dateTimeFormatPrint = DateTimeFormatter
+    protected static final DateTimeFormatter DATETIMEFORMATPRINT = DateTimeFormatter
             .ofPattern("MMM dd yyyy HH:mm");
 
     private static List<Type> typeKeys = Arrays.asList(Type.values());
+
+    protected String name;
+    protected boolean isDone;
+
+    /**
+     * Constructs an instance of a Task.
+     * Constructor for an abstract class, not meant to be called directly.
+     *
+     * @param name Name of the task.
+     * @param isDone Whether the task is done or not.
+     * @return Task object.
+     */
+    protected Task(String name, Boolean isDone) {
+        this.name = name;
+        this.isDone = isDone;
+    }
 
     protected static int getTypeKey(Type type) {
         int key = typeKeys.indexOf(type);
@@ -47,7 +68,7 @@ public abstract class Task {
      * @return Decoded Task.
      * @throws CarbonException  If the data is invalid.
      */
-    public static Task decodeTask(String data) throws CarbonException{
+    public static Task decodeTask(String data) throws CarbonException {
         String[] values = data.split("\\|");
 
         // should have min 3 segments: type, name, and doneness
@@ -78,22 +99,6 @@ public abstract class Task {
         }
         decodedTask.changeDoneness(isDone);
         return decodedTask;
-    }
-
-    protected String name;
-    protected boolean isDone;
-
-    /**
-     * Constructs an instance of a Task.
-     * Constructor for an abstract class, not meant to be called directly.
-     *
-     * @param name Name of the task.
-     * @param isDone Whether the task is done or not.
-     * @return Task object.
-     */
-    protected Task(String name, Boolean isDone) {
-        this.name = name;
-        this.isDone = isDone;
     }
 
     /**
@@ -127,7 +132,7 @@ public abstract class Task {
     /** @inheritDoc */
     @Override
     public String toString() {
-        String doneness = this.isDone? "X" : " ";
+        String doneness = this.isDone ? "X" : " ";
         return String.format("[%s] %s", doneness, this.name);
     }
 }
