@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Used to parse user's commands entered and execute the command
  */

@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Used to interact with the user
  */

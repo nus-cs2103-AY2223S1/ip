@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Main java class to create a new Duke object
  */

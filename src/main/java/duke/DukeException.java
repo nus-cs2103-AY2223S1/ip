@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Exception class used to customise errors specific to Duke
  */

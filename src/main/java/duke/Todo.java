@@ -1,3 +1,4 @@
+package duke;
 /**
  * Represents a todo that can be created by the user
  */
