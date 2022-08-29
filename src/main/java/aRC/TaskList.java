@@ -39,7 +39,9 @@ public class TaskList {
      * @param keyword Keyword of Task
      */
     public void listTasks(String keyword) {
-        System.out.println(String.format("Listing the%s tasks in your list...", !keyword.equals("") ? " matching" : ""));
+        System.out.println(String.format(
+                "Listing the%s tasks in your list...", !keyword.equals("") ? " matching" : ""
+        ));
 
         if (this.arrayList.size() == 0) {
             System.out.println("You have no current tasks :-(");
