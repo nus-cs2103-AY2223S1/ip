@@ -19,4 +19,16 @@ public class ChangeStatusCommand extends Command {
     public void execute() throws DukeException {
         taskList.changeTaskStatus(taskIndex, isDone);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof ChangeStatusCommand)) {
+            return false;
+        }
+        ChangeStatusCommand other = (ChangeStatusCommand) o;
+        return other.taskIndex == this.taskIndex && other.isDone == this.isDone;
+    }
 }
