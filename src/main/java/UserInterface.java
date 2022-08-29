@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class IOhelper {
+class UserInterface {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void print(String text) {

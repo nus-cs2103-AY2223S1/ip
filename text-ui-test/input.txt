@@ -1,7 +1,7 @@
 invalid command
-todo read book
-deadline send homework|2022-08-22
-event watch movie|2022-08-23
+todo play
+deadline send homework|2022-08-12
+event watch movie|2022-08-15
 mark 3
 delete 2
 list

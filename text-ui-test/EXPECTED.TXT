@@ -6,17 +6,17 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 Invalid command
-added: [T]|[ ]|read book
+added: [T]|[ ]|play
 Now you have 1 tasks in the list.
-added: [D]|[ ]|send homework|2022-08-22
+added: [D]|[ ]|send homework|2022-08-12
 Now you have 2 tasks in the list.
-added: [E]|[ ]|watch movie|2022-08-23
+added: [E]|[ ]|watch movie|2022-08-15
 Now you have 3 tasks in the list.
 Nice! I've marked this task as done:
-[E]|[X]|watch movie|2022-08-23
+[E]|[X]|watch movie|2022-08-15
 Noted. I've removed this task:
-[D]|[ ]|send homework|2022-08-22
+[D]|[ ]|send homework|2022-08-12
 Now you have 2 tasks in the list.
-1. [T]|[ ]|read book
-2. [E]|[X]|watch movie|2022-08-23
+1. [T]|[ ]|play
+2. [E]|[X]|watch movie|2022-08-15
 Bye. Hope to see you again soon!

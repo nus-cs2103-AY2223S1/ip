@@ -1,18 +1,17 @@
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Datafile {
+class Storage {
     private final String fileName;
 
-    public Datafile(String fileName) {
+    public Storage(String fileName) {
         this.fileName = fileName;
     }
 
-    public void fillData(ArrayList<Task> listOfTasks){
+    public void fillData(TaskList taskList){
         File file = new File(this.fileName);
         Scanner scanner;
         try {
@@ -25,16 +24,20 @@ class Datafile {
             String line = scanner.nextLine();
             try {
                 Task task = Task.parseFromString(line);
-                listOfTasks.add(task);
+                taskList.addTask(task);
             } catch (DukeException e) { }
         }
         scanner.close();
     }
 
-    public void SaveToDatafile(ArrayList<Task> listOfTasks) throws IOException{
+    public void SaveToStorage(TaskList taskList) throws IOException{
         FileWriter writer = new FileWriter(this.fileName);
-        for (Task task : listOfTasks) {
-            writer.write(task + "\n");
+        for (int i = 0; i < taskList.getSize(); i++) {
+            try {
+                writer.write(taskList.getTask(i) + "\n");
+            } catch (DukeException e) {
+                //Impossible to happen as we are iterating.
+            }
         }
         writer.close();
     }
