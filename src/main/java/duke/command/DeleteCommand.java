@@ -9,7 +9,7 @@ import duke.exception.InvalidInputException;
  * DeleteCommand is a command that deletes the task.
  */
 public class DeleteCommand extends Command {
-    int deleteIndex;
+    private int deleteIndex;
 
     /**
      * Constructor of Delete Command

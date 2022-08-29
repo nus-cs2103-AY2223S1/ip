@@ -1,11 +1,20 @@
 package duke;
 
-import duke.command.*;
+import java.time.LocalDate;
+
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
-
-import java.time.LocalDate;
 
 /**
  * RequestHandler parses the user input and calls the corresponding commands.

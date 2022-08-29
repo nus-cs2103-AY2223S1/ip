@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Event Command is a Command that creates new Event.
@@ -12,8 +12,8 @@ import java.time.LocalDate;
  * @author Eugene Tan
  */
 public class EventCommand extends Command {
-    String description;
-    LocalDate at;
+    private String description;
+    private LocalDate at;
 
     /**
      * Constructor for Event Command

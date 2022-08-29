@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Deadline command is a command that creates a new Deadline.
@@ -12,8 +12,8 @@ import java.time.LocalDate;
  * @author Eugene Tan
  */
 public class DeadlineCommand extends Command {
-    String description;
-    LocalDate doBy;
+    private String description;
+    private LocalDate doBy;
 
     /**
      * Constructor of DeadlineCommand.
@@ -24,7 +24,7 @@ public class DeadlineCommand extends Command {
     public DeadlineCommand(String description, LocalDate doBy) {
         super();
         this.description = description;
-        this.doBy =  doBy;
+        this.doBy = doBy;
     }
 
     /**

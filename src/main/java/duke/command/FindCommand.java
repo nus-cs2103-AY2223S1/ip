@@ -11,7 +11,7 @@ import duke.Ui;
  */
 public class FindCommand extends Command {
 
-    String wordToFind;
+    private String wordToFind;
 
     /**
      * Constructor of FindCommand.

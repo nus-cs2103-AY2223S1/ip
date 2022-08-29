@@ -11,7 +11,7 @@ import duke.exception.InvalidInputException;
  * @author Eugene Tan
  */
 public class MarkCommand extends Command {
-    int indexToMark;
+    private int indexToMark;
 
     /**
      * Constructor of MarkCommand

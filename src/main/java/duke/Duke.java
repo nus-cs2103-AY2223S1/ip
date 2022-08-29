@@ -1,11 +1,13 @@
 package duke;
 
+import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
+
 import duke.command.Command;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
-import java.io.FileNotFoundException;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * This is the Main Duke program for our chatbot (our bot prefers to be addressed as Bob).
@@ -61,6 +63,11 @@ public class Duke {
         }
     }
 
+    /**
+     * The main method.
+     *
+     * @param args main arguments
+     */
     public static void main(String[] args) {
         String home = System.getProperty("user.home");
         new Duke(home + "/data/duke.txt").run();

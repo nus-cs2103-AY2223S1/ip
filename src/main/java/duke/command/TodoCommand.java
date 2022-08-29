@@ -10,7 +10,7 @@ import duke.Ui;
  * @author Eugene Tan
  */
 public class TodoCommand extends Command {
-    String description;
+    private String description;
 
     /**
      * Constructor for toDo Command

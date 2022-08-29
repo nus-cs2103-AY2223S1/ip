@@ -12,7 +12,7 @@ public class InvalidCommandException extends Exception {
      *
      * @param errorMessage The error message to be shown.
      */
-        public InvalidCommandException(String errorMessage) {
-            super(errorMessage);
-        }
+    public InvalidCommandException(String errorMessage) {
+        super(errorMessage);
+    }
 }

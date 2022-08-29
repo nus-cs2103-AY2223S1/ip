@@ -35,7 +35,7 @@ public class ToDo extends Task {
      */
     @Override
     public String saveStringFormat() {
-        return String.format("T | %d | %s", this.isDone? 1 : 0, this.description);
+        return String.format("T | %d | %s", this.isDone ? 1 : 0, this.description);
     }
 
     /**

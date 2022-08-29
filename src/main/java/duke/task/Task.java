@@ -46,7 +46,7 @@ public abstract class Task {
      *
      * @return The string representation of a task.
      */
-    abstract public String toString();
+    public abstract String toString();
 
     /**
      * Reconstructs a Task from a given String format

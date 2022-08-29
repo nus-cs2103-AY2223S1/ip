@@ -11,7 +11,7 @@ import duke.exception.InvalidInputException;
  * @author Eugene Tan
  */
 public class UnmarkCommand extends Command {
-    int indexToUnmark;
+    private int indexToUnmark;
 
     /**
      * Constructor of UnmarkCommand.
