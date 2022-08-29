@@ -3,7 +3,7 @@ package duke.task;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.Todo;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class TaskList {
     }
 
     public Task addTodo(String description) {
-        ToDo todo = new ToDo(description);
+        Todo todo = new Todo(description);
         tasks.add(todo);
         size++;
         return todo;

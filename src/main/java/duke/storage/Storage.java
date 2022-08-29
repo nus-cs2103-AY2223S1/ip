@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.Todo;
 
 public class Storage {
     private static final String DIR = System.getProperty("user.dir");
@@ -39,7 +39,7 @@ public class Storage {
 
                 switch (taskType) {
                     case "T":
-                        ToDo todo = new ToDo(taskDescription);
+                        Todo todo = new Todo(taskDescription);
                         dukeList.add(todo);
                         break;
 
@@ -78,7 +78,7 @@ public class Storage {
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
             String status = curr.getStatusIcon().equals("X") ? "1" : "0";
-            if (curr instanceof ToDo) {
+            if (curr instanceof Todo) {
                 writer.write("T | " + status + " | " + curr.getDescription() + "\n");
             } else if (curr instanceof Deadline) {
                 writer.write("D | " + status + " | " + curr.getDescription() + " | "
