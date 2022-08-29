@@ -11,6 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Represents a deadline command
+ */
 public class DeadlineCommand extends Command {
     private String cmd;
 
@@ -18,6 +21,13 @@ public class DeadlineCommand extends Command {
         this.cmd = cmd;
     }
 
+    /**
+     * Deconstruct a deadline command based on cmd
+     * @param tasklist
+     * @param ui
+     * @param storage
+     * @throws InvalidFormatException
+     */
     @Override
     public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {

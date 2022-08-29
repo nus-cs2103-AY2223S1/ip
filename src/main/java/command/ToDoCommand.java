@@ -7,6 +7,9 @@ import task.DukeTask;
 
 import java.util.ArrayList;
 
+/**
+ * Represent a todo command
+ */
 public class ToDoCommand extends Command {
     private String cmd;
 
@@ -15,7 +18,7 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Creats a ToDo object
+     * Deconstruct a todo command based on cmd
      * adds it to tasklist
      * saves tasklist to task file
      */

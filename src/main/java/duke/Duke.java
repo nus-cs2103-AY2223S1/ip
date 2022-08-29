@@ -7,6 +7,9 @@ import task.DukeTask;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A chat bot that tracks your tasks!
+ */
 public class Duke {
     private Storage storage;
     private ArrayList<DukeTask> tasklist;
@@ -25,6 +28,9 @@ public class Duke {
         // }
     }
 
+    /**
+     * Run the program
+     */
     public void run() {
         storage.read();
         Scanner input = new Scanner(System.in);
