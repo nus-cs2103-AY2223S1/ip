@@ -6,6 +6,9 @@ import duke.chatbot.data.task.TaskList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import static duke.chatbot.common.Message.MESSAGE_FIND_KEYWORD;
+
 /**
  * A command that prints a list of tasks that have the argument
  * string as a substring of the task description.
@@ -25,8 +28,13 @@ public class FindCommand extends Command {
     public CommandResult execute() {
         List<String> message = new ArrayList<>();
         String query = arguments.get(0);
-
         TaskList filteredTaskList = taskList.filterTaskListBySubstring(query);
+
+        if (filteredTaskList.isEmpty()) {
+            message.add(MESSAGE_EMPTY_LIST);
+        } else {
+            message.add(MESSAGE_FIND_KEYWORD);
+        }
 
         for (int entry = 1; entry <= filteredTaskList.size(); entry++) {
             Task task = filteredTaskList.get(entry);
