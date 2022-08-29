@@ -27,7 +27,7 @@ public class Parser {
         this.isAcceptingInput = isAcceptingInput;
     }
 
-    public boolean getIsAcceptingInput() {
+    public boolean isAcceptingInput() {
         return this.isAcceptingInput;
     }
 
