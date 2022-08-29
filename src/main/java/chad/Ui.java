@@ -76,6 +76,28 @@ public class Ui {
         Utility.printText(outputText);
     }
 
+    public static void searchTaskByKeyword(ArrayList<Task> tasks, String userInput) {
+        String keyword = userInput.replaceFirst("find", "").trim();
+        String baseText = "Here are the matching tasks in your list:\n";
+        String output = baseText;
+        int count = 1;
+
+        for (Task t: tasks) {
+            String desc = t.getDescription();
+            if (desc.contains(keyword)) {
+                output += count + "." + t.toString() + "\n";
+                count += 1;
+            }
+        }
+
+        if (output.equals(baseText)) {
+            Utility.printText("No matching tasks were found");
+        } else {
+            Utility.printText(output.trim());
+        }
+
+    }
+
     /**
      * Prints out all the tasks that ends on the date specified by user
      * @param tasks arraylist of tasks

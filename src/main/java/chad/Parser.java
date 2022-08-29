@@ -37,7 +37,6 @@ public class Parser {
                 Ui.markTask(taskList, taskID);
                 break;
             }
-
             case "unmark": {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 Ui.unmarkTask(taskList, taskID);
@@ -62,6 +61,10 @@ public class Parser {
             }
             case "event": {
                 TaskList.addEventTask(taskList, userInput);
+                break;
+            }
+            case "find": {
+                Ui.searchTaskByKeyword(taskList, userInput);
                 break;
             }
             default: {
