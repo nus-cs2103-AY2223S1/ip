@@ -20,7 +20,7 @@ public class TaskListReader {
     private final Path filePath;
 
     public TaskListReader(String fileName) {
-        this.filePath = Paths.get(ROOT_PATH + fileName + ".txt");
+        this.filePath = Paths.get(ROOT_PATH + fileName);
     }
 
     public String getPath() {

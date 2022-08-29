@@ -4,10 +4,6 @@ import java.util.ArrayList;
 public class TaskList {
     private List<Task> tasks;
 
-    public TaskList() {
-        this.tasks = new ArrayList<Task>();
-    }
-
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
@@ -46,33 +42,33 @@ public class TaskList {
             }
             tasks.add(new Event(description, dateString));
         }
-        Dan.printLine();
-        Dan.printIndent("Okay okay, I'll add this task then:");
-        Dan.printIndent(tasks.get(tasks.size() -1).toString());
-        Dan.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
-        Dan.printLine();
+        Ui.printLine();
+        Ui.printIndent("Okay okay, I'll add this task then:");
+        Ui.printIndent(tasks.get(tasks.size() -1).toString());
+        Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
+        Ui.printLine();
     }
 
     public void showTasks() throws DanException {
         if (tasks.isEmpty()) {
             throw new DanException("Your list is empty!");
         }
-        Dan.printLine();
-        Dan.printIndent("Here are the tasks in your list:");
+        Ui.printLine();
+        Ui.printIndent("Here are the tasks in your list:");
         for (int i =1; i <= tasks.size(); i++) {
-            Dan.printIndent(i + "." + tasks.get(i - 1));
+            Ui.printIndent(i + "." + tasks.get(i - 1));
         }
-        Dan.printLine();
+        Ui.printLine();
     }
 
     public void markTask(int index) throws DanException {
         if (index > tasks.size()) {
-            Dan.printIndent("tasks.size(): " + tasks.size());
+            Ui.printIndent("tasks.size(): " + tasks.size());
             throw new DanException("This task number doesn't exist!");
         }
         Task task = tasks.get(index - 1);
         task.setDone(true);
-        Dan.printBlock(String.format("Hehe okay guess this is now done\n"
+        Ui.printBlock(String.format("Hehe okay guess this is now done\n"
                 + "  %s", task));
     }
 
@@ -82,20 +78,20 @@ public class TaskList {
         }
         Task task = tasks.get(index - 1);
         task.setDone(false);
-        Dan.printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
+        Ui.printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
                 + "  %s", task));
     }
 
     public void deleteTask(int index) throws DanException {
-        if (index >= tasks.size()) {
+        if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
         }
-        Dan.printLine();
-        Dan.printIndent("Alright then, I'll remove this task from your list:");
-        Dan.printIndent(tasks.get(index - 1).toString());
+        Ui.printLine();
+        Ui.printIndent("Alright then, I'll remove this task from your list:");
+        Ui.printIndent(tasks.get(index - 1).toString());
         tasks.remove(index - 1);
-        Dan.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
-        Dan.printLine();
+        Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
+        Ui.printLine();
     }
 
     protected List<Task> getTasks() {
