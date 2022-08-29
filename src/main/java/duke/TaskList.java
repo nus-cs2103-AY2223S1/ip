@@ -119,18 +119,4 @@ public class TaskList {
     public ListIterator<Task> getIterator() {
         return taskArrayList.listIterator();
     }
-
-    /**
-     * Method to execute "list" command.
-     * Prints out the tasks stored in the array list.
-     */
-    public void printTaskArray() {
-        ListIterator<Task> iterate = taskArrayList.listIterator();
-        System.out.println("Here are the tasks in your list:");
-        int qty = 0;
-        while (iterate.hasNext()) {
-            qty++;
-            System.out.println(qty + "." + iterate.next().toString());
-        }
-    }
 }
