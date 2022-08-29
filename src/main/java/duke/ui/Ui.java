@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Class that deals with interactions with the user
- * Has static methods and does not need to be initialized (for now)
+ * Has static methods and does not need to be initialized
  */
 public class Ui {
 
