@@ -38,10 +38,10 @@ public class UnmarkCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task taskToUnmark = taskList.getTask(taskNumber - 1);
         taskToUnmark.markAsNotDone();
         storage.save(taskList);
-        ui.printUnmarkTask(taskToUnmark);
+        return ui.printUnmarkTask(taskToUnmark);
     }
 }

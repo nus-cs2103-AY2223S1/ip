@@ -24,5 +24,5 @@ public abstract class Command {
      * @param taskList List of tasks
      * @throws DukeException if invalid inputs are provided
      */
-    public abstract void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    public abstract String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 }

@@ -23,16 +23,16 @@ public class Ui {
     /**
      * Greets the user whenever the application starts
      */
-    public void printWelcome() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you? ^_^");
+    public String printWelcome() {
+        return "Hello! I'm Duke\nWhat can I do for you? ^_^";
     }
 
     /**
      * Exits when the user chooses to stop the application
      */
-    public void printExit() {
+    public String printExit() {
         this.scanner.close();
-        System.out.println("\tBye. Hope to see you again soon :D");
+        return "\tBye. Hope to see you again soon :D";
     }
 
     /**
@@ -40,11 +40,11 @@ public class Ui {
      * @param addedTask The task that is just added
      * @param numOfTasks The number of tasks in the list
      */
-    public void printAddTask(Task addedTask, int numOfTasks) {
+    public String printAddTask(Task addedTask, int numOfTasks) {
         String header = "\tGot it! I have added this task:\n\t\t" + addedTask;
         String tasks = String.format("\n\tNow you have %d %s in the list!", numOfTasks,
                 numOfTasks < 2 ? "task" : "tasks");
-        System.out.println(header + tasks);
+        return header + tasks;
     }
 
     /**
@@ -52,37 +52,39 @@ public class Ui {
      * @param deletedTask The deleted task
      * @param numOfTasks The number of tasks remaining
      */
-    public void printDeleteTask(Task deletedTask, int numOfTasks) {
+    public String printDeleteTask(Task deletedTask, int numOfTasks) {
         String msg = String.format("\tNoted, I have removed this task:\n\t\t%s", deletedTask);
-        System.out.println(msg);
+        String tasks = String.format("\n\tNow you have %d %s in the list!", numOfTasks,
+                numOfTasks < 2 ? "task" : "tasks");
+        return msg + tasks;
     }
 
     /**
      * Prints the task that is marked as completed
      * @param task The task that is marked as completed
      */
-    public void printMarkTask(Task task) {
+    public String printMarkTask(Task task) {
         String msg = String.format("\tNice! I have marked this task as done:\n\t\t%s",
                 task);
-        System.out.println(msg);
+        return msg;
     }
 
     /**
      * Prints the task that is marked as not completed
      * @param task The task that is marked as not completed
      */
-    public void printUnmarkTask(Task task) {
+    public String printUnmarkTask(Task task) {
         String msg = String.format("\tOkay! I have marked this task as not done:\n\t\t%s",
                 task);
-        System.out.println(msg);
+       return msg;
     }
 
     /**
      * Prints the exception's message
      * @param exception The exception thrown and caught
      */
-    public void printException(Exception exception) {
-        System.out.println("\t" + exception.getMessage());
+    public String printException(Exception exception) {
+        return "\t" + exception.getMessage();
     }
 
     /**
@@ -97,7 +99,7 @@ public class Ui {
      * Notifies users about invalid commands
      * @throws DukeException If the command is invalid
      */
-    public void printInvalid() throws DukeException {
+    public String printInvalid() throws DukeException {
         throw new DukeException("I don't know what this means :(");
     }
 
@@ -105,11 +107,11 @@ public class Ui {
      * Prints the list of tasks
      * @param list The list of tasks
      */
-    public void printList(String list) {
-        System.out.println(list);
+    public String printList(String list) {
+        return list;
     }
 
-    public void printFind(ArrayList<Task> list) {
+    public String printFind(ArrayList<Task> list) {
         StringBuilder stringBuilder = new StringBuilder("\tHere are the matching tasks in your list:");
         int count = 1;
         for (Task task: list) {
@@ -118,6 +120,10 @@ public class Ui {
             count++;
         }
 
-        System.out.println(stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    public String print(String input) {
+        return input;
     }
 }

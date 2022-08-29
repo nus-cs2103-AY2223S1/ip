@@ -60,6 +60,16 @@ public class Duke {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            String response = command.execute(ui, storage, tasks);
+            return response;
+        } catch (DukeException e) {
+            return ui.print(e.getMessage());
+        }
+    }
+
     /**
      * Starts the program
      * @param args Command line arguments

@@ -37,8 +37,8 @@ public class TasksCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         String list = taskList.getTasks(this.date);
-        ui.printList(list);
+        return ui.printList(list);
     }
 }

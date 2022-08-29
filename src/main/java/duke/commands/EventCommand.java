@@ -41,10 +41,10 @@ public class EventCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Event event = new Event(this.description, this.at);
         taskList.addToList(event);
         storage.save(taskList);
-        ui.printAddTask(event, taskList.getSize());
+        return ui.printAddTask(event, taskList.getSize());
     }
 }

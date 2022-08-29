@@ -38,10 +38,10 @@ public class TodoCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         ToDo toDo = new ToDo(this.description);
         taskList.addToList(toDo);
         storage.save(taskList);
-        ui.printAddTask(toDo, taskList.getSize());
+        return ui.printAddTask(toDo, taskList.getSize());
     }
 }
