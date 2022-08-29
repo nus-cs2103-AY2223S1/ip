@@ -1,10 +1,14 @@
 package duke;
 
+/**
+ * A task with title, done status and type.
+ */
 public class Task {
+
     private boolean done;
     private String title;
-    private types type;
-    private enum types{TODO, DEADLINE, EVENT}
+    private Types type;
+    private enum Types { TODO, DEADLINE, EVENT }
 
     /**
      * Constructs a task object, given its title, type and completion status.
@@ -16,15 +20,18 @@ public class Task {
     public Task(String title, String type, boolean done) {
         switch(type) {
         case "todo":
-            this.type = types.TODO;
+            this.type = Types.TODO;
             break;
 
         case "deadline":
-            this.type = types.DEADLINE;
+            this.type = Types.DEADLINE;
             break;
 
         case "event":
-            this.type = types.EVENT;
+            this.type = Types.EVENT;
+            break;
+
+        default:
             break;
         }
         this.done = done;
@@ -33,7 +40,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + getType() + "]" + "[" + (isDone()?"X":" ") + "] " + title;
+        return "[" + getType() + "]" + "[" + (isDone() ? "X" : " ") + "] " + title;
     }
 
     /**
@@ -68,15 +75,18 @@ public class Task {
      */
     public String getType() {
         switch(this.type) {
-            case TODO:
-                return "T";
-            case DEADLINE:
-                return"D";
-            case EVENT:
-                return "E";
-            default:
-                //Should catch erroneous types
-                return "T";
+        case TODO:
+            return "T";
+
+        case DEADLINE:
+            return "D";
+
+        case EVENT:
+            return "E";
+
+        default:
+            return "fail";
+
         }
     }
 

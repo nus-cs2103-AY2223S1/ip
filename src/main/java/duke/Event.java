@@ -24,9 +24,9 @@ public class Event extends Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return (super.toString() + " (at: " + this.time.format(formatter) + ")" );
+        return (super.toString() + " (at: " + this.time.format(formatter) + ")");
     }
 
     /**
@@ -34,7 +34,7 @@ public class Event extends Task {
      *
      * @return The time of the deadline as a string.
      */
-    public String getTime(){
+    public String getTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return this.time.format(formatter);
     }

@@ -61,7 +61,7 @@ public class Parser {
             } catch (DukeException ex) {
                 return ex.toString();
             }
-        } else if (first.equals("find")){
+        } else if (first.equals("find")) {
             try {
                 return tasks.find(rest);
             } catch (DukeException ex) {
