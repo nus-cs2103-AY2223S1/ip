@@ -109,24 +109,24 @@ public class TaskList {
     /**
      * Filters current TaskList to get all Tasks that matches the keyword.
      *
-     * @param keyWord the keyword string.
+     * @param keyWords the strings of keyword.
      * @return the TaskList which contains all the matched Tasks.
      */
-    public TaskList filterByKeyWord(String keyWord) {
+    public TaskList filterByKeyWord(String ... keyWords) {
         return new TaskList(this.tasks.stream()
-                .filter(task -> task.isContainKeyWord(keyWord))
+                .filter(task -> task.isContainKeyWord(keyWords))
                 .collect(Collectors.toList()));
     }
 
     /**
      * Filters current TaskList to get all Tasks that happens on the selected date.
      *
-     * @param selectedDate the selected date to be used.
+     * @param selectedDates the selected dates.
      * @return the TaskList which contains all the matched Tasks.
      */
-    public TaskList findByDate(LocalDate selectedDate) {
+    public TaskList findByDate(LocalDate ... selectedDates) {
         return new TaskList(this.tasks.stream()
-                .filter(task -> task.isOnGivenDate(selectedDate))
+                .filter(task -> task.isOnGivenDate(selectedDates))
                 .collect(Collectors.toList()));
     }
 

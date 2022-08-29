@@ -58,11 +58,17 @@ public class Event extends Task {
     /**
      * Returns true if the Event takes place on the given date.
      *
-     * @param selectedDate the date object.
+     * @param selectedDates the date objects.
      * @return true if the Event happens on the selected date, false otherwise.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate selectedDate) {
-        return this.time.equals(selectedDate);
+    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+        for (int i = 0; i < selectedDates.length; i++) {
+            if (this.time.equals(selectedDates[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
