@@ -4,6 +4,7 @@ package duke;
 public class Ui {
 
     public void greetings() {
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
