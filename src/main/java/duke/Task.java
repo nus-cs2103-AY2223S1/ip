@@ -3,7 +3,7 @@ package duke;
 /**
  * Task is an abstract class that represents a task.
  */
-abstract public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -17,7 +17,7 @@ abstract public class Task {
         isDone = false;
     }
 
-    abstract public String getDataFormat();
+    public abstract String getDataFormat();
 
     /**
      * Returns a string to indicate whether the task is marked as done or undone

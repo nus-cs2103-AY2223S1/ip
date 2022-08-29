@@ -82,7 +82,7 @@ public class TaskList {
      * @param splitStr the string input
      * @throws DukeException if the input does not specify an int after delete
      */
-    public void deleteTask(String[] splitStr) throws DukeException{
+    public void deleteTask(String[] splitStr) throws DukeException {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to delete.");
         }
