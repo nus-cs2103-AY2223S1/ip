@@ -11,6 +11,11 @@ import java.util.Scanner;
 public class Storage {
     private String filePath;
 
+    /**
+     * Sets the default location of the file to read and write.
+     *
+     * @param filePath the path of the file the user wishes to read and write to
+     */
     Storage(String filePath) {
         this.filePath = filePath;
 
@@ -23,7 +28,7 @@ public class Storage {
      * @return the content stored in the file
      * @throws IOException
      */
-    public String load() throws IOException {
+    public String load() throws Exception {
         int index = filePath.lastIndexOf('/');
 
         File file = new File(filePath.substring(0, index));

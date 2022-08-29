@@ -7,11 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a deadline task which needs to be completed by a certain date.
  */
 public class DeadLine extends Task {
-    private LocalDate byWhen = null;
-
-    public DeadLine() {
-        super();
-    }
+    private LocalDate eventDate = null;
 
     /**
      * Adds the description and the deadline of a task.
@@ -36,7 +32,7 @@ public class DeadLine extends Task {
 
         super.addName(userInput.substring(9, index));
 
-        this.byWhen = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));;
+        this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));;
     }
 
     /**
@@ -48,7 +44,7 @@ public class DeadLine extends Task {
      */
     @Override
     public String getTask() {
-        return String.format("D | " + super.getTask() + " | " + this.byWhen);
+        return String.format("D | " + super.getTask() + " | " + this.eventDate);
     }
 
     /**
@@ -61,6 +57,6 @@ public class DeadLine extends Task {
     @Override
     public String getStatus() {
         return String.format("[D]%s (by: %s)", super.getStatus(),
-                this.byWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                this.eventDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }

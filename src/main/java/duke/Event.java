@@ -4,14 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a event task which will occur on a certain date.
+ * Represents an event task which will occur on a certain date.
  */
 public class Event extends Task {
-    private LocalDate atWhen = null;
-
-    public Event() {
-        super();
-    }
+    private LocalDate eventDate = null;
 
     /**
      * Adds the description and the deadline of a event.
@@ -20,7 +16,7 @@ public class Event extends Task {
      * <p>
      * If the date format is not recognised, or the description is empty, the function will throw a DukeException.
      *
-     * @param userInput a String containing the description and date of an event
+     * @param userInput the String containing the description and date of an event
      * @throws DukeException
      */
     public void addName(String userInput) throws DukeException {
@@ -32,7 +28,7 @@ public class Event extends Task {
             throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
         }
         super.addName(userInput.substring(6, index));
-        this.atWhen = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
+        this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
     }
 
     /**
@@ -44,7 +40,7 @@ public class Event extends Task {
      */
     @Override
     public String getTask() {
-        return String.format("E | " + super.getTask() + " | " + this.atWhen);
+        return String.format("E | " + super.getTask() + " | " + this.eventDate);
     }
 
     /**
@@ -57,6 +53,6 @@ public class Event extends Task {
     @Override
     public String getStatus() {
         return String.format("[E]%s (at: %s)", super.getStatus(),
-                this.atWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                this.eventDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }

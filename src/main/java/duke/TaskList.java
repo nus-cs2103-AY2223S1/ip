@@ -10,10 +10,19 @@ import java.util.Scanner;
 public class TaskList {
     private static List<Task> savedTasks;
 
+    /**
+     * Constructs a new ArrayList to store tasks in the event when there is no stored tasks.
+     */
     public TaskList() {
         TaskList.savedTasks = new ArrayList<Task>();
     }
 
+    /**
+     * Translates the stored tasks into an ArrayList for future edits.
+     *
+     * @param savedTasks the tasks which were stored previously
+     * @throws DukeException
+     */
     public TaskList(String savedTasks) throws DukeException {
         Scanner s = new Scanner(savedTasks);
         TaskList.savedTasks = new ArrayList<Task>();
@@ -49,10 +58,10 @@ public class TaskList {
      *
      * @param task the task which will be added
      */
-    public void add(Task task) {
+    public String add(Task task) {
         TaskList.savedTasks.add(task);
-        System.out.println("Got it. I've added this task:\n" + task.getStatus()
-                + String.format("\nNow you have %d tasks in the list.", TaskList.savedTasks.size()));
+        return "Got it. I've added this task:\n" + task.getStatus()
+                + String.format("\nNow you have %d tasks in the list.", TaskList.savedTasks.size());
     }
 
     /**
@@ -63,14 +72,17 @@ public class TaskList {
      * @param index the index of the task which the user wishes to delete
      * @throws DukeException
      */
-    public void delete(int index) throws DukeException {
+    public String delete(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
+        if (size == 0) {
+            throw new DukeException("You cannot delete anything from an empty Task List!");
+        }
         if (index <= 0 || index > size) {
             throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
         } else {
             Task removedTask = TaskList.savedTasks.remove(index - 1);
-            System.out.println("Noted. I've removed this task:\n" + removedTask.getStatus()
-                    + String.format("\nNow you have %d tasks in the list.", size - 1));
+            return "Noted. I've removed this task:\n" + removedTask.getStatus()
+                    + String.format("\nNow you have %d tasks in the list.", size - 1);
         }
     }
 
@@ -82,14 +94,17 @@ public class TaskList {
      * @param index the index of the task to be marked as done
      * @throws DukeException
      */
-    public void mark(int index) throws DukeException {
+    public String mark(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
+        if (size == 0) {
+            throw new DukeException("You cannot mark anything from an empty Task List!");
+        }
         if (index <= 0 || index > size) {
             throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
         } else {
             Task selectedTask = TaskList.savedTasks.get(index - 1);
             selectedTask.markAsDone();
-            System.out.println("Nice! I've marked this task as done:\n" + selectedTask.getStatus());
+            return "Nice! I've marked this task as done:\n" + selectedTask.getStatus();
         }
     }
 
@@ -101,18 +116,28 @@ public class TaskList {
      * @param index the index of the task to be unmarked as done
      * @throws DukeException
      */
-    public void unmark(int index) throws DukeException {
+    public String unmark(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
+        if (size == 0) {
+            throw new DukeException("You cannot unmark anything from an empty Task List!");
+        }
         if (index <= 0 || index > size) {
             throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
         } else {
             Task selectedTask = TaskList.savedTasks.get(index - 1);
             selectedTask.markAsUndone();
-            System.out.println("OK, I've marked this task as not done yet:\n"
-                    + selectedTask.getStatus());
+            return "OK, I've marked this task as not done yet:\n"
+                    + selectedTask.getStatus();
         }
     }
 
+    /**
+     * Iterates the list of tasks and print out the individual task with its index, status of tasks,
+     * description of task, and date of task if any.
+     *
+     * @param tasks the list of tasks to be printed out
+     * @return the details of the tasks in a readable format
+     */
     private String iterateList(List<Task> tasks) {
         String listString = "";
         for (int i = 0; i < tasks.size(); i++) {
@@ -160,7 +185,7 @@ public class TaskList {
      * @param keyWord the keyword the user would like to search in the current tasks
      * @throws DukeException
      */
-    public void find(String keyWord) throws DukeException {
+    public String find(String keyWord) throws DukeException {
         List<Task> tasksFound = new ArrayList<Task>();
 
         if (keyWord.equals("")) {
@@ -180,8 +205,7 @@ public class TaskList {
                 }
             }
         }
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println(iterateList(tasksFound));
+        return "Here are the matching tasks in your list:\n" + iterateList(tasksFound);
     }
 
 

@@ -4,9 +4,6 @@ package duke;
  * Represents a todo task.
  */
 public class ToDo extends Task {
-    public ToDo() {
-        super();
-    }
 
     /**
      * Adds the description of a task.
