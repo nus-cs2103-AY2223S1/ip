@@ -13,11 +13,6 @@ public class Ui {
         this.nextCommand = in.nextLine();
     }
 
-    public Ui(Scanner in) {
-        this.in = in;
-        this.nextCommand = in.nextLine();
-    }
-
     public void showWelcome() {
         System.out.println("Hello! I'm Duke.Duke\nWhat can I do for you?\n");
     }
