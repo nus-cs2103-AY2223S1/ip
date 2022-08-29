@@ -17,8 +17,8 @@ public class AddTaskCommand extends Command {
         this.ui = ui;
     }
 
-    public void execute() {
+    public String execute() {
         tasks.add(task);
-        ui.showAddedTask(tasks);
+        return ui.showAddedTask(tasks);
     }
 }

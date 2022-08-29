@@ -12,7 +12,7 @@ public class ListCommand extends Command {
         this.ui = ui;
     }
 
-    public void execute() {
-        this.ui.showTaskList(this.tasks);
+    public String execute() {
+        return this.ui.showTaskList(this.tasks);
     }
 }

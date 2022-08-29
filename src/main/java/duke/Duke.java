@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Scanner;
 
+// ACTUAL DUKE FILE IS IN main/dukelauncher/DukePro
+// THIS IS FOR IDE INTERFACE
 
 public class Duke extends Application {
     private final Storage storage;
@@ -36,7 +38,7 @@ public class Duke extends Application {
             ui.showLoadingError(e);
             tasks = new TaskList();
         }
-        parser = new Parser(ui, tasks);
+        parser = new Parser(ui, tasks, storage);
     }
 
     /**
@@ -53,23 +55,12 @@ public class Duke extends Application {
                 ui.showError(error);
             }
         }
-        saveFile(tasks);
         ui.showSaved();
         scanner.close();
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    /**
-     * Saves the current task list in Duke.txt.
-     * @param tasks List of tasks to be saved.
-     */
-    public void saveFile(TaskList tasks) {
-        try {
-            this.storage.save(tasks);
-        } catch (IOException e) {
-            ui.showError(e);
-        }
-    }
+
 
 
     public static void main(String[] args) {

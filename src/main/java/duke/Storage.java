@@ -91,7 +91,7 @@ public class Storage {
             } else {
                 System.out.println("Updating Duke.txt...");
             }
-            FileWriter writer = new FileWriter("Duke.txt");
+            FileWriter writer = new FileWriter("src/dukesave/Duke.txt");
             for (int i = 0; i < tasks.size(); i++) {
                 writer.write(tasks.get(i) + "\n");
             }

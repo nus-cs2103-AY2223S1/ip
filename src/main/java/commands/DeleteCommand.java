@@ -15,9 +15,9 @@ public class DeleteCommand extends Command {
         this.ui = ui;
     }
 
-    public void execute() {
+    public String execute() {
         Task toRemove = tasks.get(target);
         tasks.remove(target);
-        ui.showRemoved(toRemove);
+        return ui.showRemoved(toRemove);
     }
 }

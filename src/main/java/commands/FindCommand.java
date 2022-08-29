@@ -15,8 +15,8 @@ public class FindCommand extends Command {
         this.ui = ui;
     }
 
-    public void execute() {
-        ui.showFound(tasks.find(toFind));
+    public String execute() {
+        return ui.showFound(tasks.find(toFind));
     }
 
 }

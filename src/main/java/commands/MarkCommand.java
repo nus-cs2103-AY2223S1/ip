@@ -18,17 +18,17 @@ public class MarkCommand extends Command {
         this.isMark = isMark;
     }
 
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         if (target >= tasks.size()) {
             throw new DukeException("There is no item numbered " + target + ".");
         }
         Task toMark = tasks.get(target);
         if (isMark) {
             toMark.mark();
-            this.ui.showMarked(toMark);
+            return this.ui.showMarked(toMark);
         } else {
             toMark.unmark();
-            this.ui.showUnmarked(toMark);
+            return this.ui.showUnmarked(toMark);
         }
     }
 }

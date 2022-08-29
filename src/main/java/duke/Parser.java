@@ -7,10 +7,12 @@ public class Parser {
     private final Ui ui;
 
     private TaskList tasks;
+    private Storage storage;
     private boolean isOpen;
-    public Parser(Ui ui, TaskList tasks) {
+    public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
         this.tasks = tasks;
+        this.storage = storage;
         this.isOpen = true;
     }
 
@@ -21,7 +23,7 @@ public class Parser {
     public Command read(String input) throws DukeException {
         if (input.equals("bye")) {
             this.isOpen = false;
-            return new ByeCommand(this.ui);
+            return new ByeCommand(this.tasks, this.ui, this.storage);
         } else if (input.equals("list")) {
             return new ListCommand(this.tasks, this.ui);
         } else if (input.startsWith("mark")) {

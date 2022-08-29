@@ -9,7 +9,7 @@ public class UnknownCommand extends Command {
         this.ui = ui;
     }
 
-    public void execute() {
-        ui.showUnknown();
+    public String execute() {
+        return ui.showUnknown();
     }
 }

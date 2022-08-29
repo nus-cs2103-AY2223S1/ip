@@ -1,5 +1,6 @@
   [T] [ ] Buy eggs
-  [T] [X] Charge laptop
+  [T] [ ] Charge laptop
   [E] [ ] Attend Web3 Meetup (at: Raffles Place)
   [D] [X] Drink water (by: 2022-08-26)
   [E] [ ] Huiwen's Birthday (at: Huiwen's house)
+  [T] [ ] ES2660 Presentation Preparation
