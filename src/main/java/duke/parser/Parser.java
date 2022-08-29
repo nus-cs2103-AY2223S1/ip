@@ -6,8 +6,21 @@ import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
 import duke.exception.DukeNumberFormatException;
 
+/**
+ * Parser is a Parser that parses the user input.
+ *
+ * @author John Russell Himawan
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Parser {
 
+    /**
+     * Returns the proper Command indicated by the user input.
+     *
+     * @param command String representation of the command.
+     * @return The command by user.
+     * @throws DukeException The exception thrown when an action is unauthorized by Duke.
+     */
     public static Command parse(String command) throws DukeException {
         if (command.equals("bye")) {
             return new ByeCommand();

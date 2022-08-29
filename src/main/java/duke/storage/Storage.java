@@ -14,14 +14,32 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Storage is a Storage that loads and saves data to file.
+ *
+ * @author John Russell Himawan
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Storage {
     private static final String DIR = System.getProperty("user.dir");
     private final String filePath;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath The path of the file to store data.
+     */
     public Storage (String filePath) {
         this.filePath = DIR + "/" + filePath;
     }
 
+    /**
+     * Loads the data from the file.
+     *
+     * @return ArrayList containing tasks.
+     * @throws DukeException The exception thrown when an action is unauthorized by Duke.
+     * @throws IOException The exception thrown when accessing files is incorrect.
+     */
     public ArrayList<Task> load() throws DukeException, IOException {
         ArrayList<Task> dukeList = new ArrayList<>();
         File file = new File(filePath);
@@ -73,7 +91,13 @@ public class Storage {
         return dukeList;
     }
 
-    public void save(TaskList tasks) throws IOException { // throws DukeIOException
+    /**
+     * Saves the data to the file.
+     *
+     * @param tasks TaskList containing the tasks.
+     * @throws IOException The exception thrown when accessing files is incorrect.
+     */
+    public void save(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
