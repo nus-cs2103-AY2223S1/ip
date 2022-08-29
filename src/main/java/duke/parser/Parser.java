@@ -38,7 +38,7 @@ public class Parser {
      * @throws DukeException throws an exception when there is unexpected input.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        String[] arr = fullCommand.trim().split(" ", 2);
+        String[] arr = fullCommand.trim().split("\\s+", 2);
         String taskType = arr[TASK_TYPE];
         switch (taskType.toUpperCase()) {
         case "BYE":
