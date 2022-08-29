@@ -15,57 +15,60 @@ public class Parser {
      * @param input The user's input.
      * @param tasks The TaskList being used.
      * @param storage The storage object being used.
-     * @param ui The Ui instance that has been initialised.
      */
-    public static void parse(String input, TaskList tasks, Storage storage, Ui ui) {
+    public static String parse(String input, TaskList tasks, Storage storage) {
         ArrayList<String> split = new ArrayList<String>(Arrays.asList(input.split(" ")));
         String first = split.remove(0);
         String rest = String.join(" ", split);
 
         if (first.equals("list")) {
             //Handle listing of tasks
-            ui.say(tasks.listTasks());
+            return tasks.listTasks();
 
         } else if (first.equals("mark")) {
             //Mark a task as done
             try {
-                ui.say(tasks.markTask(rest));
+                String message = tasks.markTask(rest);
                 storage.writeToFile(tasks);
+                return message;
             } catch (DukeException ex) {
-                ui.say(ex.toString());
+                return ex.toString();
             }
         } else if (first.equals("unmark")) {
             //Mark a task as not done
             try {
-                ui.say(tasks.unmarkTask(rest));
+                String message = tasks.unmarkTask(rest);
                 storage.writeToFile(tasks);
+                return message;
             } catch (DukeException ex) {
-                ui.say(ex.toString());
+                return ex.toString();
             }
         } else if (first.equals("delete")) {
             //Delete a task at a given index
             try {
-                ui.say(tasks.deleteTask(rest));
+                String message = tasks.deleteTask(rest);
                 storage.writeToFile(tasks);
+                return message;
             } catch (DukeException ex) {
-                ui.say(ex.toString());
+                return ex.toString();
             }
         } else if (first.equals("todo") || first.equals("deadline") || first.equals("event")) {
             //Else, add task to list
             try {
-                ui.say(tasks.addTask(rest, first, false, false));
+                String message = tasks.addTask(rest, first, false, false);
                 storage.writeToFile(tasks);
+                return message;
             } catch (DukeException ex) {
-                ui.say(ex.toString());
+                return ex.toString();
             }
         } else if (first.equals("find")){
             try {
-                ui.say(tasks.find(rest));
+                return tasks.find(rest);
             } catch (DukeException ex) {
-                ui.say(ex.toString());
+                return ex.toString();
             }
         } else {
-            ui.say("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
     }
 
