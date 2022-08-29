@@ -1,10 +1,18 @@
+package chad.task;
+
 import chad.task.Todo;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test todo class
+ */
 public class TestTodo {
+    /**
+     * Test if todo instance can be created by testing its toString()
+     */
     @Test
     public void testToString() {
         Todo t;
