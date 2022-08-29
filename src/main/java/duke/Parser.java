@@ -1,12 +1,6 @@
 package duke;
 
-import duke.commands.Command;
-import duke.commands.ByeCommand;
-import duke.commands.ListCommand;
-import duke.commands.NumericCommand;
-import duke.commands.TodoCommand;
-import duke.commands.DeadlineCommand;
-import duke.commands.EventCommand;
+import duke.commands.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -75,6 +69,11 @@ public class Parser {
             String eventLocationString = combineStringArray(inputStringArray, atSplitter + 1, inputStringArray.length);
             return new EventCommand(eventName, eventLocationString);
 
+        case "find":
+            validateArgument(inputStringArray);
+            String searchKeyword = inputStringArray[1];
+            return new FindCommand(searchKeyword);
+
         default:
             throw new DukeException("No suitable name for that task");
         }
@@ -82,7 +81,7 @@ public class Parser {
 
     private void validateArgument(String[] inputStringArray) throws DukeException {
         if (inputStringArray.length == 1) {
-            throw new DukeException("Please enter an argument (number) after mark!");
+            throw new DukeException("Please enter an argument after the command");
         }
     }
 
