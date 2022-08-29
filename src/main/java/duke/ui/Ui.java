@@ -4,6 +4,8 @@ import duke.task.Task;
 
 /**
  * Deals with interactions with the user.
+ *
+ * @author ish1506
  */
 public class Ui {
 

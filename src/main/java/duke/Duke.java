@@ -13,6 +13,11 @@ import duke.ui.Ui;
 
 import java.util.Scanner;
 
+/**
+ * A personal assistant chatbot that helps users keep track of tasks to complete.
+ *
+ * @author ish1506
+ */
 public class Duke {
     private final TaskList tasks;
     private final Ui ui;

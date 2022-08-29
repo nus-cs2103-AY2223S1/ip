@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Deals with making sense of the user command.
+ * Deals with making sense of the user's commands.
+ *
+ * @author ish1506
  */
 public class Parser {
     private final String input;
@@ -15,24 +17,47 @@ public class Parser {
     private int taskIndex = -1;
     private String[] args;
 
+    /**
+     * Constructs the <code>Parser</code> object given an input string.
+     *
+     * @param input the user input.
+     */
     public Parser(String input) {
         this.input = input;
     }
 
+    /**
+     * Getter for Command.
+     *
+     * @return the Command.
+     */
     public Command getCommand() {
         return command;
     }
+
+    /**
+     * Getter for task index, if any.
+     *
+     * @return the task index if applicable, else return -1.
+     */
 
     public int getTaskIndex() {
         return taskIndex;
     }
 
+    /**
+     * Getter for the arguments of the user input, if any.
+     *
+     * @return a String array containing the command arguments.
+     */
     public String[] getArgs() {
         return args;
     }
 
     /**
-     * Parses the user input to get the command and arguments
+     * Parses the user input to get the command and its arguments.
+     *
+     * @throws DukeException if the input cannot be parsed.
      */
     public void parse() throws DukeException {
         List<String> listOfInputs = Arrays.asList(input.split(" "));
