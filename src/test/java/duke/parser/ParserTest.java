@@ -1,11 +1,13 @@
 package duke.parser;
 
-import duke.Duke;
-import duke.command.ExitCommand;
-import duke.exception.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import duke.command.ExitCommand;
+import duke.exception.DukeException;
 
 public class ParserTest {
 
@@ -35,8 +37,8 @@ public class ParserTest {
         try {
             Parser.parse("deadline return book /by 2 jan 2020 1800");
         } catch (DukeException e) {
-            assertEquals(e.toString(), "OOPS!!! The description of the Date is invalid!\n" +
-                    "Please input the date in d/MM/yyyy format e.g. 2/12/2019 1800.");
+            assertEquals(e.toString(), "OOPS!!! The description of the Date is invalid!\n"
+                    + "Please input the date in d/MM/yyyy format e.g. 2/12/2019 1800.");
         }
     }
 
