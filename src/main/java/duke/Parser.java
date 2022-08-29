@@ -3,6 +3,7 @@ package duke;
 import duke.command.Command;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.DeleteCommand;
 import duke.command.DeadlineCommand;
@@ -87,6 +88,12 @@ public class Parser {
                     timeString, DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
 
             return new EventCommand(getTaskName(tmp), time);
+
+        } else if (input.startsWith("find")) {
+            String[] msg = input.split(" ");
+            if (msg.length < 2) throw(new DukeException("nothing to find!"));
+
+            return new FindCommand(getTaskName(msg));
 
         } else {
             throw(new DukeException("I do not understand!"));
