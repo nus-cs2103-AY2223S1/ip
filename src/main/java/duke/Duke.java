@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.task.TaskList;
 
 /**
@@ -25,7 +26,7 @@ class Duke {
     } catch (DukeException e) {
       e.printStackTrace();
     }
-    parser = new Parser(taskList, ui);
+    parser = new Parser(ui);
   }
 
   private void run() {
@@ -39,7 +40,8 @@ class Duke {
       if (input == null || input.equals("bye")) {
         continueToRun = false;
       } else {
-        parser.parse(input);
+        Command command = parser.parse(input);
+        command.execute(taskList, ui);
       }
     }
 

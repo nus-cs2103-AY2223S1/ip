@@ -1,141 +1,139 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
-import duke.task.Deadline;
-import duke.task.Event;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import java.util.stream.IntStream;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.HelpCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * Represents an abstraction that handles inputs from the user.
  */
 public class Parser {
-    private TaskList taskList;
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<argument>.*)");
     private Ui ui;
 
     /**
      * Initialises the parser.
      *
-     * @param taskList TaskList
-     * @param ui       Ui
+     * @param ui Ui
      */
-    public Parser(TaskList taskList, Ui ui) {
-        this.taskList = taskList;
+    public Parser(Ui ui) {
         this.ui = ui;
+    }
+
+    private Command prepareTodo(String argument) {
+        Pattern pattern = Pattern.compile("(.+)");
+        Matcher matcher = pattern.matcher(argument);
+        if (!matcher.matches()) {
+            ui.printMessage("The description of a todo cannot be empty.");
+            return new HelpCommand();
+        }
+        return new TodoCommand(argument);
+    }
+
+    private Command prepareDeadline(String argument) {
+        Pattern pattern = Pattern.compile("(?<description>.+?)\\s/by\\s(?<dateTime>.+)");
+        Matcher matcher = pattern.matcher(argument);
+        if (!matcher.matches()) {
+            ui.printMessage("The description or datetime cannot be empty");
+            return new HelpCommand();
+        }
+        String description = matcher.group("description").strip();
+        String dateTime = matcher.group("dateTime").strip();
+        return new DeadlineCommand(description, dateTime);
+    }
+
+    private Command prepareEvent(String argument) {
+        Pattern pattern = Pattern.compile("(?<description>.+?)\\s/at\\s(?<dateTime>.+)");
+        Matcher matcher = pattern.matcher(argument);
+        if (!matcher.matches()) {
+            ui.printMessage("The description or datetime cannot be empty");
+            return new HelpCommand();
+        }
+        String description = matcher.group("description").strip();
+        String dateTime = matcher.group("dateTime").strip();
+        return new EventCommand(description, dateTime);
+    }
+
+    private Command prepareFind(String argument) {
+        Pattern pattern = Pattern.compile("(.+)");
+        Matcher matcher = pattern.matcher(argument);
+        if (!matcher.matches()) {
+            ui.printMessage("The description of find cannot be empty.");
+            return new HelpCommand();
+        }
+        return new FindCommand(argument);
     }
 
     /**
      * Parses the input from the user
      *
      * @param input Input from the user
+     * @return command Command from the parsed input
      */
-    public void parse(String input) {
-        String[] inputArray = input.split(" ", 2);
+    public Command parse(String input) {
+        Matcher matcher = Parser.BASIC_COMMAND_FORMAT.matcher(input);
+        if (!matcher.matches()) {
+            ui.printMessage("No matches");
+            return new HelpCommand();
+        }
+        String command = matcher.group("commandWord").strip();
+        String argument = matcher.group("argument").strip();
+        switch (command) {
 
-        switch (inputArray[0]) {
-        case "list": {
-            String[] strArray = IntStream.range(0, taskList.size())
-                    .mapToObj(i -> String.format("%d.%s", i + 1, taskList.get(i).toString())).toArray(String[]::new);
-            ui.printMessage(strArray);
-            break;
+        case ListCommand.COMMAND_WORD: {
+            return new ListCommand();
         }
-        case "mark": {
+        case MarkCommand.COMMAND_WORD: {
             try {
-                Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
-                task.markAsDone();
-                ui.printMessage(String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString()));
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                int index = Integer.parseInt(argument) - 1;
+                return new MarkCommand(index);
+            } catch (NumberFormatException e) {
                 ui.printMessage("Please use the format: mark <integer>");
-            } catch (IndexOutOfBoundsException e) {
-                ui.printMessage("Invalid task index");
             }
-            break;
+            return new HelpCommand();
         }
-        case "unmark": {
+        case UnmarkCommand.COMMAND_WORD: {
             try {
-                Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
-                task.markNotDone();
-                ui.printMessage(String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString()));
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                ui.printMessage("Please use the format: unmark <integer>");
-            } catch (IndexOutOfBoundsException e) {
-                ui.printMessage("Invalid task index");
+                int index = Integer.parseInt(argument) - 1;
+                return new UnmarkCommand(index);
+            } catch (NumberFormatException e) {
+                ui.printMessage("Please use the format: mark <integer>");
             }
-            break;
+            return new HelpCommand();
         }
-        case "todo": {
-            try {
-                String withoutPrefix = inputArray[1];
-                Todo todo = new Todo(withoutPrefix);
-                taskList.add(todo);
-                ui.printMessage(ui.wrapMessage("Got it. I've added this task:", todo.toString(), taskList));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printMessage("The description of a todo cannot be empty.");
-            }
-            break;
+        case TodoCommand.COMMAND_WORD: {
+            return prepareTodo(argument);
         }
-        case "deadline": {
-            try {
-                String withoutPrefix = inputArray[1];
-                String[] strArray = withoutPrefix.split("/");
-                Deadline deadline = new Deadline(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
-                taskList.add(deadline);
-                ui.printMessage(ui.wrapMessage("Got it. I've added this task:", deadline.toString(), taskList));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                if (inputArray.length == 1) {
-                    ui.printMessage("The description of a deadline cannot be empty.");
-                } else {
-                    ui.printMessage("Please specify a day, date, or time");
-                }
-            }
-            break;
+        case DeadlineCommand.COMMAND_WORD: {
+            return prepareDeadline(argument);
         }
-        case "event": {
-            try {
-                String withoutPrefix = inputArray[1];
-                String[] strArray = withoutPrefix.split("/");
-                Event event = new Event(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
-                taskList.add(event);
-                ui.printMessage(ui.wrapMessage("Got it. I've added this task:", event.toString(), taskList));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                if (inputArray.length == 1) {
-                    ui.printMessage("The description of a event cannot be empty.");
-                } else {
-                    ui.printMessage("Please specify a day, date, or time");
-                }
-            }
-            break;
+        case EventCommand.COMMAND_WORD: {
+            return prepareEvent(argument);
         }
-        case "delete": {
+        case DeleteCommand.COMMAND_WORD: {
             try {
-                String withoutPrefix = inputArray[1];
-                int index = Integer.parseInt(withoutPrefix);
-                Task task = taskList.get(index - 1);
-                taskList.remove(index - 1);
-                ui.printMessage(ui.wrapMessage("Noted. I've removed this task:", task.toString(), taskList));
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                int index = Integer.parseInt(argument) - 1;
+                return new DeleteCommand(index);
+            } catch (NumberFormatException e) {
                 ui.printMessage("Please use the format: delete <integer>");
-            } catch (IndexOutOfBoundsException e) {
-                ui.printMessage("Invalid task index");
             }
-            break;
+            return new HelpCommand();
         }
-        case "find": {
-            try {
-                String withoutPrefix = inputArray[1];
-                TaskList filteredList = taskList.findTask(withoutPrefix);
-                String[] strArray = IntStream.range(0, filteredList.size()).mapToObj(i -> taskList.get(i).toString())
-                        .toArray(String[]::new);
-                ui.printMessage(strArray, "Here are the matching tasks in your list:");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printMessage("Please use the format: find <description>");
-            }
-            break;
+        case FindCommand.COMMAND_WORD: {
+            return prepareFind(argument);
         }
         default:
-            ui.printMessage("I'm sorry, but I don't know what that means :-(");
+            return new HelpCommand();
         }
     }
 }
