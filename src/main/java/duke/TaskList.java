@@ -48,6 +48,22 @@ public class TaskList {
         ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
     }
 
+    /**
+     * Prints list of tasks in TaskList that contains identifier.
+     * 
+     * @param identifier String to search for tasks.
+     */
+    public void findTask(String identifier) {
+        String messageList = "";
+        int count = 1;
+        for (Task t: taskList) {
+            if (t.toString().contains(identifier)) {
+                messageList += "\n    " + count++ + ". " + t;
+            }
+        }
+        ui.printMessage("Here are the matching tasks in your list:\n    " + messageList);
+    }
+
     public int getSize() {
         return taskList.size();
     }
