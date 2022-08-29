@@ -3,10 +3,13 @@ package duke;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser class object.
+ */
 public class Parser {
 
     /**
-     * Parser parses the commands from user.
+     * Creates a Parser object by parsing the commands from user.
      *
      * @param command     is the response from user.
      * @param listOfTasks is the list of tasks stored.

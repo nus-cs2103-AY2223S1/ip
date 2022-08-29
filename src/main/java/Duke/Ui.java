@@ -21,9 +21,9 @@ public class Ui {
      */
     public void showWelcome() {
         System.out.println("Hello! I'm Duke\nHow may I help you?\n");
-        System.out.println("list - lists out your tasks\nbye - quit\ntodo - todo task\n" +
-                "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n" +
-                "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");
+        System.out.println("list - lists out your tasks\nbye - quit\ntodo - todo task\n"
+                + "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n"
+                + "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");
     }
 
     /**
@@ -62,9 +62,9 @@ public class Ui {
      * @param listOfTasks containing tasks stored by user.
      */
     public void showMarkedTask(int taskIndex, TaskList listOfTasks) {
-        System.out.println("Nice! I've marked this task as done:\n" + "[" +
-                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " +
-                listOfTasks.getTask(taskIndex).getDescription());
+        System.out.println("Nice! I've marked this task as done:\n" + "["
+                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
+                + listOfTasks.getTask(taskIndex).getDescription());
     }
 
     /**
@@ -74,9 +74,9 @@ public class Ui {
      * @param listOfTasks containing tasks stored by user.
      */
     public void showUnmarkedTask(int taskIndex, TaskList listOfTasks) {
-        System.out.println("Ok, I've marked this task as not done yet:\n" + "[" +
-                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " +
-                listOfTasks.getTask(taskIndex).getDescription());
+        System.out.println("Ok, I've marked this task as not done yet:\n" + "["
+                + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
+                + listOfTasks.getTask(taskIndex).getDescription());
     }
 
     /**
@@ -86,8 +86,8 @@ public class Ui {
      * @param listOfTasks containing tasks stored by user.
      */
     public void showToDoTask(Task toDoTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + toDoTask + "\nNow you have " +
-                listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
     }
 
     /**
@@ -97,8 +97,8 @@ public class Ui {
      * @param listOfTasks  containing tasks stored by user.
      */
     public void showDeadlineTask(Task deadlineTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + deadlineTask + "\nNow you have " +
-                listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
     }
 
     /**
@@ -108,8 +108,8 @@ public class Ui {
      * @param listOfTasks containing tasks stored by user.
      */
     public void showEventTask(Task eventTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + eventTask + "\nNow you have " +
-                listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Got it. I've added this task:\n" + eventTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
     }
 
     /**
@@ -119,8 +119,8 @@ public class Ui {
      * @param listOfTasks containing tasks stored by user.
      */
     public void showDeletedTask(Task deletedTask, TaskList listOfTasks) {
-        System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have " +
-                listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
 
     }
 

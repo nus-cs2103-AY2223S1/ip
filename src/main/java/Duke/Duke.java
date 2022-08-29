@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * Represents the Duke bot, which has a task list, a storage space and a user interface.
+ * Duke bot object class, which has a task list, a storage space and a user interface.
  */
 public class Duke {
 
