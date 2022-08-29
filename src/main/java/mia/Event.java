@@ -7,6 +7,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/**
+ * An {@code Event} is a {@code Task} that has a start and end time.
+ *
+ * @author Richard Dominick
+ */
 public class Event extends Task {
     private LocalDate startDate;
     private LocalTime startTime;

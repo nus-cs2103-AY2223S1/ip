@@ -1,5 +1,10 @@
 package mia;
 
+/**
+ * A {@code Todo} is a {@code Task} with no additional functionality.
+ *
+ * @author Richard Dominick
+ */
 public class Todo extends Task {
 
     Todo(String title, boolean isCompleted) {

@@ -7,6 +7,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/**
+ * A {@code Deadline} is a {@code Task} that has a due date and time.
+ *
+ * @author Richard Dominick
+ */
 public class Deadline extends Task {
     private LocalDate byDate;
     private LocalTime byTime;

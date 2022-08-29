@@ -3,6 +3,13 @@ package general.ui;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * A {@code ChatWindow} formats messages as chat bubbles. There are two
+ * types of messages: commands, which are sent by the user and appear on the left,
+ * and responses, which are sent by the program and appear on the right.
+ *
+ * @author Richard Dominick
+ */
 public class ChatWindow {
     private final int windowWidth;
     private final Scanner sc;

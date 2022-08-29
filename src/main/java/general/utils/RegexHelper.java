@@ -8,6 +8,11 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A utility class containing useful methods to parse dates and times from a given string.
+ *
+ * @author Richard Dominick
+ */
 public class RegexHelper {
     // TODO: Make regex validate months date according to month length
     public static final Pattern DATE_REGEX = Pattern.compile("\\b" + // word boundary

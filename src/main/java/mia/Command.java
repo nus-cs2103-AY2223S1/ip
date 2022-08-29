@@ -1,5 +1,10 @@
 package mia;
 
+/**
+ * A {@code Command} is an actionable item that can be run by {@code Mia}.
+ *
+ * @author Richard Dominick
+ */
 abstract class Command {
     private final Mia context;
     private final boolean isExit;
