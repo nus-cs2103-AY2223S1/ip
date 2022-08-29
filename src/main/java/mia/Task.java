@@ -33,7 +33,7 @@ abstract public class Task {
     public boolean matches(String query) {
         final String[] queryWords = query.toLowerCase().split("\\s");
         for (String word : queryWords) {
-            if (!title.contains(word)) {
+            if (!title.toLowerCase().contains(word)) {
                 return false;
             }
         }
