@@ -51,6 +51,18 @@ public class Ui {
                 makeIndent("Now you have " + size + " task(s) in the list.\n"));
     }
 
+    public void displayMatch(TaskList matchedTasks) {
+        int size = matchedTasks.getSize();
+
+        String list = "These tasks matches your keyword: \n";
+
+        for (int i = 0; i < size; i++) {
+            list = list + makeIndent((i + 1) + ". " + matchedTasks.getTask(i).toString() + "\n");
+        }
+
+        printMessage(list);
+    }
+
     public void displayList(TaskList tasks) {
         int size = tasks.getSize();
 
