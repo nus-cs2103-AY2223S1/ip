@@ -30,7 +30,7 @@ import duke.task.Todo;
 public class Parser {
 
     /**
-     * Constructor for Parser.
+     * Constructor for Parser object in program.
      *
      */
     public Parser() {

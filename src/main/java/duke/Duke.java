@@ -3,7 +3,7 @@ import duke.command.Command;
 import duke.exception.DukeException;
 
 /**
- * Class to simulate the entire program.
+ * Class to encapsulate Task monitoring program in Duke object.
  */
 public class Duke {
     private static String filePath = "data/list.txt";
