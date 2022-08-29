@@ -80,7 +80,6 @@ public class Storage {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            Ui.separationLine();
             System.out.println(e.getMessage());
         }
         return tasks;

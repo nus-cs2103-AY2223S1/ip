@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.InvalidIndexException;
 import duke.task.TaskList;
 
@@ -27,7 +26,7 @@ public class DeleteCommand extends Command {
      * saves updated tasklist to task file
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Storage storage) {
         taskList.removeTask(index);
         storage.saveTaskFile(taskList);
     }

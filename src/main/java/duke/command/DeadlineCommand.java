@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidTimeException;
 import duke.task.Deadline;
@@ -35,7 +34,7 @@ public class DeadlineCommand extends Command {
      * saves the tasklist to task file
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Storage storage) {
         Deadline deadline = new Deadline(this.desc, this.time);
         taskList.addTask(deadline);
         storage.saveTaskFile(taskList);

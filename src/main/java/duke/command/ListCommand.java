@@ -13,7 +13,7 @@ public class ListCommand extends Command {
      * Prints out all tasks in tasklist
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.printTasks();
+    public void execute(TaskList taskList, Storage storage) {
+        Ui.dukeResponse += taskList.listTasks();
     }
 }

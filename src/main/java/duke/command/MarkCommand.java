@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.InvalidIndexException;
 import duke.task.TaskList;
 
@@ -28,7 +27,7 @@ public class MarkCommand extends Command {
      * saves tasklist to task file
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Storage storage) {
         taskList.markTask(this.isMark, this.index);
         storage.saveTaskFile(taskList);
     }
