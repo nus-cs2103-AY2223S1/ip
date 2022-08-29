@@ -1,17 +1,20 @@
-    __________________________________________________
-    Beep boop! I'm Stashy
-    What can I do for you, busy guy?
-    __________________________________________________
+
+ ____  ____  __   ____  _  _  _  _ 
+/ ___)(_  _)/ _\ / ___)/ )( \( \/ )
+\___ \  )( /    \\___ \) __ ( )  / 
+(____/ (__)\_/\_/(____/\_)(_/(__/  
+
+ Beep boop! Stashy here! What can I do for you?
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty todo description :(
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
+    There, we have a new todo:
       [T][ ] borrow book
     You have 1 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
+    There, we have a new todo:
       [T][ ] borrow book with /at perhaps?
     You have 2 task(s) in the list.
     __________________________________________________
@@ -27,20 +30,16 @@
     ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Specify the due date of the deadline, perhaps?
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Specify the due date of the deadline, perhaps?
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
-      [D][ ] do there (by: 2.45pm)
-    You have 3 task(s) in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
-      [D][ ] do this (by: you do that)
-    You have 4 task(s) in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
@@ -49,27 +48,21 @@
     Listing all task(s) in your list...
     1.[T][ ] borrow book
     2.[T][ ] borrow book with /at perhaps?
-    3.[D][ ] do there (by: 2.45pm)
-    4.[D][ ] do this (by: you do that)
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Specify the time of the event, perhaps?
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Specify the time of the event, perhaps?
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
-      [E][ ] do that (at: the right time)
-    You have 5 task(s) in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    There, we have a new task:
-      [E][ ] do this (at: do that)
-    You have 6 task(s) in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
@@ -78,86 +71,67 @@
     Listing all task(s) in your list...
     1.[T][ ] borrow book
     2.[T][ ] borrow book with /at perhaps?
-    3.[D][ ] do there (by: 2.45pm)
-    4.[D][ ] do this (by: you do that)
-    5.[E][ ] do that (at: the right time)
-    6.[E][ ] do this (at: do that)
     __________________________________________________
     __________________________________________________
     LFG, marking this task as done!
       [T][X] borrow book
     __________________________________________________
     __________________________________________________
-    LFG, marking this task as done!
-      [D][X] do this (by: you do that)
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 4
     __________________________________________________
     __________________________________________________
     L + ratio, unmarking this task as not done!
       [T][ ] borrow book
     __________________________________________________
     __________________________________________________
-    L + ratio, unmarking this task as not done!
-      [E][ ] do that (at: the right time)
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 5
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
     1.[T][ ] borrow book
     2.[T][ ] borrow book with /at perhaps?
-    3.[D][ ] do there (by: 2.45pm)
-    4.[D][X] do this (by: you do that)
-    5.[E][ ] do that (at: the right time)
-    6.[E][ ] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     LFG, marking this task as done!
       [T][X] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    LFG, marking this task as done!
-      [E][X] do this (at: do that)
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
     1.[T][ ] borrow book
     2.[T][X] borrow book with /at perhaps?
-    3.[D][ ] do there (by: 2.45pm)
-    4.[D][X] do this (by: you do that)
-    5.[E][ ] do that (at: the right time)
-    6.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
     Task has been removed!
       [T][ ] borrow book
-    You have 5 task(s) in the list.
+    You have 1 task(s) in the list.
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
     1.[T][X] borrow book with /at perhaps?
-    2.[D][ ] do there (by: 2.45pm)
-    3.[D][X] do this (by: you do that)
-    4.[E][ ] do that (at: the right time)
-    5.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 0
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: -17
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 30
@@ -165,38 +139,139 @@
     __________________________________________________
     Task has been removed!
       [T][X] borrow book with /at perhaps?
-    You have 4 task(s) in the list.
+    You have 0 task(s) in the list.
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[D][ ] do there (by: 2.45pm)
-    2.[D][X] do this (by: you do that)
-    3.[E][ ] do that (at: the right time)
-    4.[E][X] do this (at: do that)
+    You have no tasks right now.
     __________________________________________________
     __________________________________________________
-    Task has been removed!
-      [D][X] do this (by: you do that)
-    You have 3 task(s) in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[D][ ] do there (by: 2.45pm)
-    2.[E][ ] do that (at: the right time)
-    3.[E][X] do this (at: do that)
+    You have no tasks right now.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
     __________________________________________________
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!! I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
-    Stashy says goodbye!
+    There, we have a new deadline:
+      [D][ ] go to CLB (by: Dec 31 2021 1817)
+    You have 1 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    There, we have a new event:
+      [E][ ] go to CLB (at: Dec 31 2021 1817)
+    You have 2 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    __________________________________________________
+    __________________________________________________
+    There, we have a new event:
+      [E][ ] go to CLB (at: Dec 31 2029 1817)
+    You have 3 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    There, we have a new event:
+      [E][ ] go to CLB (at: Feb 28 2021 1817)
+    You have 4 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    There, we have a new event:
+      [E][ ] go to CLB (at: Dec 31 2021 0017)
+    You have 5 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    L + ratio, unmarking this task as not done!
+      [D][ ] go to CLB (by: Dec 31 2021 1817)
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] go to CLB (at: Dec 31 2029 1817)
+    __________________________________________________
+    __________________________________________________
+    L + ratio, unmarking this task as not done!
+      [E][ ] go to CLB (at: Dec 31 2029 1817)
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] go to CLB (at: Feb 28 2021 1817)
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] go to CLB (at: Dec 31 2021 0017)
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 7
+    __________________________________________________
+    __________________________________________________
+    L + ratio, unmarking this task as not done!
+      [E][ ] go to CLB (at: Dec 31 2021 1817)
+    __________________________________________________
+    __________________________________________________
+    Listing all task(s) in your list...
+    1.[D][ ] go to CLB (by: Dec 31 2021 1817)
+    2.[E][ ] go to CLB (at: Dec 31 2021 1817)
+    3.[E][ ] go to CLB (at: Dec 31 2029 1817)
+    4.[E][X] go to CLB (at: Feb 28 2021 1817)
+    5.[E][X] go to CLB (at: Dec 31 2021 0017)
+    __________________________________________________
+    __________________________________________________
+ --                                                  -++-  
+:-:+:-                                               ++::+ 
++++-::-    ::+:                                       ++:::
+ ++:++:::-+::++            :-  ++              -::-   :+++:
+  +++::::++++-           :=*::--:*#=+-         +:::: -+:--+
+  :*+++::::::         :*+:::::::+*+:::+*:       :+::-::+:::
+   ++++::::+-       :++=+:+++++++++:+*+++*-     -+++:::++++
+   -+++::+++:     -++*+++++*=###=*++++++++++    :++::++++++
+    -+++:-+:     -+++++++=##########=++++++++    +*::++++: 
+      :+++:      ++++++*###@@###@@####++++++::     +++:    
+                ::++++*##@@@@@#@@@@####+++++:+             
+                ::+++*###@@@@@@@@@@@####+++++:-            
+                ::+++####@@@@@@@@@@@####=++++:-            
+                ::++*####@#+:::::+=@#####*++++             
+                 +++#####+++::::::++=####=+++:             
+                  **###=+++++++++++++*####+*+              
+                  ++*=+++++++++++++++++*#=+*               
+                  -::*+++++++++++++++++*+::+               
+                      -+++++++++++++++*:  -                
+                          -:++***++:                       
+
+Good bye then, see you some time! - Stashy, 2022
     __________________________________________________

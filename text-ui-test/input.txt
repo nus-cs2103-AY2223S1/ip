@@ -43,4 +43,26 @@ delete a     b  c
 delete      1  2?
 delete everything!!!
 bye?
+deadline   go to CLB /by 2021/12/31 18:17
+deadline go to CLB /at 31 Dec 2021 18:17
+deadline go to CLB /at 31 Dec 2021 18:17 /by 2021/12/31 18:17
+deadline   go to CLB /by 31 Dec 2022 18:17 /at 2021/12/31 18:17
+event   go to CLB /by 2021/12/31 18:17
+event go to CLB /at 31 Dec 2021 18:17
+event go to CLB /at 31 Dec 2021 18:17 /by 2021/12/31 18:17
+event   go to CLB /by 31 Dec 2022 18:17 /at 2021/12/31 18:17
+event go to CLB /at 31 Dec 2029 18:17
+event go to CLB /at 29 Feb 2021 18:17
+event go to CLB /at 31 Dec 2021 18:61
+event go to CLB /at 31 Dec 2021 00:17
+event go to CLB /at 31 Dec 2021 24:17
+event go to CLB /at 31 Dec 2021 42:17
+unmark 1
+mark 3
+unmark 3
+mark 4
+mark 5
+mark 7
+unmark 2
+list
 bye
