@@ -1,4 +1,7 @@
-package duke;
+package duke.parser;
+
+import duke.command.Command;
+import duke.exceptions.DukeException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +15,7 @@ public class Parser {
     private int taskIndex = -1;
     private String[] args;
 
-    public Parser(String input) throws DukeException {
+    public Parser(String input) {
         this.input = input;
     }
 
@@ -33,7 +36,7 @@ public class Parser {
      */
     public void parse() throws DukeException {
         List<String> listOfInputs = Arrays.asList(input.split(" "));
-        if (listOfInputs.isEmpty()) {
+        if (input.isEmpty() || listOfInputs.isEmpty()) {
             throw new DukeException("Please enter a command!");
         } else {
             int numArgs = listOfInputs.size();
@@ -45,33 +48,33 @@ public class Parser {
                 command = Command.LIST;
             } else if (firstArg.equals("mark")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: mark (duke.task number)");
+                    throw new DukeException("Input format: mark (task number)");
                 }
                 try {
                     command = Command.MARK;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: mark (duke.task number)");
+                    throw new DukeException("Input format: mark (task number)");
                 }
             } else if (firstArg.equals("unmark")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: unmark (duke.task number)");
+                    throw new DukeException("Input format: unmark (task number)");
                 }
                 try {
                     command = Command.UNMARK;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: unmark (duke.task number)");
+                    throw new DukeException("Input format: unmark (task number)");
                 }
             } else if (firstArg.equals("delete")) {
                 if (numArgs != 2) {
-                    throw new DukeException("Input format: delete (duke.task number)");
+                    throw new DukeException("Input format: delete (task number)");
                 }
                 try {
                     command = Command.DELETE;
                     taskIndex = Integer.parseInt(listOfInputs.get(1)) - 1;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Input format: delete (duke.task number)");
+                    throw new DukeException("Input format: delete (task number)");
                 }
             } else if (firstArg.equals("todo")) {
                 if (numArgs == 1) {

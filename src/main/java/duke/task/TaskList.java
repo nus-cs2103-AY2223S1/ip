@@ -1,6 +1,4 @@
-package duke;
-
-import duke.task.Task;
+package duke.task;
 
 import java.util.ArrayList;
 
@@ -35,14 +33,5 @@ public class TaskList {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(i + 1 + ". " + list.get(i));
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder data = new StringBuilder();
-        for (Task task : this.list) {
-            data.append(task.toString() + "\n");
-        }
-        return data.toString();
     }
 }
