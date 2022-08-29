@@ -9,14 +9,15 @@ import duke.task.TaskList;
 
 import java.time.format.DateTimeParseException;
 
+
 /**
  * Duke ChatBot that is able to manage a list of tasks
  */
 public class Duke {
 
-    private Storage storage;
-    private TaskList taskList;
-    private Ui ui;
+    Storage storage;
+    TaskList taskList;
+    Ui ui;
 
     /**
      * Creates a Duke object
@@ -28,31 +29,17 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke object
+     * Executes command and returns Duke's response
      */
-    public void run() {
-        ui.welcome();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, ui, storage);
-                isExit = ui.isExit();
-            } catch (InvalidInputException | InvalidIndexException | InvalidDescriptionException | InvalidTimeException e) {
-                System.out.println(e.getMessage());
-            } catch (DateTimeParseException e) {
-                Ui.separationLine();
-                System.out.println("Enter a valid date and time! (Eg. 2020-12-25 1330)");
-                Ui.separationLine();
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(taskList, storage);
+        } catch (InvalidInputException | InvalidIndexException | InvalidDescriptionException | InvalidTimeException e) {
+            Ui.dukeResponse += e.getMessage();
+        } catch (DateTimeParseException e) {
+            Ui.dukeResponse += "Enter a valid date and time! (Eg. 2020-12-25 1330)";
         }
-        ui.bye();
-        System.exit(0);
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/TaskFile.txt").run();
+        return Ui.dukeResponse;
     }
 }
