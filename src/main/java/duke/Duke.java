@@ -12,7 +12,7 @@ public class Duke {
     private static final Ui ui = new Ui();
     private static final Parser parser = new Parser();
 
-    public static void main(String[] args) {
+    private void launch() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -26,5 +26,10 @@ public class Duke {
             command.execute(controller, ui, storage);
             ui.showCommandList();
         }
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.launch();
     }
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Task implements Serializable {
     private final String taskDescription;
+
     private boolean taskStatus;
 
     /**
@@ -45,4 +46,5 @@ public class Task implements Serializable {
     public String getTaskDescription() {
         return taskDescription;
     }
+
 }
