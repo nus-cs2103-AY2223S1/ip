@@ -15,6 +15,7 @@ bin/
 
 *.class
 data/tasks.txt
+testDir/testfile.txt
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
