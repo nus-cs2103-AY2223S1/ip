@@ -1,13 +1,15 @@
-public class Events extends Task{
-    protected String duration;
+import java.time.LocalDateTime;
 
-    public Events(String description, String duration) {
+public class Events extends Task{
+    protected LocalDateTime duration;
+
+    public Events(String description, LocalDateTime duration) {
         super(description);
         this.duration = duration;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + duration + ")";
+        return "[E]" + super.toString() + " (at: " + duration.format(DATE_TIME_FORMATTER) + ")";
     }
 }

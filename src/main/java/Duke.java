@@ -1,6 +1,11 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,20 +13,16 @@ public class Duke {
 
     private static int index = 0;
     private final static ArrayList<Task> listOfTasks = new ArrayList<>();
+    private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
-        try {
-//            new Duke().createNewDirectory();
-            new Duke().start();
-        } catch (Exception e) {
-            
-        }
+        new Duke().start();
     }
-    
 
     private static String numberOfTasks() {
-        return "Now you have " + index +  (index < 2 ? " task" : " tasks") + " in your list.";
+        return "Now you have " + index + (index < 2 ? " task" : " tasks") + " in your list.";
     }
 
     private static void getList() {
@@ -30,16 +31,23 @@ public class Duke {
             System.out.println(i + 1 + "." + listOfTasks.get(i));
         }
     }
+
+    private void start() {
+        try {
+            loadFromDisk();
+            serviceLoop();
+        } catch (DukeException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
-    private void start() throws IOException, DukeException {
-        loadFromDisk();
+    private void serviceLoop() {
         Scanner scanner = new Scanner(System.in);
-        
+
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
             String[] words = input.split(" ", 2);
             String keyword = words[0];
-
             try {
                 if (keyword.equals("bye")) {
                     bye();
@@ -63,15 +71,15 @@ public class Duke {
                 }
             } catch (DukeException ex) {
                 System.out.println(ex.getMessage());
-            } 
+            }
         }
     }
-    
+
     private void bye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
-    
-    private void mark(String[] currInput) throws DukeException{
+
+    private void mark(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
         }
@@ -82,8 +90,8 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
-    
-    private void unmark(String[] currInput) throws DukeException{
+
+    private void unmark(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
         }
@@ -94,14 +102,14 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
-    
-    private void newTaskAdded() throws DukeException{
+
+    private void newTaskAdded() throws DukeException {
         index++;
         System.out.println("Got it. I've added this task: \n" + listOfTasks.get(index - 1) + "\n" + numberOfTasks());
         saveToDisk();
     }
-    
-    private void createToDos(String[] currInput) throws DukeException{
+
+    private void createToDos(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
         }
@@ -112,7 +120,8 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
-    private void createDeadlines(String[] currInput) throws DukeException{
+
+    private void createDeadlines(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
         }
@@ -120,14 +129,17 @@ public class Duke {
             String[] taskDetails = currInput[1].split(" /by ", 2);
             String task = taskDetails[0];
             String deadline = taskDetails[1];
-            listOfTasks.add(new Deadlines(task, deadline));
+            LocalDateTime dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMATTER);
+            listOfTasks.add(new Deadlines(task, dateTime));
             newTaskAdded();
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
+        } catch (DateTimeException ex) {
+            throw new DukeDateTimeException();
         }
     }
 
-    private void createEvents(String[] currInput) throws DukeException{
+    private void createEvents(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
         }
@@ -135,13 +147,16 @@ public class Duke {
             String[] taskDetails = currInput[1].split(" /at ", 2);
             String task = taskDetails[0];
             String eventTime = taskDetails[1];
-            listOfTasks.add(new Events(task, eventTime));
+            LocalDateTime dateTime = LocalDateTime.parse(eventTime, DATE_TIME_FORMATTER);
+            listOfTasks.add(new Events(task, dateTime));
             newTaskAdded();
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
+        } catch (DateTimeException ex) {
+            throw new DukeDateTimeException();
         }
     }
-    
+
     private void deleteTask(String[] currInput) throws DukeException {
         if (currInput.length < 2) {
             throw new DukeEmptyException(currInput[0]);
@@ -156,13 +171,12 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
-    
-    private void loadFromDisk() throws DukeException, IOException {
-        Files.createDirectories(Paths.get("data"));
-        File file = new File("data/Duke.txt");
-        file.createNewFile();
-        
+
+    private void loadFromDisk() throws DukeException {
         try {
+            Files.createDirectories(Paths.get("data"));
+            File file = new File("data/Duke.txt");
+            file.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -183,12 +197,12 @@ public class Duke {
                 index = listOfTasks.size();
             }
             reader.close();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             throw new DukeException(ex.getMessage());
         }
     }
-    
-    private void saveToDisk() throws DukeException{
+
+    private void saveToDisk() throws DukeException {
         try {
             File file = new File("data/Duke.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -201,13 +215,13 @@ public class Duke {
                     writer.write("D|");
                     writer.write(task.isDone ? "1|" : "0|");
                     writer.write(task.description + "|");
-                    writer.write(((Deadlines) task).by);
+                    writer.write(((Deadlines) task).by.format(DATE_TIME_FORMATTER));
                 } else if (task instanceof Events) {
                     writer.write("E|");
                     writer.write(task.isDone ? "1|" : "0|");
                     writer.write(task.description + "|");
-                    writer.write(((Events) task).duration);
-                } 
+                    writer.write(((Events) task).duration.format(DATE_TIME_FORMATTER));
+                }
                 writer.write("\n");
             }
             writer.close();
@@ -215,21 +229,21 @@ public class Duke {
             throw new DukeException(ex.getMessage());
         }
     }
-    
+
     private void loadToDos(String isDone, String taskDetails) {
         Task newTask = new ToDos(taskDetails);
         if (isDone.equals("1")) newTask.markAsDone();
         listOfTasks.add(newTask);
     }
-    
+
     private void loadDeadlines(String isDone, String taskDetails, String dateTime) {
-        Task newTask = new Deadlines(taskDetails, dateTime);
+        Task newTask = new Deadlines(taskDetails, LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER));
         if (isDone.equals("1")) newTask.markAsDone();
         listOfTasks.add(newTask);
     }
-    
+
     private void loadEvents(String isDone, String taskDetails, String dateTime) {
-        Task newTask = new Events(taskDetails, dateTime);
+        Task newTask = new Events(taskDetails, LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER));
         if (isDone.equals("1")) newTask.markAsDone();
         listOfTasks.add(newTask);
     }
