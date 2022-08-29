@@ -1,2 +1,1 @@
-T|1|borrow book
-D|0|return book|02/12/2019 18:30
+T|1|borrow books
