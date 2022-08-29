@@ -10,11 +10,19 @@ import duke.ui.Ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Duke is the class where the main logic of the program is located.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath String representation of path of the file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -28,6 +36,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the program.
+     */
     public void run() {
         ui.displayGreeting();
         boolean isExit = false;
