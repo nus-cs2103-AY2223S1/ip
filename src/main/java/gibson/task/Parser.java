@@ -3,6 +3,9 @@ package gibson.task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parser is a utility class for parsing user inputs into meaningful data.
+ */
 public final class Parser {
     private Parser() {}
 
@@ -10,8 +13,8 @@ public final class Parser {
     // Throws error if no trailing integers
 
     /**
-     * Returns trailing integers from a given String.
-     * @param string the String to get trailing integers from
+     * Returns trailing integers from a given string.
+     * @param string the string to get trailing integers from
      * @return the trailing integers
      */
     public static int getTrailingInt(String string) {
@@ -26,10 +29,10 @@ public final class Parser {
 
     /**
      * Returns substring after the first instance of the token string.
-     * @param string the String to be substring-ed
-     * @param token the String that marks where to substring-ed
+     * @param string the string to be substring-ed
+     * @param token the string that marks where to substring-ed
      * @return substring after the token string
-     * @throws IllegalArgumentException if token is not found in the String
+     * @throws IllegalArgumentException if token is not found in the string
      */
     public static String substringAfterToken(String string, String token) {
         Pattern pattern = Pattern.compile(token);
@@ -48,9 +51,9 @@ public final class Parser {
     /**
      * Returns substring before and after the first instance of the token string.
      * Before stored in [0]. After stored in [1].
-     * @param string the String to be split
-     * @param token the String that marks where to split
-     * @return an array of 2 Strings
+     * @param string the string to be split
+     * @param token the string that marks where to split
+     * @return an array of 2 strings
      * @throws IllegalArgumentException if token cannot be found in given string
      */
     public static String[] substringBeforeAfterToken(String string, String token) {

@@ -1,11 +1,14 @@
 package gibson.task;
 
+/**
+ * Represents a task with a task string that describes a job to be done
+ */
 public class Task {
     private String taskString;
     private boolean done;
 
     /**
-     * Constructs a Task object that is represented by a task String which describes the task.
+     * Constructs a Task object that is represented by a task string which describes the task.
      * @param taskString the task
      */
     public Task(String taskString) {

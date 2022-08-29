@@ -1,11 +1,16 @@
 package gibson.task;
 
+/**
+ * Event represents an event with a task string
+ * and a string that should represent the time of the event.
+ * It is a task with a string that describes the time of the event.
+ */
 public class Event extends Task {
     private String startEnd;
 
     /**
      * Constructs an Event object that is represented by a task
-     * and a String that represent the time of the task.
+     * and a string that represent the time of the task.
      * @param taskString the task
      * @param startEnd the time of the task
      */

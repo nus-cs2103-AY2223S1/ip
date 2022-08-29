@@ -4,10 +4,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Deadline represents a deadline with a task string and
+ * a date and time as a deadline.
+ * It is a task with a deadline.
+ */
 public class Deadline extends Task {
 
     private static final String[] FORMATS = new String[] {
-            "y-M-d H:m", "d MMM yyyy H:m"
+        "y-M-d H:m", "d MMM yyyy H:m"
     };
     private LocalDateTime date;
 
@@ -27,7 +32,8 @@ public class Deadline extends Task {
                     break;
                 } catch (DateTimeParseException e) {
                     if (i == FORMATS.length - 1) {
-                        throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
+                        throw new IllegalArgumentException(
+                                "Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
                     }
                 }
             }

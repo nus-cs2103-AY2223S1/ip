@@ -1,14 +1,17 @@
 package gibson;
 
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Storage saves and loads strings into a text file.
+ * The directory where the text file is saved
+ * and the text file's name is specified at the construction of Storage.
+ */
 public class Storage {
     private Path directoryPath;
     private Path filePath;
@@ -46,7 +49,7 @@ public class Storage {
     /**
      * Saves the given data to the directory specified in the constructor
      * and with the name specified in the constructor.
-     * @param data String to be saved in the file
+     * @param data string to be saved in the file
      */
     public void save(String data) {
         try {
@@ -58,8 +61,8 @@ public class Storage {
 
     /**
      * Loads the text in the text file described in the constructor of the object
-     * into a List of Strings. Each index in the List is a line in the text file.
-     * @return the List of Strings in the text file
+     * into a List of strings. Each index in the List is a line in the text file.
+     * @return the List of strings in the text file
      */
     public List<String> load() {
         List<String> linesInSave = new ArrayList<String>();

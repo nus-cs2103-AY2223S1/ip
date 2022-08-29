@@ -1,13 +1,13 @@
 package gibson;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import gibson.task.Deadline;
 import gibson.task.Event;
 import gibson.task.Parser;
 import gibson.task.Task;
 import gibson.task.TaskList;
-
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /**
  *  The Gibson program. It works as a Personal Assistant Chatbot
@@ -65,9 +65,8 @@ public class Gibson {
                 } catch (IndexOutOfBoundsException e) {
                     ui.printErrorMessage("There is not task numbered as " + number + ".");
                 }
-            }
             // UNMARK
-            else if (Pattern.matches("unmark [0-9]+", input)) {
+            } else if (Pattern.matches("unmark [0-9]+", input)) {
                 int number = Parser.getTrailingInt(input);
                 int index = number - 1;
                 try {
@@ -83,8 +82,9 @@ public class Gibson {
                 try {
                     Task task = new Task(taskString);
                     taskList.add(task);
-                    ui.printMessage("Got it. I've added this task:\n" + task +
-                            "\nNow you have " + taskList.size() + " task(s) in the list.");
+                    ui.printMessage("Got it. I've added this task:\n"
+                            + task
+                            + "\nNow you have " + taskList.size() + " task(s) in the list.");
                     storage.save(taskList.toString());
                 } catch (IllegalArgumentException e) {
                     ui.printErrorMessage(e.getMessage());
@@ -96,8 +96,9 @@ public class Gibson {
                 try {
                     Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
                     taskList.add(deadline);
-                    ui.printMessage("Got it. I've added this task:\n" + deadline +
-                            "\nNow you have " + taskList.size() + " task(s) in the list.");
+                    ui.printMessage("Got it. I've added this task:\n"
+                            + deadline
+                            + "\nNow you have " + taskList.size() + " task(s) in the list.");
                     storage.save(taskList.toString());
                 } catch (IllegalArgumentException e) {
                     ui.printErrorMessage(e.getMessage());
@@ -110,8 +111,9 @@ public class Gibson {
                     Event event = new Event(stringArray[0], stringArray[1]);
                     taskList.add(event);
                     storage.save(taskList.toString());
-                    ui.printMessage("Got it. I've added this task:\n" + event +
-                            "\nNow you have " + taskList.size() + " task(s) in the list.");
+                    ui.printMessage("Got it. I've added this task:\n"
+                            + event
+                            + "\nNow you have " + taskList.size() + " task(s) in the list.");
                 } catch (IllegalArgumentException e) {
                     ui.printErrorMessage(e.getMessage());
                 }
@@ -122,8 +124,9 @@ public class Gibson {
                 try {
                     Task t = taskList.remove(index);
                     storage.save(taskList.toString());
-                    ui.printMessage("Noted. I've removed this task:\n" + t.toString() +
-                            "\nNow you have " + taskList.size() + " task(s) in the list.");
+                    ui.printMessage("Noted. I've removed this task:\n"
+                            + t.toString()
+                            + "\nNow you have " + taskList.size() + " task(s) in the list.");
                 } catch (IndexOutOfBoundsException e) {
                     ui.printErrorMessage("There is not task numbered as " + number + ".");
                 }
