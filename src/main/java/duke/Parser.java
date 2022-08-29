@@ -8,19 +8,34 @@ import duke.task.TodoTask;
 import java.time.format.DateTimeParseException;
 
 /**
- * Handles parsing and execution of command strings.
+ * Class that handles parsing and execution of command strings for Duke Bot commands.
  */
 public class Parser {
     private TaskList tasks;
     private Duke duke;
     private Ui ui;
 
+    /**
+     * Class constructor for Parser.
+     * 
+     * @param taskList TaskList instance tracking tasks in Duke Bot.
+     * @param dukeInstance Duke instance representing Duke Bot.
+     * @param uiInstance Ui instance representing user interface for Duke Bot.
+     */
     public Parser(TaskList taskList, Duke dukeInstance, Ui uiInstance) {
         tasks = taskList;
         duke = dukeInstance;
         ui = uiInstance;
     }
 
+    /**
+     * Parses and executes a command for Duke Bot.
+     * Verbose argument can be used to control output of Ui.
+     * 
+     * @param command Command string for parsing and execution.
+     * @param verbose Boolean to indicate verbosity of Ui.
+     * @throws DukeException If command cannot be parsed or is invalid.
+     */
     public void parse(String command, boolean verbose) throws DukeException {
         ui.setVerbose(verbose);
         if (command.startsWith("deadline") || command.startsWith("event") || command.startsWith("todo")) {
@@ -34,6 +49,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses and executes task commands for Duke Bot.
+     * Task commands are in the format "task description separator time".
+     * 
+     * @param command Task command string.
+     * @throws DukeException If command cannot be parsed or is invalid.
+     */
     public void parseTask(String command) throws DukeException {
         Task t = null;
         try {
@@ -50,6 +72,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses and executes commands that are two parts long for Duke Bot.
+     * Two part long commands contains one whitespace after command.
+     * Two part long commands are in the format "command description".
+     * 
+     * @param command Two part long command.
+     * @throws DukeException If command cannot be parsed or is invalid.
+     */
     public void parseTwo(String command) throws DukeException {
         String[] split = command.split(" ", 2);
         String commandName = split[0];
@@ -73,12 +103,21 @@ public class Parser {
         }
     }
 
-    public void parseOne(String command) {
+    /**
+     * Parses and executes commands that are one part long for Duke Bot.
+     * One part long commands are in the format "command".
+     * 
+     * @param command One part long command.
+     * @throws DukeException If command cannot be parsed or is invalid.
+     */
+    public void parseOne(String command) throws DukeException {
         if (command.equals("bye")) {
             tasks.saveTasks();
             duke.terminate();
         } else if (command.equals("list")) {
             tasks.generateList();
+        } else {
+            throw new DukeException("Invalid command format.");
         }
     }
 }

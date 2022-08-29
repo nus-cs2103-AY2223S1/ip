@@ -6,8 +6,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class representing a DeadlineTask.
+ */
 public class DeadlineTask extends Task {
     protected LocalDate by;
+
+    /**
+     * Class constructor for DeadlineTask.
+     * 
+     * @param description Command string being used to create DeadlineTask.
+     * @throws DateTimeParseException If datetime given cannot be parsed.
+     * @throws DukeException If command is invalid.
+     */
     public DeadlineTask(String description) throws DateTimeParseException, DukeException {
         super();
         this.commandString = description;
