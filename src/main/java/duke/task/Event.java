@@ -10,7 +10,8 @@ public class Event extends Task {
 
     /**
      * Constructs a new Event task.
-     * @param description description of the event
+     *
+     * @param description description of the event.
      * @param eventTime the eventTime of the event.
      */
     public Event(String description, String eventTime) {

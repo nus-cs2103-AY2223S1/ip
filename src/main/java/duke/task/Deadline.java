@@ -28,8 +28,8 @@ public class Deadline extends Task {
     /**
      * Creates a Deadline task from an encoded string.
      *
-     * @param encodedInput the encoded entry with format deadline|description
-     * @param completed    the completion status of the Deadline task
+     * @param encodedInput the encoded entry with format deadline|description.
+     * @param completed    the completion status of the Deadline task.
      * @return the Deadline task
      */
     public static Deadline decode(String encodedInput, boolean completed) throws DukeException {

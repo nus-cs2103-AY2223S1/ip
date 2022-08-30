@@ -18,9 +18,10 @@ public class Message {
 
     /**
      * Creates a message with the given text, exit status, and user.
-     * @param message message to be displayed
-     * @param shouldExit whether the program should exit
-     * @param user user who sent the message
+     *
+     * @param message message to be displayed.
+     * @param shouldExit whether the program should exit.
+     * @param user user who sent the message.
      */
     public Message(String message, boolean shouldExit, User user) {
         this.message = message;

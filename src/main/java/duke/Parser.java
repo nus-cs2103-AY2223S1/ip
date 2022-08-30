@@ -45,10 +45,9 @@ public class Parser {
     /**
      * Parses the user input and return the corresponding command.
      *
-     * @param inputString input from user
-     * @return command object
-     *
-     * @throws DukeException exception thrown if the input is invalid
+     * @param inputString input from user.
+     * @return command object.
+     * @throws DukeException exception thrown if the input is invalid.
      */
     public static Command parse(String inputString) throws DukeException {
         final Matcher matcher = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)").matcher(inputString.trim());

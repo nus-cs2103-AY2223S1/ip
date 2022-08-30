@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
     /**
      * Creates a dialog box containing the message and draws it on the ui.
      *
-     * @param message the message to display
+     * @param message the message to display.
      */
     public void sendMessage(Message message) {
         dialogContainer.getChildren().addAll(

@@ -4,7 +4,7 @@ import duke.Message;
 import duke.task.TaskList;
 
 /**
- * Command to terminates the program.
+ * Command to terminate the program.
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";

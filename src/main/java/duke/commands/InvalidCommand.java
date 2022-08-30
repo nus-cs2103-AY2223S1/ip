@@ -8,7 +8,7 @@ import duke.task.TaskList;
 
 
 /**
- * An invalid command
+ * An invalid command.
  */
 public class InvalidCommand extends Command {
     private final String errorMessage;

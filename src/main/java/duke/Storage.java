@@ -26,6 +26,7 @@ public class Storage {
 
     /**
      * Constructs a new Storage in the application folder given a filename.
+     *
      * @param fileName The name of the file to store tasks in.
      * @throws DukeException Exception thrown if the file cannot be found.
      */
@@ -60,9 +61,10 @@ public class Storage {
     }
 
     /**
-     * Loads the list of task from a previously save text file
+     * Loads the list of task from a previously save text file.
+     *
      * @param fileName Name of the file.
-     * @return The list of tasks
+     * @return The list of tasks.
      * @throws DukeException Exception thrown if the file couldn't be read properly or contains invalid input.
      */
     public ArrayList<Task> loadTasks(String fileName) throws DukeException {
@@ -121,8 +123,9 @@ public class Storage {
     }
 
     /**
-     * Encodes and saves the given list of tasks to a file
-     * @param tasks the list of tasks to save
+     * Encodes and saves the given list of tasks to a file.
+     *
+     * @param tasks the list of tasks to save.
      * @throws DukeException Exception thrown if the file cannot be found or modified.
      */
     public void saveTasks(ArrayList<Task> tasks) throws DukeException {

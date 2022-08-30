@@ -23,8 +23,9 @@ public class DeadlineCommand extends Command {
 
     /**
      * Creates a Deadline Command with description and an event time.
-     * @param description description of deadline
-     * @param eventTime date time of deadline
+     *
+     * @param description description of deadline.
+     * @param eventTime date time of deadline.
      */
     public DeadlineCommand(String description, LocalDateTime eventTime) {
         this.toAdd = new Deadline(description, eventTime);

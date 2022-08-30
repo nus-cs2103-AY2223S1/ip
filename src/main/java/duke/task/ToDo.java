@@ -6,6 +6,7 @@ package duke.task;
 public class ToDo extends Task {
     /**
      * Creates the ToDo task
+     *
      * @param description description of the task.
      */
     public ToDo(String description) {
@@ -13,7 +14,8 @@ public class ToDo extends Task {
     }
 
     /**
-     * Creates a ToDo from its encoded form in the saved file
+     * Creates a ToDo from its encoded form in the saved file.
+     *
      * @param encoded encoded string from the file
      * @param completed Whether the task has been completed.
      * @return The created ToDo.

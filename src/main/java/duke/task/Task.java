@@ -10,7 +10,8 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Creates task with a given description
+     * Creates task with a given description.
+     *
      * @param description description of the task.
      */
     public Task(String description) {
@@ -21,7 +22,7 @@ public abstract class Task {
     /**
      * Gets string representation of the completion status.
      *
-     * @return X if done else " "
+     * @return X if done else " ".
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -30,7 +31,7 @@ public abstract class Task {
     /**
      * Sets completion status of the task.
      *
-     * @param isDone the new completion status
+     * @param isDone the new completion status.
      */
     public void setDone(boolean isDone) {
         this.isDone = isDone;
@@ -39,14 +40,14 @@ public abstract class Task {
     /**
      * Returns the `Type` of the task.
      *
-     * @return the type of the task
+     * @return the type of the task.
      */
     public abstract Type getType();
 
     /**
      * Encodes the data to be saved to the file. Excludes completion status and task type.
      *
-     * @return the encoded data
+     * @return the encoded data.
      */
     public abstract String encodeData();
 
@@ -54,7 +55,7 @@ public abstract class Task {
      * Returns the text to be displayed by the bot for the task, containing all details of the task,
      * excluding the type and completion status.
      *
-     * @return the display text
+     * @return the display text.
      */
     public abstract String getDisplayText();
 
@@ -62,7 +63,7 @@ public abstract class Task {
      * Encodes the task type and completion status in addition to the output of encodeData() to be stored as
      * line in the saved file.
      *
-     * @return the encoded data
+     * @return the encoded data.
      */
     public final String encode() {
         return String.format("%s|%d|%s", this.getType().prefix, (this.isDone ? 1 : 0), this.encodeData());
@@ -111,9 +112,9 @@ public abstract class Task {
         /**
          * Returns the duke.task.Task Type given its prefix.
          *
-         * @param prefix the prefix of the task type
-         * @return duke.task.Task.Type
-         * @throws IllegalArgumentException if none of the types match the prefix
+         * @param prefix the prefix of the task type.
+         * @return duke.task.Task.Type.
+         * @throws IllegalArgumentException if none of the types match the prefix.
          */
         public static Type decode(String prefix) throws IllegalArgumentException {
             prefix = prefix.strip();
