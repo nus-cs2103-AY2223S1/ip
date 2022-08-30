@@ -33,15 +33,18 @@ public class UI {
         return sc.nextLine();
     }
 
-    public void printListMessage(TaskList taskList) {
-        System.out.println("    " + " You have " + taskList.getSize() + " tasks in the list.");
-    }
-
     public boolean checkValid(String input) {
         String[] str = input.split(" ");
         return (str.length > 1);
     }
 
+    public void printListMessage(TaskList taskList) {
+        System.out.println("    " + " You have " + taskList.getSize() + " tasks in the list.");
+    }
+
+    public void findMessage() {
+        System.out.println("    Here are the matching tasks in your list: ");
+    }
     public void addTaskMessage(Task task, int listSize) {
         System.out.println("    " + " Got it. I've added this task: ");
         System.out.println("       " + task);
@@ -59,10 +62,6 @@ public class UI {
         System.out.println("    " + " Now you have 0 tasks in the list.");
     }
 
-    public void showLoadingError() {
-        System.out.println("    " + " Loading error!");
-    }
-
     public void markTaskMessage(Task task) {
         System.out.println("    Nice! I've marked this task as done:");
         System.out.println("      " + task);
@@ -75,6 +74,10 @@ public class UI {
 
     public void incorrectCommandMessage() {
         System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(.");
+    }
+
+    public void showLoadingError() {
+        System.out.println("    " + " Loading error!");
     }
 
     public void showError(String errorMessage) {

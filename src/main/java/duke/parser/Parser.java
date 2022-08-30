@@ -39,6 +39,9 @@ public class Parser {
         // Add event to taskList
         if (input.startsWith("event")) return new AddEventCommand(input);
 
+        // Finds the tasks matching the given keywords
+        if (input.startsWith("find")) return new FindTaskCommand(input);
+
         // Exits program
         if (input.startsWith("exit")) return new ExitCommand();
 

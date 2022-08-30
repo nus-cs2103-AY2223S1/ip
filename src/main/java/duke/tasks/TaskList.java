@@ -61,6 +61,29 @@ public class TaskList {
     }
 
     /**
+     * Prints out list of tasks that contains the keyword searched for by the user
+     *
+     * @param input the keyword to be searched for by the user
+     */
+    public void findTask(String input) {
+        boolean noMatches = true;
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            if (task.getDesc().contains(input)) {
+                noMatches = false;
+                System.out.println("     " + (i + 1) + ". " + task);
+            }
+        }
+        if (noMatches) {
+            try {
+                throw new DukeException(" ☹ OOPS!!! Seems like there are no tasks matching this description.");
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
      * Marks the task at the given index as done.
      *
      * @param taskIndex the index of the task to be marked
@@ -101,7 +124,7 @@ public class TaskList {
     /**
      * Deletes the task at the given index from the list.
      *
-     * @param taskId index of the task to be deleted
+     * @param index index of the task to be deleted
      */
     public void deleteTask(int index) {
         taskList.remove(index);

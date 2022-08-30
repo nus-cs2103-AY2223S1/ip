@@ -30,7 +30,7 @@ public abstract class Command {
      * @return True if the input is a Date
      */
     public static boolean isDate(String input) {
-        return input.matches(".[0-9].*");
+       return input.matches(".[0-9].*");
     }
 
     /**
