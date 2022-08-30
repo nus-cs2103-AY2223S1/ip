@@ -74,7 +74,7 @@ public abstract class Parser {
                 throw new DukeException("OOPS!!! You need to unmark a number");
             }
         case "todo":
-            if (input.length() == 0) {
+            if (secondWord.length() == 0) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
             command = new AddCommand(new ToDo(secondWord));
