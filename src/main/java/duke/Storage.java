@@ -11,12 +11,16 @@ public class Storage {
     boolean directoryExist;
     java.nio.file.Path path;
     File file;
-    public Storage() {
+    public Storage(String filename) {
         String home = System.getProperty("user.dir");
-        this.path = java.nio.file.Paths.get(home, "src", "data", "duke.txt");
+        this.path = java.nio.file.Paths.get(home, "src", "data", filename);
         this.directoryExist = java.nio.file.Files.exists(this.path);
     }
 
+    /**
+     * Reads the file
+     * @return a list of task that is in the file
+     */
     public ArrayList<Task> readFile() {
         ArrayList<Task> data = new ArrayList<>();
         try {
@@ -39,8 +43,11 @@ public class Storage {
     }
 
 
-
-    public void writeFile(ArrayList<Task> updatedData) {
+    /**
+     * Updates the content of the file
+     * @param updatedData the updated list of task
+     */
+    public void updateFile(ArrayList<Task> updatedData) {
         String dataString = "";
         for (Task task : updatedData) {
             dataString += String.format("%s\n", task.formatTaskString());

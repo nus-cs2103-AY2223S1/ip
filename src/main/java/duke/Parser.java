@@ -13,7 +13,12 @@ public class Parser {
 
     public Parser() {
     }
-
+    /**
+     * Checks if the command inputted is a valid command
+     * @param input: input string to check
+     * @return enum Duke.Commands value
+     * @throws NoSuchCommandException inputted command is not a valid command
+     */
     public Duke.Commands analyzeCommand(String input) throws NoSuchCommandException {
         if (input.matches("list(.*)")) {
             return Duke.Commands.LIST;
@@ -47,36 +52,41 @@ public class Parser {
 
         return LocalDateTime.of(date, time);
     }
+
+    /**
+     * Executes the given command
+     * @param ui the user interface to display text
+     * @param input the command input
+     * @param storage the storage system
+     * @param taskList the list of task
+     */
     public void executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
         String[] inputArr = input.split(" ", 2);
         String commandString = inputArr[0];
 
         try {
-            String param = inputArr[1];
+
             switch (this.analyzeCommand(commandString)) {
-                case BYE:
-                    handleByeCommand(ui);
-                    break;
                 case LIST:
                     handleListComand(ui, taskList);
                     break;
                 case TODO:
-                    handleTodoCommand(ui, storage, taskList, param);
+                    handleTodoCommand(ui, storage, taskList, inputArr[1]);
                     break;
                 case EVENT:
-                    handleEventCommand(ui, storage, taskList, param);
+                    handleEventCommand(ui, storage, taskList, inputArr[1]);
                     break;
                 case DEADLINE:
-                    handleDeadlineCommand(ui, storage, taskList, param);
+                    handleDeadlineCommand(ui, storage, taskList, inputArr[1]);
                     break;
                 case MARK:
-                    handleMarkCommand(ui, storage, taskList, param);
+                    handleMarkCommand(ui, storage, taskList, inputArr[1]);
                     break;
                 case UNMARK:
-                    handleUnmarkCommand(ui, storage, taskList, param);
+                    handleUnmarkCommand(ui, storage, taskList, inputArr[1]);
                     break;
                 case DELETE:
-                    handleDeleteCommand(ui, storage, taskList, param);
+                    handleDeleteCommand(ui, storage, taskList, inputArr[1]);
                     break;
 
             }
@@ -91,14 +101,11 @@ public class Parser {
         ui.showAllTask(taskList);
     }
 
-    private void handleByeCommand(Ui ui) {
-        ui.showBye();
-    }
-
     private void handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Task task = new Todo(input);
         taskList.addTask(task);
         ui.showAddTask(taskList, task);
+        storage.updateFile(taskList.list);
     }
     private void handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         String[] inputArr = input.split("/at");
@@ -107,6 +114,7 @@ public class Parser {
         Task task = new Event(description, time);
         taskList.addTask(task);
         ui.showAddTask(taskList, task);
+        storage.updateFile(taskList.list);
     }
 
     private void handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) {
@@ -116,24 +124,26 @@ public class Parser {
         Task task = new Event(description, time);
         taskList.addTask(task);
         ui.showAddTask(taskList, task);
+        storage.updateFile(taskList.list);
     }
     private void handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.get(index);
+        Task task = taskList.toggleTaskStatus(index);
         task.toggleStatus();
         ui.showMarkTask(task);
+        storage.updateFile(taskList.list);
     }
     private void handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.get(index);
-        task.toggleStatus();
+        Task task = taskList.toggleTaskStatus(index);
         ui.showUnmarkTask(task);
+        storage.updateFile(taskList.list);
     }
     private void handleDeleteCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
-        Task task = taskList.get(index);
-        taskList.deleteTask(index);
+        Task task = taskList.deleteTask(index);
         ui.showRemoveTask(taskList, task);
+        storage.updateFile(taskList.list);
     }
 
 

@@ -15,7 +15,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String formatTask() {
+    public String toString(){
         String dateTimePattern = "dd MMM yyyy, h.mm a";
 
         return String.format("[E] [%s] %s (at: %s)", this.getStatusIcon(), this.description, this.time.format(DateTimeFormatter.ofPattern(dateTimePattern)) );

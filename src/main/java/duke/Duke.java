@@ -29,6 +29,10 @@ public class Duke {
         this.taskList = taskList;
         this.storage = storage;
     }
+
+    /**
+     * Runs the Duke program
+     */
     public void run() {
         Scanner scanner = new Scanner((System.in));
         ui.showGreeting();
@@ -36,15 +40,23 @@ public class Duke {
         loop: while (true) {
 
             String input = scanner.nextLine();
-            parser.executeInput(ui, input, storage, taskList);
+            try {
+                if (parser.analyzeCommand(input).equals(Commands.BYE)) {
+                    ui.showBye();
+                    break loop;
+                }
+                parser.executeInput(ui, input, storage, taskList);
+            } catch (NoSuchCommandException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void main(String[] args) {
         Ui ui = new Ui();
         Parser parser = new Parser();
-        TaskList taskList = new TaskList(new ArrayList<>());
-        Storage storage = new Storage();
+        Storage storage = new Storage("duke.txt");
+        TaskList taskList = new TaskList(storage.readFile());
         Duke duke = new Duke(parser, ui, taskList, storage);
 
         duke.run();

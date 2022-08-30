@@ -7,21 +7,31 @@ import duke.Task.Event;
 public class TaskList {
     public ArrayList<Task> list;
 
+    /**
+     * A constructor to construct the taskList
+     * @param list
+     */
     public TaskList(ArrayList<Task> list) {
         this.list = list;
     }
 
-    public void toggleTaskStatus(int index) {
-        Task task = this.list.get(index);
-        task.toggleStatus();
-    }
-
+    /**
+     * Adds a task to the list
+     * @param task the task to be added
+     */
     public void addTask(Task task) {
         this.list.add(task);
     }
 
-    public void deleteTask(Integer index) {
+    /**
+     * Deletes the task at the specified index
+     * @param index the index of the task to delete
+     * @return the deleted task
+     */
+    public Task deleteTask(Integer index) {
+        Task task = this.list.get(index);
         this.list.remove(index - 1);
+        return task;
     }
 
     @Override
@@ -30,16 +40,27 @@ public class TaskList {
         int length = this.list.size();
         for (int i = 0; i < length; i++) {
             Task curr = this.list.get(i);
-            result +=String.format("%d. %s \n",i + 1, curr.formatTask());
+            result +=String.format("%d. %s \n",i + 1, curr);
         }
         return result;
     }
 
+    /**
+     * gets the length of the list
+     * @return the length of this list
+     */
     public Integer length() {
         return this.list.size();
     }
 
-    public Task get(Integer index) {
-        return this.list.get(index);
+    /**
+     * Toggles the status of the task at a specific index
+     * @param index the index of the task to toggle
+     * @return the task that was specified
+     */
+    public Task toggleTaskStatus(Integer index) {
+        Task task = this.list.get(index);
+        task.toggleStatus();
+        return task;
     }
 }

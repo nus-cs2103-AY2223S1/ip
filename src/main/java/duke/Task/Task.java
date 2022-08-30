@@ -1,7 +1,7 @@
 package duke.Task;
 import java.time.LocalDateTime;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -27,13 +27,7 @@ public class Task {
         }
     }
 
-    public String formatTask() {
-        return String.format("[T] [%s] %s", this.getStatusIcon(), this.description);
-    }
-
-    public String formatTaskString() {
-        return String.format("T|%s|%s", this.isDone, this.description);
-    }
+    public abstract String formatTaskString();
 
     public static Task MakeTask(String type, Boolean isDone, String description, LocalDateTime dateTime) {
 
