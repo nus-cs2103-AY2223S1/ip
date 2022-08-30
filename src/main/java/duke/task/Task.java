@@ -15,6 +15,7 @@ public abstract class Task {
 
     /**
      * Constructor of Task class.
+     * Calls by its child-classes.
      * Initialises isDone attribute as false. (Undone)
      *
      * @param detail String of detail extracted from user's raw input.
@@ -26,6 +27,7 @@ public abstract class Task {
 
     /**
      * Constructs Task object.
+     * Calls by its child-classes.
      * Allows the changes of done/undone status of task.
      *
      * @param detail String of detail extracted from user's raw input.

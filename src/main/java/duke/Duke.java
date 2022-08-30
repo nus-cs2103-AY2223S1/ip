@@ -23,7 +23,7 @@ public class Duke {
      * The taskList is assigned to the previous duke chatBot data if the file is found.
      * TaskRecords will be initialised to an empty taskList if file is not found.
      */
-    Duke() {
+    public Duke() {
         this.ui = new BotUI();
         TaskRecords temp;
         try {
@@ -53,10 +53,20 @@ public class Duke {
             }
         }
     }
+
     /**
      * Main method of the program.
      */
     public static void main(String[] args) {
         new Duke().runBot();
     }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
+
 }
