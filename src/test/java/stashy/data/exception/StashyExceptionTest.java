@@ -1,4 +1,4 @@
-package test.stashy.data.exception;
+package stashy.data.exception;
 
 import org.junit.jupiter.api.Test;
 
