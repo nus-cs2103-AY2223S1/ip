@@ -1,5 +1,13 @@
 package duke;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import exceptions.DukeException;
 import exceptions.InvalidTaskException;
 import task.Deadline;
@@ -8,13 +16,6 @@ import task.Task;
 import task.TaskType;
 import task.Todo;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file whenever Duke starts / shuts down.
@@ -56,7 +57,7 @@ public class Storage {
     public static Task decodeTask(String taskData) throws DukeException {
         // Backslashes in split method is necessary as | is a metacharacter in regex.
         String[] taskValues = taskData.split("\\|", 4);
-        Task decodedTask = null;
+        Task decodedTask;
         switch (taskValues[0]) {
         case "T": {
             if (taskValues.length != 3) {
@@ -70,7 +71,7 @@ public class Storage {
                 throw new InvalidTaskException(TaskType.D, taskData);
             }
             decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
-                    Task.dateTimeParser));
+                    Task.DATE_TIME_PARSER));
             break;
         }
         case "E": {
@@ -78,13 +79,21 @@ public class Storage {
                 throw new InvalidTaskException(TaskType.E, taskData);
             }
             decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
-                    Task.dateTimeParser));
+                    Task.DATE_TIME_PARSER));
             break;
         }
+        default:
+            throw new InvalidTaskException(taskData);
         }
         return decodedTask;
     }
 
+    /**
+     * Loads data from the storage file into current task list.
+     *
+     * @return The list of tasks retrieved from the storage file.
+     * @throws DukeException if an I/O error occurred or the task format is unrecognised.
+     */
     public List<Task> load() throws DukeException {
         List<Task> loadedTasks = new ArrayList<>();
         try {

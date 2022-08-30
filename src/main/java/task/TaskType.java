@@ -4,9 +4,9 @@ package task;
  * An enum used to distinguish between different task types.
  */
 public enum TaskType {
-    T("todo"),      // Todo
-    D("deadline"),  // Deadline
-    E("event");     // Event
+    T("todo"),
+    D("deadline"),
+    E("event");
 
     /**
      * Value is used for printing the full name of the task type.

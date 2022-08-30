@@ -1,8 +1,8 @@
 package duke;
 
-import task.Task;
-
 import java.util.Scanner;
+
+import task.Task;
 
 /**
  * Deals with the interaction of the user and messages to be displayed.

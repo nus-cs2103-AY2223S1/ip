@@ -1,10 +1,10 @@
 package duke;
 
-import task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import task.Task;
 
 /**
  * Used to keep track of the current task of the chatbot.
@@ -59,6 +59,12 @@ public class TaskList {
         return this.list.remove(index);
     }
 
+    /**
+     * Filters the task list for tasks that have a description that includes the specified query.
+     *
+     * @param query The specified query.
+     * @return New TaskList containing filtered tasks.
+     */
     public TaskList filter(String query) {
         return new TaskList(this.list.stream()
                 .filter(task -> task.getDescription().contains(query))

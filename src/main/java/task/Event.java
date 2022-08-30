@@ -27,7 +27,7 @@ public class Event extends Task {
      * @return The formatted datetime string.
      */
     public String getTiming() {
-        return Task.dateTimeDisplayFormatter.format(this.timing);
+        return Task.DATE_TIME_DISPLAY_FORMATTER.format(this.timing);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Event extends Task {
      */
     @Override
     public String encode(String delimiter) {
-        return super.encode(delimiter) + delimiter + this.timing.format(Task.dateTimeParser);
+        return super.encode(delimiter) + delimiter + this.timing.format(Task.DATE_TIME_PARSER);
     }
 
     @Override

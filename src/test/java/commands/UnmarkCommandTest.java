@@ -1,11 +1,13 @@
 package commands;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.Test;
 
 public class UnmarkCommandTest {
     @Test

@@ -1,5 +1,8 @@
 package commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -10,9 +13,6 @@ import exceptions.InvalidDateTimeException;
 import task.Deadline;
 import task.Task;
 import task.TaskType;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Creates a new deadline.
@@ -45,7 +45,7 @@ public class DeadlineCommand extends Command {
         }
         try {
             Deadline deadline = new Deadline(deadlineStrings[0], false,
-                    LocalDateTime.parse(deadlineStrings[1], Task.dateTimeParser));
+                    LocalDateTime.parse(deadlineStrings[1], Task.DATE_TIME_PARSER));
             tasks.addTask(deadline);
 
             ui.showAddTask(deadline, tasks.size());
