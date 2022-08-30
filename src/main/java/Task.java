@@ -19,9 +19,13 @@ public class Task {
         isDone = false;
     }
 
+    public String getTaskType(){
+        return "Task";
+    }
+
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "]" + description;
+        return "[" + this.getStatusIcon() + "] " + description;
     }
 }
 

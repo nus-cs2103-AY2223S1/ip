@@ -1,53 +1,63 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileOp {
-
+public class Storage {
+    private ArrayList<Task> list = new ArrayList<>();
     private String path;
 
-    public FileOp(String path){
+    public Storage(String path){
         this.path = path;
     }
 
-    public ArrayList<Task> createFile(ArrayList<Task> li) throws IOException {
+    public ArrayList<Task> load() throws BroException {
         File f = new File(this.path);
-        boolean isCreated = f.createNewFile();
+        boolean isCreated = false;
+        try {
+            isCreated = f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(!isCreated){
-            Scanner sc = new Scanner(f);
+            Scanner sc = null;
+            try {
+                sc = new Scanner(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             while(sc.hasNext()) {
                 String s = sc.nextLine();
                 if(s.startsWith("[T]")){
-                    String k = s.substring(6);
-                    Task t = new Todo(k);
-                    li.add(t);
+                    Task t = new Todo(s.substring(6).trim());
+                    list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
                     }
                 }
                 else if(s.startsWith("[D]")){
-                    String k = s.substring(6, s.indexOf(" (by"));
-                    String h = s.substring(s.indexOf("y")+4, s.indexOf(')'));
+                    String k = s.substring(6, s.indexOf(" (by")).trim();
+                    String h = s.split("by:")[1].replace(')', ' ').trim();
                     Task t = new Deadline(k, h);
-                    li.add(t);
+                    list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
                     }
                 }
                 else if(s.startsWith("[E]")){
-                    String k = s.substring(6, s.indexOf(" (at"));
-                    String h = s.substring(s.indexOf("t")+4, s.indexOf(')'));
+                    String k = s.substring(6, s.indexOf(" (at")).trim();
+                    String h = s.split("at:")[1].replace(')', ' ').trim();
                     Task t = new Event(k, h);
-                    li.add(t);
+                    list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
                     }
                 }
             }
         }
-        return li;
+        return list;
     }
 
     public static void writeToFile(Task t) throws IOException {
@@ -64,3 +74,4 @@ public class FileOp {
         w.close();
     }
 }
+

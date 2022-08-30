@@ -3,16 +3,34 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    protected LocalDateTime at;
+    protected LocalDateTime atStore;
+    protected String at;
+    protected boolean isMonthFormat;
+    protected Parser parser;
 
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
+        this.at = at;
+        isMonthFormat = false;
+        if(at.trim().split(" ").length == 4){
+            isMonthFormat = true;
+        } else {
+           atStore = parser.eventParser(at);
+        }
+    }
+
+    @Override
+    public String getTaskType() {
+        return "Event";
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "
-                + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy kkmm")) + ")";
+        if(isMonthFormat){
+            return "[E]" + super.toString() + " (at: " + at + ")";
+        } else {
+            return "[E]" + super.toString() + " (at: " +
+                    atStore.format(DateTimeFormatter.ofPattern("MMM dd yyyy hhmm")) + ")";
+        }
     }
 }
