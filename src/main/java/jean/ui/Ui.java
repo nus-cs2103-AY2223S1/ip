@@ -1,10 +1,9 @@
 package jean.ui;
 
-import jean.exception.JeanException;
-
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import jean.exception.JeanException;
 
 /**
  * Handles user interaction and interface.

@@ -96,7 +96,7 @@ public class TaskList {
         ui.printMessage(next);
         message.append(next);
         for (int i = 0; i < this.taskList.size(); i++) {
-            next = ("\t" + (i+1) + ".\t " + this.taskList.get(i).toString());
+            next = ("\t" + (i + 1) + ".\t " + this.taskList.get(i).toString());
             ui.printMessage(next);
             message.append(next);
             if (i != this.taskList.size() - 1) {
@@ -129,7 +129,7 @@ public class TaskList {
      *
      * @param taskIndex The index of the task to be unmarked.
      * @param ui The ui object that prints feedback to the user interface.
-     * @return The string to be printed.          
+     * @return The string to be printed.
      */
     public String unmarkTask(int taskIndex, Ui ui) {
         Task curr = this.taskList.get(taskIndex);
