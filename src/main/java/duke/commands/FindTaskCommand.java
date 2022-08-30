@@ -1,6 +1,8 @@
 package duke.commands;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
@@ -26,25 +28,29 @@ public class FindTaskCommand implements Command {
     private static final String MESSAGE_MATCHING_TASKS_FOUND = "Here are the matching tasks in your list:";
     private static final String MESSAGE_NO_MATCHING_TASKS_FOUND = "No matching tasks are found in your list!";
 
-    private final String arguments;
+    private final String[] arguments;
 
     /**
      * Creates a new instance of the Command handler for finding a {@link Task}.
      *
      * @param arguments The arguments following the {@code 'find'} prefix supplied by the user from keyboard input
      */
-    public FindTaskCommand(String arguments) {
+    public FindTaskCommand(String ...arguments) {
         this.arguments = arguments;
     }
 
     @Override
     public String execute(TaskManager taskManager) throws DukeException {
-        if (this.arguments.length() == 0) {
+        if (this.arguments.length == 0) {
             throw new DukeException(FindTaskCommand.ERROR_NO_SEARCH_KEYWORD);
         }
 
-        String keyword = this.arguments;
-        List<Task> filteredTasks = taskManager.list(task -> task.getDescription().contains(keyword));
+        Predicate<Task> areKeywordsInTaskDescription = task -> (
+                Arrays.stream(this.arguments).allMatch(keyword -> task.getDescription().contains(keyword))
+        );
+
+        List<Task> filteredTasks = taskManager.list(areKeywordsInTaskDescription);
+
         if (filteredTasks.size() == 0) {
             return FindTaskCommand.MESSAGE_NO_MATCHING_TASKS_FOUND;
         } else {
