@@ -10,32 +10,32 @@ import java.util.regex.Pattern;
 
 public class RegexHelper {
     // TODO: Make regex validate months date according to month length
-    public static final Pattern DATE_REGEX = Pattern.compile("\\b" + // word boundary
-                    "(?:[1-9]|[0-2]\\d|3[0-1])" + // 1-31, 01-31 accepted
-                    " " +
-                    "(?:JAN(?:UARY)?" + // both 3-letter and full month names are accepted
-                    "|FEB(?:RUARY)?" +
-                    "|MAR(?:CH)?" +
-                    "|APR(?:IL)?" +
-                    "|MAY" +
-                    "|JUN(?:E)?" +
-                    "|JUL(?:Y)?" +
-                    "|AUG(?:UST)?" +
-                    "|SEP(?:TEMBER)?" +
-                    "|OCT(?:OBER)?" +
-                    "|NOV(?:EMBER)?" +
-                    "|DEC(?:EMBER)?)" +
-                    " " +
-                    "\\d{4}" + // all 4 digit years are accepted
-                    "(?=\\b|$)",
+    public static final Pattern DATE_REGEX = Pattern.compile("\\b" // word boundary
+                    + "(?:[1-9]|[0-2]\\d|3[0-1])" // 1-31, 01-31 accepted
+                    + " "
+                    + "(?:JAN(?:UARY)?" // both 3-letter and full month names are accepted
+                    + "|FEB(?:RUARY)?"
+                    + "|MAR(?:CH)?"
+                    + "|APR(?:IL)?"
+                    + "|MAY"
+                    + "|JUN(?:E)?"
+                    + "|JUL(?:Y)?"
+                    + "|AUG(?:UST)?"
+                    + "|SEP(?:TEMBER)?"
+                    + "|OCT(?:OBER)?"
+                    + "|NOV(?:EMBER)?"
+                    + "|DEC(?:EMBER)?)"
+                    + " "
+                    + "\\d{4}" // all 4 digit years are accepted
+                    + "(?=\\b|$)",
             Pattern.CASE_INSENSITIVE); // word boundary (lookahead)
 
     // TODO: Differentiate lack of separator from 4-digit year
-    public static final Pattern TIME_REGEX = Pattern.compile("\\b" + // word boundary
-            "(?:\\d|[0-1]\\d|2[0-3])" + // hour (1-2 digits, 24h format from 0 to 23)
-            "[:.]" + // hour-minute separator (non-optional until above TODO is done)
-            "[0-5]\\d" + // minute (always 2 digits)
-            "(?=h\\b|\\b|$)"); // word boundary or optional 'h' time unit (lookahead)
+    public static final Pattern TIME_REGEX = Pattern.compile("\\b" // word boundary
+            + "(?:\\d|[0-1]\\d|2[0-3])" // hour (1-2 digits, 24h format from 0 to 23)
+            + "[:.]" // hour-minute separator (non-optional until above TODO is done)
+            + "[0-5]\\d" // minute (always 2 digits)
+            + "(?=h\\b|\\b|$)"); // word boundary or optional 'h' time unit (lookahead)
 
     /**
      * Extracts and parses the first date from an input string (which contains the date).

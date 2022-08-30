@@ -12,6 +12,14 @@ public class ChatWindow {
         sc = new Scanner(System.in);
     }
 
+    private static Text[] breakLines(Text data) {
+        // Break strings at the next word after line length hits 30 characters
+        return data.lines()
+                .flatMap((s) -> Arrays.stream(s.split("(?<=\\G\\b?.{30,}\\s)")))
+                .map(Text::strip)
+                .toArray(Text[]::new);
+    }
+
     public void dispose() {
         sc.close();
     }
@@ -19,14 +27,6 @@ public class ChatWindow {
     public String prompt(String helperText) {
         System.out.print(helperText);
         return sc.nextLine().strip();
-    }
-
-    private static Text[] breakLines(Text data) {
-        // Break strings at the next word after line length hits 30 characters
-        return data.lines()
-                .flatMap((s) -> Arrays.stream(s.split("(?<=\\G\\b?.{30,}\\s)")))
-                .map(Text::strip)
-                .toArray(Text[]::new);
     }
 
     public void printResponse(Text response) {

@@ -4,9 +4,9 @@ import general.ui.ChatWindow;
 import general.ui.Span;
 
 public class Mia {
-    private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
-                                       "┃ You are talking to MIA... ┃\n" +
-                                       "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
+    private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
+                                     + "┃ You are talking to MIA... ┃\n"
+                                     + "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
     private final TaskManager tasksManager;
     private final ChatWindow window = new ChatWindow(50);
 
