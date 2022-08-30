@@ -143,6 +143,11 @@ public class Duke {
                 ui.sendTaskDeletedMessage(toRemove, tasks.size());
                 continue;
             }
+            if (text.startsWith("find ")) {
+                String keyword = text.substring(5);
+                ui.sendList(new TaskList(tasks.filter(keyword)));
+                continue;
+            }
             ui.sendFailureMessage();
         }
     }

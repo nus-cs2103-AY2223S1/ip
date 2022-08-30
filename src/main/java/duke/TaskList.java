@@ -17,6 +17,16 @@ public class TaskList {
     public ArrayList<Task> getTaskList() {
         return this.taskList;
     }
+
+    public ArrayList<Task> filter(String keyword) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.description.contains(keyword)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
     
     public int size() {
         return taskList.size();
