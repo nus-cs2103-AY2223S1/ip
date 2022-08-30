@@ -15,6 +15,10 @@ public class Storage {
         file = new File(filePath);
     }
 
+    /**
+     * Load tasks from storage or create new file.
+     * @return ArrayList of tasks
+     */
     public ArrayList<Task> load() {
         if (file.exists()) {
             return loadFromFile();
@@ -23,6 +27,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Save all tasks to storage
+     * @param taskList
+     */
     public void save(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTaskList();
         try {
@@ -48,6 +56,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Read all task stored in storage
+     * @return ArrayList of tasks
+     */
     private ArrayList<Task> loadFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
         try {

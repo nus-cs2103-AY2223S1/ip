@@ -17,6 +17,10 @@ public class Deadline extends Task{
         this.isDone = isDone;
     }
 
+    /**
+     * Encodes the task to string for storage.
+     * @return the encoded string
+     */
     @Override
     public String encodeToString() {
         return "D|" + this.getStatusIcon() + "|" + this.description + "|" + this.by;

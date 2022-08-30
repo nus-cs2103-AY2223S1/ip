@@ -16,22 +16,39 @@ public class Duke {
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load());
     }
-    
+
+
+    /**
+     * Adds a task to storage.
+     * @param task 
+     */
     public void addTask(Task task) {
         tasks.add(task);
         storage.save(tasks);
     }
-    
+
+    /**
+     * Deletes task of the index from storage.
+     * @param index
+     */
     public void deleteTask(int index) {
         tasks.delete(index);
         storage.save(tasks);
     }
 
+    /**
+     * Marks a task as done and saves it.
+     * @param index
+     */
     public void mark(int index) {
         tasks.mark(index);
         storage.save(tasks);
     }
 
+    /**
+     * Unmark a task as undone and saves it.
+     * @param index
+     */
     public void unmark(int index) {
         tasks.unmark(index);
         storage.save(tasks);
