@@ -239,8 +239,7 @@ public class ListLoader {
      */
     public void deleteTask(String summary) throws DukeException {
         String newContent = "";
-        String[] strArray = summary.trim().split(" \\| ", 3);
-        String newString = strArray[0] + " | " + 1 + " | " + strArray[2];
+        StringBuilder builder = new StringBuilder(newContent);
         BufferedReader reader = null;
         BufferedWriter writer = null;
 
@@ -253,7 +252,8 @@ public class ListLoader {
                 if (currentLine.equals(summary) || currentLine.isBlank()) {
                     continue;
                 }
-                newContent += currentLine + "\n";
+                builder.append(currentLine).append("\n");
+
             }
         } catch (IOException e) {
             throw new DukeException("Failed to complete reading from file");
@@ -267,7 +267,7 @@ public class ListLoader {
 
         try {
             writer = new BufferedWriter(new FileWriter(listText, false));
-            writer.write(newContent.trim());
+            writer.write(builder.toString());
         } catch (IOException e) {
             throw new DukeException("Failed to complete writing to file");
         } finally {

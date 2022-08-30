@@ -28,14 +28,14 @@ public class MarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
         if (tasks.isValidPosition(position)) {
             Task t = tasks.retrieveRank(position);
             storage.markTask(t.summary());
             tasks.mark(position);
-            ui.showMark(t);
+            return ui.showMark(t);
         } else {
-            ui.showEmpty();
+            return ui.showEmpty();
         }
     }
 }

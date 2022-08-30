@@ -49,7 +49,7 @@ public class AddCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
         Task task;
         switch(id) {
         case T:
@@ -66,6 +66,6 @@ public class AddCommand extends Command {
         }
         tasks.addTask(task);
         storage.appendToList(task.summary());
-        ui.showAdd(task, tasks.tasksLeft());
+        return ui.showAdd(task, tasks.tasksLeft());
     }
 }

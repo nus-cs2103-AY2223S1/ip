@@ -28,14 +28,14 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
         if (tasks.isValidPosition(position)) {
             Task t = tasks.retrieveRank(position);
             tasks.delete(position);
             storage.deleteTask(t.summary());
-            ui.showDelete(t, tasks.tasksLeft());
+            return ui.showDelete(t, tasks.tasksLeft());
         } else {
-            ui.showEmpty();
+            return ui.showEmpty();
         }
     }
 }

@@ -13,6 +13,7 @@ import duke.ui.Ui;
  * @author WR3nd3
  */
 public class Duke {
+
     /** duke.storage.ListLoader used to load and save remaining tasks  */
     private ListLoader storage;
 
@@ -20,22 +21,21 @@ public class Duke {
     private TaskList tasks;
 
     /** duke.ui.Ui handling interactions of input and output with users */
-    private Ui ui;
+    private final Ui ui;
+    private String startUpMessage;
 
     /**
      * Constructs duke.Duke object and its components.
      */
     public Duke() {
         ui = new Ui();
+        startUpMessage = ui.showWelcome();
         tasks = new TaskList();
         storage = new ListLoader(tasks);
         try {
             storage.load();
         } catch (DukeException e) {
-            System.out.println("hey load error");
-            ui.showLine();
-            ui.showLoadingError();
-            ui.showLine();
+            startUpMessage += ui.showLoadingError();
             tasks = new TaskList();
             storage = new ListLoader(tasks);
             storage.load();
@@ -46,32 +46,58 @@ public class Duke {
      * Executes the running of the duke.Duke program.
      */
     public void run() {
-        ui.showWelcome();
+        ui.showLine();
+        System.out.println(startUpMessage);
+        ui.showLine();
         boolean isExit = false;
 
         while (!isExit) {
+            String response = "";
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                response = c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
+                response = ui.showError(e.getMessage());
             } finally {
+                ui.showLine();
+                System.out.println(response);
                 ui.showLine();
             }
         }
     }
 
     /**
-     * Provides entry point into duke.Duke program.
+     * Provides entry point into duke.Duke program when run through the CLI terminal.
      *
      * @param args The command line arguments.
      **/
     public static void main(String[] args) {
         new Duke().run();
     }
+
+
+
+    /**
+     * Returns appropriate response to the given input through the form of a string representation
+     * of the state and behaviour of the duke program.
+     *
+     * @param input The input entered by users.
+     * @return String representing the appropriate response to the input.
+     */
+    public String getResponse(String input) {
+        String response = "";
+        try {
+            Command c = Parser.parse(input.trim());
+            response = c.execute(tasks, ui, storage);
+            return response;
+        } catch (DukeException e) {
+            response = ui.showError(e.getMessage());
+            return response;
+        }
+    }
+
 }
 
 

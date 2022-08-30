@@ -15,8 +15,8 @@ public class ListCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) {
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) {
         int tasksLeft = tasks.tasksLeft();
-        ui.showList(tasks.giveList(), tasksLeft);
+        return ui.showList(tasks.giveList(), tasksLeft);
     }
 }

@@ -11,7 +11,7 @@ import duke.task.TaskId;
  * @author WR3nd3
  */
 public class Ui {
-    /** Welcome symbol to be displayed to users upon running Duke */
+    /** Welcome symbol to be displayed to users upon running Duke in Terminal */
     private static final String CAT_SYMBOL = "     /\\_____/\\\n"
             + "    /  o   o  \\\n"
             + "   ( ==  ^  == )\n"
@@ -27,7 +27,7 @@ public class Ui {
 
     /** Border enclosing output */
     private static final String MESSAGE_BORDER = "_______________________________________"
-            + "_____________________\n";
+            + "______________\n";
 
     /** Welcome message printed when running duke.Duke */
     private static final String MESSAGE_SERVICE = "What can I do for mew?\n";
@@ -52,167 +52,190 @@ public class Ui {
         return input;
     }
 
+
     /**
-     * Prints a border to enclose output.
+     * Returns String of composed welcome message on running duke.Duke.
+     *
+     * @return String of welcome message.
      */
-    public void showLine() {
-        System.out.println(MESSAGE_BORDER);
+    public String showWelcome() {
+        String content = "Meow from\n" + CAT_SYMBOL + "\n" + MESSAGE_SERVICE;
+        return content;
     }
 
     /**
-     * Prints composed welcome message on running duke.Duke.
+     * Returns String of goodbye message on exiting duke.Duke.
+     *
+     * @return String of goodbye message.
      */
-    public void showWelcome() {
-        showLine();
-        System.out.println("Meow from\n" + CAT_SYMBOL + "\n" + MESSAGE_SERVICE);
-        showLine();
+    public String showGoodbye() {
+        String content = MESSAGE_GOODBYE;
+        return content;
     }
 
     /**
-     * Prints goodbye message on exiting duke.Duke.
-     */
-    public void showGoodbye() {
-        System.out.println(MESSAGE_GOODBYE);
-    }
-
-    /**
-     * Prints confirmation message that a task has been added to the list.
+     * Returns confirmation message that a task has been added to the list.
      *
      * @param task task.Task added to the list.
      * @param tasksLeft Number of tasks left in list.
+     * @return String of confirmation message of adding a task.
      */
-    public void showAdd(Task task, int tasksLeft) {
-        String message = "";
+    public String showAdd(Task task, int tasksLeft) {
+        String content = "";
         TaskId id = task.getType();
         switch(id) {
         case T:
-            message = "Meow! I'm a cat. I've added this task:\n";
+            content = "Meow! I'm a cat. I've added this task:\n";
             break;
         case E:
-            message = "Moo! I'm a cat. I've added this event:\n";
+            content = "Moo! I'm a cat. I've added this event:\n";
             break;
         case D:
-            message = "Woof! I'm a cat. I've added this deadline:\n";
+            content = "Woof! I'm a cat. I've added this deadline:\n";
             break;
         default:
             break;
         }
-        System.out.println(message + task + "\n");
-        showTasksLeft(tasksLeft);
+        String outro = showTasksLeft(tasksLeft);
+        return content + outro;
     }
 
     /**
-     * Prints confirmation message that task has been marked as complete.
+     * Returns confirmation message that task has been marked as complete.
      *
      * @param t task.Task to be marked.
+     * @return String of confirmation message of completing a task.
      */
-    public void showMark(Task t) {
-        String msg = "Nyace! One step closer to nap!\n";
-        System.out.println(msg + TAB + t);
+    public String showMark(Task t) {
+        String content = "Nyace! One step closer to nap!\n" + TAB + t + "\n";
+        return content;
     }
 
     /**
-     * Prints confirmation message that task has been marked as incomplete.
+     * Returns confirmation message that task has been marked as incomplete.
      *
      * @param t task.Task to be marked as incomplete.
+     * @return String of confirmation message of marking a task as incomplete.
      */
-    public void showUnmark(Task t) {
-        String msg = "You nyapped for too long!\n";
-        System.out.println(msg + TAB + t);
+    public String showUnmark(Task t) {
+        String content = "You nyapped for too long!\n" + TAB + t + "\n";
+        return content;
     }
 
     /**
-     * Prints confirmation message that task has been deleted from the list.
+     * Returns confirmation message that task has been deleted from the list.
      *
      * @param t task.Task to be deleted.
      * @param tasksLeft Integer representing the number of tasks left in the list.
+     * @return String of message confirming a delete operation had been carried out.
      */
-    public void showDelete(Task t, int tasksLeft) {
-        String msg = "It's dead!! It's deadsss!\n";
-        System.out.println(msg + TAB + t + "\n");
-        showTasksLeft(tasksLeft);
+    public String showDelete(Task t, int tasksLeft) {
+        String content = "It's dead!! It's deadsss!\n" + TAB + t + "\n";
+        String end = showTasksLeft(tasksLeft);
+        return content + end;
+
     }
 
     /**
-     * Prints current state of the list.
+     * Returns current state of the list.
      *
      * @param list String array of task descriptions.
      * @param tasksLeft Integer representing the number of tasks left in the list.
+     * @return String of message showing the state of the list and its constituent tasks.
      */
-    public void showList(String[] list, int tasksLeft) {
-        String message;
+    public String showList(String[] list, int tasksLeft) {
+        String content;
+
         if (tasksLeft == 0) {
-            message = "NYAAA! 00 Tasks means nap time.\n";
-            System.out.println(message);
+            content = "NYAAA! 00 Tasks means nap time.\n";
+            return content;
         } else {
-            message = "Here nya the tasks in your list:\n";
-            StringBuilder builder = new StringBuilder(message);
+            content = "Here nya the tasks in your list:\n";
+            StringBuilder builder = new StringBuilder(content);
             for (String s : list) {
                 builder.append(s).append("\n");
             }
-            System.out.println(builder);
+            return builder.toString();
         }
     }
 
     /**
-     * Prints tasks in the list that are matching.
+     * Returns tasks in the list that are matching.
      *
      * @param list String array of matching task descriptions.
+     * @return String showing tasks in list matching the description.
      */
-    public void showFindList(String[] list) {
-        String message;
+    public String showFindList(String[] list) {
+        String content;
+
         if (list[0] == null) {
-            message = "NYAAA! 00 Tasks are found.\n";
-            System.out.println(message);
+            content = "NYAAA! 00 Tasks are found.\n";
+            return content;
         } else {
-            message = "Here nya the matching tasks in your list:\n";
-            StringBuilder builder = new StringBuilder(message);
+            content = "Here nya the matching tasks in your list:\n";
+            StringBuilder builder = new StringBuilder(content);
             for (String s : list) {
                 if (s == null) {
                     break;
                 }
                 builder.append(s).append("\n");
             }
-            System.out.println(builder);
+            return builder.toString();
         }
     }
 
     /**
-     * Prints message indicating an empty task list.
+     * Returns message indicating an empty task list.
+     *
+     * @return String indicating the list is empty.
      */
-    public void showEmpty() {
-        System.out.println("There are NYA tasks hereeeee");
+    public String showEmpty() {
+        String content = "There are NYA tasks hereeeee\n";
+        return content;
     }
 
     /**
-     * Prints message indicating the number of tasks left in the list.
+     * Returns message indicating the number of tasks left in the list.
      *
      * @param tasksLeft Integer representing the number of tasks left in the list.
+     * @return String indicating the number of tasks left in the list.
      */
-    public void showTasksLeft(int tasksLeft) {
+    public String showTasksLeft(int tasksLeft) {
         String str = "Nyaw you have " + Math.max(tasksLeft, 0) + " ";
         if (tasksLeft > 1) {
-            str += "tasks in the list";
+            str += "tasks in the list\n";
         } else {
-            str += "task in the list";
+            str += "task in the list\n";
         }
-        System.out.println(str);
+        return str;
     }
 
     /**
-     * Prints error message inputted.
+     * Returns error message inputted.
      *
      * @param errMessage String representing error message.
+     * @return String containing the error message.
      */
-    public void showError(String errMessage) {
-        System.out.println(errMessage);
+    public String showError(String errMessage) {
+        String content =errMessage + "\n";
+        return content;
     }
 
     /**
      * Prints error message indicating file could not be loaded.
+     *
+     * @return String containing the loading error message.
      */
-    public void showLoadingError() {
-        System.out.println("File cannyat load. Please check saved list text");
+    public String showLoadingError() {
+        String content = "File cannyat load. Please check saved list text\n";
+        return content;
+    }
+
+    /**
+     * Prints a border to enclose output.
+     */
+    public void showLine() {
+        System.out.println(MESSAGE_BORDER);
     }
 
 }
