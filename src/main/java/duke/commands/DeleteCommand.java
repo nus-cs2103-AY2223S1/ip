@@ -42,6 +42,6 @@ public class DeleteCommand extends Command {
         String msg = msgBegin + " " + task + msgEnd;
         ui.prettyPrint(msg);
 
-        Storage.writeAllToStorage(taskList);
+        storage.writeAllToStorage(taskList);
     }
 }

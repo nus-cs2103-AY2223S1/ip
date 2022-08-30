@@ -37,6 +37,6 @@ public class MarkCommand extends Command {
         String msg = msgBegin + taskList.getTask(this.taskIndex);
         ui.prettyPrint(msg);
 
-        Storage.writeAllToStorage(taskList);
+        storage.writeAllToStorage(taskList);
     }
 }

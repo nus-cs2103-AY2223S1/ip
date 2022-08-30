@@ -36,6 +36,6 @@ public class AddCommand extends Command {
         String msg = msgBegin + "  " + task + msgEnd;
         ui.prettyPrint(msg);
 
-        Storage.appendTaskToStorage(task);
+        storage.appendTaskToStorage(task);
     }
 }

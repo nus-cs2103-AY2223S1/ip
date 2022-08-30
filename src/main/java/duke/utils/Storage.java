@@ -16,42 +16,60 @@ import duke.tasks.Todo;
  * Handles all the storage-related tasks.
  */
 public class Storage {
+    private final String folderDirectory;
+    private final String fileDirectory;
+
+    /**
+     * Initializes a new Storage instance.
+     * @param folderDirectory Directory of the persistent storage file
+     * @param fileName Name of the persistent storage file
+     */
+    public Storage(String folderDirectory, String fileName) {
+        this.folderDirectory = folderDirectory;
+        this.fileDirectory = folderDirectory + "/" + fileName + ".txt";
+    }
+
     /**
      * Reads and parses the task list from persistent storage and returns it.
+     * If no existing storage file is found, this method returns a new empty TaskList.
      *
      * @return TaskList from persistent storage.
      */
-    public static TaskList readFromStorage() throws FileNotFoundException {
+    public TaskList readFromStorage() {
         TaskList taskList = new TaskList();
-        File f = new File("data/duke.txt");
-        Scanner sc = new Scanner(f);
-        while (sc.hasNextLine()) {
-            String taskStr = sc.nextLine();
-            String[] taskStrTokens = taskStr.split("\\|");
+        try {
+            File f = new File(this.fileDirectory);
+            Scanner sc = new Scanner(f);
+            while (sc.hasNextLine()) {
+                String taskStr = sc.nextLine();
+                String[] taskStrTokens = taskStr.split("\\|");
 
-            String taskType = taskStrTokens[0];
-            String taskDescription = taskStrTokens[1];
-            boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
+                String taskType = taskStrTokens[0];
+                String taskDescription = taskStrTokens[1];
+                boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
 
-            switch (taskType) {
-            case "Todo":
-                Todo currTodo = new Todo(taskDescription, isTaskDone);
-                taskList.addTask(currTodo);
-                break;
-            case "Deadline":
-                LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
-                Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
-                taskList.addTask(currDeadline);
-                break;
-            case "Event":
-                LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
-                Event currEvent = new Event(taskDescription, isTaskDone, at);
-                taskList.addTask(currEvent);
-                break;
-            default:
-                // Something that cannot be recognized
-                break;
+                switch (taskType) {
+                case "Todo":
+                    Todo currTodo = new Todo(taskDescription, isTaskDone);
+                    taskList.addTask(currTodo);
+                    break;
+                case "Deadline":
+                    LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
+                    Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
+                    taskList.addTask(currDeadline);
+                    break;
+                case "Event":
+                    LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
+                    Event currEvent = new Event(taskDescription, isTaskDone, at);
+                    taskList.addTask(currEvent);
+                    break;
+                default:
+                    // Something that cannot be recognized
+                    break;
+                }
             }
+        } catch (FileNotFoundException e) {
+            return taskList;
         }
         return taskList;
     }
@@ -71,14 +89,13 @@ public class Storage {
      *
      * @param taskList Input TaskList to read from and write into the persistent storage file.
      */
-    public static void writeAllToStorage(TaskList taskList) {
-        File dataDirectory = new File("data");
-        if (!dataDirectory.exists()) {
-            dataDirectory.mkdir();
+    public void writeAllToStorage(TaskList taskList) {
+        File folderDirectory = new File(this.folderDirectory);
+        if (!folderDirectory.exists()) {
+            folderDirectory.mkdirs();
         }
-
         try {
-            FileWriter fw = new FileWriter("data/duke.txt", false);
+            FileWriter fw = new FileWriter(this.fileDirectory, false);
             int lenTaskList = taskList.size();
             for (int i = 0; i < lenTaskList; i++) {
                 Task task = taskList.getTask(i);
@@ -94,14 +111,13 @@ public class Storage {
     /**
      * Appends a new Task to persistent storage.
      */
-    public static void appendTaskToStorage(Task task) {
-        File dataDirectory = new File("data");
-        if (!dataDirectory.exists()) {
-            dataDirectory.mkdir();
+    public void appendTaskToStorage(Task task) {
+        File folderDirectory = new File(this.folderDirectory);
+        if (!folderDirectory.exists()) {
+            folderDirectory.mkdirs();
         }
-
         try {
-            FileWriter fw = new FileWriter("data/duke.txt", true);
+            FileWriter fw = new FileWriter(this.fileDirectory, true);
             String strRepresentation = Storage.taskStrRepresentation(task);
             fw.write(strRepresentation);
             fw.close();

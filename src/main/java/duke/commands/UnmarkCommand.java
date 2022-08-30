@@ -37,6 +37,6 @@ public class UnmarkCommand extends Command {
         String msg = msgBegin + taskList.getTask(taskIndex);
         ui.prettyPrint(msg);
 
-        Storage.writeAllToStorage(taskList);
+        storage.writeAllToStorage(taskList);
     }
 }

@@ -17,6 +17,7 @@ public class Duke {
     private TaskList taskList;
     private final Ui ui;
     private final Parser parser;
+    private final Storage storage;
 
     /**
      * Initializes a new Duke instance.
@@ -24,11 +25,8 @@ public class Duke {
     public Duke() {
         this.ui = new Ui();
         this.parser = new Parser();
-        try {
-            this.taskList = Storage.readFromStorage();
-        } catch (FileNotFoundException e) {
-            this.taskList = new TaskList();
-        }
+        this.storage = new Storage("data", "duke");
+        this.taskList = this.storage.readFromStorage();
     }
 
     /**
@@ -42,7 +40,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readInput();
                 Command c = parser.parseCommand(fullCommand);
-                c.execute(this.taskList, this.ui, null);
+                c.execute(this.taskList, this.ui, this.storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.prettyPrint(e.getMessage());
