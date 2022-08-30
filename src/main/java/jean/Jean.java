@@ -22,14 +22,23 @@ public class Jean {
 
     /**
      * Constructs a new Jean object initialised with its Ui, Storage and Ui object.
-     *
-     * @param ui Ui object of the Jean object.
-     * @param storage Storage object of the Jean object.
-     * @param tasks TaskList object of the Jean object.
      */
-    public Jean(Ui ui, Storage storage, TaskList tasks) {
-        this.ui = ui;
-        this.storage = storage;
+    public Jean() {
+        this.ui = new Ui();
+        this.storage = new Storage("data/list.txt");
+        TaskList tasks = null;
+        try {
+            File dir = new File("data");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            tasks = new TaskList(storage.load());
+        } catch (JeanException e) {
+            ui.printMessage(ui.getJeanError(e));
+            tasks = new TaskList();
+        } catch (IOException e) {
+            ui.printMessage(ui.getGeneralError(e));
+        }
         this.tasks = tasks;
     }
 
@@ -37,7 +46,7 @@ public class Jean {
      * Runs the Jean object.
      */
     public void run() {
-        ui.greet();
+        ui.printMessage(ui.greet());
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -46,13 +55,9 @@ public class Jean {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (JeanException e) {
-                ui.showJeanError(e.getMessage());
-            } catch (IOException e) {
-                ui.showGeneralError(e.getMessage());
-            } catch (DateTimeParseException e) {
-                ui.showGeneralError(e.getMessage());
-                ui.printMessage("Please give a valid deadline in the format of yyyy-MM-dd HHmm!"
-                                + "\nVeuillez indiquer une date limite valide au format yyyy-MM-dd HHmm!");
+                ui.printMessage(ui.getJeanError(e));
+            } catch (IOException | DateTimeParseException e) {
+                ui.printMessage(ui.getGeneralError(e));
             }
         }
     }
@@ -63,21 +68,17 @@ public class Jean {
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {
-        Ui ui = new Ui();
-        Storage storage = new Storage("data/list.txt");
-        TaskList tasks = null;
+        new Jean().run();
+    }
+
+    public String getResponse(String input) {
         try {
-            File dir = new File("data");
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            tasks = new TaskList(storage.load());
+            Command c = Parser.parse(input.trim(), tasks);
+            return c.execute(tasks, ui, storage);
         } catch (JeanException e) {
-            ui.showJeanError(e.getMessage());
-            tasks = new TaskList();
-        } catch (IOException e) {
-            ui.showGeneralError(e.getMessage());
+            return ui.getJeanError(e);
+        } catch (IOException | DateTimeParseException e) {
+            return ui.getGeneralError(e);
         }
-        new Jean(ui, storage, tasks).run();
     }
 }

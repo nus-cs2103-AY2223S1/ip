@@ -10,7 +10,7 @@ import jean.ui.Ui;
  * An abstract class which encapsulates a Command object.
  */
 public abstract class Command {
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws IOException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws IOException;
 
     /**
      * Checks if the Command object is an instance of ExitCommand.

@@ -27,9 +27,10 @@ public class DeleteCommand extends Command {
      * @param taskList List of tasks to be deleted from.
      * @param ui The ui object that prints feedback to the user interface.
      * @param storage The storage object that saves to or extracts from data.
+     * @return The string to be printed.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
-        taskList.deleteTask(this.taskIndex, ui);
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+        return taskList.deleteTask(this.taskIndex, ui);
     }
 }

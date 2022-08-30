@@ -1,5 +1,9 @@
 package jean.ui;
 
+import jean.exception.JeanException;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -36,37 +40,42 @@ public class Ui {
     /**
      * Prints the errorMessage of a JeanException.
      *
-     * @param errorMessage The message of the JeanException.
+     * @param e The instance of JeanException.
      */
-    public void showJeanError(String errorMessage) {
-        System.out.println(errorMessage);
+    public String getJeanError(JeanException e) {
+        return (e.getMessage());
     }
 
     /**
      * Prints the errorMessage of all Exceptions in appropriate formatting.
      *
-     * @param errorMessage The message of the exception.
+     * @param e The exception.
      */
-    public void showGeneralError(String errorMessage) {
-        System.out.println("Something went wrong: " + errorMessage
-                           + "\nQuelque chose a mal tourné: " + errorMessage);
+    public String getGeneralError(Exception e) {
+        String message = ("Something went wrong: " + e.getMessage()
+                          + "\nQuelque chose a mal tourné: " + e.getMessage());
+        if (e instanceof DateTimeParseException) {
+            message += ("\nPlease give a valid deadline in the format of yyyy-MM-dd HHmm!"
+                        + "\nVeuillez indiquer une date limite valide au format yyyy-MM-dd HHmm!");
+        }
+        return message;
     }
 
     /**
      * Greets the user by printing default greeting text.
      */
-    public void greet() {
-        System.out.println("Hello! I'm jean.Jean"
-                           + "\nHow can I help you?"
-                           + "\nBonjour! Je m'appelle jean.Jean"
-                           + "\nVous désirez?");
+    public String greet() {
+        return ("Hello! I'm Jean!"
+                + "\nHow can I help you?"
+                + "\nBonjour! Je m'appelle Jean!"
+                + "\nVous désirez?");
     }
 
     /**
      * Bids goodbye to user by printing default ending text.
      */
-    public void end() {
-        System.out.println("\tGoodbye! See you soon!"
-                           + "\n\tAu revoir! À tout à l'heure!");
+    public String end() {
+        return ("\tGoodbye! See you soon!"
+                + "\n\tAu revoir! À tout à l'heure!");
     }
 }
