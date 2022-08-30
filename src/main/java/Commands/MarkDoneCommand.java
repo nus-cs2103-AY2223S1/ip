@@ -5,7 +5,7 @@ import DaveExceptions.DaveNoTasksException;
 import Task.Task;
 
 
-public class MarkDoneCommand implements Command{
+public class MarkDoneCommand extends Command{
 
     private Task task;
 

@@ -3,7 +3,7 @@ import DataStruct.TaskList;
 import Task.ToDo;
 import DaveExceptions.DaveException;
 
-public class AddTodoCommand implements Command {
+public class AddTodoCommand extends Command {
 
     private TaskList tasks;
     private ToDo task;

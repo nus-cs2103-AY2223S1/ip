@@ -6,7 +6,7 @@ import Task.Deadlines;
 import DaveExceptions.DaveException;
 import Parser.Parser;
 
-public class AddDeadlineCommand implements Command {
+public class AddDeadlineCommand extends Command {
 
     private TaskList tasks;
     private Deadlines task;
@@ -32,7 +32,7 @@ public class AddDeadlineCommand implements Command {
      * @throws DaveException Exception is thrown if addition operation fails
      */
     public AddDeadlineCommand(TaskList tasks, String input) throws DaveException {
-        Pair<String, LocalDateTime> taskDetails = Parser.parseDeadline(input);
+        Pair<String, LocalDateTime> taskDetails = Parser.parseTask(input);
         this.task = new Deadlines(taskDetails.getHead(), taskDetails.getTail());
         this.tasks = tasks;
     }

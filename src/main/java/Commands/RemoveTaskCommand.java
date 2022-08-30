@@ -3,7 +3,7 @@ import DataStruct.TaskList;
 import DaveExceptions.DaveException;
 import DaveExceptions.DaveNoTasksException;
 
-public class RemoveTaskCommand implements Command {
+public class RemoveTaskCommand extends Command {
 
     private TaskList tasks;
     private int index;

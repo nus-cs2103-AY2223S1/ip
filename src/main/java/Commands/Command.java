@@ -1,12 +1,16 @@
 package Commands;
 import DaveExceptions.DaveException;
 
-interface Command {
+public abstract class Command {
 
     /**
      * Executes the command.
      * @return The string representation of the result of the command.
      */
-    public String execute() throws DaveException;
+    public abstract String execute() throws DaveException;
+
+    public boolean isContinue() {
+        return true;
+    }
 
 }

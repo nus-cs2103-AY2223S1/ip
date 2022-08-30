@@ -6,7 +6,7 @@ import Task.Events;
 import DaveExceptions.DaveException;
 import Parser.Parser;
 
-public class AddEventCommand implements Command {
+public class AddEventCommand extends Command {
 
     private TaskList tasks;
     private Events task;
@@ -32,7 +32,7 @@ public class AddEventCommand implements Command {
      * @throws DaveException Exception is thrown if addition operation fails
      */
     public AddEventCommand(TaskList tasks, String input) throws DaveException {
-        Pair<String, LocalDateTime> taskDetails = Parser.parseEvent(input);
+        Pair<String, LocalDateTime> taskDetails = Parser.parseTask(input);
         this.task = new Events(taskDetails.getHead(), taskDetails.getTail());
         this.tasks = tasks;
     }

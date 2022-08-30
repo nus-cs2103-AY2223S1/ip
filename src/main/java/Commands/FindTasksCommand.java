@@ -3,7 +3,7 @@ package Commands;
 import DataStruct.TaskList;
 
 
-public class FindTasksCommand {
+public class FindTasksCommand extends Command {
     private TaskList tasks;
     private String keyword;
 
@@ -12,6 +12,7 @@ public class FindTasksCommand {
         this.keyword = keyword;
     }
 
+    @Override
     public String execute() {
         return this.tasks.findTasks(keyword);
     }

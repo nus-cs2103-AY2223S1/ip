@@ -3,12 +3,12 @@ import DataStruct.TaskList;
 import Task.Task;
 import DaveExceptions.DaveException;
 
-public class UnmarkDoneCommand implements Command {
+public class UnmarkDoneCommand extends Command {
 
     private final Task task;
 
     /**
-     * Initialises a unmark done command with a task to be unmarked.
+     * Initialises an unmark done command with a task to be unmarked.
      *
      * @param task the Task to be unmarked
      */
