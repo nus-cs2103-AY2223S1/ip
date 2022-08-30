@@ -9,7 +9,7 @@ public abstract class Command {
      */
     public abstract String execute() throws DaveException;
 
-    public boolean isContinue() {
+    public boolean getIsRunning() {
         return true;
     }
 

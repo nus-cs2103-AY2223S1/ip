@@ -18,7 +18,7 @@ public class EndCommand extends Command{
     }
 
     @Override
-    public boolean isContinue() {
+    public boolean getIsRunning() {
         return false;
     }
 }

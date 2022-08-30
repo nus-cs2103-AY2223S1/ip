@@ -5,6 +5,7 @@ import Parser.Parser;
 import Storage.SaveHandler;
 import Ui.TextUi;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Dave2 {
@@ -17,8 +18,19 @@ public class Dave2 {
 
     private static boolean isRunning = true;
 
-    public static void main(String[] args) {
+    public static String getResponse(String input) throws DaveException {
+        Pair<String, String> inputData = Parser.splitInputIntoCommand(scanner.nextLine());
+        Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), tasks);
+        String result  = command.execute();
+        return result;
+    }
 
+    @Deprecated
+    /**
+     * Original point of entry to Dave 2 when using CLI.
+     * Deprecated after adding GUI.
+     */
+    public static void main(String[] args) {
         try {
             saveState.init();
             tasks = saveState.load();
@@ -34,7 +46,7 @@ public class Dave2 {
                 Pair<String, String> inputData = Parser.splitInputIntoCommand(scanner.nextLine());
                 Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), tasks);
                 String result  = command.execute();
-                isRunning = command.isContinue();
+                isRunning = command.getIsRunning();
                 TextUi.print(result);
             }
 
