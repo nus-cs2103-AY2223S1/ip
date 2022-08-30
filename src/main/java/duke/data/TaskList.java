@@ -47,6 +47,9 @@ public class TaskList {
                     date = action.substring(i + 1).strip();
                     list.add(new EventTask(action.substring(0, i).strip(), isDone, date));
                     break;
+                default:
+                    ui.showError();
+                    break;
                 }
             }
         } catch (DukeException | FileNotFoundException e) {
