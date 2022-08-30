@@ -109,7 +109,7 @@ public class Ui {
      * Prints the text for deleting tasks
      *
      * @param message String representation on the task deleted
-     * @param numOfTasks number of tasks in the TaskList
+     * @param numOfTask number of tasks in the TaskList
      */
     public void delete(int numOfTask, String message) {
         String output = "\tNoted. I've removed this task:\n";
@@ -121,8 +121,15 @@ public class Ui {
     /**
      * Prints the error message
      *
-     * @param message error type
+     * @param tasks error type
      */
+    public void find(String tasks) {
+        String output = "\tHere are the matching tasks in your list:\n";
+        output += tasks;
+        printWithDivider(output);
+    }
+
+
     public void showLoadingError(String message) {
         switch (message) {
         case "empty command":
@@ -170,7 +177,7 @@ public class Ui {
         break;
 
         case "empty event":
-        printWithDivider("\t☹ OOPS!!! The description of a event cannot be empty.\n");
+        printWithDivider("\t☹ OOPS!!! The description of event cannot be empty.\n");
         break;
 
         case "invalid command event":
@@ -181,6 +188,9 @@ public class Ui {
         printWithDivider("\tTasklist is empty\n");
         break;
 
+        case "empty command find":
+        printWithDivider("\t☹ OOPS!!! The description of find cannot be empty.\n");
+        break;
         }
     }
 }

@@ -11,6 +11,7 @@ import command.MarkCommand;
 import command.TimeTaskCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
+import command.FindCommand;
 import exception.DukeException;
 
 /**
@@ -153,8 +154,14 @@ public class Parser {
             throw new DukeException("invalid command event");
         }
 
+        case "find":
+            if (split.length == 1) {
+                throw new DukeException("empty command find");
+            }
+            return new FindCommand(split[1]);
+
         default:
-        throw new DukeException("invalid command");
+            throw new DukeException("invalid command");
         }
     }
 
