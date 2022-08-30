@@ -2,12 +2,12 @@ package duke.dukerobot;
 
 import java.io.IOException;
 
-import duke.storage.Storage;
-import duke.tasklist.TaskList;
-import duke.ui.Ui;
 import duke.command.Command;
 import duke.dukeexception.DukeException;
+import duke.storage.Storage;
 import duke.parser.Parser;
+import duke.ui.Ui;
+import duke.tasklist.TaskList;
 
 /**
  * Represents the duke robot. Contains the main function.
@@ -40,7 +40,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(this.taskList,this.storage);
+                c.execute(this.taskList, this.storage);
                 isExit = c.getIsExit();
             } catch (DukeException e) {
                 ui.showDukeException(e.getMessage());

@@ -1,13 +1,13 @@
 package duke.command;
 
-import duke.tasklist.TaskList;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Represents a command from users.
  */
-abstract public class Command {
+public abstract class Command {
     private boolean isExit = false;
 
     /**
@@ -20,7 +20,7 @@ abstract public class Command {
     /**
      * Change the isExit field of the object to true. Means the program will exit.
      */
-    public void setIsExitTrue(){
+    public void setIsExitTrue() {
         this.isExit = true;
     }
 

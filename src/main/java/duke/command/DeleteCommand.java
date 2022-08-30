@@ -1,20 +1,20 @@
 package duke.command;
 
-import duke.tasklist.TaskList;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Represents a command to delete task in the taskList.
  */
 public class DeleteCommand extends Command {
-    String fullCommand;
+    private String fullCommand;
     /**
      * Class constructor. Construct a deleteCommand object.
      * @param fullCommand A string of a line from the System.in. With the format as "delete x"
      *                    where x is an integer.
      */
-    public DeleteCommand(String fullCommand){
+    public DeleteCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
-        taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1])
-                , storage);
+        taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1]),
+                storage);
     }
 }

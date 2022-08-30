@@ -1,19 +1,19 @@
 package duke.command;
 
-import duke.tasklist.TaskList;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Represents a command to mark a certain task as done or undone.
  */
 public class MarkingCommand extends Command {
-    String fullCommand;
+    private String fullCommand;
     /**
      * Class constructor.Construct a command for marking.
      * @param fullCommand A string of a line from System.in. Begin with "mark" or "unmark".
      */
-    public MarkingCommand(String fullCommand){
+    public MarkingCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 

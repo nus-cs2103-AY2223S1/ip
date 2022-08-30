@@ -1,18 +1,18 @@
 package duke.command;
 
-import duke.tasklist.TaskList;
 import duke.storage.Storage;
+import duke.tasklist.TaskList;
 
 /**
  * Represents command to get task on a certain day, or to list out all the tasks.
  */
 public class OtherCommand extends Command {
-    String fullCommand;
+    private String fullCommand;
     /**
      * Class constructor. Construct a command for getting or listing tasks.
      * @param fullCommand A string of a line from System.in. Begin with "Get" or "list".
      */
-    public OtherCommand(String fullCommand){
+    public OtherCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
@@ -27,7 +27,7 @@ public class OtherCommand extends Command {
             System.out.println(taskList.getASpecificDay(fullCommand));
         } else if (this.fullCommand.split(" ")[0].equals("find")) {
             System.out.println(taskList.find(fullCommand));
-        } else{
+        } else {
             System.out.println(taskList.listAllTask());
         }
     }

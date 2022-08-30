@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.tasklist.TaskList;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
+import duke.tasklist.TaskList;
 
 /**
  * Represents a command. An AddCommand Object corresponds to a command

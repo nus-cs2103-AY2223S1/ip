@@ -8,6 +8,12 @@ import duke.dukeexception.DukeException;
 public class Event extends Task {
     private String at;
     private String description;
+
+    /**
+     * class constructor
+     * @param description full version of the input
+     * @throws DukeException throws expection when error occurs
+     */
     public Event(String description) throws DukeException {
         super("tempTask");
         try {

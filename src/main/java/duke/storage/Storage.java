@@ -1,21 +1,22 @@
 package duke.storage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import duke.task.Task;
-import duke.tasklist.TaskList;
-import duke.dukeexception.DukeException;
-
 import java.util.Scanner;
 import java.util.List;
+
+import duke.dukeexception.DukeException;
+import duke.task.Task;
+import duke.tasklist.TaskList;
+
 
 /**
  * Represents the storage of taskList of this Duke robot.
  */
 public class Storage {
-    File file;
+    private File file;
 
     /**
      * Class construtor. Construct a storage according to the file path given.
@@ -45,7 +46,7 @@ public class Storage {
             for (int i = 0; i < t.size(); i++) {
                 if (t.get(i) != null) {
                     if (t.get(i).getStatusIcon().equals("X")) {
-                        fw.write(t.get(i).getStatusIcon() +" "
+                        fw.write(t.get(i).getStatusIcon() + " "
                                 + t.get(i).getDescription() + "\n");
                     } else {
                         fw.write("Wait " + t.get(i).getDescription() + "\n");
@@ -58,7 +59,8 @@ public class Storage {
         }
     }
 
-    /**Load tasks from file and return a TaskList
+    /**
+     * Load tasks from file and return a TaskList
      * @return A taskList containing previous added tasks, load from the corresponding file.
      */
     public TaskList loadTasks() {

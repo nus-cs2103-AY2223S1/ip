@@ -8,6 +8,12 @@ import duke.dukeexception.DukeException;
 public class DeadLine extends Task {
     private String by;
     private String description;
+
+    /**
+     * A class constructor
+     * @param description Full version of the input
+     * @throws DukeException Throws when error occurs
+     */
     public DeadLine(String description) throws DukeException {
         super("tempTask");
         try {
@@ -19,9 +25,9 @@ public class DeadLine extends Task {
             super.getFullDescription(description.split(" ",2)[1]);
             this.by = description.split("by")[1];
         } catch (IndexOutOfBoundsException ie) {
-            throw(new DukeException("OOPS!!! The description of a deadline is still not correct."));
+            throw (new DukeException("OOPS!!! The description of a deadline is still not correct."));
         }
-        this.description=description;
+        this.description = description;
     }
 
     /**
