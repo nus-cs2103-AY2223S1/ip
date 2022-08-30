@@ -1,10 +1,17 @@
 package duke;
+
+/**
+ * Represents the interaction with the users.
+ */
 public class Ui {
 
     Ui() {
 
     }
 
+    /**
+     * Greet the users at the start of the program.
+     */
     void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -41,10 +48,6 @@ public class Ui {
         System.out.println("OK! I've marked this task as not done yet:");
         System.out.println(taskFullDescription);
     }
-
-    /*void createFiles() {
-        System.out.println("There is no existing task list. Duke is creating a new one now.");
-    }*/
 
 
 }
