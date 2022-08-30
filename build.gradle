@@ -40,6 +40,7 @@ shadowJar {
 
 checkstyle {
     toolVersion = '10.2'
+    sourceSets  = [project.sourceSets.main]
 }
 
 run{

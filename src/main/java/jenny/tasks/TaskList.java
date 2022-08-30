@@ -29,6 +29,7 @@ public class TaskList {
     /**
      * Constructor for an instance of a new task list.
      * Will use the provided {@link ArrayList} to store instances of {@link Task}
+     * @param tasks the list of tasks
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -101,7 +102,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the filtered list of {@link Task tasks} who's description passes the predicate.
+     * Returns the filtered list of {@link Task tasks} whose description passes the predicate.
      *
      * @param condition The predicate to test the task description on
      * @return filtered list of tasks

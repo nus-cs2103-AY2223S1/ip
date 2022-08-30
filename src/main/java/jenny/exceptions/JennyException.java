@@ -13,6 +13,7 @@ public class JennyException extends RuntimeException {
     /**
      * Creates an instance of the exception.
      *
+     * @param messageScope where the message originated from.
      * @param errorMessage error message of the exception.
      */
     public JennyException(String messageScope, String errorMessage) {

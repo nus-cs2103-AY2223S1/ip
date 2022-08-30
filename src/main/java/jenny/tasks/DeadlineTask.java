@@ -21,7 +21,9 @@ public class DeadlineTask extends Task {
      * Will initialise a new task with the provided {@code description} and {@code dueDate}.
      * By default, the task is marked as incomplete.
      *
+     * @param description a string to describe the task.
      * @param dueDate due date of the task.
+     * @throws JennyException when runtime exceptions are thrown in the JennyBot application.
      */
     public DeadlineTask(String description, LocalDate dueDate) throws JennyException {
         super(description);

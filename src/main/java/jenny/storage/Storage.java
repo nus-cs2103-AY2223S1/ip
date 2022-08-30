@@ -13,8 +13,8 @@ import jenny.exceptions.JennyException;
  * CS2103 Week 3
  * AY21/22 Semester 1
  *
- * @param <T> the type of item to store.
  * @author Deon
+ * @param <T> the type of item to store.
  */
 public abstract class Storage<T> {
     private static final String MESSAGE_SCOPE = Storage.class.getSimpleName();

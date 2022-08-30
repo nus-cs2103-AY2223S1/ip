@@ -33,6 +33,8 @@ public final class Printer {
 
     /**
      * Sends a series of messages to the output stream.
+     *
+     * @param messages the messages to be printed.
      */
     public void print(String[] messages) {
         printLine();
@@ -44,6 +46,8 @@ public final class Printer {
 
     /**
      * Sends a series of messages to the output stream.
+     *
+     * @param messages the messages to be printed.
      */
     public void print(ArrayList<String> messages) {
         printLine();

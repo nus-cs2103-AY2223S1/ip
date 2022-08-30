@@ -1,13 +1,20 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
-
+/**
+ * Filter and display the contents of the instance of {@link TaskList} to the user.
+ * CS2103 Week 3
+ * AY21/22 Semester 1
+ *
+ * @author Deon
+ */
 public class FindCommand extends Command {
     public static final String COMMAND = "find";
 

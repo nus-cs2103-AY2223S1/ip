@@ -20,12 +20,12 @@ import jenny.util.Validator;
 
 
 /**
- * Handles storage for an {@link ArrayList ArrayList<}{@link Task Task>}.
+ * Handles storage for a list of {@link Task Task>}.
  * CS2103 Week 3
  * AY21/22 Semester 1
  *
- * @param <T> the type of item to store.
  * @author Deon
+ * @param <T> the type of item to store.
  */
 public class TaskStorage<T> extends Storage<T> {
     private static final String MESSAGE_SCOPE = TaskStorage.class.getSimpleName();

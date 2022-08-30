@@ -21,6 +21,7 @@ public class EventTask extends Task {
      * Will initialise a new task with the provided {@code description} and {@code dueDate}.
      * By default, the task is marked as incomplete.
      *
+     * @param description a string to describe the task.
      * @param dueDate due date of the task.
      */
     public EventTask(String description, LocalDate dueDate) throws JennyException {

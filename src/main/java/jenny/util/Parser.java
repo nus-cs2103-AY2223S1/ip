@@ -8,6 +8,7 @@ import jenny.commands.Command;
 import jenny.commands.DeadlineCommand;
 import jenny.commands.DeleteCommand;
 import jenny.commands.EventCommand;
+import jenny.commands.FindCommand;
 import jenny.commands.InvalidCommand;
 import jenny.commands.ListCommand;
 import jenny.commands.MarkCommand;
