@@ -1,11 +1,10 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
-import java.time.format.DateTimeParseException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 
 public class DeadlineTest {
     private String invalidDate = "40/40/999";
@@ -15,7 +14,7 @@ public class DeadlineTest {
      * Test Deadline with valid input
      */
     @Test
-    public void Test1() {
+    public void test1() {
         try {
             Deadline test = new Deadline(validDescription, true, validDate);
         } catch (Exception e) {
@@ -27,7 +26,7 @@ public class DeadlineTest {
      * Test Deadline with invalid input
      */
     @Test
-    public void Test2() {
+    public void test2() {
         try {
             Deadline test = new Deadline(validDescription, false, invalidDate);
         } catch (DukeException e) {

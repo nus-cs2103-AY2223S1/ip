@@ -9,8 +9,8 @@ import java.util.Scanner;
  */
 public class Duke {
 
-    private TaskList tasks;
     private static final Scanner SCANNER = new Scanner(System.in);
+    private TaskList tasks;
     private Ui ui;
     private Storage storage;
     private Parser parser;
