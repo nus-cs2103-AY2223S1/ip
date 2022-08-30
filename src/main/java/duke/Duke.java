@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+/*
 import duke.frontend.MainWindow;
 
 import javafx.application.Application;
@@ -12,10 +13,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+ */
+
 /**
  * Main file of Duke to be run to initiate the program.
  */
-public class Duke extends Application {
+public class Duke {
     //Backend variables
     private Storage storage;
     private TaskList taskList;
@@ -71,6 +74,7 @@ public class Duke extends Application {
         this.ui.showGoodbyeMessage();
     }
 
+    /*
     @Override
     public void start(Stage stage) {
         try {
@@ -84,6 +88,8 @@ public class Duke extends Application {
             e.printStackTrace();
         }
     }
+
+     */
 
     /**
      * You should have your own function to generate a response to user input.
