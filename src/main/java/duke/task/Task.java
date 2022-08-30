@@ -2,9 +2,9 @@ package duke.task;
 
 public class Task {
     enum Tag {
-        T,
-        E,
-        D
+        Todo,
+        Event,
+        Deadline
     }
 
     protected String description;
@@ -33,7 +33,20 @@ public class Task {
         return description;
     }
 
+    public String getTag() {
+        switch(tag) {
+        case Todo:
+            return "T";
+        case Event:
+            return "E";
+        case Deadline:
+            return "D";
+        default:
+            return " ";
+        }
+    }
+
     public String toString() {
-        return "[" + tag + "][" + getStatusIcon() + "] " + getDescription();
+        return "[" + getTag() + "][" + getStatusIcon() + "] " + getDescription();
     }
 }

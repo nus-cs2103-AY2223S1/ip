@@ -8,7 +8,7 @@ import duke.task.Task;
 
 public class FindCommand extends Command {
 
-    String input;
+    private String input;
 
     public FindCommand(String input) {
         this.input = input;

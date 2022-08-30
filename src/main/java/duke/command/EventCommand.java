@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public class EventCommand extends Command {
 
-    String name;
-    LocalDateTime time;
+    private String name;
+    private LocalDateTime time;
 
     public EventCommand(String name, LocalDateTime time) {
         this.name = name;

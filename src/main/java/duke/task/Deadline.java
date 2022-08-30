@@ -7,7 +7,7 @@ public class Deadline extends Task {
     protected LocalDateTime time;
 
     public Deadline(String description, LocalDateTime time) {
-        super(description, Tag.D);
+        super(description, Tag.Deadline);
         this.time = time;
     }
 

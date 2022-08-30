@@ -7,7 +7,7 @@ public class Event extends Task {
     protected LocalDateTime time;
 
     public Event(String description, LocalDateTime time) {
-        super(description, Tag.E);
+        super(description, Tag.Event);
         this.time = time;
     }
 

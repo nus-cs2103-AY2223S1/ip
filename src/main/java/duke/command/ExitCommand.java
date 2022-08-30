@@ -10,7 +10,7 @@ public class ExitCommand extends Command {
         ui.print("Cya!");
     }
 
-    public boolean isClose() {
+    public boolean isExit() {
         return true;
     }
 }

@@ -6,7 +6,7 @@ import duke.Ui;
 
 public class TodoCommand extends Command {
 
-    String name;
+    private String name;
 
     public TodoCommand(String name) {
         this.name = name;

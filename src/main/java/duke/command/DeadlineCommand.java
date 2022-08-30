@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public class DeadlineCommand extends Command {
 
-    String name;
-    LocalDateTime time;
+    private String name;
+    private LocalDateTime time;
 
     public DeadlineCommand(String name, LocalDateTime time) {
         this.name = name;

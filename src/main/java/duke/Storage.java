@@ -46,14 +46,19 @@ public class Storage {
      * @param tasks A list of strings containing lines to save.
      * @throws Exception if save file cannot be written.
      */
-    public void save(TaskList tasks) throws Exception {
+    public void save(TaskList tasks) throws DukeException {
         String res = "";
         for (Task task : tasks.tasks()) {
             res += task;
             res += "\n";
         }
 
-        Files.createDirectories(Paths.get(folderPath));
-        Files.write(Paths.get(fileName), res.getBytes(StandardCharsets.UTF_8));
+        try {
+            Files.createDirectories(Paths.get(folderPath));
+            Files.write(Paths.get(fileName), res.getBytes(StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            throw(new DukeException("Error writing to file!"));
+        }
+
     }
 }

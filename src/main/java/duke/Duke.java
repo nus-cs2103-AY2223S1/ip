@@ -13,7 +13,6 @@ public class Duke {
 
     public static final String FOLDER_LOCATION = "data";
     public static final String FILE_LOCATION = "data/duke.txt";
-    private boolean toClose = false;
 
     /**
      * Creates a new Duke Object, initializing Ui, Storage and TaskList.
@@ -44,7 +43,7 @@ public class Duke {
             try {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                if (c.isClose()) break;
+                if (c.isExit()) break;
                 storage.save(tasks);
             } catch (Exception e){
                 ui.print(e.getMessage());
