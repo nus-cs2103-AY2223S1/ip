@@ -121,7 +121,7 @@ public class InputParser {
                 reply = ui.end();
                 break;
             case LIST:
-                reply = botList.toString();
+                reply = "Current tasks are shown on the right panel!"; //botList.toString();
                 break;
             case MARK:
                 reply = botList.mark(Integer.parseInt(separate.get(0)));

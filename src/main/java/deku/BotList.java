@@ -3,6 +3,7 @@ package deku;
 import java.util.ArrayList;
 import java.util.List;
 
+import deku.Ui.MainWindow;
 import deku.task.Task;
 
 class BotList {

@@ -1,5 +1,7 @@
 package deku;
 
+import deku.Ui.MainWindow;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,33 +23,17 @@ public class Deku {
         parser = new InputParser();
     }
 
-    /**
-    * Method to start the chat-bot
-    */
-    private void start() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(ui.introduction());
-        boolean active = true;
-        while (active && scanner.hasNext()) {
-            String userInput = scanner.nextLine();
-            if (userInput.equals("bye")) {
-                active = false;
-            }
-            System.out.println(parser.parseReply(userInput, ui, botList));
-        }
-    }
-
-    String getResponse(String input) {
-        return "Deku Responds:" + input;
+    public String getList() {
+        return botList.toString();
     }
 
     /**
-    * Default main method
-    */
-    //Solution below adapted and modified from https://stackoverflow.com/questions/24709769/
-    public static void main(String[] args) throws IOException {
-        Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
-        Path filePath = directoryPath.resolve("save.txt");
-        new Deku(directoryPath, filePath).start();
+     * Output message by deku
+     *
+     * @param input content Deku will say
+     * @return Full string of the reply by Deku
+     */
+    public String getResponse(String input) {
+        return "Deku Responds:" + parser.parseReply(input, ui, botList);
     }
 }
