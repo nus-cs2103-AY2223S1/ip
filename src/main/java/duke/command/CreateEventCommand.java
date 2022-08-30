@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.TasksController;
 import duke.Ui;
@@ -12,29 +13,22 @@ import duke.exception.InvalidTimeException;
 public class CreateEventCommand extends Command {
 
     /**
-     * Creates a new event
+     * An abstract method that every child class needs to implement
      * @param controller Duke task controller
-     * @param ui Duke UI
+     * @param taskText if it's add task command, then pass the context of the task.
+     * @param taskTime if it's add Event or Deadline, then pass the time
+     * @param taskIndex if it's mark or unmark command, then pass the task number
+     * @param keyword if it's find command, then pass the keyword
      * @param storage Duke IO processor
      */
-    public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.prompt("Please type in your Event:");
-        String event = ui.inputText();
-        try {
-            controller.checkTaskContent(event);
-            ui.prompt("Please type in time for your event (yyyy-mm-dd HH:MM):");
-            String eventTime = ui.inputText();
-            controller.checkTimeFormat(eventTime);
-            Event eventTask = new Event(event, eventTime);
-            controller.addToList(eventTask);
-            ui.display(eventTask.toString(), false, false, false, false, false);
-        } catch (EmptyContentException ece) {
-            ui.reportError("No empty task is allowed! Please try again...");
-            ui.showSplitLine();
-        } catch (InvalidTimeException ite) {
-            ui.reportError("The time format is invalid! Please try again...");
-            ui.showSplitLine();
-        }
+    public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
+                          String keyword, Storage storage) {
+        String response = "";
+        Event event = new Event(taskText, taskTime);
+        controller.addToList(event);
+        response += "Successfully added! You can see it in your task list as follows:\n";
+        response += event.toString();
+        return response;
 
     }
 }

@@ -13,28 +13,21 @@ import duke.exception.InvalidTimeException;
 public class CreateDeadlineCommand extends Command {
 
     /**
-     * Creates a new deadline
+     * An abstract method that every child class needs to implement
      * @param controller Duke task controller
-     * @param ui Duke UI
+     * @param taskText if it's add task command, then pass the context of the task.
+     * @param taskTime if it's add Event or Deadline, then pass the time
+     * @param taskIndex if it's mark or unmark command, then pass the task number
+     * @param keyword if it's find command, then pass the keyword
      * @param storage Duke IO processor
      */
-    public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.prompt("Please type in your Deadline task:");
-        String ddl = ui.inputText();
-        try {
-            controller.checkTaskContent(ddl);
-            ui.prompt("Please type in deadline (yyyy-mm-dd HH:MM):");
-            String ddlTime = ui.inputText();
-            controller.checkTimeFormat(ddlTime);
-            Deadline ddlTask = new Deadline(ddl, ddlTime);
-            controller.addToList(ddlTask);
-            ui.display(ddlTask.toString(), false, false, false, false, false);
-        } catch (EmptyContentException ece) {
-            ui.reportError("No empty task is allowed! Please try again...");
-            ui.showSplitLine();
-        } catch (InvalidTimeException ite) {
-            ui.reportError("The time format is invalid! Please try again...");
-            ui.showSplitLine();
-        }
+    public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
+                        String keyword, Storage storage) {
+        String response = "";
+        Deadline ddlTask = new Deadline(taskText, taskTime);
+        controller.addToList(ddlTask);
+        response += "Successfully added! You can see it in your task list as follows:\n";
+        response += ddlTask.toString();
+        return response;
     }
 }

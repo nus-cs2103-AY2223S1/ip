@@ -10,14 +10,17 @@ import duke.Storage;
 public class ExitCommand extends Command {
 
     /**
-     * Exits the app
+     * An abstract method that every child class needs to implement
      * @param controller Duke task controller
-     * @param ui Duke Ui
+     * @param taskText if it's add task command, then pass the context of the task.
+     * @param taskTime if it's add Event or Deadline, then pass the time
+     * @param taskIndex if it's mark or unmark command, then pass the task number
+     * @param keyword if it's find command, then pass the keyword
      * @param storage Duke IO processor
      */
-    public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.sayBye();
+    public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
+                          String keyword, Storage storage) {
         storage.save(controller.getTasks());
-        System.exit(0);
+        return "Bye. Hope to see you soon!";
     }
 }

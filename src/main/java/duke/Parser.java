@@ -1,71 +1,174 @@
 package duke;
 
 import duke.command.*;
+import duke.exception.EmptyContentException;
 import duke.exception.InvalidCommandException;
 import duke.command.Command;
+import duke.exception.InvalidTaskException;
+import duke.exception.InvalidTimeException;
+import duke.task.TasksController;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Parser classes parse user's input of commands
  */
 public class Parser {
+    private final ArrayList<String> legalCommands = new ArrayList<>();
+    private final ArrayList<String> legalTasks = new ArrayList<>();
 
-    /**
-     * Checks the legitimacy of user's input for command
-     *
-     * @param command input command
-     * @throws InvalidCommandException if command < 1 or command > 8
-     */
-    private void checkCommand(int command) throws InvalidCommandException {
-        if (command < 1 || command > 9) {
+    public Parser() {
+        legalCommands.add("add");
+        legalCommands.add("delete");
+        legalCommands.add("list");
+        legalCommands.add("mark");
+        legalCommands.add("unmark");
+        legalCommands.add("find");
+        legalCommands.add("exit");
+
+        legalTasks.add("ToDo");
+        legalTasks.add("Event");
+        legalTasks.add("Deadline");
+    }
+
+    private String parseCommand(String inputText) throws InvalidCommandException {
+        String[] splitCommand = inputText.split("/p");
+        String commandText = splitCommand[0].strip();
+        if (!legalCommands.contains(commandText)) {
             throw new InvalidCommandException("ERROR");
         }
+        return commandText;
+    }
+
+    private String parseTask(String inputText) throws InvalidTaskException {
+        String[] splitCommand = inputText.split("/p");
+        String taskText = splitCommand[1].strip();
+        if (!legalTasks.contains(taskText)) {
+            throw new InvalidTaskException("ERROR");
+        }
+        return taskText;
+    }
+
+    private String parseContent(String inputText) throws EmptyContentException {
+        String[] splitCommand = inputText.split("/p");
+        String taskContent = splitCommand[2].strip();
+        if (taskContent.isBlank()) {
+            throw new EmptyContentException("ERROR");
+        }
+        return taskContent;
+    }
+
+    private String parseTime(String inputText) throws InvalidTimeException {
+        String[] splitCommand = inputText.split("/p");
+        String time = splitCommand[3].strip();
+        if (!checkTimeFormat(time)) {
+            throw new InvalidTimeException("ERROR");
+        }
+        return time;
+    }
+
+    private int parseIndex(String inputText) {
+        String[] splitCommand = inputText.split("/p");
+        return Integer.parseInt(splitCommand[1].strip());
+    }
+
+    private String parseKeyword(String inputText) {
+        String[] splitCommand = inputText.split("/p");
+        return splitCommand[1].strip();
+    }
+
+    /**
+     * Checks the format of user's input of time
+     * @param s time string
+     * @return boolean value
+     * @throws InvalidTimeException if the format is invalid
+     */
+    public boolean checkTimeFormat(String s) throws InvalidTimeException {
+        Pattern pattern1 = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+        Pattern pattern2 = Pattern.compile("[0-9]{2}:[0-9]{2}");
+        Matcher matcher1 = pattern1.matcher(s);
+        Matcher matcher2 = pattern2.matcher(s);
+        if (!(matcher1.find() && matcher2.find())) {
+            throw new InvalidTimeException("ERROR");
+        }
+        return true;
     }
 
     /**
      * Parses user's input of commands and returns a Duke command
-     * @param commandText user's input
-     * @param ui Duke Ui object
+     * @param inputText user's input
+     * @param controller tasks controller
+     * @param storage duke storage
      * @return corresponding Duke command
      */
-    public Command parse(String commandText, Ui ui) {
+    public String parse(String inputText, TasksController controller, Storage storage) {
+        String response = "";
         Command command = null;
         try {
-            int commandNumber = Integer.parseInt(commandText);
-            checkCommand(commandNumber);
-            switch (commandNumber) {
-                case 1:
-                    command = new CreateToDoCommand();
+            String commandText = parseCommand(inputText);
+            switch (commandText) {
+                case "add":
+                    String task = parseTask(inputText);
+                    String content = parseContent(inputText);
+                    switch (task) {
+                        case "ToDo":
+                            command = new CreateToDoCommand();
+                            response = command.execute(controller, content, "", -1, "", storage);
+                            break;
+                        case "Event": {
+                            String taskTime = parseTime(inputText);
+                            command = new CreateEventCommand();
+                            response = command.execute(controller, content, taskTime, -1, "", storage);
+                            break;
+                        }
+                        case "Deadline": {
+                            String taskTime = parseTime(inputText);
+                            command = new CreateDeadlineCommand();
+                            response = command.execute(controller, content, taskTime, -1, "", storage);
+                            break;
+                        }
+                    }
                     break;
-                case 2:
-                    command = new CreateEventCommand();
-                    break;
-                case 3:
-                    command = new CreateDeadlineCommand();
-                    break;
-                case 4:
+                case "list":
                     command = new ShowTasksCommand();
+                    response = command.execute(controller, "", "", -1, "", storage);
                     break;
-                case 5:
-                    command = new MarkTaskCommand();
-                    break;
-                case 6:
-                    command = new UnmarkTaskCommand();
-                    break;
-                case 7:
+                case "delete":
+                    int deleteIndex = parseIndex(inputText) - 1;
                     command = new DeleteTaskCommand();
+                    response = command.execute(controller, "", "", deleteIndex, "", storage);
                     break;
-                case 8:
+                case "mark":
+                    int markIndex = parseIndex(inputText) - 1;
+                    command = new MarkTaskCommand();
+                    response = command.execute(controller, "", "", markIndex, "", storage);
+                    break;
+                case "unmark":
+                    int unmarkIndex = parseIndex(inputText) - 1;
+                    command = new UnmarkTaskCommand();
+                    response = command.execute(controller, "", "", unmarkIndex, "", storage);
+                    break;
+                case "find":
+                    String keyword = parseKeyword(inputText);
                     command = new FindCommand();
+                    response = command.execute(controller, "", "", -1, keyword, storage);
                     break;
-                case 9:
+                case "exit":
                     command = new ExitCommand();
+                    response = command.execute(controller, "", "", -1, "", storage);
                     break;
             }
         } catch (InvalidCommandException ice) {
-            ui.reportError("Oops! I can't recognise the command you choose. Please try again...");
-        } catch (NumberFormatException nfe) {
-            ui.reportError("Your input is not a number! Please try again...");
+            response = "Your command is invalid. Please try again...";
+        } catch (InvalidTaskException ite) {
+            response = "Your task is invalid. Please try again...";
+        } catch (EmptyContentException ece) {
+            response = "Your task content cannot be empty. Please try again...";
+        } catch (InvalidTimeException ite) {
+            response = "Your time format is invalid. Please try again...";
         }
-        return command;
+        return response;
     }
 }

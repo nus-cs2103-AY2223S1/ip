@@ -30,22 +30,6 @@ public class TasksController {
         return true;
     }
 
-    /**
-     * Checks the format of user's input of time
-     * @param s time string
-     * @return boolean value
-     * @throws InvalidTimeException if the format is invalid
-     */
-    public boolean checkTimeFormat(String s) throws InvalidTimeException {
-        Pattern pattern1 = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
-        Pattern pattern2 = Pattern.compile("[0-9]{2}:[0-9]{2}");
-        Matcher matcher1 = pattern1.matcher(s);
-        Matcher matcher2 = pattern2.matcher(s);
-        if (!(matcher1.find() && matcher2.find())) {
-            throw new InvalidTimeException("ERROR");
-        }
-        return true;
-    }
 
     /**
      * Return the target task.

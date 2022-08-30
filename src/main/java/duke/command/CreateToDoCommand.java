@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.task.Event;
 import duke.task.ToDo;
 import duke.task.TasksController;
 import duke.Ui;
@@ -11,22 +12,21 @@ import duke.exception.EmptyContentException;
 public class CreateToDoCommand extends Command {
 
     /**
-     * Creates a new todo
+     * An abstract method that every child class needs to implement
      * @param controller Duke task controller
-     * @param ui Duke UI
+     * @param taskText if it's add task command, then pass the context of the task.
+     * @param taskTime if it's add Event or Deadline, then pass the time
+     * @param taskIndex if it's mark or unmark command, then pass the task number
+     * @param keyword if it's find command, then pass the keyword
      * @param storage Duke IO processor
      */
-    public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.prompt("Please type in your ToDo task:");
-        String todo = ui.inputText();
-        try {
-            controller.checkTaskContent(todo);
-            ToDo todoTask = new ToDo(todo);
-            controller.addToList(todoTask);
-            ui.display(todoTask.toString(), false, false, false, false, false);
-        } catch (EmptyContentException ece) {
-            ui.reportError("No empty task is allowed! Please try again...");
-            ui.showSplitLine();
-        }
+    public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
+                          String keyword, Storage storage) {
+        String response = "";
+        ToDo todo = new ToDo(taskText);
+        controller.addToList(todo);
+        response += "Successfully added! You can see it in your task list as follows:\n";
+        response += todo.toString();
+        return response;
     }
 }

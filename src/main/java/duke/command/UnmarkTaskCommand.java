@@ -10,21 +10,24 @@ import duke.exception.NoSuchTaskException;
 public class UnmarkTaskCommand extends Command {
 
     /**
-     * Unmarks a task
+     * An abstract method that every child class needs to implement
      * @param controller Duke task controller
-     * @param ui Duke UI
+     * @param taskText if it's add task command, then pass the context of the task.
+     * @param taskTime if it's add Event or Deadline, then pass the time
+     * @param taskIndex if it's mark or unmark command, then pass the task number
+     * @param keyword if it's find command, then pass the keyword
      * @param storage Duke IO processor
      */
-    public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.prompt("Please type in the task index that you want to unmark:");
-        int taskIndexToUnmark = ui.inputTask() - 1;
+    public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
+                          String keyword, Storage storage) {
+        String response = "";
         try {
-            controller.changeTaskStatus(taskIndexToUnmark, false);
-            String reply = controller.getTask(taskIndexToUnmark).toString();
-            ui.display(reply, false, false, true, false, false);
+            controller.changeTaskStatus(taskIndex, false);
+            response += "Successfully unmarked! You can see it in your task list as follows:\n";
+            response += controller.getTask(taskIndex).toString();
         } catch (NoSuchTaskException e) {
-            ui.reportError("The task you choose does not exist! Please try again...");
-            ui.showSplitLine();
+            response = "Your target task doesn't exist. Please try again...";
         }
+        return response;
     }
 }
