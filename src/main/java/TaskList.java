@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
     private ArrayList<Task> taskList;
@@ -18,7 +17,7 @@ public class TaskList {
     public void addTask(Task t)  {
         this.taskList.add(t);
         try {
-            FileDataHandler.save(this.taskList);
+            Storage.save(this.taskList);
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
@@ -30,7 +29,7 @@ public class TaskList {
     public void addTaskWithoutPrinting(Task t)  {
         this.taskList.add(t);
         try {
-            FileDataHandler.save(this.taskList);
+            Storage.save(this.taskList);
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
@@ -47,12 +46,22 @@ public class TaskList {
     public void markTask(int taskNo) {
         Task task = this.getTask(taskNo);
         task.mark();
+        try {
+            Storage.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         System.out.println("Nice! I've marked this task as done:\n" + task);
     }
 
     public void unMarkTask(int taskNo) {
         Task task = this.getTask(taskNo);
         task.unMark();
+        try {
+            Storage.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         System.out.println("OK, I've marked this task as not done yet:\n" + task);
     }
 
@@ -60,7 +69,7 @@ public class TaskList {
         Task t = this.getTask(taskNo);
         this.taskList.remove(taskNo - 1);
         try {
-            FileDataHandler.save(this.taskList);
+            Storage.save(this.taskList);
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }

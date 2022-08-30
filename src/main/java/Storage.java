@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileDataHandler {
+public class Storage {
 
     private final static Path FOLDER_PATH = Paths.get(System.getProperty("user.dir") + "/data");
 
     private final static Path FILE_PATH = Paths.get(FOLDER_PATH + "/duke.txt");
 
 
-    public FileDataHandler() throws IOException {
+    public Storage() throws IOException {
 
     }
 
@@ -59,7 +59,6 @@ public class FileDataHandler {
         return  taskList;
     }
 
-//    the code should save the whole file again instead of appending line by line
     public static void save(ArrayList<Task> taskListToAdd) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH.toString());
         String fullText = "";
