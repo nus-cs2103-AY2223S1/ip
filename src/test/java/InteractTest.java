@@ -1,5 +1,6 @@
-import Duke.*;
 import Duke.DukeExceptions.DukeException;
+import Duke.DukeHandlers.Decoder;
+import Duke.DukeHandlers.TasksManager;
 import Duke.DukeTasks.*;
 
 import org.junit.jupiter.api.Test;

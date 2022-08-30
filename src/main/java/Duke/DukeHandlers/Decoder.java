@@ -1,4 +1,4 @@
-package Duke;
+package Duke.DukeHandlers;
 
 import Duke.DukeExceptions.BadFormatException;
 import Duke.DukeExceptions.BadTaskOperationException;

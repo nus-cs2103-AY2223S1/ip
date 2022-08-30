@@ -1,0 +1,4 @@
+T,true,nothign
+D,false,i did this all for you ,2022-10-10
+E,false,i looked into her eyes , idk
+E,true,ewfg , idk
