@@ -56,11 +56,14 @@ class TaskList {
         return listOfTasks.get(i);
     }
 
-    public TaskList searchByKeyword(String key) {
+    public TaskList searchByKeyword(String ...keys) {
         TaskList result = new TaskList();
         for (Task task : listOfTasks) {
-            if (task.hasKeyword(key)) {
-                result.addTask(task);
+            for (String key : keys) {
+                if (task.hasKeyword(key)) {
+                    result.addTask(task);
+                    break;
+                }
             }
         }
         return result;
