@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.Ui;
 import duke.task.TaskList;
 
 public class HelpCommand implements Command {
@@ -10,11 +9,11 @@ public class HelpCommand implements Command {
             + COMMAND_WORD;
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        String message = String.format("%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s", ListCommand.MESSAGE_USAGE,
+    public String execute(TaskList taskList) {
+        String message = String.format("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s", ListCommand.MESSAGE_USAGE,
                 MarkCommand.MESSAGE_USAGE, UnmarkCommand.MESSAGE_USAGE, TodoCommand.MESSAGE_USAGE,
                 DeadlineCommand.MESSAGE_USAGE, EventCommand.MESSAGE_USAGE, DeleteCommand.MESSAGE_USAGE,
                 FindCommand.MESSAGE_USAGE, HelpCommand.MESSAGE_USAGE);
-        ui.printMessage(message);
+        return message;
     }
 }

@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 repositories {
@@ -23,6 +24,11 @@ compileJava {
     options.release = 11
 }
 
+javafx {
+  version = "11.0.2"
+  modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
+}
+
 test {
     useJUnitPlatform()
 
@@ -38,7 +44,7 @@ test {
 }
 
 application {
-    mainClass.set("duke.Duke")
+    mainClass.set("duke.Launcher")
 }
 
 shadowJar {

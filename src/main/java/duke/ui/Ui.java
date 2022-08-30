@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 import duke.task.TaskList;
 
@@ -13,7 +13,6 @@ import java.io.PrintStream;
 public class Ui {
     private final BufferedReader in;
     private final PrintStream out;
-
 
     /**
      * Initialises Ui to allow input and output.
@@ -50,19 +49,23 @@ public class Ui {
     }
 
     /**
-     * Method that greets the user.
+     * Method that returns a greeting to the user.
+     *
+     * @return helloMessage
      */
-    public void greet() {
+    public static String helloMessage() {
         String logo = " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n";
-        this.out.println("Hello from\n" + logo);
+        return "Hello from\n" + logo;
     }
 
     /**
-     * Method to print exit message.
+     * Method to returns a exit message to the user.
+     *
+     * @return exitMessage
      */
-    public void exitMessage() {
-        this.printMessage("Bye. Hope to see you again soon!");
+    public static String exitMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -84,6 +87,7 @@ public class Ui {
      *
      * @param strArray
      * @param message
+     * @return printString
      */
     public void printMessage(String[] strArray, String message) {
         this.out.println("_______________________________________________________");
@@ -98,10 +102,11 @@ public class Ui {
      * Generic method to print a message.
      *
      * @param str
+     * @return message
      */
-    public void printMessage(String str) {
-        this.out.println("_______________________________________________________" + "\n\t" + str + "\n"
-                + "_______________________________________________________");
+    public String printMessage(String str) {
+        return "_______________________________________________________" + "\n\t" + str + "\n"
+                + "_______________________________________________________";
     }
 
     /**
