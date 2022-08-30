@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Exception class that handles exceptions specific to the Jamie class.
+ * Exception class that handles exceptions specific to the Duke class.
  */
 public class DukeException extends Exception {
 

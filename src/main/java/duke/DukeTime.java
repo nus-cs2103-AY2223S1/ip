@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * JamieTime class converts DateTime inputs and outputs.
+ * DukeTime class converts DateTime inputs and outputs.
  */
-public class JamieTime {
+public class DukeTime {
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMAT =
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
 

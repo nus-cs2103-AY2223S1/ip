@@ -6,10 +6,10 @@ import java.util.Scanner;
  * The class that deals with user commands.
  */
 public class Parser {
-    private final Jamie jamie;
+    private final Duke duke;
 
-    public Parser(Jamie jamie) {
-        this.jamie = jamie;
+    public Parser(Duke duke) {
+        this.duke = duke;
     }
 
     /**
@@ -19,38 +19,38 @@ public class Parser {
         Scanner sc = new Scanner(System.in);
         for (String input = sc.nextLine(); !input.equals("bye"); input = sc.nextLine()) {
             if (input.equals("list")) {
-                jamie.ui.printTaskList(jamie.tasks);
+                duke.ui.printTaskList(duke.tasks);
             } else if (input.startsWith("mark ")) {
                 try {
                     int number = Integer.parseInt(input.substring(5));
-                    jamie.tasks.mark(number);
-                    jamie.ui.markingUi("mark", jamie.tasks.getTask(number - 1));
+                    duke.tasks.mark(number);
+                    duke.ui.markingUi("mark", duke.tasks.getTask(number - 1));
                 } catch (DukeException e) {
-                    jamie.ui.noSuchTaskError();
+                    duke.ui.noSuchTaskError();
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.missingNumberAfterCommand("mark");
+                    duke.ui.missingNumberAfterCommand("mark");
                 }
             } else if (input.startsWith("unmark ")) {
                 try {
                     int number = Integer.parseInt(input.substring(7));
-                    jamie.tasks.unMark(number);
-                    jamie.ui.markingUi("unmark", jamie.tasks.getTask(number - 1));
+                    duke.tasks.unMark(number);
+                    duke.ui.markingUi("unmark", duke.tasks.getTask(number - 1));
                 } catch (DukeException e) {
-                    jamie.ui.noSuchTaskError();
+                    duke.ui.noSuchTaskError();
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.missingNumberAfterCommand("unmark");
+                    duke.ui.missingNumberAfterCommand("unmark");
                 }
             } else if (input.startsWith("todo ")) {
                 try {
                     input = input.substring(5);
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.someThingMissingError("todo");
+                    duke.ui.someThingMissingError("todo");
                     continue;
                 }
                 ToDo toDo = new ToDo(input);
-                jamie.tasks.addTask(toDo);
-                jamie.ui.addTasksUi(toDo);
-                jamie.ui.numberOfTasksUi(jamie.tasks);
+                duke.tasks.addTask(toDo);
+                duke.ui.addTasksUi(toDo);
+                duke.ui.numberOfTasksUi(duke.tasks);
             } else if (input.startsWith("deadline ")) {
                 int end = input.indexOf("/by ");
                 String textInput;
@@ -59,13 +59,13 @@ public class Parser {
                     textInput = input.substring(9, end);
                     byInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.someThingMissingError("deadline");
+                    duke.ui.someThingMissingError("deadline");
                     continue;
                 }
                 Deadline deadline = new Deadline(textInput, byInput);
-                jamie.tasks.addTask(deadline);
-                jamie.ui.addTasksUi(deadline);
-                jamie.ui.numberOfTasksUi(jamie.tasks);
+                duke.tasks.addTask(deadline);
+                duke.ui.addTasksUi(deadline);
+                duke.ui.numberOfTasksUi(duke.tasks);
             } else if (input.startsWith("event ")) {
                 int end = input.indexOf("/at ");
                 String textInput;
@@ -74,36 +74,36 @@ public class Parser {
                     textInput = input.substring(6, end);
                     atInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.someThingMissingError("event");
+                    duke.ui.someThingMissingError("event");
                     continue;
                 }
                 Event event = new Event(textInput, atInput);
-                jamie.tasks.addTask(event);
-                jamie.ui.addTasksUi(event);
-                jamie.ui.numberOfTasksUi(jamie.tasks);
+                duke.tasks.addTask(event);
+                duke.ui.addTasksUi(event);
+                duke.ui.numberOfTasksUi(duke.tasks);
             } else if (input.startsWith("delete ")) {
                 try {
                     int number = Integer.parseInt(input.substring(7));
-                    Task removed = jamie.tasks.deleteTask(number);
-                    jamie.ui.deleteUi(removed);
-                    jamie.ui.numberOfTasksUi(jamie.tasks);
+                    Task removed = duke.tasks.deleteTask(number);
+                    duke.ui.deleteUi(removed);
+                    duke.ui.numberOfTasksUi(duke.tasks);
                 } catch (DukeException e) {
-                    jamie.ui.noSuchTaskError();
+                    duke.ui.noSuchTaskError();
                 } catch (StringIndexOutOfBoundsException e) {
-                    jamie.ui.missingNumberAfterCommand("delete");
+                    duke.ui.missingNumberAfterCommand("delete");
                 }
             } else if (input.startsWith("find ")) {
                 try {
                     String keyWord = input.substring(5);
-                    TaskList tempList = jamie.tasks.find(keyWord);
-                    jamie.ui.printTaskList(tempList);
+                    TaskList tempList = duke.tasks.find(keyWord);
+                    duke.ui.printTaskList(tempList);
                 } catch (DukeException e) {
-                    jamie.ui.noSuchTaskError();
+                    duke.ui.noSuchTaskError();
                 }
             } else {
-                jamie.ui.invalidCommand();
+                duke.ui.invalidCommand();
             }
         }
-        jamie.storage.save(jamie.tasks);
+        duke.storage.save(duke.tasks);
     }
 }

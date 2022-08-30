@@ -76,7 +76,7 @@ public class Storage {
      */
     public void save(TaskList tasks) {
         try {
-            FileWriter writer = new FileWriter("Data/JamieTasks.txt", false);
+            FileWriter writer = new FileWriter("Data/DukeTasks.txt", false);
             writer.write(tasks.taskListToText());
             writer.close();
         } catch (IOException e) {

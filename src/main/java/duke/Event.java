@@ -14,7 +14,7 @@ public class Event extends Task {
      */
     public Event(String item, String at) {
         super(item);
-        this.at = JamieTime.reformatDateTime(at);
+        this.at = DukeTime.reformatDateTime(at);
     }
 
     @Override
@@ -26,9 +26,9 @@ public class Event extends Task {
     public String toLine() {
         String line = "E";
         if (this.done) {
-            line += ("*1*" + this.item + "*" + JamieTime.undoReformatDateTime(this.at));
+            line += ("*1*" + this.item + "*" + DukeTime.undoReformatDateTime(this.at));
         } else {
-            line += ("*0*" + this.item + "*" + JamieTime.undoReformatDateTime(this.at));
+            line += ("*0*" + this.item + "*" + DukeTime.undoReformatDateTime(this.at));
         }
         return line;
     }

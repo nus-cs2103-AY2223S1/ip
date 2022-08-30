@@ -1,18 +1,18 @@
 package duke;
 
 /**
- * Jamie is an assistant that helps keep track of deadlines, events and todos.
+ * Duke is an assistant that helps keep track of deadlines, events and todos.
  */
-public class Jamie {
+public class Duke {
     protected final TaskList tasks;
     protected final Ui ui;
     protected final Storage storage;
 
     /**
-     * The constructor that creates a Jamie object.
-     * @param filePath FilePath where the data stored by Jamie is located.
+     * The constructor that creates a Duke object.
+     * @param filePath FilePath where the data stored by Duke is located.
      */
-    public Jamie(String filePath) {
+    public Duke(String filePath) {
         storage = new Storage(filePath);
         ui = new Ui();
         tasks = new TaskList(storage.load());
@@ -29,6 +29,6 @@ public class Jamie {
     }
 
     public static void main(String[] args) {
-        new Jamie("Data/JamieTasks.txt").run();
+        new Duke("Data/DukeTasks.txt").run();
     }
 }

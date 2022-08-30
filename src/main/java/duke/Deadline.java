@@ -14,7 +14,7 @@ public class Deadline extends Task {
      */
     public Deadline(String item, String by) {
         super(item);
-        this.by = JamieTime.reformatDateTime(by);
+        this.by = DukeTime.reformatDateTime(by);
     }
 
     @Override
@@ -26,9 +26,9 @@ public class Deadline extends Task {
     public String toLine() {
         String line = "D";
         if (this.done) {
-            line += ("*1*" + this.item + "*" + JamieTime.undoReformatDateTime(this.by));
+            line += ("*1*" + this.item + "*" + DukeTime.undoReformatDateTime(this.by));
         } else {
-            line += ("*0*" + this.item + "*" + JamieTime.undoReformatDateTime(this.by));
+            line += ("*0*" + this.item + "*" + DukeTime.undoReformatDateTime(this.by));
         }
         return line;
     }
