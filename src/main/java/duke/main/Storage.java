@@ -1,11 +1,5 @@
 package duke.main;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,11 +8,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 /**
  * A class which handles the saving and loading of data.
  */
 public class Storage {
-    public static String FILE_PATH = "data/duke.txt";
+    public static final String FILE_PATH = "data/duke.txt";
 
     private String path;
 
@@ -64,6 +64,8 @@ public class Storage {
                     break;
                 case "D":
                     output.add(new Deadline(saveLine[2], LocalDate.parse(saveLine[3]), saveLine[1].equals("1")));
+                    break;
+                default:
                     break;
                 }
             }

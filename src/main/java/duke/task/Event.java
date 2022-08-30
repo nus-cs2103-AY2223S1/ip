@@ -2,8 +2,11 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents the Event Task object.
+ */
 public class Event extends Task {
-    public static String DELIMITER = " /at ";
+    public static final String DELIMITER = " /at ";
 
     private LocalDate time;
 

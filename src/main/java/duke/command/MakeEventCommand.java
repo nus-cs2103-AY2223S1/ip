@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Event;
-
-import java.time.LocalDate;
 
 /**
  * A Command which makes an Event object when executed and adds it to a TaskList object when executed.

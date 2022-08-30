@@ -4,7 +4,7 @@ package duke.task;
  * Parent class for all Task objects
  */
 public abstract class Task {
-    public static String SAVE_SEPARATOR = "%#%";
+    public static final String SAVE_SEPARATOR = "%#%";
 
     private String description;
     private boolean isDone = false;
