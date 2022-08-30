@@ -13,6 +13,10 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     private final TaskList list;
+
+    /**
+     * Valid commands as datatype
+     */
     public enum ListCommands {
         todo, deadline, event, mark, unmark, delete, find
     }
@@ -78,7 +82,7 @@ public class Parser {
         } else {
             arr = input.split(" ", 2);
         }
-       ListCommands command = ListCommands.valueOf(arr[0]);
+        ListCommands command = ListCommands.valueOf(arr[0]);
 
         try {
             switch (command) {
@@ -103,7 +107,7 @@ public class Parser {
                 return;
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new WrongArgumentException(arr[1], e);
+            throw new WrongArgumentException(arr[1], e);
         }
 
         switch (command) {
