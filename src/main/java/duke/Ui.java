@@ -9,7 +9,9 @@ import duke.task.Task;
  */
 public class Ui {
     public static final String LOADING_ERROR_MESSAGE = "Task list is empty.";
-    public static final String GREETING_MESSAGE = "Hello! I'm RyanBot ☺\nWhat can I do for you?\n";
+    public static final String GREETING_MESSAGE = "Hello! I'm RatatouilleBot ☺\n + " +
+            "I follow instructions and do what you say.\n" +
+            "What can I do for you?\n";
     public static final String GOODBYE_MESSAGE = "Bye. Please don't leave me :( Hope to see you again soon!";
 
     /**
