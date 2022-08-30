@@ -17,9 +17,7 @@ public class Todo extends Task {
      */
     @Override
     public String formatTask() {
-        return String.format("T | %s | %s\n",
-                (this.isDone ? "1" : "0"),
-                this.taskName);
+        return String.format("T | %s | %s\n", (this.isDone ? "1" : "0"), this.taskName);
     }
 
     /**

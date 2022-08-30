@@ -1,5 +1,9 @@
 package duke.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Deadline;
@@ -7,10 +11,6 @@ import duke.task.Event;
 import duke.task.Todo;
 import duke.ui.Ui;
 import duke.util.TaskList;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class AddCommand extends Command {
     private final ArrayList<String> words;
@@ -107,6 +107,11 @@ public class AddCommand extends Command {
                         + ui.SPACER);
             }
             break;
+        default:
+            System.out.println(ui.SPACER + "\n"
+                    + "Sorry, I don't understand. T^T\n"
+                    + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n"
+                    + ui.SPACER);
         }
     }
 }

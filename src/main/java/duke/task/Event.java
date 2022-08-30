@@ -21,9 +21,7 @@ public class Event extends Task {
      */
     @Override
     public String formatTask() {
-        return String.format("E | %s | %s | %s\n",
-                (this.isDone ? "1" : "0"),
-                this.taskName, this.event);
+        return String.format("E | %s | %s | %s\n", (this.isDone ? "1" : "0"), this.taskName, this.event);
     }
 
     /**
