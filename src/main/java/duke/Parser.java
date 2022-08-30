@@ -107,14 +107,14 @@ public class Parser {
                 ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "find")) {
+        } else if (startsWith(command, "find")) {
 
             try {
-                ArrayList<Task> result = ts.findTasks(s);
+                ArrayList<Task> result = tasks.findTasks(command);
                 ui.printFoundResults(result);
                 ui.printSpacer();
             } catch (EmptyFindException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
         } else {

@@ -69,13 +69,16 @@ public class Ui {
     }
 
     public void printFoundResults(ArrayList<Task> tasks) {
-        System.out.println("Here are the matching tasks in your list:");
-        for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + "." + tasks.get(i - 1).toString());
+        if (tasks.size() == 0) {
+            System.out.println("Didn't find any matching tasks~");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 1; i <= tasks.size(); i++) {
+                System.out.println(i + "." + tasks.get(i - 1).toString());
+            }
         }
     }
 
-    public void printErrorMessage(Exception e, TaskList ts) {
     /**
      * Prints the corresponding error message when Duke encounters an error.
      *
