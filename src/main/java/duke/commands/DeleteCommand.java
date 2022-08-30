@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
             throw new DukeException("There is no such task index... "
                     + "Try 'list' to view all the tasks and their index!");
@@ -40,8 +40,8 @@ public class DeleteCommand extends Command {
         String msgEnd = "\nNow you have " + size + " " + taskString
                 + " in this list.";
         String msg = msgBegin + " " + task + msgEnd;
-        ui.prettyPrint(msg);
 
         storage.writeAllToStorage(taskList);
+        return msg;
     }
 }

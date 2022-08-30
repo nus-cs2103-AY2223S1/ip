@@ -6,6 +6,7 @@ import duke.utils.Parser;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.Ui;
+import javafx.application.Platform;
 
 /**
  * Main class of Duke.
@@ -27,34 +28,17 @@ public class Duke {
         this.taskList = this.storage.readFromStorage();
     }
 
-    /**
-     * Executes the Duke instance and runs it until termination.
-     */
-    public void run() {
-        boolean isExit = false;
-
-        ui.sayGreetings();
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readInput();
-                Command c = parser.parseCommand(fullCommand);
-                c.execute(this.taskList, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.prettyPrint(e.getMessage());
+    public String getResponse(String input) {
+        Command c = parser.parseCommand(input);
+        try {
+            String responseMsg = c.execute(this.taskList, this.ui, this.storage);
+            if (c.isExit()) {
+                Platform.exit();
             }
+            return responseMsg;
+        } catch (DukeException e) {
+            String exceptionMsg = e.getMessage();
+            return exceptionMsg;
         }
-        ui.sayGoodBye();
-        ui.close();
-    }
-
-    /**
-     * Driver of the Duke program.
-     *
-     * @param args None
-     */
-    public static void main(String[] args) {
-        Duke dk = new Duke();
-        dk.run();
     }
 }

@@ -23,7 +23,8 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         storage.writeAllToStorage(taskList);
+        return "";
     }
 }

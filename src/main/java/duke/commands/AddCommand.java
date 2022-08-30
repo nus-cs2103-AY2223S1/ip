@@ -26,7 +26,7 @@ public class AddCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(this.task);
 
         int size = taskList.size();
@@ -34,8 +34,8 @@ public class AddCommand extends Command {
         String msgBegin = "Got it. I've added this task:\n";
         String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
         String msg = msgBegin + "  " + task + msgEnd;
-        ui.prettyPrint(msg);
 
         storage.appendTaskToStorage(task);
+        return msg;
     }
 }
