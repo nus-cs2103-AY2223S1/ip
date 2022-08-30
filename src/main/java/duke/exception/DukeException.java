@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class DukeException extends RuntimeException {
 
-    public static final String MSG_OOPS = "☹ OOPS!!! ";
+    public static final String MSG_OOPS = "OOPS!!! ";
 
     /**
      * Constructs a new DukeException.
