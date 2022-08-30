@@ -1,12 +1,13 @@
-public class Todo extends Task {
+package tasklist;
 
-    public Todo(String command) {
-        super(command);
+public class Todo extends Task {
+    public Todo(String description) {
+        super(description);
     }
 
     @Override
     public String toString() {
-        if (done) {
+        if (isDone) {
             return "[T][X] " + this.description;
         } else {
             return "[T][ ] " + this.description;
@@ -15,6 +16,6 @@ public class Todo extends Task {
 
     @Override
     public String toStringText() {
-        return "T | " + this.done + " | " + this.description;
+        return "T | " + this.description;
     }
 }
