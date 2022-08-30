@@ -42,10 +42,10 @@ public class DeadlineCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Deadline deadline = new Deadline(description, by);
         taskList.addToList(deadline);
         storage.save(taskList);
-        ui.printAddTask(deadline, taskList.getSize());
+        return ui.printAddTask(deadline, taskList.getSize());
     }
 }

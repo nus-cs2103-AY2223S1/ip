@@ -39,10 +39,10 @@ public class MarkCommand extends Command {
      * @throws DukeException if invalid inputs are provided
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task taskToMark = taskList.getTask(taskNumber - 1);
         taskToMark.markAsDone();
         storage.save(taskList);
-        ui.printMarkTask(taskToMark);
+        return ui.printMarkTask(taskToMark);
     }
 }
