@@ -1,6 +1,6 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task{
     protected LocalDateTime by;
@@ -21,5 +21,9 @@ public class Deadline extends Task{
         int done = (isDone ? 1 : 0);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         return String.format("D | %d | %s | %s", done, description, dtf.format(by));
+    }
+
+    public LocalDate getDateMaybe() {
+        return by.toLocalDate();
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -38,4 +39,6 @@ public abstract class Task {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return dtf.format(dt);
     }
+
+    public abstract LocalDate getDateMaybe();
 }

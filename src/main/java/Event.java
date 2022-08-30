@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,5 +21,9 @@ public class Event extends Task{
         int done = (isDone ? 1 : 0);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         return String.format("E | %d | %s | %s", done, description, dtf.format(at));
+    }
+
+    public LocalDate getDateMaybe() {
+        return at.toLocalDate();
     }
 }

@@ -1,4 +1,5 @@
 public class ListCommand extends Command {
+
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.nTasks() == 0) {
             ui.print("\tNo tasks added yet.");
@@ -7,4 +8,5 @@ public class ListCommand extends Command {
             ui.print(tasks.toString());
         }
     }
+
 }

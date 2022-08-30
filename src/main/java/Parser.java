@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,12 +14,13 @@ public class Parser {
         UNMARK,
         DELETE,
         LIST,
+        SHOW,
         BYE
     }
 
     public static Command parse(String inputLine) throws PlutoException {
 
-        isOnlyCommand(inputLine);
+        isOnlyCommand(inputLine.toLowerCase());
         String[] textArr = inputLine.split(" ", 2);
         String command = textArr[0].strip();
         Type enumCommand;
@@ -42,6 +44,8 @@ public class Parser {
                 return new DeleteCommand(parseIdx(textArr[1]));
             case LIST:
                 return new ListCommand();
+            case SHOW:
+                return new ShowCommand(parseDateOnly(textArr[1]));
             case BYE:
                 return new ExitCommand();
             default:
@@ -71,7 +75,7 @@ public class Parser {
     }
 
     public static void isOnlyCommand(String str) throws PlutoException {
-        HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark", "unmark", "delete"));
+        HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark", "unmark", "delete", "show"));
         if (commands.contains(str.strip())) {
             throw new PlutoException(String.format("\tOOPS!!! The description of %s cannot be empty.", str));
         }
@@ -82,6 +86,14 @@ public class Parser {
             return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException e) {
             throw new PlutoException("\tOOPS!!! dd-MM-yyyy HHmm date format required.");
+        }
+    }
+
+    public static LocalDate parseDateOnly(String date) throws PlutoException {
+        try {
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new PlutoException("\tOOPS!!! dd-MM-yyyy date format required.");
         }
     }
 
