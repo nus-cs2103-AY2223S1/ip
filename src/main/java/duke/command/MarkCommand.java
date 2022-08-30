@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.Storage;
+
 import duke.task.Task;
 
 /**
@@ -11,7 +12,8 @@ import duke.task.Task;
  */
 public class MarkCommand extends Command {
 
-    int taskNumber;
+
+    private int taskNumber;
 
     /**
      * Initialises the MarkCommand with the task number of task to be marked.

@@ -12,9 +12,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
 
 /**
  * Represents the parser of the Duke application.
@@ -30,33 +30,33 @@ public class Parser {
     public static Command parse(String input) throws DukeException {
         CommandWords commandWord = getCommand(input);
         switch (commandWord) {
-            case BYE:
-                return new ExitCommand();
-            case LIST:
-                return new ListCommand();
-            case MARK:
-                return new MarkCommand(getTaskNumber(4, input));
-            case UNMARK:
-                return new UnmarkCommand(getTaskNumber(6, input));
-            case DELETE:
-                return new DeleteCommand(getTaskNumber(6, input));
-            case TODO:
-                if (input.length() < 6) {
-                    throw new DukeException("The description of a todo cannot be empty.");
-                }
-                if (!input.substring(4, 5).equals(" ")) {
-                    throw new DukeException("Command and description should be separated by a space.");
-                }
-                Task newTask = new Todo(input.substring(5));
-                return new AddCommand(newTask);
-            case EVENT:
-                String[] eventDescDate = parseDescDate("/at", "event", input);
-                return new AddCommand(new Event(eventDescDate[0], parseDate(eventDescDate[1])));
-            case DEADLINE:
-                String[] deadlineDescDate = parseDescDate("/by", "deadline", input);
-                return new AddCommand(new Deadline(deadlineDescDate[0], parseDate(deadlineDescDate[1])));
-            default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        case BYE:
+            return new ExitCommand();
+        case LIST:
+            return new ListCommand();
+        case MARK:
+            return new MarkCommand(getTaskNumber(4, input));
+        case UNMARK:
+            return new UnmarkCommand(getTaskNumber(6, input));
+        case DELETE:
+            return new DeleteCommand(getTaskNumber(6, input));
+        case TODO:
+            if (input.length() < 6) {
+                throw new DukeException("The description of a todo cannot be empty.");
+            }
+            if (!input.substring(4, 5).equals(" ")) {
+                throw new DukeException("Command and description should be separated by a space.");
+            }
+            Task newTask = new Todo(input.substring(5));
+            return new AddCommand(newTask);
+        case EVENT:
+            String[] eventDescDate = parseDescDate("/at", "event", input);
+            return new AddCommand(new Event(eventDescDate[0], parseDate(eventDescDate[1])));
+        case DEADLINE:
+            String[] deadlineDescDate = parseDescDate("/by", "deadline", input);
+            return new AddCommand(new Deadline(deadlineDescDate[0], parseDate(deadlineDescDate[1])));
+        default:
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
