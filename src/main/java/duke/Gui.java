@@ -3,12 +3,16 @@ package duke;
 import javafx.application.Application;
 import javafx.scene.layout.Region;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Gui extends Application {
     private ScrollPane scrollPane;
@@ -17,8 +21,12 @@ public class Gui extends Application {
     private Button sendButton;
     private Scene scene;
 
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
     @Override
     public void start(Stage stage) {
+        // initialise nodes
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -31,6 +39,7 @@ public class Gui extends Application {
 
         scene = new Scene(mainLayout);
 
+        // styling nodes
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -46,6 +55,8 @@ public class Gui extends Application {
         scrollPane.setFitToWidth(true);
 
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.heightProperty().addListener((observable) ->
+                scrollPane.setVvalue(1.0));
 
         userInput.setPrefWidth(340.0);
 
@@ -61,5 +72,28 @@ public class Gui extends Application {
 
         stage.setScene(scene);
         stage.show();
+
+        // functionality
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+    }
+
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
+    private String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }
