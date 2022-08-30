@@ -1,8 +1,12 @@
 package dukechatbot.utility;
-import dukechatbot.dukeexception.DukeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import dukechatbot.dukeexception.DukeException;
+
+
+
 
 /**
  * The Ui class encapsulates operations that
@@ -21,6 +25,10 @@ public class Ui {
     public Ui(ArrayList<Task> tl) {
         this.tl = tl;
     }
+
+    /**
+     * Prints out logo and greets user upon program run.
+     */
     public void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -45,7 +53,7 @@ public class Ui {
     /**
      * Tells the user that the file has failed to be loaded.
      * @throws IOException when called to show that the file
-     * has failed to be loaded to the user.
+     *                     has failed to be loaded to the user.
      */
     public void showLoadingError() throws IOException {
         throw new IOException("File Loading Error!");
@@ -59,8 +67,8 @@ public class Ui {
         System.out.println("------------------------------\n");
         System.out.printf("\tGot it. I've added this task: \n\t\t%s\n", t.toString());
         System.out.println("\tNow you have " + this.tl.size() + " task(s) in the list.");
-        System.out.println("------------------------------\n");    }
-
+        System.out.println("------------------------------\n");
+    }
     /**
      * Shows success of marking the task in the task list as done.
      * @param t the task that the user has told Duke to mark as done.
@@ -114,8 +122,9 @@ public class Ui {
      * @throws DukeException when called.
      */
     public void showDescEmptyError(String str) throws DukeException {
-        throw new DukeException("" +
-                "☹ OOPS!!! The description of a " + str + " cannot be empty.");
+        throw new DukeException(""
+                + "☹ OOPS!!! The description of a " + str
+                + " cannot be empty.");
     }
 
     /**
@@ -137,7 +146,7 @@ public class Ui {
         System.out.println("\tHere are the tasks in your list: ");
         for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
             Task curr = it.next();
-            System.out.println("\t\t" +count + ". " + curr.toString());
+            System.out.println("\t\t" + count + ". " + curr.toString());
             count++;
         }
         System.out.println("-------------------------------\n");
@@ -154,7 +163,7 @@ public class Ui {
         System.out.println("\tHere are the matching tasks in your list: ");
         for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
             Task curr = it.next();
-            System.out.println("\t\t" +count + ". " + curr.toString());
+            System.out.println("\t\t" + count + ". " + curr.toString());
             count++;
         }
         System.out.println("-------------------------------\n");

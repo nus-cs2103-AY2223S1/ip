@@ -7,11 +7,11 @@ package dukechatbot.utility;
  * @author A0233290M
  * @version Week3
  */
-public class Todo  extends Task {
+public class Todo extends Task {
     /**
      * Defines the Tag associated with this type of tasks.
      */
-    protected final static String TAG = "[T]";
+    protected static final String TAG = "[T]";
 
     /**
      * Constructs the instance of Todo with the associated description.
@@ -22,7 +22,7 @@ public class Todo  extends Task {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

@@ -103,7 +103,7 @@ public class TaskList {
      *           for printing out of the success of marking the task as not done to user.
      */
     public void unmark(int id, Ui ui) {
-        Task t = this.tl.get(id -1);
+        Task t = this.tl.get(id - 1);
         t.markAsUndone();
         ui.unmarked(t);
     }

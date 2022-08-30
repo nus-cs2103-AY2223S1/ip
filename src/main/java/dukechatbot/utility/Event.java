@@ -40,8 +40,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return TAG + super.toString() + " (at: " +
-                this.time.format(DTF) + " to " +
-                this.end.format(DTF) + ")";
+        return TAG + super.toString() + " (at: "
+                + this.time.format(DTF) + " to "
+                + this.end.format(DTF) + ")";
     }
 }

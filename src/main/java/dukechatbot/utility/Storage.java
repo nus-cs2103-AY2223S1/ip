@@ -1,7 +1,6 @@
 package dukechatbot.utility;
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**

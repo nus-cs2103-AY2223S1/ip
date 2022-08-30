@@ -1,13 +1,14 @@
 package dukechatbot.duke;
-import dukechatbot.dukeexception.DukeException;
-import dukechatbot.utility.Task;
-import dukechatbot.utility.TaskList;
-import dukechatbot.utility.Storage;
-import dukechatbot.utility.Ui;
-import dukechatbot.utility.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import dukechatbot.dukeexception.DukeException;
+import dukechatbot.utility.Parser;
+import dukechatbot.utility.Storage;
+import dukechatbot.utility.Task;
+import dukechatbot.utility.TaskList;
+import dukechatbot.utility.Ui;
 
 /**
  * The Duke program implements an application that allows users
