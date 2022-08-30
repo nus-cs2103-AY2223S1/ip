@@ -66,22 +66,24 @@ public class TaskList {
     /**
      * Method to clear the entire taskList
      */
-    public void clear() {
+    public String clear() {
         taskList.clear();
-        Ui.clear();
+        return Ui.clear();
     }
 
     /**
      * Method to print all the tasks currently in the taskList
      */
-    public void printTasks() {
+    public String printTasks() {
         int index = 0;
         Task item;
+        String tasks = "";
         while (index < taskList.size()) {
             item = taskList.get(index);
-            System.out.println((index + 1) + "." + item.toString());
+            tasks += (index + 1) + "." + item.toString() + "\n";
             index++;
         }
+        return tasks;
     }
 
     /**
@@ -106,9 +108,9 @@ public class TaskList {
      *
      * @param index the index of the task to be marked
      */
-    public void mark(int index) {
+    public String mark(int index) {
         taskList.get(index).markAsDone();
-        Ui.mark();
+        return Ui.mark();
     }
 
     /**
@@ -116,9 +118,9 @@ public class TaskList {
      *
      * @param index the index of the task to be unmarked
      */
-    public void unmark(int index) {
+    public String unmark(int index) {
         taskList.get(index).markAsUndone();
-        Ui.unmark();
+        return Ui.unmark();
     }
 
     /**
@@ -126,7 +128,7 @@ public class TaskList {
      *
      * @param keywords the string of keywords to be searched
      */
-    public void find(String keywords) {
+    public String find(String keywords) {
         String[] keywordArr = keywords.split(" ");
         int arrLen = keywordArr.length;
         int pointer;
@@ -148,10 +150,10 @@ public class TaskList {
         }
 
         if (result.getSize() == 0) {
-            Ui.noTaskFound();
+            return Ui.noTaskFound();
         } else {
-            Ui.taskFound();
-            result.printTasks();
+            return Ui.taskFound() + "\n"
+                    + result.printTasks();
         }
     }
 }

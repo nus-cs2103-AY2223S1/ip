@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package duke;
 
 import duke.helper.Parser;
 import duke.helper.Storage;
@@ -13,7 +13,7 @@ public class Duke {
     private Storage storage;
 
     /**
-     * Constructor of the Duke class given a filepath
+     * Constructor of the duke.Duke class given a filepath
      * @param filePath path of file to be saved/loaded from
      */
     public Duke(String filePath) {
@@ -26,20 +26,12 @@ public class Duke {
      */
     public void run() {
         Ui.welcome();
-
-        String in = "";
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            in = sc.nextLine();
-            if (in.equals("bye")) {
-                break;
-            } else {
-                Parser.parse(in, list);
-            }
-        }
-        Ui.bye();
     }
+
+    public String getResponse(String input) {
+        return Parser.parse(input, list);
+    }
+
     public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
     }

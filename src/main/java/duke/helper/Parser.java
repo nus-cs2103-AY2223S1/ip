@@ -19,29 +19,33 @@ public class Parser {
      * @param in the input command line given
      * @param list the taskList being used
      */
-    public static void parse(String in, TaskList list) {
+    public static String parse(String in, TaskList list) {
+        String message;
         //"find": Find tasks based on keywords
+        if (in.equals("bye")) {
+            return Ui.bye();
+        }
         if (in.startsWith("find")) {
             String keywords = in.split(" ", 2)[1];
-            list.find(keywords);
+            message = list.find(keywords);
 
         //"clear": Clears the list
         } else if (in.equals("clear")) {
-            list.clear();
+            message = Ui.clear();
 
         //"list": Shows current list
         } else if (in.equals("list")) {
-            list.printTasks();
+            message = list.printTasks();
 
         //"mark": Mark a task as done
         } else if (in.startsWith("mark")) {
             int index = Integer.valueOf(in.split(" ")[1]) - 1;
-            list.mark(index);
+            message = list.mark(index);
 
         //"unmark": Unmark a task
         } else if (in.startsWith("unmark")) {
             int index = Integer.valueOf(in.split(" ")[1]) - 1;
-            list.unmark(index);
+            message = list.unmark(index);
 
         //"delete": Delete a task
         } else if (in.startsWith("delete")) {
@@ -53,11 +57,11 @@ public class Parser {
                 }
 
                 Task task = list.getTask(index);
-                Ui.delete(task);
+                message = Ui.delete(task) + "\n";
                 list.delete(index);
-                Ui.countTasks(list);
+                message += Ui.countTasks(list);
             } catch (InvalidCommandException e) {
-                System.out.println(e.toString());
+                return e.toString();
             }
 
         //Create a task
@@ -72,14 +76,15 @@ public class Parser {
                     throw new NoDescriptionException();
                 } else {
                     list.add(task);
-                    Ui.add(task);
+                    message = Ui.add(task);
                 }
             } catch (Exception e) {
-                System.out.println(e.toString());
+                return e.toString();
             }
         }
-        Ui.line();
         //Update the save file
         FileWriting.update("./data/duke.txt", list);
+
+        return Ui.line() + "\n" + message + Ui.line();
     }
 }
