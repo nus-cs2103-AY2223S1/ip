@@ -38,6 +38,7 @@ class Deku {
     /**
     * Default main method
     */
+    //Solution below adapted and modified from https://stackoverflow.com/questions/24709769/
     public static void main(String[] args) throws IOException {
         Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
         Path filePath = directoryPath.resolve("save.txt");
