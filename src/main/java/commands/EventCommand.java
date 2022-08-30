@@ -1,5 +1,8 @@
 package commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -10,9 +13,6 @@ import exceptions.InvalidDateTimeException;
 import task.Event;
 import task.Task;
 import task.TaskType;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Creates a new event.
@@ -44,12 +44,11 @@ public class EventCommand extends Command {
         }
         try {
             Event event = new Event(eventStrings[0], false, LocalDateTime.parse(eventStrings[1],
-                    Task.dateTimeParser));
+                    Task.DATE_TIME_PARSER));
             tasks.addTask(event);
 
             ui.showAddTask(event, tasks.size());
-        } catch (
-                DateTimeParseException exception) {
+        } catch (DateTimeParseException exception) {
             throw new InvalidDateTimeException(Task.DATE_TIME_INPUT_FORMAT);
         }
     }

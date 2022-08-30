@@ -11,8 +11,8 @@ public abstract class Task {
     public static final String DATE_TIME_DISPLAY_FORMAT = "MMM dd yyyy HH:mm";
 
     // Class variables used to parse and format datetime fields for input and display respectively.
-    public static final DateTimeFormatter dateTimeParser = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMAT);
-    public static final DateTimeFormatter dateTimeDisplayFormatter =
+    public static final DateTimeFormatter DATE_TIME_PARSER = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMAT);
+    public static final DateTimeFormatter DATE_TIME_DISPLAY_FORMATTER =
             DateTimeFormatter.ofPattern(DATE_TIME_DISPLAY_FORMAT);
 
     protected final String description;

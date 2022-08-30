@@ -22,7 +22,7 @@ public class Deadline extends Task {
     }
 
     public String getDeadline() {
-        return Task.dateTimeDisplayFormatter.format(this.deadline);
+        return Task.DATE_TIME_DISPLAY_FORMATTER.format(this.deadline);
     }
 
     /**
@@ -32,7 +32,7 @@ public class Deadline extends Task {
      */
     @Override
     public String encode(String delimiter) {
-        return super.encode(delimiter) + delimiter + this.deadline.format(Task.dateTimeParser);
+        return super.encode(delimiter) + delimiter + this.deadline.format(Task.DATE_TIME_PARSER);
     }
 
     @Override
