@@ -6,19 +6,25 @@ import java.util.regex.Pattern;
 import gibson.Storage;
 
 /**
- * Parser is a utility class for parsing user inputs into meaningful data.
+ * Parser is a class for parsing and processing
+ * user inputs for the Gibson program.
  */
 public final class Parser {
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Creates a parser object to parse and process user inputs.
+     */
     public Parser() {
         storage = new Storage("data", "gibson.txt");
         taskList = new TaskList(storage.load());
     }
 
     /**
-     * Start running the Gibson program from an instance of Gibson.
+     * Processes user inputs and returns a reply.
+     * @param input the user input string
+     * @return a reply from processing the input
      */
     public String processInput(String input) {
         // BYE

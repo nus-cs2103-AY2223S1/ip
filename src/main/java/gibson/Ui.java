@@ -1,5 +1,6 @@
 package gibson;
 
+import gibson.task.Parser;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,8 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import gibson.task.Parser;
 
 /**
  * Ui prints strings in a specific format for the Gibson program.
