@@ -11,12 +11,13 @@ public class Duke {
     private final Ui ui = new Ui();
     private final Parser parser = new Parser();
 
+    private final String logo = " ____        _        \n"
+                          + "|  _ \\ _   _| | _____ \n"
+                          + "| | | | | | | |/ / _ \\\n"
+                          + "| |_| | |_| |   <  __/\n"
+                          + "|____/ \\__,_|_|\\_\\___|\n"
+                          + "Hi, I'm Duke. What can I do for you?";
     private void launch() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         ui.startGreeting();
         while (true) {
@@ -33,7 +34,10 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        if (input.toLowerCase().equals("hi")) {
+            return logo;
+        }
+        return parser.parse(input, controller, storage);
     }
 
     public static void main(String[] args) {
