@@ -49,7 +49,7 @@ public class Duke {
     }
 
     /**
-     * Driver method for the Duke program.
+     * Driver method for the CLI Duke Program.
      */
     public void run() {
         this.ui.printDukeOpening();
@@ -126,6 +126,11 @@ public class Duke {
         System.exit(0);
     }
 
+    /**
+     * Method for the GUI Duke Program.
+     * @param input The input text from which to get a response.
+     * @return Returns the properly formatted response to display on the GUI.
+     */
     public String getResponse(String input) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String response = "";
@@ -139,6 +144,7 @@ public class Duke {
                 break;
             case "bye":
                 response = this.ui.getStringDukeClosing();
+                this.storage.writeTasksToStorage(this.taskList);
                 break;
             case "list":
                 response = this.ui.getStringTasks(this.taskList);
@@ -188,6 +194,8 @@ public class Duke {
             response = this.ui.getStringDukeException(e);
         } catch (DateTimeParseException e) {
             response = this.ui.getStringDateTimeParseException();
+        } catch (IOException e) {
+            response = this.ui.getStringIoException(e);
         }
 
         return response;
