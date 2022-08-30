@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="dialog" text="Label" textFill="#c98a77" wrapText="true" HBox.hgrow="ALWAYS">
          <font>
-            <Font name="Bauhaus 93" size="8.0" />
+            <Font name="Bauhaus 93" size="12.0" />
          </font></Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>

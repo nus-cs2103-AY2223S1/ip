@@ -29,7 +29,7 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        startUpMessage = ui.showWelcome();
+        startUpMessage = ui.cliShowWelcome();
         tasks = new TaskList();
         storage = new ListLoader(tasks);
         try {
@@ -96,6 +96,15 @@ public class Duke {
             response = ui.showError(e.getMessage());
             return response;
         }
+    }
+
+    /**
+     * Return Duke's welcome message for the GUI interface.
+     *
+     * @return Duke's welcome message.
+     */
+    public String getWelcome() {
+        return ui.guiShowWelcome();
     }
 
 }

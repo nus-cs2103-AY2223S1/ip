@@ -50,7 +50,15 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
-
+    /**
+     * Shows Duke's welcome message.
+     */
+    public void showWelcome() {
+        String welcome = duke.getWelcome();
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(welcome, dukeImage)
+        );
+    }
 
 
 }

@@ -12,7 +12,7 @@ import duke.task.TaskId;
  */
 public class Ui {
     /** Welcome symbol to be displayed to users upon running Duke in Terminal */
-    private static final String CAT_SYMBOL = "     /\\_____/\\\n"
+    private static final String CLI_CAT_SYMBOL = "     /\\_____/\\\n"
             + "    /  o   o  \\\n"
             + "   ( ==  ^  == )\n"
             + "    )         (\n"
@@ -23,6 +23,19 @@ public class Ui {
             + "  ___ __ _| |_ ___\n"
             + " / __/ _` | __/ __|\n"
             + "| (_| (_| | |_\\__ \\\n"
+            + " \\___\\__,_|\\__|___/\n";
+
+    private static final String GUI_CAT_SYMBOL = "       /\\_____/\\\n"
+            + "     /  o        o  \\\n"
+            + "    ( ==  ^  == )\n"
+            + "    )                    (\n"
+            + "   (                      )\n"
+            + "  ( (  )              (  ) )\n"
+            + " (__(__)___(__)__)\n"
+            + "                  _\n"
+            + "   ___ __ _| |_ ___\n"
+            + " /  __/ _`  |   __/ __|\n"
+            + "| (_| (_|  |  |_\\__  \\\n"
             + " \\___\\__,_|\\__|___/\n";
 
     /** Border enclosing output */
@@ -54,12 +67,22 @@ public class Ui {
 
 
     /**
-     * Returns String of composed welcome message on running duke.Duke.
+     * Returns String of composed welcome message on running duke.Duke on CLI terminal.
      *
      * @return String of welcome message.
      */
-    public String showWelcome() {
-        String content = "Meow from\n" + CAT_SYMBOL + "\n" + MESSAGE_SERVICE;
+    public String cliShowWelcome() {
+        String content = "Meow from\n" + CLI_CAT_SYMBOL + "\n" + MESSAGE_SERVICE;
+        return content;
+    }
+
+    /**
+     * Returns String of composed welcome message on running duke.Duke with GUI.
+     *
+     * @return String of welcome message.
+     */
+    public String guiShowWelcome() {
+        String content = "Meow from\n" + GUI_CAT_SYMBOL + "\n" + MESSAGE_SERVICE;
         return content;
     }
 
