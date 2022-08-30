@@ -20,7 +20,7 @@ public class Duke {
     /**
      * Constructor for Duke.
      *
-     * @param filePath The location where the data is stored.
+     * @param filePath The location where the data is stored for Duke.
      */
     public Duke(String filePath) {
         ui = new Ui();
