@@ -74,6 +74,38 @@ public class Ui {
 
     }
 
+
+    public String getResponse(String nextCommand) throws UnknownCommandException {
+        if(nextCommand.equals(CommandsEnum.bye.toString())){
+            return BYE;
+        }
+        else if (nextCommand.equals(CommandsEnum.list.toString())) {
+            return taskList.displayAllTask();
+        } else if (nextCommand.startsWith(CommandsEnum.mark.toString())) {
+            int index = convertToInt(nextCommand);
+            storage.toggleDone(index, true);
+            return taskList.setTaskAsDone(index);
+        } else if (nextCommand.startsWith(CommandsEnum.unmark.toString())) {
+            int index = convertToInt(nextCommand);
+            storage.toggleDone(index, false);
+            return taskList.setTaskAsUndone(index);
+        } else if (nextCommand.contains(CommandsEnum.todo.toString()) || nextCommand.contains(CommandsEnum.deadline.toString()) || nextCommand.contains(CommandsEnum.event.toString())) {
+            storage.addLineToFile(nextCommand);
+            return taskList.addTask(nextCommand);
+
+        } else if (nextCommand.startsWith(CommandsEnum.delete.toString())) {
+            int index = convertToInt(nextCommand);
+            storage.deleteLine(index);
+            return taskList.deleteTask(index);
+        } else if (nextCommand.startsWith(CommandsEnum.find.toString())) {
+            String name = Parser.getFindObject(nextCommand);
+            return taskList.findTask(name);
+        } else {
+            return  new UnknownCommandException().getMessage();
+        }
+
+    }
+
     private int convertToInt(String str) {
         return Integer.parseInt(str.substring(str.length()-1));
     }
