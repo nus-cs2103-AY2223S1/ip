@@ -35,7 +35,7 @@ public class Ui {
      *
      * @param messages Message strings.
      */
-    public static String formatMessages(String[] messages) {
+    public static String formatMessages(String... messages) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String message : messages) {
             stringBuilder.append(INDENTATION + message + System.lineSeparator());
