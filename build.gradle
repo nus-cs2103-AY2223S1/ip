@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
@@ -34,6 +35,15 @@ application {
 shadowJar {
     archiveBaseName = "jenny"
     archiveClassifier = null
+}
+
+shadowJar {
+    archiveBaseName = "jenny"
+    archiveClassifier = null
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 run{
