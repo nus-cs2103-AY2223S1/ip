@@ -3,7 +3,7 @@ package john.ui;
 import john.data.TaskList;
 
 /**
- * The text UI of the program.
+ * The UI of the program, which feeds responses into John.
  */
 public class Ui {
     /**
