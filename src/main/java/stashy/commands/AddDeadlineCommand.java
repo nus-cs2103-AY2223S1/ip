@@ -6,6 +6,9 @@ import stashy.data.task.TaskList;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to add a Deadline object.
+ */
 public class AddDeadlineCommand extends Command {
     public static final String KEYWORD = "deadline";
     private Deadline deadline;

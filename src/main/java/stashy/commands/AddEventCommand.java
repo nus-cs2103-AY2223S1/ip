@@ -6,6 +6,9 @@ import stashy.data.task.TaskList;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to add an Event object.
+ */
 public class AddEventCommand extends Command {
     public static final String KEYWORD = "event";
     private Event event;

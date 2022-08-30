@@ -6,6 +6,9 @@ import stashy.data.task.ToDo;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to add a ToDo object.
+ */
 public class AddTodoCommand extends Command {
     public static final String KEYWORD = "todo";
     private ToDo todo;

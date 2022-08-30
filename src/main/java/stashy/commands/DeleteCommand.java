@@ -5,6 +5,10 @@ import stashy.data.task.TaskList;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to delete a particular Task
+ * from the task list.
+ */
 public class DeleteCommand extends Command {
     public static final String KEYWORD = "delete";
     private int taskId;

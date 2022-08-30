@@ -5,6 +5,10 @@ import stashy.data.task.TaskList;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to unmark a particular task
+ * in the task list as not done.
+ */
 public class UnmarkCommand extends Command {
     public static final String KEYWORD = "unmark";
     private int taskId;
