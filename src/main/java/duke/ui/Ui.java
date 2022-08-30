@@ -240,7 +240,7 @@ public class Ui {
      * @return String containing the error message.
      */
     public String showError(String errMessage) {
-        String content =errMessage + "\n";
+        String content = errMessage + "\n";
         return content;
     }
 
