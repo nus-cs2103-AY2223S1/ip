@@ -11,6 +11,7 @@ import duke.chatbot.data.task.Task;
 /**
  * A command that prints the list of tasks in the application. Prints
  * an empty list message if the list is empty.
+ * @author Jordan Quah Shao Xuan
  */
 public class ListCommand extends Command {
     /**

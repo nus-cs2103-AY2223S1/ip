@@ -12,6 +12,7 @@ import duke.chatbot.parser.Parser;
 /**
  * A command that adds an instance of Event to the list of tasks
  * stored in the Duke application instance.
+ * @author Jordan Quah Shao Xuan
  */
 public class AddEventCommand extends Command {
     public AddEventCommand(List<String> arguments) {

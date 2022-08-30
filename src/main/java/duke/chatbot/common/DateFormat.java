@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Contains the string formatter for date and time related strings used in the
  * application.
+ * @author Jordan Quah Shao Xuan
  */
 public class DateFormat {
     public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");

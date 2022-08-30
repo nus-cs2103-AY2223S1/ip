@@ -12,6 +12,7 @@ import duke.chatbot.data.task.TaskList;
 /**
  * A command that prints a list of TimedTask that have the same
  * date as the date argument input.
+ * @author Jordan Quah Shao Xuan
  */
 public class CheckDateCommand extends Command {
     public CheckDateCommand(List<String> arguments) {

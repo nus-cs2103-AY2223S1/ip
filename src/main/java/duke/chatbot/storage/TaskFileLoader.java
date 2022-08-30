@@ -10,6 +10,7 @@ import duke.chatbot.parser.Parser;
 /**
  * A file loader which loads tasks into the application task list
  * during runtime.
+ * @author Jordan Quah Shao Xuan
  */
 public class TaskFileLoader {
     /** The file to load the list of tasks from */

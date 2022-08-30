@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * A task that has a date and time associated to it.
+ * @author Jordan Quah Shao Xuan
  */
 public abstract class TimedTask extends Task {
     /** The date and time associated to the task */

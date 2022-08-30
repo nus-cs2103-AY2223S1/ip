@@ -12,6 +12,7 @@ import duke.chatbot.data.task.TaskList;
 /**
  * A command that prints a list of tasks that have the argument
  * string as a substring of the task description.
+ * @author Jordan Quah Shao Xuan
  */
 public class FindCommand extends Command {
     public FindCommand(List<String> arguments) {

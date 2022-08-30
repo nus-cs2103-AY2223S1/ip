@@ -7,6 +7,7 @@ import duke.chatbot.data.task.TaskList;
 
 /**
  * A command to be executed and outputs a result.
+ * @author Jordan Quah Shao Xuan
  */
 public abstract class Command {
     /** A list of tasks */

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A list of tasks.
+ * @author Jordan Quah Shao Xuan
  */
 public class TaskList extends ArrayList<Task> {
     /**

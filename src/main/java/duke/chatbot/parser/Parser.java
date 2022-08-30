@@ -30,6 +30,7 @@ import duke.chatbot.data.task.ToDo;
 
 /**
  * A parser class to extract information from strings.
+ * @author Jordan Quah Shao Xuan
  */
 public class Parser {
     /**

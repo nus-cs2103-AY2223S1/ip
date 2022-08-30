@@ -10,6 +10,7 @@ import duke.chatbot.data.task.ToDo;
 /**
  * A command that adds an instance of ToDo to the list of tasks
  * stored in the Duke application instance.
+ * @author Jordan Quah Shao Xuan
  */
 public class AddToDoCommand extends Command {
     public AddToDoCommand(List<String> arguments) {

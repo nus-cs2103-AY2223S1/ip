@@ -10,6 +10,7 @@ import duke.chatbot.command.CommandResult;
 
 /**
  * Manages user input and also the output of the application.
+ * @author Jordan Quah Shao Xuan
  */
 public class Ui {
     /** A scanner which takes in user input */

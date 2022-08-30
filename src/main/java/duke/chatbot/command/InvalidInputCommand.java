@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * A command that prints an error message.
+ * @author Jordan Quah Shao Xuan
  */
 public class InvalidInputCommand extends Command {
     /**

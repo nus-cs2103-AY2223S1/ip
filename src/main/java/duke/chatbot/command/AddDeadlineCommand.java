@@ -12,6 +12,7 @@ import duke.chatbot.parser.Parser;
 /**
  * A command that adds an instance of Deadline to the list of tasks
  * stored in the Duke application instance.
+ * @author Jordan Quah Shao Xuan
  */
 public class AddDeadlineCommand extends Command {
     public AddDeadlineCommand(List<String> arguments) {

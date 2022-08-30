@@ -13,6 +13,7 @@ import duke.chatbot.ui.Ui;
 
 /**
  * The main application class.
+ * @author Jordan Quah Shao Xuan
  */
 public class Duke {
     /** The storage which handles saving and loading of files containing list of tasks */

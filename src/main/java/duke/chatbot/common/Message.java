@@ -2,6 +2,7 @@ package duke.chatbot.common;
 
 /**
  * Contains the messages that are used by the application.
+ * @author Jordan Quah Shao Xuan
  */
 public class Message {
     public static final String MESSAGE_WELCOME = "\t"

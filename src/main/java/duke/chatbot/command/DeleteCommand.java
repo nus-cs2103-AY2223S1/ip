@@ -12,6 +12,7 @@ import duke.chatbot.data.task.Task;
  * list of Task in the application. The targeted task
  * is chosen by an argument string with an integer in
  * the argument list.
+ * @author Jordan Quah Shao Xuan
  */
 public class DeleteCommand extends Command {
     public DeleteCommand(List<String> arguments) {

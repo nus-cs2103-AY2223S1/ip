@@ -10,6 +10,7 @@ import duke.chatbot.data.task.TaskList;
 /**
  * A storage for any task data that requires storing between
  * sessions.
+ * @author Jordan Quah Shao Xuan
  */
 public class Storage {
     /** A file loader to load the list of tasks stored in the application */

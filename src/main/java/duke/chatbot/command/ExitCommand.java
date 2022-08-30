@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * A command that prints a farewell message and closes
  * the application.
+ * @author Jordan Quah Shao Xuan
  */
 public class ExitCommand extends Command {
     /**
