@@ -30,7 +30,7 @@ public class MakeToDoCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         ToDo newTask = new ToDo(this.description);
         taskList.addTask(newTask);
-        ui.showTaskAdded(newTask, taskList.getTaskListLength());
+        ui.showTaskAddedOrDeleted(newTask, taskList.getTaskListLength(), true);
     }
 
     /**

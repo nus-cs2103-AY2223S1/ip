@@ -1,8 +1,8 @@
 package duke.main;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
+import duke.gui.MainWindow;
 import duke.task.Task;
 
 /**
@@ -34,7 +34,19 @@ public class Ui {
     private static final String[] INVALID_TIME = {"I'm sorry but I don't understand your time format."};
 
     private int messageStatus = 0;
-    private Scanner sc = new Scanner(System.in);
+    private MainWindow mainWindow;
+
+    /**
+     * Sets the MainWindow object for Ui to use.
+     * @param window
+     */
+    public void setMainWindow(MainWindow window) {
+        this.mainWindow = window;
+    }
+
+    private void outputMessage(String message) {
+        mainWindow.addDukeDialog(message);
+    }
 
     /**
      * Generates a message for showing total number of Task objects.
@@ -44,25 +56,6 @@ public class Ui {
     private String getListSizeMsg(int num) {
         String[] listCount = {"I'm keeping track of " + num + " task(s) currently!"};
         return listCount[this.messageStatus];
-    }
-
-    /**
-     * Prints the message in a certain format.
-     * @param message The message to be printed.
-     */
-    private void outputMessage(String message) {
-        String[] messageLines = message.split("\n");
-        for (String line : messageLines) {
-            System.out.println("Duke: " + line);
-        }
-    }
-
-    /**
-     * Reads the command from the user.
-     * @return The read command.
-     */
-    public String readCommand() {
-        return sc.nextLine();
     }
 
     /**
@@ -84,13 +77,6 @@ public class Ui {
      */
     public void showSavingError() {
         this.outputMessage(CANNOT_SAVE[this.messageStatus]);
-    }
-
-    /**
-     * Shows the message so the user knows it is time for them to enter a command.
-     */
-    public void showYou() {
-        System.out.print("You: ");
     }
 
     /**
@@ -118,12 +104,14 @@ public class Ui {
      * @param isDone
      */
     public void showStatusChange(Task task, boolean isDone) {
+        StringBuilder output = new StringBuilder();
         if (isDone) {
-            this.outputMessage(MARK_DONE[this.messageStatus]);
+            output.append(MARK_DONE[this.messageStatus]);
         } else {
-            this.outputMessage(MARK_UNDONE[this.messageStatus]);
+            output.append(MARK_UNDONE[this.messageStatus]);
         }
-        this.outputMessage(task.toString());
+        output.append("\n" + task.toString());
+        this.outputMessage(output.toString());
     }
 
     /**
@@ -141,26 +129,23 @@ public class Ui {
     }
 
     /**
-     * Shows the message for adding a Task object.
+     * Shows the message for adding or deleting a Task object.
      * @param task Task object that is added.
      * @param size Size of the updated TaskList object.
+     * @param isAdded Whether the task is added.
      */
-    public void showTaskAdded(Task task, int size) {
-        this.outputMessage(ADD_LIST[this.messageStatus]);
-        this.outputMessage(task.toString());
-        this.outputMessage(this.getListSizeMsg(size));
+    public void showTaskAddedOrDeleted(Task task, int size, boolean isAdded) {
+        StringBuilder output = new StringBuilder();
+        if (isAdded) {
+            output.append(ADD_LIST[this.messageStatus]);
+        } else {
+            output.append(DELETE_LIST[this.messageStatus]);
+        }
+        output.append("\n" + task.toString());
+        output.append("\n" + this.getListSizeMsg(size));
+        this.outputMessage(output.toString());
     }
 
-    /**
-     * Shows the message for deleting a Task object.
-     * @param task Task object that is deleted.
-     * @param size Size of the updated TaskList object.
-     */
-    public void showTaskDeleted(Task task, int size) {
-        this.outputMessage(DELETE_LIST[this.messageStatus]);
-        this.outputMessage(task.toString());
-        this.outputMessage(this.getListSizeMsg(size));
-    }
 
     /**
      * Shows the message for missing index.
@@ -188,13 +173,15 @@ public class Ui {
      * @param taskList ArrayList of Task object to be printed.
      */
     public void showList(ArrayList<Task> taskList) {
-        this.outputMessage(BEFORE_LIST[this.messageStatus]);
+        StringBuilder output = new StringBuilder();
+        output.append(BEFORE_LIST[this.messageStatus]);
         int number = 1;
         for (Task task : taskList) {
-            this.outputMessage(Integer.toString(number) + ". " + task.toString());
+            output.append("\n" + Integer.toString(number) + ". " + task.toString());
             number++;
         }
-        this.outputMessage(AFTER_LIST[this.messageStatus]);
+        output.append("\n" + AFTER_LIST[this.messageStatus]);
+        this.outputMessage(output.toString());
     }
 
     /**

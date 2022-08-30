@@ -35,7 +35,7 @@ public class MakeDeadlineCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         Deadline newTask = new Deadline(this.description, this.time);
         taskList.addTask(newTask);
-        ui.showTaskAdded(newTask, taskList.getTaskListLength());
+        ui.showTaskAddedOrDeleted(newTask, taskList.getTaskListLength(), true);
     }
 
     /**

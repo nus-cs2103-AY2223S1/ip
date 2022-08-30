@@ -31,7 +31,7 @@ public class DeleteTaskCommand extends Command {
             ui.showInvalidIndex();
             return;
         }
-        ui.showTaskDeleted(taskList.deleteTask(index), taskList.getTaskListLength());
+        ui.showTaskAddedOrDeleted(taskList.deleteTask(index), taskList.getTaskListLength(), false);
     }
 
     /**

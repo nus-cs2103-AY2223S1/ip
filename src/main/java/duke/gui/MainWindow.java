@@ -32,8 +32,13 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets the Duke object which controls the MainWindow.
+     * @param d The Duke object.
+     */
     public void setDuke(Duke d) {
         duke = d;
+        duke.getUi().setMainWindow(this);
     }
 
     /**
@@ -43,11 +48,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
+        System.out.println("got here");
+        duke.handleInput(input);
         userInput.clear();
+    }
+
+    /**
+     * Adds Duke's dialog to MainWindow.
+     * @param message Message to be added.
+     */
+    public void addDukeDialog(String message) {
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(message, dukeImage));
     }
 }

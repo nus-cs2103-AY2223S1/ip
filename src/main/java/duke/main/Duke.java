@@ -61,52 +61,40 @@ public class Duke {
         this.taskList = new TaskList(this.storage.load());
     }
 
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
     /**
-     * Starts the main logic of the Duke object.
+     * Handles input for Duke.
+     * @param input Input to be handled.
      */
-    public void run() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        this.ui.showGreeting();
-        boolean isExit = false;
-        while (!isExit) {
-            this.ui.showYou();
-            String fullCommand = this.ui.readCommand();
-            try {
-                Command c = Parser.parse(fullCommand);
-                c.execute(this.taskList, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (NumberFormatException e) {
-                this.ui.showNotANumber();
-            } catch (MissingIndexException e) {
-                this.ui.showMissingIndex();
-            } catch (MissingDescriptionException e) {
-                this.ui.showMissingDescription();
-            } catch (MissingTimeException e) {
-                this.ui.showMissingTime();
-            } catch (DateTimeParseException e) {
-                this.ui.showInvalidTime();
-            } catch (MissingArgumentException e) {
-                this.ui.showMissingArgument();
-            }
+    public void handleInput(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(this.taskList, this.ui, this.storage);
+        } catch (NumberFormatException e) {
+            this.ui.showNotANumber();
+        } catch (MissingIndexException e) {
+            this.ui.showMissingIndex();
+        } catch (MissingDescriptionException e) {
+            this.ui.showMissingDescription();
+        } catch (MissingTimeException e) {
+            this.ui.showMissingTime();
+        } catch (DateTimeParseException e) {
+            this.ui.showInvalidTime();
+        } catch (MissingArgumentException e) {
+            this.ui.showMissingArgument();
+        }
 
-            try {
-                this.storage.save(this.taskList);
-            } catch (DukeException e) {
-                this.ui.showSavingError();
-            }
+        try {
+            this.storage.save(this.taskList);
+        } catch (DukeException e) {
+            this.ui.showSavingError();
         }
     }
 
-    public static void main(String[] args) {
-        new Duke(Storage.FILE_PATH).run();
+    /**
+     * Gets the Ui object of duke.
+     * @return Ui object of duke.
+     */
+    public Ui getUi() {
+        return this.ui;
     }
 }
