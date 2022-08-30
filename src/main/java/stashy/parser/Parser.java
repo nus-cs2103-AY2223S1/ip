@@ -186,7 +186,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Deadline(description, by, isDone);
             } catch (Exception e) {
-                ;
+                // Go for the next dateTimeFormat
             }
         }
         throw new StashyException("Invalid datetime format given!");
@@ -210,7 +210,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Event(description, at, isDone);
             } catch (Exception e) {
-                ;
+                // Go for the next dateTimeFormat
             }
         }
         throw new StashyException("Invalid datetime format given!");
