@@ -12,13 +12,8 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private static String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
-    private static final String GREETING = "Hello, I'm\n" + logo + "How may I help you today?";
+    private static final String GREETING = "Hello, I'm Duke! How may I help you today?\n"
+            + "You can add a deadline, task or event and I will remember it for you!";
 
     private static final String FAREWELL = "Goodbye! Hope to see you again!";
 
@@ -41,10 +36,8 @@ public class Ui {
     /**
      * Prints out the welcome message for Duke.
      */
-    public void showWelcome() {
-        showLine();
-        formatMessage(GREETING);
-        showLine();
+    public String showWelcome() {
+        return formatMessage(GREETING);
     }
 
     /**

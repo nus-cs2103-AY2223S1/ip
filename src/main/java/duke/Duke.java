@@ -43,4 +43,8 @@ public class Duke {
             return ui.showError(e);
         }
     }
+
+    public String getWelcomeMessage() {
+        return ui.showWelcome();
+    }
 }
