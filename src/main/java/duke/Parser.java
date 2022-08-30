@@ -2,101 +2,113 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Encapsulates the parser for Duke.
+ */
 public class Parser {
-    private static boolean startsWith(String cmd, String prefix) {
-        String[] stuff = cmd.split(" ");
+
+    private static boolean startsWith(String command, String prefix) {
+        String[] stuff = command.split(" ");
         return stuff[0].equals(prefix);
     }
 
-    public void parseCommand(String s, TaskList ts, Ui ui, Storage store) throws IOException {
+    /**
+     * Parses a given command and pass relevant instructions to the TaskList, Ui and Storage.
+     *
+     * @param command user input string
+     * @param tasks TaskList to be modified if necessary
+     * @param ui Ui to display response
+     * @param store Storage to be modified if necessary
+     */
+    public void parseCommand(String command, TaskList tasks, Ui ui, Storage store) throws IOException {
 
-        if (s.equals("list")) {
+        if (command.equals("list")) {
 
-            ui.printTaskList(ts);
+            ui.printTaskList(tasks);
 
-        } else if (s.equals("bye")) {
+        } else if (command.equals("bye")) {
 
             ui.goodbye();
 
-        } else if (s.equals("clear")) {
+        } else if (command.equals("clear")) {
 
-            ts.clear();
+            tasks.clear();
             ui.printSuccessfulClear();
             ui.printSpacer();
 
-        } else if (startsWith(s, "mark")) {
+        } else if (startsWith(command, "mark")) {
 
             try {
-                Task t = ts.markTask(s);
+                Task t = tasks.markTask(command);
                 ui.printSuccessfulMark();
                 ui.printTask(t);
                 ui.printSpacer();
             } catch (TaskNumberException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "unmark")) {
+        } else if (startsWith(command, "unmark")) {
 
             try {
-                Task t = ts.unmarkTask(s);
+                Task t = tasks.unmarkTask(command);
                 ui.printSuccessfulUnmark();
                 ui.printTask(t);
                 ui.printSpacer();
             } catch (TaskNumberException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "todo")) {
+        } else if (startsWith(command, "todo")) {
 
             try {
-                Task t = ts.addTodo(s);
+                Task t = tasks.addTodo(command);
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
-                ui.printNoOfTasks(ts);
+                ui.printNoOfTasks(tasks);
                 ui.printSpacer();
             } catch (EmptyTodoException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "deadline")) {
+        } else if (startsWith(command, "deadline")) {
 
             try {
-                Task t = ts.addDeadline(s);
+                Task t = tasks.addDeadline(command);
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
-                ui.printNoOfTasks(ts);
+                ui.printNoOfTasks(tasks);
                 ui.printSpacer();
             } catch (DeadlineFormatException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "event")) {
+        } else if (startsWith(command, "event")) {
 
             try {
-                Task t = ts.addEvent(s);
+                Task t = tasks.addEvent(command);
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
-                ui.printNoOfTasks(ts);
+                ui.printNoOfTasks(tasks);
                 ui.printSpacer();
             } catch (EventFormatException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
-        } else if (startsWith(s, "delete")) {
+        } else if (startsWith(command, "delete")) {
 
             try {
-                Task t = ts.deleteTask(s);
+                Task t = tasks.deleteTask(command);
                 ui.printSuccessfulDelete();
                 ui.printTask(t);
-                ui.printNoOfTasks(ts);
+                ui.printNoOfTasks(tasks);
                 ui.printSpacer();
             } catch (TaskNumberException e) {
-                ui.printErrorMessage(e, ts);
+                ui.printErrorMessage(e, tasks);
             }
 
         } else {
-            ui.printErrorMessage(new InvalidCommandException(s), ts);
+            ui.printErrorMessage(new InvalidCommandException(command), tasks);
         }
-        store.updateFile(ts);
+        store.updateFile(tasks);
     }
 }

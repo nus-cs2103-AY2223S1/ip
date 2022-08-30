@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Encapsulates a generic task to be done.
+ */
 public class Todo extends Task {
 
     public Todo(String description) {

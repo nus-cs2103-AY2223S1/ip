@@ -2,6 +2,9 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Encapsulates the Ui for Duke.
+ */
 public class Ui {
 
     private boolean cont = true;
@@ -64,7 +67,13 @@ public class Ui {
         System.out.println(t.toString());
     }
 
-    public void printErrorMessage(Exception e, TaskList ts) {
+    /**
+     * Prints the corresponding error message when Duke encounters an error.
+     *
+     * @param e the Exception encountered
+     * @param tasks the relevant TaskList that may have caused the exception
+     */
+    public void printErrorMessage(Exception e, TaskList tasks) {
         if (e instanceof IOException) {
             System.out.println(":( An error occurred reading/writing your save files!");
             printSpacer();
@@ -73,7 +82,7 @@ public class Ui {
             printSpacer();
         } else if (e instanceof TaskNumberException) {
             System.out.println(":( Oops! Please enter a valid task number!");
-            System.out.println("You currently have " + ts.getTasksLength() + " tasks.");
+            System.out.println("You currently have " + tasks.getTasksLength() + " tasks.");
             printSpacer();
         } else if (e instanceof EmptyTodoException) {
             System.out.println(":( Oops! The description of a todo cannot be empty!");

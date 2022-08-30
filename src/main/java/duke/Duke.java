@@ -3,12 +3,22 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Encapsulates the overall Duke application.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructs a Duke which saves data in the given directory and file name.
+     *
+     * @param dirName name of directory
+     * @param fileName name of file
+     * @return the Duke
+     */
     public Duke(String dirName, String fileName) {
         this.storage = new Storage(dirName, fileName);
         this.ui = new Ui();
@@ -27,6 +37,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke application.
+     */
     public void run() {
         Scanner sc = new Scanner(System.in);
         while (this.ui.isActive()) {
