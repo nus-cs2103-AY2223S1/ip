@@ -5,6 +5,9 @@ import duke.task.TaskList;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for Duke.
+ */
 public class Ui {
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -12,7 +15,7 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String LINE = "```````````````````````````````````````````````````````````````````";
-    private static final String GREET_WELCOME= "Hello there! I am\n" + LOGO
+    private static final String GREET_WELCOME = "Hello there! I am\n" + LOGO
             + "\nyour personal task tracking assistant!\nWhat can I do for you today?\n";
     private static final String GREET_EXIT = "Bye. Hope to see you again soon!\n";
     private Scanner scanner;
