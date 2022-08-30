@@ -54,8 +54,10 @@ public class TaskList {
      *
      * @param str command input by user with information.
      * @param type enum of task type.
+     * @return String containing message to be displayed
      */
-    public void add(String str, Duke.Type type) {
+    public String add(String str, Duke.Type type) {
+        String message = "";
         // add new todo task
         if (type.equals(Duke.Type.TODO)) {
             try {
@@ -66,10 +68,16 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+                message =  String.format("Got it. I've added this task:\n" +
+                                "%s\n" +
+                                "Now you have %d tasks in the list.",
+                        tasks.get(count - 1).toString(),
+                        count);
 
             // missing name
             } catch (MissingDescriptionException err) {
                 ui.printMessage(err.toString());
+                message = err.toString();
             }
 
         // add new deadline task
@@ -85,17 +93,25 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+                message = String.format("Got it. I've added this task:\n" +
+                                "%s\n" +
+                                "Now you have %d tasks in the list.",
+                        tasks.get(count - 1).toString(),
+                        count);
             // missing name
             } catch (MissingDescriptionException err) {
                 ui.printMessage("OOPS!!! The description of a deadline cannot be empty.");
+                message = "OOPS!!! The description of a deadline cannot be empty.";
 
             // missing end date
             } catch (ArrayIndexOutOfBoundsException e) {
                 ui.printMessage("OOPS!!! The end date of a deadline cannot be empty.");
+                message = "OOPS!!! The end date of a deadline cannot be empty.";
 
             // date in wrong format
             } catch (DateTimeParseException e) {
                 ui.printMessage("input date in YYYY-MM-DD format!");
+                message = "input date in YYYY-MM-DD format!";
             }
 
         // add new event task
@@ -116,28 +132,39 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+                message = String.format("Got it. I've added this task:\n" +
+                                "%s\n" +
+                                "Now you have %d tasks in the list.",
+                        tasks.get(count - 1).toString(),
+                        count);
 
             // missing name
             } catch (MissingDescriptionException err) {
                 ui.printMessage("OOPS!!! The description of an event cannot be empty.");
+                message = "OOPS!!! The description of an event cannot be empty.";
 
             // missing date or time
             } catch (ArrayIndexOutOfBoundsException e) {
                 ui.printMessage("OOPS!!! The time of an event cannot be empty.");
+                message = "OOPS!!! The time of an event cannot be empty.";
 
             // date or time in wrong format
             } catch (DateTimeParseException e) {
                 ui.printMessage("Input date in YYYY-MM-DD and time in HH:MM format");
+                message = "Input date in YYYY-MM-DD and time in HH:MM format";
             }
         }
+        return message;
     }
 
     /**
      * Deletes tasks from arraylist.
      *
      * @param command command input by user, with index to delete.
+     * @return String containing message to be displayed
      */
-    public void delete(String command) {
+    public String delete(String command) {
+        String message = "";
         try {
             int index = Integer.valueOf(command.split(" ")[1]);
             Task task = tasks.remove(index - 1);
@@ -148,10 +175,13 @@ public class TaskList {
                     task.toString(),
                     count);
             ui.printMessage(str);
+            message = str;
         // no task found
         } catch (IndexOutOfBoundsException e) {
             ui.printMessage("OOPS!!! No such task exists.");
+            message = "OOPS!!! No such task exists.";
         }
+        return message;
     }
 
     /**
@@ -182,8 +212,10 @@ public class TaskList {
      * Searches and prints out matching tasks.
      *
      * @param keyword word to search in tasks.
+     * @return String containing message to be displayed
      */
-    public void find(String keyword) {
+    public String find(String keyword) {
+        String message = "";
         ArrayList<Task> matches = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Task task = tasks.get(i);
@@ -194,6 +226,7 @@ public class TaskList {
         TaskList match = new TaskList(matches);
         String print = String.format("Here are the matching tasks in your list:\n%s", match.toString());
         ui.printMessage(print);
+        return print;
     }
 
     /**
