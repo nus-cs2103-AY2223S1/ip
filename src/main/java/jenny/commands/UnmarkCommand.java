@@ -1,12 +1,13 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Mark a task from the instance of {@link TaskList} as incomplete.
@@ -16,8 +17,8 @@ import java.util.ArrayList;
  * @author Deon
  */
 public class UnmarkCommand extends Command {
-    private static final String MESSAGE_SCOPE = UnmarkCommand.class.getSimpleName();
     public static final String COMMAND = "unmark";
+    private static final String MESSAGE_SCOPE = UnmarkCommand.class.getSimpleName();
     private static final int OFFSET = -1;
     private static final String UNMARK_SUCCESS = "OK, I've marked this task as not done yet:";
 
@@ -35,6 +36,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param tasks   the instance of {@link TaskList} to run the command with.
      * @param ui      the instance of {@link Ui} to run the command with.
      * @param storage the instance of {@link Storage} to run the command with.
@@ -48,8 +50,8 @@ public class UnmarkCommand extends Command {
             task.unmark();
             tasks.save(storage);
             ui.print(new String[]{
-                    UNMARK_SUCCESS,
-                    "  " + task
+                UNMARK_SUCCESS,
+                "  " + task
             });
         } catch (NumberFormatException | JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());

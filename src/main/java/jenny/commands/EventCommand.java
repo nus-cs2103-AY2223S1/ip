@@ -1,5 +1,10 @@
 package jenny.commands;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.EventTask;
@@ -8,10 +13,6 @@ import jenny.tasks.TaskList;
 import jenny.util.Ui;
 import jenny.util.Validator;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Add a new event to the instance of {@link TaskList}.
@@ -21,12 +22,12 @@ import java.util.regex.Pattern;
  * @author Deon
  */
 public class EventCommand extends Command {
-    private static final String MESSAGE_SCOPE = EventCommand.class.getSimpleName();
     public static final String COMMAND = "event";
+    private static final String MESSAGE_SCOPE = EventCommand.class.getSimpleName();
     private static final Pattern VALID_EVENT_TASK = Pattern.compile(
-            "(?<description>.+?)\\s/at\\s(?<dueDate>.+)");
+        "(?<description>.+?)\\s/at\\s(?<dueDate>.+)");
     private static final String ERROR_INVALID_FORMAT =
-            "You have entered an invalid format for deadline <description> /at <dueDate>.";
+        "You have entered an invalid format for deadline <description> /at <dueDate>.";
     private static final String ADD_EVENT_SUCCESS = "Got it. I've added this task:";
 
     /**
@@ -64,9 +65,9 @@ public class EventCommand extends Command {
             tasks.add(task);
             tasks.save(storage);
             ui.print(new String[]{
-                    ADD_EVENT_SUCCESS,
-                    "  " + task,
-                    "Now you have " + tasks.size() + " tasks in the list."
+                ADD_EVENT_SUCCESS,
+                "  " + task,
+                "Now you have " + tasks.size() + " tasks in the list."
             });
         } catch (IllegalStateException | IllegalArgumentException | JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());

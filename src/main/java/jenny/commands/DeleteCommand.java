@@ -1,12 +1,13 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Remove a task from the instance of {@link TaskList}.
@@ -16,8 +17,8 @@ import java.util.ArrayList;
  * @author Deon
  */
 public class DeleteCommand extends Command {
-    private static final String MESSAGE_SCOPE = DeleteCommand.class.getSimpleName();
     public static final String COMMAND = "delete";
+    private static final String MESSAGE_SCOPE = DeleteCommand.class.getSimpleName();
     private static final int OFFSET = -1;
     private static final String ERROR_EMPTY_LIST = "There is nothing in your list to delete.";
     private static final String DELETE_SUCCESS = "Got it. I've deleted this task:";
@@ -52,9 +53,9 @@ public class DeleteCommand extends Command {
             Task task = tasks.remove(index);
             tasks.save(storage);
             ui.print(new String[]{
-                    DELETE_SUCCESS,
-                    "  " + task,
-                    "Now you have " + tasks.size() + " tasks in the list."
+                DELETE_SUCCESS,
+                "  " + task,
+                "Now you have " + tasks.size() + " tasks in the list."
             });
         } catch (NumberFormatException | JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());

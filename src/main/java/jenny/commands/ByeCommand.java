@@ -1,12 +1,12 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Will send an exit message to the user and exit the application.

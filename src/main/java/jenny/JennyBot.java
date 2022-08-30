@@ -1,5 +1,7 @@
 package jenny;
 
+import java.util.ArrayList;
+
 import jenny.commands.Command;
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
@@ -8,8 +10,6 @@ import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Parser;
 import jenny.util.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Initialise the JennyBot application.
@@ -26,6 +26,7 @@ public final class JennyBot {
     /**
      * Constructor for a JennyBot application.
      * Will initialise a storage at the default location under the specified name.
+     *
      * @param filePath the name of the storage file.
      */
     public JennyBot(String filePath) {
@@ -45,7 +46,7 @@ public final class JennyBot {
     public void run() {
         ui.greet();
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 String nextLine = ui.read();
                 Command cmd = Parser.parse(nextLine);

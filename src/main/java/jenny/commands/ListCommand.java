@@ -1,12 +1,13 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Displays the contents of the instance of {@link TaskList} to the user.
@@ -16,8 +17,8 @@ import java.util.ArrayList;
  * @author Deon
  */
 public class ListCommand extends Command {
-    private static final String MESSAGE_SCOPE = ListCommand.class.getSimpleName();
     public static final String COMMAND = "list";
+    private static final String MESSAGE_SCOPE = ListCommand.class.getSimpleName();
     private static final String ERROR_EMPTY_LIST = "There is nothing in your list to display.";
 
     /**
