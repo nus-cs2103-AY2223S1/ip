@@ -4,22 +4,20 @@ import duke.commands.BaseCommand;
 import duke.tasklist.TaskList;
 
 /**
- * BaseTaskCommand class
+ * Represents a Base Task.
  */
 public abstract class BaseTaskCommand implements BaseCommand {
     protected TaskList taskList;
-    private final String borderMessage = "______________________";
 
     /**
-     * The formatOutputString function formats the output string by adding a divider
-     * and
-     * returning it.
+     * Returns the input string formatted with borders.
      *
      * @param text
-     *            Pass the text to be formatted
-     * @return A string that includes the text
+     *            Text to be formatted
+     * @return Formatted text
      */
     public String formatOutputString(String text) {
+        String borderMessage = "______________________";
         return String.format(
                 "\n%s\n%s\n%s\n",
                 borderMessage,
@@ -29,7 +27,7 @@ public abstract class BaseTaskCommand implements BaseCommand {
 
     /**
      * @param taskList
-     *            the taskList to set
+     *            Task List to be set
      */
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
