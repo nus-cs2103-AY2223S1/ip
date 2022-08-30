@@ -1,24 +1,74 @@
-# Duke project template
+# JennyBot Application
+> "insert cliché programming related quote here" - Deon ([Browse](https://betterprogramming.pub/101-funny-programmer-quotes-76c7f335b92d))
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+JennyBot befriends you and helps you remember your tasks when no one else does.
 
-## Setting up in Intellij
+## Features of JennyBot :hot_face::sweat_drops::sweat_drops:
+- Remembers **three** different types of tasks:
+  1. Todo task (you know, just a task)
+  2. Deadline task (due by a certain date)
+  3. Event task (occurring at a certain date)
+- **Backup** your task list locally (user/.jenny/storage/tasks)
+- Mark and unmark your tasks as **completed** or **uncompleted**
+- **Finds** which tasks you are looking for
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+### List supported commands for JennyBot :wink:
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-2. Open the project into Intellij as follows:
-   1. Click `Open`.
-   2. Select the project directory, and click `OK`.
-   3. If there are any further prompts, accept the defaults.
-3. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-4. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+1. Add a _Todo_ task `todo <description>`
+2. Add a _Deadline_ task `deadline <description> /by <yyyy-MM-dd>`
+3. Add a _Event_ task `event <description> /at <yyyy-MM-dd>`
+4. List all available tasks `list`
+5. Mark a task as complete `mark <index>`
+6. Unmark a task as complete `unmark <index>`
+7. Delete a task from the list `delete <index>`
+8. Find a task by description `find <description>`
+9. Exit the application `bye`
+
+### Upcoming features from developers of JennyBot:
+
+- [x] Using checkstyle to detect coding violations
+```groovy
+checkstyle {
+    toolVersion = '10.2'
+}
+```
+- [ ] Fresh slick Graphical User Interface
+
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class JennyBot extends Application {
+
+  // ...
+
+  @Override
+  public void start(Stage stage) {
+    Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+    Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+    stage.setScene(scene); // Setting the stage to show our screen
+    stage.show(); // Render the stage.
+  }
+}
+```
+
+- [ ] Usage of variable arguments in JennyBot
+
+```java
+public String formatWithVarArgs(String... values) {
+    // ...
+}
+
+formatWithVarArgs();
+formatWithVarArgs("a", "b", "c", "d");
+```
+
+```
+   Hello from  |
+               |
+               |
+               |  the other side
+```
