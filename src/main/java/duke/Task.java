@@ -19,7 +19,7 @@ abstract class Task {
     }
 
     private static class Deadline extends Task {
-        LocalDate date;
+        private LocalDate date;
         public Deadline(String description, String date) {
             super(description);
             this.date = LocalDate.parse(date);
@@ -35,7 +35,7 @@ abstract class Task {
     }
 
     private static class Event extends Task {
-        LocalDate date;
+        private LocalDate date;
         public Event(String description, String date) {
             super(description);
             this.date = LocalDate.parse(date);
@@ -55,51 +55,51 @@ abstract class Task {
     }
 
     public void changeMark(boolean arg) throws DukeException {
-        if(isDone == arg) {
+        if (isDone == arg) {
             if (arg) {
-                throw DukeException.taskAlreadyMarked;
+                throw DukeException.TASKALREADYMARKED;
             } else {
-                throw DukeException.taskAlreadyUnmarked;
+                throw DukeException.TASKALREADYUNMARKED;
             }
         }
         isDone = arg;
     }
 
-    public static Task ToDo(String argument) {
+    public static Task toDo(String argument) {
         return new ToDo(argument);
     }
 
-    public static Task Deadline(String argument) throws DukeException {
-        String arr[] = argument.split("\\|", 2);
-        if(arr.length < 2) {
-            throw DukeException.invalidArgument;
+    public static Task deadline(String argument) throws DukeException {
+        String[] arr = argument.split("\\|", 2);
+        if (arr.length < 2) {
+            throw DukeException.INVALIDARGUMENT;
         }
         return new Deadline(arr[0], arr[1]);
     }
 
-    public static Task Event(String argument) throws DukeException {
-        String arr[] = argument.split("\\|", 2);
-        if(arr.length < 2) {
-            throw DukeException.invalidArgument;
+    public static Task event(String argument) throws DukeException {
+        String[] arr = argument.split("\\|", 2);
+        if (arr.length < 2) {
+            throw DukeException.INVALIDARGUMENT;
         }
         return new Event(arr[0], arr[1]);
     }
 
-    public static Task parseFromString(String string) throws DukeException{
-        String arr[] = string.split("\\|", 3);
+    public static Task parseFromString(String string) throws DukeException {
+        String[] arr = string.split("\\|", 3);
         Task task;
         switch (arr[0]) {
-            case "[T]":
-                task = ToDo(arr[2]);
-                break;
-            case "[E]":
-                task = Event(arr[2]);
-                break;
-            case "[D]":
-                task = Deadline(arr[2]);
-                break;
-            default:
-                throw DukeException.invalidArgument;
+        case "[T]":
+            task = toDo(arr[2]);
+            break;
+        case "[E]":
+            task = event(arr[2]);
+            break;
+        case "[D]":
+            task = deadline(arr[2]);
+            break;
+        default:
+            throw DukeException.INVALIDARGUMENT;
         }
         if (arr[1].equals("[X]")) {
             task.changeMark(true);

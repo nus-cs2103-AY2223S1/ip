@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class TaskList {
 
     private ArrayList<Task> listOfTasks = new ArrayList<>();
-    public void addTask (Task task) {
+    public void addTask(Task task) {
         listOfTasks.add(task);
     }
 
@@ -13,17 +13,17 @@ class TaskList {
         return listOfTasks.size();
     }
 
-    public void deleteTask (int i) throws DukeException {
+    public void deleteTask(int i) throws DukeException {
         if (listOfTasks.size() <= i) {
-            throw DukeException.idTooBig;
+            throw DukeException.IDTOOBIG;
         }
 
         listOfTasks.remove(i);
     }
 
-    public Task getTask (int i) throws DukeException {
+    public Task getTask(int i) throws DukeException {
         if (listOfTasks.size() <= i) {
-            throw DukeException.idTooBig;
+            throw DukeException.IDTOOBIG;
         }
 
         return listOfTasks.get(i);

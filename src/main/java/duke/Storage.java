@@ -12,12 +12,12 @@ class Storage {
         this.fileName = fileName;
     }
 
-    public void fillData(TaskList taskList){
+    public void fillData(TaskList taskList) {
         File file = new File(this.fileName);
         Scanner scanner;
         try {
             scanner = new Scanner(file);
-        } catch (java.io.FileNotFoundException e){
+        } catch (java.io.FileNotFoundException e) {
             return;
         }
 
@@ -26,12 +26,14 @@ class Storage {
             try {
                 Task task = Task.parseFromString(line);
                 taskList.addTask(task);
-            } catch (DukeException e) { }
+            } catch (DukeException e) {
+                //Should not happen assuming nothing modified datafile
+            }
         }
         scanner.close();
     }
 
-    public void SaveToStorage(TaskList taskList) throws IOException{
+    public void saveToStorage(TaskList taskList) throws IOException {
         FileWriter writer = new FileWriter(this.fileName);
         for (int i = 0; i < taskList.getSize(); i++) {
             try {
