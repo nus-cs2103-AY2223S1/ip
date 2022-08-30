@@ -16,15 +16,40 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * Storage class which deals with loading tasks from the file and saving tasks in the file.
+ *
+ * @author Shawn Chew
+ * @version CS2103T AY 22/23 Sem 1
+ */
 public class Storage {
+    /**
+     * The file path of the file.
+     */
     private String filePath;
+    /**
+     * Represents the file.
+     */
     private File dataFile;
+    /**
+     * Represents the file writer.
+     */
     private FileWriter fw;
 
+    /**
+     * A constructor to initialize the Storage object.
+     *
+     * @param filePath The file path of the file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the data in the file to a List object.
+     *
+     * @return List object containing the data of the file.
+     */
     public List<Task> loadData() {
         try {
             File dataFolder = new File(filePath.split("/", 2)[0]);
@@ -68,6 +93,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the data in the file.
+     *
+     * @param tasks The data which will overwrite the file.
+     * @throws IOException If an I/O error occurs.
+     */
     public void updateData(TaskList tasks) throws IOException {
         String newText = "";
         for (int i = 0; i < tasks.size(); i++) {
