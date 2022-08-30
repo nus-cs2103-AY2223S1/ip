@@ -1,3 +1,9 @@
+package pluto;
+
+import pluto.task.Deadline;
+import pluto.task.Event;
+import pluto.task.Task;
+import pluto.task.Todo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

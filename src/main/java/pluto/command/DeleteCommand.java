@@ -1,3 +1,11 @@
+package pluto.command;
+
+import pluto.PlutoException;
+import pluto.Storage;
+import pluto.TaskList;
+import pluto.Ui;
+import pluto.task.Task;
+
 import java.io.IOException;
 
 public class DeleteCommand extends Command {

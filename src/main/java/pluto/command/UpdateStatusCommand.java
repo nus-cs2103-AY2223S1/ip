@@ -1,3 +1,10 @@
+package pluto.command;
+
+import pluto.PlutoException;
+import pluto.Storage;
+import pluto.TaskList;
+import pluto.Ui;
+
 import java.io.IOException;
 
 public class UpdateStatusCommand extends Command {

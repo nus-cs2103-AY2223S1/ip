@@ -1,6 +1,14 @@
+package pluto.command;
+
+import pluto.PlutoException;
+import pluto.Storage;
+import pluto.TaskList;
+import pluto.Ui;
+import pluto.task.Task;
+
 import java.time.LocalDate;
 
-public class ShowCommand extends Command{
+public class ShowCommand extends Command {
     LocalDate date;
 
     public ShowCommand(LocalDate date) {
@@ -11,7 +19,7 @@ public class ShowCommand extends Command{
         TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.nTasks(); i++) {
             Task t = tasks.getTask(i);
-            LocalDate date = t.getDateMaybe();
+            LocalDate date = ((Task) t).getDateMaybe();
             if (this.date.equals(date)) {
                 filteredTasks.addTask(t);
             }

@@ -1,8 +1,10 @@
+package pluto.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task{
+public class Event extends Task {
     protected LocalDateTime at;
 
     public Event(String description, LocalDateTime at) {
@@ -12,8 +14,8 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        String color = (isDone ? ANSI_GREEN : ANSI_RED);
-        return color + "[E]" + super.toString() + " (at: " + getDateTime(at) + ")" + ANSI_RESET;
+        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
+        return color + "[E]" + super.toString() + " (at: " + getDateTime(at) + ")" + Task.ANSI_RESET;
     }
 
     @Override

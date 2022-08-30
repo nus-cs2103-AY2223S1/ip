@@ -1,6 +1,8 @@
+package pluto.task;
+
 import java.time.LocalDate;
 
-public class Todo extends Task{
+public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
@@ -8,8 +10,8 @@ public class Todo extends Task{
 
     @Override
     public String toString() {
-        String color = (isDone ? ANSI_GREEN : ANSI_RED);
-        return color + "[T]" + super.toString() + ANSI_RESET;
+        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
+        return color + "[T]" + super.toString() + Task.ANSI_RESET;
     }
 
     @Override

@@ -1,3 +1,11 @@
+package pluto;
+
+import pluto.command.*;
+import pluto.task.Deadline;
+import pluto.task.Todo;
+import pluto.task.Event;
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -66,11 +74,11 @@ public class Parser {
             case EVENT:
                 String[] arrEvent = input.split("/at", 2);
                 if (arrEvent.length == 1) {
-                    throw new PlutoException(String.format("\tOOPS!!! The event date is required."));
+                    throw new PlutoException("\tOOPS!!! The event date is required.");
                 }
                 return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));
             default:
-                throw new PlutoException("\tOOPS!!! Task must be a Todo, Deadline or Event.");
+                throw new PlutoException("\tOOPS!!! pluto.task.Task must be a pluto.task.Todo, pluto.task.Deadline or pluto.task.Event.");
         }
     }
 

@@ -1,4 +1,11 @@
+package pluto.command;
+
 import java.io.IOException;
+import pluto.task.Task;
+import pluto.TaskList;
+import pluto.Ui;
+import pluto.Storage;
+import pluto.PlutoException;
 
 public class AddCommand extends Command {
     private Task t;

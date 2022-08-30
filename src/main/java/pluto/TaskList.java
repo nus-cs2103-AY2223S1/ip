@@ -1,3 +1,7 @@
+package pluto;
+
+import pluto.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {

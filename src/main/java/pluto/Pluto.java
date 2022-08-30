@@ -1,3 +1,7 @@
+package pluto;
+
+import pluto.command.Command;
+
 public class Pluto {
     private Storage storage;
     private TaskList tasks;

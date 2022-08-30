@@ -1,8 +1,10 @@
+package pluto.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     protected LocalDateTime by;
 
     public Deadline(String description, LocalDateTime by) {
@@ -12,8 +14,8 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        String color = (isDone ? ANSI_GREEN : ANSI_RED);
-        return color + "[D]" + super.toString() + " (by: " + getDateTime(by) + ")" + ANSI_RESET;
+        String color = (isDone ? Task.ANSI_GREEN : Task.ANSI_RED);
+        return color + "[D]" + super.toString() + " (by: " + getDateTime(by) + ")" + Task.ANSI_RESET;
     }
 
     @Override
