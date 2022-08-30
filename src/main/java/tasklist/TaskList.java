@@ -61,4 +61,24 @@ public class TaskList {
         String message = String.format("\t    %s\n", currTask);
         return message;
     }
+
+    /**
+     * Finds all task in the list that match with the keyword
+     *
+     * @param keyword keyword input by user
+     * @return String representation of all the tasks that
+     * contain they keyword
+     */
+    public String find(String keyword) {
+        int index = 1;
+        String output = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.get(i);
+            if (currTask.getDescription().contains(keyword)) {
+                output += String.format("\t%d.%s\n", index, currTask);
+                index++;
+            }
+        }
+        return output;
+    }
 }

@@ -70,6 +70,14 @@ public class Ui {
         printWithDivider(output);
     }
 
+    public void find(String tasks) {
+        String output = "\tHere are the matching tasks in your list:\n";
+        output += tasks;
+        printWithDivider(output);
+    }
+
+
+
     public void showLoadingError(String message) {
         switch (message) {
             case "empty command":
@@ -128,6 +136,9 @@ public class Ui {
             printWithDivider("\tTasklist is empty\n");
             break;
 
+            case "empty command find":
+            printWithDivider("\t☹ OOPS!!! The description of a find cannot be empty.\n");
+            break;
         }
     }
 }
