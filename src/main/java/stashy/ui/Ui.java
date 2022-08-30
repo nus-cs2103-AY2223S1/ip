@@ -68,7 +68,7 @@ public class Ui {
     /**
      * Prints the end message.
      */
-    public static void sayGoodbye() {
+    public static void showGoodbye() {
         System.out.println(" --                                                  -++-  \n" +
                 ":-:+:-                                               ++::+ \n" +
                 "+++-::-    ::+:                                       ++:::\n" +

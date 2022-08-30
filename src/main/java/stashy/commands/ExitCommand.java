@@ -15,7 +15,7 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        ui.sayGoodbye();
+        ui.showGoodbye();
         storage.writeTaskListToFile(tasks);
     }
 }

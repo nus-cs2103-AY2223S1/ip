@@ -86,7 +86,7 @@ public class Storage {
             throws StashyException {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for (Task task : taskList.toArrayList()) {
+            for (Task task : taskList.getArrayList()) {
                 fw.write(task + System.lineSeparator());
             }
             fw.close();

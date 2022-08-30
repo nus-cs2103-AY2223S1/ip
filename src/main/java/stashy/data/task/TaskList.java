@@ -37,7 +37,7 @@ public class TaskList {
      *
      * @return The task list in form of arraylist of tasks
      */
-    public ArrayList<Task> toArrayList() {
+    public ArrayList<Task> getArrayList() {
         return this.taskList;
     }
 
@@ -78,11 +78,11 @@ public class TaskList {
 
     @Override
     public String toString() {
-        String ret = "";
+        String message = "";
         for (int i = 1; i <= this.taskList.size(); i++) {
-            ret += (i + "." + this.taskList.get(i - 1)) + "\n";
+            message += (i + "." + this.taskList.get(i - 1)) + "\n";
         }
-        String trimmed = ret.substring(0, Math.max(0, ret.length() - 1));
-        return trimmed.isEmpty() ? "You have no tasks right now." : trimmed;
+        String trimmedMessage = message.substring(0, Math.max(0, message.length() - 1));
+        return trimmedMessage.isEmpty() ? "You have no tasks right now." : trimmedMessage;
     }
 }
