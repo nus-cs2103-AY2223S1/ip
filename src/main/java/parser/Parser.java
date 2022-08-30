@@ -14,7 +14,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
-
+    /**
+     * Parses a string input from the user to generate the respective command.
+     * @param input String representing user input.
+     * @return Command corresponding to input.
+     * @throws DukeException If input is invalid.
+     */
     public static Command parse(String input) throws DukeException {
         String command, description;
 

@@ -10,7 +10,10 @@ public class Duke {
     private TaskList tasks;
     private final Ui ui;
 
-
+    /**
+     * Instantiates a Duke object with storage at some file path.
+     * @param filePath File path for storage.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -22,6 +25,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Initiates input/output for the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -37,7 +43,9 @@ public class Duke {
         }
     }
 
-
+    /**
+     * Instantiates the Duke program and runs it.
+     */
     public static void main(String[] args) {
         new Duke("duke.dat").run();
     }
