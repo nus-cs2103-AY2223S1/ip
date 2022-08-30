@@ -22,8 +22,17 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    protected void printTasks(ArrayList<Task> tasks) {
+    protected void printAllTasks(ArrayList<Task> tasks) {
         System.out.println("Here are the tasks in your list: ");
+        loopThroughTasks(tasks);
+    }
+    
+    protected void printMatchingTasks(ArrayList<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list: ");
+        loopThroughTasks(tasks);
+    }
+    
+    protected void loopThroughTasks(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println(i + 1 + "." + tasks.get(i));
         }
