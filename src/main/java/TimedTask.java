@@ -7,11 +7,16 @@ import java.util.Locale;
 public abstract class TimedTask extends Task {
     LocalDate date;
 
-    abstract String convertToTaskDateAndTime();
-
     public TimedTask(String taskName, LocalDate date) {
         super(taskName);
         this.date = date;
+    }
+
+    String convertLocalDate() {
+        int day = date.getDayOfMonth();
+        String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+        int year = date.getYear();
+        return day + " " + month + " " + year;
     }
 
     public static class Deadline extends TimedTask {
@@ -22,20 +27,14 @@ public abstract class TimedTask extends Task {
             this.deadlineTime = deadlineTime;
         }
 
-        String convertToTaskDateAndTime() {
-            int day = date.getDayOfMonth();
-            String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
-            int year = date.getYear();
-            String deadlineDate = day + " " + month + " " + year;
-
-            return this.deadlineTime != null
-                   ? deadlineDate + " " + this.deadlineTime
-                   : deadlineDate;
-        }
-
         @Override
         public String showStatus() {
-            return "[D]" + super.showStatus() + " (by: " + convertToTaskDateAndTime() + ")";
+            String deadlineDate = convertLocalDate();
+            String dateAndTime = this.deadlineTime != null
+                                 ? deadlineDate + " " + this.deadlineTime
+                                 : deadlineDate;
+
+            return "[D]" + super.showStatus() + " (by: " + dateAndTime + ")";
         }
 
         @Override
@@ -62,20 +61,14 @@ public abstract class TimedTask extends Task {
             this.eventEndTime = eventEndTime;
         }
 
-        String convertToTaskDateAndTime() {
-            int day = date.getDayOfMonth();
-            String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
-            int year = date.getYear();
-            String eventDate = day + " " + month + " " + year;
-
-            return this.eventStartTime != null
-                    ? eventDate + " " + eventStartTime + "-" + eventEndTime
-                    : eventDate;
-        }
-
         @Override
         public String showStatus() {
-            return "[E]" + super.showStatus() + " (at: " + convertToTaskDateAndTime() + ")";
+            String eventDate = convertLocalDate();
+            String dateAndTime = this.eventStartTime != null
+                                 ? eventDate + " " + eventStartTime + "-" + eventEndTime
+                                 : eventDate;
+
+            return "[E]" + super.showStatus() + " (at: " + dateAndTime + ")";
         }
 
         @Override

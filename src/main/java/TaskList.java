@@ -27,7 +27,6 @@ public class TaskList {
         try {
             BufferedReader reader = Files.newBufferedReader(TASKLIST_PATH);
             String nextLine = reader.readLine();
-            System.out.println("problem:" + nextLine);
             Task nextTask;
 
             while (nextLine != null) {

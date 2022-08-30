@@ -4,12 +4,8 @@ import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public abstract class Action {
     private final String action;
-    private static final Path TASKLIST_PATH = Paths.get(System.getProperty("user.dir"), "data", "tasks.txt");
 
     public Action(String action) {
         this.action = action;
