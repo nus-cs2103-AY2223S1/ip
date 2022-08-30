@@ -11,8 +11,8 @@ public class ExitCommand extends Command {
      * Duke exits
      */
     @Override
-    public void execute(Ui ui, TaskList taskList, Storage storage) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         toggleExit();
-        ui.showBye();
+        return ui.showBye();
     }
 }

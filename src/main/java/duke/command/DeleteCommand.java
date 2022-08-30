@@ -25,9 +25,9 @@ public class DeleteCommand extends Command {
      *         or task cannot be found.
      */
     @Override
-    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         Task success = taskList.deleteTask(this.deleteTask);
         storage.save(taskList);
-        ui.showDeleteSuccess(success, taskList.numOfTask());
+        return ui.showDeleteSuccess(success, taskList.numOfTask());
     }
 }

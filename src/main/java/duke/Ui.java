@@ -4,62 +4,42 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private final String GREETING = "HELLO MY BROTHER! HOW CAN I HELP YOU?";
-    private final String BYE = "GOOD BYE! SEE YOU IN WHILE!";
-    private final String DIVIDER = "===================================================";
+    private static final String GREETING = "HELLO MY FRIEND! HOW CAN I HELP YOU?";
+    private static final String BYE = "GOOD BYE! SEE YOU IN WHILE!";
 
-    private Scanner sc;
-
-    public Ui() {
-        this.sc = new Scanner(System.in);
+    public static String showGreet() {
+        return GREETING;
     }
 
-    public void showWelcome() {
-        System.out.println(GREETING);
+    public String showBye() {
+        return BYE;
     }
 
-    public void showBye() {
-        System.out.println(BYE);
+    public String showError(String errMessage) {
+        return errMessage;
+    }
+    public String addSuccess(Task task, String numOfTask) {
+        return "Added: " + task.toString() +"\n" + numOfTask;
     }
 
-    public void showLine() {
-        System.out.println(DIVIDER);
+    public String showList(TaskList taskList) {
+        return taskList.toString();
     }
 
-    public void showError(String errMessage) {
-        System.out.println(errMessage);
+    public String showFind(TaskList findList) {
+        return "HERE ARE THE TASKS THAT YOU REQUESTED:\n"
+                + findList.toString();
     }
 
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    public void echoCommand(String echo) {
-        System.out.println(echo);
-    }
-
-    public void addSuccess(Task task, String numOfTask) {
-        System.out.println("Added: " + task.toString() +"\n" + numOfTask);
-    }
-
-    public void showList(TaskList taskList) {
-        System.out.println(taskList.toString());
-    }
-
-    public void showFind(TaskList findList) {
-        System.out.println(
-                "Here are the matching tasks in your list:\n"
-                + findList.toString()
-        );
-    }
-    public void showToggleSuccess(Task task) {
+    public String showToggleSuccess(Task task) {
         if (!task.isDone()) {
-            System.out.println("MISTAKES WERE MADE!\nTHAT'S WHY YOU ARE HERE:\n" + task.toString());
+            return "I HAVE CHANGED:\n" + task.toString();
         } else {
-            System.out.println("GOOD JOB BROTHER!\n" + task.toString());
+            return "GOOD JOB MY FRIEND!\n" + task.toString();
         }
     }
-    public void showDeleteSuccess(Task task, String numOfTask) {
-        System.out.println("Deleted: " + task.toString() + "\n" + numOfTask);
+
+    public String showDeleteSuccess(Task task, String numOfTask) {
+        return "Deleted: " + task.toString() + "\n" + numOfTask;
     }
 }

@@ -15,36 +15,22 @@ public class Duke {
         this.ui = new Ui();
         this.taskList = new TaskList();
         this.storage = new Storage();
-    }
-
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = this.ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(this.ui, this.taskList, this.storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.storage.isCreated();
+        this.storage.isCreated();
         try {
-            duke.storage.load(duke.taskList);
+            this.storage.load(this.taskList);
         } catch (FileNotFoundException e) {
             System.out.println("PLEASE RESTART DUKE");
         } catch (ImproperFormatException e) {
             System.out.println("CORRUPTED DATA");
         }
-        duke.run();
+    }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(this.ui, this.taskList, this.storage);
+
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }
