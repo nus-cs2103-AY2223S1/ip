@@ -111,7 +111,7 @@ public class InputParser {
         }
     }
 
-    String parseReply(String input, Ui ui, BotList botList) {
+    String parseReply(String input, UI ui, BotList botList) {
         String reply;
         List<String> separate = new ArrayList<>(List.of(input.split("\\s+")));
         KeyPhrases keyPhrase = KeyPhrases.get(separate.remove(0));

@@ -5,15 +5,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-
-class Deku {
+/**
+ * Main class for start of bot
+ */
+public class Deku {
     private final BotList botList;
     private final Storage storage;
-    private final Ui ui;
+    private final UI ui;
     private final InputParser parser;
 
     Deku(Path directoryPath, Path filePath) {
-        ui = new Ui();
+        ui = new UI();
         storage = new Storage(directoryPath, filePath);
         botList = new BotList(storage.load(), storage);
         parser = new InputParser();
@@ -33,6 +35,10 @@ class Deku {
             }
             System.out.println(parser.parseReply(userInput, ui, botList));
         }
+    }
+
+    String getResponse(String input) {
+        return "Deku Responds:" + input;
     }
 
     /**

@@ -1,6 +1,6 @@
 package deku;
 
-class Ui {
+class UI {
     private final String separator = "__________________________________";
 
     String introduction() {
