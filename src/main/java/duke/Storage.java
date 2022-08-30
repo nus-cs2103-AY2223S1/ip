@@ -42,17 +42,17 @@ public class Storage {
 
         case "D":
             if (entries[1].equals("1")) {
-                acc.add(new Deadline(entries[2], entries[3],true));
+                acc.add(new Deadline(entries[2], entries[3], true));
             } else {
-                acc.add(new Deadline(entries[2], entries[3],false));
+                acc.add(new Deadline(entries[2], entries[3], false));
             }
             break;
 
         case "E":
             if (entries[1].equals("1")) {
-                acc.add(new Event(entries[2], entries[3],true));
+                acc.add(new Event(entries[2], entries[3], true));
             } else {
-                acc.add(new Event(entries[2], entries[3],false));
+                acc.add(new Event(entries[2], entries[3], false));
             }
             break;
 
