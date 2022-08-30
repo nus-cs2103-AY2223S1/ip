@@ -2,6 +2,12 @@ package duke;
 
 import command.Command;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
 /**
  * The main class that runs the Duke program.
  *
@@ -9,7 +15,7 @@ import command.Command;
  * @version 0.1
  */
 
-public class Duke {
+public class Duke extends Application {
 
     private final Storage storage;
     private TaskList tasks;
@@ -22,8 +28,9 @@ public class Duke {
      * @param filePath The file path to the local file responsible for loading and saving.
      */
 
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
+        String filePath = "data/duke.txt";
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadLocalData());
@@ -53,8 +60,19 @@ public class Duke {
         }
     }
 
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Label byeWorld = new Label("Bye World!"); // Creating a new Label control
+        helloWorld.setFont(Font.font(50));
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+        Scene scene2 = new Scene(byeWorld); // Setting the scene to be our Label
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
     public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+        new Duke().run();
     }
 }
 
