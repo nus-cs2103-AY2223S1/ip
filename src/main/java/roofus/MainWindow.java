@@ -2,6 +2,7 @@ package roofus;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,7 +21,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Roofus roofus;
+    private Roofus roofus = new Roofus();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image roofusImage = new Image(this.getClass().getResourceAsStream("/images/roofusPic.png"));
@@ -28,6 +29,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getRoofusDialog(roofus.greet(), roofusImage));
     }
 
     public void setRoofus(Roofus f) {

@@ -38,6 +38,13 @@ public class Roofus {
     }
 
     /**
+     * Formats and returns Roofus's greetings.
+     */
+    public String greet() {
+        return ui.greet();
+    }
+
+    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
