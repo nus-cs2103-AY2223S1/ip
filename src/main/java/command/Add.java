@@ -1,5 +1,14 @@
+package command;
+
+import alpha.FileOperations;
+import alpha.TaskList;
+import alpha.Ui;
+import task.Deadline;
+import task.Event;
+import task.Task;
+
 import java.io.IOException;
-public class Add extends Command{
+public class Add extends Command {
 
     private Task task;
 

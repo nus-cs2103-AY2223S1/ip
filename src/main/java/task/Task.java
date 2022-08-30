@@ -1,3 +1,7 @@
+package task;
+
+import alpha.Ui;
+
 public abstract class Task {
 
     Ui uI = new Ui();

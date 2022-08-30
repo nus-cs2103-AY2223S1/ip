@@ -1,6 +1,8 @@
+package task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-public class Deadline extends Task{
+public class Deadline extends Task {
     static final String ANSI_RED = "\u001B[31m";
     static final String ANSI_RESET = "\u001B[0m";
     protected String deadline;

@@ -1,3 +1,8 @@
+package alpha;
+
+import command.Command;
+import command.Exit;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -43,6 +48,6 @@ public class Alpha {
         System.exit(0);
     }
     public static void main(String[] args) {
-        new Alpha("./Alpha.txt").run();
+        new Alpha("./alpha.Alpha.txt").run();
     }
 }

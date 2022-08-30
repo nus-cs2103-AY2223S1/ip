@@ -1,4 +1,5 @@
-import java.io.IOException;
+package alpha;
+
 import java.util.Scanner;
 
 public class Ui {

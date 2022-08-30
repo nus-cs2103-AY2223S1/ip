@@ -1,6 +1,13 @@
+package command;
+
+import alpha.FileOperations;
+import alpha.TaskList;
+import alpha.Ui;
+import command.Command;
+
 import java.io.IOException;
 
-public class Mark extends Command{
+public class Mark extends Command {
     private int taskNumber;
 
     public Mark(int taskNumber) {

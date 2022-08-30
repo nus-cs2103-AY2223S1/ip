@@ -1,3 +1,10 @@
+package alpha;
+
+import command.*;
+import task.Deadline;
+import task.Event;
+import task.Todo;
+
 import java.io.IOException;
 
 public class Parser {
@@ -37,7 +44,7 @@ public class Parser {
                 return new Exit();
             }
             default: {
-                AlphaException e = new AlphaException("Invalid input: Task type unknown!");
+                AlphaException e = new AlphaException("Invalid input: task.Task type unknown!");
                 throw e;
             }
         }
@@ -45,7 +52,7 @@ public class Parser {
 
     public void checkInvalidInput(String input, int commandLength) throws AlphaException {
         if (input.length() == commandLength) {
-            throw new AlphaException("Invalid input: Task description is missing!");
+            throw new AlphaException("Invalid input: task.Task description is missing!");
         }
     }
 }
