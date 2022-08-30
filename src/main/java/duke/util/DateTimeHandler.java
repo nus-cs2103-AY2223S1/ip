@@ -12,8 +12,8 @@ import duke.exception.UnexpectedDateTimeFormatException;
  * Handles the Date and Time either from user input or from storage.
  */
 public class DateTimeHandler {
-    public static final DateTimeFormatter dukeDateTimeFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-    public static final DateTimeFormatter storageDateTimeFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    public static final DateTimeFormatter DUKE_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    public static final DateTimeFormatter STORAGE_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
      * Formats and stores dateTime as a LocalDateTime object.
@@ -24,7 +24,7 @@ public class DateTimeHandler {
      */
     public static LocalDateTime formatDukeDateTime(String strDateTime) throws UnexpectedDateTimeFormatException {
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(strDateTime, dukeDateTimeFormat);
+            LocalDateTime dateTime = LocalDateTime.parse(strDateTime, DUKE_DATE_TIME_FORMAT);
             return dateTime;
         } catch (DateTimeParseException e) {
             throw new UnexpectedDateTimeFormatException();
@@ -38,7 +38,7 @@ public class DateTimeHandler {
      * @return a LocalDateTime object.
      */
     public static LocalDateTime formatStorageDateTime(String strDateTime) {
-        LocalDateTime dateTime = LocalDateTime.parse(strDateTime, storageDateTimeFormat);
+        LocalDateTime dateTime = LocalDateTime.parse(strDateTime, STORAGE_DATE_TIME_FORMAT);
         return dateTime;
     }
 

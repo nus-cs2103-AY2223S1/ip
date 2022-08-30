@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Represents a Task with no specified date and time.
  */
-public class Todo extends Task{
+public class Todo extends Task {
     /**
      * Constructs a Todo object with a description.
      *

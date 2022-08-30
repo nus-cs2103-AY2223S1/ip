@@ -3,16 +3,13 @@ package duke.util;
 //import util
 import java.util.ArrayList;
 
-//import task
-import duke.task.Task;
-import duke.task.Todo;
+import duke.exception.TaskMarkException;
+import duke.exception.TaskNotFoundException;
+import duke.exception.TaskUnmarkException;
 import duke.task.Deadline;
 import duke.task.Event;
-
-//import exception
-import duke.exception.TaskMarkException;
-import duke.exception.TaskUnmarkException;
-import duke.exception.TaskNotFoundException;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Represents a list of Tasks and provides methods to modify the list.
@@ -39,7 +36,7 @@ public class TaskList {
             String taskType;
             String description;
             for (int i = 0; i < texts.length; i++) {
-                taskType = texts[i].substring(3,6);
+                taskType = texts[i].substring(3, 6);
                 String[] descriptions;
                 switch (taskType) {
                 case "[T]":
@@ -58,8 +55,9 @@ public class TaskList {
                     tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
                             descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
                     break;
+                default:
+                    break;
                 }
-
             }
         }
     }
@@ -79,7 +77,7 @@ public class TaskList {
      * @param index index to be checked.
      * @return true if index is in bound else false.
      */
-    private boolean isIndexOutOfBound(int index)  {
+    private boolean isIndexOutOfBound(int index) {
         return (index < 0 || index > tasks.size() - 1);
     }
 
@@ -196,7 +194,7 @@ public class TaskList {
         int size = tasks.size();
         String text = String.format("%d. %s", 1, tasks.get(0));
         for (int i = 1; i < size; i++) {
-            text += String.format("\n%d. %s", i+1, tasks.get(i));
+            text += String.format("\n%d. %s", i + 1, tasks.get(i));
         }
         return text;
     }

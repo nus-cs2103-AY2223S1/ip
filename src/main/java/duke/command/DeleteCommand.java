@@ -1,15 +1,11 @@
 package duke.command;
 
-//import util
+import duke.exception.TaskNotFoundException;
+import duke.task.Task;
+import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
-import duke.util.Storage;
 
-//import exception
-import duke.exception.TaskNotFoundException;
-
-//import task
-import duke.task.Task;
 
 /**
  * Represents a DeleteCommand object to be called when user inputs 'delete'.

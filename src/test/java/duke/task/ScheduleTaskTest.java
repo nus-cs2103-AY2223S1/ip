@@ -1,10 +1,11 @@
 package duke.task;
 
-import duke.exception.UnexpectedDateTimeFormatException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+import duke.exception.UnexpectedDateTimeFormatException;
 
 class ScheduleTaskStub extends ScheduleTask {
     public ScheduleTaskStub(String description, String dateTime) throws UnexpectedDateTimeFormatException {

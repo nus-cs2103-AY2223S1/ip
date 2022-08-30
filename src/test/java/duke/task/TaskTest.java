@@ -1,25 +1,23 @@
 package duke.task;
 
-import duke.exception.DukeException;
-import duke.exception.TaskMarkException;
-import duke.exception.TaskUnmarkException;
-import duke.exception.UnexpectedDateTimeFormatException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import duke.exception.TaskMarkException;
+import duke.exception.TaskUnmarkException;
 
 class TaskStub extends Task {
     private String description;
     private boolean isDone;
 
-    public TaskStub(String description){
+    public TaskStub(String description) {
         super(description);
     }
 
     public TaskStub(String description, boolean done) {
-        super(description,done);
+        super(description, done);
     }
 
 }
@@ -79,6 +77,4 @@ class TaskTest {
             assertEquals("☹ OOPS!!! Task has not been marked!", e.getMessage());
         }
     }
-
-
 }

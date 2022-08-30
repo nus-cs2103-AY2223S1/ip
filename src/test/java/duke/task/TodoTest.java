@@ -1,11 +1,10 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TodoTest {
+import org.junit.jupiter.api.Test;
 
+public class TodoTest {
     @Test
     public void constructor_acceptableConstructor_success() {
         assertEquals("[T][ ] read book", new Todo("read book").toString());
@@ -13,3 +12,4 @@ public class TodoTest {
         assertEquals("[T][X] read book", new Todo("read book", true).toString());
     }
 }
+

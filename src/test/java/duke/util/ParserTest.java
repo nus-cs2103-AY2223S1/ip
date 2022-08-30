@@ -1,20 +1,19 @@
 package duke.util;
 
-import duke.command.ListCommand;
-import duke.command.ByeCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.DeleteCommand;
-import duke.command.InvalidCommand;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-
-import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import duke.command.ByeCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.DukeException;
 
 class ParserTest {
     @Test

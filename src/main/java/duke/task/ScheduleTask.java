@@ -1,12 +1,8 @@
 package duke.task;
 
-//import time
 import java.time.LocalDateTime;
 
-//import exception
 import duke.exception.UnexpectedDateTimeFormatException;
-
-//import util
 import duke.util.DateTimeHandler;
 
 /**
@@ -45,6 +41,6 @@ public abstract class ScheduleTask extends Task {
      * @return date and time in the format MMM dd yyyy HH:mm
      */
     protected String showDateTime() {
-        return dateTime.format(DateTimeHandler.storageDateTimeFormat);
+        return dateTime.format(DateTimeHandler.STORAGE_DATE_TIME_FORMAT);
     }
 }

@@ -1,12 +1,9 @@
 package duke.command;
 
-//import util
+import duke.exception.NoTaskFoundExcpetion;
+import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
-import duke.util.Storage;
-
-//import exception
-import duke.exception.NoTaskFoundExcpetion;
 
 /**
  * Represents a ListCommand object to be called when user inputs 'list'.

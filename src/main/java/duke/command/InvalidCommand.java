@@ -1,12 +1,9 @@
 package duke.command;
 
-//import util
+import duke.exception.DukeCommandNotFoundException;
+import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
-import duke.util.Storage;
-
-//import exception
-import duke.exception.DukeCommandNotFoundException;
 
 /**
  * Represents InvalidCommand object to be called when user inputs an invalid command.

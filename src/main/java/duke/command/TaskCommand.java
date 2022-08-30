@@ -1,12 +1,9 @@
 package duke.command;
 
-//import util
+import duke.task.Task;
+import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
-import duke.util.Storage;
-
-//import task
-import duke.task.Task;
 
 /**
  * Represents a TaskCommand object.
@@ -26,7 +23,7 @@ public abstract class TaskCommand extends Command {
 
     /**
      * Executes TaskCommand by adding the task to tasks.
-     * 
+     *
      * @param tasks task to be added to tasks.
      * @param ui display the task that was added to tasks.
      * @param storage update the storage when task is added to tasks.

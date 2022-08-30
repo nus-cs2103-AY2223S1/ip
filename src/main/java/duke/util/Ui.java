@@ -7,10 +7,11 @@ import iohelper.IoHelper;
  * Provides a welcome and goodbye text to be display in the command line.
  */
 public class Ui {
-    private final String DUKE_INTRODUCTION = "Hello, I'm your personal assistant, Duke.";
-    private final String DUKE_HELP = "How can I assist you today?";
-    private final String DUKE_END = "Pleasure to be at your service! Run me again if you need more assistance! :)";
-    private final String divider = "__________________________________________________________";
+    private static final String DUKE_INTRODUCTION = "Hello, I'm your personal assistant, Duke.";
+    private static final String DUKE_HELP = "How can I assist you today?";
+    private static final String DUKE_END =
+            "Pleasure to be at your service! Run me again if you need more assistance! :)";
+    private static final String divider = "__________________________________________________________";
     private IoHelper ioHelper;
 
     /**

@@ -1,16 +1,11 @@
 package duke.command;
 
-//import util
-import duke.util.TaskList;
-import duke.util.Ui;
-import duke.util.Storage;
-
-//import exception
 import duke.exception.TaskNotFoundException;
 import duke.exception.TaskUnmarkException;
-
-//import task
 import duke.task.Task;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 /**
  * Represents a UnmarkCommand object to be called when user inputs 'unmark'.

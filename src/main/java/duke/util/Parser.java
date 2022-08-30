@@ -1,25 +1,24 @@
 package duke.util;
 
 //import command
-import duke.command.Command;
-import duke.command.ListCommand;
 import duke.command.ByeCommand;
-import duke.command.UnmarkCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.DeleteCommand;
-import duke.command.InvalidCommand;
-import duke.command.FindCommand;
-
+import duke.command.UnmarkCommand;
 //import exception
-import duke.exception.DukeException;
-import duke.exception.IntegerExpectedException;
 import duke.exception.DateTimeNotFoundException;
 import duke.exception.DescriptionNotSpecifyException;
-import duke.exception.NoCommandException;
+import duke.exception.DukeException;
 import duke.exception.IndexNotSpecifyException;
+import duke.exception.IntegerExpectedException;
+import duke.exception.NoDescriptionException;
 import duke.exception.ScheduleTaskKeywordNotFoundException;
 import duke.exception.UnexpectedDateTimeFormatException;
 
@@ -101,7 +100,7 @@ public class Parser {
                 : "";
     }
 
-    private static int convertStringToInt(String number) throws IntegerExpectedException{
+    private static int convertStringToInt(String number) throws IntegerExpectedException {
         try {
             int index = Integer.parseInt(number) - 1;
             return index;
@@ -123,16 +122,16 @@ public class Parser {
         return descriptions;
     }
 
-    private static Command prepareList(String command, String description) throws NoCommandException {
+    private static Command prepareList(String command, String description) throws NoDescriptionException {
         if (!description.equals("")) {
-            throw new NoCommandException(command);
+            throw new NoDescriptionException(command);
         }
         return new ListCommand();
     }
 
-    private static Command prepareBye(String command, String description) throws NoCommandException {
+    private static Command prepareBye(String command, String description) throws NoDescriptionException {
         if (!description.equals("")) {
-            throw new NoCommandException(command);
+            throw new NoDescriptionException(command);
         }
         return new ByeCommand();
     }

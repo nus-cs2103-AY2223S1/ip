@@ -3,9 +3,8 @@ package duke.util;
 //import io
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.FileWriter;
-
+import java.io.IOException;
 //import util
 import java.util.Scanner;
 

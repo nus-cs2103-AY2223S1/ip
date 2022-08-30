@@ -43,7 +43,7 @@ public abstract class Task {
      *
      * @throws TaskMarkException when task is already done.
      */
-    public void mark() throws TaskMarkException{
+    public void mark() throws TaskMarkException {
         if (isDone) {
             throw new TaskMarkException();
         }
@@ -55,7 +55,7 @@ public abstract class Task {
      *
      * @throws TaskUnmarkException when task is not done yet.
      */
-    public void unmark() throws TaskUnmarkException{
+    public void unmark() throws TaskUnmarkException {
         if (!isDone) {
             throw new TaskUnmarkException();
         }

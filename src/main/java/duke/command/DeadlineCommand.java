@@ -1,9 +1,6 @@
 package duke.command;
 
-//import exception
 import duke.exception.UnexpectedDateTimeFormatException;
-
-//import task
 import duke.task.Deadline;
 
 /**
