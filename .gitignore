@@ -16,3 +16,5 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 Duke.txt
+MANIFEST.MF
+ip.jar

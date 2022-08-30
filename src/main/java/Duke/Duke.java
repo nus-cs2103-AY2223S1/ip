@@ -57,10 +57,8 @@ public class Duke {
 
     }
    public static void main(String[] args) throws DukeException {
+        System.out.println("Hello World!");
         new Duke().run();
-
-
-
 
 
 
