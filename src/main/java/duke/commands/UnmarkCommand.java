@@ -3,7 +3,6 @@ package duke.commands;
 import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
-import duke.utils.Ui;
 
 /**
  * Represents an executable command that marks the task as not done.
@@ -26,7 +25,7 @@ public class UnmarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
             throw new DukeException("There is no such task index... "
                     + "Try 'list' to view all the tasks and their index!");

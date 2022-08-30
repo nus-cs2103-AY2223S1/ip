@@ -3,7 +3,6 @@ package duke.commands;
 import duke.tasks.Task;
 import duke.utils.Storage;
 import duke.utils.TaskList;
-import duke.utils.Ui;
 
 /**
  * Represents an executable command that adds a Task to the specified TaskList.
@@ -26,7 +25,7 @@ public class AddCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
+    public CommandResult execute(TaskList taskList, Storage storage) {
         taskList.addTask(this.task);
 
         int size = taskList.size();

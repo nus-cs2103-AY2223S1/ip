@@ -3,7 +3,6 @@ package duke.commands;
 import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
-import duke.utils.Ui;
 
 /**
  * Represents an executable command that finds a Task from the specified TaskList.
@@ -26,7 +25,7 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
         TaskList results = taskList.findMatchingTasks(this.keyword);
         String msgBegin = "Here are the matching tasks in your list:\n";
         String msg = msgBegin;
