@@ -36,7 +36,7 @@ public class TaskList {
         }
 
         public String getSavedString() {
-            return String.format("T | %s | %s\n",this.isDone, this.description);
+            return String.format("T | %s | %s\n", this.isDone, this.description);
         }
 
         @Override
@@ -49,8 +49,8 @@ public class TaskList {
      * Class for a singular Deadline.
      */
     class Deadline extends Task {
-        String deadline;
-        LocalDate date;
+        private String deadline;
+        private LocalDate date;
 
         public Deadline(String description, String deadline) {
             super(description);
@@ -64,12 +64,14 @@ public class TaskList {
 
         @Override
         public String getSavedString() {
-            return String.format("D | %s | %s | %s\n",this.getIsDone(), this.getDescription(), this.deadline);
+            return String.format("D | %s | %s | %s\n", this.getIsDone(), this.getDescription(), this.deadline);
         }
 
         @Override
         public String toString() {
-            return String.format("[D] %s %s (by: %s)", Ui.checkbox(this.getIsDone()), this.getDescription(), this.deadline);
+            return String.format(
+                    "[D] %s %s (by: %s)", Ui.checkbox(this.getIsDone()), this.getDescription(), this.deadline
+            );
         }
     }
 
@@ -77,7 +79,7 @@ public class TaskList {
      * Class for a singular Event.
      */
     class Event extends Task {
-        String time;
+        private String time;
 
         public Event(String description, String time) {
             super(description);
@@ -86,7 +88,7 @@ public class TaskList {
 
         @Override
         public String getSavedString() {
-            return String.format("E | %s | %s | %s\n",this.getIsDone(), this.getDescription(), this.time);
+            return String.format("E | %s | %s | %s\n", this.getIsDone(), this.getDescription(), this.time);
         }
 
         @Override
@@ -95,8 +97,8 @@ public class TaskList {
         }
     }
 
-    int pointer = 0;
     protected ArrayList<Task> list;
+    private int pointer = 0;
     /**
      * Constructor for TaskList.
      */
@@ -159,6 +161,11 @@ public class TaskList {
         return val;
     }
 
+    /**
+     * Returns the task containing the specific keyword.
+     * @param keyword - the keyword to search for
+     * @return - a resultant TaskList containing the tasks containing the keyword
+     */
     public TaskList find(String keyword) {
         TaskList result = new TaskList();
         for (Task task : this.list) {

@@ -1,10 +1,10 @@
 package duke;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 /**
  * Class for storing and loading tasks from a file.
@@ -57,6 +57,8 @@ public class Storage {
                     break;
                 case "E":
                     curr = result.addEvent(raw[2], raw[3]);
+                    break;
+                default:
                     break;
                 }
                 if (raw[1].equals("true") && curr != null) {

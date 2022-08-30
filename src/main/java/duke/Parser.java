@@ -43,7 +43,7 @@ public class Parser {
             break;
 
         default:
-//          We can't use switch statements since we want regex matching
+            // We can't use switch statements since we want regex matching
             if (line.matches("mark \\d+")) {
                 int index = Integer.parseInt(line.split(" ")[1]);
                 if (index > todolist.getLength()) {
@@ -82,7 +82,9 @@ public class Parser {
                 LocalDate date = LocalDate.parse(res[1]);
 
                 todolist.addDeadline(desc, date);
-                System.out.println(String.format("Added: %s (by: %s)", desc, date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                System.out.println(String.format(
+                                "Added: %s (by: %s)", desc, date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                        ));
                 break;
             }
 
