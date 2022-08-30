@@ -14,11 +14,37 @@ import duke.task.TaskList;
 
 import duke.ui.Ui;
 
+/**
+ * Command class which has a few types of command.
+ *
+ * @author Shawn Chew
+ * @version CS2103T AY 22/23 Sem 1
+ */
 public abstract class Command {
+    /**
+     * Method to determine if program should exit.
+     *
+     * @return The exit status.
+     */
     public abstract Boolean isExit();
 
+    /**
+     * Executes the given command.
+     *
+     * @param tasks The TaskList object for this command.
+     * @param ui The Ui object for this command.
+     * @param storage The Storage object for this command.
+     * @throws IOException If an I/O error occurs.
+     */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws IOException;
 
+    /**
+     * A factory method for Command class.
+     *
+     * @param s The command given.
+     * @return A Command object depending on the command given.
+     * @throws DukeException
+     */
     public static Command of(String s) throws DukeException {
         String[] arr = s.split(" ", 2);
         switch (arr[0]) {
@@ -43,11 +69,30 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Class for 'add' command.
+     */
     private static class AddCommand extends Command {
+        /**
+         * The command keyword.
+         */
         private String comm;
+        /**
+         * The description for the 'add' command.
+         */
         private String description;
+        /**
+         * The time for the 'add' command.
+         */
         private String time;
 
+        /**
+         * A constructor to initialize AddCommand based on the command given.
+         *
+         * @param arr An array with the first element being the keyword of the command,
+         *            and if applicable the rest of the command in the second element.
+         * @throws ArrayIndexOutOfBoundsException If access the second element of arr when it doesn't exist.
+         */
         private AddCommand(String[] arr) throws ArrayIndexOutOfBoundsException {
             this.comm = arr[0];
             if (comm.equals("todo")) {
@@ -90,6 +135,9 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Class for 'exit' command.
+     */
     private static class ExitCommand extends Command {
 
         @Override
@@ -104,9 +152,21 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Class for 'delete' command.
+     */
     private static class DeleteCommand extends Command {
+        /**
+         * The index of the element to be deleted.
+         */
         private int index;
 
+        /**
+         * A constructor to initialize DeleteCommand based on the command given.
+         *
+         * @param arr An array with the first element being the keyword of the command,
+         *            and if applicable the rest of the command in the second element.
+         */
         private DeleteCommand(String[] arr) {
             this.index = Integer.parseInt(arr[1]) - 1;
         }
@@ -123,10 +183,25 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Class for 'mark' and 'unmark' command.
+     */
     private static class MarkCommand extends Command {
+        /**
+         * The command keyword.
+         */
         private String comm;
+        /**
+         * The index of the element to be marked or unmarked.
+         */
         private int index;
 
+        /**
+         * A constructor to initialize MarkCommand based on the command given.
+         *
+         * @param arr An array with the first element being the keyword of the command,
+         *            and if applicable the rest of the command in the second element.
+         */
         private MarkCommand(String[] arr) {
             this.comm = arr[0];
             this.index = Integer.parseInt(arr[1]) - 1;
@@ -153,6 +228,9 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Class for 'list' command.
+     */
     private static class ListCommand extends Command {
 
         @Override
