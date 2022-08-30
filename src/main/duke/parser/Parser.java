@@ -1,4 +1,10 @@
+package duke.parser;
 import java.time.LocalDate;
+
+import duke.command.*;
+import duke.exception.*;
+import duke.task.*;
+
 
 public class Parser {
 

@@ -1,3 +1,5 @@
+package duke.storage;
+
 import java.nio.file.Files;
 import java.io.File;
 import java.nio.file.Path;
@@ -6,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import duke.task.*;
 public class Storage {
 
     private final static Path FOLDER_PATH = Paths.get(System.getProperty("user.dir") + "/data");

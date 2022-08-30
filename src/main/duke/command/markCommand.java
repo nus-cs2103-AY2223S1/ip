@@ -1,13 +1,16 @@
-public class unMarkCommand extends Command{
+package duke.command;
+
+import duke.task.TaskList;
+public class markCommand extends Command{
     private int taskNo;
 
-    public unMarkCommand (int taskNo){
+    public markCommand (int taskNo){
         this.taskNo = taskNo;
     }
 
     @Override
     public void execute(TaskList tasks) {
-        tasks.unMarkTask(taskNo);;
+        tasks.markTask(taskNo);;
     }
 
     @Override
@@ -15,4 +18,3 @@ public class unMarkCommand extends Command{
         return false;
     }
 }
-

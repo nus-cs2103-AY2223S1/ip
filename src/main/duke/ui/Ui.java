@@ -1,3 +1,4 @@
+package duke.ui;
 import java.time.LocalDate;
 import java.util.Scanner;
 

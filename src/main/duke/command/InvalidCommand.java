@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.task.TaskList;
+
 public class InvalidCommand extends Command{
 
     @Override

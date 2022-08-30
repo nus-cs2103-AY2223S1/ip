@@ -1,6 +1,9 @@
+package duke.task;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import duke.storage.Storage;
 
 public class TaskList {
     private ArrayList<Task> taskList;
