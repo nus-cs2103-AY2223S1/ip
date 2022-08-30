@@ -11,11 +11,12 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_SUCCESS = "I'VE FOUND THESE MATCHING TASKS:\n\t\t\t %1$s";
+    private static final String MESSAGE_SUCCESS = "I'VE FOUND THESE MATCHING TASKS:\n\t\t\t %1$s";
     private final String[] termsToFind;
 
     /**
      * Creates a new FindCommand with the given search terms.
+     *
      * @param searchTerms a variable amount of search terms
      */
     public FindCommand(String... searchTerms) {

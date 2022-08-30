@@ -30,7 +30,7 @@ public class Task {
      * @param description the description of the task.
      * @param date        the date that the task must be completed by/is due.
      *                    Only used for Deadline and Event tasks.
-     * @param isDone      whether or not the task is completed.
+     * @param isDone      whether the task is completed.
      */
     public Task(Commands type, String description, LocalDateTime date, boolean isDone) {
         this.type = type;
@@ -50,6 +50,39 @@ public class Task {
      */
     public void setComplete(boolean status) {
         this.isDone = status;
+    }
+
+    public static Task parseTask(String input) {
+        String[] tokens = input.split("\\|");
+        Commands type;
+        LocalDateTime date = null;
+
+        String prefix;
+        String cleaned;
+        prefix = tokens[0].trim();
+        boolean isComplete = tokens[1].trim().equals("1");
+        String description = tokens[2].trim();
+        switch (prefix) {
+        case "T":
+            type = Commands.TODO;
+            break;
+        case "D":
+            type = Commands.DEADLINE;
+            cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
+            date = parseDateTime(cleaned);
+            break;
+        default:
+            type = Commands.EVENT;
+            cleaned = tokens[3].replace("(at:", "").replace(")", "").trim();
+            date = parseDateTime(cleaned);
+            break;
+        }
+        return new Task(type, description, date, isComplete);
+    }
+
+    private static LocalDateTime parseDateTime(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(input, formatter);
     }
 
     @Override

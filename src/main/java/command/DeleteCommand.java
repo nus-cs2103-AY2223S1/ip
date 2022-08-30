@@ -6,8 +6,7 @@ package command;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-
-    public static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n\t\t\t: %1$s.";
+    private static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n\t\t\t: %1$s.";
     private final int index;
 
     public DeleteCommand(int index) {
@@ -16,6 +15,6 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.deleteTask(index)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.deleteTask(index)), taskList);
     }
 }

@@ -10,7 +10,7 @@ public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
-    public static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS DONE:\n\t\t\t %1$s.";
+    private static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS DONE:\n\t\t\t %1$s.";
     private final int index;
 
     public MarkCommand(int index) {

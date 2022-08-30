@@ -7,7 +7,7 @@ import henry.TaskList;
  * It only has one method, execute, which returns a CommandResult.
  * This method is to be implemented by all subclasses of Command.
  */
-public class Command {
+public abstract class Command {
 
     protected TaskList taskList;
 
@@ -17,9 +17,7 @@ public class Command {
      *
      * @return
      */
-    public CommandResult execute() {
-        throw new UnsupportedOperationException("Cannot execute abstract command!");
-    }
+    public abstract CommandResult execute();
 
     /**
      * Sets the task list to be used by the command.
