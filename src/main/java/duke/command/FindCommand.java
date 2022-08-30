@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -22,7 +23,12 @@ public class FindCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Finds tasks in Duke matching the keyword (or phrase) of this instance of FindCommand.
+     *
+     * @param tasks The specified TaskList involved with the command.
+     * @param ui The specified Ui involved with the command.
+     * @param storage The specified Storage involved with the command.
+     * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

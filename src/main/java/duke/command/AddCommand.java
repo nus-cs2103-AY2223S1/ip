@@ -24,7 +24,12 @@ public class AddCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Adds a task to Duke.
+     *
+     * @param tasks The specified TaskList involved with the command.
+     * @param ui The specified Ui involved with the command.
+     * @param storage The specified Storage involved with the command.
+     * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -9,29 +7,22 @@ import duke.task.TaskList;
  * The Ui class deals with interactions with the user.
  */
 public class Ui {
-    private static final String INDENTATION = "    ";
-    private static final String LOGO = INDENTATION + " ____        _        \n"
-            + INDENTATION + "|  _ \\ _   _| | _____ \n"
-            + INDENTATION + "| | | | | | | |/ / _ \\\n"
-            + INDENTATION + "| |_| | |_| |   <  __/\n"
-            + INDENTATION + "|____/ \\__,_|_|\\_\\___|";
-    private static final String LINE = INDENTATION
-            + "____________________________________________________________";
+    private static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|";
 
-    /** The scanner that reads inputs from the user. */
-    private Scanner scanner;
-
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
+    /** The ui's response to the latest user input. */
+    private String response;
 
     /**
-     * Reads a command from the user.
+     * Gets the ui response.
      *
-     * @return The string representing the command from the user.
+     * @return the response from the ui.
      */
-    public String readCommand() {
-        return scanner.nextLine();
+    public String getResponse() {
+        return response;
     }
 
     /**
@@ -41,11 +32,9 @@ public class Ui {
      * @param tasks The task list that the specified task was added to.
      */
     public void showAdded(Task task, TaskList tasks) {
-        showLine();
-        System.out.println(INDENTATION + "Got it. I've added this task:\n"
-                + INDENTATION + "  " + task);
-        System.out.println(INDENTATION + tasks.getCountStatement());
-        showLine();
+        response = "Got it. I've added this task:\n  "
+                + task + "\n"
+                + tasks.getCountStatement();
     }
 
     /**
@@ -55,11 +44,9 @@ public class Ui {
      * @param tasks The task list that the specified task was deleted from.
      */
     public void showDeleted(Task task, TaskList tasks) {
-        showLine();
-        System.out.println(INDENTATION + "Noted. I've removed this task:\n"
-                + INDENTATION + "  " + task);
-        System.out.println(INDENTATION + tasks.getCountStatement());
-        showLine();
+        response = "Noted. I've removed this task:\n  "
+                + task + "\n"
+                + tasks.getCountStatement();
     }
 
     /**
@@ -68,41 +55,30 @@ public class Ui {
      * @param message The message that describes the error with Duke.
      */
     public void showError(String message) {
-        showLine();
-        System.out.println(INDENTATION + "☹ OOPS!!! " + message);
-        showLine();
+        response = "Oh no :( " + message;
     }
 
     /**
      * Shows the exit message from Duke.
      */
     public void showExit() {
-        showLine();
-        System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
+        response = "Bye. Hope to see you again soon!";
     }
 
     /**
      * Shows every task found with a keyword.
      */
     public void showFound(TaskList tasks) {
-        showLine();
-        System.out.println(INDENTATION + "Here are the matching tasks in your list:");
+        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:");
         String[] strings = tasks.allToString();
         if (strings.length == 0) {
-            System.out.println(INDENTATION + "You have no matching tasks!");
+            response.append("\nYou have no matching tasks!");
         } else {
             for (int i = 0; i < strings.length; i++) {
-                System.out.println(INDENTATION + (i + 1) + "." + strings[i]);
+                response.append("\n").append(i + 1).append(".").append(strings[i]);
             }
         }
-        showLine();
-    }
-
-    /**
-     * Shows an indented horizontal line.
-     */
-    public void showLine() {
-        System.out.println(LINE);
+        this.response = response.toString();
     }
 
     /**
@@ -111,13 +87,12 @@ public class Ui {
      * @param tasks The specified TaskList to show the list of tasks from.
      */
     public void showList(TaskList tasks) {
-        showLine();
-        System.out.println(INDENTATION + "Here are the tasks in your list:");
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:");
         String[] strings = tasks.allToString();
         for (int i = 0; i < strings.length; i++) {
-            System.out.println(INDENTATION + (i + 1) + "." + strings[i]);
+            response.append("\n").append(i + 1).append(".").append(strings[i]);
         }
-        showLine();
+        this.response = response.toString();
     }
 
     /**
@@ -126,10 +101,7 @@ public class Ui {
      * @param task The specified task that was marked as done.
      */
     public void showMarked(Task task) {
-        showLine();
-        System.out.println(INDENTATION + "Nice! I've marked this task as done:\n"
-                + INDENTATION + "  " + task);
-        showLine();
+        response = "Nice! I've marked this task as done:\n  " + task;
     }
 
     /**
@@ -138,17 +110,16 @@ public class Ui {
      * @param tasks A TaskList containing the tasks occurring by/at a specific date.
      */
     public void showOnDate(TaskList tasks) {
-        showLine();
-        System.out.println(INDENTATION + "Here are the tasks in your list on this date:");
+        StringBuilder response = new StringBuilder("Here are the tasks in your list on this date:");
         String[] strings = tasks.allToString();
         if (strings.length == 0) {
-            System.out.println(INDENTATION + "You have no tasks on this date!");
+            response.append("\nYou have no tasks on this date!");
         } else {
             for (int i = 0; i < strings.length; i++) {
-                System.out.println(INDENTATION + (i + 1) + "." + strings[i]);
+                response.append("\n").append(i + 1).append(".").append(strings[i]);
             }
         }
-        showLine();
+        this.response = response.toString();
     }
 
     /**
@@ -156,21 +127,14 @@ public class Ui {
      *
      * @param task The specified task that was marked as done.
      */
-    public void showUnmarked(Task task) {
-        showLine();
-        System.out.println(Ui.INDENTATION + "OK, I've marked this task as not done yet:\n"
-                + Ui.INDENTATION + "  " + task);
-        showLine();
+    public void showNotMarked(Task task) {
+        response = "OK, I've marked this task as not done yet:\n  " + task;
     }
 
     /**
      * Greets the user when Duke starts running.
      */
     public void showWelcome() {
-        System.out.println(INDENTATION + "Hello from\n" + LOGO);
-        showLine();
-        System.out.println(INDENTATION + "Hello! I'm Duke\n"
-                + INDENTATION + "What can I do for you?");
-        showLine();
+        this.response = "Hello from\n" + LOGO + "\nHello! I'm Duke\nWhat can I do for you?";
     }
 }

@@ -7,22 +7,23 @@ import duke.task.TaskList;
  * The Duke class is a personal chatbot assistant.
  */
 public class Duke {
+    private static final String DEFAULT_FILE_PATH = "data/tasks.txt";
+
     /** The Storage that loads and writes files for Duke. */
     private final Storage storage;
     /** The Ui that interacts with the user. */
     private final Ui ui;
     /** The list of tasks stored by Duke. */
     private TaskList tasks;
+    private boolean isExit;
 
     /**
      * Constructs a new Duke chatbot that loads and saves data
      * to a specified file path.
-     *
-     * @param filePath The specified file path for Duke to access.
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(DEFAULT_FILE_PATH);
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -32,29 +33,39 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke chatbot.
+     * Checks if the latest command to Duke is an exit command.
+     *
+     * @return true if the latest command is an exit command.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
+    public boolean isExit() {
+        return isExit;
     }
 
     /**
-     * Starts the Duke chatbot.
+     * Gets Duke's response to a specified input.
      *
-     * @param args The command line arguments.
+     * @param input The specified user input.
+     * @return Duke's response to the specified input.
      */
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
+            return ui.getResponse();
+        }
+        return ui.getResponse();
+    }
+
+    /**
+     * Gets Duke's welcome message.
+     *
+     * @return Duke's welcome message.
+     */
+    public String getWelcome() {
+        ui.showWelcome();
+        return ui.getResponse();
     }
 }

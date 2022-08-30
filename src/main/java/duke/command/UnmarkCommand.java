@@ -24,12 +24,17 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Marks a task in Duke as not done.
+     *
+     * @param tasks The specified TaskList involved with the command.
+     * @param ui The specified Ui involved with the command.
+     * @param storage The specified Storage involved with the command.
+     * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.unmark(n);
         storage.writeToFile(tasks);
-        ui.showUnmarked(task);
+        ui.showNotMarked(task);
     }
 }
