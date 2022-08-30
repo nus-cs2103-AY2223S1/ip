@@ -15,6 +15,16 @@ public class Event extends Task {
     private LocalDate dateEnd;
     private LocalTime timeEnd;
 
+    /**
+     * Initializes a new Event object which is a subclass of Task.
+     *
+     * @param description Description of the Event task.
+     * @param dateStart Start date of the Event task.
+     * @param timeStart Start time of the Event task.
+     * @param dateEnd End date of the Event task.
+     * @param timeEnd End time of the Event task.
+     * @throws DateTimeParseException If the inputted time is invalid and cannot be parsed.
+     */
     public Event(String description,
                     String dateStart, String timeStart,
                     String dateEnd, String timeEnd) throws DateTimeParseException {
@@ -25,6 +35,18 @@ public class Event extends Task {
         this.timeEnd = LocalTime.parse(timeEnd);
     }
 
+    /**
+     * Initializes a new Event object which is a subclass of Task, with the option to specify if the
+     * task is done or not.
+     *
+     * @param description Description of the Event task.
+     * @param status Completion state of the Event task.
+     * @param dateStart Start date of the Event task.
+     * @param timeStart Start time of the Event task.
+     * @param dateEnd End date of the Event task.
+     * @param timeEnd End time of the Event task.
+     * @throws DateTimeParseException If the inputted time is invalid and cannot be parsed.
+     */
     public Event(String description, int status,
                  String dateStart, String timeStart,
                  String dateEnd, String timeEnd) throws DateTimeParseException {
