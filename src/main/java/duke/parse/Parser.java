@@ -10,7 +10,6 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
-
 import duke.exception.InvalidDateTimeException;
 import duke.exception.InvalidInputException;
 import duke.exception.MissingDeadlineDescriptionException;
@@ -41,17 +40,17 @@ public class Parser {
         String[] inputSpilt = input.split(" ", 2);
         if (inputSpilt.length == 2) {
             if (inputSpilt[0].equals(MarkCommand.COMMAND_WORD)) {
-                commandToReturn = new MarkCommand(HandleParseInt(inputSpilt[1], "mark as done"));
+                commandToReturn = new MarkCommand(handleParseInt(inputSpilt[1], "mark as done"));
             } else if (inputSpilt[0].compareTo(UnmarkCommand.COMMAND_WORD) == 0) {
-                commandToReturn = new UnmarkCommand(HandleParseInt(inputSpilt[1], "mark as not done"));
+                commandToReturn = new UnmarkCommand(handleParseInt(inputSpilt[1], "mark as not done"));
             } else if (inputSpilt[0].compareTo(DeleteCommand.COMMAND_WORD) == 0) {
-                commandToReturn = new DeleteCommand(HandleParseInt(inputSpilt[1], "delete"));
+                commandToReturn = new DeleteCommand(handleParseInt(inputSpilt[1], "delete"));
             } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ToDoCommand(inputSpilt[1]);
             } else if (inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0) {
-                commandToReturn = HandleDeadlineParse(inputSpilt[1]);
+                commandToReturn = handleDeadlineParse(inputSpilt[1]);
             } else if (inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
-                commandToReturn = HandleEventParse(inputSpilt[1]);
+                commandToReturn = handleEventParse(inputSpilt[1]);
             } else if (inputSpilt[0].compareTo(FindCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new FindCommand(inputSpilt[1]);
             } else {
@@ -62,9 +61,9 @@ public class Parser {
                 commandToReturn = new ByeCommand();
             } else if (inputSpilt[0].compareTo(ListCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ListCommand();
-            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0 ||
-                    inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0 ||
-                    inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
+            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0
+                    || inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0
+                    || inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
                 throw new MissingDescriptionException(inputSpilt[0]);
             } else {
                 throw new InvalidInputException();
@@ -75,7 +74,7 @@ public class Parser {
         return commandToReturn;
     }
 
-    private int HandleParseInt(String input, String command) throws MissingTargetException {
+    private int handleParseInt(String input, String command) throws MissingTargetException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -83,7 +82,7 @@ public class Parser {
         }
     }
 
-    private Command HandleDeadlineParse(String input) throws MissingDeadlineDescriptionException {
+    private Command handleDeadlineParse(String input) throws MissingDeadlineDescriptionException {
         String[] deadlineSpilt = input.split("/by ", 2);
         Command commandToReturn;
         try {
@@ -102,13 +101,13 @@ public class Parser {
                 }
             }
         } catch (DateTimeException e) {
-            throw new InvalidDateTimeException("OOPS! The date and time format for deadline is incorrect\n" +
-                    "FORMAT: /by <yyyy-MM-dd HHmm / yyyy-MM-dd>");
+            throw new InvalidDateTimeException("OOPS! The date and time format for deadline is incorrect\n"
+                    + "FORMAT: /by <yyyy-MM-dd HHmm / yyyy-MM-dd>");
         }
 
     }
 
-    private Command HandleEventParse(String input) throws MissingEventDescriptionException {
+    private Command handleEventParse(String input) throws MissingEventDescriptionException {
         String[] eventSpilt = input.split("/at ", 2);
         if (eventSpilt.length != 2) {
             throw new MissingEventDescriptionException();

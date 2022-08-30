@@ -50,28 +50,28 @@ public class TaskList {
 
     /**
      * Mark the specific task as done in the task list.
-     * @param TaskNum The index of the task to mark as done.
+     * @param taskNum The index of the task to mark as done.
      */
-    public void markTask(int TaskNum) {
-        Task currTask = listOfTasks.get(TaskNum);
+    public void markTask(int taskNum) {
+        Task currTask = listOfTasks.get(taskNum);
         currTask.markAsDone();
     }
 
     /**
      * Mark the specific task as not done in the task list.
-     * @param TaskNum The index of the task to mark as not done.
+     * @param taskNum The index of the task to mark as not done.
      */
-    public void unmarkTask(int TaskNum) {
-        Task currTask = listOfTasks.get(TaskNum);
+    public void unmarkTask(int taskNum) {
+        Task currTask = listOfTasks.get(taskNum);
         currTask.markAsNotDone();
     }
 
     /**
      * Delete the specific task in the task list.
-     * @param TaskNum The index of the task to delete.
+     * @param taskNum The index of the task to delete.
      */
-    public void deleteTask(int TaskNum) {
-        listOfTasks.remove(TaskNum);
+    public void deleteTask(int taskNum) {
+        listOfTasks.remove(taskNum);
     }
 
     /**
@@ -79,7 +79,7 @@ public class TaskList {
      * @param keyword The keyword used to find list of tasks that matches it.
      * @return Returns an arraylist containing all the tasks that matches the keyword.
      */
-    public ArrayList<Task> FindTasks(String keyword) {
+    public ArrayList<Task> findTasks(String keyword) {
         ArrayList<Task> taskContainingKeyword = new ArrayList<>();
         for (int i = 0; i < listOfTasks.size(); i++) {
             Task currTask = listOfTasks.get(i);

@@ -29,7 +29,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList task, Ui ui, Storage storage) {
-        ui.displayMatchedTasks(task.FindTasks(this.keyword));
+        ui.displayMatchedTasks(task.findTasks(this.keyword));
     }
 
     /**

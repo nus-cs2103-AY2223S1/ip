@@ -6,6 +6,7 @@ import duke.parse.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -32,7 +33,7 @@ public class Duke {
 
         try {
             ui.displayLoading();
-            storage.ReadFileContent(new File(filePath), taskList);
+            storage.readFileContent(new File(filePath), taskList);
             ui.displayLoadingSuccess();
         } catch (FileNotFoundException e) {
             ui.displayLoadingError();
@@ -47,9 +48,9 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             try {
-                String input = ui.GetUserInput();
+                String input = ui.getUserInput();
                 Command c = parser.parse(input);
-                c.execute(taskList,ui,storage);
+                c.execute(taskList, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 System.out.println(e.getMessage());

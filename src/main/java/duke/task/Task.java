@@ -8,7 +8,7 @@ public class Task {
     protected boolean isDone;
 
     public Task(String description) {
-        this.description =  description;
+        this.description = description;
         this.isDone = false;
     }
 
@@ -20,7 +20,7 @@ public class Task {
         return (isDone ? "1" : "0");
     }
 
-    public void markAsDone(){
+    public void markAsDone() {
         isDone = true;
     }
 

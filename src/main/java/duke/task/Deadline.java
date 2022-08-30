@@ -8,7 +8,7 @@ import java.time.LocalTime;
 /**
  * Encapsulate a task that needs to be done before a specific date/time.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected LocalDate deadlineDate;
     protected LocalTime deadlineTime;
@@ -22,11 +22,11 @@ public class Deadline extends Task{
     @Override
     public String taskInfo() {
         if (deadlineTime == null) {
-            return "[D] [" + getStatusIcon() + "] " + description + " (by:" +
-                    deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) +")";
+            return "[D] [" + getStatusIcon() + "] " + description + " (by:"
+                    + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         } else {
-            return "[D] [" + getStatusIcon() + "] " + description + " (by:" +
-                    deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " " + deadlineTime +")";
+            return "[D] [" + getStatusIcon() + "] " + description + " (by:"
+                    + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " " + deadlineTime + ")";
         }
 
     }

@@ -26,10 +26,10 @@ public class Storage {
      * @param tasks The TaskList object that contains the task list.
      * @throws FileNotFoundException When the file of the previously saved tasks cannot be found.
      */
-    public void ReadFileContent(File file, TaskList tasks) throws FileNotFoundException {
+    public void readFileContent(File file, TaskList tasks) throws FileNotFoundException {
         Scanner s = new Scanner(file);
         int curr = 0;
-        while(s.hasNext()) {
+        while (s.hasNext()) {
             String currLine = s.nextLine();
             String[] spiltCurrLine = currLine.split(",", 2);
             if (spiltCurrLine[0].equals("T")) {
@@ -60,8 +60,8 @@ public class Storage {
                 tasks.addTask(currDeadline);
             } else if (spiltCurrLine[0].equals("E")) {
                 String[] spiltCurrEvent = spiltCurrLine[1].split(",", 3);
-                Event currEvent =  new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
-                if (spiltCurrEvent[0] .equals("1")) {
+                Event currEvent = new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
+                if (spiltCurrEvent[0].equals("1")) {
                     currEvent.markAsDone();
                 } else {
                     currEvent.markAsNotDone();

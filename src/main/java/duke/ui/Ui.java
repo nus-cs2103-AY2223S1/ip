@@ -19,7 +19,7 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
-    public String GetUserInput() {
+    public String getUserInput() {
         return this.scanner.nextLine();
     }
 
