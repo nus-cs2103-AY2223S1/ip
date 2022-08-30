@@ -2,6 +2,7 @@ package duke;
 import duke.Exceptions.NoSuchCommandException;
 import duke.Task.Event;
 import duke.Task.Task;
+import duke.Task.Todo;
 import duke.Ui;
 
 import java.time.LocalDate;
@@ -95,7 +96,7 @@ public class Parser {
     }
 
     private void handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) {
-        Task task = new Task(input);
+        Task task = new Todo(input);
         taskList.addTask(task);
         ui.showAddTask(taskList, task);
     }

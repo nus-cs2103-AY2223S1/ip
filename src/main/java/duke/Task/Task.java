@@ -48,7 +48,7 @@ public class Task {
         } else if (type.equals("E")) {
             return new Event(isDone, description, dateTime);
         }
-        return new Task(description, isDone);
+        return new Todo(description, isDone);
     }
 
 }

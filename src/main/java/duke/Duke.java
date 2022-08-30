@@ -13,7 +13,7 @@ public class Duke {
     private Parser parser;
     private Ui ui;
     private Storage storage;
-    enum Commands {
+    public enum Commands {
         LIST,
         BYE,
         TODO,
