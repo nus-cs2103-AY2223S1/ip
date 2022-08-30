@@ -18,12 +18,12 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds tasks in the TaskList that match the keyword.
+     * Finds tasks in the TaskList that match the keywords.
      *
      * @return String representation of the message in response to the command.
      */
     @Override
     public String run() {
-        return this.tasks.findTasks(this.content);
+        return this.tasks.findTasks(this.content.split("\\s+"));
     }
 }
