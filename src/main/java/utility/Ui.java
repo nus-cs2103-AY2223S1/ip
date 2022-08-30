@@ -1,13 +1,23 @@
 package utility;
 import java.util.Scanner;
 
+/**
+ * Represents class for user interface
+ */
 public class Ui {
     private static final String DIVIDER = "\t___________________________\n";
     private final Scanner sc;
 
+    /**
+     * Instantiates a new user interface
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
+
+    /**
+     * Prints welcome text
+     */
     public void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -20,6 +30,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Reads next line from the scanner
+     */
     public String readCommand() {
         if (sc.hasNextLine()) {
             return sc.nextLine();
@@ -27,23 +40,42 @@ public class Ui {
         return "";
     }
 
+    /**
+     * Prints text with DIVIDER
+     *
+     * @param output message to be printed
+     */
     public void printWithDivider(String output) {
         System.out.println(DIVIDER);
         System.out.print(output);
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Prints bye text
+     */
     public void bye() {
         String output = "\tBye. Hope to see you again soon!\n";
         printWithDivider(output);
     }
 
+    /**
+     * Prints the list of tasks
+     *
+     * @param tasks String representation of tasks
+     */
     public void list(String tasks) {
         String output = "\tHere are the tasks in your list:\n";
         output += tasks;
         printWithDivider(output);
     }
 
+    /**
+     * Prints the text for adding tasks
+     *
+     * @param message String representation on the task added
+     * @param numOfTasks number of tasks in the TaskList
+     */
     public void add(int numOfTasks, String message) {
         String output = "\tGot it. I've added this task:\n";
         output += message;
@@ -51,18 +83,34 @@ public class Ui {
         printWithDivider(output);
     }
 
+    /**
+     * Prints the item that is marked
+     *
+     * @param message String representation of the item marked
+     */
     public void mark(String message) {
         String output = "\tNice! I've marked this task as done:\n";
         output += message;
         printWithDivider(output);
     }
 
+    /**
+     * Prints the item that is unmarked
+     *
+     * @param message String representation of the item unmarked
+     */
     public void unmark(String message) {
         String output = "\tOK, I've marked this task as not done yet:\n";
         output += message;
         printWithDivider(output);
     }
 
+    /**
+     * Prints the text for deleting tasks
+     *
+     * @param message String representation on the task deleted
+     * @param numOfTasks number of tasks in the TaskList
+     */
     public void delete(int numOfTask, String message) {
         String output = "\tNoted. I've removed this task:\n";
         output += message;
@@ -70,6 +118,11 @@ public class Ui {
         printWithDivider(output);
     }
 
+    /**
+     * Prints the error message
+     *
+     * @param message error type
+     */
     public void showLoadingError(String message) {
         switch (message) {
             case "empty command":

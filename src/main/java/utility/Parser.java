@@ -13,8 +13,20 @@ import command.TodoCommand;
 import command.UnmarkCommand;
 import exception.DukeException;
 
+/**
+ * Represents parser for duke
+ */
 public class Parser {
-    
+
+    /**
+     * Parses the string command and returns the
+     * correct command for it
+     *
+     * @param fullCommand full command given by user
+     * @return the correct Command for the given keyword
+     * @throws DukeException  If fullCommand is empty or
+     * invalid full command
+     */
     public static Command parse(String fullCommand) throws DukeException {
         if (fullCommand == null || fullCommand.equals("")) {
             throw new DukeException("empty command");
@@ -146,6 +158,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the string representation of time is
+     * in the correct format
+     *
+     * @param str Time we want to check
+     * @param formatter format we require
+     * @return boolean where the string is valid
+     */
     public static boolean isValid(String str, DateTimeFormatter formatter) {
         try {
             LocalDateTime date = LocalDateTime.parse(str, formatter);
