@@ -24,7 +24,7 @@ public class Ui {
      * The method is a static and prints a statement
      */
     public static void printHelloMsg() {
-        System.out.println("Hi I'm Duke, What can I do for you?");
+        System.out.println("Hi I'm Duke.Duke, What can I do for you?");
     }
 
     /**
