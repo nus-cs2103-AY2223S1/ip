@@ -11,11 +11,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import gibson.task.Parser;
+
 /**
  * Ui prints strings in a specific format for the Gibson program.
  */
 public class Ui extends Application {
-    private Gibson gibson;
+    private Parser parser = new Parser();
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
@@ -24,7 +26,6 @@ public class Ui extends Application {
 
     @Override
     public void start(Stage stage) {
-        gibson = new Gibson();
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -68,13 +69,13 @@ public class Ui extends Application {
 
         sendButton.setOnMouseClicked((event) -> {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            dialogContainer.getChildren().add(getDialogLabel(gibson.processInput(userInput.getText())));
+            dialogContainer.getChildren().add(getDialogLabel(parser.processInput(userInput.getText())));
             userInput.clear();
         });
 
         userInput.setOnAction((event) -> {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            dialogContainer.getChildren().add(getDialogLabel(gibson.processInput(userInput.getText())));
+            dialogContainer.getChildren().add(getDialogLabel(parser.processInput(userInput.getText())));
             userInput.clear();
         });
 
