@@ -63,9 +63,9 @@ public class TaskList {
             try {
                 tasks.add(new Todo(str));
                 count++;
-                message =  String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                message = String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count);
 
@@ -82,9 +82,9 @@ public class TaskList {
                 LocalDate date = LocalDate.parse(input[1]);
                 tasks.add(new Deadline(name, date));
                 count++;
-                message = String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                message = String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count);
             // missing name
@@ -113,9 +113,9 @@ public class TaskList {
                 LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
                 tasks.add(new Event(name, dateTime));
                 count++;
-                message = String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                message = String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count);
 
