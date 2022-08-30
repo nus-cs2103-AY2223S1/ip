@@ -8,30 +8,25 @@ import java.util.Scanner;
 
 public class FileOperations {
     File f;
+    final String FILE_PATH;
 
-    public FileOperations(String filePath) {
-        f = new File(filePath);
+    public FileOperations(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
+        f = new File(FILE_PATH);
     }
     public void createFile() throws IOException {
         f.createNewFile();
     }
 
-    public void printFileContents() throws FileNotFoundException {
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
-        while (s.hasNext()) {
-            System.out.println(s.nextLine());
-        }
-    }
-
-    public void writeToFile(String filePath, String textToAppend) throws IOException {
-        FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
+    public void writeToFile(String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
         fw.write(textToAppend);
         fw.close();
     }
 
-    public void rewriteFile(String filePath, List<Task> taskList) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        for (Task t: taskList) {
+    public void rewriteFile(TaskList taskList) throws IOException {
+        FileWriter fw = new FileWriter(FILE_PATH);
+        for (Task t: taskList.tasks) {
             String textToAdd = t.getTaskType() + " | " + t.getStatus() + " | " + t.getDescription();
             if (t instanceof Todo) {
                 textToAdd += "\n";
@@ -67,7 +62,7 @@ public class FileOperations {
                 case "E": {
                     int indexOfLastSeparator = task.indexOf("|", 8);
                     String taskDescription = task.substring(8,indexOfLastSeparator);
-                    String date = task.substring(indexOfLastSeparator + 1);
+                    String date = task.substring(indexOfLastSeparator + 2);
                     Task event = new Event(taskDescription, date, taskType);
                     event.changeStatus(taskStatus);
                     tasksInFile.add(event);
@@ -76,7 +71,7 @@ public class FileOperations {
                 case "D": {
                     int indexOfLastSeparator = task.indexOf("|", 8);
                     String taskDescription = task.substring(8,indexOfLastSeparator);
-                    String deadlineDate = task.substring(indexOfLastSeparator + 1);
+                    String deadlineDate = task.substring(indexOfLastSeparator + 2);
                     Task deadline = new Deadline(taskDescription, deadlineDate, taskType);
                     deadline.changeStatus(taskStatus);
                     tasksInFile.add(deadline);

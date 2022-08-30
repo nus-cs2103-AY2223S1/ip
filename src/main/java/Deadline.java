@@ -1,7 +1,5 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 public class Deadline extends Task{
     static final String ANSI_RED = "\u001B[31m";
     static final String ANSI_RESET = "\u001B[0m";
@@ -13,11 +11,12 @@ public class Deadline extends Task{
         this.deadline = deadline;
     }
     public String getDeadline(){
-        LocalDate d = LocalDate.parse(this.deadline);
-        return d.format(dTF);
+        return this.deadline;
     }
     @Override
     public String toString() {
-        return super.toString() + String.format(ANSI_RED + " (by: %s)", this.getDeadline() + ANSI_RESET);
+        LocalDate d = LocalDate.parse(this.deadline);
+        String formattedDeadline = d.format(dTF);
+        return super.toString() + String.format(ANSI_RED + " (by: %s)", formattedDeadline + ANSI_RESET);
     }
 }

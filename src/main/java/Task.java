@@ -1,6 +1,6 @@
 public abstract class Task {
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_RESET = "\u001B[0m";
+
+    Ui uI = new Ui();
     protected String description;
     protected boolean status;
 
@@ -25,6 +25,6 @@ public abstract class Task {
     }
 
     public String toString() {
-        return String.format(ANSI_YELLOW + "[ %s ] [ %s ] %s", this.getTaskType(), this.getStatus(), this.getDescription() + ANSI_RESET);
+        return String.format(uI.ANSI_BLUE + "[ %s ] [ %s ] %s", this.getTaskType(), this.getStatus(), this.getDescription() + uI.ANSI_RESET);
     }
 }

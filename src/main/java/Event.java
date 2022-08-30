@@ -12,11 +12,12 @@ public class Event extends Task {
         this.date = date;
     }
     public String getDate() {
-        LocalDate d = LocalDate.parse(this.date);
-        return d.format(dTF);
+        return this.date;
     }
     @Override
     public String toString() {
-        return super.toString() + String.format(ANSI_RED + " (on: %s)", this.getDate() + ANSI_RESET);
+        LocalDate d = LocalDate.parse(this.date);
+        String formattedDate = d.format(dTF);
+        return super.toString() + String.format(ANSI_RED + " (on: %s)", formattedDate + ANSI_RESET);
     }
 }
