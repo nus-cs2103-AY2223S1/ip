@@ -28,15 +28,15 @@ public class Deadline extends Task {
      */
     public static Deadline parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
-        Pattern taskPattern = Pattern.compile("] (.*?) \\(by");
-        Matcher taskMatcher = taskPattern.matcher(task);
-        Pattern timePattern = Pattern.compile("by: (.*?)\\)");
-        Matcher timeMatcher = timePattern.matcher(task);
-        System.out.print(task);
-        String time = LocalDateTime.parse(timeMatcher.group(1), DateTimeFormatter.ofPattern("dd MMM yyyy HHmm", Locale.ENGLISH))
+        Pattern pattern = Pattern.compile("\\] (?<description>[^\\(]*)\\(by: (?<time>.*)\\)");
+        Matcher matcher = pattern.matcher(task);
+        matcher.find();
+        String description = matcher.group("description");
+        String time = matcher.group("time");
+        time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("d MMM yyyy HHmm", Locale.ENGLISH))
                 .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
-        return new Deadline(taskMatcher.group(1), isDone, time);
+        return new Deadline(description, isDone, time);
     }
 
     @Override

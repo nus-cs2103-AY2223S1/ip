@@ -27,16 +27,15 @@ public class Event extends Task {
      */
     public static Event parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
-        Pattern taskPattern = Pattern.compile("] (.*?) \\(at");
-        Matcher taskMatcher = taskPattern.matcher(task);
-        taskMatcher.find();
-        Pattern timePattern = Pattern.compile("at: (.*?)\\)");
-        Matcher timeMatcher = timePattern.matcher(task);
-        timeMatcher.find();
-        String time = LocalDateTime.parse(timeMatcher.group(1), DateTimeFormatter.ofPattern("d MMM yyyy HHmm", Locale.ENGLISH))
+        Pattern pattern = Pattern.compile("\\] (?<description>[^\\(]*)\\(at: (?<time>.*)\\)");
+        Matcher matcher = pattern.matcher(task);
+        matcher.find();
+        String description = matcher.group("description");
+        String time = matcher.group("time");
+        time = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("d MMM yyyy HHmm", Locale.ENGLISH))
                 .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
-        return new Event(taskMatcher.group(1), isDone, time);
+        return new Event(description, isDone, time);
     }
 
     @Override
