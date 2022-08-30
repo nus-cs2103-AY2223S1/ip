@@ -61,4 +61,11 @@ public class Ui {
         }
         return userInputs;
     }
+
+    public String printFindTask(String msg) {
+        return "_______________________________________________________" + "\n" +
+                "Here are the matching tasks in your list:" +
+                "\n" + msg + "\n" +
+                "\n" + "_______________________________________________________";
+    }
 }

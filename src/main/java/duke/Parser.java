@@ -37,7 +37,6 @@ public class Parser {
         }
     }
 
-    //deadline hello /by 2022-12-12
     private static void parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
@@ -52,7 +51,7 @@ public class Parser {
             throw new DukeException(("OOPS!!! The description of an duke.Event cannot be empty/incomplete."));
         }
     }
-//event hello /at 2022-12-12
+
     private static void parseDelete(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         str = str.split(" ", 2)[1].trim();
@@ -60,6 +59,23 @@ public class Parser {
         String msg = taskList.getTask(index).toString();
         System.out.println(ui.printRemovedTask(msg));
         taskList.removeTask(index);
+    }
+
+    private static void parseFind(String str, TaskList taskList) throws DukeException {
+        Ui ui = new Ui(taskList);
+        String find = str.split(" ")[1].trim();
+        String msg = "";
+        int counter = 1;
+        for (int i = 0; i < taskList.getSize(); i++) {
+            String task = taskList.getTask(i).toString();
+            //this index is for labelling in duke
+            if (task.contains(find)) {
+                String foundTask = counter + "." + task;
+                msg += foundTask + "\n";
+                counter++;
+            }
+        }
+        System.out.println(ui.printFindTask(msg));
     }
 
     public void parseInstruction(Storage storage, TaskList taskList) throws DukeException {
@@ -97,6 +113,9 @@ public class Parser {
 
                 } else if (instruction.equals("delete")) {
                     parseDelete(str, taskList);
+
+                } else if (instruction.equals("find")) {
+                    parseFind(str, taskList);
 
                 } else {
                     throw new DukeException("I have no idea what you are saying, this is not a task >_<");
