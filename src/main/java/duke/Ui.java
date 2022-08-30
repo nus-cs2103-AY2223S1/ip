@@ -9,14 +9,12 @@ import java.util.Scanner;
  * A Ui object that deals with interaction with the user.
  */
 public class Ui {
-    
-    private final Scanner scanner;
 
     /**
      * Creates a Ui object.
      */
     public Ui() {
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         welcome();
     }
 
