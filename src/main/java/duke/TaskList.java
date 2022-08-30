@@ -70,7 +70,7 @@ public class TaskList {
         
         for (Task task : tasks) {
             if (task.getDescription().contains(input)) {
-                result.add(0, task);
+                result.add(task);
             }
         }
         return result;

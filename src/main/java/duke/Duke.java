@@ -19,11 +19,11 @@ import java.util.Scanner;
 public class Duke {
 
     private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    private Storage storage;
+    private final Storage storage;
+    private final Ui ui;
+    private final Parser parser;
     private TaskList tasks;
-    private Ui ui;
-    private Parser parser;
-    
+
     public static void main(String[] args) { 
         new Duke().start();
     }

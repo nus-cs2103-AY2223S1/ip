@@ -23,7 +23,7 @@ public class UiTest {
     void printTask_emptyList() {
         Ui ui = new Ui();
         System.setOut(new PrintStream(outputStream));
-        ui.printTasks(new ArrayList<>());
+        ui.printAllTasks(new ArrayList<>());
         assertEquals("Here are the tasks in your list: \r\n", outputStream.toString());
     }
 }
