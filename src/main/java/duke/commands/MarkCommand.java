@@ -1,9 +1,10 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.gui.GuiText;
+import duke.tools.SessionManager;
 import duke.tools.Storage;
 import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class tells Duke to mark the indexed task as done.
@@ -25,19 +26,16 @@ public class MarkCommand implements Command {
     /**
      * Executes the mark command from the user.
      *
-     * @param taskList The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
+     * @throws DukeException When there is exception during the execution of the command.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.setTaskDoneStatus(index, true);
-            storage.writeToFile(taskList);
-            ui.sayMarkTask(index, taskList.getTask(index));
-        } catch (DukeException e) {
-            ui.sayExceptionMessage(e);
-        }
+    public String execute() throws DukeException {
+        TaskList taskList = SessionManager.getTaskList();
+        Storage storage = SessionManager.getStorage();
+        taskList.setTaskDoneStatus(index, true);
+        storage.writeToFile(taskList);
+        return GuiText.formatMarkString(index, taskList.getTask(index));
     }
 
     /**

@@ -1,8 +1,6 @@
 package duke.commands;
 
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
+import duke.exceptions.DukeException;
 
 /**
  * This class encapsulates a set of instructions to be performed by Duke.
@@ -12,9 +10,8 @@ public interface Command {
     /**
      * Executes the command from the user.
      *
-     * @param tasks The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
+     * @throws DukeException When there is exception during the execution of the command.
      */
-    void execute(TaskList tasks, Ui ui, Storage storage);
+    String execute() throws DukeException;
 }

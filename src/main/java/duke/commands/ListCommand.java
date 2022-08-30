@@ -1,9 +1,8 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
-import duke.tools.Storage;
+import duke.gui.GuiText;
+import duke.tools.SessionManager;
 import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class performs the required actions for Duke to list out all the tasks stored.
@@ -13,21 +12,12 @@ public class ListCommand implements Command {
     /**
      * Executes the list command from the user.
      *
-     * @param taskList The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            ui.sayList();
-            for (int i = 0; i < taskList.getSize(); i++) {
-                ui.sayTaskWithIndex(i, taskList.getTask(i));
-            }
-            ui.sayFinishListing();
-        } catch (DukeException e) {
-            ui.sayExceptionMessage(e);
-        }
+    public String execute() {
+        TaskList taskList = SessionManager.getTaskList();
+        return GuiText.formatListString(taskList);
     }
 
     /**
