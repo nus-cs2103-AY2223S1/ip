@@ -1,8 +1,0 @@
-D |   | return book | Aug 22 2022, 6.00PM
-D |   | steal book | Aug 22 2022
-D |   | sell book | next week
-D |   | eat book | Aug 22 2022 noon
-E |   | sleep | Aug 22 2022, 7.40PM
-E |   | sleep | 3 am
-E |   | sleep | Aug 22 2022 2500
-E |   | sleep | Aug 20 2022
