@@ -53,6 +53,8 @@ public class Duke {
             } else if (command.equals("delete")) {
                 int taskNo = Integer.parseInt(strArr[1]);
                 tasks.delete(taskNo);
+            } else if (command.equals("find")) {
+                tasks.findTaskWithThisKeyword(strarr[1]);
             } else {
                 storage.saveNewChanges(this.tasks);
                 throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means");

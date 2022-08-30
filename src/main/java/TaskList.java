@@ -2,6 +2,7 @@ package duke;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents the list of task managed by the ChatBot.
@@ -11,6 +12,7 @@ public class TaskList {
     private List<Task> list;
     private static int noOfTasks;
     private Ui ui;
+    private static HashMap<String, List<Task>> taskByKeyword;
 
     /**
      * Create a tasklist.
@@ -20,6 +22,12 @@ public class TaskList {
         this.list = pastList;
         this.noOfTasks = pastList.size();
         this.ui = new Ui();
+        this.taskByKeyword = new HashMap<String, List<Task>>();
+        for (int i = 0; i < pastList.size(); i++) {
+            Task pastTask = pastList.get(i);
+            String stringDescription = pastTask.getTaskDescription();
+            updateKeyword(stringDescription, pastTask);
+        }
     }
 
     List<Task> getList() {
@@ -39,12 +47,15 @@ public class TaskList {
             if (typeOfTask.equals("todo")) {
                 String[] descriptionList1 = this.processDescription(strarr);
                 newTask = new ToDo(descriptionList1[0]);
+                updateKeyword(descriptionList1[0], newTask);
             } else if (typeOfTask.equals("deadline")) {
                 String[] descriptionList2 = this.processDescription(strarr);
                 newTask = new Deadline(descriptionList2[0],descriptionList2[1]);
+                updateKeyword(descriptionList2[0], newTask);
             } else if (typeOfTask.equals("event")) {
                 String[] descriptionList3 = this.processDescription(strarr);
                 newTask = new Event(descriptionList3[0],descriptionList3[1]);
+                updateKeyword(descriptionList3[0], newTask);
             }
             list.add(newTask);
             this.noOfTasks++;
@@ -55,16 +66,52 @@ public class TaskList {
         }
     }
 
+    void updateKeyword(String s, Task newTask) {
+        String[] strarr = s.split(" ");
+        for (int i = 0; i < strarr.length; i++) {
+            if (taskByKeyword.containsKey(strarr[i])) {
+                taskByKeyword.get(strarr[i]).add(newTask);
+            } else {
+                List<Task> listForHashMap = new ArrayList<Task>();
+                listForHashMap.add(newTask);
+                taskByKeyword.put(strarr[i], listForHashMap);
+            }
+        }
+    }
+
     /**
      * Delete the task with this taskNo from the list.
      * @param taskNo TaskNo given by the users.
      */
     void delete(int taskNo) {
         Task currentTask = list.get(taskNo - 1);
+        String currentTaskDescription = currentTask.getTaskDescription();
+        removeTaskFromKeyword(currentTaskDescription, currentTask);
         list.remove(taskNo - 1);
         noOfTasks--;
         String deletedTask = currentTask.toString();
         ui.delete(deletedTask, this.noOfTasks);
+    }
+
+
+    void removeTaskFromKeyword(String s, Task deletedTask) {
+        String[] strarr = s.split(" ");
+        for (int i = 0; i < strarr.length; i++) {
+            if (taskByKeyword.get(strarr[i]).size() == 1) {
+                taskByKeyword.remove(strarr[i]);
+            } else {
+                taskByKeyword.get(strarr[i]).remove(deletedTask);
+            }
+        }
+    }
+
+    void findTaskWithThisKeyword(String s) {
+        System.out.println("Here are the matching tasks in your list:");
+        List<Task> tasks = taskByKeyword.get(s);
+        for (int i = 1; i < tasks.size() + 1; i++) {
+            String matchingTask = tasks.get(i - 1).toString();
+            System.out.println(i + ". " + matchingTask);
+        }
     }
 
     /**
@@ -72,7 +119,7 @@ public class TaskList {
      */
     void getPrintedList() {
         System.out.println("Here are the tasks in your list:");
-        for(int i = 1; i < list.size() + 1; i++) {
+        for (int i = 1; i < list.size() + 1; i++) {
             String currentTask = list.get(i - 1).toString();
             System.out.println(i + ". " + currentTask);
         }
@@ -101,7 +148,7 @@ public class TaskList {
     }
 
     private String[] processDescription(String[] strarr) throws TaskWithNoDescriptionException {
-        if(strarr.length > 1) {
+        if (strarr.length > 1) {
             String description = strarr[1];
             String date = "";
             String[] strarr1 = new String[2];
