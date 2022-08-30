@@ -7,12 +7,15 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
  * Controller for MainWindow. Provides the Layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    @FXML
+    private HBox header;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -30,6 +33,7 @@ public class MainWindow extends AnchorPane {
     }
     public void setDuke(Duke d) {
         duke = d;
+        header.getChildren().add(Header.setHeader("Lily", dukeImage));
     }
     @FXML
     private void handleUserInput() {
