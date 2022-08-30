@@ -8,10 +8,11 @@ import duke.task.TasksList;
  * Represents a command to add a Deadline to the tasksList.
  */
 public class DeadlineCommand extends Command {
-    private String[] inputArray;
-    private TasksList tasksList;
     private static final String DELIMITER = " /by ";
     private static final String DEADLINE_MSG = "Got it. I've added this task:\n";
+    private String[] inputArray;
+    private TasksList tasksList;
+
 
     /**
      * Creates a new DeadlineCommand instance.
@@ -34,14 +35,14 @@ public class DeadlineCommand extends Command {
             throw new DukeException("The description of a deadline cannot be empty!");
         }
 
-        /** split again to get date/time */
+        // split again to get date/time
         String[] splitArray = this.inputArray[1].split(DeadlineCommand.DELIMITER, 2);
 
         if (splitArray.length < 2) {
             throw new DukeException("Please enter a due date for this task!");
         }
 
-        /** Make a new deadline object */
+        // Make a new deadline object
         Deadline deadline = new Deadline(splitArray[0], splitArray[1]);
         this.tasksList.addToList(deadline);
         StringBuilder sb = new StringBuilder();

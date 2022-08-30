@@ -8,9 +8,9 @@ import duke.task.TasksList;
  * Represents a command to mark a task in the TasksList as undone.
  */
 public class UnmarkCommand extends Command {
+    private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet:\n";
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet:\n";
 
     /**
      * Creates a UnmarkCommand instance.
@@ -32,14 +32,14 @@ public class UnmarkCommand extends Command {
         if (this.inputArray.length < 2) {
             throw new DukeException("Missing Task Number!");
         }
-         try {
-             int taskNumber = Integer.parseInt(this.inputArray[1]);
-             Task deletedTask = this.tasksList.markAsUndone(taskNumber);
-             return UnmarkCommand.UNMARK_MSG + deletedTask;
-             /** exception due to parsing */
-         } catch (NumberFormatException exception) {
-             throw new DukeException("Please enter a integer for task number!");
-         }
+        try {
+            int taskNumber = Integer.parseInt(this.inputArray[1]);
+            Task deletedTask = this.tasksList.markAsUndone(taskNumber);
+            return UnmarkCommand.UNMARK_MSG + deletedTask;
+            // exception due to parsing
+        } catch (NumberFormatException exception) {
+            throw new DukeException("Please enter a integer for task number!");
+        }
     }
 }
 

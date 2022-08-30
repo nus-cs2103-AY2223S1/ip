@@ -1,10 +1,12 @@
 package duke.task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.Storage;
 import duke.exception.DukeException;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Represent a list containing the tasks.
@@ -57,7 +59,7 @@ public class TasksList {
     public void saveTasks() {
         StringBuilder storageTasks = new StringBuilder();
 
-        for(int i = 0; i < this.listOfTasks.size(); i++) {
+        for (int i = 0; i < this.listOfTasks.size(); i++) {
             if (i > 0) {
                 storageTasks.append(System.lineSeparator());
             }
@@ -82,13 +84,13 @@ public class TasksList {
      * @throws DukeException If the Task number is invalid.
      */
     public Task markAsDone(int taskNumber) throws DukeException {
-       if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
-           throw new DukeException("Please enter a valid task number!");
-       } else {
-           Task taskToMark = this.listOfTasks.get(taskNumber - 1);
-           taskToMark.markAsDone();
-           return taskToMark;
-       }
+        if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
+            throw new DukeException("Please enter a valid task number!");
+        } else {
+            Task taskToMark = this.listOfTasks.get(taskNumber - 1);
+            taskToMark.markAsDone();
+            return taskToMark;
+        }
     }
     /**
      * Mark a Task as uncompleted.
@@ -96,7 +98,7 @@ public class TasksList {
      * @return The Task marked.
      * @throws DukeException If the Task number is invalid.
      */
-    public Task markAsUndone(int taskNumber) throws DukeException{
+    public Task markAsUndone(int taskNumber) throws DukeException {
         if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         } else {
@@ -112,7 +114,7 @@ public class TasksList {
      * @return The Task removed.
      * @throws DukeException If the Task number is invalid.
      */
-    public Task deleteTask(int taskNumber) throws DukeException{
+    public Task deleteTask(int taskNumber) throws DukeException {
         if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         } else {

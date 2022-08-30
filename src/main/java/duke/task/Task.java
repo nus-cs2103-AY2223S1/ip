@@ -2,20 +2,21 @@ package duke.task;
 
 import duke.exception.DukeException;
 
-import java.time.Year;
 
 /**
  * Encapsulates a task with a given description and completion status.
  */
 public class Task {
+    protected static final String STORAGE_DELIMITER = " | ";
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";
     private static final String STORAGE_DONE_STATUS = "1";
     private static final String STORAGE_NOT_DONE_STATUS = "0";
-    protected static final String STORAGE_DELIMITER = " | ";
 
     protected String description;
     protected boolean isDone;
+
+
 
     /**
      * Creates a Task instance.
@@ -31,7 +32,7 @@ public class Task {
      * @return String representation of th completion status of the task.
      */
     public String getStatusIcon() {
-        return (isDone ? Task.DONE_STATUS: Task.NOT_DONE_STATUS);
+        return (isDone ? Task.DONE_STATUS : Task.NOT_DONE_STATUS);
     }
 
     /**

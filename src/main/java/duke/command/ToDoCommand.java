@@ -8,10 +8,9 @@ import duke.task.Todo;
  * Represents a command to add a Todo to the tasksList.
  */
 public class ToDoCommand extends Command {
+    private static final String TO_DO_MSG = "Got it. I've added this task:\n";
     private String[] inputArray;
     private TasksList tasksList;
-
-    private static final String TO_DO_MSG = "Got it. I've added this task:\n";
 
     /**
      * Creates a new ToDo instance.
@@ -35,7 +34,7 @@ public class ToDoCommand extends Command {
         }
 
         String description = this.inputArray[1];
-        /** create a ToDo object */
+        // create a ToDo object
         Todo todo = new Todo(description);
 
         this.tasksList.addToList(todo);
