@@ -9,6 +9,7 @@ import duke.task.ToDo;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -58,7 +59,7 @@ public class Duke {
                     ui.bye();
                     return;
                 } else if (keyword.equals("list")) {
-                    ui.printTasks(tasks.getTaskList());
+                    ui.printAllTasks(tasks.getTaskList());
                 } else if (keyword.equals("todo")) {
                     createToDos(words);
                 } else if (keyword.equals("deadline")) {
@@ -71,6 +72,8 @@ public class Duke {
                     unmark(words);
                 } else if (keyword.equals("delete")) {
                     deleteTask(words);
+                } else if (keyword.equals("find")) {
+                    findTask(words);
                 } else {
                     throw new DukeInvalidException();
                 }
@@ -169,5 +172,16 @@ public class Duke {
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
+    }
+    
+    private void findTask(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
+        }
+        
+        String searchTerm = input[1];
+        ArrayList<Task> results = tasks.find(searchTerm);
+        ui.printMatchingTasks(results);
+        
     }
 }

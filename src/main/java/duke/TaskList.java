@@ -64,4 +64,15 @@ public class TaskList {
     protected Task deleteTask(int taskIndex) { 
         return tasks.remove(taskIndex);
     }
+    
+    protected ArrayList<Task> find(String input) {
+        ArrayList<Task> result = new ArrayList<>();
+        
+        for (Task task : tasks) {
+            if (task.getDescription().contains(input)) {
+                result.add(0, task);
+            }
+        }
+        return result;
+    }
 }
