@@ -23,15 +23,6 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Checks if the Command is a ByeCommand.
-     * @return False.
-     */
-    @Override
-    public boolean isBye() {
-        return false;
-    }
-
-    /**
      * Adds a Todo task to the list of tasks.
      * @param taskList List of tasks.
      * @param ui Shows the Task added and the total number of tasks on the list.
@@ -39,11 +30,10 @@ public class TodoCommand extends Command {
      * @throws DukeException If there is an error saving the modified list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Todo todo = new Todo(description);
         taskList.addTask(todo);
         storage.save(taskList);
-        ui.showTaskAdded(todo);
-        ui.showNumberOfTasks(taskList.numTasks());
+        return ui.showTaskAdded(todo) + ui.showNumberOfTasks(taskList.numTasks());
     }
 }

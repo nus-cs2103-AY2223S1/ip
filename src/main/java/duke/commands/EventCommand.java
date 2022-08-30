@@ -26,15 +26,6 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Checks if the Command is a ByeCommand.
-     * @return False.
-     */
-    @Override
-    public boolean isBye() {
-        return false;
-    }
-
-    /**
      * Adds an Event task to the list of tasks.
      * @param taskList List of tasks.
      * @param ui Shows the Task added and the total number of tasks on the list.
@@ -42,11 +33,10 @@ public class EventCommand extends Command {
      * @throws DukeException If there is an error saving the modified list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Event event = new Event(description, at);
         taskList.addTask(event);
         storage.save(taskList);
-        ui.showTaskAdded(event);
-        ui.showNumberOfTasks(taskList.numTasks());
+        return ui.showTaskAdded(event) + ui.showNumberOfTasks(taskList.numTasks());
     }
 }

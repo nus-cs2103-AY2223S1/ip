@@ -23,15 +23,6 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Checks if the Command is a ByeCommand.
-     * @return False.
-     */
-    @Override
-    public boolean isBye() {
-        return false;
-    }
-
-    /**
      * Deletes a task from the list of tasks.
      * @param taskList List of tasks.
      * @param ui Shows the Task removed and the total number of tasks on the list.
@@ -40,9 +31,9 @@ public class DeleteCommand extends Command {
      *         is an error saving the modified list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Task deletedTask = taskList.deleteTask(taskIndex);
         storage.save(taskList);
-        ui.showTaskRemoved(deletedTask);
+        return ui.showTaskRemoved(deletedTask) + ui.showNumberOfTasks(taskList.numTasks());
     }
 }
