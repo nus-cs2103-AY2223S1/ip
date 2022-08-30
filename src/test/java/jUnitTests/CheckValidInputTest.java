@@ -1,6 +1,6 @@
 package jUnitTests;
 
-import Duke.ui.UI;
+import duke.ui.UI;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

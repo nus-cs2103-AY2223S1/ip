@@ -1,11 +1,13 @@
-import Duke.commands.Command;
-import Duke.exceptions.DukeException;
-import Duke.parser.Parser;
-import Duke.storage.Storage;
-import Duke.tasks.TaskList;
-import Duke.ui.UI;
+import duke.commands.Command;
+import duke.exceptions.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasks.TaskList;
+import duke.ui.UI;
 
-import java.time.LocalDate;
+/**
+ * Main Duke class
+ */
 
 public class Duke {
 
@@ -24,6 +26,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the main logic of Duke.
+     * Handles Welcome and Goodbye messages, as well as all commands.
+     */
     public void run() {
         ui.welcomeMessage();
         boolean isExit = false;
@@ -42,7 +48,7 @@ public class Duke {
             }
         }
     }
-
+    
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

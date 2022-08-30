@@ -1,4 +1,4 @@
-package Duke.tasks;
+package duke.tasks;
 
 public abstract class Task {
 
@@ -10,22 +10,41 @@ public abstract class Task {
         this.completed = false;
     }
 
+    /**
+     * Fetches the description of the task.
+     *
+     * @return the description of the task
+     */
     public String getDesc() {
         return this.taskDesc;
     }
 
+    /**
+     * Checks if the task has been marked as completed.
+     *
+     * @return True if the task is completed
+     */
     public boolean isCompleted() {
         return this.completed;
     }
 
+    /**
+     * Fetches the type of task for identification during encoding and decoding for storage.
+     *
+     * @return a Character representing the type of task
+     */
     public abstract char getTaskType();
 
-    // Marks the task as done
+    /**
+     * Marks the task as done.
+     */
     public void mark() {
         this.completed = true;
     }
 
-    // Marks the task as done
+    /**
+     * Marks the task as not done.
+     */
     public void unmark() {
         this.completed = false;
     }

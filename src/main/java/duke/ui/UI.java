@@ -1,6 +1,7 @@
-package Duke.ui;
+package duke.ui;
 
-import Duke.tasks.Task;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class UI {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public  void showLineBreak() {
+    public void showLineBreak() {
         System.out.println("    ____________________________________________________________\n");
     }
 
@@ -32,7 +33,8 @@ public class UI {
         return sc.nextLine();
     }
 
-    public void printListMessage() {
+    public void printListMessage(TaskList taskList) {
+        System.out.println("    " + " You have " + taskList.getSize() + " tasks in the list.");
     }
 
     public boolean checkValid(String input) {

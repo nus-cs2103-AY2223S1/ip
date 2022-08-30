@@ -1,10 +1,10 @@
-package Duke.commands;
+package duke.commands;
 
-import Duke.exceptions.DukeException;
-import Duke.storage.Storage;
-import Duke.tasks.Event;
-import Duke.tasks.TaskList;
-import Duke.ui.UI;
+import duke.exceptions.DukeException;
+import duke.storage.Storage;
+import duke.tasks.Event;
+import duke.tasks.TaskList;
+import duke.ui.UI;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +20,13 @@ public class AddEventCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Adds a new Event task to the task list.
+     *
+     * @param taskList the destination task list for the event to be added
+     * @param ui the ui to display message after the task is added
+     * @param storage the storage to handle storing of the new task list
+     */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         String taskDesc = input.substring(6, input.indexOf('/') - 1);
@@ -34,10 +41,15 @@ public class AddEventCommand extends Command {
         }
         Event event = new Event(taskDesc, deadline.toString());
         taskList.addTask(event);
-        ui.addTaskMessage(event, taskList.size());
+        ui.addTaskMessage(event, taskList.getSize());
         storage.store(taskList);
     }
 
+    /**
+     * Prevents the program from terminating in Duke.run().
+     *
+     * @return False as this is not the 'exit' command
+     */
     @Override
     public boolean isExit() {
         return false;

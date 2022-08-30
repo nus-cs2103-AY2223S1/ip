@@ -1,8 +1,8 @@
 package jUnitTests;
 
-import Duke.commands.Command;
-import Duke.exceptions.DukeException;
-import Duke.parser.Parser;
+import duke.commands.Command;
+import duke.exceptions.DukeException;
+import duke.parser.Parser;
 
 import org.junit.jupiter.api.Test;
 

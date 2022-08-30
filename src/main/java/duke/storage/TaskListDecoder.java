@@ -1,6 +1,6 @@
-package Duke.storage;
+package duke.storage;
 
-import Duke.tasks.*;
+import duke.tasks.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,11 @@ import java.util.Objects;
 public class TaskListDecoder {
 
     /**
-     * Decodes {@code encodedTaskList} into a {@code TaskList} containing the decoded tasks.
+     * Decodes a List<String> into a TaskList containing the decoded tasks.
+     *
+     * @param encodedTaskList the task list to be decoded
+     *
+     * @return the decoded task list
      */
     public static ArrayList<Task> decodeTaskList(List<String> encodedTaskList) {
         ArrayList<Task> decodedTaskList = new ArrayList<>();
@@ -23,6 +27,13 @@ public class TaskListDecoder {
         return decodedTaskList;
     }
 
+    /**
+     * Decodes the given String into a task.
+     *
+     * @param encodedTask the String to be decoded
+     *
+     * @return the task represented by the encoded String
+     */
     public static Task decodeTaskFromString(String encodedTask) {
         Task result = null;
         String[] str = encodedTask.split("\\|");

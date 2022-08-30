@@ -1,7 +1,4 @@
-package Duke.tasks;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+package duke.tasks;
 
 public class Event extends Task {
 
@@ -14,11 +11,21 @@ public class Event extends Task {
         this.deadline = deadline;
     }
 
+    /**
+     * Fetches the type of task for identification during encoding and decoding for storage.
+     *
+     * @return a Character 'E' representing Event
+     */
     @Override
     public char getTaskType() {
         return 'E';
     }
 
+    /**
+     * Fetches the description of the task.
+     *
+     * @return the description of the task
+     */
     @Override
     public String getDesc() {
         return this.taskDesc + "|" + this.deadline;

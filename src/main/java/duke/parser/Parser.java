@@ -1,10 +1,19 @@
-package Duke.parser;
+package duke.parser;
 
-import Duke.commands.*;
-import Duke.exceptions.DukeException;
+import duke.commands.*;
+import duke.exceptions.DukeException;
 
 public class Parser {
 
+    /**
+     * Parses the input and directs Duke to execute the appropriate command.
+     *
+     * @param input input String from the user
+     *
+     * @return Command to be executed in Duke.run()
+     *
+     * @throws DukeException to handle inappropriate inputs
+     */
     public static Command parse(String input) throws DukeException {
         //Fetch and display taskList
         if (input.equals("list")) return new PrintListCommand();
@@ -33,6 +42,7 @@ public class Parser {
         // Exits program
         if (input.startsWith("exit")) return new ExitCommand();
 
+        // In case of an unrecognised command
         return new IncorrectCommand();
     }
 }

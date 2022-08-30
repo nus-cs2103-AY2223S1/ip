@@ -1,4 +1,4 @@
-package Duke.tasks;
+package duke.tasks;
 
 public class Todo extends Task {
 
@@ -6,6 +6,11 @@ public class Todo extends Task {
         super(task);
     }
 
+    /**
+     * Fetches the type of task for identification during encoding and decoding for storage.
+     *
+     * @return a Character 'T' representing Todo
+     */
     @Override
     public char getTaskType() {
         return 'T';
