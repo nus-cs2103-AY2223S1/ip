@@ -1,16 +1,16 @@
 package ip.command;
 
+import java.util.Scanner;
+
 import ip.TaskList;
 import ip.task.Task;
-
-import java.util.Scanner;
 
 /**
  * Command to find tasks matching specified keyword.
  */
 public class FindCommand extends Command {
     /** Options following the find command */
-    private Scanner options;
+    private final Scanner options;
 
     public FindCommand(Scanner options) {
         this.options = options;

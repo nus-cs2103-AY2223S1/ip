@@ -1,15 +1,16 @@
 package ip;
 
-import ip.task.Deadline;
-import ip.task.Event;
-import ip.task.Task;
-import ip.task.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import ip.task.Deadline;
+import ip.task.Event;
+import ip.task.Task;
+import ip.task.ToDo;
+
 
 /**
  * Encapsulates the task data file stored in hard disk.
@@ -22,6 +23,11 @@ public class Storage {
     /** Task data file */
     private File file;
 
+    /**
+     * Constructor to initialize storage with given path.
+     *
+     * @param path Path of the file that storage holds.
+     */
     public Storage(String path) {
         this.path = path;
         file = new File(path);

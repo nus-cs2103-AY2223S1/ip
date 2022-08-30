@@ -1,13 +1,17 @@
-import ip.Storage;
-import ip.TaskList;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import ip.Storage;
+import ip.TaskList;
+
 
 public class StorageTest {
-    Storage storage = new Storage("src/test/existingData.txt");
+    private final Storage storage = new Storage("src/test/existingData.txt");
 
     @Test
     public void loadTest_existingFile_taskList() {

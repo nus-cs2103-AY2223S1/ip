@@ -1,11 +1,20 @@
 package ip.task;
 
-import ip.exception.MissingDescription;
-
 import java.util.Scanner;
 
+import ip.exception.MissingDescription;
+
+/**
+ * Encapsulation of a todo.
+ */
 public class ToDo extends Task {
-    
+
+    /**
+     * Constructor to create a todo object.
+     *
+     * @param options Contains the description and deadline of the task.
+     * @throws MissingDescription If there is no description in options.
+     */
     public ToDo(Scanner options) throws MissingDescription {
         if (options.hasNext()) {
             String description = options.nextLine().substring(1);
@@ -16,6 +25,11 @@ public class ToDo extends Task {
         }
     }
 
+    /**
+     * Constructor to create deadline object from formatted string.
+     *
+     * @param props Contains data used to build the todo object.
+     */
     public ToDo(String[] props) {
         super.describe(props[2]);
         if (props[1].equals("true")) {

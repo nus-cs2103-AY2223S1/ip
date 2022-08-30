@@ -1,10 +1,14 @@
 package ip;
 
-import ip.command.*;
-
-import ip.exception.InvalidCommand;
-
 import java.util.Scanner;
+
+import ip.command.AddCommand;
+import ip.command.ByeCommand;
+import ip.command.Command;
+import ip.command.EditCommand;
+import ip.command.FindCommand;
+import ip.command.ListCommand;
+import ip.exception.InvalidCommand;
 
 /**
  * Parses input from the user.

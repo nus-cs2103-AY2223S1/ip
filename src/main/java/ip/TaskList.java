@@ -1,10 +1,9 @@
 package ip;
 
-import ip.exception.NoTaskFound;
-
-import ip.task.Task;
-
 import java.util.LinkedList;
+
+import ip.exception.NoTaskFound;
+import ip.task.Task;
 
 /**
  * Encapsulation of a list of Tasks
@@ -12,7 +11,7 @@ import java.util.LinkedList;
  * @author Jonathan Lam
  */
 public class TaskList {
-    public LinkedList<Task> tasks = new LinkedList<>();
+    public final LinkedList<Task> tasks = new LinkedList<>();
 
     /**
      * Adds the given task to the task list.

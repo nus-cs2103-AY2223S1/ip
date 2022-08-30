@@ -1,12 +1,11 @@
 package ip.command;
 
-import ip.TaskList;
-
-import ip.exception.IndexNotSpecified;
-import ip.exception.NoTaskFound;
-
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import ip.TaskList;
+import ip.exception.IndexNotSpecified;
+import ip.exception.NoTaskFound;
 
 /**
  * Command to edit a task in the task list.
@@ -17,6 +16,12 @@ public class EditCommand extends Command {
     /** Options following the command given */
     private final Scanner options;
 
+    /**
+     * Constructor for EditCommand.
+     *
+     * @param commandGiven Type of edit command given.
+     * @param options Options to be used to edit tasks.
+     */
     public EditCommand(String commandGiven, Scanner options) {
         this.commandGiven = commandGiven;
         this.options = options;
@@ -47,6 +52,8 @@ public class EditCommand extends Command {
         case "delete":
             taskList.delete(index - 1);
             break;
+        default:
+            System.out.println("Edit command not recognised.");
         }
     }
 }

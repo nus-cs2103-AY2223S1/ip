@@ -1,16 +1,20 @@
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Scanner;
+
+import org.junit.jupiter.api.Test;
+
 import ip.Parser;
 import ip.command.ByeCommand;
 import ip.command.Command;
 import ip.command.ListCommand;
 import ip.exception.InvalidCommand;
-import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
-    Parser parser = new Parser();
+    private final Parser parser = new Parser();
 
     @Test
     public void getCommandTest_blankInput_returnByeCommand() {

@@ -1,5 +1,8 @@
 package ip.exception;
 
+/**
+ * Exception thrown on encountering timespan issues.
+ */
 public class BadTimespan extends DukeException {
     private String timespan;
 

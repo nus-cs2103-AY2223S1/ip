@@ -1,5 +1,8 @@
 package ip.task;
 
+/**
+ * Abstract class describing a task object.
+ */
 public abstract class Task {
     /** Description of the task. */
     protected String description;
@@ -11,7 +14,7 @@ public abstract class Task {
     }
     /**
      * Sets task description to the given string.
-     * 
+     *
      * @param s The given string description of the task.
      */
     public void describe(String s) {

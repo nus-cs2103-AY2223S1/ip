@@ -1,5 +1,8 @@
 package ip.exception;
 
+/**
+ * Exception thrown when task description is not specified.
+ */
 public class MissingDescription extends DukeException {
     @Override
     public String toString() {

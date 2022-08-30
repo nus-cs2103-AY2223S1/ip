@@ -1,14 +1,24 @@
 package ip.task;
 
+import java.util.Scanner;
+
 import ip.exception.BadTimespan;
 import ip.exception.MissingDescription;
 
-import java.util.Scanner;
-
+/**
+ * Encapsulation of an event.
+ */
 public class Event extends Task {
-    
+    /** Timespan of the event. */
     private String timespan;
-    
+
+    /**
+     * Constructor to create an event object.
+     *
+     * @param options Contains the description and timespan of the event.
+     * @throws MissingDescription If there is no description in options.
+     * @throws BadTimespan If the timespan is missing.
+     */
     public Event(Scanner options) throws MissingDescription, BadTimespan {
         if (options.hasNext()) {
             options.useDelimiter(" /at ");
@@ -16,7 +26,7 @@ public class Event extends Task {
             if (options.hasNext()) {
                 String timespan = options.next();
                 super.describe(description);
-                this.timespan= timespan;
+                this.timespan = timespan;
                 System.out.println("CREATED EVENT: " + description + " AT: " + timespan);
             } else {
                 throw new BadTimespan("");
@@ -26,6 +36,11 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructor to create event object from formatted string.
+     *
+     * @param props Contains data used to build the event object.
+     */
     public Event(String[] props) {
         super.describe(props[2]);
         this.timespan = props[3];

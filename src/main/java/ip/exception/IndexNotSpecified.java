@@ -1,5 +1,8 @@
 package ip.exception;
 
+/**
+ * Exception thrown when edit command has no index.
+ */
 public class IndexNotSpecified extends DukeException {
     @Override
     public String toString() {

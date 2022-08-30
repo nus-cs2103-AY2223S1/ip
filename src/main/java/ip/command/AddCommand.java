@@ -1,16 +1,15 @@
 package ip.command;
 
-import ip.TaskList;
+import java.util.Scanner;
 
+import ip.TaskList;
 import ip.exception.BadDeadline;
 import ip.exception.BadTimespan;
 import ip.exception.MissingDescription;
-
 import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.ToDo;
 
-import java.util.Scanner;
 
 /**
  * Command to add a task to the task list.
@@ -21,6 +20,12 @@ public class AddCommand extends Command {
     /** Options following the command given */
     private final Scanner options;
 
+    /**
+     * Constructor for AddCommand.
+     *
+     * @param commandGiven Type of add command given.
+     * @param options Options to be used to add a new task.
+     */
     public AddCommand(String commandGiven, Scanner options) {
         this.commandGiven = commandGiven;
         this.options = options;
@@ -46,6 +51,8 @@ public class AddCommand extends Command {
         case "event":
             taskList.add(new Event(options));
             break;
+        default:
+            System.out.println("Add command not recognized.");
         }
     }
 }

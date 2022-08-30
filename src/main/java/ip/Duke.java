@@ -1,19 +1,19 @@
 package ip;
 
+import java.io.IOException;
+
 import ip.command.ByeCommand;
 import ip.command.Command;
-
 import ip.exception.DukeException;
 import ip.exception.InvalidCommand;
 
-import java.io.IOException;
 
 /**
  * <h1>Task management program</h1>
  * Record to-do's, deadlines, and events.
  * Mark them as done or not.
  * Delete them when no longer needed!
- * 
+ *
  * @author Jonathan Lam
  */
 public class Duke {
@@ -28,6 +28,11 @@ public class Duke {
     /** Flag to determine if the task data file should be wiped after program end */
     private static boolean toWipe = false;
 
+    /**
+     * Duke's main method.
+     *
+     * @param args Arguments passed to main when run.
+     */
     public static void main(String[] args) {
         // Set Duke to wipe stored task data on termination.
         if (System.getProperty("user.dir").endsWith("text-ui-test")) {

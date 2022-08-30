@@ -1,5 +1,8 @@
 package ip.exception;
 
+/**
+ * Exception thrown when command entered is invalid.
+ */
 public class InvalidCommand extends DukeException {
     private String commandGiven;
 
