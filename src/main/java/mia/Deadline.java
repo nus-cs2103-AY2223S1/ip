@@ -7,6 +7,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/**
+ * A {@code Deadline} is a {@code Task} that has a due date and time.
+ *
+ * @author Richard Dominick
+ */
 public class Deadline extends Task {
     private LocalDate byDate;
     private LocalTime byTime;
@@ -23,6 +28,13 @@ public class Deadline extends Task {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid deadline time: " + deadline));
     }
 
+    /**
+     * Parses and creates a new {@code Deadline} instance from a {@code String} representing its data.
+     *
+     * @param saveFormat The string representing the data from which to create a new {@code Deadline} instance
+     * @return A new {@code Deadline} instance based on the parsed data
+     * @throws IllegalArgumentException When the save format is invalid
+     */
     public static Deadline fromSaveFormat(String saveFormat) throws IllegalArgumentException {
         final String[] args = saveFormat.split(";;");
         if (args.length != 3) {

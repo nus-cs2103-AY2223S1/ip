@@ -8,8 +8,14 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A utility class containing useful methods to parse dates and times from a given string.
+ *
+ * @author Richard Dominick
+ */
 public class RegexHelper {
     // TODO: Make regex validate months date according to month length
+    /** The Regex pattern used to parse various date formats. */
     public static final Pattern DATE_REGEX = Pattern.compile("\\b" // word boundary
                     + "(?:[1-9]|[0-2]\\d|3[0-1])" // 1-31, 01-31 accepted
                     + " "
@@ -31,6 +37,7 @@ public class RegexHelper {
             Pattern.CASE_INSENSITIVE); // word boundary (lookahead)
 
     // TODO: Differentiate lack of separator from 4-digit year
+    /** The Regex pattern used to parse various time formats. */
     public static final Pattern TIME_REGEX = Pattern.compile("\\b" // word boundary
             + "(?:\\d|[0-1]\\d|2[0-3])" // hour (1-2 digits, 24h format from 0 to 23)
             + "[:.]" // hour-minute separator (non-optional until above TODO is done)

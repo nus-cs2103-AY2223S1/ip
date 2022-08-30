@@ -1,5 +1,10 @@
 package mia;
 
+/**
+ * A {@code Command} is an actionable item that can be run by {@code Mia}.
+ *
+ * @author Richard Dominick
+ */
 abstract class Command {
     private final Mia context;
     private final boolean isExit;
@@ -13,6 +18,14 @@ abstract class Command {
         this.isExit = isExit;
     }
 
+    /**
+     * Parses a user input string into a command that is appropriate for the calling context.
+     *
+     * @param context The context the command is intended to be executed from
+     * @param input The user input string to parse
+     * @return A {@code Command} for the context to call
+     * @throws IllegalArgumentException When a parsing error occurs
+     */
     public static Command from(Mia context, String input) throws IllegalArgumentException {
         if (input.equals("bye")) {
             return new ExitCommand(context);
@@ -63,10 +76,18 @@ abstract class Command {
         return parsed;
     }
 
+    /**
+     * Determine whether the {@code Command} intends for the calling context to be exited subsequently.
+     *
+     * @return {@code true} if the {@code Command} intends for an exit, {@code false} otherwise
+     */
     public boolean shouldExitContext() {
         return isExit;
     }
 
+    /**
+     * Executes the actionable item that the {@code Command} is associated with.
+     */
     public abstract void run();
 
     private static class ExitCommand extends Command {

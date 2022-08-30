@@ -1,5 +1,12 @@
 package mia;
 
+/**
+ * A {@code Task} contains a title and a completed status. It
+ * is abstract and should be extended by other classes that implement
+ * additional features.
+ *
+ * @author Richard Dominick
+ */
 abstract public class Task {
     private String title;
     private boolean isCompleted = false;
@@ -41,6 +48,11 @@ abstract public class Task {
         return true;
     }
 
+    /**
+     * Parses the data contained in this {@code Task} object into a {@code String}.
+     *
+     * @return The parsed data
+     */
     public String toSaveFormat() {
         return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);
     }
