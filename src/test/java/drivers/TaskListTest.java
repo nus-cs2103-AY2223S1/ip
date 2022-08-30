@@ -1,14 +1,14 @@
 package drivers;
 
-import exceptions.NoTaskException;
-import exceptions.TumuException;
-import org.junit.jupiter.api.Test;
-
-import tasks.Todo;
-
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import exceptions.NoTaskException;
+import exceptions.TumuException;
+import tasks.Todo;
 
 public class TaskListTest {
     private TaskList taskList = new TaskList(new ArrayList<>());

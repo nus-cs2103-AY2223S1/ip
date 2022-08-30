@@ -1,10 +1,10 @@
 package tasks;
 
-import exceptions.UnrecognisedDateTimeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import exceptions.UnrecognisedDateTimeException;
 
 /**
  * Manager class for deadline tasks. Handles the
@@ -18,7 +18,7 @@ public class Deadline extends Task {
      * @param taskDescription Description of the task.
      * @param timing Timing of the deadline to be parsed and read.
      * @throws UnrecognisedDateTimeException When the timing given by user does not follow a certain
-     * format.
+     *     format.
      */
     public Deadline(String taskDescription, String timing) throws UnrecognisedDateTimeException {
         super(taskDescription);

@@ -1,11 +1,11 @@
 package commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class to be executed when a list command is issued

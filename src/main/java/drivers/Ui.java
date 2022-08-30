@@ -19,8 +19,8 @@ public class Ui {
      * Greeting message to the user during chat-bot startup.
      */
     public void greeting() {
-        String greetingMessage = "Hi! I am Tumu. Nice to meet you!\n" +
-                "\tWhat is on your mind today?\n";
+        String greetingMessage = "Hi! I am Tumu. Nice to meet you!\n"
+                + "\tWhat is on your mind today?\n";
 
         notifyUser(greetingMessage);
     }

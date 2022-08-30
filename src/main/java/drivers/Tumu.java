@@ -53,8 +53,8 @@ public class Tumu {
             } catch (TumuException e) {
                 ui.notifyUser(e.toString());
             } catch (NumberFormatException e) {
-                ui.notifyUser("Please (un)mark or delete a task by " +
-                        "its list position (must be an integer)!");
+                ui.notifyUser("Please (un)mark or delete a task by "
+                        + "its list position (must be an integer)!");
             } catch (NullPointerException e) {
                 ui.notifyUser("Please type a task description for the task!");
             } finally {

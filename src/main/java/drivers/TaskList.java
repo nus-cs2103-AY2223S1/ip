@@ -1,12 +1,12 @@
 package drivers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import exceptions.NoTaskException;
 import exceptions.OutOfBoundsException;
 import exceptions.TumuException;
 import tasks.Task;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains the task list e.g., it has operations
@@ -60,8 +60,11 @@ public class TaskList {
     public Task markTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new NoTaskException();
-            else throw new OutOfBoundsException(userTasks.size());
+            if (userTasks.isEmpty()) {
+                throw new NoTaskException();
+            } else {
+                throw new OutOfBoundsException(userTasks.size());
+            }
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.markDone();
@@ -78,8 +81,11 @@ public class TaskList {
     public Task unmarkTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new NoTaskException();
-            else throw new OutOfBoundsException(userTasks.size());
+            if (userTasks.isEmpty()) {
+                throw new NoTaskException();
+            } else {
+                throw new OutOfBoundsException(userTasks.size());
+            }
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.unmarkDone();
