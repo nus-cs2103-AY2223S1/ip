@@ -37,6 +37,9 @@ public class MainWindow extends AnchorPane {
         duke = d;
     }
 
+    /**
+     * Shows the welcome message from Duke.
+     */
     public void showWelcome() {
         String welcome = duke.getWelcome();
         dialogContainer.getChildren().add(

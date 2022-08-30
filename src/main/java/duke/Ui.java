@@ -17,7 +17,7 @@ public class Ui {
     private String response;
 
     /**
-     * Gets the ui response.
+     * Gets the response from Duke's ui.
      *
      * @return the response from the ui.
      */
@@ -26,7 +26,7 @@ public class Ui {
     }
 
     /**
-     * Shows a message that a specified task has been added to a task list.
+     * Sets the response message that a specified task has been added to a task list.
      *
      * @param task The specified task that was added.
      * @param tasks The task list that the specified task was added to.
@@ -38,7 +38,7 @@ public class Ui {
     }
 
     /**
-     * Shows a message that a specified task has been deleted from a task list.
+     * Sets the response message that a specified task has been deleted from a task list.
      *
      * @param task The specified task that was deleted.
      * @param tasks The task list that the specified task was deleted from.
@@ -50,7 +50,7 @@ public class Ui {
     }
 
     /**
-     * Shows an error message from Duke.
+     * Sets the response message to an error message from Duke.
      *
      * @param message The message that describes the error with Duke.
      */
@@ -59,14 +59,14 @@ public class Ui {
     }
 
     /**
-     * Shows the exit message from Duke.
+     * Sets the response message to the exit message from Duke.
      */
     public void showExit() {
         response = "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Shows every task found with a keyword.
+     * Sets the response message to every task found with a keyword.
      */
     public void showFound(TaskList tasks) {
         StringBuilder response = new StringBuilder("Here are the matching tasks in your list:");
@@ -82,7 +82,7 @@ public class Ui {
     }
 
     /**
-     * Shows a list of all the tasks in a specified TaskList.
+     * Sets the response message to a list of all the tasks in a specified TaskList.
      *
      * @param tasks The specified TaskList to show the list of tasks from.
      */
@@ -96,7 +96,7 @@ public class Ui {
     }
 
     /**
-     * Shows a message that a specified task has been marked as done.
+     * Sets the response message that a specified task has been marked as done.
      *
      * @param task The specified task that was marked as done.
      */
@@ -105,7 +105,7 @@ public class Ui {
     }
 
     /**
-     * Shows every task occurring by/at a specific date.
+     * Sets the response message to every task occurring by/at a specific date.
      *
      * @param tasks A TaskList containing the tasks occurring by/at a specific date.
      */
@@ -123,7 +123,7 @@ public class Ui {
     }
 
     /**
-     * Shows a message that a specified task has been marked as done.
+     * Sets the response message that a specified task has been marked as done.
      *
      * @param task The specified task that was marked as done.
      */
@@ -132,7 +132,7 @@ public class Ui {
     }
 
     /**
-     * Greets the user when Duke starts running.
+     * Sets the response message to a greeting from Duke.
      */
     public void showWelcome() {
         this.response = "Hello from\n" + LOGO + "\nHello! I'm Duke\nWhat can I do for you?";
