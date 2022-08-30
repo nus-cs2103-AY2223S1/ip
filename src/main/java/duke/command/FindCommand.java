@@ -20,8 +20,8 @@ public class FindCommand extends Command {
      *         or task cannot be found.
      */
     @Override
-    public void execute(Ui ui, TaskList taskList, Storage storage) throws NoMatchingKeywordException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws NoMatchingKeywordException {
         TaskList success = taskList.findTask(this.keyword);
-        ui.showFind(success);
+        return ui.showFind(success);
     }
 }

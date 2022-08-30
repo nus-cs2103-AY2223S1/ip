@@ -24,9 +24,9 @@ public class AddCommand extends Command {
      * @throws DukeException if task description does not fit specified format.
      */
     @Override
-    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         taskList.addTask(task);
         storage.save(taskList);
-        ui.addSuccess(task, taskList.numOfTask());
+        return ui.addSuccess(task, taskList.numOfTask());
     }
 }

@@ -19,9 +19,9 @@ public class UnmarkStatusCommand extends Command {
      * @throws DukeException when task unable to be found in taskList
      */
     @Override
-    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         Task success = taskList.unmarkStatus(this.toggleTask);
         storage.save(taskList);
-        ui.showToggleSuccess(success);
+        return ui.showToggleSuccess(success);
     }
 }
