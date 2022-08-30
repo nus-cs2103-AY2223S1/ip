@@ -7,7 +7,6 @@ import duke.command.Command;
  */
 public class Duke {
 
-    private static final String FILE_PATH = "./data/duke.txt";
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
@@ -33,29 +32,10 @@ public class Duke {
     }
 
     /**
-     * Runs duke.
-     */
-    /*public void run() {
-        ui.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String response = ui.readCommand();
-                Command c = Parser.parse(response);
-                ui.showLine();
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }*/
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns duke's response to user's input.
+     *
+     * @param input user's input.
+     * @return response.
      */
     public String getResponse(String input) {
         String response;
@@ -68,7 +48,12 @@ public class Duke {
         return response;
     }
 
-    /*public static void main(String[] args) {
-        new Duke(FILE_PATH).run();
-    }*/
+    /**
+     * Returns duke's greeting.
+     *
+     * @return greeting.
+     */
+    public String getGreeting() {
+        return ui.greet();
+    }
 }
