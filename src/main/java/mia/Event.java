@@ -38,6 +38,13 @@ public class Event extends Task {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid event end time: " + end));
     }
 
+    /**
+     * Parses and creates a new {@code Event} instance from a {@code String} representing its data.
+     *
+     * @param saveFormat The string representing the data from which to create a new {@code Event} instance
+     * @return A new {@code Event} instance based on the parsed data
+     * @throws IllegalArgumentException When the save format is invalid
+     */
     public static Event fromSaveFormat(String saveFormat) throws IllegalArgumentException {
         final String[] args = saveFormat.split(";;");
         if (args.length != 4) {

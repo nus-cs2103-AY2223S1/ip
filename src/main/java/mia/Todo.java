@@ -15,6 +15,13 @@ public class Todo extends Task {
         super(title);
     }
 
+    /**
+     * Parses and creates a new {@code Todo} instance from a {@code String} representing its data.
+     *
+     * @param saveFormat The string representing the data from which to create a new {@code Todo} instance
+     * @return A new {@code Todo} instance based on the parsed data
+     * @throws IllegalArgumentException When the save format is invalid
+     */
     public static Todo fromSaveFormat(String saveFormat) throws IllegalArgumentException {
         final String[] args = saveFormat.split(";;");
         if (args.length != 2) {
