@@ -1,16 +1,20 @@
 package duke;
 
 import duke.exception.*;
-import duke.task.Deadlines;
-import duke.task.Events;
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.ToDo;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * A Duke object which load the SoCCat,  a Personal Assistant Chatbot that helps a person to keep track of various
+ * things. The task list will be saved whenever there are changes, and will be loaded the next time the bot starts up.
+ */
 public class Duke {
 
     private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -22,7 +26,10 @@ public class Duke {
     public static void main(String[] args) { 
         new Duke().start();
     }
-    
+
+    /**
+     * Creates a Duke object.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage();
@@ -104,7 +111,7 @@ public class Duke {
             throw new DukeEmptyException(currInput[0]);
         }
         try {
-            ToDos task = new ToDos(currInput[1]);
+            ToDo task = new ToDo(currInput[1]);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
@@ -121,7 +128,7 @@ public class Duke {
             String tasking = taskDetails[0];
             String deadline = taskDetails[1];
             LocalDateTime dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMATTER);
-            Deadlines task = new Deadlines(tasking, dateTime);
+            Deadline task = new Deadline(tasking, dateTime);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
@@ -140,7 +147,7 @@ public class Duke {
             String tasking = taskDetails[0];
             String eventTime = taskDetails[1];
             LocalDateTime dateTime = LocalDateTime.parse(eventTime, DATE_TIME_FORMATTER);
-            Events task = new Events(tasking, dateTime);
+            Event task = new Event(tasking, dateTime);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
