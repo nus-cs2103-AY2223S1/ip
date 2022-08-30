@@ -10,9 +10,7 @@ public abstract class Task {
     protected final TaskId id;
     protected String description;
     protected boolean isCompleted;
-    private String addOn = "nya!";
-    private String notDoneSymbol = "[Zzzzzzz]";
-    private String doneSymbol = "[=^._.^=]";
+
 
     /**
      * Constructor of the task.Task object to be called by its subclasses.
@@ -63,7 +61,7 @@ public abstract class Task {
      * @param content The String to be queried for in the task description.
      * @return boolean representing whether the task contains this content.
      */
-    public boolean contains(String content) {
+    public boolean hasContent(String content) {
         return description.contains(content);
     }
 
@@ -74,10 +72,13 @@ public abstract class Task {
      */
     @Override
     public String toString() {
+        String addOn = "nya!";
         String symbol;
         if (this.isCompleted) {
+            String doneSymbol = "[=^._.^=]";
             symbol = doneSymbol;
         } else {
+            String notDoneSymbol = "[Zzzzzzz]";
             symbol = notDoneSymbol;
         }
         return symbol + " " + this.description + " " + addOn;

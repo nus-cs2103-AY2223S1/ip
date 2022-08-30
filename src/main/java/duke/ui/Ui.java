@@ -26,13 +26,14 @@ public class Ui {
             + " \\___\\__,_|\\__|___/\n";
 
     /** Border enclosing output */
-    private static final String BORDER = "____________________________________________________________\n";
+    private static final String MESSAGE_BORDER = "_______________________________________"
+            + "_____________________\n";
 
     /** Welcome message printed when running duke.Duke */
-    private static final String SERVICE = "What can I do for mew?\n";
+    private static final String MESSAGE_SERVICE = "What can I do for mew?\n";
 
     /** Goodbye message printed when exiting duke.Duke */
-    private static final String GOODBYE = "Bye! See nya later!\n";
+    private static final String MESSAGE_GOODBYE = "Bye! See nya later!\n";
 
     private static final String TAB = "    ";
 
@@ -55,7 +56,7 @@ public class Ui {
      * Prints a border to enclose output.
      */
     public void showLine() {
-        System.out.println(BORDER);
+        System.out.println(MESSAGE_BORDER);
     }
 
     /**
@@ -63,7 +64,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println("Meow from\n" + CAT_SYMBOL + "\n" + SERVICE);
+        System.out.println("Meow from\n" + CAT_SYMBOL + "\n" + MESSAGE_SERVICE);
         showLine();
     }
 
@@ -71,7 +72,7 @@ public class Ui {
      * Prints goodbye message on exiting duke.Duke.
      */
     public void showGoodbye() {
-        System.out.println(GOODBYE);
+        System.out.println(MESSAGE_GOODBYE);
     }
 
     /**

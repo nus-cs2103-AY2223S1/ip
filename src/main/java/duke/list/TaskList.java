@@ -103,7 +103,7 @@ public class TaskList {
         int count = 0;
         for (int i = 0; i < tasksLeft(); i++) {
             Task t = this.list.get(i);
-            if (t.contains(content)) {
+            if (t.hasContent(content)) {
                 list[count] = count + 1 + ". " + t;
                 count++;
             }
