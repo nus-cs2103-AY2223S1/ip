@@ -1,5 +1,4 @@
 package ekud.main;
-import java.util.Scanner;
 
 import ekud.exception.EkudException;
 import ekud.task.TaskList;
@@ -14,7 +13,6 @@ public class Ekud {
     private final TaskList taskList;
     private final Ui ui;
     private final Parser parser;
-    
 
     /**
      * Constructor that instantiates new Ekud instance.
@@ -33,35 +31,19 @@ public class Ekud {
         this.taskList = taskList;
     }
 
-    /**
-     * Starts the chat bot.
-     */
-    public void start() {
-        ui.greet();
-        Scanner sc = new Scanner(System.in);
-        boolean active = true;
-
-        while (active) {
-            try {
-                String command = sc.nextLine();
-                ParseResult result = this.parser.parseCommand(command, this.taskList);
-                if (result.terminate) {
-                    active = false;
-                } 
-                if (result.saveStorage) {
-                    storage.writeTasksToFile(this.taskList.getTaskList());
-                }
-                this.ui.sendMessage(result.message);
-            } catch (EkudException exception) {
-                this.ui.showErrorMessage(exception);
+    public String getResponse(String input) {
+        try {
+            ParseResult result = this.parser.parseCommand(input, this.taskList);
+            if (result.terminate) {
+                return "Bye!";
             }
+            if (result.saveStorage) {
+                storage.writeTasksToFile(this.taskList.getTaskList());
+            }
+            return result.message;
+        } catch (EkudException exception) {
+            return exception.getMessage();
         }
-        sc.close();
     }
 
-    public static void main(String[] args) {
-        Ekud ekud = new Ekud();
-        ekud.start();
-
-    }
 }
