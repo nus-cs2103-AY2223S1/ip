@@ -2,10 +2,10 @@ package john.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import john.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import john.data.TaskList;
+import john.ui.Ui;
 
 public class DeleteCommandTest {
     @Test
@@ -14,6 +14,7 @@ public class DeleteCommandTest {
         tl.addTodo("hello world");
         DeleteCommand cmd = new DeleteCommand("1");
         cmd.setData(tl, new Ui());
-        assertEquals("|  deleted task:\n|    [T][ ] hello world\n", cmd.execute());
+        assertEquals("I've deleted this task!\n[T][ ] hello world\n"
+                + "You have 0 tasks in your list.", cmd.execute());
     }
 }

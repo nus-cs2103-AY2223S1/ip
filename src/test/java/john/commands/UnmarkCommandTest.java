@@ -2,10 +2,10 @@ package john.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import john.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import john.data.TaskList;
+import john.ui.Ui;
 
 public class UnmarkCommandTest {
     @Test
@@ -14,6 +14,6 @@ public class UnmarkCommandTest {
         TaskList tl = new TaskList();
         tl.addTodo("hello");
         cmd.setData(tl, new Ui());
-        assertEquals("|  unmarked task:\n|    [T][ ] hello\n", cmd.execute());
+        assertEquals("I've unmarked this task!\n[T][ ] hello", cmd.execute());
     }
 }

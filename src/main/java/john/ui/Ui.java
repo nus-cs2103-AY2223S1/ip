@@ -26,7 +26,7 @@ public class Ui {
      * @return A string representing the added task.
      */
     public String showAddedTask(String task, TaskList taskList) {
-        return String.format("I've added this task!%n%s.%n%s", task, showTotalTasks(taskList));
+        return String.format("I've added this task!%n%s%n%s", task, showTotalTasks(taskList));
     }
 
     /**
@@ -36,7 +36,7 @@ public class Ui {
      * @return A string representing the deleted task.
      */
     public String showDeletedTask(String task, TaskList taskList) {
-        return String.format("I've deleted this task!%n%s.%n%s", task, showTotalTasks(taskList));
+        return String.format("I've deleted this task!%n%s%n%s", task, showTotalTasks(taskList));
     }
 
     /**
@@ -45,7 +45,7 @@ public class Ui {
      * @return A string representing the unmarked task.
      */
     public String showUnmarkedTask(String task) {
-        return String.format("I've unmarked this task!%n%s.", task);
+        return String.format("I've unmarked this task!%n%s", task);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Ui {
      * @return A string representing the marked task.
      */
     public String showMarkedTask(String task) {
-        return String.format("I've marked this task as complete!%n%s.", task);
+        return String.format("I've marked this task as complete!%n%s", task);
     }
 
     /**
@@ -63,7 +63,8 @@ public class Ui {
      * @return A string representing the total number of tasks in the task list.
      */
     private String showTotalTasks(TaskList taskList) {
-        return String.format("You have %d %s now.", taskList.getNumberOfTasks(), (taskList.getNumberOfTasks() == 1
+        return String.format("You have %d %s in your list.",
+                taskList.getNumberOfTasks(), (taskList.getNumberOfTasks() == 1
                 ? "task"
                 : "tasks"));
     }
@@ -74,8 +75,7 @@ public class Ui {
      * @return A string representing the invalid task number.
      */
     public String showInvalidTaskNumber(TaskList taskList) {
-        return String.format("This is an invalid task number.%nYou have %d tasks in your list.",
-                taskList.getNumberOfTasks());
+        return String.format("This is an invalid task number.%n%s", showTotalTasks(taskList));
     }
 
     /**

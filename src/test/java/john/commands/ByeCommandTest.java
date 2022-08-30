@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import john.data.TaskList;
+import john.ui.Ui;
+
 public class ByeCommandTest {
     @Test
     public void isByeTest() {
@@ -15,6 +18,7 @@ public class ByeCommandTest {
     @Test
     public void executeTest() {
         ByeCommand cmd = new ByeCommand();
-        assertEquals("", cmd.execute());
+        cmd.setData(new TaskList(), new Ui());
+        assertEquals("Goodbye!", cmd.execute());
     }
 }

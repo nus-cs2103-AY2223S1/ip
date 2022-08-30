@@ -2,10 +2,10 @@ package john.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import john.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import john.data.TaskList;
+import john.ui.Ui;
 
 public class ListCommandTest {
     @Test
@@ -13,7 +13,7 @@ public class ListCommandTest {
         ListCommand cmd = new ListCommand("");
         TaskList tl = new TaskList();
         cmd.setData(tl, new Ui());
-        assertEquals("|  no tasks found\n", cmd.execute());
+        assertEquals("There are no tasks in your list.", cmd.execute());
     }
 
     @Test
@@ -22,6 +22,6 @@ public class ListCommandTest {
         TaskList tl = new TaskList();
         tl.addEvent("hello", "10/10/2010");
         cmd.setData(tl, new Ui());
-        assertEquals("1 ==> [E][ ] hello (at: Oct 10 2010)\n", cmd.execute());
+        assertEquals("1. [E][ ] hello (at: Oct 10 2010)\n", cmd.execute());
     }
 }
