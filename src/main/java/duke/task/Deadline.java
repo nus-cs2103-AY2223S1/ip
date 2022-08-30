@@ -1,9 +1,10 @@
 package duke.task;
 
-import duke.DukeException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Represents a deadline-type of task
@@ -52,7 +53,7 @@ public class Deadline extends Task {
                 deadline.markDone();
             }
             return deadline;
-        } catch (DateTimeException e) {
+        } catch (DateTimeParseException e) {
             throw new DukeException("Enter the date in yyyy-mm-dd please!");
         }
     }
@@ -62,7 +63,7 @@ public class Deadline extends Task {
      *
      * @param localDate the queried date
      * @return true if and only if the queried date is the same as the deadline-type
-     * task's deadline date.
+     *      task's deadline date.
      */
     public boolean isHappeningOnDate(LocalDate localDate) {
         return this.by.equals(localDate);

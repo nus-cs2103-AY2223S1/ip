@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
+
+import duke.DukeException;
 
 /**
  * Represents a task.
@@ -69,7 +69,6 @@ public class Task {
         return null;
     }
 
-
     /**
      * Returns a boolean denoting if the event is happening at the queried date.
      *
@@ -79,7 +78,7 @@ public class Task {
     public boolean isHappeningOnDate(LocalDate localDate) {
         return false;
     }
-    
+
     /**
      * Returns a boolean to check if keyword specified by user is in the task's description.
      *

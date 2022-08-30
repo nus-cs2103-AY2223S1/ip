@@ -6,7 +6,7 @@ package duke;
  * @author Derrick Khoo
  */
 public class DukeException extends Exception {
-    String message;
+    private String message;
 
     /**
      * Constructs a new exception which is thrown by Duke with the message intended.

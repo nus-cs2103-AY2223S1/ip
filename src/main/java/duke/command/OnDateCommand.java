@@ -1,15 +1,15 @@
 package duke.command;
 
-import duke.storage.Storage;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.Ui;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import duke.Ui;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Represents a command to list out all <code>Task</code> in the
