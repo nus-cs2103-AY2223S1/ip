@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> tasks;
     private int taskCount;
-    private Ui ui;
 
     /**
      * Constructor for TaskList. An empty ArrayList of type Task is created.
@@ -27,7 +26,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> arr) {
         tasks = arr;
-        ui = new Ui();
         taskCount = tasks.size();
     }
 
@@ -36,9 +34,12 @@ public class TaskList {
      *
      * @param splitStr the string input
      * @param type the type of task
+     * @return the String representation of the response
      * @throws DukeException if the input is invalid
      */
-    public void addTask(String[] splitStr, Duke.TaskType type) throws DukeException {
+    public String addTask(String[] splitStr, Duke.TaskType type) throws DukeException {
+        String response = "";
+
         if (splitStr.length < 2) {
             throw new DukeException("The description of a task cannot be empty.");
         }
@@ -46,8 +47,8 @@ public class TaskList {
         case TODO:
             tasks.add(new Todo(splitStr[1]));
             taskCount++;
-            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                    + "\n     Now you have " + taskCount + " tasks in the list");
+            response = "Got it. I've added this task:\n" + tasks.get(taskCount - 1)
+                    + "\nNow you have " + taskCount + " tasks in the list";
             break;
         case DEADLINE:
             String[] strDeadline = splitStr[1].split("/by", 2);
@@ -57,8 +58,8 @@ public class TaskList {
             LocalDateTime deadlineDateTime = Parser.parseDateTime(strDeadline[1].trim());
             tasks.add(new Deadline(strDeadline[0].trim(), deadlineDateTime));
             taskCount++;
-            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                    + "\n     Now you have " + taskCount + " tasks in the list.");
+            response = "Got it. I've added this task:\n" + tasks.get(taskCount - 1)
+                    + "\nNow you have " + taskCount + " tasks in the list.";
             break;
         case EVENT:
             String[] strEvent = splitStr[1].split("/at", 2);
@@ -68,21 +69,25 @@ public class TaskList {
             LocalDateTime eventDateTime = Parser.parseDateTime(strEvent[1].trim());
             tasks.add(new Event(strEvent[0].trim(), eventDateTime));
             taskCount++;
-            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                    + "\n     Now you have " + taskCount + " tasks in the list.");
+            response = "Got it. I've added this task:\n" + tasks.get(taskCount - 1)
+                    + "\nNow you have " + taskCount + " tasks in the list.";
             break;
         default:
             throw new DukeException("I'm sorry, but I don't know what that means!");
         }
+        return response;
     }
 
     /**
      * Deletes a task from the list.
      *
      * @param splitStr the string input
+     * @return the String representation of the response
      * @throws DukeException if the input does not specify an int after delete
      */
-    public void deleteTask(String[] splitStr) throws DukeException{
+    public String deleteTask(String[] splitStr) throws DukeException{
+        String response = "";
+
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to delete.");
         }
@@ -99,18 +104,22 @@ public class TaskList {
             throw new DukeException("There are not that many tasks!");
         }
         taskCount--;
-        ui.printMessage("Noted. I've removed this task:\n       " + tasks.get(deleteNo - 1)
-                + "\n     Now you have " + taskCount + " tasks in the list.");
+        response = "Noted. I've removed this task:\n" + tasks.get(deleteNo - 1)
+                + "\nNow you have " + taskCount + " tasks in the list.";
         tasks.remove(deleteNo - 1);
+        return response;
     }
 
     /**
      * Marks a task as done.
      *
      * @param splitStr the string input
+     * @return the String representation of the response
      * @throws DukeException if the input does not specify a valid number after mark
      */
-    public void mark(String[] splitStr) throws DukeException {
+    public String mark(String[] splitStr) throws DukeException {
+        String response = "";
+
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to mark.");
         }
@@ -127,16 +136,20 @@ public class TaskList {
             throw new DukeException("There are not that many tasks!");
         }
         tasks.get(markNo - 1).markAsDone();
-        ui.printMessage("Nice! I've marked this task as done:\n       " + tasks.get(markNo - 1));
+        response = "Nice! I've marked this task as done:\n" + tasks.get(markNo - 1);
+        return response;
     }
 
     /**
      * Marks a task as undone.
      *
      * @param splitStr the string input
+     * @return the String representation of the response
      * @throws DukeException if the input does not specify a valid number after unmark
      */
-    public void unmark(String[] splitStr) throws DukeException {
+    public String unmark(String[] splitStr) throws DukeException {
+        String response = "";
+
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to unmark.");
         }
@@ -153,53 +166,58 @@ public class TaskList {
             throw new DukeException("There are not that many tasks!");
         }
         tasks.get(unmarkNo - 1).markAsUnDone();
-        ui.printMessage("Nice! I've marked this task as not done yet:\n       " + tasks.get(unmarkNo - 1));
+        response = "Nice! I've marked this task as not done yet:\n" + tasks.get(unmarkNo - 1);
+        return response;
     }
 
     /**
      * Find a task by searching for a keyword.
      *
      * @param splitStr the string input
+     * @return the String representation of the response
      * @throws DukeException if the input does not specify a keyword
      */
-    public void findTasks(String[] splitStr) throws DukeException {
+    public String findTasks(String[] splitStr) throws DukeException {
+        StringBuilder response = new StringBuilder();
         int i = 1;
-        String line = "    ____________________________________________________________";
         if (splitStr.length < 2) {
             throw new DukeException("Please specify keyword to search.");
         }
         String keyword = splitStr[1].trim();
-        System.out.println(line);
-        System.out.println("     Here are the matching tasks in your list:");
+        response.append("Here are the matching tasks in your list:");
         for (Task t : tasks) {
             String[] words = t.splitDescriptionToWords();
             for (String word : words) {
                 if (keyword.equals(word)) {
-                    System.out.println("     " + i + "." + t);
+                    response.append("\n").append(i).append(".").append(t);
                     i++;
                     break;
                 }
             }
         }
         if (i == 1) {
-            System.out.println("     No results found!");
+            return "No results found.";
         }
-        System.out.println(line);
+        return response.toString();
     }
 
     /**
      * Prints the entire TaskList.
+     *
+     * @return the String representation of the response
      */
-    public void printTaskList() {
+    public String printTaskList() {
+        StringBuilder response = new StringBuilder();
         int i = 1;
-        String line = "    ____________________________________________________________";
-        System.out.println(line);
-        System.out.println("     Here are the tasks in your list:");
+        response.append("Here are the tasks in your list:");
         for (Task t : tasks) {
-            System.out.println("     " + i + "." + t);
+            response.append("\n").append(i).append(".").append(t);
             i++;
         }
-        System.out.println(line);
+        if (i == 1) {
+            return "There are currently no tasks!";
+        }
+        return response.toString();
     }
 
     /**
