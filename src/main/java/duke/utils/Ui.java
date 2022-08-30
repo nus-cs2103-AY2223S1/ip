@@ -1,7 +1,10 @@
 package duke.utils;
 
+/**
+ * The UI class abstracts out how the messages are delivered to the user.
+ */
 public class Ui {
-    public static final String logo = " ____        _        \n"
+    public static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -14,6 +17,10 @@ public class Ui {
         System.out.println();
     }
 
+    /**
+     * Wraps the message within two lines.
+     * @param message the message to be shown to the user.
+     */
     public static void wrapWithLines(String message) {
         makeLine();
         System.out.println(message);

@@ -9,7 +9,7 @@ import duke.utils.DateTime;
  * Describes the deadline class.
  */
 public class Deadline extends Task {
-    private static final DateTimeFormatter formatter = DateTime.formatter;
+    private static final DateTimeFormatter formatter = DateTime.FORMATTER;
     private final LocalDateTime time;
 
     /**

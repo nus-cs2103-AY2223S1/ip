@@ -1,6 +1,6 @@
 package duke;
 
-import static duke.utils.Ui.logo;
+import static duke.utils.Ui.LOGO;
 import static duke.utils.Ui.wrapWithLines;
 
 import java.io.File;
@@ -19,7 +19,7 @@ import duke.tasks.TaskList;
 public class Duke {
 
     private void initialise() {
-        wrapWithLines("Hello from\n" + logo);
+        wrapWithLines("Hello from\n" + LOGO);
 
         File storageDirectory = new File("./data");
         if (!storageDirectory.exists()) {

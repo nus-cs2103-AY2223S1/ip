@@ -28,7 +28,7 @@ public class CommandEventHandler extends CommandHandler {
             throw new DukeException("Correct usage: event dinner /at 24/04/2019 1600");
         }
         try {
-            LocalDateTime.parse(this.additionalValue, DateTime.formatter);
+            LocalDateTime.parse(this.additionalValue, DateTime.FORMATTER);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please input a valid date!");
         }

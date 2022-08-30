@@ -1,11 +1,11 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.exceptions.DukeException;
 
 /**
  * Parses a command using regex and returns the corresponding command, value, flag and additionalValues
@@ -25,6 +25,12 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Parses the command input using the regex and splits the command into
+     * command, value, flag and additionalValue.
+     * @param command the user input.
+     * @return a List containing the values of the parsed command.
+     */
     public List<String> parseCommand(String command) {
         Matcher matcher = Parser.commandParser.matcher(command);
         matcher.find();

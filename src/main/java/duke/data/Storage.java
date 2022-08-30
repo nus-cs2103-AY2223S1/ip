@@ -1,9 +1,5 @@
 package duke.data;
 
-import duke.exceptions.DukeException;
-import duke.tasks.Task;
-import duke.tasks.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,10 +7,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exceptions.DukeException;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+
+/**
+ * The Storage class handles the storing of tasks so that we can save our tasks.
+ * Then, they can be loaded in the next session.
+ */
 public class Storage {
     private final String filePath;
     private File db;
 
+    /**
+     * Constructor of the Storage.
+     * @param filePath the file path of where the txt file is stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         // creates a file if file did not exist
@@ -43,6 +51,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads taskList from duke.txt
+     * @return the loaded taskList.
+     */
     public TaskList load() {
         TaskList taskList = new TaskList(this);
         try {

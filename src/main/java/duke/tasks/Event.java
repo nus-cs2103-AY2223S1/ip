@@ -9,7 +9,7 @@ import duke.utils.DateTime;
  * Describes the event class.
  */
 public class Event extends Task {
-    private static final DateTimeFormatter formatter = DateTime.formatter;
+    private static final DateTimeFormatter formatter = DateTime.FORMATTER;
     private final LocalDateTime time;
 
     /**

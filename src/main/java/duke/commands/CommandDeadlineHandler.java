@@ -26,7 +26,7 @@ public class CommandDeadlineHandler extends CommandHandler {
             throw new DukeException("Correct usage: deadline return book /by 24/04/2019 1600");
         }
         try {
-            DateTime.formatter.parse(this.additionalValue);
+            DateTime.FORMATTER.parse(this.additionalValue);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please input a valid date!");
         }
