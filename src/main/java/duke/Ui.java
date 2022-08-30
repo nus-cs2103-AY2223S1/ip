@@ -2,8 +2,6 @@ package duke;
 
 import duke.task.Task;
 
-import java.util.Scanner;
-
 /**
  * Class interacting with user input and printing output.
  *
@@ -91,13 +89,13 @@ public class Ui {
     /**
      * Prints a specified error message.
      *
-     * @param message The error message
+     * @param exception The exception.
      */
-    public String printErrorMessage(String message) {
-        return message;
+    public String printErrorMessage(Exception exception) {
+        return exception.getMessage();
     }
 
     private String printTask(Task task) {
-        return task.toString();
+        return task.toString() + '\n';
     }
 }

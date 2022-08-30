@@ -11,7 +11,7 @@ public class WelcomeCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
-     * @return String representing the welcome message.
+     * @return A string from the result of execution.
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) {

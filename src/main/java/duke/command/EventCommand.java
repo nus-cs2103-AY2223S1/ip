@@ -35,11 +35,12 @@ public class EventCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) {
         String output = "";
-        output += ui.printAddTask(taskList.addTask(new Event(description, at))) + '\n';
+        output += ui.printAddTask(taskList.addTask(new Event(description, at)));
         output += ui.printSizeOfList(taskList.size());
         storage.save(taskList.getTasks());
         return output;
