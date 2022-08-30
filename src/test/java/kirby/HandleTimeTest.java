@@ -1,17 +1,19 @@
 package kirby;
 
-import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 import static kirby.HandleTime.fromStringToDate;
 import static kirby.HandleTime.isValidDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
 public class HandleTimeTest {
     @Test
     public void isValidDate_false() {
-      String nonDate = ("2022-21-12");
-      boolean output = isValidDate(nonDate);
-      assertEquals(false, output);
+        String nonDate = ("2022-21-12");
+        boolean output = isValidDate(nonDate);
+        assertEquals(false, output);
     }
 
     @Test

@@ -1,11 +1,12 @@
 package kirby.commands;
 
-import kirby.tasks.Deadline;
+import java.io.IOException;
+
+import kirby.Storage;
 import kirby.TaskList;
 import kirby.Ui;
-import kirby.Storage;
 import kirby.exceptions.KirbyMissingArgumentException;
-import java.io.IOException;
+import kirby.tasks.Deadline;
 
 /**
  * DeadlineCommand class handles the command to create a Deadline task.

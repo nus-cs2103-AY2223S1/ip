@@ -10,7 +10,7 @@ public class Ui {
      * Prints the welcome message.
      */
     public void showWelcome() {
-        System.out.println("Hai I'm kirby.Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
+        System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
     }
 
     /**

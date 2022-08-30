@@ -1,9 +1,11 @@
 package kirby;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import kirby.commands.Command;
 import kirby.exceptions.KirbyInvalidCommandException;
 import kirby.exceptions.KirbyMissingArgumentException;
-import java.io.*;
 
 /**
  * Kirby class implements the main method.
@@ -11,7 +13,7 @@ import java.io.*;
 public class Kirby {
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Constructor for the class Kirby.

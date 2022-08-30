@@ -1,9 +1,8 @@
 package kirby;
 
-import kirby.tasks.Task;
-
-import java.io.IOException;
 import java.util.ArrayList;
+
+import kirby.tasks.Task;
 
 /**
  * TaskList class handles the list of tasks - adding and deleting tasks from it and other operations.

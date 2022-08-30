@@ -1,10 +1,12 @@
 package kirby.commands;
 
+import java.io.IOException;
+
+import kirby.Storage;
 import kirby.TaskList;
 import kirby.Ui;
-import kirby.Storage;
 import kirby.exceptions.KirbyMissingArgumentException;
-import java.io.IOException;
+
 
 /**
  * UnmarkCommand class handles the command to unmark a task.
@@ -39,8 +41,7 @@ public class UnmarkCommand extends Command {
 
         try {
             storage.writeTask(tasks.getList());
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

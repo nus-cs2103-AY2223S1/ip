@@ -11,6 +11,6 @@ public class KirbyMissingArgumentException extends KirbyException {
      * @param message Type of task that is producing the error message.
      */
     public KirbyMissingArgumentException(String message) {
-        super("Aaaaaaah, the description of a " + message + " is invalid! Try again!" );
+        super("Aaaaaaah, the description of a " + message + " is invalid! Try again!");
     }
 }

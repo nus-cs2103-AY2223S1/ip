@@ -1,16 +1,26 @@
 package kirby;
 
-import kirby.tasks.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import kirby.tasks.Deadline;
+import kirby.tasks.Event;
+import kirby.tasks.Task;
+import kirby.tasks.Todo;
 
 /**
  * Storage class handles writing into and reading from the text file created to store previous user's entries.
  */
 public class Storage {
     private File file;
-    private String filePath;
-    private File dir;
+    private final String filePath;
+    private final File dir;
 
     /**
      * Constructor of the Storage class.
@@ -55,9 +65,9 @@ public class Storage {
      *
      * @throws IOException If there is an error with writing into the file.
      */
-    public void writeTask(ArrayList<Task> Tasks) throws IOException {
+    public void writeTask(ArrayList<Task> tasks) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-        for (Task task : Tasks) {
+        for (Task task : tasks) {
             writer.write(task.toFileOutput() + "\n");
         }
         writer.close();
@@ -84,6 +94,8 @@ public class Storage {
                 case "kirby.Event":
                     result.add(new Event(parts[1], parts[2]));
                     break;
+                default:
+                    throw new IOException();
                 }
             }
             return result;

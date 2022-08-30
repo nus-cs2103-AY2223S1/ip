@@ -1,12 +1,13 @@
 package kirby.commands;
 
-import kirby.tasks.Task;
 import java.util.ArrayList;
-import kirby.TaskList;
+
 import kirby.HandleTime;
-import kirby.Ui;
 import kirby.Storage;
+import kirby.TaskList;
+import kirby.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.tasks.Task;
 
 /**
  * GetCommand class handles the command to get all the tasks on a specified date.
