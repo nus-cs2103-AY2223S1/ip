@@ -7,8 +7,8 @@ import ui.Ui;
 
 public class Duke {
     private final Storage storage;
-    private TaskList tasks;
     private final Ui ui;
+    private TaskList tasks;
 
 
     public Duke(String filePath) {
@@ -20,6 +20,10 @@ public class Duke {
             ui.showLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke("duke.dat").run();
     }
 
     public void run() {
@@ -35,10 +39,5 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        new Duke("duke.dat").run();
     }
 }

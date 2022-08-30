@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner sc;
 
+    public Ui() {
+        sc = new Scanner(System.in);
+    }
+
     private void printSeparator() {
         System.out.println("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
@@ -23,10 +27,6 @@ public class Ui {
             System.out.println("     " + msg);
         }
         printSeparator();
-    }
-
-    public Ui() {
-        sc = new Scanner(System.in);
     }
 
     public String readCommand() throws DukeException {

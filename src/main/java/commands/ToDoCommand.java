@@ -11,8 +11,9 @@ public class ToDoCommand extends Command {
     private final String description;
 
     public ToDoCommand(String description) throws DukeException {
-        if (description.length() == 0)
+        if (description.length() == 0) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         this.description = description;
     }
 

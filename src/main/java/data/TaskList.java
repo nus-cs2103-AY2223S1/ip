@@ -1,7 +1,5 @@
 package data;
 
-import data.Task;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
