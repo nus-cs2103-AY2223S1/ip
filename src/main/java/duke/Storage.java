@@ -15,10 +15,10 @@ import java.nio.file.Path;
  *  @version v1
  */
 public class Storage {
-    private TaskList currList;
-    private static final String home = System.getProperty("user.home");
+    protected static TaskList currList;
+    private static final String HOME = System.getProperty("user.home");
     private static final String FILE_PATH = "./data/duke.txt";
-    private static final File file = new File(FILE_PATH);
+    private static final File FILE = new File(FILE_PATH);
     private Path path;
     String dir = System.getProperty("user.dir");
 
@@ -64,7 +64,7 @@ public class Storage {
      */
     public void writeToFile(){
         try {
-            FileWriter myWriter = new FileWriter(file);
+            FileWriter myWriter = new FileWriter(FILE);
             for (int i = 0; i < currList.getLength(); i++) {
                 myWriter.write(currList.getTaskAt(i).toString());
                 myWriter.write("\n");
@@ -81,8 +81,8 @@ public class Storage {
      */
     public void createFile() {
         try {
-            file.getParentFile().mkdirs();
-            file.createNewFile();
+            FILE.getParentFile().mkdirs();
+            FILE.createNewFile();
         } catch (IOException e) {
             System.out.println("Cannot create file!");
         }
@@ -99,9 +99,9 @@ public class Storage {
     }
 
     public void readAndProcessFile() {
-        this.handleFile(file);
+        this.handleFile(FILE);
         try {
-            Scanner myReader = new Scanner(file);
+            Scanner myReader = new Scanner(FILE);
             this.loadFileInput(myReader);
         } catch (FileNotFoundException e) {
             Ui.handleFileNotFoundException();

@@ -30,6 +30,8 @@ public class Parser {
         acceptedKeywords.add("todo");
         acceptedKeywords.add("delete");
         acceptedKeywords.add("find");
+        acceptedKeywords.add("mark");
+        acceptedKeywords.add("unmark");
         String[] parts = input.split(" ", 2);
         String keyword = parts[0];
         if (input.equals("bye") || input.equals("list")) return;
@@ -46,79 +48,83 @@ public class Parser {
      * A method to parse the user input and execute the appropriate action accordingly.
      * @param input The user keyboard input after prompt from Duke.
      */
-    public void parseUserInput(String input) {
+    public String parseUserInput(String input) {
+        if (input.equals("bye")) {
+            return Ui.endingMessage();
+        }
         try {
             String[] parts = input.split(" ", 2);
             String keyword = parts[0];
             processInput(input);
+            String result = "";
             switch (keyword) {
             case "list":
-                System.out.println("Here are your tasks:");
+                result += "Here are your tasks:\n";
                 for (int i = 0; i < currList.getLength(); i++) {
-                    System.out.println(i + 1 + ". " + currList.getTaskAt(i).toString());
+                    result += i + 1 + ". " + currList.getTaskAt(i).toString() + "\n";
                 }
-                break;
+                return result;
             case "mark": //command is mark 2
                 Task currTask = currList.getTaskAt(Integer.parseInt(parts[1]) - 1); //the arraylist is 0 indexed, so task 1 is actually 0 index
                 currTask.setDone();
-                System.out.println("Let's go! I've marked this task as done:");
-                System.out.println(currTask);
-                break;
+                result += "Let's go! I've marked this task as done:\n";
+                result += currTask;
+                return result;
             case "unmark":
                 Task unmarkTask = currList.getTaskAt(Integer.parseInt(parts[1]) - 1); //the arraylist is 0 indexed, so task 1 is actually 0 index
                 unmarkTask.setUndone();
-                System.out.println("Oh man! I've marked this task as undone:");
-                System.out.println(unmarkTask);
-                break;
+                result += "Oh man! I've marked this task as undone:\n";
+                result += unmarkTask;
+                return result;
             case "deadline": //can abstract this whole case to be generalized
                 String[] temp = input.split(" /by ", 2);
                 String by = temp[1];
                 String deadlineDesc = temp[0].split("deadline ")[1];
                 Deadline deadlineTask = new Deadline(deadlineDesc, LocalDate.parse(by));
                 currList.addTask(deadlineTask);
-                deadlineTask.addTaskMessage();
-                Ui.taskNumberMessage(currList);
-                break;
+                result += deadlineTask.addTaskMessage();
+                result += Ui.taskNumberMessage(currList);
+                return result;
             case "event": //can abstract this whole case to be generalized
                 String[] temp1 = input.split(" /at ", 2);
                 String at = temp1[1];
                 String eventDesc = temp1[0].split("event ", 2)[1];
                 Event eventTask = new Event(eventDesc, LocalDate.parse(at));
                 currList.addTask(eventTask);
-                eventTask.addTaskMessage();
-                Ui.taskNumberMessage(currList);
-                break;
+                result += eventTask.addTaskMessage();
+                result += Ui.taskNumberMessage(currList);
+                return result;
             case "todo": //can abstract this whole case to be generalized
                 String todoDesc = input.split("todo ")[1];
                 Todo todoTask = new Todo(todoDesc);
                 currList.addTask(todoTask);
-                todoTask.addTaskMessage();
-                Ui.taskNumberMessage(currList);
-                break;
+                result += todoTask.addTaskMessage();
+                result += Ui.taskNumberMessage(currList);
+                return result;
             case "delete":
                 Task toBeDeleted = currList.getTaskAt(Integer.parseInt(parts[1]) - 1);
-                System.out.println("Alrighty, this task's gone: ");
-                System.out.println(toBeDeleted);
+                result += "Alrighty, this task's gone:\n";
+                result += toBeDeleted;
                 currList.removeTask(toBeDeleted);
-                break;
+                return result;
             case "find":
                 String searchWord = parts[1];
-                System.out.println("Here are the matching tasks:");
+                result += "Here are the matching tasks:\n";
                 TaskList matched = currList.matchingItems(searchWord);
                 for (int i = 0; i < matched.getLength(); i++) {
-                    System.out.println(i + 1 + ". " + matched.getTaskAt(i).toString());
+                    result += i + 1 + ". " + matched.getTaskAt(i).toString() + "\n";
                 }
-                break;
+                return result;
             default:
-                System.out.println(input);
+                return result;
             }
 
         } catch (EmptyDescriptionException e) {
-            System.out.println("Description cannot be empty, try again!");
+            return "Description cannot be empty, try again!";
         } catch (InvalidCommandException | IndexOutOfBoundsException e) {
-            System.out.println("Invalid input, try again!");
+            return "Invalid input, try again!";
         } catch (DateTimeParseException e) {
-            System.out.println("Cannot parse this date!");
+            return "Cannot parse this date!";
         }
     }
 }

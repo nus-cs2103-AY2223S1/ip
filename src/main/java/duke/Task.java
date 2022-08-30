@@ -6,9 +6,10 @@ public class Task {
     /**
      * A task message.
      */
-    public void addTaskMessage(){
-        System.out.println("Gotcha, I've added this task:");
-        System.out.println(this.toString());
+    public String addTaskMessage(){
+        String res = "Gotcha, I've added this task:\n";
+        res += this + "\n";
+        return res;
     }
 
     public Task(String description) {
