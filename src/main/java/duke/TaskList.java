@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Encapsulates a list of tasks for Duke.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private int tasksLength;
@@ -27,42 +30,61 @@ public class TaskList {
         return this.tasksLength;
     }
 
+    /**
+     * Removes all the tasks in the task list.
+     */
     public void clear() {
         this.tasks.clear();
         this.tasksLength = 0;
     }
 
+    /**
+     * Prints all the tasks in the task list.
+     */
     public void printAllTasks() {
         for (int i = 1; i <= tasksLength; i++) {
             System.out.println(i + "." + tasks.get(i - 1).toString());
         }
     }
 
-    public Task addTodo(String s) throws EmptyTodoException {
-        if (s.length() <= 5) {
+    /**
+     * Adds a task of type Todo into the task list.
+     *
+     * @param line user input string
+     * @return the Todo task added
+     */
+    public Task addTodo(String line) throws EmptyTodoException {
+        if (line.length() <= 5) {
             throw new EmptyTodoException();
         }
-        String result = s.substring(5);
+
+        String result = line.substring(5);
         Todo t = new Todo(result);
         tasks.add(t);
         tasksLength++;
         return t;
     }
 
-    private static String parseDate(String s) {
+    private static String parseDate(String str) {
         try {
-            LocalDate date = LocalDate.parse(s);
+            LocalDate date = LocalDate.parse(str);
             return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         } catch (DateTimeParseException e) {
-            return s;
+            return str;
         }
     }
 
-    public Task addDeadline(String s) throws DeadlineFormatException {
-        if (s.length() <= 9) {
+    /**
+     * Adds a task of type Deadline into the task list.
+     *
+     * @param line user input string
+     * @return the Deadline task added
+     */
+    public Task addDeadline(String line) throws DeadlineFormatException {
+        if (line.length() <= 9) {
             throw new DeadlineFormatException();
         }
-        String[] stuff = s.substring(9).split(" /by ");
+        String[] stuff = line.substring(9).split(" /by ");
         if (stuff.length < 2) {
             throw new DeadlineFormatException();
         }
@@ -72,11 +94,17 @@ public class TaskList {
         return t;
     }
 
-    public Task addEvent(String s) throws EventFormatException {
-        if (s.length() <= 6) {
+    /**
+     * Adds a task of type Event into the task list.
+     *
+     * @param line user input string
+     * @return the Event task added
+     */
+    public Task addEvent(String line) throws EventFormatException {
+        if (line.length() <= 6) {
             throw new EventFormatException();
         }
-        String[] stuff = s.substring(6).split(" /at ");
+        String[] stuff = line.substring(6).split(" /at ");
         if (stuff.length < 2) {
             throw new EventFormatException();
         }
@@ -86,9 +114,15 @@ public class TaskList {
         return t;
     }
 
-    public Task markTask(String s) throws TaskNumberException {
+    /**
+     * Marks a task as done.
+     *
+     * @param line user input string
+     * @return the task marked
+     */
+    public Task markTask(String line) throws TaskNumberException {
         try {
-            int n = Integer.parseInt(s.substring(5));
+            int n = Integer.parseInt(line.substring(5));
             if (n > tasksLength) {
                 throw new TaskNumberException();
             } else {
@@ -100,9 +134,15 @@ public class TaskList {
         }
     }
 
-    public Task unmarkTask(String s) throws TaskNumberException {
+    /**
+     * Unmarks a task (sets it to not done yet).
+     *
+     * @param line user input string
+     * @return the task unmarked
+     */
+    public Task unmarkTask(String line) throws TaskNumberException {
         try {
-            int n = Integer.parseInt(s.substring(7));
+            int n = Integer.parseInt(line.substring(7));
             if (n > tasksLength) {
                 throw new TaskNumberException();
             } else {
@@ -114,9 +154,15 @@ public class TaskList {
         }
     }
 
-    public Task deleteTask(String s) throws TaskNumberException {
+    /**
+     * Deletes a task from the task list.
+     *
+     * @param line user input string
+     * @return the task deleted
+     */
+    public Task deleteTask(String line) throws TaskNumberException {
         try {
-            int n = Integer.parseInt(s.substring(7));
+            int n = Integer.parseInt(line.substring(7));
             if (n > tasksLength) {
                 throw new TaskNumberException();
             } else {

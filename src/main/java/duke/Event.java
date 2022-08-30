@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Encapsulates a task that happens at a specific time.
+ */
 public class Event extends Task {
 
     protected String time;
