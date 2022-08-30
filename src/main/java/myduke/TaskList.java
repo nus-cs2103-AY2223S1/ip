@@ -1,12 +1,11 @@
 package myduke;
 
-import exception.MarkException;
-import exception.UnMarkException;
-import exception.OutOfBoundIndexException;
-
-import task.Task;
-
 import java.util.ArrayList;
+
+import exception.MarkException;
+import exception.OutOfBoundIndexException;
+import exception.UnMarkException;
+import task.Task;
 
 /**
  * This class contains a list of tasks and manages it.

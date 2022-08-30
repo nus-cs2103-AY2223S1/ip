@@ -1,5 +1,8 @@
 package myduke;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import exception.MarkException;
 import exception.MissingDateException;
 import exception.MissingDescriptionException;
@@ -8,10 +11,6 @@ import exception.MissingTaskIndexException;
 import exception.OutOfBoundIndexException;
 import exception.UnMarkException;
 import exception.WrongCommandException;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -22,8 +21,8 @@ import task.ToDo;
  */
 public class Ui {
     private static final String LINE = "------------------------------------------";
-    private final TaskList TASKLIST;
-    private final Storage STORAGE;
+    private final TaskList taskList;
+    private final Storage storage;
 
     /**
      * Constructor for ui.
@@ -32,8 +31,8 @@ public class Ui {
      * @param storage   Storage used to save to file.
      */
     public Ui(TaskList taskLists, Storage storage) {
-        this.TASKLIST = taskLists;
-        this.STORAGE = storage;
+        this.taskList = taskLists;
+        this.storage = storage;
     }
 
     private static String wrapper(String content) {
@@ -66,7 +65,7 @@ public class Ui {
      * @throws WrongCommandException       thrown when user input is not a valid command.
      * @throws UnMarkException             thrown when trying to unmark an already unmarked task.
      */
-    public void Response(String input) throws DateTimeParseException, MarkException,
+    public void response(String input) throws DateTimeParseException, MarkException,
             MissingTaskIndexException, MissingDescriptionException, MissingDateException,
             MissingKeyWordException, OutOfBoundIndexException, WrongCommandException, UnMarkException {
         String done = "Got it. I've added this task:\n";
@@ -78,7 +77,7 @@ public class Ui {
             System.out.println(wrapper("Bye. Hope to see you again soon!"));
         } else if (input.equals("list")) {
             //if command is list
-            System.out.println(wrapper(TASKLIST.toString()));
+            System.out.println(wrapper(taskList.toString()));
         } else if (input.startsWith("mark")) {
             //if command is mark
             if (input.length() == 4) {
@@ -89,11 +88,11 @@ public class Ui {
             int index = Integer.valueOf(indexString) - 1;
 
             //marking task
-            TASKLIST.markTask(index);
-            Task current = TASKLIST.getTask(index);
+            taskList.markTask(index);
+            Task current = taskList.getTask(index);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
             String content = "Nice! I've marked this task as done:\n" + current.toString();
             System.out.println(wrapper(content));
@@ -107,11 +106,11 @@ public class Ui {
             int index = Integer.valueOf(indexString) - 1;
 
             //unmarking task
-            TASKLIST.unMarkTask(index);
-            Task current = TASKLIST.getTask(index);
+            taskList.unMarkTask(index);
+            Task current = taskList.getTask(index);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
             String content = "OK, I've marked this task as not done yet:\n" + current.toString();
             System.out.println(wrapper(content));
@@ -125,13 +124,13 @@ public class Ui {
             int index = Integer.valueOf(indexString) - 1;
 
             //deleting task
-            Task deletedTask = TASKLIST.deleteTask(index);
+            Task deletedTask = taskList.deleteTask(index);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
             String content = "Noted. I've removed this task:\n" + deletedTask.toString()
-                    + "\nNow you have " + TASKLIST.getNumOfTask() + " tasks in the list.";
+                    + "\nNow you have " + taskList.getNumOfTask() + " tasks in the list.";
             System.out.println(wrapper(content));
         } else if (input.startsWith("todo")) {
             //if command is to-do
@@ -141,12 +140,12 @@ public class Ui {
             Task todo = new ToDo(input.substring(5), false);
 
             //saving the To-Do
-            TASKLIST.saveTask(todo);
+            taskList.saveTask(todo);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
-            String message = done + "  " + todo + TASKLIST.numOfTaskToString();
+            String message = done + "  " + todo + taskList.numOfTaskToString();
             System.out.println(wrapper(message));
         } else if (input.startsWith("deadline")) {
             //if command is deadline
@@ -163,12 +162,12 @@ public class Ui {
             Task deadline = new Deadline(input.substring(9, divider), false, date);
 
             //saving the deadline
-            TASKLIST.saveTask(deadline);
+            taskList.saveTask(deadline);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
-            String message = done + "  " + deadline + TASKLIST.numOfTaskToString();
+            String message = done + "  " + deadline + taskList.numOfTaskToString();
             System.out.println(wrapper(message));
         } else if (input.startsWith("event")) {
             //if command is event
@@ -182,12 +181,12 @@ public class Ui {
             Task event = new Event(input.substring(6, divider), false, input.substring(divider + 4));
 
             //saving the event
-            TASKLIST.saveTask(event);
+            taskList.saveTask(event);
 
             //saving changes to file
-            STORAGE.saveToFile(TASKLIST);
+            storage.saveToFile(taskList);
 
-            String message = done + "  " + event + TASKLIST.numOfTaskToString();
+            String message = done + "  " + event + taskList.numOfTaskToString();
             System.out.println(wrapper(message));
         } else if (input.startsWith("find")) {
             //if command is find
@@ -198,7 +197,7 @@ public class Ui {
             String keyword = input.substring(5);
 
             //filter taskList with keyword
-            TaskList tempTaskList = TASKLIST.findTask(keyword);
+            TaskList tempTaskList = taskList.findTask(keyword);
 
             System.out.println(wrapper(tempTaskList.toString()));
         } else {

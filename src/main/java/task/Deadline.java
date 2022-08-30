@@ -1,24 +1,24 @@
 package task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class encapsulates the idea of a deadline.
  */
 public class Deadline extends Task {
-    private final LocalDateTime DATE;
+    private final LocalDateTime date;
 
     /**
      * Creates a deadline.
      *
      * @param description what is the task.
      * @param status      whether it has been completed.
-     * @param DATE        when is the task due.
+     * @param date        when is the task due.
      */
-    public Deadline(String description, boolean status, LocalDateTime DATE) {
+    public Deadline(String description, boolean status, LocalDateTime date) {
         super(description, status);
-        this.DATE = DATE;
+        this.date = date;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Deadline extends Task {
     @Override
     public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
-        return "D | " + status + " | " + super.toString() + " | " + DATE.toString() + "\n";
+        return "D | " + status + " | " + super.toString() + " | " + date.toString() + "\n";
     }
 
     /**
@@ -39,7 +39,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.getStatusIcon() + " " + super.toString() +
-                " (by: " + DATE.format(DateTimeFormatter.ofPattern("HH:mm MMM d yyyy")) + ")";
+        return "[D]" + super.getStatusIcon() + " " + super.toString()
+                + " (by: " + date.format(DateTimeFormatter.ofPattern("HH:mm MMM d yyyy")) + ")";
     }
 }

@@ -4,18 +4,18 @@ package task;
  * This class encapsulates the idea of a event.
  */
 public class Event extends Task {
-    private final String DURATION;
+    private final String duration;
 
     /**
      * Creates an event.
      *
      * @param description what the event is.
      * @param status      whether it has been done.
-     * @param DURATION    when the event will be held.
+     * @param duration    when the event will be held.
      */
-    public Event(String description, boolean status, String DURATION) {
+    public Event(String description, boolean status, String duration) {
         super(description, status);
-        this.DURATION = DURATION;
+        this.duration = duration;
     }
 
     /**
@@ -26,7 +26,7 @@ public class Event extends Task {
     @Override
     public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
-        return "E | " + status + " | " + super.toString() + " | " + DURATION + "\n";
+        return "E | " + status + " | " + super.toString() + " | " + duration + "\n";
     }
 
     /**
@@ -36,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.getStatusIcon() + " " + super.toString() + " (at: " + this.DURATION + ")";
+        return "[E]" + super.getStatusIcon() + " " + super.toString() + " (at: " + this.duration + ")";
     }
 }

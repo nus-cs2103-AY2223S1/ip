@@ -4,17 +4,17 @@ package task;
  * This class encapsulates the idea of a generic task.
  */
 public class Task {
-    private final String DESCRIPTION;
+    private final String description;
     private boolean isDone;
 
     /**
      * Constructor for a task.
      *
-     * @param DESCRIPTION what the task is.
+     * @param description what the task is.
      * @param status      whether the task is completed.
      */
-    public Task(String DESCRIPTION, boolean status) {
-        this.DESCRIPTION = DESCRIPTION;
+    public Task(String description, boolean status) {
+        this.description = description;
         this.isDone = status;
     }
 
@@ -33,7 +33,7 @@ public class Task {
      * @return a string.
      */
     public String getDescription() {
-        return DESCRIPTION;
+        return description;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Task {
      * @return task description.
      */
     public String toString() {
-        return DESCRIPTION;
+        return description;
     }
 
     /**
