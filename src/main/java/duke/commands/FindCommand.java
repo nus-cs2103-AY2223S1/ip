@@ -28,6 +28,7 @@ public class FindCommand extends Command {
      * @param taskList List of tasks.
      * @param ui Shows the list of matching tasks.
      * @param storage Saves the modified list of tasks.
+     * @return A message indicating the matching tasks.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {

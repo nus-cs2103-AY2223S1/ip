@@ -9,18 +9,20 @@ import duke.data.TaskList;
 import duke.tasks.Task;
 
 /**
- * Displays messages to the user to provide information of the tasks or of errors encountered.
+ * For displaying of messages to the user to provide information of the tasks or of errors encountered.
  */
 public class Ui {
     /**
-     * Displays the greeting message to the user.
+     * Returns the greeting message to be shown to the user.
+     * @return The greeting message.
      */
     public String showGreeting() {
         return Messages.MESSAGE_GREETING;
     }
 
     /**
-     * Displays the goodbye message to the user.
+     * Returns the goodbye message to be shown to the user.
+     * @return The goodbye message.
      */
     public String showGoodbye() {
         new Timer().schedule(new TimerTask() {
@@ -32,42 +34,54 @@ public class Ui {
     }
 
     /**
-     * Displays the task added to the user.
+     * Returns the message that the Task has been added to be shown to the user.
+     * @param task The Task that has been added.
+     * @return The message that the Task has been added.
      */
     public String showTaskAdded(Task task) {
         return Messages.MESSAGE_TASK_ADDED + task;
     }
 
     /**
-     * Displays the task removed to the user.
+     * Returns the message that the Task has been removed to be shown to the user.
+     * @param task The Task that has been removed.
+     * @return The message that the Task has been removed.
      */
     public String showTaskRemoved(Task task) {
         return Messages.MESSAGE_TASK_REMOVED + task;
     }
 
     /**
-     * Displays the task marked as done to the user.
+     * Returns the message that the Task has been marked as done to be shown to the user.
+     * @param task The Task that has been marked as done.
+     * @return The message that the Task has been marked as done.
      */
     public String showTaskDone(Task task) {
         return Messages.MESSAGE_TASK_DONE + task;
     }
 
     /**
-     * Displays the task marked as not done to the user.
+     * Returns the message that the Task has been marked as done to be shown to the user.
+     * @param task The Task that has been marked as done.
+     * @return The message that the Task has been marked as done.
      */
     public String showTaskNotDone(Task task) {
         return Messages.MESSAGE_TASK_NOT_DONE + task;
     }
 
     /**
-     * Displays the number of tasks to the user.
+     * Returns a message indicating the number of tasks to be shown to the user.
+     * @param count The number of tasks.
+     * @return A message indicating the number of tasks.
      */
     public String showNumberOfTasks(int count) {
         return String.format(Messages.MESSAGE_NUMBER_OF_TASKS, count);
     }
 
     /**
-     * Displays all tasks on the list to the user.
+     * Returns a message indicating all tasks on the list to be shown to the user.
+     * @param taskList The list of tasks.
+     * @return A message indicating all the tasks on the list.
      */
     public String showAllTasks(TaskList taskList) {
         int size = taskList.numTasks();
@@ -85,8 +99,9 @@ public class Ui {
     }
 
     /**
-     * Displays all matching tasks on the list to the user.
+     * Returns a message indicating all matching tasks on the list to be shown to the user.
      * @param matchingTasks The list of matching tasks.
+     * @return A message indicating all matching tasks on the list.
      */
     public String showMatchingTasks(ArrayList<Task> matchingTasks) {
         int size = matchingTasks.size();

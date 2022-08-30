@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
      * @param taskList List of tasks.
      * @param ui Shows the Task removed and the total number of tasks on the list.
      * @param storage Saves the modified list of tasks.
+     * @return The message indicating that the Task has been removed and the number of tasks on the list.
      * @throws DukeException If an invalid task number is provided by the user or if there
      *         is an error saving the modified list of tasks.
      */
