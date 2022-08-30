@@ -6,27 +6,27 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * Represents find command
+ * Represents find command.
  */
 public class FindCommand extends Command {
 
     private String keyword;
 
     /**
-     * Constructs find command
+     * Constructs find command.
      *
-     * @param keyword Keyword to find tasks
+     * @param keyword Keyword to find tasks.
      */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
     /**
-     * Finds tasks matching keyword
+     * Finds tasks matching keyword.
      *
-     * @param tasks Task list
-     * @param ui User's Interface
-     * @param storage Storage
+     * @param tasks Task list.
+     * @param ui User's Interface.
+     * @param storage Storage.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

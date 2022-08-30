@@ -10,23 +10,23 @@ import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * Represents a task list
+ * Represents a task list.
  */
 public class TaskList {
 
     private ArrayList<Task> tasks = new ArrayList<>();
 
     /**
-     * Constructs an empty task list
+     * Constructs an empty task list.
      */
     TaskList() {
 
     }
 
     /**
-     * Constructs a task list
+     * Constructs a task list.
      *
-     * @param data Data containing tasks in the list
+     * @param data Data containing tasks in the list.
      */
     TaskList(String data) {
         if (!data.equals("")) {
@@ -71,20 +71,20 @@ public class TaskList {
     }
 
     /**
-     * Adds task to task list
+     * Adds task to task list.
      *
-     * @param task Target task
+     * @param task Target task.
      */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
     /**
-     * Deletes task from task list
+     * Deletes task from task list.
      *
-     * @param ind Index of targetd task
-     * @return deleted task
-     * @throws DukeException if ind >= tasks.size() or ind < 0
+     * @param ind Index of targeted task.
+     * @return deleted task.
+     * @throws DukeException if ind >= tasks.size() or ind < 0.
      */
     public Task delete(int ind) throws DukeException {
         try {
@@ -97,11 +97,11 @@ public class TaskList {
     }
 
     /**
-     * Gets target task from task list
+     * Gets target task from task list.
      *
-     * @param i Index of target task
-     * @return target task
-     * @throws DukeException if i >= tasks.size() or i < 0
+     * @param i Index of target task.
+     * @return target task.
+     * @throws DukeException if i >= tasks.size() or i < 0.
      */
     public Task get(int i) throws DukeException {
         try {
@@ -112,10 +112,10 @@ public class TaskList {
     }
 
     /**
-     * Returns a task list filtered by a keyword
+     * Returns a task list filtered by a keyword.
      *
-     * @param keyword Keyword phrase
-     * @return Filtered task list
+     * @param keyword Keyword phrase.
+     * @return Filtered task list.
      */
     public TaskList find(String keyword) {
         String[] keywords = keyword.split(" ");
@@ -137,18 +137,18 @@ public class TaskList {
     }
 
     /**
-     * Returns size of task list
+     * Returns size of task list.
      *
-     * @return size
+     * @return size.
      */
     protected int size() {
         return this.tasks.size();
     }
 
     /**
-     * Changes task list to a string format
+     * Changes task list to a string format.
      *
-     * @return data
+     * @return data.
      */
     public String toString() {
         StringBuilder data = new StringBuilder();

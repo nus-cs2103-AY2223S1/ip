@@ -5,11 +5,11 @@ import java.util.Scanner;
 import duke.task.Task;
 
 /**
- * Represents the user interface
+ * Represents the user interface.
  */
 public class Ui {
 
-    private static final String GREETINGS = "Hello! I'm Duke\n" + "What can I do for you?";
+    private static final String GREETINGS_MESSAGE = "Hello! I'm Duke\n" + "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
     private static final String LINE = "______________________________________________________________________________";
     private static final String LIST_MESSAGE = "Here are the tasks in your list:";
@@ -22,42 +22,42 @@ public class Ui {
     private Scanner sc = new Scanner(System.in);
 
     /**
-     * Prints greeting message
+     * Prints greeting message.
      */
     protected void greet() {
         System.out.println(LINE);
-        System.out.println(GREETINGS);
+        System.out.println(GREETINGS_MESSAGE);
         System.out.println(LINE);
     }
 
     /**
-     * Prints exit message
+     * Prints exit message.
      */
     public void exit() {
         System.out.println(EXIT_MESSAGE);
     }
 
     /**
-     * Prints line break
+     * Prints line break.
      */
     protected void showLine() {
         System.out.println(LINE);
     }
 
     /**
-     * Prints error message
+     * Prints error message.
      *
-     * @param message Error message
+     * @param message Error message.
      */
     protected void showError(String message) {
         System.err.println(message);
     }
 
     /**
-     * Prints add task message
+     * Prints add task message.
      *
-     * @param task Target task
-     * @param tasks Task list
+     * @param task Target task.
+     * @param tasks Task list.
      */
     public void addTaskMessage(Task task, TaskList tasks) {
         System.out.println(ADD_MESSAGE);
@@ -66,9 +66,9 @@ public class Ui {
     }
 
     /**
-     * Displays all task in task list
+     * Displays all task in task list.
      *
-     * @param tasks Task list
+     * @param tasks Task list.
      */
     public void displayTasks(TaskList tasks) throws DukeException {
         System.out.println(LIST_MESSAGE);
@@ -78,10 +78,10 @@ public class Ui {
     }
 
     /**
-     * Prints delete task message
+     * Prints delete task message.
      *
-     * @param task Task to be deleted
-     * @param tasks Task list
+     * @param task Task to be deleted.
+     * @param tasks Task list.
      */
     public void deleteTaskMessage(Task task, TaskList tasks) {
         System.out.println(DELETE_MESSAGE);
@@ -90,9 +90,9 @@ public class Ui {
     }
 
     /**
-     * Prints mark done message
+     * Prints mark done message.
      *
-     * @param task Target task
+     * @param task Target task.
      */
     public void markDone(Task task) {
         System.out.println(DONE_MESSAGE);
@@ -100,9 +100,9 @@ public class Ui {
     }
 
     /**
-     * Prints mark undone message
+     * Prints mark undone message.
      *
-     * @param task Target task
+     * @param task Target task.
      */
     public void markUndone(Task task) {
         System.out.println(UNDONE_MESSAGE);
@@ -110,9 +110,9 @@ public class Ui {
     }
 
     /**
-     * Prints find task message
+     * Prints find task message.
      *
-     * @param tasks Task list
+     * @param tasks Task list.
      */
     public void findTask(TaskList tasks) throws DukeException {
         System.out.println(FIND_MESSAGE);
@@ -122,9 +122,9 @@ public class Ui {
     }
 
     /**
-     * Reads user's input
+     * Reads user's input.
      *
-     * @return user's input
+     * @return user's input.
      */
     protected String readCommand() {
         return sc.nextLine();

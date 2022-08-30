@@ -3,19 +3,19 @@ package duke;
 import duke.command.Command;
 
 /**
- * Represents chatbot duke
+ * Represents chatbot duke.
  */
 public class Duke {
 
-    private static final String filePath = "./data/duke.txt";
+    private static final String FILE_PATH = "./data/duke.txt";
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
 
     /**
-     * Initialize duke
+     * Initialize duke.
      *
-     * @param filePath file path to store data
+     * @param filePath file path to store data.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -33,7 +33,7 @@ public class Duke {
     }
 
     /**
-     * Runs duke
+     * Runs duke.
      */
     public void run() {
         ui.greet();
@@ -54,6 +54,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(filePath).run();
+        new Duke(FILE_PATH).run();
     }
 }

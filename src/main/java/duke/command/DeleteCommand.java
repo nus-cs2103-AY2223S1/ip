@@ -6,28 +6,28 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * Represents a command to delete task
+ * Represents a command to delete task.
  */
 public class DeleteCommand extends Command {
 
     private int ind;
 
     /**
-     * Constructs a delete command
+     * Constructs a delete command.
      *
-     * @param ind Index of task to be deleted in task list
+     * @param ind Index of task to be deleted in task list.
      */
     public DeleteCommand(int ind) {
         this.ind = ind;
     }
 
     /**
-     * Deletes task from task list
+     * Deletes task from task list.
      *
-     * @param tasks List of task
-     * @param ui User interface of programme
-     * @param storage Storage of programme
-     * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file
+     * @param tasks List of task.
+     * @param ui User interface of programme.
+     * @param storage Storage of programme.
+     * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
