@@ -87,12 +87,12 @@ public class Ui {
     }
 
     /**
-     * Prints a specified error message.
+     * Prints a specified error message from given exception.
      *
      * @param exception The exception.
      */
     public String printErrorMessage(Exception exception) {
-        return exception.getMessage();
+        return exception.getMessage() + '\n';
     }
 
     private String printTask(Task task) {
