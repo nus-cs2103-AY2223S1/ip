@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -10,7 +11,12 @@ import duke.task.TaskList;
  */
 public class ListCommand extends Command {
     /**
-     * {@inheritDoc}
+     * Displays the list of tasks in Duke.
+     *
+     * @param tasks The specified TaskList involved with the command.
+     * @param ui The specified Ui involved with the command.
+     * @param storage The specified Storage involved with the command.
+     * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

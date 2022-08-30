@@ -2,6 +2,7 @@ package duke.command;
 
 import java.time.LocalDate;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -24,7 +25,12 @@ public class OnCommand extends Command {
     }
 
     /**
-     * {@inheritDoc}
+     * Finds a task in Duke that happens on the date of this instance of OnCommand.
+     *
+     * @param tasks The specified TaskList involved with the command.
+     * @param ui The specified Ui involved with the command.
+     * @param storage The specified Storage involved with the command.
+     * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
