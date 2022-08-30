@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 
 public class Parser {
 
+    /**
+     * Decodes a task from the given encoded string
+     * @param line
+     * @return the task
+     */
     public static Task parseTask(String line) {
         String[] strings = line.split("\\|");
         switch (strings[0]) {
@@ -17,7 +22,12 @@ public class Parser {
             return null;
         }
     }
-    
+
+    /**
+     * Decodes a LocalDateTime from the given encoded string
+     * @param s
+     * @return LocalDateTime
+     */
     public static LocalDateTime parseDateTime(String s) {
         String[] dtStrings = s.split(" ");
         String date = dtStrings[0];
