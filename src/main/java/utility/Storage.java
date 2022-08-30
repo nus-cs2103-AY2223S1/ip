@@ -14,6 +14,10 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+/**
+ * Represents class for storing
+ * and reading to and from txt file
+ */
 public class Storage {
 
     private final String filePath;
@@ -24,6 +28,9 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Instantiates a new mark command
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -38,6 +45,11 @@ public class Storage {
         new FileWriter(filePath, false).close();
     }
 
+    /**
+     * Adds task to text file
+     *
+     * @param tasks tasks we want to add to text file
+     */
     public void save(Task task) {
         try {
             appendToFile(this.filePath, task.toSave() + System.lineSeparator());
@@ -45,8 +57,12 @@ public class Storage {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
-    
 
+    /**
+     * updates and add all task to text file
+     *
+     * @param taskList the list we add into the text file
+     */
     public void update(List<Task> taskList) {
         try {
             emptyFile(this.filePath);
@@ -58,7 +74,11 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Loads task from text file into List
+     *
+     * @return List of tasks given in text file
+     */
     public List<Task> load() {
         try {
             List<Task> tasksList = new ArrayList<Task>(100);
