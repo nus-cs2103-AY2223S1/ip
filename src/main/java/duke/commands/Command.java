@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 
 /**
  * Encapsulates an executable command.

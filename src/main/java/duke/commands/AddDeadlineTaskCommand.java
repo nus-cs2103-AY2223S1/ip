@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 import duke.models.task.Deadline;
 import duke.utils.DukeValidator;
 
