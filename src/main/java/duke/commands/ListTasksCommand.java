@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 import duke.models.task.Task;
 import duke.utils.DukeValidator;
 
@@ -57,7 +56,7 @@ public class ListTasksCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         if (this.arguments.length() > 0) {
             Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
             if (matchTasksOn.matches()) {
@@ -68,8 +67,7 @@ public class ListTasksCommand implements Command {
                             return taskDate != null && taskDate.isEqual(date);
                         }
                 );
-                uiManager.print(TaskManager.display(filteredList));
-                return;
+                return TaskManager.display(filteredList);
             }
             Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
             if (matchTasksBefore.matches()) {
@@ -80,12 +78,11 @@ public class ListTasksCommand implements Command {
                             return taskDate != null && taskDate.isBefore(date);
                         }
                 );
-                uiManager.print(TaskManager.display(filteredList));
-                return;
+                return TaskManager.display(filteredList);
             }
             throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
         }
 
-        uiManager.print(TaskManager.display(taskManager.list()));
+        return TaskManager.display(taskManager.list());
     }
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.ui.MainWindow">
+   <children>
+      <HBox prefHeight="45.0" prefWidth="400.0" style="-fx-padding: 8; -fx-spacing: 8; -fx-background-color: #322F3D;">
+         <children>
+            <ImageView fx:id="dukePicture" fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="appLabel" textFill="WHITE">
+               <font>
+                  <Font name="Monaco" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_LEFT" layoutY="557.0" prefHeight="44.0" prefWidth="400.0" style="-fx-background-color: #59405C;">
+         <children>
+            <TextField fx:id="userInput" onAction="#handleCommand" onKeyPressed="#handleUserInput" onKeyReleased="#handleUserInput" onKeyTyped="#handleUserInput" prefHeight="43.0" prefWidth="318.0" promptText="Enter a command" style="-fx-background-color: #322F3D #322F3D; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+            </TextField>
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleCommand" prefHeight="44.0" prefWidth="85.0" style="-fx-background-color: #87556F#87556F; -fx-background-radius: 8px;" text="Send" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Monaco" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="43.0" prefHeight="515.0" prefWidth="400.0">
+         <content>
+            <VBox fx:id="dialogContainer" prefHeight="513.0" prefWidth="399.0" style="-fx-background-color: #322F3D;" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
