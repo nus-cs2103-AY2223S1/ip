@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" style="-fx-background-color: #CCF381; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #A881F3;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" style="-fx-background-color: #CCF381; -fx-background-radius: 50; -fx-border-color: #A881F3; -fx-border-radius: 50;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Label fx:id="dialog" text="Label" wrapText="true">
+    <Label fx:id="dialog" text="Label" textFill="#4831d4" wrapText="true">
          <font>
             <Font name="Courier New" size="12.0" />
          </font></Label>
