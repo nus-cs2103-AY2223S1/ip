@@ -22,13 +22,13 @@ public class DeleteResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
+    public String run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("Please enter task to delete.");
         }
 
         int index = Integer.parseInt(data.trim());
-        super.message(list.delete(index));
+        return list.delete(index);
     }
 
     @Override

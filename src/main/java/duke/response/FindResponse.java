@@ -22,12 +22,12 @@ public class FindResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
+    public String run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("Please enter search term.");
         }
 
-        super.message(list.search(data));
+        return list.search(data);
     }
 
     @Override

@@ -18,8 +18,8 @@ public class ListResponse extends DukeResponse {
     }
 
     @Override
-    public void run() {
-        super.message(this.list.toString());
+    public String run() {
+        return this.list.toString();
     }
 
     @Override

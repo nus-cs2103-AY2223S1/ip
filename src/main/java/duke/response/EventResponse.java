@@ -24,7 +24,7 @@ public class EventResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
+    public String run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
@@ -45,7 +45,7 @@ public class EventResponse extends DukeResponse {
         }
 
         Event e = new Event(description, Parser.strToDate(dateTimeStr));
-        super.message(list.add(e));
+        return list.add(e);
     }
 
     @Override

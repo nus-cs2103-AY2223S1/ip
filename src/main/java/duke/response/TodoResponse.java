@@ -23,13 +23,13 @@ public class TodoResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
+    public String run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
 
         Todo t = new Todo(data);
-        super.message(list.add(t));
+        return list.add(t);
     }
 
     @Override

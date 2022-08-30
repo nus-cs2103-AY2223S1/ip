@@ -23,9 +23,9 @@ public class WriteFileResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
-        super.message("Saving data...");
+    public String run() throws DukeException {
         storage.write(this.list);
+        return "Saving data...";
     }
 
     @Override
