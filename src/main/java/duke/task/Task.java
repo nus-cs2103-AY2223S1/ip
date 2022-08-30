@@ -3,7 +3,7 @@ package duke.task;
 import duke.DukeException;
 
 /**
- * Represents a task
+ * Represents a task.
  */
 public class Task {
 
@@ -24,7 +24,7 @@ public class Task {
     /**
      * Marks task as done.
      *
-     * @throws DukeException If task is done
+     * @throws DukeException If task is done.
      */
     public void doing() throws DukeException {
         if (!this.isDone) {
@@ -37,7 +37,7 @@ public class Task {
     /**
      * Unmarks task as not done.
      *
-     * @throws DukeException If task is not done
+     * @throws DukeException If task is not done.
      */
     public void undo() throws DukeException {
         if (this.isDone) {
@@ -48,27 +48,27 @@ public class Task {
     }
 
     /**
-     * Returns task description
+     * Returns task description.
      *
-     * @return task description
+     * @return task description.
      */
     public String getDescription() {
         return this.taskDescription;
     }
 
     /**
-     * Returns task status
+     * Returns task status.
      *
-     * @return task status
+     * @return task status.
      */
     public boolean isDone() {
         return this.isDone;
     }
 
     /**
-     * Returns task
+     * Returns task.
      *
-     * @return task
+     * @return task.
      */
     @Override
     public String toString() {

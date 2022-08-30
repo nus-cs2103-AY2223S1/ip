@@ -16,7 +16,7 @@ import duke.task.Event;
 import duke.task.Todo;
 
 /**
- * Represents a parser
+ * Represents a parser.
  */
 public class Parser {
 
@@ -31,11 +31,11 @@ public class Parser {
     private static final String FIND_COMMAND = "find";
 
     /**
-     * Parses user's input to be a recognisable command
+     * Parses user's input to be a recognisable command.
      *
-     * @param response User's input
-     * @return command
-     * @throws DukeException if User's input is in the wrong format
+     * @param response User's input.
+     * @return command.
+     * @throws DukeException if User's input is in the wrong format.
      */
     protected static Command parse(String response) throws DukeException {
         String[] cmdDescp = response.split(" ");

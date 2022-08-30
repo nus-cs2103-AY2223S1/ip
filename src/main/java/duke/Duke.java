@@ -3,19 +3,18 @@ package duke;
 import duke.command.Command;
 
 /**
- * Represents chatbot duke
+ * Represents chatbot duke.
  */
 public class Duke {
 
-    private static final String filePath = "./data/duke.txt";
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
 
     /**
-     * Initialize duke
+     * Initialize duke.
      *
-     * @param filePath file path to store data
+     * @param filePath file path to store data.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -33,27 +32,28 @@ public class Duke {
     }
 
     /**
-     * Runs duke
+     * Returns duke's response to user's input.
+     *
+     * @param input user's input.
+     * @return response.
      */
-    public void run() {
-        ui.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String response = ui.readCommand();
-                Command c = Parser.parse(response);
-                ui.showLine();
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String input) {
+        String response;
+        try {
+            Command c = Parser.parse(input);
+            response = c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            response = ui.showError(e.getMessage());
         }
+        return response;
     }
 
-    public static void main(String[] args) {
-        new Duke(filePath).run();
+    /**
+     * Returns duke's greeting.
+     *
+     * @return greeting.
+     */
+    public String getGreeting() {
+        return ui.greet();
     }
 }

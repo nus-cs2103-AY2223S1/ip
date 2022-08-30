@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Represents storage
+ * Represents storage.
  */
 public class Storage {
 
@@ -17,9 +17,9 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructs storage
+     * Constructs storage.
      *
-     * @param filePath file path to store data
+     * @param filePath file path to store data.
      */
     Storage(String filePath) {
         this.filePath = filePath;
@@ -30,10 +30,10 @@ public class Storage {
     }
 
     /**
-     * Loads existing file
+     * Loads existing file.
      *
-     * @return data from file
-     * @throws DukeException if file does not exist
+     * @return data from file.
+     * @throws DukeException if file does not exist.
      */
     protected String load() throws DukeException {
         try {
@@ -53,10 +53,10 @@ public class Storage {
     }
 
     /**
-     * Saves data
+     * Saves data.
      *
-     * @param data Data to be saved
-     * @throws DukeException if error in saving file
+     * @param data Data to be saved.
+     * @throws DukeException if error in saving file.
      */
     public void save(String data) throws DukeException {
         try {
@@ -69,9 +69,9 @@ public class Storage {
     }
 
     /**
-     * Creates file
+     * Creates file.
      *
-     * @throws DukeException if error in creating file
+     * @throws DukeException if error in creating file.
      */
     protected void createFile() throws DukeException {
         try {
