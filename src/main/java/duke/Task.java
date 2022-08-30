@@ -65,6 +65,11 @@ abstract class Task {
         isDone = arg;
     }
 
+
+    public boolean hasKeyword(String key) {
+        return description.contains(key);
+    }
+
     public static Task ToDo(String argument) {
         return new ToDo(argument);
     }

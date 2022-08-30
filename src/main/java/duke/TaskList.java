@@ -29,6 +29,16 @@ class TaskList {
         return listOfTasks.get(i);
     }
 
+    public TaskList searchByKeyword(String key) {
+        TaskList result = new TaskList();
+        for (Task task : listOfTasks) {
+            if (task.hasKeyword(key)) {
+                result.addTask(task);
+            }
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         String res = "";

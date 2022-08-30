@@ -111,5 +111,11 @@ public class Duke {
             }
             UserInterface.print(taskList.toString());
         });
+
+        parser.addCommand("find", argument -> {
+            UserInterface.print("Here are the matching tasks in your list:");
+            TaskList result = taskList.searchByKeyword(argument);
+            UserInterface.print(result.toString());
+        });
     }
 }
