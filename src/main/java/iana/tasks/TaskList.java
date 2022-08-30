@@ -1,8 +1,8 @@
 package iana.tasks;
 
-import java.util.ArrayList;
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
+import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> taskList;

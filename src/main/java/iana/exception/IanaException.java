@@ -1,4 +1,5 @@
 package iana.exception;
+
 public class IanaException extends Exception {
     public IanaException(String errorMessage) {
         super(errorMessage);
