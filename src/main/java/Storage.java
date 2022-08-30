@@ -1,25 +1,24 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileHandler {
+public class Storage {
     private File file;
     private String path;
 
-    public FileHandler(String path) {
+    public Storage(String path) throws PlutoException {
         try {
             this.file = new File(path);
             this.path = path;
             file.createNewFile();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new PlutoException("\tOOPS!!! " + e.getMessage());
         }
     }
 
-    public ArrayList<Task> getTasks() {
+    public ArrayList<Task> load() throws PlutoException {
         ArrayList<Task> missions = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
@@ -34,19 +33,19 @@ public class FileHandler {
                         missions.add(todo);
                         break;
                     case "D":
-                        Task deadline = new Deadline(textArr[4], textArr[6]);
+                        Task deadline = new Deadline(textArr[4], Parser.parseDate(textArr[6]));
                         markTasks(deadline, textArr[2]);
                         missions.add(deadline);
                         break;
                     case "E":
-                        Task event = new Event(textArr[4], textArr[6]);
+                        Task event = new Event(textArr[4], Parser.parseDate(textArr[6]));
                         markTasks(event, textArr[2]);
                         missions.add(event);
                         break;
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            throw new PlutoException("\tOOPS!!! " + e.getMessage());
         }
         return missions;
     }
@@ -59,14 +58,14 @@ public class FileHandler {
 
     private void markTasks(Task t, String status) {
         if (Integer.parseInt(status) == 1) {
-            t.isDone = true;
+            t.markAsDone();
         }
     }
 
-    public void rewriteFile(ArrayList<Task> missions) throws IOException {
+    public void rewriteFile(TaskList tasks) throws IOException, PlutoException {
         FileWriter fwriter = new FileWriter(this.path);
-        for (Task t: missions) {
-            fwriter.write(t.toFile() + "\n");
+        for (int i = 0; i < tasks.nTasks(); i++) {
+            fwriter.write(tasks.getTask(i).toFile() + "\n");
         }
         fwriter.close();
     }

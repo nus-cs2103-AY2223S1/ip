@@ -1,4 +1,3 @@
-import java.security.spec.ECField;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -6,13 +5,9 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task{
     protected LocalDateTime by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDateTime by) {
         super(description);
-        try {
-            this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
-        } catch (DateTimeParseException e) {
-            System.out.println(e.getMessage());
-        }
+        this.by = by;
     }
 
     @Override
