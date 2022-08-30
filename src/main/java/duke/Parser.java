@@ -24,83 +24,61 @@ public class Parser {
      */
     public String[] parseCommand(String command) {
 
-        String[] arr = this.getUnknownInputArray(); // to be returned
-
-        if (command.contains("todo")) {
-            try {
-                arr = this.getTodoArray(command);
-            } catch (DukeException e) {
-                System.out.println(e);
-            }
-            return arr;
+        if (command.startsWith("todo")) {
+            return this.getTodoArray(command);
         }
 
-        if (command.contains("deadline")) {
-            try {
-                arr = this.getDeadlineArray(command);
-            } catch (DukeException e) {
-                System.out.println(e);
-            }
-            return arr;
+        if (command.startsWith("deadline")) {
+            return this.getDeadlineArray(command);
         }
 
-        if (command.contains("event")) {
-            try {
-                arr = this.getEventArray(command);
-            } catch (DukeException e) {
-                System.out.println(e);
-            }
-            return arr;
+        if (command.startsWith("event")) {
+            return this.getEventArray(command);
         }
 
-        if (command.contains("delete")) {
-            arr = this.getDeleteArray(command);
-            return arr;
+        if (command.startsWith("delete")) {
+            return this.getDeleteArray(command);
         }
 
-        if (command.contains("mark")) {
-            arr = this.getMarkArray(command);
-            return arr;
+        if (command.startsWith("mark")) {
+            return this.getMarkArray(command);
         }
 
         if (Objects.equals(command, "list")) {
-            arr = this.getListArray();
-            return arr;
+            return this.getListArray();
         }
 
-        if (command.contains("find")) {
-            arr = this.getFindArray(command);
-            return arr;
+        if (command.startsWith("find")) {
+            return this.getFindArray(command);
         }
 
         if (Objects.equals(command, "bye")) {
-            arr = this.getByeArray();
-            return arr;
+            return this.getByeArray();
         }
 
-        return arr; // reaches here if input is unknown
+        return this.getUnknownInputArray(); // reaches here if input is unknown
     }
 
-    private String[] getTodoArray(String input) throws DukeException {
+    private String[] getTodoArray(String input) {
         if (input.replace(" ", "").length() == 4) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            return new String[]{"T", ""}; // if todo is empty
         }
         String description = input.substring(5);
         return new String[]{"T", description};
     }
 
-    private String[] getDeadlineArray(String input) throws DukeException {
+    private String[] getDeadlineArray(String input) {
         if (input.replace(" ", "").length() == 8) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            return new String[]{"D", "", ""}; // if deadline is empty
         }
         String description = input.substring(9, input.indexOf('/') - 1);
         String by = input.substring(input.indexOf('/') + 4);
         return new String[]{"D", description, by};
     }
 
-    private String[] getEventArray(String input) throws DukeException {
+    private String[] getEventArray(String input) {
         if (input.replace(" ", "").length() == 5) {
-            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+            return new String[]{"E", "", ""}; // if event is empty
         }
         String description = input.substring(6, input.indexOf('/') - 1);
         String at = input.substring(input.indexOf('/') + 4);

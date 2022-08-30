@@ -12,6 +12,12 @@ public class Deadline extends Task {
 
     protected LocalDate by;
 
+    /**
+     * Constructor for a Deadline task.
+     *
+     * @param description Description of Deadline.
+     * @param by Date of deadline, in yyyy-mm-dd format, e.g. 2020-08-25.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = LocalDate.parse(by);

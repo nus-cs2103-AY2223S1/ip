@@ -1,3 +1,5 @@
-[T][X] eat pasta
-[T][X] drink
-[D][X] complete homework (by: 2022-08-23)
+[E][X] drink wine (at: tomorrow 4pm)
+[E][X] biology lecture (at: Tues 2-4pm)
+[D][ ] watch tv (by: 2022-02-22)
+[T][X] sleep
+[T][ ] eat delicious mala

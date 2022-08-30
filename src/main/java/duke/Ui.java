@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Ui of the program.
@@ -10,123 +9,131 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private Scanner sc;
-
-    private String command;
-
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
-
     /**
-     * Displays welcome message to user.
+     * Returns a welcome message to the user.
+     *
+     * @return Welcome message.
      */
-    public void showWelcomeMessage() {
+    public String getWelcomeMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm duke.Duke\n" +
-                "What can I do for you?");
+        return "Hello from\n" + logo + "What can I do for you?";
     }
 
     /**
-     * Displays to user the added task and the updated number of tasks in
+     * Returns a reply with the added task and the updated number of tasks in
      * the current list.
      *
      * @param t The task added.
      * @param list The current list of tasks.
+     * @return Reply when task is added.
      */
-    public void showTaskAdded(Task t, TaskList list) {
+    public String getTaskAddedReply(Task t, TaskList list) {
+        String taskAdded = "Got it. I've added this task:\n" + "  " + t;
         String size = Integer.toString(list.size());
-        System.out.println("Got it. I've added this task:\n" + "  " + t);
-        System.out.println("Now you have " + size + " tasks in the list.");
+        String numOfTasks = "\nNow you have " + size + " tasks in the list.";
+        return taskAdded + numOfTasks;
     }
 
     /**
-     * Displays to user the deleted task and the updated number of tasks in
+     * Returns a reply with the deleted task and the updated number of tasks in
      * the current list.
      *
-     * @param taskNum Number of task to be deleted.
+     * @param t Task to be deleted.
      * @param list The current list of tasks.
+     * @return Reply when task is deleted.
      */
-    public void showTaskDeleted(int taskNum, TaskList list) {
-        System.out.println("Noted. I've removed this task:\n" +
-                "  " + list.getTask(taskNum));
-        String size = Integer.toString(list.size() - 1);
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public String getTaskDeletedReply(Task t, TaskList list) {
+        String taskDeleted = "Noted. I've removed this task:\n" +
+                "  " + t;
+        String size = Integer.toString(list.size());
+        String numOfTasks = "\nNow you have " + size + " tasks in the list.";
+        return taskDeleted + numOfTasks;
     }
 
     /**
-     * Displays to user the task that is marked as done.
+     * Returns a reply when a task is marked as done.
      *
      * @param t The task to be marked as done.
+     * @return Reply when a task is marked as done.
      */
-    public void showTaskMarked(Task t) {
-        System.out.println("Nice! I've marked this task as done:\n" +
-                "  " + t);
+    public String getTaskMarkedReply(Task t) {
+        return "Nice! I've marked this task as done:\n" + "  " + t;
     }
 
     /**
-     * Prompts user command and reads the next line of command.
+     * Returns an error to the user if user input is unknown.
      *
-     * @return The user's command.
+     * @return An error when user input is unknown.
      */
-    public String promptUserCommand() {
-        System.out.println("Enter command:");
-        this.command = this.sc.nextLine();
-        return this.command;
+    public String getUnknownInputError() {
+        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
     }
 
     /**
-     * Displays an error to the user if user input is unknown.
+     * Returns a goodbye message to user.
+     *
+     * @return Goodbye message.
      */
-    public void showUnknownInputError() {
-        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    public String getGoodbyeMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Displays goodbye message to user.
-     */
-    public void showGoodbyeMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
-    }
-
-    /**
-     * Displays to user the current list of tasks.
+     * Returns a String of the current list of tasks.
      *
      * @param list The current list of tasks.
+     * @return The current list of tasks, as a String.
      */
-    public void showList(TaskList list) {
+    public String getList(TaskList list) {
+        ArrayList<Task> tasks = list.getList();
+
         int count = 1;
-        for (Task t : list.getList()) {
-            String s = Integer.toString(count);
-            System.out.println(s + ". " + t);
+        String strList = "";
+        for (Task t : tasks) {
+            String num = Integer.toString(count);
+            strList = strList + num + ". " + t +"\n";
             count++;
         }
+
+        if (tasks.isEmpty()) {
+            strList = "List is empty!";
+        }
+
+        return strList;
     }
 
     /**
-     * Displays to user the list of tasks that matches a specific keyword.
+     * Returns the list of tasks that matches a specific keyword.
      *
      * @param keyword The keyword in a task.
      * @param list The current list of tasks.
+     * @return List of tasks with a specific keyword.
      */
-    public void showTasksWithKeyword(String keyword, TaskList list) {
-        ArrayList<Task> tempList = new ArrayList<>();
+    public String getTasksWithKeyword(String keyword, TaskList list) {
+        ArrayList<Task> tempList = new ArrayList<>(); // stores matching tasks
+
         for (Task t : list.getList()) {
             if (t.toString().contains(keyword)) {
                 tempList.add(t);
             }
         }
-        System.out.println("Here are the matching tasks in your list:");
+
         int count = 1;
+        String tasks = "";
         for (Task t : tempList) {
             String num = Integer.toString(count);
-            System.out.println(num + ". " + t);
+            tasks = tasks + num + ". " + t + "\n";
             count++;
         }
+
+        if (tempList.isEmpty()) {
+            tasks = "No matching tasks!";
+        }
+
+        return "Here are the matching tasks in your list:\n" + tasks;
     }
 }
