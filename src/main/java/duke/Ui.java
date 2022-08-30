@@ -99,7 +99,7 @@ public class Ui {
         {
             int index = i + 1;
             Task tempTask = taskList.getTask(i);
-            userInputs += "\n" + index + "."
+            userInputs += index + "."
                     + tempTask.toString() + "\n";
         }
         return userInputs;

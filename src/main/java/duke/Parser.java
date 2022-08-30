@@ -44,7 +44,7 @@ public class Parser {
                     "cannot be empty/incomplete."));
         }
     }
-    
+
     private static void parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
