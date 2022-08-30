@@ -8,33 +8,26 @@ import java.util.Scanner;
  * Handles interaction with user.
  */
 public class Ui {
-    /**
-     * Prints line format.
-     */
-    public void showLine() {
-        System.out.println("    ____________________________________________________________");
-    }
+//    /**
+//     * Prints line format.
+//     */
+//    public String showLine() {
+//        return ("    ____________________________________________________________");
+//    }
 
     /**
      * Greets user.
      */
-    public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        showLine();
-        System.out.println("     Hello! I'm Duke\n"
+    public static String showWelcome() {
+//        String logo = " ____        _        \n"
+//                + "|  _ \\ _   _| | _____ \n"
+//                + "| | | | | | | |/ / _ \\\n"
+//                + "| |_| | |_| |   <  __/\n"
+//                + "|____/ \\__,_|_|\\_\\___|\n";
+//        String result = ("Hello from\n" + logo);
+        String result = ("     Hello! I'm duke.Duke\n"
                 + "     What can I do for you?");
-        showLine();
-    }
-
-    public String readCommand() {
-        Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
-        return userInput;
+        return result;
     }
 
     /**
@@ -44,8 +37,8 @@ public class Ui {
      * @param size Current number of tasks in list.
      *
      */
-    public void printAddTask(Task task, int size) {
-        System.out.println("     Got it. I've added this task:\n"
+    public String printAddTask(Task task, int size) {
+        return ("     Got it. I've added this task:\n"
                 + "       " + task.toString() + "\n"
                 + "     Now you have " + size + " tasks in the list.");
     }
@@ -56,8 +49,8 @@ public class Ui {
      * @param task Task deleted.
      * @param size Remaining number of Tasks in list.
      */
-    public void printDeleteTask(String task, int size) {
-        System.out.println("     Noted. I've removed this task:\n"
+    public String printDeleteTask(String task, int size) {
+        return ("     Noted. I've removed this task:\n"
                 + "       " + task + "\n"
                 + "     Now you have " + size + " tasks in the list.");
     }
@@ -67,10 +60,10 @@ public class Ui {
      *
      * @param list The list of Tasks in String.
      */
-    public void printDisplayList(String list) {
+    public String printDisplayList(String list) {
         String message = "     Here are the tasks in your list:\n";
         message += list;
-        System.out.println(message);
+        return (message);
     }
 
     /**
@@ -78,8 +71,8 @@ public class Ui {
      *
      * @param message The Task that was marked in String.
      */
-    public void printMarkTask(String message) {
-        System.out.println("     Nice! I've marked this task as done:\n"
+    public String printMarkTask(String message) {
+        return ("     Nice! I've marked this task as done:\n"
                 + "       " + message);
     }
 
@@ -88,8 +81,8 @@ public class Ui {
      *
      * @param message The Task that was unmarked in String.
      */
-    public void printUnmarkTask(String message) {
-        System.out.println("     OK, I've marked this task as not done yet:\n"
+    public String printUnmarkTask(String message) {
+        return ("     OK, I've marked this task as not done yet:\n"
                 + "       " + message);
     }
 
@@ -98,10 +91,10 @@ public class Ui {
      *
      * @param list Tasks that matched description given.
      */
-    public void printFindTask(String list) {
+    public String printFindTask(String list) {
         String message = "     Here are the matching tasks in your list:\n";
         message += list;
-        System.out.println(message);
+        return (message);
     }
 
     /**
@@ -109,14 +102,14 @@ public class Ui {
      *
      * @param e Exception caught.
      */
-    public void printError(Exception e) {
-        System.out.println("     " + e.getMessage());
+    public String printError(Exception e) {
+        return ("     " + e.getMessage());
     }
 
     /**
      * Prints when program terminates.
      */
-    public void printExit() {
-        System.out.println("     Bye. Hope to see you again soon!");
+    public String printExit() {
+        return ("     Bye. Hope to see you again soon!");
     }
 }

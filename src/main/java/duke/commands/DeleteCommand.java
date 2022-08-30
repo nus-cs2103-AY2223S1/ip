@@ -29,18 +29,18 @@ public class DeleteCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int taskNumber = Integer.parseInt(remainingCommand);
             String removedTask = tasks.deleteTask(taskNumber - 1);
             storage.deleteTaskFromDisk(taskNumber);
-            ui.printDeleteTask(removedTask, tasks.getTaskListSize());
+            return ui.printDeleteTask(removedTask, tasks.getTaskListSize());
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("     OOPS!!! Please enter a valid task number.");
+            return ("     OOPS!!! Please enter a valid task number.");
         } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
+            return ("     " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("     OOPS!!! Please enter a valid task number.");
+            return ("     OOPS!!! Please enter a valid task number.");
         }
     }
 

@@ -1,21 +1,21 @@
 package duke;
 
+import duke.*;
 import duke.commands.Command;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 /**
- * Duke program for keeping track of Tasks.
+ * duke.Duke Program for tracking Tasks.
  */
-public class Duke extends Application {
+public class Duke {
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
 
     /**
-     * Duke constructor.
+     * duke.Duke constructor.
      *
      * @param filePath filePath of file to store Task information.
      * @param tempFilePath filePath of temporary file to store information for rewriting.
@@ -32,42 +32,18 @@ public class Duke extends Application {
     }
 
     /**
-     * Starts Duke program.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.printError(e);
-            } finally {
-                ui.showLine();
-            }
-        }
-    }
-
-    /**
-     * Initialises files and calls method to start Duke program.
+     * Parse user input to String.
      *
-     * @param args command line arguments
+     * @param input user input.
+     * @return String of command output or error.
      */
-    public static void main(String[] args) {
-        Duke duke = new Duke("data/duke.txt", "data/temp.txt");
-        duke.run();
-    }
-
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String output = c.execute(tasks, ui, storage);
+            return output;
+        } catch (DukeException e) {
+            return ui.printError(e);
+        }
     }
 }

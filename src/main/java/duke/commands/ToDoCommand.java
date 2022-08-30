@@ -1,6 +1,9 @@
 package duke.commands;
 
-import duke.*;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
@@ -29,7 +32,7 @@ public class ToDoCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! Please enter a valid todo format (todo <description>)");
         }
@@ -37,9 +40,9 @@ public class ToDoCommand extends Command {
             Task task = new ToDo(description);
             tasks.addTask(task);
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
-            ui.printAddTask(task, tasks.getTaskListSize());
+            return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
+            return ("     " + e.getMessage());
         }
     }
 

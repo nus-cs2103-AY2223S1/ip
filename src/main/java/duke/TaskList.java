@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     /**
-     * Adds Task on Duke program and ensure Task is added to memory.
+     * Adds Task on duke.Duke program and ensure Task is added to memory.
      *
      * @param task Task to be added.
      */

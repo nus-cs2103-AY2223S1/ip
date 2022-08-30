@@ -1,6 +1,8 @@
 package duke.commands;
 
-import duke.*;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 import java.io.IOException;
 
@@ -27,16 +29,16 @@ public class UnmarkCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int taskNumber = Integer.parseInt(remainingCommand);
             tasks.setTaskStatus(taskNumber - 1, false);
             storage.setTaskStatusOnDisk(taskNumber, false);
-            ui.printUnmarkTask(tasks.getTaskToString(taskNumber - 1));
+            return ui.printUnmarkTask(tasks.getTaskToString(taskNumber - 1));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println("     OOPS!!! Please enter a valid task number.");
+            return ("     OOPS!!! Please enter a valid task number.");
         } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
+            return ("     " + e.getMessage());
         }
     }
 
