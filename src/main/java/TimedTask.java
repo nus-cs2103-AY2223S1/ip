@@ -1,5 +1,5 @@
 public abstract class TimedTask extends Task {
-    private final String timing;
+    final String timing;
 
     public TimedTask(String taskName, String timing) {
         super(taskName);
@@ -12,8 +12,14 @@ public abstract class TimedTask extends Task {
         }
 
         @Override
-        public String status() {
-            return "[D]" + super.status() + "(by: " + super.timing + ")";
+        public String showStatus() {
+            return "[D]" + super.showStatus() + " (by: " + super.timing + ")";
+        }
+
+        @Override
+        public String showTaskListTextDescription() {
+            String finishedStatus = super.finished ? "finished" : "unfinished";
+            return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.timing + "\n";
         }
     }
 
@@ -23,8 +29,15 @@ public abstract class TimedTask extends Task {
         }
 
         @Override
-        public String status() {
-            return "[E]" + super.status() + "(at: " + super.timing + ")";
+        public String showStatus() {
+            return "[E]" + super.showStatus() + " (at: " + super.timing + ")";
         }
+
+        @Override
+        public String showTaskListTextDescription() {
+            String finishedStatus = super.finished ? "finished" : "unfinished";
+            return "[E], " + finishedStatus + ", " + this.taskName + ", " + this.timing + "\n";
+        }
+
     }
 }

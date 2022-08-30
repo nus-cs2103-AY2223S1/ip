@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public abstract class Action {
     private final String action;
+    private static final Path TASKLIST_PATH = Paths.get(System.getProperty("user.dir"), "data", "tasks.txt");
 
     public Action(String action) {
         this.action = action;
@@ -20,7 +24,7 @@ public abstract class Action {
                 for (int i = 0; i < length; i++) {
                     Task currentTask = taskList.get(i);
                     int taskNumber = i + 1;
-                    String status = currentTask.status();
+                    String status = currentTask.showStatus();
                     System.out.println(taskNumber + "." + status);
                 }
             } else {
@@ -30,17 +34,20 @@ public abstract class Action {
     }
 
     public static class NonTimedTaskAction extends Action { // todo
-        private final String taskDescription;
+        private final String taskName;
 
-        public NonTimedTaskAction(String taskDescription) {
+        public NonTimedTaskAction(String taskName) {
             super("todo");
-            this.taskDescription = taskDescription;
+            this.taskName = taskName;
         }
 
         @Override
         public void resolve(ArrayList<Task> taskList) {
-            Task newTask = new Task.ToDo(taskDescription);
+            Task newTask = new Task.ToDo(taskName);
             Task.addTask(newTask, taskList);
+
+            String taskDescription = newTask.showTaskListTextDescription();
+            TaskList.addTaskToTaskListText(taskDescription);
         }
     }
 
@@ -65,30 +72,38 @@ public abstract class Action {
             } catch (IllegalArgumentException e) {
                 throw e;
             }
+
+            TaskList.updateTaskListText(taskList);
         }
     }
 
     public static class TimedTaskAction extends Action { // deadline & event
-        private final String taskDescription;
+        private final String taskName;
         private final String timing;
 
-        public TimedTaskAction(String action, String taskDescription, String timing) {
+        public TimedTaskAction(String action, String taskName, String timing) {
             super(action);
-            this.taskDescription = taskDescription;
+            this.taskName = taskName;
             this.timing = timing;
         }
 
         @Override
         public void resolve(ArrayList<Task> taskList) {
             Task newTask;
+            String taskType;
 
             if (super.action.equals("deadline")) {
-                newTask =  new TimedTask.Deadline(this.taskDescription, this.timing);
+                newTask =  new TimedTask.Deadline(this.taskName, this.timing);
+                taskType = "D";
             } else {
-                newTask = new TimedTask.Event(this.taskDescription, this.timing);
+                newTask = new TimedTask.Event(this.taskName, this.timing);
+                taskType = "E";
             }
 
             Task.addTask(newTask, taskList);
+
+            String taskDescription = newTask.showTaskListTextDescription();
+            TaskList.addTaskToTaskListText(taskDescription);
         }
     }
 
@@ -101,7 +116,7 @@ public abstract class Action {
         switch (action) {
             case "bye":
             case "list":
-                if (actionSplit.length == 2) {
+                if (actionSplit.length == 2) { // Should not have more than "bye" or "list"
                     throw new UnknownActionException();
                 } else {
                     return new SingleWordAction(action);
@@ -128,7 +143,7 @@ public abstract class Action {
             case "deadline":
             case "event":
                 if (actionSplit.length == 2) {
-                    String[] taskSplit = actionSplit[1].split("/", 2);
+                    String[] taskSplit = actionSplit[1].split(" /", 2);
 
                     if (taskSplit.length == 2) {
                         String taskName = taskSplit[0];
