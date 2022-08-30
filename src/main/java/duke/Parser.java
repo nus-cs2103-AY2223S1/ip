@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exception.DukeEmptyException;
+
 public class Parser {
     
     private String[] formattedInput;
@@ -35,11 +37,17 @@ public class Parser {
     /**
      * Returns the number that is after the keyword in the user input.
      *
-     * @param words The task description that is retrieve from the user input
+     * @param input The task description that is retrieve from the user input
      * @return The index of the task that is required
      */
     
-    protected int getTaskIndex(String[] words) {
-        return Integer.parseInt(words[1]) - 1;
+    protected int getTaskIndex(String[] input) {
+        return Integer.parseInt(input[1]) - 1;
+    }
+    
+    protected void checkArg(String[] input) throws DukeEmptyException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
+        }
     }
 }

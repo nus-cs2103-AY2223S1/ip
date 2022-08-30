@@ -97,9 +97,8 @@ public class Duke {
     }
 
     private void mark(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+        
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task markedTask = tasks.getTask(taskIndex);
@@ -112,9 +111,8 @@ public class Duke {
     }
 
     private void unmark(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task unmarkedTask = tasks.getTask(taskIndex);
@@ -127,9 +125,8 @@ public class Duke {
     }
 
     private void createToDos(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         try {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
@@ -141,9 +138,8 @@ public class Duke {
     }
 
     private void createDeadlines(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         try {
             String[] taskDetails = input[1].split(" /by ", 2);
             String tasking = taskDetails[0];
@@ -161,9 +157,8 @@ public class Duke {
     }
 
     private void createEvents(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         try {
             String[] taskDetails = input[1].split(" /at ", 2);
             String tasking = taskDetails[0];
@@ -181,9 +176,8 @@ public class Duke {
     }
 
     private void deleteTask(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task deletedTask = tasks.deleteTask(taskIndex);
@@ -195,9 +189,8 @@ public class Duke {
     }
 
     private void findTask(String[] input) throws DukeException {
-        if (input.length < 2) {
-            throw new DukeEmptyException(input[0]);
-        }
+        parser.checkArg(input);
+
         String searchTerm = input[1];
         ArrayList<Task> results = tasks.find(searchTerm);
         ui.printMatchingTasks(results);
