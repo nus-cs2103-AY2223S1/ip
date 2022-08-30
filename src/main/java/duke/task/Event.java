@@ -54,7 +54,7 @@ public class Event extends Task {
      * {@inheritDoc}
      */
     public String summary() {
-        String status = isCompleted ? "1" : "0";
+        String status = isCompleted ? completed : notCompleted;
         String message = id + " | " + status + " | " + description + " | " + at;
         return message;
     }

@@ -10,7 +10,8 @@ public abstract class Task {
     protected final TaskId id;
     protected String description;
     protected boolean isCompleted;
-
+    protected final String completed = "1";
+    protected final String notCompleted = "0";
 
     /**
      * Constructor of the task.Task object to be called by its subclasses.

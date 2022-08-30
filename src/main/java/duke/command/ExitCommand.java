@@ -14,8 +14,9 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) {
+
+        return ui.showGoodbye();
     }
 
     /**

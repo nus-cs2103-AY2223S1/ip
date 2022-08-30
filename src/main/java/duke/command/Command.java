@@ -17,8 +17,9 @@ public abstract class Command {
      * @param tasks duke.list.TaskList containing the tasks on the list.
      * @param ui duke.ui.Ui that interacts with the input of users and output from duke.Duke.
      * @param storage duke.storage.ListLoader that updates duke.list.TaskList information on a separate file.
+     * @return String containing duke's response to the command being executed.
      */
-    public abstract void execute(TaskList tasks, Ui ui, ListLoader storage);
+    public abstract String execute(TaskList tasks, Ui ui, ListLoader storage);
 
     /**
      * Returns whether the command is an exit command.

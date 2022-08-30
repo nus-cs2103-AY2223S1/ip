@@ -25,7 +25,7 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) {
-        ui.showFindList(tasks.giveFindList(content));
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) {
+        return ui.showFindList(tasks.giveFindList(content));
     }
 }

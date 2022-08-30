@@ -28,14 +28,14 @@ public class UnmarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, ListLoader storage) throws DukeException {
         if (tasks.isValidPosition(position)) {
             Task t = tasks.retrieveRank(position);
             storage.unmarkTask(t.summary());
             tasks.unmark(position);
-            ui.showUnmark(t);
+            return ui.showUnmark(t);
         } else {
-            ui.showEmpty();
+            return ui.showEmpty();
         }
     }
 }
