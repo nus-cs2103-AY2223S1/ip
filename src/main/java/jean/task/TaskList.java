@@ -44,13 +44,16 @@ public class TaskList {
      *
      * @param task The task to be added.
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
      */
-    public void addTask(Task task, Ui ui) {
+    public String addTask(Task task, Ui ui) {
         this.taskList.add(task);
-        ui.printMessage("\tadded / ajouté:"
-                        + "\n\t\t" + task.toString());
-        ui.printMessage("\tYou now have " + this.taskList.size() + " task(s)!"
-                        + "\n\tVous avez " + this.taskList.size() + " tâche(s)!");
+        String message = ("\tadded / ajouté:"
+                          + "\n\t\t" + task.toString()
+                          + "\n\tYou now have " + this.taskList.size() + " task(s)!"
+                          + "\n\tVous avez " + this.taskList.size() + " tâche(s)!");
+        ui.printMessage(message);
+        return message;
     }
 
 
@@ -59,27 +62,48 @@ public class TaskList {
      *
      * @param taskIndex The index of the task to be removed.
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
      */
-    public void deleteTask(int taskIndex, Ui ui) {
+    public String deleteTask(int taskIndex, Ui ui) {
         Task curr = this.taskList.get(taskIndex);
         this.taskList.remove(taskIndex);
-        ui.printMessage("\tI have deleted the task:"
-                        + "\n\tJe l'ai supprimé:"
-                        + "\n\t" + curr.toString()
-                        + "\n\tYou now have " + taskList.size() + " tasks remaining!"
-                        + "\n\tIl vous reste maintenant " + taskList.size() + " tâches!");
+        String message = ("\tI have deleted the task:"
+                          + "\n\tJe l'ai supprimé:"
+                          + "\n\t\t" + curr.toString()
+                          + "\n\tYou now have " + taskList.size() + " tasks remaining!"
+                          + "\n\tIl vous reste maintenant " + taskList.size() + " tâches!");
+        ui.printMessage(message);
+        return message;
     }
 
     /**
      * Lists all the tasks in the task list.
      *
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
      */
-    public void listTask(Ui ui) {
-        int i = 0;
-        for (Task x : this.taskList) {
-            ui.printMessage("\t" + (++i) + ".\t " + x.toString());
+    public String listTask(Ui ui) {
+        StringBuilder message = new StringBuilder();
+        if (this.taskList.size() == 0) {
+            String next = ("There are no tasks!"
+                          + "\nIl n'y a pas de tâches!");
+            ui.printMessage(next);
+            message.append(next);
+            return message.toString();
         }
+        String next = ("Here are your tasks!"
+                       + "\nVoici vos tâches!\n");
+        ui.printMessage(next);
+        message.append(next);
+        for (int i = 0; i < this.taskList.size(); i++) {
+            next = ("\t" + (i+1) + ".\t " + this.taskList.get(i).toString());
+            ui.printMessage(next);
+            message.append(next);
+            if (i != this.taskList.size() - 1) {
+                message.append("\n");
+            }
+        }
+        return message.toString();
     }
 
     /**
@@ -87,13 +111,16 @@ public class TaskList {
      *
      * @param taskIndex The index of the task to be marked.
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
      */
-    public void markTask(int taskIndex, Ui ui) {
+    public String markTask(int taskIndex, Ui ui) {
         Task curr = this.taskList.get(taskIndex);
         curr.setIsDone(true);
-        ui.printMessage("\tI have marked it as done:"
-                        + "\n\tJe l'ai marqué comme fait:"
-                        + "\n\t" + curr.toString());
+        String message = ("\tI have marked it as done:"
+                          + "\n\tJe l'ai marqué comme fait:"
+                          + "\n\t\t" + curr.toString());
+        ui.printMessage(message);
+        return message;
     }
 
 
@@ -102,13 +129,16 @@ public class TaskList {
      *
      * @param taskIndex The index of the task to be unmarked.
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.          
      */
-    public void unmarkTask(int taskIndex, Ui ui) {
+    public String unmarkTask(int taskIndex, Ui ui) {
         Task curr = this.taskList.get(taskIndex);
         curr.setIsDone(false);
-        ui.printMessage("\tI have marked it as undone:"
-                        + "\n\tJe l'ai marqué comme défait:"
-                        + "\n\t" + curr.toString());
+        String message = ("\tI have marked it as undone:"
+                          + "\n\tJe l'ai marqué comme défait:"
+                          + "\n\t\t" + curr.toString());
+        ui.printMessage(message);
+        return message;
     }
 
     /**
@@ -116,25 +146,39 @@ public class TaskList {
      *
      * @param keyword The keyword to match.
      * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
      */
-    public void findTask(String keyword, Ui ui) {
+    public String findTask(String keyword, Ui ui) {
         ArrayList<Task> matches = new ArrayList<Task>();
         for (Task x : this.taskList) {
             if (x.toString().contains(keyword)) {
                 matches.add(x);
             }
         }
+        StringBuilder message = new StringBuilder();
+        String toPrint;
         if (matches.isEmpty()) {
-            ui.printMessage("There are no matches!"
-                            + "\nIl n'y a aucune correspondance !");
+            toPrint = ("There are no matches!"
+                       + "\nIl n'y a aucune correspondance !");
         } else {
-            ui.printMessage("There are " + matches.size() + " matches!"
-                            + "\nIl y a " + matches.size() + " correspondances!");
+            toPrint = ("There are " + matches.size() + " matches!"
+                       + "\nIl y a " + matches.size() + " correspondances!");
+        }
+        ui.printMessage(toPrint);
+        message.append(toPrint);
+
+        if (matches.size() > 0) {
+            message.append("\n");
         }
 
-        int i = 0;
-        for (Task x : matches) {
-            ui.printMessage("\t" + (++i) + ".\t " + x.toString());
+        for (int i = 0; i < matches.size(); i++) {
+            toPrint = ("\t" + (i + 1) + ".\t " + matches.get(i).toString());
+            ui.printMessage(toPrint);
+            message.append(toPrint);
+            if (i != matches.size() - 1) {
+                message.append("\n");
+            }
         }
+        return message.toString();
     }
 }

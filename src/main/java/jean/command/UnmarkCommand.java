@@ -25,9 +25,10 @@ public class UnmarkCommand extends Command {
      * @param taskList List of tasks which includes the task to be unmarked.
      * @param ui The ui object that prints feedback to the user interface.
      * @param storage The storage object that saves to or extracts from data.
+     * @return The string to be printed.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.unmarkTask(this.taskIndex, ui);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return taskList.unmarkTask(this.taskIndex, ui);
     }
 }

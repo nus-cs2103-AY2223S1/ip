@@ -17,10 +17,12 @@ public class ExitCommand extends Command {
      * @param taskList List of tasks to be saved.
      * @param ui The ui object that prints feedback to the user interface.
      * @param storage The storage object that saves to or extracts from data.
+     * @return The string to be printed.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         storage.saveFile(taskList);
-        ui.end();
+        ui.printMessage(ui.end());
+        return ui.end();
     }
 }
