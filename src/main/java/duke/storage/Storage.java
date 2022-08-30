@@ -17,7 +17,7 @@ import duke.task.Event;
 import duke.task.TaskList;
 
 public class Storage {
-    private final String filePath;
+    private String filePath;
     private File dataFile;
     private FileWriter fw;
 
@@ -75,7 +75,7 @@ public class Storage {
             if (i == 0) {
                 newText += s;
             } else {
-                newText +='\n' + s;
+                newText += '\n' + s;
             }
         }
         fw.write(newText);

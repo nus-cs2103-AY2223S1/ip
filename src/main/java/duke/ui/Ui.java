@@ -6,8 +6,8 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String TAB = "    ";
-    private static final String LINEBREAK = "___________________________________";
+    private static final String FORMAT_TAB = "    ";
+    private static final String FORMAT_LINEBREAK = "___________________________________";
     private Scanner sc;
 
     public Ui() {
@@ -19,11 +19,11 @@ public class Ui {
     }
 
     public void printTab(String content) {
-        System.out.println(TAB + content);
+        System.out.println(FORMAT_TAB + content);
     }
 
     public void showLine() {
-        printTab(LINEBREAK);
+        printTab(FORMAT_LINEBREAK);
     }
 
     public void printGreetings() {
