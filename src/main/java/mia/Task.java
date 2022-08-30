@@ -37,6 +37,11 @@ abstract public class Task {
         return true;
     }
 
+    /**
+     * Parses the data contained in this {@code Task} object into a {@code String}.
+     *
+     * @return The parsed data
+     */
     public String toSaveFormat() {
         return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);
     }
