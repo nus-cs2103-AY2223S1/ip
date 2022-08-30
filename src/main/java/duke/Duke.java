@@ -28,7 +28,6 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
