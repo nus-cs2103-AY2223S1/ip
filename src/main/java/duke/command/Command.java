@@ -17,8 +17,9 @@ public abstract class Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
-    public abstract void execute(Storage storage, TaskList taskList, Ui ui);
+    public abstract String execute(Storage storage, TaskList taskList, Ui ui);
 
     /**
      * Returns true if the Duke program is closing, false otherwise.

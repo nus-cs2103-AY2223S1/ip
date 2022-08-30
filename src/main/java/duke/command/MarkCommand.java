@@ -29,14 +29,16 @@ public class MarkCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            ui.printMarkTask(taskList.markTask(index - 1));
+            String output = ui.printMarkTask(taskList.markTask(index - 1));
             storage.save(taskList.getTasks());
+            return output;
         } catch (DukeException e) {
-            ui.printErrorMessage(e.getMessage());
+            return ui.printErrorMessage(e);
         }
     }
 }

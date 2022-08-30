@@ -4,26 +4,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-/**
- * Command to end the Duke program.
- *
- * @author dexter-sim
- * @version 0.1
- */
-public class ByeCommand extends Command {
-
+public class WelcomeCommand extends Command {
     /**
-     * Returns true.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean canExit() {
-        return true;
-    }
-
-    /**
-     * Closes the ui input reader.
+     * Executes the command to print the welcome greeting.
      *
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
@@ -32,6 +15,6 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) {
-        return ui.close();
+        return ui.printGreeting();
     }
 }

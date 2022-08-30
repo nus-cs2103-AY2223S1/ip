@@ -35,11 +35,14 @@ public class DeadlineCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addTask(new Deadline(description, by)));
-        ui.printSizeOfList(taskList.size());
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        String output = "";
+        output += ui.printAddTask(taskList.addTask(new Deadline(description, by)));
+        output += ui.printSizeOfList(taskList.size());
         storage.save(taskList.getTasks());
+        return output;
     }
 }

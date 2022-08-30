@@ -29,15 +29,18 @@ public class DeleteCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            ui.printDeleteTask(taskList.deleteTask(index - 1));
-            ui.printSizeOfList(taskList.size());
+            String output = "";
+            output += ui.printDeleteTask(taskList.deleteTask(index - 1));
+            output += ui.printSizeOfList(taskList.size());
             storage.save(taskList.getTasks());
+            return output;
         } catch (DukeException e) {
-            ui.printErrorMessage(e.getMessage());
+            return ui.printErrorMessage(e);
         }
     }
 }

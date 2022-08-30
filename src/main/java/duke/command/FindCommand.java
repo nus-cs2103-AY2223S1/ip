@@ -29,10 +29,11 @@ public class FindCommand extends Command {
      * @param storage Storage handling the file IO.
      * @param taskList A list of tasks.
      * @param ui A ui to handle printing output.
+     * @return A string from the result of execution.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         TaskList matchingTaskList = taskList.findMatchingTasks(keyword);
-        ui.printList(matchingTaskList.toString());
+        return ui.printList(matchingTaskList.toString());
     }
 }

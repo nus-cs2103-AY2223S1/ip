@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Platform;
 
 /**
  * The main class for the Duke program.
@@ -24,30 +25,25 @@ public class Duke {
             storage = new Storage(filePath);
             taskList = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.printErrorMessage(e.getMessage());
             taskList = new TaskList();
         }
     }
 
     /**
-     * Runs the Duke program.
+     * Returns Duke's response to the user's input.
+     *
+     * @param input Input that the user entered into the text box.
+     * @return The response from Duke based on the given input.
      */
-    public void run() {
-        ui.printGreeting();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userInput = ui.read();
-                Command command = Parser.parseInput(userInput);
-                command.execute(storage, taskList, ui);
-                isExit = command.canExit();
-            } catch (DukeException e) {
-                ui.printErrorMessage(e.getMessage());
+    String getResponse(String input) {
+        try {
+            Command command = Parser.parseInput(input);
+            if (command.canExit()) {
+                Platform.exit();
             }
+            return command.execute(storage, taskList, ui);
+        } catch (DukeException e) {
+            return ui.printErrorMessage(e);
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
     }
 }
