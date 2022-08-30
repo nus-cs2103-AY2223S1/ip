@@ -72,61 +72,61 @@ public class Ui {
 
     public void showLoadingError(String message) {
         switch (message) {
-            case "empty command":
-            printWithDivider("\t☹ OOPS!!! The description cannot be empty.\n");
-            break;
+        case "empty command":
+        printWithDivider("\t☹ OOPS!!! The description cannot be empty.\n");
+        break;
 
-            case "invalid command":
-            printWithDivider("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-            break;
-            
-            case "empty command mark":
-            printWithDivider("\t☹ OOPS!!! The description of mark cannot be empty.\n");
-            break;
+        case "invalid command":
+        printWithDivider("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+        break;
 
-            case "invalid command mark":
-            printWithDivider("\t☹ OOPS!!! It must be in the format of: mark <position in list>\n");
-            break;
+        case "empty command mark":
+        printWithDivider("\t☹ OOPS!!! The description of mark cannot be empty.\n");
+        break;
 
-            case "empty command unmark":
-            printWithDivider("\t☹ OOPS!!! The description of unmark cannot be empty.\n");
-            break;
+        case "invalid command mark":
+        printWithDivider("\t☹ OOPS!!! It must be in the format of: mark <position in list>\n");
+        break;
 
-            case "invalid command unmark":
-            printWithDivider("\t☹ OOPS!!! It must be in the format of: unmark <position in list>\n");
-            break;
+        case "empty command unmark":
+        printWithDivider("\t☹ OOPS!!! The description of unmark cannot be empty.\n");
+        break;
 
-            case "empty command delete":
-            printWithDivider("\t☹ OOPS!!! The description of delete cannot be empty.\n");
-            break;
+        case "invalid command unmark":
+        printWithDivider("\t☹ OOPS!!! It must be in the format of: unmark <position in list>\n");
+        break;
 
-            case "invalid command delete":
-            printWithDivider("\t☹ OOPS!!! It must be in the format of: delete <position in list>\n");
-            break;
+        case "empty command delete":
+        printWithDivider("\t☹ OOPS!!! The description of delete cannot be empty.\n");
+        break;
 
-            case "empty todo":
-            printWithDivider("\t☹ OOPS!!! The description of todo cannot be empty.\n");
-            break;
+        case "invalid command delete":
+        printWithDivider("\t☹ OOPS!!! It must be in the format of: delete <position in list>\n");
+        break;
 
-            case "empty deadline":
-            printWithDivider("\t☹ OOPS!!! The description of deadline cannot be empty.\n");
-            break;
+        case "empty todo":
+        printWithDivider("\t☹ OOPS!!! The description of todo cannot be empty.\n");
+        break;
 
-            case "invalid command deadline":
-            printWithDivider("\t☹ OOPS!!! It must be in the format of: deadline <desciption> /by <yyyy-mm-dd HH:MM>\n");
-            break;
+        case "empty deadline":
+        printWithDivider("\t☹ OOPS!!! The description of deadline cannot be empty.\n");
+        break;
 
-            case "empty event":
-            printWithDivider("\t☹ OOPS!!! The description of a event cannot be empty.\n");
-            break;
+        case "invalid command deadline":
+        printWithDivider("\t☹ OOPS!!! It must be in the format of: deadline <desciption> /by <yyyy-mm-dd HH:MM>\n");
+        break;
 
-            case "invalid command event":
-            printWithDivider("\t☹ OOPS!!! It must be in the format of: event <desciption> /at <yyyy-mm-dd HH:MM>\n");
-            break;
+        case "empty event":
+        printWithDivider("\t☹ OOPS!!! The description of a event cannot be empty.\n");
+        break;
 
-            case "empty taskslist":
-            printWithDivider("\tTasklist is empty\n");
-            break;
+        case "invalid command event":
+        printWithDivider("\t☹ OOPS!!! It must be in the format of: event <desciption> /at <yyyy-mm-dd HH:MM>\n");
+        break;
+
+        case "empty taskslist":
+        printWithDivider("\tTasklist is empty\n");
+        break;
 
         }
     }

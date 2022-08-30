@@ -75,50 +75,48 @@ public class Storage {
                 char keyword = input.charAt(1);
 
                 switch (keyword) {
-                    case 'E':
-                    char icon = input.charAt(4); 
-                    String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
-                    String desciption = input.substring(8, input.lastIndexOf(": ") - 4);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime date = LocalDateTime.parse(at, formatter);
-                    Task newTask = new Event(desciption, date);
-                    if (icon == ' ') {
-                        tasksList.add(newTask);
-                    } else {
-                        newTask.mark();
-                        tasksList.add(newTask);
-                    }
-                    break;
-
-                    case 'T':
-                    icon = input.charAt(4); 
-                    desciption = input.substring(8);
-                    newTask = new Todo(desciption);
-                    if (icon == ' ') {
-                        tasksList.add(newTask);
-                    } else {
-                        newTask.mark();
-                        tasksList.add(newTask);
-                    }
-                    break;
-
-                    case 'D':
-                    icon = input.charAt(4);
-                    at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
-                    desciption = input.substring(8, input.lastIndexOf(": ") - 4);
-                    formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    date = LocalDateTime.parse(at, formatter);
-                    newTask = new Deadline(desciption, date);
-                    if (icon == ' ') {
-                        tasksList.add(newTask);
-                    } else {
-                        newTask.mark();
-                        tasksList.add(newTask);
-                    }
-                    break;
+                case 'E':
+                char icon = input.charAt(4);
+                String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
+                String desciption = input.substring(8, input.lastIndexOf(": ") - 4);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime date = LocalDateTime.parse(at, formatter);
+                Task newTask = new Event(desciption, date);
+                if (icon == ' ') {
+                    tasksList.add(newTask);
+                } else {
+                    newTask.mark();
+                    tasksList.add(newTask);
                 }
+                break;
 
+                case 'T':
+                icon = input.charAt(4);
+                desciption = input.substring(8);
+                newTask = new Todo(desciption);
+                if (icon == ' ') {
+                    tasksList.add(newTask);
+                } else {
+                    newTask.mark();
+                    tasksList.add(newTask);
+                }
+                break;
 
+                case 'D':
+                icon = input.charAt(4);
+                at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
+                desciption = input.substring(8, input.lastIndexOf(": ") - 4);
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                date = LocalDateTime.parse(at, formatter);
+                newTask = new Deadline(desciption, date);
+                if (icon == ' ') {
+                    tasksList.add(newTask);
+                } else {
+                    newTask.mark();
+                    tasksList.add(newTask);
+                }
+                break;
+                }
             }
     
             myReader.close();
