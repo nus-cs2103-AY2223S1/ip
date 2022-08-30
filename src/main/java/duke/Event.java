@@ -17,7 +17,7 @@ public class Event extends Task {
     private LocalTime endTime;
 
     /**
-     * Constructor for an Event task
+     * Constructor for an Event task.
      *
      * @param description Description of the event.
      * @param at Start and end time for the event in a String.

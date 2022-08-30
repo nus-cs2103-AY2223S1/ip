@@ -12,7 +12,7 @@ public class Ui {
      *
      * @return String of a line
      */
-    public String line() {
+    public String printLine() {
         return "----------------------";
     }
 
@@ -23,7 +23,7 @@ public class Ui {
      * @return The string after formatting.
      */
     public String formatOutput(String output) {
-        return line() + "\n" + output + "\n" + line();
+        return printLine() + "\n" + output + "\n" + printLine();
     }
 
     /**

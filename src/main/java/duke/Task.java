@@ -56,6 +56,7 @@ public class Task {
 
     /**
      * Outputs the correct string to be saved in save file.
+     *
      * @return String of data to be stored.
      */
     public String toSaveData() {

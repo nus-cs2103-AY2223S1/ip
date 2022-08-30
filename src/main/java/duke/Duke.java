@@ -11,7 +11,7 @@ public class Duke {
     private Storage storage;
     private TaskList tList;
     private Ui ui;
-    private Boolean active;
+    private Boolean isActive;
 
     /**
      * Constructor for a Duke object.
@@ -23,7 +23,7 @@ public class Duke {
         this.storage = new Storage("data/", "save.txt");
         this.ui = new Ui();
         this.tList = new TaskList();
-        this.active = true;
+        this.isActive = true;
 
         storage.loadFile(tList);
     }
@@ -32,7 +32,7 @@ public class Duke {
      * Simple method that exits the Duke's run method.
      */
     public void exit() {
-        this.active = false;
+        this.isActive = false;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Duke {
      * @return Status of current bot if it is active.
      */
     public boolean isActive() {
-        return this.active;
+        return this.isActive;
     }
 
 
