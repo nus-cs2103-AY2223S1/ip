@@ -1,7 +1,8 @@
-package duke;
+package duke.application;
 
 import java.io.IOException;
 
+import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ public class DukeApplication extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(DukeApplication.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
@@ -25,5 +26,8 @@ public class DukeApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }

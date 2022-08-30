@@ -25,14 +25,14 @@ public class Duke {
     }
 
     /** Runs the program until termination */
-    public void run() {
+    private void run() {
         ui.showWelcomeMessage();
         runProgram();
         exit();
     }
 
     /** Runs the program loop, ends if an exit command is inputted */
-    public void runProgram() {
+    private void runProgram() {
         boolean hasEnded = false;
         while (!hasEnded) {
             try {
@@ -47,14 +47,14 @@ public class Duke {
     }
 
     /** Exits the program on call */
-    public void exit() {
+    private void exit() {
         System.exit(0);
     }
 
     public static void main(String[] args) {
         new Duke().run();
     }
-    String getResponse(String input) {
+    public String getResponse(String input) {
         return "Duke heard: " + input;
     }
 
