@@ -4,14 +4,14 @@ import bobthebot.tasks.ToDoList;
 
 /**
  * Parser class which primarily handles the logic of how the handle the input.
- * */
+ */
 public class Parser {
     /**
-     * Function which takes in the user's command and handles the logic of the output.
+     * Takes in the user's command and handles the logic of the output.
+     *
      * @param command A String containing the user's input.
      * @param list The Todo List which the command will act on.
-     *
-     * */
+     */
     public void parseCommand(String command, ToDoList list) {
         if (command.toLowerCase().equals("list")) {
             Ui.listMessage(list);

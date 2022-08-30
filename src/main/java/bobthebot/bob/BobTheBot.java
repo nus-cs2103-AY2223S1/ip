@@ -11,7 +11,7 @@ import bobthebot.utils.Ui;
 
 /**
  * BobTheBot is a friendly CLI Bot that can help with managing tasks.
- * */
+ */
 
 public class BobTheBot {
     private Storage storage;
@@ -19,25 +19,26 @@ public class BobTheBot {
     private Parser parser;
 
     /**
-     * Constructor for instance of BobTheBot
+     * Constructor for instance of BobTheBot.
+     *
      * @param filePath of data.txt file where tasks are stored.
-     * */
-    public BobTheBot(String filePath) throws IOException {
+     */
+    public BobTheBot(String filePath) {
         this.storage = new Storage(filePath);
         this.list = new ToDoList(this.storage.load(), storage);
         this.parser = new Parser();
     }
 
     /**
-     * Command to run BobTheBot.
-     * */
+     * Runs BobTheBot.
+     */
     public void run() throws BobException {
-        Ui.welcome();
+        Ui.printWelcome();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.toLowerCase().equals("bye")) {
-                Ui.goodbye(list);
+                Ui.printGoodbye(list);
                 break;
             }
             parser.parseCommand(command, list);
@@ -48,7 +49,7 @@ public class BobTheBot {
 
     /**
      * Main class where constructor is called and BobTheBot is run.
-     * */
+     */
     public static void main(String[] args) throws IOException, BobException {
         new BobTheBot("./../../data/data.txt").run();
     }

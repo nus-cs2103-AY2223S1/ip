@@ -10,25 +10,27 @@ import bobthebot.utils.Ui;
 
 /**
  * Class which represents a ToDoList.
- * */
+ */
 public class ToDoList {
     private ArrayList<Task> list;
     private Storage storage;
 
     /**
      * Constructs instance of ToDoList.
+     *
      * @param list of tasks. List of tasks can be empty or contains elements taken from storage.
      * @param storage Storage from which
-     * */
+     */
     public ToDoList(ArrayList<Task> list, Storage storage) {
         this.list = list;
         this.storage = storage;
     }
 
     /**
-     * Method for adding items to the list. Method also handles the logic for the type of task to be added.
+     * Adds items to the list. Method also handles the logic for the type of task to be added.
+     *
      * @param command A String which contains the command about the task to be added.
-     * */
+     */
     public void addTask(String command) {
         if (command.startsWith("todo")) {
             command = command.replace("todo", "").trim();
@@ -162,9 +164,10 @@ public class ToDoList {
     }
 
     /**
-     * Method for deleting a specific event from the list, and updating the storage.
+     * Deletes a specific event from the list, and updating the storage.
+     *
      * @param index Specifies 0 index of task to be deleted.
-     * */
+     */
     public void deleteTask(int index) {
         Ui.taskDeletedMessage(index, this);
         this.list.remove(index);
@@ -172,9 +175,10 @@ public class ToDoList {
     }
 
     /**
-     * Method for marking a specific event from the list as done, and updating the storage.
+     * Marks a specific event from the list as done, and updating the storage.
+     *
      * @param index Specifies 1 index of task to be marked as done.
-     * */
+     */
     public void markItemDone(int index) {
         this.list.get(index - 1).markDone();
         Ui.markItemDoneMessage(this, index - 1); // takes in 0 index
@@ -182,9 +186,10 @@ public class ToDoList {
     }
 
     /**
-     * Method for marking a specific event from the list as undone, and updating the storage.
+     * Marks a specific event from the list as undone, and updating the storage.
+     *
      * @param index Specifies 1 index of task to be marked as undone.
-     * */
+     */
     public void markItemUndone(int index) {
         this.list.get(index - 1).markUndone();
         Ui.markItemUndoneMessage(this, index - 1); // takes in 0 index
@@ -192,26 +197,29 @@ public class ToDoList {
     }
 
     /**
-     * Method that returns the number of items in the ToDo List.
+     * Returns the number of items in the ToDo List.
+     *
      * @return An int representing the number of items in the ToDo List.
-     * */
+     */
     public int getLength() {
         return this.list.size();
     }
 
     /**
-     * Method that returns the specified task.
+     * Returns the specified task.
+     *
      * @param index 0 index of the task specified.
      * @return Task at the specified index.
-     * */
+     */
     public Task getTask(int index) {
         return this.list.get(index);
     }
 
     /**
      * Returns a String containing all the elements in the list.
+     *
      * @return String containing all the elements in the list.
-     * */
+     */
     @Override
     public String toString() {
         int numOfElements = this.list.size();
