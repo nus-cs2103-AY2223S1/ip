@@ -1,6 +1,5 @@
 package duke;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -12,27 +11,23 @@ import duke.command.response.CommandResponse;
 import duke.data.TaskList;
 import duke.data.storage.Storage;
 import duke.data.storage.StorageException;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class Duke {
+public class Duke extends Application {
 
-    private static final String DEFAULT_CHAT_BOT_NAME = "Duke";
-    private static final Path DEFAULT_CACHE_PATH = Paths.get(".duke.cache");
+    private Ui ui;
+    private Storage<TaskList> taskListStorage;
 
-    private final Ui ui;
-    private final Storage<TaskList> taskListStorage;
+    private TaskList taskList;
 
-    private final TaskList taskList;
+    @Override
+    public void init() {
+        String chatBotName = getParameters().getUnnamed().get(0);
+        String cachePath = getParameters().getUnnamed().get(1);
 
-    /**
-     * Constructor for Duke class
-     *
-     * @param chatBotName name of the chat-bot
-     * @param cachePath path to cache file
-     */
-    public Duke(String chatBotName, Path cachePath) {
         this.ui = new Ui(chatBotName);
-        this.taskListStorage = new Storage<>(cachePath);
-
+        this.taskListStorage = new Storage<>(Paths.get(cachePath));
         TaskList tempTaskList;
         try {
             tempTaskList = this.taskListStorage.load(new TaskList());
@@ -43,10 +38,9 @@ public class Duke {
         this.taskList = tempTaskList;
     }
 
-    public static void main(String[] args) {
-        new Duke(DEFAULT_CHAT_BOT_NAME, DEFAULT_CACHE_PATH).run();
-    }
-
+    /**
+     * @deprecated
+     */
     public void run() {
         ui.welcomeUser();
 
@@ -72,5 +66,11 @@ public class Duke {
                 ui.raiseError(error.getMessage());
             }
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        ui.createUi(primaryStage);
+        primaryStage.show();
     }
 }
