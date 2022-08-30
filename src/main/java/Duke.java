@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,14 +129,21 @@ public class Duke {
         }
 
         String name = argsArr[0].strip();
-        String date = argsArr[1].strip();
+        String dateStr = argsArr[1].strip();
 
         if (name == "") {
             throw new DukeException("Failed to create deadline: No task name given");
         }
 
-        if (date == "") {
+        if (dateStr == "") {
             throw new DukeException("Failed to create deadline: No date given");
+        }
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateStr);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Failed to create deadline: Invalid date given");
         }
 
         AddToList(new Deadline(name, false, date));
@@ -152,17 +161,24 @@ public class Duke {
         }
 
         String name = argsArr[0].strip();
-        String date = argsArr[1].strip();
+        String dateStr = argsArr[1].strip();
 
         if (name == "") {
             throw new DukeException("Failed to create event: No task name given");
         }
 
-        if (date == "") {
+        if (dateStr == "") {
             throw new DukeException("Failed to create event: No date given");
         }
 
-        AddToList(new Event(name, false, date));
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateStr);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Failed to create event: Invalid date given");
+        }
+
+        AddToList(new Deadline(name, false, date));
     }
 
     /**
