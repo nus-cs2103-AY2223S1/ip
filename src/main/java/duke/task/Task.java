@@ -22,7 +22,7 @@ public class Task {
     }
 
     public void unmark() {
-            isDone = false;
+        isDone = false;
     }
 
     public String getStatusIcon() {

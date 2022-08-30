@@ -1,17 +1,18 @@
 package duke;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
     @Test
-    public void parseTest(){
+    public void parseTest() {
         try {
             assertTrue(Parser.parse("bye") instanceof ExitCommand);
             assertTrue(Parser.parse("event /at 22-2-2022 18:50")

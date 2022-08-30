@@ -51,8 +51,8 @@ public class Ui {
      * @param size Size of task list.
      */
     public void printAddTask(String msg, int size) {
-        print("Got it. I've added this task:\n" + msg +
-                "\nNow you have " + size +  " tasks in the list.");
+        print("Got it. I've added this task:\n" + msg
+                + "\nNow you have " + size + " tasks in the list.");
     }
 
     /**
@@ -64,7 +64,9 @@ public class Ui {
         String list = "";
         for (int i = 0; i < tasks.size(); i++) {
             list += (i + 1) + "." + tasks.get(i);
-            if (i != tasks.size() - 1) list += "\n";
+            if (i != tasks.size() - 1) {
+                list += "\n";
+            }
         }
         print(list);
     }

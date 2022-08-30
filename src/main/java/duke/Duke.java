@@ -7,12 +7,11 @@ import duke.command.Command;
  */
 public class Duke {
 
+    public static final String FOLDER_LOCATION = "data";
+    public static final String FILE_LOCATION = "data/duke.txt";
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
-
-    public static final String FOLDER_LOCATION = "data";
-    public static final String FILE_LOCATION = "data/duke.txt";
 
     /**
      * Creates a new Duke Object, initializing Ui, Storage and TaskList.
@@ -38,14 +37,16 @@ public class Duke {
 
         ui.printGreetings();
 
-        while(true) {
+        while (true) {
             String fullCommand = ui.readCommand();
             try {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                if (c.isExit()) break;
+                if (c.isExit()) {
+                    break;
+                }
                 storage.save(tasks);
-            } catch (Exception e){
+            } catch (Exception e) {
                 ui.print(e.getMessage());
             }
         }

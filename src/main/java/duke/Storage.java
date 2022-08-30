@@ -1,11 +1,11 @@
 package duke;
 
-import duke.task.Task;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+
+import duke.task.Task;
 
 /**
  * Storage class containing all the logic for loading and saving to file.

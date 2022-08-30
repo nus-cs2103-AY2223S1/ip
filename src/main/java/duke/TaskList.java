@@ -1,14 +1,14 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.Todo;
-import duke.task.Event;
-import duke.task.Deadline;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * TaskList class containing all the logic for interactions with the list of tasks.
@@ -35,7 +35,7 @@ public class TaskList {
 
             char tag = line.charAt(1);
             boolean isDone = (line.charAt(4) == 'X' ? true : false);
-            String msg[] = line.split(" ", 3)[2].split(" \\(");
+            String[] msg = line.split(" ", 3)[2].split(" \\(");
             String name = msg[0];
             LocalDateTime date = null;
 
