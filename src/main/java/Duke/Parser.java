@@ -26,7 +26,6 @@ public class Parser {
                     ui.list(tasklist);
                     continue;
                 }
-
                 //  Marking
                 if ((input.length() >= 4) && (input.substring(0, 4).equals("mark"))) {
                     //  error checking
