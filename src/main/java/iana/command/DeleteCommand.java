@@ -6,13 +6,23 @@ import iana.main.Ui;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
 
+/**
+ * Command that deletes a task.
+ */
 public class DeleteCommand extends Command {
     private String taskNum;
     
+    /**
+     * Constructor for DeleteCommand class.
+     * @param taskNum the task number to be deleted from the task list.
+     */
     public DeleteCommand(String taskNum) {
         this.taskNum = taskNum;
     }
 
+    /**
+     * Runs the command to delete task.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -28,6 +38,9 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Returns false.
+     */
     @Override
     public boolean isExit() {
         return false;

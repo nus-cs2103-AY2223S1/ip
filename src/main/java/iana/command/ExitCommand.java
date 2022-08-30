@@ -5,12 +5,14 @@ import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
+/**
+ * Command that exits the program.
+ */
 public class ExitCommand extends Command {
-    
-    public ExitCommand() {
 
-    }
-
+    /**
+     * Runs the command to exit the program.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -21,6 +23,9 @@ public class ExitCommand extends Command {
         ui.sayBye();
     }
 
+    /**
+     * Returns true as command is exit command.
+     */
     @Override
     public boolean isExit() {
         return true;

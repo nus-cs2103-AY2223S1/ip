@@ -4,13 +4,23 @@ import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
+/**
+ * Command to mark a task in the task list as incomplete.
+ */
 public class UnmarkCommand extends Command {
     public String taskNum;
 
+    /**
+     * Constructor for UnmarkCommand class.
+     * @param taskNum task number to be unmarked.
+     */
     public UnmarkCommand(String taskNum) {
         this.taskNum = taskNum;
     }
 
+    /**
+     * Runs command to unmark a task.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -23,6 +33,9 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * Returns false as command is not an exit command.
+     */
     @Override
     public boolean isExit() {
         return false;

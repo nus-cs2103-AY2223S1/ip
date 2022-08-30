@@ -4,13 +4,23 @@ import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
+/**
+ * Command that marks task as completed.
+ */
 public class MarkCommand extends Command {
     public String taskNum;
     
+    /**
+     * Constructor for MarkCommand class.
+     * @param taskNum task number to be marked as completed.
+     */
     public MarkCommand(String taskNum) {
         this.taskNum = taskNum;
     }
 
+    /**
+     * Runs command to mark task.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -23,6 +33,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * Returns false as command is not an exit command.
+     */
     @Override
     public boolean isExit() {
         return false;

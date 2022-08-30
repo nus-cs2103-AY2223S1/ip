@@ -10,10 +10,17 @@ import iana.command.MarkCommand;
 import iana.command.UnmarkCommand;
 import iana.exception.IanaException;
 
+/**
+ * Parser that takes in command line arguments.
+ */
 public class Parser {
-    public Parser() {
-    }
 
+    /**
+     * Parses full user input.
+     * @param input user's command line input.
+     * @return command that matches user's input.
+     * @throws IanaException if user's input does not match correct format.
+     */
     public static Command parse(String input) throws IanaException {
         String[] taskArray = input.split(" ", 2);
         String action = taskArray[0];

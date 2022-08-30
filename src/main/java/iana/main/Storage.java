@@ -1,4 +1,5 @@
 package iana.main;
+
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,13 +11,25 @@ import iana.exception.IanaException;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
 
+/**
+ * Stores tasks and their relevant information.
+ */
 public class Storage {
     private String filePath;
     
+    /**
+     * Constructor for Storage class.
+     * @param path file path where information is stored.
+     */
     public Storage(String path) {
         this.filePath = path;
     }
 
+    /**
+     * Reads tasks' data from storage file and returns the task list.
+     * @return task list of stored data.
+     * @throws IanaException if file or folder does not exist or file is corrupted.
+     */
     public TaskList load() throws IanaException {
         TaskList taskList = new TaskList(new ArrayList<Task>());
 
@@ -61,6 +74,11 @@ public class Storage {
         return taskList;
     } 
 
+    /**
+     * Saves task list data into storage file.
+     * @param taskList task list of tasks to be stored.
+     * @throws IanaException if file or folder does not exist.
+     */
     public void write(TaskList taskList) throws IanaException {
         try {
             FileWriter fw = new FileWriter(this.filePath);

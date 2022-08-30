@@ -1,4 +1,3 @@
-package iana.main;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -7,11 +6,18 @@ import iana.command.Command;
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
 
+/**
+ * Represents the command line interface Iana used to manage tasks.
+ */
 public class Iana {
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
 
+    /**
+     * Constructor for Iana class.
+     * @param filePath the file path where user's previous task data is stored.
+     */
     public Iana(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -24,6 +30,9 @@ public class Iana {
         }
     }
 
+    /**
+     * Runs the command line interface.
+     */
     public void run() {     
         ui.sayHi();
         boolean isActive = true;
@@ -47,6 +56,10 @@ public class Iana {
         }
     }
 
+    /**
+     * Execute the entire program.
+     * @param args the arguments for command line.
+     */
     public static void main(String[] args) {
         Path path = Paths.get("src", "main/data", "DataStorage.txt");
         String filePath = path.toAbsolutePath().toString();

@@ -5,10 +5,18 @@ import java.time.format.DateTimeParseException;
 
 import iana.exception.IanaException;
 
+/**
+ * Utility to convert tasks' date time format into a standardized format.
+ */
 public class DateTime {
     private static final DateTimeFormatter INPUT_FORMAT_1 = DateTimeFormatter.ofPattern("yyyy-dd-MM HH:mm");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm");
     
+    /**
+     * Parse date time string.
+     * @param timeInput date time input to be parsed.
+     * @return string representation of date time in standardized format.
+     */
     public static String parseToString(String timeInput) {
         try {
             return OUTPUT_FORMAT.format(parseToLocalDateTime(timeInput));
@@ -17,6 +25,12 @@ public class DateTime {
         }
     }
 
+    /**
+     * Parse date time string.
+     * @param timeInput date time input to be parsed.
+     * @return localdatetime representation of date time in standardized format.
+     * @throws IanaException
+     */
     public static LocalDateTime parseToLocalDateTime(String timeInput) throws IanaException {
         LocalDateTime timeOutput;
 
