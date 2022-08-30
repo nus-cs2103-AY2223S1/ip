@@ -9,19 +9,16 @@ import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 public class Storage {
-    private String file;
+    private String filePath;
 
     public Storage(String filePath) {
-        file = filePath;
-    }
-
-    /**
-     * Checks if file exists.
-     *
-     * @return True if file exists, False otherwise.
-     */
-    public boolean hasExisted() {
-        return new File(file).isFile();
+        File file = new File(filePath);
+        try {
+            file.createNewFile();
+            this.filePath = filePath;
+        } catch (IOException e) {
+            Ui.printErrorMessage(new DukeException("Error loading file"));
+        }
     }
 
     /**
@@ -30,19 +27,18 @@ public class Storage {
      * @return Tasklist containing all the files.
      */
     public TaskList load() {
-        //todo
         TaskList tasks = new TaskList();
         try {
-            FileInputStream fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(filePath);
             Scanner sc = new Scanner(fis);
             while (sc.hasNextLine()) {
                 String nextLine = sc.nextLine();
                 if (nextLine.startsWith("[T]")) {
-                    tasks.add(Todo.parse(sc.nextLine()));
+                    tasks.add(Todo.parse(nextLine));
                 } else if (nextLine.startsWith("[D]")) {
-                    tasks.add(Deadline.parse(sc.nextLine()));
+                    tasks.add(Deadline.parse(nextLine));
                 } else if (nextLine.startsWith("[E]")) {
-                    tasks.add(Event.parse(sc.nextLine()));
+                    tasks.add(Event.parse(nextLine));
                 }
             }
             sc.close();
@@ -54,9 +50,9 @@ public class Storage {
 
     public void writeToFile(TaskList tasks) {
         try {
-            Files.write(Paths.get(file), tasks.convertToStringList(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(filePath), tasks.convertToStringList(), StandardOpenOption.WRITE);
         } catch (IOException e) {
-            e.printStackTrace();
+            Ui.printErrorMessage(new DukeException("Error writing to file"));
         }
     }
 
