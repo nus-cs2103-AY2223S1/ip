@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Ui {
 
@@ -64,6 +65,13 @@ public class Ui {
         System.out.println(t.toString());
     }
 
+    public void printFoundResults(ArrayList<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 1; i <= tasks.size(); i++) {
+            System.out.println(i + "." + tasks.get(i - 1).toString());
+        }
+    }
+
     public void printErrorMessage(Exception e, TaskList ts) {
         if (e instanceof IOException) {
             System.out.println(":( An error occurred reading/writing your save files!");
@@ -85,6 +93,9 @@ public class Ui {
         } else if (e instanceof EventFormatException) {
             System.out.println(":( Oops! That's not the right way to set an event!");
             System.out.println("Please use this format: \"event <description> /at <time>\"");
+            printSpacer();
+        } else if (e instanceof EmptyFindException) {
+            System.out.println(":( Oops! The search keyword(s) cannot be empty!");
             printSpacer();
         } else {
             System.out.println(":( Oops! An unknown error has occurred!");

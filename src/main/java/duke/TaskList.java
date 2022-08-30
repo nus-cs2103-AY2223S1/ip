@@ -42,7 +42,6 @@ public class TaskList {
         if (s.length() <= 5) {
             throw new EmptyTodoException();
         }
-
         String result = s.substring(5);
         Todo t = new Todo(result);
         tasks.add(t);
@@ -128,5 +127,19 @@ public class TaskList {
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new TaskNumberException();
         }
+    }
+
+    public ArrayList<Task> findTasks(String line) throws EmptyFindException {
+        if (line.length() <= 5) {
+            throw new EmptyFindException();
+        }
+        String filter = line.substring(5);
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.getDescription().contains(filter)) {
+                result.add(t);
+            }
+        }
+        return result;
     }
 }

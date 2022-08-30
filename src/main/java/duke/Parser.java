@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Parser {
     private static boolean startsWith(String cmd, String prefix) {
@@ -91,6 +92,16 @@ public class Parser {
                 ui.printNoOfTasks(ts);
                 ui.printSpacer();
             } catch (TaskNumberException e) {
+                ui.printErrorMessage(e, ts);
+            }
+
+        } else if (startsWith(s, "find")) {
+
+            try {
+                ArrayList<Task> result = ts.findTasks(s);
+                ui.printFoundResults(result);
+                ui.printSpacer();
+            } catch (EmptyFindException e) {
                 ui.printErrorMessage(e, ts);
             }
 
