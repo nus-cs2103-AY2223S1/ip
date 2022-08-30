@@ -12,9 +12,9 @@ import scottie.ui.Ui;
  */
 public class Scottie {
     /**
-     * The entry point of the Scottie program.
+     * Runs the Scottie application
      */
-    public static void main(String[] args) {
+    private static void run() {
         TaskList taskList = new TaskList();
         Ui ui = new Ui(System.in, System.out);
         ui.showStartupMessage();
@@ -30,5 +30,12 @@ public class Scottie {
                 ui.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
             }
         }
+    }
+
+    /**
+     * The entry point of the Scottie program.
+     */
+    public static void main(String[] args) {
+        run();
     }
 }
