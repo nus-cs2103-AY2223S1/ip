@@ -17,7 +17,7 @@ public class Parser {
         return formattedInput[0];
     }
     
-    protected int parseForNumber(String[] words) {
+    protected int getTaskIndex(String[] words) {
         return Integer.parseInt(words[1]) - 1;
     }
 }

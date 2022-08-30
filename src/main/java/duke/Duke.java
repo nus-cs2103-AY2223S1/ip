@@ -32,13 +32,13 @@ public class Duke {
     private void start() {
         try {
             tasks = new TaskList(storage.loadFromDisk());
-            serviceLoop();
+            repeatUntilQuit();
         } catch (DukeException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    private void serviceLoop() {
+    private void repeatUntilQuit() {
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
@@ -73,12 +73,12 @@ public class Duke {
         }
     }
 
-    private void mark(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void mark(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            int taskIndex = parser.parseForNumber(currInput);
+            int taskIndex = parser.getTaskIndex(input);
             System.out.println(tasks.getTask(taskIndex).markAsDone());
             storage.saveToDisk(tasks.getTaskList());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
@@ -86,12 +86,12 @@ public class Duke {
         }
     }
 
-    private void unmark(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void unmark(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            int taskIndex = parser.parseForNumber(currInput);
+            int taskIndex = parser.getTaskIndex(input);
             System.out.println(tasks.getTask(taskIndex).unmarkAsNotDone());
             storage.saveToDisk(tasks.getTaskList());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
@@ -99,12 +99,12 @@ public class Duke {
         }
     }
 
-    private void createToDos(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void createToDos(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            ToDos task = new ToDos(currInput[1]);
+            ToDos task = new ToDos(input[1]);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
         } catch (IndexOutOfBoundsException ex) {
@@ -112,12 +112,12 @@ public class Duke {
         }
     }
 
-    private void createDeadlines(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void createDeadlines(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            String[] taskDetails = currInput[1].split(" /by ", 2);
+            String[] taskDetails = input[1].split(" /by ", 2);
             String tasking = taskDetails[0];
             String deadline = taskDetails[1];
             LocalDateTime dateTime = LocalDateTime.parse(deadline, DATE_TIME_FORMATTER);
@@ -131,12 +131,12 @@ public class Duke {
         }
     }
 
-    private void createEvents(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void createEvents(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            String[] taskDetails = currInput[1].split(" /at ", 2);
+            String[] taskDetails = input[1].split(" /at ", 2);
             String tasking = taskDetails[0];
             String eventTime = taskDetails[1];
             LocalDateTime dateTime = LocalDateTime.parse(eventTime, DATE_TIME_FORMATTER);
@@ -150,12 +150,12 @@ public class Duke {
         }
     }
 
-    private void deleteTask(String[] currInput) throws DukeException {
-        if (currInput.length < 2) {
-            throw new DukeEmptyException(currInput[0]);
+    private void deleteTask(String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeEmptyException(input[0]);
         }
         try {
-            int taskIndex = parser.parseForNumber(currInput);
+            int taskIndex = parser.getTaskIndex(input);
             Task deletedTask = tasks.deleteTask(taskIndex);
             ui.printTaskDeleted(deletedTask, tasks.getSize());
             storage.saveToDisk(tasks.getTaskList());
