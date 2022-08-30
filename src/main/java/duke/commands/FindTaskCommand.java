@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 import duke.models.task.Task;
 
 /**
@@ -41,7 +40,7 @@ public class FindTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         if (this.arguments.length == 0) {
             throw new DukeException(FindTaskCommand.ERROR_NO_SEARCH_KEYWORD);
         }
@@ -53,14 +52,12 @@ public class FindTaskCommand implements Command {
         List<Task> filteredTasks = taskManager.list(areKeywordsInTaskDescription);
 
         if (filteredTasks.size() == 0) {
-            uiManager.print(FindTaskCommand.MESSAGE_NO_MATCHING_TASKS_FOUND);
+            return FindTaskCommand.MESSAGE_NO_MATCHING_TASKS_FOUND;
         } else {
-            uiManager.print(
-                    String.format(
-                            "%s\n%s",
-                            FindTaskCommand.MESSAGE_MATCHING_TASKS_FOUND,
-                            TaskManager.display(filteredTasks)
-                    )
+            return String.format(
+                    "%s\n%s",
+                    FindTaskCommand.MESSAGE_MATCHING_TASKS_FOUND,
+                    TaskManager.display(filteredTasks)
             );
         }
     }

@@ -1,7 +1,6 @@
 package duke.commands;
 
 import duke.managers.TaskManager;
-import duke.managers.UiManager;
 
 /**
  * Encapsulates a command for terminating the program. The command should be used as follows:
@@ -30,7 +29,7 @@ public class ByeCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, UiManager uiManager) {
-        uiManager.print(ByeCommand.MESSAGE_GOODBYE);
+    public String execute(TaskManager taskManager) {
+        return ByeCommand.MESSAGE_GOODBYE;
     }
 }
