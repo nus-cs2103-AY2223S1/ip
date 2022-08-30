@@ -1,24 +1,25 @@
 package duke.component;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Represents the list of all tasks.
  */
 public class TaskList {
 
-    private ArrayList<Task> tasks;
     public static final String MSG_DONE = "Nice! I've marked this task as done:\n";
-    public static final String MSG_UNDONE =  "OK, I've marked this task as not done yet:\n";
+    public static final String MSG_UNDONE = "OK, I've marked this task as not done yet:\n";
     public static final String MSG_ADD = "Got it. I've added this task:\n";
     public static final String MSG_DELETE = "Noted. I've removed this task:\n";
     public static final String MSG_NUMBER_START = "Now you have ";
     public static final String MSG_NUMBER_END = " tasks in the list.";
     public static final String MSG_FIND = "Here are the matching tasks in your list:\n";
     public static final String MSG_NO_MATCH = "There are no matching tasks!";
+
+    private ArrayList<Task> tasks;
 
     /**
      * Constructs a new TaskList.

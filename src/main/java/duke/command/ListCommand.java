@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.component.TaskList;
-import duke.exception.DukeException;
 
 /**
  * Represents a command to list all tasks in the TaskList.

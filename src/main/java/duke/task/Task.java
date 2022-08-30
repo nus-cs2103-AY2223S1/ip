@@ -9,7 +9,7 @@ public abstract class Task {
     public static final String STATUS_DONE = "[X]";
     public static final String STATUS_NOT_DONE = "[ ]";
     public static final String DONE_STORAGE = "1";
-    public static final String NOT_DONE_STORAGE ="0";
+    public static final String NOT_DONE_STORAGE = "0";
     public static final String SEPARATOR = " | ";
 
     protected String description;
