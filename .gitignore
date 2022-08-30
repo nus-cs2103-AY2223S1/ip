@@ -13,11 +13,13 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# other files
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/input.txt
 text-ui-test/runtest.bat
 text-ui-test/runtest.sh
-
+src/main/java/Graphics.java
 data/
+
 

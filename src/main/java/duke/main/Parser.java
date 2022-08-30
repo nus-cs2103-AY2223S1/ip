@@ -17,6 +17,9 @@ import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.errors.DukeException;
 
+/**
+ * Reads user input
+ */
 public class Parser {
     /**
      * Parses user input and creates the necessary commands
@@ -165,7 +168,7 @@ public class Parser {
         if (splitReply.length != 2) {
             throw new DukeException("☹ OOPS!!! Only one keyword allowed for find");
         }
-        String[] keywordArray = Arrays.copyOfRange(splitReply,1, splitReply.length);
+        String[] keywordArray = Arrays.copyOfRange(splitReply, 1, splitReply.length);
         String keyword = String.join(" ", keywordArray);
         return keyword;
     }
