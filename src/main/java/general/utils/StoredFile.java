@@ -30,10 +30,27 @@ abstract public class StoredFile {
         }
     }
 
+    /**
+     * Checks whether the {@code StoredFile} points to an existing file.
+     *
+     * @return {@code true} if the {@code StoredFile} points to an existing file, {@code false} otherwise
+     */
     abstract public boolean fileExists();
 
+    /**
+     * Returns the content of the {@code StoredFile} as a string.
+     *
+     * @return The content of the {@code StoredFile}, interpreted as a string
+     * @throws FileNotFoundException When the {@code StoredFile} points to a non-existent file
+     */
     abstract public String getTextContent() throws FileNotFoundException;
 
+    /**
+     * Overwrites the contents of the {@code StoredFile} with the text specified by the {@code text} parameter.
+     * If the file does not exist, it will be created.
+     *
+     * @param text The text to be written to the file
+     */
     abstract public void writeText(String text);
 
     private static class ExistentFile extends StoredFile {
