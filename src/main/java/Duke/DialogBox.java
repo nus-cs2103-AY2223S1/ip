@@ -12,6 +12,13 @@ public class DialogBox extends HBox {
     private Label text;
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox.
+     *
+     * @param l the Label.
+     * @param iv the ImageView.
+     * @return A DialogBox.
+     */
     public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;
@@ -26,6 +33,8 @@ public class DialogBox extends HBox {
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
+     *
+     * @return void.
      */
     private void flip() {
         this.setAlignment(Pos.TOP_LEFT);
@@ -34,10 +43,24 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * Returns a new DialogBox based on user input.
+     *
+     * @param l the Label.
+     * @param iv the ImageView.
+     * @return A DialogBox.
+     */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
         return new DialogBox(l, iv);
     }
 
+    /**
+     * Returns a new DialogBox based on what Duke says.
+     *
+     * @param l the Label.
+     * @param iv the ImageView.
+     * @return A DialogBox.
+     */
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv);
         db.flip();

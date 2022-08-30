@@ -44,6 +44,8 @@ public class DukePro extends Application {
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
+     *
+     * @return void.
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
@@ -63,11 +65,20 @@ public class DukePro extends Application {
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
+     *
+     * @param input the input String.
+     * @return A String.
      */
     private String getResponse(String input) {
         return "Duke heard: " + input;
     }
 
+    /**
+     * Starts up the DukePro app.
+     *
+     * @param stage A Stage.
+     * @return void.
+     */
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components

@@ -24,7 +24,7 @@ public class TasksManager {
      * Adds a Task and update Storage.
      *
      * @param task A Task.
-     * @return A boolean indicating that update was sucessful.
+     * @return A String.
      */
     public String addTask(Task task) {
         //add to the tasks
@@ -42,7 +42,7 @@ public class TasksManager {
      * Adds a task to the tasks ArrayList without
      * adding it to Storage.
      *
-     * @param task A Task to be added
+     * @param task A Task to be added.
      * @return void.
      */
     public void addTaskNoPrint(Task task) {
@@ -53,7 +53,7 @@ public class TasksManager {
      * Prints every item in the tasks Arraylist
      * to the console.
      *
-     * @return void.
+     * @return A String with all items from tasklist.
      */
     public String showList() {
         String ret = "Here are the tasks in your list: \n";
@@ -67,8 +67,8 @@ public class TasksManager {
     /**
      * Marks a specific task as done.
      *
-     * @param n the id of the task
-     * @return void.
+     * @param n the id of the task.
+     * @return A String.
      */
     public String markTaskAsDone(int n) {
         Task doneTask = this.tasks.get(n - 1);
@@ -85,7 +85,7 @@ public class TasksManager {
      * Deletes a task from the list of tasks.
      *
      * @param n the id of the task to be deleted.
-     * @return void.
+     * @return A String showing deleted task.
      */
     public String deleteTask(int n) {
         Task deleted = this.tasks.remove(n - 1);
@@ -96,6 +96,12 @@ public class TasksManager {
         return ret;
     }
 
+    /**
+     * Deletes a task from the list of tasks.
+     *
+     * @param match the String to search for.
+     * @return A String showing all matched.
+     */
     public String find(String match) {
         String ret = "The following tasks match your search:\n";
 
@@ -108,6 +114,11 @@ public class TasksManager {
         return ret;
     }
 
+    /**
+     * Deletes a task from the list of tasks.
+     *
+     * @return An int showing number of tasks.
+     */
     public int numTasks() {
         return tasks.size();
     }
@@ -125,7 +136,7 @@ public class TasksManager {
      * Prints out all matching dates to the console.
      *
      * @param localDate the LocalDate the user wants.
-     * @return void.
+     * @return A String representing LocalDate.
      */
     public String showDate(LocalDate localDate) {
         String ret = "These tasks are due on " + localDate + "\n";

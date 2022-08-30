@@ -11,7 +11,7 @@ public class Interact {
     /**
      * Greets the user.
      *
-     * @return void.
+     * @return String.
      */
     public String start() {
         tasksManager = new TasksManager();
@@ -20,7 +20,7 @@ public class Interact {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        return "Hello from\n" + logo;
+        return "Hello from\n" + logo + "\nHow can I help you";
     }
 
     /**
@@ -28,7 +28,7 @@ public class Interact {
      * depending on the command-line argument.
      *
      * @param word  A String read from the command line.
-     * @return void.
+     * @return String.
      * @throws DukeException  If input is not proper.
      */
     public String handle(String word) throws DukeException {
@@ -63,32 +63,6 @@ public class Interact {
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
         System.exit(0);
-    }
-
-    /**
-     * Creates an Interact, which controls interactions
-     * with the user and calls on other classes to do
-     * what the user wishes, accordingly. The Scanner
-     * takes in these inputs and seeds them to Interact.
-     *
-     * @param args user input.
-     * @return void.
-     */
-    public static void main(String[] args) {
-        Interact interact = new Interact();
-        interact.start();
-
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
-            String nextWord = sc.nextLine();
-            if (!nextWord.equals("")) {
-                try {
-                    interact.handle(nextWord);
-                } catch (DukeException e) {
-                    System.out.println(e);
-                }
-            }
-        }
     }
 }
 
