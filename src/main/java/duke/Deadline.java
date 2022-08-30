@@ -5,12 +5,22 @@ import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * A Deadline class containing an event description and date.
+ * Inherits from the Task class.
+ *
+ */
 public class Deadline extends Task {
     protected String description;
     protected boolean isDone;
     protected String date;
     LocalDate localDate;
 
+
+    /**
+     * Constructor for a Deadline object.
+     * Converts both MMM d yyy and yyyy-MM-dd format to yyyy-MM-dd format.
+     */
     public Deadline(String description, String date) {
         super(description);
         this.date = date;
@@ -35,6 +45,11 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns the Event object in string.
+     *
+     * @return String representation of the Event object.
+     */
     @Override
     public String toString() {
         DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");

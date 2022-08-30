@@ -5,6 +5,11 @@ import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * An Event class containing an event description and date.
+ * Inherits from the Task class.
+ *
+ */
 public class Event extends Task {
     protected String description;
     protected boolean isDone;
@@ -12,7 +17,8 @@ public class Event extends Task {
     LocalDate localDate;
 
     /**
-     * Constructor for an duke.Event object
+     * Constructor for an Event object.
+     * Converts both MMM d yyy and yyyy-MM-dd format to yyyy-MM-dd format.
      */
     public Event(String description, String at) {
         super(description);
@@ -38,6 +44,11 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Returns the Event object in string.
+     *
+     * @return String representation of the Event object.
+     */
     @Override
     public String toString() {
         DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
