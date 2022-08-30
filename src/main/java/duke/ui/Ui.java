@@ -3,6 +3,7 @@ package duke.ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -142,6 +143,22 @@ public class Ui {
             printTab(temp);
         }
         showLine();
+    }
+
+    /**
+     * Prints the list of tasks whose index are in the array.
+     *
+     * @param tasks The list of all tasks.
+     * @param indexArr The list of the index of the tasks to be printed.
+     */
+    public void printMatchingList(TaskList tasks, List<Integer> indexArr) {
+        showLine();;
+        printTab("Here are the matching tasks in your list:");
+        for (int i = 0; i < indexArr.size(); i++) {
+            Task t = tasks.get(indexArr.get(i));
+            String temp = String.format("%d. %s", i + 1, t);
+            printTab(temp);
+        }
     }
 
     /**
