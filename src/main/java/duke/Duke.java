@@ -9,10 +9,10 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class Duke {
-
     private StorageFile storageFile;
     private TaskList tasks;
     private Ui ui;
+
 
     /**
      * Sets up required objects, loads the data from the storage file.
@@ -45,6 +45,7 @@ public class Duke {
             }
         }
     }
+
     /** Exits the program on call */
     public void exit() {
         System.exit(0);
@@ -52,6 +53,9 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke().run();
+    }
+    String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
 }
