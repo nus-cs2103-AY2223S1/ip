@@ -54,7 +54,6 @@ public class Ui {
     protected void showAllTask(TaskList taskList) {
         System.out.println("Look at me being useful\n");
         System.out.println(taskList);
-        this.lineBreak();
     }
 
     /**
@@ -105,5 +104,13 @@ public class Ui {
         this.lineBreak();
         System.out.println(task);
         this.lineBreak();
+    }
+
+    protected void showFindTask(TaskList taskList) {
+        System.out.println("WOW I AM SO USEFUL !!");
+        this.lineBreak();
+        System.out.println("Here are all the matching tasks in your list:");
+        this.lineBreak();
+        System.out.println(taskList);
     }
 }

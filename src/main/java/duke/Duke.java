@@ -21,7 +21,8 @@ public class Duke {
         UNMARK,
         EVENT,
         DEADLINE,
-        DELETE
+        DELETE,
+        FIND
     }
     public Duke(Parser parser, Ui ui, TaskList taskList, Storage storage){
         this.parser = parser;
@@ -47,7 +48,7 @@ public class Duke {
                 }
                 parser.executeInput(ui, input, storage, taskList);
             } catch (NoSuchCommandException e) {
-                e.printStackTrace();
+                System.out.println(e);
             }
         }
     }

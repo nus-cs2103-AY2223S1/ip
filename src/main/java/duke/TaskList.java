@@ -63,4 +63,11 @@ public class TaskList {
         task.toggleStatus();
         return task;
     }
+
+    public TaskList filterTask(String input) {
+        String comparator = "(.*)"+ input.replace(" ", "(.*)") + "(.*)";
+        ArrayList<Task> copyOfTasks = new ArrayList<>(this.list);
+        copyOfTasks.removeIf(task -> !task.toString().matches(comparator));
+        return new TaskList(copyOfTasks);
+    }
 }

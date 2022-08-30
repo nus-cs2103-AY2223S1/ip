@@ -42,6 +42,8 @@ public class Parser {
             return Duke.Commands.DEADLINE;
         } else if (input.matches("delete(.*)")) {
             return Duke.Commands.DELETE;
+        } else if (input.matches("find(.*)")) {
+            return Duke.Commands.FIND;
         }
         throw new NoSuchCommandException();
     }
@@ -93,7 +95,8 @@ public class Parser {
             case DELETE:
                 handleDeleteCommand(ui, storage, taskList, inputArr[1]);
                 break;
-
+            case FIND:
+                handleFindCommand(ui, taskList, inputArr[1]);
             }
         } catch (NoSuchCommandException e) {
 
@@ -153,6 +156,9 @@ public class Parser {
         Task task = taskList.deleteTask(index);
         ui.showRemoveTask(taskList, task);
         storage.updateFile(taskList.list);
+    }
+    private void handleFindCommand(Ui ui, TaskList taskList, String input) {
+        ui.showFindTask(taskList.filterTask(input));
     }
 
 
