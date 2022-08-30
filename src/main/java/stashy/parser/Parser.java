@@ -6,6 +6,7 @@ import stashy.commands.AddTodoCommand;
 import stashy.commands.Command;
 import stashy.commands.DeleteCommand;
 import stashy.commands.ExitCommand;
+import stashy.commands.FindCommand;
 import stashy.commands.ListCommand;
 import stashy.commands.MarkCommand;
 import stashy.commands.UnmarkCommand;
@@ -73,6 +74,8 @@ public class Parser {
             return prepareAddDeadlineCommand(remainingCommands);
         case AddEventCommand.KEYWORD:
             return prepareAddEventCommand(remainingCommands);
+        case FindCommand.KEYWORD:
+            return prepareFindCommand(remainingCommands);
         default:
             throw new StashyException("I have no idea what are you saying :<");
         }
@@ -216,6 +219,7 @@ public class Parser {
      *
      * @param remainingCommands The commands with the keyword excluded
      * @return An AddTodoCommand object
+     * @throws StashyException If the todo description is empty
      */
     private static AddTodoCommand prepareAddTodoCommand(String[] remainingCommands)
             throws StashyException {
@@ -291,5 +295,21 @@ public class Parser {
         }
         Event event = parseEvent(description.strip(), atString.strip(), false);
         return new AddEventCommand(event);
+    }
+
+    /**
+     * Prepares a FindCommand object to be executed.
+     *
+     * @param remainingCommands The commands with the keyword excluded
+     * @return A FindCommand object
+     * @throws StashyException If the query string is empty
+     */
+    private static FindCommand prepareFindCommand(String[] remainingCommands)
+            throws StashyException {
+        String query = String.join(" ", Arrays.asList(remainingCommands)).strip();
+        if (query.isEmpty()) {
+            throw new StashyException("Please don't give me an empty search query :(");
+        }
+        return new FindCommand(query);
     }
 }

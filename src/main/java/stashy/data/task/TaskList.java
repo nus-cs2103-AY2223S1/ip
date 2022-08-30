@@ -35,6 +35,21 @@ public class TaskList {
     }
 
     /**
+     * Overloaded constructor method.
+     * Only used to filter by a given query string.
+     *
+     * @param query The query string of interest
+     */
+    public TaskList(ArrayList<Task> taskArrayList, String query) {
+        this.taskList = new ArrayList<Task>();
+        for (Task task : taskArrayList) {
+            if (task.containsText(query)) {
+                this.taskList.add(task);
+            }
+        }
+    }
+
+    /**
      * Getter method of the task list.
      *
      * @return The task list in form of arraylist of tasks
@@ -91,6 +106,6 @@ public class TaskList {
             message += (i + "." + this.taskList.get(i - 1)) + "\n";
         }
         String trimmedMessage = message.substring(0, Math.max(0, message.length() - 1));
-        return trimmedMessage.isEmpty() ? "You have no tasks right now." : trimmedMessage;
+        return trimmedMessage.isEmpty() ? "Nothing to see here..." : trimmedMessage;
     }
 }

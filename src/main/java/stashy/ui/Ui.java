@@ -70,6 +70,15 @@ public class Ui {
     }
 
     /**
+     * Prints the filtered task list in a tidy manner.
+     *
+     * @param tasks The list of (filtered) tasks
+     */
+    public static void showFilteredTasks(TaskList tasks) {
+        showIndented("Listing all the matching task(s)...\n" + tasks);
+    }
+
+    /**
      * Prints the end message.
      */
     public static void showGoodbye() {
