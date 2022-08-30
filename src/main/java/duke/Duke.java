@@ -2,10 +2,16 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Duke class, your personal assistant.
+ */
 public class Duke {
     private TaskList taskList = new TaskList();
     private Parser parser = new Parser();
 
+    /**
+     * Start the Duke.
+     */
     public void start() {
         Storage storage = new Storage("data.txt");
         storage.fillData(taskList);
@@ -39,6 +45,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialize Parser with built-in commands.
+     */
     private void fillParser() {
         parser.addCommand("todo", argument -> {
             if (argument.equals("")){

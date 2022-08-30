@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Custom exceptions relating to Duke.
+ */
 class DukeException extends Exception{
     private DukeException(String text){
         super(text);
