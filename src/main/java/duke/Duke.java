@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import duke.response.DukeResponse;
 import duke.response.ExceptionResponse;
 import duke.response.ReadFileResponse;
-import duke.response.WriteFileResponse;
 
 /**
  * Personal assistant chatbot which can read and save tasks.
@@ -15,6 +14,13 @@ public class Duke {
     private final Storage storage;
     private DukeList list;
     private final DukeUi ui;
+
+    /**
+     * Constructor for Duke.
+     */
+    public Duke() {
+        this(Paths.get("data", "duke.txt"));
+    }
 
     /**
      * Constructor for Duke.
@@ -31,45 +37,35 @@ public class Duke {
             new ExceptionResponse(e).run();
             this.list = new DukeList();
         }
-        DukeResponse.intro();
     }
 
     /**
-     * Main method.
+     * Gets a response from Duke.
      *
-     * @param args Arguments passed to program.
+     * @param input The user input.
+     * @return A String of the response from Duke.
      */
-    public static void main(String[] args) {
-        Path dataPath = Paths.get("data", "duke.txt");
+    public String getResponse(String input) {
+        DukeResponse response = this.ui.readInput(input, this.list);
+        try {
+            if (response.isExit()) {
+                this.saveData();
+            }
 
-        new Duke(dataPath).run();
-
-        DukeResponse.outro();
+            return response.run();
+        } catch (DukeException e) {
+            return new ExceptionResponse(e).run();
+        }
     }
 
     /**
-     * Runs Duke.
+     * Saves data to storage.
      */
-    private void run() {
-        boolean isRunning = true;
-
-        while (isRunning) {
-            DukeResponse response = this.ui.readInput(this.list);
-            try {
-                if (response.isExit()) {
-                    isRunning = false;
-                    this.ui.closeScanner();
-                }
-                response.run();
-            } catch (DukeException e) {
-                this.ui.showError(e);
-            }
-        }
-
+    public void saveData() {
         try {
-            new WriteFileResponse(this.list, this.storage).run();
+            this.storage.write(this.list);
         } catch (DukeException e) {
-            new ExceptionResponse(e).run();
+            System.err.println(e.getMessage());
         }
     }
 }

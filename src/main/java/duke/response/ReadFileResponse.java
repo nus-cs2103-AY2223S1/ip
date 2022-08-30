@@ -7,8 +7,8 @@ import duke.DukeException;
  */
 public class ReadFileResponse extends DukeResponse {
     @Override
-    public void run() throws DukeException {
-        super.message("Loading...");
+    public String run() throws DukeException {
+        return "Loading...";
     }
 
     @Override

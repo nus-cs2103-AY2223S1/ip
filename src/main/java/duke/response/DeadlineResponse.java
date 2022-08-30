@@ -24,7 +24,7 @@ public class DeadlineResponse extends DukeResponse {
     }
 
     @Override
-    public void run() throws DukeException {
+    public String run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
@@ -45,7 +45,7 @@ public class DeadlineResponse extends DukeResponse {
         }
 
         Deadline d = new Deadline(description, Parser.strToDate(dateTimeStr));
-        super.message(list.add(d));
+        return list.add(d);
     }
 
     @Override

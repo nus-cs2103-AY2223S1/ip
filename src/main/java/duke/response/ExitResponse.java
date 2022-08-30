@@ -1,14 +1,16 @@
 package duke.response;
 
 import duke.DukeException;
+import javafx.application.Platform;
 
 /**
  * A DukeResponse that ends Duke.
  */
 public class ExitResponse extends DukeResponse {
     @Override
-    public void run() throws DukeException {
-
+    public String run() throws DukeException {
+        Platform.exit();
+        return "";
     }
 
     @Override
