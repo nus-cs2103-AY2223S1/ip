@@ -10,7 +10,6 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A Duke object which load the SoCCat,  a Personal Assistant Chatbot that helps a person to keep track of various
@@ -24,7 +23,7 @@ public class Duke {
     private final Parser parser;
     private TaskList tasks;
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         new Duke().start();
     }
 
@@ -36,28 +35,33 @@ public class Duke {
         storage = new Storage();
         parser = new Parser();
     }
-    
+
     private void start() {
+        ui.printWelcomeMessage();
+
         try {
             tasks = new TaskList(storage.loadFromDisk());
             repeatUntilQuit();
+            exit();
         } catch (DukeException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    private void repeatUntilQuit() {
-        Scanner scanner = new Scanner(System.in);
 
-        while (scanner.hasNextLine()) {
-            String input = scanner.nextLine();
+    private void exit() {
+        ui.printGoodbyeMessage();
+    }
+
+    private void repeatUntilQuit() {
+
+        while (true) {
+            String input = ui.getUserInput();
             String[] words = parser.parseInput(input);
             String keyword = parser.getKeyword(input);
-            
+
             try {
                 switch (keyword) {
                     case "bye":
-                        ui.bye();
                         return;
                     case "list":
                         ui.printAllTasks(tasks.getTaskList());
@@ -98,7 +102,9 @@ public class Duke {
         }
         try {
             int taskIndex = parser.getTaskIndex(input);
-            System.out.println(tasks.getTask(taskIndex).markAsDone());
+            Task markedTask = tasks.getTask(taskIndex);
+            markedTask.markAsDone();
+            ui.printTaskMarked(markedTask);
             storage.saveToDisk(tasks.getTaskList());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -111,7 +117,9 @@ public class Duke {
         }
         try {
             int taskIndex = parser.getTaskIndex(input);
-            System.out.println(tasks.getTask(taskIndex).unmarkAsNotDone());
+            Task unmarkedTask = tasks.getTask(taskIndex);
+            unmarkedTask.unmarkAsNotDone();
+            ui.printTaskUnmarked(unmarkedTask);
             storage.saveToDisk(tasks.getTaskList());
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
@@ -126,6 +134,7 @@ public class Duke {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
+            storage.saveToDisk(tasks.getTaskList());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
@@ -143,6 +152,7 @@ public class Duke {
             Deadline task = new Deadline(tasking, dateTime);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
+            storage.saveToDisk(tasks.getTaskList());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         } catch (DateTimeException ex) {
@@ -162,6 +172,7 @@ public class Duke {
             Event task = new Event(tasking, dateTime);
             tasks.addTask(task);
             ui.printTaskAdded(task, tasks.getSize());
+            storage.saveToDisk(tasks.getTaskList());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         } catch (DateTimeException ex) {
@@ -182,15 +193,13 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(tasks.getSize());
         }
     }
-    
+
     private void findTask(String[] input) throws DukeException {
         if (input.length < 2) {
             throw new DukeEmptyException(input[0]);
         }
-        
         String searchTerm = input[1];
         ArrayList<Task> results = tasks.find(searchTerm);
         ui.printMatchingTasks(results);
-        
     }
 }

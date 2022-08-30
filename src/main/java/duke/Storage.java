@@ -35,6 +35,7 @@ public class Storage {
     protected ArrayList<Task> loadFromDisk() throws DukeException {
 
         ArrayList<Task> tasks = new ArrayList<>();
+        
         try { 
             File file = new File(FILEPATH);
             file.getParentFile().mkdirs();
@@ -45,7 +46,7 @@ public class Storage {
             while ((line = reader.readLine()) != null) { 
                 String[] words = line.split("[|]", 4);
                 String keyword = words[0];
-                String isDone = words[1];
+                boolean isDone = words[1].equals("1");
                 String taskDetails = words[2];
                 Task task = null;
                 
@@ -62,8 +63,9 @@ public class Storage {
                         System.out.println("SoCCat cannot recognise the type of this task: " + keyword);
                     }
                 }
-                if (isDone.equals("1") && task != null) {
-                    task.markAsDone();
+                
+                if (task != null) {
+                    if (isDone) task.markAsDone();
                     tasks.add(task);
                 }
             }

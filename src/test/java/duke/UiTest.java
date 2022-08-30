@@ -1,6 +1,5 @@
 package duke;
 
-import duke.task.Task;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +14,7 @@ public class UiTest {
     @Test
     void numberOfTasks_empty() {
         Ui ui = new Ui();
-        String output = ui.numberOfTasks(0);
+        String output = ui.printNumberOfTasks(0);
         assertEquals("Now you have 0 task in your list.", output);
     }
     

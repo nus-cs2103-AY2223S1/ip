@@ -5,7 +5,7 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 /**
- * A Tasklist object that keeps track of all the tasks on hand.
+ * A TaskList object that keeps track of all the tasks on hand.
  */
 public class TaskList {
 

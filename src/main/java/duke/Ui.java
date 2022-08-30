@@ -2,6 +2,8 @@ package duke;
 
 import duke.task.Task;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,26 +12,38 @@ import java.util.Scanner;
  */
 public class Ui {
 
+    private final Scanner in;
+    private final PrintStream out;
+    
     /**
      * Creates a Ui object.
      */
     public Ui() {
-        Scanner scanner = new Scanner(System.in);
-        welcome();
+        this(System.in, System.out);
+    }
+    
+    public Ui(InputStream in, PrintStream out) {
+        this.in = new Scanner(in);
+        this.out = out;
+    }
+    
+    public String getUserInput() {
+        out.print("Please enter your command: ");
+        return in.nextLine();
     }
 
     /**
      * Displays a welcome message to the user.
      */
-    protected void welcome() {
-        System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
+    protected void printWelcomeMessage() {
+        out.println("Hello! I'm SoCCat\nWhat can I do for you?");
     }
 
     /**
      * Displays a farewell message to the user.
      */
-    protected void bye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    protected void printGoodbyeMessage() {
+        out.println("Bye. SoCCat wishes to see you again soon!");
     }
 
     /**
@@ -38,18 +52,19 @@ public class Ui {
      * @param tasks all the current tasks in the task list
      */
     protected void printAllTasks(ArrayList<Task> tasks) {
-        System.out.println("Here are the tasks in your list: ");
+        out.println("Here are the tasks in your list: ");
         loopThroughTasks(tasks);
     }
     
     protected void printMatchingTasks(ArrayList<Task> tasks) {
-        System.out.println("Here are the matching tasks in your list: ");
+        out.println("Here are the matching tasks in your list: ");
         loopThroughTasks(tasks);
     }
     
+    
     protected void loopThroughTasks(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + "." + tasks.get(i));
+            out.println(i + 1 + "." + tasks.get(i));
         }
     }
 
@@ -59,8 +74,26 @@ public class Ui {
      * @param size the total number of tasks in the task list
      * @return a string that indicates how many task(s) are in the list
      */
-    protected String numberOfTasks(int size) {
+    protected String printNumberOfTasks(int size) {
         return "Now you have " + size + (size < 2 ? " task" : " tasks") + " in your list.";
+    }
+
+    /**
+     * Displays the task as marked.
+     *
+     * @param task the task that is marked
+     */
+    protected void printTaskMarked(Task task) {
+        out.println("Nice! I've marked this task as done: \n" + task);
+    }
+
+    /**
+     * Displays the task as unmarked.
+     *
+     * @param task the task that is unmarked
+     */
+    protected void printTaskUnmarked(Task task) {
+        out.println("Ok! I've marked this task as not done yet: \n" + task);
     }
 
     /**
@@ -70,7 +103,7 @@ public class Ui {
      * @param size the total number of tasks in the task list
      */
     protected void printTaskAdded(Task task, int size) {
-        System.out.println("Got it. I've added this task: \n" + task + "\n" + numberOfTasks(size));
+        out.println("Got it. I've added this task: \n" + task + "\n" + printNumberOfTasks(size));
     }
 
     /**
@@ -80,7 +113,7 @@ public class Ui {
      * @param size the total number of tasks in the task list
      */
     protected void printTaskDeleted(Task task, int size) {
-        System.out.println("Noted. I've removed this task: \n" + task + "\n" + numberOfTasks(size));
+        out.println("Noted. I've removed this task: \n" + task + "\n" + printNumberOfTasks(size));
     }
     
 }
