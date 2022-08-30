@@ -32,6 +32,7 @@ public class MarkCommand extends Command {
      * @param ui User interface of programme.
      * @param storage Storage of programme.
      * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file or task is already done / not done.
+     * @return duke's response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
