@@ -1,15 +1,16 @@
 package duke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 public class DukeTest {
 
@@ -39,9 +40,9 @@ public class DukeTest {
         Ui ui = new Ui();
 
         ui.printTaskList(tasks);
-        String expected = "Here are the tasks in your list:\r\n" +
-                "1.[T][ ] return book\r\n" +
-                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
+        String expected = "Here are the tasks in your list:\r\n"
+                + "1.[T][ ] return book\r\n"
+                + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
 
         assertEquals(expected, outContent.toString());
     }
@@ -67,8 +68,8 @@ public class DukeTest {
         Ui ui = new Ui();
 
         ui.printErrorMessage(new InvalidCommandException("hello"), tasks);
-        String expected = ":( Sorry I don't understand the command: \"hello\"\r\n" +
-                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
+        String expected = ":( Sorry I don't understand the command: \"hello\"\r\n"
+                + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n";
 
         assertEquals(expected, outContent.toString());
     }
