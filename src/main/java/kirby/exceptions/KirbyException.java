@@ -7,7 +7,7 @@ public class KirbyException extends Exception {
     /**
      * Constructor for the class KirbyException.
      *
-     * @param message error message.
+     * @param message Error message.
      */
     public KirbyException(String message) {
         super(message);

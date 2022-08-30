@@ -16,7 +16,7 @@ public class EventCommand extends Command {
     /**
      * Constructor for the class EventCommand.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public EventCommand(String inputString) {
         this.inputString = inputString;

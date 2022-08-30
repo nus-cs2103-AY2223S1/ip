@@ -14,7 +14,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructor for the class DeleteCommand.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public DeleteCommand(String inputString) {
         this.inputString = inputString;

@@ -16,10 +16,10 @@ public class Kirby {
     /**
      * Constructor for the class Kirby.
      *
-     * @param filePath name of the file path as a string.
-     * @param dirPath name of the directory path as a string.
-     * @throws FileNotFoundException if the file mentioned is not found.
-     * @throws IOException if there is an improper input error.
+     * @param filePath Name of the file path as a string.
+     * @param dirPath Name of the directory path as a string.
+     * @throws FileNotFoundException If the file mentioned is not found.
+     * @throws IOException If there is an improper input error.
      */
     public Kirby(String filePath, String dirPath) throws FileNotFoundException, IOException {
         ui = new Ui();
@@ -38,8 +38,8 @@ public class Kirby {
     /**
      * Runs the program.
      *
-     * @throws KirbyInvalidCommandException if an undefined command is entered.
-     * @throws KirbyMissingArgumentException if the command has invalid arguments.
+     * @throws KirbyInvalidCommandException If an undefined command is entered.
+     * @throws KirbyMissingArgumentException If the command has invalid arguments.
      */
     public void run() throws KirbyInvalidCommandException, KirbyMissingArgumentException {
         ui.showWelcome();

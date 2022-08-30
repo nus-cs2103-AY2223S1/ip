@@ -12,7 +12,7 @@ public abstract class Command {
     /**
      * Constructor for the class Command.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public Command(String inputString) {
         String command = inputString.split(" ")[0];

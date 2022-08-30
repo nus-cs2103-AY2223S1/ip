@@ -10,7 +10,7 @@ public abstract class Task {
     /**
      * Constructor for the class Task.
      *
-     * @param description description of a task.
+     * @param description Description of a task.
      */
     public Task(String description) {
         this.description = description;
@@ -20,7 +20,7 @@ public abstract class Task {
     /**
      * Stores the task date in the form of [dd, mm, yyyy].
      *
-     * @return array containing the task date.
+     * @return Array containing the task date.
      */
     public abstract int[] getDate();
 
@@ -41,7 +41,7 @@ public abstract class Task {
     /**
      * Displays the task status according to whether it is marked completed.
      *
-     * @return a string containing a filled or unfilled box depending on if it is complete.
+     * @return String containing a filled or unfilled box depending on if it is complete.
      */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
@@ -50,7 +50,7 @@ public abstract class Task {
     /**
      * Returns the description of a task.
      *
-     * @return description of the task.
+     * @return Description of the task.
      */
     public String getDescription() {
         return this.description;
@@ -59,7 +59,7 @@ public abstract class Task {
     /**
      * Returns the format when the task is written in a text file.
      *
-     * @return a string containing the written version of the task description.
+     * @return String containing the written version of the task description.
      */
     public String toFileOutput() {
         return null;

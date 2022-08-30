@@ -15,7 +15,7 @@ public class TaskList {
     /**
      * Constructor of the TaskList class.
      *
-     * @param tasks the list of initial tasks.
+     * @param tasks List of initial tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
         if (tasks == null) {
@@ -29,7 +29,7 @@ public class TaskList {
     /**
      * Returns the number of tasks in the list.
      *
-     * @return the number of tasks in the list.
+     * @return Number of tasks in the list.
      */
     public int getTaskCount() {
         return this.taskCount;
@@ -38,7 +38,7 @@ public class TaskList {
     /**
      * Sets a specified task as completed.
      *
-     * @param taskNumber index of the task to be marked.
+     * @param taskNumber Index of the task to be marked.
      */
     public void setTaskMarked(int taskNumber) {
         tasks.get(taskNumber).setCompleted();
@@ -48,7 +48,7 @@ public class TaskList {
     /**
      * Sets a specified task as completed.
      *
-     * @param taskNumber index of the task to be unmarked.
+     * @param taskNumber Index of the task to be unmarked.
      */
     public void setTaskUnmarked(int taskNumber) {
         tasks.get(taskNumber).setIncomplete();
@@ -58,7 +58,7 @@ public class TaskList {
     /**
      * Returns the list of tasks.
      *
-     * @return the list of tasks.
+     * @return List of tasks.
      */
     public ArrayList<Task> getList() {
         return this.tasks;
@@ -67,7 +67,7 @@ public class TaskList {
     /**
      * Adds a new task into the list.
      *
-     * @param task the task to be added.
+     * @param task Task to be added.
      */
     public void addTask(Task task) {
         this.tasks.add(task);
@@ -79,7 +79,7 @@ public class TaskList {
     /**
      * Removes a task from the list.
      *
-     * @param taskIndex the index which the task is to be removed.
+     * @param taskIndex Index which the task is to be removed.
      */
     public void removeTask(int taskIndex) {
         this.tasks.remove(taskIndex);
@@ -91,8 +91,8 @@ public class TaskList {
     /**
      * Removes a task from the list.
      *
-     * @param keyword the word to be searched in the list of tasks.
-     * @return the list of tasks where each task contains the keyword.
+     * @param keyword Word to be searched in the list of tasks.
+     * @return List of tasks where each task contains the keyword.
      */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> res = new ArrayList<>();

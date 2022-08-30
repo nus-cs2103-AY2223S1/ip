@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     /**
      * Constructor for the class FindCommand.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public FindCommand(String inputString) {
         this.inputString = inputString;

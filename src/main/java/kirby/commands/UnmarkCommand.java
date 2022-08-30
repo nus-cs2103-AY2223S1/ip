@@ -15,7 +15,7 @@ public class UnmarkCommand extends Command {
     /**
      * Constructor for the class DeadlineCommand.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public UnmarkCommand(String inputString) {
         this.inputString = inputString;

@@ -16,7 +16,7 @@ public class DeadlineCommand extends Command {
     /**
      * Constructor for the class DeadlineCommand.
      *
-     * @param inputString arguments of a command.
+     * @param inputString Arguments of a command.
      */
     public DeadlineCommand(String inputString) {
         this.inputString = inputString;

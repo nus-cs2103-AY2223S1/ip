@@ -15,9 +15,9 @@ public class Storage {
     /**
      * Constructor of the Storage class.
      *
-     * @param filePath name of the file path as a string.
-     * @param dirPath name of the directory path as a string.
-     * @throws IOException if there is an error with user's input.
+     * @param filePath Name of the file path as a string.
+     * @param dirPath Name of the directory path as a string.
+     * @throws IOException If there is an error with user's input.
      */
     public Storage(String filePath, String dirPath) throws IOException {
         this.filePath = filePath;
@@ -31,8 +31,8 @@ public class Storage {
     /**
      * Creates a file if the file has not been created.
      *
-     * @return the new file created.
-     * @throws IOException if there is an error with creating the file.
+     * @return New file created.
+     * @throws IOException If there is an error with creating the file.
      */
     public File createFile() throws IOException {
         try {
@@ -53,7 +53,7 @@ public class Storage {
     /**
      * Writes the list of task into a file.
      *
-     * @throws IOException if there is an error with writing into the file.
+     * @throws IOException If there is an error with writing into the file.
      */
     public void writeTask(ArrayList<Task> Tasks) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
@@ -66,7 +66,7 @@ public class Storage {
     /**
      * Reads from a file and returns the list of tasks that is written in the file.
      *
-     * @throws FileNotFoundException if the file does not exist.
+     * @throws FileNotFoundException If the file does not exist.
      */
     public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> result = new ArrayList<>();
