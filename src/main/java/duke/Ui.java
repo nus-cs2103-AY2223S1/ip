@@ -5,7 +5,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import duke.ui.MainWindow;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
