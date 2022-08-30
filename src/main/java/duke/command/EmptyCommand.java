@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.util.Ui;
-
 import java.util.ArrayList;
+
+import duke.util.Ui;
 
 /**
  * Command to handle when user provides empty input.
@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public class EmptyCommand extends Command {
 
     /**
-     * Prints user input entered is empty message, and the list of available user commands.
+     * Returns user input entered is empty message, and the list of available user commands.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() {

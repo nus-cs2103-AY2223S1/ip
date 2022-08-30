@@ -2,13 +2,13 @@ package duke.command;
 
 import duke.DukeException;
 import duke.task.Task;
+import duke.util.Ui;
 
 /**
  * Command to unmark a {@code Task} from a {@code TaskList} as done.
  */
 public class UnmarkCommand extends Command {
     private int taskIndex;
-    private duke.util.Ui Ui;
 
     /**
      * Constructor for {@code UnmarkCommand}.
@@ -20,7 +20,9 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Marks the task at the specified index from the {@code TaskList} as not done, and prints a success message.
+     * Marks the task at the specified index from the {@code TaskList} as not done, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() throws DukeException {

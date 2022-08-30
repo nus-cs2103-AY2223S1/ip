@@ -1,10 +1,9 @@
 package duke.controller;
 
 //@@author weiquany-reused
-//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modifications
 
 import duke.Duke;
-import duke.controller.DialogBox;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

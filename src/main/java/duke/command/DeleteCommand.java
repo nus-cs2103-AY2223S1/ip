@@ -20,7 +20,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes the task at the specified index from the {@code TaskList}, and prints a success message.
+     * Deletes the task at the specified index from the {@code TaskList}, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() throws DukeException {

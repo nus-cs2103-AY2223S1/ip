@@ -20,7 +20,9 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks the task at the specified index from the {@code TaskList} as done, and prints a success message.
+     * Marks the task at the specified index from the {@code TaskList} as done, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() throws DukeException {

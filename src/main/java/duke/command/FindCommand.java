@@ -19,7 +19,9 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Searches the {@code TaskList} using the given keyword, and prints the tasks found, if any.
+     * Searches the {@code TaskList} using the given keyword, and returns the tasks found, if any.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() {

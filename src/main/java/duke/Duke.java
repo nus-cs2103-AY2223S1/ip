@@ -29,6 +29,12 @@ public class Duke {
         Command.setTaskList(taskList);
     }
 
+    /**
+     * Executes a command based on the user input and returns a corresponding message.
+     *
+     * @param input User input.
+     * @return Message {@code String}.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parseCommand(input);
@@ -40,6 +46,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns if the {@code Command} is an application terminating command.
+     *
+     * @param input User input.
+     * @return {@code True} if user input is an exit command, {@code False} otherwise.
+     */
     public boolean isExitCommand(String input) {
         try {
             Command c = Parser.parseCommand(input);

@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.util.Ui;
-
 import java.util.ArrayList;
+
+import duke.util.Ui;
 
 /**
  * Command to handle when user provides an input that is not understood.
@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public class UnknownCommand extends Command {
 
     /**
-     * Prints unknown command provided message, and the list of available user commands.
+     * Returns unknown command provided message, and the list of available user commands.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() {

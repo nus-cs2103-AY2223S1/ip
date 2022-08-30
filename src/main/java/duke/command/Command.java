@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.DukeException;
 import duke.task.TaskList;
-import duke.util.Ui;
 
 /**
  * Abstract superclass of a command that can be executed upon user request.
@@ -23,12 +22,13 @@ public abstract class Command {
     /**
      * Executes the given command.
      *
+     * @return Message {@code String} from command execution.
      * @throws DukeException Checked exceptions that may occur during command execution.
      */
     public abstract String execute() throws DukeException;
 
     /**
-     * Returns if the {@code Command} is a application terminating command.
+     * Returns if the {@code Command} is an application terminating command.
      *
      * @return {@code true} if this command is a terminating command, {@code false} otherwise.
      */

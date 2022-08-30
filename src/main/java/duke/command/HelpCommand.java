@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.util.Ui;
-
 import java.util.ArrayList;
+
+import duke.util.Ui;
 
 /**
  * Command to print all available user commands and their usage.
@@ -26,7 +26,9 @@ public class HelpCommand extends Command {
     }
 
     /**
-     * Prints the list of available user commands and their usage.
+     * Returns a {@code String} containing the list of available user commands and their usage.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() {

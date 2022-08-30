@@ -9,7 +9,9 @@ import duke.util.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Prints all {@code Task}s in the {@code TaskList}. .
+     * Returns a {@code String} containing all {@code Task}s in the {@code TaskList}.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() throws DukeException {

@@ -15,7 +15,9 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Adds the given task to the {@code TaskList}, and prints a success message.
+     * Adds the given task to the {@code TaskList}, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
     public String execute() {
