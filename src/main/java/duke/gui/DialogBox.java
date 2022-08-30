@@ -50,6 +50,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns the DialogBox of user.
+     *
      * @param text Text of user.
      * @param img Image of user.
      * @return The DialogBox of user.
@@ -60,6 +61,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns the DialogBox of Duke.
+     *
      * @param text Response of Duke.
      * @param img Image of Duke.
      * @return The DialogBox of Duke.

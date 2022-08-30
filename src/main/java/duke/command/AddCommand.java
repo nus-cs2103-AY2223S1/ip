@@ -16,7 +16,8 @@ public class AddCommand extends Command {
     private final Task task;
 
     /**
-     * Constructor for AddCommand.
+     * Creates an AddCommand.
+     *
      * @param task The Task to be added.
      */
     public AddCommand(Task task) {
@@ -26,6 +27,7 @@ public class AddCommand extends Command {
     /**
      * Executes the command given.
      * Task will be added to TaskList, data will be updated and saved, message will be printed to user.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.

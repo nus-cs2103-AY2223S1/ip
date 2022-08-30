@@ -16,7 +16,8 @@ public class MarkCommand extends Command {
     private final int num;
 
     /**
-     * Constructor for MarkCommand.
+     * Creates the MarkCommand.
+     *
      * @param num The index of Task in TaskList to be marked as completed.
      */
     public MarkCommand(int num) {
@@ -26,6 +27,7 @@ public class MarkCommand extends Command {
     /**
      * Executes the command given.
      * Task will be updated to completed, data will be updated and saved, message will be printed to user.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.

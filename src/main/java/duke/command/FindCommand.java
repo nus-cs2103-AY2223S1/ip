@@ -15,7 +15,8 @@ public class FindCommand extends Command {
     private final String[] keywords;
 
     /**
-     * Constructor for FindCommand.
+     * Creates the FindCommand.
+     *
      * @param keywords The keyword to filter.
      */
     public FindCommand(String ... keywords) {
@@ -25,6 +26,7 @@ public class FindCommand extends Command {
     /**
      * Executes the command given.
      * Command will be set to filer TaskList to those that match keyword.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.

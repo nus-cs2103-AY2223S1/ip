@@ -13,6 +13,7 @@ public class ByeCommand extends Command {
     /**
      * Executes the command given.
      * Command will be set to end the program.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.

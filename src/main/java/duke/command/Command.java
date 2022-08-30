@@ -15,7 +15,8 @@ public abstract class Command {
     private boolean isEnd = false;
 
     /**
-     * Task will be executed, data will be updated and saved, message will be printed to user.
+     * Executes the Task, data will be updated and saved, message will be printed to user.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.
@@ -34,6 +35,7 @@ public abstract class Command {
 
     /**
      * Checks if the command ends the program.
+     *
      * @return whether the program is ending.
      */
     public boolean getIsEnd() {

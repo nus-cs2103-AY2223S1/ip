@@ -12,7 +12,8 @@ public class Deadline extends Task {
     private LocalDate by;
 
     /**
-     * Constructor for Deadline Task.
+     * Creates the Deadline Task.
+     *
      * @param description The Deadline at hand.
      * @param by When is the Deadline is due.
      */
@@ -22,7 +23,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor for Deadline Task.
+     * Creates the Deadline Task.
+     *
      * @param description The Deadline at hand.
      * @param by When the Deadline is due.
      * @param isDone Whether the Deadline is has been completed.
@@ -33,7 +35,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the for by variable.
+     * Returns the by variable.
+     *
      * @return The by variable.
      */
     public LocalDate getBy() {
@@ -42,6 +45,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the String representation of Deadline.
+     *
      * @return The String representation of Deadline showing the type, status, and description.
      */
     @Override

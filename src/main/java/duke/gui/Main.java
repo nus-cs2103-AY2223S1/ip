@@ -16,6 +16,11 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    /**
+     * Executes the GUI through FXML.
+     *
+     * @param stage The stage the GUI.
+     */
     @Override
     public void start(Stage stage) {
         try {

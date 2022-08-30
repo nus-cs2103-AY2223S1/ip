@@ -35,7 +35,8 @@ public class Parser {
     }
 
     /**
-     * Returns eturns a Command after parsing through user's String command.
+     * Returns a Command after parsing through user's String command.
+     *
      * @param command A String command that the user inputs.
      * @return The Command that user wants to execute.
      * @throws DukeException If there is an invalid command.
@@ -85,6 +86,7 @@ public class Parser {
 
     /**
      * Returns enum Inputs which program can understand.
+     *
      * @param command The user input.
      * @return An enum that the program understands.
      */

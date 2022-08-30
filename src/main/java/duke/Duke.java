@@ -21,7 +21,7 @@ public class Duke {
     private boolean isEnd;
 
     /**
-     * Constructor for Duke class to initialise program.
+     * Creates the Duke class to initialise program.
      * Initialises the TaskList, Ui, and Storage.
      */
     public Duke() {
@@ -60,6 +60,7 @@ public class Duke {
 
     /**
      * Returns Duke bot response to input.
+     *
      * @param input User input into bot.
      * @return Duke bot response
      */

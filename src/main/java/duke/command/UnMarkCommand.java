@@ -16,7 +16,8 @@ public class UnMarkCommand extends Command {
     private final int num;
 
     /**
-     * Constructor for unMarkCommand.
+     * Creates the unMarkCommand.
+     *
      * @param num The index of Task in TaskList to be marked as uncompleted.
      */
     public UnMarkCommand(int num) {
@@ -26,6 +27,7 @@ public class UnMarkCommand extends Command {
     /**
      * Executes the command given.
      * Task will be updated to uncompleted, data will be updated and saved, message will be printed to user.
+     *
      * @param tasks The list that contains all the Tasks on the program.
      * @param ui Deals with the interaction with user.
      * @param storage Deals with the loading and updating of file.

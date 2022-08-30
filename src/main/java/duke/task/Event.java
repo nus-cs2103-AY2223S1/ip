@@ -12,7 +12,8 @@ public class Event extends Task {
     private LocalDate at;
 
     /**
-     * Constructor for Event.
+     * Creates the Event.
+     *
      * @param description The Event at hand.
      * @param at When the Event is at.
      */
@@ -22,7 +23,8 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor for Event.
+     * Creates the Event.
+     *
      * @param description The Event at hand.
      * @param at When the Event is at.
      * @param isDone Whether is Event is done already.
@@ -33,7 +35,8 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the for at variable.
+     * Returns the at variable.
+     *
      * @return The at variable.
      */
     public LocalDate getAt() {
@@ -42,6 +45,7 @@ public class Event extends Task {
 
     /**
      * Returns the String representation of Event.
+     *
      * @return The String representation of Event showing the status and description.
      */
     @Override

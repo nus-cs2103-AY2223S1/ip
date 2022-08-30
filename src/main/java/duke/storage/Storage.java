@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.DukeException;
 
 /**
  * Class that loads in file data and save file data of the program.
@@ -22,8 +22,9 @@ public class Storage {
     private final File file;
 
     /**
-     * Constructor of Storage.
+     * Creates the Storage.
      * Checks if file and directory exists, if it does not, create one its place.
+     *
      * @throws IOException If an error occurs when making the file.
      */
     public Storage() throws IOException {
@@ -42,6 +43,7 @@ public class Storage {
 
     /**
      * Loads in the file data of previous Tasks when the program is first started.
+     *
      * @return The ArrayList of Tasks from the saved file.
      * @throws DukeException If data in file has some errors.
      * @throws IOException If error occurs when reading the file.
@@ -77,6 +79,7 @@ public class Storage {
 
     /**
      * Updates the file according to current Tasks in program.
+     *
      * @param tasks The list of Tasks currently in program.
      * @throws IOException If error occurs when creating FileWriter.
      */

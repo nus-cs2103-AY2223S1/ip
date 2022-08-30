@@ -9,7 +9,8 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor for Task for subclasses.
+     * Creates the Task.
+     *
      * @param description The task at hand.
      */
     public Task(String description) {
@@ -18,7 +19,8 @@ public abstract class Task {
     }
 
     /**
-     * Constructor for Task for subclasses.
+     * Creates the Task.
+     *
      * @param description The task at hand.
      * @param isDone Whether task is done.
      */
@@ -29,6 +31,7 @@ public abstract class Task {
 
     /**
      * Returns the completion symbol for task.
+     *
      * @return An icon representing done or not done.
      */
     public String getStatusIcon() {
@@ -50,7 +53,8 @@ public abstract class Task {
     }
 
     /**
-     * Returns the for description.
+     * Returns the description.
+     *
      * @return The description of Task.
      */
     public String getDescription() {
@@ -59,6 +63,7 @@ public abstract class Task {
 
     /**
      * Returns isDone.
+     *
      * @return The completion status of Task.
      */
     public boolean getIsDone() {
@@ -67,6 +72,7 @@ public abstract class Task {
 
     /**
      * Returns the String representation of Task.
+     *
      * @return The String representation of Task showing the status and description.
      */
     @Override

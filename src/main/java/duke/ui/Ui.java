@@ -14,7 +14,7 @@ public class Ui {
     private final Scanner sc;
 
     /**
-     * Constructor for Ui.
+     * Creates the Ui.
      * Initialises the Scanner.
      */
     public Ui() {
@@ -30,6 +30,7 @@ public class Ui {
 
     /**
      * Prints out a message to user.
+     *
      * @param s The message to be printed.
      */
     private void print(String s) {
@@ -53,7 +54,8 @@ public class Ui {
     }
 
     /**
-     * Prints out the Exit message of Duke program.
+     * Returns the String exit message of Duke program.
+     *
      * @return Exit message.
      */
     public String printExit() {
@@ -61,7 +63,8 @@ public class Ui {
     }
 
     /**
-     * Prints out all the Tasks at hand.
+     * Returns a String containing all the Tasks at hand.
+     *
      * @param tasks A list of all the Tasks at hand.
      * @return String showcasing all Tasks.
      */
@@ -75,7 +78,8 @@ public class Ui {
     }
 
     /**
-     * Prints out message that a Task has been added.
+     * Returns the String message that a Task has been added.
+     *
      * @param task The Task to be added.
      * @param tasks The list of all Tasks.
      * @return String message indicating task has been added.
@@ -89,7 +93,8 @@ public class Ui {
     }
 
     /**
-     * Prints out message that a Task was marked done.
+     * Returns a String message that a Task was marked done.
+     *
      * @param task The Task that has been marked.
      * @return String message indicating the Task has been marked.
      */
@@ -98,7 +103,8 @@ public class Ui {
     }
 
     /**
-     * Prints out message that a Task was marked not done.
+     * Returns a String message that a Task was marked not done.
+     *
      * @param task The Task that has been marked.
      * @return String message indicating that Task has been unmarked.
      */
@@ -107,7 +113,8 @@ public class Ui {
     }
 
     /**
-     * Prints out message that Task has been deleted.
+     * Returns a String message that Task has been deleted.
+     *
      * @param task The Task that has been deleted.
      * @param tasks The list of all Tasks.
      * @return String message indicating that Task has been deleted.
@@ -121,7 +128,8 @@ public class Ui {
     }
 
     /**
-     * Prints out the Exception message.
+     * Returns String of the Exception message.
+     *
      * @param e The exception caught.
      * @return String message of exception.
      */
@@ -130,7 +138,8 @@ public class Ui {
     }
 
     /**
-     * Prints out all the Tasks that matches the filter.
+     * Returns a String message containing all the Tasks that matches the filter.
+     *
      * @param tasks The list of Tasks that match filter.
      * @return String message showcasing all the Tasks that has been filtered.
      */
@@ -145,6 +154,7 @@ public class Ui {
 
     /**
      * Returns the next user input.
+     *
      * @return The next line of Scanner.
      */
     public String nextLine() {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> tasks;
     /**
-     * Constructor for TaskList.
+     * Creates the TaskList.
      * Initialises an ArrayList of Task.
      */
     public TaskList() {
@@ -16,8 +16,9 @@ public class TaskList {
     }
 
     /**
-     * Constructor for TaskList.
+     * Creates the TaskList.
      * Initialises an ArrayList of Task.
+     *
      * @param tasks The list of tasks from saved file.
      */
     public TaskList(ArrayList<Task> tasks) {
@@ -26,6 +27,7 @@ public class TaskList {
 
     /**
      * Adds a Task.
+     *
      * @param task The Task to be added.
      */
     public void addTask(Task task) {
@@ -34,6 +36,7 @@ public class TaskList {
 
     /**
      * Deletes a Task.
+     *
      * @param num The index of Task to be deleted.
      */
     public void deleteTask(int num) {
@@ -42,6 +45,7 @@ public class TaskList {
 
     /**
      * Returns the number of Tasks currently in TaskList.
+     *
      * @return The size of the list.
      */
     public int getSize() {
@@ -50,6 +54,7 @@ public class TaskList {
 
     /**
      * Returns a specific Task from TaskList.
+     *
      * @param num The index of Task in TaskList.
      * @return The specific Task.
      */
@@ -59,6 +64,7 @@ public class TaskList {
 
     /**
      * Returns the list of all Tasks.
+     *
      * @return The list of all Tasks in program.
      */
     public ArrayList<Task> getTasks() {
@@ -67,6 +73,7 @@ public class TaskList {
 
     /**
      * Returns the list of Tasks containing the keyword.
+     *
      * @param keywords The keywords used for filtering the list.
      * @return Filtered Task list.
      */

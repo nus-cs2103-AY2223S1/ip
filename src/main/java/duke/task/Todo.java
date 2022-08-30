@@ -9,7 +9,8 @@ import duke.DukeException;
 public class Todo extends Task {
 
     /**
-     * Constructor for Todo Task.
+     * Creates the Todo Task.
+     *
      * @param description The Todo at hand.
      * @throws DukeException If the Todo description is empty.
      */
@@ -21,7 +22,8 @@ public class Todo extends Task {
     }
 
     /**
-     * Constructor for Todo Task.
+     * Creates the Todo Task.
+     *
      * @param description The Todo at hand.
      * @param isDone Whether the Todo is completed.
      * @throws DukeException If the Todo description is empty.
@@ -35,6 +37,7 @@ public class Todo extends Task {
 
     /**
      * Returns the String representation of Todo.
+     *
      * @return The String representation of Todo showing the status and description.
      */
     @Override
