@@ -1,13 +1,14 @@
 package duke.task;
 
-import duke.utilities.DukeException;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
+
+import duke.utilities.DukeException;
+
 public class TodoTest {
-    Todo t;
+    private Todo t;
 
     @Test
     public void todo_emptyDescription_exceptionThrown() {
