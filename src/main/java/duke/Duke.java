@@ -1,13 +1,6 @@
 package duke;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -28,7 +21,7 @@ public class Duke {
             tasklist = storage.load();
             toDo();
         } catch (DukeException de) {
-            ui.printLoadingError();
+            ui.printErrorMsg(de.toString());
             tasklist = new TaskList();
         }
     }

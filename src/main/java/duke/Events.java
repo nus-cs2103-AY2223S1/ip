@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents an events task to be added to Duke with a event date.
  */
 public class Events extends Task {
-    protected String eventTime;
+
     private LocalDateTime dateTime;
 
     public Events(String description, LocalDateTime dateTime) {
@@ -30,6 +30,7 @@ public class Events extends Task {
      *
      * @return Data to be saved.
      */
+    @Override
     public String savedData() {
         return "E | " + super.savedData() + dateStr() + "\n";
     }

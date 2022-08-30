@@ -26,9 +26,9 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println(line + "Hello! I'm Duke");
+        System.out.println("Hey I'm\n" + logo);
         System.out.println("What tasks do you have to do?\n" + line);
+        System.out.println("To input a deadline or event, type the date and time in the format 'yyyy-mm-ddThh:mm'");
     }
 
     /**
@@ -45,7 +45,7 @@ public class Ui {
      */
     public void printList(ArrayList<Task> tasks) {
         drawLine();
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the tasks that you have:");
         for (int i = 0; i < tasks.size(); i++) {
             int num = i + 1;
             System.out.println(num + ". " + tasks.get(i).toString());
@@ -72,7 +72,7 @@ public class Ui {
      */
     public void printUndone(Task task) {
         drawLine();
-        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("Hmm...I've marked this task as undone:");
         System.out.println("[" + task.getStatusIcon() + "] " + task.description);
         drawLine();
     }
@@ -84,7 +84,7 @@ public class Ui {
      */
     public void printTodo(Task task) {
         drawLine();
-        System.out.println("Got it. I've added this task:");
+        System.out.println("Okay! I've added this task:");
         System.out.println(task.toString());
     }
 
@@ -95,7 +95,7 @@ public class Ui {
      */
     public void printDelete(Task task) {
         drawLine();
-        System.out.println("Noted. I've removed this task:");
+        System.out.println("Nice! I've deleted this task:");
         System.out.println(task.toString());
     }
 
@@ -105,7 +105,7 @@ public class Ui {
      * @param num Number of tasks left in list.
      */
     public void printTasksLeft(int num) {
-        System.out.println("Now you have " + num + " tasks in the list.");
+        System.out.println("You have " + num + " tasks left in your list.");
         drawLine();
     }
 
@@ -125,10 +125,10 @@ public class Ui {
     }
 
     /**
-     * Prints loading error.
+     * Prints error message.
      */
-    public void printLoadingError() {
-        System.out.println("Unable to load file");
+    public void printErrorMsg(String str) {
+        System.out.println(str);
     }
 
     /**

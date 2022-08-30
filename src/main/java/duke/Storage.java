@@ -32,7 +32,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Unable to save file.");
+            throw new DukeException("Oh no! I'm unable to save the file.");
         }
     }
 
@@ -47,7 +47,6 @@ public class Storage {
         ArrayList<Task> taskArr = new ArrayList<>();
         File file = new File(filePath);
         try {
-
             if (file.createNewFile()) {
                 System.out.println("File created");
             }
@@ -59,7 +58,7 @@ public class Storage {
             File dukeFile = new File(filePath);
             Scanner sc = new Scanner(dukeFile);
 
-            while (sc.hasNext()) {
+            while (sc.hasNextLine()) {
                 String[] strArr = sc.nextLine().split("\\|");
                 if (strArr[0].contains("T")) {
                     taskArr.add(new ToDos(strArr[2]));
@@ -80,7 +79,7 @@ public class Storage {
             sc.close();
             return new TaskList(taskArr);
         } catch (FileNotFoundException fe) {
-            throw new FileNotFoundException("No File Found.");
+            throw new FileNotFoundException("Oops! No file is found.");
         }
     }
 

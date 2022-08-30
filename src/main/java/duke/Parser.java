@@ -27,28 +27,34 @@ public class Parser {
     public void parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {
             showList();
-        } else if (userInput.length() > 4 && (userInput.substring(0, 4)).equals("mark")) {
+        } else if (userInput.length() > 4 && userInput.startsWith("mark")) {
             markDone(userInput);
             storage.save(tasklist);
-        } else if (userInput.length() > 6 && (userInput.substring(0, 6)).equals("unmark")) {
+        } else if (userInput.length() > 6 && userInput.startsWith("unmark")) {
             markUndone(userInput);
             storage.save(tasklist);
-        } else if (userInput.length() > 4 && (userInput.substring(0, 4)).equals("todo")) {
-            addToDo(userInput);
-            storage.save(tasklist);
-        } else if (userInput.equals("todo")) {
-            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-        } else if (userInput.equals("deadline")) {
-            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-        } else if (userInput.equals("event")) {
-            throw new DukeException("OOPS!!! The description of a event cannot be empty.");
-        } else if (userInput.length() > 8 && (userInput.substring(0, 8)).equals("deadline")) {
-            addDeadline(userInput);
-            storage.save(tasklist);
-        } else if (userInput.length() > 5 && (userInput.substring(0, 5)).equals("event")) {
-            addEvent(userInput);
-            storage.save(tasklist);
-        } else if (userInput.length() > 7 && (userInput.substring(0, 6)).equals("delete")) {
+        } else if (userInput.startsWith("todo")) {
+            if (userInput.length() > 5) {
+                addToDo(userInput);
+                storage.save(tasklist);
+            } else {
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            }
+        } else if (userInput.startsWith("deadline")) {
+            if (userInput.length() > 10) {
+                addDeadline(userInput);
+                storage.save(tasklist);
+            } else {
+                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+            }
+        } else if (userInput.startsWith("event")) {
+            if (userInput.length() > 6) {
+                addEvent(userInput);
+                storage.save(tasklist);
+            } else {
+                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+            }
+        } else if (userInput.length() > 7 && userInput.startsWith("delete")) {
             deleteTask(userInput);
             storage.save(tasklist);
         } else if (userInput.startsWith("find ")) {
@@ -62,7 +68,7 @@ public class Parser {
      * Displays list of tasks to user.
      */
     public static void showList(){
-        ui.printList(tasklist.listOfTasks());
+        ui.printList(tasklist.getListOfTasks());
     }
 
     /**
@@ -104,7 +110,7 @@ public class Parser {
      * @param str The string containing task to be added.
      */
     public static void addToDo(String str) {
-        ToDos newToDo = new ToDos(str.substring(5, str.length()));
+        ToDos newToDo = new ToDos(str.substring(5));
         ui.printTodo(tasklist.addTask(newToDo));
         ui.printTasksLeft(tasklist.getSize());
     }
@@ -115,15 +121,15 @@ public class Parser {
      * @param str The string containing task to be added.
      */
     public static void addDeadline(String str) {
-        int k = 9;
         String desc = "";
 
+        int k = 9;
         while (str.charAt(k) != '/') {
             desc += str.charAt(k);
             k++;
         }
 
-        String date = str.substring(k + 4, str.length());
+        String date = str.substring(k + 4);
         Deadlines newDeadline = new Deadlines(desc, LocalDateTime.parse(date));
         ui.printTodo(tasklist.addTask(newDeadline));
         ui.printTasksLeft(tasklist.getSize());
@@ -135,15 +141,15 @@ public class Parser {
      * @param str The string containing task to be added.
      */
     public static void addEvent(String str) {
-        int k = 6;
         String desc = "";
 
+        int k = 6;
         while (str.charAt(k) != '/') {
             desc += str.charAt(k);
             k++;
         }
 
-        String eventTime = str.substring(k + 4, str.length());
+        String eventTime = str.substring(k + 4);
         Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
         ui.printTodo(tasklist.addTask(newEvent));
         ui.printTasksLeft(tasklist.getSize());

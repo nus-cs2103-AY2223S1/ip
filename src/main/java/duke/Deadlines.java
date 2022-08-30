@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadlines extends Task {
 
-    protected String description;
     private LocalDateTime dateTime;
 
     public Deadlines(String description, LocalDateTime dateTime) {
@@ -21,9 +20,9 @@ public class Deadlines extends Task {
      *
      * @return Formatted string.
      */
-    private String dateStr() {
-        String formatDateTime = this.dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
-        return formatDateTime;
+    private String getDateStr() {
+        String formattedDateTime = this.dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        return formattedDateTime;
     }
 
     /**
@@ -31,8 +30,9 @@ public class Deadlines extends Task {
      *
      * @return Data to be saved.
      */
+    @Override
     public String savedData() {
-        return "D | " + super.savedData() + dateStr() + "\n";
+        return "D | " + super.savedData() + getDateStr() + "\n";
     }
 
     /**
@@ -42,6 +42,6 @@ public class Deadlines extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + dateStr() + ")";
+        return "[D]" + super.toString() + " (by: " + getDateStr() + ")";
     }
 }
