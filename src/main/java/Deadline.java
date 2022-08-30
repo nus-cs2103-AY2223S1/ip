@@ -15,6 +15,17 @@ public class Deadline extends Task {
         }
     }
 
+    public Deadline(String description, LocalDateTime dateTime) {
+        super(description);
+        this.dateTime = dateTime;
+    }
+
+    public static Deadline createDeadlineFromString(String line) {
+        return new Deadline(line.substring(10, line.indexOf("(by:") - 1),
+                LocalDateTime.parse(line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")),
+                        outputFormatter));
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dateTime.format(outputFormatter) + ")";

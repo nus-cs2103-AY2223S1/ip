@@ -15,6 +15,17 @@ public class Event extends Task {
         }
     }
 
+    public Event(String description, LocalDateTime dateTime) {
+        super(description);
+        this.dateTime = dateTime;
+    }
+
+    public static Event createEventFromString(String line) {
+        return new Event(line.substring(10, line.indexOf("(at:") - 1),
+                LocalDateTime.parse(line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")),
+                        outputFormatter));
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + dateTime.format(outputFormatter) + ")";

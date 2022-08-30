@@ -158,15 +158,13 @@ public class Duke {
                 // process data
                 switch (line.charAt(4)) {
                     case 'T':
-                        newTask = new ToDo(line.substring(10));
+                        newTask = ToDo.createTodoFromString(line);
                         break;
                     case 'E':
-                        newTask = new Event(line.substring(10, line.indexOf("(at:") - 1),
-                                line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")));
+                        newTask = Event.createEventFromString(line);
                         break;
                     case 'D':
-                        newTask = new Deadline(line.substring(10, line.indexOf("(by:") - 1),
-                                line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")));
+                        newTask = Deadline.createDeadlineFromString(line);
                         break;
                     default:
                         newTask = null;
