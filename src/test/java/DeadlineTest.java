@@ -16,6 +16,8 @@ public class DeadlineTest {
         String description = "homework";
         String by = "1/3/2019 1500";
         Deadline test = new Deadline(description, by);
+        test.parseDate("2019-03-01");
+        test.parseTime("15:00");
         assertEquals("[D][ ]homework (by: Mar 01 2019 15:00)", test.toString());
     }
 }

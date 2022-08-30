@@ -21,43 +21,23 @@ public class Event extends Task{
     public Event(String description, String at) {
         super(description);
         this.at = at;
-
-        if (at.contains("/") || at.contains("-")) {
-            setDateAndTime();
-        }
     }
 
     /**
-     * Stores the date and time of the task as LocalDate and LocalTime.
+     * Parses the date and sets it to the object's date
+     *
+     * @param date Date to parse in
      */
-    public void setDateAndTime() {
-        int space = this.at.indexOf(' ');
-        String date = this.at.substring(0, space);
-        String time = this.at.substring(space + 1);
-
-        if (date.contains("/")) {
-            int firstSlash = date.indexOf('/', 0);
-            int secondSlash = date.indexOf('/', firstSlash + 1);
-            String day = date.substring(0, firstSlash);
-            String month = date.substring(firstSlash + 1, secondSlash);
-
-            if (day.length() == 1) {
-                day = "0" + day;
-            }
-
-            if (month.length() == 1) {
-                month = "0" + month;
-            }
-
-            String year = date.substring(secondSlash + 1);
-            date = (year + "-" + month + "-" + day);
-        }
-
-        String min = time.substring(2);
-        String hour = time.substring(0, 2);
-        time = (hour + ":" + min);
-
+    public void parseDate(String date) {
         this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * Parses the time and sets it to the object's time
+     *
+     * @param time Time to parse in
+     */
+    public void parseTime(String time) {
         this.time = LocalTime.parse(time);
     }
 

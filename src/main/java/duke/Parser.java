@@ -69,16 +69,48 @@ public class Parser {
                             this.taskList.incrementIndex();
                         }
                     } else if (input.equals("deadline")) {
-                        String deadlineTask = sc.nextLine();
+                        String deadline = sc.nextLine();
 
-                        if (deadlineTask.equals("")) {
+                        if (deadline.equals("")) {
                             throw new DukeException("☹ OOPS!!! " +
                                     "The description of a deadline cannot be empty.\n");
                         } else {
-                            int integer = deadlineTask.indexOf("/by");
-                            String description = deadlineTask.substring(0, integer - 1);
-                            String by = deadlineTask.substring(integer + 4);
+                            int integer = deadline.indexOf("/by");
+                            String description = deadline.substring(0, integer - 1);
+                            String by = deadline.substring(integer + 4);
+
                             Deadline deadLineTask = new Deadline(description, by);
+
+                            if (by.contains("/") || by.contains("-")) {
+                                int space = by.indexOf(' ');
+                                String date = by.substring(0, space);
+                                String time = by.substring(space + 1);
+
+                                if (date.contains("/")) {
+                                    int firstSlash = date.indexOf('/', 0);
+                                    int secondSlash = date.indexOf('/', firstSlash + 1);
+                                    String day = date.substring(0, firstSlash);
+                                    String month = date.substring(firstSlash + 1, secondSlash);
+
+                                    if (day.length() == 1) {
+                                        day = "0" + day;
+                                    }
+
+                                    if (month.length() == 1) {
+                                        month = "0" + month;
+                                    }
+
+                                    String year = date.substring(secondSlash + 1);
+                                    date = (year + "-" + month + "-" + day);
+                                }
+
+                                String min = time.substring(2);
+                                String hour = time.substring(0, 2);
+                                time = (hour + ":" + min);
+
+                                deadLineTask.parseTime(time);
+                                deadLineTask.parseDate(date);
+                            }
 
                             this.taskList.addTask(deadLineTask);
 
@@ -101,6 +133,37 @@ public class Parser {
                             String at = event.substring(integer + 4);
 
                             Event eventTask = new Event(description, at);
+
+                            if (at.contains("/") || at.contains("-")) {
+                                int space = at.indexOf(' ');
+                                String date = at.substring(0, space);
+                                String time = at.substring(space + 1);
+
+                                if (date.contains("/")) {
+                                    int firstSlash = date.indexOf('/', 0);
+                                    int secondSlash = date.indexOf('/', firstSlash + 1);
+                                    String day = date.substring(0, firstSlash);
+                                    String month = date.substring(firstSlash + 1, secondSlash);
+
+                                    if (day.length() == 1) {
+                                        day = "0" + day;
+                                    }
+
+                                    if (month.length() == 1) {
+                                        month = "0" + month;
+                                    }
+
+                                    String year = date.substring(secondSlash + 1);
+                                    date = (year + "-" + month + "-" + day);
+                                }
+
+                                String min = time.substring(2);
+                                String hour = time.substring(0, 2);
+                                time = (hour + ":" + min);
+
+                                eventTask.parseDate(date);
+                                eventTask.parseTime(time);
+                            }
 
                             this.taskList.addTask(eventTask);
 
