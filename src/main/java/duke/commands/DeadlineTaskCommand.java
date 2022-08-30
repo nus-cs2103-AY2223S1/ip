@@ -34,21 +34,20 @@ public class DeadlineTaskCommand extends TaskCommand {
             LocalDate d1 = LocalDate.parse(eventlst[1]);
             this.by = d1;
         } catch (DateTimeParseException e) {
-            throw new DukeException(
-                    "Please fill in the date in this format yyyy-mm-dd"
-            );
+            throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
         }
     }
 
     /**
      * Creates a new DeadlineTask object to tasklist and prints message to user
+     *
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         DeadlineTask task = new DeadlineTask(this.description, this.by);
         tasks.add(task);
         storage.save(tasks);
-        super.printMessage(tasks, task);
+        return super.getMessage(tasks, task);
     }
 }

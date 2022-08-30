@@ -33,21 +33,20 @@ public class EventTaskCommand extends TaskCommand {
             LocalDate d1 = LocalDate.parse(eventlst[1]);
             this.at = d1;
         } catch (DateTimeParseException e) {
-            throw new DukeException(
-                    "Please fill in the date in this format yyyy-mm-dd"
-            );
+            throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
         }
     }
 
     /**
      * Creates new EventTask and add to tasklist as well as print message to user
+     *
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         EventTask task = new EventTask(this.description, this.at);
         tasks.add(task);
         storage.save(tasks);
-        super.printMessage(tasks, task);
+        return super.getMessage(tasks, task);
     }
 }

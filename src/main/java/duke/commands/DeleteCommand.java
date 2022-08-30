@@ -31,20 +31,21 @@ public class DeleteCommand extends Command {
     /**
      * Marks command and prints out message to users depending on whether the
      * command was successful
+     *
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such task found");
         } else {
             Task task = tasks.remove(index - 1);
             storage.save(tasks);
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(task.toString());
-            System.out.println(
-                    "Now you have " + tasks.size() + " task(s) in the list"
-            );
+            String str = "Noted. I've removed this task:\n";
+            str += task.toString() + '\n';
+            str += "Now you have " + tasks.size() + " task(s) in the list";
+            return str;
         }
+
     }
 }

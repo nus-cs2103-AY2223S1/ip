@@ -17,12 +17,12 @@ public abstract class Command {
      * Executes a command that may or may not modify the TaskList
      *
      * @param tasks   TaskList containing all tasks so far
-     * @param storage Storage with dataFile of tasks
      * @param ui      Ui which prints out messages to users
+     * @param storage Storage with dataFile of tasks
+     * @return
      * @throws DukeException If command is not executable due to errors in user input
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     public boolean isExit() {
         return this.isExit;

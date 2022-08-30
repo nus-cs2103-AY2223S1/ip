@@ -27,8 +27,8 @@ public class TaskCommand extends Command {
         this.description = addlst[1];
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        return null;
     }
 
     /**
@@ -37,11 +37,10 @@ public class TaskCommand extends Command {
      * @param tasklist Array of tasks
      * @param task     The task that has been added
      */
-    public void printMessage(TaskList tasklist, Task task) {
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(task.toString());
-        System.out.println(
-                "Now you have " + tasklist.size() + " task(s) in the list"
-        );
+    public String getMessage(TaskList tasklist, Task task) {
+        String str = "Got it. I've added this task: \n";
+        str += task.toString();
+        str += "Now you have " + tasklist.size() + " task(s) in the list";
+        return str;
     }
 }
