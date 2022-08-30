@@ -1,15 +1,6 @@
 package duke;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DateCommand;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.ToDoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -120,12 +111,21 @@ public class Parser {
         }
     }
 
+
     /**
      * Returns a Command to be executed by Duke.
      *
      * @return Command according to the input of the user.
      * @throws DukeException
      */
+    public String getFindWord() throws DukeException {
+        if (task.isEmpty()) {
+            throw new DukeException("No keyword found. Please enter a keyword.");
+        } else {
+            return task.get();
+        }
+    }
+
     public Command getCommand() throws DukeException {
         if (cmd.equals("mark")) {
             return new MarkCommand(getTaskNumber());
@@ -145,6 +145,8 @@ public class Parser {
             return new DeleteCommand(getTaskNumber());
         } else if (cmd.equals("date")) {
             return new DateCommand(getDate());
+        } else if (cmd.equals("find")) {
+            return new FindCommand(getFindWord());
         } else {
             throw new DukeException("Unknown command. Please enter a valid command");
         }

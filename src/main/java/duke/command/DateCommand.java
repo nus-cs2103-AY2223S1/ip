@@ -22,6 +22,7 @@ public class DateCommand extends Command {
      * @param date Date to filter the tasks by.
      */
     public DateCommand(LocalDate date) {
+        super();
         this.date = date;
         this.matchingTasks = new ArrayList<>();
     }
