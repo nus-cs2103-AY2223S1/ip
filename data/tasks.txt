@@ -1,5 +1,0 @@
-T|X|eat
-E|X|dinner|2022-08-25T18:30
-T| |eat
-T| |sleep
-T| |eat
