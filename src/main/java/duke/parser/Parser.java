@@ -35,7 +35,7 @@ public class Parser {
         case "bye":
             return new ExitCommand();
         case "list":
-            return new ListCommand();
+            return new ListCommand(components);
         case "mark":
             checkInput(components);
             return new MarkCommand(Integer.parseInt(components[1]));
