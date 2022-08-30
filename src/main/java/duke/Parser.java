@@ -27,7 +27,7 @@ public class Parser {
                 int index = Integer.parseInt(nextWords[1]) - 1;
                 tasks.markTaskAsDone(index);
                 return "I've marked this as done:\n" + tasks.taskToString(index);
-            } catch(IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 return ui.showInvalidTaskIndexError();
             }
         case "unmark":
@@ -35,7 +35,7 @@ public class Parser {
                 int index = Integer.parseInt(nextWords[1]) - 1;
                 tasks.markTaskAsUndone(index);
                 return "I've marked this as undone:\n" + tasks.taskToString(index);
-            } catch(IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 return ui.showInvalidTaskIndexError();
             }
         case "delete":
@@ -43,9 +43,9 @@ public class Parser {
                 int index = Integer.parseInt(nextWords[1]) - 1;
                 Task toDelete = tasks.get(index);
                 tasks.remove(index);
-                return "I'll remove this task:\n" + toDelete.toString() +
-                        "\nYou now have " + (tasks.size()) + " tasks.";
-            } catch(IndexOutOfBoundsException e) {
+                return "I'll remove this task:\n" + toDelete.toString()
+                        + "\nYou now have " + (tasks.size()) + " tasks.";
+            } catch (IndexOutOfBoundsException e) {
                 return ui.showInvalidTaskIndexError();
             }
         case "list":
@@ -96,8 +96,8 @@ public class Parser {
         if (type.equals("deadline")) {
             try {
                 String[] details = desc.split(" /by ");
-                String by = LocalDate.parse(details[1], parserFormats).
-                        format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String by = LocalDate.parse(details[1], parserFormats)
+                        .format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Deadline temp = new Deadline(details[0], by);
                 tasks.add(temp);
                 return ui.showTaskAddedMessage(temp, tasks);
@@ -110,8 +110,8 @@ public class Parser {
         if (type.equals("event")) {
             try {
                 String[] details = desc.split(" /at ");
-                String at = LocalDate.parse(details[1], parserFormats).
-                        format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String at = LocalDate.parse(details[1], parserFormats)
+                        .format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Event temp = new Event(details[0], at);
                 tasks.add(temp);
                 return ui.showTaskAddedMessage(temp, tasks);

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Locale;
-
 public class Task {
     protected String description;
     protected boolean isDone;

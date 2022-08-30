@@ -2,13 +2,11 @@ package duke;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 public class Storage {
@@ -89,12 +87,12 @@ public class Storage {
                     task.append(rest);
                     break;
                 case('D'):
-                    rest = rest.replaceAll("[\\[\\](){}]","");
+                    rest = rest.replaceAll("[\\[\\](){}]", "");
                     String[] arrD = rest.split(" by: ");
                     task.append(arrD[0] + " // " + arrD[1]);
                     break;
                 case('E'):
-                    rest = rest.replaceAll("[\\[\\](){}]","");
+                    rest = rest.replaceAll("[\\[\\](){}]", "");
                     String[] arrE = rest.split(" at: ");
                     task.append(arrE[0] + " // " + arrE[1]);
                 }

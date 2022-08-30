@@ -17,8 +17,8 @@ public class Ui {
      * Prints out welcome message.
      */
     public String showWelcome() {
-        return "Hello! I'm Duke.\n" +
-                "What can I do for you?";
+        return "Hello! I'm Duke.\n"
+                + "What can I do for you?";
     }
 
     /**
@@ -36,7 +36,7 @@ public class Ui {
     }
 
     public String showTaskAddedMessage(Task task, TaskList tasks) {
-        return "Okay, I've added this task:\n" + task.toString() +
-                "\nYou now have " + tasks.size() + " tasks.";
+        return "Okay, I've added this task:\n" + task.toString()
+                + "\nYou now have " + tasks.size() + " tasks.";
     }
 }
