@@ -21,7 +21,7 @@ import javafx.scene.shape.Circle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
-    Circle c = new Circle(25, 25, 25);
+    private final Circle c = new Circle(25, 25, 25);
     @FXML
     private Label dialog;
     @FXML

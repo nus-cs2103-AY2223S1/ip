@@ -36,7 +36,7 @@ public class FindCommand extends Command {
      * Finds matching tasks with keywords and prints out message based on whether
      * there are matching tasks
      *
-     * @return
+     * @return @inheritDoc
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

@@ -13,7 +13,7 @@ public class ListCommand extends Command {
     /**
      * Lists all tasks in tasklist or print default message if no tasks found
      *
-     * @return
+     * @return @inheritDoc
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

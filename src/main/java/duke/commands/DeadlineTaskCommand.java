@@ -41,7 +41,7 @@ public class DeadlineTaskCommand extends TaskCommand {
     /**
      * Creates a new DeadlineTask object to tasklist and prints message to user
      *
-     * @return
+     * @return String to print out to user
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

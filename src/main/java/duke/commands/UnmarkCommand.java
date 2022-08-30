@@ -31,7 +31,7 @@ public class UnmarkCommand extends Command {
     /**
      * Unmarks command
      *
-     * @return
+     * @return @inheritDoc
      * @throws DukeException if task chosen is out of bounds
      */
     @Override

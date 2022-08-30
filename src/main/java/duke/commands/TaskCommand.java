@@ -36,6 +36,7 @@ public class TaskCommand extends Command {
      *
      * @param tasklist Array of tasks
      * @param task     The task that has been added
+     * @return @inheritDoc
      */
     public String getMessage(TaskList tasklist, Task task) {
         String str = "Got it. I've added this task: \n";

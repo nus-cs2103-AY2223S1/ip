@@ -8,17 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * GUI for Duke
+ */
 public class Main extends Application {
     private final Duke duke = new Duke("data/tasks.txt");
 
     /**
-     * Creates a new GUI instance for Jude the chatbot.
-     *
-     * @throws IOException When system I/O fails.
+     * @inheritDoc
      */
-    public Main() throws IOException {
-    }
-
     @Override
     public void start(Stage stage) {
         try {
@@ -33,3 +31,4 @@ public class Main extends Application {
         }
     }
 }
+

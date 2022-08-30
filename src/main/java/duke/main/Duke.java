@@ -3,7 +3,6 @@ package duke.main;
 import duke.commands.Command;
 import duke.exception.DukeException;
 import duke.tasks.TaskList;
-import javafx.scene.control.Label;
 
 /**
  * Duke is our helper which manages the commands
@@ -20,7 +19,7 @@ public class Duke {
     protected boolean isExit = false;
 
     /**
-     * Initialises tasklist based on whether data file specified in filePath is valid
+     * Initialises TaskList based on whether data file specified in filePath is valid
      *
      * @param filePath Filepath where data file is stored in
      */
@@ -48,33 +47,4 @@ public class Duke {
         }
     }
 
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-//    /**
-//     * Runs Duke as long as no ByeCommand given
-//     */
-//    void run() {
-//        ui.showWelcome();
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                ui.showLine(); // show the divider line ("_______")
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("Unknown command received...");
-//            } catch (DukeException e) {
-//                ui.showError(e.getMessage());
-//            } finally {
-//                ui.showLine();
-//            }
-//        }
-//    }
 }

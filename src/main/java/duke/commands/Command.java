@@ -19,7 +19,7 @@ public abstract class Command {
      * @param tasks   TaskList containing all tasks so far
      * @param ui      Ui which prints out messages to users
      * @param storage Storage with dataFile of tasks
-     * @return
+     * @return String to print out to user
      * @throws DukeException If command is not executable due to errors in user input
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;

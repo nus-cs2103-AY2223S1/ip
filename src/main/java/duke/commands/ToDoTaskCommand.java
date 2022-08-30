@@ -26,7 +26,7 @@ public class ToDoTaskCommand extends TaskCommand {
     /**
      * Creates new TodoTask and prints message to user
      *
-     * @return
+     * @return @inheritDoc
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

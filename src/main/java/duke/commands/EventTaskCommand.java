@@ -40,7 +40,7 @@ public class EventTaskCommand extends TaskCommand {
     /**
      * Creates new EventTask and add to tasklist as well as print message to user
      *
-     * @return
+     * @return @inheritDoc
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

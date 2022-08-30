@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
      * Marks command and prints out message to users depending on whether the
      * command was successful
      *
-     * @return
+     * @return @inheritDoc
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
