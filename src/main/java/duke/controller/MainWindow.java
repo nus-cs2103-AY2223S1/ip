@@ -4,6 +4,7 @@ package duke.controller;
 //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modifications
 
 import duke.Duke;
+import duke.util.Ui;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,9 +32,16 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Anya.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+    /**
+     * Initializes the main window of the UI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String welcomeMessage = Ui.showWelcome();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMessage, dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {
