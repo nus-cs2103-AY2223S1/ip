@@ -18,7 +18,8 @@ public abstract class Command {
      * @throws DukeEventEmptyException
      * @throws DukeDeadlineEmptyException
      * @throws DukeTodoEmptyException
+     * @return A string that prints onto the screen after user input.
      */
-    abstract void execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
+    abstract String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
             throws IOException, DukeEventEmptyException, DukeDeadlineEmptyException, DukeTodoEmptyException;
 }

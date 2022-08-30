@@ -36,8 +36,8 @@ public class Parser {
             return new ShowListCommand();
         } else if (isSubstringForFindCommand()) {
             return new FindCommand();
-            //} else if (isSubStringForExitCommand()){
-            //  return new ExitCommand();
+       // } else if (isSubStringForExitCommand()){
+         //   return new ExitCommand();
         } else {
             throw new DukeUnknownWordException();
         }
@@ -73,6 +73,6 @@ public class Parser {
         return this.stringToParse.length() > 7 && this.stringToParse.substring(0, 6).equals("delete");
     }
     boolean isSubstringForFindCommand() {
-        return this.stringToParse.substring(0,4).equals("find");
+        return this.stringToParse.length() > 5 && this.stringToParse.substring(0,4).equals("find");
     }
 }

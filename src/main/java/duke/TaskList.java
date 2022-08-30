@@ -17,30 +17,34 @@ public class TaskList {
 
     /**
      * Displays the tasks in the list.
+     * @return A string that would be outputted to the screen when showing list of tasks.
      */
-    void showList(){
+    String showList(){
         Ui ui = new Ui();
-        ui.displayListUi(this.list);
+       return ui.displayListUi(this.list);
     }
 
     /**
      * Adds task to list.
      * @param task A task to be added into the list.
+     * @return A String that will be outputted to screen when added task to list.
      */
-    void addToList(Task task) {
+    String addToList(Task task) {
         this.list.add(task);
         Ui ui = new Ui();
-        ui.addToListUi(task, this.list);
+        return ui.addToListUi(task, this.list);
     }
 
     /**
      * Deletes task from list.
      * @param s Name of the task to be deleted from the list.
+     * @return A string that would be outputted to the screen when deleting task.
      */
-    void delete(String s) {
+    String delete(String s) {
         int i = Integer.parseInt(s.substring(7)) - 1;
         Task task = this.list.remove(i);
         Ui ui = new Ui();
-        ui.deleteUi(task, this.list);
+        return ui.deleteUi(task, this.list);
     }
+
 }

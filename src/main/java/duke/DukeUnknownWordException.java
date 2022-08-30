@@ -5,6 +5,7 @@ public class DukeUnknownWordException extends DukeException {
         super();
     }
     public String toString() {
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        Ui ui = new Ui();
+        return ui.getUnknownWordExceptionUi();
     }
 }

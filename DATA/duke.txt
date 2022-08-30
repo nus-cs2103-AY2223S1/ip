@@ -1,12 +1,4 @@
-[T][] 1
-[T][X] 1
-[T][] 3
-[T][] 1
-[T][] 2
-[T][] book 
-[T][] book read
-[D][] study book (by: Aug 20 2002)
-[T][] 100
-[D][X] test (by: Feb 22 2022)
-[E][] outing (at: 2pm)
-[T][] 1
+[T][] task1
+[T][] task2
+[T][] task 11
+[D][] hw1 (by: Aug 20 2022)

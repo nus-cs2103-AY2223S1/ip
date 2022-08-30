@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class DeadlineCommand extends Command{
 
     @Override
-    void execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
-        if(fullCommand.length() == 8){
+    String execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
+        if(fullCommand.length() == 8) {
             throw new DukeDeadlineEmptyException();
         }
         int index = fullCommand.indexOf("/");
@@ -19,10 +19,10 @@ public class DeadlineCommand extends Command{
         try {
             LocalDate date = LocalDate.parse(subString);
             Task t = new Deadline(subS,false, date);
-            taskList.addToList(t);
+           return taskList.addToList(t);
         } catch (DateTimeException e) {
             Task t = new Deadline(subS,false, subString);
-            taskList.addToList(t);
+          return  taskList.addToList(t);
         }
     }
 }

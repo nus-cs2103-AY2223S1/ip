@@ -8,7 +8,4 @@ public class DukeDeadlineEmptyException extends DukeException {
         Ui ui = new Ui();
         return ui.getEmptyDeadlineExceptionUi();
     }
-    public static void main(String[] args) {
-        System.out.println("h");
-    }
 }

@@ -27,20 +27,23 @@ public class Task {
 
     /**
      * Marks task as done.
+     *  @return A string that would be outputted to the screen when marked task.
      */
-    public void mark() {
+
+    public String mark() {
         this.isDone = true;
         Ui ui = new Ui();
-        ui.markHelperUi(this);
+        return ui.markHelperUi(this);
     }
 
     /**
      * Marks task as undone.
+     * @return A string that would be outputted to the screen when unmarked task.
      */
-    public void unmark() {
+    public String unmark() {
         this.isDone = false;
         Ui ui = new Ui();
-        ui.unmarkHelperUi(this);
+       return ui.unmarkHelperUi(this);
     }
 
     /**

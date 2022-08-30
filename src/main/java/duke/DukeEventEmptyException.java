@@ -1,7 +1,7 @@
 package duke;
 
 public class DukeEventEmptyException extends DukeException {
-     DukeEventEmptyException() {
+    DukeEventEmptyException() {
         super();
     }
     public String toString() {

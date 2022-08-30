@@ -2,34 +2,34 @@ package duke;
 import java.util.ArrayList;
 
 public class Ui {
-    public void greetUi() {
-        System.out.println("Hello I'm Duke\nWhat can I do for you?");
+    public String greetUi() {
+        return "Hello I'm Duke\nWhat can I do for you?";
     }
 
-    public void bidFarewellUi() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String bidFarewellUi() {
+        return "Bye. Hope to see you again soon!";
     }
 
-    public void displayListUi(ArrayList<Task> list) {
-        System.out.println("Here are the tasks in your list:");
+    public String displayListUi(ArrayList<Task> list) {
+        String s = "";
         for (int i = 1; i <= list.size(); i++) {
-            System.out.println(i + "." + list.get(i - 1).toString());
+            s =  s + "\n" + i + "." + list.get(i - 1).toString();
         }
+        return "Here are the tasks in your list:\n" + s;
     }
 
-    public void deleteUi(Task task, ArrayList<Task> list) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + list.size() + " tasks in the list.");
+    public String deleteUi(Task task, ArrayList<Task> list) {
+        return "Noted. I've removed this task:\n" + task.toString() + "\n"
+                + "Now you have " + list.size() + " tasks in the list.";
     }
 
-    public void addToListUi(Task task, ArrayList<Task> list) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
+    public String addToListUi(Task task, ArrayList<Task> list) {
         if (list.size() == 1) {
-            System.out.println("Now you have 1 task in the list.");
+            return "Got it. I've added this task:\n" + task.toString() + "\n"
+                    + "Now you have 1 task in the list.";
         } else {
-            System.out.println("Now you have " + list.size() + " tasks in the list.");
+            return "Got it. I've added this task:\n" + task.toString() + "\n" +
+                    "Now you have " + list.size() + " tasks in the list.";
         }
     }
 
@@ -45,27 +45,14 @@ public class Ui {
         return "OOPS!!! The description of a todo cannot be empty.";
     }
 
-    public void markHelperUi(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task.toString());
+    public String getUnknownWordExceptionUi(){return "OOPS!!! I'm sorry, but I don't know what that means :-(";};
+
+    public String markHelperUi(Task task) {
+       return "Nice! I've marked this task as done: " + task.toString();
+    }
+    public String unmarkHelperUi(Task task) {
+        return "OK, I've marked this task as not done yet: " + task.toString();
     }
 
-    public void unmarkHelperUi(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task.toString());
-    }
-//    public String readCommand() {
-//        Scanner input = new Scanner(System.in);
-//        String s = "";
-//        while (input.hasNext()) {
-//             s = input.nextLine();
-//             Parser parser = new Parser(s);
-//             if (parser.isSubStringForExitCommand()){
-//                 ExitCommand exitCommand = new ExitCommand();
-//                 exitCommand.execute(s,listOfTask,ui,storage);
-//                 break;
-//             }
-//        }
-//        return s;
-//    }
 }
+
