@@ -1,11 +1,14 @@
 package duke;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Represents the storage for the list task managed by the ChatBot.
  */
@@ -28,15 +31,15 @@ public class Storage {
     boolean checkFile() {
         String base = System.getProperty("user.dir");
         java.nio.file.Path path =  java.nio.file.Paths.get(base, fileLocation);
-        boolean fileExists = java.nio.file.Files.exists(path);
-        return fileExists;
+        boolean hasFile = java.nio.file.Files.exists(path);
+        return hasFile;
     }
 
     /**
      * Create new file.
      * @throws Exception.
      */
-    void createFiles() throws Exception {
+    void createFile() throws Exception {
         File taskFile = new File(fileLocation);
         taskFile.getParentFile().mkdirs();
         taskFile.createNewFile();
@@ -49,8 +52,8 @@ public class Storage {
      * @return taskList.
      * @throws Exception.
      */
-    List<Task> readFiles() throws Exception {
-        List<Task> existingTaskList = new ArrayList<Task>();
+    List<Task> readFile() throws Exception {
+        List<Task> existingTasks = new ArrayList<Task>();
         if (this.checkFile() == true) {
             FileReader file = new FileReader(fileLocation);
             Scanner sc = new Scanner(file);
@@ -65,27 +68,27 @@ public class Storage {
                     if (statusOfTask.equals("X")) {
                         pastTask.markAsDone();
                     }
-                    existingTaskList.add(pastTask);
+                    existingTasks.add(pastTask);
                 } else if (typeOfTask.equals("D")) {
                     String dateOfTask = strarr[4];
                     Task pastTask = new Deadline(taskDescription, dateOfTask);
                     if (statusOfTask.equals("X")) {
                         pastTask.markAsDone();
                     }
-                    existingTaskList.add(pastTask);
+                    existingTasks.add(pastTask);
                 } else if (typeOfTask.equals("E")) {
                     String dateOfTask = strarr[4];
                     Task pastTask = new Event(taskDescription, dateOfTask);
                     if (statusOfTask.equals("X")) {
                         pastTask.markAsDone();
                     }
-                    existingTaskList.add(pastTask);
+                    existingTasks.add(pastTask);
                 }
             }
         } else {
-            this.createFiles();
+            this.createFile();
         }
-        return existingTaskList;
+        return existingTasks;
     }
 
     /**
@@ -96,9 +99,9 @@ public class Storage {
     void saveNewChanges(TaskList newList) throws IOException {
         File taskFile = new File(this.fileLocation);
         PrintWriter pw = new PrintWriter(taskFile);
-        List<Task> newTaskList = newList.getList();
-        for(int i = 0; i < newTaskList.size(); i++) {
-            pw.println( (i+1) + ":" + newTaskList.get(i).write());
+        List<Task> newTasks = newList.getList();
+        for(int i = 0; i < newTasks.size(); i++) {
+            pw.println( (i+1) + ":" + newTasks.get(i).write());
         }
         pw.close();
     }

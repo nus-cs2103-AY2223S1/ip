@@ -24,10 +24,11 @@ class Task {
         this.isDone = true;
     }
 
+
     /**
      * Mark the task as undone.
      */
-    void unmarked() {
+    void markAsUndone() {
         this.isDone = false;
     }
 
@@ -47,10 +48,12 @@ class Task {
         return this.taskDescription;
     }
 
+
     /**
      * Print out the task.
      * @return string
      */
+    @Override
     public String toString() {
         return "[" + this.getStatus() + "] " + this.getTaskDescription();
     }
@@ -62,4 +65,5 @@ class Task {
     public String write() {
         return ":" + this.getStatus() + ":" + this.getTaskDescription();
     }
+
 }

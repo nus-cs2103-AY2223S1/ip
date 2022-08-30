@@ -1,9 +1,9 @@
 package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 class Event extends Task {
-
     private LocalDate time;
     private String timeInString;
 
@@ -13,7 +13,7 @@ class Event extends Task {
         this.timeInString = Date;
     }
 
-
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " at " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }

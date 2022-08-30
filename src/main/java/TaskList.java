@@ -1,7 +1,7 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Represents the list of task managed by the ChatBot.
@@ -50,7 +50,7 @@ public class TaskList {
             this.noOfTasks++;
             String addedTask = newTask.toString();
             ui.add(addedTask, this.noOfTasks);
-        } catch(TaskWithNoDescriptionException ex) {
+        } catch (TaskWithNoDescriptionException ex) {
             System.err.print(ex);
         }
     }
@@ -77,6 +77,7 @@ public class TaskList {
             System.out.println(i + ". " + currentTask);
         }
     }
+
     /**
      * Mark the task with this taskNo as done.
      * @param taskNo TaskNo given by the users.
@@ -94,7 +95,7 @@ public class TaskList {
      */
     void unmark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
-        taskToBeModify.unmarked();
+        taskToBeModify.markAsUndone();
         String unmarkedTask = taskToBeModify.toString();
         ui.unmark(unmarkedTask);
     }
@@ -116,9 +117,9 @@ public class TaskList {
             strarr1[1] = date;
             return strarr1;
         } else {
-            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a " + strarr[0] + " cannot be empty.");
+            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a "
+                    + strarr[0] + " cannot be empty.");
         }
     }
-
 
 }
