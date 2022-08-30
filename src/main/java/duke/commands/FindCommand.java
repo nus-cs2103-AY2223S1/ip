@@ -1,18 +1,21 @@
 package duke.commands;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
-import java.util.ArrayList;
-
 /**
  * FindCommand finds all matching tasks with given keyword
  */
-public class FindCommand extends Command{
-    /** Keyword to be searched for in TaskList*/
+public class FindCommand extends Command {
+
+    /**
+     * Keyword to be searched for in TaskList
+     */
     private final String keyword;
 
     /**
@@ -34,7 +37,8 @@ public class FindCommand extends Command{
      * there are matching tasks
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage)
+            throws DukeException {
         ArrayList<Task> filtered = tasks.find(this.keyword);
         if (filtered.size() == 0) {
             System.out.println("No matching tasks found");

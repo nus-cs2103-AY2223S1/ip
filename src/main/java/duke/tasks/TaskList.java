@@ -2,9 +2,12 @@ package duke.tasks;
 
 import java.util.ArrayList;
 
+/**
+ * TaskList keeps track of all tasks from user
+ */
 public class TaskList {
 
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -16,7 +19,6 @@ public class TaskList {
 
     public void add(Task task) {
         this.tasks.add(task);
-
     }
 
     public int size() {
@@ -46,5 +48,4 @@ public class TaskList {
         filtered.removeIf(task -> !task.getDescription().contains(text));
         return filtered;
     }
-
 }

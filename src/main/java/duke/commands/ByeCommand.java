@@ -1,22 +1,22 @@
 package duke.commands;
 
-import duke.exception.*;
+import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.main.Ui;
-import duke.tasks.*;
+import duke.tasks.TaskList;
 
 /**
  * ByeCommand says bye to user
  */
 public class ByeCommand extends Command {
 
-  public ByeCommand() {
-    this.isExit = true;
-  }
+    public ByeCommand() {
+        makeTrueExit();
+    }
 
-  @Override
-  public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-    System.out.println("Bye. Hope to see you again soon!");
-
-  }
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage)
+            throws DukeException {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
 }
