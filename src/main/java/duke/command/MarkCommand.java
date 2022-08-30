@@ -30,9 +30,9 @@ public class MarkCommand extends Command{
      * @param storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMark(tasks.get(index));
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         storage.saveToFile(tasks.saveList());
+        return ui.printMark(tasks.get(index));
     }
 }
 

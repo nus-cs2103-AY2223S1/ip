@@ -31,10 +31,10 @@ public class TodoCommand extends Command{
      * @param storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Todo e = new Todo(this.event);
         tasks.addTask(e);
         storage.saveToFile(tasks.saveList());
-        ui.printAddTask(e, tasks.getSize());
+        return ui.printAddTask(e, tasks.getSize());
     }
 }

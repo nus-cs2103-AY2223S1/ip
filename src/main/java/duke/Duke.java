@@ -5,6 +5,9 @@
 package duke;
 
 import duke.command.*;
+import javafx.application.Application;
+
+import java.io.FileNotFoundException;
 
 /**
  * class Duke that runs chat bot Duke.
@@ -16,39 +19,19 @@ public class Duke {
 
     /**
      * public constructor for Duke.
-     * @param filePath
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         this.tasks = new TaskList(storage.loadFromFile());
     }
 
-    /**
-     * Driver code for Duke.
-     * @param args
-     * @throws DukeException
-     */
-    public static void main(String[] args) throws DukeException {
-        new Duke("D:\\NUS\\Tasks.txt").run();
-    }
-
-    /**
-     * class Method run that runs Duke when instance created.
-     */
-    public void run() {
-        ui.printWelcome();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String command = ui.readLine();
-                Command com = Parser.parse(command);
-                com.execute(tasks, ui, storage);
-                isExit = com.isExit();
-            } catch (DukeException e) {
-                ui.printMessage(e.getMessage());
-            }
+    public String getResponse(String command) {
+        try {
+            Command com = Parser.parse(command);
+            return com.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 }

@@ -30,8 +30,8 @@ public class UnmarkCommand extends Command{
      * @param storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printUnmark(tasks.get(index));
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         storage.saveToFile(tasks.saveList());
+        return ui.printUnmark(tasks.get(index));
     }
 }

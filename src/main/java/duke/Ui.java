@@ -42,60 +42,58 @@ public class Ui {
     /**
      * class method to print welcome message.
      */
-    public void printWelcome() {
-        System.out.println("Hello from\n" + logo);
-        printMessage(initText);
+    public String printWelcome() {
+        return "Hello from\n" + logo + "\n" + initText;
     }
 
     /**
      * class method to print bye message.
      */
-    public void printBye() {
-        printMessage(endText);
+    public String printBye() {
+        return printMessage(endText);
     }
 
     /**
      * class method to print marked message.
      */
-    public void printMark(Task t) {
+    public String printMark(Task t) {
         t.mark();
-        printMessage("Nice! I've marked this task as done :)\n      "
+        return printMessage("Nice! I've marked this task as done :)\n      "
                 + t.toString());
     }
 
     /**
      * class method to print unmarked message.
      */
-    public void printUnmark(Task t) {
+    public String printUnmark(Task t) {
         t.unmark();
-        printMessage("ok I mark this task as not done yet... \n      "
+        return printMessage("ok I mark this task as not done yet... \n      "
                 + t.toString());
     }
 
     /**
      * class method to print add Task message.
      */
-    public void printAddTask(Task t, int n) {
+    public String printAddTask(Task t, int n) {
         String note = "Now you have " + n + " tasks in the list.";
-        printMessage("Got it, I've added this task:\n      " + t.toString()
+        return printMessage("Got it, I've added this task:\n      " + t.toString()
                 + "\n    " + note);
     }
 
     /**
      * class method to print delete Task message.
      */
-    public void printDeleteTask(Task t, int n) {
+    public String printDeleteTask(Task t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
-        printMessage("Noted. I've deleted this task:\n      " + t.toString()
+        return printMessage("Noted. I've deleted this task:\n      " + t.toString()
                 + "\n    " + noteUpdated);
     }
 
     /**
      * class method to print message - the lines and indentation and formatting.
      */
-    public static void printMessage (String str){
-        System.out.println("  ____________________________________________________________");
-        System.out.println("    " + str);
-        System.out.println("  ____________________________________________________________");
+    public static String printMessage (String str){
+        String line = "  ____________________________________________________________";
+        return line + "\n    " + str + "\n" + line;
     }
 }
