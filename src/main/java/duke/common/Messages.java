@@ -5,11 +5,10 @@ package duke.common;
  */
 public class Messages {
 
-    public static final String MESSAGE_BYE = "Goodbye, Hope to see you soon!\n"
-            + "----------------------------------------------\n";
+    public static final String MESSAGE_BYE = "Goodbye, Hope to see you soon!";
     public static final String MESSAGE_HI = "Hello! I'm Duke\n" + "I'm ready to serve you!";
-    public static final String MESSAGE_BOT_DIVIDER = "~~~~~-----DUKE-----~~~~~\n";
-    public static final String MESSAGE_USER_DIVIDER = "~~~~~-----YOU-----~~~~~~\n";
+    public static final String MESSAGE_BOT_RESPONSE = "Duke:\n";
+    public static final String MESSAGE_USER_SAY = "You:\n";
     public static final String MESSAGE_NOTHING_IN_LIST = "Nothing is added to the list!";
     public static final String MESSAGE_MARK_SUCCESS = "Nice! this task is marked as done. Good Job!\n%s";
     public static final String MESSAGE_UNMARK_SUCCESS = "This task is marked as not done. Keep it up!\n%s";

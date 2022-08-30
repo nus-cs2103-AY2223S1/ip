@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
 
@@ -18,11 +19,17 @@ public class ExitCommand extends Command {
     public ExitCommand(String command) {
         super(command);
     }
-
+    /**
+     * Returns the "bye" message through BotUI object.
+     *
+     * @param taskList stores the list of tasks
+     * @param ui Object that responsible in returning necessary formatted String
+     *           to print on the user interface
+     * @return String of "bye" response through BotUI object.
+     */
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) {
-        ui.botDivider();
-        ui.sayBye();
+    public String execute(TaskRecords taskList, BotUI ui) {
+        return ui.sayBye();
     }
 
     /**

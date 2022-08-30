@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
 
@@ -18,10 +19,16 @@ public class ListCommand extends Command {
     public ListCommand(String command) {
         super(command);
     }
-
+    /**
+     * Returns Tasks in the task list.
+     * @param taskList stores the list of tasks
+     * @param ui Object that responsible in returning necessary formatted String
+     *           to print on the user interface
+     * @return String of number-formatted tasks through BotUI object.
+     */
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) {
-        ui.showList(taskList);
+    public String execute(TaskRecords taskList, BotUI ui) {
+        return ui.showList(taskList);
     }
 
     /**

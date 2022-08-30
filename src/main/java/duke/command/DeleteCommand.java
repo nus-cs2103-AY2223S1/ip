@@ -29,14 +29,15 @@ public class DeleteCommand extends Command {
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
      *           to print on the user interface
+     * @return String of suitable response according to the user input through BotUI object.
      * @throws DukeException - thrown when NumberFormatException or IndexOutOfBoundsException is
      *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
      */
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
+    public String execute(TaskRecords taskList, BotUI ui) throws DukeException {
         try {
             int taskIdx = Integer.parseInt(details) - 1;
-            ui.successRemoved(taskList, taskList.delete(taskIdx));
+            return ui.successRemoved(taskList, taskList.delete(taskIdx));
         } catch (NumberFormatException ex) {
             throw new DukeException(ui.invalidCheckFormat());
         } catch (IndexOutOfBoundsException ex) {

@@ -23,7 +23,7 @@ public abstract class Command {
         return this.command;
     }
 
-    public abstract void execute(TaskRecords taskList, BotUI ui) throws DukeException;
+    public abstract String execute(TaskRecords taskList, BotUI ui) throws DukeException;
 
     public abstract boolean isExit();
 }

@@ -10,7 +10,7 @@ import duke.storage.TaskRecords;
 import duke.ui.BotUI;
 
 /**
- * Represents the main class of the duke bot program.
+ * Represents the class of the duke bot program.
  * A <code>Duke</code> object consists of BotUI and TaskRecords.
  */
 public class Duke {
@@ -36,14 +36,16 @@ public class Duke {
 
     /**
      * Runs the duke chatBot program.
+     * Shows the text-based UI
      */
     void runBot() {
-        ui.sayHello();
+        System.out.println(ui.sayHello());
         boolean exitDuke = false;
         while (!exitDuke) {
             try {
+                System.out.print(BotUI.userSpeak());
                 Command c = Parser.parse(ui.readCommand());
-                c.execute(taskList, ui);
+                System.out.println(c.execute(taskList, ui));
                 FileManager.write(this.taskList);
                 exitDuke = c.isExit();
             } catch (DukeException de) {
@@ -56,17 +58,29 @@ public class Duke {
 
     /**
      * Main method of the program.
+     * For text-based UI execution.
      */
     public static void main(String[] args) {
         new Duke().runBot();
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response of the bot according to user input in GUI
+     *
+     * @param input String of user raw input in GUI.
+     * @return String of the resulting bot response from the GUI input
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            Command c = Parser.parse(input);
+            String response = c.execute(this.taskList, ui);
+            FileManager.write(this.taskList);
+            return response;
+        } catch (DukeException de) {
+            return de.getMessage();
+        } catch (IOException ex) {
+            return"Error while Saving File!";
+        }
     }
 
 }

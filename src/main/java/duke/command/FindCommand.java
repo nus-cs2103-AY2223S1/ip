@@ -25,14 +25,15 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds task's detail consisting the keyword from the FindCommand detail attribute.
+     * Finds and returns task's detail consisting the keyword from the FindCommand detail attribute.
      *
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
      *           to print on the user interface
+     * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) {
+    public String execute(TaskRecords taskList, BotUI ui) {
         TaskRecords foundList = new TaskRecords();
         boolean found = false;
         for (Task t : taskList.getList()) {
@@ -42,9 +43,9 @@ public class FindCommand extends Command {
             }
         }
         if (found) {
-            ui.taskFound(foundList);
+            return ui.taskFound(foundList);
         } else {
-            ui.taskNotFound();
+            return ui.taskNotFound();
         }
 
     }

@@ -37,36 +37,33 @@ public class AddCommand extends Command {
      * @param taskList stores the list of tasks
      * @param ui       Object that responsible in returning necessary formatted String
      *                 to print on the user interface
+     * @return String of suitable response according to the user input through BotUI object.
      * @throws DukeException - thrown from Parser.extractDateTime methods.
      * @see Parser - the details of the extratDateTime method throw DukeException
      */
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
+    public String execute(TaskRecords taskList, BotUI ui) throws DukeException {
         try {
             String taskCommand = super.getCommand();
             switch (taskCommand) {
             case "todo":
                 Task taskToDo = new ToDos(details);
                 taskList.addProcess(taskToDo);
-                ui.addStatus(taskList, taskToDo);
-                break;
+                return ui.addStatus(taskList, taskToDo);
             case "deadline":
                 String deadlineDetail = Parser.extractDetail(details, " /by ");
                 LocalDateTime deadlineDateTime = Parser.extractDateTime(details, " /by ");
                 Task taskDeadline = new Deadlines(deadlineDetail, deadlineDateTime);
                 taskList.addProcess(taskDeadline);
-                ui.addStatus(taskList, taskDeadline);
-                break;
+                return ui.addStatus(taskList, taskDeadline);
             case "event":
                 String eventDetail = Parser.extractDetail(details, " /at ");
                 LocalDateTime eventDateTime = Parser.extractDateTime(details, " /at ");
                 Task taskEvent = new Events(eventDetail, eventDateTime);
                 taskList.addProcess(taskEvent);
-                ui.addStatus(taskList, taskEvent);
-                break;
+                return ui.addStatus(taskList, taskEvent);
             default:
-                System.out.print("Adding process fail!");
-                break;
+                return "Adding process fail!";
             }
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(ui.invalidDateFormat());
