@@ -7,16 +7,16 @@ import java.util.Scanner;
 /**
  * The user interface of the chatbot
  */
-public class Ui {
+public class TextUi {
 
     private final Scanner in;
     private final PrintStream out;
 
-    public Ui() {
+    public TextUi() {
         this(System.in, System.out);
     }
 
-    public Ui(InputStream in, PrintStream out) {
+    public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
     }

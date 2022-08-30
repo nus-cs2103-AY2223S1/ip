@@ -9,15 +9,27 @@ public class Dukebot {
     private TaskList taskList;
     private Storage storage;
     private Parser parser;
-    private Ui ui;
+    private TextUi ui;
+    private boolean toExit;
 
 
     /**
      * Initializes necessary components of the chatbot
      */
-    public Dukebot(Ui ui) {
+    public Dukebot(TextUi ui) {
+        this.toExit = false;
         this.ui = ui;
         this.handleStartup();
+    }
+
+    /**
+     * The running loop of a bot instance.
+     */
+    public void run() {
+        while(!toExit) {
+            String input = ui.getInput();
+            handleInput(input);
+        }
     }
 
     private void handleStartup() {
@@ -35,7 +47,8 @@ public class Dukebot {
 
     private void handleBye() {
         ui.display(Messages.ENDING);
-        System.exit(0);
+        toExit = true;
+        // Not necessary to save to storage here as saving is done for every TaskList modification.
     }
 
     private void handleList() {
@@ -109,7 +122,7 @@ public class Dukebot {
      * Overarching handler for commands entered by the user
      * @param input a full command entered by the user
      */
-    protected void handleInput(String input) {
+    private void handleInput(String input) {
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
         try {
