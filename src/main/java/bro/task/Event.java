@@ -1,3 +1,7 @@
+package bro.task;
+
+import bro.Parser;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,7 +25,7 @@ public class Event extends Task {
 
     @Override
     public String getTaskType() {
-        return "Event";
+        return "bro.task.Event";
     }
 
     @Override

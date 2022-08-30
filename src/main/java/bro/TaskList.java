@@ -1,3 +1,10 @@
+package bro;
+
+import bro.task.Deadline;
+import bro.task.Event;
+import bro.task.Task;
+import bro.task.Todo;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,8 +51,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void todoTask(String desc, Storage sto){
-        Task t = new Todo(desc);
+    public void todoTask(Task t, Storage sto){
         t.markAsNotDone();
         tasks.add(t);
         try {
@@ -57,8 +63,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void deadlineTask(String desc, String time, Storage sto) {
-        Task t = new Deadline(desc, time);
+    public void deadlineTask(Task t, Storage sto) {
         t.markAsNotDone();
         tasks.add(t);
         try {
@@ -70,8 +75,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void eventTask(String desc, String time, Storage sto) {
-        Task t = new Event(desc, time);
+    public void eventTask(Task t, Storage sto) {
         t.markAsNotDone();
         tasks.add(t);
         try {

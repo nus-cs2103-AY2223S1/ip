@@ -1,3 +1,10 @@
+package bro;
+
+import bro.command.*;
+import bro.task.Deadline;
+import bro.task.Event;
+import bro.task.Todo;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -7,7 +14,7 @@ import java.util.List;
 
 public class Parser {
 
-    public Command parse(String str) throws BroException{
+    public Command parse(String str) throws BroException {
 
         this.checkEmptyInput(str);
         String[] in = str.split(" ");

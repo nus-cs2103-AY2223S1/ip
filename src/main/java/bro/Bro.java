@@ -1,3 +1,7 @@
+package bro;
+
+import bro.command.Command;
+
 public class Bro {
 
     private Storage storage;
@@ -33,7 +37,7 @@ public class Bro {
     }
 
     public static void main(String[] args) {
-        Bro bro = new Bro("./Bro.txt");
+        Bro bro = new Bro("./bro.Bro.txt");
         bro.run();
     }
 }

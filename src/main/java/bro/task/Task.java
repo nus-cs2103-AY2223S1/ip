@@ -1,3 +1,5 @@
+package bro.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -20,7 +22,7 @@ public class Task {
     }
 
     public String getTaskType(){
-        return "Task";
+        return "bro.task.Task";
     }
 
     @Override

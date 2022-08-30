@@ -1,3 +1,7 @@
+package bro.task;
+
+import bro.task.Task;
+
 public class Todo extends Task {
 
     public Todo(String description) {
@@ -6,7 +10,7 @@ public class Todo extends Task {
 
     @Override
     public String getTaskType() {
-        return "Todo";
+        return "bro.task.Todo";
     }
 
     @Override

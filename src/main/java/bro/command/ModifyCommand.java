@@ -1,5 +1,11 @@
-public class ModifyCommand extends Command{
-    enum ModifyType{
+package bro.command;
+
+import bro.Storage;
+import bro.TaskList;
+import bro.Ui;
+
+public class ModifyCommand extends Command {
+    public enum ModifyType{
         MARK, UNMARK
     }
 
@@ -12,7 +18,7 @@ public class ModifyCommand extends Command{
     }
 
     @Override
-    void execute(TaskList tasklist, Ui ui, Storage storage) {
+    public void execute(TaskList tasklist, Ui ui, Storage storage) {
         switch (modifyType) {
             case MARK:
                 tasklist.markTask(this.index, storage);

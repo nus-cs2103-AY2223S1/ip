@@ -1,3 +1,7 @@
+package bro.task;
+
+import bro.Parser;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,7 +23,7 @@ public class Deadline extends Task {
     }
     @Override
     public String getTaskType() {
-        return "Deadline";
+        return "bro.task.Deadline";
     }
 
     @Override

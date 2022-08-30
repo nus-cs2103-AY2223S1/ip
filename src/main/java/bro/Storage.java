@@ -1,3 +1,10 @@
+package bro;
+
+import bro.task.Deadline;
+import bro.task.Event;
+import bro.task.Task;
+import bro.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -61,13 +68,13 @@ public class Storage {
     }
 
     public static void writeToFile(Task t) throws IOException {
-        FileWriter w = new FileWriter("./Bro.txt", true);
+        FileWriter w = new FileWriter("./bro.Bro.txt", true);
         w.write(t.toString() + "\n");
         w.close();
     }
 
     public static void modifyTaskFile(ArrayList<Task> li) throws IOException {
-        FileWriter w = new FileWriter("./Bro.txt", false);
+        FileWriter w = new FileWriter("./bro.Bro.txt", false);
         for(Task t : li){
             w.write(t.toString() + "\n");
         }
