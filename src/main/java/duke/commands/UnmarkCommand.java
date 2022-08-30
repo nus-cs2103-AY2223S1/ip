@@ -27,6 +27,7 @@ public class UnmarkCommand extends Command {
      * @param taskList List of tasks.
      * @param ui Shows the Task marked as not done.
      * @param storage Saves the modified list of tasks.
+     * @return The message indicating that the Task has been marked as not done.
      * @throws DukeException If an invalid task number is provided by the user or if there
      *         is an error saving the modified list of tasks.
      */

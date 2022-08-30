@@ -30,6 +30,7 @@ public class DeadlineCommand extends Command {
      * @param taskList List of tasks.
      * @param ui Shows the Task added and the total number of tasks on the list.
      * @param storage Saves the modified list of tasks.
+     * @return The message indicating that the Task has been added and the number of tasks on the list.
      * @throws DukeException If there is an error saving the modified list of tasks.
      */
     @Override

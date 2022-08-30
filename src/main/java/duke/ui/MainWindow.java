@@ -27,11 +27,17 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+    /**
+     * Ensures that the ScrollPane shows the most recent message on the screen.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Initialise Duke. Show loading errors if any and the greeting message to the user.
+     */
     public void setDuke(Duke d) {
         duke = d;
         String loadingError = duke.showLoadingError();
