@@ -1,9 +1,9 @@
-package duke;
+package bocil;
 
 /**
  * Describes all the exception handled by the program.
  */
-public class DukeException extends Exception {
+public class BocilException extends Exception {
 
     private static final String EMPTY_INPUT = "Please enter something!";
     private static final String FILE_NOT_FOUND = "I cannot find your file";
@@ -13,65 +13,65 @@ public class DukeException extends Exception {
     private static final String UNKNOWN_COMMAND = "I don't know what that means";
 
     /**
-     * Constructs a {@link DukeException} object using a specific message.
+     * Constructs a {@link BocilException} object using a specific message.
      *
      * @param message String message to be shown to the user.
      */
-    public DukeException(String message) {
+    public BocilException(String message) {
         super(message);
     }
 
     /**
      * Handles errors where the user input is empty.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeEmptyInputException() {
-        return new DukeException(EMPTY_INPUT);
+    public static BocilException dukeEmptyInputException() {
+        return new BocilException(EMPTY_INPUT);
     }
 
     /**
      * Handles errors where the specified file cannot be found.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeFileNotFoundException() {
-        return new DukeException(FILE_NOT_FOUND);
+    public static BocilException dukeFileNotFoundException() {
+        return new BocilException(FILE_NOT_FOUND);
     }
 
     /**
      * Handles errors where the task number is out of range or is not an integer.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeInvalidIndexException() {
-        return new DukeException(INVALID_INDEX);
+    public static BocilException dukeInvalidIndexException() {
+        return new BocilException(INVALID_INDEX);
     }
 
     /**
      * Handles errors where the task format of the input is incorrect.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeInvalidFormatException() {
-        return new DukeException(INVALID_FORMAT);
+    public static BocilException dukeInvalidFormatException() {
+        return new BocilException(INVALID_FORMAT);
     }
 
     /**
      * Handles errors where the date format of the task is incorrect.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeInvalidDateFormatException() {
-        return new DukeException(INVALID_DATE_FORMAT);
+    public static BocilException dukeInvalidDateFormatException() {
+        return new BocilException(INVALID_DATE_FORMAT);
     }
 
     /**
      * Handles errors where the command is not known by the program.
      *
-     * @return {@link DukeException}
+     * @return {@link BocilException}
      */
-    public static DukeException dukeUnknownCommandException() {
-        return new DukeException(UNKNOWN_COMMAND);
+    public static BocilException dukeUnknownCommandException() {
+        return new BocilException(UNKNOWN_COMMAND);
     }
 }

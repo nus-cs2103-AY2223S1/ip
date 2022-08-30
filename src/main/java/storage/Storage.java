@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import duke.DukeException;
+import bocil.BocilException;
 import parser.Parser;
 import task.Deadline;
 import task.Event;
@@ -50,9 +50,9 @@ public class Storage {
      *
      * @param inputLine String line that the user inputs.
      * @return One of the 3 {@link Task} object's subclasses.
-     * @throws DukeException If inputted date is not of the accepted format.
+     * @throws BocilException If inputted date is not of the accepted format.
      */
-    public Task createTask(String inputLine) throws DukeException {
+    public Task createTask(String inputLine) throws BocilException {
         String[] split = inputLine.split("\\|\\|");
         String command = split[0];
         boolean isDone = Boolean.parseBoolean(split[1]);
@@ -74,9 +74,9 @@ public class Storage {
      * Reads the stored {@link TaskList} object.
      *
      * @return The last saved {@link TaskList} object.
-     * @throws DukeException If inputted date is not of the accepted format.
+     * @throws BocilException If inputted date is not of the accepted format.
      */
-    public TaskList readFile() throws DukeException {
+    public TaskList readFile() throws BocilException {
         TaskList taskList = new TaskList();
         File file = new File(this.filePath);
         try {
@@ -86,7 +86,7 @@ public class Storage {
                 taskList.addTask(createTask(line));
             }
         } catch (FileNotFoundException e) {
-            throw DukeException.dukeFileNotFoundException();
+            throw BocilException.dukeFileNotFoundException();
         }
         return taskList;
     }

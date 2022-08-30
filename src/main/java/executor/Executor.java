@@ -2,7 +2,7 @@ package executor;
 
 import java.time.LocalDateTime;
 
-import duke.DukeException;
+import bocil.BocilException;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -32,9 +32,9 @@ public class Executor {
      * @param name Name of the task.
      * @param time Time of the task.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String addNewTask(String type, String name, LocalDateTime time) throws DukeException {
+    public String addNewTask(String type, String name, LocalDateTime time) throws BocilException {
         Task task;
         try {
             if (type.equals("todo")) {
@@ -45,7 +45,7 @@ public class Executor {
                 task = new Event(name, time);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw DukeException.dukeInvalidFormatException();
+            throw BocilException.dukeInvalidFormatException();
         }
         this.taskList.addTask(task);
         String header = "Got it. I've added this task:";
@@ -59,9 +59,9 @@ public class Executor {
      *
      * @param split The user's input split by each space.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String markAsDone(String[] split) throws DukeException {
+    public String markAsDone(String[] split) throws BocilException {
         Task task;
         try {
             if (split.length == 2) {
@@ -69,10 +69,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 task.mark();
             } else {
-                throw DukeException.dukeInvalidIndexException();
+                throw BocilException.dukeInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw DukeException.dukeInvalidIndexException();
+            throw BocilException.dukeInvalidIndexException();
         }
         String header = "Nice! I've marked this task as done:";
         String line = String.format("  %s", task);
@@ -84,9 +84,9 @@ public class Executor {
      *
      * @param split The user's input split by each space.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String unmarkAsDone(String[] split) throws DukeException {
+    public String unmarkAsDone(String[] split) throws BocilException {
         Task task;
         try {
             if (split.length == 2) {
@@ -94,10 +94,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 task.unmark();
             } else {
-                throw DukeException.dukeInvalidIndexException();
+                throw BocilException.dukeInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw DukeException.dukeInvalidIndexException();
+            throw BocilException.dukeInvalidIndexException();
         }
         String header = "OK, I've marked this task as not done yet:";
         String line = String.format("  %s", task);
@@ -109,9 +109,9 @@ public class Executor {
      *
      * @param split The user's input split by each space.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String deleteTaskFromList(String[] split) throws DukeException {
+    public String deleteTaskFromList(String[] split) throws BocilException {
         Task task;
         try {
             if (split.length == 2) {
@@ -119,10 +119,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 taskList.removeTask(num);
             } else {
-                throw DukeException.dukeInvalidIndexException();
+                throw BocilException.dukeInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw DukeException.dukeInvalidIndexException();
+            throw BocilException.dukeInvalidIndexException();
         }
         String header = "Noted. I've removed this task:";
         String line = String.format("  %s", task.toString());
@@ -134,15 +134,15 @@ public class Executor {
      *
      * @param split The user's input split by each space.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String findTaskFromList(String[] split) throws DukeException {
+    public String findTaskFromList(String[] split) throws BocilException {
         TaskList matchedTasks;
         try {
             String keyword = split[1];
             matchedTasks = this.taskList.match(keyword);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw DukeException.dukeUnknownCommandException();
+            throw BocilException.dukeUnknownCommandException();
         }
         if (matchedTasks.getSize() > 0) {
             String header = "Here are the matching tasks in your list";
@@ -157,13 +157,13 @@ public class Executor {
      *
      * @param input String of user input.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String endProgram(String input) throws DukeException {
+    public String endProgram(String input) throws BocilException {
         if (input.equals("bye")) {
             return "Bye. Hope to see you again soon!";
         } else {
-            throw DukeException.dukeUnknownCommandException();
+            throw BocilException.dukeUnknownCommandException();
         }
     }
 
@@ -172,9 +172,9 @@ public class Executor {
      *
      * @param input String of user input.
      * @return Response of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String showList(String input) throws DukeException {
+    public String showList(String input) throws BocilException {
         if (input.equals("list")) {
             if (taskList.getSize() > 0) {
                 String header = "Here are the tasks in your list";
@@ -183,7 +183,7 @@ public class Executor {
                 return "There are no tasks in your list";
             }
         } else {
-            throw DukeException.dukeUnknownCommandException();
+            throw BocilException.dukeUnknownCommandException();
         }
     }
 }

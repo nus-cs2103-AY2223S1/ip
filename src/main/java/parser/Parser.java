@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.DukeException;
+import bocil.BocilException;
 import executor.Executor;
 import task.TaskList;
 
@@ -60,11 +60,11 @@ public class Parser {
      * @return Response line of the program.
      * @throws DukeException If the user input is not of the accepted format.
      */
-    public String processInput(String input) throws DukeException {
+    public String processInput(String input) throws BocilException {
         String response;
         String[] split = input.split("\\s+", 2);
         if (input.matches("\\s*")) {
-            throw DukeException.dukeEmptyInputException();
+            throw BocilException.dukeEmptyInputException();
         }
         String command = split[0];
 
@@ -101,7 +101,7 @@ public class Parser {
             response = this.executor.showList(input);
             break;
         default:
-            throw DukeException.dukeUnknownCommandException();
+            throw BocilException.dukeUnknownCommandException();
         }
         return response;
     }
@@ -111,9 +111,9 @@ public class Parser {
      *
      * @param date Date string that the user inputs.
      * @return Date in the form of {@link LocalDateTime}.
-     * @throws DukeException If inputted date is not of the accepted format.
+     * @throws BocilException If inputted date is not of the accepted format.
      */
-    public LocalDateTime parseTime(String date) throws DukeException {
+    public LocalDateTime parseTime(String date) throws BocilException {
         for (String pattern: DATE_PATTERNS) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
@@ -122,6 +122,6 @@ public class Parser {
                 // An empty catch block
             }
         }
-        throw DukeException.dukeInvalidDateFormatException();
+        throw BocilException.dukeInvalidDateFormatException();
     }
 }

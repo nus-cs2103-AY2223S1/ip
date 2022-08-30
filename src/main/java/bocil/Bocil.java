@@ -1,4 +1,4 @@
-package duke;
+package bocil;
 
 import parser.Parser;
 import storage.Storage;
@@ -8,9 +8,9 @@ import ui.Ui;
 /**
  * Links the UI, parser and storage as a Duke object.
  */
-public class Duke {
+public class Bocil {
 
-    private static final String DUKE_NAME = "Bocil";
+    private static final String NAME = "Bocil";
     private static final String FILE_DIRECTORY_STRING = "./data/";
     private static final String FILE_NAME = "duke.txt";
     private final Parser parser;
@@ -19,26 +19,26 @@ public class Duke {
     private final Ui ui;
 
     /**
-     * Constructs a {@link Duke} object using pre-defined name and storage directory.
+     * Constructs a {@link Bocil} object using pre-defined name and storage directory.
      *
-     * @throws DukeException If file is unable to be loaded.
+     * @throws BocilException If file is unable to be loaded.
      */
-    public Duke() throws DukeException {
+    public Bocil() throws BocilException {
         this.storage = new Storage(FILE_DIRECTORY_STRING, FILE_NAME);
         this.taskList = this.storage.readFile();
         this.parser = new Parser(this.taskList);
-        this.ui = new Ui(DUKE_NAME);
+        this.ui = new Ui(NAME);
     }
 
     /**
      * Runs the main logic of the application.
      *
-     * @throws DukeException If file is unable to be loaded.
+     * @throws BocilException If file is unable to be loaded.
      */
-    public static void main(String[] args) throws DukeException {
-        Duke duke = new Duke();
-        duke.initialize();
-        duke.run();
+    public static void main(String[] args) throws BocilException {
+        Bocil bocil = new Bocil();
+        bocil.initialize();
+        bocil.run();
     }
 
     /**
@@ -59,7 +59,7 @@ public class Duke {
                 if (this.ui.isEnd(input)) {
                     break;
                 }
-            } catch (DukeException e) {
+            } catch (BocilException e) {
                 this.ui.printError(e);
             }
         }
