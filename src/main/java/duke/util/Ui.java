@@ -7,18 +7,13 @@ import duke.task.TaskList;
  * Class to manage user interface input and output.
  */
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String INDENTATION = "     ";
 
     /**
      * Prints greeting message.
      */
     public static String showWelcome() {
-        return LOGO + "Hello! I'm Duke, What can I do for you?" + System.lineSeparator();
+        return "Hello! I'm Duke, What can I do for you?" + System.lineSeparator();
     }
 
     /**
@@ -43,7 +38,7 @@ public class Ui {
     public static String formatMessages(String[] messages) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String message : messages) {
-            stringBuilder.append(INDENTATION + message);
+            stringBuilder.append(INDENTATION + message + System.lineSeparator());
         }
         return stringBuilder.toString();
     }
