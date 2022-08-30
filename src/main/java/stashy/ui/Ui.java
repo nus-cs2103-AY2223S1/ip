@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class Ui {
     private static Scanner sc = new Scanner(System.in);
+
+    /**
+     * The length of the horizontal line that is printed within the chatbot UI.
+     */
     private static final int HORIZONTAL_LINE_LENGTH = 50;
 
     /**
@@ -95,7 +99,7 @@ public class Ui {
     /**
      * Reads the command given by the user.
      *
-     * @return The (stripped) command supplied by user
+     * @return The (whitespace-trimmed) command supplied by user
      */
     public String readCommand() {
         return sc.nextLine().strip();

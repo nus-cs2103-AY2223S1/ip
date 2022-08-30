@@ -12,9 +12,16 @@ import stashy.ui.Ui;
  * what a regular chatbot should be able to do.
  */
 public class Stashy {
+    /**
+     * The absolute filepath to store the task list, the UI,
+     * the storage to handle with files, and the task list itself.
+     */
     private static final String DATA_FILEPATH = "src/main/data/tasks.txt";
+
     private static Ui ui;
+
     private static Storage storage;
+
     private static TaskList tasks;
 
     /**
@@ -55,6 +62,8 @@ public class Stashy {
 
     /**
      * The main driver method of the chatbot.
+     *
+     * @param args Command-line arguments for the application
      */
     public static void main(String[] args) {
         new Stashy().run();
