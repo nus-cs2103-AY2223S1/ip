@@ -62,6 +62,8 @@ public class Parser {
                 return new DeleteCommand(arguments);
             case ByeCommand.COMMAND:
                 return new ByeCommand(arguments);
+            case FindCommand.COMMAND:
+                return new FindCommand(arguments);
             default:
                 return new InvalidCommand();
             }

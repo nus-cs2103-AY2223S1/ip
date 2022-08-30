@@ -59,7 +59,7 @@ public abstract class Task {
      * @return a comma delimited string.
      */
     public String save() {
-        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.description);
+        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.getDescription());
     }
 
     /**
@@ -69,6 +69,15 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "[" + icon() + "] " + this.description;
+        return "[" + icon() + "] " + this.getDescription();
+    }
+
+    /**
+     * Returns the description of the task as a string.
+     *
+     * @return the description of the task as a string.
+     */
+    public String getDescription() {
+        return this.description;
     }
 }

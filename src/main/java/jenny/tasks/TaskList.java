@@ -1,10 +1,11 @@
 package jenny.tasks;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
-
 
 /**
  * Handles basic CRUD operations for a list of {@link Task}.
@@ -97,6 +98,18 @@ public class TaskList {
      */
     public void save(Storage<ArrayList<Task>> storage) throws JennyException {
         storage.save(tasks);
+    }
+
+    /**
+     * Returns the filtered list of {@link Task tasks} who's description passes the predicate.
+     *
+     * @param condition The predicate to test the task description on
+     * @return filtered list of tasks
+     */
+    public ArrayList<Task> filter(Predicate<? super String> condition) {
+        return (ArrayList<Task>) tasks.stream()
+                .filter(task -> condition.test(task.getDescription()))
+                .collect(Collectors.toList());
     }
 
     /**

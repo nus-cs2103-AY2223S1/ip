@@ -30,7 +30,7 @@ public class TodoTask extends Task {
      */
     @Override
     public String save() {
-        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.description);
+        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.getDescription());
     }
 
     /**
