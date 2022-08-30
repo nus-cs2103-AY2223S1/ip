@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Task;
+
 public class DeleteCommand extends Command{
     private final String userInput;
 
@@ -6,7 +14,7 @@ public class DeleteCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException{
+    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String message = "";
 
         String taskDetails = userInput.split(" ", 2)[1];

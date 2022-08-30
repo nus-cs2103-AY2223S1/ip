@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -5,7 +9,7 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     private LocalDateTime endDate;
 
-    public Deadline(String taskName, String endDate) throws DukeException{
+    public Deadline(String taskName, String endDate) throws DukeException {
         super(taskName);
         try {
             this.endDate = LocalDateTime.parse(endDate, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));

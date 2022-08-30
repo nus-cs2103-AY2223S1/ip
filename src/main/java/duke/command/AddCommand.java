@@ -1,3 +1,16 @@
+package duke.command;
+
+import duke.Duke;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
+
 public class AddCommand extends Command{
     private final String userInput;
 
@@ -6,7 +19,7 @@ public class AddCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException{
+    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String command;
         String message = "";
         command = userInput.split(" ")[0];
