@@ -42,9 +42,4 @@ public class Ui {
         System.out.println(taskFullDescription);
     }
 
-    /*void createFiles() {
-        System.out.println("There is no existing task list. Duke is creating a new one now.");
-    }*/
-
-
 }

@@ -1,7 +1,7 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class TaskList {
 
@@ -68,7 +68,7 @@ public class TaskList {
 
     void unmark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
-        taskToBeModify.unmarked();
+        taskToBeModify.markAsUndone();
         String unmarkedTask = taskToBeModify.toString();
         ui.unmark(unmarkedTask);
     }
@@ -90,9 +90,9 @@ public class TaskList {
             strarr1[1] = date;
             return strarr1;
         } else {
-            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a " + strarr[0] + " cannot be empty.");
+            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a "
+                    + strarr[0] + " cannot be empty.");
         }
     }
-
 
 }

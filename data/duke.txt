@@ -2,5 +2,7 @@
 2:D: :return book:2022-06-13
 3:E: :birthday party:2022-12-31
 4:E:X:meeting:2022-03-14
-5:T:X:borrow book
-6:T: :return book
+5:T: :return book
+6:T: :eat at Marina Bay Sands Restaurant
+7:D: :submit homework 1:2022-08-17
+8:E: :wedding:2022-07-18
