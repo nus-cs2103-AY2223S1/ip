@@ -16,7 +16,6 @@ public class Parser {
     public static String parse(String command, TaskList tasks) throws DukeException {
         // user wants to display list
         if (command.equals("list")) {
-            ui.printMessage(tasks.toString());
             return tasks.toString();
 
         // user wants to mark certain task as done
@@ -24,7 +23,6 @@ public class Parser {
             String str = command.replace("mark ", "");
             int index = Integer.valueOf(str);
             tasks.mark(index);
-            ui.printMessage("Nice! I've marked this task as done:\n" + tasks.getString(index));
             return "Nice! I've marked this task as done:\n" + tasks.getString(index);
 
         // user wants to unmark certain tasks to not done
@@ -32,7 +30,6 @@ public class Parser {
             String str = command.replace("unmark ", "");
             int index = Integer.valueOf(str);
             tasks.unmark(index);
-            ui.printMessage("Okay, I've marked this task as undone:\n" + tasks.getString(index));
             return "Okay, I've marked this task as undone:\n" + tasks.getString(index);
 
         // user wants to add new todo task
@@ -61,6 +58,10 @@ public class Parser {
             String keyword = command.replace("find ", "");
             String message = tasks.find(keyword);
             return message;
+
+        // user wants to exit
+        } else if (command.equals("bye")) {
+            return "Your tasks have been saved.\nBye. Hope to see you again soon!";
 
         // unknown command
         } else {
