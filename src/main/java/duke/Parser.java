@@ -61,7 +61,8 @@ public class Parser {
     }
 
     private static int getTaskNumber(int commandLength, String input) throws DukeException {
-        if (input.length() == commandLength || (input.length() == commandLength + 1 && input.substring(commandLength, commandLength + 1).equals(" "))) {
+        if (input.length() == commandLength || (input.length() == commandLength + 1 &&
+                input.substring(commandLength, commandLength + 1).equals(" "))) {
             throw new DukeException("Task number cannot be empty.");
         }
         if (input.length() > commandLength && !input.substring(commandLength, commandLength + 1).equals(" ")) {

@@ -29,10 +29,10 @@ public class Storage {
      * @param list Updated task list to be stored.
      * @throws DukeException If the application is unable to edit the file.
      */
-    public void update(TaskList list) throws DukeException {
+    public void update(TaskList tasks) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
-            fileWriter.write(list.toString());
+            fileWriter.write(tasks.toString());
             fileWriter.close();
         } catch (IOException e) {
             throw new DukeException("Unable to write to file");
@@ -47,12 +47,12 @@ public class Storage {
     public ArrayList<String> load() throws DukeException{
         try {
             Scanner s = new Scanner(file).useDelimiter("\\r?\\n|\\r");
-            ArrayList<String> taskList = new ArrayList<String>();
+            ArrayList<String> taskStrings = new ArrayList<String>();
             while (s.hasNext()){
-                taskList.add(s.next());
+                taskStrings.add(s.next());
             }
             s.close();
-            return taskList;
+            return taskStrings;
         } catch (FileNotFoundException fileNotFoundException) {
             try {
                 int directoryEndIndex = filePath.lastIndexOf("/");
