@@ -23,5 +23,5 @@ And it is **FREE**!
 If you Java programmer, you can use it to practice Java too. Here's the `main` method:
 ```
 public static void main(String[] args) {
-        new Duke(System.getProperty("user.home") + "/data/duke.txt").run();
+        Application.launch(Main.class, args);
     }
