@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 import java.time.LocalDate;
 
 /**
@@ -61,8 +63,9 @@ public class Task {
      *
      * @param input the string description of the task
      * @return the task
+     * @throws DukeException if there is an error parsing the input to a LocalDate
      */
-    public static Task fromFileDescription(String input) {
+    public static Task fromFileDescription(String input) throws DukeException {
         return null;
     }
 

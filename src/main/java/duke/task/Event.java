@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.DukeException;
+
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -37,17 +40,22 @@ public class Event extends Task {
      *
      * @param input the string description of the event task
      * @return the event-type task
+     * @throws DukeException if there is an error parsing the input to a LocalDate
      */
-    public static Event fromFileDescription(String input) {
+    public static Event fromFileDescription(String input) throws DukeException {
         String[] strArray = input.split(" \\| ", 4);
         String description = strArray[2];
         String at = strArray[3];
-        LocalDate dateAt = LocalDate.parse(at);
-        Event event = new Event(description, dateAt);
-        if (strArray[1].equals("1")) {
-            event.markDone();
+        try {
+            LocalDate dateAt = LocalDate.parse(at);
+            Event event = new Event(description, dateAt);
+            if (strArray[1].equals("1")) {
+                event.markDone();
+            }
+            return event;
+        } catch (DateTimeException e) {
+            throw new DukeException("Enter the date in yyyy-mm-dd format please!");
         }
-        return event;
     }
 
     /**
