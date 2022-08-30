@@ -98,8 +98,8 @@ public class Parser {
             LocalDateTime startEvent = LocalDateTime.parse(startE, eventFormat);
             LocalDateTime endEvent = LocalDateTime.parse(endE, eventFormat);
 
-            return "event|" + descE + "|" + startEvent.format(eventFormat) +
-                    "|" + endEvent.format(eventFormat);
+            return "event|" + descE + "|" + startEvent.format(eventFormat)
+                    + "|" + endEvent.format(eventFormat);
         default:
             return "";
         }

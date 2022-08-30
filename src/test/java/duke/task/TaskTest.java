@@ -1,11 +1,11 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 public class TaskTest {
-    Task t = new Task("This is a dummy task");
+    private Task t = new Task("This is a dummy task");
 
     @Test
     public void getDoneStatus_initialStatus_notDone() {

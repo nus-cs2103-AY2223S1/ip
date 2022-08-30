@@ -1,20 +1,20 @@
 package duke.storage;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
-import duke.utilities.DukeException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+import duke.utilities.DukeException;
 
 /**
  * Storage class, handles loading and saving tasks to hard disk.
@@ -61,8 +61,8 @@ public class Storage {
                 fileWriter.write(rep);
             } else if (task instanceof Event) {
                 Event e = (Event) task;
-                String rep = "E|" + e.getDoneStatus() + "|" + e.getDescription() + "|" +
-                        e.getStart() + "|" + e.getEnd();
+                String rep = "E|" + e.getDoneStatus() + "|" + e.getDescription() + "|"
+                        + e.getStart() + "|" + e.getEnd();
                 fileWriter.write(rep);
             } else if (task instanceof Deadline) {
                 Deadline d = (Deadline) task;

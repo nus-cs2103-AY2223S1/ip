@@ -1,5 +1,11 @@
 package duke;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -9,12 +15,6 @@ import duke.task.Todo;
 import duke.utilities.DukeException;
 import duke.utilities.Parser;
 import duke.utilities.Ui;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 /**
  * The Main driver class of the Duke Application.
@@ -128,6 +128,7 @@ public class Duke {
 
     /**
      * Method for the GUI Duke Program.
+     *
      * @param input The input text from which to get a response.
      * @return Returns the properly formatted response to display on the GUI.
      */

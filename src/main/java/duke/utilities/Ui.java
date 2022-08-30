@@ -1,12 +1,11 @@
 package duke.utilities;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 /**
  * The User Interface (UI) class.
@@ -176,28 +175,61 @@ public class Ui {
         return this.sc.nextLine();
     }
 
+    /**
+     * Gets the string of the duke opening.
+     *
+     * @return The string of the duke opening.
+     */
     public String getStringDukeOpening() {
         String dukeOpening = "Hello! I'm Duke! What can I do for you?";
         return dukeOpening;
     }
 
+    /**
+     * Gets the string of the duke closing.
+     *
+     * @return The string of the duke closing.
+     */
     public String getStringDukeClosing() {
         String dukeClosing = "Bye. Hope to see you again soon!";
         return dukeClosing;
     }
 
+    /**
+     * Gets the string of the input duke exception.
+     *
+     * @param e The DukeException.
+     * @return The message from the duke exception.
+     */
     public String getStringDukeException(DukeException e) {
         return "OOPS! " + e.getMessage();
     }
 
+    /**
+     * Gets the string of the input io exception.
+     *
+     * @param e The IOException.
+     * @return The message from the io exception.
+     */
     public String getStringIoException(IOException e) {
         return "OOPS! " + e.getMessage();
     }
 
+    /**
+     * Gets the string when there is a date time parse exception.
+     *
+     * @return Returns the string for the exception.
+     */
     public String getStringDateTimeParseException() {
         return "All dates must be in the format (yyyy-MM-dd HH:mm)!";
     }
 
+    /**
+     * Gets the string representation of the task list.
+     *
+     * @param taskList The task list that we want to convert into a string.
+     * @return Returns the string representation of the current task list.
+     */
     public String getStringTasks(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
@@ -210,6 +242,12 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the string representation of the filtered task list.
+     *
+     * @param tasks The filter task list.
+     * @return The string representation of the filtered task list.
+     */
     public String getStringMatchingTasks(ArrayList<Task> tasks) {
         StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
 
@@ -221,6 +259,13 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the string representation of when we add a task.
+     *
+     * @param task The task that was added.
+     * @param taskList The task list to which task was added.
+     * @return The string representation and what to display.
+     */
     public String getStringAddTask(Task task, TaskList taskList) {
         StringBuilder response = new StringBuilder("Got it. I've added this task:\n");
         response.append("  " + task.toString() + "\n");
@@ -228,6 +273,13 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the string representation of when we delete a task.
+     *
+     * @param task The task that was deleted.
+     * @param taskList The task list from which the task was deleted.
+     * @return The string representation and what to display.
+     */
     public String getStringDeleteTask(Task task, TaskList taskList) {
         StringBuilder response = new StringBuilder("Noted. I've removed this task:\n");
         response.append("  " + task.toString() + "\n");
@@ -235,6 +287,14 @@ public class Ui {
         return response.toString();
     }
 
+    /**
+     * Gets the string representation of what to display when there is a change in the
+     * mark status of a task.
+     *
+     * @param task The task to mark.
+     * @param isDone The boolean whether the task isDone or not.
+     * @return The string representation and what to display.
+     */
     public String getStringChangeTaskStatus(Task task, boolean isDone) {
         StringBuilder response = new StringBuilder();
         if (isDone) {

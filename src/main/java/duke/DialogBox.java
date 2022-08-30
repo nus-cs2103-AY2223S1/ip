@@ -20,11 +20,19 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    /** The Label control. */
     @FXML
     private Label dialog;
+    /** The ImageView control. */
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for a DialogBox control.
+     *
+     * @param text The text to be included and displayed in Label.
+     * @param img The image to be included and displayed in ImageView.
+     */
     public DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -49,10 +57,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Gets a user dialog box with the label on the left and image on the right.
+     *
+     * @param text The text to include.
+     * @param img The image to include.
+     * @return The DialogBox control representing a user dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Gets a duke dialog box with the label on the right and image on the left.
+     *
+     * @param text The text to display.
+     * @param img The image to display.
+     * @return The DialogBox control representing a duke dialog box.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

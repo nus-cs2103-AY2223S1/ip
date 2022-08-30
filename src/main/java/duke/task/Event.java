@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.utilities.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.utilities.DukeException;
 
 /**
  * The Event class.
@@ -58,7 +58,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-        return "[E]" + super.toString() + " (at: " +
-                this.start.format(format) + " to " + this.end.format(format) + ")";
+        return "[E]" + super.toString() + " (at: "
+                + this.start.format(format) + " to " + this.end.format(format) + ")";
     }
 }
