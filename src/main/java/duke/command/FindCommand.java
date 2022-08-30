@@ -8,7 +8,7 @@ import duke.Ui;
  *
  */
 public class FindCommand extends Command {
-    String wordToFind;
+    private String wordToFind;
 
     public FindCommand(String word) {
         this.wordToFind = word;

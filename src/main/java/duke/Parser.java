@@ -1,7 +1,17 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
+/**
+ *
+ */
 public class Parser {
 
     static final int TLENGTH = 5;
@@ -23,13 +33,6 @@ public class Parser {
         return input.split(" ")[0].toLowerCase();
     }
 
-//    private static boolean isListCommand(String input) {
-//        return getFirstWord(input).equals("list");
-//    }
-//
-//    private static boolean isExitCommand(String input) {
-//        return getFirstWord(input).equals("bye");
-//    }
 
     private static boolean isAddTodoCommand(String input) {
         return getFirstWord(input).equals("todo");
@@ -42,18 +45,6 @@ public class Parser {
     private static boolean isAddDeadlineCommand(String input) {
         return getFirstWord(input).equals("deadline");
     }
-
-//    private static boolean isDeleteCommand(String input) {
-//        return getFirstWord(input).equals("delete");
-//    }
-//
-//    private static boolean isMarkCommand(String input) {
-//        return getFirstWord(input).equals("mark");
-//    }
-//
-//    private static boolean isUnmarkCommand(String input) {
-//        return getFirstWord(input).equals("unmark");
-//    }
 
     /**
      * @param fullCommand input Command from the user.
@@ -104,34 +95,21 @@ public class Parser {
             return new AddCommand(fullCommand);
         }
         switch (getFirstWord(fullCommand)) {
-            case FIND_SYNTAX:
-                return new FindCommand(fullCommand.substring(FIND_LENGTH));
-            case LIST_SYNTAX:
-                return new ListCommand();
-            case EXIT_SYNTAX:
-                return new ExitCommand();
-            case DELETE_SYNTAX:
-                return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
-            case MARK_SYNTAX:
-                return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
-            case UNMARK_SYNTAX:
-                return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
-            default:
-                throw new DukeException("Parsing error");
+        case FIND_SYNTAX:
+            return new FindCommand(fullCommand.substring(FIND_LENGTH));
+        case LIST_SYNTAX:
+            return new ListCommand();
+        case EXIT_SYNTAX:
+            return new ExitCommand();
+        case DELETE_SYNTAX:
+            return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
+        case MARK_SYNTAX:
+            return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
+        case UNMARK_SYNTAX:
+            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
+        default:
+            throw new DukeException("Parsing error");
         }
-//        else if (isListCommand(fullCommand)) {
-//            return new ListCommand();
-//        } else if (isExitCommand(fullCommand)) {
-//            return new ExitCommand();
-//        } else if (isDeleteCommand(fullCommand)) {
-//            return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
-//        } else if (isMarkCommand(fullCommand)) {
-//            return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
-//        } else if (isUnmarkCommand(fullCommand)) {
-//            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
-//        } else {
-//            throw new DukeException("Parsing error");
-//        }
     }
 
 }

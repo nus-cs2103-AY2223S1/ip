@@ -7,8 +7,9 @@ import duke.Ui;
 /**
  * Stores the index of the Task to be unmarked when executed.
  */
-public class UnmarkCommand extends Command{
-    int indexToUnmark;
+public class UnmarkCommand extends Command {
+    private int indexToUnmark;
+
     public UnmarkCommand(int number) {
         this.indexToUnmark = number - 1;
     }

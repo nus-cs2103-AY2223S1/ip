@@ -1,7 +1,5 @@
 package duke;
 
-import java.io.IOException;
-
 import duke.command.Command;
 
 /**
@@ -37,7 +35,7 @@ public class Duke {
      * Calling the run() method starts the interaction with the program.
      */
     public void run() {
-//        ui.showWelcome();
+        // ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {

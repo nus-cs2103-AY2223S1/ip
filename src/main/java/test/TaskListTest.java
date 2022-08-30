@@ -1,14 +1,16 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
 import duke.Deadline;
 import duke.DukeException;
 import duke.TaskList;
 import duke.Todo;
-import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
 
@@ -39,8 +41,4 @@ class TaskListTest {
         }
 
     }
-
-//    @Test
-//    void testToString() {
-//    }
 }
