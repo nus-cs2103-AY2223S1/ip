@@ -17,6 +17,13 @@ public class TaskManager {
     private final List<Task> tasks;
     private final StoredFile storedFile;
 
+    /**
+     * Creates a new {@code TaskManager} instance from the state present in the specified save file.
+     * If the file does not exist, a default state is used. If the file has an invalid format, as much of
+     * the parseable state will be used, while everything else will be dropped.
+     *
+     * @param saveFile The path to the file containing the saved state information
+     */
     public TaskManager(String saveFile) {
         List<Task> tasks;
         storedFile = StoredFile.from(saveFile);
@@ -51,6 +58,11 @@ public class TaskManager {
         this.tasks = tasks;
     }
 
+    /**
+     * Adds a new task to the list of tasks to be executed, and saves the updated save file to disk.
+     *
+     * @param task The task to be added
+     */
     public void addTask(Task task) {
         try {
             tasks.add(task);
@@ -60,7 +72,7 @@ public class TaskManager {
     }
 
     /**
-     * Deletes a task.
+     * Deletes a task, and saves the updated save file to disk.
      *
      * @param number the task number
      * @return {@code true} if the task was deleted, {@code false} otherwise
@@ -78,7 +90,7 @@ public class TaskManager {
     }
 
     /**
-     * Marks a task as completed.
+     * Marks a task as completed, and saves the updated save file to disk.
      *
      * @param number the task number
      * @return {@code true} if the task is modified, {@code false} otherwise
@@ -95,7 +107,7 @@ public class TaskManager {
     }
 
     /**
-     * Marks a task as incomplete.
+     * Marks a task as incomplete, and saves the updated save file to disk.
      *
      * @param number the task number
      * @return {@code true} if the task is modified, {@code false} otherwise
