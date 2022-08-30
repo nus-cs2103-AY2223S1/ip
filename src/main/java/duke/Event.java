@@ -7,7 +7,7 @@ import java.time.format.FormatStyle;
 /**
  * Event class represents a type of task that has a date and time of the task.
  */
-public class Event extends Task{
+public class Event extends Task {
     protected LocalDateTime at;
 
     /**

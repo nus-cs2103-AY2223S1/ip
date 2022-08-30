@@ -41,7 +41,7 @@ public class Duke {
         ui.printGreetings();
         String str = sc.nextLine().trim();
 
-        while(!str.equals("bye")) {
+        while (!str.equals("bye")) {
             try {
                 Parser.parseCommand(str, tasks);
             } catch (DukeException e) {
