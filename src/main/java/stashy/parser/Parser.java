@@ -33,6 +33,7 @@ public class Parser {
                 + " (?<description>[^\\(\\)\\n]*)\\(?"
                 + "(?<by>(by: [^\\(\\)]*)?)"
                 + "(?<at>(at: [^\\(\\)]*)?)\\)?$");
+
     public static final String[] ACCEPTABLE_DATETIME_FORMATS = {
             "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
             "dd/MM/yyyy HHmm", "dd/MM/yyyy HH:mm",

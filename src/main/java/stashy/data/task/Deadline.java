@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
+    /**
+     * The deadline of the task as a LocalDateTime object.
+     */
     protected LocalDateTime by;
 
     /**
@@ -33,6 +36,11 @@ public class Deadline extends Task {
         this(description, by, false);
     }
 
+    /**
+     * Converts the Deadline object into a string.
+     *
+     * @return The stringtified version with the deadline in "MMM dd yyyy HHmm" format
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " +

@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
+    /**
+     * The time of the event as a LocalDateTime object.
+     */
     protected LocalDateTime at;
 
     /**
@@ -33,6 +36,11 @@ public class Event extends Task {
         this(description, at, false);
     }
 
+    /**
+     * Converts the Event object into a string.
+     *
+     * @return The stringtified version with the event time in "MMM dd yyyy HHmm" format
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " +

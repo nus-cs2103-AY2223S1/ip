@@ -5,6 +5,10 @@ import stashy.data.task.TaskList;
 import stashy.storage.Storage;
 import stashy.ui.Ui;
 
+/**
+ * A Command specifically designed to mark a particular task
+ * in the task list as done.
+ */
 public class MarkCommand extends Command {
     public static final String KEYWORD = "mark";
     private int taskId;

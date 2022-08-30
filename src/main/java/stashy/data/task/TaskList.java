@@ -5,6 +5,9 @@ import stashy.parser.Parser;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
@@ -26,7 +29,6 @@ public class TaskList {
 
     /**
      * Overloaded constructor method.
-     * Only used when loading error happens.
      */
     public TaskList() {
         this.taskList = new ArrayList<Task>();
@@ -42,7 +44,7 @@ public class TaskList {
     }
 
     /**
-     * Works the same way as ArrayList.add.
+     * Works the same way as ArrayList.add but for the list of tasks.
      *
      * @param task The task to be added
      */
@@ -51,7 +53,7 @@ public class TaskList {
     }
 
     /**
-     * Works the same way as ArrayList.get.
+     * Works the same way as ArrayList.get but for the list of tasks.
      *
      * @param index The index of the element of interest
      * @return The task referenced by its index
@@ -61,7 +63,7 @@ public class TaskList {
     }
 
     /**
-     * Works the same way as ArrayList.remove.
+     * Works the same way as ArrayList.remove but for the list of tasks.
      *
      * @param index The index of the element of interest
      */
@@ -70,12 +72,18 @@ public class TaskList {
     }
 
     /**
-     * Works the same way as ArrayList.size.
+     * Works the same way as ArrayList.size but for the list of tasks.
      */
     public int size() {
         return this.taskList.size();
     }
 
+    /**
+     * Converts the task list into a string.
+     * If there are no tasks, a placeholder string is returned instead.
+     *
+     * @return The final string based on the number of tasks currently in the list.
+     */
     @Override
     public String toString() {
         String ret = "";
