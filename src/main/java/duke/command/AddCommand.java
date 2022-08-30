@@ -40,7 +40,7 @@ public class AddCommand extends Command {
      * @throws DateTimeParseException if the date or time given is in the wrong format.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             String[] parts = fullCommand.split(" ", 0);
             String command = parts[0];
@@ -79,19 +79,20 @@ public class AddCommand extends Command {
                 task = new Event(taskName, date, time);
             }
             taskList.getList().add(task);
-            System.out.println("Got it. I've added this task:\n" + ui.beautyWrapTask(task)
-                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
 
             String list = "";
             for (Task t : taskList.getList()) {
                 list += t.toString();
             }
             storage.write(list);
+
+            return "Got it. I've added this task:\n" + ui.beautyWrapTask(task)
+                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
         } catch (EmptyTaskException ex) {
-            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+            return "☹ OOPS!!! The description of a todo cannot be empty.";
         } catch (DateTimeParseException ex) {
-            System.out.println("Invalid date & time format. Please follow the format of date "
-                    + "as \"YYYY-MM-DD\" and time as \"HHMM\".");
+            return "Invalid date & time format. Please follow the format of date "
+                    + "as \"YYYY-MM-DD\" and time as \"HHMM\".";
         }
     }
 

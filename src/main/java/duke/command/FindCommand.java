@@ -33,7 +33,7 @@ public class FindCommand extends Command {
      * @throws StringIndexOutOfBoundsException if the index exceeds the String length.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         ArrayList<Task> outputList = new ArrayList<Task>();
         int keywordLength = this.keyword.length();
         try {
@@ -50,9 +50,9 @@ public class FindCommand extends Command {
                 }
             }
             TaskList outputTaskList = new TaskList(outputList);
-            ui.printList(outputTaskList);
+            return ui.getList(outputTaskList);
         } catch (StringIndexOutOfBoundsException ex) {
-            System.out.println("Oops! String Index Out Of Bounds");
+            return "Oops! String Index Out Of Bounds";
         }
     }
 

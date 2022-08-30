@@ -33,22 +33,23 @@ public class DeleteCommand extends Command {
      * @throws IndexOutOfBoundsException if the deleteIndex exceeded the current existing number of Tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             Task removedTask = taskList.getList().get(this.deleteIndex);
             taskList.getList().remove(this.deleteIndex);
-            System.out.println("Noted. I've removed this task:\n " + ui.beautyWrapTask(removedTask)
-                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
 
             String list = "";
             for (Task t : taskList.getList()) {
                 list += t.toString();
             }
             storage.write(list);
+
+            return "Noted. I've removed this task:\n " + ui.beautyWrapTask(removedTask)
+                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
         } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("☹ OOPS!!! You did not specify which task to be delete.\n");
+            return "☹ OOPS!!! You did not specify which task to be delete.\n";
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n");
+            return "☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n";
         }
     }
 

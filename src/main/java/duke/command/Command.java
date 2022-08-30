@@ -17,7 +17,7 @@ public abstract class Command {
      * @param ui the specified Ui object.
      * @param storage the specified Storage object.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
 
     /**
      * An abstract method to be overriden by every Command subclasses which indicating

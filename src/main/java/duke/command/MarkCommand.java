@@ -35,12 +35,11 @@ public class MarkCommand extends Command {
      * @throws IndexOutOfBoundsException if the markIndex exceeded the current existing number of Tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             if (command.equals("mark")) {
                 Task markedTask = taskList.getList().get(this.markIndex).mark();
                 taskList.getList().set(this.markIndex, markedTask);
-                System.out.println("Nice! I've marked this task as done:\n" + ui.beautyWrapTask(markedTask) + "\n");
 
                 String list = "";
                 for (Task t : taskList.getList()) {
@@ -48,22 +47,25 @@ public class MarkCommand extends Command {
                 }
                 storage.write(list);
 
-            } else if (command.equals("unmark")) {
+                return "Nice! I've marked this task as done:\n" + ui.beautyWrapTask(markedTask) + "\n";
+
+            } else {
                 Task unmarkedTask = taskList.getList().get(this.markIndex).unmark();
                 taskList.getList().set(this.markIndex, unmarkedTask);
-                System.out.println("OK, I've marked this task as not done yet:\n"
-                        + ui.beautyWrapTask(unmarkedTask) + "\n");
 
                 String list = "";
                 for (Task t : taskList.getList()) {
                     list += t.toString();
                 }
                 storage.write(list);
+
+                return "OK, I've marked this task as not done yet:\n"
+                        + ui.beautyWrapTask(unmarkedTask) + "\n";
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("☹ OOPS!!! You did not specify which task to be marked/unmarked.\n");
+            return "☹ OOPS!!! You did not specify which task to be marked/unmarked.\n";
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n");
+            return "☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n";
         }
     }
 

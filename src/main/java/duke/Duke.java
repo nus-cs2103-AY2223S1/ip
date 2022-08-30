@@ -28,6 +28,17 @@ public class Duke {
      * Constructs a Duke instance by default with no properties initialised
      */
     public Duke() {
+        ui = new Ui();
+        storage = new Storage("duke.txt");
+        try {
+            taskList = new TaskList(storage.load());
+            if (taskList.isEmpty()) {
+                throw new DukeException();
+            }
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            taskList = new TaskList();
+        }
     }
 
     /**
@@ -51,7 +62,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("duke.txt").run();
+        new Duke().run();
     }
 
     /**
@@ -59,7 +70,7 @@ public class Duke {
      */
     public void run() {
         this.ui.showGreetingMessage();
-        this.ui.printList(this.taskList);
+        //this.ui.printList(this.taskList);
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -74,29 +85,14 @@ public class Duke {
         this.ui.showGoodbyeMessage();
     }
 
-    /*
-    @Override
-    public void start(Stage stage) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(this);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-     */
-
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        Command c = Parser.parse(input);
+        String response = c.execute(taskList, ui, storage);
+        return response;
     }
 
 

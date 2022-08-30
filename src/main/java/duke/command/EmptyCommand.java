@@ -28,11 +28,11 @@ public class EmptyCommand extends Command {
      * @throws InvalidCommandException if the Command can't match Duke's available Commands.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             throw new InvalidCommandException();
         } catch (InvalidCommandException ex) {
-            System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
     }
 

@@ -1,5 +1,7 @@
-T,0,haha 
 T,1,booooooom 2020-12-12 1222 
 E,1,wowwww ,2020-03-03,23:23
 D,1,shagggg ,2011-01-01,00:00
 T,0,eat fruit ,2021-12-14,09:56
+T,0,wow 
+E,1,coding ,2020-12-12,12:34
+T,0,okay 
