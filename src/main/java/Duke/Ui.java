@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.Scanner;
 
 /**
@@ -20,6 +21,7 @@ public class Ui {
 
     /**
      * Returns boolean indicating whether there is further input from the user.
+     *
      * @return true if there is further input, else false.
      */
     public boolean hasNextLine() {
@@ -112,7 +114,7 @@ public class Ui {
      * @param tasklist tasklist from duke application.
      * @param word word to be matched.
      */
-    public void find(TaskList tasklist, String word) { 
+    public void find(TaskList tasklist, String word) {
         System.out.println("Here are the matching tasks in your list:");
         for (int i = 0; i < tasklist.size(); i++) {
             if (tasklist.get(i).toString().contains(word)) {

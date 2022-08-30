@@ -12,6 +12,7 @@ public class Event extends Task {
 
     /**
      * Constructor for an Event.
+     *
      * @param description description of the event.
      * @param time time of event in YYYY-MM-DD format.
      */

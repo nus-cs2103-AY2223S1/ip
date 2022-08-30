@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.FileNotFoundException;
 
 /**
@@ -8,11 +9,11 @@ public class Duke {
 
     private TaskList tasklist;
     private Storage storage;
-    private TaskList tasks;
     private Ui ui;
 
     /**
      * Constructor for Duke.
+     *
      * @param path filepath of Duke.txt file.
      */
     public Duke(String path) {

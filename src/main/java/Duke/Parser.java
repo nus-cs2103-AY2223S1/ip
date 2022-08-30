@@ -98,7 +98,7 @@ public class Parser {
                     continue;
                 }
                 //  Find Tasks
-                if (input.length() >= 4 && input.substring(0,4).equals("find")) {
+                if (input.length() >= 4 && input.substring(0, 4).equals("find")) {
                     String remainder = input.substring(5);
                     ui.find(tasklist, remainder);
                     continue;
@@ -118,4 +118,3 @@ public class Parser {
         }
     }
 }
-
