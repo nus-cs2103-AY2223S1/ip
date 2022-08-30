@@ -3,6 +3,8 @@
 /out/
 /*.iml
 
+*.class
+
 # Gradle build files
 /.gradle/
 /build/
@@ -15,3 +17,6 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+data/
+out/
