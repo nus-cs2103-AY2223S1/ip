@@ -29,14 +29,16 @@ public class UnMarkCommand extends Command {
      * @param ui The interactions with user being used.
      * @param storage The storage which the data is being stored.
      * @param taskList The list of tasks to be updated in the storage.
+     * @return String representation of Duke's reply.
      * @throws DukeException There is an error in execution.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task task = taskList.getTask(index);
         task.markAsNotDone();
-        System.out.println("\t" + " OK! I've marked this task as not done yet:");
-        System.out.println("\t " + task);
+        String output = "OK! I've marked this task as not done yet:\n";
+        output += task;
+        return output;
     }
 
     /**

@@ -34,20 +34,22 @@ public class OnDateCommand extends Command {
      * @param ui The interactions with user being used.
      * @param storage The storage which the data is being stored.
      * @param taskList The list of tasks to be updated in the storage.
+     * @return String representation of Duke's reply.
      * @throws DukeException There is an error in execution.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
         ArrayList<Task> filteredTasks = taskList.getTasks().stream().filter(task -> task.isOn(date))
                 .collect(Collectors.toCollection(ArrayList::new));
         if (filteredTasks.size() > 0) {
-            System.out.println(String.format("\t Here are the tasks you have on %s:", formattedDate));
+            String output = String.format("Here are the tasks you have on %s:\n", formattedDate);
             for (int i = 0; i < filteredTasks.size(); i++) {
-                System.out.println("\t " + (i + 1) + ". " + filteredTasks.get(i));
+                output += (i + 1) + ". " + filteredTasks.get(i) + "\n";
             }
+            return output;
         } else {
-            System.out.println(String.format("\t You have no tasks on %s", formattedDate));
+            return String.format("You have no tasks on %s", formattedDate);
         }
     }
 

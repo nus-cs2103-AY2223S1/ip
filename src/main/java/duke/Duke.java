@@ -34,27 +34,26 @@ public class Duke {
     }
 
     /**
-     * The main function that runs Duke.
+     * Greeting for Duke.
+     *
+     * @return The greeting for Duke.
      */
-    public void run() {
-        ui.greet();
-        boolean isRunning = true;
-        while (isRunning) {
-            try {
-                String userInput = ui.readCommand();
-                ui.printLine();
-                Command c = Parser.parse(userInput);
-                c.execute(ui, storage, taskList);
-                isRunning = c.isRunning();
-            } catch (DukeException e) {
-                ui.formatMessage(String.valueOf(e));
-            } finally {
-                ui.printLine();
-            }
-        }
+    public String getGreeting() {
+        return Ui.greet();
     }
 
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    /**
+     * Reply the user based on what the input is.
+     *
+     * @return the String representation of the reply.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            storage.writeFile(taskList.getTasks());
+            return c.execute(ui, storage, taskList);
+        } catch (DukeException e) {
+            return ui.formatMessage(String.valueOf(e));
+        }
     }
 }

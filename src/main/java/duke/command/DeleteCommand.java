@@ -29,19 +29,20 @@ public class DeleteCommand extends Command {
      * @param ui The interactions with user being used.
      * @param storage The storage which the data is being stored.
      * @param taskList The list of tasks to be updated in the storage.
+     * @return String representation of Duke's reply.
      * @throws DukeException There is an error in execution.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task task = taskList.getTask(this.index);
         taskList.remove(this.index - 1);
         int numTasks = taskList.size();
-        ui.formatMessage("Noted. I've removed this task:");
-        ui.formatMessage(task.toString());
+        String output = ui.formatMessage("Noted. I've removed this task:\n");
+        output += ui.formatMessage(task.toString()) + "\n";
         if (taskList.size() == 1) {
-            ui.formatMessage(String.format("Now you have %d task in the list.", taskList.size()));
+            return output + ui.formatMessage(String.format("Now you have %d task in the list.", taskList.size()));
         } else {
-            ui.formatMessage(String.format("Now you have %d tasks in the list.", taskList.size()));
+            return output + ui.formatMessage(String.format("Now you have %d tasks in the list.", taskList.size()));
         }
     }
 
