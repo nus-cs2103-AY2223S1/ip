@@ -61,7 +61,7 @@ public class Ui {
      *
      * @param messages Message strings.
      */
-    public void printMessages(String[] messages) {
+    public void printMessages(String... messages) {
         System.out.println(LINE_DIVIDER);
         for (String message : messages) {
             System.out.println(INDENTATION + message);
