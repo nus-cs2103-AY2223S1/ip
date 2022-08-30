@@ -7,16 +7,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import duke.tasks.Todo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
+import duke.tasks.Todo;
 
 public class StorageTest {
     private static final String FOLDER_DIRECTORY = "storage";
     private static final String FILE_NAME = "testStorage";
     private static final String FILE_DIRECTORY = "storage/testStorage.txt";
 
-    // Credits: https://www.baeldung.com/java-delete-directory
+    // Solution below adapted from https://www.baeldung.com/java-delete-directory
     private static void deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {

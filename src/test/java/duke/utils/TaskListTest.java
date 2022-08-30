@@ -3,9 +3,6 @@ package duke.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 
 import duke.tasks.Task;
@@ -25,7 +22,6 @@ public class TaskListTest {
             TaskList taskList = new TaskList();
             taskList.deleteTask(0);
         });
-
-    assertEquals("Index 0 out of bounds for length 0", thrown.getMessage());
+        assertEquals("Index 0 out of bounds for length 0", thrown.getMessage());
     }
 }

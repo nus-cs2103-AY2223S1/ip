@@ -1,7 +1,5 @@
 package duke;
 
-import java.io.FileNotFoundException;
-
 import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.utils.Parser;
