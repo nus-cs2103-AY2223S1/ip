@@ -1,13 +1,13 @@
 package stashy.storage;
 
-import stashy.data.exception.StashyException;
-import stashy.data.task.Task;
-import stashy.data.task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import stashy.data.exception.StashyException;
+import stashy.data.task.Task;
+import stashy.data.task.TaskList;
 
 /**
  * A class to store, load, and save data into or from

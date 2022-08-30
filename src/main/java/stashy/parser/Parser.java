@@ -1,5 +1,13 @@
 package stashy.parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+
 import stashy.commands.AddDeadlineCommand;
 import stashy.commands.AddEventCommand;
 import stashy.commands.AddTodoCommand;
@@ -16,14 +24,6 @@ import stashy.data.task.Event;
 import stashy.data.task.Task;
 import stashy.data.task.ToDo;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.IntStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-
 /**
  * Represents the parser of the user input command.
  */
@@ -36,13 +36,13 @@ public class Parser {
                 + "(?<at>(at: [^\\(\\)]*)?)\\)?$");
 
     public static final String[] ACCEPTABLE_DATETIME_FORMATS = {
-            "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
-            "dd/MM/yyyy HHmm", "dd/MM/yyyy HH:mm",
-            "yyyy/MM/dd HHmm", "yyyy/MM/dd HH:mm",
-            "yyyy/MM/dd'T'HHmm", "yyyy/MM/dd'T'HH:mm",
-            "yyyy-MM-dd HHmm", "yyyy-MM-dd HH:mm",
-            "dd MMM yyyy HHmm", "dd MMM yyyy HH:mm",
-            "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"};
+        "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
+        "dd/MM/yyyy HHmm", "dd/MM/yyyy HH:mm",
+        "yyyy/MM/dd HHmm", "yyyy/MM/dd HH:mm",
+        "yyyy/MM/dd'T'HHmm", "yyyy/MM/dd'T'HH:mm",
+        "yyyy-MM-dd HHmm", "yyyy-MM-dd HH:mm",
+        "dd MMM yyyy HHmm", "dd MMM yyyy HH:mm",
+        "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"};
 
     /**
      * Parses the user command into a Command object.
@@ -167,7 +167,7 @@ public class Parser {
             throw new StashyException("Invalid task ID given!");
         }
     }
-    
+
     /**
      * Specifically parses a Deadline object by trying on various datetime formats.
      *
@@ -186,6 +186,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Deadline(description, by, isDone);
             } catch (Exception e) {
+                ;
             }
         }
         throw new StashyException("Invalid datetime format given!");
@@ -209,6 +210,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Event(description, at, isDone);
             } catch (Exception e) {
+                ;
             }
         }
         throw new StashyException("Invalid datetime format given!");
@@ -219,7 +221,7 @@ public class Parser {
      *
      * @param remainingCommands The commands with the keyword excluded
      * @return An AddTodoCommand object
-     * @throws StashyException If the todo description is empty
+     * @throws StashyException If the to-do description is empty
      */
     private static AddTodoCommand prepareAddTodoCommand(String[] remainingCommands)
             throws StashyException {
@@ -240,8 +242,8 @@ public class Parser {
      */
     private static AddDeadlineCommand prepareAddDeadlineCommand(String[] remainingCommands)
             throws StashyException {
-        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals) &&
-                Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
+        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals)
+                && Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
             throw new StashyException("You cannot provide both /by and /at simultaneously!");
         }
         String description = "";
@@ -273,8 +275,8 @@ public class Parser {
      */
     private static AddEventCommand prepareAddEventCommand(String[] remainingCommands)
             throws StashyException {
-        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals) &&
-                Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
+        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals)
+                && Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
             throw new StashyException("You cannot provide both /by and /at simultaneously!");
         }
         String description = "";

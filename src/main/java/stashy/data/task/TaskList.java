@@ -1,9 +1,9 @@
 package stashy.data.task;
 
+import java.util.ArrayList;
+
 import stashy.data.exception.StashyException;
 import stashy.parser.Parser;
-
-import java.util.ArrayList;
 
 /**
  * Represents a list of tasks.

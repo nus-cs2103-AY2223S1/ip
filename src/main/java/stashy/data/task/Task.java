@@ -51,7 +51,7 @@ public abstract class Task {
     }
 
     /**
-     * Checks if the task description contains a particular text
+     * Checks if the task description contains a particular text.
      *
      * @param text The text of interest
      * @return A true or false boolean
