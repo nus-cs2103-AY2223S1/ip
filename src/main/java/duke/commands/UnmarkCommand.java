@@ -23,15 +23,6 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Checks if the Command is a ByeCommand.
-     * @return False.
-     */
-    @Override
-    public boolean isBye() {
-        return false;
-    }
-
-    /**
      * Marks a task as not done.
      * @param taskList List of tasks.
      * @param ui Shows the Task marked as not done.
@@ -40,9 +31,9 @@ public class UnmarkCommand extends Command {
      *         is an error saving the modified list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Task unmarkedTask = taskList.changeTaskStatus(taskIndex, false);
         storage.save(taskList);
-        ui.showTaskNotDone(unmarkedTask);
+        return ui.showTaskNotDone(unmarkedTask);
     }
 }

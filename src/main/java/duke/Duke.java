@@ -14,6 +14,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private String loadingError;
 
     /**
      * Constructor for a Duke.
@@ -23,36 +24,40 @@ public class Duke {
         storage = new Storage();
         try {
             tasks = new TaskList(storage.load());
+            loadingError = "";
         } catch (DukeException e) {
-            ui.show(e.getMessage());
             tasks = new TaskList();
+            loadingError = e.getMessage();
         }
     }
 
     /**
-     * Runs the Duke chatbot.
+     * Returns the loading error while trying to retrieve the tasks.
+     * @return The loading error or an empty string if the tasks are loaded successfully.
      */
-    public void run() {
-        ui.showGreeting();
-        boolean isBye = false;
-        while (!isBye) {
-            try {
-                String input = ui.readInput();
-                Command command = Parser.parse(input);
-                command.execute(tasks, ui, storage);
-                isBye = command.isBye();
-            } catch (DukeException e) {
-                ui.show(e.getMessage());
-            }
-        }
+    public String showLoadingError() {
+        return loadingError;
     }
 
     /**
-     * Initialises and runs the Duke chatbot.
-     * @param args The command line arguments.
+     * Returns the greeting message to be shown to the user when the application first launches.
+     * @return The greeting message.
      */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public String greetUser() {
+        return ui.showGreeting();
+    }
+
+    /**
+     * Generates a response to the user input.
+     * @param input The user input.
+     * @return A string representation of the response to the user input.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

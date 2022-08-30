@@ -24,23 +24,14 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Checks if the Command is a ByeCommand.
-     * @return False.
-     */
-    @Override
-    public boolean isBye() {
-        return false;
-    }
-
-    /**
      * Finds matching tasks whose description contains the given keyword.
      * @param taskList List of tasks.
      * @param ui Shows the list of matching tasks.
      * @param storage Saves the modified list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         ArrayList<Task> matchingTasks = taskList.getMatchingTasks(keyword);
-        ui.showMatchingTasks(matchingTasks);
+        return ui.showMatchingTasks(matchingTasks);
     }
 }
