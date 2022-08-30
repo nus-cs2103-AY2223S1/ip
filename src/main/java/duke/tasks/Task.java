@@ -89,11 +89,12 @@ public class Task {
 
     /**
      * Returns an indicator of whether some string is a substring of task name.
-     * @param str the substring for searching.
+     * @param keywords the substrings for searching.
      * @return The indicator.
      */
-    public boolean findName(String str) {
-        return this.name.contains(str);
+
+    public boolean findName(String ... keywords) {
+        return this.name.contains(keywords[0]);
     }
 
     /**
