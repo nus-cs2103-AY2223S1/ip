@@ -45,7 +45,7 @@ public class Executor {
                 task = new Event(name, time);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw BocilException.dukeInvalidFormatException();
+            throw BocilException.bocilInvalidFormatException();
         }
         this.taskList.addTask(task);
         String header = "Got it. I've added this task:";
@@ -69,10 +69,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 task.mark();
             } else {
-                throw BocilException.dukeInvalidIndexException();
+                throw BocilException.bocilInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw BocilException.dukeInvalidIndexException();
+            throw BocilException.bocilInvalidIndexException();
         }
         String header = "Nice! I've marked this task as done:";
         String line = String.format("  %s", task);
@@ -94,10 +94,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 task.unmark();
             } else {
-                throw BocilException.dukeInvalidIndexException();
+                throw BocilException.bocilInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw BocilException.dukeInvalidIndexException();
+            throw BocilException.bocilInvalidIndexException();
         }
         String header = "OK, I've marked this task as not done yet:";
         String line = String.format("  %s", task);
@@ -119,10 +119,10 @@ public class Executor {
                 task = this.taskList.getTask(num);
                 taskList.removeTask(num);
             } else {
-                throw BocilException.dukeInvalidIndexException();
+                throw BocilException.bocilInvalidIndexException();
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw BocilException.dukeInvalidIndexException();
+            throw BocilException.bocilInvalidIndexException();
         }
         String header = "Noted. I've removed this task:";
         String line = String.format("  %s", task.toString());
@@ -142,7 +142,7 @@ public class Executor {
             String keyword = split[1];
             matchedTasks = this.taskList.match(keyword);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw BocilException.dukeUnknownCommandException();
+            throw BocilException.bocilUnknownCommandException();
         }
         if (matchedTasks.getSize() > 0) {
             String header = "Here are the matching tasks in your list";
@@ -163,7 +163,7 @@ public class Executor {
         if (input.equals("bye")) {
             return "Bye. Hope to see you again soon!";
         } else {
-            throw BocilException.dukeUnknownCommandException();
+            throw BocilException.bocilUnknownCommandException();
         }
     }
 
@@ -183,7 +183,7 @@ public class Executor {
                 return "There are no tasks in your list";
             }
         } else {
-            throw BocilException.dukeUnknownCommandException();
+            throw BocilException.bocilUnknownCommandException();
         }
     }
 }

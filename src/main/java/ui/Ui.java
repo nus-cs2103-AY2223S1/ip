@@ -14,7 +14,7 @@ public class Ui {
     /**
      * Constructs a {@link Ui} object.
      *
-     * @param name Name of the Duke's UI.
+     * @param name Name of the UI.
      */
     public Ui(String name) {
         this.name = name;
@@ -60,12 +60,13 @@ public class Ui {
     }
 
     /**
-     * Prints the error message of the exception.
+     * Shows the error message of the exception.
      *
      * @param e Exception being handled.
+     * @return Message of the error.
      */
-    public void printError(Exception e) {
-        System.out.println(prettifyOutput(e.getMessage()));
+    public String showError(Exception e) {
+        return e.getMessage();
     }
 
     /**

@@ -9,7 +9,7 @@ import executor.Executor;
 import task.TaskList;
 
 /**
- * Handles the processing of user input and commands the Duke to do specific tasks.
+ * Handles the processing of user input and commands Bocil to do specific tasks.
  */
 public class Parser {
 
@@ -58,13 +58,13 @@ public class Parser {
      *
      * @param input String line that the user inputs.
      * @return Response line of the program.
-     * @throws DukeException If the user input is not of the accepted format.
+     * @throws BocilException If the user input is not of the accepted format.
      */
     public String processInput(String input) throws BocilException {
         String response;
         String[] split = input.split("\\s+", 2);
         if (input.matches("\\s*")) {
-            throw BocilException.dukeEmptyInputException();
+            throw BocilException.bocilEmptyInputException();
         }
         String command = split[0];
 
@@ -101,7 +101,7 @@ public class Parser {
             response = this.executor.showList(input);
             break;
         default:
-            throw BocilException.dukeUnknownCommandException();
+            throw BocilException.bocilUnknownCommandException();
         }
         return response;
     }
@@ -122,6 +122,6 @@ public class Parser {
                 // An empty catch block
             }
         }
-        throw BocilException.dukeInvalidDateFormatException();
+        throw BocilException.bocilInvalidDateFormatException();
     }
 }

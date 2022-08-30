@@ -86,7 +86,7 @@ public class Storage {
                 taskList.addTask(createTask(line));
             }
         } catch (FileNotFoundException e) {
-            throw BocilException.dukeFileNotFoundException();
+            throw BocilException.bocilFileNotFoundException();
         }
         return taskList;
     }

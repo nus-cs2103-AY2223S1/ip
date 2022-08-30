@@ -26,7 +26,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeEmptyInputException() {
+    public static BocilException bocilEmptyInputException() {
         return new BocilException(EMPTY_INPUT);
     }
 
@@ -35,7 +35,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeFileNotFoundException() {
+    public static BocilException bocilFileNotFoundException() {
         return new BocilException(FILE_NOT_FOUND);
     }
 
@@ -44,7 +44,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeInvalidIndexException() {
+    public static BocilException bocilInvalidIndexException() {
         return new BocilException(INVALID_INDEX);
     }
 
@@ -53,7 +53,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeInvalidFormatException() {
+    public static BocilException bocilInvalidFormatException() {
         return new BocilException(INVALID_FORMAT);
     }
 
@@ -62,7 +62,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeInvalidDateFormatException() {
+    public static BocilException bocilInvalidDateFormatException() {
         return new BocilException(INVALID_DATE_FORMAT);
     }
 
@@ -71,7 +71,7 @@ public class BocilException extends Exception {
      *
      * @return {@link BocilException}
      */
-    public static BocilException dukeUnknownCommandException() {
+    public static BocilException bocilUnknownCommandException() {
         return new BocilException(UNKNOWN_COMMAND);
     }
 }
