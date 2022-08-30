@@ -4,6 +4,7 @@ import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -55,6 +56,14 @@ public class Parser {
         case DEADLINE:
             String[] deadlineDescDate = parseDescDate("/by", "deadline", input);
             return new AddCommand(new Deadline(deadlineDescDate[0], parseDate(deadlineDescDate[1])));
+        case FIND:
+            if (input.length() < 6) {
+                throw new DukeException("The keyword to search for cannot be empty.");
+            }
+            if (!input.substring(4, 5).equals(" ")) {
+                throw new DukeException("Command and keyword should be separated by a space.");
+            }
+            return new FindCommand(input.substring(5));
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -92,6 +101,8 @@ public class Parser {
             return CommandWords.EVENT;
         } else if (input.length() > 5 && input.substring(0, 6).equals("delete")) {
             return CommandWords.DELETE;
+        } else if (input.length() > 3 && input.substring(0, 4).equals("find")) {
+            return CommandWords.FIND;
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -105,7 +116,8 @@ public class Parser {
         if (!input.substring(commandLength, commandLength + 1).equals(" ")) {
             throw new DukeException("Command and description should be separated by a space.");
         }
-        String[] descDate = input.split(" " + parser + " ");
+        String inputWithoutCommand = input.substring(commandLength + 1);
+        String[] descDate = inputWithoutCommand.split(" " + parser + " ");
         if (descDate.length < 2) {
             throw new DukeException(command + " date cannot be empty.");
         }

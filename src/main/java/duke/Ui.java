@@ -51,6 +51,16 @@ public class Ui {
     }
 
     /**
+     * Display list of found tasks.
+     * @param tasks Task List to find in.
+     * @param keyword Keyword that should match tasks found.
+     */
+    public void showFindResults(TaskList tasks, String keyword) {
+        String message = "Here are the matching tasks in your list:\n";
+        System.out.println(message + tasks.find(keyword).toString());
+    }
+
+    /**
      * Displays added message on successful addition of task.
      * @param task Task that has been added.
      * @param numTask Number of tasks in the current TaskList.
