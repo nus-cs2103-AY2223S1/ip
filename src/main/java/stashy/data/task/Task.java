@@ -25,6 +25,16 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Checks if the task description contains a particular text
+     *
+     * @param text The text of interest
+     * @return A true or false boolean
+     */
+    public boolean containsText(String text) {
+        return this.description.contains(text);
+    }
+
     @Override
     public String toString() {
         return this.getStatusIcon() + " " + this.description;
