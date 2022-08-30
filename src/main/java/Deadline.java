@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 /**
  * Class used to represent a Deadline type task that has a due date.
  */
 public class Deadline extends Task {
-    protected String dueDate;
+    protected LocalDate dueDate;
 
-    public Deadline(String taskName, boolean isDone, String dueDate) {
+    public Deadline(String taskName, boolean isDone, LocalDate dueDate) {
         super(taskName, isDone);
         this.dueDate = dueDate;
     }

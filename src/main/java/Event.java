@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 /**
  * Class used to represent an Event type task that has a start and end datetime.
  */
 public class Event extends Task {
-    protected String eventDate;
+    protected LocalDate eventDate;
 
-    public Event(String taskName, boolean isDone, String eventDate) {
+    public Event(String taskName, boolean isDone, LocalDate eventDate) {
         super(taskName, isDone);
         this.eventDate = eventDate;
     }
