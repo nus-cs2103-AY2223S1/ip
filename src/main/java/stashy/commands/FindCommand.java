@@ -41,6 +41,6 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        ui.showFilteredTasks(new TaskList(tasks.toArrayList(), this.query));
+        ui.showFilteredTasks(new TaskList(tasks.getArrayList(), this.query));
     }
 }
