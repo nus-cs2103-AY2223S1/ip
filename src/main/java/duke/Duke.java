@@ -141,4 +141,28 @@ public class Duke {
     private static boolean isValidFilePath(String string) {
         return true;
     }
+
+    /**
+     * The getResponse function takes a String as an argument and returns a String.
+     * The function is used to return the response from Duke after he has heard
+     * something from the user. It simply returns &quot;Duke heard: &quot; followed
+     * by the
+     * text that was passed in as an argument. This function is called by other
+     * functions, such as run().
+     *
+     * @param text
+     *            Pass the text from the main function to getresponse
+     * @return A string
+     */
+    public String getResponse(String text) {
+        BaseCommand command;
+        try {
+            command = parser.parse(text);
+        } catch (MissingArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException
+                | IncorrectArgumentException | UnknownCommandException | NoCommandException e) {
+            command = new ErrorCommand(e.getMessage());
+        }
+        CommandResult result = runCommand(command);
+        return result.getMessage();
+    }
 }
