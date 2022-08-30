@@ -126,7 +126,7 @@ public class Duke extends Application {
     }
 
     public String getResponse(String input) {
-        return "Lily -.-: " + input;
+        return input;
     }
 
     /**
