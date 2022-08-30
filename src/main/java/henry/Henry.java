@@ -17,11 +17,6 @@ public class Henry {
     private static final String home = System.getProperty("user.home");
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
 
-    private final Image user =
-        new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
-    private final Image duke =
-        new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
-
     private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
