@@ -1,13 +1,14 @@
 package main.java;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 // got date
 public class Deadlines extends Task{
 
-    protected String by;
+    protected LocalDate by;
 
-    public Deadlines(String taskName, String by) {
+    public Deadlines(String taskName, String by) throws DateTimeParseException {
         super(taskName);
-        this.by = by;
+        this.by = LocalDate.parse(by);
     }
 
     @Override
