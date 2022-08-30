@@ -23,14 +23,15 @@ public class TaskList {
      * Takes in a command and handle the logic regarding the command
      *
      * @param command User input
+     * @return String response
      */
-    public void addTask(String command) {
+    public String addTask(String command) {
         try {
 
             Task task = null;
 
             String type = Parser.getType(command);
-            if (type.equals(TaskTypeEnum.todo.toString())) {
+             if (type.equals(TaskTypeEnum.todo.toString())) {
                 if (command.trim().length() == 4) {
                     throw new EmptyNameException();
                 }
@@ -54,11 +55,14 @@ public class TaskList {
 
             taskList.add(task);
 
-            System.out.println("Got it. I've added this task:");
-            System.out.println(task);
-            displayNumberOfItemsInList();
+            String ret = "";
+
+            ret += "Got it. I've added this task: \n";
+            ret += task;
+            return ret + "\n" + displayNumberOfItemsInList();
+
         } catch (EmptyNameException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
 
 
@@ -70,55 +74,66 @@ public class TaskList {
      *
      * @param index position of the task in the array list
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task task = taskList.get(index);
         System.out.println("Noted. I've removed this task: \n" + task);
         taskList.remove(index);
-        displayNumberOfItemsInList();
+        return "Noted. I've removed this task: \n" + task + "\n" + displayNumberOfItemsInList();
+
     }
 
     /**
      * Takes in the index of the tasks and mark the task as done.
      *
      * @param index position of the task in the array list
+     * @return String response
      */
-    public void setTaskAsDone(int index) {
+    public String setTaskAsDone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
+        String ret = "Nice! I've marked this task as done: \n";
+        ret += task;
+        return ret;
     }
 
     /**
      * Takes in the index of the tasks and mark the task as undone.
      *
      * @param index position of the task in the array list
+     * @return String response
      */
-    public void setTaskAsUndone(int index) {
+    public String setTaskAsUndone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsUndone();
-        System.out.println("OK, I've marked this task as not done yet:\n");
-        System.out.println(task);
+        String ret = "OK, I've marked this task as not done yet:\n";
+        ret += task;
+        return ret;
     }
 
     /**
      * Displays all tasks in the command line
      */
-    public void displayAllTask() {
-        System.out.println("----");
-        System.out.println("Here are the tasks in your list:");
+    public String displayAllTask() {
+        if(taskList.size() == 0 ) {
+            return "You do not have any tasks currently";
+        }
+
+        StringBuilder ret = new StringBuilder();
+            ret.append("Here are the tasks in your list: \n");
         for (int i = 1; i <= taskList.size(); i++) {
             Task task = taskList.get(i - 1);
-            System.out.println(i + ". " + task);
+            ret.append(i).append(". ").append(task).append("\n");
         }
-        System.out.println("-----");
+
+        return ret.toString();
     }
 
     /**
      * Display number of items in currently in the array list
+     * @return number of item in the list
      */
-    public void displayNumberOfItemsInList() {
-        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+    public String displayNumberOfItemsInList() {
+        return "Now you have " + taskList.size() + " tasks in the list.";
     }
 
     /**
@@ -162,16 +177,16 @@ public class TaskList {
 
     }
 
-    public void findTask(String name){
-        System.out.println("------");
-        System.out.println("Here are the matching tasks in your list:");
+    public String findTask(String name){
+        StringBuilder ret = new StringBuilder();
+        ret.append("Here are the matching tasks in your list:");
         for(int i = 0; i < taskList.size(); i++){
             Task task = taskList.get(i);
             if(task.getTaskName().contains(name)){
-                System.out.println(i + ". " + task);
+                ret.append(i).append(". ").append(task);
             }
         }
-        System.out.println("------");
+        return ret.toString();
 
     }
 

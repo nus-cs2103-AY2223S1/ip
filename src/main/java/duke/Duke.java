@@ -1,5 +1,7 @@
 package duke;
 
+import exceptions.UnknownCommandException;
+
 import java.io.IOException;
 
 /**
@@ -7,17 +9,23 @@ import java.io.IOException;
  * The commands that are available is todo, event, deadline, list, bye, mark, unmark and delete.
  */
 public class Duke {
-    private final Ui scan;
+    private final Ui ui;
     private final Storage storage;
+    private final TaskList taskList;
 
     /**
      * Constructor for Duke.
      * Load tasks into tasks list if there is storage
      */
     public Duke() {
-        TaskList taskList = new TaskList();
+        this.taskList =  new TaskList();
         this.storage = new Storage("data/duke.txt", taskList);
-        this.scan = new Ui(taskList, storage);
+        try {
+            storage.loadFile();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        this.ui = new Ui(taskList, storage);
     }
 
     /**
@@ -32,12 +40,17 @@ public class Duke {
      * Initialise TaskList if there are tasks saved previously in storage.
      */
     public void start() {
+
+        ui.run();
+    }
+
+
+    public String getReponse(String nextCommand) {
         try {
-            storage.loadFile();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            return ui.getResponse(nextCommand);
+        } catch(UnknownCommandException e){
+            return e.getMessage();
         }
-        scan.run();
     }
 
 
