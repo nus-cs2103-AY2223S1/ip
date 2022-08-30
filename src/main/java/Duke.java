@@ -6,7 +6,10 @@ import duke.tasks.TaskList;
 import duke.ui.UI;
 
 /**
- * Main Duke class
+ * Duke implements the Duke bot, functions as a simple todo-list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
  */
 
 public class Duke {
