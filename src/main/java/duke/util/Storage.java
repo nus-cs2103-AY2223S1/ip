@@ -31,7 +31,7 @@ public class Storage {
     /**
      * Ensures that the {@code dataFile} is there and accessible.
      */
-    private void ensureDataFile() {
+    private void ensureDataFileExists() {
         if (dataFile.exists()) {
             return;
         }
@@ -55,7 +55,7 @@ public class Storage {
      * @return The {@code Task}s loaded from the {@code dataFile} in an {@code ArrayList}.
      */
     public ArrayList<Task> load() {
-        ensureDataFile();
+        ensureDataFileExists();
         Scanner scanner;
         try {
             scanner = new Scanner(dataFile);
@@ -80,7 +80,7 @@ public class Storage {
      * @param tasks The {@code TaskList} to save.
      */
     public void save(TaskList tasks) {
-        ensureDataFile();
+        ensureDataFileExists();
         try {
             FileWriter fw = new FileWriter(dataFile);
             for (Task task : tasks) {

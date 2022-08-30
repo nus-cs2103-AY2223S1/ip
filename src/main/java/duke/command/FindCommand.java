@@ -3,7 +3,7 @@ package duke.command;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
-import duke.util.UI;
+import duke.util.Ui;
 
 /**
  * Encapsulates a command to perform keyword saerch.
@@ -29,7 +29,7 @@ public class FindCommand extends Command {
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList tasks) {
+    public void execute(Storage storage, Ui ui, TaskList tasks) {
         TaskList foundTasks = new TaskList();
         for (Task task : tasks) {
             if (task.contains(keyword)) {

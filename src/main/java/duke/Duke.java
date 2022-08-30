@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.util.DataFileCorruptedException;
 import duke.util.Parser;
 import duke.util.Storage;
-import duke.util.UI;
+import duke.util.Ui;
 
 /**
  * The main class of the Duke chat-bot.
@@ -16,7 +16,7 @@ import duke.util.UI;
 public class Duke {
 
     private final Storage storage;
-    private final UI ui;
+    private final Ui ui;
     private TaskList tasks;
 
     /**
@@ -26,7 +26,7 @@ public class Duke {
      */
     public Duke(Path path) {
         storage = new Storage(path);
-        ui = new UI(System.in, System.out);
+        ui = new Ui(System.in, System.out);
         try {
             tasks = new TaskList(storage.load());
         } catch (DataFileCorruptedException e) {
