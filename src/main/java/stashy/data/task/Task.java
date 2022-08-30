@@ -1,4 +1,4 @@
-package main.stashy.data.task;
+package stashy.data.task;
 
 public abstract class Task {
     private String description;

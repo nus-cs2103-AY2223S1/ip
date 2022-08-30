@@ -1,10 +1,10 @@
-package main.stashy.commands;
+package stashy.commands;
 
-import main.stashy.data.exception.StashyException;
-import main.stashy.data.task.Deadline;
-import main.stashy.data.task.TaskList;
-import main.stashy.storage.Storage;
-import main.stashy.ui.Ui;
+import stashy.data.exception.StashyException;
+import stashy.data.task.Deadline;
+import stashy.data.task.TaskList;
+import stashy.storage.Storage;
+import stashy.ui.Ui;
 
 public class AddDeadlineCommand extends Command {
     public static final String KEYWORD = "deadline";

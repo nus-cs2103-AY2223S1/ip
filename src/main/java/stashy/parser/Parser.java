@@ -1,19 +1,19 @@
-package main.stashy.parser;
+package stashy.parser;
 
-import main.stashy.commands.AddDeadlineCommand;
-import main.stashy.commands.AddEventCommand;
-import main.stashy.commands.AddTodoCommand;
-import main.stashy.commands.Command;
-import main.stashy.commands.DeleteCommand;
-import main.stashy.commands.ExitCommand;
-import main.stashy.commands.ListCommand;
-import main.stashy.commands.MarkCommand;
-import main.stashy.commands.UnmarkCommand;
-import main.stashy.data.exception.StashyException;
-import main.stashy.data.task.Deadline;
-import main.stashy.data.task.Event;
-import main.stashy.data.task.Task;
-import main.stashy.data.task.ToDo;
+import stashy.commands.AddDeadlineCommand;
+import stashy.commands.AddEventCommand;
+import stashy.commands.AddTodoCommand;
+import stashy.commands.Command;
+import stashy.commands.DeleteCommand;
+import stashy.commands.ExitCommand;
+import stashy.commands.ListCommand;
+import stashy.commands.MarkCommand;
+import stashy.commands.UnmarkCommand;
+import stashy.data.exception.StashyException;
+import stashy.data.task.Deadline;
+import stashy.data.task.Event;
+import stashy.data.task.Task;
+import stashy.data.task.ToDo;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;

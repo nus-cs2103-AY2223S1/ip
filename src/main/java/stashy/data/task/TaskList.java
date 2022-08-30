@@ -1,7 +1,7 @@
-package main.stashy.data.task;
+package stashy.data.task;
 
-import main.stashy.data.exception.StashyException;
-import main.stashy.parser.Parser;
+import stashy.data.exception.StashyException;
+import stashy.parser.Parser;
 
 import java.util.ArrayList;
 

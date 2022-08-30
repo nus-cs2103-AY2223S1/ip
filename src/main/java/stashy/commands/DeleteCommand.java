@@ -1,12 +1,12 @@
-package main.stashy.commands;
+package stashy.commands;
 
-import main.stashy.data.exception.StashyException;
-import main.stashy.data.task.TaskList;
-import main.stashy.storage.Storage;
-import main.stashy.ui.Ui;
+import stashy.data.exception.StashyException;
+import stashy.data.task.TaskList;
+import stashy.storage.Storage;
+import stashy.ui.Ui;
 
-public class UnmarkCommand extends Command {
-    public static final String KEYWORD = "unmark";
+public class DeleteCommand extends Command {
+    public static final String KEYWORD = "delete";
     private int taskId;
 
     /**
@@ -14,7 +14,7 @@ public class UnmarkCommand extends Command {
      *
      * @param taskId Task ID from the task list
      */
-    public UnmarkCommand(Integer taskId) {
+    public DeleteCommand(Integer taskId) {
         this.taskId = taskId;
     }
 
@@ -24,7 +24,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Unmarks a particular task from the given task list as not done.
+     * Deletes a particular task from the given task list.
      *
      * @param tasks The list of tasks
      * @param ui The UI of this application
@@ -34,9 +34,9 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
         if (1 <= this.taskId && this.taskId <= tasks.size()) {
-            ui.showIndented("L + ratio, unmarking this task as not done!");
-            tasks.get(this.taskId - 1).unmarkAsNotDone();
-            ui.showIndented("  " + tasks.get(this.taskId - 1));
+            ui.showIndented("Task has been removed!\n  " + tasks.get(this.taskId - 1));
+            tasks.remove(this.taskId - 1);
+            ui.showIndented("You have " + tasks.size() + " task(s) in the list.");
         } else {
             throw new StashyException("Invalid task ID: " + this.taskId);
         }

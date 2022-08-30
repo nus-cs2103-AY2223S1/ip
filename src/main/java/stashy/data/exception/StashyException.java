@@ -1,4 +1,4 @@
-package main.stashy.data.exception;
+package stashy.data.exception;
 
 public class StashyException extends Exception {
     public StashyException(String message) {
