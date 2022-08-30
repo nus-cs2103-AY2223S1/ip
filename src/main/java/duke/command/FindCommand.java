@@ -33,19 +33,21 @@ public class FindCommand extends Command {
      * @param ui The ui used to deal with interactions with the user.
      * @param storage The storage used to store the data.
      * @param taskList The list of tasks to check from.
+     * @return String representation of Duke's reply.
      * @throws DukeException If there is an execution error.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         ArrayList<Task> filteredTasks = taskList.getTasks().stream().filter(task -> task.contains(keyword))
                 .collect(Collectors.toCollection(ArrayList::new));
         if (filteredTasks.size() > 0) {
-            System.out.println("\t Here are the matching tasks in your list:");
+            String output = "Here are the matching tasks in your list:\n";
             for (int i = 0; i < filteredTasks.size(); i++) {
-                System.out.println("\t " + (i + 1) + ". " + filteredTasks.get(i));
+                output += (i + 1) + ". " + filteredTasks.get(i) + "\n";
             }
+            return output;
         } else {
-            System.out.println("\t You have no matching tasks!");
+            return "You have no matching tasks!";
         }
     }
 

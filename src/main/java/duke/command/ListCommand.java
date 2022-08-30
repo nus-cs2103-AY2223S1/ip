@@ -18,15 +18,16 @@ public class ListCommand extends Command {
      * @param ui The interactions with user being used.
      * @param storage The storage which the data is being stored.
      * @param taskList The list of tasks to be updated in the storage.
+     * @return String representation of Duke's reply.
      * @throws DukeException There is an error in execution.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         if (taskList.size() > 0) {
-            System.out.println("\t Here are your tasks in your list:");
-            taskList.printString();
+            String output = "Here are your tasks in your list:\n";
+            return output + taskList.printString();
         } else {
-            ui.formatMessage("You do not have any tasks.");
+            return ui.formatMessage("You do not have any tasks.");
         }
     }
 

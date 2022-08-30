@@ -17,9 +17,10 @@ public abstract class Command {
      * @param ui The interactions with user being used.
      * @param storage The storage which the data is being stored.
      * @param taskList The list of tasks to be updated in the storage.
+     * @return String representation of Duke's reply.
      * @throws DukeException There is an error in execution.
      */
-    public abstract void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    public abstract String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 
     /**
      * Checks if this command will result in the bot to stop running.

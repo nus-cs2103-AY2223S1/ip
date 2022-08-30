@@ -92,12 +92,15 @@ public class TaskList {
     }
 
     /**
-     * Prints out the tasks in the list.
+     * Returns the tasks in the list.
+     *
+     * @return String representation of tasks.
      */
-    public void printString() {
+    public String printString() {
         String strToReturn = "";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t " + (i + 1) + ". " + tasks.get(i));
+            strToReturn += (i + 1) + ". " + tasks.get(i) + "\n";
         }
+        return strToReturn;
     }
 }
