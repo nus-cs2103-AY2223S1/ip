@@ -1,5 +1,8 @@
 package duke.ui;
 
+// @@author j-lum-reused
+// Reused from https://se-education.org/guides/tutorials/javaFxPart4.html
+// with some modifications
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,7 +34,11 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-
+    // @authors
+    /**
+     * Initializes the MainWindow.
+     * This is used by FXMLLoader.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
