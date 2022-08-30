@@ -11,10 +11,12 @@ public class Event extends TimeTask {
 
     @Override
     public String toString() {
-        return String.format("[E]" + "[%s] " + super.toString() + " (at: " + super.getDate() + ")", super.getStatusIcon());
+        return String.format("[E]" + "[%s] " + super.toString()
+                + " (at: " + super.getDate() + ")", super.getStatusIcon());
     }
 
     public String toSave() {
-        return String.format("[E]" + "[%s] " + super.toString() + " (at: " + super.getDateSave() + ")", super.getStatusIcon());
+        return String.format("[E]" + "[%s] " + super.toString()
+                + " (at: " + super.getDateSave() + ")", super.getStatusIcon());
     }
 }
