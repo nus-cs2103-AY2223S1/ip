@@ -51,10 +51,10 @@ public class Parser {
      * @throws StashyException If there is any issue encountered
      */
     public static Command parseCommand(String fullCommand) throws StashyException {
-        String[] splitCommand = fullCommand.strip().split(" ");
-        String keyword = splitCommand[0];
-        String[] remainingCommand = IntStream.range(1, splitCommand.length)
-                .mapToObj(i -> splitCommand[i])
+        String[] splittedCommands = fullCommand.strip().split(" ");
+        String keyword = splittedCommands[0];
+        String[] remainingCommands = IntStream.range(1, splittedCommands.length)
+                .mapToObj(i -> splittedCommands[i])
                 .toArray(size -> new String[size]);
         switch (keyword) {
         case ExitCommand.KEYWORD:
@@ -62,17 +62,17 @@ public class Parser {
         case ListCommand.KEYWORD:
             return new ListCommand();
         case MarkCommand.KEYWORD:
-            return prepareMark(remainingCommand);
+            return prepareMark(remainingCommands);
         case UnmarkCommand.KEYWORD:
-            return prepareUnmark(remainingCommand);
+            return prepareUnmark(remainingCommands);
         case DeleteCommand.KEYWORD:
-            return prepareDelete(remainingCommand);
+            return prepareDelete(remainingCommands);
         case AddTodoCommand.KEYWORD:
-            return prepareAddTodoCommand(remainingCommand);
+            return prepareAddTodoCommand(remainingCommands);
         case AddDeadlineCommand.KEYWORD:
-            return prepareAddDeadlineCommand(remainingCommand);
+            return prepareAddDeadlineCommand(remainingCommands);
         case AddEventCommand.KEYWORD:
-            return prepareAddEventCommand(remainingCommand);
+            return prepareAddEventCommand(remainingCommands);
         default:
             throw new StashyException("I have no idea what are you saying :<");
         }
@@ -111,16 +111,16 @@ public class Parser {
     /**
      * Prepares a MarkCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return A MarkCommand object
      * @throws StashyException If an invalid argument or task ID is given
      */
-    private static MarkCommand prepareMark(String[] remainingCommand) throws StashyException {
-        if (remainingCommand.length != 1) {
+    private static MarkCommand prepareMark(String[] remainingCommands) throws StashyException {
+        if (remainingCommands.length != 1) {
             throw new StashyException("Invalid number of arguments given >:(");
         }
         try {
-            int taskId = Integer.parseInt(remainingCommand[0]);
+            int taskId = Integer.parseInt(remainingCommands[0]);
             return new MarkCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
@@ -130,16 +130,16 @@ public class Parser {
     /**
      * Prepares an UnmarkCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return An UnmarkCommand object
      * @throws StashyException If an invalid argument or task ID is given
      */
-    private static UnmarkCommand prepareUnmark(String[] remainingCommand) throws StashyException {
-        if (remainingCommand.length != 1) {
+    private static UnmarkCommand prepareUnmark(String[] remainingCommands) throws StashyException {
+        if (remainingCommands.length != 1) {
             throw new StashyException("Invalid number of arguments given >:(");
         }
         try {
-            int taskId = Integer.parseInt(remainingCommand[0]);
+            int taskId = Integer.parseInt(remainingCommands[0]);
             return new UnmarkCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
@@ -149,23 +149,22 @@ public class Parser {
     /**
      * Prepares a DeleteCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return A DeleteCommand object
      * @throws StashyException If an invalid argument or task ID is given
      */
-    private static DeleteCommand prepareDelete(String[] remainingCommand) throws StashyException {
-        if (remainingCommand.length != 1) {
+    private static DeleteCommand prepareDelete(String[] remainingCommands) throws StashyException {
+        if (remainingCommands.length != 1) {
             throw new StashyException("Invalid number of arguments given >:(");
         }
         try {
-            int taskId = Integer.parseInt(remainingCommand[0]);
+            int taskId = Integer.parseInt(remainingCommands[0]);
             return new DeleteCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
         }
     }
-
-
+    
     /**
      * Specifically parses a Deadline object by trying on various datetime formats.
      *
@@ -215,12 +214,12 @@ public class Parser {
     /**
      * Prepares an AddTodoCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return An AddTodoCommand object
      */
-    private static AddTodoCommand prepareAddTodoCommand(String[] remainingCommand)
+    private static AddTodoCommand prepareAddTodoCommand(String[] remainingCommands)
             throws StashyException {
-        String description = String.join(" ", Arrays.asList(remainingCommand)).strip();
+        String description = String.join(" ", Arrays.asList(remainingCommands)).strip();
         if (description.isEmpty()) {
             throw new StashyException("Please don't give me an empty todo description :(");
         }
@@ -231,28 +230,28 @@ public class Parser {
     /**
      * Prepares an AddDeadlineCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return An AddDeadlineCommand object
      * @throws StashyException If the Deadline object cannot be created
      */
-    private static AddDeadlineCommand prepareAddDeadlineCommand(String[] remainingCommand)
+    private static AddDeadlineCommand prepareAddDeadlineCommand(String[] remainingCommands)
             throws StashyException {
-        if (Arrays.stream(remainingCommand).anyMatch("/by"::equals) &&
-                Arrays.stream(remainingCommand).anyMatch("/at"::equals)) {
+        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals) &&
+                Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
             throw new StashyException("You cannot provide both /by and /at simultaneously!");
         }
         String description = "";
         String byString = "";
         int pos = 0;
-        while (pos < remainingCommand.length) {
-            if (remainingCommand[pos].equals("/by")) {
+        while (pos < remainingCommands.length) {
+            if (remainingCommands[pos].equals("/by")) {
                 pos++;
                 break;
             }
-            description += remainingCommand[pos++] + " ";
+            description += remainingCommands[pos++] + " ";
         }
-        while (pos < remainingCommand.length) {
-            byString += remainingCommand[pos++] + " ";
+        while (pos < remainingCommands.length) {
+            byString += remainingCommands[pos++] + " ";
         }
         if (description.isEmpty()) {
             throw new StashyException("Please don't give me an empty deadline description :(");
@@ -264,28 +263,28 @@ public class Parser {
     /**
      * Prepares an AddEventCommand object to be executed.
      *
-     * @param remainingCommand The commands with the keyword excluded
+     * @param remainingCommands The commands with the keyword excluded
      * @return An AddEventCommand object
      * @throws StashyException If the Event object cannot be created
      */
-    private static AddEventCommand prepareAddEventCommand(String[] remainingCommand)
+    private static AddEventCommand prepareAddEventCommand(String[] remainingCommands)
             throws StashyException {
-        if (Arrays.stream(remainingCommand).anyMatch("/by"::equals) &&
-                Arrays.stream(remainingCommand).anyMatch("/at"::equals)) {
+        if (Arrays.stream(remainingCommands).anyMatch("/by"::equals) &&
+                Arrays.stream(remainingCommands).anyMatch("/at"::equals)) {
             throw new StashyException("You cannot provide both /by and /at simultaneously!");
         }
         String description = "";
         String atString = "";
         int pos = 0;
-        while (pos < remainingCommand.length) {
-            if (remainingCommand[pos].equals("/at")) {
+        while (pos < remainingCommands.length) {
+            if (remainingCommands[pos].equals("/at")) {
                 pos++;
                 break;
             }
-            description += remainingCommand[pos++] + " ";
+            description += remainingCommands[pos++] + " ";
         }
-        while (pos < remainingCommand.length) {
-            atString += remainingCommand[pos++] + " ";
+        while (pos < remainingCommands.length) {
+            atString += remainingCommands[pos++] + " ";
         }
         if (description.isEmpty()) {
             throw new StashyException("Please don't give me an empty event description :(");

@@ -17,11 +17,11 @@ public class StorageTest {
         String filePath = "src/test/data/test.txt";
         try {
             Storage storage = new Storage(filePath);
-            ArrayList<String> loadResult = storage.load();
-            assertEquals("Lorem ipsum", loadResult.get(0).strip());
-            assertEquals("Dolor sit amet", loadResult.get(1).strip());
+            ArrayList<String> loadResults = storage.load();
+            assertEquals("Lorem ipsum", loadResults.get(0).strip());
+            assertEquals("Dolor sit amet", loadResults.get(1).strip());
             try {
-                loadResult.get(2);
+                loadResults.get(2);
                 fail();
             } catch (IndexOutOfBoundsException ioobe) {
                 assertEquals("Index 2 out of bounds for length 2", ioobe.getMessage());
