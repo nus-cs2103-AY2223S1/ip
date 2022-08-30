@@ -1,7 +1,5 @@
 package duke.command;
 
-import duke.exception.DukeException;
-
 /**
  * Represents a command to end the application.
  */
@@ -25,4 +23,5 @@ public class EndCommand extends Command {
     public String run() {
         return MSG_END;
     }
+
 }

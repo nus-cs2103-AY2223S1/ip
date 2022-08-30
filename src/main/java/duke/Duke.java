@@ -1,5 +1,8 @@
 package duke;
 
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.command.EndCommand;
 import duke.component.Parser;
@@ -8,16 +11,11 @@ import duke.component.TaskList;
 import duke.component.Ui;
 import duke.exception.DukeException;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
 
 /**
  * Represents a personal task manager named Duke.
  */
 public class Duke {
-    private static Path PATH = Paths.get(System.getProperty("user.dir" ), "data", "duke.txt");
-
 
     private boolean hasEnded;
     private TaskList tasks;
@@ -34,7 +32,8 @@ public class Duke {
         this.ui = new Ui();
         this.parser = new Parser();
         try {
-            this.storage = new Storage(PATH);
+            this.storage = new Storage(Paths.get(System.getProperty("user.dir"),
+                    "data", "duke.txt"));
             this.tasks = this.storage.load();
         } catch (DukeException e) {
             ui.printMessage(e.getMessage());
@@ -48,7 +47,7 @@ public class Duke {
     public void start() {
         Scanner sc = new Scanner(System.in);
         this.ui.welcome();
-        while(!hasEnded) {
+        while (!hasEnded) {
             try {
                 Command command = parser.parse(sc.nextLine(), this.tasks);
                 this.ui.printMessage(command.run());
@@ -63,6 +62,10 @@ public class Duke {
         sc.close();
     }
 
+    /**
+     * Starts the Duke task manager.
+     * @param args No arguments are taken in.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.start();

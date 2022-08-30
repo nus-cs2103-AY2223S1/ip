@@ -1,14 +1,14 @@
 package duke.component;
 
-import duke.exception.DukeException;
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * Represents a storage that handles loading and saving tasks into the file.
@@ -27,8 +27,8 @@ public class Storage {
         this.file = path.toFile();
         if (!this.file.exists()) {
             try {
-               this.file.getParentFile().mkdirs();
-               this.file.createNewFile();
+                this.file.getParentFile().mkdirs();
+                this.file.createNewFile();
             } catch (SecurityException e) {
                 throw new DukeException("Unable to make directory!");
             } catch (IOException e) {
