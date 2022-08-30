@@ -13,7 +13,6 @@ import duke.task.TaskList;
 public class ByeCommand extends Command {
 
     /**
-     *
      * Returns true if command was to exit Duke.
      * @return true
      */

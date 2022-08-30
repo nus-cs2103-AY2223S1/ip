@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
+
+import duke.DukeException;
 
 /**
  * Represents a list of tasks.
@@ -10,13 +10,13 @@ import java.util.ArrayList;
  * @author Derrick Khoo
  */
 public class TaskList {
-    ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructs a new list of tasks.
      */
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class TaskList {
      * @param taskList the list of tasks that was captured in the hard disk
      */
     public TaskList(ArrayList<Task> taskList) {
-        this.taskList = taskList;
+        this.tasks = taskList;
     }
 
     /**
@@ -35,7 +35,7 @@ public class TaskList {
      * @return an integer representing the number of tasks
      */
     public int getSize() {
-        return this.taskList.size();
+        return this.tasks.size();
     }
 
     /**
@@ -44,7 +44,7 @@ public class TaskList {
      * @return the list of tasks
      */
     public ArrayList<Task> getTaskList() {
-        return this.taskList;
+        return this.tasks;
     }
 
     /**
@@ -54,7 +54,7 @@ public class TaskList {
      * @throws DukeException if there is an error adding the task to the list of tasks
      */
     public void addTask(Task t) throws DukeException {
-        this.taskList.add(t);
+        this.tasks.add(t);
     }
 
     /**
@@ -65,10 +65,10 @@ public class TaskList {
      * @throws DukeException if there is an error deleting the task
      */
     public Task deleteTask(int index) throws DukeException {
-        int numOfTasks = this.taskList.size();
+        int numOfTasks = this.tasks.size();
         if (index < 1) {
-            throw new DukeException("Hey there! Are you sure you are referring to a correct task? " +
-                    " It definitely has to be at least 1!");
+            throw new DukeException("Hey there! Are you sure you are referring to a correct task? "
+                    + " It definitely has to be at least 1!");
         }
         if (index > numOfTasks) {
             throw new DukeException(String.format("That's magical! You only have %d task(s) at hand!", numOfTasks));
@@ -78,7 +78,7 @@ public class TaskList {
         }
         Task t = getTask(index);
         int indexInList = index - 1;
-        this.taskList.remove(indexInList);
+        this.tasks.remove(indexInList);
         return t;
     }
 
@@ -89,28 +89,28 @@ public class TaskList {
      *              using 1-based indexing from user perspective
      * @return the task that is queried
      * @throws DukeException if there is an error accessing the <code>Task</code> from
-     * the list of tasks
+     *      the list of tasks
      */
     public Task getTask(int index) throws DukeException {
-        int numOfTasks = this.taskList.size();
+        int numOfTasks = this.tasks.size();
         if (numOfTasks == 0) {
-            throw new DukeException("Unfortunately, you do not have any tasks at hand." +
-                    " Try creating some first.");
+            throw new DukeException("Unfortunately, you do not have any tasks at hand."
+                    + " Try creating some first.");
         }
         if (index > numOfTasks) {
             throw new DukeException(String.format("That's magical! You only have %d task(s) at hand!", numOfTasks));
         }
         if (index < 1) {
-            throw new DukeException("Hey there! Are you sure you are referring to a correct task? " +
-                    "It definitely has to be at least 1!");
+            throw new DukeException("Hey there! Are you sure you are referring to a correct task? "
+                    + "It definitely has to be at least 1!");
         }
-        return this.taskList.get(index - 1);
+        return this.tasks.get(index - 1);
     }
 
     /**
      * Prints to the terminal the number of <code>Task</code> in the list of tasks, to the user.
      */
     public void printArraySize() {
-        System.out.println("Now you have " + this.taskList.size() + " tasks in the list.");
+        System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
     }
 }

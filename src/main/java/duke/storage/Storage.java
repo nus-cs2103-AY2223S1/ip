@@ -1,17 +1,18 @@
 package duke.storage;
 
-import duke.task.Deadline;
-import duke.task.TaskList;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-import duke.DukeException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * Represents a storage to load and save all <code>Task</code> in the list
@@ -20,7 +21,7 @@ import java.util.Scanner;
  * @author Derrick Khoo
  */
 public class Storage {
-    String filePath;
+    private String filePath;
 
     /**
      * Constructs a storage to load and save all <code>Task</code> in the list
@@ -55,8 +56,8 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("Hey! Are you in the wrong directory? You are currently at" +
-                    e.getMessage());
+            throw new DukeException("Hey! Are you in the wrong directory? You are currently at"
+                    + e.getMessage());
         }
     }
 
@@ -87,14 +88,22 @@ public class Storage {
                         task = Todo.fromFileDescription(currentlyAt);
                         break;
                     case 'D':
-                        task = Deadline.fromFileDescription(currentlyAt);
+                        try {
+                            task = Deadline.fromFileDescription(currentlyAt);
+                        } catch (DukeException e) {
+                            throw e;
+                        }
                         break;
                     case 'E':
-                        task = Event.fromFileDescription(currentlyAt);
+                        try {
+                            task = Event.fromFileDescription(currentlyAt);
+                        } catch (DukeException e) {
+                            throw e;
+                        }
                         break;
                     default:
-                        throw new DukeException("What!? How did this happen... I'm pretty sure you" +
-                                "have an itchy hand and modified the duke.txt file!!!");
+                        throw new DukeException("What!? How did this happen... I'm pretty sure you"
+                                + "have an itchy hand and modified the duke.txt file!!!");
                     }
                     list.add(task);
                 }

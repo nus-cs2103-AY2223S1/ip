@@ -1,18 +1,20 @@
 package duke;
 
+import java.time.LocalDate;
+
 import duke.command.AddCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
-import duke.command.ListCommand;
-import duke.command.MarkUndoneCommand;
-import duke.command.MarkDoneCommand;
-import duke.command.OnDateCommand;
-import duke.command.FindCommand;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkDoneCommand;
+import duke.command.MarkUndoneCommand;
+import duke.command.OnDateCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-import java.time.LocalDate;
+
 
 /**
  * Handles the input given by the user.
@@ -111,8 +113,9 @@ public class Parser {
     public static String handleFind(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify what you are looking for?");
+        } else {
+            return input;
         }
-        else return input;
     }
 
     /**

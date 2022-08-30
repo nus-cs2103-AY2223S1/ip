@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.Ui;
+
 
 /**
  * Represents a command made by user.

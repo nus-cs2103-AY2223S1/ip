@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.DukeException;
-
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Represents an event-type of task.
@@ -53,7 +53,7 @@ public class Event extends Task {
                 event.markDone();
             }
             return event;
-        } catch (DateTimeException e) {
+        } catch (DateTimeParseException e) {
             throw new DukeException("Enter the date in yyyy-mm-dd format please!");
         }
     }
@@ -63,7 +63,7 @@ public class Event extends Task {
      *
      * @param localDate the queried date
      * @return true if and only if the queried date is the same as the event-type
-     * task's event date.
+     *      task's event date.
      */
     public boolean isHappeningOnDate(LocalDate localDate) {
         return this.at.equals(localDate);
