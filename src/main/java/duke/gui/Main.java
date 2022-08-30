@@ -19,7 +19,7 @@ public class Main extends Application {
     private Duke duke = new Duke("data/tasks.txt");
 
     /**
-     * The starting point of the gui.
+     * The starting point of the GUI.
      *
      * @param stage The stage where everything is loaded on.
      */
