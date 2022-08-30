@@ -31,18 +31,19 @@ public class MarkCommand extends Command {
     /**
      * Marks command and prints out message to users depending on whether the
      * command was successful
+     *
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
             task.setDone();
             storage.save(tasks);
-            System.out.println("Fuyoh! I've marked this task as done:");
-            System.out.println(task);
+            String str = "Fuyoh! I've marked this task as done:";
+            return str += task;
         }
     }
 }

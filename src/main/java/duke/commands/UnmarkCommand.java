@@ -31,19 +31,19 @@ public class UnmarkCommand extends Command {
     /**
      * Unmarks command
      *
+     * @return
      * @throws DukeException if task chosen is out of bounds
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
             task.setUndone();
             storage.save(tasks);
-            System.out.println("Aiyah! I've marked this task as not done yet: ");
-            System.out.println(task);
+            String str = "Aiyah! I've marked this task as not done yet: \n";
+            return str += task;
         }
     }
 }

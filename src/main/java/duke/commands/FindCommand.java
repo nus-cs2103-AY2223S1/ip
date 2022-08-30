@@ -35,18 +35,21 @@ public class FindCommand extends Command {
     /**
      * Finds matching tasks with keywords and prints out message based on whether
      * there are matching tasks
+     *
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> filtered = tasks.find(this.keyword);
         if (filtered.size() == 0) {
-            System.out.println("No matching tasks found");
+            return "No matching tasks found";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:");
             for (int i = 0; i < filtered.size(); i++) {
-                System.out.println((i + 1) + "." + filtered.get(i).toString());
+                sb.append((i + 1) + "." + filtered.get(i).toString());
             }
+            return sb.toString();
         }
+
     }
 }

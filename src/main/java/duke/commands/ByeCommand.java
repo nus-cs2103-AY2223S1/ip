@@ -15,8 +15,8 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)
-            throws DukeException {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        return "Bye. Hope to see you again soon!";
+
     }
 }
