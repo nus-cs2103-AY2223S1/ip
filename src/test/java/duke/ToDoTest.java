@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +21,7 @@ public class ToDoTest {
     public void testUnMarkForToDo(){
         ToDo p = new ToDo("sleep");
         p.markAsDone();
-        p.UnmarkAsDone();
+        p.unmarkAsDone();
         assertEquals(p.toString(), "[T][ ] sleep");
     }
 }

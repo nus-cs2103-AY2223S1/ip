@@ -1,20 +1,19 @@
-package Duke;
+package duke;
 
 import java.io.IOException;
-
 import java.util.Scanner;
 
 public class Duke {
-    Scanner sc;
-    public Storage storage;
-    public TaskList tasklist;
-    public Ui ui;
+    private Scanner sc;
+    private Storage storage;
+    private TaskList tasklist;
+    private Ui ui;
 
     /**
      * Constructor for Duke.
      * Loads if there are any existing tasks in storage.
      *
-     * @param filePath filepath
+     * @param path filepath
      */
     public Duke(String path) {
         this.ui = new Ui();
@@ -23,10 +22,9 @@ public class Duke {
             this.tasklist = new TaskList();
             storage.load();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             this.tasklist = new TaskList();
             ui.printError(e.getMessage());
-
         }
     }
 
@@ -64,7 +62,7 @@ public class Duke {
                     throw new DukeUnknownTaskException();
                 }
                 storage.save();
-            } catch (DukeException e){
+            } catch (DukeException e) {
                 ui.printError(e.getMessage());
             }
         }

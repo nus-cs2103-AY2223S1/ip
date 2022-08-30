@@ -1,6 +1,5 @@
-package Duke;
+package duke;
 
-import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,7 +19,7 @@ public class DeadlineTest {
         assertEquals("[D][ ] sleep (by: Dec 12 2022)",deadline.toString());
         deadline.markAsDone();
         assertEquals("[D][x] sleep (by: Dec 12 2022)",deadline.toString());
-        deadline.UnmarkAsDone();
+        deadline.unmarkAsDone();
         assertEquals("[D][ ] sleep (by: Dec 12 2022)",deadline.toString());
     }
 

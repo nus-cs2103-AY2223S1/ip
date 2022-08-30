@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Handler {
 
@@ -28,7 +28,7 @@ public class Handler {
         if (echo.length() == 4) {
             throw new DukeEmptyDescriptionException();
         }
-        int index = Integer.parseInt(String.valueOf(echo.charAt(5))) -1;
+        int index = Integer.parseInt(String.valueOf(echo.charAt(5))) - 1;
         TaskList.taskList.get(index).markAsDone();
         return ui.printMark(index);
     }
@@ -43,8 +43,8 @@ public class Handler {
         if (echo.length() == 6) {
             throw new DukeEmptyDescriptionException();
         }
-        int index = Integer.parseInt(String.valueOf(echo.charAt(7))) -1;
-        TaskList.taskList.get(index).UnmarkAsDone();
+        int index = Integer.parseInt(String.valueOf(echo.charAt(7))) - 1;
+        TaskList.taskList.get(index).unmarkAsDone();
         return ui.printUnmark(index);
     }
 
@@ -77,8 +77,8 @@ public class Handler {
             throw new DukeEmptyDescriptionException();
         }
         String time = echo.substring(echo.indexOf("/") + 4);
-        String task = echo.substring(9,echo.indexOf("/"));
-        Deadline deadline = new Deadline(task,time);
+        String task = echo.substring(9, echo.indexOf("/"));
+        Deadline deadline = new Deadline(task, time);
         TaskList.taskList.add(deadline);
         return ui.printTask(deadline);
     }
@@ -95,10 +95,10 @@ public class Handler {
             throw new DukeEmptyDescriptionException();
         }
         String time = echo.substring(echo.indexOf("/") + 4);
-        String task = echo.substring(6,echo.indexOf("/"));
-        Event event = new Event(task,time);
+        String task = echo.substring(6, echo.indexOf("/"));
+        Event event = new Event(task, time);
         TaskList.taskList.add(event);
-        return  ui.printTask(event);
+        return ui.printTask(event);
     }
 
     /**
@@ -109,20 +109,20 @@ public class Handler {
      * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleDelete(String echo) throws DukeEmptyDescriptionException {
-        if (echo.length()==6) {
+        if (echo.length() == 6) {
             throw new DukeEmptyDescriptionException();
         }
         int index = Integer.parseInt(String.valueOf(echo.charAt(7))) - 1;
         Task task = TaskList.taskList.remove(index);
-        return ui.printDelete(task,index);
+        return ui.printDelete(task, index);
     }
 
-    public String handleFind(String toEcho){
+    public String handleFind(String toEcho) {
         String tofind = toEcho.substring(5);
         return ui.printFind(tofind);
     }
 
-    public String addTask(Task task){
+    public String addTask(Task task) {
         taskList.add(task);
         return ui.printTask(task);
     }

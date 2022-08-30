@@ -1,19 +1,28 @@
-package Duke;
+package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TaskList is responsible to store the array of lists temporarily,
+ * and able to add new task into the list.
+ */
 public class TaskList {
+
     public static List<Task> taskList;
     private static List<Task> tempList = new ArrayList<>();
 
+    /**
+     * Constructor of Tasklist.
+     */
     public TaskList() {
         taskList = new ArrayList<>();
     }
 
-    public void markDone(int index) {
-        taskList.get(index).markAsDone();
-    }
-
+    /**
+     * Adds task into the list.
+     *
+     * @param task task to be added into list.
+     */
     public void add(Task task) {
         taskList.add(task);
     }
@@ -22,6 +31,11 @@ public class TaskList {
         return tempList;
     }
 
+    /**
+     * Searches the keyword in tempLists and returns each item in tempLists if its exists.
+     *
+     * @param description keyword.
+     */
     public static void searchKeyword(String description) {
         tempList.clear();
         for (Task task : taskList) {

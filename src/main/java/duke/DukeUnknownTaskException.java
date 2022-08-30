@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 /**
  * If task is unknown, DukeUnknownCommandException

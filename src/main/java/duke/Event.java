@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Event extends Task {
 
-    LocalDate timeobject;
+    private LocalDate timeobject;
 
     /**
      * Constructor of event.
@@ -26,7 +26,8 @@ public class Event extends Task {
      * @return string representation of the object.
      */
     public String storeToString() {
-        return "E|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + Parser.dateToString(this.timeobject);
+        return "E|" + this.binarytoString()
+                + "|" + this.description.substring(0, description.length()) + "|" + Parser.dateToString(this.timeobject);
     }
 
     /**
@@ -36,6 +37,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]"  + super.toString() + " (at: " + Parser.displayDate(timeobject) + ")";
+        return "[E]" + super.toString() + " (at: " + Parser.displayDate(timeobject) + ")";
     }
 }

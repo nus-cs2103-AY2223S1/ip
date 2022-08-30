@@ -1,10 +1,10 @@
-package Duke;
+package duke;
 
 
 import java.util.Scanner;
 
 public class Ui {
-    public Scanner sc;
+    private Scanner sc;
 
     public Ui() {
         this.sc = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class Ui {
         return "Nice! I've marked this task as done:" + "\n" + "  " + TaskList.taskList.get(index).toString();
     }
 
-    public String printUnmark(int index){
+    public String printUnmark(int index) {
         return "OK, I've marked this task as not done yet:" + "\n" + "  " + TaskList.taskList.get(index).toString();
     }
 

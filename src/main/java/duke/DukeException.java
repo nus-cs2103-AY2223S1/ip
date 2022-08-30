@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 /**
  * If there is any error related to duke chatbot,

@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ public class EventTest {
         assertEquals("[E][ ] sleep (at: Dec 12 2022)",event.toString());
         event.markAsDone();
         assertEquals("[E][x] sleep (at: Dec 12 2022)",event.toString());
-        event.UnmarkAsDone();
+        event.unmarkAsDone();
         assertEquals("[E][ ] sleep (at: Dec 12 2022)",event.toString());
     }
 }

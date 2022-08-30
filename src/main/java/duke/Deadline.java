@@ -1,5 +1,4 @@
-package Duke;
-
+package duke;
 
 import java.time.LocalDate;
 
@@ -24,7 +23,7 @@ public class Deadline extends Task {
 
     @Override
     public String storeToString() {
-        return "D|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|"
+        return "D|" + this.binarytoString() + "|" + this.description.substring(0, description.length()) + "|"
                 + Parser.dateToString(this.timeobject);
     }
 
@@ -35,7 +34,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]"  + super.toString() + " (by: " + Parser.displayDate(timeobject) + ")";
+        return "[D]" + super.toString() + " (by: " + Parser.displayDate(timeobject) + ")";
     }
 
 }
