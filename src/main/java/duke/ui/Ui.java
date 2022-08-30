@@ -9,6 +9,7 @@ import java.util.List;
  * Has static methods and does not need to be initialized
  */
 public class Ui {
+    private static final String HELP_PAGE_URL = "https://tinyurl.com/dukeIPGuide";
 
     private static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -16,7 +17,13 @@ public class Ui {
             + "| |_| | |_| |   <  __/ \n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-
+    /**
+     * Fetches the help page's URL
+     * @return String help page URL
+     */
+    public static final String displayHelpURL() {
+        return HELP_PAGE_URL;
+    }
     public static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
 
     public static String welcomeMessage() {
@@ -24,7 +31,9 @@ public class Ui {
         message += "Hello from\n" + logo;
         System.out.println("Hello from\n" + logo);
         message += "Hello! I'm the new and improved Duke \n"
-                + "How may I be of assistance today?";
+                + "How may I be of assistance today? \n"
+                + "For starters, type the word <help> into the bot (without arrow braces) \n"
+                + "for a helpful guide of the commands!";
         System.out.println("Hello! I'm Duke \n"
                 + "How may I be of assistance today?");
         return message;

@@ -9,6 +9,12 @@ import duke.exceptions.EmptyTaskException;
 import duke.exceptions.InvalidCommandException;
 import duke.ui.Ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URI;
 import java.time.LocalDate;
 
 import java.time.format.DateTimeParseException;
@@ -20,6 +26,7 @@ import java.util.List;
  * Handles the main logic of parsing raw input
  */
 public class Parser {
+
 
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
@@ -71,10 +78,21 @@ public class Parser {
             String[] inputTempArr = input.split(" ", 2);
             String date = inputTempArr[1];
             String successfulDate = validateDate(date);
-            if (! successfulDate.equals("")) { //an error occured somewhere
+            if (!successfulDate.equals("")) { //an error occured somewhere
                 return successfulDate;
             }
             return taskList.viewSchedule(date);
+
+        } else if (input.startsWith("help")) {
+            try {
+                Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
+
+            } catch (MalformedURLException | URISyntaxException e) {
+                System.out.println("Test");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "Here's your help page!";
 
         //Case 7: Add a valid task
         } else {
