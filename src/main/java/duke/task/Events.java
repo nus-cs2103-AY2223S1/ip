@@ -17,7 +17,6 @@ public class Events extends Task {
     }
 
     /**
-     *
      * @return String to save onto text document
      */
     @Override
@@ -26,7 +25,6 @@ public class Events extends Task {
     }
 
     /**
-     *
      * @return String to be displayed to users
      */
     @Override

@@ -1,7 +1,7 @@
 package duke.main;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 import duke.errors.DukeException;
 import duke.task.Task;
@@ -11,23 +11,14 @@ import duke.task.TaskList;
  * Ui deals with interactions with the user.
  */
 public class Ui {
-    private Scanner sc;
-
-    /**
-     * Prints welcome message
-     */
-    public void showWelcome() {
-        System.out.println("Hello! I'm Milk");
-        System.out.println("What can I do for you?");
-        sc = new Scanner(System.in);
+    private StringBuilder sc = new StringBuilder();
+    // redundant
+    public String getOutput() {
+        return sc.toString();
     }
 
-    /**
-     * Reads user input
-     * @return String of user input
-     */
-    public String readCommand() {
-        return sc.nextLine();
+    public void resetOutput() {
+        sc.setLength(0);
     }
 
     /**
@@ -37,7 +28,9 @@ public class Ui {
      */
     public void printList(TaskList tasks) throws DukeException {
         System.out.println("Here are the tasks in your list:");
+        sc.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
+            sc.append(i + 1 + "." + tasks.get(i + 1) + "\n");
             System.out.println(i + 1 + "." + tasks.get(i + 1));
         }
     }
@@ -47,6 +40,7 @@ public class Ui {
      */
     public void showLoadingError() {
         System.out.println("error in loading file!");
+        sc.append("error in loading file!");
     };
 
     /**
@@ -55,6 +49,7 @@ public class Ui {
      */
     public void showError(String error) {
         System.out.println(error);
+        sc.append(error);
     };
 
     /**
@@ -66,6 +61,9 @@ public class Ui {
         System.out.println("Got it. I've added this task:");
         System.out.println(task);
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        sc.append("Got it. I've added this task:\n");
+        sc.append(task + "\n");
+        sc.append("Now you have " + tasks.size() + " tasks in the list.");
     };
 
     /**
@@ -77,6 +75,9 @@ public class Ui {
         System.out.println("Noted. I've removed this task:");
         System.out.println(task);
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        sc.append("Noted. I've removed this task:\n");
+        sc.append(task + "\n");
+        sc.append("Now you have " + tasks.size() + " tasks in the list.");
     };
 
     /**
@@ -84,6 +85,7 @@ public class Ui {
      */
     public void showBye() {
         System.out.println("Bye. Hope to see you again soon!");
+        sc.append("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -93,6 +95,8 @@ public class Ui {
     public void showMark(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
+        sc.append("Nice! I've marked this task as done:\n");
+        sc.append(task);
     }
 
     /**
@@ -102,6 +106,8 @@ public class Ui {
     public void showUnmark(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(task);
+        sc.append("OK, I've marked this task as not done yet:\n");
+        sc.append(task);
     }
 
     /**
@@ -112,10 +118,16 @@ public class Ui {
         System.out.println(message);
     };
 
+    /**
+     * Prints find message
+     * @param matchingTasks Arraylist of tasks matching keyword
+     */
     public void printFind(ArrayList<Task> matchingTasks) {
         System.out.println("Here are the matching tasks in your list:");
+        sc.append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < matchingTasks.size(); i++) {
             System.out.println((i + 1) + "." + matchingTasks.get(i).toString());
+            sc.append((i + 1) + "." + matchingTasks.get(i).toString() + "\n");
         }
     }
 }

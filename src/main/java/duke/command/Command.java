@@ -20,7 +20,6 @@ public abstract class Command {
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
-     *
      * @return boolean if the program should exit
      */
     public boolean isExit() {

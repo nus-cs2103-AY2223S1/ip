@@ -17,7 +17,6 @@ public abstract class Task {
     }
 
     /**
-     *
      * @return String describing completion of task
      */
     public String getStatusIcon() {
@@ -39,13 +38,11 @@ public abstract class Task {
     }
 
     /**
-     *
      * @return String to save into text file
      */
     public abstract String textFormat();
 
     /**
-     *
      * @return String of description
      */
     public String getDescription() {
@@ -53,7 +50,6 @@ public abstract class Task {
     }
 
     /**
-     *
      * @return String to describe task to users
      */
     @Override
