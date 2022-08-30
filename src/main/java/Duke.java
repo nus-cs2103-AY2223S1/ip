@@ -158,14 +158,14 @@ public class Duke {
                 // process data
                 switch (line.charAt(4)) {
                     case 'T':
-                        newTask = new ToDo(line.substring(9));
+                        newTask = new ToDo(line.substring(10));
                         break;
                     case 'E':
-                        newTask = new Event(line.substring(9, line.indexOf("(at:") - 1),
+                        newTask = new Event(line.substring(10, line.indexOf("(at:") - 1),
                                 line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")));
                         break;
                     case 'D':
-                        newTask = new Deadline(line.substring(9, line.indexOf("(by:") - 1),
+                        newTask = new Deadline(line.substring(10, line.indexOf("(by:") - 1),
                                 line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")));
                         break;
                     default:
@@ -176,6 +176,9 @@ public class Duke {
             }
         } catch (IOException x) {
             System.out.println("There was an error reading your existing tasks!");
+            return tasks;
+        } catch (NullPointerException e) {
+            System.out.println("Your existing tasks are not formatted correctly!");
             return tasks;
         }
         return tasks;
