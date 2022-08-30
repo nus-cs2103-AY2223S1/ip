@@ -196,6 +196,8 @@ public class Duke {
             response = this.ui.getStringDateTimeParseException();
         } catch (IOException e) {
             response = this.ui.getStringIoException(e);
+        } catch (Exception e) {
+            response = "An unexpected exception has occurred.";
         }
 
         return response;
