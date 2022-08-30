@@ -39,6 +39,8 @@ public class Parser {
      * @return The index of the task that is required
      */
     protected int parseForNumber(String[] words) {
+    
+    protected int getTaskIndex(String[] words) {
         return Integer.parseInt(words[1]) - 1;
     }
 }
