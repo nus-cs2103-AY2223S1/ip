@@ -116,13 +116,20 @@ public class TaskList {
     /**
      * Finds tasks in the TaskList that matches the given keyword.
      *
-     * @param content Given keyword.
+     * @param content Given keywords.
      * @return String representation of the response after finding tasks that matched the given keyword.
      */
-    public String findTasks(String content) {
+    public String findTasks(String ... content) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : this.tasks) {
-            if (task.contains(content)) {
+            boolean hasKeywords = true;
+            for (int i = 0; i < content.length; i++) {
+                if (!task.contains(content[i])) {
+                    hasKeywords = false;
+                    break;
+                }
+            }
+            if (hasKeywords) {
                 matchingTasks.add(task);
             }
         }
