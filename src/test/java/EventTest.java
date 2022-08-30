@@ -1,8 +1,11 @@
-import duke.task.Events;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import duke.task.Events;
+
 
 /**
  * Tests the Event class

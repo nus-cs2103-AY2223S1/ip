@@ -1,10 +1,10 @@
 package duke.command;
 
-import duke.main.Ui;
-import duke.main.TaskList;
 import duke.main.Storage;
-import duke.task.Todo;
+import duke.main.TaskList;
+import duke.main.Ui;
 import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Represents a command that is used to add a Todo task into a tasklist, save the Todo

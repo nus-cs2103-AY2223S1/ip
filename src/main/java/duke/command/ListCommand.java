@@ -1,8 +1,9 @@
 package duke.command;
 
-import duke.main.Ui;
-import duke.main.TaskList;
 import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+
 
 /**
  * Represents a command that is used to list out the tasks within a tasklist.
@@ -19,6 +20,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-       ui.list(taskList);
+        ui.list(taskList);
     }
 }

@@ -38,7 +38,7 @@ public class Ui {
      * bye method that is sent on termination of conversation with the user
      *
      */
-    public static void bye(){
+    public static void bye() {
         System.out.println("Bye. Please chat with me again!");
     }
 
@@ -49,8 +49,8 @@ public class Ui {
      */
     public static void list(TaskList taskList) {
         for (int i = 0; i < taskList.length(); i++) {
-                System.out.println(i + 1 + ": " + taskList.getTask(i));
-            }
+            System.out.println(i + 1 + ": " + taskList.getTask(i));
+        }
     }
 
     /**

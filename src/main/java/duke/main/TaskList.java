@@ -1,8 +1,9 @@
 package duke.main;
 
+import java.util.ArrayList;
+
 import duke.task.Task;
 
-import java.util.ArrayList;
 
 /**
  * Represents a tasklist that is used to store all tasks that is input into Duke

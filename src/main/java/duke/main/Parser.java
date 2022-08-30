@@ -1,8 +1,17 @@
 package duke.main;
 
-import duke.command.*;
-
 import java.time.DateTimeException;
+
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventsCommand;
+import duke.command.AddTodoCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ErrorCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * Represents a Parser that determines what kind of input was obtained
@@ -41,8 +50,7 @@ public class Parser {
                     return new DeleteCommand(inputs[1]);
                 } else if (command.equals("find")) {
                     return new FindCommand(inputs[1]);
-                }
-                else {
+                } else {
                     return new ErrorCommand();
                 }
             }

@@ -1,7 +1,7 @@
+import java.util.ArrayList;
+
 import duke.main.TaskList;
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * A stub for tasklist object

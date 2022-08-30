@@ -1,21 +1,21 @@
 package duke.main;
 
-import duke.task.Deadlines;
-import duke.task.Events;
-import duke.task.Task;
-import duke.task.Todo;
-
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Represents a storage that is used to load and save tasks upon start up
@@ -38,7 +38,7 @@ public class Storage {
     /**
      * loadTasks method that checks and loads all task from a text file
      *
-     * @return ArrayList<Task>
+     * @return ArrayList of Tasks
      */
     public ArrayList<Task> loadTasks() {
         try {
@@ -78,9 +78,11 @@ public class Storage {
                     task = new Deadlines(name, date);
                     break;
                 case ("E"):
-
                     date = LocalDate.parse(split[3]);
                     task = new Events(name, date);
+                    break;
+                default:
+                    throw new IOException("Loading Error");
                 }
 
                 if (done.equals("1")) {
