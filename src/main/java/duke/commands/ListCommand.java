@@ -23,7 +23,6 @@ public class ListCommand extends Command {
      * @param ui Prints the messages based on the type of Command
      * @param storage Saves the modified list of tasks
      * @param taskList List of tasks
-     * @throws DukeException if invalid inputs are provided
      */
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {

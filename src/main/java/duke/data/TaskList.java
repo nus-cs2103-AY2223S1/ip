@@ -106,14 +106,24 @@ public class TaskList {
         return task;
     }
 
-    public ArrayList<Task> find(String keyword) {
+    public ArrayList<Task> find(String ...keywords) {
         ArrayList<Task> list = new ArrayList<>();
         for (Task task : this.tasks) {
-            if (task.getDescription().contains(keyword)) {
+            if (containsAllKeywords(task.getDescription(), keywords)) {
                 list.add(task);
             }
         }
 
         return list;
+    }
+
+    private boolean containsAllKeywords(String description, String ...keywords) {
+        for (String s : keywords) {
+            if (!description.contains(s)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

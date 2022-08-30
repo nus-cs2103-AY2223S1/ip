@@ -66,7 +66,7 @@ public class Parser {
             return new TasksCommand(components[1]);
         case "find":
             checkInput(components);
-            return new FindCommand(components[1]);
+            return new FindCommand(components[1].split(" "));
         default:
             return new InvalidCommand();
         }
