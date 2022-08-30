@@ -1,4 +1,4 @@
-package Duke;
+package Duke.DukeHandlers;
 
 import Duke.DukeExceptions.DukeException;
 
@@ -13,15 +13,14 @@ public class Interact {
      *
      * @return void.
      */
-    public void start() {
+    public String start() {
         tasksManager = new TasksManager();
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        greet();
+        return "Hello from\n" + logo;
     }
 
     /**
@@ -32,36 +31,25 @@ public class Interact {
      * @return void.
      * @throws DukeException  If input is not proper.
      */
-    public void handle(String word) throws DukeException {
+    public String handle(String word) throws DukeException {
         if (word.startsWith("bye") || word.startsWith("Bye")) {
             bye();
         } else if (word.startsWith("list") || word.startsWith("List")) {
-            tasksManager.showList();
+            return tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            tasksManager.markTaskAsDone(Decoder.handleDone(word, tasksManager.numTasks()));
+            return tasksManager.markTaskAsDone(Decoder.handleDone(word, tasksManager.numTasks()));
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
-            tasksManager.deleteTask(Decoder.handleDelete(word, tasksManager.numTasks()));
+            return tasksManager.deleteTask(Decoder.handleDelete(word, tasksManager.numTasks()));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {
-            tasksManager.addTask(Decoder.handleTasks(word));
+            return tasksManager.addTask(Decoder.handleTasks(word));
         } else if (word.startsWith("date") || word.startsWith("Date")) {
-            tasksManager.showDate(Decoder.parseLD(word));
+            return tasksManager.showDate(Decoder.parseLD(word));
         } else if (word.startsWith("find") || word.startsWith("Find")) {
-            tasksManager.find(Decoder.parseFind(word));
+            return tasksManager.find(Decoder.parseFind(word));
         } else {
             throw new DukeException("bad input");
         }
-    }
-
-    /**
-     * Greets the user.
-     *
-     * @return void.
-     */
-    public void greet() {
-        System.out.println(line);
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        System.out.println(line);
+        return "";
     }
 
     /**

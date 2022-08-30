@@ -1,5 +1,7 @@
 package Duke;
 
+import Duke.DukeExceptions.DukeException;
+import Duke.DukeHandlers.Interact;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class DukePro extends Application {
+    private Interact interact;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
@@ -44,7 +47,12 @@ public class DukePro extends Application {
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        Label dukeText;
+        try {
+            dukeText = new Label(getResponse(interact.handle(userInput.getText())));
+        } catch (DukeException e){
+            dukeText = new Label(getResponse(e.toString()));
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
@@ -63,6 +71,9 @@ public class DukePro extends Application {
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
+        interact = new Interact();
+        String startTxt = interact.start();
+
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -107,6 +118,12 @@ public class DukePro extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+
+        //step 2.5: greet the user
+        Label dukeText = new Label(getResponse(startTxt));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
 
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
