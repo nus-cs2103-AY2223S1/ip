@@ -1,5 +1,6 @@
 package duke;
 
+import duke.ui.Ui;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
