@@ -14,38 +14,41 @@ public class Parser {
      *
      * @param str the string input by the user
      * @param tasks the TaskList
+     * @return the String representation of the response
      * @throws DukeException if command is invalid
      */
-    public static void parseCommand(String str, TaskList tasks) throws DukeException {
+    public static String parseCommand(String str, TaskList tasks) throws DukeException {
         String[] splitStr = str.split(" ", 2);
+        String response = "";
         switch (splitStr[0]) {
         case "list":
-            tasks.printTaskList();
+            response = tasks.printTaskList();
             break;
         case "mark":
-            tasks.mark(splitStr);
+            response = tasks.mark(splitStr);
             break;
         case "unmark":
-            tasks.unmark(splitStr);
+            response = tasks.unmark(splitStr);
             break;
         case "todo":
-            tasks.addTask(splitStr, Duke.TaskType.TODO);
+            response = tasks.addTask(splitStr, Duke.TaskType.TODO);
             break;
         case "deadline":
-            tasks.addTask(splitStr, Duke.TaskType.DEADLINE);
+            response = tasks.addTask(splitStr, Duke.TaskType.DEADLINE);
             break;
         case "event":
-            tasks.addTask(splitStr, Duke.TaskType.EVENT);
+            response = tasks.addTask(splitStr, Duke.TaskType.EVENT);
             break;
         case "delete":
-            tasks.deleteTask(splitStr);
+            response = tasks.deleteTask(splitStr);
             break;
         case "find":
-            tasks.findTasks(splitStr);
+            response = tasks.findTasks(splitStr);
             break;
         default:
             throw new DukeException("I'm sorry, but I don't know what that means!");
         }
+        return response;
     }
 
     /**

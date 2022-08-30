@@ -1,15 +1,11 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Duke is a program that helps the user manage their tasks.
  */
 public class Duke {
-    private static final Scanner sc = new Scanner(System.in);
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     enum TaskType {
         TODO,
@@ -24,40 +20,36 @@ public class Duke {
      *                 to load or save from
      */
     public Duke(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadData());
         } catch (DukeException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
     /**
-     * Runs the core part of the code
+     * Returns a response to the given input.
+     *
+     * @param input an input string
+     * @return a string representation of the response to the given input
      */
-    public void run() {
-        ui.printGreetings();
-        String str = sc.nextLine().trim();
-
-        while (!str.equals("bye")) {
-            try {
-                Parser.parseCommand(str, tasks);
-            } catch (DukeException e) {
-                ui.printMessage(e.toString());
-            }
-            str = sc.nextLine().trim();
+    public String getResponse(String input) {
+        String str = input.trim();
+        String response;
+        if (str.equals("bye")) {
+            return "Your data is always saved,\nyou can close the application at any time.";
         }
         try {
-            storage.saveData(tasks.getTasks());
+            response = Parser.parseCommand(str, tasks);
+            saveData();
         } catch (DukeException e) {
-            ui.printMessage(e.toString());
+            response = e.toString();
         }
-        ui.printGoodbye();
+        return response;
     }
 
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    public void saveData() throws DukeException {
+        storage.saveData(tasks.getTasks());
     }
 }
