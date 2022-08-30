@@ -31,7 +31,7 @@ public class MarkCommand extends Command {
 
         int entryNo = Integer.parseInt(arguments.get(0));
         Task task = taskList.get(entryNo);
-        task.mark();
+        task.markDone();
         message.add(task.toString());
         return new CommandResult(message);
     }

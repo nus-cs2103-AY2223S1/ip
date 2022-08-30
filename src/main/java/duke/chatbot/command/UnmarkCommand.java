@@ -31,7 +31,7 @@ public class UnmarkCommand extends Command {
 
         int entryNo = Integer.parseInt(arguments.get(0));
         Task task = taskList.get(entryNo);
-        task.unmark();
+        task.markUndone();
         message.add(task.toString());
         return new CommandResult(message);
     }

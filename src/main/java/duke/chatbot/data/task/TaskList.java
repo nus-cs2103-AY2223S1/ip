@@ -48,21 +48,23 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Marks the task corresponding to the entry number argument.
+     * (Currently not in use)
      * @param entry The index of the task to be marked.
      */
     public void markTask(int entry) {
         if (this.isInRange(entry)) {
-            this.get(entry).mark();
+            this.get(entry).markDone();
         }
     }
 
     /**
      * Unmarks the task corresponding to the entry number argument.
+     * (Currently not in use)
      * @param entry The index of the task to be unmarked.
      */
     public void unmarkTask(int entry) {
         if (this.isInRange(entry)) {
-            this.get(entry).unmark();
+            this.get(entry).markUndone();
         }
     }
 

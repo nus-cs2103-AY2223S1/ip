@@ -34,14 +34,14 @@ public abstract class Task {
     /**
      * Sets the task to the done state.
      */
-    public void mark() {
+    public void markDone() {
         isDone = true;
     }
 
     /**
      * Sets the task to the not done state.
      */
-    public void unmark() {
+    public void markUndone() {
         isDone = false;
     }
 
