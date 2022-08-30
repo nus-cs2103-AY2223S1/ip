@@ -15,14 +15,14 @@ public class Ui {
 
     /**
      * Constructor for Ui.
-     * Initialises a Scanner.
+     * Initialises the Scanner.
      */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
     /**
-     * Prints a out a line to user.
+     * Prints out a line to user.
      */
     public void printLine() {
         System.out.println("\t____________________________________________________________");
