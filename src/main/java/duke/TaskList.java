@@ -10,46 +10,63 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        taskList = new ArrayList<Task>();
+        tasks = new ArrayList<Task>();
     }
 
     public TaskList(ArrayList<String> taskStringList) {
-        taskList = new ArrayList<Task>();
+        tasks = new ArrayList<Task>();
         for (int i = 0; i < taskStringList.size(); i++) {
             String taskString = taskStringList.get(i);
             Task task = parseTaskString(taskString);
-            taskList.add(task);
+            tasks.add(task);
         }
     }
 
     public String addTask(Task task) {
-        taskList.add(task);
+        tasks.add(task);
         return task.toString();
     }
 
     public Task deleteTask(int index) {
-        Task removedTask = taskList.remove(index);
+        Task removedTask = tasks.remove(index);
         return removedTask;
     }
 
     public int getNumTasks() {
-        return taskList.size();
+        return tasks.size();
     }
 
     public Task getTask(int i) {
-        return taskList.get(i);
+        return tasks.get(i);
+    }
+
+    /**
+     * Returns TaskList containing all found tasks.
+     * @param keyword Keyword to be searched for.
+     * @return TaskList containing all tasks that matched keyword.
+     */
+    public TaskList find(String keyword) {
+        TaskList foundTasks = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            String taskDescription = task.getDescription();
+            if (taskDescription.contains(keyword)) {
+                foundTasks.addTask(task);
+            }
+        }
+        return foundTasks;
     }
 
     @Override
     public String toString() {
-        String tasks = "";
-        for (int i = 0; i < taskList.size(); i++) {
-            tasks += "\n" + (i + 1) + ". " + taskList.get(i).toString();
+        String tasksString = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            tasksString += "\n" + (i + 1) + ". " + tasks.get(i).toString();
         }
-        return tasks;
+        return tasksString;
     }
 
     private Task parseTaskString(String taskString) {

@@ -31,6 +31,15 @@ public class Ui {
         System.out.println(tasks.toString());
     }
 
+    /**
+     * Display list of found tasks.
+     * @param tasks Task List to find in.
+     * @param keyword Keyword that should match tasks found.
+     */
+    public void showFindResults(TaskList tasks, String keyword) {
+        System.out.println(tasks.find(keyword).toString());
+    }
+
     public void showAddMessage(Task task, int numTask) {
         String message = "Got it. I've added this task:\n  " + task.toString() +
                 "\nNow you have " + numTask + " tasks in the list.";
