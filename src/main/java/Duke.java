@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.*;
+import java.io.*;
+import java.lang.StringBuilder;
 
 public class Duke {
     private final ArrayList<Task> tasks;
@@ -7,8 +10,8 @@ public class Duke {
     private static final String line = "---------------------------------------------------";
 
     public Duke() {
-        this.tasks = new ArrayList<>();
-        this.numOfTasks = 0;
+        this.tasks = readTasksFromHardDrive();
+        this.numOfTasks = this.tasks.size();
     }
 
     private String taskTense() {
@@ -31,9 +34,7 @@ public class Duke {
             System.out.println("Nothing to do right now...");
         } else {
             System.out.println("Tasks: ");
-            for (int i = 0; i < numOfTasks; i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i).toString());
-            }
+            System.out.println(convertTasksToListString());
         }
         System.out.println("You have " + numOfTasks + taskTense() + "!");
     }
@@ -49,6 +50,7 @@ public class Duke {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(tasks.get(index));
             }
+            saveToHardDisk();
         } catch (Exception e) {
             throw new DukeException("No such task!");
         }
@@ -93,6 +95,7 @@ public class Duke {
         } else {
             echo(input);
         }
+        saveToHardDisk();
         System.out.println("Got it. I've added this task:\n" + "  " + tasks.get(numOfTasks - 1).toString());
         System.out.println("Now you have " + numOfTasks + taskTense() + " in the list.");
     }
@@ -102,9 +105,83 @@ public class Duke {
             Task removedTask = tasks.remove(index);
             System.out.println("Done! " + removedTask.toString() + " has been deleted :(");
             numOfTasks--;
+            saveToHardDisk();
         } catch (Exception e) {
             throw new DukeException("I can't find such a task to delete!");
         }
+    }
+
+    private void saveToHardDisk() throws DukeException {
+        byte[] data = convertTasksToListString().getBytes();
+        Path p = Paths.get("./data/duke.txt");
+        Path dataPath = Paths.get("./data");
+
+        boolean isDataFileExisting = Files.exists(dataPath);
+
+        if (!isDataFileExisting) {
+            File f1 = new File(String.valueOf(dataPath));
+            isDataFileExisting = f1.mkdir();
+        }
+        if (isDataFileExisting) {
+            try (OutputStream out = new BufferedOutputStream(
+                    Files.newOutputStream(p))) {
+                out.write(data, 0, data.length);
+            } catch (IOException x) {
+                throw new DukeException("There was an error saving your changes!");
+            }
+        }
+    }
+
+    private String convertTasksToListString() {
+        StringBuilder list = new StringBuilder();
+        for (int i = 0; i < numOfTasks; i++) {
+            String newLine = (i + 1) + ". " + tasks.get(i).toString() + "\n";
+            list.append(newLine);
+        }
+        return list.toString();
+    }
+
+    private ArrayList<Task> readTasksFromHardDrive() {
+        Path p = Paths.get("./data/duke.txt");
+        boolean isFileExisting = Files.exists(p);
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        if (!isFileExisting) {
+            return tasks;
+        }
+        try (InputStream in = Files.newInputStream(p);
+             BufferedReader reader =
+                     new BufferedReader(new InputStreamReader(in))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Task newTask;
+                // process data
+                switch (line.charAt(4)) {
+                    case 'T':
+                        newTask = new ToDo(line.substring(10));
+                        break;
+                    case 'E':
+                        newTask = new Event(line.substring(10, line.indexOf("(at:") - 1),
+                                line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")));
+                        break;
+                    case 'D':
+                        newTask = new Deadline(line.substring(10, line.indexOf("(by:") - 1),
+                                line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")));
+                        break;
+                    default:
+                        newTask = null;
+                        break;
+                }
+                tasks.add(newTask);
+            }
+        } catch (IOException x) {
+            System.out.println("There was an error reading your existing tasks!");
+            return tasks;
+        } catch (NullPointerException e) {
+            System.out.println("Your existing tasks are not formatted correctly!");
+            return tasks;
+        }
+        return tasks;
     }
 
     private void exit() {
@@ -127,19 +204,10 @@ public class Duke {
                     duke.exit();
                 } else if (input.equals("list")) {
                     duke.listTasks();
-                } else if (input.startsWith("mark")) {
+                } else if (input.startsWith("mark") || input.startsWith("unmark")) {
                     try {
                         int index = Integer.parseInt(input.substring(input.lastIndexOf(" ") + 1)) - 1;
-                        duke.changeTaskStatus(index, true);
-                    } catch (DukeException e) {
-                        throw e;
-                    } catch (Exception e) {
-                        throw new DukeException("Please input a number!");
-                    }
-                } else if (input.startsWith("unmark")) {
-                    try {
-                        int index = Integer.parseInt(input.substring(input.lastIndexOf(" ") + 1)) - 1;
-                        duke.changeTaskStatus(index, false);
+                        duke.changeTaskStatus(index, input.startsWith("mark"));
                     } catch (DukeException e) {
                         throw e;
                     } catch (Exception e) {
@@ -162,6 +230,5 @@ public class Duke {
             }
             System.out.println(line);
         }
-
     }
 }
