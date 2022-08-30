@@ -130,7 +130,7 @@ public class Pony {
                     throw new PonyException.taskMissingError();
                 } else {
                     // format of command: event <task> /at <time>
-                    String[] taskInfoArr = command[1].split(" /by ", 2);
+                    String[] taskInfoArr = command[1].split(" /at ", 2);
                     if (taskInfoArr.length != 2) {
                         String format = "<task> /at <time>";
                         throw new PonyException.taskFormatError(format);
