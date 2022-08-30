@@ -35,7 +35,7 @@ public class Duke {
     /**
      * Runs duke.
      */
-    public void run() {
+    /*public void run() {
         ui.greet();
         boolean isExit = false;
         while (!isExit) {
@@ -51,17 +51,24 @@ public class Duke {
                 ui.showLine();
             }
         }
-    }
+    }*/
 
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        String response;
+        try {
+            Command c = Parser.parse(input);
+            response = c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            response = ui.showError(e.getMessage());
+        }
+        return response;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new Duke(FILE_PATH).run();
-    }
+    }*/
 }

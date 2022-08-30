@@ -24,17 +24,15 @@ public class Ui {
     /**
      * Prints greeting message.
      */
-    protected void greet() {
-        System.out.println(LINE);
-        System.out.println(GREETINGS_MESSAGE);
-        System.out.println(LINE);
+    protected String greet() {
+        return GREETINGS_MESSAGE;
     }
 
     /**
      * Prints exit message.
      */
-    public void exit() {
-        System.out.println(EXIT_MESSAGE);
+    public String exit() {
+        return EXIT_MESSAGE;
     }
 
     /**
@@ -49,8 +47,8 @@ public class Ui {
      *
      * @param message Error message.
      */
-    protected void showError(String message) {
-        System.err.println(message);
+    protected String showError(String message) {
+        return message;
     }
 
     /**
@@ -59,10 +57,8 @@ public class Ui {
      * @param task Target task.
      * @param tasks Task list.
      */
-    public void addTaskMessage(Task task, TaskList tasks) {
-        System.out.println(ADD_MESSAGE);
-        System.out.println(task.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    public String addTaskMessage(Task task, TaskList tasks) {
+        return ADD_MESSAGE + "\n" + task.toString() + "\n" + "Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
@@ -70,11 +66,13 @@ public class Ui {
      *
      * @param tasks Task list.
      */
-    public void displayTasks(TaskList tasks) throws DukeException {
-        System.out.println(LIST_MESSAGE);
+    public String displayTasks(TaskList tasks) throws DukeException {
+        String response = "";
+        response = response + LIST_MESSAGE;
         for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + ". " + tasks.get(i - 1).toString());
+            response = response + "\n" + i + ". " + tasks.get(i - 1).toString();
         }
+        return response;
     }
 
     /**
@@ -83,10 +81,8 @@ public class Ui {
      * @param task Task to be deleted.
      * @param tasks Task list.
      */
-    public void deleteTaskMessage(Task task, TaskList tasks) {
-        System.out.println(DELETE_MESSAGE);
-        System.out.println(task.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    public String deleteTaskMessage(Task task, TaskList tasks) {
+        return DELETE_MESSAGE + "\n" + task.toString() + "\n" + "Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
@@ -94,9 +90,8 @@ public class Ui {
      *
      * @param task Target task.
      */
-    public void markDone(Task task) {
-        System.out.println(DONE_MESSAGE);
-        System.out.println(task.toString());
+    public String markDone(Task task) {
+        return DONE_MESSAGE + "\n" + task.toString();
     }
 
     /**
@@ -104,9 +99,8 @@ public class Ui {
      *
      * @param task Target task.
      */
-    public void markUndone(Task task) {
-        System.out.println(UNDONE_MESSAGE);
-        System.out.println(task.toString());
+    public String markUndone(Task task) {
+        return UNDONE_MESSAGE + "\n" + task.toString();
     }
 
     /**
@@ -114,11 +108,13 @@ public class Ui {
      *
      * @param tasks Task list.
      */
-    public void findTask(TaskList tasks) throws DukeException {
-        System.out.println(FIND_MESSAGE);
+    public String findTask(TaskList tasks) throws DukeException {
+        String response = "";
+        response = response + FIND_MESSAGE;
         for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + ". " + tasks.get(i - 1).toString());
+            response = response + "\n" + i + ". " + tasks.get(i - 1).toString();
         }
+        return response;
     }
 
     /**

@@ -31,9 +31,10 @@ public class AddCommand extends Command {
      * @throws DukeException If error saving file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
-        ui.addTaskMessage(task, tasks);
+        String response = ui.addTaskMessage(task, tasks);
         storage.save(tasks.toString());
+        return response;
     }
 }

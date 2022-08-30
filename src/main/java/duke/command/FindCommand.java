@@ -29,7 +29,8 @@ public class FindCommand extends Command {
      * @param storage Storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.findTask(tasks.find(keyword));
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String response = ui.findTask(tasks.find(keyword));
+        return response;
     }
 }

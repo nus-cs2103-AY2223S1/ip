@@ -30,8 +30,9 @@ public class DeleteCommand extends Command {
      * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.deleteTaskMessage(tasks.delete(ind - 1), tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        String response = ui.deleteTaskMessage(tasks.delete(ind - 1), tasks);
         storage.save(tasks.toString());
+        return response;
     }
 }
