@@ -1,9 +1,29 @@
 package duke.main;
 
-import duke.command.Command;
-import duke.exception.*;
-
 import java.time.format.DateTimeParseException;
+
+import duke.gui.DialogBox;
+import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.exception.MissingArgumentException;
+import duke.exception.MissingDescriptionException;
+import duke.exception.MissingIndexException;
+import duke.exception.MissingTimeException;
+
 
 /**
  * Main class for Duke. Contains objects handling storage, the task list and Ui.
@@ -13,6 +33,28 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+
+    /**
+     * Constructs a new Duke object without any parameters.
+     */
+    public Duke() {
+        this.ui = new Ui();
+        try {
+            this.storage = new Storage(Storage.FILE_PATH);
+        } catch (DukeException e) {
+            this.ui.showSavingError();
+        }
+        this.taskList = new TaskList(this.storage.load());
+    }
 
     /**
      * Constructs a new Duke object which reads the save from a file at path.
@@ -26,6 +68,10 @@ public class Duke {
             this.ui.showSavingError();
         }
         this.taskList = new TaskList(this.storage.load());
+    }
+
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
     /**
