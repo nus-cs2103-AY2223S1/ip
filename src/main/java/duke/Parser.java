@@ -3,7 +3,14 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * A Parser class to read the user instructions and make send of them.
+ */
 public class Parser {
+
+    /**
+     * The Parser constructor.
+     */
     Parser() {
 
     }
@@ -62,6 +69,13 @@ public class Parser {
         taskList.removeTask(index);
     }
 
+    /**
+     * A method to obtain and parse the user instructions and conduct them in the TaskList.
+     *
+     * @param storage to update all the contents of the TaskList into.
+     * @param taskList to save all the tasks into after parsing and conducting user instructions.
+     * @throws DukeException
+     */
     public void parseInstruction(Storage storage, TaskList taskList) throws DukeException {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();

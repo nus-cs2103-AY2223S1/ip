@@ -16,6 +16,11 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructor of the duke class.
+     *
+     * @param filepath to store the list of tasks in.
+     */
     public Duke(String filepath) {
         parser = new Parser();
         taskList = new TaskList();
@@ -23,6 +28,11 @@ public class Duke {
         storage = new Storage(filepath);
     }
 
+    /**
+     * Runs the duke program.
+     *
+     * @throws DukeException
+     */
     public void run() throws DukeException {
         System.out.println(ui.getHello());
         try{
@@ -43,7 +53,7 @@ public class Duke {
     }
 
     /**
-     *The Main function for interaction between the user and DUKE
+     *The Main function for interaction between the user and DUKE.
      */
     public static void main(String[] args) throws DukeException {
 

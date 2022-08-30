@@ -1,25 +1,35 @@
 package duke;
 
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-
+/**
+ * A Storage class to deal with loading and saving tasks in the file.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * The Storage constructor.
+     * @param filePath to store the tasks in.
+     */
     Storage (String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * A method to scan a file and save its contents into a TaskList.
+     *
+     * @param file to be read and have its contents loaded.
+     * @param inputs the TaskList to save the files of the contents into.
+     * @throws FileNotFoundException
+     */
     public void readAndSaveFile(File file, TaskList inputs) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         //System.out.println("parsing activated");
-        //fix the whitespacing problem or it is gonna be even more painful later!
 
         while (scanner.hasNext()) {
             //this is for formating
@@ -77,6 +87,13 @@ public class Storage {
         }
     }
 
+    /**
+     * A method to update and write the contents of a TaskList into a file.
+     *
+     * @param file to be written on.
+     * @param taskList to save its contents into the file.
+     * @throws IOException
+     */
     public void updateFile(String file, TaskList taskList) throws IOException {
         FileWriter fileWriter = new FileWriter(file);
         for (int i = 0; i < taskList.getSize(); i++) {
