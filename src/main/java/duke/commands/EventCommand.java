@@ -1,6 +1,9 @@
 package duke.commands;
 
-import duke.*;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.tasks.Event;
 import duke.tasks.Task;
 
@@ -31,7 +34,7 @@ public class EventCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             String[] splitCommand = remainingCommand.split(" /at ");
             if (splitCommand.length != 2) {
@@ -45,11 +48,11 @@ public class EventCommand extends Command {
             Task task = new Event(description, date);
             tasks.addTask(task);
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
-            ui.printAddTask(task, tasks.getTaskListSize());
+            return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
+            return ("     " + e.getMessage());
         } catch (DateTimeParseException e) {
-            System.out.println("     OOPS!!! Please enter a valid date format (/at yyyy-mm-dd)");
+            return ("     OOPS!!! Please enter a valid date format (/at yyyy-mm-dd)");
         }
     }
 

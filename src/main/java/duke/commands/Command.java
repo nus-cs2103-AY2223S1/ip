@@ -21,7 +21,7 @@ public abstract class Command {
      * @param ui Ui that handles user interaction.
      * @param storage Storage that handles storing information on memory files.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Checks if program should exit.

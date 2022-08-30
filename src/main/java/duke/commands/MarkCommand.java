@@ -29,16 +29,16 @@ public class MarkCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             int taskNumber = Integer.parseInt(remainingCommand);
             tasks.setTaskStatus(taskNumber - 1, true);
             storage.setTaskStatusOnDisk(taskNumber, true);
-            ui.printMarkTask(tasks.getTaskToString(taskNumber - 1));
+            return ui.printMarkTask(tasks.getTaskToString(taskNumber - 1));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println("     OOPS!!! Please enter a valid task number.");
+            return ("     OOPS!!! Please enter a valid task number.");
         } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
+            return ("     " + e.getMessage());
         }
     }
 

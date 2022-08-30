@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Handles exceptions in Duke program relating to invalid arguments.
+ * Handles exceptions in duke.Duke program relating to invalid arguments.
  */
 public class DukeException extends IllegalArgumentException {
     /**

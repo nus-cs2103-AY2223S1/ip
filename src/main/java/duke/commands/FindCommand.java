@@ -27,12 +27,12 @@ public class FindCommand extends Command {
      * @param storage Storage that handles storing information on memory files.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (remainingCommand.equals("")) {
             throw new DukeException("OOPS!!! Please enter a keyword for Find.");
         }
         String tasksFound = tasks.findTask(remainingCommand);
-        ui.printFindTask(tasksFound);
+        return ui.printFindTask(tasksFound);
     }
 
     /**

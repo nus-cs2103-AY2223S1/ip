@@ -2,13 +2,10 @@ package duke;
 
 import duke.commands.*;
 
-import java.util.Scanner;
-
 /**
  * Handles interpretation of user inputs.
  */
 public class Parser {
-
     /**
      * Parser constructor.
      */
