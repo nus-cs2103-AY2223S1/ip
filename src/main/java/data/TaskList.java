@@ -17,15 +17,15 @@ public class TaskList implements Serializable {
         this.tasks = tasks;
     }
 
-    public Task markDone(int i) {
-        Task task = tasks.get(i);
+    public Task markDone(int idx) {
+        Task task = tasks.get(idx);
         task.markDone();
         return task;
     }
 
-    public Task delete(int i) {
-        Task task = tasks.get(i);
-        tasks.remove(i);
+    public Task delete(int idx) {
+        Task task = tasks.get(idx);
+        tasks.remove(idx);
         return task;
     }
 

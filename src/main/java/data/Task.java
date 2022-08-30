@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public abstract class Task implements Serializable {
     private final String title;
-    private boolean done;
+    private boolean isDone;
 
-    public Task(String title, boolean done) {
+    public Task(String title, boolean isDone) {
         this.title = title;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     @Override
     public String toString() {
-        return "[" + (done ? "X" : " ") + "] " + title;
+        return "[" + (isDone ? "X" : " ") + "] " + title;
     }
 }
