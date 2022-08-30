@@ -5,6 +5,8 @@ import roofus.TaskList;
 import roofus.Ui;
 import roofus.task.Deadline;
 
+import java.io.IOException;
+
 /**
  * Represents a command action that adds a Deadline task to the TaskList
  * associated with the current instance of Roofus.
@@ -22,6 +24,11 @@ public class DeadlineCommand extends Command {
     public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         taskList.addTask(task);
+        try {
+            storage.save(taskList);
+        } catch (IOException err) {
+            return ui.printErrMessage("file not saved");
+        }
         return ui.addTask(task, taskList.length());
     }
 

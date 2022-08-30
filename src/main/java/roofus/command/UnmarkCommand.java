@@ -5,6 +5,8 @@ import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
+import java.io.IOException;
+
 /**
  * Represents a command action that unmarks a task in the TaskList
  * associated with the current instance of Roofus.
@@ -30,6 +32,11 @@ public class UnmarkCommand extends Command {
             ui.printErrMessage(err.getMessage());
         }
         taskList.unMark(index);
+        try {
+            storage.save(taskList);
+        } catch (IOException err) {
+            return ui.printErrMessage("file not saved");
+        }
         return ui.unmark(taskList.getTask(index - 1));
     }
 

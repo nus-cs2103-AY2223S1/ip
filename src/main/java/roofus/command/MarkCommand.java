@@ -5,6 +5,8 @@ import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
+import java.io.IOException;
+
 /**
  * Represents a command action that marks a task in the TaskList
  * associated with the current instance of Roofus.
@@ -27,6 +29,11 @@ public class MarkCommand extends Command {
                 throw new RoofusException("Hey! It's not even in this list!");
             }
             taskList.mark(index);
+            try {
+                storage.save(taskList);
+            } catch (IOException err) {
+                return ui.printErrMessage("file not saved");
+            }
             return ui.mark(taskList.getTask(index - 1));
         } catch (RoofusException err) {
             return ui.printErrMessage(err.getMessage());
