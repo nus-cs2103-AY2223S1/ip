@@ -1,12 +1,12 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Abstract class for all types of tasks with a specific time.
@@ -42,7 +42,7 @@ public abstract class TimedTask extends Task {
         }
         TimedTask.format = format;
     }
-    
+
     /**
      * Outputs time of the task.
      * @return time.
@@ -52,13 +52,13 @@ public abstract class TimedTask extends Task {
     }
 
     /**
-     * Outputs a String representation of the time of the task. 
+     * Outputs a String representation of the time of the task.
      * @return String representation of time.
      */
     public String getFormattedTime() {
         return time.format(DateTimeFormatter.ofPattern(format));
     }
-    
+
     /**
      * Converts raw datetime from String to LocalDateTime. Raw datetime must be valid.
      * @param rawDateTime Raw datetime as a String.
@@ -78,7 +78,7 @@ public abstract class TimedTask extends Task {
                     time = LocalDateTime.of(LocalDate.now(), LocalTime.parse(rawDateTime,
                             DateTimeFormatter.ofPattern(format.split(" ")[1])));
                 } catch (DateTimeParseException e3) {
-                    throw new DukeException("\u2639 OOPS!!! Wrong datetime format. Please input datetime in the format %s",
+                    throw new DukeException("\u2639 OOPS!!! Wrong format. Please input datetime in the format %s",
                             TimedTask.format);
                 }
             }

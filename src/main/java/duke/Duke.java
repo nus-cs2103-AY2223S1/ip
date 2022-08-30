@@ -1,12 +1,12 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TimedTask;
 import duke.task.Todo;
-
-import java.util.Scanner;
 
 /**
  * Duke is an interactive chatbot, which functions as a todo manager to help users keep track of their tasks.
@@ -35,6 +35,11 @@ public class Duke {
             tasks = new TaskList();
         }
     }
+
+    /**
+     * Main method.
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("data/duke.txt");
         duke.run();
@@ -61,7 +66,7 @@ public class Duke {
                         ui.showTasks(tasks, parsedCommands[1]);
                     }
                     break;
-                
+
                 case "todo":
                     tasks.add(new Todo(parsedCommands[1]));
                     ui.showSuccess("Got it. I've added this todo:\n  %s\nNow you have %d tasks in the list.",
@@ -79,12 +84,12 @@ public class Duke {
                     ui.showSuccess("Got it. I've added this event:\n  %s\nNow you have %d tasks in the list.",
                             tasks.get(tasks.size()), tasks.size());
                     break;
-                
+
                 case "sort":
                     tasks.sort();
                     ui.showTasks(tasks);
                     break;
-                
+
                 case "find":
                     ui.showTasks(tasks.filter(parsedCommands[1]));
                     break;
@@ -103,16 +108,19 @@ public class Duke {
                     task = tasks.unmark(Integer.parseInt(parsedCommands[1]));
                     ui.showSuccess("OK, I've marked this task as not done yet:\n  " + task);
                     break;
-                
+
                 case "delete":
                     task = tasks.delete(Integer.parseInt(parsedCommands[1]));
                     ui.showSuccess("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
                             task, tasks.size());
                     break;
-    
+
                 case "bye":
                     ui.close();
                     break scanner;
+
+                default:
+                    throw new DukeException("Error encountered while processing your input.");
                 }
             } catch (DukeException e) {
                 ui.showError(e);

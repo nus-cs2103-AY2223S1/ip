@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.DukeException;
 
+/**
+ * Event class
+ */
 public class Event extends TimedTask {
     /**
      * Creates a new Event. DukeException is thrown if datetime format is not followed.
