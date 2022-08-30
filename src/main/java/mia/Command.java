@@ -13,10 +13,6 @@ abstract class Command {
         this.isExit = isExit;
     }
 
-    public boolean shouldExitContext() {
-        return isExit;
-    }
-
     public static Command from(Mia context, String input) throws IllegalArgumentException {
         if (input.equals("bye")) {
             return new ExitCommand(context);
@@ -62,6 +58,10 @@ abstract class Command {
         }
         parsed[delimiters.length] = remaining;
         return parsed;
+    }
+
+    public boolean shouldExitContext() {
+        return isExit;
     }
 
     public abstract void run();
