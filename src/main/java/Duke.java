@@ -1,6 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import jdk.jfr.Event;
 import main.java.*;
 
 import static main.java.Task.*;
@@ -12,10 +14,10 @@ public class Duke {
     private static int index = 0;
 
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-
+        read();
         while (sc.hasNext()) {
             String input = sc.nextLine();
             String[] breakitdown = input.split(" ");
@@ -24,6 +26,7 @@ public class Duke {
             try {
                 if (command.equals("bye")) {
                     System.out.println("Bye. Hope to see you again soon!");
+                    write();
                     break;
                 } else if (command.equals("list")) {
                     if (taskList.size() == 0) {
@@ -93,6 +96,63 @@ public class Duke {
         }
     }
 
+    public static void read() throws IOException {
+        File directory = new File("data");
+        File file = new File("data/duke.txt");
+        if (directory.exists()) {
+            if (file.exists()) {
+                Scanner sc = new Scanner(file);
+                while (sc.hasNext()) {
+                    String taskStr = sc.nextLine();
+                    char type = taskStr.charAt(1);
+                    char done = taskStr.charAt(4);
+                    String task = taskStr.substring(7);
+                    if (type == 'T') {
+                        ToDos todo = new ToDos(task);
+                        taskList.add(todo);
+                    } else if (type == 'D') {
+                        String[] taskNameBy = task.split("/by ");
+                        String taskName = taskNameBy[0];
+                        String by = taskNameBy[1];
+                        Deadlines deadline = new Deadlines(taskName, by);
+                        if (done == 'X') {
+                            deadline.markAsDone();
+                        }
+                        taskList.add(deadline);
+                    } else if (type == 'E') {
+                        String[] taskNameBy = task.split("/at ");
+                        String taskName = taskNameBy[0];
+                        String at = taskNameBy[1];
+                        Events event = new Events(taskName, at);
+                        if (done == 'X') {
+                            event.markAsDone();
+                        }
+                        taskList.add(event);
+                    }
+
+                }
+            } else {
+                file.createNewFile();
+            }
+        } else {
+            directory.mkdir();
+            file.createNewFile();
+        }
+
+    }
+
+    public static void write() {
+        try {
+           FileWriter fw = new FileWriter("data/duke.txt");
+           for (Task t : taskList) {
+               fw.write(t.toString() + "\n");
+           }
+           fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public static void printList(ArrayList<Task> list) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {

@@ -1,5 +1,7 @@
 package main.java;
 
+import java.io.Serializable;
+
 public class Task {
     protected String name;
     protected boolean isDone;
