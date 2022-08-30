@@ -37,7 +37,7 @@ public class Ui {
      * @return the user command
      */
     public String getUserCommand() {
-        out.print("What's next: ");
+        out.print("What would you like to do: ");
         return scanner.nextLine();
     }
     public static String readNextLine() {
