@@ -9,7 +9,7 @@ import pluto.task.Task;
 import java.time.LocalDate;
 
 public class ShowCommand extends Command {
-    LocalDate date;
+    private LocalDate date;
 
     public ShowCommand(LocalDate date) {
         this.date = date;
