@@ -147,7 +147,7 @@ public class Parser {
         while (i < arr.length && !arr[i].equals("/by")) {
             i++;
         }
-        if (arr.length == 1) {
+        if (i == 1) {
             throw new MissingInputException("description", arr[0]);
         } else if (arr.length - 1 == i) {
             throw new MissingInputException("date", arr[0]);
@@ -171,7 +171,7 @@ public class Parser {
         while (i < arr.length && !arr[i].equals("/at")) {
             i++;
         }
-        if (arr.length == 1) {
+        if (i == 1) {
             throw new MissingInputException("description", arr[0]);
         } else if (arr.length - 1 == i) {
             throw new MissingInputException("date", arr[0]);

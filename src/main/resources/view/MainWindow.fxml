@@ -10,7 +10,7 @@
     <children>
         <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="400.0" AnchorPane.bottomAnchor="1.0" />
         <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" AnchorPane.bottomAnchor="1.0"  AnchorPane.rightAnchor="20.0"/>
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="630.0" prefWidth="575.0" vvalue="1.0" >
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="630.0" prefWidth="575.0" vvalue="1.0" AnchorPane.rightAnchor="1.0">
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="630.0" prefWidth="575.0" />
             </content>

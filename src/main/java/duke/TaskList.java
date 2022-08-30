@@ -30,6 +30,7 @@ public class TaskList {
             return ("No tasks in list, great job!");
         }
         resetReplySupply();
+        replySupply.append("Here are the tasks in your list:\n");
         while (i < list.size()) {
             String currLine = String.format("%d. %s \n", i + 1, list.get(i));
             replySupply.append(currLine);

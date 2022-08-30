@@ -10,7 +10,7 @@ public class InvalidDateException extends DukeException {
      *
      */
     public InvalidDateException() {
-        super();
+        super("Date input invalid, please follow: dd/MM/yyyy HHmm");
     }
 
     /**
