@@ -48,5 +48,4 @@ public abstract class Task {
      * @return String for storage in file.
      */
     public abstract String toFileString();
-
 }

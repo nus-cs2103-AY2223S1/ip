@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Ui class stores the logic behind the User interface.
  */
 public class Ui {
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Initialises a Ui object.

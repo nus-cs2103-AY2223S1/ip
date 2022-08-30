@@ -1,10 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-import java.io.IOException;
 
 /**
  * Command that tells the App the terminate
@@ -22,7 +23,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * @return 
+     * @return
      */
     @Override
     public boolean isExit() {

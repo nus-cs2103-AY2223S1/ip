@@ -15,10 +15,10 @@ public abstract class Command {
      * @param ui Ui object for decorative purposes.
      * @param storage Storage of app information.
      */
-    abstract public String execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * @return boolean of whether the app should stop running.
      */
-    abstract public boolean isExit();
+    public abstract boolean isExit();
 }

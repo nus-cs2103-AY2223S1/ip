@@ -14,7 +14,7 @@ import java.util.Scanner;
  * Storage is used to store and read Tasks.
  */
 public class Storage {
-    String filepath;
+    private String filepath;
     private ArrayList<Task> tasks = new ArrayList<>();
 
     Storage(String filepath) {
@@ -67,7 +67,10 @@ public class Storage {
                 case "E":
                     task = new Event(data[2], data[3]);
                     break;
+                default:
+                    System.out.println("something is wrong with your file storage");
                 }
+
                 if (task == null) {
                     throw new DukeException("task is null");
                 }
@@ -78,7 +81,7 @@ public class Storage {
             }
         } catch (FileNotFoundException | DukeException e) {
             try {
-                (new File(filepath)).createNewFile();
+                new File(filepath).createNewFile();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
