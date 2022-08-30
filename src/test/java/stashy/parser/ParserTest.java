@@ -11,6 +11,9 @@ import java.util.regex.Matcher;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Test class for Parser.
+ */
 public class ParserTest {
     @Test
     public void todoRegexTest() {
