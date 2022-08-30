@@ -55,27 +55,36 @@ public class Duke {
             String keyword = parser.getKeyword(input);
             
             try {
-                if (keyword.equals("bye")) {
-                    ui.bye();
-                    return;
-                } else if (keyword.equals("list")) {
-                    ui.printAllTasks(tasks.getTaskList());
-                } else if (keyword.equals("todo")) {
-                    createToDos(words);
-                } else if (keyword.equals("deadline")) {
-                    createDeadlines(words);
-                } else if (keyword.equals("event")) {
-                    createEvents(words);
-                } else if (keyword.equals("mark")) {
-                    mark(words);
-                } else if (keyword.equals("unmark")) {
-                    unmark(words);
-                } else if (keyword.equals("delete")) {
-                    deleteTask(words);
-                } else if (keyword.equals("find")) {
-                    findTask(words);
-                } else {
-                    throw new DukeInvalidException();
+                switch (keyword) {
+                    case "bye":
+                        ui.bye();
+                        return;
+                    case "list":
+                        ui.printAllTasks(tasks.getTaskList());
+                        break;
+                    case "todo":
+                        createToDos(words);
+                        break;
+                    case "deadline":
+                        createDeadlines(words);
+                        break;
+                    case "event":
+                        createEvents(words);
+                        break;
+                    case "mark":
+                        mark(words);
+                        break;
+                    case "unmark":
+                        unmark(words);
+                        break;
+                    case "delete":
+                        deleteTask(words);
+                        break;
+                    case "find":
+                        findTask(words);
+                        break;
+                    default:
+                        throw new DukeInvalidException();
                 }
             } catch (DukeException ex) {
                 System.out.println(ex.getMessage());
