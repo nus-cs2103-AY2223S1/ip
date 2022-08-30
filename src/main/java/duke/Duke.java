@@ -38,6 +38,12 @@ public class Duke {
         return "Duke";
     }
 
+    /**
+     * Returns Duke's response to the given user's input.
+     *
+     * @param input The String representation of the user's input.
+     * @return The String representation of Duke's response.
+     */
     public String getResponse(String input) {
         while (this.ui.isActive()) {
             try {

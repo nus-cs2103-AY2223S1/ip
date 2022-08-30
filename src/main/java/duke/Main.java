@@ -10,12 +10,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Duke using FXML.
+ * Represents a GUI for Duke using FXML.
  */
 public class Main extends Application {
     private static Stage stage;
     private Duke duke = new Duke();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage stage) {
         try {
