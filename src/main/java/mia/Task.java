@@ -19,6 +19,7 @@ abstract public class Task {
 
     /**
      * Sets whether the task is completed.
+     *
      * @param completed the task status
      * @return {@code true} if the status is modified, {@code false} otherwise
      */
