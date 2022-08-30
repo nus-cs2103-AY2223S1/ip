@@ -10,11 +10,6 @@ public class TaskList {
 
     public TaskList() {
         this.taskList = new ArrayList<>();
-//        try {
-//            loadTasksFromFile();
-//        }catch (Exception e) {
-//            System.out.println(e);
-//        }
     }
 
     public void addTask(Task t)  {
@@ -37,9 +32,6 @@ public class TaskList {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
-
-
-
 
 
     public Task getTask(int taskNo) {
@@ -88,12 +80,12 @@ public class TaskList {
         for (int i = 0; i < ListLength; i++) {
             Task task = taskList.get(i);
             if (this.getTaskType(task).equals("Deadlines")) {
-                Deadlines d = (Deadlines) task;
+                Deadline d = (Deadline) task;
                 if (d.getDate().equals(date)) {
                     System.out.println(d);
                 }
             } else if (this.getTaskType(task).equals("Events")) {
-                Events e = (Events) task;
+                Event e = (Event) task;
                 if (e.getDate().equals(date)) {
                     System.out.println(e);
                 }
@@ -103,11 +95,11 @@ public class TaskList {
     
 
     public String getTaskType(Task task) {
-        if (task instanceof Deadlines) {
+        if (task instanceof Deadline) {
             return "Deadlines";
-        } else if (task instanceof Events) {
+        } else if (task instanceof Event) {
             return "Events";
-        } else if (task instanceof  ToDos) {
+        } else if (task instanceof ToDo) {
             return "ToDos";
         }
         return "";

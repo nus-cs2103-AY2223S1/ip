@@ -17,7 +17,6 @@ public class Task {
         this.isDone = false;
     }
 
-
     public String getDescription() {
         if (isDone) {
             return "[X] " + description;

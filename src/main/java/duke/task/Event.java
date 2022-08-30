@@ -2,12 +2,12 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-public class Events extends Task{
+public class Event extends Task{
 
     private  LocalDate date;
-    public Events(String description, String date){
+    public Event(String description, LocalDate date){
         super(description);
-        this.date = LocalDate.parse(date);
+        this.date = date;
     }
 
     public LocalDate getDate() {

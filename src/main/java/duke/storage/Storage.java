@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import duke.task.*;
@@ -43,19 +44,19 @@ public class Storage {
 //            System.out.println(taskType);
             if (taskType == 'T') {
                 String description = line.substring(7);
-                taskList.addTaskWithoutPrinting(new ToDos(description));
+                taskList.addTaskWithoutPrinting(new ToDo(description));
             } else if (taskType == 'D') {
                 String descriptionAndDate = line.substring(7);
                 String[] arguments  = descriptionAndDate.split("\\(");
                 String description = arguments[0];
-                String date = removeLastChar(arguments[1]);
-                taskList.addTaskWithoutPrinting(new Deadlines(description, date));
+                LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
+                taskList.addTaskWithoutPrinting(new Deadline(description, date));
             }else if (taskType == 'E') {
                 String descriptionAndDate = line.substring(7);
                 String[] arguments  = descriptionAndDate.split("\\(");
                 String description = arguments[0];
-                String date = removeLastChar(arguments[1]);
-                taskList.addTaskWithoutPrinting(new Events(description, date));
+                LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
+                taskList.addTaskWithoutPrinting(new Event(description, date));
             }
         }
         return  taskList;

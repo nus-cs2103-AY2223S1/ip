@@ -46,37 +46,37 @@ public class Parser {
             }
     }
 
-    public static Command addToDo (String[] arguments) throws EmptyDescriptionException {
+    private static Command addToDo (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
         String toDo = arguments[1];
-        return new AddCommand(new ToDos(toDo));
+        return new AddCommand(new ToDo(toDo));
     }
 
-    public static Command addDeadline (String[] arguments) throws EmptyDescriptionException {
+    private static Command addDeadline (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
 
         String[] inputs = arguments[1].split("/");
         String description = inputs[0];
-        String date = extractDateByKeyword("by",inputs[1]);
-        return new AddCommand(new Deadlines(description, date));
+        LocalDate date = LocalDate.parse(extractDateByKeyword("by",inputs[1]));
+        return new AddCommand(new Deadline(description, date));
     }
 
-    public static Command addEvent (String[] arguments) throws EmptyDescriptionException {
+    private static Command addEvent (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
 
         String[] inputs = arguments[1].split("/");
         String description = inputs[0];
-        String date = extractDateByKeyword("at",inputs[1]);
-        return new AddCommand(new Events(description, date));
+        LocalDate date = LocalDate.parse(extractDateByKeyword("at",inputs[1]));
+        return new AddCommand(new Event(description, date));
     }
 
-    public static Command deleteTask (String[] arguments) throws EmptyDescriptionException {
+    private static Command deleteTask (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -86,7 +86,7 @@ public class Parser {
     }
 
 
-    public static Command markTask (String[] arguments) throws EmptyDescriptionException {
+    private static Command markTask (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -95,7 +95,7 @@ public class Parser {
         return new markCommand(taskNo);
     }
 
-    public static Command unMarkTask (String[] arguments) throws EmptyDescriptionException {
+    private static Command unMarkTask (String[] arguments) throws EmptyDescriptionException {
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -104,12 +104,12 @@ public class Parser {
         return new unMarkCommand(taskNo);
     }
 
-    public static Command listAllTasks ()  {
+    private static Command listAllTasks ()  {
 
         return new ListCommand();
     }
 
-    public static Command listTasksOnDate (String[] arguments) throws EmptyDescriptionException{
+    private static Command listTasksOnDate (String[] arguments) throws EmptyDescriptionException{
         if (arguments.length == 1) {
             throw new EmptyDescriptionException();
         }
@@ -118,13 +118,13 @@ public class Parser {
         return new dateCommand(date);
     }
 
-    public static Command invalid ()  {
+    private static Command invalid ()  {
         return new InvalidCommand();
     }
-    public static Command exit ()  {
+    private static Command exit ()  {
         return new byeCommand();
     }
-    public static String extractDateByKeyword (String keyword, String text) {
+    private static String extractDateByKeyword (String keyword, String text) {
         String[] args = text.split(keyword);
         String date = args[1].trim();
         return date;
