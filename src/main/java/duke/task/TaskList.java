@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import duke.DukeException;
@@ -21,10 +22,20 @@ public class TaskList implements Iterable<Task> {
     /**
      * Constructs a new {@code TaskList} with given tasks.
      *
-     * @param tasks The tasks to add to the list.
+     * @param tasks The tasks to initialize the {@code TaskList} with.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    /**
+     * Constructs a new {@code TaskList} with given tasks.
+     *
+     * @param tasks The tasks to initialize the {@code TaskList} with.
+     */
+    public TaskList(Task... tasks) {
+        this.tasks = new ArrayList<>();
+        this.tasks.addAll(Arrays.asList(tasks));
     }
 
     /**
