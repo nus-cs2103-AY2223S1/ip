@@ -1,7 +1,6 @@
 package DukeBot.command;
 
 import DukeBot.DukeException;
-import DukeBot.Task;
 import DukeBot.TaskList;
 import DukeBot.Ui;
 

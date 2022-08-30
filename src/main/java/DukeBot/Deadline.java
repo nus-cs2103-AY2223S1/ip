@@ -1,9 +1,8 @@
 package DukeBot;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import java.time.LocalDate;
 
 /**
  * Encapsulates the Deadline sub-class of Task class.
