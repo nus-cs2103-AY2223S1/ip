@@ -35,7 +35,7 @@ public class TaskList {
             if (i == 0) {
                 newText += s;
             } else {
-                newText +='\n' + s;
+                newText += '\n' + s;
             }
         }
         return newText;
