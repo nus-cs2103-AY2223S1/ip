@@ -18,9 +18,10 @@ public abstract class Command {
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
+     * @return The String that duke says.
      * @throws DukeException throws if there is an error.
      */
-    public abstract void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    public abstract String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 
     /**
      * Returns true if the command is an ExitCommand.

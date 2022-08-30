@@ -30,16 +30,18 @@ public class AddCommand extends Command {
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
+     * @return The String that Duke will say.
      * @throws DukeException throws if there is an error.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         taskList.addTask(task);
         storage.saveFile(taskList);
         String message = "Got it. I've added this task:\n"
                 + "\t" + task
                 + taskList.tasksLeft();
         ui.formatMessage(message);
+        return message;
     }
 
     /**

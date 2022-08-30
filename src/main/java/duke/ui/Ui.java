@@ -52,9 +52,9 @@ public class Ui {
      *
      * @param message The message that needs to be formatted.
      */
-    public void formatMessage(String message) {
-        System.out.println("Duke says:");
-        System.out.println(message);
+    public String formatMessage(String message) {
+        String output = "Duke says:\n";
+        return output + message;
     }
 
     /**
@@ -74,8 +74,8 @@ public class Ui {
      *
      * @param error The error that is caught.
      */
-    public void showError(String error) {
-        System.out.println(error);
+    public String showError(Exception error) {
+        return "Duke sighs:\n" + error.toString();
     }
 
     /**
@@ -90,14 +90,15 @@ public class Ui {
      *
      * @param arrayList The list of tasks that the user has.
      */
-    public void displayList(ArrayList<Task> arrayList) {
+    public String displayList(ArrayList<Task> arrayList) {
         int i = 1;
         String display = "Here are the tasks in your list: ";
         for (Task task : arrayList) {
             display += "\n" + i + ". " + task;
             i++;
         }
-        formatMessage(display);
+        return formatMessage(display);
+
     }
 
     /**
@@ -105,13 +106,13 @@ public class Ui {
      *
      * @param arrayList The arraylist which tracks the task.
      */
-    public void displayMatchingList(ArrayList<Task> arrayList) {
+    public String displayMatchingList(ArrayList<Task> arrayList) {
         int i = 1;
         String display = "Here are the matching tasks in your list: ";
         for (Task task : arrayList) {
             display += "\n" + i + ". " + task;
             i++;
         }
-        formatMessage(display);
+        return formatMessage(display);
     }
 }

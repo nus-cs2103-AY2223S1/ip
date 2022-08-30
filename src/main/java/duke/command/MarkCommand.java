@@ -31,17 +31,18 @@ public class MarkCommand extends Command {
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
+     * @return The String that duke says.
      * @throws DukeException throws if there is an error.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         if (index >= taskList.numberOfTasks()) {
             throw new InvalidArgumentException(Commands.Mark);
         }
         Task task = taskList.getTask(index);
         task.markAsDone();
         storage.saveFile(taskList);
-        ui.formatMessage("Nice! I've marked this task as done:\n" + task);
+        return ui.formatMessage("Nice! I've marked this task as done:\n" + task);
     }
 
     /**

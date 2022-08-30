@@ -35,28 +35,12 @@ public class Duke {
         }
     }
 
-    /**
-     * The main loop that allows Duke to run.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(ui, storage, tasks);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.toString());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(ui, storage, tasks);
+        } catch (DukeException e) {
+            return ui.showError(e);
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
     }
 }
