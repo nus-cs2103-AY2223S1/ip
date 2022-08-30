@@ -1,8 +1,9 @@
 package jenny.tasks;
 
+import java.time.LocalDate;
+
 import jenny.exceptions.JennyException;
 
-import java.time.LocalDate;
 
 /**
  * Represents an event task to complete.

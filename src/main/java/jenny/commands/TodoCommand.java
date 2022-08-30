@@ -1,5 +1,7 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
@@ -7,7 +9,6 @@ import jenny.tasks.TaskList;
 import jenny.tasks.TodoTask;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Add a new task to the instance of {@link TaskList}.
@@ -17,8 +18,8 @@ import java.util.ArrayList;
  * @author Deon
  */
 public class TodoCommand extends Command {
-    private static final String MESSAGE_SCOPE = TodoCommand.class.getSimpleName();
     public static final String COMMAND = "todo";
+    private static final String MESSAGE_SCOPE = TodoCommand.class.getSimpleName();
     private static final String ADD_TODO_SUCCESS = "Got it. I've added this task:";
 
     /**
@@ -47,9 +48,9 @@ public class TodoCommand extends Command {
             tasks.add(task);
             tasks.save(storage);
             ui.print(new String[]{
-                    ADD_TODO_SUCCESS,
-                    "  " + task,
-                    "Now you have " + tasks.size() + " tasks in the list."
+                ADD_TODO_SUCCESS,
+                "  " + task,
+                "Now you have " + tasks.size() + " tasks in the list."
             });
         } catch (JennyException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());

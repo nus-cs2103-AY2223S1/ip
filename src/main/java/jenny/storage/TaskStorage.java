@@ -1,12 +1,5 @@
 package jenny.storage;
 
-import jenny.exceptions.JennyException;
-import jenny.tasks.Task;
-import jenny.tasks.DeadlineTask;
-import jenny.tasks.EventTask;
-import jenny.tasks.TodoTask;
-import jenny.util.Validator;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,6 +10,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+
+import jenny.exceptions.JennyException;
+import jenny.tasks.DeadlineTask;
+import jenny.tasks.EventTask;
+import jenny.tasks.Task;
+import jenny.tasks.TodoTask;
+import jenny.util.Validator;
+
 
 /**
  * Handles storage for an {@link ArrayList ArrayList<}{@link Task Task>}.
@@ -113,8 +114,8 @@ public class TaskStorage<T> extends Storage<T> {
                             task.unmark();
                         }
                     } catch (JennyException e) {
-                        throw new JennyException(MESSAGE_SCOPE, String.format("Tried to parse [%s] as a date. Failed Reason: %s",
-                                data[2], e.getMessage()));
+                        throw new JennyException(MESSAGE_SCOPE,
+                            String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
                     }
                     break;
 
@@ -129,8 +130,8 @@ public class TaskStorage<T> extends Storage<T> {
                             task.unmark();
                         }
                     } catch (JennyException e) {
-                        throw new JennyException(MESSAGE_SCOPE, String.format("Tried to parse [%s] as a date. Failed Reason: %s",
-                                data[2], e.getMessage()));
+                        throw new JennyException(MESSAGE_SCOPE,
+                            String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
                     }
                     break;
 

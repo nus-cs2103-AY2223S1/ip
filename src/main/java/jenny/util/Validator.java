@@ -1,11 +1,12 @@
 package jenny.util;
 
-import jenny.exceptions.JennyException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import jenny.exceptions.JennyException;
+
 
 /**
  * Handles input validation for the JennyBot application.
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
 public class Validator {
     private static final String MESSAGE_SCOPE = Validator.class.getSimpleName();
     private static final Pattern VALID_DATE_PATTERN = Pattern.compile(
-            "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$"
+        "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$"
     );
     private static final String ERROR_INVALID_DATE = "Date is not in yyyy-MM-dd format.";
 

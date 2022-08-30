@@ -1,9 +1,10 @@
 package jenny.tasks;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 
-import java.util.ArrayList;
 
 /**
  * Handles basic CRUD operations for a list of {@link Task}.

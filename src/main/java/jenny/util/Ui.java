@@ -33,8 +33,8 @@ public final class Ui {
      */
     public void greet() {
         print(new String[]{
-                "Hello! I'm JennyBot",
-                "What can I do for you?"
+            "Hello! I'm JennyBot",
+            "What can I do for you?"
         });
     }
 

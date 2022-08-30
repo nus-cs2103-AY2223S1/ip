@@ -1,10 +1,20 @@
 package jenny.util;
 
-import jenny.commands.*;
-import jenny.exceptions.JennyException;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import jenny.commands.ByeCommand;
+import jenny.commands.Command;
+import jenny.commands.DeadlineCommand;
+import jenny.commands.DeleteCommand;
+import jenny.commands.EventCommand;
+import jenny.commands.InvalidCommand;
+import jenny.commands.ListCommand;
+import jenny.commands.MarkCommand;
+import jenny.commands.TodoCommand;
+import jenny.commands.UnmarkCommand;
+import jenny.exceptions.JennyException;
+
 
 /**
  * Handles making sense of user input.
@@ -16,7 +26,7 @@ import java.util.regex.Pattern;
 public class Parser {
     private static final String MESSAGE_SCOPE = Parser.class.getSimpleName();
     private static final Pattern VALID_COMMAND = Pattern.compile(
-            "(?<command>\\S+)(?<arguments>.*)?");
+        "(?<command>\\S+)(?<arguments>.*)?");
 
     /**
      * Parse the provided string into valid commands and arguments.

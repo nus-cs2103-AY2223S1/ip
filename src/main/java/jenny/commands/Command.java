@@ -1,12 +1,13 @@
 package jenny.commands;
 
+import java.util.ArrayList;
+
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Abstract class for all other different types of commands.
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * @author Deon
  */
 public abstract class Command {
-    protected String arguments;
+    protected final String arguments;
 
     /**
      * Constructor for an instance of command.

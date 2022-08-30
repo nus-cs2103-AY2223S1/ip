@@ -9,6 +9,7 @@ package jenny.exceptions;
  */
 public class JennyException extends RuntimeException {
     private final String messageScope;
+
     /**
      * Creates an instance of the exception.
      *
@@ -21,6 +22,7 @@ public class JennyException extends RuntimeException {
 
     /**
      * Returns the scope of where the exception was thrown.
+     *
      * @return the scope of where the exception was thrown.
      */
     public String getThrownFrom() {

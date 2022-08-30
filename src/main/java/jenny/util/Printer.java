@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author Deon
  */
 public final class Printer {
-    private final PrintStream out;
     private static final String UNDERSCORE = "_";
     private static final int WINDOW_LENGTH = 60;
+    private final PrintStream out;
 
     /**
      * Creates a new instance of a printer using the provided {@link PrintStream}.
