@@ -15,7 +15,7 @@ class Parser {
      * @param commandKey keyword or the first word of the command.
      * @param command A function to be executed when command is called.
      */
-    public void addCommand (String commandKey, Command command) {
+    public void addCommand(String commandKey, Command command) {
         commands.put(commandKey, command);
     }
 
@@ -25,10 +25,10 @@ class Parser {
      * @param input command made of commandKey and argument.
      * @throws DukeException during execution of the command or if commandKey does not exist.
      */
-    public void executeCommand (String input) throws DukeException {
-        String arr[] = input.split(" ", 2);
+    public void executeCommand(String input) throws DukeException {
+        String[] arr = input.split(" ", 2);
         if (!commands.containsKey(arr[0])) {
-            throw DukeException.invalidCommand;
+            throw DukeException.INVALIDCOMMAND;
         }
         Command command = commands.get(arr[0]);
         if (arr.length < 2) {

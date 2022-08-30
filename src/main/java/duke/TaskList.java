@@ -14,7 +14,7 @@ class TaskList {
      *
      * @param task Task to be added.
      */
-    public void addTask (Task task) {
+    public void addTask(Task task) {
         listOfTasks.add(task);
     }
 
@@ -33,9 +33,9 @@ class TaskList {
      * @param i position of the task to be deleted.
      * @throws DukeException when the task position is non-existent.
      */
-    public void deleteTask (int i) throws DukeException {
+    public void deleteTask(int i) throws DukeException {
         if (listOfTasks.size() <= i) {
-            throw DukeException.idTooBig;
+            throw DukeException.IDTOOBIG;
         }
 
         listOfTasks.remove(i);
@@ -48,9 +48,9 @@ class TaskList {
      * @return the task at position.
      * @throws DukeException when the task position is non-existent.
      */
-    public Task getTask (int i) throws DukeException {
+    public Task getTask(int i) throws DukeException {
         if (listOfTasks.size() <= i) {
-            throw DukeException.idTooBig;
+            throw DukeException.IDTOOBIG;
         }
 
         return listOfTasks.get(i);

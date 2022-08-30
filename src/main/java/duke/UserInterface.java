@@ -23,6 +23,6 @@ class UserInterface {
      * @return line read from CLI.
      */
     public static String read() {
-            return scanner.nextLine();
+        return scanner.nextLine();
     }
 }
