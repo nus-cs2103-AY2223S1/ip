@@ -48,7 +48,8 @@ public class Duke {
                 Action action = Action.actionParser(input);
                 action.resolve(taskList);
             } catch (UnknownActionException | EmptyTaskNameException | InvalidFormattingException |
-                    EmptyTimingException | IllegalArgumentException e) {
+                    EmptyTimingException | IllegalArgumentException | InvalidDateException |
+                    InvalidTimeException e) {
                 System.out.println(e);
             }
 

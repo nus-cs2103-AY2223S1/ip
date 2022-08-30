@@ -4,11 +4,23 @@ I gotchu fam. Your task has been added:
   [T][ ] read book
 You have 1 task(s). Stop procrastinating bro.
 I gotchu fam. Your task has been added:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: 1 Jan 2022)
 You have 2 task(s). Stop procrastinating bro.
 I gotchu fam. Your task has been added:
-  [E][ ] kahoot night (at: Next Thursday 9:00-11:00pm)
+  [D][ ] return book (by: 2 Feb 2022 20:00)
 You have 3 task(s). Stop procrastinating bro.
+I gotchu fam. Your task has been added:
+  [E][ ] kahoot night (at: 3 Mar 2022 18:00-20:00)
+You have 4 task(s). Stop procrastinating bro.
+I gotchu fam. Your task has been added:
+  [E][ ] kahoot night (at: 12 Dec 2022)
+You have 5 task(s). Stop procrastinating bro.
+Here are your tasks. You better start now:
+1.[T][ ] read book
+2.[D][ ] return book (by: 1 Jan 2022)
+3.[D][ ] return book (by: 2 Feb 2022 20:00)
+4.[E][ ] kahoot night (at: 3 Mar 2022 18:00-20:00)
+5.[E][ ] kahoot night (at: 12 Dec 2022)
 EmptyTaskNameException: You can't just say todo without any description.
 EmptyTaskNameException: You can't just say deadline without any description.
 EmptyTaskNameException: You can't just say event without any description.
@@ -18,26 +30,41 @@ EmptyTaskNameException: You can't just say delete without any description.
 Nice one lah, finally doing your work.
 [T][X] read book
 Nice one lah, finally doing your work.
-[D][X] return book (by: Sunday)
+[D][X] return book (by: 1 Jan 2022)
 Nice one lah, finally doing your work.
-[E][X] kahoot night (at: Next Thursday 9:00-11:00pm)
+[D][X] return book (by: 2 Feb 2022 20:00)
 Here are your tasks. You better start now:
 1.[T][X] read book
-2.[D][X] return book (by: Sunday)
-3.[E][X] kahoot night (at: Next Thursday 9:00-11:00pm)
+2.[D][X] return book (by: 1 Jan 2022)
+3.[D][X] return book (by: 2 Feb 2022 20:00)
+4.[E][ ] kahoot night (at: 3 Mar 2022 18:00-20:00)
+5.[E][ ] kahoot night (at: 12 Dec 2022)
 What happened bro.
 [T][ ] read book
 What happened bro.
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: 1 Jan 2022)
 What happened bro.
-[E][ ] kahoot night (at: Next Thursday 9:00-11:00pm)
+[D][ ] return book (by: 2 Feb 2022 20:00)
 java.lang.IllegalArgumentException: Wrong task number lah.
 java.lang.IllegalArgumentException: Wrong task number lah.
 java.lang.IllegalArgumentException: Wrong task number lah.
 java.lang.NumberFormatException: Write properly leh. Your number format is wrong.
+java.lang.NumberFormatException: Write properly leh. Your number format is wrong.
+java.lang.NumberFormatException: Write properly leh. Your number format is wrong.
 UnknownActionException: I have no clue what you're trying to do bro.
 EmptyTimingException: You have not set a timing for your deadline buddy.
+EmptyTimingException: You have not set a timing for your deadline buddy.
+InvalidFormattingException: Wrong formatting for a deadline bro.
+InvalidFormattingException: Wrong formatting for a deadline bro.
 InvalidFormattingException: Wrong formatting for a deadline bro.
 EmptyTimingException: You have not set a timing for your event buddy.
+EmptyTimingException: You have not set a timing for your event buddy.
 InvalidFormattingException: Wrong formatting for a event bro.
+InvalidDateException: Invalid date bro. You need to write the date as DD/MM/YYYY.
+InvalidDateException: Invalid date bro. You need to write the date as DD/MM/YYYY.
+InvalidTimeException: Invalid time bro. You need to write the time as a 24-hour time (1600). For events, you are required to give the start and end time (1400-1600)
+InvalidFormattingException: Wrong formatting for a deadline bro.
+InvalidTimeException: Invalid time bro. You need to write the time as a 24-hour time (1600). For events, you are required to give the start and end time (1400-1600)
+InvalidTimeException: Invalid time bro. You need to write the time as a 24-hour time (1600). For events, you are required to give the start and end time (1400-1600)
+InvalidTimeException: Invalid time bro. You need to write the time as a 24-hour time (1600). For events, you are required to give the start and end time (1400-1600)
 Bye bro. See you soon.

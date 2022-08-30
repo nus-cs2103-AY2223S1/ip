@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -14,7 +15,7 @@ public class TaskList {
 
     public static void addTaskToTaskListText(String taskDescription) {
         try {
-            Files.writeString(TASKLIST_PATH, taskDescription);
+            Files.writeString(TASKLIST_PATH, taskDescription, StandardOpenOption.APPEND);
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -26,21 +27,39 @@ public class TaskList {
         try {
             BufferedReader reader = Files.newBufferedReader(TASKLIST_PATH);
             String nextLine = reader.readLine();
+            System.out.println("problem:" + nextLine);
             Task nextTask;
 
             while (nextLine != null) {
-                String[] actionDescription = nextLine.split(", ");
-                boolean isFinished = actionDescription[1].equals("finished");
-                String taskName = actionDescription[2];
+                String[] taskDescription = nextLine.split(", ");
+                boolean isFinished = taskDescription[1].equals("finished");
+                String taskName = taskDescription[2];
 
-                if (actionDescription[0].equals("[T]")) { // Todo task
+                if (taskDescription[0].equals("[T]")) { // Todo task
                     nextTask = new Task.ToDo(taskName);
                 } else { // Timed task
-                    String timing = actionDescription[3];
-                    if (actionDescription[0].equals("[D]")) { // Deadline task
-                        nextTask = new TimedTask.Deadline(taskName, timing);
+                    String dateAsString = taskDescription[3];
+                    LocalDate date = LocalDate.parse(dateAsString);
+
+                    if (taskDescription[0].equals("[D]")) { // Deadline task
+                        String deadlineTimeAsString = taskDescription[4];
+                        LocalTime deadlineTime = deadlineTimeAsString.equals("no time given")
+                                             ? null
+                                             : LocalTime.parse(deadlineTimeAsString);
+                        nextTask = new TimedTask.Deadline(taskName, date, deadlineTime);
                     } else { // Event task
-                        nextTask = new TimedTask.Event(taskName, timing);
+                        LocalTime eventStartTime;
+                        LocalTime eventEndTime;
+
+                        if (taskDescription[4].equals("no time given")) {
+                            eventStartTime = null;
+                            eventEndTime = null;
+                        } else {
+                            eventStartTime = LocalTime.parse(taskDescription[4]);
+                            eventEndTime = LocalTime.parse(taskDescription[5]);
+                        }
+
+                        nextTask = new TimedTask.Event(taskName, date, eventStartTime, eventEndTime);
                     }
                 }
 
@@ -60,13 +79,13 @@ public class TaskList {
     }
 
     public static void updateTaskListText(ArrayList<Task> taskList) {
-        String newTaskListText = "";
+        StringBuilder newTaskListText = new StringBuilder();
 
         for (Task task: taskList) {
-            newTaskListText += task.showTaskListTextDescription();
+            newTaskListText.append(task.showTaskListTextDescription());
         }
         try {
-            Files.writeString(TASKLIST_PATH, newTaskListText);
+            Files.writeString(TASKLIST_PATH, newTaskListText.toString());
         } catch (IOException e) {
             System.out.println(e);
         }
