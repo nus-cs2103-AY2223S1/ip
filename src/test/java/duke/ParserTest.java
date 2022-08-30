@@ -1,14 +1,18 @@
 package duke;
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.InvalidCommand;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.InvalidCommand;
+
+
 
 class ParserTest {
     @Test
