@@ -33,13 +33,12 @@ public class MarkCommand extends Command {
      * @throws DukeException If index < 0 or index > number of tasks in tasklist.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             int i = Integer.parseInt(this.index);
             Task task = tasks.get(i - 1);
             task.complete();
-            System.out.println("Okay, I have marked this task as done:");
-            System.out.println(task);
+            return "Okay, I have marked this task as done:\n" + task + "\n";
         } catch (IndexOutOfBoundsException e) {
 
             throw new InvalidInputException(this.index, "mark");

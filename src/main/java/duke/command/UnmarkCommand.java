@@ -33,15 +33,13 @@ public class UnmarkCommand extends Command {
      * @throws DukeException If index < 0 or index > number of tasks in task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             int i = Integer.parseInt(this.index);
             Task task = tasks.get(i - 1);
             task.undo();
-            System.out.println("Okay, I have marked this task as not yet done:");
-            System.out.println(task);
+            return "Okay, I have marked this task as not yet done:\n" + task;
         } catch (IndexOutOfBoundsException e) {
-
             throw new InvalidInputException(this.index, "unmark");
         }
     }

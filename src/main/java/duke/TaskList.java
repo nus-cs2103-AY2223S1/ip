@@ -12,6 +12,7 @@ import duke.task.Task;
  */
 public class TaskList {
     private ArrayList<Task> list;
+    private StringBuilder replySupply = new StringBuilder();
 
     /**
      * Constructor for TaskList.
@@ -23,15 +24,18 @@ public class TaskList {
     /**
      * Prints the task list.
      */
-    public void printList() {
+    public String printList() {
         int i = 0;
         if (list.size() == 0) {
-            System.out.println("No tasks in list, great job!");
+            return ("No tasks in list, great job!");
         }
+        resetReplySupply();
         while (i < list.size()) {
-            System.out.println(i + 1 + ". " + list.get(i));
+            String currLine = String.format("%d. %s \n", i + 1, list.get(i));
+            replySupply.append(currLine);
             i++;
         }
+        return replySupply.toString();
     }
 
     /**
@@ -59,13 +63,14 @@ public class TaskList {
      *
      * @param task The task to be added.
      */
-    public void add(Task task, Boolean bool) {
+    public String add(Task task, Boolean bool) {
         this.list.add(task);
+        resetReplySupply();
         if (bool) {
-            System.out.println("Got it. I've added this task:");
-            System.out.println(task);
-            System.out.println("Now you have " + this.list.size() + " tasks in the list");
+            replySupply.append("Got it. I've added this task:\n" + task.toString() + "\n");
+            replySupply.append("Now you have " + this.list.size() + " tasks in the list\n");
         }
+        return replySupply.toString();
     }
 
     /**
@@ -74,17 +79,22 @@ public class TaskList {
      * @param num The index of the task to be removed.
      * @throws DukeException if index > size of list or index <= 0.
      */
-    public void removeTask(String num) throws DukeException {
+    public String removeTask(String num) throws DukeException {
         int index = Integer.parseInt(num);
+        resetReplySupply();
         try {
             Task task = list.get(index - 1);
-            System.out.println("Ok, I have removed this task:");
-            System.out.println(task);
+            replySupply.append("Ok, I have removed this task:\n" + task.toString() + "\n");
             list.remove(index - 1);
-            System.out.println("You now have " + list.size() + " tasks left in the list");
+            replySupply.append("You now have " + list.size() + " tasks left in the list\n");
+            return replySupply.toString();
         } catch (NumberFormatException e) {
             throw new InvalidInputException(num, "delete");
         }
+    }
+
+    private void resetReplySupply() {
+        replySupply.delete(0, replySupply.length());
     }
 
 }

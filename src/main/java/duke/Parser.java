@@ -82,7 +82,7 @@ public class Parser {
             }
             return new FindCommand(String.join(" ", arguments));
         } else {
-            throw new UnknownCommand();
+            return new UnknownCommand();
         }
     }
 

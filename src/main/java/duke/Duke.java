@@ -10,27 +10,27 @@ public class Duke {
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
+    private Parser parser;
 
     /**
      * Constructor for Duke.
      *
-     * @param filePath The file path where file to read from /write to is stored.
+     * The file path where file to read from /write to is stored.
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
         storage = new Storage();
         tasks = new TaskList();
         storage.loadStorage(filePath, tasks);
-
+        parser = new Parser();
     }
 
     public static void main(String[] args) {
-        new Duke(Duke.filePath).run();
+        new Duke().run();
     }
 
     private void run() {
         ui.showWelcome();
-        Parser parser = new Parser();
 
 
         boolean isExit = false;
@@ -38,7 +38,8 @@ public class Duke {
             String fullInput = ui.readCommand();
             try {
                 Command command = parser.parse(fullInput);
-                command.execute(tasks, ui, storage);
+                String reply = command.execute(tasks, ui, storage);
+                Ui.printString(reply);
                 ui.printBlankLine();
                 isExit = command.isExit();
             } catch (DukeException e) {
@@ -46,6 +47,15 @@ public class Duke {
             }
         }
         storage.writeToTaskList(filePath, tasks);
-        System.out.println("Bye. Hope to see you again soon!");
     }
+
+    public String getResponse(String input) {
+        try {
+            return parser.parse(input).execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
+
+    }
+
 }

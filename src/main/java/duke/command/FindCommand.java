@@ -30,18 +30,19 @@ public class FindCommand extends Command {
      * @param storage The storage location of the list file in the system.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         int count = 1;
-        System.out.println("Here are the matching tasks in your list:");
+        String result = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < tasks.getsize(); i++) {
             Task task = tasks.get(i);
             if (task.getDesc().contains(this.keywords)) {
-                System.out.println(count + ". " + task);
+                result += String.format("%d. %s\n", count, task);
                 count++;
             }
         }
         if (count == 1) {
-            System.out.println("Oops, no tasks were found with: " + keywords);
+            return String.format("Oops, no tasks were found with: %s", keywords);
         }
+        return result;
     }
 }

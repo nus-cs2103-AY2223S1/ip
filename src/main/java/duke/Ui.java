@@ -27,7 +27,7 @@ public class Ui {
      * Prints a line to separate commands
      */
     public void printBlankLine() {
-        System.out.println("---------------------------------------------");
+        System.out.println("-------------------------------------------------");
     }
 
     /**
@@ -40,6 +40,10 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+    }
+
+    public static void printString(String s) {
+        System.out.println(s);
     }
 
 }

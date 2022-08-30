@@ -36,13 +36,15 @@ public class DeleteCommand extends Command {
      * @throws DukeException If index < 0 or index > number of tasks in tasklist.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             int i = Integer.parseInt(this.index);
             Task task = tasks.get(i - 1);
-            tasks.removeTask(this.index);
+            String reply = tasks.removeTask(this.index);
+            return reply;
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidInputException(this.index, "mark");
+            throw new InvalidInputException(this.index, "delete");
         }
+
     }
 }
