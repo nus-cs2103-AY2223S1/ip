@@ -38,6 +38,12 @@ abstract public class Task {
         return true;
     }
 
+    /**
+     * Determines whether a {@code Task}'s title matches a given query.
+     *
+     * @param query The query to be word-matched against the title
+     * @return {@code true} if the task matches, {@code false} otherwise
+     */
     public boolean matches(String query) {
         final String[] queryWords = query.toLowerCase().split("\\s");
         for (String word : queryWords) {

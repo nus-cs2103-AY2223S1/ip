@@ -123,6 +123,12 @@ public class TaskManager {
         }
     }
 
+    /**
+     * Searches all tasks for titles matching the given query.
+     *
+     * @param query The query to be word-matched against the task titles
+     * @return A {@code String} representation of the tasks that matched the given query
+     */
     public String search(String query) {
         final List<Task> matches = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
