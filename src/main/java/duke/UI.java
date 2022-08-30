@@ -5,11 +5,12 @@ public class UI {
     private static final String horizontalLine = "____________________________________________________________";
 
 
-    public void greet(){
+    public String greet(){
         String greeting = "Hello! I'm Duke \n" 
                         + "What can I do for you? \n" ;
         
         encapsulateMessage(greeting);
+        return greeting;
     }
 
     public void exit(){
