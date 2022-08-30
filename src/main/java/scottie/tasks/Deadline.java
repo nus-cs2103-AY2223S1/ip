@@ -1,8 +1,8 @@
 package scottie.tasks;
 
-import scottie.common.DateTimeUtil;
-
 import java.time.temporal.TemporalAccessor;
+
+import scottie.common.DateTimeUtil;
 
 /**
  * Encapsulates a task which needs to be done by a certain date and time.

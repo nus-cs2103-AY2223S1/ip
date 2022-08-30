@@ -1,12 +1,12 @@
 package scottie.instructions;
 
+import java.time.temporal.TemporalAccessor;
+import java.util.Map;
+
 import scottie.common.DateTimeUtil;
 import scottie.tasks.Deadline;
 import scottie.tasks.TaskList;
 import scottie.ui.Ui;
-
-import java.time.temporal.TemporalAccessor;
-import java.util.Map;
 
 /**
  * Encapsulates the deadline instruction which is used to

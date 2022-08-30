@@ -1,13 +1,15 @@
 package scottie.instruction;
 
-import org.junit.jupiter.api.Test;
-import scottie.instructions.Instruction;
-import scottie.instructions.InvalidCommandException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import scottie.instructions.Instruction;
+import scottie.instructions.InvalidCommandException;
+
 
 public class InstructionTest {
     @Test

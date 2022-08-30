@@ -1,10 +1,10 @@
 package scottie.instructions;
 
+import java.util.Map;
+
 import scottie.tasks.TaskList;
 import scottie.tasks.Todo;
 import scottie.ui.Ui;
-
-import java.util.Map;
 
 /**
  * Encapsulates the todo instruction which is used to

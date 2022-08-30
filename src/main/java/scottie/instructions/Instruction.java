@@ -1,10 +1,10 @@
 package scottie.instructions;
 
-import scottie.tasks.TaskList;
-import scottie.ui.Ui;
-
 import java.util.Map;
 import java.util.Objects;
+
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
 
 /**
  * Encapsulates an instruction from the user which when executed
