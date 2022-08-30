@@ -1,3 +1,11 @@
+package iana.command;
+
+import iana.exception.IanaException;
+import iana.main.Storage;
+import iana.main.TaskList;
+import iana.main.Ui;
+import iana.tasks.Task;
+
 public class DeleteCommand extends Command {
     private String taskNum;
     

@@ -1,3 +1,7 @@
+package iana.tasks;
+
+import iana.exception.IanaException;
+
 public class Task {
     protected final String task;
     protected final String taskType;
