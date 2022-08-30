@@ -1,5 +1,18 @@
 package duke;
+
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 /**
  * Duke is a program that helps uses keep track of their tasks.
@@ -15,12 +28,12 @@ public class Duke {
         EVENT
     }
 
+
     /**
      * Constructor for Duke.
-     *
-     * @param filePath string for path for file to read and write task list from
      */
-    public Duke(String filePath) {
+    public Duke() {
+        String filePath = "data/duke.txt";
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -30,6 +43,7 @@ public class Duke {
             tasks = new TaskList();
         }
     }
+
 
     /**
      * Executes the program.
@@ -60,7 +74,26 @@ public class Duke {
 
     }
 
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        if (input.equals("bye")) {
+            String message = "";
+            try {
+                storage.save(tasks);
+                message = Parser.parse(input, tasks);
+            } catch (DukeException e) {
+                message = e.toString();
+            }
+            return message;
+        } else {
+            try {
+                return Parser.parse(input, tasks);
+            } catch (DukeException e) {
+                return e.toString();
+            }
+        }
     }
 }

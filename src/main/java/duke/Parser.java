@@ -13,46 +13,55 @@ public class Parser {
      * @param tasks the TaskList for current Duke instance to be modified.
      * @throws DukeException wrong input.
      */
-    public static void parse(String command, TaskList tasks) throws DukeException {
+    public static String parse(String command, TaskList tasks) throws DukeException {
         // user wants to display list
         if (command.equals("list")) {
-            ui.printMessage(tasks.toString());
+            return tasks.toString();
 
         // user wants to mark certain task as done
         } else if (command.startsWith("mark")) {
             String str = command.replace("mark ", "");
             int index = Integer.valueOf(str);
             tasks.mark(index);
-            ui.printMessage("Nice! I've marked this task as done:\n" + tasks.getString(index));
+            return "Nice! I've marked this task as done:\n" + tasks.getString(index);
 
         // user wants to unmark certain tasks to not done
         } else if (command.startsWith("unmark")) {
             String str = command.replace("unmark ", "");
             int index = Integer.valueOf(str);
             tasks.unmark(index);
-            ui.printMessage("Nice! I've marked this task as done:\n" + tasks.getString(index));
+            return "Okay, I've marked this task as undone:\n" + tasks.getString(index);
 
         // user wants to add new todo task
         } else if (command.startsWith("todo")) {
             String str = command.replace("todo", "");
-            tasks.add(str, Duke.Type.TODO);
+            String message = tasks.add(str, Duke.Type.TODO);
+            return message;
 
         // user wants to add new deadline task
         } else if (command.startsWith("deadline")) {
-            tasks.add(command, Duke.Type.DEADLINE);
+            String message = tasks.add(command, Duke.Type.DEADLINE);
+            return message;
 
         // user wants to add new event task
         } else if (command.startsWith("event")) {
-            tasks.add(command, Duke.Type.EVENT);
+            String message = tasks.add(command, Duke.Type.EVENT);
+            return message;
 
         // user wants to delete a certain task
         } else if (command.startsWith("delete")) {
-            tasks.delete(command);
+            String message = tasks.delete(command);
+            return message;
 
         // user wants to find tasks with a keyword
         } else if (command.startsWith("find")) {
             String keyword = command.replace("find ", "");
-            tasks.find(keyword);
+            String message = tasks.find(keyword);
+            return message;
+
+        // user wants to exit
+        } else if (command.equals("bye")) {
+            return "Your tasks have been saved.\nBye. Hope to see you again soon!";
 
         // unknown command
         } else {
