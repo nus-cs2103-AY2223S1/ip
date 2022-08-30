@@ -1,14 +1,12 @@
 package duke;
 
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 import duke.command.Command;
 import duke.command.EndCommand;
 import duke.component.Parser;
 import duke.component.Storage;
 import duke.component.TaskList;
-import duke.component.Ui;
 import duke.exception.DukeException;
 
 
@@ -17,10 +15,11 @@ import duke.exception.DukeException;
  */
 public class Duke {
 
+    public static final String MSG_START = "Hey there! I'm Duke.\nWhat do you want to do today?";
+
     private boolean hasEnded;
     private TaskList tasks;
     private Storage storage;
-    private Ui ui;
     private Parser parser;
 
 
@@ -29,45 +28,34 @@ public class Duke {
      */
     public Duke() {
         this.hasEnded = false;
-        this.ui = new Ui();
         this.parser = new Parser();
         try {
             this.storage = new Storage(Paths.get(System.getProperty("user.dir"),
                     "data", "duke.txt"));
             this.tasks = this.storage.load();
         } catch (DukeException e) {
-            ui.printMessage(e.getMessage());
+            System.out.println(e.getMessage());
             this.tasks = new TaskList();
         }
     }
 
-    /**
-     * Starts the Duke task manager.
-     */
-    public void start() {
-        Scanner sc = new Scanner(System.in);
-        this.ui.welcome();
-        while (!hasEnded) {
-            try {
-                Command command = parser.parse(sc.nextLine(), this.tasks);
-                this.ui.printMessage(command.run());
-                if (command instanceof EndCommand) {
-                    this.hasEnded = true;
-                }
-                this.storage.save(this.tasks);
-            } catch (DukeException e) {
-                this.ui.printMessage(e.getMessage());
+    public String getResponse(String input) {
+        String response;
+        try {
+            Command command = parser.parse(input, this.tasks);
+            response = command.run();
+            if (command instanceof EndCommand) {
+                this.hasEnded = true;
             }
+            this.storage.save(this.tasks);
+        } catch (DukeException e) {
+            response = e.getMessage();
         }
-        sc.close();
+        return response;
     }
 
-    /**
-     * Starts the Duke task manager.
-     * @param args No arguments are taken in.
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.start();
+    public boolean getHasEnded() {
+        return hasEnded;
     }
+
 }
