@@ -1,14 +1,16 @@
 package duke.helper;
 
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.TaskCreator;
-import duke.task.ErrorTask;
-
-import duke.exception.NoDescriptionException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidDateException;
+import duke.exception.NoDescriptionException;
+import duke.task.ErrorTask;
+import duke.task.Task;
+import duke.task.TaskCreator;
+import duke.task.TaskList;
 
+/**
+ * Class to parse inputs
+ */
 public class Parser {
 
     /**

@@ -1,9 +1,9 @@
 package duke.task;
 
+/**
+ * Parent class to manage all the Task
+ */
 public class Task {
-    /**
-     * Parent class to manage all the Task
-     */
     protected String description;
     protected boolean isDone;
     protected String symbol;
@@ -72,13 +72,6 @@ public class Task {
                 + getStatusIcon() + "--"
                         + getDescription());
     }
-
-    /**
-     * Method to get the string info of the task
-     * in the format of [T][ ] {task name}
-     *
-     * @return the date of the task
-     */
 
     /**
      * Method to return a string representation of thetask

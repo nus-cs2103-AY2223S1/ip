@@ -1,9 +1,9 @@
 package duke.task;
 
+/**
+ * Child class of Task with a date and time
+ */
 public class Event extends Task {
-    /**
-     * Child class of Task with a date and time
-     */
     private static final String SYMBOL = "[E]";
     protected String dateTime;
 
@@ -38,13 +38,6 @@ public class Event extends Task {
         return (super.getInfo() + "--"
                 + getDate());
     }
-
-    /**
-     * Method to get the string info of the event
-     * in the format of [E][ ] {event name} (at: {date})
-     *
-     * @return the date of the event
-     */
 
     /**
      * Method to return a string representation of the event

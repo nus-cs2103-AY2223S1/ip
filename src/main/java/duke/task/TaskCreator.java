@@ -5,17 +5,16 @@ import java.time.format.DateTimeFormatter;
 
 import duke.helper.DateTimeConverter;
 
+/**
+ * Main class to create new Task
+ */
 public class TaskCreator {
-    /**
-     * Main class to create new Task
-     */
-
     enum Type {
         TODO,
         DEADLINE,
         EVENT
     }
-    private static int SIZE_OF_PREPOSITION = 4;
+    private static final int SIZE_OF_PREPOSITION = 4;
 
     /**
      * Method to create an appropriate task given an input string
@@ -65,8 +64,8 @@ public class TaskCreator {
             }
             try {
                 description = info.substring(0, indexOfSplit - 1);
-                String[] dateTimeDeadline = info.substring(indexOfSplit +
-                        SIZE_OF_PREPOSITION)
+                String[] dateTimeDeadline = info.substring(indexOfSplit
+                        + SIZE_OF_PREPOSITION)
                                 .split(" ");
 
                 DateTimeFormatter formatter = DateTimeFormatter
@@ -80,15 +79,15 @@ public class TaskCreator {
                     task = new Deadline(description, date,
                             LocalDate.parse(dateTimeDeadline[0], formatter));
                 } else {
-                    date = info.substring(indexOfSplit +
-                            SIZE_OF_PREPOSITION);
+                    date = info.substring(indexOfSplit
+                            + SIZE_OF_PREPOSITION);
 
                     task = new Deadline(description, date, null);
                 }
 
                 break;
             } catch (StringIndexOutOfBoundsException e) {
-                return new Task("","[]");
+                return new Task("", "[]");
             }
 
         case EVENT:
@@ -99,14 +98,16 @@ public class TaskCreator {
                 }
 
                 description = info.substring(0, indexOfSplit - 1);
-                String dateTimeEvent = info.substring(indexOfSplit +
-                        SIZE_OF_PREPOSITION);
+                String dateTimeEvent = info.substring(indexOfSplit
+                        + SIZE_OF_PREPOSITION);
 
                 task = new Event(description, dateTimeEvent);
                 break;
             } catch (StringIndexOutOfBoundsException e) {
-                return new Task("","[]");
+                return new Task("", "[]");
             }
+        default:
+            return new Task("", "[]");
         }
         return task;
     }

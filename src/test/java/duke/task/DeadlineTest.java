@@ -1,12 +1,13 @@
 package duke.task;
 
-import duke.helper.DateTimeConverter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
+import duke.helper.DateTimeConverter;
 
 public class DeadlineTest {
     @Test

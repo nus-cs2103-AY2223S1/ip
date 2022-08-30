@@ -1,9 +1,9 @@
 package duke.task;
 
+/**
+ * Child class of Task without any date/time attached to it
+ */
 public class Todo extends Task {
-    /**
-     * Child class of Task without any date/time attached to it
-     */
     private static final String SYMBOL = "[T]";
 
     /**
@@ -14,13 +14,6 @@ public class Todo extends Task {
     public Todo(String description) {
         super(description, SYMBOL);
     }
-
-    /**
-     * Method to get the string info of the event
-     * in the format of [T][ ] {tasl name}
-     *
-     * @return the date of the task
-     */
 
     /**
      * Method to return a string representation of the todo task

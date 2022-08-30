@@ -1,16 +1,21 @@
 import java.util.Scanner;
-import duke.task.TaskList;
+
+import duke.helper.Parser;
 import duke.helper.Storage;
 import duke.helper.Ui;
-import duke.helper.Parser;
+import duke.task.TaskList;
 
+/**
+ * Main class used to handle inputs
+ */
 public class Duke {
-    /**
-     * Main class used to handle inputs
-     */
     private TaskList list;
     private Storage storage;
 
+    /**
+     * Constructor of the Duke class given a filepath
+     * @param filePath path of file to be saved/loaded from
+     */
     public Duke(String filePath) {
         storage = new Storage(filePath);
         list = new TaskList(storage.load());

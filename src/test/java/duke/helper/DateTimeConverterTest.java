@@ -1,15 +1,16 @@
 package duke.helper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Test;
+
 public class DateTimeConverterTest {
 
-    DateTimeFormatter formatter = DateTimeFormatter
+    private DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("uuuu-M-d");
-    DateTimeConverter converter = new DateTimeConverter(formatter);
+    private DateTimeConverter converter = new DateTimeConverter(formatter);
 
     @Test
     public void convertTest() {

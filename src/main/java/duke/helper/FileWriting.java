@@ -1,15 +1,14 @@
 package duke.helper;
 
-import java.io.IOException;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import duke.task.TaskList;
 
+/**
+ * Class to update .txt file
+ */
 public class FileWriting {
-    /**
-     * Class to update .txt file
-     */
-
     /**
      * Method to update the taskList based on any changes
      *

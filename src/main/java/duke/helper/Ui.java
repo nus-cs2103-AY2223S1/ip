@@ -3,11 +3,10 @@ package duke.helper;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Child containing default messages
+ */
 public class Ui {
-    /**
-     * Child containing default messages
-     */
-
     /**
      * Method to print welcome message
      */

@@ -1,9 +1,9 @@
 package duke.task;
-public class ErrorTask extends Task {
-    /**
-     * Child class of Task with an error
-     */
 
+/**
+ * Child class of Task with an error
+ */
+public class ErrorTask extends Task {
     /**
      * Constructor for the errortask
      */

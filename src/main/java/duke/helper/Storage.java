@@ -2,21 +2,18 @@ package duke.helper;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
 import duke.task.TaskCreator;
 
+/**
+ * Main class used to create/update storage of list
+ */
 public class Storage {
-    /**
-     * Main class used to create/update storage of list
-     */
-
     protected File file;
 
     /**

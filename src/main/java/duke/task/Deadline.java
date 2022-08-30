@@ -2,10 +2,10 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Child class of Task with a deadline
+ */
 public class Deadline extends Task {
-    /**
-     * Child class of Task with a deadline
-     */
     private static final String SYMBOL = "[D]";
     protected String dateStr;
     protected LocalDate dateTime;
@@ -43,13 +43,6 @@ public class Deadline extends Task {
         return (super.getInfo() + "--"
                 + getDate());
     }
-
-    /**
-     * Method to get the string info of the event
-     * in the format of [D][ ] {deadline name} (by: {date})
-     *
-     * @return the date of the deadline
-     */
 
     /**
      * Method to return a string representation of the deadline

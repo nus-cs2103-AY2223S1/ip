@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import duke.helper.Ui;
 
+/**
+ * Class to store the list of Tasks
+ */
 public class TaskList {
-    /**
-     * Class to store the list of Tasks
-     */
     private ArrayList<Task> taskList;
 
     /**

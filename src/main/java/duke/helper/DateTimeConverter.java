@@ -1,23 +1,22 @@
 package duke.helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import java.util.Date;
 
+/**
+ * Main class to convert date and time from "yyyy-mm-dd"
+ * eg. (2022-2-2 1800 -> Feb 2 2022 6:00 PM)
+ */
 public class DateTimeConverter {
-    /**
-     * Main class to convert date and time from "yyyy-mm-dd"
-     * eg. (2022-2-2 1800 -> Feb 2 2022 6:00 PM)
-     */
+
     private DateTimeFormatter dateFormatter;
 
-    private SimpleDateFormat SDF24H = new SimpleDateFormat("HHmm");
-    private SimpleDateFormat SDF12H = new SimpleDateFormat("h:mm a");
+    private SimpleDateFormat sdf24h = new SimpleDateFormat("HHmm");
+    private SimpleDateFormat sdf12h = new SimpleDateFormat("h:mm a");
 
     /**
      * Constructor for the DateTimeConverter class
@@ -44,8 +43,8 @@ public class DateTimeConverter {
         if (dateTime.length > 1) {
             try {
                 String timeIn = dateTime[1];
-                Date time24H = SDF24H.parse(timeIn);
-                date += (" " + SDF12H.format(time24H));
+                Date time24H = sdf24h.parse(timeIn);
+                date += (" " + sdf12h.format(time24H));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
