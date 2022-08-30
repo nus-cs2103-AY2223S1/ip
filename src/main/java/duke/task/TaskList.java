@@ -158,7 +158,7 @@ public class TaskList {
      * @return output regarding last action.
      */
     public String getAddedTaskOutput() {
-        Task lastAddedTask = new Task("", TaskType.TASK);
+        Task lastAddedTask;
         if (!taskList.isEmpty()) {
             lastAddedTask = taskList.get(taskList.size() - 1);
             return String.format("Got it. I've added this task:\n  %s\n%s\n",

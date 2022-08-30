@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Locale;
 
 import duke.DateHandler;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.TaskType;
 import duke.task.ToDo;
 
 /**
@@ -19,16 +19,22 @@ import duke.task.ToDo;
 public class StorageParser {
     static TaskList parseFile(List<String> lines) {
         List<Task> tasks = new ArrayList<>();
-        lines.forEach((x) -> tasks.add(formatTask(x)));
+        lines.forEach((x) -> {
+            try {
+                tasks.add(formatTask(x));
+            } catch (DukeException e) {
+                e.printStackTrace();
+            }
+        });
         return new TaskList(tasks);
     }
 
-    static Task formatTask(String rawTask) {
+    static Task formatTask(String rawTask) throws DukeException {
         String identifier = rawTask.substring(0, 1).toUpperCase(Locale.ROOT);
         boolean marked = false;
         String[] segments = rawTask.split("\\| ");
         StringBuilder sb = new StringBuilder();
-        Task formattedTask = new Task("", TaskType.TASK);
+        Task formattedTask = null;
 
         switch (identifier) {
         case "T":
@@ -102,7 +108,7 @@ public class StorageParser {
 
             return formattedTask;
         default:
-            return formattedTask;
+            throw new DukeException("Unable to parse this line");
         }
     }
 }

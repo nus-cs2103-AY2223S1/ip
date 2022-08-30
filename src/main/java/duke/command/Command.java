@@ -10,7 +10,7 @@ import duke.task.TaskList;
 /**
  * Represents a Command
  */
-public class Command {
+public abstract class Command {
     /**
      * Executes the given command
      * @param taskList
@@ -22,10 +22,7 @@ public class Command {
      * @see Ui
      * @see Storage
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {
-        System.out.println("Parent class Command executed");
-        return "";
-    }
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException;
 
     /**
      * Returns true if command is instanceof ExitCommand otherwise false

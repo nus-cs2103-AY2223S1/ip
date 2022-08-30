@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * Represents the parent class for Event, Deadline and ToDo
  */
-public class Task {
+public abstract class Task {
     private static final String MARKED_TXT = "Nice ! I've marked this task as done:";
     private static final String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
     public final TaskType type;
