@@ -10,24 +10,15 @@ import duke.utils.Ui;
  */
 public abstract class Command {
     /**
-     * Checks if the command executed exits the program or not.
-     *
-     * @return Whether the command executed exits the program or not
-     */
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * Executes the command and returns its result.
-     * If the command is successfully executed, a successful message for the user will be returned as a String.
-     * Otherwise, a DukeException will be thrown.
+     * If the command is successfully executed, a CommandResult with relevant information about execution of command
+     * is returned.
      *
      * @param taskList The TaskList to use
      * @param ui The Ui to use
      * @param storage The storage to use
-     * @return Successful message for the user
+     * @return CommandResult with relevant information about execution of command
      * @throws DukeException If the command executed encounters an issue with the parameters
      */
-    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
+    public abstract CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 }

@@ -26,7 +26,7 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         TaskList results = taskList.findMatchingTasks(this.keyword);
         String msgBegin = "Here are the matching tasks in your list:\n";
         String msg = msgBegin;
@@ -35,6 +35,8 @@ public class FindCommand extends Command {
         } else {
             msg = "There are no matching tasks in your list.";
         }
-        return msg;
+
+        CommandResult cr = new CommandResult(msg);
+        return cr;
     }
 }

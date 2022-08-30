@@ -26,7 +26,7 @@ public class AddCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(this.task);
 
         int size = taskList.size();
@@ -36,6 +36,7 @@ public class AddCommand extends Command {
         String msg = msgBegin + "  " + task + msgEnd;
 
         storage.appendTaskToStorage(task);
-        return msg;
+        CommandResult cr = new CommandResult(msg);
+        return cr;
     }
 }

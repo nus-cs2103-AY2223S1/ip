@@ -1,12 +1,12 @@
 package duke;
 
 import duke.commands.Command;
+import duke.commands.CommandResult;
 import duke.exceptions.DukeException;
 import duke.utils.Parser;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.Ui;
-import javafx.application.Platform;
 
 /**
  * Main class of Duke.
@@ -28,17 +28,14 @@ public class Duke {
         this.taskList = this.storage.readFromStorage();
     }
 
-    public String getResponse(String input) {
+    public CommandResult getResponse(String input) {
         Command c = parser.parseCommand(input);
         try {
-            String responseMsg = c.execute(this.taskList, this.ui, this.storage);
-            if (c.isExit()) {
-                Platform.exit();
-            }
-            return responseMsg;
+            CommandResult cr = c.execute(this.taskList, this.ui, this.storage);
+            return cr;
         } catch (DukeException e) {
-            String exceptionMsg = e.getMessage();
-            return exceptionMsg;
+            CommandResult cr = new CommandResult(e.getMessage());
+            return cr;
         }
     }
 }

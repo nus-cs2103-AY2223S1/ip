@@ -15,15 +15,15 @@ public class ListCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
+        String msg;
         if (taskList.size() <= 0) {
-            String msg = "You currently have no task in your list! Great "
-                    + "job for completing all your tasks :-)";
-            return msg;
+            msg = "You currently have no task in your list! Great job for completing all your tasks :-)";
         } else {
-            String msgBegin = "Here are the tasks in your list:\n";
-            String msg = msgBegin + taskList;
-            return msg;
+            msg = "Here are the tasks in your list:\n" + taskList;
         }
+
+        CommandResult cr = new CommandResult(msg);
+        return cr;
     }
 }

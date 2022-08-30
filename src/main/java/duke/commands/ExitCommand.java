@@ -15,16 +15,10 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public boolean isExit() {
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public CommandResult execute(TaskList taskList, Ui ui, Storage storage) {
+        String msg = "Bye. Hope to see you again soon!\n(exiting in a second...)";
         storage.writeAllToStorage(taskList);
-        return "";
+        CommandResult cr = new CommandResult(msg, true);
+        return cr;
     }
 }
