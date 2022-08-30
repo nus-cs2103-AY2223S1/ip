@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Parser {
     Parser() {
-
     }
 
     private static void parseToDo(String str, TaskList taskList) throws DukeException {
@@ -13,12 +12,13 @@ public class Parser {
         Ui ui = new Ui(taskList);
         try {
             str = str.split(" ", 2)[1].trim();
-            ToDo tasktoDo = new ToDo(str);
-            taskList.addTask(tasktoDo);
-            System.out.println(ui.printAddedTask(tasktoDo.toString()));
+            ToDo taskToDo = new ToDo(str);
+            taskList.addTask(taskToDo);
+            System.out.println(ui.printAddedTask(taskToDo.toString()));
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a duke.ToDo cannot be empty."));
+            throw new DukeException(("OOPS!!! The description of a duke." +
+                    "ToDo cannot be empty."));
         }
 
     }
@@ -33,11 +33,12 @@ public class Parser {
             taskList.addTask(taskDeadline);
             System.out.println(ui.printAddedTask(taskDeadline.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a duke.Deadline cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of a duke.Deadline " +
+                    "cannot be empty/incomplete."));
         }
     }
 
-    //deadline hello /by 2022-12-12
+
     private static void parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
@@ -49,10 +50,11 @@ public class Parser {
             taskList.addTask(taskEvent);
             System.out.println(ui.printAddedTask(taskEvent.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of an duke.Event cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of an duke.Event " +
+                    "cannot be empty/incomplete."));
         }
     }
-//event hello /at 2022-12-12
+
     private static void parseDelete(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         str = str.split(" ", 2)[1].trim();

@@ -1,8 +1,8 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Deadline extends Task {
@@ -11,25 +11,25 @@ public class Deadline extends Task {
     protected String date;
     LocalDate localDate;
 
-    /**
-     * Constructor for a duke.Deadline object
-     */
     public Deadline(String description, String date) {
         super(description);
         this.date = date;
         try {
             //reverts the format for file reading
             //not good to use exceptions as conditions though...
-            this.localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("MMM d yyyy"));
+            this.localDate = LocalDate.parse(date.trim(),
+                    DateTimeFormatter.ofPattern("MMM d yyyy"));
             DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String newFormat = dtFormatter.format(localDate);
             this.date = newFormat;
             this.localDate = LocalDate.parse(this.date);
         } catch (DateTimeParseException e) {
             try {
-                this.localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                this.localDate = LocalDate.parse(date.trim(),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e1) {
-                System.out.println("Please provide the date in the correct format, which is yyyy-MM-dd");
+                System.out.println("Please provide the date in the " +
+                        "correct format, which is yyyy-MM-dd");
                 return;
             }
         }
@@ -40,6 +40,5 @@ public class Deadline extends Task {
         DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         String newFormat = dtFormatter.format(localDate);
         return "[D]" + super.toString() + " (by: " + newFormat + ")";
-
     }
 }

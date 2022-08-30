@@ -9,7 +9,6 @@ import java.io.IOException;
  *
  * @author Kang Qiao
  */
-
 public class Duke {
     private Storage storage;
     private TaskList taskList;
@@ -39,14 +38,12 @@ public class Duke {
         }
         parser.parseInstruction(storage, taskList);
         System.out.println(ui.goodbye());
-
     }
 
     /**
      *The Main function for interaction between the user and DUKE
      */
     public static void main(String[] args) throws DukeException {
-
         Duke dukeBot = new Duke("data/tasks.txt");
         dukeBot.run();
         System.out.println("hello");

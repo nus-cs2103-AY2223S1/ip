@@ -4,7 +4,6 @@ public class Ui {
     TaskList taskList;
     Ui(TaskList taskList) {
         this.taskList = taskList;
-
     }
 
     public String getHello() {
@@ -44,6 +43,7 @@ public class Ui {
                 "\n" + msg + "\n" +
                 "\n" + "_______________________________________________________";
     }
+
     public String goodbye() {
         return "_______________________________________________________" +
                 "\n" + "Bye. Hope to see you again soon!";
@@ -57,7 +57,6 @@ public class Ui {
             Task tempTask = taskList.getTask(i);
             userInputs += "\n" + index + "."
                     + tempTask.toString() + "\n";
-
         }
         return userInputs;
     }
