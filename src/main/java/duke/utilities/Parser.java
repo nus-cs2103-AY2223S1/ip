@@ -23,6 +23,10 @@ public class Parser {
         String command = splitString[0];
 
         switch (command) {
+        case "hello":
+            return "hello|";
+        case "bye":
+            return "bye|";
         case "list":
             return "list|";
         case "mark":

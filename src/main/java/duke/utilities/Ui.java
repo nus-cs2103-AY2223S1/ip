@@ -1,5 +1,6 @@
 package duke.utilities;
 
+
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -174,4 +175,76 @@ public class Ui {
     public String nextLine() {
         return this.sc.nextLine();
     }
+
+    public String getStringDukeOpening() {
+        String dukeOpening = "Hello! I'm Duke! What can I do for you?";
+        return dukeOpening;
+    }
+
+    public String getStringDukeClosing() {
+        String dukeClosing = "Bye. Hope to see you again soon!";
+        return dukeClosing;
+    }
+
+    public String getStringDukeException(DukeException e) {
+        return "OOPS! " + e.getMessage();
+    }
+
+    public String getStringIoException(IOException e) {
+        return "OOPS! " + e.getMessage();
+    }
+
+    public String getStringDateTimeParseException() {
+        return "All dates must be in the format (yyyy-MM-dd HH:mm)!";
+    }
+
+    public String getStringTasks(TaskList taskList) {
+        ArrayList<Task> tasks = taskList.getTasks();
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task current = tasks.get(i);
+            response.append((i + 1) + "." + current.toString() + "\n");
+        }
+
+        return response.toString();
+    }
+
+    public String getStringMatchingTasks(ArrayList<Task> tasks) {
+        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task current = tasks.get(i);
+            response.append((i + 1) + "." + current.toString() + "\n");
+        }
+
+        return response.toString();
+    }
+
+    public String getStringAddTask(Task task, TaskList taskList) {
+        StringBuilder response = new StringBuilder("Got it. I've added this task:\n");
+        response.append("  " + task.toString() + "\n");
+        response.append("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.\n");
+        return response.toString();
+    }
+
+    public String getStringDeleteTask(Task task, TaskList taskList) {
+        StringBuilder response = new StringBuilder("Noted. I've removed this task:\n");
+        response.append("  " + task.toString() + "\n");
+        response.append("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.\n");
+        return response.toString();
+    }
+
+    public String getStringChangeTaskStatus(Task task, boolean isDone) {
+        StringBuilder response = new StringBuilder();
+        if (isDone) {
+            response.append("Nice! I've marked this task as done:\n");
+            response.append("  " + task.toString() + "\n");
+        } else {
+            response.append("OK, I've marked this task as not done yet:\n");
+            response.append("  " + task.toString() + "\n");
+        }
+        return response.toString();
+    }
+
 }
