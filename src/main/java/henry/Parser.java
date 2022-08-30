@@ -69,7 +69,7 @@ public class Parser {
             }
             return new DeleteCommand(Integer.parseInt(args.trim()));
         case FindCommand.COMMAND_WORD:
-            return new FindCommand(args.trim());
+            return new FindCommand(parseFindArgs(args.trim()));
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case TodoCommand.COMMAND_WORD:
@@ -81,6 +81,10 @@ public class Parser {
         default:
             throw new HenryException("UNKNOWN COMMAND!");
         }
+    }
+
+    private String[] parseFindArgs(String args) {
+        return args.split(" ");
     }
 
     private Command parseDeadlineArgs(String args) {
