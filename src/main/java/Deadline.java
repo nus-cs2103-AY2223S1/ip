@@ -15,12 +15,10 @@ class Deadline extends Task {
     Deadline(String description, boolean isDone, String completeBy) {
 
         super(description, isDone);
-<<<<<<< HEAD
-        this.completeBy = completeBy;
-=======
+
         this.completeBy = LocalDateTime.parse(completeBy,
                 DateTimeFormatter.ofPattern("[d/M/y HHmm]"));;
->>>>>>> branch-Level-8
+
     }
 
     @Override
