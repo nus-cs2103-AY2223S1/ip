@@ -65,7 +65,8 @@ public abstract class Task {
      * @return A string corresponding to the task.
      */
     public String stringify() {
-        return String.format("%d | %s", isDone ? 1 : 0, description);
+        int doneStatus = isDone ? 1 : 0;
+        return String.format("%d | %s", doneStatus, description);
     }
 
     @Override
