@@ -1,9 +1,13 @@
 package scottie.tasks;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import scottie.storage.Storage;
 
 /**
  * Encapsulates a list of Tasks.
@@ -11,6 +15,8 @@ import java.util.stream.Collectors;
  * to the list are always immediately saved to the Storage.
  */
 public class TaskList implements Iterable<Task> {
+    private static final Path TASKS_DATA_FILE_PATH = Paths.get("data", "tasks.txt");
+
     private final Storage storage;
     private final List<Task> tasks;
 
@@ -18,9 +24,9 @@ public class TaskList implements Iterable<Task> {
      * Constructs a TaskList.
      */
     public TaskList() {
-        this.storage = new Storage();
+        this.storage = new Storage(TASKS_DATA_FILE_PATH);
         this.tasks = new ArrayList<>();
-        for (String taskData : this.storage.loadTasksData()) {
+        for (String taskData : this.storage.loadData()) {
             try {
                 this.addTask(Task.fromEncodedString(taskData));
             } catch (InvalidTaskDataException e) {
@@ -124,7 +130,8 @@ public class TaskList implements Iterable<Task> {
      * are modified.
      */
     private void saveTasks() {
-        this.storage.saveTasks(this.tasks);
+        List<String> encodedTasks = this.tasks.stream().map(Task::toEncodedString).collect(Collectors.toList());
+        this.storage.saveData(encodedTasks);
     }
 
     @Override
