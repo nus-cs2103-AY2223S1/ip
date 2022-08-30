@@ -158,6 +158,6 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        return String.join("/n", getAllTasksInDisplayFormat());
+        return String.join(System.lineSeparator(), getAllTasksInDisplayFormat());
     }
 }

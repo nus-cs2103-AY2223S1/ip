@@ -1,7 +1,5 @@
 package duke.util;
 
-import java.util.Scanner;
-
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -9,37 +7,13 @@ import duke.task.TaskList;
  * Class to manage user interface input and output.
  */
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String LINE_DIVIDER = "    ____________________________________________________________";
     private static final String INDENTATION = "     ";
-    private static Scanner in;
-
-    /**
-     * Constructor for {@code Ui}.
-     */
-    public Ui() {
-        Ui.in = new Scanner(System.in);
-    }
-
-    /**
-     * Returns the system input scanner.
-     *
-     * @return {@code Scanner} for system input.
-     */
-    public static Scanner getInputScanner() {
-        return Ui.in;
-    }
 
     /**
      * Prints greeting message.
      */
-    public void showWelcome() {
-        System.out.println(LOGO);
-        System.out.println("Hello! I'm Duke, What can I do for you?");
+    public static String showWelcome() {
+        return "Hello! I'm Duke, What can I do for you?" + System.lineSeparator();
     }
 
     /**
@@ -47,13 +21,13 @@ public class Ui {
      *
      * @param e An {@code Exception}.
      */
-    public void showError(Exception e) {
-        System.out.println(LINE_DIVIDER);
+    public static String showError(Exception e) {
+        StringBuilder stringBuilder = new StringBuilder();
         String[] lines = e.getMessage().split(System.lineSeparator());
         for (String line : lines) {
-            System.out.println(INDENTATION + line);
+            stringBuilder.append(INDENTATION + line);
         }
-        System.out.println(LINE_DIVIDER);
+        return stringBuilder.toString();
     }
 
     /**
@@ -61,14 +35,13 @@ public class Ui {
      *
      * @param messages Message strings.
      */
-    public void printMessages(String[] messages) {
-        System.out.println(LINE_DIVIDER);
+    public static String formatMessages(String[] messages) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (String message : messages) {
-            System.out.println(INDENTATION + message);
+            stringBuilder.append(INDENTATION + message + System.lineSeparator());
         }
-        System.out.println(LINE_DIVIDER);
+        return stringBuilder.toString();
     }
-
 
     /**
      * Prints message informing user that something in {@code TaskList} has changed.
@@ -77,8 +50,8 @@ public class Ui {
      * @param task {@code Task} affected.
      * @param taskList {@code TaskList} affected.
      */
-    public void printTaskListChange(String message, Task task, TaskList taskList) {
-        printMessages(new String[] {
+    public static String formatTaskListChangeMessage(String message, Task task, TaskList taskList) {
+        return formatMessages(new String[] {
             message,
             task.toString(),
             String.format("Now you have %d tasks in the list.", taskList.size())

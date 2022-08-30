@@ -2,22 +2,26 @@ package duke.command;
 
 import java.util.ArrayList;
 
+import duke.util.Ui;
+
 /**
  * Command to handle when user provides an input that is not understood.
  */
 public class UnknownCommand extends Command {
 
     /**
-     * Prints unknown command provided message, and the list of available user commands.
+     * Returns unknown command provided message, and the list of available user commands.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
-    public void execute() {
+    public String execute() {
         ArrayList<String> toPrint = new ArrayList<>();
         toPrint.add("Unknown command provided!");
         String[] helpGuide = HelpCommand.getHelpGuide();
         for (String line: helpGuide) {
             toPrint.add(line);
         }
-        Command.ui.printMessages(toPrint.toArray(new String[0]));
+        return Ui.formatMessages(toPrint.toArray(new String[0]));
     }
 }

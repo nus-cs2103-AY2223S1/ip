@@ -13,50 +13,51 @@ public class Duke {
     public static final String PATH_TO_DATA_DIRECTORY = "./data/";
     public static final String TASK_LIST_STORAGE_NAME = "duke.txt";
     private final Storage storage;
-    private final Ui ui;
     private TaskList taskList;
 
     /**
      * Constructor for {@code Duke}.
      */
     public Duke() {
-        ui = new Ui();
         storage = new Storage(PATH_TO_DATA_DIRECTORY, TASK_LIST_STORAGE_NAME);
         try {
             taskList = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showError(e);
+            Ui.showError(e);
             taskList = new TaskList();
         }
-        Command.setUi(ui);
         Command.setTaskList(taskList);
     }
 
     /**
-     * Entry point for the chatbot application.
+     * Executes a command based on the user input and returns a corresponding message.
      *
-     * @param args System arguments.
+     * @param input User input.
+     * @return Message {@code String}.
      */
-    public static void main(String[] args) {
-        new Duke().run();
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseCommand(input);
+            String message = c.execute();
+            storage.writeTaskListToStorage(taskList);
+            return message;
+        } catch (DukeException e) {
+            return Ui.showError(e);
+        }
     }
 
     /**
-     * Activates the Duke chatbot.
+     * Returns if the {@code Command} is an application terminating command.
+     *
+     * @param input User input.
+     * @return {@code True} if user input is an exit command, {@code False} otherwise.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit && Ui.getInputScanner().hasNextLine()) {
-            try {
-                String input = Ui.getInputScanner().nextLine();
-                Command c = Parser.parseCommand(input);
-                c.execute();
-                storage.writeTaskListToStorage(taskList);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e);
-            }
+    public boolean isExitCommand(String input) {
+        try {
+            Command c = Parser.parseCommand(input);
+            return c.isExit();
+        } catch (DukeException e) {
+            return false;
         }
     }
 }

@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.util.Ui;
+
 /**
  * Command to exit the chatbot application.
  */
@@ -13,10 +15,12 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Adds the given task to the {@code TaskList}, and prints a success message.
+     * Adds the given task to the {@code TaskList}, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
-    public void execute() {
-        Command.ui.printMessages(new String[]{"Bye. Hope to see you again soon!"});
+    public String execute() {
+        return Ui.formatMessages(new String[]{"Bye. Hope to see you again soon!"});
     }
 }

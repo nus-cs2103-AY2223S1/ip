@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.DukeException;
 import duke.task.Task;
+import duke.util.Ui;
 
 /**
  * Command to delete a {@code Task} from a {@code TaskList}.
@@ -19,11 +20,13 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes the task at the specified index from the {@code TaskList}, and prints a success message.
+     * Deletes the task at the specified index from the {@code TaskList}, and returns a success message.
+     *
+     * @return Message {@code String} from command execution.
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         Task deletedTask = Command.taskList.deleteTask(this.taskIndex);
-        Command.ui.printTaskListChange("Noted. I've removed this task:", deletedTask, Command.taskList);
+        return Ui.formatTaskListChangeMessage("Noted. I've removed this task:", deletedTask, Command.taskList);
     }
 }
