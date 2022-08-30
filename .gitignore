@@ -13,7 +13,13 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Text UI testing
 text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+
+# Storage data
 src/main/data/*
 tasks.txt
+
+# Test JAR execution
+testjar/
