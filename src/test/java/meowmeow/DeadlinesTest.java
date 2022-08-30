@@ -1,6 +1,6 @@
-package duke;
+package meowmeow;
 
-import duke.events.Deadline;
+import meowmeow.events.Deadline;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

@@ -1,5 +1,5 @@
-package duke;
-import duke.events.ToDo;
+package meowmeow;
+import meowmeow.events.ToDo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

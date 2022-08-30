@@ -1,7 +1,7 @@
-package duke.commands;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+package meowmeow.commands;
+import meowmeow.Storage;
+import meowmeow.TaskList;
+import meowmeow.Ui;
 
 /**
  * <p>Abstract class Command</p>

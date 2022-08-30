@@ -1,7 +1,7 @@
-package duke.commands;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+package meowmeow.commands;
+import meowmeow.Storage;
+import meowmeow.TaskList;
+import meowmeow.Ui;
 
 /**
  * <p>Class DefaultCommand is a concrete class that implements the Command interface.</p>

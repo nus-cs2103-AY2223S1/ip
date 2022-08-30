@@ -1,4 +1,4 @@
-package duke.events;
+package meowmeow.events;
 
 /**
  * <p>Class Event is a concrete class that extends the Task class.</p>

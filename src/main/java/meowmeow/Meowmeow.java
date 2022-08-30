@@ -1,21 +1,21 @@
-package duke;
-import duke.commands.Command;
+package meowmeow;
+import meowmeow.commands.Command;
 
 /**
- * <p>The Duke class is the main class of the program.</p>
+ * <p>The Meowmeow class is the main class of the program.</p>
  * <p>This class is used to run the program.</p>
  */
-public class Duke {
+public class Meowmeow {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
     /**
-     * Constructor for the Duke class.
+     * Constructor for the Meowmeow class.
      * @param filePath is a String that specifies the filepath of the save file.
      */
-    public Duke(String filePath) {
+    public Meowmeow(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load(), storage);
@@ -46,6 +46,6 @@ public class Duke {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Meowmeow("data/tasks.txt").run();
     }
 }

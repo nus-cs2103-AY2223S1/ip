@@ -1,4 +1,4 @@
-package duke.events;
+package meowmeow.events;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -1,4 +1,4 @@
-package duke;
+package meowmeow;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.events.Deadline;
-import duke.events.Event;
-import duke.events.Task;
-import duke.events.ToDo;
+import meowmeow.events.Deadline;
+import meowmeow.events.Event;
+import meowmeow.events.Task;
+import meowmeow.events.ToDo;
 
 public class Storage {
 
     private static File saveFile;
-    private String filePath = "./data/duke.txt";
+    private String filePath = "./data/meowmeow.txt";
     private ArrayList<Task> taskList = new ArrayList<>(100);
 
     public Storage(String filePath) {

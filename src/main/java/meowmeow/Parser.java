@@ -1,13 +1,13 @@
-package duke;
+package meowmeow;
 
-import duke.commands.AddCommand;
-import duke.commands.Command;
-import duke.commands.DefaultCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.ExitCommand;
-import duke.commands.FindCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
+import meowmeow.commands.AddCommand;
+import meowmeow.commands.Command;
+import meowmeow.commands.DefaultCommand;
+import meowmeow.commands.DeleteCommand;
+import meowmeow.commands.ExitCommand;
+import meowmeow.commands.FindCommand;
+import meowmeow.commands.ListCommand;
+import meowmeow.commands.MarkCommand;
 
 public class Parser {
 
@@ -29,7 +29,7 @@ public class Parser {
             String[] splitUserInput = userInput.split(" ", 2);
 
             if (splitUserInput.length <= 1) {
-                throw new DukeException("Sowwie meowmeow doesn't understand what you said uwu");
+                throw new MeowmeowException("Sowwie meowmeow doesn't understand what you said uwu");
             } else {
                 String cmdWord = splitUserInput[0];
 
@@ -68,7 +68,7 @@ public class Parser {
                 }
             }
 
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e.toString());
         }
         return new DefaultCommand();

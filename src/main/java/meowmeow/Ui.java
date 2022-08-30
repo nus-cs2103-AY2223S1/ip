@@ -1,4 +1,4 @@
-package duke;
+package meowmeow;
 
 import java.util.Scanner;
 
@@ -8,13 +8,9 @@ public class Ui {
 
     public void showWelcome() {
         //Chatbot intro segment
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String name = "MeowMeow (=^ↀWↀ^=)";
 
-        String intro = "Hewwo! I'm\n" + logo + "\nWhat can I do for you?";
+        String intro = "Hewwo! I'm\n" + name + "\nWhat do you need meow to do?";
         System.out.println(intro);;
     }
 

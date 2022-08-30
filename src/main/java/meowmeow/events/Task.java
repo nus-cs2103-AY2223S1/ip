@@ -1,4 +1,4 @@
-package duke.events;
+package meowmeow.events;
 
 /**
  * <p>Task class is the parent class of the ToDo, Deadline and Event classes.</p>

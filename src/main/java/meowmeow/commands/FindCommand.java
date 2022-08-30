@@ -1,8 +1,8 @@
-package duke.commands;
+package meowmeow.commands;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import meowmeow.Storage;
+import meowmeow.TaskList;
+import meowmeow.Ui;
 
 public class FindCommand extends Command {
 

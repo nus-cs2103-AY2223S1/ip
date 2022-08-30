@@ -1,19 +1,19 @@
-package duke;
+package meowmeow;
 
 /**
- * <p>Class DukeException is a concrete class that extends the Exception class.</p>
+ * <p>Class MeowmeowException is a concrete class that extends the Exception class.</p>
  * <p>This class is used to create an exception when the user enters an invalid command.</p>
  * <p>This class is a concrete class because it has an implementation.</p>
  */
-public class DukeException extends Exception {
+public class MeowmeowException extends Exception {
 
     private String message;
 
     /**
-     * Constructor for DukeException.
+     * Constructor for MeowmeowException.
      * @param message the message to be displayed to the user.
      */
-    DukeException(String message) {
+    MeowmeowException(String message) {
         this.message = message;
     }
 

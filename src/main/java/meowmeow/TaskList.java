@@ -1,11 +1,11 @@
-package duke;
+package meowmeow;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import duke.events.Deadline;
-import duke.events.Event;
-import duke.events.Task;
-import duke.events.ToDo;
+import meowmeow.events.Deadline;
+import meowmeow.events.Event;
+import meowmeow.events.Task;
+import meowmeow.events.ToDo;
 
 public class TaskList {
     //Initialising task array for list cmd
@@ -42,7 +42,7 @@ public class TaskList {
     public void deleteTask(int taskNum) {
         try {
             if (taskNum >= numOfInputs) {
-                throw new DukeException("Meowmeow can't throw away a task that doesn't exist =owo=");
+                throw new MeowmeowException("Meowmeow can't throw away a task that doesn't exist =owo=");
             } else {
                 System.out.println("Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
                         + taskList.get(taskNum));
@@ -50,7 +50,7 @@ public class TaskList {
                 numOfInputs -= 1;
                 System.out.println("You have " + numOfInputs + " tasks left now Owo");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
@@ -58,7 +58,7 @@ public class TaskList {
     public void addTodo(String taskName) {
         try {
             if (taskName == null || taskName.equals("")) {
-                throw new DukeException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
+                throw new MeowmeowException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
             } else {
                 Task t = new ToDo(taskName);
                 taskList.add(t);
@@ -67,7 +67,7 @@ public class TaskList {
                 System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
@@ -77,7 +77,7 @@ public class TaskList {
             String[] splitB = userInput.split("/by ");
 
             if (splitB.length <= 1) {
-                throw new DukeException("=0w0= To add a deadline type it in in this format: "
+                throw new MeowmeowException("=0w0= To add a deadline type it in in this format: "
                         + "deadline taskName /by YYYY-DD-MMTHH:MM:SS");
             } else {
                 System.out.println(splitB[1]);
@@ -88,7 +88,7 @@ public class TaskList {
                 System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
@@ -98,7 +98,7 @@ public class TaskList {
             String[] splitA = userInput.split("/at");
 
             if (splitA.length <= 1) {
-                throw new DukeException("=0w0= To add an event type it in in this format: event taskName /at time");
+                throw new MeowmeowException("=0w0= To add an event type it in in this format: event taskName /at time");
             } else {
                 String time = splitA[1];
                 Task e = new Event(splitA[0], time);
@@ -108,7 +108,7 @@ public class TaskList {
                 System.out.println("(=^-w-^=) " + e + " has been added to your task list!\n");
                 System.out.println("You now have " + numOfInputs + " tasks >w<");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             e.printStackTrace();
         }
     }
@@ -122,9 +122,9 @@ public class TaskList {
 
                 System.out.println("Good job (=OwO=) You finished this task! \n" + task);
             } else {
-                throw new DukeException("Meowmeow there isn't a task with that number uwu");
+                throw new MeowmeowException("Meowmeow there isn't a task with that number uwu");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
@@ -138,10 +138,10 @@ public class TaskList {
 
                 System.out.println("uwu this task has been marked as not done... \n" + task);
             } else {
-                throw new DukeException("Meowmeow there isn't a task with that number uwu");
+                throw new MeowmeowException("Meowmeow there isn't a task with that number uwu");
             }
 
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
@@ -158,9 +158,9 @@ public class TaskList {
                 }
             }
             if (numMatchingTasks == 0) {
-                throw new DukeException("Meowmeow can't find any tasks that contain these words (=^0w0^=)");
+                throw new MeowmeowException("Meowmeow can't find any tasks that contain these words (=^0w0^=)");
             }
-        } catch (DukeException e) {
+        } catch (MeowmeowException e) {
             System.out.println(e);
         }
     }
