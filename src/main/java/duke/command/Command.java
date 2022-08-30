@@ -2,6 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 
 import duke.storage.Storage;
@@ -36,6 +39,8 @@ public abstract class Command {
             //Fallthrough
         case "event":
             return new AddCommand(arr);
+        case "find":
+            return new FindCommand(arr);
         case "delete":
             return new DeleteCommand(arr);
         default:
@@ -163,6 +168,34 @@ public abstract class Command {
         @Override
         public void execute(TaskList tasks, Ui ui, Storage storage) {
             ui.printCurrentList(tasks);
+        }
+    }
+
+    private static class FindCommand extends Command {
+        private String keyword;
+
+        private FindCommand(String[] arr) {
+            if (arr.length == 1) {
+                throw new ArrayIndexOutOfBoundsException("OOPS!!! The description of find cannot be empty.");
+            }
+            this.keyword = arr[1];
+        }
+
+        @Override
+        public Boolean isExit() {
+            return false;
+        }
+
+        @Override
+        public void execute(TaskList tasks, Ui ui, Storage storage) {
+            List<Integer> indexArr = new ArrayList<>();
+            for (int i = 0; i < tasks.size(); i++) {
+                Task t = tasks.get(i);
+                if (t.toString().contains(keyword)) {
+                    indexArr.add(i);
+                }
+            }
+            ui.printMatchingList(tasks, indexArr);
         }
     }
 }

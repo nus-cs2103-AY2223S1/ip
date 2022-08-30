@@ -3,6 +3,7 @@ package duke.ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -79,6 +80,16 @@ public class Ui {
             printTab(temp);
         }
         showLine();
+    }
+
+    public void printMatchingList(TaskList tasks, List<Integer> indexArr) {
+        showLine();;
+        printTab("Here are the matching tasks in your list:");
+        for (int i = 0; i < indexArr.size(); i++) {
+            Task t = tasks.get(indexArr.get(i));
+            String temp = String.format("%d. %s", i + 1, t);
+            printTab(temp);
+        }
     }
 
     public void echo(String s) {
