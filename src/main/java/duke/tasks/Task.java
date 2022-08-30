@@ -94,7 +94,11 @@ public class Task {
      */
 
     public boolean findName(String ... keywords) {
-        return this.name.contains(keywords[0]);
+        boolean isFound = false;
+        for (String str: keywords) {
+            isFound = this.name.contains(str) | isFound;
+        }
+        return isFound;
     }
 
     /**

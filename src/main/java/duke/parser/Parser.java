@@ -30,10 +30,7 @@ public class Parser {
         return result;
     }
 
-<<<<<<< HEAD
-    public static boolean multipleVariable (String str) {
-        String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete", "find"};
-=======
+
     /**
      * Detects the commands that needs more than 1 variables.
      * @param str The command input by user.
@@ -41,7 +38,6 @@ public class Parser {
      */
     public static boolean multipleVariable(String str) {
         String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
->>>>>>> branch-A-CodingStandard
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
         return checkList.contains(str.toLowerCase());
     }
