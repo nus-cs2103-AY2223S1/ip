@@ -1,10 +1,22 @@
 package cs2103t.ip.duke;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 public class Duke {
 
@@ -15,6 +27,7 @@ public class Duke {
     private Tasklist tasks;
     private Ui ui;
     private Parser parser;
+
 
     public Duke() {
         storage = new Storage(FOLDER_PATH, FILE_PATH);
