@@ -72,7 +72,7 @@ public class Duke {
             if (command[1].trim().length() == 0 || date[0].trim().length() == 0) {
                 throw new DukeException("Hold up! Description cannot be empty!");
             }
-            if (date[1].trim().length() == 0) {
+            if (date.length < 2 || date[1].trim().length() == 0) {
                 throw new DukeException("Wait! When do you want to do this by??");
             }
             Deadline newDeadline = new Deadline(description.substring(0, description.indexOf("/by") - 1),
@@ -85,7 +85,7 @@ public class Duke {
             if (command[1].trim().length() == 0 || date[0].trim().length() == 0) {
                 throw new DukeException("Hold up! Description cannot be empty!");
             }
-            if (date[1].trim().length() == 0) {
+            if (date.length < 2 || date[1].trim().length() == 0) {
                 throw new DukeException("Wait! When is this event??");
             }
             Event newEvent = new Event(description.substring(0, description.indexOf("/at") - 1),
