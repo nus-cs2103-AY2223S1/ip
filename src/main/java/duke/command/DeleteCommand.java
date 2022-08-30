@@ -27,8 +27,8 @@ public class DeleteCommand extends Command {
      * @param tasks List of task.
      * @param ui User interface of programme.
      * @param storage Storage of programme.
-     * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file.
      * @return duke's response.
+     * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
