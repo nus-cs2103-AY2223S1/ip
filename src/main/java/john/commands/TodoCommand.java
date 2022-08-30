@@ -7,7 +7,7 @@ public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
     public static final String FORMAT = "todo <description>";
 
-    private final String params;
+    private String params;
 
     /**
      * Constructor for a TodoCommand.
@@ -23,6 +23,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public String execute() {
-        return this.tasklist.addTodo(this.params);
+        String task = tasklist.addTodo(this.params);
+        return ui.showAddedTask(task, tasklist);
     }
 }

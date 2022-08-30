@@ -2,61 +2,71 @@ package john.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import john.data.TaskList;
+
 public class UiTest {
-    // Adapted from https://www.baeldung.com/java-testing-system-out-println
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @Test
-    public void showGreetTest() {
-        Ui ui = new Ui();
-        ui.showGreeting();
-        assertEquals("|  Welcome to JDuke -- Version 1.0\n|  What can I do for you?",
-                outputStreamCaptor.toString().trim());
-    }
-
     @Test
     public void showGoodbyeTest() {
-        Ui ui = new Ui();
-        ui.showGoodbye();
-        assertEquals("|  Goodbye", outputStreamCaptor.toString().trim());
+        assertEquals("Goodbye!", new Ui().showGoodbye());
     }
 
     @Test
-    public void showErrorTest() {
-        Ui ui = new Ui();
-        ui.showErrorMessage("hello error");
-        assertEquals("|  Error:\n|  hello error", outputStreamCaptor.toString().trim());
+    public void showAddedTaskTest() {
+        assertEquals("I've added this task!\ntask\nYou have 0 tasks in your list.",
+                new Ui().showAddedTask("task", new TaskList()));
     }
 
     @Test
-    public void showToUserTest() {
-        Ui ui = new Ui();
-        ui.showToUser("hello", "world");
-        assertEquals("helloworld", outputStreamCaptor.toString().trim());
+    public void showDeletedTaskTest() {
+        assertEquals("I've deleted this task!\ntask\nYou have 0 tasks in your list.",
+                new Ui().showDeletedTask("task", new TaskList()));
     }
 
     @Test
-    public void showToUserWithIndentTest() {
-        Ui ui = new Ui();
-        ui.showToUserWithIndent("hello", "world");
-        assertEquals("|  hello\n|  world", outputStreamCaptor.toString().trim());
+    public void showUnmarkedTaskTest() {
+        assertEquals("I've unmarked this task!\ntask",
+                new Ui().showUnmarkedTask("task"));
     }
 
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
+    @Test
+    public void showMarkedTaskTest() {
+        assertEquals("I've marked this task as complete!\ntask",
+                new Ui().showMarkedTask("task"));
     }
+
+    @Test
+    public void showInvalidTaskNumberTest() {
+        assertEquals("This is an invalid task number.\nYou have 0 tasks in your list.",
+                new Ui().showInvalidTaskNumber(new TaskList()));
+    }
+
+    @Test
+    public void showTasksTest() {
+        assertEquals("1. hello\n2. world\n", new Ui().showTasks("hello", "world"));
+    }
+
+    @Test
+    public void showNoTasksTest() {
+        assertEquals("There are no tasks in your list.",
+                new Ui().showNoTasks(new TaskList(), null));
+        TaskList taskList = new TaskList();
+        taskList.addTodo("hello");
+        assertEquals("There are no tasks found for 'test'.",
+                new Ui().showNoTasks(taskList, "test"));
+    }
+
+    @Test
+    public void showIncorrectCommandTest() {
+        assertEquals("I cannot understand 'hello'. Try another command!",
+                new Ui().showIncorrectCommand("hello"));
+    }
+
+    @Test
+    public void showIncorrectCommandWithFormatTest() {
+        assertEquals("This is an invalid HELLO format.\nThe correct format is 'world'.",
+                new Ui().showIncorrectCommandWithFormat("hello", "world"));
+    }
+
 }

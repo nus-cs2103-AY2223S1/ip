@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import john.data.TaskList;
+import john.ui.Ui;
 
 public class MarkCommandTest {
     @Test
@@ -12,7 +13,7 @@ public class MarkCommandTest {
         MarkCommand cmd = new MarkCommand("1");
         TaskList tl = new TaskList();
         tl.addTodo("hello");
-        cmd.setData(tl);
-        assertEquals("|  marked task:\n|    [T][X] hello\n", cmd.execute());
+        cmd.setData(tl, new Ui());
+        assertEquals("I've marked this task as complete!\n[T][X] hello", cmd.execute());
     }
 }

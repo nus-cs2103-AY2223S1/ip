@@ -7,7 +7,7 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     public static final String FORMAT = "unmark <integer>";
 
-    private final String unmarkParams;
+    private String unmarkParams;
 
     /**
      * Constructor for a UnmarkCommand.
@@ -23,6 +23,10 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute() {
-        return tasklist.unmarkTask(this.unmarkParams);
+        String unmarkedTask = tasklist.unmarkTask(this.unmarkParams);
+        if (unmarkedTask == null) {
+            return ui.showInvalidTaskNumber(tasklist);
+        }
+        return ui.showUnmarkedTask(unmarkedTask);
     }
 }

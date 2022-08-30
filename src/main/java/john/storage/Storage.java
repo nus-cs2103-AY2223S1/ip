@@ -33,15 +33,13 @@ public class Storage {
         File storageFile;
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            boolean wasDirectoryCreated = directory.mkdirs();
-            if (!wasDirectoryCreated) {
+            if (!directory.mkdirs()) {
                 throw new IOException("cannot create storage directory");
             }
         }
         storageFile = new File(this.filePath);
         if (!storageFile.exists()) {
-            boolean isFileCreated = storageFile.createNewFile();
-            if (!isFileCreated) {
+            if (!storageFile.createNewFile()) {
                 throw new IOException("cannot create storage file");
             }
         }

@@ -24,7 +24,7 @@ public class TaskList {
 
     /**
      * Constructor for a task list initialised with tasks from storage.
-     * @param storedTasks
+     * @param storedTasks The initial tasks in storage
      */
     public TaskList(ArrayList<String> storedTasks) {
         this.tasks = new ArrayList<>();
@@ -50,57 +50,57 @@ public class TaskList {
     }
 
     /**
-     * Returns a string representation of the tasks with a specific date.
-     * if params are specified, else return a string representation of all the tasks.
+     * Returns an array containing the string representation of the tasks with a specific date.
+     * if params are specified, else return an array containing the string representation of all the tasks.
      * @param params The date of the tasks to list.
-     * @return A string representation of the tasks in the task list.
+     * @return An array containing the string representation of the tasks in the task list.
      */
-    public String listTasks(String params) {
-        StringBuilder sb = new StringBuilder();
+    public String[] listTasks(String params) {
+        String[] tasksToShow = new String[tasks.size()];
         if (tasks.size() == 0) {
-            return "|  no tasks found\n";
+            return null;
         } else if (params.equals("")) {
-            for (int pos = 0; pos < tasks.size(); pos++) {
-                sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
+            for (int i = 0; i < tasks.size(); i++) {
+                tasksToShow[i] = tasks.get(i).toString();
             }
         } else {
             LocalDate date = LocalDate.parse(params,
                     DateTimeFormatter.ofPattern("d/M/yyyy"));
             boolean hasTask = false;
-            for (int pos = 0; pos < tasks.size(); pos++) {
-                if (tasks.get(pos).isEqualDate(date)) {
+            for (int i = 0; i < tasks.size(); i++) {
+                if (tasks.get(i).isEqualDate(date)) {
                     hasTask = true;
-                    sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
+                    tasksToShow[i] = tasks.get(i).toString();
                 }
             }
             if (!hasTask) {
-                return "|  no tasks found\n";
+                return null;
             }
         }
-        return sb.toString();
+        return tasksToShow;
     }
 
     /**
-     * Returns a string representation of the tasks with matching keywords.
+     * Returns an array containing the string representation of the tasks with matching keywords.
      * @param params The keyword to match with.
-     * @return A string representation of the tasks with matching keywords.
+     * @return An array containing the string representation of the tasks with matching keywords.
      */
-    public String findTasks(String params) {
+    public String[] findTasks(String params) {
         if (tasks.size() == 0) {
-            return "|  no tasks found\n";
+            return null;
         }
         boolean hasTask = false;
-        StringBuilder sb = new StringBuilder();
-        for (int pos = 0; pos < tasks.size(); pos++) {
-            if (tasks.get(pos).isMatchingKeyword(params)) {
+        String[] tasksToShow = new String[tasks.size()];
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).isMatchingKeyword(params)) {
                 hasTask = true;
-                sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
+                tasksToShow[i] = tasks.get(i).toString();
             }
         }
         if (!hasTask) {
-            return "|  no tasks found\n";
+            return null;
         }
-        return sb.toString();
+        return tasksToShow;
     }
 
     /**
@@ -111,7 +111,7 @@ public class TaskList {
     public String addTodo(String description) {
         Todo todo = new Todo(description);
         tasks.add(todo);
-        return String.format("|  added task:%n|    %s%n", todo);
+        return todo.toString();
     }
 
     /**
@@ -123,7 +123,7 @@ public class TaskList {
     public String addDeadline(String description, String timing) {
         Deadline deadline = new Deadline(description, timing);
         tasks.add(deadline);
-        return String.format("|  added task:%n|    %s%n", deadline);
+        return deadline.toString();
     }
 
     /**
@@ -135,7 +135,7 @@ public class TaskList {
     public String addEvent(String description, String timing) {
         Event event = new Event(description, timing);
         tasks.add(event);
-        return String.format("|  added task:%n|    %s%n", event);
+        return event.toString();
     }
 
     /**
@@ -146,10 +146,10 @@ public class TaskList {
     public String markTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
-            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
+            return null;
         }
         tasks.get(pos).markAsDone();
-        return String.format("|  marked task:%n|    %s%n", tasks.get(pos));
+        return tasks.get(pos).toString();
     }
 
     /**
@@ -160,25 +160,25 @@ public class TaskList {
     public String unmarkTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
-            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
+            return null;
         }
         tasks.get(pos).markAsUndone();
-        return String.format("|  unmarked task:%n|    %s%n", tasks.get(pos));
+        return tasks.get(pos).toString();
     }
 
     /**
      * Deletes the specified task.
-     * @param params The position of the task to deleted.
+     * @param params The position of the task to delete.
      * @return A string representation of the task being deleted.
      */
     public String deleteTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
-            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
+            return null;
         }
         String removedTask = tasks.get(pos).toString();
         tasks.remove(pos);
-        return String.format("|  deleted task:%n|    %s%n", removedTask);
+        return removedTask;
     }
 
     /**
@@ -191,6 +191,14 @@ public class TaskList {
             storage.add(task.toStorageFormat());
         }
         return storage;
+    }
+
+    /**
+     * Returns the number of tasks in the list.
+     * @return An integer representing the number of tasks in the list.
+     */
+    public int getNumberOfTasks() {
+        return tasks.size();
     }
 
 }

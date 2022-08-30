@@ -7,8 +7,8 @@ public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String FORMAT = "event <description> /at <dd/mm/yyyy> <hhmm | optional>";
 
-    private final String description;
-    private final String timing;
+    private String description;
+    private String timing;
 
     /**
      * Constructor for an EventCommand.
@@ -26,6 +26,7 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute() {
-        return this.tasklist.addEvent(this.description, this.timing);
+        String task = tasklist.addEvent(this.description, this.timing);
+        return ui.showAddedTask(task, tasklist);
     }
 }

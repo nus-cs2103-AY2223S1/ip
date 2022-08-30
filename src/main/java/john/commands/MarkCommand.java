@@ -7,7 +7,7 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     public static final String FORMAT = "mark <integer>";
 
-    private final String markParams;
+    private String markParams;
 
     /**
      * Constructor for a MarkCommand.
@@ -23,6 +23,10 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute() {
-        return tasklist.markTask(this.markParams);
+        String markedTask = tasklist.markTask(this.markParams);
+        if (markedTask == null) {
+            return ui.showInvalidTaskNumber(tasklist);
+        }
+        return ui.showMarkedTask(markedTask);
     }
 }

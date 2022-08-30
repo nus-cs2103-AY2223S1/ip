@@ -7,7 +7,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String FORMAT = "delete <integer>";
 
-    private final String deleteParams;
+    private String deleteParams;
 
     /**
      * Constructor for a DeleteCommand.
@@ -23,6 +23,10 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute() {
-        return tasklist.deleteTask(this.deleteParams);
+        String deletedTask = tasklist.deleteTask(this.deleteParams);
+        if (deletedTask == null) {
+            return ui.showInvalidTaskNumber(tasklist);
+        }
+        return ui.showDeletedTask(deletedTask, tasklist);
     }
 }

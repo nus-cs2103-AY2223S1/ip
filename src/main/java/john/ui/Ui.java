@@ -1,81 +1,127 @@
 package john.ui;
 
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+import john.data.TaskList;
 
 /**
  * The text UI of the program.
  */
 public class Ui {
-    private final Scanner in;
-    private final PrintStream out;
-
     /**
      * Constructor for Ui.
      */
-    public Ui() {
-        this(System.in, System.out);
+    public Ui() {}
+
+    /**
+     * Returns a string representing the goodbye message.
+     * @return A string representing the goodbye message.
+     */
+    public String showGoodbye() {
+        return "Goodbye!";
     }
 
     /**
-     * Constructor for Ui.
-     * @param in The input for user commands.
-     * @param out The output of user commands.
+     * Returns a string representing the added task.
+     * @param task The task added.
+     * @param taskList The task list the task was added to.
+     * @return A string representing the added task.
      */
-    private Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
-        this.out = out;
+    public String showAddedTask(String task, TaskList taskList) {
+        return String.format("I've added this task!%n%s%n%s", task, showTotalTasks(taskList));
     }
 
     /**
-     * Outputs a message to users.
-     * @param message The message to output.
+     * Returns a string representing the deleted task.
+     * @param task The task deleted.
+     * @param taskList The task list the task was deleted from.
+     * @return A string representing the deleted task.
      */
-    public void showToUser(String... message) {
-        for (String msg : message) {
-            out.print(msg);
+    public String showDeletedTask(String task, TaskList taskList) {
+        return String.format("I've deleted this task!%n%s%n%s", task, showTotalTasks(taskList));
+    }
+
+    /**
+     * Returns a string representing the unmarked task.
+     * @param task The task unmarked.
+     * @return A string representing the unmarked task.
+     */
+    public String showUnmarkedTask(String task) {
+        return String.format("I've unmarked this task!%n%s", task);
+    }
+
+    /**
+     * Returns a string representing the marked task.
+     * @param task The task marked.
+     * @return A string representing the marked task.
+     */
+    public String showMarkedTask(String task) {
+        return String.format("I've marked this task as complete!%n%s", task);
+    }
+
+    /**
+     * Returns a string representing the total number of tasks in the task list.
+     * @param taskList The task list containing the tasks.
+     * @return A string representing the total number of tasks in the task list.
+     */
+    private String showTotalTasks(TaskList taskList) {
+        return String.format("You have %d %s in your list.",
+                taskList.getNumberOfTasks(), (taskList.getNumberOfTasks() == 1
+                ? "task"
+                : "tasks"));
+    }
+
+    /**
+     * Returns a string if an invalid task number is used.
+     * @param taskList The task list containing the tasks.
+     * @return A string representing the invalid task number.
+     */
+    public String showInvalidTaskNumber(TaskList taskList) {
+        return String.format("This is an invalid task number.%n%s", showTotalTasks(taskList));
+    }
+
+    /**
+     * Returns a string representing the tasks to display.
+     * @param tasks The tasks to display.
+     * @return A string representing the tasks to display.
+     */
+    public String showTasks(String ... tasks) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.length; ++i) {
+            if (tasks[i] != null) {
+                sb.append(String.format("%d. %s%n", i + 1, tasks[i]));
+            }
         }
+        return sb.toString();
     }
 
     /**
-     * Outputs a message to user, styled with an indent.
-     * @param message The message to output.
+     * Returns a string showing that there are no tasks for the find or list query.
+     * @param taskList The task list containing the tasks.
+     * @param params The parameters of the query.
+     * @return A string showing that there are no tasks for the query.
      */
-    public void showToUserWithIndent(String... message) {
-        for (String msg : message) {
-            out.printf("|  %s%n", msg);
-        }
+    public String showNoTasks(TaskList taskList, String params) {
+        return taskList.getNumberOfTasks() == 0
+                ? "There are no tasks in your list."
+                : "There are no tasks found for '" + params + "'.";
     }
 
     /**
-     * Reads and returns the user input.
-     * @return User input.
+     * Returns a string representing an unknown command.
+     * @param command The unknown command entered.
+     * @return Returns a string representing an unknown command.
      */
-    public String getUserCommand() {
-        showToUser("\njduke> ");
-        return in.nextLine().trim();
+    public String showIncorrectCommand(String command) {
+        return String.format("I cannot understand '%s'. Try another command!", command);
     }
 
     /**
-     * Displays text to greet users upon start of program.
+     * Returns a string representing a known command with an invalid format.
+     * @param command The command entered.
+     * @param format The correct format of the command.
+     * @return A string representing a known command with an invalid format.
      */
-    public void showGreeting() {
-        showToUserWithIndent("Welcome to JDuke -- Version 1.0", "What can I do for you?");
-    }
-
-    /**
-     * Displays text to greet users upon exit of program.
-     */
-    public void showGoodbye() {
-        showToUserWithIndent("Goodbye");
-    }
-
-    /**
-     * Displays an error message to users if error occurs.
-     * @param error The error message to display.
-     */
-    public void showErrorMessage(String error) {
-        showToUserWithIndent("Error:", error);
+    public String showIncorrectCommandWithFormat(String command, String format) {
+        return String.format(
+                "This is an invalid %s format.%nThe correct format is '%s'.", command.toUpperCase(), format);
     }
 }
