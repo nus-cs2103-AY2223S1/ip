@@ -1,5 +1,3 @@
-package iana.command;
-
 public enum Actions {
     bye,
     list,

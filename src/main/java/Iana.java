@@ -1,10 +1,6 @@
-package iana.main;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
-import iana.command.Command;
-import iana.exception.IanaException;
 
 public class Iana {
     private Ui ui;

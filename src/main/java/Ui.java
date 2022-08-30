@@ -1,7 +1,4 @@
-package iana.main;
 import java.util.Scanner;
-
-import iana.tasks.Task;
 
 public class Ui {
     private static String LINEBLOCK = "\t---------------------------------------------\n";
