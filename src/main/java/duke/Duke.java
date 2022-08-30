@@ -10,20 +10,28 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     *
+     * @param file text file where the descriptions are stored
+     * @throws IOException
+     */
     public Duke(File file) throws IOException {
         ui = new Ui();
         storage = new Storage(file);
         taskList = storage.loadFile();
     }
 
+    /**
+     * runs the main logic and program of the bot
+     */
     public void run() {
         ui.greet();
         Scanner sc = new Scanner(System.in);
-        boolean exitProgram = false;
+        boolean isExitProgram = false;
 
-        while(!exitProgram) {
+        while(!isExitProgram) {
             try {
-                exitProgram = Parser.parse(sc.nextLine(), taskList, ui, storage);
+                isExitProgram = Parser.isParse(sc.nextLine(), taskList, ui, storage);
             } catch (DukeException e) {
                 System.out.println("Something went wrong " + e.getMessage());
             }
