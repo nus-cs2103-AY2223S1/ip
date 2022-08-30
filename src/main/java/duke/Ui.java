@@ -7,11 +7,14 @@ import duke.task.TaskList;
  * The Ui class deals with interactions with the user.
  */
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|";
+    private static final String LOGO = "  _   _                   \n"
+            + " | \\ | |                  \n"
+            + " |  \\| |_   _  __ _ _ __  \n"
+            + " | . ` | | | |/ _` | '_ \\ \n"
+            + " | |\\  | |_| | (_| | | | |\n"
+            + " |_| \\_|\\__, |\\__,_|_| |_|\n"
+            + "         __/ |            \n"
+            + "        |___/             ";
 
     /** The ui's response to the latest user input. */
     private String response;
@@ -135,6 +138,6 @@ public class Ui {
      * Sets the response message to a greeting from Duke.
      */
     public void showWelcome() {
-        this.response = "Hello from\n" + LOGO + "\nHello! I'm Duke\nWhat can I do for you?";
+        this.response = "Hello from\n" + LOGO + "\nHello! I'm Nyan Cat\nWhat can I do for you?";
     }
 }
