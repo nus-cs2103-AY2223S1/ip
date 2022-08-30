@@ -37,7 +37,7 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String save() {
-        return String.format("%s,%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.description, this.dueDate);
+        return String.format("%s,%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.getDescription(), this.dueDate);
     }
 
     /**
