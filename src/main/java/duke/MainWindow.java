@@ -1,6 +1,5 @@
 package duke;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -26,8 +25,10 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
-    private final Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Duke.png")));
+    private final Image userImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
+    private final Image dukeImage =
+            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Duke.png")));
 
     @FXML
     public void initialize() {

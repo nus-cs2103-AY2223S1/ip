@@ -4,6 +4,12 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command to welcome the user when the program is opened.
+ *
+ * @author dexter-sim
+ * @version 0.1
+ */
 public class WelcomeCommand extends Command {
     /**
      * Executes the command to print the welcome greeting.
