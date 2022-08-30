@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * to contain list of tasks in Duke.
  */
 public class TaskList {
+    private static Ui ui = new Ui();
     private ArrayList<Task> tasks;
     private int count;
-    private static Ui ui = new Ui();
 
     /**
      * Constructor for new tasklist instance.
@@ -61,9 +61,9 @@ public class TaskList {
             try {
                 tasks.add(new Todo(str));
                 count++;
-                ui.printMessage(String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                ui.printMessage(String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
 
@@ -80,9 +80,9 @@ public class TaskList {
                 LocalDate date = LocalDate.parse(input[1]);
                 tasks.add(new Deadline(name, date));
                 count++;
-                ui.printMessage(String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                ui.printMessage(String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
             // missing name
@@ -100,7 +100,7 @@ public class TaskList {
 
         // add new event task
         } else if (type.equals(Duke.Type.EVENT)) {
-            try{
+            try {
                 String[] input = str.split("/at ");
                 String name = input[0].replace("event", "");
                 String[] end = input[1].split(" ");
@@ -111,9 +111,9 @@ public class TaskList {
                 LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
                 tasks.add(new Event(name, dateTime));
                 count++;
-                ui.printMessage(String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
+                ui.printMessage(String.format("Got it. I've added this task:\n"
+                                + "%s\n"
+                                + "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
 
@@ -142,9 +142,9 @@ public class TaskList {
             int index = Integer.valueOf(command.split(" ")[1]);
             Task task = tasks.remove(index - 1);
             count--;
-            String str =  String.format("Noted. I've removed this task:\n" +
-                            "%s\n" +
-                            "Now you have %d tasks in the list.",
+            String str = String.format("Noted. I've removed this task:\n"
+                            + "%s\n"
+                            + "Now you have %d tasks in the list.",
                     task.toString(),
                     count);
             ui.printMessage(str);
@@ -205,7 +205,7 @@ public class TaskList {
     public String toString() {
         String text = "";
         for (int i = 0; i < count; i++) {
-            String index = String.format("%d.", i+1);
+            String index = String.format("%d.", i + 1);
             String item = index + tasks.get(i).toString();
             text += item;
             text += "\n";

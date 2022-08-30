@@ -59,7 +59,8 @@ public class Storage {
                         String date = info[3];
                         String time = info[4];
                         String dt = date + " " + time;
-                        Task event = new Event(name, LocalDateTime.parse(dt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        Task event = new Event(name, LocalDateTime.parse(dt,
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                         if (done.equals("1")) {
                             event.mark();
                         }

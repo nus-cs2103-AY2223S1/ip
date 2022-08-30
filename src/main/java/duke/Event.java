@@ -15,7 +15,7 @@ public class Event extends Task {
      * @param time date and time in localdatetime type.
      * @throws MissingDescriptionException for missing name.
      */
-    public Event(String name,LocalDateTime time) throws MissingDescriptionException {
+    public Event(String name, LocalDateTime time) throws MissingDescriptionException {
         super(name);
         this.time = time;
     }
@@ -53,8 +53,8 @@ public class Event extends Task {
         int date = time.getDayOfMonth();
         int hour = time.getHour();
         int minute = time.getMinute();
-        String result = type + "//" + completed +"//" + name + "//" +
-                year + "-" + month + "-" + date + "//" + hour + ":" + minute;
+        String result = type + "//" + completed + "//" + name + "//"
+                + year + "-" + month + "-" + date + "//" + hour + ":" + minute;
         return result;
     }
 }

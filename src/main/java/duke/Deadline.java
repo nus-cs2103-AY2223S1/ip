@@ -44,7 +44,7 @@ public class Deadline extends Task {
         String type = "D";
         String completed = this.isCompleted ? "1" : "0";
         String dateString = date.toString();
-        return type + "//" + completed +"//" + name + "//" + dateString;
+        return type + "//" + completed + "//" + name + "//" + dateString;
     }
 
 }

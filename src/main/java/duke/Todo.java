@@ -38,6 +38,6 @@ public class Todo extends Task {
     public String toData() {
         String type = "T";
         String completed = this.isCompleted ? "1" : "0";
-        return type + "//" + completed +"//" + name;
+        return type + "//" + completed + "//" + name;
     }
 }
