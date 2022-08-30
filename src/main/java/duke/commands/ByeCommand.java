@@ -1,8 +1,6 @@
 package duke.commands;
 
-import duke.tools.Storage;
-import duke.tools.TaskList;
-import duke.tools.Ui;
+import duke.gui.GuiText;
 
 /**
  * This class performs the preparatory instructions before Duke is stopped.
@@ -12,14 +10,12 @@ public class ByeCommand implements Command {
     /**
      * Executes the bye command from the user.
      *
-     * @param taskList The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.sayBye();
-        ui.exit();
+    public String execute() {
+        javafx.application.Platform.exit();
+        return GuiText.formatByeString();
     }
 
     /**

@@ -1,10 +1,11 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.gui.GuiText;
 import duke.tasks.Todo;
+import duke.tools.SessionManager;
 import duke.tools.Storage;
 import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class tells Duke to add a new to-do task with the specified description.
@@ -26,20 +27,16 @@ public class TodoCommand implements Command {
     /**
      * Executes the to-do command from the user.
      *
-     * @param taskList The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
+     * @throws DukeException When there is exception during the execution of the command.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.addTask(todo);
-            storage.appendToFile(todo);
-            ui.sayAddTask(todo);
-            ui.sayTaskListSize(taskList);
-        } catch (DukeException e) {
-            ui.sayExceptionMessage(e);
-        }
+    public String execute() throws DukeException {
+        TaskList taskList = SessionManager.getTaskList();
+        Storage storage = SessionManager.getStorage();
+        taskList.addTask(todo);
+        storage.appendToFile(todo);
+        return GuiText.formatAddTaskString(taskList.getSize(), todo);
     }
 
     /**

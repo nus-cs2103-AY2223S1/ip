@@ -3,10 +3,11 @@ package duke.commands;
 import java.time.LocalDateTime;
 
 import duke.exceptions.DukeException;
+import duke.gui.GuiText;
 import duke.tasks.Deadline;
+import duke.tools.SessionManager;
 import duke.tools.Storage;
 import duke.tools.TaskList;
-import duke.tools.Ui;
 
 /**
  * This class tells Duke to store a new task with a deadline.
@@ -29,20 +30,16 @@ public class DeadlineCommand implements Command {
     /**
      * Executes the deadline command from the user.
      *
-     * @param taskList The list of tasks stored by the user.
-     * @param ui The user interface.
-     * @param storage The storage.
+     * @return The string to be shown by Duke on the dialogue box.
+     * @throws DukeException When there is exception during the execution of the command.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.addTask(deadline);
-            storage.appendToFile(deadline);
-            ui.sayAddTask(deadline);
-            ui.sayTaskListSize(taskList);
-        } catch (DukeException e) {
-            ui.sayExceptionMessage(e);
-        }
+    public String execute() throws DukeException {
+        TaskList taskList = SessionManager.getTaskList();
+        Storage storage = SessionManager.getStorage();
+        taskList.addTask(deadline);
+        storage.appendToFile(deadline);
+        return GuiText.formatAddTaskString(taskList.getSize(), deadline);
     }
 
     /**

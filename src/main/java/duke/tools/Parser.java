@@ -28,6 +28,11 @@ public class Parser {
     private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
 
     /**
+     * Private constructor to prevent object creation.
+     */
+    private Parser() {}
+
+    /**
      * Returns the Command representing the user's input.
      *
      * @param str The input String from the user.
