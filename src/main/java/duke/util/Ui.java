@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * A class that provides a simple user interface for the Duke system.
  */
-public class UI {
+public class Ui {
     private static final String LOGO = " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
@@ -23,7 +23,7 @@ public class UI {
      * @param inputStream The input stream to use for user input.
      * @param printStream The print stream to use for output.
      */
-    public UI(InputStream inputStream, PrintStream printStream) {
+    public Ui(InputStream inputStream, PrintStream printStream) {
         this.inputStreamScanner = new Scanner(inputStream);
         this.printStream = printStream;
     }

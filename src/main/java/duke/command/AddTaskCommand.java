@@ -3,7 +3,7 @@ package duke.command;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
-import duke.util.UI;
+import duke.util.Ui;
 
 /**
  * Encapsulates a command to add a {@code Task} to a {@code TaskList}.
@@ -29,7 +29,7 @@ public class AddTaskCommand extends Command {
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList tasks) {
+    public void execute(Storage storage, Ui ui, TaskList tasks) {
         tasks.add(task);
         storage.save(tasks);
         ui.print("I've added the following task:\n\t" + task);

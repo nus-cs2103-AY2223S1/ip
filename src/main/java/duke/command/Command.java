@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.task.TaskList;
 import duke.util.Storage;
-import duke.util.UI;
+import duke.util.Ui;
 
 /**
  * Encapsulates a command.
@@ -25,7 +25,7 @@ public abstract class Command {
      * @param ui The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
-    public abstract void execute(Storage storage, UI ui, TaskList tasks);
+    public abstract void execute(Storage storage, Ui ui, TaskList tasks);
 }
 
 
