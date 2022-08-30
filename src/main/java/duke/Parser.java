@@ -20,20 +20,22 @@ public class Parser {
     private String delete = "delete";
     private String space = " ";
     private String find = "find";
-    private String saveError = "\nThis command could not be saved due to an unknown error.";
     private String errorMessage = "Sorry, I cannot understand what you exactly mean.\n"
             + "Certain commands require input parameters.";
+    private String saveCommand(Duke d, String input, boolean isLoading) {
+        try {
+            d.getStorage().writeToFile(input, isLoading);
+            return "";
+        } catch (IOException e) {
+            return "\nThis command could not be saved due to an unknown error.";
+        }
+    }
     private String mark(Duke d, String input, boolean isLoading) {
         try {
             String parameter = input.substring((this.mark + this.space).length());
             int param = Integer.parseInt(parameter);
-            boolean hasFailedToSave = false;
-            try {
-                d.getStorage().writeToFile(this.mark + this.space + param + "\n", isLoading);
-            } catch (IOException e) {
-                hasFailedToSave = true;
-            }
-            return hasFailedToSave ? d.markTask(param) + this.saveError : d.markTask(param);
+            return d.markTask(param)
+                    + saveCommand(d, this.mark + this.space + param + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.errorMessage;
         }
@@ -42,13 +44,8 @@ public class Parser {
         try {
             String parameter = input.substring((this.unmark + this.space).length());
             int param = Integer.parseInt(parameter);
-            boolean hasFailedToSave = false;
-            try {
-                d.getStorage().writeToFile(this.unmark + this.space + param + "\n", isLoading);
-            } catch (IOException e) {
-                hasFailedToSave = true;
-            }
-            return hasFailedToSave ? d.unmarkTask(param) + this.saveError : d.unmarkTask(param);
+            return d.unmarkTask(param)
+                    + saveCommand(d, this.unmark + this.space + param + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.errorMessage;
         }
@@ -58,13 +55,7 @@ public class Parser {
         if (s.isBlank()) {
             return "The task is empty, what do you really mean?";
         } else {
-            boolean hasFailedToSave = false;
-            try {
-                d.getStorage().writeToFile(this.todo + this.space + s + "\n", isLoading);
-            } catch (IOException e) {
-                hasFailedToSave = true;
-            }
-            return hasFailedToSave ? d.addTodo(s) + this.saveError : d.addTodo(s);
+            return d.addTodo(s) + saveCommand(d, this.todo + this.space + s + "\n", isLoading);
         }
     }
     private String deadline(Duke d, String input, boolean isLoading) {
@@ -78,7 +69,6 @@ public class Parser {
                         + "If it is, please add it as a todo instead.";
             }
         } else {
-            // split task name and deadline
             String task = s.substring(0, s.indexOf(this.deadlineBy) - this.space.length());
             String deadline = s.substring(s.indexOf(this.deadlineBy)
                     + this.deadlineBy.length() + this.space.length());
@@ -88,21 +78,13 @@ public class Parser {
                 return "The deadline is empty, do you mean it has no deadline?\n"
                         + "If it is, please add it as a todo instead.";
             } else {
-                // save command to file
-                boolean hasFailedToSave = false;
-                try {
-                    d.getStorage().writeToFile(this.deadline + this.space + s + "\n", isLoading);
-                } catch (IOException ex) {
-                    hasFailedToSave = true;
-                }
-                // perform the actual addition into task list
                 try {
                     LocalDate date = LocalDate.parse(deadline);
-                    return hasFailedToSave ? d.addDeadline(task, date) + this.saveError
-                            : d.addDeadline(task, date);
+                    return d.addDeadline(task, date)
+                            + saveCommand(d, this.deadline + this.space + s + "\n", isLoading);
                 } catch (DateTimeParseException e) {
-                    return hasFailedToSave ? d.addDeadline(task, deadline) + this.saveError
-                            : d.addDeadline(task, deadline);
+                    return d.addDeadline(task, deadline)
+                            + saveCommand(d, this.deadline + this.space + s + "\n", isLoading);
                 }
             }
         }
@@ -125,20 +107,13 @@ public class Parser {
             } else if (time.isBlank()) {
                 return "The time is empty, do you mean it never starts?";
             } else {
-                // save command to file
-                boolean hasFailedToSave = false;
-                try {
-                    d.getStorage().writeToFile(this.event + this.space + s + "\n", isLoading);
-                } catch (IOException e) {
-                    hasFailedToSave = true;
-                }
-                // perform the actual addition to task list
                 try {
                     LocalDate t = LocalDate.parse(time);
-                    return d.addEvent(event, t);
+                    return d.addEvent(event, t)
+                            + saveCommand(d, this.event + this.space + s + "\n", isLoading);
                 } catch (DateTimeParseException e) {
-                    return hasFailedToSave ? d.addEvent(event, time) + this.saveError
-                            : d.addEvent(event, time);
+                    return d.addEvent(event, time)
+                            + saveCommand(d, this.event + this.space + s + "\n", isLoading);
                 }
             }
         }
@@ -147,13 +122,8 @@ public class Parser {
         try {
             String parameter = input.substring((this.delete + this.space).length());
             int param = Integer.parseInt(parameter);
-            boolean hasFailedToSave = false;
-            try {
-                d.getStorage().writeToFile(this.delete + this.space + parameter + "\n", isLoading);
-            } catch (IOException e) {
-                hasFailedToSave = true;
-            }
-            return hasFailedToSave ? d.deleteTask(param) + this.saveError : d.deleteTask(param);
+            return d.deleteTask(param)
+                    + saveCommand(d, this.delete + this.space + parameter + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.errorMessage;
         }
