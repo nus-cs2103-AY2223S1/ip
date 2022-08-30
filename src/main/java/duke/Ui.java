@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Class for Ui components of Duke.

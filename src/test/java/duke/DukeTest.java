@@ -1,8 +1,5 @@
 package duke;
 
-import main.java.duke.Duke;
-import main.java.duke.Parser;
-import main.java.duke.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

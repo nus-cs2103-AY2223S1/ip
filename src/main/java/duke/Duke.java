@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.util.Scanner;
 
@@ -9,6 +9,7 @@ public class Duke {
 
     /**
      * Constructor for the Duke class.
+     *
      * @param filePath - the name of the file to load from
      */
     public Duke(String filePath) {
