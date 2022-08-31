@@ -2,9 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
@@ -104,7 +101,6 @@ public class Duke {
             throw new DukeException("Invalid command: Please try again.");
         }
 
-        Map<String, String> map = new HashMap<>();
         String description;
 
         switch (command) {
@@ -156,8 +152,7 @@ public class Duke {
             if (description.length() == 0) {
                 throw new DukeException("Invalid argument: Description cannot be empty.");
             }
-            map.put("description", description);
-            taskList.add(new TodoTask(map, false));
+            taskList.add(new TodoTask(description, false));
             Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                     taskList.get(taskList.size() - 1),
                     taskList.lengthString()));
@@ -175,9 +170,7 @@ public class Duke {
                 if (deadline.length() == 0) {
                     throw new DukeException("Invalid argument: Deadline cannot be empty.");
                 }
-                map.put("description", description);
-                map.put("by", deadline);
-                taskList.add(new DeadlineTask(map, false));
+                taskList.add(new DeadlineTask(description, Parser.parseDateTime(deadline), false));
                 Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
@@ -198,9 +191,7 @@ public class Duke {
                 if (time.length() == 0) {
                     throw new DukeException("Invalid argument: Event time cannot be empty.");
                 }
-                map.put("description", description);
-                map.put("at", time);
-                taskList.add(new EventTask(map, false));
+                taskList.add(new EventTask(description, Parser.parseDateTime(time), false));
                 Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
