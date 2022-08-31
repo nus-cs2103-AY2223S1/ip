@@ -10,7 +10,7 @@
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
     </padding>
-    <Label fx:id="dialog" text="Label" wrapText="true">
+    <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true">
       <HBox.margin>
          <Insets left="10.0" right="10.0" />
       </HBox.margin>
