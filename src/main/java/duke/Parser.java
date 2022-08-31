@@ -38,39 +38,52 @@ public class Parser {
      */
     public void execute(String command, String description, TaskList tasks) {
         try {
-            if (command.equalsIgnoreCase("list")) {
+            int index;
+            String[] input;
+            command = command.toLowerCase();
+            switch (command) {
+            case "list":
                 ui.listTasks(tasks);
-            } else if (command.equalsIgnoreCase("mark")) {
-                int index = Integer.parseInt(description.substring(1)) - 1;
+                break;
+            case "mark":
+                index = Integer.parseInt(description.substring(1)) - 1;
                 tasks.mark(index);
-            } else if (command.equalsIgnoreCase("unmark")) {
-                int index = Integer.parseInt(description.substring(1)) - 1;
+                break;
+            case "unmark":
+                index = Integer.parseInt(description.substring(1)) - 1;
                 tasks.unmark(index);
-            } else if (command.equalsIgnoreCase("delete")) {
-                int index = Integer.parseInt(description.substring(1)) - 1;
+                break;
+            case "delete":
+                index = Integer.parseInt(description.substring(1)) - 1;
                 tasks.delete(index);
-            } else if (command.equalsIgnoreCase("todo")) {
+                break;
+            case "todo":
                 if (description.isEmpty()) {
                     throw new DukeEmptyToDoException();
                 }
                 tasks.add(new ToDo(description));
-            } else if (command.equalsIgnoreCase("deadline")) {
+                break;
+            case "deadline":
                 if (description.isEmpty()) {
                     throw new DukeEmptyDeadlineException();
                 }
-                String[] input = description.split(" /by ");
+                input = description.split(" /by ");
                 tasks.add(new Deadline(input[0], input[1]));
-            } else if (command.equalsIgnoreCase("event")) {
+                break;
+            case "event":
                 if (description.isEmpty()) {
                     throw new DukeEmptyEventException();
                 }
-                String[] input = description.split(" /at ");
+                input = description.split(" /at ");
                 tasks.add(new Event(input[0], input[1]));
-            } else if (command.equalsIgnoreCase("find")) {
+                break;
+            case "find":
                 tasks.findTasks(description);
-            } else if (command.equalsIgnoreCase("help")) {
+                break;
+            case "help":
                 ui.helpMessage();
-            } else {
+                break;
+            default:
                 throw new DukeInvalidCommandException();
             }
         } catch (DukeException e) {

@@ -53,7 +53,7 @@ public class Duke {
             command = sc.next();
             description = sc.nextLine();
         }
-
+        sc.close();
         storage.save(tasks);
         ui.farewell();
     }
