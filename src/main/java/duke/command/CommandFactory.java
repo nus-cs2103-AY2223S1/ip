@@ -19,7 +19,7 @@ public class CommandFactory {
      * @return enum representing a supported command
      * @throws CommandException if command is unknown/unsupported
      */
-    public Command parseCommand(String commandStr) throws CommandException {
+    public static Command parseCommand(String commandStr) throws CommandException {
         String commandToken = commandStr.split(" ")[0];
         try {
             return Command.valueOf(commandToken.toUpperCase());
@@ -31,15 +31,13 @@ public class CommandFactory {
     /**
      * Returns a CommandHandler based on given command enum
      *
-     * @param command    enum representing a supported command
      * @param commandStr input command string
      * @return command handler to execute input command string
      * @throws CommandException if input command string does not pass validation checks in a command
      *                          handler
      */
-    public CommandHandler getCommandHandler(Command command, String commandStr)
-            throws CommandException {
-        switch (command) {
+    public static CommandHandler getCommandHandler(String commandStr) throws CommandException {
+        switch (parseCommand(commandStr)) {
         case LIST:
             return new CommandListHandler(commandStr);
         case MARK:
@@ -58,7 +56,7 @@ public class CommandFactory {
         case BYE:
             return new CommandTerminateHandler(commandStr);
         default:
-            return null;
+            throw new CommandException("Unknown command!");
         }
     }
 }
