@@ -36,12 +36,11 @@ public class Storage {
         Scanner input = null;
         try {
             if (!listOfTasks.exists()) {
-                System.out.println("OOPS! You do not have a file. Let me create one for you!");
                 try {
                     listOfTasks.getParentFile().mkdirs();
                     listOfTasks.createNewFile();
                 } catch (IOException e) {
-                    System.out.println("OOPS! I have problem creating directory!");
+                    throw new DukeException("OOPS! I have problem creating directory!");
                 }
             }
             input = new Scanner(listOfTasks);
