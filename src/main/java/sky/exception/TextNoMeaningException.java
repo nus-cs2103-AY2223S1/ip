@@ -1,13 +1,14 @@
 package sky.exception;
 
 public class TextNoMeaningException extends Exception {
-    String message;
+    private String message;
+
     public TextNoMeaningException(String str) {
-        message = str;
+        this.message = str;
     }
 
     @Override
-    public String toString() {
-        return message;
+    public String getMessage() {
+        return this.message;
     }
 }

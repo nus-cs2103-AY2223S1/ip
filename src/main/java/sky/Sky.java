@@ -3,50 +3,38 @@ package sky;
 import sky.command.Command;
 import sky.exception.TextNoMeaningException;
 
-import java.util.Scanner;
+import java.io.IOException;
 
 /**
- * The Sky class is the entry point for the Sky chatbot and deals with the main logic behind its operations.
+ * The Sky class encapsulates a sky chat bot that keep tracks of tasks.
  */
 public class Sky {
     private TaskList taskList;
-    private Ui ui;
     private Storage storage;
 
-    public Sky(String filePath) {
-        this.ui = new Ui();
-        this.storage = new Storage(filePath);
+    public Sky() {
+        this.storage = new Storage("data/sky.txt");
         try {
             this.taskList = new TaskList(this.storage.load());
-        } catch (TextNoMeaningException e) {
+        } catch (IOException e) {
             this.taskList = new TaskList();
         }
     }
 
     /**
-     * Runs the program and awaits user input.
+     * Returns the response of the Sky chat bot after it parses user input.
+     *
+     * @param input The user input in the form of a String.
+     * @return The response of the Sky chat bot in the form of a String.
      */
-    public void run() {
-        this.ui.greetUser();
-        boolean isExit = false;
-        Scanner scanner = new Scanner(System.in);
-
-        while(!isExit) {
-            try {
-                String fullCommand = this.ui.readCommand(scanner);
-                this.ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(this.taskList, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (TextNoMeaningException e) {
-                System.out.println(e);
-            } finally {
-                this.ui.showLine(); // show the divider line ("_______")
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(taskList, storage);
+        } catch (TextNoMeaningException e) {
+            return e.getMessage();
+        } catch (IOException e) {
+            return e.getMessage();
         }
-    }
-    
-    public static void main(String[] args) {
-        new Sky("data/sky.txt").run();
     }
 }

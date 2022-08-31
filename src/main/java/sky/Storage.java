@@ -30,7 +30,7 @@ public class Storage {
      * @return A list of tasks.
      * @throws TextNoMeaningException If unable to read from file.
      */
-    public List<Task> load() throws TextNoMeaningException {
+    public List<Task> load() throws IOException {
         File file = new File(this.filePath);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -76,11 +76,10 @@ public class Storage {
             }
             return taskList;
         } catch (FileNotFoundException e) {
-            System.out.println("  Unable to detect file: " + e.getMessage());
+            throw new IOException("Unable to detect file: " + e.getMessage());
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  Error parsing data from data file.");
+            throw new IOException("Error parsing data from data file.");
         }
-        throw new TextNoMeaningException("  Unable to load storage.");
     }
 
     /**
@@ -88,46 +87,34 @@ public class Storage {
      *
      * @param textToAdd Text to be added.
      */
-    public void append(String textToAdd) {
+    public void append(String textToAdd) throws IOException {
         File file = new File(this.filePath);
         this.createFileIfNecessary(file);
 
         // Append to the file
-        try {
-            FileWriter fw = new FileWriter(this.filePath, true);
-            fw.write(textToAdd + "\n");
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
+        FileWriter fw = new FileWriter(this.filePath, true);
+        fw.write(textToAdd + "\n");
+        fw.close();
     }
 
-    private void write(String textToWrite) {
+    private void write(String textToWrite) throws IOException {
         File file = new File(this.filePath);
         this.createFileIfNecessary(file);
 
         // Write to the file
-        try {
-            FileWriter fw = new FileWriter(this.filePath);
-            fw.write(textToWrite + "\n");
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
+        FileWriter fw = new FileWriter(this.filePath);
+        fw.write(textToWrite + "\n");
+        fw.close();
     }
 
     // If the file does not yet exist, we create all the necessary parent directories and file.
-    private void createFileIfNecessary(File file) {
+    private void createFileIfNecessary(File file) throws IOException {
         if (!file.exists()) {
             // If the file doesn't exist yet, mkdirs() will assume everything specified is a
             // directory and creates it as such. By using getParentFile(), we leave the creation of
             // the file itself to createNewFile().
             file.getParentFile().mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Error with creating a file at specified path name: " + e.getMessage());
-            }
+            file.createNewFile();
         }
     }
 
@@ -136,8 +123,8 @@ public class Storage {
      *
      * @param taskList A list of tasks that will replace the tasks in user's hard disk.
      */
-    public void reWriteDataFile(TaskList taskList) {
-        for (int i = 0; i < taskList.size(); i++) {
+    public void reWriteDataFile(TaskList taskList) throws IOException {
+        for (int i = 0; i < taskList.getSize(); i++) {
             if (i == 0) {
                 this.write(taskList.getTask(i).toString());
             } else {

@@ -2,10 +2,11 @@ package sky.command;
 
 import sky.Storage;
 import sky.TaskList;
-import sky.Ui;
 import sky.exception.TextNoMeaningException;
 import sky.task.Task;
 import sky.task.ToDo;
+
+import java.io.IOException;
 
 /**
  * The TodoCommand class deals with adding a todo task into taskList.
@@ -18,23 +19,21 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws TextNoMeaningException {
+    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
         try {
             String taskToDo = this.fullCommand.substring(5);
             Task task = new ToDo(taskToDo);
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
-            String s = "  Got it. I've added this task: \n" +
+            String s = "Got it. I've added this task: \n" +
                     "    " + task +
-                    "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list.");
-            ui.displayText(s);
+                    "\nNow you have " + taskList.getSize() +
+                    (taskList.getSize() <= 1 ? " task in the list.": " tasks in the list.");
             return s;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  Are you new? Specify a task after typing todo.");
+            throw new TextNoMeaningException("Are you new? Specify a task after typing todo.");
         }
-        throw new TextNoMeaningException("  Error executing TodoCommand.");
     }
 
     @Override

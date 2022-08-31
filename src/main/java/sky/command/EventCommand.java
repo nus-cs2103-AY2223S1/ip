@@ -2,11 +2,11 @@ package sky.command;
 
 import sky.Storage;
 import sky.TaskList;
-import sky.Ui;
 import sky.exception.TextNoMeaningException;
 import sky.task.Event;
 import sky.task.Task;
 
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,7 +25,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws TextNoMeaningException {
+    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
         try {
             String taskEvent = this.fullCommand.substring(6);
             String[] arrOfStrings = taskEvent.split(" /at ");
@@ -39,21 +39,17 @@ public class EventCommand extends Command {
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
-            String s = "  Got it. I've added this task: \n" +
+            String s = "Got it. I've added this task: \n" +
                     "    " + task +
-                    "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list.");
-            ui.displayText(s);
+                    "\nNow you have " + taskList.getSize() +
+                    (taskList.getSize() <= 1 ? " task in the list.": " tasks in the list.");
             return s;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  You have either not entered any text after typing event, \n" +
+            throw new TextNoMeaningException("You have either not entered any text after typing event, \n" +
                     "  or you have positioned your slash wrongly.");
         } catch (PatternSyntaxException e) {
-            System.out.println("  There is a problem with the regex expression written by the dev.");
-        } catch (TextNoMeaningException e) {
-            System.out.println(e);
+            throw new TextNoMeaningException("There is a problem with the regex expression written by the dev.");
         }
-        throw new TextNoMeaningException("  Error executing EventCommand.");
     }
 
     @Override
@@ -65,7 +61,8 @@ public class EventCommand extends Command {
         try {
             String[] arrOfStrings = s.split(" ");
             if (arrOfStrings.length != 2) {
-                throw new TextNoMeaningException("  Provide the date and time after \"/at\".");
+                throw new TextNoMeaningException("Provide the date and time after \"/at\"" +
+                        " as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
             }
             String dateGiven = arrOfStrings[0].replaceAll("/", "-");
             LocalDate d1 = LocalDate.parse(dateGiven);
@@ -81,19 +78,15 @@ public class EventCommand extends Command {
 
             return dateString + ", " + finalTimeString;
         } catch (PatternSyntaxException e) {
-            System.out.println("  There is a problem with the regex expression written by the dev.");
-        } catch (TextNoMeaningException e) {
-            System.out.println(e);
+            throw new TextNoMeaningException("There is a problem with the regex expression written by the dev.");
         } catch (DateTimeParseException e) {
-            System.out.println("  Date and/or time given cannot be parsed.");
-            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
+            throw new TextNoMeaningException("Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
         } catch (DateTimeException e) {
-            System.out.println("  Unable to format date and/or time.");
+            throw new TextNoMeaningException("Unable to format date and/or time.");
         } catch (IllegalArgumentException e) {
-            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
+            throw new TextNoMeaningException("Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  Provide time as: XXXX-XXXX, in 24-hours standard.");
+            throw new TextNoMeaningException("Provide time as: XXXX-XXXX, in 24-hours standard.");
         }
-        throw new TextNoMeaningException("  Are you that bad? Come on.");
     }
 }
