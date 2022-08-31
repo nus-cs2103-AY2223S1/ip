@@ -9,8 +9,11 @@ import java.util.TimerTask;
  * @author Elbert Benedict
  */
 public class Duke {
-    TaskList taskList;
+    private TaskList taskList;
 
+    /**
+     * Contructs a new Duke instance.
+     */
     public Duke() {
         try {
             taskList = Storage.getSavedTasks();

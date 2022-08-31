@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Exception for Duke Application
+ * Exception for Duke Application.
  *
  * @author Elbert Benedict
  */

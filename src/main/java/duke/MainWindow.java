@@ -7,6 +7,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
+/**
+ * A custom control using FXML containing dialogs
+ * between user and the application.
+ */
 public class MainWindow {
     @FXML
     private ScrollPane scrollPane;
