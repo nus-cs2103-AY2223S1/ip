@@ -7,6 +7,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a command to delete a task from the tasklist; subclass of Command.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class DeleteCommand extends Command {
     private final ArrayList<String> words;
 

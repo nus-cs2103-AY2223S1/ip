@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents a Deadline task; subclass of a Task.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Deadline extends Task {
     private final String deadline;
 

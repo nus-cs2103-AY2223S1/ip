@@ -7,6 +7,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Main class to run for the Rem bot.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Duke {
     private final Storage storage;
     private TaskList tasklist;

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import duke.task.Task;
 
+/**
+ * Represents a list of tasks.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class TaskList {
     /* The list of tasks */
     public final ArrayList<Task> tasks;

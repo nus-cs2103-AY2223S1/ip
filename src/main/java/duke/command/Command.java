@@ -5,6 +5,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a general command to be run in the parser; superclass of all other commands.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public abstract class Command {
     /**
      * Executes the command.

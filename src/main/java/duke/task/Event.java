@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents an Event task; subclass of a Task.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Event extends Task {
     private final String event;
 

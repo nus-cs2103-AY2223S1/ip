@@ -13,6 +13,12 @@ import duke.task.Task;
 import duke.task.Todo;
 import duke.util.TaskList;
 
+/**
+ * Represents a storage object that deals with loading the tasklist from the txt file
+ * and storing the tasklist to the file.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Storage {
     private final String filePath;
 

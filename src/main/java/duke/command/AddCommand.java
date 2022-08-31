@@ -12,6 +12,11 @@ import duke.task.Todo;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a command to add a task to the tasklist; subclass of Command.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class AddCommand extends Command {
     private final ArrayList<String> words;
     private final String firstWord;

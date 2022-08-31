@@ -7,6 +7,11 @@ import duke.task.Task;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a command to find tasks containing the keyword; subclass of Command.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class FindCommand extends Command {
     private final ArrayList<String> words;
 

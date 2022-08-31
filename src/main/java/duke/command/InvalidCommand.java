@@ -4,6 +4,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a command to output unrecognised user inputs; subclass of Command.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class InvalidCommand extends Command {
     /**
      * Executes the command for unrecognised user inputs.

@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents a Todo task; subclass of a Task.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Todo extends Task {
     /**
      * Constructor for the Todo class.

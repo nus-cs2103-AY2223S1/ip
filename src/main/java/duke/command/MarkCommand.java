@@ -7,6 +7,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+/**
+ * Represents a command to mark or unmark a task; subclass of Command.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class MarkCommand extends Command {
     private final ArrayList<String> words;
     private final String firstWord;

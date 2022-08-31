@@ -2,6 +2,11 @@ package duke.ui;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface of the Duke program.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Ui {
     /* Rem bot logo */
     public static final String LOGO = " ___  ___  __ __ \n"

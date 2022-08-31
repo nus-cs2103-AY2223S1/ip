@@ -13,6 +13,11 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.exception.DukeException;
 
+/**
+ * Class to parse user input and return the suitable commands to run.
+ * @author Huang Yuchen
+ * @author hyuchen@u.nus.edu
+ */
 public class Parser {
     /**
      * Parses the given user's string of command input and
