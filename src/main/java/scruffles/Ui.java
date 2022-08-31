@@ -1,3 +1,4 @@
+package scruffles;
 public class Ui {
     public void greet() {
         System.out.println("woof! I'm scruffles the task tracking doggo\n" + "what can I woof for you today?");

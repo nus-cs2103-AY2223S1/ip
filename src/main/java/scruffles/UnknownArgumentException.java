@@ -1,3 +1,4 @@
+package scruffles;
 public class UnknownArgumentException extends Exception {
 
     public UnknownArgumentException(String arg) {

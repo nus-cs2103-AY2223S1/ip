@@ -1,3 +1,4 @@
+package scruffles;
 public class DescriptionEmptyException extends Exception {
 
     public DescriptionEmptyException() {

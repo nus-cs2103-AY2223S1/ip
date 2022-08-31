@@ -1,3 +1,4 @@
+package scruffles;
 public class Parser {
     private static Ui ui = new Ui();
     public static void parse(String input, TaskList tasks) throws UnknownArgumentException, DescriptionEmptyException {
