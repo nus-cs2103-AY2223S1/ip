@@ -34,6 +34,9 @@ public class MainWindow extends AnchorPane {
         duke = d;
     }
 
+    /**
+     * Initialize the program with a new window pop-up launching
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
