@@ -140,7 +140,7 @@ public class Parser {
 
     private static Command prepareFind(String[] splitInputArray) throws DukeException {
         verifyInput(splitInputArray, MissingDetails.KEYWORD);
-        String keyword = splitInputArray[1];
-        return new FindCommand(keyword);
+        String[] keywords = splitInputArray[1].split(" ");
+        return new FindCommand(keywords);
     }
 }
