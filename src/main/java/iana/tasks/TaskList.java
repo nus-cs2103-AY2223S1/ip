@@ -2,6 +2,7 @@ package iana.tasks;
 
 import java.util.ArrayList;
 import iana.exception.IanaException;
+import iana.main.Ui;
 import iana.tasks.TaskList;
 
 public class TaskList {
@@ -37,6 +38,25 @@ public class TaskList {
 
     public void unmark(int taskNumber) {
         this.taskList.get(taskNumber).toggleComplete(false);
+    }
+
+    /**
+     * Find tasks with specified keyword.
+     * @param keyword keyword of task.
+     * @return a list of all tasks with the keyword.
+     */
+    public TaskList findKeyword(String keyword) {
+        TaskList list = new TaskList();
+        for (Task task : this.taskList) {
+            if (task.containsKeyword(keyword)) {
+                try {
+                    list.add(task);
+                } catch (IanaException e) {
+                    break;
+                }
+            }
+        }
+        return list;
     }
 
     public String printTaskString(int taskNumber) {

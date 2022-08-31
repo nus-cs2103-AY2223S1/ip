@@ -83,6 +83,10 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    public boolean containsKeyword(String keyword) {
+        return this.task.contains(keyword);
+    }
+ 
     public String toFileData() {
         return String.format("%d | %s", this.isCompleted ? 1 : 0, this.task);
     }

@@ -5,6 +5,7 @@ import iana.command.AddTaskCommand;
 import iana.command.Command;
 import iana.command.DeleteCommand;
 import iana.command.ExitCommand;
+import iana.command.FindCommand;
 import iana.command.ListCommand;
 import iana.command.MarkCommand;
 import iana.command.UnmarkCommand;
@@ -41,6 +42,9 @@ public class Parser {
 
                 case deadline:
                 return new AddTaskCommand(input);
+
+                case find:
+                return new FindCommand(taskArray[1]);
 
                 default:
                 return new ExitCommand();

@@ -7,5 +7,6 @@ public enum Actions {
     unmark,
     todo,
     event,
-    deadline
+    deadline,
+    find
 }
