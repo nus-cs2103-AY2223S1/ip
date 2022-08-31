@@ -44,37 +44,19 @@ public class Duke {
     }
 
     /**
-     * Starts serving the user in CLI.
+     * Executes the command given by the user and act accordingly.
      *
+     * @param userInput The input that user provides.
+     * @throws DukeException if user input is not in a valid format.
+     * @throws NumberFormatException if indexes provided for commands that require it cannot be casted into
+     *                               integer (e.g. mark, delete).
+     * @throws DateTimeParseException if date provided for commands is invalid.
      */
-    private void run() {
-        this.ui.greetUser();
+    public void handleUserInput(String userInput) throws DukeException,
+            NumberFormatException, DateTimeParseException {
 
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userInput = this.ui.readCommand();
-                Command c = Parser.parse(userInput);
-                c.execute(this.tasks, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                this.ui.showDukeError(e.getMessage());
-            } catch (NumberFormatException e) {
-                this.ui.showNumberCastError();
-            } catch (DateTimeParseException e) {
-                this.ui.showInvalidDateError();
-            }
-        }
-
+        Command c = Parser.parse(userInput);
+        c.execute(this.tasks, this.ui, this.storage);
         this.storage.save(this.tasks);
-    }
-
-    /**
-     * Runs when program is first executed.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        new Duke("src/data/duke.txt").run();
     }
 }
