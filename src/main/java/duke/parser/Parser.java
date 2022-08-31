@@ -96,42 +96,42 @@ public class Parser {
         String command = next[0];
 
         switch (command) {
-            case "bye":
-                return "Bye. Hope to see you again soon!";
-            case "list":
-                tasklist.list();
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            case "unmark":
-                tasklist.unmark(next[1]);
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            case "mark":
-                tasklist.mark(next[1]);
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            case "todo":
-            case "deadline":
-            case "event":
-                tasklist.addTask(next);
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            case "delete":
-                tasklist.delete(next[1]);
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            case "find":
-                tasklist.findWithFilter(next[1]);
-                System.out.flush();
-                System.setOut(old);
-                return baos.toString();
-            default:
-                throw new DukeException("Invalid command");
+        case "bye":
+            return "Bye. Hope to see you again soon!";
+        case "list":
+            tasklist.list();
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        case "unmark":
+            tasklist.unmark(next[1]);
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        case "mark":
+            tasklist.mark(next[1]);
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        case "todo":
+        case "deadline":
+        case "event":
+            tasklist.addTask(next);
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        case "delete":
+            tasklist.delete(next[1]);
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        case "find":
+            tasklist.findWithFilter(next[1]);
+            System.out.flush();
+            System.setOut(old);
+            return baos.toString();
+        default:
+            throw new DukeException("Invalid command");
         }
     }
 }

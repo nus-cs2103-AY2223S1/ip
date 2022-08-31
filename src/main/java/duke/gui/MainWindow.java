@@ -33,11 +33,15 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sends introductory message.
+     */
     @FXML
     public void sendIntro() {
         dialogContainer.getChildren().add(DialogBox.getDukeIntro(
                 duke.getIntro(), dukeImage));
     }
+
     public void setDuke(Duke d) {
         duke = d;
     }
