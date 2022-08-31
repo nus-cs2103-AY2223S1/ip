@@ -78,7 +78,7 @@ public class TaskList {
      * Adds a new Deadline task.
      * @param task Deadline to be added
      */
-    public void addDeadline(Event task) {
+    public void addDeadline(Deadline task) {
         db.add(task);
 
         System.out.println("Got it. I added this deadline:");
