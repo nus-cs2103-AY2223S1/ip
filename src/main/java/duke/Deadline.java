@@ -26,7 +26,7 @@ public class Deadline extends Task {
      *
      * @return the string representation of the date of the deadline
      */
-    public String deadlineDateStr() {
+    public String getDeadlineDateStr() {
         return date.getMonth() + " " + date.getDayOfMonth() + " " + date.getYear();
     }
 
