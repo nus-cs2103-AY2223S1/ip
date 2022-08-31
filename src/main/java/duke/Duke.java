@@ -20,22 +20,16 @@ public class Duke {
     }
 
     /**
-     * Runs Duke.
+     * Generates a response to user input.
+     *
+     * @param input User input.
+     * @return Bot response.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                isExit = Parser.parse(fullCommand, tasks, ui);
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
+    String getResponse(String input) {
+        try {
+            return Parser.parse(input, tasks, ui);
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("duke_tasks").run();
     }
 }

@@ -17,7 +17,7 @@ public class Ui {
         return in.nextLine();
     }
 
-    private void prettyPrint(String text) {
+    private String prettyPrint(String text) {
         String[] lines = text.split("\n");
         StringBuilder temp = new StringBuilder("    ____________________________________________________________\n");
         for (String line : lines) {
@@ -26,47 +26,48 @@ public class Ui {
             temp.append("\n");
         }
         temp.append("    ____________________________________________________________\n");
-        System.out.println(temp);
+        return temp.toString();
     }
 
-    public void showWelcome() {
-        prettyPrint("Hello! I'm Duke\nWhat can I do for you?");
+    public String showWelcome() {
+        return "Hello! I'm Duke\nWhat can I do for you?";
     }
 
-    public void showBye() {
-        prettyPrint("Bye. Hope to see you again soon!");
+    public String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
-    public void showTasks(TaskList tasks) {
-        prettyPrint("Here are the tasks in your list:\n" + tasks.toString());
+    public String showTasks(TaskList tasks) {
+        return "Here are the tasks in your list:\n" + tasks.toString();
     }
 
-    public void showMarked(Task task) {
-        prettyPrint("Nice! I've marked this task as done:\n  " + task);
+    public String showMarked(Task task) {
+        return "Nice! I've marked this task as done:\n  " + task;
     }
 
-    public void showUnmarked(Task task) {
-        prettyPrint("OK, I've marked this task as not done yet:\n  " + task);
+    public String showUnmarked(Task task) {
+        return "OK, I've marked this task as not done yet:\n  " + task;
     }
 
-    public void showAdded(Task task, int num) {
-        prettyPrint("Got it. I've added this task:\n  " + task + "\nNow you have " + num + " tasks in the list.");
+    public String showAdded(Task task, int num) {
+        return "Got it. I've added this task:\n  " + task + "\nNow you have " + num + " tasks in the list.";
     }
 
-    public void showRemoved(Task task, int num) {
-        prettyPrint("Noted. I've removed this task:\n  " + task + "\nNow you have " + num + " tasks in the list.");
+    public String showRemoved(Task task, int num) {
+        return "Noted. I've removed this task:\n  " + task + "\nNow you have " + num + " tasks in the list.";
     }
 
-    public void showError(String message) {
-        prettyPrint("☹ OOPS!!! " + message);
+    public String showError(String message) {
+        return ":( OOPS!!! " + message;
     }
 
     /**
-     * Shows search results.
+     * Formats search results.
      *
      * @param result Task list from search result.
+     * @return Formatted search results.
      */
-    public void showResults(List<Task> result) {
+    public String showResults(List<Task> result) {
         StringBuilder temp = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < result.size(); i++) {
             temp.append(i + 1);
@@ -74,6 +75,6 @@ public class Ui {
             temp.append(result.get(i));
             temp.append("\n");
         }
-        prettyPrint(temp.toString());
+        return temp.toString();
     }
 }
