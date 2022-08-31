@@ -1,9 +1,16 @@
-[D][ ] math homework (by:Oct 15 2019)
-[D][ ] math lab (by:Dec 11 2020)
-[T][ ] english work
-[D][ ] english homework (by:Nov 15 2019)
-[T][ ] hello
-[E][ ] birthday (at: noon tomorrow)
+[T][ ] homework
+[T][ ] tests
+[T][ ] homework
 [T][ ] work
-[T][ ] gugugaga
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
+[T][ ] work
 [T][ ] work

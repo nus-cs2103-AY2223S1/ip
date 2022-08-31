@@ -9,9 +9,8 @@ package duke;
  * @since   2022-8-24
  */
 public class Ui {
-    private final String LINE_BREAK = "------------------";
-    private final String GREETING_MESSAGE = "\n Hello I am LUNA!\n How can I be of help?\n";
-    private final String GOODBYE_MESSAGE = "\nLUNA bids farewell\n\n May the Moon shine bright "
+    private final String GREETING_MESSAGE = "Hello I am LUNA!\n How can I be of help?";
+    private final String GOODBYE_MESSAGE = "LUNA bids farewell\nMay the Moon shine bright "
              + "and illuminate your night.";
     private final String UNMARK_MESSAGE =  "LUNA thought you were already done with this?\n";
     private final String MARK_MESSAGE = "LUNA waited many moons for you to finish this one\n";
@@ -24,75 +23,71 @@ public class Ui {
     /**
      * Prints a greeting message
      */
-    public void greetingMessage() {
-        System.out.println(this.GREETING_MESSAGE + this.LINE_BREAK);
+    public String greetingMessage() {
+        return this.GREETING_MESSAGE + "\n";
     }
 
     /**
      * Prints a farewell message
      */
-    public void goodbyeMessage() {
-        System.out.println(this.LINE_BREAK + GOODBYE_MESSAGE);
+    public String goodbyeMessage() {
+
+        return GOODBYE_MESSAGE;
     }
 
     /**
      * Prints a message indicating a Task has been unmarked
      */
-    public void unmarkMessage(String taskName) {
-        System.out.println(UNMARK_MESSAGE + taskName + "\n" + LINE_BREAK);
+    public String unmarkMessage(String taskName) {
+
+        return UNMARK_MESSAGE + taskName;
     }
 
     /**
      * Prints a message indicating a Task has been marked
      */
-    public void markMessage(String taskName) {
-        System.out.println(MARK_MESSAGE + taskName + "\n" + LINE_BREAK);
+    public String markMessage(String taskName) {
+
+        return MARK_MESSAGE + taskName;
     }
 
     /**
      * Prints a message indicating a Task has been deleted
      */
-    public void deleteMessage(String taskName, int len) {
-        System.out.println(DELETE_MESSAGE + taskName + "\n" + LINE_BREAK);
+    public String deleteMessage(String taskName, int len) {
+
+        return DELETE_MESSAGE + taskName;
     }
 
     /**
      * Prints a message indicating a ToDos Object has been added to the TaskList
      */
-    public void todoMessage(ToDos todo, int len) {
-        System.out.println(LINE_BREAK + "\n" + TODO_MESSAGE + todo + "\n" + LINE_BREAK);
-        lengthMessage(len);
+    public String todoMessage(ToDos todo, int len) {
+        return TODO_MESSAGE + todo + "\n" + lengthMessage(len);
+
     }
 
     /**
      * Prints a message indicating a Events Object has been added to the TaskList
      */
-    public void eventMessage(Events event, int len) {
-        System.out.println(LINE_BREAK + "\n" + EVENT_MESSAGE + event + "\n" + LINE_BREAK);
-        lengthMessage(len);
+    public String eventMessage(Events event, int len) {
+        return "\n" + EVENT_MESSAGE + event + "\n" + lengthMessage(len);
     }
 
     /**
      * Prints a message indicating a Deadlines Object has been added to the TaskList
      */
-    public void deadlineMessage(Deadlines deadline, int len) {
-        System.out.println(LINE_BREAK + "\n" + DEADLINE_MESSAGE + deadline + "\n" + LINE_BREAK);
-        lengthMessage(len);
+    public String deadlineMessage(Deadlines deadline, int len) {
+        return DEADLINE_MESSAGE + deadline +  "\n" + lengthMessage(len);
     }
 
-    public void findMessage() {
-        System.out.println(FIND_MESSAGE + "\n" + LINE_BREAK);
+    public String findMessage() {
+
+        return FIND_MESSAGE + "\n";
     }
 
-    public void lengthMessage(int len) {
-        System.out.println("You now have " + len + " tasks added\n" + "How many moons before you complete them?"
-                + "\n" + LINE_BREAK);
+    public String lengthMessage(int len) {
+        return "You now have " + len + " tasks added\n" + "How many moons before you complete them?";
     }
 
-    /**
-     * Prints a line break
-     */
-    public void lineBreak() {
-        System.out.println(LINE_BREAK);
-    }
 }

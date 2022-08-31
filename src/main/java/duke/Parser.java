@@ -48,37 +48,37 @@ public class Parser {
      * @param input The string that will be parsed
      *
      */
-    public void parse(String input) throws ParseException {
+    public String parse(String input) throws ParseException {
         String[] splitStr = input.split("\\s+");
         TaskList taskList = storage.getTaskList();
+        String errorMessage = "";
 
         if (input.equalsIgnoreCase("bye")) {
             storage.write(taskList);
-            ui.goodbyeMessage();
+            return ui.goodbyeMessage();
 
         } else if (input.equalsIgnoreCase("list")) {
             int counter = 1;
-            ui.lineBreak();
-            taskList.list();
+            return taskList.list();
 
         } else if (input.substring(0, Math.min(input.length(), 4)).equals("mark")
                 || input.substring(0, Math.min(input.length(), 6)).equals("unmark")
                 || input.substring(0, Math.min(input.length(), 6)).equals("delete")) {
             String str = "";
-            boolean error = false;
+            boolean isError = false;
             String type = splitStr[0];
 
             try {
 
                 if (splitStr.length > 2 || splitStr.length == 1 || !isNumeric(splitStr[1])) {
-                    error = true;
+                    isError = true;
                     throw new DukeException("LUNA is unsure of what you are asking of her... ");
                 }
             } catch (DukeException e) {
-                System.out.println(e);
+                errorMessage = e.toString();
             }
 
-            if (!error) {
+            if (!isError) {
                 str = splitStr[1];
                 int index = Integer.valueOf(str) - 1;
 
@@ -87,20 +87,20 @@ public class Parser {
                     task.unmark();
                     String taskName = task.toString();
                     taskList.set(index, task);
-                    ui.unmarkMessage(taskName);
+                    return ui.unmarkMessage(taskName);
 
                 } else if (input.contains("mark")) {
                     Task task = taskList.get(index);
                     task.mark();
                     String taskName = task.toString();
                     taskList.set(index, task);
-                    ui.markMessage(taskName);
+                    return ui.markMessage(taskName);
 
                 } else {
                     Task task = taskList.get(index);
                     taskList.remove(index);
                     String taskName = task.toString();
-                    ui.deleteMessage(taskName, taskList.size());
+                    return ui.deleteMessage(taskName, taskList.size());
 
                 }
             }
@@ -108,11 +108,11 @@ public class Parser {
             String type = splitStr[0];
             String[] findTask = input.split(type);
             String actualTask = "";
-            boolean error = false;
+            boolean isError = false;
 
             try {
                 if (findTask.length == 0) {
-                    error = true;
+                    isError = true;
 
                     if (type.equals("todo")) {
                         throw new DukeException("To do? To do what? ");
@@ -134,29 +134,29 @@ public class Parser {
                     actualTask = theTask;
                 }
             } catch (DukeException e) {
-                System.out.println(e);
+                errorMessage = e.toString();
             }
 
-            if (!error) {
+            if (!isError) {
                 if (type.equals("todo")) {
 
                     ToDos todo = new ToDos(actualTask);
                     taskList.add(todo);
-                    ui.todoMessage(todo, taskList.size());
+                    return ui.todoMessage(todo, taskList.size());
 
                 } else if (type.equals("event")) {
                     String[] splitStr2 = input.split("/at");
                     Events event = new Events(actualTask, splitStr2[1]);
 
                     taskList.add(event);
-                    ui.eventMessage(event, taskList.size());
+                    return ui.eventMessage(event, taskList.size());
 
                 } else if (type.equals("deadline")) {
                     String[] splitStr2 = input.split("/by ");
                     Deadlines deadline = new Deadlines(actualTask, splitStr2[1]);
 
                     taskList.add(deadline);
-                    ui.deadlineMessage(deadline, taskList.size());
+                    return ui.deadlineMessage(deadline, taskList.size());
                 } else if (type.equals("find")) {
                     TaskList findList = new TaskList();
                     String taskName = actualTask;
@@ -167,8 +167,7 @@ public class Parser {
                     };
 
                     taskList.forEach(consumer);
-                    ui.findMessage();
-                    findList.list();
+                    return ui.findMessage() + findList.list();
 
 
                 } else {
@@ -176,11 +175,12 @@ public class Parser {
                         throw new DukeException("LUNA has consulted the Moon Goddess and "
                                 + "even she has no idea what you're saying. ");
                     } catch (DukeException e) {
-                        System.out.println(e);
+                        errorMessage = e.toString();
                     }
                 }
             }
         }
+        return errorMessage;
     }
 }
 

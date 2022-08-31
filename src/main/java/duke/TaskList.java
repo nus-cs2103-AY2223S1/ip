@@ -25,12 +25,14 @@ public class TaskList {
         this.arrayList.add(task);
     }
 
-    public void list() {
+    public String list() {
         int counter = 1;
+        String list = "";
         for (Task task : arrayList) {
-            System.out.println(counter + ". " + task.toString());
+            list += counter + ". " + task.toString() + "\n";
             counter++;
         }
+        return list;
     }
 
     /**
