@@ -76,7 +76,7 @@ abstract public class Task {
      * @return String to show that the task is marked successfully
      * @throws BlinkException Thrown if marked task is marked again
      */
-    public String mark() throws BlinkException{
+    public String mark() throws BlinkException {
         if (this.isDone) {
             throw new BlinkException("This task has already been done :|");
         } else {
@@ -91,7 +91,7 @@ abstract public class Task {
      * @return String to show that the Task is unmarked successfully
      * @throws BlinkException Thrown if unmarked task is unmarked again
      */
-    public String unMark() throws BlinkException{
+    public String unMark() throws BlinkException {
         if (!this.isDone) {
             throw new BlinkException("An unfinished task cannot be unmark...");
         } else {

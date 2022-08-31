@@ -16,7 +16,7 @@ abstract public class Command {
       * @param ui Ui object of current Blink object
       * @param storage Storage object of current Blink object
       */
-     public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+     public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
      /**
       * Checks if the command run will cause the program to terminate.
