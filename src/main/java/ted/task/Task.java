@@ -22,7 +22,7 @@ public class Task {
     private Boolean isDone;
 
     /**
-     * Construct a Task isntance
+     * Construct a Task instance
      * @param description
      */
     public Task(String description) {
