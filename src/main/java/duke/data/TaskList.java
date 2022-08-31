@@ -50,6 +50,7 @@ public class TaskList {
      * @param isDone True if the Task is to be marked as done and false if the Task is to
      *               be marked as not done.
      * @return The Task that has been marked as done or not done.
+     * @throws DukeException If the task number is negative or greater than the number of tasks.
      */
     public Task changeTaskStatus(int index, boolean isDone) throws DukeException {
         if (index >= 0 && index < tasks.size()) {
@@ -73,6 +74,7 @@ public class TaskList {
      * Deletes a Task from the list of tasks.
      * @param index The index of the Task to be deleted.
      * @return The Task that has been deleted.
+     * @throws DukeException If the task number is negative or greater than the number of tasks.
      */
     public Task deleteTask(int index) throws DukeException {
         if (index >= 0 && index < tasks.size()) {
