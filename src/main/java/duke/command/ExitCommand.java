@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.Consumer;
 
 import duke.task.TaskList;
@@ -11,16 +13,6 @@ import duke.util.Storage;
 public class ExitCommand extends Command {
 
     /**
-     * Returns true, since this is a terminal command.
-     *
-     * @return true
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
-
-    /**
      * Calls the {@code UI} to exit interaction.
      *
      * @param storage The {@code Storage} to use.
@@ -30,6 +22,12 @@ public class ExitCommand extends Command {
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         printer.accept("Bye! Hope to see you soon.");
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 1000L);
     }
 
     /**

@@ -51,7 +51,8 @@ public class Duke {
      */
     public void execute(String command) {
         try {
-            Parser.parseCommand(command).execute(storage, printer, tasks);
+            Command cmd = Parser.parseCommand(command);
+            cmd.execute(storage, printer, tasks);
         } catch (Exception e) {
             printer.accept(e.getMessage());
         }

@@ -50,7 +50,10 @@ public class MainWindow extends VBox {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
+        String input = userInput.getText().strip();
+        if (input.isEmpty()) {
+            return;
+        }
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         userInput.clear();
         duke.execute(input);

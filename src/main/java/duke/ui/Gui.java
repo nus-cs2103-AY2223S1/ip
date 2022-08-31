@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

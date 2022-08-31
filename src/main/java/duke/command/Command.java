@@ -11,15 +11,6 @@ import duke.util.Storage;
 public abstract class Command {
 
     /**
-     * Checks if this {@code Command} is a terminal command.
-     *
-     * @return {@code true} if this {@code Command} is a terminal command, {@code false} otherwise.
-     */
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * Executes the command.
      *
      * @param storage The {@code Storage} to use.
