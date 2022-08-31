@@ -54,6 +54,17 @@ public class Ui {
         System.out.printf("Task marked as %s: %s\n", isDone ? "complete" : "incomplete", task);
     }
 
+    public static void displaySearchTasksMessage(List<Task> foundTasks, String searchString) {
+        if (foundTasks.size() == 0) {
+            System.out.printf("Search results for \"%s\": No tasks found\n", searchString);
+        } else {
+            System.out.printf("Search results for \"%s\": %d task(s) found\n", searchString, foundTasks.size());
+            for (int i = 0; i < foundTasks.size(); i++) {
+                System.out.printf("%d. %s\n", i + 1, foundTasks.get(i));
+            }
+        }
+    }
+
     /**
      * Displays all tasks in the list.
      */

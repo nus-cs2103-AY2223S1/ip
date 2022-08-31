@@ -175,6 +175,19 @@ public class TaskList {
         return task;
     }
 
+    public static List<Task> searchTasks(String searchString) {
+        searchString = searchString.strip();
+        ArrayList<Task> foundTasks = new ArrayList<>();
+
+        for (Task task: tasks) {
+            if (task.getTaskName().contains(searchString)) {
+                foundTasks.add(task);
+            }
+        }
+
+        return foundTasks;
+    }
+
     public static List<String> getTasksSaveStrings() {
         ArrayList<String> saveStrings = new ArrayList<>();
 
