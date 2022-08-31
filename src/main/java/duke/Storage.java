@@ -1,12 +1,15 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 import java.util.Scanner;
 
 public class Storage {
 
-    public String path;
-    public TaskList taskList;
+    private String path;
+    private TaskList taskList;
 
     /**
      * Constructor for Storage.

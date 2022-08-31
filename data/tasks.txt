@@ -1,5 +1,5 @@
 [T][X] shopping
-[D][ ] laundry (by: 12/12/2222 1500)
+[D][X] laundry (by: 12/12/2222 1500)
 [D][ ] testing (by: 12/12/2222 1500)
 [D][ ] work (by: 12/12/2222 1500)
-[T][ ] fdjaosifjso
+[T][X] fdjaosifjso

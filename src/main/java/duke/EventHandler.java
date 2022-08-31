@@ -1,8 +1,11 @@
 package duke;
 
+/**
+ * Class responsible for handling all events in Duke
+ */
 public class EventHandler {
 
-    public TaskList taskList;
+    private TaskList taskList;
     private UserInterface userInterface;
     private GuiUserInterface guiUserInterface;
     private Storage storage;
@@ -13,7 +16,8 @@ public class EventHandler {
      * @param taskList      TaskList for EventHandler to handle.
      * @param userInterface UserInterface that EventHandler uses.
      */
-    public EventHandler(TaskList taskList, UserInterface userInterface, GuiUserInterface guiUserInterface, Storage storage) {
+    public EventHandler(TaskList taskList, UserInterface userInterface,
+                        GuiUserInterface guiUserInterface, Storage storage) {
         this.taskList = taskList;
         this.userInterface = userInterface;
         this.guiUserInterface = guiUserInterface;
