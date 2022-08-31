@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 public class ViewCommand extends Command {
 
     private String keyword;
@@ -8,7 +14,7 @@ public class ViewCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.listTasks(tasks);
+         ui.listTasks(tasks);
     }
 
     @Override

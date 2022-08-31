@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 import java.io.FileNotFoundException;
 
 public class DeleteCommand extends Command {

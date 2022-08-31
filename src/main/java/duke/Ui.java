@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -68,7 +70,7 @@ public class Ui {
 
     public void showDeletingTask(String task) {
         System.out.println(INDENT + "got it, removing this task from your list...\n"
-                + DOUBLE_INDENT + task + DIVIDER);
+                + INDENT + task + "\n" + DIVIDER);
     }
 
     public void showError(String message) {

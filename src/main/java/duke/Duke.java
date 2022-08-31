@@ -1,16 +1,6 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.ListResourceBundle;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+package duke;
 
+import duke.command.Command;
 
 public class Duke {
 

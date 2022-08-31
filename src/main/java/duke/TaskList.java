@@ -1,4 +1,7 @@
-import java.lang.reflect.Array;
+package duke;
+
+import duke.task.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -52,7 +55,7 @@ public class TaskList {
     public void deleteTask(String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
         ui.showDeletingTask(this.taskArr.get(taskNo).toString());
-        this.taskArr.remove(taskNo);
+        this.taskArr.remove(getTask(taskNo));
     }
 
     public void markTask(String keyword, String input, Ui ui) {
