@@ -1,20 +1,22 @@
-import java.util.Map;
+import java.time.LocalDateTime;
 
 public class DeadlineTask extends Task {
-    private final String deadline;
+    private final LocalDateTime deadline;
 
-    public DeadlineTask(Map<String, String> args, boolean isDone) {
-        super( 'D', args.get("description"), isDone);
-        deadline = args.get("by");
+    public DeadlineTask(String description, LocalDateTime deadline, boolean isDone) {
+        super( 'D', description, isDone);
+        this.deadline = deadline;
     }
 
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), deadline);
+        return String.format("%s (by: %s)", super.toString(),
+                deadline.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
 
     @Override
     public String toData() {
-        return String.format("%s | %s", super.toData(), deadline);
+        return String.format("%s | %s", super.toData(),
+                deadline.format(Parser.DATETIME_OUTPUT_FORMAT));
     }
 }
