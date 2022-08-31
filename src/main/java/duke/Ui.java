@@ -80,6 +80,12 @@ public class Ui {
         System.out.printf("Task marked as %s: %s\n", isDone ? "complete" : "incomplete", task);
     }
 
+    /**
+     * Displays the text to be shown when the user searches for tasks.
+     *
+     * @param foundTasks The tasks that were found in the search.
+     * @param searchString The string that was used to perform the search.
+     */
     public static void displaySearchTasksMessage(List<Task> foundTasks, String searchString) {
         if (foundTasks.size() == 0) {
             System.out.printf("Search results for \"%s\": No tasks found\n", searchString);

@@ -187,6 +187,13 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Searches for tasks based on the given search string, and returns a list of tasks found.
+     * If the taskName of a task contains the search string, it is added to the search results.
+     *
+     * @param searchString The string to be used to search for tasks.
+     * @return The list of tasks found in the search.
+     */
     public static List<Task> searchTasks(String searchString) {
         searchString = searchString.strip();
         ArrayList<Task> foundTasks = new ArrayList<>();
