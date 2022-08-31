@@ -1,6 +1,6 @@
 package ip;
 
-public class Task {
+class Task {
     protected String description;
     protected boolean isDone;
 

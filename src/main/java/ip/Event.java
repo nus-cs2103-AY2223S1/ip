@@ -3,7 +3,7 @@ package ip;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+class Event extends Task {
 
     protected LocalDateTime at;
 
