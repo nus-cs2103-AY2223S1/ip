@@ -1,5 +1,7 @@
 package duke;
 
+import duke.commands.*;
+
 public class Parser {
     public static Command parse(String command) throws DukeException {
         command = command.toLowerCase();

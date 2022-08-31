@@ -1,31 +1,33 @@
-package duke;
+package duke.task;
+import duke.DukeException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class Deadline extends Task {
     protected LocalDateTime dateTime;
     protected static DateTimeFormatter dateTimeInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     protected static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
     protected static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public Event(String description, String at) throws DukeException {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
         try {
-            this.dateTime = LocalDateTime.parse(at, dateTimeInputFormatter);
+            this.dateTime = LocalDateTime.parse(by, dateTimeInputFormatter);
         } catch (Exception e) {
             throw new DukeException("Input your date and time in the format yyyy-MM-dd HHmm!");
         }
     }
 
-    public Event(String description, LocalDateTime dateTime) {
+    public Deadline(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
     }
 
-    public static Event createEventFromString(String line) {
-        return new Event(line.substring(10, line.indexOf("(at:") - 1),
-                LocalDateTime.parse(line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")),
+    public static Deadline createDeadlineFromString(String line) {
+        return new Deadline(line.substring(10, line.indexOf("(by:") - 1),
+                LocalDateTime.parse(line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")),
                         dateTimeOutputFormatter));
     }
 
@@ -43,6 +45,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + dateTime.format(dateTimeOutputFormatter) + ")";
+        return "[D]" + super.toString() + " (by: " + dateTime.format(dateTimeOutputFormatter) + ")";
     }
 }

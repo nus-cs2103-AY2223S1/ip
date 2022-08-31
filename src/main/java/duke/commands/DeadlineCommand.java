@@ -1,4 +1,7 @@
-package duke;
+package duke.commands;
+
+import duke.*;
+import duke.task.Deadline;
 
 public class DeadlineCommand extends Command {
     private final String input;

@@ -1,4 +1,7 @@
-package duke;
+package duke.commands;
+
+import duke.*;
+import duke.task.Event;
 
 public class EventCommand extends Command {
     private final String input;

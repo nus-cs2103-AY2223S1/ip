@@ -1,16 +1,23 @@
-package duke;
+package duke.commands;
 
-public class DeleteCommand extends Command {
-    private final String input;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.commands.Command;
 
-    public DeleteCommand(String input) {
+public class UnmarkCommand extends Command {
+    public String input;
+
+    public UnmarkCommand(String input) {
         this.input = input;
     }
 
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             int index = Integer.parseInt(input.trim()) - 1;
-            ui.showDeleteTask(taskList.deleteTask(index), taskList);
+            taskList.get(index).markAsUndone();
+            ui.showUnmarkedTask(taskList.get(index));
         } catch (NumberFormatException e) {
             throw new DukeException("Input a valid number!");
         }

@@ -1,5 +1,7 @@
 package duke;
 
+import duke.commands.Command;
+
 public class Duke {
     private final Ui ui;
     private final Storage storage;

@@ -1,4 +1,7 @@
-package duke;
+package duke.commands;
+
+import duke.*;
+import duke.task.ToDo;
 
 public class ToDoCommand extends Command {
     public String input;
