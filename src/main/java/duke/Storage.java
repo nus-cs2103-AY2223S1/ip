@@ -1,6 +1,9 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -59,9 +62,9 @@ public class Storage {
                 cur = new ToDo(event.substring(4));
                 break;
             case "D":
-                int indexofdeadline = event.lastIndexOf("|") + 1;
-                String deadline = event.substring(indexofdeadline);
-                String deadlinedescription = event.substring(4, indexofdeadline - 1);
+                int indexOfDeadline = event.lastIndexOf("|") + 1;
+                String deadline = event.substring(indexOfDeadline);
+                String deadlinedescription = event.substring(4, indexOfDeadline - 1);
                 cur = new Deadline(deadlinedescription, deadline);
                 break;
             case "E":

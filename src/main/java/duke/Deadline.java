@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Deadline extends Task {
 
-    protected LocalDate timeobject;
+    protected LocalDate date;
 
     /**
      * Constructor of deadline.
@@ -17,14 +17,14 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String time) {
         super(description);
-        this.timeobject = Parser.stringToDate(time);
+        this.date = Parser.stringToDate(time);
 
     }
 
     @Override
     public String storeToString() {
         return "D|" + this.binarytoString() + "|" + this.description.substring(0, description.length()) + "|"
-                + Parser.dateToString(this.timeobject);
+                + Parser.dateToString(this.date);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + Parser.displayDate(timeobject) + ")";
+        return "[D]" + super.toString() + " (by: " + Parser.displayDate(date) + ")";
     }
 
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Event extends Task {
 
-    private LocalDate timeobject;
+    private LocalDate date;
 
     /**
      * Constructor of event.
@@ -17,7 +17,7 @@ public class Event extends Task {
      */
     public Event(String description, String time) {
         super(description);
-        this.timeobject = Parser.stringToDate(time);
+        this.date = Parser.stringToDate(time);
     }
 
     /**
@@ -27,7 +27,7 @@ public class Event extends Task {
      */
     public String storeToString() {
         return "E|" + this.binarytoString()
-                + "|" + this.description.substring(0, description.length()) + "|" + Parser.dateToString(this.timeobject);
+                + "|" + this.description.substring(0, description.length()) + "|" + Parser.dateToString(this.date);
     }
 
     /**
@@ -37,6 +37,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + Parser.displayDate(timeobject) + ")";
+        return "[E]" + super.toString() + " (at: " + Parser.displayDate(date) + ")";
     }
 }
