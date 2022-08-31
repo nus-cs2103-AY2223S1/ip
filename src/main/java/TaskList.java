@@ -11,20 +11,10 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Adds a new Task with a given description to the TaskList.
+     * Marks a {@code Task} as done or undone.
      *
-     * @param taskType The string representing the type of Task to be added.
-     * @param args The map of strings representing the arguments to be supplied to the constructor.
-     */
-    public void addTask(String taskType, Map<String, String> args) {
-        add(Task.of(taskType, args));
-    }
-
-    /**
-     * Marks a Task as done or undone.
-     *
-     * @param index The index of the Task to be marked.
-     * @param isDone Whether the Task is to be marked as done or undone.
+     * @param index The index of the {@code Task} to be marked.
+     * @param isDone Whether the {@code Task} is to be marked as done or undone.
      */
     public void setDone(int index, boolean isDone) {
         get(index).setDone(isDone);
@@ -42,9 +32,9 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Returns the string representation of a TaskList.
+     * Returns the string representation of a {@code TaskList}.
      *
-     * @return The string representing the TaskList.
+     * @return The string representing the {@code TaskList}.
      */
     @Override
     public String toString() {

@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -11,12 +15,13 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
+    private static final String taskListTxt = "duke.txt";
 
     private final TaskList taskList;
     private boolean tasksEnd = false;
 
     /**
-     * Initialises Duke class with empty TaskList.
+     * Initialises Duke class with empty {@code TaskList}.
      */
     public Duke() {
         taskList = new TaskList();
@@ -27,20 +32,63 @@ public class Duke {
      */
     public void run() {
 
-        IOParser.printMsg(String.format("%s%s", LOGO, GREETING));
+        Parser.printMsg(String.format("%s%s", LOGO, GREETING));
 
         Scanner sc = new Scanner(System.in);
+        load();
 
         while (!tasksEnd) {
             System.out.print(">> ");
             String input = sc.nextLine();
             try {
                 execute(input);
+                write(taskList);
             } catch (DukeException e) {
-                IOParser.printMsg(e.getMessage());
+                Parser.printMsg(e.getMessage());
             }
         }
     }
+
+    /**
+     * Writes {@code TaskList} taskList into data/duke.txt
+     * Overwrites the whole file with current taskList
+     * @param taskList the {@code TaskList} we are saving
+     */
+    public void write(TaskList taskList) {
+        File storageDirectory = new File("./data");
+        if (!storageDirectory.exists()) {
+            if (!storageDirectory.mkdir()) {
+                Parser.printMsg("Could not create /data directory");
+            }
+        }
+        try {
+            FileWriter fw = new FileWriter(String.format("./data/%s", taskListTxt));
+            for (Task task : taskList) {
+                fw.write(task.toData() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            Parser.printMsg(String.format("Failed to write file at ./data/%s", taskListTxt));
+        }
+    }
+
+    /**
+     * Loads {@code TaskList} taskList from data/duke.txt
+     */
+    public void load() {
+        File f = new File(String.format("./data/%s", taskListTxt));
+        try {
+            if (f.exists()) {
+                Scanner sc = new Scanner(f);
+                while (sc.hasNextLine()) {
+                    taskList.add(Parser.parseTask(sc.nextLine()));
+                }
+            }
+        } catch (FileNotFoundException | DukeException e) {
+            Parser.printMsg(e.getMessage());
+        }
+    }
+
 
     /**
      * Execute the command entered by the user.
@@ -61,11 +109,11 @@ public class Duke {
 
         switch (command) {
         case BYE:
-            IOParser.printMsg("Bye. Hope to see you again soon!");
+            Parser.printMsg("Bye. Hope to see you again soon!");
             tasksEnd = true;
             break;
         case LIST:
-            IOParser.printMsg(String.format("Here are the tasks in your list:\n%s",
+            Parser.printMsg(String.format("Here are the tasks in your list:\n%s",
                     taskList));
             break;
         case EMPTY:
@@ -77,7 +125,7 @@ public class Duke {
             try {
                 int index = Integer.parseInt(inputs[1]) - 1;
                 taskList.setDone(index, true);
-                IOParser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
+                Parser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
                         taskList.get(index)));
             } catch (NumberFormatException e) {
                 throw new DukeException("Invalid argument: Index of task should be a number.");
@@ -92,7 +140,7 @@ public class Duke {
             try {
                 int index = Integer.parseInt(inputs[1]) - 1;
                 taskList.setDone(index, false);
-                IOParser.printMsg(String.format("OK, I've marked this task as not done yet:\n %s",
+                Parser.printMsg(String.format("OK, I've marked this task as not done yet:\n %s",
                         taskList.get(index)));
             } catch (NumberFormatException e) {
                 throw new DukeException("Invalid argument: Index of task should be a number.");
@@ -109,8 +157,8 @@ public class Duke {
                 throw new DukeException("Invalid argument: Description cannot be empty.");
             }
             map.put("description", description);
-            taskList.addTask(command.getString(), map);
-            IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+            taskList.add(new TodoTask(map, false));
+            Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                     taskList.get(taskList.size() - 1),
                     taskList.lengthString()));
             break;
@@ -129,8 +177,8 @@ public class Duke {
                 }
                 map.put("description", description);
                 map.put("by", deadline);
-                taskList.addTask(command.getString(), map);
-                IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                taskList.add(new DeadlineTask(map, false));
+                Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
             } catch (StringIndexOutOfBoundsException e) {
@@ -152,8 +200,8 @@ public class Duke {
                 }
                 map.put("description", description);
                 map.put("at", time);
-                taskList.addTask(command.getString(), map);
-                IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                taskList.add(new EventTask(map, false));
+                Parser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
             } catch (StringIndexOutOfBoundsException e) {
@@ -167,7 +215,7 @@ public class Duke {
             try {
                 int index = Integer.parseInt(inputs[1]) - 1;
                 Task task = taskList.remove(index);
-                IOParser.printMsg(String.format("Noted. I've removed this task:\n %s",
+                Parser.printMsg(String.format("Noted. I've removed this task:\n %s",
                         task));
             } catch (NumberFormatException e) {
                 throw new DukeException("Invalid argument: Index of task should be a number.");
@@ -178,5 +226,13 @@ public class Duke {
         default:
             throw new DukeException("Invalid command: Please try again.");
         }
+    }
+
+    /**
+     * Starts the program.
+     */
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 }

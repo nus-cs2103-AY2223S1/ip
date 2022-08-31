@@ -52,6 +52,6 @@ abstract class Task {
      * @return The string representing the {@code Task} when stored in a data file.
      */
     public String toData() {
-        return String.format("%s|%s|%s", symbol, getStatusIcon(), description);
+        return String.format("%s | %s | %s", symbol, getStatusIcon(), description);
     }
 }
