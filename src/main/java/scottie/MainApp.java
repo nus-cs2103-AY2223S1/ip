@@ -23,8 +23,10 @@ public class MainApp extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setScottie(scottie);
+            MainWindow mainWindow = fxmlLoader.getController();
+            mainWindow.setScottie(this.scottie);
             stage.show();
+            mainWindow.showStartupMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
