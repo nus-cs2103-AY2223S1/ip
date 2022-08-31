@@ -18,13 +18,13 @@ public class Messages {
     public static final String MESSAGE_DELETE_SUCCESS = "Ching Ching Poof~~ This task is removed:\n %s\n"
             + "Now you have %d tasks on your list.";
     public static final String MESSAGE_SHOW_FORMAT = "Based on my understanding,"
-            + " your instruction didn't follow the format\n"
-            + "todo : todo [task description]\n"
-            + "deadline: deadline [task description] /by [YYYY-MM-DD HHmm]\n"
-            + "event: event [task description] /at [YYYY-MM-DD HHmm]\n"
-            + "individual command: bye | list |\n"
-            + "mark/unmark/delete: [command] [number of task in list you wish to modify])\n"
-            + "find: find [search keyword]";
+            + " your command didn't follow the format\n"
+            + "todo              : todo [task description]\n"
+            + "deadline         : deadline [task description] /by [YYYY-MM-DD HHmm]\n"
+            + "event            : event [task description] /at [YYYY-MM-DD HHmm]\n"
+            + "single command: | bye | list |\n"
+            + "mark/unmark/delete: [command] [number of task in list you wish to modify]\n"
+            + "find              : find [search keyword]";
     public static final String MESSAGE_TASK_NOT_EXIST = "Opps! we only have %d tasks in the list :(";
     public static final String MESSAGE_REQUIRE_INTEGER = "Sorry, last character after mark/unmark/delete"
             + " command should be integer!";
