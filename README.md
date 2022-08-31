@@ -1,12 +1,12 @@
 # DukeTasks
 
-> "Live, laugh, love" - Mr Dukeyboy [(source)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+> "aikennut dewit" - Prof Daron Tan [(source)](https://www.comp.nus.edu.sg/~cs1101x/img/photos/tantc.gif)
 
 DukeTasks frees your mind of having to remember things you need to do. It's,
 
 - CLI based
 - easy to use
-- ~~FAST~~ SPEED
+- ~~FAST~~ good speed👍
 
 All you need to do is:
 
