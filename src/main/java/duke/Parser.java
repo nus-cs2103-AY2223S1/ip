@@ -1,14 +1,16 @@
 package duke;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import duke.command.*;
 import duke.exception.DukeEmptyDeadlineException;
 import duke.exception.DukeEmptyEventException;
 import duke.exception.DukeEmptyToDoException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.TaskList;
-import duke.task.ToDo;
 
 /**
  * The Parser class that parses user commands.
@@ -18,17 +20,6 @@ import duke.task.ToDo;
  * @author Tan Jia Rong
  */
 public class Parser {
-    private Ui ui;
-
-    /**
-     * Constructor for Parser.
-     *
-     * @param ui The Ui of the ChatBot.
-     */
-    public Parser(Ui ui) {
-        this.ui = ui;
-    }
-
     /**
      * Executes user inputs.
      *
@@ -36,60 +27,76 @@ public class Parser {
      * @param description Description of the Task/Action to be executed.
      * @param tasks TaskList where results are stored.
      */
-    public void execute(String command, String description, TaskList tasks) {
+    public static Command parse(String command, String description, TaskList tasks) throws DukeException {
         try {
+            command = command.toLowerCase();
+
             int index;
             String[] input;
-            command = command.toLowerCase();
+            String details;
+            DateTimeFormatter formatter;
+
             switch (command) {
             case "list":
-                ui.listTasks(tasks);
-                break;
+                return new ListCommand();
+                // No need for break since it is unreachable
             case "mark":
                 index = Integer.parseInt(description.substring(1)) - 1;
-                tasks.mark(index);
-                break;
+                return new MarkCommand(index);
+                // No need for break since it is unreachable
             case "unmark":
                 index = Integer.parseInt(description.substring(1)) - 1;
-                tasks.unmark(index);
-                break;
+                return new UnmarkCommand(index);
+                // No need for break since it is unreachable
             case "delete":
                 index = Integer.parseInt(description.substring(1)) - 1;
-                tasks.delete(index);
-                break;
+                return new DeleteCommand(index);
+                // No need for break since it is unreachable
             case "todo":
                 if (description.isEmpty()) {
                     throw new DukeEmptyToDoException();
                 }
-                tasks.add(new ToDo(description));
-                break;
+                return new ToDoCommand(description);
+                // No need for break since it is unreachable
             case "deadline":
                 if (description.isEmpty()) {
                     throw new DukeEmptyDeadlineException();
                 }
+                if (!description.contains(" /by ")) {
+                    throw new DukeInvalidCommandException();
+                }
                 input = description.split(" /by ");
-                tasks.add(new Deadline(input[0], input[1]));
-                break;
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                details = input[0];
+                LocalDateTime by = LocalDateTime.parse(input[1], formatter);
+                return new DeadlineCommand(details, by);
+                // No need for break since it is unreachable
             case "event":
                 if (description.isEmpty()) {
                     throw new DukeEmptyEventException();
                 }
+                if (!description.contains(" /at ")) {
+                    throw new DukeInvalidCommandException();
+                }
                 input = description.split(" /at ");
-                tasks.add(new Event(input[0], input[1]));
-                break;
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                details = input[0];
+                LocalDateTime at = LocalDateTime.parse(input[1], formatter);
+                return new EventCommand(details, at);
+                // No need for break since it is unreachable
             case "find":
-                tasks.findTasks(description);
-                break;
+                return new FindCommand(description);
+                // No need for break since it is unreachable
             case "help":
-                ui.helpMessage();
-                break;
+                return new HelpCommand();
+                // No need for break since it is unreachable
+            case "bye":
+                return new ExitCommand();
             default:
                 throw new DukeInvalidCommandException();
             }
-        } catch (DukeException e) {
-            ui.printErr(e);
-        } catch (Exception e) {
-            ui.printErr("Input is invalid. Type help for list of available commands");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please format date and time in YYYY-MM-DD hhmm.");
         }
     }
 }

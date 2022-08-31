@@ -1,7 +1,10 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.command.Command;
+import duke.exception.DukeException;
 import duke.task.TaskList;
 
 /**
@@ -23,7 +26,6 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
-    private Parser parser;
 
     /**
      * Constructor for ChatBot, Duke.
@@ -31,10 +33,14 @@ public class Duke {
      * @param filePath Location of save file.
      */
     public Duke(String filePath) {
-        this.ui = new Ui();
-        this.storage = new Storage(filePath);
-        this.tasks = new TaskList(this.storage.load(), this.ui);
-        this.parser = new Parser(this.ui);
+        try {
+            this.ui = new Ui();
+            this.storage = new Storage(filePath);
+            this.tasks = new TaskList(this.storage.load());
+        } catch (DukeException e) {
+            ui.printErr(e.getMessage());
+            this.tasks = new TaskList(new ArrayList<>());
+        }
     }
 
     /**
@@ -42,20 +48,24 @@ public class Duke {
      */
     public void run() {
         // Greets User
-        ui.greetings();
+        System.out.println(ui.greetings());
+        boolean isExit = false;
 
         String command = this.sc.next();
         String description = this.sc.nextLine();
 
-        while (!command.equalsIgnoreCase("bye")) {
-            parser.execute(command, description, tasks);
-
-            command = sc.next();
-            description = sc.nextLine();
+        while (!isExit) {
+            try {
+                Command c = Parser.parse(command, description, tasks);
+                System.out.println(c.execute(this.tasks, this.ui, this.storage));
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                System.out.println(ui.printErr(e.getMessage()));
+            } finally {
+                command = sc.next();
+                description = sc.nextLine();
+            }
         }
-        sc.close();
-        storage.save(tasks);
-        ui.farewell();
     }
 
     /**

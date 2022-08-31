@@ -6,15 +6,18 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import duke.exception.DukeInvalidTimeException;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
+
 /**
  * The Storage class that stores the tasks in TaskList.
  *
@@ -25,6 +28,7 @@ import duke.task.ToDo;
 public class Storage {
     /** Save location of TaskList */
     private File file;
+    private String filePath;
 
     /**
      * Constructor for Storage
@@ -32,15 +36,16 @@ public class Storage {
      * @param filePath Location of save file.
      */
     public Storage(String filePath) {
-        this.file = new File(filePath);
+        this.filePath = filePath;
+        this.file = new File(this.filePath);
     }
 
     /**
      * Saves tasks into save file.
      *
-     * @param tasks The List of Task to write from.
+     * @param taskList The List of Task to write from.
      */
-    public void save(TaskList tasks) {
+    public void save(TaskList taskList) {
         // Create Directory or File if it does not exist
         try {
             if (!this.file.exists()) {
@@ -58,36 +63,27 @@ public class Storage {
 
         // Write into File
         try {
-            String line;
-            String type;
-            String done;
-            String desc;
-            String date;
             FileWriter fileWriter = new FileWriter(this.file.getAbsoluteFile(), false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Task task : tasks.getTaskList()) {
-                type = task.getType();
-                desc = task.getDescription();
-                done = task.getIsDone() ? "1" : "0";
-                date = task.getDate();
+            List<Task> tasks = taskList.getTasks();
 
-                line = type + " > " + desc + " > " + done + " > " + date;
-                bufferedWriter.write(line);
+            for (Task task : tasks) {
+                String data = task.stringify();
+                bufferedWriter.write(data);
                 bufferedWriter.newLine();
-                line = "";
             }
 
             bufferedWriter.close();
         } catch (IOException e) {
-            System.out.println("Hmm... Error while saving Duke.Task.Task to file");
+            System.out.println("Hmm... Error while saving your data to file");
         }
     }
 
     /**
      * Loads tasks from save file.
      */
-    public List<Task> load() {
+    public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
 
         if (!this.file.exists()) {
@@ -103,17 +99,17 @@ public class Storage {
 
             while (line != null) {
 
-                String[] arr = line.split(" > ");
+                String[] arr = line.split(" \\| ");
                 String type = arr[0];
                 switch (type) {
                 case "T":
-                    tasks.add(new ToDo(arr[1], arr[2]));
+                    tasks.add(new ToDo(arr[1], arr[2].equals("1")));
                     break;
                 case "E":
-                    tasks.add(new Event(arr[1], arr[2], arr[3]));
+                    tasks.add(new Event(arr[1], arr[2].equals("1"), LocalDateTime.parse(arr[3])));
                     break;
                 case "D":
-                    tasks.add(new Deadline(arr[1], arr[2], arr[3]));
+                    tasks.add(new Deadline(arr[1], arr[2].equals("1"), LocalDateTime.parse(arr[3])));
                     break;
                 default:
                     // Does Nothing
@@ -121,10 +117,12 @@ public class Storage {
 
                 line = bufferedReader.readLine();
             }
+
             bufferedReader.close();
-        } catch (IOException | DukeInvalidTimeException e) {
-            System.out.println(e.getMessage());
+
+            return tasks;
+        } catch (IOException | DateTimeParseException e) {
+            throw new DukeException("Invalid String in load file.");
         }
-        return tasks;
     }
 }

@@ -15,17 +15,27 @@ public class ToDo extends Task {
      * @param description Description of the Todo Task.
      */
     public ToDo(String description) {
-        super(description, "T");
+        super(description);
     }
 
     /**
      * Constructor for Todo Task.
      *
      * @param description Description of the ToDo Task.
-     * @param done Completeness of ToDo Task.
+     * @param isDone Completeness of ToDo Task.
      */
-    public ToDo(String description, String done) {
-        super(description, done, "T");
+    public ToDo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    /**
+     * Stringify ToDo for storage.
+     *
+     * @return a string representing the task.
+     */
+    @Override
+    public String stringify() {
+        return String.format("%s | %s", "T", super.stringify());
     }
 
     /**
@@ -35,6 +45,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getType() + "]" + super.toString();
+        return "[T]" + super.toString();
     }
 }

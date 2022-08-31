@@ -1,10 +1,1 @@
-E >  eat > 0 > 2020-09-12 1000
-D >  123 > 0 > 2020-09-09 1212
-T >  q123 > 0 > Not Applicable
-T >  read book > 0 > Not Applicable
-D >  return book > 1 > 2020-09-12 1000
-T >  book > 0 > Not Applicable
-E >  drink > 0 > 2020-09-12 0900
-T >  1 > 0 > Not Applicable
-T >  2 > 0 > Not Applicable
-T >  3 > 0 > Not Applicable
+T | Valid Todo | 0

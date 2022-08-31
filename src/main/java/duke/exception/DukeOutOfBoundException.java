@@ -13,6 +13,6 @@ public class DukeOutOfBoundException extends DukeException {
      * Constructor for DukeOutOfBoundException.
      */
     public DukeOutOfBoundException() {
-        super("Boo... Task don't exist :(");
+        super("Boo... Task don't exist... It's out of bound! :(");
     }
 }

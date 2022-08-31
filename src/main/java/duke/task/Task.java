@@ -10,8 +10,6 @@ package duke.task;
 public class Task {
     /** Stores the description of the task */
     protected String description;
-    /** Type of task */
-    protected String type;
     /** Stores the status of the task */
     protected boolean isDone;
 
@@ -20,11 +18,9 @@ public class Task {
      * Constructor for Task.
      *
      * @param description Description of the Task.
-     * @param type Type of the Task.
      */
-    public Task(String description, String type) {
+    public Task(String description) {
         this.description = description;
-        this.type = type;
         this.isDone = false;
     }
 
@@ -32,28 +28,31 @@ public class Task {
      * Constructor for Task.
      *
      * @param description Description of the Task.
-     * @param done Completeness of Task.
-     * @param type Type of the Task.
+     * @param isDone Completeness of Task.
      */
-    public Task(String description, String done, String type) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.type = type;
+        this.isDone = isDone;
+    }
 
-        if (done.equals("1")) {
-            this.isDone = true;
-        }
+    /**
+     * Returns true if task contains the keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return true if task description contains keyword, false otherwise.
+     */
+    public boolean match(String keyword) {
+        return this.description.contains(keyword);
     }
 
     /**
      * Gets StatusIcon of the Task.
-     * If task is done, return "X".
-     * Else, " ".
      *
-     * @return Status Icon of the task: "X" for Done, else " ".
+     * @return Status Icon of the task: "X" if Done, else " ".
      */
     public String getStatusIcon() {
         // mark done task with X
-        return (isDone ? "X" : " ");
+        return (this.isDone ? "X" : " ");
     }
 
     /**
@@ -63,15 +62,6 @@ public class Task {
      */
     public boolean getIsDone() {
         return this.isDone;
-    }
-
-    /**
-     * Gets type of the Task.
-     *
-     * @return Type of Task (Deadline, Event, Todo).
-     */
-    public String getType() {
-        return this.type;
     }
 
     /**
@@ -104,6 +94,15 @@ public class Task {
      */
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    /**
+     * Stringify task for storage.
+     *
+     * @return a string representing the task
+     */
+    public String stringify() {
+        return String.format("%s | %d", this.description, this.isDone ? 1 : 0);
     }
 
     /**

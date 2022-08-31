@@ -1,10 +1,8 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-import duke.exception.DukeInvalidTimeException;
 
 /**
  * Event class that stores the Description and State of Event.
@@ -15,8 +13,7 @@ import duke.exception.DukeInvalidTimeException;
  */
 public class Event extends Task {
     /** Stores the timing of the Event */
-    protected String at;
-    protected String dateTime;
+    protected LocalDateTime at;
 
     /**
      * Constructor for Event.
@@ -24,76 +21,41 @@ public class Event extends Task {
      * @param description Description of the Event.
      * @param at The timing of the Event.
      */
-    public Event(String description, String at) throws DukeInvalidTimeException {
-        super(description, "E");
+    public Event(String description, LocalDateTime at) {
+        super(description);
         this.at = at;
-        this.dateTime = this.getDateTime();
     }
 
     /**
      * Constructor for Event.
      *
      * @param description Description of the Event.
-     * @param done Completeness of Event.
+     * @param isDone Completeness of Event.
      * @param at The timing of the Event.
      */
-    public Event(String description, String done, String at) throws DukeInvalidTimeException {
-        super(description, done, "E");
+    public Event(String description, boolean isDone, LocalDateTime at) {
+        super(description, isDone);
         this.at = at;
-        this.dateTime = this.getDateTime();
     }
 
     /**
      * Returns the Date and Time of Event.
      *
      * @return Date and Time of Event.
-     * @throws DukeInvalidTimeException Exception when input time is not of valid Format.
      */
-    public String getDateTime() throws DukeInvalidTimeException {
-        String dateStr;
-        String timeStr;
-        String[] input = this.at.split(" ");
-
-        // get Date
-        try {
-            LocalDate date = LocalDate.parse(input[0]);
-            dateStr = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        } catch (DateTimeParseException e) {
-            throw new DukeInvalidTimeException();
-        }
-        // get Time
-        if (input[1].length() != 4) {
-            throw new DukeInvalidTimeException();
-        }
-
-        int time = Integer.parseInt(input[1]);
-        int hour = time / 100;
-        int hourHand = hour > 12 ? hour % 12 : hour;
-        int min = time % 100;
-
-        if (hour == 0) {
-            return dateStr + " " + "12am";
-        } else if (min != 0) {
-            String hourStr = String.valueOf(hourHand);
-            String minStr = min < 10 ? "0" + min : String.valueOf(min);
-            String amPm = hour < 12 ? "am" : "pm";
-            timeStr = hourStr + ":" + minStr + amPm;
-        } else {
-            String hourStr = String.valueOf(hourHand);
-            String amPm = hour < 12 ? "am" : "pm";
-            timeStr = hourStr + amPm;
-        }
-
-        return dateStr + " " + timeStr;
+    public String printDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY MMM dd hh:mma");
+        return at.format(formatter);
     }
 
     /**
-     * Gets timing of Event.
+     * Stringify event for storage.
      *
-     * @return Timing of Event.
+     * @return a string representing the event.
      */
-    public String getDate() {
-        return this.at;
+    @Override
+    public String stringify() {
+        return String.format("%s | %s | %s", "E", super.stringify(), at);
     }
 
     /**
@@ -103,6 +65,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getType() + "]" + super.toString() + " (at: " + this.dateTime + ")";
+        return "[E]" + super.toString() + " (at: " + printDateTime() + ")";
     }
 }
