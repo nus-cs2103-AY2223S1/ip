@@ -15,6 +15,6 @@ public class EventTask extends Task {
 
     @Override
     public String toData() {
-        return String.format("%s|%s", super.toData(), time);
+        return String.format("%s | %s", super.toData(), time);
     }
 }

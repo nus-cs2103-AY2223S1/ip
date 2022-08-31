@@ -15,6 +15,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toData() {
-        return String.format("%s|%s", super.toData(), deadline);
+        return String.format("%s | %s", super.toData(), deadline);
     }
 }
