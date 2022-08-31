@@ -11,7 +11,8 @@ import carbon.error.InvalidParamException;
 import carbon.error.InvalidTimeException;
 
 /**
- * Encapsulates information regarding Events.
+ * Event class that represents tasks that occur at a particular date or time.
+ * Can be represented with either date alone, or date together with time.
  */
 public class Event extends Task {
     public static final String FLAG = " /at";

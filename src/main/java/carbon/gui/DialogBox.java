@@ -35,8 +35,8 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
+        this.dialog.setText(text);
+        this.displayPicture.setImage(img);
     }
 
     /**
@@ -49,10 +49,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a DialogBox configured for the user's input.
+     *
+     * @param text User input.
+     * @param img User profile picture.
+     * @return The user's dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a DialogBox configured for Carbon's responses.
+     *
+     * @param text Response from Carbon.
+     * @param img Carbon profile picture.
+     * @return Carbon's dialog box.
+     */
     public static DialogBox getCarbonDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

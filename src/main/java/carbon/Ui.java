@@ -42,8 +42,8 @@ public class Ui {
         "What? Yeah, sorry I gotta run now."
     };
 
+    // used for making random choices of text
     private Random rand;
-    // scanner for inputs
 
     /**
      * Constructs an instance of the Ui class.
@@ -54,23 +54,25 @@ public class Ui {
         this.rand = new Random();
     }
 
+    /**
+     * Returns a String comprising the greeting for the user.
+     * Chooses a prompt from a list randomly.
+     *
+     * @return Greeting to the user.
+     */
     public String greet() {
-        String randomPrompt = Ui.INIT_PROMPTS[
-            this.rand.nextInt(Ui.INIT_PROMPTS.length)
-        ];
-
+        String randomPrompt = Ui.INIT_PROMPTS[this.rand.nextInt(Ui.INIT_PROMPTS.length)];
         String greeting = Ui.INTRO + randomPrompt;
         return greeting;
     }
 
     /**
      * Exits the Carbon interactive interface.
+     *
+     * @return Farewell to the user.
      */
     public String exit() {
-        String randomGoodbye = Ui.GOODBYES[
-            this.rand.nextInt(Ui.GOODBYES.length)
-        ];
-
+        String randomGoodbye = Ui.GOODBYES[this.rand.nextInt(Ui.GOODBYES.length)];
         return randomGoodbye;
     }
 }

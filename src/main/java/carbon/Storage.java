@@ -18,6 +18,7 @@ public class Storage {
 
     /**
      * Constructs an instance of Storage class.
+     * Main constructor method.
      *
      * @return Storage object.
      */

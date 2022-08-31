@@ -11,7 +11,8 @@ import carbon.error.InvalidParamException;
 import carbon.error.InvalidTimeException;
 
 /**
- * Encapsulates information regarding Deadlines.
+ * Deadline class that represents tasks to be completed before a particular date or time.
+ * Can be represented with either date alone, or date together with time.
  */
 public class Deadline extends Task {
     public static final String FLAG = " /by";

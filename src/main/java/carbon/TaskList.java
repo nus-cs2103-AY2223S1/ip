@@ -12,7 +12,7 @@ import carbon.task.Task;
 import carbon.task.Todo;
 
 /**
- * Contains and manages user-declared tasks.
+ * A class that contains and manages user-declared tasks.
  */
 public class TaskList {
     private List<Task> tasks;

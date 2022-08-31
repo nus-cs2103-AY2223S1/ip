@@ -1,5 +1,6 @@
 package carbon.gui;
 
+import carbon.Carbon;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import carbon.Carbon;
 
 /**
  * Controller for MainWindow.
@@ -29,15 +28,23 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/clown.png"));
     private Image carbonImage = new Image(this.getClass().getResourceAsStream("/images/carbon.png"));
 
+    /**
+     * Initializes the main window.
+     */
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
     }
 
+    /**
+     * Connects the Carbon class bot to the main window for handling business logic.
+     *
+     * @param carbon The Carbon object.
+     */
     public void setCarbon(Carbon carbon) {
         this.carbon = carbon;
         String greeting = this.carbon.greet();
-        dialogContainer.getChildren().add(DialogBox.getCarbonDialog(greeting, carbonImage));
+        this.dialogContainer.getChildren().add(DialogBox.getCarbonDialog(greeting, carbonImage));
     }
 
     /**
@@ -47,12 +54,12 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
+        String input = this.userInput.getText();
         String response = carbon.getResponse(input);
-        dialogContainer.getChildren().addAll(
+        this.dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getCarbonDialog(response, carbonImage)
         );
-        userInput.clear();
+        this.userInput.clear();
     }
 }

@@ -24,10 +24,21 @@ public class Carbon {
         this.parser = new Parser(this.ui, this.storage);
     }
 
+    /**
+     * Returns the greeting for the user interface.
+     *
+     * @return Greeting to the user.
+     */
     public String greet() {
         return this.ui.greet();
     }
 
+    /**
+     * Returns the log response from the parser and processer.
+     *
+     * @param input User text input.
+     * @return Execution log.
+     */
     public String getResponse(String input) {
         String log;
         try {
