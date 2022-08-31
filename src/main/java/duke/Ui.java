@@ -22,6 +22,11 @@ public class Ui {
         System.out.println(this.DIVIDER);
     }
 
+    /**
+     * Shows message(s) to the user.
+     *
+     * @param messages Message(s) to be shown.
+     */
     public void printMessage(String... messages) {
         printDivider();
         for(String message: messages) {
