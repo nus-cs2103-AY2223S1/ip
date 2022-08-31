@@ -3,6 +3,8 @@ package duke;
 import duke.command.Command;
 import duke.command.Parser;
 import duke.exception.DukeException;
+import duke.gui.Response;
+import duke.gui.ResponseType;
 import duke.task.TaskList;
 
 /**
@@ -16,36 +18,33 @@ public class Duke {
     /**
      * Constructs a duke chatbot.
      */
-    public Duke() {
+    public Duke() throws DukeException {
         storage = new Storage("data", "duke.txt");
         ui = new Ui();
         try {
             tasks = new TaskList(storage.retrieveFile());
         } catch (DukeException e) {
             tasks = new TaskList();
-            Ui.prettyPrint(e.getMessage());
+            throw e;
         }
     }
 
-    /**
-     * Runs the duke chatbot until the 'bye' command is executed.
-     */
-    public static void run() {
-        Ui.greet(tasks.numberOfTasks());
-        boolean isRunning = true;
-        while (isRunning) {
-            try {
-                String userInput = ui.readUserInput();
-                Command cmd = Parser.parse(userInput);
-                cmd.execute(tasks, storage);
-                isRunning = cmd.isStillRunning();
-            } catch (DukeException e) {
-                Ui.prettyPrint(e.getMessage());
+    public String greet() {
+        return String.format("Hello, I'm Duke! %s What can I do for you?", tasks.numberOfTasks());
+    }
+
+    public static Response reply(String userInput) {
+        try {
+            Command cmd = Parser.parse(userInput);
+            String message = cmd.execute(tasks, storage);
+
+            if (cmd instanceof duke.command.ExitCommand) {
+                return new Response(ResponseType.QUIT, message);
+            } else {
+                return new Response(ResponseType.STANDARD, message);
             }
+        } catch (DukeException e) {
+            return new Response(ResponseType.ERROR, e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke().run();
     }
 }

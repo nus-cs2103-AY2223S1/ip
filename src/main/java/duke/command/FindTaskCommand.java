@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -28,14 +27,14 @@ public class FindTaskCommand extends Command {
      * @param storage The storage manager that deals with loading and saving tasks to the hard disk
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         TaskList filtered = tasks.filter((Task t) -> t.toString().contains(this.keyword));
         String filteredTasks = filtered.stringify();
 
         if (filteredTasks.equals("")) {
-            Ui.prettyPrint("Duke can't find any matching tasks in your list.");
+            return "Duke can't find any matching tasks in your list.";
         } else {
-            Ui.prettyPrint("Here are the matching tasks in your list:\n" + filteredTasks);
+            return ("Here are the matching tasks in your list:\n" + filteredTasks);
         }
     }
 }

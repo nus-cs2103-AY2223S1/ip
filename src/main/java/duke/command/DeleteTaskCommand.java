@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -28,7 +27,7 @@ public class DeleteTaskCommand extends Command {
      * @throws DukeException If the task is invalid (eg: does not exist, or is not a positive number)
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
-        Ui.prettyPrint(tasks.deleteTask(this.taskNumber));
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
+        return tasks.deleteTask(this.taskNumber);
     }
 }
