@@ -51,7 +51,7 @@ public class TaskList {
      * Add a new task into the TaskList
      * @param newTask new task added
      */
-    public void add(Task newTask) {
+    public void addTask(Task newTask) {
         tasks.add(newTask);
     }
 
@@ -59,7 +59,7 @@ public class TaskList {
      * Remove a task at index num in the TaskList
      * @param num Index of task
      */
-    public void remove(int num) {
+    public void removeTask(int num) {
         tasks.remove(num);
     }
 }
