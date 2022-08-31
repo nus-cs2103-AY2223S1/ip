@@ -3,7 +3,6 @@ package duke.commands;
 import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
-import duke.utils.Ui;
 
 /**
  * Represents an executable command that throws a DukeException.
@@ -25,7 +24,7 @@ public class InvalidCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
         throw new DukeException(errorMsg);
     }
 }

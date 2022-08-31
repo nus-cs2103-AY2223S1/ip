@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.utils.Storage;
 import duke.utils.TaskList;
-import duke.utils.Ui;
 
 /**
  * Represents an executable command to exit the program.
@@ -15,15 +14,10 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public boolean isExit() {
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public CommandResult execute(TaskList taskList, Storage storage) {
+        String msg = "Bye. Hope to see you again soon!\n(exiting in a second...)";
         storage.writeAllToStorage(taskList);
+        CommandResult cr = new CommandResult(msg, true);
+        return cr;
     }
 }
