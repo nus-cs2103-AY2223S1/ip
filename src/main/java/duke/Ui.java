@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class Ui {
     private static final String SEPARATING_LINE = "    ____________________________________________________________";
-    private static final String logo = " ____        _        \n"
+    private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -54,7 +54,7 @@ class Ui {
      * Greets the user.
      */
     protected static void greet() {
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + LOGO);
         Ui.formatPrint(OPENING);
     }
 
@@ -96,11 +96,11 @@ class Ui {
      * Prints output when task state has been changed.
      *
      * @param t task object to be modified on
-     * @param b the state the task object is changed to
+     * @param isDone the state the task object is changed to
      */
-    protected static void taskStateChangePrint(Task t, boolean b) {
+    protected static void taskStateChangePrint(Task t, boolean isDone) {
         String res;
-        if (b) {
+        if (isDone) {
             res = "Nice! I've marked this task as done:\n";
         } else {
             res = "OK, I've marked this task as not done yet:\n";

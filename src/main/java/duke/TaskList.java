@@ -89,10 +89,10 @@ public class TaskList {
 
     private void createEvent(TaskEnum taskEnum, String command) throws DukeException {
         String[] args;
-        Task res;
+        Task taskToCreate;
         switch (taskEnum) {
         case Todo:
-            res = new Todo(command);
+            taskToCreate = new Todo(command);
             break;
 
         case Deadline:
@@ -100,7 +100,7 @@ public class TaskList {
             if (args.length != 2) {
                 throw new DukeException("Invalid Input");
             }
-            res = new Deadline(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));
+            taskToCreate = new Deadline(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));
             break;
 
         case Event:
@@ -108,14 +108,14 @@ public class TaskList {
             if (args.length != 2) {
                 throw new DukeException("Invalid Input");
             }
-            res = new Event(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));;
+            taskToCreate = new Event(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));;
             break;
 
         default:
             throw new DukeException("Invalid Input");
         }
-        this.addTask(res);
-        Ui.formatPrint("Got it. I've added this task:\n" + res.toString());
+        this.addTask(taskToCreate);
+        Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate.toString());
     }
 
     private void handleDelete(String command) throws DukeException {
