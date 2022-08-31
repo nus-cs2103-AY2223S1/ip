@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import dukeegg.Storage;
+import dukeegg.TaskList;
+import dukeegg.Ui;
 import exceptions.DukeException;
 
 public class UnmarkCommandTest {

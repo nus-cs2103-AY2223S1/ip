@@ -1,4 +1,4 @@
-package duke;
+package dukeegg;
 
 import java.util.Objects;
 

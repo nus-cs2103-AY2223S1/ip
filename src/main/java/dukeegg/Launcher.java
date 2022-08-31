@@ -1,4 +1,4 @@
-package duke;
+package dukeegg;
 
 import javafx.application.Application;
 

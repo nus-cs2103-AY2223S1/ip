@@ -1,8 +1,8 @@
 package commands;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import dukeegg.Storage;
+import dukeegg.TaskList;
+import dukeegg.Ui;
 
 /**
  * Prints the current tasks in the list.

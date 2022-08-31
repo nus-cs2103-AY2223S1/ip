@@ -1,8 +1,8 @@
 package commands;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import dukeegg.Storage;
+import dukeegg.TaskList;
+import dukeegg.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
 import task.TaskType;
