@@ -1,6 +1,13 @@
-package duke;
+package duke.manager;
 
-import duke.command.*;
+import duke.exception.DukeException;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.AddCommand;
+import duke.command.MarkCommand;
+import duke.command.ListCommand;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 
 import duke.task.Task;
 import duke.task.Deadline;

@@ -1,4 +1,4 @@
-package duke;
+package duke.exception;
 
 /**
  * Represents an error message to be displayed to the user.

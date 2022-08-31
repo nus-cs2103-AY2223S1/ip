@@ -1,15 +1,16 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.manager.Storage;
+import duke.manager.TaskList;
 
 /**
  * Represents a command to display the list of current tasks.
  */
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showTasks(tasks);
+    public String execute(TaskList tasks, Storage storage) {
+        String response = tasks.toString();
+
+        return response;
     }
 }

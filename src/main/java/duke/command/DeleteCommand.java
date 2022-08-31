@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.manager.Storage;
+import duke.manager.TaskList;
 
 /**
  * Represents a command to delete a task from the list.
@@ -17,10 +16,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         String task = tasks.deleteTask(taskNumber);
-        ui.reply("Noted. I've removed this duke.task:\n " + task + "\nNow you have " +
-                tasks.length() + " tasks in the list");
+        String response = "Noted. I've removed this duke.task:\n " + task + "\nNow you have "
+                + tasks.length() + " tasks in the list";
         storage.saveTasks(tasks);
+
+        return response;
     }
 }

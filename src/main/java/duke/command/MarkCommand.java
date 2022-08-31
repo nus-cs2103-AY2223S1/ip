@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.exception.DukeException;
+import duke.manager.Storage;
+import duke.manager.TaskList;
 
 /**
  * Represents a command to mark a task as completed or uncompleted.
@@ -21,15 +20,18 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         String task;
+        String response = "";
         if (mark.equals("mark")) {
             task = tasks.markTask(taskNumber, true);
-            ui.reply("Nice! I've marked this duke.task as done:\n" + task);
+            response = "Nice! I've marked this duke.task as done:\n" + task;
         } else if (mark.equals("unmark")) {
             task = tasks.markTask(taskNumber, false);
-            ui.reply("OK, I've marked this duke.task as not done yet:\n" + task);
+            response = "OK, I've marked this duke.task as not done yet:\n" + task;
         }
         storage.saveTasks(tasks);
+
+        return response;
     }
 }

@@ -1,8 +1,7 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.manager.Storage;
+import duke.manager.TaskList;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -19,8 +18,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        //todo
+    public String execute(TaskList tasks, Storage storage) {
         ArrayList<Task> foundTasks = tasks.findTask(this.keyword);
 
         String matchingTasks = "";
@@ -29,6 +27,8 @@ public class FindCommand extends Command {
             matchingTasks += "\n" + task;
         }
 
-        ui.reply("Here are the matching tasks in your list:" + matchingTasks);
+        String response = "Here are the matching tasks in your list:" + matchingTasks;
+
+        return response;
     }
 }

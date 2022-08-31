@@ -1,8 +1,7 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.manager.Storage;
+import duke.manager.TaskList;
 
 /**
  * Represents a command to exit from the task manager program.
@@ -14,7 +13,9 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.sayGoodbye();
+    public String execute(TaskList tasks, Storage storage) {
+        String response = "Bye. Hope to see you again soon!\nBut close the GUI yourself!";
+
+        return response;
     }
 }

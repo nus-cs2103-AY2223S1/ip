@@ -1,5 +1,6 @@
-package duke;
+package duke.manager;
 
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
