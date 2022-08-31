@@ -6,11 +6,12 @@ import java.util.List;
  * A class that handles displaying of information to the user.
  */
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-                                     + "|  _ \\ _   _| | _____ \n"
-                                     + "| | | | | | | |/ / _ \\\n"
-                                     + "| |_| | |_| |   <  __/\n"
-                                     + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String LOGO =
+            " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String BOT_NAME = "duke";
     private static final int LINE_LENGTH = 80;
 
