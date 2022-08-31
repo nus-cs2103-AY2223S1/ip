@@ -1,7 +1,6 @@
-package task;
+package duke.task;
 
-import common.DukeException;
-
+import duke.common.DukeException;
 import java.time.LocalDate;
 
 public abstract class Task {

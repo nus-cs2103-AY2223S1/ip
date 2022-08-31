@@ -1,6 +1,4 @@
-package task;
-
-import task.Task;
+package duke.task;
 
 import java.time.LocalDate;
 
@@ -20,7 +18,7 @@ public class Deadline extends Task {
 
     @Override
     public String encode() {
-        return "D" + Task.ENCODING_SEPARATOR + localDate + Task.ENCODING_SEPARATOR + super.encode();
+        return "D" + ENCODING_SEPARATOR + localDate + ENCODING_SEPARATOR + super.encode();
     }
 
     @Override

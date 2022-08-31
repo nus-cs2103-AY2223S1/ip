@@ -1,6 +1,6 @@
-package ui;
+package duke.ui;
 
-import common.DukeException;
+import duke.common.DukeException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
