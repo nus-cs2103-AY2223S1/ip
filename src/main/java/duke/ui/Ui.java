@@ -1,8 +1,5 @@
 package duke.ui;
 
-import java.io.PrintWriter;
-import java.util.Scanner;
-
 /**
  * Deals with interactions with the user.
  *
@@ -15,65 +12,41 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private final Scanner scanner;
-    private final PrintWriter writer;
+    private StringBuilder currentOutput;
 
     /**
      * Constructs a helper tool to deal with interactions with the user.
      */
     public Ui() {
-        scanner = new java.util.Scanner(System.in);
-        writer = new PrintWriter(System.out);
+        currentOutput = new StringBuilder();
     }
 
     /**
-     * Shows the welcome message.
-     */
-    public void showWelcome() {
-        writer.println("Hello from\n" + Ui.LOGO);
-        writer.println("What can I do for you?\n");
-        writer.flush();
-    }
-
-    /**
-     * Shows the divider line which precedes and follows all replies by Duke.
-     */
-    public void showLine() {
-        this.showOutput("____________________________________________________________\n");
-    }
-
-    /**
-     * Shows the error thrown by Duke.
+     * Adds the error thrown by Duke.
      *
      * @param error the error message
      */
-    public void showError(String error) {
-        writer.println(error);
-        writer.flush();
+    public void addError(String error) {
+        currentOutput.append(error + "\n");
     }
 
     /**
-     * Shows a reply by Duke to the user's input.
+     * Adds a reply by Duke to the user's input.
      *
      * @param output the reply message
      */
-    public void showOutput(String output) {
-        writer.print(output);
-        writer.flush();
+    public void addOutput(String output) {
+        currentOutput.append(output);
     }
 
     /**
-     * Reads the user input.
+     * Returns the response by Duke.
      *
-     * @return the user input
+     * @return the response by Duke
      */
-    public String readCommand() {
-        while (scanner.hasNextLine()) {
-            String nextLine = scanner.nextLine();
-            if (!nextLine.trim().isBlank()) {
-                return nextLine;
-            }
-        }
-        return "";
+    public String getOutput() {
+        String ret = currentOutput.toString();
+        currentOutput = new StringBuilder();
+        return ret;
     }
 }
