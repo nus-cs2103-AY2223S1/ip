@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ren.MainWindow">
+    <children>
+      <HBox layoutY="557.6666870117188" prefHeight="41.0" prefWidth="324.0" AnchorPane.bottomAnchor="1.0">
+         <children>
+              <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Please enter your command." style="-fx-background-radius: 30, 30, 30, 30; -fx-border-radius: 30, 30, 30, 30; -fx-background-color: #87cefa; -fx-prompt-text-fill: #000000;">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="2.5" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox layoutX="324.0" layoutY="548.6666870117188" prefHeight="41.0" prefWidth="76.0">
+         <children>
+              <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-border-radius: 30, 30, 30, 30; -fx-background-radius: 30, 30, 30, 30; -fx-background-color: #87cefa; -fx-text-fill: #000000;" text="Send">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="2.5" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="547.0" prefWidth="400.0" stylesheets="@style.css" vvalue="1.0">
+            <content>
+                <VBox fx:id="dialogContainer" minHeight="547.0" prefWidth="388.0" style="-fx-background-color: #708090;" />
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

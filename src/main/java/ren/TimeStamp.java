@@ -15,7 +15,7 @@ public class TimeStamp {
     }
 
     /**
-     * Factory method for TimeStamps
+     * Factory method for TimeStamps.
      *
      * @param dateTime Date and Time information in the format of (dd/MM/yyyy-HH:mm).
      * @return TimeStamp.

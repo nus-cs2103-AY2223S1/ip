@@ -4,22 +4,32 @@ package ren;
  * Parser interprets user commands and executes them.
  */
 public class Parser {
+    private final TaskList tasks;
+
+    /**
+     * Constructor for Parser.
+     *
+     * @param tasks The TaskList to execute commands on.
+     */
+    public Parser(TaskList tasks) {
+        this.tasks = tasks;
+    }
+
     /**
      * Interprets user commands and executes them.
      *
      * @param cmd Command to execute.
-     * @param tasks TaskList to execute commands on.
      * @return String containing a message for the user.
      * @throws RenException If command is invalid.
      */
-    public static String parseCommand(String cmd, TaskList tasks) throws RenException {
+    public String parseCommand(String cmd) throws RenException {
         String[] firstParse = cmd.split(" ", 2);
         String firstTerm = firstParse[0];
         boolean hasSecondTerm = firstParse.length > 1;
 
         switch (firstTerm) {
         case "bye":
-            return Ui.goodbye();
+            return " Farewell!\n";
         case "todo":
             if (hasSecondTerm) {
                 return tasks.addTask(Ren.TaskType.TODO, firstParse[1], "");
