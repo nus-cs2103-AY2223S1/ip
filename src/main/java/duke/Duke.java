@@ -45,10 +45,10 @@ public class Duke {
      *
      * @param command The command to execute.
      */
-    public String run(String command) {
+    public String execute(String command) {
         try {
             Command c = Parser.parseCommand(command);
-            return c.execute(storage, tasks);
+            return c.execute(storage, tasks).replaceAll("\t", "    "); // JavaFX 11 doesn't support tab sizes
         } catch (Exception e) {
             return e.getMessage();
         }
