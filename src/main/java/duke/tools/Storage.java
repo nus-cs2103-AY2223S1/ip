@@ -14,6 +14,7 @@ import duke.task.TaskList;
  */
 public class Storage {
     private File data;
+    private File dir;
     private FileWriter writer;
     private String PATH;
 
@@ -23,9 +24,13 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.PATH = filePath;
-        this.data = new File(PATH);
+        this.dir = new File(PATH);
+        this.data = new File(PATH + "tasks.txt");
 
         try {
+            if (!this.dir.exists()) {
+                dir.mkdir();
+            }
             if (this.data.createNewFile()) {
                 System.err.println("File created " + this.data.getName());
             } else {

@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Customised exception for unrecognised task commands.
  */
-public class TaskNotFoundException extends Exception{
+public class TaskNotFoundException extends Exception {
 
     /**
      * Creates a TaskNotFoundException.
