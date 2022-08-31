@@ -9,7 +9,7 @@ public class Parser {
         this.tasks = tasks;
     }
     
-    public boolean Parse(String input) {
+    public boolean parse(String input) {
         String action = input.split(" ")[0];
         try {
             switch (action) {

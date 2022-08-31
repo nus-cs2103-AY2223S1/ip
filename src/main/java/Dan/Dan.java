@@ -42,7 +42,7 @@ public class Dan {
         while (!isExit) {
             try {
                 String input = sc.nextLine().strip();
-                isExit = parser.Parse(input);
+                isExit = parser.parse(input);
                 tlr.writeTaskListToFile(tasks);
             } catch (IOException ioe) {
                 Ui.printIndent(ioe.getMessage() + "Error when creating saving to data file");
