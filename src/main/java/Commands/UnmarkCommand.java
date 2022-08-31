@@ -22,7 +22,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         if (idx < 0 || idx > t.getSize()) {
-            throw new DukeException(Constants.invalidIndex);
+            throw new DukeException(Constants.INVALID_INDEX);
         }
         Task tsk = t.unmarkTask(idx);
         storage.save(t.stringfy());

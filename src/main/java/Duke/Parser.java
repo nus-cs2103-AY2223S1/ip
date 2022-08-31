@@ -70,7 +70,7 @@ public class Parser {
             checkInputLength(parse3,2);
             return new EventCommand(parse3[0], LocalDate.parse(parse3[1], formatter));
         default:
-            throw new DukeException(Constants.invalid);
+            throw new DukeException(Constants.INVALID);
         }
     }
 
@@ -82,7 +82,7 @@ public class Parser {
      */
     private static void checkInputLength(String[] arr, int length) throws DukeException {
         if (arr.length != length) {
-            throw new DukeException(Constants.invalidInput);
+            throw new DukeException(Constants.INVALID_INPUT);
         }
     }
 }

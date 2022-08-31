@@ -51,7 +51,7 @@ public class Duke {
                 c.execute(lst, ui, storage);
                 isExit = c.isExit();
             } catch (DateTimeParseException e) {
-                ui.printMsg(Constants.invalidDate);
+                ui.printMsg(Constants.INVALID_DATE);
             } catch (Exception e) {
                 ui.printMsg(e.getMessage());
             }

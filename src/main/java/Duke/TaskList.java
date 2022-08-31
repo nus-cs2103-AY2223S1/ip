@@ -91,7 +91,7 @@ public class TaskList {
      * Print the tasks in the taskList
      */
     public String printList() {
-        String s = Constants.list;
+        String s = Constants.LIST;
         for (int i = 0; i < lst.size(); i++) {
             s += String.format("\n%d.%s", i + 1, lst.get(i).toString());
         }
@@ -105,7 +105,7 @@ public class TaskList {
      * @param list
      */
     public String printList(List<Task> list) {
-        String s = Constants.find;
+        String s = Constants.FIND;
         for (int i = 0; i < list.size(); i++) {
             s += String.format("\n%d.%s", i + 1, list.get(i).toString());
         }

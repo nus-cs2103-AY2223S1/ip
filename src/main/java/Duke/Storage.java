@@ -54,7 +54,7 @@ public class Storage {
                     assert parse.length == 5 : "Invalid Deadline Input";
                     t = new Deadline(parse[3], LocalDate.parse(parse[4], formatter));
                 } else {
-                    throw new DukeException(Constants.invalidFile);
+                    throw new DukeException(Constants.INVALID_FILE);
                 }
                 t.setPriority(parse[1].substring(1,2));
                 if (parse[2].equals("[X]")) {

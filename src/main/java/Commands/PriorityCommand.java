@@ -24,10 +24,10 @@ public class PriorityCommand extends Command {
     @Override
     public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         if (idx <= 0 || idx > t.getSize()) {
-            throw new DukeException(Constants.invalidIndex);
+            throw new DukeException(Constants.INVALID_INDEX);
         }
         if (!priority.equals("H") && !priority.equals("M") && !priority.equals("L")) {
-            throw new DukeException(Constants.invalidPriority);
+            throw new DukeException(Constants.INVALID_PRIORITY);
         }
         Task tsk = t.setTaskPriority(idx, priority);
         storage.save(t.stringfy());
