@@ -2,14 +2,12 @@ package duke.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,6 +21,11 @@ import duke.task.Todo;
  */
 public class Storage {
     private TaskList taskList = new TaskList(new ArrayList<>());
+    private static String FILE_PATH;
+
+    public Storage(String filePath) {
+        FILE_PATH = filePath;
+    }
 
     /**
      * Reads in saved information from the saved file.
@@ -31,43 +34,48 @@ public class Storage {
      */
     public void storageRead() throws IOException {
         try {
-            FileReader fr = new FileReader("./data/duke.txt");
+            File file = new File(FILE_PATH);
+            FileReader fr = new FileReader(file.getPath());
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
-            System.out.println("These are the tasks you had previously");
-            while (line != null) {
-                String[] segments = line.split(">");
-                switch (segments[0]) {
-                case "T":
-                    taskList.createTaskSilently(new Todo(segments[2]));
-                    if (segments[1].equals("X")) {
-                        taskList.getTask(taskList.getSize() - 1).setDone();
+            if (line == null) {
+                System.out.println("Your task list is empty.");
+            } else {
+                System.out.println("These are the tasks you had previously");
+                while (line != null) {
+                    String[] segments = line.split(">");
+                    switch (segments[0]) {
+                    case "T":
+                        taskList.createTaskSilently(new Todo(segments[2]));
+                        if (segments[1].equals("X")) {
+                            taskList.getTask(taskList.getSize() - 1).setDone();
+                        }
+                        break;
+
+                    case "E":
+                        String time = segments[3].strip();
+                        LocalDate date = LocalDate.parse(time);
+                        taskList.createTaskSilently(new Event(segments[2], date));
+                        if (segments[1].equals("X")) {
+                            taskList.getTask(taskList.getSize() - 1).setDone();
+                        }
+                        break;
+
+                    case "D":
+                        String time2 = segments[1].strip();
+                        LocalDate date2 = LocalDate.parse(time2);
+                        taskList.createTaskSilently(new Deadline(segments[2], date2));
+                        if (segments[1].equals("X")) {
+                            taskList.getTask(taskList.getSize() - 1).setDone();
+                        }
+                        break;
+
+                    default:
+                        break;
+
                     }
-                    break;
-
-                case "E":
-                    String time = segments[3].strip();
-                    LocalDate date = LocalDate.parse(time);
-                    taskList.createTaskSilently(new Event(segments[2], date));
-                    if (segments[1].equals("X")) {
-                        taskList.getTask(taskList.getSize() - 1).setDone();
-                    }
-                    break;
-
-                case "D":
-                    String time2 = segments[1].strip();
-                    LocalDate date2 = LocalDate.parse(time2);
-                    taskList.createTaskSilently(new Deadline(segments[2], date2));
-                    if (segments[1].equals("X")) {
-                        taskList.getTask(taskList.getSize() - 1).setDone();
-                    }
-                    break;
-
-                default:
-                    break;
-
+                    line = br.readLine();
                 }
-                line = br.readLine();
             }
             String toDisplay = "  <----\n";
             for (int i = 0; i < taskList.getSize(); i++) {
@@ -76,6 +84,14 @@ public class Storage {
             toDisplay += "  ---->";
             System.out.println(toDisplay);
             br.close();
+        } catch (FileNotFoundException e) {
+            if (new File("data").mkdir()) {
+                System.out.println("Directory does not exist, creating one for you.");
+                System.out.println("Creating a save file for you (duke.txt)");
+                new File("data/duke.txt").createNewFile();
+            } else if (new File("data/duke.txt").createNewFile()) {
+                System.out.println("Save file does not exist, creating one for you.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,12 +102,12 @@ public class Storage {
      *
      * @param taskList the task list
      */
-    public void storageWrite(ArrayList<Task> taskList) {
+    public static void storageWrite(TaskList taskList) {
         try {
-            File myFile = new File("./data/duke.txt");
+            File myFile = new File(FILE_PATH);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
-            for (Task task : taskList) {
+            for (Task task : taskList.getTaskList()) {
                 switch (task.getType()) {
 
                 case "T":

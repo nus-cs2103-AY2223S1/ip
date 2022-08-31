@@ -2,6 +2,7 @@ package duke.util;
 
 import java.util.ArrayList;
 
+import duke.Response;
 import duke.task.Task;
 
 /**
@@ -24,11 +25,11 @@ public class TaskList {
      *
      * @param task the task
      */
-    public void createTask(Task task) {
+    public void createTask(Task task, Response response) {
         taskList.add(task);
         String message = "Got it. I've added this duke.task: \n"
                 + task.toString() + "\nNow you have " + taskList.size() + " tasks in the list.";
-        Ui.formatMessage(message);
+        response.append(Ui.formatMessage(message));
     }
 
     /**
@@ -45,11 +46,23 @@ public class TaskList {
      *
      * @param index the index
      */
-    public void deleteTask(int index) {
+    public void deleteTask(int index, Response response) {
         String message = "Done! I have deleted this duke.task:\n  " + taskList.get(index)
                 + "\nNow you have " + (taskList.size() - 1) + " tasks in the list.";
-        Ui.formatMessage(message);
         taskList.remove(index);
+        response.append(Ui.formatMessage(message));
+    }
+
+    public String markTask(int index) {
+        return "";
+    }
+
+    public String unmarkTask(int index) {
+        return "";
+    }
+
+    public String findTask() {
+        return "";
     }
 
     /**

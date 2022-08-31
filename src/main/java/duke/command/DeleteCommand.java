@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Response;
 import duke.util.TaskList;
 
 /**
@@ -22,14 +23,16 @@ public class DeleteCommand extends Command {
      * Runs the command 'delete'.
      * @inheritDoc
      * @param taskList List of current tasks.
+     * @param builder
      * @throws DukeException Duke Exception for deleting out of bounds.
      */
     @Override
-    public void run(TaskList taskList) throws DukeException {
+    public void run(TaskList taskList, Response builder) throws DukeException {
         int index = Integer.parseInt(input) - 1;
         try {
-            taskList.deleteTask(index);
+            taskList.deleteTask(index, builder);
         } catch (IndexOutOfBoundsException e) {
+            builder.append("Index is out of bounds");
             throw new DukeException("Index is out of bounds");
         }
     }
