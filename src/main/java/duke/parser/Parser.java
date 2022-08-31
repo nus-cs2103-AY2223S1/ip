@@ -11,6 +11,7 @@ import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyDescriptionException;
@@ -75,7 +76,7 @@ public class Parser {
             return new HelpCommand();
 
         default:
-            throw new InvalidCommandException();
+            return new UnknownCommand();
         }
 
     }

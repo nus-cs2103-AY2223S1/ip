@@ -6,6 +6,10 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * A Duke class that encapsulates the information of Duke
@@ -26,36 +30,31 @@ public class Duke {
             storage = new Storage();
             tasks = storage.load();
         } catch (DukeException e) {
+            //TODO
             ui.showError(e.getMessage());
             tasks = new TaskList();
         }
     }
 
     /**
-     * To run the Duke.
+     * To get the response from Duke
+     * @param input User input
+     * @return Response from Duke
      */
-    public void run() {
-        ui.showWelcome();
-        boolean bye = false;
-        while (!bye) {
+    public String getResponse(String input) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
+                ui.resetResponse();
+                Command c = Parser.parse(input);
                 c.execute(tasks, storage, ui);
-                bye = c.bye();
+                isExit = c.bye();
+                return ui.getResponse();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
+                return ui.getResponse();
             }
         }
+        return "";
     }
-
-    /**
-     * The entry of the Duke application
-     *
-     * @param args user input.
-     */
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
 }

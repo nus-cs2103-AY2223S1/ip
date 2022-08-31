@@ -10,30 +10,56 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private final Scanner sc = new Scanner(System.in);
+    private StringBuilder response;
+
+    public Ui() {
+        response = new StringBuilder();
+    }
+
+//    /**
+//     * Shows the welcome message
+//     */
+//    public void showWelcome() {
+//        System.out.println(dialog("Hello! I'm Duke", "What can I do for you?"));
+//    }
 
     /**
-     * To start reading the command
-     *
-     * @return the command entered by the user
+     * To empty the response
      */
-    public String readCommand() {
-        return sc.nextLine();
+    public void resetResponse() {
+        response = new StringBuilder();
     }
 
     /**
-     * Shows the welcome message
+     * To get the response from Duke
+     * @return Response
      */
-    public void showWelcome() {
-        System.out.println(dialog("Hello! I'm Duke", "What can I do for you?"));
+    public String getResponse() {
+        return response.toString();
+    }
+
+    /**
+     * A simple method to append multiple string to StringBuilder
+     * @param strings strings that need to be appended
+     */
+    public void appendToResponse(String... strings) {
+        for (String message : strings) {
+            response.append("   ").append(message).append("\n");
+        }
+    }
+
+    /**
+     * Shows that the command is not recognised.
+     */
+    public void showUnknownCommand() {
+        appendToResponse("I'm sorry, but I don't know what that means :-(", "Try HELP to find out the list of commands.");
     }
 
     /**
      * Shows the termination message
      */
     public void showBye() {
-        System.out.println(dialog("Bye. See you next time."));
-        sc.close();
+        appendToResponse("Bye. See you next time.");
     }
 
     /**
@@ -42,7 +68,7 @@ public class Ui {
      * @param errorMessage the error message
      */
     public void showError(String errorMessage) {
-        System.out.println(dialog(errorMessage));
+        appendToResponse(errorMessage);
     }
 
     /**
@@ -52,9 +78,9 @@ public class Ui {
      */
     public void showTask(Task task) {
         if (task.isDone()) {
-            System.out.println(dialog("Nice! I've marked this task as done:", task.toString()));
+            appendToResponse("Nice! I've marked this task as done:", task.toString());
         } else {
-            System.out.println(dialog("Nice! I've marked this task as not done yet:", task.toString()));
+            appendToResponse("Nice! I've marked this task as not done yet:", task.toString());
         }
     }
 
@@ -66,7 +92,7 @@ public class Ui {
      */
     public void showDeletedTask(Task task, Integer numOfRemainingTasks) {
         String remainder = String.format("Now you have %d tasks in the list.", numOfRemainingTasks);
-        System.out.println(dialog("Noted. I've removed this task:", task.toString(), remainder));
+        appendToResponse("Noted. I've removed this task:", task.toString(), remainder);
     }
 
     /**
@@ -77,14 +103,14 @@ public class Ui {
      */
     public void showAddTask(Task task, Integer numOfRemainingTasks) {
         String remainder = String.format("Now you have %d tasks in the list.", numOfRemainingTasks);
-        System.out.println(dialog("Got it. I've added this task:", task.toString(), remainder));
+        appendToResponse("Got it. I've added this task:", task.toString(), remainder);
     }
 
     /**
      * Shows the command the Duke support
      */
     public void showHelpMenu() {
-        System.out.println(dialog("The following is the list of commands:",
+        appendToResponse("The following is the list of commands:",
                 "BYE    To terminate the programme.",
                 "LIST   To see the list of current tasks.",
                 "Mark {any number}    To mark a task as done.",
@@ -94,7 +120,7 @@ public class Ui {
                 "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
                 "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
                 "Find {keyword} To find the task with keyword.",
-                "Help    To see the list of commands."));
+                "Help    To see the list of commands.");
     }
 
     /**
@@ -107,7 +133,7 @@ public class Ui {
         for (int i = 1; i < strArr.length; i++) {
             strArr[i] = i + ". " + taskList.get(i - 1);
         }
-        System.out.println(dialog(strArr));
+        appendToResponse(strArr);
     }
 
     /**
@@ -120,23 +146,8 @@ public class Ui {
         for (int i = 1; i < strArr.length; i++) {
             strArr[i] = i + ". " + taskList.get(i - 1);
         }
-        System.out.println(dialog(strArr));
+        appendToResponse(strArr);
     }
 
-    /**
-     * To wrap the response from Duke in a frame
-     *
-     * @param strings the response from Duke
-     * @return the wrapped response that is ready to be shown to the user
-     */
-    public static String dialog(String... strings) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("  ____________________________________________________________\n");
-        for (String message : strings) {
-            sb.append("   ").append(message).append("\n");
-        }
-        sb.append("  ____________________________________________________________");
-        return sb.toString();
-    }
 
 }
