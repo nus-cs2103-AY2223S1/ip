@@ -24,8 +24,8 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            Task MarkedTask = taskList.mark(index);
-            String message = ui.printMarkTask(MarkedTask) + '\n';
+            Task markedTask = taskList.mark(index);
+            String message = ui.printMarkTask(markedTask) + '\n';
             storage.save(taskList);
             return message;
         } catch (DukeOutOfBoundException e) {

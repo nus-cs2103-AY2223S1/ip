@@ -7,7 +7,7 @@ import duke.task.TaskList;
 /**
  * The Command class handles the logic between TaskList, Ui and Storage.
  *
- * @author tanjiarong
+ * @author Tan Jia Rong
  */
 public abstract class Command {
     /**
