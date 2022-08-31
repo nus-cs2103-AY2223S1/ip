@@ -1,5 +1,4 @@
 package ui;
-import java.util.Scanner;
 
 /**
  * Deals with interactions with the user
@@ -14,7 +13,7 @@ public class UI {
      * @param errorMsg Error message to print.
      */
     public void showError(String errorMsg) {
-        this.response  = errorMsg;
+        this.response = errorMsg;
     }
 
     /**
@@ -60,7 +59,7 @@ public class UI {
     }
 
     public String getResponse() {
-    return this.response;
+        return this.response;
     }
 
     public void setCurrentInput(String input) {

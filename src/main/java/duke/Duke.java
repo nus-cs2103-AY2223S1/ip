@@ -11,8 +11,6 @@ import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
 
-import java.awt.*;
-
 /**
  * Main duke.Duke class.
  */
@@ -21,15 +19,6 @@ public class Duke extends Application {
     private Storage storage;
     private TaskList tasks;
     private UI ui;
-
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
-    }
 
     /**
      * Constructor.
@@ -46,6 +35,16 @@ public class Duke extends Application {
         }
     }
 
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
+
 
     /**
      * You should have your own function to generate a response to user input.
@@ -54,7 +53,7 @@ public class Duke extends Application {
     public String getResponse(String input) {
         boolean isExit = false;
         try {
-            Command c =  Parser.parse(input);
+            Command c = Parser.parse(input);
             ui.setCurrentInput(input);
             c.execute(tasks, ui, storage);
             isExit = c.isExit();
