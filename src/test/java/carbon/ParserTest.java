@@ -1,11 +1,11 @@
 package carbon;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import carbon.error.InvalidInputException;
+import carbon.error.OutOfBoundsException;
 
 public class ParserTest {
     private Ui ui = new Ui();
@@ -25,10 +25,14 @@ public class ParserTest {
     }
 
     @Test
-    public void process_bye_returnsEmptyLog() {
-        String input = "bye";
-        String expectedOutput = "";
-        String actualOutput = this.parser.process(input);
-        assertEquals(expectedOutput, actualOutput);
+    public void process_outOfBoundsIndex_returnsOutOfBoundsException() {
+        String input = "mark -1";
+        boolean hasError = false;
+        try {
+            this.parser.process(input);
+        } catch (OutOfBoundsException error) {
+            hasError = true;
+        }
+        assertTrue(hasError);
     }
 }
