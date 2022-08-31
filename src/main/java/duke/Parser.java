@@ -5,6 +5,8 @@ import duke.modules.todos.Deadline;
 import duke.modules.todos.Event;
 import duke.modules.todos.Todo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static duke.Ui.say;
@@ -17,26 +19,6 @@ import static duke.Ui.sayError;
 public class Parser {
 
     /**
-     * Represents the result of an execution.
-     */
-    static class ExecuteResult {
-        /** Whether the program should exit after this command */
-        private final boolean shouldExitAfter;
-
-        /**
-         * Constructor
-         * @param shouldExitAfter Whether the program should exit after this command
-         */
-        public ExecuteResult(boolean shouldExitAfter) {
-            this.shouldExitAfter = shouldExitAfter;
-        }
-
-        public boolean shouldExitAfter() {
-            return shouldExitAfter;
-        }
-    }
-
-    /**
      * Parses and executes the given input using the given module instances.
      * @param line The input given to the bot.
      * @param todos The Todos module instance to use.
@@ -46,45 +28,46 @@ public class Parser {
         try {
             Scanner scanner = new Scanner(line);
             String command = scanner.hasNext() ? scanner.next() : "";
+            List<String> result = new ArrayList<>();
 
             switch (command) {
             case "":
-                sayAsError("Sorry, I didn't catch that?");
+                result.addAll(sayAsError("Sorry, I didn't catch that?"));
                 break;
             case "bye":
-                say("OK. See you next time! *boings away*");
-                return new ExecuteResult(true);
+                result.addAll(say("OK. See you next time! *boings away*"));
+                return new ExecuteResult(true, result);
             case "todo":
-                todos.cmdAdd(scanner, Todo::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Todo::fromChat));
                 break;
             case "deadline":
-                todos.cmdAdd(scanner, Deadline::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Deadline::fromChat));
                 break;
             case "event":
-                todos.cmdAdd(scanner, Event::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Event::fromChat));
                 break;
             case "list":
-                todos.cmdList();
+                result.addAll(todos.cmdList());
                 break;
             case "mark":
-                todos.cmdMark(scanner);
+                result.addAll(todos.cmdMark(scanner));
                 break;
             case "unmark":
-                todos.cmdUnmark(scanner);
+                result.addAll(todos.cmdUnmark(scanner));
                 break;
             case "delete":
-                todos.cmdDelete(scanner);
+                result.addAll(todos.cmdDelete(scanner));
                 break;
             case "find":
-                todos.cmdFind(scanner);
+                result.addAll(todos.cmdFind(scanner));
                 break;
             default:
-                sayAsError("Sorry, I didn't understand what you said :(");
+                result.addAll(sayAsError("Sorry, I didn't understand what you said :("));
                 break;
             }
+            return new ExecuteResult(false, result);
         } catch (MessagefulException e) {
-            sayError(e);
+            return new ExecuteResult(false, sayError(e));
         }
-        return new ExecuteResult(false);
     }
 }

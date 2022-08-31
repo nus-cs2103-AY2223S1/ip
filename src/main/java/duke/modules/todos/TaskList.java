@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static duke.Ui.sayError;
+import static duke.Ui.sayAsError;
 
 // "We will add validation to this later" - No one
 
@@ -14,29 +14,29 @@ import static duke.Ui.sayError;
  * Represents a list of tasks.
  */
 public class TaskList implements Iterable<Task> {
-    private final List<Task> todos;
-
-    /**
-     * Constructor for creating a TaskList from a save file.
-     *
-     * @param storage The Storage used to load the task list.
-     */
-    public TaskList(Storage storage) {
-        List<Task> todos;
-        try {
-            todos = storage.loadList();
-        } catch (MessagefulException e) {
-            sayError(e);
-            todos = new ArrayList<>();
-        }
-        this.todos = todos;
-    }
+    private List<Task> todos;
 
     /**
      * Constructor for creating an empty TaskList.
      */
     public TaskList() {
         this.todos = new ArrayList<>();
+    }
+
+    /**
+     * Populates the TaskList with entries loaded from the storage.
+     *
+     * @param storage The Storage used to load the task list.
+     * @return A list of text feedback from this command, if any.
+     */
+    public List<String> populate(Storage storage) {
+        try {
+            this.todos = storage.loadList();
+        } catch (MessagefulException e) {
+            this.todos = new ArrayList<>();
+            return sayAsError(e.getHint());
+        }
+        return List.of();
     }
 
     /**
