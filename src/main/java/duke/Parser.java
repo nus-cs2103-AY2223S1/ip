@@ -1,14 +1,12 @@
 package duke;
 
 import duke.command.*;
-import duke.exception.EmptyContentException;
-import duke.exception.InvalidCommandException;
+import duke.exception.*;
 import duke.command.Command;
-import duke.exception.InvalidTaskException;
-import duke.exception.InvalidTimeException;
 import duke.task.TasksController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,9 +72,19 @@ public class Parser {
         return Integer.parseInt(splitCommand[1].strip());
     }
 
-    private String parseKeyword(String inputText) {
+    private ArrayList<String> parseKeyword(String inputText) throws TooManyKeywordsException {
         String[] splitCommand = inputText.split("/p");
-        return splitCommand[1].strip();
+        String[] keywords = splitCommand[1].split(" ");
+        ArrayList<String> trimmedKeywords = new ArrayList<>();
+        for (String keyword: keywords) {
+            if (!keyword.isBlank()) {
+                trimmedKeywords.add(keyword.trim());
+            }
+        }
+        if (trimmedKeywords.size() > 3) {
+            throw new TooManyKeywordsException("ERROR");
+        }
+        return trimmedKeywords;
     }
 
     /**
@@ -115,49 +123,57 @@ public class Parser {
                     switch (task) {
                         case "ToDo":
                             command = new CreateToDoCommand();
-                            response = command.execute(controller, content, "", -1, "", storage);
+                            response = command.execute(controller, content, "", -1, storage, "");
                             break;
                         case "Event": {
                             String taskTime = parseTime(inputText);
                             command = new CreateEventCommand();
-                            response = command.execute(controller, content, taskTime, -1, "", storage);
+                            response = command.execute(controller, content, taskTime, -1, storage, "");
                             break;
                         }
                         case "Deadline": {
                             String taskTime = parseTime(inputText);
                             command = new CreateDeadlineCommand();
-                            response = command.execute(controller, content, taskTime, -1, "", storage);
+                            response = command.execute(controller, content, taskTime, -1, storage, "");
                             break;
                         }
                     }
                     break;
                 case "list":
                     command = new ShowTasksCommand();
-                    response = command.execute(controller, "", "", -1, "", storage);
+                    response = command.execute(controller, "", "", -1, storage, "");
                     break;
                 case "delete":
                     int deleteIndex = parseIndex(inputText) - 1;
                     command = new DeleteTaskCommand();
-                    response = command.execute(controller, "", "", deleteIndex, "", storage);
+                    response = command.execute(controller, "", "", deleteIndex, storage, "");
                     break;
                 case "mark":
                     int markIndex = parseIndex(inputText) - 1;
                     command = new MarkTaskCommand();
-                    response = command.execute(controller, "", "", markIndex, "", storage);
+                    response = command.execute(controller, "", "", markIndex, storage, "");
                     break;
                 case "unmark":
                     int unmarkIndex = parseIndex(inputText) - 1;
                     command = new UnmarkTaskCommand();
-                    response = command.execute(controller, "", "", unmarkIndex, "", storage);
+                    response = command.execute(controller, "", "", unmarkIndex, storage, "");
                     break;
                 case "find":
-                    String keyword = parseKeyword(inputText);
+                    ArrayList<String> keywords = parseKeyword(inputText);
                     command = new FindCommand();
-                    response = command.execute(controller, "", "", -1, keyword, storage);
+                    if (keywords.size() == 1) {
+                        response = command.execute(controller, "", "", -1, storage, keywords.get(0));
+                    } else if (keywords.size() == 2) {
+                        response = command.execute(controller, "", "", -1, storage, keywords.get(0),
+                                keywords.get(1));
+                    } else {
+                        response = command.execute(controller, "", "", -1, storage, keywords.get(0),
+                                keywords.get(1), keywords.get(2));
+                    }
                     break;
                 case "exit":
                     command = new ExitCommand();
-                    response = command.execute(controller, "", "", -1, "", storage);
+                    response = command.execute(controller, "", "", -1, storage, "");
                     break;
             }
         } catch (InvalidCommandException ice) {
@@ -168,6 +184,8 @@ public class Parser {
             response = "Your task content cannot be empty. Please try again...";
         } catch (InvalidTimeException ite) {
             response = "Your time format is invalid. Please try again...";
+        } catch (TooManyKeywordsException mke) {
+            response = "Too many keywords. Please try again...";
         }
         return response;
     }

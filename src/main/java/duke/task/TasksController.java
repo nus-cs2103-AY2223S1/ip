@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import duke.exception.EmptyContentException;
@@ -83,16 +84,20 @@ public class TasksController {
 
     /**
      * Finds relevant tasks by keyword
-     * @param keyword user's input
+     * @param keywords user's input
      * @return a list of relevant tasks
      */
-    public ArrayList<Task> findByKeyword(String keyword) {
+    public ArrayList<Task> findByKeyword(String ...keywords) {
+        System.out.println(Arrays.toString(keywords));
         ArrayList<Task> result = new ArrayList<>();
-        for (Task task: tasks) {
-            String content = task.getTaskDescription();
-            if (content.contains(keyword)) {
-                result.add(task);
+        for (String keyword: keywords) {
+            for (Task task: tasks) {
+                String content = task.getTaskDescription();
+                if (content.contains(keyword)) {
+                    result.add(task);
+                }
             }
+
         }
         return result;
     }
