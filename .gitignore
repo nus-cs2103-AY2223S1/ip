@@ -23,3 +23,6 @@ tasks.txt
 
 # Test JAR execution
 testjar/
+
+# .class files
+*.class
