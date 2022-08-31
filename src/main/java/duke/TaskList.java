@@ -26,22 +26,24 @@ public class TaskList {
      * Marks task at particular index as done.
      *
      * @param index Index of task to be marked.
+     * @return String representing task marked.
      */
-    public void mark(int index) {
+    public String mark(int index) {
         Task task = this.list.get(index - 1);
         task.setDone(true);
-        this.ui.showTaskMarked(task);
+        return this.ui.showTaskMarked(task);
     }
 
     /**
      * Marks task at particular index as undone.
      *
      * @param index Index of task to be unmarked.
+     * @return String representing task unmarked.
      */
-    public void unmark(int index) {
+    public String unmark(int index) {
         Task task = this.list.get(index - 1);
         task.setDone(false);
-        this.ui.showTaskUnmarked(task);
+        return this.ui.showTaskUnmarked(task);
     }
 
     public int getCount() {
@@ -59,30 +61,26 @@ public class TaskList {
     /**
      * Adds a task to the end of the TaskList.
      *
-     * @param task Task to bbe added.
+     * @param task Task to be added.
+     * @return String representing task added.
      */
-    public void add(Task task) {
-        this.ui.showTaskAdded(task);
+    public String add(Task task) {
         this.list.add(task);
         this.count++;
-        printTaskCount();
+        return this.ui.showTaskAdded(task) + "\n" + this.ui.showTaskCount(this.count);
     }
 
     /**
      * Deletes task at a particular index of TaskList.
      *
      * @param index Index of task to be deleted.
+     * @return String representing task deleted.
      */
-    public void delete(int index) {
+    public String delete(int index) {
         Task task = this.get(index - 1);
-        this.ui.showTaskDeleted(task);
         this.list.remove(index - 1);
         this.count--;
-        printTaskCount();
-    }
-
-    public void printTaskCount() {
-        this.ui.showTaskCount(this.count);
+        return this.ui.showTaskDeleted(task) + "\n" + this.ui.showTaskCount(this.count);
     }
 
     public TaskList findTasks(String keyword) {
@@ -103,11 +101,11 @@ public class TaskList {
     @Override
     public String toString() {
         if (this.count == 0) {
-            return "\tList is empty!";
+            return "List is empty!";
         } else {
-            String result = "\tHere are the tasks in your list:";
+            String result = "Here are the tasks in your list:";
             for (int i = 0; i < this.count; i++) {
-                result = result + "\n\t\t" + (i + 1) + "." + this.get(i);
+                result = result + "\n\t" + (i + 1) + "." + this.get(i);
             }
             return result;
         }

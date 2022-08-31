@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * Deals with making sense of the user command.
@@ -9,7 +8,10 @@ import java.util.Scanner;
 public class Parser {
     private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete", "find"};
 
-    public Parser() {};
+    public Parser() {
+    }
+
+    ;
 
     /**
      * Returns Keyword extracted from user input.
@@ -23,12 +25,12 @@ public class Parser {
         if (Arrays.asList(keywords).contains(keyword)) {
             return Duke.Keyword.valueOf(keyword.toUpperCase());
         } else {
-            throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
-    public int getIndex(Scanner scanner) {
-        return scanner.nextInt();
+    public int getIndex(String text) {
+        return Integer.parseInt(text);
     }
 
     /**
@@ -49,11 +51,7 @@ public class Parser {
      * @return Event object.
      */
     public Event createEvent(String nextLine) {
-        String[]sections = nextLine.split(" /at ");
+        String[] sections = nextLine.split(" /at ");
         return new Event(sections[0], false, sections[1]);
-    }
-
-    public void ignoreLine(Scanner scanner) {
-        scanner.nextLine();
     }
 }

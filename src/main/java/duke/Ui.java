@@ -6,64 +6,47 @@ package duke;
 public class Ui {
     public Ui() {};
 
-    public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
+    public static String showWelcome() {
+       return "Hello, what can I do for you?";
     }
 
-    public void showBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
-    public void showError(String message) {
-        System.out.println(message);
+    public String showTaskMarked(Task task) {
+        return "Nice! I've marked this task as done:\n\t" + task;
     }
 
-    public void showTasks(TaskList tasks) {
-        System.out.println(tasks);
+    public String showTaskUnmarked(Task task) {
+       return "OK, I've marked this task as not done yet:\n\t" + task;
     }
 
-    public void showTaskMarked(Task task) {
-        System.out.println("\tNice! I've marked this task as done:");
-        System.out.println("\t\t" + task);
+    public String showTaskAdded(Task task) {
+        return "Got it. I've added this task:\n\t" + task;
     }
 
-    public void showTaskUnmarked(Task task) {
-        System.out.println("\tOK, I've marked this task as not done yet:");
-        System.out.println("\t\t" + task);
+    public String showTaskDeleted(Task task) {
+        return "Noted. I've removed this task:\n\t" + task;
     }
 
-    public void showTaskAdded(Task task) {
-        System.out.println("\tGot it. I've added this task:");
-        System.out.println("\t\t" + task);
-    }
-
-    public void showTaskDeleted(Task task) {
-        System.out.println("\tNoted. I've removed this task:");
-        System.out.println("\t\t" + task);
-    }
-
-    public void showTaskCount(int count) {
+    public String showTaskCount(int count) {
         if (count == 1) {
-            System.out.println("\tNow you have 1 task in the list.");
+            return "Now you have 1 task in the list.";
         } else {
-            System.out.println("\tNow you have " + (count) + " tasks in the list.");
+            return "Now you have " + (count) + " tasks in the list.";
         }
     }
 
-    public void showFoundTasks(TaskList tasks) {
+    public String showFoundTasks(TaskList tasks) {
         if (tasks.getCount() == 0) {
-            System.out.println("\tNo results found!");
+            return "No results found!";
         } else {
-            System.out.println("\tMatching results:");
+            String result = "Matching results:";
             for (int i = 0; i < tasks.getCount(); i++) {
-                System.out.println("\t\t" + (i + 1) + "." + tasks.get(i));
+                result += "\n\t" + (i + 1) + "." + tasks.get(i);
             }
+            return result;
         }
     }
 }
