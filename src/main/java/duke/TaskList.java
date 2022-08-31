@@ -87,12 +87,17 @@ public class TaskList {
         Task[] x = new Task[tasks.size()];
         Task[] tasksArray = tasks.toArray(x);
         System.out.println("Here are the tasks in your list:");
-        for(int i = 1; i <= tasksArray.length; i++) {
+        for (int i = 1; i <= tasksArray.length; i++) {
             Task task = tasksArray[i - 1];
             System.out.println(i + "." + task.toString());
         }
     }
 
+    /**
+     * Prints the <code>Task</code>s that matches the given input.
+     *
+     * @param input Keyword of the description of the <code>Task</code>.
+     */
     public void find(String input) {
         System.out.println("Here are the matching tasks in your list: ");
         int count = 1;
@@ -101,7 +106,7 @@ public class TaskList {
             if (task.contains(input.substring(5))) {
                 System.out.println(count + "." + task);
                 count++;
-            };
+            }
         }
     }
 

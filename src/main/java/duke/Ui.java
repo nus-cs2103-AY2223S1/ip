@@ -8,9 +8,10 @@ import java.util.Scanner;
 public class Ui {
 
     private static final String LINE = "__________________________________";
-    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. Let me retrieve your stored task list!";
+    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. "
+            + "Let me retrieve your stored task list!";
     private static final String MESSAGE_BYE = "Goodbye!";
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
      * Prints a line separator.
@@ -74,7 +75,7 @@ public class Ui {
         System.out.println("Got it. I've added this task:\n " + task);
         printNumberOfTasks(size);
     }
-    
+
     /**
      * Prints <code>Task</code> deleted from the <code>TaskList</code> message.
      *
@@ -120,7 +121,7 @@ public class Ui {
      */
     public static String readCommand() {
         System.out.println("Please enter a command: ");
-        return sc.nextLine();
+        return SCANNER.nextLine();
     }
 
 }
