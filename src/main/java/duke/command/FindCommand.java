@@ -1,21 +1,20 @@
 package duke.command;
 
+import java.util.List;
+
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
-import duke.task.Todo;
 
-import java.util.List;
 
 /**
  * Represents a command to find a task by searching for a keyword.
  */
 public class FindCommand extends Command {
-    private String[] inputArray;
-    private TasksList tasksList;
-
     private static final String FOUND_MSG = "Here are the matching tasks in your list:\n\n";
     private static final String NOT_FOUND_MSG = "There are no matching tasks in your list.\n";
+    private String[] inputArray;
+    private TasksList tasksList;
 
     /**
      * Creates a new FindCommand instance.

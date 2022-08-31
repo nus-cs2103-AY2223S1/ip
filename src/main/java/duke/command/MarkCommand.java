@@ -8,9 +8,9 @@ import duke.task.TasksList;
  * Represents a command to mark a task in the TasksList as done.
  */
 public class MarkCommand extends Command {
+    private static final String MARK_MSG = "Nice! I've marked this task as done:\n";
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String MARK_MSG = "Nice! I've marked this task as done:\n";
 
     /**
      * Creates a MarkCommand instance.
@@ -36,7 +36,7 @@ public class MarkCommand extends Command {
             int taskNumber = Integer.parseInt(this.inputArray[1]);
             Task markedTask = this.tasksList.markAsDone(taskNumber);
             return MarkCommand.MARK_MSG + markedTask;
-        /** exception due to parsing */
+        // exception due to parsing
         } catch (NumberFormatException exception) {
             throw new DukeException("Please enter a integer for task number!");
         }

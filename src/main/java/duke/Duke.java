@@ -1,19 +1,22 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.command.ExitCommand;
 import duke.exception.DukeException;
 import duke.task.TasksList;
-import java.util.Scanner;
+
 
 /**
  * Represents the chat-bot.
  */
 public class Duke {
+    private static final String TASKS_STORAGE_PATH = "./data/duke.txt";
     private TasksList tasksList;
     private boolean hasEnded = false;
     private Ui ui;
-    private static String TASKS_STORAGE_PATH = "./data/duke.txt";
+
 
     /**
      * Creates a new Duke instance.
@@ -23,6 +26,10 @@ public class Duke {
         this.ui = new Ui();
     }
 
+    /**
+     * Starts the Duke bot.
+     * @param args The arguments taken in.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

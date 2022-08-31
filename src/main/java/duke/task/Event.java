@@ -1,15 +1,15 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.exception.DukeException;
+
 /**
  * Represent a task that is happening at a specific date/time.
  */
-public class Event extends Task{
+public class Event extends Task {
     protected LocalDate at;
 
     /**

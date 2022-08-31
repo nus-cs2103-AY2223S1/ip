@@ -8,10 +8,10 @@ import duke.task.TasksList;
  * Represents a command to add an Event to the tasksList.
  */
 public class EventCommand extends Command {
-    private String[] inputArray;
-    private TasksList tasksList;
     private static final String DELIMITER = " /at ";
     private static final String EVENT_MSG = "Got it. I've added this task:\n";
+    private String[] inputArray;
+    private TasksList tasksList;
 
     /**
      * Creates a new EventCommand instance.
@@ -34,14 +34,14 @@ public class EventCommand extends Command {
             throw new DukeException("The description of a event cannot be empty!");
         }
 
-        /** split again to get date/time */
+        // split again to get date/time
         String[] splitArray = this.inputArray[1].split(EventCommand.DELIMITER, 2);
 
         if (splitArray.length < 2) {
             throw new DukeException("Please enter a date and time for this event!");
         }
 
-        /** Make a new event object */
+        // Make a new event object
         Event event = new Event(splitArray[0], splitArray[1]);
         this.tasksList.addToList(event);
         StringBuilder sb = new StringBuilder();

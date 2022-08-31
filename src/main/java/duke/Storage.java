@@ -22,7 +22,7 @@ public class Storage {
             this.file.getParentFile().mkdirs();
             try {
                 this.file.createNewFile();
-            } catch (IOException exception){
+            } catch (IOException exception) {
                 System.out.println("Error creating new data file");
             }
         }
@@ -63,7 +63,7 @@ public class Storage {
             FileWriter fileWriter = new FileWriter(this.file);
             fileWriter.write(contents);
             fileWriter.close();
-        } catch (IOException exception){
+        } catch (IOException exception) {
             throw new RuntimeException("An I/O exception occurred when attempting to write to data file");
         }
     }

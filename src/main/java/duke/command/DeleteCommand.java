@@ -8,9 +8,9 @@ import duke.task.TasksList;
  * Represents a command to delete a Task from the TasksList.
  */
 public class DeleteCommand extends Command {
+    private static final String DELETE_MSG = "Noted. I've removed this task:\n";
     private TasksList tasksList;
     private String[] inputArray;
-    private static final String DELETE_MSG = "Noted. I've removed this task:\n";
 
     /**
      * Creates a new DeleteCommand instance.
@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
                 sb.append(this.tasksList.getLength() + " tasks in the list.\n");
             }
             return sb.toString();
-            /** exception due to parsing */
+            // exception due to parsing
         } catch (NumberFormatException exception) {
             throw new DukeException("Please enter a integer for task number!");
         }

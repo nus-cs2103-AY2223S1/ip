@@ -30,7 +30,10 @@ public class Ui {
      * @param exception A DukeException.
      */
     public void printExceptionMessage(DukeException exception) {
-        System.out.println(Ui.HORIZONTAL_LINE + "\n" + Ui.OOPS_MSG + exception.getMessage() + "\n" + Ui.HORIZONTAL_LINE);
+        System.out.println(Ui.HORIZONTAL_LINE + "\n"
+                + Ui.OOPS_MSG + exception.getMessage()
+                + Ui.OOPS_MSG + exception.getMessage()
+                + "\n" + Ui.HORIZONTAL_LINE);
     }
 
 }

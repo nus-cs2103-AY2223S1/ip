@@ -1,9 +1,12 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
-import java.io.File;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
+
 
 public class TaskListTest {
     @Test
@@ -31,7 +34,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void parseToTasks_nullString_EmptyArrayList() {
+    public void parseToTasks_nullString_emptyArrayList() {
         String path = "./src/test/data/duke.txt";
         File file = new File(path);
         if (file.exists()) {

@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Represent a task without a specified date/time.
  */
-public class Todo extends Task{
+public class Todo extends Task {
 
     /**
      * Creates an ToDo instance.
