@@ -8,7 +8,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 
 public class Parser {
-    public static Command parse(String userInput) throws DukeException{
+    public static Command parse(String userInput) throws DukeException {
         String command;
         String taskDetails;
 

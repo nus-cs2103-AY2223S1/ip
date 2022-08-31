@@ -11,7 +11,7 @@ import duke.task.Task;
 import duke.task.Todo;
 
 
-public class AddCommand extends Command{
+public class AddCommand extends Command {
     private final String userInput;
 
     public AddCommand(String userInput) {

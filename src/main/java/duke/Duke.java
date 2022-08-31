@@ -12,8 +12,7 @@ public class Duke {
         storage = new Storage(filePath);
     }
 
-    public enum Keyword
-    {
+    public enum Keyword {
         EXIT("bye"), LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), DELETE("delete"), MARK("mark"),
         UNMARK("unmark");
 
