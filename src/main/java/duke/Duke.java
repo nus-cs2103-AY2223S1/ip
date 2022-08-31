@@ -42,6 +42,9 @@ public class Duke extends Application {
         System.out.println("May I help you?");
     }
 
+    public Duke() {
+    }
+
     /**
      * Exit when user type 'bye'
      */
@@ -78,18 +81,18 @@ public class Duke extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
-        );
-        userInput.clear();
-    }
+//    private void handleUserInput() {
+//        String userText = new Label(userInput.getText());
+//        Label dukeText = new Label(getResponse(userInput.getText()));
+//        dialogContainer.getChildren().addAll(
+//                DialogBox.getUserDialog(userText, new ImageView(user)),
+//                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+//        );
+//        userInput.clear();
+//    }
 
     // Change latter
-    private String getResponse(String input) {
+    public String getResponse(String input) {
         return "Duke heard: " + input;
     }
 
@@ -135,15 +138,15 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        // Step 3: Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event -> {
-            handleUserInput();
-        }));
-
-        // Iteration 2
-        userInput.setOnAction((event -> {
-            handleUserInput();
-        }));
+//        // Step 3: Add functionality to handle user input.
+//        sendButton.setOnMouseClicked((event -> {
+//            handleUserInput();
+//        }));
+//
+//        // Iteration 2
+//        userInput.setOnAction((event -> {
+//            handleUserInput();
+//        }));
 
         // Step 3*: Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
