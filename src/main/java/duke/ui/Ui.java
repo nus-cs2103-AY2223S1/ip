@@ -90,10 +90,16 @@ public class Ui {
      * Sends a message to user.
      * @param keyword Type of command
      * @param task a task for the message, if required
-     * @param numOfTasks number of tasks in task list, if required
-     * @param message additional details for the message, if required
      */
-    public String sendAndReturnMessage(Command.ActionKeywords keyword, Task task, int numOfTasks, String message) {
+    public String sendAndReturnMessage(Command.ActionKeywords keyword, Task task, String... values) {
+        int numOfTasks = 0;
+        String message = "";
+        if (values.length >= 1) {
+            numOfTasks = Integer.parseInt(values[0]);
+        }
+        if (values.length >= 2) {
+            message = values[2];
+        }
         if (keyword == Command.ActionKeywords.DEADLINE || keyword == Command.ActionKeywords.TODO
                 || keyword == Command.ActionKeywords.EVENT) {
             String msg = formatMessage("Got it. I've added this task:\n"
@@ -132,7 +138,7 @@ public class Ui {
             return msg;
         } else if (keyword == Command.ActionKeywords.FIND) {
             if (message.equals("")) {
-                String msg = formatMessage("Sorry, there are matching tasks in your list");
+                String msg = formatMessage("Sorry, there are no matching tasks in your list");
                 System.out.println(msg);
                 return msg;
             } else {
