@@ -36,7 +36,23 @@ class TaskListTest {
     }
 
     @Test
-    public void unMarkTask() {
+    public void markTask_noTaskAtIndex_exceptionThrown() {
+        List<Task> tasks = new ArrayList<Task>();
+        Task task = new Task("test unmark");
+        task.setDone(true);
+        tasks.add(task);
+        try {
+            TaskList tl = new TaskList(tasks);
+            tl.markTask(2);
+            fail();
+        } catch (DanException e) {
+            assertEquals("Oh no! We ran into a problem :(\n"
+                    + "This task number doesn't exist!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void unMarkTask_singleTask_success() {
         List<Task> tasks = new ArrayList<Task>();
         Task task = new Task("test unmark");
         task.setDone(true);
@@ -51,7 +67,23 @@ class TaskListTest {
     }
 
     @Test
-    public void deleteTask() {
+    public void unMarkTask_noTaskAtIndex_exceptionThrown() {
+        List<Task> tasks = new ArrayList<Task>();
+        Task task = new Task("test unmark");
+        task.setDone(true);
+        tasks.add(task);
+        try {
+            TaskList tl = new TaskList(tasks);
+            tl.unMarkTask(2);
+            fail();
+        } catch (DanException e) {
+            assertEquals("Oh no! We ran into a problem :(\n"
+                    + "This task number doesn't exist!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void deleteTask_singleTask_success() {
         List<Task> tasks = new ArrayList<Task>();
         tasks.add(new Task("test delete"));
         TaskList tl = new TaskList(tasks);
@@ -62,7 +94,22 @@ class TaskListTest {
         } catch (DanException e) {
             fail();
         }
+    }
 
+    @Test
+    public void deleteTask_noTaskAtIndex_exceptionThrown() {
+        List<Task> tasks = new ArrayList<Task>();
+        Task task = new Task("test unmark");
+        task.setDone(true);
+        tasks.add(task);
+        try {
+            TaskList tl = new TaskList(tasks);
+            tl.deleteTask(2);
+            fail();
+        } catch (DanException e) {
+            assertEquals("Oh no! We ran into a problem :(\n"
+                    + "This task number doesn't exist!", e.getMessage());
+        }
     }
 
     @Test
