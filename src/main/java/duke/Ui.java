@@ -11,6 +11,11 @@ import java.util.Scanner;
 
 import duke.task.Task;
 
+/**
+ * Represents the user-facing component of MakiBot.
+ *
+ * @author Justin Peng
+ */
 public class Ui {
     /** Scanner */
     private final Scanner scanner;

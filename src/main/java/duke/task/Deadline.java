@@ -3,6 +3,11 @@ package duke.task;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline task with a due date.
+ *
+ * @author Justin Peng
+ */
 public class Deadline extends Task {
     /** Deadline of the task */
     private final ZonedDateTime by;

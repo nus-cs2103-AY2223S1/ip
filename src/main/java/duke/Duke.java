@@ -19,7 +19,9 @@ import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * MakiBot
+ * Represents the main Duke class and runs MakiBot.
+ *
+ * @author Justin Peng
  */
 public class Duke {
     /** Datetime formatter for user input which accepts dd/MM/yyyy or dd/MM/yyyy HH:mm */
@@ -144,7 +146,11 @@ public class Duke {
             t.markAsDone();
             System.out.println("Nice! I've marked this task as done:\n" + t);
         } catch (NumberFormatException e) {
-            throw new DukeIndexErrorException(tasks.size());
+            if (tasks.size() == 0) {
+                throw new DukeIndexErrorException();
+            } else {
+                throw new DukeIndexErrorException(tasks.size());
+            }
         }
     }
 
@@ -165,7 +171,11 @@ public class Duke {
             t.markAsUndone();
             System.out.println("OK, I've marked this task as not done yet:\n" + t);
         } catch (NumberFormatException e) {
-            throw new DukeIndexErrorException(tasks.size());
+            if (tasks.size() == 0) {
+                throw new DukeIndexErrorException();
+            } else {
+                throw new DukeIndexErrorException(tasks.size());
+            }
         }
     }
 
@@ -188,7 +198,11 @@ public class Duke {
                             + "Now you have %d tasks in the list.%n",
                     t, tasks.size());
         } catch (NumberFormatException e) {
-            throw new DukeIndexErrorException(tasks.size());
+            if (tasks.size() == 0) {
+                throw new DukeIndexErrorException();
+            } else {
+                throw new DukeIndexErrorException(tasks.size());
+            }
         }
     }
 
@@ -241,6 +255,7 @@ public class Duke {
             tasks.add(dl);
             ui.printNewTaskMessage(dl, tasks.size());
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            e.printStackTrace();
             throw new DukeFormatCommandException("deadline", "/by");
         }
     }

@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents a task.
+ *
+ * @author Justin Peng
+ */
 public class Task {
     /** Description of the task */
     private final String description;

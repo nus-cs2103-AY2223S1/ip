@@ -15,6 +15,11 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Handles the loading and saving of tasks in the save file.
+ *
+ * @author Justin Peng
+ */
 public class Storage {
     /** Path to {@code .txt} save file */
     private String saveFilePath = "data.txt";

@@ -2,6 +2,11 @@ package duke;
 
 import duke.Duke.Command;
 
+/**
+ * Represents the command-parsing component of MakiBot.
+ *
+ * @author Justin Peng
+ */
 public class Parser {
     /**
      * Creates a new parser.

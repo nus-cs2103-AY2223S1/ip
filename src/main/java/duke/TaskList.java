@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import duke.exception.DukeIndexErrorException;
 import duke.task.Task;
 
+/**
+ * Represents a list of tasks.
+ *
+ * @author Justin Peng
+ */
 public class TaskList {
     /** List of tasks */
     private final ArrayList<Task> tasks;

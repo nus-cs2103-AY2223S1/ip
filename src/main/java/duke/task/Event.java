@@ -3,6 +3,11 @@ package duke.task;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event task with the event date.
+ *
+ * @author Justin Peng
+ */
 public class Event extends Task {
     /** Datetime of the event */
     private final ZonedDateTime at;

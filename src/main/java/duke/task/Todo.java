@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents a Todo task.
+ *
+ * @author Justin Peng
+ */
 public class Todo extends Task {
     /**
      * Creates a new undone task with the specified description.
