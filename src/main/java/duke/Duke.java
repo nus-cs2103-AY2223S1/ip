@@ -1,3 +1,13 @@
+package duke;
+
+import duke.data.TaskList;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+import duke.ui.Ui;
 
 public class Duke {
 
@@ -23,7 +33,7 @@ public class Duke {
     // TaskList object to store the user's tasks
     private TaskList storedTasks;
 
-    
+
 
     // Constructor
     public Duke() {
@@ -241,7 +251,6 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            // listTasks();
             ui.listTasks(this.storedTasks);
             break;
 
@@ -307,9 +316,6 @@ public class Duke {
     public static void main(String[] args) {
         
         Duke d = new Duke();
-
-        // Initialize the system
-        // d.initialize();
 
         // Process user commands
         d.run();

@@ -1,5 +1,9 @@
+package duke.data;
+
 import java.io.Serializable;
 import java.util.LinkedList;
+
+import duke.task.Task;
 
 public class TaskList implements Serializable {
 
