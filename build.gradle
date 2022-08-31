@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "entry.Duke"
+    mainClassName = "ui.Launcher"
 }
 
 shadowJar {
