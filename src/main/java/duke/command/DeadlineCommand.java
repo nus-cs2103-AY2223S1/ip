@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,27 +31,18 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Creates a deadline task and add it into the task list and display a message
+     * Creates a deadline task and add it into the task list and return a message
      * that the deadline task has been added.
      * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The message that the deadline has been added and the number of current tasks.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
+    public String execute(TaskList task, Storage storage) {
         Deadline currDeadline = new Deadline(this.description, this.localDate, this.localTime);
         task.addTask(currDeadline);
-        ui.displayAddTask(currDeadline);
-        ui.displayNumOfTasks(task.getTaskSize());
-        ui.displaySeparator();
+        return "Got it. I've added this task:\n " + currDeadline.taskInfo()
+                + "\nNow you have"  + task.getTaskSize() + " tasks in the list.";
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

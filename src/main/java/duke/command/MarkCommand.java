@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to mark a specific task as done in the task list.
@@ -22,30 +21,22 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Mark the specific task as done in the task list and inform the user that the task
+     * Mark the specific task as done in the task list and return a message that the task
      * has been mark as done.
      * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The message that the task has been mark as done if successfully mark as done.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
+    public String execute(TaskList task, Storage storage) {
         try {
             task.markTask(this.toMark);
             Task taskToMark = task.getTask(toMark);
-            ui.displayMarkTask(taskToMark);
+            return "Nice! I've marked this task as done:\n " + taskToMark.taskInfo();
         } catch (IndexOutOfBoundsException e) {
-            ui.displayInvalidTaskIndex();
+            return "There is no task at this index";
         }
 
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

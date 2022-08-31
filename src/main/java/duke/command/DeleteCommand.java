@@ -22,29 +22,21 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete the specific task in the task list and inform the user that the task
+     * Delete the specific task in the task list and return a message that the task
      * has been deleted.
      * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The message that the task has been deleted if successfully deleted.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
+    public String execute(TaskList task, Storage storage) {
         try {
             Task taskToDelete = task.getTask(toDelete);
             task.deleteTask(toDelete);
-            ui.displayDeleteTask(taskToDelete);
+            return "Noted. I've removed this task:\n " + taskToDelete.taskInfo();
         } catch (IndexOutOfBoundsException e) {
-            ui.displayInvalidTaskIndex();
+            return "There is no task at this index";
         }
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

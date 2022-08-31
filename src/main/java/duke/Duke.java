@@ -5,7 +5,6 @@ import duke.exception.DukeException;
 import duke.parse.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,53 +13,39 @@ import java.io.FileNotFoundException;
  * The main class of chatbot Duke.
  */
 
-public class Duke {
+public class Duke  {
 
     private Parser parser;
     private Storage storage;
     private TaskList taskList;
-    private Ui ui;
 
     /**
      * Constructor for the Duke object.
-     * @param filePath The string for the file that has the previously saved tasks.
      */
-    public Duke(String filePath) {
+    public Duke() {
         parser = new Parser();
         storage = new Storage();
         taskList = new TaskList();
-        ui = new Ui();
 
         try {
-            ui.displayLoading();
-            storage.readFileContent(new File(filePath), taskList);
-            ui.displayLoadingSuccess();
+            storage.readFileContent(new File("duke.txt"), taskList);
         } catch (FileNotFoundException e) {
-            ui.displayLoadingError();
+            System.out.println(e.getMessage());
         }
     }
 
     /**
-     * Runs the chatbot until the user decide to exit.
+     * Return a response based on the user's input.
+     * @param input The user input.
+     * @return A string containing the response.
      */
-    public void run() {
-        ui.displayHello();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String input = ui.getUserInput();
-                Command c = parser.parse(input);
-                c.execute(taskList, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = parser.parse(input);
+            return command.execute(taskList, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-
-    }
-
-    public static void main(String[] args) {
-        new Duke("duke.txt").run();
     }
 
 }
