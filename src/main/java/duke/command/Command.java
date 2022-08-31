@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Response;
 import duke.util.TaskList;
 
 /**
@@ -12,7 +13,8 @@ public abstract class Command {
      * Runs a command based on its type.
      *
      * @param taskList the task list
+     * @param builder
      * @throws DukeException Duke Exception
      */
-    public abstract void run(TaskList taskList) throws DukeException;
+    public abstract void run(TaskList taskList, Response builder) throws DukeException;
 }

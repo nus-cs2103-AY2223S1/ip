@@ -1,9 +1,11 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.command.Command;
+import duke.command.UnknownCommand;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -13,31 +15,34 @@ import duke.util.Ui;
  * Class containing initialisation of Duke chatbot.
  */
 public class Duke {
+    private static Storage storage = new Storage("./././././data/duke.txt");
+    private TaskList taskList;
+    //private Scanner sc = new Scanner(System.in);
+    private static Response response = new Response(new StringBuilder());
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     * @throws DukeException the duke exception
-     */
-    public static void main(String[] args) throws DukeException {
+    public Duke() {
         Ui.greet();
-        Scanner sc = new Scanner(System.in);
-        Storage storage = new Storage();
         try {
             storage.storageRead();
+            taskList = storage.getTaskList();
         } catch (IOException e) {
-            e.printStackTrace();
+            taskList = new TaskList(new ArrayList<>());
         }
-        TaskList taskList = storage.getTaskList();
+    }
+
+    public String dukeExecute(String input) throws DukeException {
         while (true) {
             try {
-                String input = sc.nextLine();
+                response.reset();
                 Command command = Parser.parseCommand(input);
-                command.run(taskList);
+                command.run(taskList, response);
+                String message = Ui.formatMessage(response.displayMessage());
+                response.reset();
+                return message;
             } catch (DukeException e) {
-                Ui.formatMessage(e.toString());
+                return Ui.formatMessage(e.toString());
             }
         }
     }
 }
+
