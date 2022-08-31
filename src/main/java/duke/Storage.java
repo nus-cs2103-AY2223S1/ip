@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,8 +17,6 @@ public class Storage {
     private static final String DATA_FILE_PATH = "data";
     private static final String DATA_FILE_NAME = "duke.txt";
 
-    private static FileWriter dataFileWriter;
-
     /**
      * Attempts to load saved tasks from the hard disk.
      * Creates the save file and directory if missing.
@@ -35,6 +33,8 @@ public class Storage {
         if (!dataFile.exists()) {
             dataFile.createNewFile();
         }
+
+        TaskList.clearTaskList();
 
         Scanner scanner = new Scanner(dataFile);
         while (scanner.hasNextLine()) {
@@ -80,10 +80,28 @@ public class Storage {
         }
         scanner.close();
 
-        dataFileWriter = new FileWriter(dataFile);
+
     }
 
-    public static void saveData() {
+    /**
+     * Attempts to save tasks from TaskList to the hard disk.
+     * Creates the save file and directory if missing.
+     *
+     * @throws IOException If the save file or file path could not be accessed.
+     */
+    public static void saveData() throws IOException{
+        Path parentDir = Paths.get(DATA_FILE_PATH);
+        if (!Files.exists(parentDir)) {
+            Files.createDirectories(parentDir);
+        }
+
+        File dataFile = new File(Paths.get(parentDir.toString(), DATA_FILE_NAME).toString());
+        if (!dataFile.exists()) {
+            dataFile.createNewFile();
+        }
+
+        FileWriter dataFileWriter = new FileWriter(dataFile);
+
         try {
             for (String saveString: TaskList.getTasksSaveStrings()) {
                 dataFileWriter.write(saveString + "\n");

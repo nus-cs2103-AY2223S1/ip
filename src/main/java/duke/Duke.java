@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,7 +13,6 @@ public class Duke {
         try {
             Storage.loadData();
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error: Failed to access data");
             return;
         }
@@ -37,6 +36,11 @@ public class Duke {
 
         Ui.displayExitText();
 
-        Storage.saveData();
+        try {
+            Storage.saveData();
+        } catch (IOException e) {
+            System.out.println("Error: Failed to access data");
+            return;
+        }
     }
 }

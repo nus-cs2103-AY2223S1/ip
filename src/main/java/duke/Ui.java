@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Ui {
                                      + "| | | | | | | |/ / _ \\\n"
                                      + "| |_| | |_| |   <  __/\n"
                                      + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String BOT_NAME = "Duke";
+    private static final String BOT_NAME = "duke";
     private static final int LINE_LENGTH = 80;
 
     public static void displayStartUpText() {

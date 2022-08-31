@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -115,7 +115,7 @@ public class TaskList {
             throw new DukeException("Failed to create event: Invalid date given");
         }
 
-        return addToList(new Deadline(name, false, date));
+        return addToList(new Event(name, false, date));
     }
 
     /**
@@ -183,5 +183,9 @@ public class TaskList {
         }
 
         return saveStrings;
+    }
+
+    public static void clearTaskList() {
+        tasks.clear();
     }
 }

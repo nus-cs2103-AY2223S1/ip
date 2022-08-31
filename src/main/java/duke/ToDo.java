@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 /**
  * Class used to represent a ToDo type task that has no date.

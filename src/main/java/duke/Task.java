@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 /**
  * A class used to represent a task. A task has a name and completion status.
