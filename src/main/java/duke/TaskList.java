@@ -83,7 +83,7 @@ public class TaskList {
             System.out.println("No tasks match the search term");
         }
     }
-    
+
     public void mark(int taskIndex) {
         String oldText = storeLists.get(taskIndex).toString();
         storeLists.get(taskIndex).markAsDone();
