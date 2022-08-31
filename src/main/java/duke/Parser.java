@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class Parser {
     private static final Set<String> SET_OF_COMMANDS = Set.of(
-            "bye", "list", "mark", "unmark", "delete", "find", "todo", "deadline", "event");
+        "bye", "list", "mark", "unmark", "delete", "find", "todo", "deadline", "event");
 
     /**
      * Parses input by user and returns Command object if user input is valid

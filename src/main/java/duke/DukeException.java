@@ -1,7 +1,7 @@
 package duke;
 
 public class DukeException extends Exception {
-    private static final String oopsMessage = "☹ OOPS!!!";
+    private static final String oopsMessage = "OOPS!!!";
 
     /**
      * Constructor for DukeException

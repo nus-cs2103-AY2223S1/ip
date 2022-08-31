@@ -39,18 +39,22 @@ public abstract class Task {
 
     /**
      * Marks Task as done
+     *
+     * @return String to be displayed to user after marking Task as done
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
-        System.out.printf("Nice! I've marked this task as done:\n  %s\n", this);
+        return String.format("Nice! I've marked this task as done:\n  %s\n", this);
     }
 
     /**
      * Marks Task as not done
+     *
+     * @return String to be displayed to user after marking Task as not done
      */
-    public void markAsNotDone() {
+    public String markAsNotDone() {
         this.isDone = false;
-        System.out.printf("OK, I've marked this task as not done yet:\n  %s\n", this);
+        return String.format("OK, I've marked this task as not done yet:\n  %s\n", this);
     }
 
     /**

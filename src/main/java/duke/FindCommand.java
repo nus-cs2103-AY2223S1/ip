@@ -18,9 +18,10 @@ public class FindCommand extends Command {
      * @param taskList TaskList object containing tasks input by user before
      * @param ui       Ui object that interacts with user
      * @param storage  Storage object that saves to and loads from storage file
+     * @return String to be displayed to user after execution
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.findTasks(keyword);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return taskList.findTasks(keyword);
     }
 }

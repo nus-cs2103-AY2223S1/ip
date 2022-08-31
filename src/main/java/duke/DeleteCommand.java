@@ -18,10 +18,12 @@ public class DeleteCommand extends Command {
      * @param taskList TaskList object containing tasks input by user before
      * @param ui       Ui object that interacts with user
      * @param storage  Storage object that saves to and loads from storage file
+     * @return String to be displayed to user after execution
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.deleteTask(idx);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String s = taskList.deleteTask(idx);
         storage.save(taskList);
+        return s;
     }
 }
