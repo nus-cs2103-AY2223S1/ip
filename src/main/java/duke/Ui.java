@@ -45,7 +45,7 @@ public class Ui {
      * @param taskList the list of tasks.
      */
     public static String getTaskListMessage(TaskList taskList) {
-        String message = "Here are the tasks in your list:\n" + taskList.toString() + "\n";
+        String message = "Here are the tasks in your list:\n" + taskList.toString();
         return message;
     }
 
