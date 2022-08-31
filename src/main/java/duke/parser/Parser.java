@@ -29,43 +29,43 @@ public abstract class Parser {
             break;
         case "mark":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! Please specify a task to mark.");
+                throw new DukeException("Please specify a task to mark.");
             }
             try {
                 command = new MarkCommand(Integer.parseInt(commandArgs[1]));
             } catch (NumberFormatException e) {
-                throw new DukeException("\tOOPS!!! Please specify a valid number.");
+                throw new DukeException("Please specify a valid number.");
             }
             break;
         case "unmark":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! Please specify a task to mark.");
+                throw new DukeException("Please specify a task to unmark.");
             }
             try {
                 command = new UnmarkCommand(Integer.parseInt(commandArgs[1]));
             } catch (NumberFormatException e) {
-                throw new DukeException("\tOOPS!!! Please specify a valid number.");
+                throw new DukeException("Please specify a valid number.");
             }
             break;
         case "delete":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! Please specify a task to mark.");
+                throw new DukeException("Please specify a task to delete.");
             }
             try {
                 command = new DeleteCommand(Integer.parseInt(commandArgs[1]));
             } catch (NumberFormatException e) {
-                throw new DukeException("\tOOPS!!! Please specify a valid number.");
+                throw new DukeException("Please specify a valid number.");
             }
             break;
         case "todo":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException("The description of a todo cannot be empty.");
             }
             command = new AddCommand(new ToDo(commandArgs[1]));
             break;
         case "deadline":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! The description of a deadline cannot be empty.");
+                throw new DukeException("The description of a deadline cannot be empty.");
             }
             String[] deadlineArgs = commandArgs[1].split(" /by ");
             if (deadlineArgs.length < 2) {
@@ -80,7 +80,7 @@ public abstract class Parser {
             break;
         case "event":
             if (commandArgs.length < 2) {
-                throw new DukeException("\tOOPS!!! The description of a deadline cannot be empty.");
+                throw new DukeException("The description of a deadline cannot be empty.");
             }
             String[] eventArgs = commandArgs[1].split(" /at ");
             if (eventArgs.length < 2) {
@@ -94,7 +94,7 @@ public abstract class Parser {
             }
             break;
         default:
-            throw new DukeException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("Please specify a valid command.");
         }
         return command;
     }
