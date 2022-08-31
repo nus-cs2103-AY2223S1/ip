@@ -22,7 +22,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "deadline";
             String description = "Valid Deadline /by 2009-09-12 1300";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
 
             String expected = "Got it. I've added this task:\n"
                     + "[D][ ] Valid Deadline (by: 2009 Sep 12 01:00PM)\n"
@@ -42,7 +42,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "Event";
             String description = "Valid Event /at 2009-09-12 1300";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
 
             String expected = "Got it. I've added this task:\n"
                     + "[E][ ] Valid Event (at: 2009 Sep 12 01:00PM)\n"
@@ -62,7 +62,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "Todo";
             String description = "Valid Todo";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
 
             String expected = "Got it. I've added this task:\n"
                     + "[T][ ] Valid Todo\n"
@@ -82,7 +82,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "deadline";
             String description = "inValid Deadline /at 2009-09-12 1300";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
             fail();
         } catch (DukeInvalidCommandException e) {
             assertTrue(true);
@@ -99,7 +99,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "Event";
             String description = "Valid Event /by 2009-09-12 1300";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
             fail();
         } catch (DukeInvalidCommandException e) {
             assertTrue(true);
@@ -116,7 +116,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "deadline";
             String description = "invalid Deadline /by 2009-09-122 13000";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
             fail();
         } catch (DukeException e) {
             String expected = "Please format date and time in YYYY-MM-DD hhmm.";
@@ -132,7 +132,7 @@ public class ParserTest {
             Storage storage = new Storage("./data/data.txt");
             String command = "event";
             String description = "invalid event /at 2009-09-122 13000";
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
             fail();
         } catch (DukeException e) {
             String expected = "Please format date and time in YYYY-MM-DD hhmm.";

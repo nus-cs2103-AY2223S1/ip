@@ -44,7 +44,7 @@ public class Event extends Task {
      * @return Date and Time of Event.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY MMM dd hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
         return at.format(formatter);
     }
 

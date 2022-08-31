@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -61,7 +63,7 @@ public class MainWindow extends AnchorPane {
 
         userInput.clear();
 
-        if (toExit == "1") {
+        if (Objects.equals(toExit, "1")) {
             PauseTransition termination = new PauseTransition(Duration.seconds(1));
             termination.setOnFinished(event -> Platform.exit());
             termination.play();

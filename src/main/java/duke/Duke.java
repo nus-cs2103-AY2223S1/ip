@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.command.Command;
 import duke.exception.DukeException;
@@ -18,11 +17,7 @@ import duke.task.TaskList;
  * @author Tan Jia Rong
  */
 public class Duke {
-    // Location of save file
-    private static final String SAVE_LOCATION = "./data/data.txt";
-
     // Initialise variables
-    private Scanner sc = new Scanner(System.in);
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
@@ -67,14 +62,14 @@ public class Duke {
         }
 
         try {
-            Command c = Parser.parse(command, description, tasks);
+            Command c = Parser.parse(command, description);
 
             response[0] = c.execute(tasks, ui, storage);
             response[1] = c.isExit() ? "1" : "0";
+            return response;
         } catch (DukeException e) {
             response[0] = ui.printErr(e.getMessage());
             response[1] = "0";
-        } finally {
             return response;
         }
     }

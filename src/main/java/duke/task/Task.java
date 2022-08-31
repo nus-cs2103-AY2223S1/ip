@@ -56,24 +56,6 @@ public class Task {
     }
 
     /**
-     * Gets status of the Task.
-     *
-     * @return Status of the Task.
-     */
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
-    /**
-     * Gets date of Task.
-     *
-     * @return Date of Task.
-     */
-    public String getDate() {
-        return "Not Applicable";
-    }
-
-    /**
      * Gets description of the Task.
      *
      * @return returns description of the Task.

@@ -20,7 +20,6 @@ import duke.exception.DukeEmptyEventException;
 import duke.exception.DukeEmptyToDoException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
-import duke.task.TaskList;
 
 /**
  * The Parser class that parses user commands.
@@ -35,9 +34,8 @@ public class Parser {
      *
      * @param command Task/Action to be executed.
      * @param description Description of the Task/Action to be executed.
-     * @param tasks TaskList where results are stored.
      */
-    public static Command parse(String command, String description, TaskList tasks) throws DukeException {
+    public static Command parse(String command, String description) throws DukeException {
         try {
             command = command.toLowerCase();
 

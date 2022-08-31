@@ -43,7 +43,7 @@ public class Deadline extends Task {
      * @return Date and Time of Deadline.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY MMM dd hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
         return by.format(formatter);
     }
 
