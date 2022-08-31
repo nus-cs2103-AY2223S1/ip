@@ -1,3 +1,5 @@
 D | 0 | project | 2022-08-27
-E | 0 | meet  | 2022-08-30
 T | 0 | Eat Waccow
+D | 0 | b | 2022-08-31
+E | 0 | a | 2022-08-31
+T | 0 | Waccow

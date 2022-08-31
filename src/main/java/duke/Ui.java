@@ -44,13 +44,6 @@ public class Ui {
     }
 
     /**
-     * Shows the error when no past task data is found.
-     */
-    public String showLoadingError() {
-        return "Task data not found.";
-    }
-
-    /**
      * Shows the message when a task is added.
      *
      * @param size The size of the TaskList.

@@ -35,8 +35,6 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
-            e.printStackTrace();
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }

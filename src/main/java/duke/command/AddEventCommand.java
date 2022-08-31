@@ -34,7 +34,7 @@ public class AddEventCommand extends Command {
         if (!details.contains("/at")) {
             throw new DukeException("OOPS!!! Time of event required. (/at)");
         }
-        String[] split = details.split("/");
+        String[] split = details.split(" /");
         String desc = split[0];
         if (desc.equals("") || desc.equals(" ")) {
             throw new DukeException("OOPS!!! Description of event is required.");
