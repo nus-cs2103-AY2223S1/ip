@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an event task which will occur on a certain date.
@@ -28,7 +29,11 @@ public class Event extends Task {
             throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
         }
         super.addName(userInput.substring(6, index));
-        this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
+        try {
+            this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date format not recognised! Please input date as <YYYY/MM/DD> or <YYYY-MM-DD>.");
+        }
     }
 
     /**

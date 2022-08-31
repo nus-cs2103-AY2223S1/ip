@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a deadline task which needs to be completed by a certain date.
@@ -31,8 +32,11 @@ public class DeadLine extends Task {
         }
 
         super.addName(userInput.substring(9, index));
-
-        this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));;
+        try {
+            this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date format not recognised! Please input date as <YYYY/MM/DD> or <YYYY-MM-DD>.");
+        }
     }
 
     /**
