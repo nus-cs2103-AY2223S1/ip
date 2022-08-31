@@ -34,8 +34,8 @@ public class Ui {
     /**
      * Display goodbye message when Blink program ends.
      */
-    public void showBye() {
-        System.out.println("Bye bye~ Glad to be of service :D");
+    public String showBye() {
+        return "Bye bye~ Glad to be of service :D";
     }
 
     /**
@@ -68,8 +68,8 @@ public class Ui {
      *
      * @param tasks TaskList which tasks are to be displayed.
      */
-    public void showList(TaskList tasks) {
-        System.out.println(tasks.listTask());
+    public String showList(TaskList tasks) {
+        return tasks.listTask();
     }
 
     /**
@@ -78,9 +78,9 @@ public class Ui {
      * @param tasks TaskList of all the current Tasks
      * @param num Number position of Task to mark
      */
-    public void mark(TaskList tasks, int num) {
+    public String mark(TaskList tasks, int num) {
         Task task = tasks.get(num - 1);
-        System.out.println("This task has been marked as done\n" + task);
+        return "This task has been marked as done\n" + task;
     }
 
     /**
@@ -89,9 +89,9 @@ public class Ui {
      * @param tasks TaskList of all the current Tasks
      * @param num Number position of Task to unmark
      */
-    public void unMark(TaskList tasks, int num) {
+    public String unMark(TaskList tasks, int num) {
         Task task = tasks.get(num - 1);
-        System.out.println("This task has been marked as done\n" + task);
+        return "This task has been marked as done\n" + task;
     }
 
     /**
@@ -100,9 +100,9 @@ public class Ui {
      * @param tasks TaskList where the task is deleted from
      * @param task Task that is deleted
      */
-    public void deleteTask(TaskList tasks, Task task) {
-        System.out.println("Blink.Task has been deleted successfully.\n" + task
-               + "\n" + tasks.deleted());
+    public String deleteTask(TaskList tasks, Task task) {
+        return "Blink.Task has been deleted successfully.\n" + task
+               + "\n" + tasks.deleted();
     }
 
     /**
@@ -111,16 +111,20 @@ public class Ui {
      * @param tasks TaskList to check task for date specified
      * @param date Date to filter by, to get all Tasks of this date
      */
-    public void showFilter(ArrayList<Task> tasks, LocalDate date) {
+    public String showFilter(ArrayList<Task> tasks, LocalDate date) {
+        String output = "";
         if (tasks.size() == 0) {
-            System.out.println("No task found on " + date.toString());
+            return "No task found on " + date.toString();
         } else {
-            System.out.println(tasks.size() + ((tasks.size() == 1)? " task": " tasks")
-                    + " found");
+            String currentSize = tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+                    + " found";
+            output += currentSize;
             for (int x = 0; x < tasks.size(); x++) {
-                System.out.println(tasks.get(x));
+                String taskInfo = "\n" + tasks.get(x);
+                output += taskInfo;
             }
         }
+        return output;
     }
 
     /**
@@ -128,9 +132,9 @@ public class Ui {
      * @param tasks TaskList where the task is added to
      * @param task Task which has just been added
      */
-    public void addTask(TaskList tasks, Task task) {
-        System.out.println("Alright, this task has been successfully added!\n"
-                + task + "\nTotal of " + tasks.length() + " tasks now");
+    public String showAddTask(TaskList tasks, Task task) {
+        return "Alright, this task has been successfully added!\n"
+                + task + "\nTotal of " + tasks.length() + " tasks now";
     }
 
     /**
@@ -139,15 +143,19 @@ public class Ui {
      * @param tasks ArrayList containing all the tasks with specified keyword
      * @param keyword Keyword to filter all the Tasks by
      */
-    public void showFind(ArrayList<Task> tasks, String keyword) {
+    public String showFind(ArrayList<Task> tasks, String keyword) {
+        String output = "";
         if (tasks.size() == 0) {
-            System.out.println("No tasks found with keyword: " + keyword);
+            return "No tasks found with keyword: " + keyword;
         } else {
-            System.out.println(tasks.size() + ((tasks.size() == 1)? " task": " tasks")
-                    + " found");
+            String currentSize = tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+                    + " found";
+            output += currentSize;
             for (int x = 0; x < tasks.size(); x++) {
-                System.out.println(tasks.get(x));
+                String taskInfo = "\n" + tasks.get(x);
+                output += taskInfo;
             }
         }
+        return output;
     }
 }

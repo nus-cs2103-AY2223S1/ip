@@ -32,9 +32,9 @@ public class FindCommand extends Command{
      * @param storage Storage object of current Blink object
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> findList = tasks.find(this.keyWord);
-        ui.showFind(findList, this.keyWord);
+        return ui.showFind(findList, this.keyWord);
     }
 
     /**

@@ -31,10 +31,10 @@ public class MarkCommand extends Command{
      * @param storage Storage object of current Blink object
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.mark(num);
-        ui.mark(tasks, num);
         storage.save(tasks);
+        return ui.mark(tasks, num);
     }
 
     /**

@@ -41,10 +41,10 @@ public class DeadlineCommand extends Command{
      * @param storage Storage object of current Blink object
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Deadlines event = tasks.addDeadline(this.desc, this.date);
-        ui.addTask(tasks, event);
         storage.save(tasks);
+        return ui.showAddTask(tasks, event);
     }
 
     /**

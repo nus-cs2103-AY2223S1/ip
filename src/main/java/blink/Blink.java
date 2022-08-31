@@ -20,11 +20,11 @@ public class Blink {
     /**
      * Constructor for Blink program
      *
-     * @param path The file path of the save file
      */
-    public Blink(String path)  {
-        ui = new Ui();
-        storage = new Storage(path);
+    public Blink() {
+        this.ui = new Ui();
+        this.storage = new Storage(System.getProperty("user.home")
+                + "/blink/blink.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (BlinkException e) {
@@ -36,32 +36,14 @@ public class Blink {
      * Runs the program by parsing user inputs to check if they
      * are suitable commands and act upon them if they are.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (BlinkException e) {
-                ui.showError(e.getMessage());
-            } catch (NumberFormatException e) {
-                ui.showError("Number input expected");
-            } catch(DateTimeException e) {
-                ui.showError("Invalid date input");
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(this.tasks, this.ui, this.storage);
+        } catch (BlinkException e) {
+            return "Error found:" + e.getMessage();
         }
     }
 
-    public static void main(String[] args) {
-        String path = System.getProperty("user.home") + "/blink/blink.txt";
-        Blink blink = new Blink(path);
-        blink.run();
-    }
 }
 

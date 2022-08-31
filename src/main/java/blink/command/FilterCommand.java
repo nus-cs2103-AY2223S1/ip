@@ -38,9 +38,9 @@ public class FilterCommand extends Command{
      * @param storage Storage object of current Blink object
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> filteredList = tasks.filter(date);
-        ui.showFilter(filteredList, this.date);
+        return ui.showFilter(filteredList, this.date);
     }
 
     /**

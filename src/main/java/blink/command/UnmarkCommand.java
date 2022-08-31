@@ -31,10 +31,10 @@ public class UnmarkCommand extends Command {
      * @param storage Storage object of current Blink object
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.unMark(num);
-        ui.unMark(tasks, num);
         storage.save(tasks);
+        return ui.unMark(tasks, num);
     }
 
     /**
