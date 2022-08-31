@@ -15,10 +15,10 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.delete(Integer.parseInt(description) - 1);
-        ui.printMultiMsg(new String[]{
+        ui.printMultiMsg(new String[] {
                 "Noted. I've removed this task:",
                 "  " + task,
-                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
         });
         storage.save(tasks);
     }

@@ -1,7 +1,6 @@
 package parser;
 
 import commands.ByeCommand;
-import data.ToDo;
 import exceptions.DukeException;
 import org.junit.jupiter.api.Test;
 

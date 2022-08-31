@@ -25,54 +25,57 @@ public class Parser {
 
         String[] words = input.split(" ", 2);
         command = words[0];
-        if (words.length > 1) description = words[1];
-        else description = "";
+        if (words.length > 1) {
+            description = words[1];
+        } else {
+            description = "";
+        }
 
         switch (command) {
-            case "bye":
-                return new ByeCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(description);
-            case "delete":
-                return new DeleteCommand(description);
-            case "todo": {
-                if (description.length() == 0) {
-                    throw new DukeException("The description of a todo cannot be empty.");
-                }
-                return new ToDoCommand(description);
+        case "bye":
+            return new ByeCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(description);
+        case "delete":
+            return new DeleteCommand(description);
+        case "todo": {
+            if (description.length() == 0) {
+                throw new DukeException("The description of a todo cannot be empty.");
             }
-            case "deadline": {
-                String[] splitArgs = description.split(" /by ", 2);
-                if (splitArgs.length < 2) {
-                    throw new DukeException("Invalid format for deadline.");
-                }
-                String title = splitArgs[0];
-                String stringBy = splitArgs[1];
-                try {
-                    LocalDate dateBy = LocalDate.parse(stringBy);
-                    return new DeadlineCommand(title, dateBy);
-                } catch (DateTimeParseException e) {
-                    throw new DukeException("Invalid date format.");
-                }
+            return new ToDoCommand(description);
+        }
+        case "deadline": {
+            String[] splitArgs = description.split(" /by ", 2);
+            if (splitArgs.length < 2) {
+                throw new DukeException("Invalid format for deadline.");
             }
-            case "event": {
-                String[] splitArgs = description.split(" /at ", 2);
-                if (splitArgs.length < 2) {
-                    throw new DukeException("Invalid format for event.");
-                }
-                String title = splitArgs[0];
-                String stringAt = splitArgs[1];
-                try {
-                    LocalDate dateAt = LocalDate.parse(stringAt);
-                    return new EventCommand(title, dateAt);
-                } catch (DateTimeParseException e) {
-                    throw new DukeException("Invalid date format.");
-                }
+            String title = splitArgs[0];
+            String stringBy = splitArgs[1];
+            try {
+                LocalDate dateBy = LocalDate.parse(stringBy);
+                return new DeadlineCommand(title, dateBy);
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Invalid date format.");
             }
-            default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        }
+        case "event": {
+            String[] splitArgs = description.split(" /at ", 2);
+            if (splitArgs.length < 2) {
+                throw new DukeException("Invalid format for event.");
+            }
+            String title = splitArgs[0];
+            String stringAt = splitArgs[1];
+            try {
+                LocalDate dateAt = LocalDate.parse(stringAt);
+                return new EventCommand(title, dateAt);
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Invalid date format.");
+            }
+        }
+        default:
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 }

@@ -7,8 +7,8 @@ import ui.Ui;
 
 public class Duke {
     private final Storage storage;
-    private TaskList tasks;
     private final Ui ui;
+    private TaskList tasks;
 
     /**
      * Instantiates a Duke object with storage at some file path.
@@ -23,6 +23,13 @@ public class Duke {
             ui.showLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    /**
+     * Instantiates the Duke program and runs it.
+     */
+    public static void main(String[] args) {
+        new Duke("duke.dat").run();
     }
 
     /**
@@ -41,12 +48,5 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
-    }
-
-    /**
-     * Instantiates the Duke program and runs it.
-     */
-    public static void main(String[] args) {
-        new Duke("duke.dat").run();
     }
 }

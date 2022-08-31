@@ -63,7 +63,7 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        printMultiMsg(new String[]{"Hello my name is Duke", "What can I do for you?"});
+        printMultiMsg(new String[] { "Hello my name is Duke", "What can I do for you?" });
     }
 
     /**

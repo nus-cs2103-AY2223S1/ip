@@ -15,7 +15,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.markDone(Integer.parseInt(description) - 1);
-        ui.printMultiMsg(new String[]{"Nice! I've marked this task as done:", task.toString()});
+        ui.printMultiMsg(new String[] { "Nice! I've marked this task as done:", task.toString() });
         storage.save(tasks);
     }
 }
