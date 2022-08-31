@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.ui.Ui;
 
 /**
  * MarkCommand class handles the command to mark a task.

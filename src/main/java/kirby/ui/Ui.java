@@ -5,7 +5,8 @@ package kirby.ui;
  */
 public class Ui {
     /**
-     * Prints the welcome message.
+     * Returns the welcome message.
+     * @return String of welcome message.
      */
     public static String showWelcome() {
         return "Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?";

@@ -1,11 +1,11 @@
 package kirby.commands;
 
+import java.io.IOException;
+
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
-
-import java.io.IOException;
+import kirby.ui.Ui;
 
 /**
  * DeleteCommand class handles the command to delete a task.

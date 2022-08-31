@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.tasks.Task;
+import kirby.ui.Ui;
 
 /**
  * FindCommand class handles the command to find the list of tasks that contains a specified keyword.

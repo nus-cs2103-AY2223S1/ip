@@ -2,9 +2,9 @@ package kirby.commands;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.tasks.Task;
+import kirby.ui.Ui;
 
 /**
  * ShowListCommand class handles the command to list all the tasks.

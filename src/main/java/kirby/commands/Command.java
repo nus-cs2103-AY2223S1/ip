@@ -2,8 +2,8 @@ package kirby.commands;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.ui.Ui;
 
 /**
  * Command class is an abstract class that is inherited by specific commands.
@@ -30,6 +30,7 @@ public abstract class Command {
      * @param tasks TaskList that stores the list of tasks.
      * @param ui Ui that handles users' interaction.
      * @param storage Storage that saves users' previous entries.
+     * @return Output string to be displayed on the GUI.
      * @throws KirbyMissingArgumentException If arguments are not followed with the respective commands.
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException;

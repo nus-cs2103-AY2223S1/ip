@@ -24,6 +24,12 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+
+    /**
+     * Constructor for DialogBox.
+     * @param text String contained in DialogBox. Could be input or output.
+     * @param img Profile picture.
+     */
     DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -48,10 +54,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Displays the user Dialog.
+     *
+     * @param text String to be displayed as what user said.
+     * @param img Profile picture of user.
+     * @return DialogBox of what user said and avatar.
+     */
     public static kirby.ui.DialogBox getUserDialog(String text, Image img) {
         return new kirby.ui.DialogBox(text, img);
     }
 
+    /**
+     * Displays the Kirby Dialog.
+     *
+     * @param text String to be displayed as what Kirby said.
+     * @param img Profile picture of Kirby.
+     * @return DialogBox of what Kirby said and avatar.
+     */
     public static kirby.ui.DialogBox getKirbyDialog(String text, Image img) {
         var db = new kirby.ui.DialogBox(text, img);
         db.flip();

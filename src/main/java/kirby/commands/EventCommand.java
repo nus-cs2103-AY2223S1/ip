@@ -4,11 +4,9 @@ import java.io.IOException;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.tasks.Event;
-
-
+import kirby.ui.Ui;
 
 /**
  * EventCommand class handles the command to create an Event task.

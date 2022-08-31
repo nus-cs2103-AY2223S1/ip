@@ -17,12 +17,19 @@ public class Main extends Application {
 
     private Kirby kirby;
 
+    /**
+     * Constructor for Main method.
+     */
     public Main() throws IOException {
         String fileName = "data/kirby.txt";
         String dirName = "data/";
         this.kirby = new Kirby(fileName, dirName);
     }
 
+    /**
+     * {@inheritDoc}
+     * Sets the GUI stage to display all the nodes.
+     */
     @Override
     public void start(Stage stage) {
         try {
