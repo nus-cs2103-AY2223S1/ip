@@ -1,6 +1,6 @@
 package duke;
 
-import java.util.Scanner;
+
 
 /**
  * Represents the User Interface that users will be communicating with when using the Duke Chatbot
@@ -9,6 +9,9 @@ import java.util.Scanner;
 public class Ui {
     private Parser parser;
     private Storage storage;
+
+    public Ui() {
+    }
 
     /**
      * Constructor Method for the Ui class
@@ -32,18 +35,12 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("Oi, What u want?");
-        Scanner in = new Scanner(System.in);
-        while (in.hasNext()) {
-            String next = in.nextLine();
-            String[] command = next.split(" ", 2);
-            if (parser.parse(command)) {
-                return;
-            }
-        }
+
     }
 
+
+
     /**
-     * Prints out an error statement if there are issues running the code
      */
     public void showLoadingError() {
         System.out.println("ERROR: No File Found... \nCreating New File");

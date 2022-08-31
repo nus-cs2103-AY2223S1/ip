@@ -43,31 +43,32 @@ public class Parser {
      * @param command
      * @return true if the command is by, else returns false
      */
-    public boolean parse(String[] command) {
+    public String parse(String[] command) {
+        String result = "";
         try {
             Command cmd = Command.valueOf(command[0]);
             int index;
             switch (cmd) {
             case bye:
-                System.out.println("Bye! Don't Come back!");
+                result = "Bye! Don't Come back!";
                 storage.write(tasks);
-                return true;
+                return result;
             case list:
-                tasks.list();
+                result = tasks.list();
                 break;
             case mark:
                 index = Integer.parseInt(command[1]) - 1;
-                tasks.mark(index);
+                result = tasks.mark(index);
                 break;
             case event:
                 String[] desc = command[1].split("/at ", 2);
                 Event e = new Event(desc[0], desc[1]);
-                tasks.add(e);
+                result = tasks.add(e);
                 break;
             case todo:
                 try {
                     Todo t = new Todo(command[1]);
-                    tasks.add(t);
+                    result += tasks.add(t);
                 } catch (ArrayIndexOutOfBoundsException err) {
                     System.out.println("oops the description of a todo cannot be empty!");
                 }
@@ -77,25 +78,25 @@ public class Parser {
                     throw new DukeException("please specify which item to delete");
                 }
                 index = Integer.parseInt(command[1]) - 1;
-                tasks.delete(index);
+                result = tasks.delete(index);
                 break;
             case unmark:
                 index = Integer.parseInt(command[1]) - 1;
-                tasks.unMark(index);
+                result = tasks.unMark(index);
                 break;
             case deadline:
                 String[] dl = command[1].split("/by ", 2);
                 Deadline d = new Deadline(dl[0], LocalDate.parse(dl[1]));
-                tasks.add(d);
+                result = tasks.add(d);
                 break;
             case find:
                 String item = command[1];
-                tasks.find(item);
+                result = tasks.find(item);
         }
 
         } catch (IllegalArgumentException e) {
-            System.out.println("Invalid command");
+            return "Invalid command";
         }
-        return false;
+        return result;
     }
 }

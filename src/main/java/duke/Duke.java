@@ -1,29 +1,27 @@
 package duke;
 
-
+import javafx.application.Application;
 /**
  * Represents the DUKE chatbot each <code>Duke</code> object contains a <code>Storage</code>,
  * a <code>TaskList</code> and a <code>Ui</code>
  */
-public class Duke {
+public class  Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private Parser parser;
 
     /**
-     * Constructor for the Duke Class
-     * @param filepath
+     * Constructor for Duke class
      */
-    public Duke(String filepath) {
-        this.storage = new Storage(filepath);
+    public Duke() {
+        this.storage = new Storage("duke.txt");
         try {
             tasks = new TaskList(storage.load());
-            this.ui = new Ui(storage, tasks);
+            this.parser = new Parser(storage, tasks);
         } catch (DukeException e) {
             tasks = new TaskList();
-            this.ui = new Ui(storage, tasks);
-            ui.showLoadingError();
+            this.parser = new Parser(storage, tasks);
         }
 
 
@@ -32,12 +30,10 @@ public class Duke {
     /**
      * Starts the Duke chatbot
      */
-    public void run() {
-        ui.start();
-    }
-
-    public static void main(String[] args) {
-        new Duke("./tasks.txt").run();
+    public String getResponse(String fullCommand) {
+            String[] command = fullCommand.split(" ", 2);
+            String result = parser.parse(command);
+            return result;
     }
 }
 

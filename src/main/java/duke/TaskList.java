@@ -70,10 +70,12 @@ public class TaskList {
     /**
      * Prints out the contents of the list
      */
-    public void list() {
+    public String list() {
+        String s = "";
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
+            s += (i + 1 + ". " + list.get(i) + "\n");
         }
+        return s;
     }
 
     /**
@@ -81,10 +83,12 @@ public class TaskList {
      *
      * @param index
      */
-    public void mark(int index) {
+    public String mark(int index) {
+        String s = "";
         list.get(index).mark();
-        System.out.println("I have marked this task as done:");
-        System.out.println(list.get(index));
+        s += "I have marked this task as done: \n";
+        s += list.get(index) + "\n";
+        return s;
     }
 
     /**
@@ -92,15 +96,17 @@ public class TaskList {
      *
      * @param e
      */
-    public void add(Event e) {
+    public String add(Event e) {
+        String s = "";
         try {
             list.add(e);
             count = list.size();
-            System.out.println("Added Task");
-            System.out.println(list.get(count - 1));
-            System.out.println("Now you have " + count + " tasks in the list");
+            s += ("Added Task \n");
+            s += list.get(count - 1);
+            s += "Now you have " + count + " tasks in the list";
+            return s;
         } catch (ArrayIndexOutOfBoundsException err) {
-            System.out.println("Invalid Time");
+            return "Invalid Time";
         }
     }
 
@@ -109,12 +115,14 @@ public class TaskList {
      *
      * @param t
      */
-    public void add(Todo t) {
+    public String add(Todo t) {
         list.add(t);
         count = list.size();
-        System.out.println("Added Task");
-        System.out.println(list.get(count - 1));
-        System.out.println("Now you have " + count + " tasks in the list");
+        String s = "";
+        s += "Added Task \n";
+        s += list.get(count - 1) + "\n";
+        s += "Now you have " + count + " tasks in the list\n";
+        return s;
     }
 
     /**
@@ -122,15 +130,17 @@ public class TaskList {
      *
      * @param d
      */
-    public void add(Deadline d) {
+    public String add(Deadline d) {
         try {
             list.add(d);
             count = list.size();
-            System.out.println("Added Task");
-            System.out.println(list.get(count - 1));
-            System.out.println("Now you have " + count + " tasks in the list");
+            String s = "";
+            s += "Added Task\n";
+            s +=list.get(count - 1) + "\n";
+            s += "Now you have " + count + " tasks in the list" + "\n";
+            return s;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid Time");
+            return "Invalid Time";
         }
     }
 
@@ -139,12 +149,12 @@ public class TaskList {
      *
      * @param index
      */
-    public void delete(int index) {
+    public String delete(int index) {
         Task item = list.get(index);
         list.remove(index);
         count = list.size();
-        System.out.println("Noted. I have removed this task: \n" + item);
-        System.out.println("You now have " + count + " tasks left in the list");
+        String s = ("Noted. I have removed this task: \n" + item);
+        return s;
     }
 
     /**
@@ -152,10 +162,12 @@ public class TaskList {
      *
      * @param index
      */
-    public void unMark(int index) {
+    public String unMark(int index) {
         list.get(index).unmark();
-        System.out.println("I have marked this task as not done:");
-        System.out.println(list.get(index));
+        String s = "";
+        s += "I have marked this task as not done:\n";
+        s += list.get(index);
+        return s;
     }
 
     /**
@@ -163,11 +175,13 @@ public class TaskList {
      *
      * @param s
      */
-    public void find(String s) {
+    public String find(String s) {
+        String res = "";
         for (Task task : list) {
             if (task.contains(s)) {
-                System.out.println(task);
+                res += task + "\n";
             }
         }
+        return res;
     }
 }
