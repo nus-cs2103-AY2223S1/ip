@@ -1,20 +1,18 @@
 package duke.main;
 
-import duke.exception.DukeException;
-import duke.main.DateTimeFormatUtils;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Class encapsulating save and load logic.
@@ -82,8 +80,8 @@ public class Storage {
             return taskList;
         } catch (InvalidPathException | IOException | DukeException e) {
             taskList.clear();
-            throw new DukeException("\n\tLooks like I can't find your old task list..." +
-                    "\n\tGuess we'll have to start a new one!\n");
+            throw new DukeException("\n\tLooks like I can't find your old task list..."
+                    + "\n\tGuess we'll have to start a new one!\n");
         }
     }
 
@@ -119,6 +117,9 @@ public class Storage {
                 LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(taskTiming);
                 task = new Deadline(taskName, deadlineDate);
                 break;
+            }
+            default: {
+                throw new DukeException("Unexpected Error in parseSaveText");
             }
             }
             // Set task status

@@ -1,18 +1,18 @@
 package duke.main;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.exception.DukeException;
 
 /**
  * Class encapsulating operations on LocalDateTime for task logging.
  */
 public class DateTimeFormatUtils {
     /* Formatter objects for valid input and output types */
-    private final static DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    private final static DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
 
     /**
      * Returns LocalDateTime object given String representing a date.
@@ -27,8 +27,8 @@ public class DateTimeFormatUtils {
             LocalDateTime inputDate = LocalDateTime.parse(date, INPUT_FORMAT);
             return inputDate;
         } catch (DateTimeParseException e) {
-            throw new DukeException("\tDate Format Police here!!" +
-                    "\n\tYour deadline has to be in YYYY-MM-DD HHmm format!!");
+            throw new DukeException("\tDate Format Police here!!"
+                    + "\n\tYour deadline has to be in YYYY-MM-DD HHmm format!!");
         }
     }
 
@@ -48,8 +48,8 @@ public class DateTimeFormatUtils {
             LocalDateTime endDate = LocalDateTime.parse(input[1], INPUT_FORMAT);
             return new LocalDateTime[]{startDate, endDate};
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("\tDate Format Police here!!" +
-                    "\n\tYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
+            throw new DukeException("\tDate Format Police here!!"
+                    + "\n\tYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
         }
     }
 
