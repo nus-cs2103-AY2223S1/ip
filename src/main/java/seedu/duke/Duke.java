@@ -29,9 +29,9 @@ import java.util.ArrayList;
  * @author Su Peigeng
  */
 public class Duke {
-    private final TaskList tasks;
-    private final Storage storage;
-    private final Ui ui;
+    private final TaskList TASKS;
+    private final Storage STORAGE;
+    private final Ui UI;
 
     /**
      * Constructor for Duke instance
