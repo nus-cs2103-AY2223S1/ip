@@ -20,6 +20,7 @@ public class DeleteCommand extends Command {
         String task = tasks.deleteTask(taskNumber);
         String response = "Noted. I've removed this duke.task:\n " + task + "\nNow you have "
                 + tasks.length() + " tasks in the list";
+
         storage.saveTasks(tasks);
 
         return response;
