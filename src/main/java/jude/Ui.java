@@ -17,28 +17,12 @@ public class Ui {
     }
 
     /**
-     * Shows the welcome message of the chatbot, which should be done when the chatbot starts up.
-     */
-    public void showWelcome() {
-        System.out.println("Hello! I'm Jude.");
-        System.out.println("What can I do for you?");
-    }
-
-    /**
-     * Prints a new empty line followed by the string "> ", indicating that the chatbot is ready
-     * to receive a response from the user.
-     */
-    public void showCommandReadReady() {
-        System.out.println();
-        System.out.print("> ");
-    }
-
-    /**
-     * Reads the command entered by the user and returns it.
+     * Returns the welcome message of the chatbot, which should be done when the chatbot starts up.
      *
-     * @return The command entered by the user.
+     * @return The welcome message of the chatbot.
      */
-    public String readCommand() {
-        return sc.nextLine();
+    public String showWelcome() {
+        return "Hello! I'm Jude, named after the Beatles' hit song 'Hey Jude'.\n"
+            + "What can I do for you?";
     }
 }

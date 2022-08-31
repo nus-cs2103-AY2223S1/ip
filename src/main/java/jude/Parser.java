@@ -114,6 +114,7 @@ public class Parser {
      * @throws IOException When system I/O fails.
      */
     public String parse(String command) throws IOException {
+        command = command.trim(); // to remove unintended trailing spaces
         String[] tokens = command.split(" ", 2);
         String response = "";
         try {

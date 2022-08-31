@@ -35,13 +35,24 @@ public class MainWindow {
     //private Image userImage = null;
     //private Image chatbotImage = null;
 
+    /**
+     * Initialises the MainWindow, i.e. the main GUI for Jude the chatbot.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setJude(Jude d) {
-        jude = d;
+    /**
+     * Sets the instance of Jude the chatbot attached to this MainWindow. Also displays welcome
+     * message.
+     *
+     * @param jude The instance of Jude the chatbot to use.
+     */
+    public void setJude(Jude jude) {
+        this.jude = jude;
+        dialogContainer.getChildren().add(DialogBox.getChatbotDialog(this.jude.getUi().showWelcome(),
+                chatbotImage));
     }
 
     /**
@@ -54,6 +65,10 @@ public class MainWindow {
      */
     public void handleUserInput(ActionEvent actionEvent) throws IOException {
         String command = userInput.getText();
+        if (command.trim().equals("")) {
+            // ignore empty command
+            return;
+        }
         if (jude.isTerminationCommand(command)) {
             //@@author cheeheng-reused
             //Code adapted from

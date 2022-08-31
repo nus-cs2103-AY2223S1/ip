@@ -34,6 +34,12 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setJude(jude);
+
+            // @@author cheeheng-reused
+            // Reused from https://stackoverflow.com/questions/29055792/javafx-window-settitle
+            // with minor modifications.
+            stage.setTitle("Jude the chatbot");
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

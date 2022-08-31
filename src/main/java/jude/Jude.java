@@ -43,7 +43,7 @@ public class Jude {
     private TaskList tasks;
 
     /**
-     * Creates an instance of Jude chatbot.
+     * Creates an instance of Jude the chatbot.
      *
      * @param filePath The file path in which the list of tasks is stored.
      * @throws IOException When system I/O fails.
@@ -55,27 +55,12 @@ public class Jude {
     }
 
     /**
-     * Runs the chatbot.
+     * Returns the UI associated with this Jude the chatbot instance.
      *
-     * @throws IOException When system I/O fails.
+     * @return The UI associated with this Jude the chatbot instance.
      */
-    public void run() throws IOException {
-        // Overall project structure code for main class adapted from
-        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
-        tasks = storage.load();
-        parser = new Parser(tasks, storage);
-        ui.showWelcome();
-
-        while (true) {
-            ui.showCommandReadReady();
-            String str = ui.readCommand();
-            boolean isTerminationCommand = parser.isTerminationCommand(str);
-            if (isTerminationCommand) {
-                break;
-            }
-            String response = parser.parse(str);
-            System.out.println(response);
-        }
+    public Ui getUi() {
+        return this.ui;
     }
 
     /**
