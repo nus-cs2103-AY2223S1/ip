@@ -4,17 +4,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * TaskTest class to test Task object methods.
+ */
 public class TaskTest {
 
+    /**
+     * Tests for marking a Task object as done.
+     */
     @Test
-    public void markAsDoneTaskTickShown() {
+    public void markAsDoneTaskCrossShown() {
         Task task1 = new Todo("Sample Task");
         task1.markAsDone();
-        assertEquals("[T][✓] Sample Task", task1.toString());
+        assertEquals("[T][X] Sample Task", task1.toString());
     }
 
+    /**
+     * Tests for marking a Task object as not done.
+     */
     @Test
-    public void markAsNotDoneTaskTickRemoved() {
+    public void markAsNotDoneTaskCrossRemoved() {
         Task task1 = new Todo("Sample Task");
         task1.markAsDone();
         task1.markAsNotDone();
