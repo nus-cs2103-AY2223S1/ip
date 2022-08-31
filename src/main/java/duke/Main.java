@@ -1,4 +1,4 @@
 package duke;
 
-public class Main {
+public class Main extends Application{
 }
