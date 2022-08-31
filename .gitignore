@@ -16,7 +16,6 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/*~
-src/main/java/data/tasks.txt
 caches/
 wrapper/
 
