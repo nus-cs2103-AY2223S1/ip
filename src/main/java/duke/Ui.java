@@ -18,7 +18,7 @@ public class Ui {
      *
      * @return Farewell message.
      */
-    public String farewell() {
+    public String bidFarewell() {
         return "Bye Bye! Hope to see you again soon!\n";
     }
 
