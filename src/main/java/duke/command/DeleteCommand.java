@@ -22,19 +22,19 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes the command input.
-     *
-     * @param tasks   amends task list if any.
+     *  @param tasks   amends task list if any.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return returns the command executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             String i = action.substring(6).replaceAll(" ", "");
             int index = Integer.parseInt(i) - 1;
             String removedTask = tasks.getTaskString(index);
             tasks.removeTask(index);
-            ui.removeTask(removedTask, tasks.getSize());
+            return ui.showRemovedTask(removedTask, tasks.getSize());
         } catch (Exception e) {
             throw new DukeException("OOPS!!! Error: No Such Task :-(");
         }

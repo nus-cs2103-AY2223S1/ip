@@ -22,19 +22,19 @@ public class MarkCommand extends Command {
 
     /**
      * Executes the command to mark the task.
-     *
-     * @param tasks    amends task list if any.
+     *  @param tasks    amends task list if any.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return returns the command to be executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             String i = action.substring(4);
             i = i.replaceAll(" ", "");
             int index = Integer.parseInt(i) - 1;
             tasks.markTaskStatus(index, true);
-            ui.markedTask(true, tasks.getTaskString(index));
+            return ui.showMarkedTask(true, tasks.getTaskString(index));
         } catch (Exception e) {
             throw new DukeException("OOPS!!! Error: No Such Task :-(");
         }

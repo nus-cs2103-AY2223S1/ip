@@ -25,13 +25,13 @@ public class FindCommand extends Command {
 
     /**
      * Executes the command input.
-     *
-     * @param tasks   amends task list if any.
+     *  @param tasks   amends task list if any.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return returns the command executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             ArrayList<Task> filteredTasks = new ArrayList<>();
             String keyword = action.substring(5).strip();
@@ -42,9 +42,9 @@ public class FindCommand extends Command {
                 }
             }
             if (filteredTasks.size() > 0) {
-                ui.showFoundTasks(filteredTasks);
+                return ui.showFoundTasks(filteredTasks);
             } else {
-                ui.noSuchTaskError();
+                return ui.noSuchTaskError();
             }
         } catch (Exception e) {
             throw new DukeException("OOPS!!! Error: No Such Task :-(");
