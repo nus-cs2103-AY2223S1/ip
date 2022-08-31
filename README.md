@@ -15,7 +15,7 @@ All you need to do is,
 1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.4/duke.jar).
 2. place it in the directory that you would like to place your task list at.
 3. double-click it.
-4. follow the [instructions](#tutorial) to add your tasks. :blush:
+4. follow this [tutorial](#tutorial) to add your tasks. :blush:
 
 #### Features: 
 
