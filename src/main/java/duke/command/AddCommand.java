@@ -30,26 +30,27 @@ public class AddCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String[] split = cmd.split(" ", 2);
         String type = split[0];
         String desc = split[1];
+        String taskDescription;
         switch (type) {
         case "todo":
-            new AddTodoCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddTodoCommand(desc).execute(tasks, ui, storage);
             break;
 
         case "deadline":
-            new AddDeadlineCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddDeadlineCommand(desc).execute(tasks, ui, storage);
             break;
 
         case "event":
-            new AddEventCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddEventCommand(desc).execute(tasks, ui, storage);
             break;
 
         default:
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        ui.showAddTask(tasks.getSize(), tasks.get(tasks.getSize() - 1).toString());
+        return ui.showAddTask(tasks.getSize(), taskDescription);
     }
 }

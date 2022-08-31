@@ -30,7 +30,7 @@ public class AddEventCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (!details.contains("/at")) {
             throw new DukeException("OOPS!!! Time of event required. (/at)");
         }
@@ -42,5 +42,6 @@ public class AddEventCommand extends Command {
         String at = split[1].split(" ", 2)[1];
         Event event = new Event(desc, at);
         tasks.add(event);
+        return event.toString();
     }
 }

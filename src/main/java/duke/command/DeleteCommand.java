@@ -30,13 +30,15 @@ public class DeleteCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String message;
         if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
         Task deleted = tasks.delete(index);
-        ui.showMessage("Noted. I've removed this task:");
-        ui.showMessage(" " + deleted);
-        ui.showMessage("Now you have " + tasks.getSize() + " tasks in the list.");
+        message = "Noted. I've removed this task:" + System.lineSeparator();
+        message += "  " + deleted + System.lineSeparator();
+        message += "Now you have " + tasks.getSize() + " tasks in the list.";
+        return message;
     }
 }

@@ -30,18 +30,20 @@ public class UnmarkCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
+        String message;
         Task curr = tasks.get(index);
         if (curr.getStatusIcon().equals("X")) {
             curr.unmarkTask();
-            ui.showMessage("OK, I've marked this task as not done yet:");
-            ui.showMessage("  " + curr);
+            message = "OK, I've marked this task as not done yet:" + System.lineSeparator();
+            message += "  " + curr + System.lineSeparator();
         } else {
-            ui.showMessage("This task has not been done in the first place.");
-            ui.showMessage("  " + curr);
+            message = "This task has not been done in the first place." + System.lineSeparator();
+            message += "  " + curr + System.lineSeparator();
         }
+        return message;
     }
 }

@@ -30,18 +30,20 @@ public class MarkCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
+        String message;
         Task curr = tasks.get(index);
         if (curr.getStatusIcon().equals(" ")) {
             curr.markTask();
-            ui.showMessage("Nice! I've marked this task as done:");
-            ui.showMessage("  " + curr);
+            message = "Nice! I've marked this task as done:" + System.lineSeparator();
+            message += "  " + curr + System.lineSeparator();
         } else {
-            ui.showMessage("This task was already done.");
-            ui.showMessage("  " + curr);
+            message = "This task was already done." + System.lineSeparator();
+            message += "  " + curr + System.lineSeparator();
         }
+        return message;
     }
 }

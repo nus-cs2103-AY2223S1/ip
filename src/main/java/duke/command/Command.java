@@ -33,5 +33,5 @@ public abstract class Command {
      * @param ui The class that deals with interactions with the user.
      * @param storage The class that deals with loading and storing tasks.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 }

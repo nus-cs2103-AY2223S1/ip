@@ -21,8 +21,7 @@ public class Ui {
     /**
      * Shows Duke's welcome message.
      */
-    public void showWelcome() {
-        System.out.println(BORDER);
+    public String showWelcome() {
         String content;
         String logo = "      ______  ______  _    _  ______\n"
                 + "     |  ____||  ____|| |  | ||  __  |\n"
@@ -30,9 +29,9 @@ public class Ui {
                 + "     |  ____|| |     |  __  || |  | |\n"
                 + "     | |____ | |____ | |  | || |__| |\n"
                 + "     |______||______||_|  |_||______|\n";
-        content = logo + "\n" + INDENT + "Hello! I'm Echo\n" + INDENT + "What can I do for you?\n";
-        System.out.print(content);
-        System.out.println(BORDER);
+        content = logo + System.lineSeparator() + "Hello! I'm Echo" + System.lineSeparator()
+                + "What can I do for you?";
+        return content;
     }
 
     /**
@@ -47,8 +46,8 @@ public class Ui {
     /**
      * Shows the error when no past task data is found.
      */
-    public void showLoadingError() {
-        showError("Task data not found.");
+    public String showLoadingError() {
+        return "Task data not found.";
     }
 
     /**
@@ -57,11 +56,12 @@ public class Ui {
      * @param size The size of the TaskList.
      * @param desc The description of the task.
      */
-    public void showAddTask(int size, String desc) {
+    public String showAddTask(int size, String desc) {
         String plural = size > 1 ? "s" : "";
-        showMessage("Got it. I've added this task:");
-        showMessage("  " + desc);
-        showMessage("Now you have " + size + " task" + plural + " in the list.");
+        String output = "Got it. I've added this task:" + System.lineSeparator();
+        output += "  " + desc + System.lineSeparator();
+        output += "Now you have " + size + " task" + plural + " in the list.";
+        return output;
     }
 
     /**
@@ -69,25 +69,16 @@ public class Ui {
      *
      * @param errMessage The error message to be printed.
      */
-    public void showError(String errMessage) {
-        System.out.println(INDENT + errMessage);
+    public String showError(String errMessage) {
+        return errMessage;
     }
 
     /**
      * Shows the closing message when user finishes using the program.
      */
-    public void showBye() {
-        System.out.println(INDENT + "Bye. Hope to see you again soon!");
+    public String showBye() {
         sc.close();
-    }
-
-    /**
-     * Shows a message with an indentation.
-     *
-     * @param message The message to be printed.
-     */
-    public void showMessage(String message) {
-        System.out.println(INDENT + message);
+        return "Bye. Hope to see you again soon!";
     }
 
 }

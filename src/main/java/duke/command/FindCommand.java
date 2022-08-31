@@ -30,7 +30,8 @@ public class FindCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String message;
         TaskList matchingTasks = new TaskList();
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.get(i);
@@ -42,11 +43,11 @@ public class FindCommand extends Command {
         if (matchingTasks.getSize() == 0) {
             throw new DukeException("OOPS!!! No tasks match this keyword.");
         }
-        ui.showMessage("Here are the matching tasks in your list:");
+        message = "Here are the matching tasks in your list:" + System.lineSeparator();
         for (int i = 0; i < matchingTasks.getSize(); i++) {
             Task task = matchingTasks.get(i);
-            ui.showMessage((i + 1) + "." + task);
+            message += (i + 1) + "." + task + System.lineSeparator();
         }
-
+        return message;
     }
 }

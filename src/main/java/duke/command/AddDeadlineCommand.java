@@ -30,7 +30,7 @@ public class AddDeadlineCommand extends Command {
      * @param storage The class that deals with loading and storing tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (!details.contains("/by")) {
             throw new DukeException("OOPS!!! The deadline is required. (/by)");
         }
@@ -42,5 +42,6 @@ public class AddDeadlineCommand extends Command {
         String by = split[1].split(" ", 2)[1];
         Deadline deadline = new Deadline(desc, by);
         tasks.add(deadline);
+        return deadline.toString();
     }
 }
