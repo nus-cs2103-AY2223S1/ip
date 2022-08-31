@@ -146,6 +146,7 @@ public class Duke {
                         System.out.println("Now you have " + list.getList().size() + " task(s) in the list.");
                     }
                 }
+                
             } catch (DukeException e) {
                 System.out.println(e.toString());
             } catch (IllegalArgumentException e) {
