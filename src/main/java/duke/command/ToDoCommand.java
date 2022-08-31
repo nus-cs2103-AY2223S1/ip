@@ -23,27 +23,18 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Creates a todo task and add it into the task list and display a message
+     * Creates a todo task and add it into the task list and return a message
      * that the todo task has been added.
      * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The message that the event has been added and the number of current tasks.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
+    public String execute(TaskList task, Storage storage) {
         ToDo currToDo = new ToDo(this.description);
         task.addTask(currToDo);
-        ui.displayAddTask(currToDo);
-        ui.displayNumOfTasks(task.getTaskSize());
-        ui.displaySeparator();
+        return "Got it. I've added this task:\n " + currToDo.taskInfo()
+                + "\nNow you have"  + task.getTaskSize() + " tasks in the list.";
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

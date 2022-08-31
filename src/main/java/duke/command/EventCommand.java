@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to add an event task to the task list.
@@ -26,27 +25,18 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Creates an event task and add it into the task list and display a message
+     * Creates an event task and add it into the task list and return a message
      * that the event task has been added.
      * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The message that the event has been added and the number of current tasks.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
+    public String execute(TaskList task, Storage storage) {
         Event currEvent = new Event(this.description, this.duration);
         task.addTask(currEvent);
-        ui.displayAddTask(currEvent);
-        ui.displayNumOfTasks(task.getTaskSize());
-        ui.displaySeparator();
+        return "Got it. I've added this task:\n " + currEvent.taskInfo()
+                + "\nNow you have"  + task.getTaskSize() + " tasks in the list.";
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -14,22 +14,14 @@ public class ByeCommand extends Command {
     /**
      * Save the current list of tasks into a text file for future reference and
      * display a goodbye message.
-     * @param task The TaskList object of the chatbot.
-     * @param ui The Ui object of the chatbot.
+     * @param tasks The TaskList object of the chatbot.
      * @param storage The storage object of the chatbot.
+     * @return The goodbye message.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
-        storage.saveTaskToFile(task.getListOfTasks());
-        ui.displayBye();
+    public String execute(TaskList tasks, Storage storage) {
+        storage.saveTaskToFile(tasks.getListOfTasks());
+        return "Bye. Hope to see you again soon!";
     }
 
-    /**
-     * Return true if the command is exit command.
-     * @return Return true if the command is an exit command.
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
 }
