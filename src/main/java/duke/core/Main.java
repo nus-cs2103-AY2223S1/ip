@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 /**
  * A GUI for Duke using FXML.
+ *
  * @author Nephelite
  * @version 0.2
  */

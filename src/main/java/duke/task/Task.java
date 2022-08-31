@@ -2,6 +2,7 @@ package duke.task;
 
 /**
  * A Task
+ *
  * @author Nephelite
  * @version 0.1
  */
@@ -11,6 +12,7 @@ public abstract class Task {
 
     /**
      * Constructor for a Task
+     *
      * @param task the task
      * @param prefix the type of Event
      * @since 0.1
@@ -47,6 +49,7 @@ public abstract class Task {
 
     /**
      * Checks if the task contains the given word
+     *
      * @param word the word to check
      * @return true if the word is contained in the task. Otherwise, false
      */
@@ -62,6 +65,7 @@ public abstract class Task {
 
     /**
      * Returns a String representation of a Task
+     *
      * @return String representation of a Task
      */
     @Override

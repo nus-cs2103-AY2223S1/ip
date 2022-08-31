@@ -7,6 +7,7 @@ import duke.util.Storage;
 
 /**
  * RecognisedCommand that Duke can execute
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -20,6 +21,7 @@ public abstract class Command {
 
     /**
      * Executes the command
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
@@ -29,6 +31,7 @@ public abstract class Command {
 
     /**
      * Checks if the command leads to the end of the current Duke session
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
      */
@@ -36,6 +39,7 @@ public abstract class Command {
 
     /**
      * Recognises the correct command from the input command
+     *
      * @param command the input command
      * @return the RecognisedCommand corresponding to the input command
      * @since 0.1

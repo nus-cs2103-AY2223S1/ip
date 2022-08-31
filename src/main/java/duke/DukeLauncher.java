@@ -5,6 +5,7 @@ import javafx.application.Application;
 
 /**
  * A launcher class to workaround classpath issues.
+ *
  * @author Nephelite
  * @version 0.2
  */

@@ -15,12 +15,14 @@ import duke.exception.DukeException;
 
 /**
  * Contains a single static method to read user inputs
+ *
  * @author Nephelite
  * @version 0.1
  */
 public class Parser {
     /**
      * Reads a String command and return the corresponding Command object
+     *
      * @param command in String form
      * @param tasks the TaskList Duke is using
      * @param ui the Ui Duke is using

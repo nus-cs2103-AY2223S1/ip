@@ -8,6 +8,7 @@ import duke.util.Ui;
 
 /**
  * Command to execute adding a ToDo to a TaskList
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -18,6 +19,7 @@ public class ToDoCommand extends Command {
 
     /**
      * Constructor for a ToDoCommand
+     *
      * @param command the command
      * @param tasks TaskList Duke is using
      * @param ui Ui Duke is using
@@ -31,6 +33,7 @@ public class ToDoCommand extends Command {
 
     /**
      * Checks if the input ToDoCommand is identical to this ToDoCommand (to only be used for JUnit testing)
+     *
      * @param obj input ToDoCommand
      * @return false if obj is null, not from the ToDoClass, or command, tasks and ui do not match those of this.
      *     Otherwise, return true.
@@ -49,6 +52,7 @@ public class ToDoCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
@@ -69,6 +73,7 @@ public class ToDoCommand extends Command {
     }
     /**
      * {@inheritDoc}
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
      */

@@ -8,6 +8,7 @@ import duke.util.Ui;
 
 /**
  * Command to execute adding a Deadline to a TaskList
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -18,6 +19,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Constructor of a DeadlineCommand
+     *
      * @param command
      * @param tasks TaskList Duke is using
      * @param ui Ui Duke is using
@@ -31,6 +33,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException if the input command is invalid
@@ -62,9 +65,10 @@ public class DeadlineCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
-      */
+     */
     @Override
     public boolean isExit() {
         return false;

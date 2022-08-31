@@ -7,6 +7,7 @@ import duke.util.Ui;
 
 /**
  * Command to execute finding tasks using a keyword
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -17,6 +18,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructor for a FindCommand
+     *
      * @param word the keyword to search
      * @param tasks the TaskList that Duke is using
      * @param ui the Ui that Duke is using
@@ -29,6 +31,7 @@ public class FindCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
@@ -40,6 +43,7 @@ public class FindCommand extends Command {
     }
     /**
      * {@inheritDoc}
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
      */

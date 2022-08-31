@@ -7,6 +7,7 @@ import duke.util.Ui;
 
 /**
  * Command to execute marking a task
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -17,6 +18,7 @@ public class MarkCommand extends Command {
 
     /**
      * Constructor for a MarkCommand
+     *
      * @param splitCommands the commands split apart into an array
      * @param tasks TaskList Duke is using
      * @param ui Ui Duke is using
@@ -30,6 +32,7 @@ public class MarkCommand extends Command {
 
     /**
      * Checks if a String is a number
+     *
      * @param string input
      * @return true if string is a number. Otherwise, false
      * @since 0.1
@@ -46,6 +49,7 @@ public class MarkCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
@@ -77,6 +81,7 @@ public class MarkCommand extends Command {
     }
     /**
      * {@inheritDoc}
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
      */

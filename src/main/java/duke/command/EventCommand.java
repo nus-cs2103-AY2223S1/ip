@@ -8,6 +8,7 @@ import duke.util.Ui;
 
 /**
  * Command to execute adding an Event to a TaskList
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -18,6 +19,7 @@ public class EventCommand extends Command {
 
     /**
      * Constructor for an EventCommand
+     *
      * @param command the command
      * @param tasks TaskList Duke is using
      * @param ui Ui Duke is using
@@ -31,6 +33,7 @@ public class EventCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
@@ -62,6 +65,7 @@ public class EventCommand extends Command {
 
     /**
      * {@inheritDoc}
+     *
      * @return true if the command ends the current session. Otherwise, false.
      * @since 0.1
      */

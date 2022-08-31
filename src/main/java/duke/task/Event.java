@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 
 /**
  * An Event Task
+ *
  * @author Nephelite
  * @version 0.1
  */
@@ -14,6 +15,7 @@ public class Event extends Task {
 
     /**
      * Constructor for an Event task
+     *
      * @param task the task
      * @param date when the event is taking place
      * @since 0.1
@@ -31,6 +33,7 @@ public class Event extends Task {
 
     /**
      * Returns a String representation of an Event
+     *
      * @return String representation of an Event
      */
     @Override

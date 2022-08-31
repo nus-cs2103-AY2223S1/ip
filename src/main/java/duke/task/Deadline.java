@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 
 /**
  * A Deadline task
+ *
  * @author Nephelite
  * @version 0.1
  */
@@ -14,6 +15,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for a Deadline task
+     *
      * @param task the task
      * @param deadline the deadline
      * @since 0.1
@@ -31,6 +33,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a String representation of a Deadline
+     *
      * @return String representation of a Deadline
      */
     @Override

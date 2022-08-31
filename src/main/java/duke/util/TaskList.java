@@ -6,6 +6,7 @@ import duke.task.Task;
 
 /**
  * The object Duke uses to keep track of the user's input tasks
+ *
  * @author Nephelite
  * @version 0.1
  */
@@ -17,6 +18,7 @@ public class TaskList {
 
     /**
      * Constructor for a TaskList object, if there was a prior saved ArrayList
+     *
      * @param taskList ArrayList of tasks to construct a TaskList from
      * @since 0.1
      */
@@ -26,6 +28,7 @@ public class TaskList {
 
     /**
      * Constructor for a TaskList object, if there was no prior saved ArrayList
+     *
      * @since 0.1
      */
     public TaskList() {
@@ -34,6 +37,7 @@ public class TaskList {
 
     /**
      * Retrieves the size of tasks
+     *
      * @return the size of taskList
      * @since 0.1
      */
@@ -43,6 +47,7 @@ public class TaskList {
 
     /**
      * Retrieves the task of an index from tasks
+     *
      * @param taskId index of the desired task
      * @return the task at index in taskList
      * @since 0.1
@@ -53,6 +58,7 @@ public class TaskList {
 
     /**
      * Removes the task of an index from tasks
+     *
      * @param taskId index of the desired task
      * @since 0.1
      */
@@ -62,6 +68,7 @@ public class TaskList {
 
     /**
      * Finds all the tasks in tasks that possesses the input word
+     *
      * @param word String to check
      * @return ArrayList of all matching tasks
      * @since 0.1
@@ -78,6 +85,7 @@ public class TaskList {
 
     /**
      * Adds a task to tasks
+     *
      * @param task Task to add
      * @since 0.1
      */
@@ -88,6 +96,7 @@ public class TaskList {
     /**
      * Prints the string representations of all tasks in tasks,
      * with a 1-indexed numbering system.
+     *
      * @since 0.1
      */
     public void printList() {

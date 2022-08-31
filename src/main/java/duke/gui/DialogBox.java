@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 /**
  * Dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
+ *
  * @author Nephelite
  * @version 0.2
  */

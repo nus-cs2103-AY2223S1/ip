@@ -14,6 +14,7 @@ import duke.task.ToDo;
 
 /**
  * Class responsible for saving and loading tasks to and from the hard disk
+ *
  * @author Nephelite
  * @version 0.1
  */
@@ -33,6 +34,7 @@ public class Storage {
 
     /**
      * Retrieves the file path used by Duke to store previously saved tasks
+     *
      * @return String representation of the file path
      */
     public String locateHomeDir() {
@@ -40,6 +42,7 @@ public class Storage {
     }
     /**
      * Saves a TaskList object in a file with the path saveFilePath
+     *
      * @param tasks TaskList object Duke is using
      * @since 0.1
      */
@@ -62,6 +65,7 @@ public class Storage {
 
     /**
      * Loads a ToDo object.
+     *
      * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the ToDo object
      * @return a ToDo object with the correct status
@@ -79,6 +83,7 @@ public class Storage {
 
     /**
      * Loads a Deadline object.
+     *
      * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the Deadline object
      * @return a Deadline object with the correct status
@@ -98,6 +103,7 @@ public class Storage {
 
     /**
      * Loads an Event object.
+     *
      * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the Event object
      * @return an Event object with the correct status
@@ -116,6 +122,7 @@ public class Storage {
 
     /**
      * Determines what task the input data is trying to reference, and calls the appropriate task loader method
+     *
      * @param data String to parse for the appropriate method
      * @return a Task corresponding to the input data
      * @throws DukeException thrown if the task is not a recognised type
@@ -141,6 +148,7 @@ public class Storage {
     /**
      * Loads an ArrayList of tasks that Duke recorded in the previous session.
      * If there was no previous session, return an empty ArrayList of tasks.
+     *
      * @return the ArrayList of tasks that Duke recorded in the previous session
      * @throws DukeException thrown by loadTaskDifferentiator
      * @throws IOException thrown if Scanner throws an IOException

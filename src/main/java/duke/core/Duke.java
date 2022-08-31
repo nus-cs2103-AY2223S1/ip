@@ -11,6 +11,7 @@ import duke.util.Ui;
 
 /**
  * The main entity for the Duke program.
+ *
  * @author Nephelite
  * @version 0.2
  */
@@ -30,6 +31,7 @@ public class Duke {
 
     /**
      * Constructor for a Duke object
+     *
      * @since 0.1
      */
     public Duke() {
@@ -47,6 +49,7 @@ public class Duke {
 
     /**
      * Sends a command to Duke to obtain a response
+     *
      * @since 0.2
      */
     public String getResponse(String input) {
