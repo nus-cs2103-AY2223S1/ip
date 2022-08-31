@@ -114,18 +114,22 @@ public class Duke {
                         ToDos todo = new ToDos(task);
                         taskList.add(todo);
                     } else if (type == 'D') {
-                        String[] taskNameBy = task.split("/by ");
+                        String[] taskNameBy = task.split(" \\(by: ");
                         String taskName = taskNameBy[0];
-                        String by = taskNameBy[1];
-                        Deadlines deadline = new Deadlines(taskName, by);
-                        if (done == 'X') {
-                            deadline.markAsDone();
+                        String by = taskNameBy[1].substring(0, taskNameBy[1].length() - 1);
+                        try {
+                            Deadlines deadline = new Deadlines(taskName, by);
+                            if (done == 'X') {
+                                deadline.markAsDone();
+                            }
+                            taskList.add(deadline);
+                        } catch (DateTimeParseException e){
+                            System.out.println("OOPS!!! Please enter date in YYYY-MM-DD format");
                         }
-                        taskList.add(deadline);
                     } else if (type == 'E') {
-                        String[] taskNameBy = task.split("/at ");
-                        String taskName = taskNameBy[0];
-                        String at = taskNameBy[1];
+                        String[] taskNameAt = task.split(" \\(at: ");
+                        String taskName = taskNameAt[0];
+                        String at = taskNameAt[1].substring(0, taskNameAt[1].length() - 1);
                         Events event = new Events(taskName, at);
                         if (done == 'X') {
                             event.markAsDone();
