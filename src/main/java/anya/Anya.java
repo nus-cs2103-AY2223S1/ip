@@ -3,7 +3,6 @@ package anya;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 import anya.task.Deadline;
 import anya.task.Event;
@@ -110,9 +109,6 @@ public class Anya {
         this.ui.exitMessage();
     }
 
-    public static void main(String[] args) {
-        new Anya("data/Anya.txt").run();
-    }
 
     /**
      * Appends a Task to the end of the TaskList.
@@ -182,5 +178,10 @@ public class Anya {
     public void find(TaskList tasks, String keyword) {
         TaskList filteredTasks = tasks.getMatchingTasks(keyword);
         this.ui.filteredTaskMessage(filteredTasks, keyword);
+    }
+
+    // For demo
+    String getResponse(String input) {
+        return "Anya heard: " + input;
     }
 }
