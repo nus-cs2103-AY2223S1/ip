@@ -34,6 +34,8 @@ public class Parser {
             return new AddEventCommand(tasks, args);
         case "remove":
             return new RemoveTaskCommand(tasks, args);
+        case "find":
+            return new FindTasksCommand(tasks, args);
         default:
             throw new DaveException("(｡╯︵╰｡) OOPS!!! I'm sowwy, but I don't know what that means ｡･ﾟﾟ*(>д<)*ﾟﾟ･｡");
         }
