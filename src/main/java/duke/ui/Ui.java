@@ -13,8 +13,7 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static String welcomeMessage = "Hello from\n" + logo
-            + "What can I do for you?";
+    private static String welcomeMessage = "Hello! What can I do for you?";
 
     /**
      *
@@ -22,6 +21,10 @@ public class Ui {
      */
     public void bootUpDuke() {
         System.out.println(welcomeMessage);
+    }
+
+    public String getWelcomeMessage() {
+        return welcomeMessage;
     }
 
     /**
