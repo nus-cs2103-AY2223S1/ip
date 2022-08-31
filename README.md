@@ -8,16 +8,16 @@ Duke is a flexible software that helps to plan, manage and track all your tasks.
 + Simple commands
 + ~~Smooth~~ *Super Smooth* user experience 
 
-#### And it is **<u>FREE!!!</u>** 
+**And it is **<u>FREE!!!</u>**** 
 
 All you need to do is, 
 
-1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.5/duke.jar).
+1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.6/duke.jar).
 2. place it in the directory that you would like to place your task list at.
 3. double-click it.
 4. follow this [tutorial](#tutorial) to add your tasks. :blush:
 
-#### Features: 
+**Features**: 
 
 - [x] Manage task
 - [ ] Reminders (coming soon)
