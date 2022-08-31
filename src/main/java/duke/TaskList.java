@@ -5,14 +5,14 @@ public class TaskList {
     private List<Task> list;
 
     /*
-     * Constructor for class TaskList
+     * Constructor for class TaskList.
      */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
     /*
-     * converts the contents of the list of tasks to String
+     * converts the contents of the list of tasks to String.
      * @return String containing all items in the list
      */
     @Override 
@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /*
-     * sets the indicated task as completed
+     * sets the indicated task as completed.
      * @param number the order of the task
      * @param ui the UI Object that prints messages to the console
      */
@@ -47,7 +47,7 @@ public class TaskList {
     }
 
     /*
-     * Deletes specified task from list
+     * Deletes specified task from list.
      * @param number the order of the list to be removed
      * @param ui the UI object that prints to screen
      */
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     /*
-     * Unmarks task from list given a specified number
+     * Unmarks task from list given a specified number.
      * @param number the index of the task to be unmarked
      * @param ui the UI Object that prints to screen
      */
@@ -82,6 +82,17 @@ public class TaskList {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void findTasksByKeyword(String keyword, UI ui) {
+        TaskList keywordTaskList = new TaskList();
+        for (Task task : this.list) {
+            String taskDesc = task.description;
+            if (taskDesc.contains(keyword)) {
+                keywordTaskList.list.add(task);
+            } 
+        }
+        ui.printList(keywordTaskList);
     }
 
 }

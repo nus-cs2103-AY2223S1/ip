@@ -11,7 +11,7 @@ public class Duke {
     private Parser parser;
 
     /*
-     * Constructor for Class Duke
+     * Constructor for Class Duke.
      * @param storage the storage object to read and write from Duke
      * @param taskList the taskList object
      * @param ui to print to the console
@@ -25,7 +25,7 @@ public class Duke {
     }
 
     /*
-     * Run method for Duke, which coordinates the storage, taskList, ui and parser
+     * Run method for Duke, which coordinates the storage, taskList, ui and parser.
      */
     public void run() {
         this.ui.greet();
@@ -47,8 +47,8 @@ public class Duke {
             }
         }
 
-        //Takes in inputs and passes them to the Parser if they are neither list or bye
-        // Scan for commands
+        //Takes in inputs and passes them to the Parser if they are neither list or bye.
+        // Scan for commands.
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
         

@@ -5,7 +5,7 @@ public class UI {
     private static final String horizontalLine = "____________________________________________________________";
 
     /*
-     * Initial Greet Method for Duke
+     * Initial Greet Method for Duke.
      * @return String with greet message
      */
     public String greet(){
@@ -17,7 +17,7 @@ public class UI {
     }
 
     /*
-     * UI for exit message for the bot
+     * UI for exit message for the bot.
      */
     public void exit(){
         String bye = "Bye. Hope to see you again soon!";
@@ -25,7 +25,7 @@ public class UI {
     }
 
     /*
-     * UI For printing the list of tasks
+     * UI For printing the list of tasks.
      * @param taskList containing list of tasks
      */
     protected void printList(TaskList taskList) {
@@ -33,7 +33,7 @@ public class UI {
     }
 
     /*
-     * UI to update user once message has been marked
+     * UI to update user once message has been marked.
      * @param item the task to be added
      */
     protected void markedMsg(Task item) {
@@ -43,7 +43,7 @@ public class UI {
     }
 
     /*
-     * UI to update user once message has been removed
+     * UI to update user once message has been removed.
      * @param removed the task to be removed
      * @param taskSize the amount of tasks remaining
      */
@@ -56,7 +56,7 @@ public class UI {
     }
 
     /*
-     * UI to update user once message has been unmarked
+     * UI to update user once message has been unmarked.
      * @param item the Task to be unmarked
      */
     protected void unmarkedMsg(Task item) {
@@ -75,7 +75,7 @@ public class UI {
     }
 
     /*
-     * UI to update user once Task has been added to List
+     * UI to update user once Task has been added to List.
      * @param listSize number of tasks after task addition
      * @param newTask the Task to be added
      */
