@@ -12,6 +12,10 @@ public class Sally {
     protected static ArrayList<Task> list = new ArrayList<>();
     private static Scanner sc;
 
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
     public static void main(String[] args) {
         printBorder();
         System.out.println("Hello! I'm Sally");
