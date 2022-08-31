@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.function.Consumer;
+
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -22,11 +24,12 @@ public class ExitCommand extends Command {
      * Calls the {@code UI} to exit interaction.
      *
      * @param storage The {@code Storage} to use.
+     * @param printer The {@code Consumer<String>} to use for printing.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public String execute(Storage storage, TaskList tasks) {
-        return "Bye! Hope to see you soon.";
+    public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
+        printer.accept("Bye! Hope to see you soon.");
     }
 
     /**

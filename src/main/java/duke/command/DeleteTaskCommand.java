@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.function.Consumer;
+
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -23,13 +25,14 @@ public class DeleteTaskCommand extends Command {
      * Deletes the {@code Task} at the given {@code index} from the {@code TaskList}.
      *
      * @param storage The {@code Storage} to use.
+     * @param printer The {@code Consumer<String>} to use for printing.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public String execute(Storage storage, TaskList tasks) {
+    public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         tasks.remove(index - 1);
         storage.save(tasks);
-        return "I've removed the following task:\n\t" + tasks.get(index - 1);
+        printer.accept("I've removed the following task:\n\t" + tasks.get(index - 1));
     }
 
     /**

@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.function.Consumer;
+
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
@@ -27,14 +29,15 @@ public class UpdateStatusCommand extends Command {
      * Updates the {@code Task} at the given {@code index} in the {@code TaskList} according to {@code isDone}.
      *
      * @param storage The {@code Storage} to use.
+     * @param printer The {@code Consumer<String>} to use for printing.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public String execute(Storage storage, TaskList tasks) {
+    public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);
-        return "I've updated the status of this task\n\t" + task;
+        printer.accept("I've updated the status of this task\n\t" + task);
     }
 
     /**

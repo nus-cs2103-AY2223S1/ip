@@ -1,6 +1,7 @@
 package duke.ui;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import duke.Duke;
@@ -18,16 +19,15 @@ import javafx.stage.Stage;
  */
 public class Gui extends Application {
 
-    private Duke duke = new Duke(Paths.get(System.getProperty("user.dir"), "data", "data.txt"));
-
     @Override
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("/view/MainWindow.fxml"));
-            VBox ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
+            VBox mainWindow = fxmlLoader.load();
+            Scene scene = new Scene(mainWindow);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            Path path = Paths.get(System.getProperty("user.dir"), "data", "data.txt");
+            fxmlLoader.<MainWindow>getController().initDuke(path);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

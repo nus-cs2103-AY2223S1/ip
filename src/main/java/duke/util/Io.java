@@ -1,4 +1,4 @@
-package duke.ui;
+package duke.util;
 
 import java.io.InputStream;
 import java.io.PrintStream;

@@ -1,5 +1,8 @@
 package duke.ui;
 
+import java.nio.file.Path;
+import java.util.function.Consumer;
+
 import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,8 +36,12 @@ public class MainWindow extends VBox {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    protected void initDuke(Path path) {
+        Consumer<String> printer = s -> {
+            // JavaFX 11 doesn't support tab sizes, so we have to replace with spaces instead.
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(s.replaceAll("\t", "  "), dukeImage));
+        };
+        duke = new Duke(path, printer);
     }
 
     /**
@@ -44,12 +51,9 @@ public class MainWindow extends VBox {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.execute(input);
-        dialogContainer.getChildren().addAll(
-            DialogBox.getUserDialog(input, userImage),
-            DialogBox.getDukeDialog(response, dukeImage)
-        );
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         userInput.clear();
+        duke.execute(input);
     }
 }
 //@@author

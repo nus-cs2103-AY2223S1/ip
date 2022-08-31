@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.function.Consumer;
+
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
@@ -24,13 +26,14 @@ public class AddTaskCommand extends Command {
      * Adds the task to the task list.
      *
      * @param storage The {@code Storage} to use.
+     * @param printer The {@code Consumer<String>} to use for printing.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public String execute(Storage storage, TaskList tasks) {
+    public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         tasks.add(task);
         storage.save(tasks);
-        return "I've added the following task:\n\t" + task;
+        printer.accept("I've added the following task:\n\t" + task);
     }
 
     /**
