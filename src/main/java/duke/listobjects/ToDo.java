@@ -1,14 +1,13 @@
 package duke.listobjects;
 
-public class ToDo extends ListObject{
+public class ToDo extends ListObject {
 
     public ToDo(String task, int status) {
         super(task, status);
     }
 
-
     @Override
-    public String toString(){
+    public String toString() {
         return "[T]" + super.toString();
     }
 

@@ -9,29 +9,29 @@ public class ListObject implements Serializable {
     private String task;
     private int status;
 
-    public ListObject(String task, int status){
+    public ListObject(String task, int status) {
         this.task = task;
         this.status = status;
     }
 
-    public String getTask(){
+    public String getTask() {
         return this.task;
     }
 
-    public int getStatus(){
+    public int getStatus() {
         return this.status;
     }
 
-    public String showStatusIndicator(){
-        if(this.status==1){
+    public String showStatusIndicator() {
+        if (this.status==1) {
             return "[X] ";
         } else {
             return "[ ] ";
         }
     }
 
-    public void switchStatus(){
-        if(this.status==1){
+    public void switchStatus() {
+        if (this.status==1) {
             this.status=0;
         } else {
             this.status=1;
@@ -39,7 +39,7 @@ public class ListObject implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.showStatusIndicator()+ this.getTask();
     }
 
