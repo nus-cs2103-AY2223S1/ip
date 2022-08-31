@@ -1,9 +1,9 @@
 public class Task {
     protected String taskName;
     protected boolean isDone;
-    public Task(String taskName) {
+    public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public String getStatusIcon() {
@@ -22,5 +22,7 @@ public class Task {
     public String toString() {
         return this.taskName;
     }
+
+    public String toStore() {return (this.isDone ? 1 : 0) + "|" + this.taskName;}
 
 }
