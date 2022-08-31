@@ -57,7 +57,7 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void mark(int i) throws InvalidIndexException  {
-        if (i > numOfTasks) {
+        if (i < 0 || i > numOfTasks) {
             throw new InvalidIndexException();
         }
         Task t = tasks.get(i - 1);
@@ -72,7 +72,7 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void unmark(int i) throws InvalidIndexException {
-        if (i > numOfTasks) {
+        if (i < 0 || i > numOfTasks) {
             throw new InvalidIndexException();
         }
         Task t = tasks.get(i - 1);
@@ -87,7 +87,7 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void delete(int i) throws InvalidIndexException {
-        if (i > numOfTasks) {
+        if (i < 0 || i > numOfTasks) {
             throw new InvalidIndexException();
         }
         Task t = tasks.get(i - 1);

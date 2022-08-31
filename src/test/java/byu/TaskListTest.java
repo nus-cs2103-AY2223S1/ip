@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import task.ToDo;
 import task.Task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskListTest {
 
@@ -24,7 +23,7 @@ public class TaskListTest {
         Task t = new ToDo("sleep");
         list.addTask(t);
         list.mark(1);
-        assertEquals(true, t.isDone());
+        assertTrue(t.isDone());
     }
 
     @Test

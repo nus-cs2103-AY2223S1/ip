@@ -2,8 +2,9 @@ package exceptions;
 
 public class InvalidIndexException extends DukeException {
 
-    public InvalidIndexException() {
-        super("The task does not exist!\n");
+    @Override
+    public String getMessage() {
+        return "The task does not exist!";
     }
 
 }

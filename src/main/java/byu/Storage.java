@@ -12,6 +12,10 @@ import java.util.Scanner;
 
 import task.*;
 
+/**
+ * Represents a storage that deals with loading tasks from the file
+ * and saving tasks in a file.
+ */
 public class Storage {
 
     private File file;
@@ -19,12 +23,12 @@ public class Storage {
     private TaskList tasks;
 
     /**
-     * Creates a FileReader that loads and stores data Executes the command.
+     * Creates a Storage with a file.
+     * Creates the file if the file is not found.
      *
-     * @return a FileReader instance
-     * @throws IOException
+     * @throws IOException if an I/O error occurs.
      */
-    public Storage(String filePath) throws IOException {
+    public Storage() throws IOException {
         try {
             this.file = new File("./Duke.txt");
             this.sc = new Scanner(file);
@@ -41,7 +45,7 @@ public class Storage {
     /**
      * Loads the data of tasks previously added from the file.
      *
-     * @return ToDoList that contains the previously added tasks.
+     * @return TaskList that contains the previously added tasks.
      */
     public TaskList load() {
         while (sc.hasNext()) {

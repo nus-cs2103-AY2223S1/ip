@@ -5,7 +5,7 @@ import exceptions.DukeException;
 import java.io.IOException;
 
 /**
- * Byu is a chatbot that helps to organize tasks.
+ * Represents a chatbot that helps to organize tasks.
  */
 public class Byu {
 
@@ -14,22 +14,21 @@ public class Byu {
     private Ui ui;
 
     /**
-     * Creates an instance of Byu.
-     *
-     * @param filePath String representation of a filePath.
-     * @return an instance of Byu.
+     * Creates an instance of Byu with data from the file.
      */
-    public Byu(String filePath) {
+    public Byu() {
         try {
             ui = new Ui();
-            storage = new Storage(filePath);
+            storage = new Storage();
             tasks = storage.load();
         } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
     }
 
     /**
-     * Runs Byu and scans for user input.
+     * Runs Byu and starts scanning for user input.
+     * Stops running when "bye" is entered.
      */
     public void run() {
         ui.showWelcome();
@@ -41,14 +40,16 @@ public class Byu {
                 c.execute(tasks, ui);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
+                ui.showError(e);
             }
         }
     }
 
-
+    /**
+     * Creates a Byu instance and runs Byu.
+     */
     public static void main(String[] args) {
-        new Byu("./data/Duke.txt").run();
+        new Byu().run();
     }
 
 }

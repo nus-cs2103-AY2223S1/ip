@@ -1,25 +1,27 @@
 package byu;
 
+import exceptions.DukeException;
+
 import java.util.Scanner;
 
 /**
- * Represents a user interface that deals with the interactions with users
+ * Represents a user interface that deals with the interaction with users.
  */
 public class Ui {
 
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
+    private final String logo = "*\\(^o^)/*";
 
     /**
      * Prints the welcome message.
      */
     public void showWelcome() {
-        String logo = "*\\(^o^)/*";
         System.out.println(logo);
         System.out.println("Bonjour~~ I'm Byu! How can I help you?");
     }
 
     /**
-     * Returns the next line of the user input.
+     * Returns the next line of user input.
      *
      * @return the string input by the user.
      */
@@ -27,8 +29,11 @@ public class Ui {
         return this.sc.nextLine();
     }
 
-    public void showError(String message) {
-        System.out.print("Ohno! " + message);
+    /**
+     * Prints the error message for an invalid input.
+     */
+    public void showError(DukeException e) {
+        System.out.print("Ohno! Error: " + e.getMessage() + "\n");
     }
 
     /**
