@@ -1,11 +1,10 @@
 import java.io.*;
+import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import jdk.jfr.Event;
 import main.java.*;
-
-import static main.java.Task.*;
 
 public class Duke {
 
@@ -64,9 +63,13 @@ public class Duke {
                     }
                     String taskName = taskNameBy[0];
                     String by = taskNameBy[1];
-                    newTask = new Deadlines(taskName, by);
-                    taskList.add(newTask);
-                    printOnAdd(newTask);
+                    try {
+                        newTask = new Deadlines(taskName, by);
+                        taskList.add(newTask);
+                        printOnAdd(newTask);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("OOPS!!! Please enter date in YYYY-MM-DD format");
+                    }
                 } else if (command.equals("event")) {
                     if (breakitdown.length == 1) {
                         throw new DukeException("OOPS!!! The description of an event cannot be empty.");
