@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 import java.util.ArrayList;
 
 /** Contains the task list and operations to edit the list */

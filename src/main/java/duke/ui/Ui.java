@@ -15,7 +15,7 @@ public class Ui {
     }
 
     /**
-     * Display welcome message to user.
+     * Displays welcome message to user.
      */
     public void showWelcome() {
         showLine();
@@ -43,14 +43,14 @@ public class Ui {
     }
 
     /**
-     * Show divider line.
+     * Shows divider line.
      */
     public void showLine() {
         showToUser("____________________________________________________________");
     }
 
     /**
-     * Display message to user, showing task has been removed.
+     * Displays message to user, showing task has been removed.
      *
      * @param t Task that has been removed.
      * @param size Size of taskList.
@@ -62,7 +62,7 @@ public class Ui {
     }
 
     /**
-     * Display message to user, showing task has been added.
+     * Displays message to user, showing task has been added.
      *
      * @param t Task that has been added.
      * @param size Size of taskList.
@@ -78,7 +78,7 @@ public class Ui {
     }
 
     /**
-     * Display message to user, showing task has been marked.
+     * Displays message to user, showing task has been marked.
      *
      * @param t Task that has been marked.
      */
@@ -89,7 +89,7 @@ public class Ui {
     }
 
     /**
-     * Display message to user, showing task has been unmarked.
+     * Displays message to user, showing task has been unmarked.
      *
      * @param t Task that has been unmarked.
      */
@@ -100,7 +100,7 @@ public class Ui {
     }
 
     /**
-     * Display message to user, showing the list of current tasks.
+     * Displays message to user, showing the list of current tasks.
      *
      * @param s String of tasks.
      */
@@ -109,14 +109,14 @@ public class Ui {
     }
 
     /**
-     * Display message to user, showing exit message.
+     * Displays message to user, showing exit message.
      */
     public String showExitMessage() {
         return " Bye ! hope to see you soon.";
     }
 
     /**
-     * Display message to user, showing the located tasks in list.
+     * Displays message to user, showing the located tasks in list.
      *
      * @param s String of located tasks.
      */
