@@ -1,14 +1,14 @@
 package john.commands;
 
 /**
- * Represents an exit command.
- * Terminates the program.
+ * Represents an exit command, and terminates the program.
  */
 public class ByeCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
     /**
      * Returns true if the command is an instance of ByeCommand, false otherwise.
+     *
      * @param command The command to check if it is ByeCommand.
      * @return True if command is an instance of ByeCommand, false otherwise.
      */
@@ -18,6 +18,7 @@ public class ByeCommand extends Command {
 
     /**
      * Returns a string representing the goodbye message, and exits the program.
+     *
      * @return A string representing the goodbye message.
      */
     @Override

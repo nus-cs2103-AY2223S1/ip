@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class Todo extends Task {
     /**
      * Constructor for a Event task.
+     *
      * @param description The description of the to do.
      */
     public Todo(String description) {
@@ -20,6 +21,7 @@ public class Todo extends Task {
 
     /**
      * Returns false.
+     *
      * @param date The date to equate to.
      * @return False.
      */
@@ -30,6 +32,7 @@ public class Todo extends Task {
 
     /**
      * Returns a string representing the storage format of the to do.
+     *
      * @return A string representing the storage format of the to do.
      */
     @Override
@@ -39,6 +42,7 @@ public class Todo extends Task {
 
     /**
      * A string representation of the to do.
+     *
      * @return A string representation of the to do.
      */
     @Override

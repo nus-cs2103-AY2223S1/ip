@@ -11,6 +11,7 @@ public class TodoCommand extends Command {
 
     /**
      * Constructor for a TodoCommand.
+     *
      * @param params The description of the to do to add.
      */
     public TodoCommand(String params) {
@@ -19,6 +20,7 @@ public class TodoCommand extends Command {
 
     /**
      * Adds a to do task to the task list.
+     *
      * @return A string representation of the to do task.
      */
     @Override

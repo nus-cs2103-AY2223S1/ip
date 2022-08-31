@@ -20,7 +20,7 @@ import john.ui.Ui;
  * The main logic of the John chatbot.
  */
 public class John extends Application {
-    private TaskList tasklist;
+    private TaskList taskList;
     private Storage storage;
     private Ui ui;
 
@@ -28,9 +28,9 @@ public class John extends Application {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.tasklist = new TaskList(storage.load());
+            this.taskList = new TaskList(storage.load());
         } catch (JohnException e) {
-            this.tasklist = new TaskList();
+            this.taskList = new TaskList();
             e.printStackTrace();
         }
     }
@@ -57,15 +57,21 @@ public class John extends Application {
 
     private String executeCommand(Command command) {
         try {
-            command.setData(tasklist, ui);
+            command.setData(taskList, ui);
             String result = command.execute();
-            storage.saveAllTasks(tasklist.getTasksToStore());
+            storage.saveAllTasks(taskList.getTasksToStore());
             return result;
         } catch (JohnException e) {
             return e.getMessage();
         }
     }
 
+    /**
+     * Returns a string representation of the command executed.
+     *
+     * @param input The command to execute.
+     * @return A string representation of the command executed.
+     */
     public String getResponse(String input) {
         Command command = new Parser().parseCommand(input);
         return executeCommand(command);

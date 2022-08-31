@@ -12,6 +12,7 @@ public class EventCommand extends Command {
 
     /**
      * Constructor for an EventCommand.
+     *
      * @param params The parameters of the event, including the description and timing.
      */
     public EventCommand(String params) {
@@ -22,6 +23,7 @@ public class EventCommand extends Command {
 
     /**
      * Adds an event task to the task list.
+     *
      * @return A string representation of the event added.
      */
     @Override

@@ -11,6 +11,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Constructor for a DeleteCommand.
+     *
      * @param deleteParams The position of the task to delete.
      */
     public DeleteCommand(String deleteParams) {
@@ -19,6 +20,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes the specified task from the task list.
+     *
      * @return A string representation of the task deleted.
      */
     @Override

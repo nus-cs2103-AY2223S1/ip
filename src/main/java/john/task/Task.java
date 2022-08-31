@@ -40,6 +40,7 @@ public abstract class Task {
 
     /**
      * Returns true if the task is equal to the specified date.
+     *
      * @param date The date to equate to.
      * @return True if the task is equal to the specified date, false otherwise.
      */
@@ -47,6 +48,7 @@ public abstract class Task {
 
     /**
      * Returns true if the task description contains the keyword.
+     *
      * @param keyword The keyword to check against.
      * @return True if the task description contains the keyword, false otherwise.
      */
@@ -56,6 +58,7 @@ public abstract class Task {
 
     /**
      * Returns a string representing the storage format of the task.
+     *
      * @return A string representing the storage format of the task.
      */
     public abstract String toStorageFormat();

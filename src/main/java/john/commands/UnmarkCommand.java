@@ -11,6 +11,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Constructor for a UnmarkCommand.
+     *
      * @param unmarkParams The position of the task to unmark.
      */
     public UnmarkCommand(String unmarkParams) {
@@ -19,6 +20,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Unmarks the specified task in the task list.
+     *
      * @return A string representation of the task unmarked.
      */
     @Override

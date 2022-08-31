@@ -11,6 +11,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructor for a FindCommand.
+     *
      * @param findParams The keyword to search for.
      */
     public FindCommand(String findParams) {
@@ -19,6 +20,7 @@ public class FindCommand extends Command {
 
     /**
      * Returns a string representation of the tasks matching the keywords.
+     *
      * @return A string representation of the tasks matching the keywords.
      */
     @Override

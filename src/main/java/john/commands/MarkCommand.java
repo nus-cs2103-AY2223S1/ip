@@ -11,6 +11,7 @@ public class MarkCommand extends Command {
 
     /**
      * Constructor for a MarkCommand.
+     *
      * @param markParams The position of the task to mark.
      */
     public MarkCommand(String markParams) {
@@ -19,6 +20,7 @@ public class MarkCommand extends Command {
 
     /**
      * Marks the specified task in the task list.
+     *
      * @return A string representation of the task marked.
      */
     @Override

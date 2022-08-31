@@ -12,6 +12,7 @@ public abstract class Command {
 
     /**
      * Sets the tasklist to execute the command on.
+     *
      * @param tasklist The tasklist to execute the command on.
      * @param ui The UI to display the command from.
      */
@@ -22,6 +23,7 @@ public abstract class Command {
 
     /**
      * Executes a command.
+     *
      * @return A string representing the result of the command.
      */
     public abstract String execute();

@@ -17,6 +17,7 @@ public class Storage {
 
     /**
      * Constructor for the Storage class.
+     *
      * @param filePath The file path of the data storage.
      */
     public Storage(String filePath) {
@@ -25,6 +26,7 @@ public class Storage {
 
     /**
      * Loads the storage file from the file path if it exists, else creates a storage file.
+     *
      * @return The storage file if it exists, else returns a empty storage file.
      * @throws IOException The storage directory or file cannot be created.
      */
@@ -48,6 +50,7 @@ public class Storage {
 
     /**
      * Reads the storage file and converts it into a ArrayList of the stored tasks.
+     *
      * @return ArrayList of stored tasks.
      * @throws JohnException The storage file cannot be loaded.
      */
@@ -66,6 +69,7 @@ public class Storage {
 
     /**
      * Saves all the tasks into the storage file.
+     *
      * @param tasks ArrayList of tasks in their storage format.
      * @throws JohnException The file cannot be found or written to.
      */

@@ -12,6 +12,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Constructor for a Deadline command.
+     *
      * @param params The parameters of the deadline, including the description and timing.
      */
     public DeadlineCommand(String params) {
@@ -22,6 +23,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Adds a deadline task to the task list.
+     *
      * @return A string representation of the deadline added.
      */
     @Override

@@ -50,6 +50,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns a user dialog box
+     *
      * @param text The user input.
      * @param img The user's picture.
      * @return A dialog box representing the user.

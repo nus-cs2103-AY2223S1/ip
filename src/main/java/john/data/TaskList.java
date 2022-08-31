@@ -24,6 +24,7 @@ public class TaskList {
 
     /**
      * Constructor for a task list initialised with tasks from storage.
+     *
      * @param storedTasks The initial tasks in storage
      */
     public TaskList(ArrayList<String> storedTasks) {
@@ -52,6 +53,7 @@ public class TaskList {
     /**
      * Returns an array containing the string representation of the tasks with a specific date.
      * if params are specified, else return an array containing the string representation of all the tasks.
+     *
      * @param params The date of the tasks to list.
      * @return An array containing the string representation of the tasks in the task list.
      */
@@ -82,6 +84,7 @@ public class TaskList {
 
     /**
      * Returns an array containing the string representation of the tasks with matching keywords.
+     *
      * @param params The keyword to match with.
      * @return An array containing the string representation of the tasks with matching keywords.
      */
@@ -105,6 +108,7 @@ public class TaskList {
 
     /**
      * Adds a to do task to the task list.
+     *
      * @param description The description of the to do task.
      * @return A string representation of the task added.
      */
@@ -116,6 +120,7 @@ public class TaskList {
 
     /**
      * Adds a deadline task to the task list.
+     *
      * @param description The description of the deadline task.
      * @param timing The timing the task is due by.
      * @return A string representation of the deadline added.
@@ -128,6 +133,7 @@ public class TaskList {
 
     /**
      * Adds a event task to the task list.
+     *
      * @param description The description of the event task.
      * @param timing The timing the task is due by.
      * @return A string representation of the event added.
@@ -140,6 +146,7 @@ public class TaskList {
 
     /**
      * Marks the specified task as complete.
+     *
      * @param params The position of the task to mark.
      * @return A string representation of the task being marked as complete.
      */
@@ -154,6 +161,7 @@ public class TaskList {
 
     /**
      * Marks the specified task as incomplete.
+     *
      * @param params The position of the task to unmark.
      * @return A string representation of the task being marked as incomplete.
      */
@@ -168,6 +176,7 @@ public class TaskList {
 
     /**
      * Deletes the specified task.
+     *
      * @param params The position of the task to delete.
      * @return A string representation of the task being deleted.
      */
@@ -183,6 +192,7 @@ public class TaskList {
 
     /**
      * Returns an ArrayList containing the tasks for storage.
+     *
      * @return ArrayList of tasks in the storage form.
      */
     public ArrayList<String> getTasksToStore() {
@@ -195,6 +205,7 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the list.
+     *
      * @return An integer representing the number of tasks in the list.
      */
     public int getNumberOfTasks() {

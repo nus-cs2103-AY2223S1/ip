@@ -12,6 +12,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for a Deadline task.
+     *
      * @param description The description of the deadline.
      * @param timing The date and time of when the deadline is due.
      */
@@ -30,6 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Returns true if the deadline due date is equal to a specified date.
+     *
      * @param date The date to equate to.
      * @return True if the deadline is equal to the specified date, false otherwise.
      */
@@ -40,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a string representing the storage format of the deadline.
+     *
      * @return A string representing the storage format of the deadline.
      */
     @Override
@@ -53,6 +56,7 @@ public class Deadline extends Task {
 
     /**
      * A string representation of the deadline.
+     *
      * @return A string representation of the deadline.
      */
     @Override

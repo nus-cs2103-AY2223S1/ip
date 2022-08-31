@@ -30,6 +30,7 @@ public class Parser {
 
     /**
      * Parses the user input, and returns the corresponding command.
+     *
      * @param input The user input.
      * @return Command representing the user input.
      */
@@ -40,22 +41,31 @@ public class Parser {
         switch (mainCommand) {
         case TodoCommand.COMMAND_WORD:
             return prepareTodo(params);
+
         case DeadlineCommand.COMMAND_WORD:
             return prepareDeadline(params);
+
         case EventCommand.COMMAND_WORD:
             return prepareEvent(params);
+
         case ListCommand.COMMAND_WORD:
             return prepareList(params);
+
         case MarkCommand.COMMAND_WORD:
             return prepareMark(params);
+
         case UnmarkCommand.COMMAND_WORD:
             return prepareUnmark(params);
+
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(params);
+
         case FindCommand.COMMAND_WORD:
             return prepareFind(params);
+
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
+
         default:
             return new IncorrectCommand(input);
         }

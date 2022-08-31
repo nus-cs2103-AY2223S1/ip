@@ -12,6 +12,7 @@ public class Event extends Task {
 
     /**
      * Constructor for a Event task.
+     *
      * @param description The description of the event.
      * @param timing The date and time of when the event is happening.
      */
@@ -30,6 +31,7 @@ public class Event extends Task {
 
     /**
      * Returns true if the event date is equal to a specified date.
+     *
      * @param date The date to equate to.
      * @return True if the event is equal to the specified date, false otherwise.
      */
@@ -40,6 +42,7 @@ public class Event extends Task {
 
     /**
      * Returns a string representing the storage format of the event.
+     *
      * @return A string representing the storage format of the event.
      */
     @Override
@@ -53,6 +56,7 @@ public class Event extends Task {
 
     /**
      * A string representation of the event.
+     *
      * @return A string representation of the event.
      */
     @Override

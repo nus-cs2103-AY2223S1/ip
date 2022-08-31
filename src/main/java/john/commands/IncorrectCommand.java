@@ -9,6 +9,7 @@ public class IncorrectCommand extends Command {
 
     /**
      * Constructor for an IncorrectCommand.
+     *
      * @param command The unknown command entered.
      */
     public IncorrectCommand(String command) {
@@ -17,6 +18,7 @@ public class IncorrectCommand extends Command {
 
     /**
      * Constructor for an IncorrectCommand.
+     *
      * @param command The known command entered.
      * @param format The correct format of the command.
      */
@@ -27,6 +29,7 @@ public class IncorrectCommand extends Command {
 
     /**
      * Returns the feedback of an incorrect command.
+     *
      * @return A string representation of the incorrect command.
      */
     @Override
