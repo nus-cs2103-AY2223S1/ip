@@ -1,29 +1,42 @@
-# User Guide
+# Duke
 
-## Features 
+> **An organised and efficient task manager that can be customised to your own taste.**
 
-### Feature-ABC
+Duke is a flexible software that helps to plan, manage and track all your tasks. It has,
 
-Description of the feature.
++ Command line interface
++ Simple commands
++ ~~Smooth~~ *Super Smooth* user experience 
 
-### Feature-XYZ
+**And it is **<u>FREE!!!</u>**** 
 
-Description of the feature.
+All you need to do is, 
 
-## Usage
+1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.6/duke.jar).
+2. place it in the directory that you would like to place your task list at.
+3. open your terminal in the same directory, enter `java -jar duke.jar`.
+4. follow this [tutorial](#tutorial) to add your tasks. :blush:
 
-### `Keyword` - Describe action
+**Features**: 
 
-Describe the action and its outcome.
+- [x] Manage task
+- [ ] Reminders (coming soon)
+- [ ] Customisation (coming soon)
 
-Example of usage: 
+----
 
-`keyword (optional arguments)`
+## Tutorial
 
-Expected outcome:
+Here is a quick tutorial on the command syntax !!! :+1:
 
-Description of the outcome.
+Content inside the { } is to be decided by the user. 
 
-```
-expected output
-```
+- `todo {Task}` To add a Todo task.
+- `deadline {Task} \by {'Date in' YYYY-MM-DD}` To add a deadline task.
+- `event {Task} \at {'Date in' YYYY-MM-DD}` To add an event task.
+- `mark {task index}` To mark the task at specific index in the list as done.
+- `unmark {task index}` To mark the task at specific index in the list as not done.
+- `delete {task index}` To delete the task at specific index.
+- `list` To check the current list of task.
+- `help` To check the list of commands.
+- `bye` To exit the programme.
