@@ -10,7 +10,7 @@ public class ToDoTest {
 
     @Test
     public void savedStringTest() {
-        assertEquals("T | 0 | watch show", new Todo("watch show").savedString());
+        assertEquals("T | 0 | watch show", new Todo("watch show").toSavedString());
     }
 
 }

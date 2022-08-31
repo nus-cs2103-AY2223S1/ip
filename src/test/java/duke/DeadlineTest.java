@@ -15,6 +15,6 @@ public class DeadlineTest {
     @Test
     public void savedStringTest() {
         assertEquals("D | 0 | watch lecture | 2022-07-24",
-                new Deadline("watch lecture", LocalDate.parse("2022-07-24")).savedString() );
+                new Deadline("watch lecture", LocalDate.parse("2022-07-24")).toSavedString() );
     }
 }

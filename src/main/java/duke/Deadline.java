@@ -32,7 +32,7 @@ public class Deadline extends Task {
      * @inheritDoc
      */
     @Override
-    public String savedString() {
+    public String toSavedString() {
         return "D | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.by;
     }
 }

@@ -25,7 +25,7 @@ public class Todo extends Task {
      * @inheritDoc
      */
     @Override
-    public String savedString() {
+    public String toSavedString() {
         return "T | " + (this.isDone ? "1 | " : "0 | ") + this.description;
     }
 }

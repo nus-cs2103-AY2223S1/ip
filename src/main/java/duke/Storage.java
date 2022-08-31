@@ -93,7 +93,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(listOfTasks.getPath());
             for (Task task : tasklist.getTasks()) {
-                fw.write(task.savedString() + System.lineSeparator());
+                fw.write(task.toSavedString() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {

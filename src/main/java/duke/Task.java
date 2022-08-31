@@ -45,7 +45,7 @@ public abstract class Task {
      *
      * @return String to be displayed in the file.
      */
-    public abstract String savedString();
+    public abstract String toSavedString();
 
     /**
      * Creates a String to represent the task during listing.

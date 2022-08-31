@@ -29,7 +29,7 @@ public class Event extends Task {
      * @inheritDoc
      */
     @Override
-    public String savedString() {
+    public String toSavedString() {
         return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.at;
     }
 }
