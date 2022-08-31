@@ -33,14 +33,17 @@ public class TaskList<T> {
     /**
      * Simply prints all items from within the list variable
      * @throws IndexOutOfBoundsException is thrown when the list is empty
+     * @return returns the string of all printed items
      */
-    public void printList() throws IndexOutOfBoundsException {
+    public String printList() throws IndexOutOfBoundsException {
+        String s = "Here are the items found\n";
         if (list.size() == 0) {
             throw new IndexOutOfBoundsException();
         }
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
+            s = s.concat(i + 1 + ". " + list.get(i) + "\n");
         }
+        return s;
     }
 
 }

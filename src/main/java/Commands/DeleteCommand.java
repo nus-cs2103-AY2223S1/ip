@@ -2,7 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
-import Duck.UI;
+import UI.UI;
 
 /**
  * DeleteCommand encapsulates the deletion of an item in the list
@@ -23,9 +23,9 @@ public class DeleteCommand extends Commands{
      * @param storage not really used here but abstract method requires it
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage)  {
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         Todo item = list.removeFromList(index);
-        UI.deleteItemMessage(item);
+        ui.sendTextToUi("Quack! Deleted item: " + item);
     }
     /**
      * see commands superclass

@@ -1,13 +1,14 @@
 package Duck;
 import Models.Todo;
 import Commands.Commands;
-import java.io.*;
-import java.nio.file.Path;
+
+import UI.UI;
+import javafx.application.Application;
+import javafx.application.Platform;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Date;
 
 public class Duck {
@@ -15,8 +16,7 @@ public class Duck {
     private TaskList<Todo> list;
 
     public static void main(String[] args) {
-        Duck d = new Duck();
-        d.run();
+        Application.launch(UI.class, args);
     }
 
     /**
@@ -32,27 +32,22 @@ public class Duck {
             System.out.println("Error! File not found!");
         }
     }
+
     /**
-     * Run function for the Duck Bot
-     * Runs all the necessary functions from the various classes and,
-     * acts as an "entry point" to the bot
+     * function to receive the command inputs from the UI
+     * @param text user input
+     * @param ui UI object that called this method
      */
-    public void run() {
-        UI.printWelcomeMessage();
-        Scanner scanner = new Scanner(System.in);
-        String userInput = "";
-        boolean isExitCommand = false;
-        while (!isExitCommand) {
-            userInput = scanner.nextLine();
-            Commands c = Parser.parseText(userInput);
-            try {
-                c.execute(list, storage);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Items do not exist! Or List is empty!");
-            }
-            isExitCommand = c.isExit();
+    public void passOnCommands(String text, UI ui) {
+        Commands c = Parser.parseText(text, ui);
+        try {
+            c.execute(list, storage, ui);
+        } catch (IndexOutOfBoundsException e) {
+            ui.sendTextToUi("Items do not exist! Or List is empty!");
         }
-        UI.printClosingMessage();
+        if(c.isExit()) {
+            Platform.exit();
+        }
     }
 
     /**

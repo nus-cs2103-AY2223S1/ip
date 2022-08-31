@@ -2,7 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
-import Duck.UI;
+import UI.UI;
 
 /**
  * Encapsulates the unmark command
@@ -26,10 +26,10 @@ public class UnmarkCommand extends Commands {
      * @param storage Storage to be modified
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage) {
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         Todo item = list.get(index);
         item.unCompleteTask();
-        UI.unmarkItemMessage(item);
+        ui.sendTextToUi("Quack! Unmarked item: " + item);
     }
     
     /**

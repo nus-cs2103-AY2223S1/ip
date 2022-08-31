@@ -2,7 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
-import Duck.UI;
+import UI.UI;
 
 /**
  * AddCommand encapsulates the add a new item to list command
@@ -22,9 +22,9 @@ public class AddCommand extends Commands{
      * @param storage not really used here but abstract method requires it
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage) {
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         list.addToList(item);
-        UI.addNewItemMessage(item);
+        ui.sendTextToUi("Quack! Added new item: " + item);
     }
 
     /**

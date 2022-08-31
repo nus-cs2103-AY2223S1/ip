@@ -14,6 +14,7 @@ import Models.Todo;
 import Models.Event;
 import Models.Deadline;
 import Quackceptions.UnallowedCharacterException;
+import UI.UI;
 
 import java.text.ParseException;
 
@@ -31,7 +32,7 @@ public class Parser {
      * @param input input string to be parsed
      * @return returns a type of command corresponding to the input given
      */
-    public static Commands parseText(String input)  {
+    public static Commands parseText(String input, UI ui)  {
         try {
             if (input.contains(";")) throw new UnallowedCharacterException(";");
             else if (input.toUpperCase().equals("BYE")) return new ExitCommand();
@@ -61,7 +62,7 @@ public class Parser {
                     case "FIND":
                         return new FindCommand(arguments);
                     default:
-                        UI.unrecognizedCommandMessage();
+                        ui.sendTextToUi("Quack! What does that even mean ?!?!?");
                         break;
                 }
             }
@@ -69,16 +70,16 @@ public class Parser {
             if (input.toUpperCase().contains("TODO") ||
                     input.toUpperCase().contains("DEADLINE") ||
                     input.toUpperCase().contains("EVENT")) {
-                System.out.println("Quack!!!!! " + input.toUpperCase() + " Arguments are missing!");
+                ui.sendTextToUi("Quack!!!!! " + input.toUpperCase() + " Arguments are missing!");
             } else {
-                System.out.println("Speak properly! Quack!");
+                ui.sendTextToUi("Speak properly! Quack!");
             }
         } catch (NumberFormatException n) {
-            System.out.println("Invalid Arguments! Dummy!");
+            ui.sendTextToUi("Invalid Arguments! Dummy!");
         } catch (UnallowedCharacterException e) {
-            System.out.println("Character: " + e.getMessage() + " is not allowed! Quack!!");
+            ui.sendTextToUi("Character: " + e.getMessage() + " is not allowed! Quack!!");
         } catch (ParseException e) {
-            System.out.println("Wrong date time format! Quack! (use: dd/MM/yyyy HHmm) ");
+            ui.sendTextToUi("Wrong date time format! Quack! (use: dd/MM/yyyy HHmm) ");
         }
         return new ErrorCommand();
     }

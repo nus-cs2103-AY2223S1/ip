@@ -2,6 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
+import UI.UI;
 
 /**
  * Command to encapsulate an invalid command
@@ -16,7 +17,7 @@ public class ErrorCommand extends Commands{
      * @param storage does nothing
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage) {
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         //do nothing
     }
 

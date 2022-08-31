@@ -2,6 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
+import UI.UI;
 
 /**
  * Encapsulates the List command
@@ -16,8 +17,8 @@ public class ListCommand extends Commands{
      * @throws IndexOutOfBoundsException thrown when no items in list
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage) throws IndexOutOfBoundsException {
-        list.printList();
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) throws IndexOutOfBoundsException {
+        ui.sendTextToUi(list.printList());
     }
 
     /**

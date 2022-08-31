@@ -2,6 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
+import UI.UI;
 
 /**
  * Encapsulates the Exit or "bye" command
@@ -19,7 +20,7 @@ public class ExitCommand extends Commands{
      * @param storage Storage to be modified
      */
     @Override
-    public void execute(TaskList<Todo> list, Storage storage) {
+    public void execute(TaskList<Todo> list, Storage storage, UI ui) {
         storage.writeListToFile(list);
     }
 
