@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static duke.Ui.printLines;
 import static duke.Ui.say;
 import static java.lang.String.format;
 
@@ -59,11 +60,10 @@ public class Todos {
         final Task task = constructor.apply(rest);
 
         todos.add(task);
-        say(List.of(
+        printLines(say(List.of(
                 "Got it. I've added this task:",
                 task.toString(),
-                taskCountMessage()
-        ));
+                taskCountMessage())));
         storage.saveList(todos);
     }
 
@@ -76,7 +76,7 @@ public class Todos {
         for (int i = 0; i < todos.size(); i++) {
             output.add(format("%d. %s", i + 1, todos.get(i).toString()));
         }
-        say(output);
+        printLines(say(output));
     }
 
     /**
@@ -89,9 +89,9 @@ public class Todos {
         final int taskID = readTodoID(rest, "Please give me a task number to mark!");
 
         todos.get(taskID).setDone(true);
-        say(List.of(
+        printLines(say(List.of(
                 "Nice! I've marked this task as done:",
-                todos.get(taskID).toString()));
+                todos.get(taskID).toString())));
         storage.saveList(todos);
     }
 
@@ -105,8 +105,8 @@ public class Todos {
         final int taskID = readTodoID(rest, "Please give me a task number to unmark!");
 
         todos.get(taskID).setDone(false);
-        say(List.of("Alright, I've marked this task as not done yet:",
-                todos.get(taskID).toString()));
+        printLines(say(List.of("Alright, I've marked this task as not done yet:",
+                todos.get(taskID).toString())));
         storage.saveList(todos);
     }
 
@@ -121,10 +121,10 @@ public class Todos {
 
         Task taskToDelete = todos.get(taskID);
         todos.remove(taskID);
-        say(List.of(
+        printLines(say(List.of(
                 "OK, I've deleted this task:",
                 taskToDelete.toString(),
-                taskCountMessage()));
+                taskCountMessage())));
         storage.saveList(todos);
     }
 
@@ -151,6 +151,6 @@ public class Todos {
         for (int i = 0; i < matches.size(); i++) {
             output.add(format("%d. %s", i + 1, matches.get(i).toString()));
         }
-        say(output);
+        printLines(say(output));
     }
 }

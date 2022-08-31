@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,54 +9,58 @@ import java.util.Scanner;
  */
 public class Ui {
     /**
-     * Output a line of text according to the format for bot messages.
+     * Format a line of text according to the format for bot messages.
      * Do not use \n for multiline text - use the list version.
      *
      * @param text The text to output.
      */
-    public static void say(String text) {
-        say(List.of(text));
+    public static List<String> say(String text) {
+        return say(List.of(text));
     }
 
     /**
-     * Output some multiline text according to the format for bot messages.
+     * Format some multiline text according to the format for bot messages.
      *
      * @param lines A list of lines of text to output.
      */
-    public static void say(List<String> lines) {
+    public static List<String> say(List<String> lines) {
+        ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
             if (i == 0) {
-                System.out.println("\uD83D\uDCAC " + lines.get(i));
+                result.add("\uD83D\uDCAC " + lines.get(i));
             } else {
-                System.out.println("   " + lines.get(i));
+                result.add("   " + lines.get(i));
             }
         }
-        System.out.println("─────");
+        return result;
     }
 
     private static final boolean DEV_MODE = false;
 
     /**
-     * Output an error message.
+     * Format an error message.
      *
      * @param e The MessagefulException to output.
      */
-    public static void sayError(MessagefulException e) {
+    public static List<String> sayError(MessagefulException e) {
         if (DEV_MODE) {
-            sayAsError(e.toString());
+            return sayAsError(e.toString());
         } else {
-            sayAsError(e.getHint());
+            return sayAsError(e.getHint());
         }
     }
 
     /**
-     * Output an arbitrary string as if it is an error message.
+     * Format an arbitrary string as if it is an error message.
      *
      * @param message The message to output.
      */
-    public static void sayAsError(String message) {
-        System.out.println("\uD83D\uDFE1 " + message);
-        System.out.println("─────");
+    public static List<String> sayAsError(String message) {
+        return List.of("\uD83D\uDFE1 " + message);
+    }
+
+    public static void printLines(List<String> lines) {
+        System.out.println(String.join("\n", lines) + "\n─────");
     }
 
     private static final Scanner stdin = new Scanner(System.in);

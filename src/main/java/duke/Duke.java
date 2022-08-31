@@ -2,6 +2,7 @@ package duke;
 
 import duke.modules.Todos;
 
+import static duke.Ui.printLines;
 import static duke.Ui.readLine;
 import static duke.Ui.say;
 
@@ -16,7 +17,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         // intro string
-        say("Hello, Duke here! What can I do for you?");
+        printLines(say("Hello, Duke here! What can I do for you?"));
 
         // initialize plugins
         Todos todos = new Todos();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static duke.Ui.printLines;
 import static duke.Ui.sayError;
 
 // "We will add validation to this later" - No one
@@ -26,7 +27,7 @@ public class TaskList implements Iterable<Task> {
         try {
             todos = storage.loadList();
         } catch (MessagefulException e) {
-            sayError(e);
+            printLines(sayError(e));
             todos = new ArrayList<>();
         }
         this.todos = todos;

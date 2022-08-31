@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static duke.Ui.printLines;
 import static duke.Ui.say;
 import static duke.Ui.sayAsError;
 import static duke.Ui.sayError;
@@ -32,10 +33,10 @@ public class Parser {
 
             switch (command) {
             case "":
-                sayAsError("Sorry, I didn't catch that?");
+                printLines(sayAsError("Sorry, I didn't catch that?"));
                 break;
             case "bye":
-                say("OK. See you next time! *boings away*");
+                printLines(say("OK. See you next time! *boings away*"));
                 return new ExecuteResult(true, result);
             case "todo":
                 todos.cmdAdd(scanner, Todo::fromChat);
@@ -62,11 +63,11 @@ public class Parser {
                 todos.cmdFind(scanner);
                 break;
             default:
-                sayAsError("Sorry, I didn't understand what you said :(");
+                printLines(sayAsError("Sorry, I didn't understand what you said :("));
                 break;
             }
         } catch (MessagefulException e) {
-            sayError(e);
+            printLines(sayError(e));
         }
         return new ExecuteResult(false, List.of());
     }
