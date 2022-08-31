@@ -15,10 +15,16 @@ public class Parser {
 
     private TaskList taskList;
 
+    /**
+     * Constructor for the Parser class.
+     */
     public Parser() {
         this.taskList = new TaskList();
     }
 
+    /**
+     * Initiates scanner system which receives input from users.
+     */
     public void userInput() {
         // create scanner to receive user input
         Scanner sc = new Scanner(System.in);
@@ -101,6 +107,10 @@ public class Parser {
         Ui.printBye();
     }
 
+    /**
+     * Retrieves TaskList created by the user.
+     * @return The TaskList created by the user.
+     */
     public TaskList getTaskList() {
         return this.taskList;
     }

@@ -4,8 +4,9 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 /**
- * To format dates and times inputted by users into
+ * Class to format dates and times inputted by users into
  * a specific format.
+ * @author lauralee
  */
 public class DatesAndTimes {
 
@@ -13,7 +14,6 @@ public class DatesAndTimes {
 
     /**
      * DatesandTimes class constructor.
-     *
      * @param dateTime the date and time in the format inputted by the user.
      */
     public DatesAndTimes(String dateTime) {
@@ -22,7 +22,6 @@ public class DatesAndTimes {
 
     /**
      * Return date inputted by user in dd MMMM yy format
-     *
      * @return date in dd MMMM yyyy format
      */
     public String output() {

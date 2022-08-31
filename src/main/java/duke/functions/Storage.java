@@ -15,7 +15,7 @@ public class Storage {
      * @param taskList
      * @param filePath
      */
-    public Storage(TaskList taskList, String filePath) throws IOException {
+    public Storage(TaskList taskList, String filePath) {
         saveFile(taskList, filePath);
     }
 
@@ -27,9 +27,8 @@ public class Storage {
      * @param taskList A Task array which contains the list of tasks inputted by the user.
      * @param pathname The path which the user wants to store their file containing their lists
      *                 of task in.
-     * @throws IOException
      */
-    public static void saveFile(TaskList taskList, String pathname) throws IOException {
+    public static void saveFile(TaskList taskList, String pathname) {
 
         try {
             Task[] taskArr = taskList.getTaskArr();
@@ -64,6 +63,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads a Tasklist stored in a specific file path by a previous user into the Duke bot.
+     * @param filePath The filepath in which the previous user stored their task list.
+     * @throws FileNotFoundException
+     */
     public static void loadFile(String filePath) throws FileNotFoundException {
         TaskList taskList = new TaskList();
         File dukeFile = new File(filePath);

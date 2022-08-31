@@ -3,20 +3,29 @@ package duke.functions;
 import duke.support.Parser;
 import duke.tasks.Task;
 
-
+/**
+ * Class for interactions with Duke bot users.
+ * @author lauralee
+ */
 public class Ui {
 
     private Parser parser;
 
     private TaskList taskList;
 
-
+    /**
+     * Constructor for the Ui class.
+     */
     public Ui() {
         this.parser = new Parser();
         this.parser.userInput();
         this.taskList = this.parser.getTaskList();
     }
 
+    /**
+     * To retrieve the TaskList created by the user.
+     * @return The user's TaskList.
+     */
     public TaskList getTaskList() {
         return this.taskList;
     }
