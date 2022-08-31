@@ -15,7 +15,7 @@ public class Parser {
      * @param userInput Input string from the user.
      * @return A Command object based on parsed input.
      */
-    public static Command parse(String userInput) throws DukeException{
+    public static Command parse(String userInput) throws DukeException {
         String command;
 
         if (userInput.isEmpty()) {

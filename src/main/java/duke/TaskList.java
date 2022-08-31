@@ -51,7 +51,7 @@ public class TaskList {
      * @return Task object that is stored at given index.
      * @throws DukeException If provided index is out of range.
      */
-    public Task getTaskAtIndex(int index) throws DukeException{
+    public Task getTaskAtIndex(int index) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
@@ -89,7 +89,7 @@ public class TaskList {
      * @param isDone True to mark task as done and false to mark task as not done
      * @throws DukeException If provided index is out of range.
      */
-    public Task updateTaskStatus(int index, boolean isDone) throws DukeException{
+    public Task updateTaskStatus(int index, boolean isMark) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
