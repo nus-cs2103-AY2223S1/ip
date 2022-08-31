@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * The main class of the Duke program.
  */
 public class Duke {
-    private TaskList tasklist;
+    private TaskList taskList;
     private Storage storage;
     private Ui ui;
 
@@ -38,9 +38,9 @@ public class Duke {
         storage = new Storage(path);
         ui = new Ui();
         try {
-            tasklist = new TaskList(storage.load());
+            taskList = new TaskList(storage.load());
         } catch (DukeException e) {
-            tasklist = new TaskList(new ArrayList<>());
+            taskList = new TaskList(new ArrayList<>());
             System.out.println(e);
         }
     }
@@ -63,23 +63,20 @@ public class Duke {
                     ui.printBye();
                     return;
                 case LIST:
-                    tasklist.printTasks();
+                    taskList.printTasks();
                     break;
-                case MARK: {
-                    tasklist.markTask(content);
+                case MARK:
+                    taskList.markTask(content);
                     break;
-                }
-                case UNMARK: {
-                    tasklist.unmarkTask(content);
+                case UNMARK:
+                    taskList.unmarkTask(content);
                     break;
-                }
-                case DELETE: {
-                    tasklist.deleteTask(content);
+                case DELETE:
+                    taskList.deleteTask(content);
                     break;
-                }
                 case TODO: {
                     ToDo newTask = new ToDo(content);
-                    tasklist.addTask(newTask);
+                    taskList.addTask(newTask);
                     break;
                 }
                 case EVENT: {
@@ -87,7 +84,7 @@ public class Duke {
                     LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
                     Event newTask = new Event(contentArray[0], dateTime);
-                    tasklist.addTask(newTask);
+                    taskList.addTask(newTask);
                     break;
                 }
                 case DEADLINE: {
@@ -95,14 +92,13 @@ public class Duke {
                     LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
                     Deadline newTask = new Deadline(contentArray[0], dateTime);
-                    tasklist.addTask(newTask);
+                    taskList.addTask(newTask);
                     break;
                 }
-                case FIND: {
-                    tasklist.findTasks(content);
+                case FIND:
+                    taskList.findTasks(content);
                 }
-                }
-                storage.save(tasklist.getTasks());
+                storage.save(taskList.getTasks());
             } catch (Exception e) {
                 System.out.println(new DukeException(e.getMessage()));
             }

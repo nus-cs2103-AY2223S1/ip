@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    LocalDateTime at;
+    private LocalDateTime at;
 
     public Event(String title, LocalDateTime at) {
         super(title);

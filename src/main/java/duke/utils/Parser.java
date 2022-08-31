@@ -17,7 +17,7 @@ import java.util.List;
  * Parse the commands that have been inputted into Duke.
  */
 public class Parser {
-    List<String> inputArray;
+    private List<String> inputArray;
 
     public Parser(String command) {
         this.inputArray = Arrays.asList(command.split(" "));
@@ -83,7 +83,7 @@ public class Parser {
         return commandArray;
     }
 
-    static public LocalDateTime stringToDateTime(String str) throws DukeException {
+    public static LocalDateTime stringToDateTime(String str) throws DukeException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
@@ -100,7 +100,7 @@ public class Parser {
      * @return the parsed Task.
      * @throws DukeException if the saved string does not match any patterns.
      */
-    static public Task parseSave(String save) throws DukeException {
+    public static Task parseSave(String save) throws DukeException {
         String[] taskElements = save.split("\\|");
         Task newTask;
         try {

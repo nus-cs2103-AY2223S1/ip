@@ -69,13 +69,11 @@ public class TaskList {
 
     public Task getTask(int taskNum) throws Exception {
         Task task;
-
         try {
             task = tasks.get(taskNum);
         } catch (Exception e) {
             throw new DukeException("Task number is incorrectly provided");
         }
-
         return task;
     }
 

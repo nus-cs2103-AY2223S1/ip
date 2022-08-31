@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends duke.task.Task {
-    LocalDateTime by;
+    private LocalDateTime by;
 
     public Deadline(String title, LocalDateTime by) {
         super(title);
