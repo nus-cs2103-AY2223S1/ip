@@ -32,6 +32,7 @@ public class TaskList {
         for (Task task : tasks) {
             String textInput = "";
             String isDone = "O / ";
+
             if (task.isDone) {
                 isDone = "X / ";
             }
@@ -128,11 +129,11 @@ public class TaskList {
             if (input.equals("delete") || input.equals("delete ")) {
                 throw new DescriptionEmptyException("grrrr >:( you need to delete something woof woof!");
             } else {
-                int index = Integer.valueOf(input.replace("delete ", ""));
-                if (index > tasks.size() || index <= 0) {
-                    throw new OutOfBoundsException(index);
+                int i = Integer.valueOf(input.replace("delete ", ""));
+                if (i > tasks.size() || i <= 0) {
+                    throw new OutOfBoundsException(i);
                 } else {
-                    Task t = tasks.remove(index - 1);
+                    Task t = tasks.remove(i - 1);
                     taskCount--;
                     String str = String.format("woof! the task is now deleted woof!\n" +
                                     "%s\n" +
@@ -160,13 +161,13 @@ public class TaskList {
                 throw new DescriptionEmptyException("grrrr >:( you need to mark something woof woof!");
             } else {
                 String str = input.replace("mark ", "");
-                int index = Integer.valueOf(str);
-                if (index > tasks.size() || index <= 0) {
-                    throw new OutOfBoundsException(index);
+                int j = Integer.valueOf(str);
+                if (j > tasks.size() || j <= 0) {
+                    throw new OutOfBoundsException(j);
                 } else {
-                    tasks.get(index - 1).setDone();
+                    tasks.get(j - 1).setDone();
                     System.out.println("woof! the task is now marked as done woof!\n"
-                            + tasks.get(index - 1).toString());
+                            + tasks.get(j - 1).toString());
                 }
             }
         } catch (OutOfBoundsException | DescriptionEmptyException e) {
