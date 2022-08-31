@@ -1,11 +1,13 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Todo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
 
 /**
  * the object that stores the list of tasks
@@ -20,6 +22,10 @@ public class TaskList {
     /** count to keep track of items */
     private int count;
 
+    /**
+     * Initializes tasklist object
+     * @param storage storage object used to store tasks
+     */
     public TaskList(Storage storage) {
         this.list = storage.getList();
         this.storage = storage;
@@ -38,13 +44,17 @@ public class TaskList {
         }
     }
 
+    /**
+     *  Prints tasks that match the filter
+     * @param filter the string used to filter the tasks
+     */
     public void printFilteredTaskList(String filter) {
         System.out.println("Here are the matching tasks in your list:\n");
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) == null) {
                 break;
             }
-            if(list.get(i).getItem().contains(filter)) {
+            if (list.get(i).getItem().contains(filter)) {
                 System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
             }
         }
@@ -101,8 +111,8 @@ public class TaskList {
             count = count + 1;
             System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! The description of a deadline has to be in the format" +
-                    " deadline <task> /by <date and time>");
+            System.out.println("☹ OOPS!!! The description of a deadline has to be in the format"
+                    + " deadline <task> /by <date and time>");
         } catch (DateTimeParseException e) {
             System.out.println("OOPS!! Format of the date is wrong");
         }
@@ -128,8 +138,8 @@ public class TaskList {
             count = count + 1;
             System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! The description of a event has to be in the format event" +
-                    " <task> /at <date and time>");
+            System.out.println("☹ OOPS!!! The description of a event has to be in the format event"
+                    + " <task> /at <date and time>");
         }
     }
 

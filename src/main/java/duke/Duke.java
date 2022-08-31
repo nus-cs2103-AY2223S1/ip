@@ -16,6 +16,9 @@ public class Duke {
     /** Object that represent the list of tasks */
     private TaskList tasks;
 
+    /**
+     * Constructor to intialize duke object
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();

@@ -2,15 +2,17 @@ package duke.task;
 
 import duke.Task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents an Event task
  */
 public class Event extends Task {
     private String dateTime;
 
+    /**
+     * Initialzs event instance
+     * @param item string entered by user
+     * @param dateTime date entered by user
+     */
     public Event(String item, String dateTime) {
         this.setItem(item);
         this.dateTime = dateTime;

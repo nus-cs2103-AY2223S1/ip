@@ -16,9 +16,9 @@ public class Ui {
      * @param text
      */
     public void printText(String text) {
-        System.out.println("________________________________________\n" +
-                text +
-                "\n________________________________________\n");
+        System.out.println("________________________________________\n"
+                + text
+                + "\n________________________________________\n");
     }
 
     /**

@@ -6,7 +6,7 @@ import duke.Task;
  * Represents a Todo task
  */
 public class Todo extends Task {
-    public Todo(String item){
+    public Todo(String item) {
         this.setItem(item);
     }
 

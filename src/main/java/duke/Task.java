@@ -1,10 +1,15 @@
 package duke;
 
+/**
+ * Represents a task in the application
+ */
 public abstract class Task {
     private boolean isDone = false;
     private String item;
 
-    public void setDone() {this.isDone = true;}
+    public void setDone() {
+        this.isDone = true;
+    }
 
     public void setNotDone() {
         this.isDone = false;
