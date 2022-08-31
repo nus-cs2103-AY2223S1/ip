@@ -48,8 +48,8 @@ public class Ui {
      * Prints exit message.
      */
     public void showGoodByeMessage() {
-        System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
         sc.close();
+        System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
     }
 
     /**

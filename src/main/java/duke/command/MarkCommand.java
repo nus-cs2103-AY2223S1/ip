@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.InvalidIndexException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -23,8 +24,13 @@ public class MarkCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws InvalidIndexException {
+        if (indexToMark < 0 || indexToMark > tasks.getSize()) {
+            throw new InvalidIndexException();
+        }
         tasks.getTask(indexToMark).markAsDone();
-        ui.showMarkMessage(tasks.getTask(indexToMark));
+        storage.save(tasks.getTasks());
+        return String.format("Nice! I've marked this task as done:\n" +
+                "%s", tasks.getTask(indexToMark).toString());
     }
 }
