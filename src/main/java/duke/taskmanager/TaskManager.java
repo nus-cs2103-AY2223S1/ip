@@ -21,18 +21,18 @@ public class TaskManager {
     }
 
     private Task processFormattedString(String formattedString) throws Exception {
-        String[] arguments = formattedString.split(" | ");
+        String[] arguments = formattedString.split("<>");
         String taskType = arguments[0];
-        boolean status = (arguments[2].equals("1") ? true : false);
-        String taskName = arguments[4];
+        boolean status = (arguments[1].equals("1") ? true : false);
+        String taskName = arguments[2];
 
         switch (taskType) {
         case "T":
             return new ToDoTask(taskName, status);
         case "D":
-            return new DeadlineTask(taskName, arguments[6], status, DATE_FORMAT);
+            return new DeadlineTask(taskName, arguments[3], status, DATE_FORMAT);
         case "E":
-            return new EventTask(taskName, arguments[6], status, DATE_FORMAT);
+            return new EventTask(taskName, arguments[3], status, DATE_FORMAT);
         default:
             return new EmptyTask();
         }
@@ -90,6 +90,31 @@ public class TaskManager {
             return "\tThere is no such task!!\n";
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * Finds and returns a list of task containing the keyword provided by the user.
+     *
+     * @param keyword string of the keyword to match in the task list
+     * @return a response message listing out the task containing the keyword
+     */
+    public String find(String keyword) {
+        List<Integer> keywordList = new ArrayList<>();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (this.taskList.get(i).getTaskName().contains(keyword)) {
+                keywordList.add(i);
+            }
+        }
+        if (keywordList.size() == 0) {
+            return "\tYou have no tasks in your list with the keyword \"" + keyword + "\".\n";
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("\tI have the matching tasks displayed below:\n");
+            for (Integer index : keywordList) {
+                stringBuilder.append("\t").append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
+            }
+            return stringBuilder.toString();
+        }
     }
 
     public void save() {

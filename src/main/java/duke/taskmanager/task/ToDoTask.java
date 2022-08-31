@@ -25,7 +25,7 @@ public class ToDoTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return taskName_TYPE + " | " + (getStatus() ? 1 : 0) + " | " + getTaskName() + "\n";
+        return taskName_TYPE + "<>" + (getStatus() ? 1 : 0) + "<>" + getTaskName() + "\n";
     }
     @Override
     public String toString() {

@@ -41,7 +41,7 @@ public class EventTask extends Task {
                 taskTime.getMonth() + " " +
                 taskTime.getYear() + " | " +
                 taskTime.getHour() + ":" +
-                taskTime.getMinute());
+                String.format("%02d", taskTime.getMinute()));
     }
 
     @Override
@@ -51,9 +51,9 @@ public class EventTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " +
-                (getStatus() ? 1 : 0) + " | " +
-                getTaskName() + " | " +
+        return TASK_TYPE + "<>" +
+                (getStatus() ? 1 : 0) + "<>" +
+                getTaskName() + "<>" +
                 this.taskTime + "\n";
     }
 
