@@ -9,9 +9,18 @@ public class Pikachu {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (PikachuException e) {
+        } catch (Exception e) {
             ui.showLoadingError();
             tasks = new TaskList();
+        }
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
         }
     }
 

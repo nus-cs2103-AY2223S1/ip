@@ -31,6 +31,6 @@ public class Ui {
     }
 
     public void showError(String error) {
-        System.out.println("Pi?" + error);
+        System.out.println(error);
     }
  }

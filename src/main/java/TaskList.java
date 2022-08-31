@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    List<Task> tasks;
+    List<Task> taskList;
     
     TaskList() {
-        tasks = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     TaskList(List<Task> existTasks) {
-            tasks = existTasks;
+            taskList = existTasks;
     }
 }
