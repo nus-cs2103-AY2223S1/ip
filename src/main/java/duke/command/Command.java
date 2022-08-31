@@ -16,8 +16,9 @@ public abstract class Command {
      * @param tasks amends task list if any.
      * @param ui ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return output of the action.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns true if exiting program.

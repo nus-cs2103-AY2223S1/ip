@@ -12,14 +12,14 @@ public class ByeCommand extends Command {
 
     /**
      * Executes the command input.
-     *
-     * @param tasks    amends task list.
+     *  @param tasks    amends task list.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage.
+     * @return returns the command executed
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.exit();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.exit();
     }
 
     /**

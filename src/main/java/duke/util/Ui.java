@@ -22,18 +22,18 @@ public class Ui {
 
     /**
      * Prints exit message.
+     * @return exit message.
      */
-    public void exit() {
-        System.out.println("Goodbye! Hope to see you again soon!\n"
-                + "--------------------------");
+    public String exit() {
+        return ("Goodbye! Hope to see you again soon!");
     }
 
     /**
      * Prints no such task error.
+     * @return returns no such task error.
      */
-    public void noSuchTaskError() {
-        System.out.println("OOPS!!! Error: No Such Task :-(\n"
-                + "--------------------------");
+    public String noSuchTaskError() {
+        return ("OOPS!!! Error: No Such Task :-(");
     }
 
     /**
@@ -64,57 +64,60 @@ public class Ui {
      * Prints the removed task from the list and updates the list count.
      * @param removedTask task to be removed.
      * @param size size of list after task is remove.
+     * @return returns the task removed.
      */
-    public void removeTask(String removedTask, int size) {
-        System.out.println("Noted. I've removed this task:\n"
-                + removedTask);
-        System.out.println("Now you have " + size + " tasks in the list.\n"
-                + "--------------------------");
+    public String showRemovedTask(String removedTask, int size) {
+        return ("Noted. I've removed this task:\n"
+                + removedTask + "\n"
+                + "Now you have " + size + " tasks in the list.");
     }
 
     /**
      * Prints the task added to the list and updates list count.
      * @param task task to be added.
      * @param size size of list after adding the task.
+     * @return returns the task added.
      */
-    public void addedTask(String task, int size) {
-        System.out.println("--------------------------\n"
-                + "I've added to the list:\n" + task);
-        System.out.println("Now you have " + size + " tasks in the list.\n"
-                + "--------------------------");
+    public String showAddedTask(String task, int size) {
+        return ("I've added to the list:\n" + task + "\n"
+            + "Now you have " + size + " tasks in the list.");
     }
 
     /**
      * Prints out the list of tasks added.
      * @param list list of tasks.
+     * @return returns list of tasks.
      */
-    public void getList(ArrayList<Task> list) {
-        System.out.println("Here are the tasks in your list");
+    public String getList(ArrayList<Task> list) {
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + ". " + list.get(i));
+            String task = ((i + 1) + ". " + list.get(i));
+            output.append(task);
+            output.append("\n");
         }
-        showLine();
+        return output.toString();
     }
 
     /**
      * Prints the task to be mark or unmark.
      * @param mark check if mark or unmark.
      * @param task task to be edited.
+     * @return returns the string of the marked task.
      */
-    public void markedTask(boolean mark, String task) {
-        String output = mark ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
-        System.out.println(output);
-        System.out.println(task);
-        showLine();
+    public String showMarkedTask(boolean mark, String task) {
+        String output = mark ? "Nice! I've marked this task as done:\n"
+                : "OK, I've marked this task as not done yet:\n";
+        return (output + task);
     }
 
     /**
      * Prints the task found to match input keyword.
      * @param list list of tasks found.
+     * @return returns the tasks found.
      */
-    public void showFoundTasks(ArrayList<Task> list) {
-        System.out.println("I found some matching tasks!");
-        getList(list);
+    public String showFoundTasks(ArrayList<Task> list) {
+        String output = getList(list);
+        return ("I found some matching tasks!\n" + output);
     }
 
     /**

@@ -12,14 +12,14 @@ public class ListCommand extends Command {
 
     /**
      * Executes the command input.
-     *
-     * @param task    amends task list if any.
+     *  @param task    amends task list if any.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return returns the command to be executed.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
-        ui.getList(task.getList());
+    public String execute(TaskList task, Ui ui, Storage storage) {
+        return ui.getList(task.getList());
     }
 
     /**

@@ -11,6 +11,7 @@ import duke.util.Ui;
 
 /**
  * Takes in input and chats with user.
+ *
  * @author Jicson Toh
  */
 public class Duke {
@@ -21,6 +22,7 @@ public class Duke {
 
     /**
      * Constructor for Duke Class.
+     *
      * @param filePath file path of data.
      */
     public Duke(String filePath) {
@@ -51,6 +53,23 @@ public class Duke {
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
+        }
+    }
+
+    /**
+     * Outputs the string of the executed command.
+     *
+     * @param action action to be executed.
+     * @return returns the string of command executed.
+     */
+    public String getResponse(String action) {
+        try {
+            Command command = parser.parseCommand(action);
+            String result = command.execute(tasks, ui, storage);
+            storage.saveData(tasks);
+            return result;
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 }

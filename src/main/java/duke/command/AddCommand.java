@@ -28,13 +28,13 @@ public class AddCommand extends Command {
 
     /**
      * Executes the command input.
-     *
-     * @param tasks   amends task list if any.
+     *  @param tasks   amends task list if any.
      * @param ui      ui to output feedback.
      * @param storage make changes to storage if any.
+     * @return returns the command executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             switch (type) {
             case "todoTask":
@@ -53,7 +53,7 @@ public class AddCommand extends Command {
             default:
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            ui.addedTask(tasks.getTaskString(tasks.getSize() - 1), tasks.getSize());
+            return ui.showAddedTask(tasks.getTaskString(tasks.getSize() - 1), tasks.getSize());
         } catch (Exception e) {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
