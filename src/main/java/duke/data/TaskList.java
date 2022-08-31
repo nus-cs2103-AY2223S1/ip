@@ -87,15 +87,18 @@ public class TaskList {
     }
 
     /**
-     * Finds matching tasks whose description contains the given keyword.
-     * @param keyword The keyword to check each Task's description for.
-     * @return A list of tasks whose description contains the given keyword.
+     * Finds matching tasks whose description contains any of the given keyword(s).
+     * @param keywords The keyword(s) to check each Task's description for.
+     * @return A list of tasks whose description contains any of the given keyword(s).
      */
-    public ArrayList<Task> getMatchingTasks(String keyword) {
+    public ArrayList<Task> getMatchingTasks(String ... keywords) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.hasKeyword(keyword)) {
-                matchingTasks.add(task);
+            for (String keyword : keywords) {
+                if (!keyword.isEmpty() && task.hasKeyword(keyword)) {
+                    matchingTasks.add(task);
+                    break;
+                }
             }
         }
         return matchingTasks;

@@ -8,23 +8,23 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 
 /**
- * Represents the command to find matching tasks based on a given keyword.
+ * Represents the command to find matching tasks based on the given keyword(s).
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    private String keyword;
+    private String[] keywords;
 
     /**
      * Constructor for a FindCommand.
-     * @param keyword The keyword to check each Task's description for.
+     * @param keywords The keyword(s) to check each Task's description for.
      */
-    public FindCommand(String keyword) {
+    public FindCommand(String[] keywords) {
         super();
-        this.keyword = keyword;
+        this.keywords = keywords;
     }
 
     /**
-     * Finds matching tasks whose description contains the given keyword.
+     * Finds matching tasks whose description contains any of the given keyword(s).
      * @param taskList List of tasks.
      * @param ui Shows the list of matching tasks.
      * @param storage Saves the modified list of tasks.
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        ArrayList<Task> matchingTasks = taskList.getMatchingTasks(keyword);
+        ArrayList<Task> matchingTasks = taskList.getMatchingTasks(keywords);
         return ui.showMatchingTasks(matchingTasks);
     }
 }
