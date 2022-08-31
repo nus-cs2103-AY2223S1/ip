@@ -35,13 +35,12 @@ public class FindCommand implements Command {
     }
 
     /**
-     * Parses input array of strings to a string that can be used to call the find method
-     * on itemList. Calls the method and parses output to a format suitable for the ui,
-     * then returns it. Accepts an empty input after the find keyword, and returns all the
-     * tasks stored in this case. Throws a DukeException if no items were found.
+     * Converts input array of strings into a singular string that can be used to call
+     * the find method on the given TaskList, and then converts the output to a
+     * string suitable for the user interface before returning it.
      *
      * @param input array of strings input by user
-     * @return string indicating a list of tasks whose descriptions match the input string
+     * @return the string indicating a list of tasks whose descriptions match the input
      * @throws DukeException if no items were found
      */
     private String executeFindItems(String[] input, TaskList itemList) throws DukeException {

@@ -36,12 +36,11 @@ public class AddItemCommand implements Command {
     }
 
     /**
-     * Executes item addition commands, throwing a duke.exception.DukeException on incorrect
-     * inputs.
+     * Executes the addition of newItem to a given TaskList.
      *
-     * @param newItem Parsed item addition command
-     * @return string signifying result of adding newItem to items
-     * @throws DukeException Indicates incorrect inputs
+     * @param newItem parsed item addition command
+     * @return the string signifying result of adding newItem to items
+     * @throws DukeException if the input is erroneous
      */
     private String executeAddItem(String[] newItem, TaskList itemList) throws DukeException {
         String s = String.join(" ", newItem);
