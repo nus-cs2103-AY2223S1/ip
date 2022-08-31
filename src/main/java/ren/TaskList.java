@@ -116,7 +116,7 @@ public class TaskList {
     }
 
     /**
-     * Searches TaskList to Tasks matching a search term.
+     * Searches TaskList for Tasks matching a search term.
      *
      * @param term The Search Term to match Tasks with.
      * @return String containing the list of matching Tasks.

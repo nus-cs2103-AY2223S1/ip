@@ -6,12 +6,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 public class ParserTest {
-    private final TaskList stub = new TaskListStub();
-
     @Test
     public void parseCommand_bye_success() {
         try {
-            assertEquals(" Farewell!\n", Parser.parseCommand("bye", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals(" Farewell!\n", parser.parseCommand("bye"));
         } catch (RenException e) {
             fail();
         }
@@ -20,7 +19,8 @@ public class ParserTest {
     @Test
     public void parseCommand_todo_success() {
         try {
-            assertEquals("", Parser.parseCommand("todo test", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("todo test"));
         } catch (RenException e) {
             fail();
         }
@@ -29,7 +29,8 @@ public class ParserTest {
     @Test
     public void parseCommand_todo_exceptionThrown() {
         try {
-            Parser.parseCommand("todo", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("todo");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a description for the todo.", e.getMessage());
@@ -39,7 +40,8 @@ public class ParserTest {
     @Test
     public void parseCommand_deadline_success() {
         try {
-            assertEquals("", Parser.parseCommand("deadline test /by test", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("deadline test /by test"));
         } catch (RenException e) {
             fail();
         }
@@ -48,7 +50,8 @@ public class ParserTest {
     @Test
     public void parseCommand_deadline_exceptionThrown() {
         try {
-            Parser.parseCommand("deadline", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("deadline");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a description for the deadline.", e.getMessage());
@@ -58,7 +61,8 @@ public class ParserTest {
     @Test
     public void parseCommand_deadline2_exceptionThrown() {
         try {
-            Parser.parseCommand("deadline test", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("deadline test");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a date/time for the deadline.", e.getMessage());
@@ -68,7 +72,8 @@ public class ParserTest {
     @Test
     public void parseCommand_event_success() {
         try {
-            assertEquals("", Parser.parseCommand("event test /at test", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("event test /at test"));
         } catch (RenException e) {
             fail();
         }
@@ -77,7 +82,8 @@ public class ParserTest {
     @Test
     public void parseCommand_event_exceptionThrown() {
         try {
-            Parser.parseCommand("event", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("event");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a description for the event.", e.getMessage());
@@ -87,7 +93,8 @@ public class ParserTest {
     @Test
     public void parseCommand_event2_exceptionThrown() {
         try {
-            Parser.parseCommand("event test", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("event test");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a date/time for the event.", e.getMessage());
@@ -97,7 +104,8 @@ public class ParserTest {
     @Test
     public void parseCommand_delete_success() {
         try {
-            assertEquals("", Parser.parseCommand("delete 2", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("delete 2"));
         } catch (RenException e) {
             fail();
         }
@@ -106,7 +114,8 @@ public class ParserTest {
     @Test
     public void parseCommand_delete_exceptionThrown() {
         try {
-            Parser.parseCommand("delete one", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("delete one");
             fail();
         } catch (RenException e) {
             assertEquals("Please indicate the task no. in digits.", e.getMessage());
@@ -116,7 +125,8 @@ public class ParserTest {
     @Test
     public void parseCommand_mark_success() {
         try {
-            assertEquals("", Parser.parseCommand("mark 2", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("mark 2"));
         } catch (RenException e) {
             fail();
         }
@@ -125,7 +135,8 @@ public class ParserTest {
     @Test
     public void parseCommand_mark_exceptionThrown() {
         try {
-            Parser.parseCommand("unmark one", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("unmark one");
             fail();
         } catch (RenException e) {
             assertEquals("Please indicate the task no. in digits.", e.getMessage());
@@ -135,7 +146,8 @@ public class ParserTest {
     @Test
     public void parseCommand_unmark_success() {
         try {
-            assertEquals("", Parser.parseCommand("unmark 2", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("unmark 2"));
         } catch (RenException e) {
             fail();
         }
@@ -144,7 +156,8 @@ public class ParserTest {
     @Test
     public void parseCommand_unmark_exceptionThrown() {
         try {
-            Parser.parseCommand("unmark one", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("unmark one");
             fail();
         } catch (RenException e) {
             assertEquals("Please indicate the task no. in digits.", e.getMessage());
@@ -154,7 +167,8 @@ public class ParserTest {
     @Test
     public void parseCommand_list_success() {
         try {
-            assertEquals("", Parser.parseCommand("list", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("list"));
         } catch (RenException e) {
             fail();
         }
@@ -163,7 +177,8 @@ public class ParserTest {
     @Test
     public void parseCommand_find_success() {
         try {
-            assertEquals("", Parser.parseCommand("find test", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("find test"));
         } catch (RenException e) {
             fail();
         }
@@ -172,7 +187,8 @@ public class ParserTest {
     @Test
     public void parseCommand_find_exceptionThrown() {
         try {
-            Parser.parseCommand("find", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("find");
             fail();
         } catch (RenException e) {
             assertEquals("Please provide a search term.", e.getMessage());
@@ -182,7 +198,8 @@ public class ParserTest {
     @Test
     public void parseCommand_empty_success() {
         try {
-            assertEquals("", Parser.parseCommand("empty", stub));
+            Parser parser = new Parser(new TaskListStub());
+            assertEquals("", parser.parseCommand("empty"));
         } catch (RenException e) {
             fail();
         }
@@ -191,7 +208,8 @@ public class ParserTest {
     @Test
     public void parseCommand_blah_exceptionThrown() {
         try {
-            Parser.parseCommand("blah", stub);
+            Parser parser = new Parser(new TaskListStub());
+            parser.parseCommand("blah");
             fail();
         } catch (RenException e) {
             assertEquals("Please enter a supported command.", e.getMessage());

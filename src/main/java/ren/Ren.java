@@ -4,41 +4,26 @@ package ren;
  * Ren is a Task Manager program that helps a user keep track of and manage their tasks.
  */
 public class Ren {
-    /** Stores and manages the list of tasks added by the user. */
-    private final TaskList tasks;
-
-    /** Manages the interaction between user and Ren. */
-    private final Ui ui = new Ui();
+    /** Parser helps the Ren bot to interpret commands from the user. */
+    private final Parser parser;
 
     /**
      * Constructor for a Ren bot.
      */
     public Ren() {
-        tasks = new TaskList(new Storage("data/list.txt"));
+        TaskList tasks = new TaskList(new Storage("data/list.txt"));
+        parser = new Parser(tasks);
     }
 
     /**
-     * Runs the Ren program until the user exits with the 'bye' command.
+     * Interprets commands from the user.
+     *
+     * @param input The command from the user.
+     * @return String containing message from Ren after attempting to execute the command.
+     * @throws RenException If the execution failed.
      */
-    public void run() {
-        ui.greet();
-        String cmd = "";
-        while (!cmd.equals("bye")) {
-            cmd = ui.readCommand();
-
-            try {
-                ui.speak(Parser.parseCommand(cmd, this.tasks));
-            } catch (RenException e) {
-                ui.speak(e.toString());
-            }
-        }
-    }
-
-    /**
-     * Driver method for Ren.
-     */
-    public static void main(String[] args) {
-        new Ren().run();
+    public String interpret(String input) throws RenException {
+        return parser.parseCommand(input);
     }
 
     /**

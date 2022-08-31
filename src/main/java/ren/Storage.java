@@ -138,8 +138,9 @@ public class Storage {
         for (int i = 0; i < this.counter; i++) {
             // Split the task information into individual terms
             String[] data = dataArray.get(i).split("\\|");
+            String taskType = data[0];
             Task newTask = null;
-            switch (data[0]) {
+            switch (taskType) {
             case "T":
                 newTask = Todo.readData(data);
                 break;
