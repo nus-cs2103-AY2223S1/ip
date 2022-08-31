@@ -1,4 +1,4 @@
-package duke;
+package duke.exception;
 
 /**
  * A specified Exception for this project.

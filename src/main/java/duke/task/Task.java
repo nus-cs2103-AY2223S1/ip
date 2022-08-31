@@ -1,4 +1,6 @@
-package duke;
+package duke.task;
+
+import duke.exception.DukeException;
 
 /**
  * Abstract Task class which can be represented in the form of ToDo, Event and DeadLine.

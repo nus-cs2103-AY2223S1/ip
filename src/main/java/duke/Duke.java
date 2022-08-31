@@ -1,5 +1,10 @@
 package duke;
 
+import duke.command.CommandManager;
+import duke.gui.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
+
 /**
  * Contains the methods and attributes necessary for Duke.
  */

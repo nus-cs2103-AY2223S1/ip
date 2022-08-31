@@ -1,4 +1,4 @@
-package duke;
+package duke.gui;
 
 /**
  * Stores the format for a better viewing experience in Command Line Interface.

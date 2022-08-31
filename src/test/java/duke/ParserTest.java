@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import duke.command.CommandType;
+import duke.parser.Parser;
+
 public class ParserTest {
     @Test
     public void validCommandTest() {

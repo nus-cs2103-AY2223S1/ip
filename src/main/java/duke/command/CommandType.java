@@ -1,4 +1,4 @@
-package duke;
+package duke.command;
 
 /**
  * Stores the different types of command words.

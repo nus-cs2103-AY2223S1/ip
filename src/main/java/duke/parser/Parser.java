@@ -1,4 +1,6 @@
-package duke;
+package duke.parser;
+
+import duke.command.CommandType;
 
 /**
  * A class that parse the user input into the respective commands.

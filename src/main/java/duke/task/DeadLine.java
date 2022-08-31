@@ -1,34 +1,39 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.exception.DukeException;
+
 /**
- * Represents an event task which will occur on a certain date.
+ * Represents a deadline task which needs to be completed by a certain date.
  */
-public class Event extends Task {
+public class DeadLine extends Task {
     private LocalDate eventDate = null;
 
     /**
-     * Adds the description and the deadline of a event.
-     * The userInput argument must contain a description of the event, followed by a
+     * Adds the description and the deadline of a task.
+     * The userInput argument must contain a description of the deadline, followed by a
      * date in the format yyyy-mm-dd or yyyy/mm/dd.
      * <p>
      * If the date format is not recognised, or the description is empty, the function will throw a DukeException.
      *
-     * @param userInput the String containing the description and date of an event
+     * @param userInput a String containing the description and deadline of a task
      * @throws DukeException
      */
     public void addName(String userInput) throws DukeException {
-        if (userInput.length() <= 6) {
-            throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+        if (userInput.length() <= 9) {
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
-        int index = userInput.indexOf("/at") - 1;
-        if (index <= 5) {
-            throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
+
+        int index = userInput.indexOf("/by") - 1;
+
+        if (index <= 8) {
+            throw new DukeException("OOPS!!! Please indicate when the deadline is due with '/by'.");
         }
-        super.addName(userInput.substring(6, index));
+
+        super.addName(userInput.substring(9, index));
         try {
             this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
         } catch (DateTimeParseException e) {
@@ -45,7 +50,7 @@ public class Event extends Task {
      */
     @Override
     public String getTask() {
-        return String.format("E | " + super.getTask() + " | " + this.eventDate);
+        return String.format("D | " + super.getTask() + " | " + this.eventDate);
     }
 
     /**
@@ -57,7 +62,7 @@ public class Event extends Task {
      */
     @Override
     public String getStatus() {
-        return String.format("[E]%s (at: %s)", super.getStatus(),
+        return String.format("[D]%s (by: %s)", super.getStatus(),
                 this.eventDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }

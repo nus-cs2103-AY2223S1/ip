@@ -1,4 +1,4 @@
-package duke;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +16,7 @@ public class Storage {
      *
      * @param filePath the path of the file the user wishes to read and write to
      */
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
 
     }

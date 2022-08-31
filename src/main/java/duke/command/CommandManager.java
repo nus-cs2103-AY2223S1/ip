@@ -1,6 +1,15 @@
-package duke;
+package duke.command;
 
 import java.io.IOException;
+
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.DeadLine;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * A manager class which identifies the command input by the user and process it accordingly.
@@ -16,7 +25,7 @@ public class CommandManager {
      * @param storage the storage object which handles reading and writing of data
      * @return the reply in response to the input
      */
-    String processCommand(TaskList tasks, String userInput, Storage storage) {
+    public String processCommand(TaskList tasks, String userInput, Storage storage) {
         Task newTask = null;
         CommandType type = Parser.parse(userInput);
         String reply = "";

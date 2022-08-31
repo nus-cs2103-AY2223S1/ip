@@ -1,8 +1,10 @@
-package duke;
+package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
 
 /**
  * Contains the list of tasks for Duke.
