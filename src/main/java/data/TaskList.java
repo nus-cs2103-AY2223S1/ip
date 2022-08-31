@@ -1,7 +1,5 @@
 package data;
 
-import data.Task;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +30,22 @@ public class TaskList implements Serializable {
     public Task add(Task task) {
         tasks.add(task);
         return task;
+    }
+
+    public String[] findAndReturnStringArr(String searchString) {
+        List<Task> results = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.contains(searchString)) {
+                results.add(t);
+            }
+        }
+
+        String[] outputStrings = new String[results.size() + 1];
+        outputStrings[0] = "Here are the matching tasks in your list:";
+        for (int i = 0; i < results.size(); i++) {
+            outputStrings[i + 1] = (i + 1) + ". " + results.get(i).toString();
+        }
+        return outputStrings;
     }
 
     public int size() {

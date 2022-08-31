@@ -19,6 +19,10 @@ public abstract class Task implements Serializable {
         return this.isDone;
     }
 
+    public boolean contains(String substring) {
+        return this.title.contains(substring);
+    }
+
     @Override
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "] " + title;
