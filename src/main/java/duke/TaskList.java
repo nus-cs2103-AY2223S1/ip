@@ -83,7 +83,7 @@ public class TaskList {
         }
 
         taskList.get(index).markAsDone();
-        UI.printResponse(UI.markAsDone + taskList.get(index).toString() +"\n");
+        UI.printResponse(UI.markAsDone + taskList.get(index).toString());
     }
 
     /**
@@ -100,7 +100,7 @@ public class TaskList {
         }
 
         taskList.get(index).markAsNotDone();
-        UI.printResponse(UI.markAsNotDone + taskList.get(index).toString() + "\n");
+        UI.printResponse(UI.markAsNotDone + taskList.get(index).toString());
     }
 
     /**
