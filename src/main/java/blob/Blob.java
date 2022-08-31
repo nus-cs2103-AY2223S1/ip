@@ -77,13 +77,28 @@ public class Blob {
         System.exit(0);
     }
 
-    /**
-     * Starts the main application
-     *
-     * @param args The additional parameters to start the application with (not used)
-     */
-    public static void main(String[] args) {
-        Blob blob = new Blob("data/tasks.txt");
-        blob.start();
+    public String[] getResponse(String input) {
+        try {
+            Command command = parser.parseUserInput(input);
+            CommandResult result;
+
+            if (command.isByeCommand()) {
+                end();
+            }
+
+            if (command.isTaskCommand()) {
+                TaskCommand taskCommand = (TaskCommand) command;
+                taskCommand.setTaskList(taskList);
+                result = taskCommand.execute();
+                storage.saveTaskList(taskList);
+            } else {
+                result = command.execute();
+            }
+
+            return result.getResultMessages();
+
+        } catch (BlobException exception) {
+            return exception.getBlobMessages();
+        }
     }
 }
