@@ -1,7 +1,5 @@
 package scruffles;
 
-import java.io.FileNotFoundException;
-
 /**
  * This is the class that is used to hold information regarding tasks tracked by Scruffles
  *

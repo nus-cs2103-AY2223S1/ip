@@ -178,6 +178,31 @@ public class TaskList {
     }
 
     /**
+     * Finds a task whose name contains the given keyword in the TaskList
+     *
+     * @param input the input string of the message
+     */
+    public void find(String input) {
+        try {
+            if (input.equals("find") || input.equals("find ")) {
+                throw new DescriptionEmptyException("grrrr >:( what do you want to find woof woof!");
+            } else {
+                String keyword = input.replace("find ", "");
+                String output = "woof here are the tasks i found that have this keyword woof:";
+                for (int i = 0; i < tasks.size(); i++) {
+                    Task task = tasks.get(i);
+                    if (task.taskName.contains(keyword)) {
+                        output += "\n" + task.toString();
+                    }
+                }
+                System.out.println(output);
+            }
+        } catch (DescriptionEmptyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
      * Displays the list in the program
      *
      * @return the list of tasks as a string

@@ -29,6 +29,8 @@ public class Parser {
             tasks.add(input, Scruffles.Type.EVENT);
         } else if (input.startsWith("delete")) {
             tasks.delete(input);
+        } else if (input.startsWith("find")) {
+            tasks.find(input);
         } else {
             throw new UnknownArgumentException(input);
         }
