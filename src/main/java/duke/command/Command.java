@@ -1,8 +1,6 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.*;
 
 /**
  * Command runs certain commands input by user.
@@ -31,5 +29,6 @@ public abstract class Command {
      * @param ui Ui dealing with user interaction.
      * @param storage storage loading and saving tasks.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws InvalidIndexException,
+            InvalidDateException;
 }

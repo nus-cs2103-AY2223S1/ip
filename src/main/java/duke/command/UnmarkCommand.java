@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.InvalidIndexException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -23,8 +24,13 @@ public class UnmarkCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws InvalidIndexException {
+        if (indexToUnmark < 0 || indexToUnmark > tasks.getSize()) {
+            throw new InvalidIndexException();
+        }
         tasks.getTask(indexToUnmark).markAsUndone();
-        ui.showUnmarkMessage(tasks.getTask(indexToUnmark));
+        storage.save(tasks.getTasks());
+        return String.format("OK, I've marked this task as not done yet:\n" +
+                "%s", tasks.getTask(indexToUnmark).toString());
     }
 }

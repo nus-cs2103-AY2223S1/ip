@@ -116,33 +116,37 @@ public class Storage {
      * @param tasks ArrayList containing tasks.
      * @throws IOException
      */
-    public void save(ArrayList<Task> tasks) throws IOException {
-        ArrayList<String> stringTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            switch (task.getTaskType()) {
-            case "T": {
-                String data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
-                stringTasks.add(data);
-                break;
+    public void save(ArrayList<Task> tasks) {
+        try {
+            ArrayList<String> stringTasks = new ArrayList<>();
+            for (Task task : tasks) {
+                switch (task.getTaskType()) {
+                    case "T": {
+                        String data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
+                        stringTasks.add(data);
+                        break;
+                    }
+                    case "D": {
+                        String data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
+                        stringTasks.add(data);
+                        break;
+                    }
+                    case "E": {
+                        String data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
+                        stringTasks.add(data);
+                        break;
+                    }
+                    default:
+                        break;
+                }
             }
-            case "D": {
-                String data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
-                stringTasks.add(data);
-                break;
+            FileWriter fileWriter = new FileWriter(String.valueOf(relativeFilePath));
+            for (String stringTask : stringTasks) {
+                fileWriter.write(stringTask + System.lineSeparator());
             }
-            case"E": {
-                String data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
-                stringTasks.add(data);
-                break;
-            }
-            default:
-                break;
-            }
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        FileWriter fileWriter = new FileWriter(String.valueOf(relativeFilePath));
-        for (String stringTask : stringTasks) {
-            fileWriter.write(stringTask + System.lineSeparator());
-        }
-        fileWriter.close();
     }
 }

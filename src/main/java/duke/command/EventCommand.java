@@ -1,9 +1,12 @@
 package duke.command;
 
+import duke.InvalidDateException;
 import duke.task.Event;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
+import java.time.DateTimeException;
 
 /**
  * EventCommand adds an Event to tasks.
@@ -27,9 +30,19 @@ public class EventCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Event event = new Event(eventDescription, at);
-        tasks.addToTaskList(event);
-        ui.showAddTaskMessage(tasks, event);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws InvalidDateException {
+        try {
+            Event event = new Event(eventDescription, at);
+            tasks.addToTaskList(event);
+            storage.save(tasks.getTasks());
+            return String.format("Got it. I've added this task:\n" +
+                            "added: %s\n" +
+                            "Now you have %s task%s in the list.",
+                    event.toString(),
+                    String.valueOf(tasks.getSize()),
+                    tasks.getSize() == 1 ? "" : "s");
+        } catch (DateTimeException e) {
+            throw new InvalidDateException();
+        }
     }
 }
