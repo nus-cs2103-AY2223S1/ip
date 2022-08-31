@@ -20,18 +20,20 @@ public abstract class Task {
 
     /**
      * Marks this task as done
+     * @return An output message
      */
-    public void mark() {
+    public String mark() {
         this.isDone = true;
-        System.out.println(String.format("Nice! I've marked this task as done:\n\t%s", this));
+        return String.format("Nice! I've marked this task as done:\n\t%s", this);
     }
 
     /**
      * Marks this task as not done
+     * @return An output message
      */
-    public void unmark() {
+    public String unmark() {
         this.isDone = false;
-        System.out.println(String.format("Ok, I've marked this task as not done yet:\n\t%s", this));
+        return String.format("Ok, I've marked this task as not done yet:\n\t%s", this);
     }
 
     /**
