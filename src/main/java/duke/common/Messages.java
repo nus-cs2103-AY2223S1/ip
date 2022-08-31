@@ -2,8 +2,9 @@ package duke.common;
 
 /**
  * Represents a class that stores all the standard messages used in the program.
- * Inspiration taken from referenced addressbook program.
- * <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook/common">...</a>
+ * Inspiration taken from referenced
+ * <a href="https://github.com/se-edu/addressbook-level2/tree/master/src/seedu/addressbook/common">addressbook</a>
+ * program.
  *
  * @author Huang Yuchen
  * @author hyuchen@u.nus.edu
