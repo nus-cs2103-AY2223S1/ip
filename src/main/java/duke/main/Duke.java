@@ -1,18 +1,19 @@
 package duke.main;
 
-import duke.task.Task;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Todo;
+import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
-import duke.exception.DukeException;
-
-import java.util.ArrayList;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+
 
 /**
  * Represents the karen chatbot.
@@ -23,6 +24,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates instance of duke.
+     *
+     * @param filePath Location to create the storage
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);

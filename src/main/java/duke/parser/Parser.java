@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Parser {
     protected String input;
-    protected String[] inputArr ;
+    protected String[] inputArr;
 
     public Parser(String input) {
         this.input = input;
