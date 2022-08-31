@@ -67,7 +67,7 @@ public class Parser {
             try {
                 String deleteItem = splitCommand[1];
                 int itemNumber = Integer.parseInt(deleteItem);
-                return new DeleteCommand(itemNumber);
+                return new DeleteCommand(itemNumber - 1);
             } catch (NumberFormatException nfe) {
                 throw new DukeNumberFormatException();
             }
