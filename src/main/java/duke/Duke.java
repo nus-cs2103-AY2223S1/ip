@@ -4,20 +4,21 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
+
     private Scanner sc;
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasklist;
-    private Ui ui;
+    private final Ui ui;
+    private final static String PATH = "data/tasks.txt";
 
     /**
      * Constructor for Duke.
      * Loads if there are any existing tasks in storage.
      *
-     * @param path filepath
      */
-    public Duke(String path) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(path);
+        this.storage = new Storage(PATH);
         try {
             this.tasklist = new TaskList();
             storage.load();
@@ -27,6 +28,48 @@ public class Duke {
             ui.printError(e.getMessage());
         }
     }
+
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Handler handler = new Handler(tasklist, ui);
+            if (input.equals("bye")) {
+                storage.save();
+                return ui.bye();
+            } else if (input.equals("list")) {
+                storage.save();
+                return ui.showList();
+            } else if (input.startsWith("done")) {
+                storage.save();
+                return handler.handleMark(input);
+            } else if (input.startsWith("todo")) {
+                storage.save();
+                return handler.handleToDo(input);
+            } else if (input.startsWith("deadline")) {
+                storage.save();
+                return handler.handleDeadline(input);
+            } else if (input.startsWith("event")) {
+                storage.save();
+                return handler.handleEvent(input);
+            } else if (input.startsWith("delete")) {
+                storage.save();
+                return handler.handleDelete(input);
+            } else if (input.startsWith("find")) {
+                storage.save();
+                return handler.handleFind(input);
+            } else {
+                throw new DukeUnknownTaskException();
+            }
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
+
+    }
+
 
     /**
      * Run Duke programme
@@ -69,6 +112,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Duke().run();
     }
 }
