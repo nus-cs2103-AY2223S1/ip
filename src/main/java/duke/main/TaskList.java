@@ -1,9 +1,9 @@
 package duke.main;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Class encapsulating task list and operations on task list.
@@ -104,6 +104,9 @@ public class TaskList {
             case UNMARK: {
                 task.markAsNotdone();
                 break;
+            }
+            default: {
+                throw new DukeException("Unexpected error in markUnmarkTask");
             }
             }
         } catch (DukeException de) {

@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.main.DateTimeFormatUtils;
-
 import java.time.LocalDateTime;
+
+import duke.main.DateTimeFormatUtils;
 
 /**
  * Class handling the event task type.
