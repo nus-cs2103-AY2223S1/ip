@@ -7,40 +7,6 @@ import java.util.Scanner;
 public class UI {
     private String currentInput;
     private String response;
-    /**
-     * Greets user.
-     */
-    public  void greetUser() {
-        String logo = "_______     _\n"
-                + "|  ___|    | |\n"
-                + "|  |_  ____| |_____ ____  _  __\n"
-                + "|   _|/ _  \\ | ___|/  _ \\| |/  \\\n"
-                + "|  | | |_| | | |___| |_| |  / \\ |\n"
-                + "|__|  \\__|_|_|____|\\____/|_|  |_|\n";
-        System.out.println("Hello from");
-        System.out.println(logo);
-        // prompt user
-        System.out.println("What would you like to do next?");
-        System.out.print(">> ");
-        this.response = "Hi";
-    }
-
-    /**
-     * Reads command entered
-     * @return
-     */
-    public String readCommand() {
-        Scanner in = new Scanner(System.in);
-        currentInput = in.nextLine();
-        return currentInput;
-    }
-
-    /**
-     * Prints user prompt symbol >>.
-     */
-    public void showLine() {
-        System.out.print(">>");
-    }
 
     /**
      * Prints errorMsg,
@@ -48,7 +14,6 @@ public class UI {
      * @param errorMsg Error message to print.
      */
     public void showError(String errorMsg) {
-        System.out.println(errorMsg);
         this.response  = errorMsg;
     }
 
@@ -56,7 +21,6 @@ public class UI {
      * Prints when storage could not be synced.
      */
     public void showLoadingError() {
-        System.out.println("error loading");
         this.response = "error loading";
     }
 
@@ -65,8 +29,7 @@ public class UI {
      * @param msg Message to be included.
      */
     public void showMessage(String msg) {
-        System.out.println(msg);
-        this.response = "msg";
+        this.response = msg;
     }
 
     /**
@@ -74,7 +37,6 @@ public class UI {
      * with bye command.
      */
     public void showExitMessage() {
-        System.out.print("Thank you for swinging by :)");
         this.response = "Thank you for swinging by :)";
     }
 
@@ -83,10 +45,10 @@ public class UI {
      * help command.
      */
     public void showHelpMessage() {
-        System.out.println("Hi, it seems you are having trouble using Falcon, "
+        String msg = "Hi, it seems you are having trouble using Falcon, "
                 + "\ntry these command: "
-                + "\ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind");
-        this.response = "Help";
+                + "\ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind";
+        this.response = msg;
     }
 
     /**
