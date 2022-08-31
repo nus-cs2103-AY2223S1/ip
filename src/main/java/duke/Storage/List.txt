@@ -4,3 +4,4 @@ T|0|a
 T|0|a
 T|0|readbook
 T|0|borrow book
+T|1|a
