@@ -48,9 +48,8 @@ public class Ui {
      * @param s The String to be formatted.
      */
     public static void formatMessage(String s) {
-        String result = "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-                + s + "\n"
-                + "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        String result = "  -\n"
+                + s + "\n-";
         System.out.println(result);
     }
 
@@ -60,10 +59,8 @@ public class Ui {
      * @param s The error message to be formatted.
      */
     public static void printErrorMessage(String s) {
-        String result = "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-                +
-                s + "\n"
-                + "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        String result = "  -\n"
+                + s + "\n-";
         System.err.println(result);
     }
 
