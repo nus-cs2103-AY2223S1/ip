@@ -4,10 +4,17 @@ import java.util.*;
 public class TaskList {
     private List<Task> list;
 
+    /*
+     * Constructor for class TaskList
+     */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
+    /*
+     * converts the contents of the list of tasks to String
+     * @return String containing all items in the list
+     */
     @Override 
     public String toString(){
         String itemString = "";
@@ -19,10 +26,19 @@ public class TaskList {
         return itemString;
     }
 
+    /*
+     *  getter for task objects in the list. 
+     * @return List<Task>
+     */
     public List<Task> getTaskList() {
         return this.list;
     }
 
+    /*
+     * sets the indicated task as completed
+     * @param number the order of the task
+     * @param ui the UI Object that prints messages to the console
+     */
     public void markAsDone(int number, UI ui){
         Task item = list.get(number - 1);
         item.mark();
@@ -30,11 +46,21 @@ public class TaskList {
         list.set(number - 1, item);
     }
 
+    /*
+     * Deletes specified task from list
+     * @param number the order of the list to be removed
+     * @param ui the UI object that prints to screen
+     */
     public void deleteFromList(int number, UI ui) {
         Task removed = list.remove(number);
         ui.rmvMsg(removed, list.size());
     }
 
+    /*
+     * Unmarks task from list given a specified number
+     * @param number the index of the task to be unmarked
+     * @param ui the UI Object that prints to screen
+     */
     public void unmarkTask(int number, UI ui) {
         Task item = list.get(number - 1);
         item.unmark();

@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 
 public class Storage {
+
+    /*
+     * reads file that stores the existing tasks and parses it
+     * @return Task<List> list of tasks read from duke.txt
+     */
     public TaskList taskListReader(){
         File taskFile = new File("./data/duke.txt");
         TaskList taskList = new TaskList();
@@ -30,6 +35,10 @@ public class Storage {
         return taskList;
     }
 
+    /*
+     * Writes the existing list of tasks back into duke.txt
+     * @param taskList the existing list of tasks
+     */
     public void taskListWriter(TaskList taskList) {
         File taskFile = new File("./data/duke.txt");
         String taskString = getTaskString(taskList);
