@@ -1,21 +1,29 @@
 package Duke.task;
 
-import Duke.DukeException;
-
 import java.io.File;
 import java.io.FileWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Duke.DukeException;
 
+/**
+ * Represents the class responsible for saving and
+ * loading list of tasks to and from the Tasks.txt file
+ */
 public class TaskStorage {
     private String filePath;
 
     public TaskStorage(String filePath) {
         this.filePath = filePath;
     }
+
+    /**
+     * Saves the current list of tasks into the Tasks.txt file
+     *
+     * @param taskList
+     */
     public void saveTask(TaskList taskList) {
 
         try {
@@ -51,6 +59,11 @@ public class TaskStorage {
         }
     }
 
+    /**
+     * Reads the Tasks.txt file and loads a list of tasks to be managed by Duke
+     *
+     * @return a TaskList
+     */
     public TaskList loadTask() {
         ArrayList<Task> tempList = new ArrayList<>();
         try {

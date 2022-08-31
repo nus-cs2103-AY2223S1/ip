@@ -2,12 +2,15 @@ package Duke.task;
 
 import Duke.DukeException;
 
+/**
+ * {@inheritDoc}
+ */
 public class Todo extends Task {
     public Todo(String description, boolean isDone) throws DukeException {
-           super(description, isDone);
-           if (description.equals("")) {
-               throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-           }
+        super(description, isDone);
+        if (description.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
     }
 
     @Override

@@ -1,9 +1,9 @@
 package Duke.util;
 
+import java.util.ArrayList;
+
 import Duke.task.Task;
 import Duke.task.TaskList;
-
-import java.util.ArrayList;
 
 /**
  * Controls what output to be printed to the console for the user to see
@@ -31,6 +31,7 @@ public class Ui {
 
     /**
      * Prints the error message
+     *
      * @param error the error message to be printed
      */
     public void showError(String error) {
@@ -39,37 +40,41 @@ public class Ui {
 
     /**
      * Prints out the added task and the updated length of the task list
+     *
      * @param task the task added
      * @param tasks the list of task being modified
      */
     public void printAddedTask(Task task, TaskList tasks) {
-        System.out.println( "Got it. I've added this task: \n" + task.toString() +
-                "\nNow you have " + tasks.getLength()
+        System.out.println("Got it. I've added this task: \n" + task.toString()
+                + "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
     }
 
     /**
      * Prints out when a task has been deleted, the task deleted
      * and the updated length of the task list
+     *
      * @param task
      * @param tasks
      */
     public void printDeletedTask(Task task, TaskList tasks) {
-        System.out.println( " Noted. I've removed this task: \n" + task.toString() +
-                "\nNow you have " + tasks.getLength()
+        System.out.println(" Noted. I've removed this task: \n" + task.toString()
+                + "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
     }
 
     /**
      * Prints out a message that responds to the user input
+     *
      * @param response to be printed
      */
     public void printResponse(String response) {
-       System.out.println(response);
+        System.out.println(response);
     }
 
     /**
      * Prints out all the tasks in the task list
+     *
      * @param tasks the list to be printed
      */
     public void listTasks(ArrayList<Task> tasks) {
@@ -82,6 +87,7 @@ public class Ui {
 
     /**
      * Prints out the matching tasks
+     *
      * @param tasks ArrayList of matching Tasks
      */
     public void printFoundTask(ArrayList<Task> tasks) {

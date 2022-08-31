@@ -34,8 +34,7 @@ public class Duke {
                 String input = userInput.nextLine();
                 handler.handleResponse(input);
             }
-        }
-        catch (DukeException e) {
+        } catch (DukeException e) {
             ui.showError(e.getMessage());
         }
     }
