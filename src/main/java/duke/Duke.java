@@ -1,11 +1,13 @@
 package duke;
 
+import java.io.FileNotFoundException;
+
 import duke.command.Command;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
 
-import java.io.FileNotFoundException;
+
 
 
 /**
@@ -51,16 +53,13 @@ public class Duke {
                 System.exit(0);
             }
             return bobResponse;
-
-        } catch (IncompleteInputException e){
+        } catch (IncompleteInputException e) {
             return e.getMessage();
         } catch (InvalidInputException e) {
             return e.getMessage();
-        } catch (InvalidCommandException e)  {
+        } catch (InvalidCommandException e) {
             return e.getMessage();
         }
     }
-
-
 
 }
