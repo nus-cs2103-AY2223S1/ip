@@ -1,8 +1,6 @@
 package duke;
 
-import java.util.Scanner;
-
-public class Duke {
+public class Duke  {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -19,68 +17,65 @@ public class Duke {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
-    public void run() {
-        this.ui.showWelcome();
-        Scanner scanner = new Scanner(System.in);
+    public static String getWelcome() {
+        return Ui.showWelcome();
+    }
+
+    public String getResponse(String input) {
+        String reply = "";
         Keyword keyword;
+        String[] sections = input.split(" ", 2);
 
-        while (true) {
-            try {
-                keyword = this.parser.getKeyword(scanner.next());
-            } catch (DukeException e) {
-                this.ui.showError(e.getMessage());
-                this.parser.ignoreLine(scanner);
-                continue;
-            }
+        try {
+            keyword = this.parser.getKeyword(sections[0]);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
 
-            if (keyword == Keyword.BYE) {
-                break;
-            } else if (keyword != null) {
-                switch (keyword) {
+        if (keyword != null) {
+            switch (keyword) {
                 case LIST:
-                    this.ui.showTasks(this.tasks);
+                    reply = this.tasks.toString();
                     break;
                 case MARK:
-                    this.tasks.mark(this.parser.getIndex(scanner));
+                    reply = this.tasks.mark(this.parser.getIndex(sections[1]));
+                    this.storage.updateTasks(this.tasks.getList());
                     break;
                 case UNMARK:
-                    this.tasks.unmark(this.parser.getIndex(scanner));
+                    reply = this.tasks.unmark(this.parser.getIndex(sections[1]));
+                    this.storage.updateTasks(this.tasks.getList());
                     break;
                 case TODO:
-                    String description = scanner.nextLine();
-                    if (description.length() > 0) {
-                        description = description.substring(1);
-                    }
+                    String description = sections[1];
                     try {
-                        this.tasks.add(new Todo(description, false));
+                        reply = this.tasks.add(new Todo(description, false));
+                        this.storage.updateTasks(this.tasks.getList());
                     } catch (DukeException e) {
-                        this.ui.showError(e.getMessage());
+                        reply = e.getMessage();
                     }
                     break;
                 case DEADLINE:
-                    this.tasks.add(this.parser.createDeadline(scanner.nextLine().substring(1)));
+                    reply = this.tasks.add(this.parser.createDeadline(sections[1]));
+                    this.storage.updateTasks(this.tasks.getList());
                     break;
                 case EVENT:
-                    this.tasks.add(this.parser.createEvent(scanner.nextLine().substring(1)));
+                    reply = this.tasks.add(this.parser.createEvent(sections[1]));
+                    this.storage.updateTasks(this.tasks.getList());
                     break;
                 case DELETE:
-                    this.tasks.delete(this.parser.getIndex(scanner));
+                    reply = this.tasks.delete(this.parser.getIndex(sections[1]));
+                    this.storage.updateTasks(this.tasks.getList());
                     break;
                 case FIND:
-                    this.ui.showFoundTasks(this.tasks.findTasks(scanner.nextLine().substring(1)));
+                    reply = this.ui.showFoundTasks(this.tasks.findTasks(sections[1]));
                     break;
+                case BYE:
+                    this.storage.updateTasks(this.tasks.getList());
+                    reply = this.ui.showBye();
                 default:
                     break;
-                }
-            } else {
-                break;
             }
         }
-        this.storage.updateTasks(this.tasks.getList());
-        this.ui.showBye();
-    }
-
-    public static void main(String[] args) {
-        new Duke("./data/duke.txt").run();
+        return reply;
     }
 }
