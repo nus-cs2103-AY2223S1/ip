@@ -102,6 +102,8 @@ public class Duke extends Application{
 
         // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        //padding between each dialogbox
+        dialogContainer.setSpacing(55);
 
         userInput.setPrefWidth(325.0);
 
