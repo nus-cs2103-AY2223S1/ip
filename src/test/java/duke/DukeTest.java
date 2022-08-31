@@ -3,10 +3,15 @@ package duke;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.PrintStream;
 import java.util.List;
 
+/**
+ * A class for testing Duke's functionalities.
+ */
 public class DukeTest {
+    /**
+     * Tests whether TaskList handles invalid task creation correctly.
+     */
     @Test
     public void addInvalidTaskTest() {
         DukeException noTaskNameException = Assertions.assertThrows(DukeException.class, () -> {
@@ -28,6 +33,9 @@ public class DukeTest {
         Assertions.assertEquals("Failed to create event: Invalid number of arguments", invalidArgumentsException.getMessage());
     }
 
+    /**
+     * Tests whether Storage loads and saves tasks correctly (no duplicate/lost data between consecutive saves/loads).
+     */
     @Test
     public void loadAndSaveTest() {
         Assertions.assertDoesNotThrow(Storage::loadData);
@@ -47,6 +55,9 @@ public class DukeTest {
         Assertions.assertEquals(tasksStringsAfterSecondLoad, tasksStringsAfterThirdLoad);
     }
 
+    /**
+     * Tests whether Parser handles invalid input, and uncommon but valid input correctly.
+     */
     @Test
     public void parseInputTest() {
         DukeException invalidCommandException = Assertions.assertThrows(DukeException.class, () -> {

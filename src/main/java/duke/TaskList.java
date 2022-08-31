@@ -11,10 +11,21 @@ import java.util.List;
 public class TaskList {
     private static List<Task> tasks = new ArrayList<>();
 
+    /**
+     * Gets the total number of tasks in the task list.
+     *
+     * @return The total number of tasks in the task list.
+     */
     public static int getTaskCount() {
         return tasks.size();
     }
 
+    /**
+     * Generates a list of string representations of tasks meant for display.
+     * Intended to be used by Ui for displaying all tasks.
+     *
+     * @return A list of strings that represent task information to be displayed.
+     */
     public static List<String> getTasksStrings() {
         ArrayList<String> tasksStrings = new ArrayList<>();
 
@@ -175,6 +186,12 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Converts all tasks to their save string format and returns it as a list.
+     * Intended to be used by Storage to save tasks.
+     *
+     * @return A list of strings which can be used to reconstruct tasks.
+     */
     public static List<String> getTasksSaveStrings() {
         ArrayList<String> saveStrings = new ArrayList<>();
 
@@ -185,6 +202,9 @@ public class TaskList {
         return saveStrings;
     }
 
+    /**
+     * Removes all tasks from the task list.
+     */
     public static void clearTaskList() {
         tasks.clear();
     }
