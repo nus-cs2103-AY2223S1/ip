@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
         ui.printMultiMsg(new String[]{
                 "Noted. I've removed this task:",
                 "  " + task,
-                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
         });
         storage.save(tasks);
     }

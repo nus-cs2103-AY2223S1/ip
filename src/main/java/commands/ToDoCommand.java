@@ -23,7 +23,7 @@ public class ToDoCommand extends Command {
         ui.printMultiMsg(new String[]{
                 "Got it. I've added this task:",
                 "  " + task,
-                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
         });
         storage.save(tasks);
     }

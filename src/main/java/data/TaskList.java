@@ -32,7 +32,7 @@ public class TaskList implements Serializable {
         return task;
     }
 
-    public int size() {
+    public int getSize() {
         return tasks.size();
     }
 
