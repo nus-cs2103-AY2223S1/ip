@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 import task.*;
 
-public class FileReader {
+public class Storage {
 
     private File file;
     private Scanner sc;
-    private ToDoList list;
+    private TaskList tasks;
 
     /**
      * Creates a FileReader that loads and stores data Executes the command.
@@ -24,17 +24,17 @@ public class FileReader {
      * @return a FileReader instance
      * @throws IOException
      */
-    public FileReader(String filePath) throws IOException {
+    public Storage(String filePath) throws IOException {
         try {
             this.file = new File("./Duke.txt");
             this.sc = new Scanner(file);
-            this.list = new ToDoList();
+            this.tasks = new TaskList();
         } catch (FileNotFoundException e) {
             String TEXT_FILE = "./Duke.txt";
             Path textFilePath = Paths.get(TEXT_FILE);
             Files.createFile(textFilePath);
             this.sc = new Scanner(file);
-            this.list = new ToDoList();
+            this.tasks = new TaskList();
         }
     }
 
@@ -43,20 +43,20 @@ public class FileReader {
      *
      * @return ToDoList that contains the previously added tasks.
      */
-    public ToDoList load() {
+    public TaskList load() {
         while (sc.hasNext()) {
             String line = sc.nextLine();
             String[] details = line.split(" \\| ");
             Task t;
             switch (details[0]) {
                 case "D":
-                    t = new Deadlines(details[2], details[3]);
+                    t = new Deadline(details[2], details[3]);
                     break;
                 case "E":
-                    t = new Events(details[2], details[3]);
+                    t = new Event(details[2], details[3]);
                     break;
                 case "T":
-                    t = new ToDos(details[2]);
+                    t = new ToDo(details[2]);
                     break;
                 default:
                     t = new Task("unknown");
@@ -64,10 +64,10 @@ public class FileReader {
             if (details[1].equals("1")) {
                 t.setDone(true);
             }
-            list.addTask(t);
+            tasks.addTask(t);
         }
         sc.close();
-        return this.list;
+        return this.tasks;
     }
 
 }

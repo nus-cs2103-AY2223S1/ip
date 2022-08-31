@@ -1,6 +1,6 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
 public class FindCommand extends Command {
@@ -11,7 +11,7 @@ public class FindCommand extends Command {
         this.substring = substring;
     }
 
-    public void execute(ToDoList tasks, Ui ui) {
+    public void execute(TaskList tasks, Ui ui) {
         tasks.find(this.substring);
     }
 

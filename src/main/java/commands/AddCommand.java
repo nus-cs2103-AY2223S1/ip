@@ -1,6 +1,6 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
 import task.Task;
@@ -21,7 +21,7 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
-    public void execute(ToDoList tasks, Ui ui) {
+    public void execute(TaskList tasks, Ui ui) {
         tasks.addTask(task);
     }
 

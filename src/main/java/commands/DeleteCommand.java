@@ -1,9 +1,9 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
-import exceptions.InvalidIndex;
+import exceptions.InvalidIndexException;
 /**
  * Represents a command to delete a task to the list.
  */
@@ -20,8 +20,8 @@ public class DeleteCommand extends Command{
         this.index = index;
     }
 
-    public void execute(ToDoList list, Ui ui) throws InvalidIndex {
-        list.delete(this.index);
+    public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
+        tasks.delete(this.index);
     }
 
     public boolean isExit() {

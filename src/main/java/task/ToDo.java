@@ -6,9 +6,9 @@ import java.io.IOException;
 /**
  * Represents a Task, with no reference to date or time.
  */
-public class ToDos extends Task {
+public class ToDo extends Task {
 
-    public ToDos(String s) {
+    public ToDo(String s) {
         super(s);
     }
 

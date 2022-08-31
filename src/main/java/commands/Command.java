@@ -1,9 +1,9 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
-import exceptions.InvalidIndex;
+import exceptions.InvalidIndexException;
 
 /**
  * Represents a command to be performed by the chatbot.
@@ -13,11 +13,11 @@ public abstract class Command {
     /**
      * Executes the command.
      *
-     * @param list the ToDoList containing all the tasks.
+     * @param tasks the ToDoList containing all the tasks.
      * @param ui the Ui that interacts with users.
-     * @throws InvalidIndex
+     * @throws InvalidIndexException
      */
-    public abstract void execute(ToDoList list, Ui ui) throws InvalidIndex;
+    public abstract void execute(TaskList tasks, Ui ui) throws InvalidIndexException;
 
     /**
      * Returns true if command is an exit command,

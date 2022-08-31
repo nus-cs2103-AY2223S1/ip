@@ -1,6 +1,6 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
 /**
@@ -8,7 +8,7 @@ import byu.Ui;
  */
 public class NextCommand extends Command {
 
-    public void execute(ToDoList list, Ui ui) {
+    public void execute(TaskList tasks, Ui ui) {
     }
 
     public boolean isExit() {

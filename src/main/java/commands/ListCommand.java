@@ -1,17 +1,15 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
-
-import exceptions.InvalidIndex;
 
 /**
  * Represents a command to list all the tasks in the list.
  */
 public class ListCommand extends Command {
 
-    public void execute(ToDoList list, Ui ui) throws InvalidIndex {
-        list.list();
+    public void execute(TaskList tasks, Ui ui) {
+        tasks.list();
     }
 
     public boolean isExit() {

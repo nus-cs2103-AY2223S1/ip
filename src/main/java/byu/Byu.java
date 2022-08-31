@@ -9,8 +9,8 @@ import java.io.IOException;
  */
 public class Byu {
 
-    private FileReader storage;
-    private ToDoList tasks;
+    private Storage storage;
+    private TaskList tasks;
     private Ui ui;
 
     /**
@@ -22,7 +22,7 @@ public class Byu {
     public Byu(String filePath) {
         try {
             ui = new Ui();
-            storage = new FileReader(filePath);
+            storage = new Storage(filePath);
             tasks = storage.load();
         } catch (IOException e) {
         }

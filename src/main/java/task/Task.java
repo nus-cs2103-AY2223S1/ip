@@ -1,7 +1,5 @@
 package task;
 
-import exceptions.InvalidIndex;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,16 +9,16 @@ import java.io.IOException;
 public class Task {
 
     private String name;
-    private boolean done;
+    private boolean isDone;
 
 
     public Task(String s) {
         this.name = s;
-        this.done = false;
+        this.isDone = false;
     }
 
     public void setDone(boolean b) {
-        this.done = b;
+        this.isDone = b;
     }
 
     public String getName() {
@@ -28,7 +26,7 @@ public class Task {
     }
 
     public int getDoneInt() {
-        if (this.done) {
+        if (this.isDone) {
             return 1;
         } else {
             return 0;
@@ -41,7 +39,7 @@ public class Task {
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             return "[X] " + this.name;
         } else {
             return "[ ] " + this.name;
@@ -49,6 +47,6 @@ public class Task {
     }
 
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 }

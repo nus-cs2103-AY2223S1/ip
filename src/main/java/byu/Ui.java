@@ -28,7 +28,7 @@ public class Ui {
     }
 
     public void showError(String message) {
-        System.out.print("Ohno!" + message);
+        System.out.print("Ohno! " + message);
     }
 
     /**

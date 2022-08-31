@@ -1,7 +1,9 @@
 package commands;
 
-import byu.*;
-import exceptions.InvalidIndex;
+import byu.TaskList;
+import byu.Ui;
+
+import exceptions.InvalidIndexException;
 
 /**
  * Represents a command to mark a task as undone.
@@ -19,8 +21,8 @@ public class UnmarkCommand extends Command {
         this.index = index;
     }
 
-    public void execute(ToDoList list, Ui ui) throws InvalidIndex {
-        list.unmark(this.index);
+    public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
+        tasks.unmark(this.index);
     }
 
     public boolean isExit() {

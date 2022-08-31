@@ -1,18 +1,18 @@
 package commands;
 
-import byu.ToDoList;
+import byu.TaskList;
 import byu.Ui;
 
-import exceptions.InvalidIndex;
+import exceptions.InvalidIndexException;
 
 /**
  * Represents a command to exit the chatbot.
  */
 public class ByeCommand extends Command {
 
-    public void execute(ToDoList list, Ui ui) throws InvalidIndex {
+    public void execute(TaskList tasks, Ui ui) throws InvalidIndexException {
         ui.exit();
-        list.save();
+        tasks.save();
     }
 
     public boolean isExit() {

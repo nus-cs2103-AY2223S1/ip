@@ -1,27 +1,27 @@
 package byu;
 
-import exceptions.InvalidIndex;
+import exceptions.InvalidIndexException;
 import org.junit.jupiter.api.Test;
-import task.ToDos;
+import task.ToDo;
 import task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ToDoListTest {
+public class TaskListTest {
 
     @Test
     public void add_success() {
-        ToDoList list = new ToDoList();
-        Task t = new ToDos("sleep");
+        TaskList list = new TaskList();
+        Task t = new ToDo("sleep");
         list.addTask(t);
         assertEquals(1, list.getNumOfTasks());
     }
 
     @Test
-    public void mark_validIndex_success() throws InvalidIndex {
-        ToDoList list = new ToDoList();
-        Task t = new ToDos("sleep");
+    public void mark_validIndex_success() throws InvalidIndexException {
+        TaskList list = new TaskList();
+        Task t = new ToDo("sleep");
         list.addTask(t);
         list.mark(1);
         assertEquals(true, t.isDone());
@@ -30,12 +30,12 @@ public class ToDoListTest {
     @Test
     public void mark_invalidIndex_exceptionThrown() {
         try {
-            ToDoList list = new ToDoList();
-            Task t = new ToDos("sleep");
+            TaskList list = new TaskList();
+            Task t = new ToDo("sleep");
             list.addTask(t);
             list.mark(2);
             fail();
-        } catch (InvalidIndex e) {
+        } catch (InvalidIndexException e) {
             assertEquals("The task does not exist!", e.getMessage());
         }
     }

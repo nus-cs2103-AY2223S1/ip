@@ -1,3 +1,0 @@
-T | 1 | sleep
-T | 0 | jump
-T | 0 | jog

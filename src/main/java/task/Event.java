@@ -6,13 +6,13 @@ import java.io.IOException;
 /**
  * Represents an event with a specified date and time.
  */
-public class Events extends Task {
+public class Event extends Task {
 
     private static final char SYMBOL = 'E';
 
     private String period;
 
-    public Events(String s1, String s2) {
+    public Event(String s1, String s2) {
         super(s1);
         this.period = s2;
     }
