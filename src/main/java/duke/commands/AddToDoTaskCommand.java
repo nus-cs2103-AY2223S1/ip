@@ -19,6 +19,8 @@ import duke.models.task.ToDo;
  */
 public class AddToDoTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "todo";
+    public static final String COMMAND_DESCRIPTION = AddToDoTaskCommand.COMMAND_WORD
+            + " <description>: Adds a ToDo task with the corresponding description";
 
     private static final String ERROR_INVALID_TODO_TASK = "Use the 'todo' command together with a task "
             + "description!\nFor example: 'todo borrow book'";

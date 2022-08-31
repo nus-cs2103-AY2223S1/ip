@@ -14,6 +14,8 @@ import duke.managers.TaskManager;
  */
 public class ByeCommand implements Command {
     public static final String COMMAND_WORD = "bye";
+    public static final String COMMAND_DESCRIPTION = ByeCommand.COMMAND_WORD
+            + " : Terminates the application";
 
     private static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
 

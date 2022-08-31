@@ -22,6 +22,8 @@ import duke.utils.DukeValidator;
  */
 public class AddEventTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "event";
+    public static final String COMMAND_DESCRIPTION = AddEventTaskCommand.COMMAND_WORD
+            + " <description> /at <date>: Adds an Event task with the corresponding description and date";
 
     private static final String ERROR_INVALID_EVENT_TASK = "Use the 'event' command together with the "
             + "task description and date\nFor example: 'event project meeting /at 2022-12-02'";

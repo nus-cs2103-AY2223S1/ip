@@ -22,6 +22,8 @@ import duke.utils.DukeValidator;
  */
 public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "deadline";
+    public static final String COMMAND_DESCRIPTION = AddDeadlineTaskCommand.COMMAND_WORD
+            + " <description> /by <deadline>: Adds a Deadline task with the corresponding description and deadline";
 
     private static final String ERROR_INVALID_DEADLINE_TASK = "Use the 'deadline' command together with the "
             + "task description and deadline\nFor example: 'deadline return book /by 2022-12-02'";

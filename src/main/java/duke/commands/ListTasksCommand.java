@@ -28,6 +28,12 @@ import duke.utils.DukeValidator;
  */
 public class ListTasksCommand implements Command {
     public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_DESCRIPTION = ListTasksCommand.COMMAND_WORD
+            + " : Lists all the tasks\n\n"
+            + ListTasksCommand.COMMAND_WORD
+            + " /before <date>: Lists all the tasks occurring before the provided date\n\n"
+            + ListTasksCommand.COMMAND_WORD
+            + " /on <date>: Lists all the tasks occurring on the provided date";
 
     private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n"
             + "'/before' command together with a date in order to\n"

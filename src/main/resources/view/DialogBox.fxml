@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="390.0" style="-fx-border-color: #322F3D; -fx-padding: 8px; -fx-spacing: 8px;" type="HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="dialogText" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="317.0" style="-fx-background-color: #87556F; -fx-padding: 8px; -fx-background-radius: 8px;" textFill="WHITE" wrapText="true">

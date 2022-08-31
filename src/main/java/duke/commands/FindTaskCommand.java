@@ -20,10 +20,12 @@ import duke.models.task.Task;
  */
 public class FindTaskCommand implements Command {
     public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_DESCRIPTION = FindTaskCommand.COMMAND_WORD
+            + " <keyword1> <keyword2> ...: Finds the tasks from the list containing all provided keywords";
 
     private static final String ERROR_NO_SEARCH_KEYWORD = "Provide a search keyword to find the task!\n"
-            + "For example, use `find book` to find all tasks where it's\n"
-            + "description contains the word 'book'";
+            + "For example, use `find book mystery` to find all tasks where it's\n"
+            + "description contains the word 'book' and 'mystery'";
 
     private static final String MESSAGE_MATCHING_TASKS_FOUND = "Here are the matching tasks in your list:";
     private static final String MESSAGE_NO_MATCHING_TASKS_FOUND = "No matching tasks are found in your list!";

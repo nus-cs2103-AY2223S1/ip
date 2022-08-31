@@ -1,17 +1,25 @@
 package duke.ui;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import duke.Duke;
+import duke.managers.ParserManager;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 /**
  * @author Emily Ong Hui Qi
@@ -29,6 +37,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     @FXML
     private Label appLabel;
+    @FXML
+    private Accordion commandsAccordion;
 
     private Duke duke;
 
@@ -57,8 +67,39 @@ public class MainWindow extends AnchorPane {
         this.appLabel.setText(Duke.NAME);
         this.disableSendButtonIfEmptyUserInput();
 
+        Map<String, String> commandsMap = ParserManager.getAllCommands();
+        this.commandsAccordion.getPanes().addAll(
+            commandsMap.keySet().stream().map(commandWord -> {
+                Label label = new Label(commandsMap.get(commandWord));
+                label.setWrapText(true);
+                label.setFont(new Font("Monaco", 12));
+                label.setTextAlignment(TextAlignment.LEFT);
+                label.setMinHeight(100);
+                label.setPadding(new Insets(8.0));
+                return new TitledPane(commandWord, label);
+            }).collect(Collectors.toList())
+        );
+
         // Greet the user
         this.dialogContainer.getChildren().add(DialogBox.getDukeDialog(Duke.MESSAGE_GREETING, this.dukeImage));
+    }
+
+    @FXML
+    private void toggleCommandsAccordion() {
+        this.commandsAccordion.setVisible(!this.commandsAccordion.isVisible());
+        if (this.commandsAccordion.isVisible()) {
+            this.dialogContainer.setOpacity(0.7);
+        } else {
+            this.dialogContainer.setOpacity(1);
+        }
+    }
+
+    @FXML
+    private void closeCommandsAccordion() {
+        if (!this.commandsAccordion.isVisible()) {
+            return;
+        }
+        this.toggleCommandsAccordion();
     }
 
     @FXML

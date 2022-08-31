@@ -1,5 +1,7 @@
 package duke.managers;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +25,51 @@ import duke.commands.UnmarkTaskCommand;
  */
 public class ParserManager {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)?");
+
+    /**
+     * Returns the map of all commands and their descriptions in the application.
+     *
+     * @return Map of all commands in the application
+     */
+    public static Map<String, String> getAllCommands() {
+        return new LinkedHashMap<>() {
+            {
+                put(AddDeadlineTaskCommand.COMMAND_WORD, AddDeadlineTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(AddEventTaskCommand.COMMAND_WORD, AddEventTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(AddToDoTaskCommand.COMMAND_WORD, AddToDoTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(MarkTaskCommand.COMMAND_WORD, MarkTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(UnmarkTaskCommand.COMMAND_WORD, UnmarkTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(DeleteTaskCommand.COMMAND_WORD, DeleteTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(FindTaskCommand.COMMAND_WORD, FindTaskCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(ListTasksCommand.COMMAND_WORD, ListTasksCommand.COMMAND_DESCRIPTION);
+            }
+
+            {
+                put(ByeCommand.COMMAND_WORD, ByeCommand.COMMAND_DESCRIPTION);
+            }
+        };
+    }
 
     /**
      * Parses the given command string and returns a {@link Command} instance that corresponds to the command string.

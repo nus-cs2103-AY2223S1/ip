@@ -16,6 +16,8 @@ import duke.models.task.Task;
  */
 public class DeleteTaskCommand implements Command {
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_DESCRIPTION = DeleteTaskCommand.COMMAND_WORD
+            + " <task>: Deletes a task corresponding to the provided task number";
 
     private static final String MESSAGE_DELETE_TASK = "Noted. I've removed this task:";
 

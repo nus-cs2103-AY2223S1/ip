@@ -16,6 +16,8 @@ import duke.models.task.Task;
  */
 public class MarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_DESCRIPTION = MarkTaskCommand.COMMAND_WORD
+            + " <task>: Marks the task corresponding to the provided task number as done";
 
     private static final String MESSAGE_MARK_TASK_AS_DONE = "Nice! I've marked this task as done:";
 

@@ -16,6 +16,8 @@ import duke.models.task.Task;
  */
 public class UnmarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "unmark";
+    public static final String COMMAND_DESCRIPTION = UnmarkTaskCommand.COMMAND_WORD
+            + " <task>: Marks the task corresponding to the provided task number as not done";
 
     private static final String MESSAGE_MARK_TASK_AS_UNDONE = "OK, I've marked this task as not done yet:";
 
