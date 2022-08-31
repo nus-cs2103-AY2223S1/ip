@@ -27,8 +27,8 @@ public class FindCommand extends Command {
      * Executes the FindCommand
      *
      * @param taskList the task list to be searched
-     * @param ui       the user interface to be used
-     * @param storage  not being used
+     * @param ui the user interface to be used
+     * @param storage not being used
      * @return output to be shown
      * @throws DukeException if an error occurs
      */

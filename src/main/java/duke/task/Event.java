@@ -17,9 +17,9 @@ public class Event extends Task {
     /**
      * Constructs a new Event instance
      *
-     * @param title  the name of the task
+     * @param title the name of the task
      * @param status whether the task is completed or not
-     * @param date   the date where the event occurs
+     * @param date the date where the event occurs
      */
     public Event(String title, boolean status, String date) throws DateTimeParseException {
         super(title, status);
@@ -33,9 +33,8 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        return (SYMBOL + " | " + (this.status ?
-                "1" :
-                "0") + " | " + this.title + " | " + this.date);
+        return (SYMBOL + " | " + (this.status ? "1" : "0") + " | " + this.title + " | "
+                + this.date);
     }
 
     @Override

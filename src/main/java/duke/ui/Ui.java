@@ -7,8 +7,9 @@ package duke.ui;
  */
 public class Ui {
 
-    private static final String LOGO =
-            "______       _     \n" + "| ___ \\     | |    \n" + "| |_/ / ___ | |__  \n" + "| ___ \\/ _ \\| '_ \\ \n" + "| |_/ / (_) | |_) |\n" + "\\____/ \\___/|_.__/ \n";
+    private static final String LOGO = "______       _     \n" + "| ___ \\     | |    \n"
+            + "| |_/ / ___ | |__  \n" + "| ___ \\/ _ \\| '_ \\ \n" + "| |_/ / (_) | |_) |\n"
+            + "\\____/ \\___/|_.__/ \n";
 
     /**
      * Shows the logo of the application

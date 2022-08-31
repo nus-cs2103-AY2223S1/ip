@@ -9,11 +9,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * GUI application entry point
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class Main extends Application {
     private static final String FILE_PATH = "data/tasks.txt";
 
     private final Duke duke = new Duke(FILE_PATH);
 
+    /**
+     * Starts the GUI application
+     *
+     * @param stage JavaFX stage
+     */
     @Override
     public void start(Stage stage) {
         try {

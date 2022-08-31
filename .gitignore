@@ -19,5 +19,6 @@ bin/
 /text-ui-test/ACTUAL.txt
 /text-ui-test/data/
 text-ui-test/EXPECTED-UNIX.TXT
+/data/
 
 *.class

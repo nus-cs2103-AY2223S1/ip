@@ -28,8 +28,8 @@ public class AddCommand extends Command {
      * Executes the AddCommand.
      *
      * @param taskList the task list to be added to
-     * @param ui       the user interface to be used
-     * @param storage  the storage to be used
+     * @param ui the user interface to be used
+     * @param storage the storage to be used
      * @return output to be shown
      * @throws DukeException if an error occurs
      */
@@ -40,8 +40,8 @@ public class AddCommand extends Command {
         ui.showOutput("Total tasks: " + taskList.getTaskList().size());
         storage.save(taskList.getTaskList());
 
-        return "Task has been added!: " + task.toString() + "\n" + "Total tasks: " + taskList.getTaskList()
-                .size();
+        return "Task has been added!: " + task.toString() + "\n" + "Total tasks: "
+                + taskList.getTaskList().size();
     }
 
     /**

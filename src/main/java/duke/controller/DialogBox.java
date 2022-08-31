@@ -14,12 +14,23 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * Controller for the dialog box
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructs a new DialogBox instance
+     *
+     * @param text the text to be displayed
+     * @param img the image of the dialog's owner
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader =
@@ -45,10 +56,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a new DialogBox instance for user
+     *
+     * @param text the text to be displayed
+     * @param img the image of the user
+     * @return the new DialogBox instance
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a new DialogBox instance for bot
+     *
+     * @param text the text to be displayed
+     * @param img the image of the bot
+     * @return the new DialogBox instance
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

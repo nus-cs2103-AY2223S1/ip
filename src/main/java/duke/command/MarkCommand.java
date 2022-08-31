@@ -27,8 +27,8 @@ public class MarkCommand extends Command {
      * Executes the MarkCommand
      *
      * @param taskList the task list to be mutated
-     * @param ui       the user interface to be used
-     * @param storage  the storage to be used
+     * @param ui the user interface to be used
+     * @param storage the storage to be used
      * @return output to be shown
      * @throws DukeException if an error occurs
      */

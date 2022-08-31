@@ -16,8 +16,8 @@ public class ExitCommand extends Command {
      * Executes the ExitCommand
      *
      * @param taskList not being used
-     * @param ui       the user interface to be used
-     * @param storage  not being used
+     * @param ui the user interface to be used
+     * @param storage not being used
      * @return output to be shown
      * @throws DukeException if an error occurs
      */

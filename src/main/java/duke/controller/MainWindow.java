@@ -7,6 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Controller for the main window
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -21,11 +26,24 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/robot.png"));
 
+    /**
+     * Initializes the main window on rendered by the JavaFX application
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren()
+                .add(DialogBox.getDukeDialog("Hello from\n" + "______       _     \n"
+                        + "| ___ \\     | |    \n" + "| |_/ / ___ | |__  \n"
+                        + "| ___ \\/ _ \\| '_ \\ \n" + "| |_/ / (_) | |_) |\n"
+                        + "\\____/ \\___/|_.__/ \n" + "What can I do for you?", dukeImage));
     }
 
+    /**
+     * Sets the Duke instance for the application
+     *
+     * @param duke the Duke instance
+     */
     public void setDuke(Duke duke) {
         this.duke = duke;
     }
