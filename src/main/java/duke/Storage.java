@@ -45,8 +45,11 @@ public class Storage {
      */
     public TaskList load() throws DukeException, FileNotFoundException {
         ArrayList<Task> taskArr = new ArrayList<>();
-        File file = new File(filePath);
+        File file = new File(this.filePath);
         try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+            }
             if (file.createNewFile()) {
                 System.out.println("File created");
             }

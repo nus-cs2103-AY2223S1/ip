@@ -24,51 +24,66 @@ public class Parser {
      * @param userInput input entered by user.
      * @throws DukeException If user fails to specify what task they want to do.
      */
-    public void parse(String userInput) throws DukeException {
+    public String parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {
-            showList();
-        } else if (userInput.length() > 4 && userInput.startsWith("mark")) {
-            markDone(userInput);
-            storage.save(tasklist);
-        } else if (userInput.length() > 6 && userInput.startsWith("unmark")) {
-            markUndone(userInput);
-            storage.save(tasklist);
+            return showList();
+        } else if (userInput.startsWith("mark ")) {
+            int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(5)));
+            if (taskNum <= tasklist.getSize() && taskNum > 0) {
+                return markDone(userInput);
+                //storage.save(tasklist);
+            } else {
+                throw new DukeException("An invalid number is inputted!");
+            }
+        } else if (userInput.startsWith("unmark ")) {
+            int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(7)));
+            if (taskNum <= tasklist.getSize() && taskNum > 0) {
+                return markUndone(userInput);
+                //storage.save(tasklist);
+            } else {
+                throw new DukeException("An invalid number is inputted!");
+            }
         } else if (userInput.startsWith("todo")) {
             if (userInput.length() > 5) {
-                addToDo(userInput);
-                storage.save(tasklist);
+                return addToDo(userInput);
+                //storage.save(tasklist);
             } else {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
         } else if (userInput.startsWith("deadline")) {
             if (userInput.length() > 10) {
-                addDeadline(userInput);
-                storage.save(tasklist);
+                return addDeadline(userInput);
+                //storage.save(tasklist);
             } else {
                 throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
             }
         } else if (userInput.startsWith("event")) {
             if (userInput.length() > 6) {
-                addEvent(userInput);
-                storage.save(tasklist);
+                return addEvent(userInput);
+                //storage.save(tasklist);
             } else {
-                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                throw new DukeException("OOPS!!! The description of an event cannot be empty.");
             }
         } else if (userInput.length() > 7 && userInput.startsWith("delete")) {
-            deleteTask(userInput);
-            storage.save(tasklist);
+            return deleteTask(userInput);
+            //storage.save(tasklist);
         } else if (userInput.startsWith("find ")) {
-            findTask(userInput);
+            return findTask(userInput);
+        } else if (userInput.equals("bye")) {
+            storage.save(tasklist);
+            return ui.printGoodbyeMessage();
         } else {
-            System.out.println("I'm sorry, but I don't know what that means! Try typing something else!");
+            //System.out.println("I'm sorry, but I don't know what that means! Try typing something else!");
+            return "I'm sorry, but I don't know what that means! Try typing something else!";
         }
     }
 
     /**
      * Displays list of tasks to user.
      */
-    public static void showList(){
-        ui.printList(tasklist.getListOfTasks());
+    public static String showList(){
+        //ui.printList(tasklist.getListOfTasks());
+        return ui.printList(tasklist);
     }
 
     /**
@@ -76,7 +91,7 @@ public class Parser {
      *
      * @param task The string containing which task to be marked.
      */
-    public static void markDone(String task) {
+    public static String markDone(String task) {
         int taskToMark = 0;
         String strTaskToMark = "";
 
@@ -84,7 +99,7 @@ public class Parser {
             strTaskToMark = strTaskToMark + task.charAt(j);
         }
         taskToMark = Integer.parseInt(strTaskToMark);
-        ui.printDone(tasklist.mark(taskToMark - 1));
+        return ui.printDone(tasklist.mark(taskToMark - 1));
     }
 
     /**
@@ -92,7 +107,7 @@ public class Parser {
      *
      * @param task The string containing which task to be unmarked.
      */
-    public static void markUndone(String task) {
+    public static String markUndone(String task) {
         int taskToUnmark = 0;
         String strTaskToUnmark = "";
 
@@ -101,7 +116,7 @@ public class Parser {
         }
 
         taskToUnmark = Integer.parseInt(strTaskToUnmark);
-        ui.printUndone(tasklist.unmark(taskToUnmark - 1));
+        return ui.printUndone(tasklist.unmark(taskToUnmark - 1));
     }
 
     /**
@@ -109,10 +124,11 @@ public class Parser {
      *
      * @param str The string containing task to be added.
      */
-    public static void addToDo(String str) {
+    public static String addToDo(String str) {
+        String finalStr = "";
         ToDos newToDo = new ToDos(str.substring(5));
-        ui.printTodo(tasklist.addTask(newToDo));
-        ui.printTasksLeft(tasklist.getSize());
+        finalStr += ui.printTodo(tasklist.addTask(newToDo)) + "\n" + ui.printTasksLeft(tasklist.getSize());
+        return finalStr;
     }
 
     /**
@@ -120,7 +136,7 @@ public class Parser {
      *
      * @param str The string containing task to be added.
      */
-    public static void addDeadline(String str) {
+    public static String addDeadline(String str) {
         String desc = "";
 
         int k = 9;
@@ -131,8 +147,10 @@ public class Parser {
 
         String date = str.substring(k + 4);
         Deadlines newDeadline = new Deadlines(desc, LocalDateTime.parse(date));
-        ui.printTodo(tasklist.addTask(newDeadline));
-        ui.printTasksLeft(tasklist.getSize());
+
+        String finalStr = "";
+        finalStr += ui.printTodo(tasklist.addTask(newDeadline)) + "\n" + ui.printTasksLeft(tasklist.getSize());
+        return finalStr;
     }
 
     /**
@@ -140,7 +158,7 @@ public class Parser {
      *
      * @param str The string containing task to be added.
      */
-    public static void addEvent(String str) {
+    public static String addEvent(String str) {
         String desc = "";
 
         int k = 6;
@@ -151,8 +169,10 @@ public class Parser {
 
         String eventTime = str.substring(k + 4);
         Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
-        ui.printTodo(tasklist.addTask(newEvent));
-        ui.printTasksLeft(tasklist.getSize());
+
+        String finalStr = "";
+        finalStr += ui.printTodo(tasklist.addTask(newEvent)) + "\n"+ ui.printTasksLeft(tasklist.getSize());
+        return finalStr;
     }
 
     /**
@@ -160,7 +180,7 @@ public class Parser {
      *
      * @param str The string specifying which task to be deleted.
      */
-    public static void deleteTask(String str) {
+    public static String deleteTask(String str) {
         int taskToDel = 0;
         String strTaskToDel = "";
         for (int j = 7; j < str.length(); j++) {
@@ -168,9 +188,11 @@ public class Parser {
         }
         taskToDel = Integer.parseInt(strTaskToDel) - 1;
 
-        ui.printDelete(tasklist.getTask(taskToDel));
+        String finalStr = "";
+        finalStr += ui.printDelete(tasklist.getTask(taskToDel));
         tasklist.deleteTask(taskToDel);
-        ui.printTasksLeft(tasklist.getSize());
+        finalStr += ui.printTasksLeft(tasklist.getSize());
+        return finalStr;
     }
 
     /**
@@ -178,7 +200,7 @@ public class Parser {
      *
      * @param str User input
      */
-    public static void findTask(String str) {
+    public static String findTask(String str) {
         String keyword = str.substring(5);
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
@@ -190,6 +212,6 @@ public class Parser {
             i++;
         }
 
-        ui.printFind(matchedTasks);
+        return ui.printFind(matchedTasks);
     }
 }

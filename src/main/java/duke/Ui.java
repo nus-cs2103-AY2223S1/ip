@@ -20,37 +20,37 @@ public class Ui {
     /**
      * Prints welcome message.
      */
-    public void printWelcomeMessage() {
+    public String printWelcomeMessage() {
+        String str = "";
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hey I'm\n" + logo);
-        System.out.println("What tasks do you have to do?\n" + line);
-        System.out.println("To input a deadline or event, type the date and time in the format 'yyyy-mm-ddThh:mm'");
+        str += "Welcome to Duke bot!\n";
+        str += "What tasks do you have to do today?\n";
+        str += "To input a deadline or event, type the date and time in the format 'yyyy-mm-ddThh:mm'";
+        return str;
     }
 
     /**
      * Prints goodbye message.
      */
-    public void printGoodbyeMessage() {
-        System.out.println("Bye! See you soon!");
+    public String printGoodbyeMessage() {
+        return "Bye! See you soon!";
     }
 
     /**
      * Prints list of tasks.
-     *
-     * @param tasks Arraylists containing tasks to be printed.
      */
-    public void printList(ArrayList<Task> tasks) {
-        drawLine();
-        System.out.println("Here are the tasks that you have:");
-        for (int i = 0; i < tasks.size(); i++) {
+    //public String printList(ArrayList<Task> tasks) {
+    public String printList(TaskList tasks) {
+        String str = "Here are the tasks that you have:\n";
+        for (int i = 0; i < tasks.getSize(); i++) {
             int num = i + 1;
-            System.out.println(num + ". " + tasks.get(i).toString());
+            str += num + ". " + tasks.getTask(i).toString() + "\n";
         }
-        drawLine();
+        return str;
     }
 
     /**
@@ -58,11 +58,10 @@ public class Ui {
      *
      * @param task Task to be printed as done.
      */
-    public void printDone(Task task) {
-        drawLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[" + task.getStatusIcon() + "] " + task.description);
-        drawLine();
+    public String printDone(Task task) {
+        String str = "Nice! I've marked this task as done:\n";
+        str += "[" + task.getStatusIcon() + "]" + task.description;
+        return str;
     }
 
     /**
@@ -70,11 +69,10 @@ public class Ui {
      *
      * @param task Task to be printed as undone.
      */
-    public void printUndone(Task task) {
-        drawLine();
-        System.out.println("Hmm...I've marked this task as undone:");
-        System.out.println("[" + task.getStatusIcon() + "] " + task.description);
-        drawLine();
+    public String printUndone(Task task) {
+        String str = "Hmm...I've marked this task as undone:\n";
+        str += "[" + task.getStatusIcon() + "] " + task.description;
+        return str;
     }
 
     /**
@@ -82,10 +80,10 @@ public class Ui {
      *
      * @param task Todo task to be added.
      */
-    public void printTodo(Task task) {
-        drawLine();
-        System.out.println("Okay! I've added this task:");
-        System.out.println(task.toString());
+    public String printTodo(Task task) {
+        String str = "Okay! I've added this task:\n";
+        str += task.toString();
+        return str;
     }
 
     /**
@@ -93,10 +91,10 @@ public class Ui {
      *
      * @param task Task to be deleted.
      */
-    public void printDelete(Task task) {
-        drawLine();
-        System.out.println("Nice! I've deleted this task:");
-        System.out.println(task.toString());
+    public String printDelete(Task task) {
+        String str = "Nice! I've deleted this task:\n";
+        str += task.toString() + "\n";
+        return str;
     }
 
     /**
@@ -104,9 +102,9 @@ public class Ui {
      *
      * @param num Number of tasks left in list.
      */
-    public void printTasksLeft(int num) {
-        System.out.println("You have " + num + " tasks left in your list.");
-        drawLine();
+    public String printTasksLeft(int num) {
+        String str = "You have " + num + " tasks left in your list.";
+        return str;
     }
 
     /**
@@ -114,21 +112,21 @@ public class Ui {
      *
      * @param matchedTasks Arraylist of tasks that matches
      */
-    public void printFind(ArrayList<Task> matchedTasks) {
-        drawLine();
-        System.out.println("Here are the matching tasks in your list:");
+    public String printFind(ArrayList<Task> matchedTasks) {
+        String str = "Here are the matching tasks in your list:\n";
         for (int j = 0; j < matchedTasks.size(); j++) {
             int num = j + 1;
-            System.out.println(num + ". " + matchedTasks.get(j).toString());
+            str += num + ". " + matchedTasks.get(j).toString() + "\n";
         }
-        drawLine();
+        return str;
     }
 
     /**
      * Prints error message.
      */
-    public void printErrorMsg(String str) {
-        System.out.println(str);
+    public String printErrorMsg(String str) {
+        //System.out.println(str);
+        return str;
     }
 
     /**
