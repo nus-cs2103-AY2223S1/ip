@@ -34,10 +34,10 @@ public class FindCommand extends Command {
         TaskList filteredTaskList = taskList.filter(
                 x -> x.getDescription().toLowerCase().contains(this.pattern.toLowerCase()));
         if (filteredTaskList.size() > 0) {
-            ui.showOutput("Here are the matching tasks in your list:\n");
-            ui.showOutput(filteredTaskList.toString());
+            ui.addOutput("Here are the matching tasks in your list:\n");
+            ui.addOutput(filteredTaskList.toString());
         } else {
-            ui.showOutput("No matching tasks :(\n");
+            ui.addOutput("No matching tasks :(\n");
         }
     }
 

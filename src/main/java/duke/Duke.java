@@ -7,6 +7,7 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+
 /**
  * Duke, a Personal Assistant Chatbot that helps a person to keep track of various things.
  *
@@ -28,33 +29,29 @@ public class Duke {
         try {
             taskList = new TaskList(storage.load());
         } catch (DukeException exception) {
-            ui.showError(exception.getMessage());
+            ui.addError(exception.getMessage());
             taskList = new TaskList();
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
-
     /**
-     * Starts the instance of Duke.
+     * Returns the response from Duke after executing a user command.
+     *
+     * @param fullCommand the user command
+     * @return the response from Duke after executing a user command
      */
-    public void run() {
-        ui.showWelcome();
+    public String getResponse(String fullCommand) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(ui, storage, taskList);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+        try {
+            Command c = Parser.parse(fullCommand);
+            c.execute(ui, storage, taskList);
+            isExit = c.isExit();
+        } catch (DukeException e) {
+            ui.addError(e.getMessage());
         }
+        if (isExit) {
+            System.exit(0);
+        }
+        return ui.getOutput();
     }
 }

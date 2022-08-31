@@ -35,7 +35,7 @@ public class UnMarkCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task task = taskList.unMarkTask(index);
-        ui.showOutput("OK, I've marked this task as not done yet:\n  " + task + "\n");
+        ui.addOutput("OK, I've marked this task as not done yet:\n  " + task + "\n");
         storage.save(taskList);
     }
 

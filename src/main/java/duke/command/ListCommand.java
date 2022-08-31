@@ -25,10 +25,10 @@ public class ListCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {
         if (taskList.size() > 0) {
-            ui.showOutput("Here are the tasks in your list:\n");
-            ui.showOutput(taskList.toString());
+            ui.addOutput("Here are the tasks in your list:\n");
+            ui.addOutput(taskList.toString());
         } else {
-            ui.showOutput("Your list is empty :(\n");
+            ui.addOutput("Your list is empty :(\n");
         }
     }
 
