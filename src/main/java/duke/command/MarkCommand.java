@@ -22,9 +22,9 @@ public class MarkCommand implements Command {
      * Marks task at given index as complete, and shows output to user.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
         try {
-            ui.showToUser(itemList.mark(Integer.parseInt(index)));
+            return itemList.mark(Integer.parseInt(index));
         } catch (NumberFormatException e) {
             throw new DukeException("Please attach a valid number to the command.");
         }

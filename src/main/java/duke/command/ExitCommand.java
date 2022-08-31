@@ -15,9 +15,8 @@ public class ExitCommand implements Command {
      * Saves itemList to storage, shows outro to the user and exits from Apollo.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) {
+    public String execute(TaskList itemList, Ui ui, Storage storage) {
         itemList.save(storage);
-        ui.showOutro();
-        System.exit(0);
+        return "Goodbye, see you soon!";
     }
 }

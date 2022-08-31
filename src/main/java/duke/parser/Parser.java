@@ -1,6 +1,7 @@
 package duke.parser;
 
 import duke.command.AddItemCommand;
+import duke.command.ClearScreenCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
@@ -44,6 +45,9 @@ public class Parser {
             }
             case "find": {
                 return new FindCommand(input);
+            }
+            case "clear": {
+                return new ClearScreenCommand();
             }
             default: {
                 return new AddItemCommand(input);

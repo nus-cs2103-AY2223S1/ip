@@ -22,9 +22,9 @@ public class DeleteCommand implements Command {
      * Removes given input index from itemList, and shows the resulting message to the user.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
         try {
-            ui.showToUser(itemList.deleteItem(Integer.parseInt(index)));
+            return itemList.deleteItem(Integer.parseInt(index));
         } catch (NumberFormatException e) {
             throw new DukeException("Please attach a valid number to the command.");
         }
