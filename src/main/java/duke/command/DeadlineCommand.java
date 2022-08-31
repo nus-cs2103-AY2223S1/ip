@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.Response;
 import duke.exception.DukeException;
+import duke.response.Response;
 import duke.task.Deadline;
 import duke.task.TasksList;
 

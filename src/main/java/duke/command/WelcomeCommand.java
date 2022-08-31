@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.Response;
+import duke.response.Response;
 
 /**
  * Represents a command to greet the user.
  */
-public class WelcomeCommand extends Command{
+public class WelcomeCommand extends Command {
     private static final String WELCOME_MSG = "Hello! I'm Duke.\nWhat can I do for you?";
 
 
