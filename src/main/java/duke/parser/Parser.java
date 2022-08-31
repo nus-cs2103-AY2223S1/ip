@@ -30,7 +30,7 @@ public class Parser {
         TaskList tasklist = TaskList.getInstance();
 
         while (in.hasNext()) {
-            String[] temp = in.nextLine().split(" ", 2);
+            String[] temp = in.nextLine().trim().split(" ", 2);
             String[] next = new String[2];
             for (int i = 0; i < temp.length; i++) {
                 next[i] = temp[i].trim();
@@ -59,6 +59,7 @@ public class Parser {
                 break;
             case "find":
                 tasklist.findWithFilter(next[1]);
+                break;
             case "delete":
                 tasklist.delete(next[1]);
                 break;

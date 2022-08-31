@@ -251,7 +251,10 @@ public class TaskList {
      *
      * @param filter Keywords to filter tasks, given by user.
      */
-    public void findWithFilter(String filter) {
+    public void findWithFilter(String filter) throws DukeException {
+        if (filter == null) {
+            throw new DukeException("No input provided for filter");
+        }
         ArrayList<Task> filteredList = new ArrayList<>();
 
         for (Task x: this.storage) {
