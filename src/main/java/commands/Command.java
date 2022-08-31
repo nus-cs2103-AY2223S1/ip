@@ -23,7 +23,7 @@ public abstract class Command {
     /**
      * Indicates whether the chatbot should terminate after the command is executed.
      *
-     * @return whether the chatbot should terminate.
+     * @return true if the chatbot should terminate, false otherwise.
      */
     public abstract boolean isExit();
 }
