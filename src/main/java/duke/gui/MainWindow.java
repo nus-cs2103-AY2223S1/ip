@@ -57,10 +57,23 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         ExecuteResult result = Parser.execute(input, todos);
-        dialogContainer.getChildren().addAll(
-                ChatMessage.getUserDialog(input, userImage),
-                ChatMessage.getDukeDialog(String.join("\n", result.getReply()), dukeImage)
-        );
+        dialogContainer.getChildren().add(ChatMessage.getUserDialog(input, userImage));
+
+        // Split the reply into groups of 5 lines (the maximum that fits in a single message balloon)
+        List<String> currentLines = new ArrayList<>();
+        for (String line : result.getReply()) {
+            currentLines.add(line);
+            if (currentLines.size() >= 5) {
+                dialogContainer.getChildren().add(
+                        ChatMessage.getDukeDialog(String.join("\n", currentLines), dukeImage));
+                currentLines.clear();
+            }
+        }
+        if (currentLines.size() > 0) {
+            dialogContainer.getChildren().add(
+                    ChatMessage.getDukeDialog(String.join("\n", currentLines), dukeImage));
+        }
+
         userInput.clear();
     }
 }
