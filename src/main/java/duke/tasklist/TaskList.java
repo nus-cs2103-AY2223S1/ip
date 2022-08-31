@@ -93,26 +93,22 @@ public class TaskList {
      * @throws DukeException If input provided is not valid.
      */
     public void addTask(String[] input) throws DukeException {
+        if (input[1] == null) {
+            throw new DukeException("Description of a " + input[0] +
+                    " cannot be empty!");
+        }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.
                     ofPattern("yyyy-MM-dd HHmm");
             Storage outputFile = Storage.getInstance();
             switch (input[0]) {
                 case "todo":
-                    if (input.length <= 1) {
-                        throw new DukeException(
-                                "Description of a todo cannot be empty!");
-                    }
                     Todo todo = new Todo(input[1].trim());
                     storage.add(todo);
                     outputFile.writeToSavedFile();
                     System.out.printf("added %s\n", todo);
                     break;
                 case "deadline":
-                    if (input.length <= 1) {
-                        throw new DukeException("Description of a deadline " +
-                                "cannot be empty!");
-                    }
                     if (!input[1].contains("/by") ||
                             input[1].indexOf("/by") == input[1].length() - 3) {
                         throw new DukeException("No date inserted for deadline");
@@ -126,10 +122,6 @@ public class TaskList {
                     System.out.printf("added %s\n", deadline);
                     break;
                 case "event":
-                    if (input.length <= 1) {
-                        throw new DukeException("Description of an event " +
-                                "cannot be empty!");
-                    }
                     if (!input[1].contains("/at") ||
                             input[1].indexOf("/at") == input[1].length() - 3) {
                         throw new DukeException("No date inserted for event");
