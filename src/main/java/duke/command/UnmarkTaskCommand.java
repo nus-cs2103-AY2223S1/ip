@@ -1,8 +1,7 @@
 package duke.command;
 
+import duke.storage.Storage;
 import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
 import duke.exception.NoSuchTaskException;
 /**
  * UnmarkTaskCommand will execute the command of unmarking a task.

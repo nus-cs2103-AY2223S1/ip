@@ -1,11 +1,8 @@
 package duke.command;
 
-import duke.task.Event;
+import duke.storage.Storage;
 import duke.task.ToDo;
 import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
-import duke.exception.EmptyContentException;
 /**
  * CreatToDoCommand will execute the command of creating a new todo.
  */

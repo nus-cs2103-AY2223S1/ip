@@ -1,4 +1,4 @@
-package duke;
+package duke.cliui;
 
 import java.util.Scanner;
 

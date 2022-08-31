@@ -1,11 +1,8 @@
 package duke.command;
 
+import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
-import duke.exception.EmptyContentException;
-import duke.exception.InvalidTimeException;
 
 /**
  * CreatDeadlineCommand will execute the command of creating a new deadline.
@@ -22,7 +19,7 @@ public class CreateDeadlineCommand extends Command {
      * @param storage Duke IO processor
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
-                        Storage storage, String ...keywords) {
+                          Storage storage, String ...keywords) {
         String response = "";
         Deadline ddlTask = new Deadline(taskText, taskTime);
         controller.addToList(ddlTask);

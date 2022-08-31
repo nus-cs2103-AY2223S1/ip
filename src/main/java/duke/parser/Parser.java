@@ -1,8 +1,9 @@
-package duke;
+package duke.parser;
 
 import duke.command.*;
 import duke.exception.*;
 import duke.command.Command;
+import duke.storage.Storage;
 import duke.task.TasksController;
 
 import java.util.ArrayList;

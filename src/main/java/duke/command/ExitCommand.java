@@ -1,8 +1,7 @@
 package duke.command;
 
+import duke.storage.Storage;
 import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
 
 /**
  * ExitCommand class will execute the exit command

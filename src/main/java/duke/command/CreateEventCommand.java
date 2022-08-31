@@ -1,12 +1,8 @@
 package duke.command;
 
-import duke.task.Deadline;
+import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
-import duke.exception.EmptyContentException;
-import duke.exception.InvalidTimeException;
 /**
  * CreatEventCommand will execute the command of creating a new event.
  */
