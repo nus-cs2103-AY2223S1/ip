@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static duke.Ui.printLines;
 import static duke.Ui.say;
 import static duke.Ui.sayAsError;
 import static duke.Ui.sayError;
@@ -33,42 +32,42 @@ public class Parser {
 
             switch (command) {
             case "":
-                printLines(sayAsError("Sorry, I didn't catch that?"));
+                result.addAll(sayAsError("Sorry, I didn't catch that?"));
                 break;
             case "bye":
-                printLines(say("OK. See you next time! *boings away*"));
+                result.addAll(say("OK. See you next time! *boings away*"));
                 return new ExecuteResult(true, result);
             case "todo":
-                todos.cmdAdd(scanner, Todo::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Todo::fromChat));
                 break;
             case "deadline":
-                todos.cmdAdd(scanner, Deadline::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Deadline::fromChat));
                 break;
             case "event":
-                todos.cmdAdd(scanner, Event::fromChat);
+                result.addAll(todos.cmdAdd(scanner, Event::fromChat));
                 break;
             case "list":
-                todos.cmdList();
+                result.addAll(todos.cmdList());
                 break;
             case "mark":
-                todos.cmdMark(scanner);
+                result.addAll(todos.cmdMark(scanner));
                 break;
             case "unmark":
-                todos.cmdUnmark(scanner);
+                result.addAll(todos.cmdUnmark(scanner));
                 break;
             case "delete":
-                todos.cmdDelete(scanner);
+                result.addAll(todos.cmdDelete(scanner));
                 break;
             case "find":
-                todos.cmdFind(scanner);
+                result.addAll(todos.cmdFind(scanner));
                 break;
             default:
-                printLines(sayAsError("Sorry, I didn't understand what you said :("));
+                result.addAll(sayAsError("Sorry, I didn't understand what you said :("));
                 break;
             }
+            return new ExecuteResult(false, result);
         } catch (MessagefulException e) {
-            printLines(sayError(e));
+            return new ExecuteResult(false, sayError(e));
         }
-        return new ExecuteResult(false, List.of());
     }
 }

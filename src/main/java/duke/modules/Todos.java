@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static duke.Ui.printLines;
 import static duke.Ui.say;
 import static java.lang.String.format;
 
@@ -56,27 +55,27 @@ public class Todos {
      * @param constructor The fromChat factory function of the given task.
      * @throws MessagefulException if there is an issue.
      */
-    public void cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) throws MessagefulException {
+    public List<String> cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) throws MessagefulException {
         final Task task = constructor.apply(rest);
 
         todos.add(task);
-        printLines(say(List.of(
+        storage.saveList(todos);
+        return say(List.of(
                 "Got it. I've added this task:",
                 task.toString(),
-                taskCountMessage())));
-        storage.saveList(todos);
+                taskCountMessage()));
     }
 
     /**
      * Command for listing all tasks.
      */
-    public void cmdList() {
+    public List<String> cmdList() {
         ArrayList<String> output = new ArrayList<>(todos.size());
         output.add("Here are the tasks in your list:");
         for (int i = 0; i < todos.size(); i++) {
             output.add(format("%d. %s", i + 1, todos.get(i).toString()));
         }
-        printLines(say(output));
+        return say(output);
     }
 
     /**
@@ -85,14 +84,14 @@ public class Todos {
      * @param rest The scanner with the remaining text in the message.
      * @throws MessagefulException if there is an issue.
      */
-    public void cmdMark(Scanner rest) throws MessagefulException {
+    public List<String> cmdMark(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to mark!");
 
         todos.get(taskID).setDone(true);
-        printLines(say(List.of(
-                "Nice! I've marked this task as done:",
-                todos.get(taskID).toString())));
         storage.saveList(todos);
+        return say(List.of(
+                "Nice! I've marked this task as done:",
+                todos.get(taskID).toString()));
     }
 
     /**
@@ -101,13 +100,13 @@ public class Todos {
      * @param rest The scanner with the remaining text in the message.
      * @throws MessagefulException if there is an issue.
      */
-    public void cmdUnmark(Scanner rest) throws MessagefulException {
+    public List<String> cmdUnmark(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to unmark!");
 
         todos.get(taskID).setDone(false);
-        printLines(say(List.of("Alright, I've marked this task as not done yet:",
-                todos.get(taskID).toString())));
         storage.saveList(todos);
+        return say(List.of("Alright, I've marked this task as not done yet:",
+                todos.get(taskID).toString()));
     }
 
     /**
@@ -116,16 +115,16 @@ public class Todos {
      * @param rest The scanner with the remaining text in the message.
      * @throws MessagefulException if there is an issue.
      */
-    public void cmdDelete(Scanner rest) throws MessagefulException {
+    public List<String> cmdDelete(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to delete!");
 
         Task taskToDelete = todos.get(taskID);
         todos.remove(taskID);
-        printLines(say(List.of(
+        storage.saveList(todos);
+        return say(List.of(
                 "OK, I've deleted this task:",
                 taskToDelete.toString(),
-                taskCountMessage())));
-        storage.saveList(todos);
+                taskCountMessage()));
     }
 
     /**
@@ -134,7 +133,7 @@ public class Todos {
      * @param rest The scanner with the remaining text in the message.
      * @throws MessagefulException if there is an issue.
      */
-    public void cmdFind(Scanner rest) throws MessagefulException {
+    public List<String> cmdFind(Scanner rest) throws MessagefulException {
         ArrayList<String> keywords = new ArrayList<>();
         while (rest.hasNext()) {
             keywords.add(rest.next());
@@ -151,6 +150,6 @@ public class Todos {
         for (int i = 0; i < matches.size(); i++) {
             output.add(format("%d. %s", i + 1, matches.get(i).toString()));
         }
-        printLines(say(output));
+        return say(output);
     }
 }
