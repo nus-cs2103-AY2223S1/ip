@@ -3,9 +3,9 @@ package duke;
 import duke.command.Command;
 
 public class Duke {
-    public Ui ui;
-    public TaskList taskList;
-    public Storage storage;
+    private Ui ui;
+    private TaskList taskList;
+    private Storage storage;
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -36,7 +36,7 @@ public class Duke {
         taskList = new TaskList(storage.loadTaskList());
         String userInput;
 
-        while(true) {
+        while (true) {
             userInput = ui.getUserInput();
             try {
                 Command command = Parser.parse(userInput);

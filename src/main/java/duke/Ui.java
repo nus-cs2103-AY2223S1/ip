@@ -2,6 +2,7 @@ package duke;
 
 import java.util.Scanner;
 
+/** Handles terminal input ouput user interaction */
 public class Ui {
     public static final String DIVIDER = "____________________________________________________________";
 
@@ -29,18 +30,26 @@ public class Ui {
      */
     public void printMessage(String... messages) {
         printDivider();
-        for(String message: messages) {
+        for (String message: messages) {
             System.out.print(message);
         }
         printDivider();
     }
 
+    /**
+     * Shows greeting message to the user.
+     *
+     */
     public void printGreetingMessage() {
         printDivider();
         System.out.println(this.greetingMessage);
         printDivider();
     }
 
+    /**
+     * Shows farewell message to the user.
+     *
+     */
     public void printFarewellMessage() {
         printDivider();
         System.out.println(this.farewellMessage);

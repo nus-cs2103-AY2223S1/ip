@@ -6,6 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/** Represents the command to delete task that inherits from Command. */
 public class DeleteCommand extends Command {
     private final String userInput;
 

@@ -6,6 +6,10 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * Represents the command to mark specific Tasks in TaskList as completed or not completed
+ * that inherits from Command.
+ */
 public class MarkCommand extends Command {
     private final String userInput;
     private final boolean isMark;
