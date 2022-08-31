@@ -3,82 +3,124 @@ package duke.task;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import duke.storage.Storage;
+import duke.ui.Ui;
 
+/**
+ * Tasklist class to store task objects.
+ */
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
+    /**
+     * Constructor for tasklist class.
+     */
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Method to add a task into tasklist and
+     * save it into the file.
+     *
+     * @param t The task to be added.
+     */
     public void addTask(Task t)  {
-        this.taskList.add(t);
+        this.tasks.add(t);
         try {
-            Storage.save(this.taskList);
+            Storage.save(this.tasks);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            Ui.showError(e);
         }
-        String reply = "Got it. I've added this task:\n" +
-                        t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
-        System.out.println(reply);
+        Ui.showAddTaskMessage(t, this.tasks.size());
     }
 
+    /**
+     * Method to add a task but without printing
+     * the show message, this is for loading the
+     * data from storage file.
+     *
+     * @param t The task to be added.
+     */
     public void addTaskWithoutPrinting(Task t)  {
-        this.taskList.add(t);
+        this.tasks.add(t);
         try {
-            Storage.save(this.taskList);
+            Storage.save(this.tasks);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            Ui.showError(e);
         }
     }
 
-
+    /**
+     * Gets the task based on task number.
+     *
+     * @param taskNo The task number.
+     * @return The task in the taskList at taskNo position.
+     */
     public Task getTask(int taskNo) {
-        return taskList.get(taskNo - 1);
+        return tasks.get(taskNo - 1);
     }
 
+    /**
+     * Marks the task as done.
+     *
+     * @param taskNo The corresponding task ID.
+     */
     public void markTask(int taskNo) {
         Task task = this.getTask(taskNo);
         task.mark();
         try {
-            Storage.save(this.taskList);
+            Storage.save(this.tasks);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            Ui.showError(e);
         }
-        System.out.println("Nice! I've marked this task as done:\n" + task);
+        Ui.markTaskMessage(task);
     }
 
+    /**
+     * Marks the task as undone.
+     *
+     * @param taskNo The corresponding task ID.
+     */
     public void unMarkTask(int taskNo) {
         Task task = this.getTask(taskNo);
         task.unMark();
         try {
-            Storage.save(this.taskList);
+            Storage.save(this.tasks);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            Ui.showError(e);
         }
-        System.out.println("OK, I've marked this task as not done yet:\n" + task);
+        Ui.unMarkTaskMessage(task);
     }
 
+    /**
+     * Deletes the task from tasklist.
+     *
+     * @param taskNo The corresponding task ID.
+     */
     public void deleteTask(int taskNo) {
         Task t = this.getTask(taskNo);
-        this.taskList.remove(taskNo - 1);
+        this.tasks.remove(taskNo - 1);
         try {
-            Storage.save(this.taskList);
+            Storage.save(this.tasks);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            Ui.showError(e);
         }
-        String reply = "Noted. I've removed this task:\n" +
-                        t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
-        System.out.println(reply);
+        Ui.showDeleteTaskMessage(t, this.tasks.size());
     }
 
 
+    /**
+     * Prints tasks based on date.
+     *
+     * @param date Date to find.
+     */
     public void printTasksOnSpecificDate(LocalDate date) {
-        System.out.println("Here are the tasks on: " + date + "\n");
-        int ListLength = taskList.size();
+        Ui.showPrintTasksOnSpecificDateMessage(date);
+        int ListLength = tasks.size();
         for (int i = 0; i < ListLength; i++) {
-            Task task = taskList.get(i);
+            Task task = tasks.get(i);
             if (this.getTaskType(task).equals("Deadlines")) {
                 Deadline d = (Deadline) task;
                 if (d.getDate().equals(date)) {
@@ -92,8 +134,13 @@ public class TaskList {
             }
         }
     }
-    
 
+    /**
+     * Gets the task type.
+     *
+     * @param task The task to check.
+     * @return Returns the task type.
+     */
     public String getTaskType(Task task) {
         if (task instanceof Deadline) {
             return "Deadlines";
@@ -102,16 +149,17 @@ public class TaskList {
         } else if (task instanceof ToDo) {
             return "ToDos";
         }
-        return "";
+        return "Task";
     }
 
+    /**
+     * Prints all tasks in tasklist.
+     */
     public void printList() {
-        System.out.println("Here are the tasks in your list:\n");
-        int ListLength = taskList.size();
+        Ui.showPrintListMessage();
+        int ListLength = tasks.size();
         for (int i = 0; i < ListLength; i++) {
-            System.out.println((i + 1) + ". " + taskList.get(i));
+            System.out.println((i + 1) + ". " + tasks.get(i));
         }
     }
-
-
 }
