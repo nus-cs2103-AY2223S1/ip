@@ -112,6 +112,10 @@ public class Parser {
             } catch (StringIndexOutOfBoundsException e) {
                 ui.printInsufficientInfoException(Ui.Keywords.event);
             }
+        } else if (userInput.startsWith("find")) {
+          // search keyword only
+          String keyword = userInput.substring(5);
+          tasks.findMatchingTask(keyword);
         } else {
             ui.printUnrecognisedWord();
         }

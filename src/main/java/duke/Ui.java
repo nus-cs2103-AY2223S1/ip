@@ -14,11 +14,11 @@ public class Ui {
     public Ui() {}
 
     public static String straightLine = "  ----------------------------------------------------------------------------------";
-    public String logo  =         "___   ___    ___   ____                     ___   ___ \n"
-                               + "|  |  /  /  |  |   \\  \\      ------       /  /   |  | \n"
-                               + "|   /   /   |  |    \\  \\    / / \\ \\    /  /    |  | \n"
-                               + "|   \\  \\   |  |     \\  \\  / /   \\ \\  /  /     |  | \n"
-                               + "|    \\  \\  |  |      \\  \\/ /     \\ \\/  /      |  | \n"
+    public String logo  =         "___   ___    ___  ____                     ___   ___ \n"
+                               + "|  |  /  /  |  |  \\  \\      ------      /  /   |  | \n"
+                               + "|   /   /   |  |   \\  \\    / / \\ \\    /  /    |  | \n"
+                               + "|   \\  \\   |  |     \\  \\  /  /   \\ \\  /  /     |  | \n"
+                               + "|    \\  \\  |  |      \\  \\/  /     \\ \\/  /      |  | \n"
                                + "|___| \\__\\ |__|       \\____/       \\____/       |__| \n";
 
     public void printGreeting() {
@@ -94,5 +94,8 @@ public class Ui {
         System.out.println("You can't append!");
     }
 
+    public void printNoMatchingTask() {
+        System.out.println(straightLine + "\n No tasks exist yet, can't find a match :( \n" + straightLine);
+    }
 
 }

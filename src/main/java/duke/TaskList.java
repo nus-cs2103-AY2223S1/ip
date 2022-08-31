@@ -68,6 +68,23 @@ public class TaskList {
         t.markUndone();
     }
 
+    public void findMatchingTask(String keyword) {
+
+        if (tasks.isEmpty()) {
+            ui.printNoMatchingTask();
+        }
+
+        System.out.println(ui.straightLine);
+
+        for (Task task: tasks) {
+            if (task.getDescription().contains(keyword)) {
+                task.printTask();
+            }
+        }
+
+        System.out.println(ui.straightLine);
+    }
+
     public void printList() {
         if (tasks.isEmpty()) {
             ui.printTaskListEmpty();
