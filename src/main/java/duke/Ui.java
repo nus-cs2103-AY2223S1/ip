@@ -107,7 +107,7 @@ public class Ui {
      */
     public static String getFilteredTasksMessage(TaskList filteredTasks) {
         String message = "Here are the matching tasks in your list:\n"
-                            +filteredTasks.toString();
+                            + filteredTasks.toString();
 
         return message;
     }
