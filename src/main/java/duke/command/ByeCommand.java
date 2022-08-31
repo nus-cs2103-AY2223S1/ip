@@ -17,14 +17,15 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Displays the bye message.
+     * Returns the bye message.
      *
      * @param tasks Tasklist containing the tasks.
      * @param ui Ui handling the user interaction.
      * @param storage Storage to store data.
+     * @return Bye Message string
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
-        ui.printByeMessage();
+    public String run(TaskList tasks, Ui ui, Storage storage) {
+        return ui.printByeMessage();
     }
 }

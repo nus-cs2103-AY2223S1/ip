@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.time.format.DateTimeParseException;
 
 import duke.command.Command;
 import duke.exception.IncompleteInputException;
@@ -9,9 +8,11 @@ import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
 
 
+
+
 /**
- * This is the Main Duke program for our chatbot (our bot prefers to be addressed as Bob).
- * Bob is a personal assistant chatbot that helps you keep track of what you have to do.
+ * This is the Main Duke (Bob) program for our chatbot (our bot prefers to be addressed as Bob).
+ * Bob is a personal assistant chat bot that helps you keep track of what you have to do.
  *
  * @author Eugene Tan
  */
@@ -23,11 +24,10 @@ public class Duke {
     /**
      * Class constructor for our chatbot.
      *
-     * @param filePath File path where our data is stored.
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage("./data");
         try {
             this.tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
@@ -37,39 +37,29 @@ public class Duke {
     }
 
     /**
-     * Starts and launches Duke (Bob).
+     * Handles Bob response to user.
+     *
+     * @param userInputCommand input user types in
+     * @return response of Bob
      */
-    public void run() {
-        ui.printWelcomeMessage();
+
+    public String getResponse(String userInputCommand) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printHorizontalLine();
-                Command c = RequestHandler.handleRequest(fullCommand);
-                c.run(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (IncompleteInputException e) {
-                ui.printAnyOtherMessage(e.getMessage());
-            } catch (InvalidInputException e) {
-                ui.printAnyOtherMessage(e.getMessage());
-            } catch (InvalidCommandException e) {
-                ui.printAnyOtherMessage(e.getMessage());
-            } catch (DateTimeParseException e) {
-                ui.printAnyOtherMessage("Please key in a valid date (yyyy-mm-dd)");
-            } finally {
-                ui.printHorizontalLine();
+        try {
+            Command command = RequestHandler.handleRequest(userInputCommand);
+            String bobResponse = command.run(tasks, ui, storage);
+            isExit = command.isExit();
+            if (isExit) {
+                System.exit(0);
             }
+            return bobResponse;
+        } catch (IncompleteInputException e) {
+            return e.getMessage();
+        } catch (InvalidInputException e) {
+            return e.getMessage();
+        } catch (InvalidCommandException e) {
+            return e.getMessage();
         }
     }
 
-    /**
-     * The main method.
-     *
-     * @param args main arguments
-     */
-    public static void main(String[] args) {
-        String home = System.getProperty("user.home");
-        new Duke(home + "/data/duke.txt").run();
-    }
 }
