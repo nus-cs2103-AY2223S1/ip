@@ -1,3 +1,5 @@
+package Duke;
+
 /**
  * A class that handles user input.
  */
