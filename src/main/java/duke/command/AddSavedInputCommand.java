@@ -1,10 +1,6 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Instructions;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.*;
 import duke.task.Deadlines;
 import duke.task.Events;
 import duke.task.Task;
@@ -61,12 +57,12 @@ public class AddSavedInputCommand extends Command {
      * Adds saved task into task list.
      *
      * @param taskList task list.
-     * @param ui user interface of program.
+     * @param commandOutputs user interface of program.
      * @param storage files storing task list.
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
         Task savedTask;
         switch (type) {
         case todo:
@@ -82,5 +78,6 @@ public class AddSavedInputCommand extends Command {
             savedTask = null; //Should never be reached
         }
         taskList.add(savedTask);
+        return null;
     }
 }

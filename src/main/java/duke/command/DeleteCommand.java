@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -25,14 +24,15 @@ public class DeleteCommand extends Command {
      * Deletes task from task list and saves changes made to task list.
      *
      * @param taskList task list.
-     * @param ui user interface of program.
-     * @param storage files storing task list.
+     * @param commandOutputs       user interface of program.
+     * @param storage  files storing task list.
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) {
         Task deletedTask = taskList.get(index);
         taskList.delete(index);
-        ui.showDelete(taskList, deletedTask);
-        new SaveCommand().execute(taskList, ui, storage);
+        new SaveCommand().execute(taskList, commandOutputs, storage);
+        return commandOutputs.showDelete(taskList, deletedTask);
     }
 }

@@ -48,7 +48,7 @@ checkstyle {
 }
 
 application {
-    mainClassName = "duke.Duke"
+    mainClassName = "duke.main.Launcher"
 }
 
 shadowJar {
@@ -56,6 +56,6 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }

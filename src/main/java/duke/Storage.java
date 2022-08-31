@@ -1,5 +1,7 @@
 package duke;
 
+import duke.command.CommandOutputs;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -46,13 +48,13 @@ public class Storage {
      * and file if it does not exist.
      * Inputs the tasks into application's task list.
      *
-     * @param ui user interface of application.
+     * @param commandOutputs user interface of application.
      * @param taskList list of tasks.
      */
-    public void startUpPullStorage(Ui ui, TaskList taskList) {
+    public void startUpPullStorage(CommandOutputs commandOutputs, TaskList taskList) {
         createFolder();
         createFile();
-        pullSavedTaskList(ui, taskList);
+        pullSavedTaskList(commandOutputs, taskList);
     }
 
     private void createFolder() {
@@ -71,15 +73,15 @@ public class Storage {
      * Pulls from task list file and inputs
      * the tasks into application's task list.
      *
-     * @param ui user interface of application.
+     * @param commandOutputs user interface of application.
      * @param taskList list of tasks.
      */
-    private void pullSavedTaskList(Ui ui, TaskList taskList) {
+    private void pullSavedTaskList(CommandOutputs commandOutputs, TaskList taskList) {
         File save = new File(filePath);
         try {
             Scanner s = new Scanner(save);
             while (s.hasNextLine()) {
-                Parser.parseSavedInput(s.nextLine()).execute(taskList, ui, this);
+                Parser.parseSavedInput(s.nextLine()).execute(taskList, commandOutputs, this);
             }
         } catch (FileNotFoundException | DukeException e) {
             throw new RuntimeException(e);

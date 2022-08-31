@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Represents a command to exit program.
@@ -30,11 +29,13 @@ public class ExitCommand extends Command {
      * Closes program.
      *
      * @param taskList task list.
-     * @param ui user interface of program.
-     * @param storage files storing task list.
+     * @param commandOutputs       user interface of program.
+     * @param storage  files storing task list.
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showGoodbye();
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) {
+        System.exit(0); //placeholder method to end the application
+        return commandOutputs.showGoodbye();
     }
 }

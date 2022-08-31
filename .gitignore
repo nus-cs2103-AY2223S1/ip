@@ -15,8 +15,8 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+/text-commandOutputs-test/ACTUAL.txt
+text-commandOutputs-test/EXPECTED-UNIX.TXT
 
 #jar MANIFEST.MF files
 /META-INF/
