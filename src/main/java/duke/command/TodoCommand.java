@@ -12,9 +12,9 @@ public class TodoCommand extends Command {
         this.name = name;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.add(tasks.createTask('T', name, null));
-        ui.printAddTask(name, tasks.size());
+        return Ui.getAddTaskString(name, tasks.size());
     }
 
 }

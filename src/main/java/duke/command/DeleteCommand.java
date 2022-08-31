@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.task.Task;
 
 public class DeleteCommand extends Command {
 
@@ -12,9 +12,10 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.print("I've deleted this task: \n" + tasks.get(index));
+    public String execute(TaskList tasks, Storage storage) {
+        Task tmp = tasks.get(index);
         tasks.remove(index);
+        return "I've deleted this task: \n" + tmp;
     }
 
 }

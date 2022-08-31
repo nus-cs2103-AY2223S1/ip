@@ -6,8 +6,8 @@ import duke.Ui;
 
 public class ListCommand extends Command {
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printList(tasks);
+    public String execute(TaskList tasks, Storage storage) {
+        return Ui.getListString(tasks);
     }
 
 }

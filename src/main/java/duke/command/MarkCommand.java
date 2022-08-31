@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 public class MarkCommand extends Command {
 
@@ -12,9 +11,9 @@ public class MarkCommand extends Command {
         this.index = index;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.get(index).mark();
-        ui.print("I've marked this task as done: \n" + tasks.get(index));
+        return "I've marked this task as done: \n" + tasks.get(index);
     }
 
 }

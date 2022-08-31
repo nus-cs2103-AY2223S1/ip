@@ -35,7 +35,15 @@ public class TaskList {
 
             char tag = line.charAt(1);
             boolean isDone = (line.charAt(4) == 'X' ? true : false);
-            String[] msg = line.split(" ", 3)[2].split(" \\(");
+
+            String[] msg;
+
+            try {
+                msg = line.split(" ", 3)[2].split(" \\(");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw(new DukeException("Error parsing!"));
+            }
+
             String name = msg[0];
             LocalDateTime date = null;
 

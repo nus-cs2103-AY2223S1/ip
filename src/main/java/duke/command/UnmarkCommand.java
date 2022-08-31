@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 public class UnmarkCommand extends Command {
 
@@ -13,9 +12,9 @@ public class UnmarkCommand extends Command {
     }
 
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.get(index).unmark();
-        ui.print("I've marked this task as undone: \n" + tasks.get(index));
+        return "I've marked this task as undone: \n" + tasks.get(index);
     }
 
 }

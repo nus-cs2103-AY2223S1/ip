@@ -9,7 +9,8 @@ public class Duke {
 
     public static final String FOLDER_LOCATION = "data";
     public static final String FILE_LOCATION = "data/duke.txt";
-    private Ui ui;
+
+    private boolean isLoaded;
     private Storage storage;
     private TaskList tasks;
 
@@ -20,45 +21,35 @@ public class Duke {
      * @param folderPath Path to folder containing save file.
      */
     public Duke(String filePath, String folderPath) {
-        ui = new Ui();
         storage = new Storage(filePath, folderPath);
         try {
             tasks = new TaskList(storage.load());
+            isLoaded = true;
         } catch (DukeException e) {
-            ui.print(e.getMessage());
             tasks = new TaskList();
+            isLoaded = false;
         }
     }
 
     /**
-     * Executes main loop of program.
+     * Creates a new Duke Object with the default folder and file location.
      */
-    public void run() {
-
-        ui.printGreetings();
-
-        while (true) {
-            String fullCommand = ui.readCommand();
-            try {
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                if (c.isExit()) {
-                    break;
-                }
-                storage.save(tasks);
-            } catch (Exception e) {
-                ui.print(e.getMessage());
-            }
-        }
-        ui.close();
+    public Duke() {
+        this(FILE_LOCATION, FOLDER_LOCATION);
     }
 
-    /**
-     * Main method for Duke.
-     *
-     * @param args Command Line arguments.
-     */
-    public static void main(String[] args) {
-        new Duke(FILE_LOCATION, FOLDER_LOCATION).run();
+    public boolean getLoaded() {
+        return isLoaded;
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String res = c.execute(tasks, storage);
+            storage.save(tasks);
+            return res;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 }

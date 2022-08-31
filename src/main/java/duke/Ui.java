@@ -1,43 +1,52 @@
 package duke;
 
-import java.util.Scanner;
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * Ui class containing logic for receiving user input and printing output
  */
-public class Ui {
+public class Ui extends Application {
 
     private static final String GREETINGS = "Hello! I'm Ekud \n" + "What can I do for you?";
-    private static final String BANNER = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-    private Scanner sc;
+    private final Duke duke = new Duke();
+    private MainWindow mainWindow;
 
     /**
-     * Creates new Ui class.
+     * Starts the GUI.
+     * @param stage The stage parameter set by JavaFX.
      */
-    public Ui() {
-        sc = new Scanner(System.in);
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    Ui.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            mainWindow = fxmlLoader.<MainWindow>getController();
+            mainWindow.setDuke(duke);
+            printGreetings();
+            if (duke.getLoaded()) {
+                print("File successfully loaded!");
+            } else {
+                print("Error parsing load file");
+            }
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Reads a line of user input.
-     *
-     * @return String containing user input.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    /**
-     * Prints a string with formatting.
-     *
-     * @param msg String to be printed.
-     */
     public void print(String msg) {
-        System.out.println(BANNER);
-        System.out.println(msg);
-        System.out.println(BANNER);
+        mainWindow.print(msg);
     }
-
     /**
      * Prints greetings message.
      */
@@ -47,20 +56,23 @@ public class Ui {
 
     /**
      * Prints message when task is added.
-     * @param msg Description of task added.
+     *
+     * @param msg  Description of task added.
      * @param size Size of task list.
+     * @return Add task message.
      */
-    public void printAddTask(String msg, int size) {
-        print("Got it. I've added this task:\n" + msg
-                + "\nNow you have " + size + " tasks in the list.");
+    public static String getAddTaskString(String msg, int size) {
+        return "Got it. I've added this task:\n" + msg
+                + "\nNow you have " + size + " tasks in the list.";
     }
 
     /**
-     * Prints entire task list.
+     * Returns entire task list.
      *
      * @param tasks TaskList to be printed.
+     * @return Entire task list.
      */
-    public void printList(TaskList tasks) {
+    public static String getListString(TaskList tasks) {
         String list = "";
         for (int i = 0; i < tasks.size(); i++) {
             list += (i + 1) + "." + tasks.get(i);
@@ -68,13 +80,6 @@ public class Ui {
                 list += "\n";
             }
         }
-        print(list);
-    }
-
-    /**
-     * Closes system input.
-     */
-    public void close() {
-        sc.close();
+        return list;
     }
 }
