@@ -8,30 +8,30 @@ import duke.tasklist.TaskList;
  */
 public class Ui {
 
-    final String HORIZONTAL_LINE = "______________________________________\n";
-
-    /**
-     * Print to system out string encapsulated within horizontal lines.
-     *
-     * @param str String to be printed
-     */
-    public void formatPrint(String str) {
-        System.out.println(HORIZONTAL_LINE + str + "\n" + HORIZONTAL_LINE);
-    }
+//    final String HORIZONTAL_LINE = "______________________________________\n";
+//
+//    /**
+//     * Print to system out string encapsulated within horizontal lines.
+//     *
+//     * @param str String to be printed
+//     */
+//    public void formatPrint(String str) {
+//        System.out.println(HORIZONTAL_LINE + str + "\n" + HORIZONTAL_LINE);
+//    }
 
     /**
      * Prints the introductory message to the user.
      */
-    public void printIntroduction() {
+    public String printIntroduction() {
         String firstText = "hi... I'm Karen\nWhat do you want this time?";
-        formatPrint(firstText);
+        return firstText;
     }
 
     /**
      * Prints the concluding message to the user.
      */
-    public void printByeMessage() {
-        formatPrint("K finally, good riddance!");
+    public String printByeMessage() {
+        return "K finally, good riddance!";
     }
 
     /**
@@ -39,16 +39,16 @@ public class Ui {
      *
      * @param list TaskList that contains tasks
      */
-    public void printListMessage(TaskList list) {
+    public String printListMessage(TaskList list) {
         if (list.getSize() == 0) {
-            formatPrint("pff there is nothing in your list");
+            return "pff there is nothing in your list";
         } else {
-            System.out.println(HORIZONTAL_LINE + "Here are your dumb tasks in your list:");
+            String str = "Here are your dumb tasks in your list:\n";
             for (int i = 1; i < list.getSize() + 1; i++) {
                 Task item = list.getTask(i - 1);
-                System.out.println(i + ". " + item.toString());
+                str += i + ". " + item.toString() + "\n";
             }
-            System.out.println(HORIZONTAL_LINE);
+            return str;
         }
     }
 
@@ -57,9 +57,9 @@ public class Ui {
      *
      * @param task Task that was marked
      */
-    public void printMarkMessage(Task task) {
+    public String printMarkMessage(Task task) {
         String str = "Took you long enough to complete this duke.task:\n" + task.toString();
-        formatPrint(str);
+        return str;
     }
 
     /**
@@ -67,45 +67,45 @@ public class Ui {
      *
      * @param task Task that was unmarked
      */
-    public void printUnmarkMessage(Task task) {
+    public String printUnmarkMessage(Task task) {
         String str = "Another duke.task marked as not done?? Slow indeed\n" + task.toString();
-        formatPrint(str);
+        return str;
     }
 
-    public void printAddTaskMessage(Task task, int size) {
+    public String printAddTaskMessage(Task task, int size) {
         String str = "Fine, I'll add this duke.task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
-        formatPrint(str);
+        return str;
     }
 
-    public void printDeleteMessage(Task task, int size) {
+    public String printDeleteMessage(Task task, int size) {
         String str = "Ughh I'll remove this duke.task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
-        formatPrint(str);
+        return str;
     }
 
-    public void printUnknownMessage() {
-        formatPrint("What are you saying??? Try again");
+    public String printUnknownMessage() {
+        return "What are you saying??? Try again";
     }
 
-    public void printErrorMessage(String str) {
-        formatPrint(str);
+    public String printErrorMessage(String str) {
+        return str;
     }
 
-    public void showLoadingError() {
-        formatPrint("Error loading data from file");
+    public String showLoadingError() {
+        return "Error loading data from file";
     }
 
-    public void printFindMessage(TaskList taskList) {
+    public String printFindMessage(TaskList taskList) {
         if (taskList.getSize() == 0) {
-            formatPrint("HAHA unlucky! There is no matching task in your list!");
+            return "HAHA unlucky! There is no matching task in your list!";
         } else {
-            System.out.println(HORIZONTAL_LINE + "Tsk! Be grateful I searched through your entire list to find these:");
+            String str = "Tsk! Be grateful I searched through your entire list to find these:\n";
             for (int i = 1; i < taskList.getSize() + 1; i++) {
                 Task item = taskList.getTask(i - 1);
-                System.out.println(i + ". " + item.toString());
+                str += i + ". " + item.toString() + "\n";
             }
-            System.out.println(HORIZONTAL_LINE);
+            return str;
         }
     }
 }
