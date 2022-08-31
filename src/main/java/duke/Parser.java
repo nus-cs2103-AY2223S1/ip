@@ -17,6 +17,9 @@ public class Parser {
 
     /**
      * Parses the various inputs inputted by user.
+     *
+     * @param input A String representing the user's input.
+     * @return A String of response based on user's input.
      */
     public String start(String input) {
         String[] splitInput = input.split(" ", 2);
@@ -88,6 +91,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks for any missing arguments from user's input.
+     *
+     * @param input An Array of String from the user's input.
+     * @throws DukeException
+     */
     public void checkForMissingArgs(String[] input) throws DukeException {
         if (input.length == 1 || input[1].trim().isEmpty()) {
             throw new DukeException("OOPS! You are missing some information in your command!");
