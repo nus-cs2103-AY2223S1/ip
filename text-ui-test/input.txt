@@ -28,8 +28,7 @@ delete 5
 delete 4
 list me
 find todo
-find todo 1
-find todo 3
+find e
 delete 6
 deadline deadline 2 /b 21/9
 bye

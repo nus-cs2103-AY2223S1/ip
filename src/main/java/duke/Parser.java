@@ -68,7 +68,7 @@ public class Parser {
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
             if (type.equals("[D")) {
-                String[] rest_split = rest.split("by", 2);
+                String[] rest_split = rest.split("by:", 2);
                 String description = rest_split[0].replaceAll(".$", "").trim();
                 String time = rest_split[1].replaceAll(".$", "").trim();
                 LocalDateTime deadlineDateTime = LocalDateTime.parse(time, formatter);

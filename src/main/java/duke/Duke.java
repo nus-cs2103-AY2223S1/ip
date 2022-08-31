@@ -23,15 +23,19 @@ public class Duke {
 
     public static void main(String[] args) throws IOException {
         Duke duke = new Duke();
+        duke.run();
 
+    }
+
+    public void run() throws IOException {
         File file = new File(Duke.pathName);
         file.getParentFile().mkdirs();
         if (!file.exists()) {
             file.createNewFile();
         }
 
-        duke.storage.loadTasks(duke.taskList);
-        duke.ui.printWelcomeMsg();
+        this.storage.loadTasks(this.taskList);
+        this.ui.printWelcomeMsg();
 
         Scanner sc = new Scanner(System.in);
 
@@ -39,15 +43,15 @@ public class Duke {
             String input = sc.nextLine();
             try {
                 if (input.equals("bye")) {
-                    duke.ui.print("Bye. Hope to see you again soon!");
+                    this.ui.print("Bye. Hope to see you again soon!");
                     break;
                 }
                 Command c = Parser.parseInput(input);
-                c.execute(duke.taskList, duke.ui, duke.storage);
+                c.execute(this.taskList, this.ui, this.storage);
             } catch (DukeException d) {
-                duke.ui.print(d.getMessage());
+                this.ui.print(d.getMessage());
             } catch (DateTimeParseException e) {
-                duke.ui.print("Do format your time in yyyy-MM-dd HH:mm");
+                this.ui.print("Do format your time in yyyy-MM-dd HH:mm");
             }
         }
         sc.close();
