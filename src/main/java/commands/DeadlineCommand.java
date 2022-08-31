@@ -20,7 +20,7 @@ public class DeadlineCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.add(new Deadline(title, false, dateBy));
-        ui.printMultiMsg(new String[]{
+        ui.printMultiMsg(new String[] {
                 "Got it. I've added this task:",
                 "  " + task,
                 "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
