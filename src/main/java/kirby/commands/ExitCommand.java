@@ -14,9 +14,9 @@ public class ExitCommand extends Command {
      * Quits the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         String output = ("I loved talking to you ･ω･\n" + "Hope to see you again!");
-        System.out.println(output);
+        return output;
     }
 
     /**

@@ -32,7 +32,7 @@ public abstract class Command {
      * @param storage Storage that saves users' previous entries.
      * @throws KirbyMissingArgumentException If arguments are not followed with the respective commands.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException;
 
     /**
      * Returns true if the user has terminated the program, otherwise false.

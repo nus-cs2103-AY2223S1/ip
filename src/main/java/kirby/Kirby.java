@@ -19,9 +19,9 @@ public class Kirby {
      * Constructor for the class Kirby.
      *
      * @param filePath Name of the file path as a string.
-     * @param dirPath Name of the directory path as a string.
+     * @param dirPath  Name of the directory path as a string.
      * @throws FileNotFoundException If the file mentioned is not found.
-     * @throws IOException If there is an improper input error.
+     * @throws IOException           If there is an improper input error.
      */
     public Kirby(String filePath, String dirPath) throws FileNotFoundException, IOException {
         ui = new Ui();
@@ -37,38 +37,13 @@ public class Kirby {
         }
     }
 
-    /**
-     * Runs the program.
-     *
-     * @throws KirbyInvalidCommandException If an undefined command is entered.
-     * @throws KirbyMissingArgumentException If the command has invalid arguments.
-     */
-    public void run() throws KirbyInvalidCommandException, KirbyMissingArgumentException {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            String fullCommand = ui.readCommand();
-            try {
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (KirbyInvalidCommandException | KirbyMissingArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    public String getResponse(String fullCommand) throws KirbyInvalidCommandException, KirbyMissingArgumentException {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return c.execute(tasks, ui, storage);
+        } catch (KirbyInvalidCommandException | KirbyMissingArgumentException e) {
+            String error = e.getMessage();
+            return error;
         }
-    }
-
-    /**
-     * Runs the main method.
-     *
-     * @throws KirbyInvalidCommandException if an undefined command is entered.
-     * @throws KirbyMissingArgumentException if the command has invalid arguments.
-     * @throws IOException if there is an improper input error.
-     */
-    public static void main(String[] args) throws IOException, KirbyInvalidCommandException, KirbyMissingArgumentException {
-        String fileName = "data/kirby.txt";
-        String dirName = "data/";
-        Kirby kirby = new Kirby(fileName, dirName);
-        kirby.run();
     }
 }

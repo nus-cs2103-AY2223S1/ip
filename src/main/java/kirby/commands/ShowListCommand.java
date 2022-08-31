@@ -15,12 +15,17 @@ public class ShowListCommand extends Command {
      * Lists down all the tasks in the list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         System.out.println("Here is your bag of fabulous tasks:");
+        String resPara = "Your list of tasks: \n";
+        if (tasks.getTaskCount() == 0) {
+            return "You have no tasks added!";
+        }
         for (int i = 0; i < tasks.getList().size(); i++) {
             Task currTask = tasks.getList().get(i);
-            System.out.println(i + 1 + ": " + currTask.toString());
+            resPara += i + 1 + ": " + currTask.toString() + "\n";
         }
+        return resPara;
     }
 
     /**

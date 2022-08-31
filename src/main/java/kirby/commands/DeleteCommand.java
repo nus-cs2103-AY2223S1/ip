@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
      * Deletes the specified task if arguments are valid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("delete");
         }
@@ -34,7 +34,9 @@ public class DeleteCommand extends Command {
         if (taskIndex < 1 || taskIndex > currentTaskCount) {
             throw new KirbyMissingArgumentException("delete");
         }
+        String strResult = tasks.removeTaskString(taskIndex - 1);
         tasks.removeTask(taskIndex - 1);
+        return strResult;
     }
 
     /**

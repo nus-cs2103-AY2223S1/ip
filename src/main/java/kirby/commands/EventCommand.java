@@ -30,7 +30,7 @@ public class EventCommand extends Command {
      * Creates an Event task if arguments are valid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4 || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6) {
             throw new KirbyMissingArgumentException("event");
         }
@@ -43,6 +43,7 @@ public class EventCommand extends Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return tasks.addTaskString(event);
     }
 
     /**

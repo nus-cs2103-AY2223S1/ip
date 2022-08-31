@@ -41,7 +41,10 @@ public class TaskList {
      */
     public void setTaskMarked(int taskNumber) {
         tasks.get(taskNumber).setCompleted();
-        System.out.println("Awesome :D I've marked " + tasks.get(taskNumber).toString() + " completed!");
+    }
+
+    public String setMarkedString(int taskNumber) {
+        return "Awesome :D I've marked " + tasks.get(taskNumber).toString() + " completed!";
     }
 
     /**
@@ -51,7 +54,10 @@ public class TaskList {
      */
     public void setTaskUnmarked(int taskNumber) {
         tasks.get(taskNumber).setIncomplete();
-        System.out.println("Okay, I've marked " + tasks.get(taskNumber).toString() + " pending!");
+    }
+
+    public String setUnmarkedString(int taskNumber) {
+        return "Okay, I've marked " + tasks.get(taskNumber).toString() + " pending!";
     }
 
     /**
@@ -71,8 +77,10 @@ public class TaskList {
     public void addTask(Task task) {
         this.tasks.add(task);
         this.taskCount++;
-        System.out.println("Added into your bag of fabulous tasks: " + task.toString());
-        printTaskCount();
+    }
+
+    public String addTaskString(Task task) {
+        return "Added into your bag of fabulous tasks: " + task.toString() + "\n" + printTaskCount(0);
     }
 
     /**
@@ -83,10 +91,11 @@ public class TaskList {
     public void removeTask(int taskIndex) {
         this.tasks.remove(taskIndex);
         this.taskCount--;
-        System.out.println("Removed from your bag of fabulous tasks: " + tasks.get(taskIndex - 1).toString());
-        printTaskCount();
     }
 
+    public String removeTaskString(int taskIndex) {
+        return "Removed from your bag of fabulous tasks: " + tasks.get(taskIndex).toString() + "\n" + printTaskCount(1);
+    }
     /**
      * Removes a task from the list.
      *
@@ -105,12 +114,23 @@ public class TaskList {
 
     /**
      * Prints the number of tasks in the list.
+     * 
+     * @param x 1 if a removeTask function is calling this function. Otherwise. it is 0.
      */
-    private void printTaskCount() {
-        if (taskCount > 1) {
-            System.out.println("Now you have " + taskCount + " tasks in the bag!");
+    private String printTaskCount(int x) {
+        if (x == 0) {
+            if (taskCount > 1) {
+                return "Now you have " + taskCount + " tasks in the bag!";
+            } else {
+                return "Now you have " + taskCount + " task in the bag!";
+            }
         } else {
-            System.out.println("Now you have " + taskCount + " task in the bag!");
+            int newTaskCount = taskCount - 1;
+            if (newTaskCount > 1) {
+                return "Now you have " + newTaskCount + " tasks in the bag!";
+            } else {
+                return "Now you have " + newTaskCount + " task in the bag!";
+            }
         }
     }
 }

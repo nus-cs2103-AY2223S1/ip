@@ -28,15 +28,17 @@ public class FindCommand extends Command {
      * Lists down the list of tasks that contains the keyword.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("find");
         }
         String keyword = inputString.split(" ")[1];
         ArrayList<Task> res = tasks.findTask(keyword);
+        String taskListPara = "";
         for (Task task: res) {
-            System.out.println(task.toString());
+            taskListPara += res + "\n";
         }
+        return taskListPara;
     }
 
     /**

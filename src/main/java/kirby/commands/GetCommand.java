@@ -29,7 +29,7 @@ public class GetCommand extends Command {
      * Lists down the list of tasks on a specified date if the date is valid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("get");
         }
@@ -39,11 +39,13 @@ public class GetCommand extends Command {
         }
         ArrayList<Task> res = HandleTime.getTaskByDate(tasks.getList(), inputDate);
         if (res.size() < 1) {
-            System.out.println("No tasks found!");
+            return "No tasks found!";
         } else {
+            String resListPara = "";
             for (Task re : res) {
-                System.out.println(re.toString());
+                resListPara += re.toString() + "\n";
             }
+            return resListPara;
         }
     }
 

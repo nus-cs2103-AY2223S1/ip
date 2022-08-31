@@ -28,7 +28,7 @@ public class DeadlineCommand extends Command {
      * Creates a Deadline task if arguments are valid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4 || inputString.indexOf(" /by") <= inputString.indexOf("deadline") + 9) {
             throw new KirbyMissingArgumentException("deadline");
         }
@@ -39,8 +39,9 @@ public class DeadlineCommand extends Command {
         try {
             storage.writeTask(tasks.getList());
         } catch (IOException e) {
-            e.printStackTrace();
+            return (e.getMessage());
         }
+        return tasks.addTaskString(deadline);
     }
 
     /**

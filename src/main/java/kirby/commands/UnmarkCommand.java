@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
      * Unmarks the specified task if arguments are valid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("unmark");
         }
@@ -44,6 +44,8 @@ public class UnmarkCommand extends Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return tasks.setMarkedString(taskIndex - 1);
+
     }
 
     /**
