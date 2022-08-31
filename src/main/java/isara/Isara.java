@@ -71,9 +71,8 @@ public class Isara {
                 return ui.commandDoesNotExist();
             }
         } catch (IsaraException e) {
-            ui.errorMessage(e);
+            return ui.errorMessage(e);
         }
-        return output;
     }
 
     /**

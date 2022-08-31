@@ -23,14 +23,14 @@ public class MainWindow extends AnchorPane {
 
     private Isara isara;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image isaraImage = new Image(this.getClass().getResourceAsStream("/images/isara.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getIsaraDialog("Hello! Isara here, how can I help you?", dukeImage));
+                DialogBox.getIsaraDialog("Hello! Isara here, how can I help you?", isaraImage));
     }
 
     public void setDuke(Isara d) {
@@ -47,7 +47,7 @@ public class MainWindow extends AnchorPane {
         String response = isara.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getIsaraDialog(response, dukeImage)
+                DialogBox.getIsaraDialog(response, isaraImage)
         );
         userInput.clear();
     }
