@@ -51,7 +51,7 @@ public class TaskListTest {
         arr.add(task2);
         arr.add(task3);
         TaskList taskList = new TaskList(arr);
-        taskList.remove(2);
+        taskList.removeTask(2);
         assertEquals(taskList.getTask(taskList.getSize() - 1).toString(),
                 "[D][ ] deadline (by: 12:00 PM, Mon, 12 Dec 2022)");
     }

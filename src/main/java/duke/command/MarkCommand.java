@@ -23,13 +23,6 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * @return Index of task
-     */
-    public int getNum() {
-        return num;
-    }
-
-    /**
      * Execute the mark command by changing the boolean isMarked
      * for task at index num to true.
      *
@@ -37,9 +30,13 @@ public class MarkCommand extends Command {
      * @param taskList TaskList to execute mark command
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        Task task = taskList.getTask(num);
+    public String execute(Ui ui, TaskList taskList) {
+        Task task;
+
+        task = taskList.getTask(num);
         task.setMarked();
-        ui.showMarkMessage(task);
+
+
+        return ui.showMarkMessage(task);
     }
 }

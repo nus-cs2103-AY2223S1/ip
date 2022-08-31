@@ -43,7 +43,7 @@ public class Storage {
      * @return ArrayList with task read from the text file
      * @throws DukeException If invalid commands or arguments
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() {
         readFile();
         return tasks;
     }
@@ -53,7 +53,7 @@ public class Storage {
      * If the file is not missing, read the file and add task into ArrayList.
      * @throws DukeException If there is invalid task in text file
      */
-    public void readFile() throws DukeException {
+    public void readFile() {
         try {
             File file;
             File txt;
@@ -75,7 +75,7 @@ public class Storage {
 
             String line;
             tasks = new ArrayList<>();
-            ui.showReadMessage();
+
             while (true) {
                 line = br.readLine();
                 if (line == null) {
@@ -98,9 +98,9 @@ public class Storage {
                 }
             }
         } catch (DukeException msg) {
-            throw new DukeException(msg.toString());
+            System.out.println("The text file contain invalid tasks");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Unable to read file");
         }
     }
 
@@ -110,7 +110,7 @@ public class Storage {
      * @param taskList TaskList to extract task and save it inside a text file
      * @throws DukeException If there is invalid task
      */
-    public void writeFile(TaskList taskList) throws DukeException {
+    public void writeFile(TaskList taskList) {
         try {
             File writeF = new File("./data/duke.txt");
             if (!writeF.exists()) {
@@ -161,7 +161,7 @@ public class Storage {
             fw.close();
 
         } catch (IOException msg) {
-            throw new DukeException("Failed to save file");
+            System.out.println("Failed to save file.");
         }
     }
 

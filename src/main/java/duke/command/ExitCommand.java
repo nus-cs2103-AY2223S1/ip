@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
@@ -24,7 +25,11 @@ public class ExitCommand extends Command {
      * @param taskList TaskList to execute command
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        ui.showExitMessage();
+    public String execute(Ui ui, TaskList taskList) {
+        System.out.println(ui.showExitMessage());
+        Storage storage = new Storage(ui, "./data/duke.txt");
+        storage.writeFile(taskList);
+        javafx.application.Platform.exit();
+        return ui.showExitMessage();
     }
 }

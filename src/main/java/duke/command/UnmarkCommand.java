@@ -23,13 +23,6 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * @return Index of task
-     */
-    public int getNum() {
-        return num;
-    }
-
-    /**
      * Execute the unmark operation by changing
      * boolean isMarked of task at index num to false.
      *
@@ -37,9 +30,12 @@ public class UnmarkCommand extends Command {
      * @param taskList TaskList to execute unmark command
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        Task task = taskList.getTask(num);
+    public String execute(Ui ui, TaskList taskList) {
+        Task task;
+
+        task = taskList.getTask(num);
         task.setUnmarked();
-        ui.showUnmarkMessage(task);
+
+        return ui.showUnmarkMessage(task);
     }
 }

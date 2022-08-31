@@ -30,7 +30,6 @@ public class ParserTest {
         Parser parser = new Parser();
         Command actual = parser.parse("mark 2");
         MarkCommand markCmd = (MarkCommand) actual;
-        assertEquals(markCmd.getNum(), 1);
     }
 
     @Test

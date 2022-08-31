@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeException;
 
 /**
  * Command class to execute operation.
@@ -32,7 +31,6 @@ public abstract class Command {
      *
      * @param ui Ui to show operation messages
      * @param taskList TaskList to execute command
-     * @throws DukeException If invalid commands or arguments
      */
-    public abstract void execute(Ui ui, TaskList taskList) throws DukeException;
+    public abstract String execute(Ui ui, TaskList taskList);
 }

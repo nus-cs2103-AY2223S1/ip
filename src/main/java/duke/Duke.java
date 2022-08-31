@@ -5,6 +5,7 @@ import java.io.IOException;
 import duke.command.Command;
 import duke.command.ExitCommand;
 import duke.exception.DukeException;
+import duke.ui.Launcher;
 
 /**
  * Duke is the main class of the program to save and keep track of ur task in a text file.
@@ -19,41 +20,22 @@ public class Duke {
     /**
      * Constructor of Duke to initialise ui for showing messages and storage to store tasks
      *
-     * @param filePath path of file
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(ui, filePath);
-        try {
-            taskList = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showLoadingError(e.toString());
-            taskList = new TaskList();
-        }
+        storage = new Storage(ui, "./data/duke.txt");
+        taskList = new TaskList(storage.load());
     }
 
     /**
-     * Run the program and interact with the user
-     *
-     * @throws DukeException If invalid commands and arguments
-     * @throws IOException If invalid inputs
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() throws DukeException, IOException {
-        ui.showGreetMessage();
-        while (true) {
-            ui.showLine();
-            String input = ui.readCommand();
-            Command currCmd = ui.run(input);
-            currCmd.execute(ui, taskList);
-
-            if (currCmd instanceof ExitCommand) {
-                break;
-            }
-        }
-        storage.writeFile(taskList);
+    public String getResponse(String input) {
+        return Parser.parse(input).execute(ui, taskList);
     }
 
-    public static void main(String[] args) throws DukeException, IOException {
-        new Duke("./data/duke.txt").run();
+    public static void main(String[] args) {
+        Launcher.main(args);
     }
 }

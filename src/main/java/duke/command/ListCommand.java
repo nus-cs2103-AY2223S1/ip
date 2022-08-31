@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.task.Task;
 
 /**
  * Command to list every task in the TaskList.
@@ -27,18 +26,9 @@ public class ListCommand extends Command {
      * @param taskList TaskList to execute List command
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        ui.showList();
+    public String execute(Ui ui, TaskList taskList) {
+        String output = ui.showList() + "\n";
 
-        for (int i = 0; i < taskList.getSize(); i++) {
-            Task task = taskList.getTask(i);
-
-            if (task == null) {
-                break;
-            }
-
-            int index = i + 1;
-            ui.showTask(index, task);
-        }
+        return output + ui.showTaskList(taskList);
     }
 }

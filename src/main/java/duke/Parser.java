@@ -21,40 +21,48 @@ public class Parser {
      * @return Command referred to the user input
      * @throws DukeException If invalid commands or arguments
      */
-    public static Command parse(String input) throws DukeException {
+    public static Command parse(String input) {
         String[] cmd = input.split(" ", 2);
-        int num;
+        int index;
 
-        switch (cmd[0]) {
-        case "bye":
-            return new ExitCommand(cmd[0]);
-        case "list":
-            return new ListCommand(cmd[0]);
-        case "mark":
-            if (cmd.length != 2 || cmd[1].length() < 1) {
-                throw new DukeException("The index of a task cannot be empty.");
+        try {
+            switch (cmd[0]) {
+            case "bye":
+                return new ExitCommand(cmd[0]);
+            case "list":
+                return new ListCommand(cmd[0]);
+            case "mark":
+                if (cmd.length != 2 || cmd[1].length() < 1) {
+                    throw new DukeException("The index of a task cannot be empty.");
+                }
+                index = Integer.parseInt(cmd[1]);
+                return new MarkCommand(cmd[0], index - 1);
+            case "unmark":
+                if (cmd.length != 2 || cmd[1].length() < 1) {
+                    throw new DukeException("The index of a task cannot be empty.");
+                }
+                index = Integer.parseInt(cmd[1]);
+                return new UnmarkCommand(cmd[0], index - 1);
+            case "delete":
+                if (cmd.length != 2 || cmd[1].length() < 1) {
+                    throw new DukeException("The index of a task cannot be empty.");
+                }
+                index = Integer.parseInt(cmd[1]);
+                return new DeleteCommand(cmd[0], index - 1);
+            case "find":
+                if (cmd.length != 2 || cmd[1].length() < 1) {
+                    throw new DukeException("The keyword of a task cannot be empty.");
+                }
+                return new FindCommand(cmd[0], cmd[1]);
+            default:
+                return new AddCommand(input);
             }
-            num = Integer.parseInt(cmd[1]);
-            return new MarkCommand(cmd[0], num - 1);
-        case "unmark":
-            if (cmd.length != 2 || cmd[1].length() < 1) {
-                throw new DukeException("The index of a task cannot be empty.");
-            }
-            num = Integer.parseInt(cmd[1]);
-            return new UnmarkCommand(cmd[0], num - 1);
-        case "delete":
-            if (cmd.length != 2 || cmd[1].length() < 1) {
-                throw new DukeException("The index of a task cannot be empty.");
-            }
-            num = Integer.parseInt(cmd[1]);
-            return new DeleteCommand(cmd[0], num - 1);
-        case "find":
-            if (cmd.length != 2 || cmd[1].length() < 1) {
-                throw new DukeException("The keyword of a task cannot be empty.");
-            }
-            return new FindCommand(cmd[0], cmd[1]);
-        default:
-            return new AddCommand(input);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

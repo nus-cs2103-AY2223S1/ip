@@ -33,10 +33,10 @@ public class DeleteCommand extends Command {
      * @param taskList TaskList to execute delete command
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList) {
         Task task = taskList.getTask(this.num);
-        taskList.remove(this.num);
+        taskList.removeTask(this.num);
         int size = taskList.getSize();
-        ui.showDeleteMessage(task, size);
+        return ui.showDeleteMessage(task, size);
     }
 }
