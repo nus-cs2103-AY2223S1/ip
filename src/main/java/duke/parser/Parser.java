@@ -153,7 +153,7 @@ public class Parser {
      * @throws IllegalDateFormatException throws an exception when the input date is not of correct format.
      */
     public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
-        date = date.trim();
+        date = date.trim().substring(3);
         LocalDate res;
         try {
             res = LocalDate.parse(date);

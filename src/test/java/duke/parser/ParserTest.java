@@ -23,7 +23,7 @@ public class ParserTest {
     @Test
     public void parseToLocalDateTimeTest() throws IllegalDateFormatException {
         LocalDate expected = LocalDate.of(2018, 9, 9);
-        LocalDate actual = parseToLocalDateTime("2018-09-09");
+        LocalDate actual = parseToLocalDateTime("at 2018-09-09");
         assertEquals(4, 4);
     }
 }
