@@ -29,7 +29,7 @@ All you need to do is,
 
 Here is a quick tutorial on the command syntax !!! :+1:
 
-Content inside the {} is to be decided by the user. 
+Content inside the { } is to be decided by the user. 
 
 - `todo {Task}` To add a Todo task.
 - `deadline {Task} \by {'Date in' YYYY-MM-DD}` To add a deadline task.
