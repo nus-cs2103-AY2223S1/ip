@@ -61,6 +61,15 @@ public class ListObject implements Serializable {
     }
 
     /**
+     * Checks if the task description contains the given keyword
+     * @param keyword String representing the keyword to check for in task description
+     * @return boolean true if the description contains the word and false otherwise
+     */
+    public boolean hasWord(String keyword) {
+        return this.task.contains(keyword);
+    }
+
+    /**
      * Returns String representation of the ListObject
      * @return String representing the ListObject
      */
