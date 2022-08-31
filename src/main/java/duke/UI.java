@@ -11,7 +11,7 @@ public class UI {
     /**
      * Displays the Greeting message.
      */
-    public static void Greet() {
+    public static void greet() {
         String logo = " _______               \n"
                 + "|  _____|  _   _____   \n"
                 + "|  |____  | | |  __ |  \n"
@@ -25,7 +25,7 @@ public class UI {
     /**
      * Prints Goodbye Message.
      */
-    public static void Goodbye() {
+    public static void goodbye() {
         System.out.println("Have a nice day! :)");
     }
 

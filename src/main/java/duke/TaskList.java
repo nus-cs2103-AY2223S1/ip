@@ -1,13 +1,13 @@
 package duke;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * This class handles logic dealing with the task list.
@@ -37,7 +37,8 @@ public class TaskList {
      *
      * @param type        type of task added.
      * @param description description of the task.
-     * @throws DukeException, IOException for invalid inputs.
+     * @throws DukeException for invalid inputs.
+     * @throws IOException for invalid inputs.
      */
     public void addTask(Command type, String description) throws DukeException, IOException {
         Task task;
@@ -50,7 +51,7 @@ public class TaskList {
         }
         UI.printAddTaskMessage(task);
         tasks.add(task);
-        Storage.Save(tasks, false);
+        Storage.save(tasks, false);
     }
 
     /**
@@ -79,11 +80,11 @@ public class TaskList {
             Task currTask = tasks.get(taskNo - 1);
             if (markStatus == Command.MARK) {
                 currTask.markDone();
-                Storage.Save(tasks, true);
+                Storage.save(tasks, true);
                 System.out.println("Task successfully marked!");
             } else {
                 currTask.markUndone();
-                Storage.Save(tasks, true);
+                Storage.save(tasks, true);
                 System.out.println("Task successfully unmarked!");
             }
             System.out.println(currTask + "\n");
@@ -104,13 +105,18 @@ public class TaskList {
             System.out.println("Ok, I've removed this task:");
             System.out.println(task);
             tasks.remove(taskNo - 1);
-            Storage.Save(tasks, true);
+            Storage.save(tasks, true);
             System.out.println("You have " + tasks.size() + " tasks left currently.\n");
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println("Invalid index, please input the index of an available task!\n");
         }
     }
 
+    /**
+     * Finds tasks with a matching description to the user's input.
+     *
+     * @param match The input by the user to be found by the method.
+     */
     public void findTask(String match) {
         if (!tasks.isEmpty()) {
             System.out.printf("Here's all I could find with \"%s\"!\n", match);

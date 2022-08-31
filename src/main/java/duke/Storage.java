@@ -1,18 +1,18 @@
 package duke;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalDateTime;
 
 /**
  * This class encapsulates the logic of the storage of the task list in the user's harddrive.
@@ -29,7 +29,7 @@ public class Storage {
      *
      * @param tasks task list.
      */
-    public static void Load(List<Task> tasks) {
+    public static void load(List<Task> tasks) {
         // This is the current directory the system is in.
         boolean isDataFolderPresent = Files.exists(SAVE_LOCATION);
         boolean isSaveFilePresent = Files.exists(SAVE_FILE_PATH);
@@ -74,7 +74,7 @@ public class Storage {
      * @param tasks task list.
      * @param isDeleted if the contents of the file should be deleted and reset.
      */
-    public static void Save(ArrayList<Task> tasks, boolean isDeleted) {
+    public static void save(ArrayList<Task> tasks, boolean isDeleted) {
         // Saves to the file
         try {
             if (isDeleted) {
@@ -126,10 +126,11 @@ public class Storage {
             LocalDateTime due = LocalDateTime.parse(taskDue, Task.OUTPUT_DATE_FORMAT);
             task = new Deadline(taskDescription, due);
             break;
-
+        default: {
+            throw new DukeException("Something went wrong, please try again with correct formatting!");
         }
-
-        if (taskDone.equals("1") && task != null) {
+        }
+        if (taskDone.equals("1")) {
             task.markDone();
         }
 

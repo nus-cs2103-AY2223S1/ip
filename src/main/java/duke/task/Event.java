@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
+import duke.exception.DukeException;
 
 /**
  * This class inherits from the abstract Task class

@@ -1,11 +1,11 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * This class is the main logic unit for Duke
@@ -20,14 +20,14 @@ public class Duke {
     public Duke() {
         taskList = new TaskList();
         ArrayList<Task> tasks = taskList.getTasks();
-        Storage.Load(tasks);
+        Storage.load(tasks);
     }
 
     /**
      * Handles the logic for Duke to run.
      */
     public void run() {
-        UI.Greet();
+        UI.greet();
         Scanner sc = new Scanner(System.in);
         String in = sc.nextLine();
 
@@ -74,7 +74,7 @@ public class Duke {
             }
             in = sc.nextLine();
         }
-        UI.Goodbye();
+        UI.goodbye();
     }
 
     /**

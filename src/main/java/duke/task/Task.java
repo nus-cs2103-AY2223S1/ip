@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter;
  * This abstract class encapsulates the logic of a task.
  */
 public abstract class Task {
+    /* Constant fields representing the input and output format of the dates. */
+    public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
     /* Task Information */
     protected String description;
     protected boolean isDone;
-    /* Constant fields representing the input and output format of the dates. */
-    public final static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    public final static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
 
     /**
      * Constructor for a Task.
@@ -45,7 +45,7 @@ public abstract class Task {
      * @return String representation of the Task in saved format.
      */
     public String saveFormat() {
-         return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
     }
 
     /**
