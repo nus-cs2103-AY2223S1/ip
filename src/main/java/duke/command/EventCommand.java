@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Event;
 import duke.task.TasksList;
@@ -25,11 +26,11 @@ public class EventCommand extends Command {
 
     /**
      * Adds the Event to the TasksList.
-     * @return The message to be displayed upon the execution of the command.
+     * @return The Response to be displayed upon the execution of the command.
      * @throws DukeException If the Event cannot be added to the TasksList.
      */
     @Override
-    public String execute() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArray.length < 2) {
             throw new DukeException("The description of a event cannot be empty!");
         }
@@ -51,7 +52,7 @@ public class EventCommand extends Command {
         } else {
             sb.append(this.tasksList.getLength() + " tasks in the list.\n");
         }
-        return sb.toString();
+        return new Response(sb.toString());
     }
 
 }

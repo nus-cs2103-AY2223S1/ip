@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.TasksList;
 import duke.task.Todo;
@@ -24,11 +25,11 @@ public class ToDoCommand extends Command {
 
     /**
      * Adds the ToDo to the TasksList.
-     * @return The message to be displayed upon the execution of the command.
+     * @return The Response to be displayed upon the execution of the command.
      * @throws DukeException If the ToDo cannot be added to the TasksList.
      */
     @Override
-    public String execute() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArray.length < 2) {
             throw new DukeException("The description of a todo cannot be empty!");
         }
@@ -45,6 +46,6 @@ public class ToDoCommand extends Command {
         } else {
             sb.append(this.tasksList.getLength() + " tasks in the list.\n");
         }
-        return sb.toString();
+        return new Response(sb.toString());
     }
 }

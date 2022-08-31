@@ -1,17 +1,20 @@
 package duke.command;
 
+import duke.ExitResponse;
+import duke.Response;
+
 /**
  * Represents a command to exit the program.
  */
 public class ExitCommand extends Command {
-    private static final String GOOD_BYE_MSG = "Bye. Hope to see you again soon!";
 
     /**
-     * Returns the goodbye message.
-     * @return The message to be displayed upon the execution of the command.
+     * Returns the goodbye Response.
+     * @return The Response to be displayed upon the execution of the command.
      */
     @Override
-    public String execute() {
-        return ExitCommand.GOOD_BYE_MSG;
+    public Response execute() {
+        return new ExitResponse();
     }
+
 }

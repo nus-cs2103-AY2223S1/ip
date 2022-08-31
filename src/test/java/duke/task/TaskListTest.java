@@ -17,7 +17,7 @@ public class TaskListTest {
             tasksList.markAsDone(-1);
             fail();
         } catch (Exception e) {
-            assertEquals("Please enter a valid task number!", e.getMessage());
+            assertEquals("OOPS!!! Please enter a valid task number!", e.getMessage());
         }
     }
 
@@ -29,7 +29,7 @@ public class TaskListTest {
             tasksList.markAsUndone(-1);
             fail();
         } catch (Exception e) {
-            assertEquals("Please enter a valid task number!", e.getMessage());
+            assertEquals("OOPS!!! Please enter a valid task number!", e.getMessage());
         }
     }
 

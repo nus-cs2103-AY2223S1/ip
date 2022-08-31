@@ -148,7 +148,7 @@ public class TasksList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are the tasks in your list:\n\n");
+        sb.append("Here are the tasks in your list:\n");
         for (int i = 1; i <= this.listOfTasks.size(); i++) {
             sb.append(String.format("%d. %s\n", i, this.listOfTasks.get(i - 1)));
         }
