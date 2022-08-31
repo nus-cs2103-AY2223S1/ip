@@ -162,21 +162,24 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) {
             if (task_type == Task.Task_type.TODO) {
                 Task task = Task.of(Task.Task_type.TODO, todo);
                 tasks.addTask(task);
-                ui.sendMessage(Action_keyword.TODO, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(Action_keyword.TODO, task, tasks.numOfTasks(), null);
             } else if (task_type == Task.Task_type.DEADLINE) {
                 Task task = Task.of(Task.Task_type.DEADLINE, todo + " /by " + by);
                 tasks.addTask(task);
-                ui.sendMessage(Action_keyword.DEADLINE, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(Action_keyword.DEADLINE, task, tasks.numOfTasks(), null);
             } else if (task_type == Task.Task_type.EVENT) {
                 Task task = Task.of(Task.Task_type.EVENT, todo + " /at " + by);
                 tasks.addTask(task);
-                ui.sendMessage(Action_keyword.EVENT, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(Action_keyword.EVENT, task, tasks.numOfTasks(), null);
+            } else {
+                return null;
             }
         }
     }
@@ -205,12 +208,13 @@ public abstract class Command {
          * @param ui user interface being used
          * @param storage place where text is stored
          * @throws DukeException if it is found
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 Task task = tasks.removeTask(location);
-                ui.sendMessage(Action_keyword.DELETE, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(Action_keyword.DELETE, task, tasks.numOfTasks(), null);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
             }
@@ -235,13 +239,14 @@ public abstract class Command {
          * @param ui user interface being used
          * @param storage place where text is stored
          * @throws IOException if there is such an exception
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
             this.ongoing = false;
             String message = tasks.craftTextMessage();
             storage.editStorage(message);
-            ui.sayBye();
+            return ui.sayBye();
         }
     }
 
@@ -264,11 +269,12 @@ public abstract class Command {
          * @param ui user interface being used
          * @param storage place where text is stored
          * @throws IOException if there is such an exception
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
             String res = tasks.findAndCraft(this.s);
-            ui.sendMessage(Action_keyword.FIND, null, 0, res);
+            return ui.sendAndReturnMessage(Action_keyword.FIND, null, 0, res);
         }
     }
 
@@ -303,16 +309,17 @@ public abstract class Command {
          * @param ui user interface being used
          * @param storage place where text is stored
          * @throws DukeException if it is found
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 if (isCompleted) {
                     Task task = tasks.markTaskComplete(location);
-                    ui.sendMessage(Action_keyword.MARK, task, tasks.numOfTasks(), null);
+                    return ui.sendAndReturnMessage(Action_keyword.MARK, task, tasks.numOfTasks(), null);
                 } else {
                     Task task = tasks.markTaskIncomplete(location);
-                    ui.sendMessage(Action_keyword.UNMARK, task, tasks.numOfTasks(), null);
+                    return ui.sendAndReturnMessage(Action_keyword.UNMARK, task, tasks.numOfTasks(), null);
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
@@ -337,11 +344,12 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
+         * @return
          */
         @Override
-        public void execute(TaskManager tasks, Ui ui, Storage storage) {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String message = tasks.craftList();
-            ui.sendMessage(Action_keyword.LIST, null,tasks.numOfTasks(), message);
+            return ui.sendAndReturnMessage(Action_keyword.LIST, null, tasks.numOfTasks(), message);
         }
     }
 
@@ -352,8 +360,9 @@ public abstract class Command {
      * @param storage place where text is stored
      * @throws DukeException if it is found
      * @throws IOException if there is such an exception
+     * @return
      */
-    public abstract void execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
+    public abstract String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
 
     /**
      * Checks if one can still give more commands

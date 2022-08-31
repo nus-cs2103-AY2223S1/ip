@@ -57,8 +57,10 @@ public class Ui {
     /**
      * Says bye to the user.
      */
-    public void sayBye() {
-        System.out.println(formatMessage("Bye. Hope to see you again soon!"));
+    public String sayBye() {
+        String msg = formatMessage("Bye. Hope to see you again soon!");
+        System.out.println(msg);
+        return msg;
     }
 
     /**
@@ -91,35 +93,53 @@ public class Ui {
      * @param numOfTasks number of tasks in task list, if required
      * @param message additional details for the message, if required
      */
-    public void sendMessage(Command.Action_keyword keyword, Task task, int numOfTasks, String message) {
+    public String sendAndReturnMessage(Command.Action_keyword keyword, Task task, int numOfTasks, String message) {
         if (keyword == Command.Action_keyword.DEADLINE || keyword == Command.Action_keyword.TODO || keyword == Command.Action_keyword.EVENT) {
-            System.out.println(formatMessage("Got it. I've added this task:\n" +
+            String msg = formatMessage("Got it. I've added this task:\n" +
                     INDENTATION + EXTRA_INDENTATION + task + "\n" +
-                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list."));
+                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
+            System.out.println(msg);
+            return msg;
         } else if (keyword == Command.Action_keyword.DELETE) {
-            System.out.println(formatMessage("Noted. I've removed the task:\n" +
+            String msg = formatMessage("Noted. I've removed the task:\n" +
                     INDENTATION + EXTRA_INDENTATION + task + "\n" +
-                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list."));
+                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
+            System.out.println(msg);
+            return msg;
         } else if (keyword == Command.Action_keyword.LIST) {
             if (message.equals("")) {
-                System.out.println(formatMessage("There are currently no tasks in your list"));
+                String msg = formatMessage("There are currently no tasks in your list");
+                System.out.println(msg);
+                return msg;
             } else {
-                System.out.println(formatMessage("Here are the task(s) in your list:\n" +
-                        INDENTATION + message));
+                String msg = formatMessage("Here are the task(s) in your list:\n" +
+                        INDENTATION + message);
+                System.out.println(msg);
+                return msg;
             }
         } else if (keyword == Command.Action_keyword.MARK) {
-            System.out.println(formatMessage("Nice! I've marked this task as done:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task));
+            String msg = formatMessage("Nice! I've marked this task as done:\n" +
+                    INDENTATION + EXTRA_INDENTATION + task);
+            System.out.println(msg);
+            return msg;
         } else if (keyword == Command.Action_keyword.UNMARK) {
-            System.out.println(formatMessage("OK, I've marked this task as not done yet:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task));
+            String msg = formatMessage("OK, I've marked this task as not done yet:\n" +
+                    INDENTATION + EXTRA_INDENTATION + task);
+            System.out.println(msg);
+            return msg;
         } else if (keyword == Command.Action_keyword.FIND) {
             if (message.equals("")) {
-                System.out.println(formatMessage("Sorry, there are matching tasks in your list"));
+                String msg = formatMessage("Sorry, there are matching tasks in your list");
+                System.out.println(msg);
+                return msg;
             } else {
-                System.out.println(formatMessage("Here are the matching tasks in your list:\n" +
-                        INDENTATION + message));
+                String msg = formatMessage("Here are the matching tasks in your list:\n" +
+                        INDENTATION + message);
+                System.out.println(msg);
+                return msg;
             }
+        } else {
+            return null;
         }
     }
 }
