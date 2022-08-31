@@ -1,9 +1,10 @@
 package duke;
 
 import java.util.Scanner;
+
 import duke.parser.CommandParser;
 import duke.storage.Storage;
-import duke.tasks.*;
+import duke.tasks.TaskList;
 
 public class Duke {
 

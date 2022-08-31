@@ -1,7 +1,6 @@
 package duke.tasks;
 
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 public class Task {
     protected String description;
@@ -52,7 +51,9 @@ public class Task {
      * @return true if task is before specified deadline; false otherwise
      * @throws DateTimeParseException if specified deadline does not follow d/mm/YYYY format
      */
-    public boolean isBefore(String deadline) throws DateTimeParseException { return false; }
+    public boolean isBefore(String deadline) throws DateTimeParseException {
+        return false;
+    }
 
     /**
      * Returns string representation of task.

@@ -2,9 +2,10 @@ package duke.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
 import duke.parser.TimeParser;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected LocalDateTime deadline;
     private static final TimeParser TIME_PARSER = new TimeParser();

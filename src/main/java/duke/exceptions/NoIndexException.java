@@ -1,6 +1,6 @@
 package duke.exceptions;
 
-public class NoIndexException extends DukeException{
+public class NoIndexException extends DukeException {
 
     @Override
     public String toString() {

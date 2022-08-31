@@ -1,12 +1,14 @@
 package duke.parser;
 
+import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.exceptions.DukeException;
 import duke.exceptions.InvalidCommandException;
 import duke.tasks.TaskList;
 
-import java.time.format.DateTimeParseException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class CommandParser {
     enum Command {

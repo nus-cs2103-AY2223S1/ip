@@ -1,9 +1,13 @@
 package duke.tasks;
 
-import duke.exceptions.*;
-import duke.parser.TimeParser;
-
 import java.util.ArrayList;
+
+import duke.exceptions.DukeException;
+import duke.exceptions.EmptyCommandException;
+import duke.exceptions.NoBeforeException;
+import duke.exceptions.NoTimeException;
+import duke.exceptions.OutOfRangeException;
+import duke.parser.TimeParser;
 
 public class TaskList {
 
@@ -90,7 +94,7 @@ public class TaskList {
      * @param time the deadline of deadline task
      * @throws DukeException if no description or time is given
      */
-    public void addDeadline(String desc, String time) throws DukeException{
+    public void addDeadline(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("deadline");
         }
@@ -109,7 +113,7 @@ public class TaskList {
      * @param time the time of event task
      * @throws DukeException if no description or time is given
      */
-    public void addEvent(String desc, String time) throws DukeException{
+    public void addEvent(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("event");
         }

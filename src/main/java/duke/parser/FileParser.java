@@ -1,11 +1,15 @@
 package duke.parser;
 
-import duke.exceptions.DukeException;
-import duke.exceptions.InvalidCommandException;
-import duke.tasks.*;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidCommandException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.TaskList;
+import duke.tasks.ToDo;
+
 
 public class FileParser {
     enum Symbol {
@@ -74,7 +78,10 @@ public class FileParser {
                 }
                 taskList.addTask(event);
                 break;
+            default:
+                break;
             }
+
         } catch (DukeException e) {
             System.out.println(e);
         }

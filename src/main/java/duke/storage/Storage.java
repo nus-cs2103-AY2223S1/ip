@@ -1,9 +1,13 @@
 package duke.storage;
 
-import duke.parser.FileParser;
-import duke.tasks.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import java.io.*;
+import duke.parser.FileParser;
+import duke.tasks.TaskList;
 
 public class Storage {
 

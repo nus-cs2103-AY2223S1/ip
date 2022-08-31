@@ -1,6 +1,6 @@
 package duke.exceptions;
 
-public class OutOfRangeException extends DukeException{
+public class OutOfRangeException extends DukeException {
 
     @Override
     public String toString() {
