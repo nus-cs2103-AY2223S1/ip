@@ -2,8 +2,12 @@ package ip;
 
 class ToDo extends Task {
 
-    public ToDo(String description) {
-        super(description);
+    ToDo(String description) {
+        this(description, false);
+    }
+
+    protected ToDo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     @Override

@@ -4,7 +4,7 @@ class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    Task(String description) {
         this(description, false);
     }
 

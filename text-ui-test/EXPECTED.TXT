@@ -24,52 +24,52 @@
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-       [D][ ]  return book (by: 7pm)
+       [D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X]  borrow book
-     2.[D][ ]  return book (by: 7pm)
+     2.[D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [D][X]  return book (by: 7pm)
+       [D][X]  return book (by: Thu, 01 Sep 2022, 18:00)
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X]  borrow book
-     2.[D][X]  return book (by: 7pm)
+     2.[D][X]  return book (by: Thu, 01 Sep 2022, 18:00)
     ____________________________________________________________
     ____________________________________________________________
-     Nice! I've marked this task as done:
-       [D][ ]  return book (by: 7pm)
+     OK, I've marked this task as not done yet:
+       [D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X]  borrow book
-     2.[D][ ]  return book (by: 7pm)
+     2.[D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-       [E][ ]  meeting (at: Sunday 10am)
+       [E][ ]  meeting (at: Mon, 05 Sep 2022, 20:00)
      Now you have 3 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X]  borrow book
-     2.[D][ ]  return book (by: 7pm)
-     3.[E][ ]  meeting (at: Sunday 10am)
+     2.[D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
+     3.[E][ ]  meeting (at: Mon, 05 Sep 2022, 20:00)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [E][X]  meeting (at: Sunday 10am)
+       [E][X]  meeting (at: Mon, 05 Sep 2022, 20:00)
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X]  borrow book
-     2.[D][ ]  return book (by: 7pm)
-     3.[E][X]  meeting (at: Sunday 10am)
+     2.[D][ ]  return book (by: Thu, 01 Sep 2022, 18:00)
+     3.[E][X]  meeting (at: Mon, 05 Sep 2022, 20:00)
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!
