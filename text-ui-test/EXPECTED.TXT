@@ -17,28 +17,28 @@ Got it, I've added this event:
 2. (D) [ ] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Well done! I've marked task 2 as done:
-(D) [✔] Test deadline (by: Feb 1 2034)
+(D) [X] Test deadline (by: Feb 1 2034)
 Well done! I've marked task 3 as done:
-(E) [✔] Test event (at: Dec 30 2021 12:00AM)
+(E) [X] Test event (at: Dec 30 2021 12:00AM)
 1. (T) [ ] Test todo
-2. (D) [✔] Test deadline (by: Feb 1 2034)
-3. (E) [✔] Test event (at: Dec 30 2021 12:00AM)
+2. (D) [X] Test deadline (by: Feb 1 2034)
+3. (E) [X] Test event (at: Dec 30 2021 12:00AM)
 Sure, I've marked task 3 as not done:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 1. (T) [ ] Test todo
-2. (D) [✔] Test deadline (by: Feb 1 2034)
+2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've found these tasks in your list:
-1. (D) [✔] Test deadline (by: Feb 1 2034)
+1. (D) [X] Test deadline (by: Feb 1 2034)
 Ok, I've found these tasks in your list:
 1. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've found these tasks in your list:
 1. (T) [ ] Test todo
-2. (D) [✔] Test deadline (by: Feb 1 2034)
+2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Oops, I couldn't find any tasks matching that search.
 Ok, I've deleted this task:
-(D) [✔] Test deadline (by: Feb 1 2034)
+(D) [X] Test deadline (by: Feb 1 2034)
 You have 2 task(s) left in your list.
 1. (T) [ ] Test todo
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
