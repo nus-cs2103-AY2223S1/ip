@@ -77,12 +77,13 @@ public class Parser {
         } else if (input.startsWith("viewSchedule")) {
             String[] inputTempArr = input.split(" ", 2);
             String date = inputTempArr[1];
-            String successfulDate = validateDate(date);
-            if (!successfulDate.equals("")) { //an error occured somewhere
-                return successfulDate;
+            if (!(validateDate(date)).equals("Success")) { //an error occurred somewhere
+                return validateDate(date);
             }
             return taskList.viewSchedule(date);
 
+
+        //Case 7: another extension method: Link a help menu!
         } else if (input.startsWith("help")) {
             try {
                 Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
@@ -151,7 +152,7 @@ public class Parser {
             return "Invalid date entered! Ensure you enter date in the format: " +
                     "YYYY-MM-DD";
         }
-        return "";
+        return "Success";
     }
 
     //changed to public for testing, TODO: change private after validation
