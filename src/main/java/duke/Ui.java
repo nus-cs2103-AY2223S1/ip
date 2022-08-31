@@ -12,19 +12,6 @@ import duke.task.Task;
  * @author Tan Jia Rong
  */
 public class Ui {
-    private static final String BOT_NAME = "Duke";
-
-    /**
-     * Return greeting message.
-     *
-     * @return Greeting message.
-     */
-    public String greetings() {
-        String greet = "Hello! I'm the Magical ChatBot, " + BOT_NAME + "!\n"
-                + "What can I help you with today?";
-
-        return greet;
-    }
 
     /**
      * Return farewell message.

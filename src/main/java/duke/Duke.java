@@ -44,45 +44,19 @@ public class Duke {
     }
 
     /**
-     * Executes the ChatBot Program.
+     * Returns a list of String of max size 2 to MainWindow.
+     * String[0] stores response to the user.
+     * String[1] stores the state of the program, where
+     * "0" = Program should not quit after this.
+     * "1" = Program should quit after this.
+     * @param input user input
+     * @return a list of String of size 2
      */
-    public void run() {
-        // Greets User
-        System.out.println(ui.greetings());
-        boolean isExit = false;
-
-        String command = this.sc.next();
-        String description = this.sc.nextLine();
-
-        while (!isExit) {
-            try {
-                Command c = Parser.parse(command, description, tasks);
-                System.out.println(c.execute(this.tasks, this.ui, this.storage));
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                System.out.println(ui.printErr(e.getMessage()));
-            } finally {
-                command = sc.next();
-                description = sc.nextLine();
-            }
-        }
-    }
-
-    /**
-     * Returns the Duke ChatBot.
-     *
-     * @param args arguments (if any).
-     */
-    public static void main(String[] args) {
-        // Initialise variables
-        Duke duke = new Duke(SAVE_LOCATION);
-        duke.run();
-    }
-
-    public String getResponse(String input) {
+    public String[] getResponse(String input) {
         // Split input to its proper form
         String command;
         String description;
+        String[] response = new String[2];
         if (input.contains(" ")) {
             int index = input.indexOf(' ');
             command = input.substring(0, index);
@@ -94,9 +68,14 @@ public class Duke {
 
         try {
             Command c = Parser.parse(command, description, tasks);
-            return c.execute(tasks, ui, storage);
+
+            response[0] = c.execute(tasks, ui, storage);
+            response[1] = c.isExit() ? "1" : "0";
         } catch (DukeException e) {
-            return ui.printErr(e.getMessage());
+            response[0] = ui.printErr(e.getMessage());
+            response[1] = "0";
+        } finally {
+            return response;
         }
     }
 }
