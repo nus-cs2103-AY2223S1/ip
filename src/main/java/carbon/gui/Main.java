@@ -11,15 +11,16 @@ import javafx.stage.Stage;
 import carbon.Carbon;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Carbon using FXML.
  */
 public class Main extends Application {
-
+    private Stage stage;
     private Carbon carbon = new Carbon();
 
     @Override
     public void start(Stage stage) {
         try {
+            this.stage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);

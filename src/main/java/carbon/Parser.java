@@ -1,6 +1,7 @@
 package carbon;
 
 import carbon.error.CarbonException;
+import carbon.error.CorruptedSavefileException;
 import carbon.error.InvalidInputException;
 import carbon.task.Task;
 
@@ -26,8 +27,8 @@ public class Parser {
         this.storage = storage;
         try {
             this.taskList = this.storage.loadSavefile();
-        } catch (CarbonException error) {
-            this.ui.printError(error);
+        } catch (CorruptedSavefileException error) {
+            // continue with empty list
         }
     }
 
@@ -44,8 +45,7 @@ public class Parser {
         String log;
         switch (lowerCaseInput) {
         case "bye":
-            this.ui.exit();
-            log = "";
+            log = this.ui.exit();
             break;
         case "list":
             log = this.taskList.listItems();

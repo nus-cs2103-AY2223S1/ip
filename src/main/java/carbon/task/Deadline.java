@@ -125,7 +125,7 @@ public class Deadline extends Task {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        String type = "\u001B[32m(DEAD)\u001B[0m";
+        String type = "(DEAD)";
         String timeFormatted = this.displayTime(Task.FormatType.PRINT);
         return String.format("%s %s < %s", type, super.toString(), timeFormatted);
     }

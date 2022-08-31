@@ -126,7 +126,7 @@ public class Event extends Task {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        String type = "\u001B[34m(EVNT)\u001B[0m";
+        String type = "(EVNT)";
         String timeFormatted = this.displayTime(Task.FormatType.PRINT);
         return String.format("%s %s @ %s", type, super.toString(), timeFormatted);
     }

@@ -11,7 +11,8 @@ import javafx.scene.layout.VBox;
 import carbon.Carbon;
 
 /**
- * Controller for MainWindow. Provides the layout for the other controls.
+ * Controller for MainWindow.
+ * Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -25,21 +26,24 @@ public class MainWindow extends AnchorPane {
 
     private Carbon carbon;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/clown.png"));
+    private Image carbonImage = new Image(this.getClass().getResourceAsStream("/images/carbon.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setCarbon(Carbon c) {
-        carbon = c;
+    public void setCarbon(Carbon carbon) {
+        this.carbon = carbon;
+        String greeting = this.carbon.greet();
+        dialogContainer.getChildren().add(DialogBox.getCarbonDialog(greeting, carbonImage));
     }
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * the dialog container.
+     * Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -47,7 +51,7 @@ public class MainWindow extends AnchorPane {
         String response = carbon.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getCarbonDialog(response, carbonImage)
         );
         userInput.clear();
     }

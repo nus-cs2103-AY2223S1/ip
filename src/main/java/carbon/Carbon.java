@@ -1,15 +1,5 @@
 package carbon;
 
-import javafx.application.Application;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import carbon.error.CarbonException;
 
 /**
@@ -17,7 +7,6 @@ import carbon.error.CarbonException;
  * Requires user to provide input and call task management commands.
  */
 public class Carbon {
-    private boolean isRunning;
     private Ui ui;
     private Parser parser;
     private Storage storage;
@@ -35,38 +24,17 @@ public class Carbon {
         this.parser = new Parser(this.ui, this.storage);
     }
 
-    /**
-     * Runs the Carbon interactive bot.
-     */
-    private void run() {
-        this.isRunning = true;
-        while (this.isRunning) {
-            try {
-                String input = this.ui.printIn();
-                String log = this.parser.process(input);
-                if (log != "") {
-                    this.ui.printOut(log);
-                } else {
-                    this.ui.exit();
-                    this.isRunning = false;
-                }
-            } catch (CarbonException error) {
-                this.ui.printError(error);
-            }
-        }
+    public String greet() {
+        return this.ui.greet();
     }
 
     public String getResponse(String input) {
-        return "111";
-    }
-
-    /**
-     * Initializes and runs an instance of Carbon.
-     *
-     * @param args Additional arguments.
-     */
-    public static void main(String[] args) {
-        Carbon shell = new Carbon();
-        shell.run();
+        String log;
+        try {
+            log = this.parser.process(input);
+        } catch (CarbonException error) {
+            log = error.toString();
+        }
+        return log;
     }
 }
