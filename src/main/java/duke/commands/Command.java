@@ -1,7 +1,8 @@
 package duke.commands;
-import duke.TaskList;
-import duke.Storage;
+
 import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
 
 /**
  * Interface that represents the command to be implemented.

@@ -20,7 +20,9 @@ public abstract class Task {
     public boolean isMarked() {
         return this.marked;
     }
-    public String getName() {return this.name;}
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Returns the status icon of the Task.
@@ -56,5 +58,5 @@ public abstract class Task {
      *
      * @return String representation of Task in CSV.
      */
-    public abstract String toCSV();
+    public abstract String toCsv();
 }

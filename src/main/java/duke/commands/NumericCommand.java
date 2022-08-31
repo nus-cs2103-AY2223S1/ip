@@ -1,7 +1,8 @@
 package duke.commands;
-import duke.TaskList;
-import duke.Storage;
+
 import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
 
 /**
  * Command that represents a command with a numeric argument, mark, unmark and delete.
@@ -66,7 +67,11 @@ public class NumericCommand implements Command {
             System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
             storage.writeAll(tasks);
             break;
+        default:
+            throw new DukeException("Unable to parse that numeric command");
         }
+
+
 
     }
 }

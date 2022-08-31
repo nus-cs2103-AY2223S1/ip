@@ -1,7 +1,8 @@
 package duke;
 
-import duke.tasks.Task;
 import java.util.ArrayList;
+
+import duke.tasks.Task;
 
 /**
  * Task that represent the temporary storage of the Tasks.

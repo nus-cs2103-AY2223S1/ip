@@ -19,7 +19,7 @@ public class TodoTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TaskType.T +"]" + "[" + this.getStatusIcon() + "] " + this.getName();
+        return "[" + TaskType.T + "]" + "[" + this.getStatusIcon() + "] " + this.getName();
     }
 
     /**
@@ -32,7 +32,7 @@ public class TodoTask extends Task {
      * @return String representation of Todo Task in CSV.
      */
     @Override
-    public String toCSV() {
-        return TaskType.T + "," + this.getStatusIcon()  + "," + this.getName();
+    public String toCsv() {
+        return TaskType.T + "," + this.getStatusIcon() + "," + this.getName();
     }
 }

@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.tasks.TodoTask;
-import duke.TaskList;
-import duke.Storage;
 import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.tasks.TodoTask;
 
 /**
  * Command that represents the adding of a todo task.

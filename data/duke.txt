@@ -1,5 +1,6 @@
 D,X,code,2000-12-28 1800
-T, ,borrow book
-E, ,dance,dance /at rc4
+T,X,borrow book
+E,X,dance,dance /at rc4
 D,X,math,1912-09-09 1900
 D, ,return book,2020-09-23 2300
+D, ,marcus,1955-01-01 0900

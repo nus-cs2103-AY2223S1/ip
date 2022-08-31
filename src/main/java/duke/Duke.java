@@ -1,12 +1,20 @@
 package duke;
 
-import duke.commands.Command;
-
 import java.util.Scanner;
 
-public class Duke {
-    private static final String FILE_PATH_DIR =  "data"; //"../../../data";
+import duke.commands.Command;
 
+
+/**
+ * Main class encapsulating the logic of the program.
+ */
+public class Duke {
+    private static final String FILE_PATH_DIR = "data";
+
+    /**
+     * Executes the program.
+     * @param args main method.
+     */
     public static void main(String[] args) {
         System.out.println("Hello from Duke");
         System.out.println("What can I do for you?");
