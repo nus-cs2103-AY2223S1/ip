@@ -3,6 +3,7 @@ package duke;
 /**
  * Main java class to create a new Duke object
  */
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -44,10 +45,19 @@ public class Duke {
         }
         ui.showGoodbye();
     }
+    public String getResponse(String input) throws DukeException{
+        return parser.parse(input);
+    }
 
+    public String showWelcome() {
+        return ui.showWelcome();
+    }
+
+    public String showGoodbye() {
+        return ui.showGoodbye();
+    }
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
-
     }
 
 }

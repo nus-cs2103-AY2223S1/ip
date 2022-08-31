@@ -8,8 +8,9 @@ public class Ui {
     /**
      * Prints welcome message for user
      */
-    public static void showWelcome() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+    public static String showWelcome() {
+        return("Hello! I'm Duke\nWhat can I do for you?" +
+                "\n" + "icons provided by Freepik and Trazobanana");
     }
 
     /**
@@ -31,7 +32,7 @@ public class Ui {
     /**
      * Prints exit message for user
      */
-    public static void showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public static String showGoodbye() {
+        return("Bye. Hope to see you again soon!");
     }
 }
