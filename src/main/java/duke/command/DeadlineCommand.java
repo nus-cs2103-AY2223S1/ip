@@ -39,7 +39,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException The exception thrown when an action is unauthorized by Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] splitDescription = description.split(" /by ", 2);
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("deadline", " /by ");
@@ -49,7 +49,7 @@ public class DeadlineCommand extends Command {
             String by = splitDescription[1];
             this.by = by;
             Task deadline = tasks.addDeadline(instruction, by);
-            ui.displayAdd(deadline, tasks.getSize());
+            return ui.displayAdd(deadline, tasks.getSize());
         } catch (DateTimeParseException dtp) {
             throw new DukeInvalidDateException();
         }

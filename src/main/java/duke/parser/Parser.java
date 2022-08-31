@@ -52,7 +52,7 @@ public class Parser {
             try {
                 String unmarkItem = splitCommand[1];
                 int itemNumber = Integer.parseInt(unmarkItem);
-                return new UnmarkCommand(itemNumber);
+                return new UnmarkCommand(itemNumber - 1);
             } catch (NumberFormatException nfe) {
                 throw new DukeNumberFormatException();
             }

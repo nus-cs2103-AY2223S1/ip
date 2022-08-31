@@ -26,9 +26,9 @@ public class ByeCommand extends Command {
      * @throws IOException The exception thrown when accessing files is incorrect.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         storage.save(tasks);
-        ui.displayBye();
+        return ui.displayBye();
     }
 
     /**

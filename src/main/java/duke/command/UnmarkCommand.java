@@ -37,12 +37,12 @@ public class UnmarkCommand extends Command {
      * @throws IOException The exception thrown when accessing files is incorrect.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (index < 0 || index >= tasks.getSize()) {
             throw new DukeOutOfBoundsException(1, tasks.getSize());
         }
         Task unmarkedTask = tasks.unmarkTask(index);
         storage.save(tasks);
-        ui.displayMark(unmarkedTask);
+        return ui.displayUnmark(unmarkedTask);
     }
 }

@@ -39,7 +39,7 @@ public class EventCommand extends Command {
      * @throws DukeException The exception thrown when an action is unauthorized by Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] splitDescription = description.split(" /at ", 2);
         if (splitDescription[0].equals(description)) {
             throw new DukeMissingSpecifierException("event", " /at ");
@@ -49,7 +49,7 @@ public class EventCommand extends Command {
             String at = splitDescription[1];
             this.at = at;
             Task event = tasks.addEvent(instruction, at);
-            ui.displayAdd(event, tasks.getSize());
+            return ui.displayAdd(event, tasks.getSize());
         } catch (DateTimeParseException dtp) {
             throw new DukeInvalidDateException();
         }

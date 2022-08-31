@@ -34,9 +34,9 @@ public class TodoCommand extends Command {
      * @throws IOException The exception thrown when accessing files is incorrect.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         Task task = tasks.addTodo(description);
         storage.save(tasks);
-        ui.displayAdd(task, tasks.getSize());
+        return ui.displayAdd(task, tasks.getSize());
     }
 }
