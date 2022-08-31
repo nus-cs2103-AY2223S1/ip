@@ -10,7 +10,8 @@ public class EventTask extends Task {
     private static final String TASK_TYPE = "E";
     private final LocalDateTime taskTime;
     private final String dateFormat;
-    public EventTask(String task, String taskTime, String dateFormat) throws EmptyTaskException, InvalidEventException {
+    public EventTask(String task, String taskTime, String dateFormat)
+            throws EmptyTaskException, InvalidEventException {
         super(task);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
@@ -23,8 +24,9 @@ public class EventTask extends Task {
         }
     }
 
-    public EventTask(String taskName, String taskTime, boolean status, String dateFormat) throws EmptyTaskException, InvalidEventException {
-        super(taskName, status);
+    public EventTask(String taskName, String taskTime, boolean isCompleted, String dateFormat)
+            throws EmptyTaskException, InvalidEventException {
+        super(taskName, isCompleted);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
@@ -37,11 +39,8 @@ public class EventTask extends Task {
     }
 
     public String getTaskTime() {
-        return (taskTime.getDayOfMonth() + " " +
-                taskTime.getMonth() + " " +
-                taskTime.getYear() + " | " +
-                taskTime.getHour() + ":" +
-                taskTime.getMinute());
+        return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
+                + taskTime.getHour() + ":" + taskTime.getMinute());
     }
 
     @Override
@@ -51,10 +50,7 @@ public class EventTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " +
-                (getStatus() ? 1 : 0) + " | " +
-                getTaskName() + " | " +
-                this.taskTime + "\n";
+        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + " | " + this.taskTime + "\n";
     }
 
     @Override

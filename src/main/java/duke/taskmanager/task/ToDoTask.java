@@ -11,8 +11,8 @@ public class ToDoTask extends Task {
         }
     }
 
-    public ToDoTask(String taskName, boolean status) throws EmptyTaskException {
-        super(taskName, status);
+    public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
+        super(taskName, isCompleted);
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
@@ -25,7 +25,7 @@ public class ToDoTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return taskName_TYPE + " | " + (getStatus() ? 1 : 0) + " | " + getTaskName() + "\n";
+        return taskName_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + "\n";
     }
     @Override
     public String toString() {
