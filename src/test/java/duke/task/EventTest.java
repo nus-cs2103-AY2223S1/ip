@@ -10,7 +10,7 @@ import duke.exception.DukeInvalidTimeException;
 
 public class EventTest {
     @Test
-    public void firstConstructor_normalInput_writtenCorrectly() {
+    public void firstConstructor_normalInput() {
         try {
             Event event = new Event("Test", "2020-09-12 1330");
             assertEquals("[E][ ] Test (at: Sep 12 2020 1:30pm)", event.toString());
@@ -20,7 +20,7 @@ public class EventTest {
     }
 
     @Test
-    public void firstConstructor_noonInput_writtenCorrectly() {
+    public void firstConstructor_noonInput() {
         try {
             Event event = new Event("Test", "2020-09-12 1200");
             assertEquals("[E][ ] Test (at: Sep 12 2020 12pm)", event.toString());
@@ -30,7 +30,7 @@ public class EventTest {
     }
 
     @Test
-    public void firstConstructor_midnightInput_writtenCorrectly() {
+    public void firstConstructor_midnightInput() {
         try {
             Event event = new Event("Test", "2020-09-12 0000");
             assertEquals("[E][ ] Test (at: Sep 12 2020 12am)", event.toString());
@@ -62,7 +62,7 @@ public class EventTest {
     }
 
     @Test
-    public void secondConstructor_notDoneInput_writtenCorrectly() {
+    public void secondConstructor_notDoneInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals("[E][ ] Test (at: Sep 12 2020 1:30pm)", event.toString());
@@ -72,7 +72,7 @@ public class EventTest {
     }
 
     @Test
-    public void secondConstructor_doneInput_writtenCorrectly() {
+    public void secondConstructor_doneInput() {
         try {
             Event event = new Event("Test", "1", "2020-09-12 1330");
             assertEquals("[E][X] Test (at: Sep 12 2020 1:30pm)", event.toString());
@@ -82,7 +82,7 @@ public class EventTest {
     }
 
     @Test
-    public void markEvent_unmarkedEvent_writtenCorrectly() {
+    public void markEvent_unmarkedEvent() {
         try {
             Event event = new Event("Test", "2020-09-12 1330");
             event.markAsDone();
@@ -93,7 +93,7 @@ public class EventTest {
     }
 
     @Test
-    public void unmarkEvent_markedEvent_writtenCorrectly() {
+    public void unmarkEvent_markedEvent() {
         try {
             Event event = new Event("Test", "1", "2020-09-12 1330");
             event.markAsUndone();
@@ -104,7 +104,7 @@ public class EventTest {
     }
 
     @Test
-    public void getDescription_normalInput_writtenCorrectly() {
+    public void getDescription_normalInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals("Test", event.getDescription());
@@ -114,7 +114,7 @@ public class EventTest {
     }
 
     @Test
-    public void getType_normalInput_writtenCorrectly() {
+    public void getType_normalInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals("E", event.getType());
@@ -124,7 +124,7 @@ public class EventTest {
     }
 
     @Test
-    public void getDate_normalInput_writtenCorrectly() {
+    public void getDate_normalInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals("2020-09-12 1330", event.getDate());
@@ -134,7 +134,7 @@ public class EventTest {
     }
 
     @Test
-    public void getDateTime_normalInput_writtenCorrectly() {
+    public void getDateTime_normalInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals("Sep 12 2020 1:30pm", event.getDateTime());
@@ -144,7 +144,7 @@ public class EventTest {
     }
 
     @Test
-    public void getDone_notDoneInput_writtenCorrectly() {
+    public void getDone_notDoneInput() {
         try {
             Event event = new Event("Test", "0", "2020-09-12 1330");
             assertEquals(false, event.getIsDone());

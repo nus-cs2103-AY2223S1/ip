@@ -31,14 +31,14 @@ public class TaskListTest {
     }
 
     @Test
-    public void addTask_normalInput_worksNormally() {
+    public void addTask_normalInput() {
         Task task = new Task("task", "D");
         taskList.add(task);
         assertEquals(4, taskList.getTaskList().size());
     }
 
     @Test
-    public void deleteTask_normalInput_worksNormally() {
+    public void deleteTask_normalInput() {
         try {
             taskList.delete(1);
             assertEquals(2, taskList.getTaskList().size());
@@ -48,7 +48,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void markTask_normalInput_worksNormally() {
+    public void markTask_normalInput() {
         try {
             taskList.mark(1);
         } catch (DukeOutOfBoundException e) {
@@ -57,7 +57,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void unmarkTask_normalInput_worksNormally() {
+    public void unmarkTask_normalInput() {
         try {
             taskList.unmark(0);
         } catch (DukeOutOfBoundException e) {
@@ -66,7 +66,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void getTaskList_normalInput_worksNormally() {
+    public void getTaskList_normalInput() {
         assertEquals(list, taskList.getTaskList());
     }
 
