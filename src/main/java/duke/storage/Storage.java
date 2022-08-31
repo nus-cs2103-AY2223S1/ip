@@ -5,18 +5,17 @@ import duke.tasklist.TaskList;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.nio.file.Path;
 
 public class Storage {
     private static TaskList tasksStored;
     private static File listFile;
 
-    public Storage(String filePath){
+    public Storage(String filePath) {
         this.tasksStored = readFromFile(filePath);
         File listFile = new File(filePath);
     }
 
-    public static TaskList readFromFile(String path){
+    public static TaskList readFromFile(String path) {
         TaskList inList = new TaskList();
         try {
             File listFile = new File(path);
@@ -27,13 +26,12 @@ public class Storage {
             in.close();
         } catch (Exception e) {
             System.out.println(e);
-        }
-        finally{
+        } finally{
             return inList;
         }
     }
 
-    public static void makeListFile(String path, TaskList lst){
+    public static void makeListFile(String path, TaskList lst) {
         try {
             File listFile = new File(path);
             ArrayList<ListObject> listOfItems = lst.storeAllTasks();
@@ -41,8 +39,7 @@ public class Storage {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(listFile));
             out.writeObject(listOfItems);
             out.close();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
 
