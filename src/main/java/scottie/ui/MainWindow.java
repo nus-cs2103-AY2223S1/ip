@@ -1,6 +1,8 @@
 package scottie.ui;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +16,10 @@ import scottie.Scottie;
 /**
  * Controller for MainWindow. Provides the Layout for the other controls.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow extends AnchorPane implements Ui {
+    private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
+            + "How can I help you?";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -33,7 +38,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
     }
 
     public void setScottie(Scottie scottie) {
@@ -41,18 +46,60 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing the user's input and the other
-     * containing Scottie's reply, and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates a dialog box echoing the user's input and then appends it
+     * to the dialog container. Clears the user input after processing.
+     * Also sends the user's input to Scottie for Scottie to generate its
+     * response.
      */
     @FXML
     private void handleUserInput() {
         String input = this.userInput.getText();
-        String response = "Temporary fixed response";
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getScottieDialog(response, scottieImage)
-        );
-        userInput.clear();
+        this.dialogContainer.getChildren().add(DialogBox.getUserDialog(input, this.userImage));
+        this.userInput.clear();
+        this.scottie.sendInput(input, this);
+    }
+
+    /**
+     * Creates a dialog box containing Scottie's message to the user
+     * and appends it to the dialog container.
+     *
+     * @param message The message to show to the user.
+     */
+    private void showMessage(String message) {
+        this.dialogContainer.getChildren().add(DialogBox.getScottieDialog(message, this.scottieImage));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showMessages(String... messages) {
+        this.showMessage(String.join("\n", messages));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showFormattedMessage(String message, Object... args) {
+        this.showMessage(String.format(message, args));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showStartupMessage() {
+        this.showMessage(WELCOME_MESSAGE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showOrderedList(Iterable<?> iterable) {
+        this.showMessage(StreamSupport.stream(iterable.spliterator(), false)
+                .map(Object::toString)
+                .collect(Collectors.joining("\n")));
     }
 }
