@@ -7,6 +7,9 @@ import duke.listobjects.ToDo;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
+/**
+ * Represents the Parser of Duke which parses and interprets user commands
+ */
 public class ParserDuke{
 
     private String command;
@@ -20,15 +23,25 @@ public class ParserDuke{
     private final String DEADLINE_CMD = "deadline ";
     private final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
 
+    /**
+     * Constructs a ParserDuke object with given command
+     * @param command String representing user command
+     */
     public ParserDuke(String command){
         this.command = command;
     }
 
+    /**
+     * Prints response for empty user command
+     */
     public void respondToEmptyString(){
         System.out.println("The folly of youth to speak with no words! Speak again, my friend!");
     }
 
 
+    /**
+     * Reads the user command, initiates completion of the appropriate action and prints response
+     */
     public void parseCommand(){
         if(command.isEmpty()){
             respondToEmptyString();
