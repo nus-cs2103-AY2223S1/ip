@@ -38,12 +38,14 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task from the list of tasks.
+     * Deletes a task from the list of tasks and
+     * Returns the deleted task message.
      *
      * @param index the index of the tasks to be deleted.
+     * @return the deleted task message.
      * @throws DukeException If index is out of bounds.
      */
-    public void delete(int index) throws DukeException {
+    public String delete(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
             throw new DukeException("Index Is Not Valid");
@@ -54,17 +56,18 @@ public class TaskList {
         taskList.remove(task);
         //print the response to the user
         Storage.saveTasks(this);
-        Ui.printDeletedTask(task, getSize());
-
+        return Ui.getDeletedTaskMessage(task, getSize());
     }
 
     /**
-     * Marks a task a done.
+     * Marks a task a done and returns the marked
+     * task message.
      *
      * @param index the index of the task to be marked.
+     * @return the marked task message.
      * @throws DukeException If index is out of bounds.
      */
-    public void mark(int index) throws DukeException {
+    public String mark(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
             throw new DukeException("Index Is Not Valid");
@@ -73,16 +76,18 @@ public class TaskList {
         Task task = taskList.get(index - 1);
         task.markAsDone();
         Storage.saveTasks(this);
-        Ui.printMarkedTask(task);
+        return Ui.getMarkedTaskMessage(task);
     }
 
     /**
-     * Unmarks a task from being done.
+     * Unmarks a task from being done and returns
+     * the unmarked task message.
      *
      * @param index the index of the task to be unmarked.
+     * @return the unmarked task message.
      * @throws DukeException If index is out of bounds.
      */
-    public void unmark(int index) throws DukeException {
+    public String unmark(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
             throw new DukeException("Index Is Not Valid");
@@ -91,18 +96,25 @@ public class TaskList {
         Task task = taskList.get(index - 1);
         task.markAsUndone();
         Storage.saveTasks(this);
-        Ui.printUnmarkedTask(task);
+        return Ui.getUnmarkedTaskMessage(task);
     }
 
     /**
      * Prints the string representation of
      * the list of tasks.
+     *
+     * @return the string representation of
+     *     the instance.
      */
-    public void printSelf() {
+    @Override
+    public String toString() {
+        String stringRepresentation = "";
         for (int i = 0; i < taskList.size(); ++i) {
             Task task = taskList.get(i);
-            System.out.println((i + 1) + ". " + task.toString());
+            stringRepresentation += (i + 1) + ". " + task.toString() + "\n";
         }
+
+        return stringRepresentation;
     }
 
     /**
