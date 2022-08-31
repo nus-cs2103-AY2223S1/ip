@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 public class ChatBot {
     private final String name;
-    private boolean runningState;
+    private boolean isRunning;
     private final TaskManager taskManager;
 
     /**
@@ -20,7 +20,7 @@ public class ChatBot {
      */
     public ChatBot(String name) {
         this.name =  name;
-        this.runningState = false;
+        this.isRunning = false;
         this.taskManager = new TaskManager();
     }
 
@@ -30,9 +30,9 @@ public class ChatBot {
      * any pre-existing data.
      */
     public void initialize() {
-        this.runningState = true;
-        System.out.println(wrapMessage("Greetings, " + this.name + " at your service.\n" +
-                "How may I help you today?\n"));
+        this.isRunning = true;
+        System.out.println(wrapMessage("Greetings, " + this.name + " at your service.\n"
+                + "How may I help you today?\n"));
         taskManager.load();
     }
 
@@ -41,7 +41,7 @@ public class ChatBot {
      * with a goodbye message.
      */
     public void terminate() {
-        this.runningState = false;
+        this.isRunning = false;
         System.out.println(wrapMessage("Goodbye! It was nice seeing you.\n"));
     }
 
@@ -51,7 +51,7 @@ public class ChatBot {
      * @return running state of the chatbot
      */
     public boolean isRunning() {
-        return this.runningState;
+        return this.isRunning;
     }
 
     /**
@@ -68,13 +68,15 @@ public class ChatBot {
             if (!(inputScanner.hasNext())) {
                 switch (command) {
                 case "bye":
-                    this.runningState = false;
+                    this.isRunning = false;
                     break;
                 case "list":
                     System.out.println(wrapMessage(taskManager.list()));
                     break;
                 case "todo":
+                    // Fallthrough
                 case "deadline":
+                    // Fallthrough
                 case "event":
                     throw new EmptyTaskException();
                 default:
@@ -83,33 +85,34 @@ public class ChatBot {
             } else {
                 String arguments = inputScanner.nextLine().substring(1);
                 Scanner argumentScanner = new Scanner(arguments);
+                String response;
                 switch (command) {
                 case "todo":
-                    System.out.println(wrapMessage(taskManager.addTask(
-                            new ToDoTask(argumentScanner.nextLine()))));
+                    response = taskManager.addTask(new ToDoTask(argumentScanner.nextLine()));
                     break;
                 case "deadline":
                     argumentScanner.useDelimiter(" /by ");
-                    System.out.println(wrapMessage(taskManager.addTask(
-                            new DeadlineTask(argumentScanner.next(), argumentScanner.next(), taskManager.getDateFormat()))));
+                    response = taskManager.addTask(new DeadlineTask(argumentScanner.next(),
+                            argumentScanner.next(), taskManager.getDateFormat()));
                     break;
                 case "event":
                     argumentScanner.useDelimiter(" /at ");
-                    System.out.println(wrapMessage(taskManager.addTask(
-                            new EventTask(argumentScanner.next(), argumentScanner.next(), taskManager.getDateFormat()))));
+                    response = taskManager.addTask(new EventTask(argumentScanner.next(),
+                            argumentScanner.next(), taskManager.getDateFormat()));
                     break;
                 case "mark":
-                    System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments))));
+                    response = taskManager.mark(Integer.parseInt(arguments));
                     break;
                 case "unmark":
-                    System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments))));
+                    response = taskManager.unmark(Integer.parseInt(arguments));
                     break;
                 case "delete":
-                    System.out.println(wrapMessage(taskManager.delete(Integer.parseInt(arguments))));
+                    response = taskManager.delete(Integer.parseInt(arguments));
                     break;
                 default:
                     throw new InvalidCommandException();
                 }
+                System.out.println(wrapMessage(response));
                 argumentScanner.close();
                 taskManager.save();
             }

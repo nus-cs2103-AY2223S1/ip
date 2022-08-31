@@ -23,11 +23,11 @@ public class ToDoTask extends Task {
      * Creates a new to do task with information indicating the name of the task.
      *
      * @param taskName string of the name of the task
-     * @param status boolean of the completion status of the task.
+     * @param isCompleted boolean of the completion status of the task.
      * @throws EmptyTaskException if taskName is empty
      */
-    public ToDoTask(String taskName, boolean status) throws EmptyTaskException {
-        super(taskName, status);
+    public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
+        super(taskName, isCompleted);
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
@@ -51,7 +51,7 @@ public class ToDoTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return taskName_TYPE + " | " + (getStatus() ? 1 : 0) + " | " + getTaskName() + "\n";
+        return taskName_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + "\n";
     }
 
     /**

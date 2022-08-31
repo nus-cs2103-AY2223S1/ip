@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class TaskManager {
     private static final String FILEPATH = "tasklist.txt";
-    private final List<Task> taskList;
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
+    private final List<Task> taskList;
 
     /**
      * Creates a new task manager and initializes a task list.
@@ -40,16 +40,16 @@ public class TaskManager {
     private Task processFormattedString(String formattedString) throws Exception {
         String[] arguments = formattedString.split(" | ");
         String taskType = arguments[0];
-        boolean status = (arguments[2].equals("1") ? true : false);
+        boolean isCompleted = (arguments[2].equals("1"));
         String taskName = arguments[4];
 
         switch (taskType) {
         case "T":
-            return new ToDoTask(taskName, status);
+            return new ToDoTask(taskName, isCompleted);
         case "D":
-            return new DeadlineTask(taskName, arguments[6], status, DATE_FORMAT);
+            return new DeadlineTask(taskName, arguments[6], isCompleted, DATE_FORMAT);
         case "E":
-            return new EventTask(taskName, arguments[6], status, DATE_FORMAT);
+            return new EventTask(taskName, arguments[6], isCompleted, DATE_FORMAT);
         default:
             return new EmptyTask();
         }
@@ -68,7 +68,7 @@ public class TaskManager {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("\tI have your list of tasks displayed below:\n");
             for (int i = 0; i < this.taskList.size(); i++) {
-                stringBuilder.append("\t" + (i + 1) + ") " + taskList.get(i) + "\n");
+                stringBuilder.append("\t").append(i + 1).append(") ").append(taskList.get(i)).append("\n");
             }
             return stringBuilder.toString();
         }
@@ -96,10 +96,10 @@ public class TaskManager {
      */
     public String mark(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            if (this.taskList.get(itemNumber - 1).getStatus()) {
+            if (this.taskList.get(itemNumber - 1).isCompleted()) {
                 return "\tThe task is already marked you dummy.\n";
             } else {
-                this.taskList.get(itemNumber - 1).setStatus(true);
+                this.taskList.get(itemNumber - 1).setIsCompleted(true);
                 return "\tI've marked this task as done. Good Job!\n";
             }
         } else {
@@ -117,10 +117,10 @@ public class TaskManager {
      */
     public String unmark(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
-            if (!(this.taskList.get(itemNumber - 1).getStatus())) {
+            if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
                 return "\tThe task is still not done you idiot.\n";
             } else {
-                this.taskList.get(itemNumber - 1).setStatus(false);
+                this.taskList.get(itemNumber - 1).setIsCompleted(false);
                 return "\tThe task has been unmarked.\n";
             }
         } else {
@@ -139,8 +139,8 @@ public class TaskManager {
         StringBuilder stringBuilder = new StringBuilder();
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             stringBuilder.append("The following item has been removed.\n");
-            stringBuilder.append(this.taskList.remove(itemNumber - 1).toString() + "\n");
-            stringBuilder.append("You have " + (this.taskList.size()) + " item(s) remaining.\n");
+            stringBuilder.append(this.taskList.remove(itemNumber - 1).toString()).append("\n");
+            stringBuilder.append("You have ").append(this.taskList.size()).append(" item(s) remaining.\n");
         } else {
             return "\tThere is no such task!!\n";
         }

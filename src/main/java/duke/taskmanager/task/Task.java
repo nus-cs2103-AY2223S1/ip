@@ -4,7 +4,7 @@ import duke.taskmanager.exceptions.EmptyTaskException;
 
 public abstract class Task {
     private final String taskName;
-    private boolean status; // True = Done, False = Not Done
+    private boolean isCompleted;
 
     /**
      * Abstract constructor for a task with information indicating the name of the task.
@@ -15,7 +15,7 @@ public abstract class Task {
      */
     Task(String taskName) {
         this.taskName = taskName;
-        this.status = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -23,23 +23,23 @@ public abstract class Task {
      * To be inherited by different tasks.
      *
      * @param taskName string of the name of the task
-     * @param status boolean of the completion status of the task.
+     * @param isCompleted boolean of the completion status of the task.
      */
-    Task(String taskName, boolean status) {
+    Task(String taskName, boolean isCompleted) {
         this.taskName = taskName;
-        this.status = status;
+        this.isCompleted = isCompleted;
     }
 
     public String getTaskName() {
         return this.taskName;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public boolean isCompleted() {
+        return this.isCompleted;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     public abstract boolean isEmpty();
@@ -47,6 +47,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + (status ? "X":" ") + "] " + this.taskName;
+        return "[" + (isCompleted ? "X":" ") + "] " + this.taskName;
     }
 }

@@ -22,7 +22,8 @@ public class DeadlineTask extends Task {
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String taskTime, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
+    public DeadlineTask(String taskName, String taskTime, String dateFormat)
+            throws EmptyTaskException, InvalidDeadlineException {
         super(taskName);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
@@ -41,13 +42,14 @@ public class DeadlineTask extends Task {
      *
      * @param taskName string of the name of the task
      * @param taskTime string of the deadline of the task in the format of dateFormat
-     * @param status boolean of the completion status of the task.
+     * @param isCompleted boolean of the completion status of the task.
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String taskTime, boolean status, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
-        super(taskName,  status);
+    public DeadlineTask(String taskName, String taskTime, boolean isCompleted, String dateFormat)
+            throws EmptyTaskException, InvalidDeadlineException {
+        super(taskName, isCompleted);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
@@ -65,11 +67,8 @@ public class DeadlineTask extends Task {
      * @return deadline of the task
      */
     public String getTaskTime() {
-        return (taskTime.getDayOfMonth() + " " +
-                taskTime.getMonth() + " " +
-                taskTime.getYear() + " | " +
-                taskTime.getHour() + ":" +
-                taskTime.getMinute());
+        return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
+                + taskTime.getHour() + ":" + taskTime.getMinute());
     }
 
     /**
@@ -90,10 +89,7 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " +
-                (getStatus() ? 1 : 0) + " | " +
-                getTaskName() + " | " +
-                this.taskTime + "\n";
+        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + " | " + this.taskTime + "\n";
     }
 
     /**

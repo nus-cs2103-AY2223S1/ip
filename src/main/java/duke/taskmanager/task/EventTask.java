@@ -23,7 +23,8 @@ public class EventTask extends Task {
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String taskTime, String dateFormat) throws EmptyTaskException, InvalidEventException {
+    public EventTask(String taskName, String taskTime, String dateFormat)
+            throws EmptyTaskException, InvalidEventException {
         super(taskName);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
@@ -42,13 +43,14 @@ public class EventTask extends Task {
      *
      * @param taskName string of the name of the task
      * @param taskTime string of the event time of the task in the format of dateFormat
-     * @param status boolean of the completion status of the task.
+     * @param isCompleted boolean of the completion status of the task.
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String taskTime, boolean status, String dateFormat) throws EmptyTaskException, InvalidEventException {
-        super(taskName, status);
+    public EventTask(String taskName, String taskTime, boolean isCompleted, String dateFormat)
+            throws EmptyTaskException, InvalidEventException {
+        super(taskName, isCompleted);
         this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
@@ -66,11 +68,8 @@ public class EventTask extends Task {
      * @return event time of the task
      */
     public String getTaskTime() {
-        return (taskTime.getDayOfMonth() + " " +
-                taskTime.getMonth() + " " +
-                taskTime.getYear() + " | " +
-                taskTime.getHour() + ":" +
-                taskTime.getMinute());
+        return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
+                + taskTime.getHour() + ":" + taskTime.getMinute());
     }
 
     /**
@@ -91,10 +90,7 @@ public class EventTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " +
-                (getStatus() ? 1 : 0) + " | " +
-                getTaskName() + " | " +
-                this.taskTime + "\n";
+        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + " | " + this.taskTime + "\n";
     }
 
     /**
