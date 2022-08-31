@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.File;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -96,7 +97,7 @@ public class Duke {
      * @param args array of arguments.
      */
     public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
+        new Duke("./data/").run();
 
     }
 }
