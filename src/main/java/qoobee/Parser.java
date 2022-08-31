@@ -80,8 +80,7 @@ public class Parser {
                     }
                 } else if (input.startsWith("find")) {
                     tasks.findTask(command[1]);
-                }
-                else {
+                } else {
                     throw new QoobeeException("I'm sorry, but I don't know what that means :^(");
                 }
             }

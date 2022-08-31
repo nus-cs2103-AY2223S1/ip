@@ -2,10 +2,10 @@ package qoobee;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -51,8 +51,8 @@ public class Storage {
                     String[] dateTime = stringArray[3].split(" ", 4);
                     String[] time = dateTime[3].split(":", 2);
                     Task deadline = new Deadline(stringArray[2],
-                            LocalDateTime.of(Integer.parseInt(dateTime[2]), Integer.parseInt(dateTime[1])
-                                    , Integer.parseInt(dateTime[0]), Integer.parseInt(time[0]),
+                            LocalDateTime.of(Integer.parseInt(dateTime[2]), Integer.parseInt(dateTime[1]),
+                                    Integer.parseInt(dateTime[0]), Integer.parseInt(time[0]),
                                     Integer.parseInt(time[1])));
                     if (stringArray[1].equals("1")) {
                         deadline.markAsDone();
