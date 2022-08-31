@@ -39,12 +39,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         Parser.execute(input, todos);
-        /*
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                ChatMessage.getUserDialog(input, userImage),
+                ChatMessage.getDukeDialog("Bot got: " + input, dukeImage)
         );
-         */
         userInput.clear();
     }
 }
