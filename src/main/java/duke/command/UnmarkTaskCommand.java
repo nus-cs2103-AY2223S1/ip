@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.utils.Storage;
-import duke.TaskList;
-import duke.utils.Ui;
-
 import java.io.IOException;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.utils.Storage;
+import duke.utils.Ui;
 
 /**
  * Handles an "unmark" command.
@@ -30,8 +30,8 @@ public class UnmarkTaskCommand extends Command {
 
         try {
             taskList.get(index).markAsUndone();
-            String message = "OK, I've marked this task as not done yet: \n  " +
-                    taskList.get(index) + "\n";
+            String message = "OK, I've marked this task as not done yet: \n  "
+                    + taskList.get(index) + "\n";
             Ui.printMessage(message);
         } catch (NullPointerException e) {
             throw new DukeException("☹ OOPS!!! There is no task created for this index!");

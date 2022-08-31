@@ -13,15 +13,11 @@ import duke.utils.Ui;
  * @author Jason
  */
 public class Duke {
+    private static final String PATH_FILE = "src/data/duke.txt";
+    private static final String PATH_DIRECTORY = "src/data";
     private Scanner scanner;
     private TaskList taskList;
     private Storage storage;
-
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String PATH_FILE = "src/data/duke.txt";
-    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-    private final String PATH_DIRECTORY = "src/data";
-
 
     /**
      * Initializes the application.

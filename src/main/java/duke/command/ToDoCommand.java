@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
-import duke.utils.Storage;
 import duke.TaskList;
 import duke.task.Todo;
-
-import java.io.IOException;
+import duke.utils.Storage;
 
 /**
  * Handles a "todo" command.

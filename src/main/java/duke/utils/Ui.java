@@ -12,21 +12,21 @@ public class Ui {
                                         + "     / _____ \\   _| |_  | | | |   | |    |  __/ | (_| |\n"
                                         + "    /_/     \\_\\ |_____| |_| |_|   |_|     \\___|  \\__,_|\n";
 
-    private static final String UI_GREETING = "                      Hello! I am \n" + UI_LOGO +
-                                            "      Your personal assistant. What can I do for you?\n";
+    private static final String UI_GREETING = "                      Hello! I am \n" + UI_LOGO
+                                            + "      Your personal assistant. What can I do for you?\n";
 
 
-    private static final String UI_GOODBYE = "               ☺ Saving your data before you go...\n" +
-                                            "               Bye. Hope to see you again soon!\n";
+    private static final String UI_GOODBYE = "               ☺ Saving your data before you go...\n"
+                                           + "               Bye. Hope to see you again soon!\n";
 
     /**
      * Prints the intended message to the console.
      * @param message Message to be printed.
      */
     public static void printMessage(String message) {
-        System.out.println("____________________________________________________________\n" +
-                message +
-                "____________________________________________________________\n");
+        System.out.println("____________________________________________________________\n"
+                + message
+                + "____________________________________________________________\n");
     }
 
     /**

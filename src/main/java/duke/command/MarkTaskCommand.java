@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.utils.Storage;
-import duke.TaskList;
-import duke.utils.Ui;
-
 import java.io.IOException;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.utils.Storage;
+import duke.utils.Ui;
 
 /**
  * Handles the "mark" command.
@@ -29,8 +29,8 @@ public class MarkTaskCommand extends Command {
         int index = Integer.parseInt(taskIndex) - 1;
         try {
             taskList.get(index).markAsDone();
-            String message = "Nice! I've marked this task as done: \n  " +
-                    taskList.get(index) + "\n";
+            String message = "Nice! I've marked this task as done: \n  "
+                    + taskList.get(index) + "\n";
             Ui.printMessage(message);
         } catch (NullPointerException e) {
             throw new DukeException("☹ OOPS!!! There is no task created for this index!");

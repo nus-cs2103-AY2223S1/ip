@@ -1,10 +1,10 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.utils.Storage;
-import duke.TaskList;
-
 import java.io.IOException;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.utils.Storage;
 
 /**
  * Represents a skeleton for a Command Class.

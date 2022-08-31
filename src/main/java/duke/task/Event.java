@@ -11,6 +11,11 @@ public class Event extends Task {
 
     protected Date at;
 
+    /**
+     * Constructs an Event object.
+     * @param description Description of the Event object.
+     * @param at Date which the Event object is on.
+     */
     public Event(String description, Date at) {
         super(description);
         this.at = at;

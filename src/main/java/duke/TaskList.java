@@ -1,10 +1,10 @@
 package duke;
 
-import duke.utils.Storage;
-import duke.utils.Ui;
-
 import java.io.IOException;
 import java.util.List;
+
+import duke.utils.Storage;
+import duke.utils.Ui;
 
 /**
  * Stores and manages all the tasks.
@@ -25,9 +25,9 @@ public class TaskList {
         taskList.add(task);
         int numOfTasks = taskList.size();
 
-        String message = "Got it. I've added this task: \n  " +
-                task + "\n" +
-                "Now you have " + numOfTasks + " tasks in the list.\n";
+        String message = "Got it. I've added this task: \n  "
+                + task + "\n"
+                + "Now you have " + numOfTasks + " tasks in the list.\n";
         Ui.printMessage(message);
 
         //Update save file after each task is added
