@@ -43,6 +43,9 @@ public class Parser {
         case "delete":
             Ui.displayDeleteTaskMessage(TaskList.deleteTask(args));
             break;
+        case "find":
+            Ui.displaySearchTasksMessage(TaskList.searchTasks(args), args);
+            break;
         default:
             throw new DukeException("Command not recognised");
         }
