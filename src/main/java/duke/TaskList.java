@@ -1,7 +1,8 @@
 package duke;
 
-import duke.task.Task;
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * Represents class regarding a list of tasks.
@@ -78,6 +79,13 @@ public class TaskList {
         this.tasks.add(task);
     }
 
+    /**
+     * Finds specified task in the list.
+     *
+     * @param keyword The specified task to be added.
+     * @return list of tasks that fit the keyword
+     *
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> filteredList = new ArrayList<>();
         for (Task task: tasks) {

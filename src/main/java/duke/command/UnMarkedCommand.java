@@ -40,8 +40,7 @@ public class UnMarkedCommand extends Command {
             task.setUncompleted();
             ui.showUnMarked(task);
             storage.store(tasks.getTaskList());
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("OH NO! You are not allowed here");
         }
     }

@@ -6,7 +6,7 @@ package duke;
  * @author benjytan45678
  * @version 0.1
  */
-public class DukeException extends Exception{
+public class DukeException extends Exception {
     private String description;
 
     /**

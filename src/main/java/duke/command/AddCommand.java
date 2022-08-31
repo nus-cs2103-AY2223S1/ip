@@ -38,7 +38,7 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
         int total = tasks.totalSize();
-        ui.showAdd(task,total);
+        ui.showAdd(task, total);
         storage.store(tasks.getTaskList());
     }
 }

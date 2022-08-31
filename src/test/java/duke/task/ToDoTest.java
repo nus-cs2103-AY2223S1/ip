@@ -1,12 +1,11 @@
-
 package duke.task;
-
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 public class ToDoTest {
-    ToDo todo = new ToDo("borrow book");
+    private ToDo todo = new ToDo("borrow book");
 
     @Test
     public void test_toDo_toString() {
@@ -17,7 +16,5 @@ public class ToDoTest {
     public void test_toDo_parse() {
         assertEquals("T#0#borrow book", todo.parse());
     }
-
-
 
 }

@@ -1,15 +1,17 @@
 package duke;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.FileWriter;
+
 
 
 /**
@@ -29,7 +31,7 @@ public class Storage {
      * @param filepath Path from root directory to the file.
      * @throws DukeException If unable to create file.
      */
-    public Storage(String filepath) throws DukeException{
+    public Storage(String filepath) throws DukeException {
         this.filepath = filepath;
         File newFile = new File(filepath);
         if (!newFile.exists()) {
@@ -53,7 +55,7 @@ public class Storage {
      * @throws DukeException If file is not found.
      */
     public ArrayList<Task> load() throws DukeException {
-         ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> taskList = new ArrayList<>();
         try {
             Scanner sc = new Scanner(this.file);
             while (sc.hasNextLine()) {
@@ -68,7 +70,7 @@ public class Storage {
                 }
 
                 if (messageArr[0].equals("D")) {
-                    Deadline deadline = new Deadline(messageArr[2],messageArr[3],messageArr[4]);
+                    Deadline deadline = new Deadline(messageArr[2], messageArr[3], messageArr[4]);
                     if (messageArr[1].equals("1")) {
                         deadline.setCompleted();
                     }
@@ -76,7 +78,7 @@ public class Storage {
                 }
 
                 if (messageArr[0].equals("E")) {
-                    Event event = new Event(messageArr[2],messageArr[3],messageArr[4]);
+                    Event event = new Event(messageArr[2], messageArr[3], messageArr[4]);
                     if (messageArr[1].equals("1")) {
                         event.setCompleted();
                     }
@@ -106,8 +108,7 @@ public class Storage {
             }
             fw.write(message);
             fw.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
     }

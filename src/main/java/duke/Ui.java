@@ -1,8 +1,10 @@
 package duke;
 
-import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
+
 
 /**
  * Represents class regarding user and system interaction
@@ -12,15 +14,20 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner myScanner = new Scanner(System.in);
+
+    /**
+     * Prints welcome message to user
+     */
     public void showWelcome() {
-        String logo = "____________________________________________________________\n" + "Hello from\n" +
-                " ____        _\n"
+        String logo = "____________________________________________________________\n"
+                + "Hello from\n"
+                + " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n" +
-                "How may I assist you?\n" +
-                "____________________________________________________________\n";
+                + "|____/ \\__,_|_|\\_\\___|\n"
+                + "How may I assist you?\n"
+                + "____________________________________________________________\n";
         System.out.println(logo);
     }
 
@@ -123,6 +130,11 @@ public class Ui {
         System.out.println(printLine);
     }
 
+    /**
+     * Prints prompt about success in finding filtered tasks
+     * @param filteredTaskList the filtered list of tasks
+     *
+     */
     public void showFind(ArrayList<Task> filteredTaskList) {
         String newList = "Here are the matching tasks in your list:\n";
         int count = 1;

@@ -2,7 +2,6 @@ package duke;
 
 import duke.command.Command;
 
-
 /**
  * Represents main class for the Duke programme
  *
@@ -52,6 +51,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point to the programme
+     */
     public static void main(String[] args) {
 
         new Duke("data/tasks.txt").run();

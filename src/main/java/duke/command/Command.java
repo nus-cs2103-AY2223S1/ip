@@ -12,7 +12,7 @@ import duke.Ui;
  * @version 0.1
  */
 public abstract class Command {
-    boolean isExit = false;
+    private boolean isExit = false;
 
     /**
      * Return status of program

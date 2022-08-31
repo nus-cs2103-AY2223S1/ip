@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
      *
      * @param number marks specified task based on its position in the list
      */
-    public MarkCommand(int number)  {
+    public MarkCommand(int number) {
 
         this.number = number;
     }
