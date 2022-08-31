@@ -24,6 +24,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setResizable(false);
+            stage.setTitle("Jean");
             fxmlLoader.<MainWindow>getController().setDuke(jean);
             stage.show();
         } catch (IOException e) {
