@@ -1,7 +1,6 @@
 package duke.ui;
 
 /**
- *
  * Interface for the application.
  *
  */
@@ -17,7 +16,6 @@ public class Ui {
             + "What can I do for you?";
 
     /**
-     *
      * Prints out welcome message
      */
     public void bootUpDuke() {
@@ -25,7 +23,6 @@ public class Ui {
     }
 
     /**
-     *
      * Prints out exit message
      */
     public void shutDownDuke() {

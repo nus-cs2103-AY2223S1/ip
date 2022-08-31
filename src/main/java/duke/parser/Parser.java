@@ -59,6 +59,7 @@ public class Parser {
                 break;
             case "find":
                 tasklist.findWithFilter(next[1]);
+                break;
             case "delete":
                 tasklist.delete(next[1]);
                 break;

@@ -1,25 +1,29 @@
 package duke.parser;
 
-import duke.exceptions.DukeException;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import duke.exceptions.DukeException;
+
+
 
 class ParserTest {
 
-    private final static ByteArrayOutputStream outContent =
+    private static final ByteArrayOutputStream outContent =
             new ByteArrayOutputStream();
-    private final static ByteArrayOutputStream errContent =
+    private static final ByteArrayOutputStream errContent =
             new ByteArrayOutputStream();
-    private final static PrintStream originalOut = System.out;
-    private final static PrintStream originalErr = System.err;
+    private static final PrintStream originalOut = System.out;
+    private static final PrintStream originalErr = System.err;
 
     @BeforeAll
     public static void setUpStreams() {
@@ -48,8 +52,8 @@ class ParserTest {
         Parser p = new Parser(new Scanner(
                 new ByteArrayInputStream("go to school".getBytes())));
         outContent.reset();
-        DukeException e = assertThrows(DukeException.class,
-                () -> p.handleInput());
+        DukeException e = assertThrows(DukeException.class, ()
+                -> p.handleInput());
         assertEquals("Invalid command", e.getMessage().trim());
     }
 

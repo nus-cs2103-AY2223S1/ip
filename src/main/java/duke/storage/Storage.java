@@ -35,10 +35,10 @@ public class Storage {
     /**
      * Reads tasks saved in data file, handles cases of missing file.
      */
-    public void readSavedTasks(){
+    public void readSavedTasks() {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.
-                    ofPattern("yyyy MM dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter
+                    .ofPattern("yyyy MM dd HH:mm");
             File dir = new File("data/");
             if (!dir.exists()) {
                 boolean makeDir = dir.mkdir();

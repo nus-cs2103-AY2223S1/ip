@@ -27,8 +27,8 @@ public class Task {
             System.out.println("Task already marked as done\n" + this);
         } else {
             this.isDone = true;
-            System.out.println("Nice! I've marked this task as done\n" +
-                    this);
+            System.out.println("Nice! I've marked this task as done\n"
+                    + this);
         }
     }
 

@@ -1,21 +1,25 @@
 package duke.tasklist;
 
-import duke.exceptions.DukeException;
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import duke.exceptions.DukeException;
 
 class TaskListTest {
 
-    private final static ByteArrayOutputStream outContent =
+    private static final ByteArrayOutputStream outContent =
             new ByteArrayOutputStream();
-    private final static ByteArrayOutputStream errContent =
+    private static final ByteArrayOutputStream errContent =
             new ByteArrayOutputStream();
-    private final static PrintStream originalOut = System.out;
-    private final static PrintStream originalErr = System.err;
+    private static final PrintStream originalOut = System.out;
+    private static final PrintStream originalErr = System.err;
 
     @BeforeAll
     public static void setUpStreams() {
@@ -33,26 +37,26 @@ class TaskListTest {
     void addTask() throws DukeException {
         TaskList curr = TaskList.getInstance();
         String[] input = {"todo", "cycle"};
-        String expected = "added [T][ ] cycle\n" +
-                "Now you have 1 tasks in the list\n";
+        String expected = "added [T][ ] cycle\n"
+                + "Now you have 1 tasks in the list\n";
         curr.addTask(input);
         assertEquals(expected, outContent.toString());
 
         outContent.reset();
-        input = new String[]{
-                "event", "project meeting /at 2022-08-22 1800"
+        input = new String[]{"event",
+            "project meeting /at 2022-08-22 1800"
         };
-        expected = "added [E][ ] project meeting (at: Aug 22 2022 18:00)\n" +
-                "Now you have 2 tasks in the list\n";
+        expected = "added [E][ ] project meeting (at: Aug 22 2022 18:00)\n"
+                + "Now you have 2 tasks in the list\n";
         curr.addTask(input);
         assertEquals(expected, outContent.toString());
         outContent.reset();
 
-        input = new String[]{
-                "deadline", "math submission /by 2022-08-23 2359"
+        input = new String[]{"deadline",
+            "math submission /by 2022-08-23 2359"
         };
-        expected = "added [D][ ] math submission (by: Aug 23 2022 23:59)\n" +
-                "Now you have 3 tasks in the list\n";
+        expected = "added [D][ ] math submission (by: Aug 23 2022 23:59)\n"
+                + "Now you have 3 tasks in the list\n";
         curr.addTask(input);
         assertEquals(expected, outContent.toString());
         outContent.reset();
@@ -63,12 +67,12 @@ class TaskListTest {
         TaskList curr = TaskList.getInstance();
         String[] input = {"todo", "cycle"};
         curr.addTask(input);
-        String expected = "added [T][ ] cycle\n" +
-                "Now you have 1 tasks in the list\n";
+        String expected = "added [T][ ] cycle\n"
+                + "Now you have 1 tasks in the list\n";
         assertEquals(expected, outContent.toString());
         outContent.reset();
-        expected = "Removed the following task:\n" +
-                "[T][ ] cycle";
+        expected = "Removed the following task:\n"
+                + "[T][ ] cycle";
         curr.delete("1");
         assertEquals(expected, outContent.toString().trim());
         outContent.reset();
