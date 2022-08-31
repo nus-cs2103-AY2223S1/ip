@@ -3,6 +3,9 @@ package blob.commands;
 import blob.common.Messages;
 import blob.tasks.Task;
 
+/**
+ * The DeleteCommand class represents the command to delete a task.
+ */
 public class DeleteCommand extends TaskCommand {
 
     /** The index of the task in the task list to be deleted */

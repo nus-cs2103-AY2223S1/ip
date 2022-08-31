@@ -1,13 +1,12 @@
 package blob.tasks;
 
-import blob.exception.InvalidDateFormatException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
 
+import blob.exception.InvalidDateFormatException;
 
 public class EventTest {
 
@@ -17,11 +16,12 @@ public class EventTest {
             Task task = new Event("test task", "02/Oct/2000");
             fail();
         } catch (InvalidDateFormatException e) {
-            assertArrayEquals(new String[] { "Blob does not understand input datetime...",
-                            "USAGE: Dates have to be in the following formats: \n" +
-                                    "\t<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy> \n " +
-                                    "\tOptionally include time as <HH:mm> " },
-                    e.getBlobMessages());
+            assertArrayEquals(new String[] {
+                "Blob does not understand input datetime...",
+                "USAGE: Dates have to be in the following formats: \n"
+                    + "\t<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy> \n "
+                    + "\tOptionally include time as <HH:mm> " },
+                e.getBlobMessages());
         }
 
     }

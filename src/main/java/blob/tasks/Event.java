@@ -1,9 +1,9 @@
 package blob.tasks;
 
-import blob.parser.DateTimeParser;
-import blob.exception.InvalidDateFormatException;
-
 import java.time.format.DateTimeParseException;
+
+import blob.exception.InvalidDateFormatException;
+import blob.parser.DateTimeParser;
 
 /**
  * The Event class encapsulates a type of task to be done.
@@ -12,6 +12,13 @@ import java.time.format.DateTimeParseException;
 public class Event extends Task {
     private String at;
 
+    /**
+     * Constructs an Event task with the given description and at date.
+     *
+     * @param description The given task description.
+     * @param at The string representation of the given date or datetime of the task.
+     * @throws InvalidDateFormatException
+     */
     public Event(String description, String at) throws InvalidDateFormatException {
         super(description, TaskType.EVENT);
         try {
@@ -38,6 +45,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileString() {
-        return super.toFileString() + " | " + this.at ;
+        return super.toFileString() + " | " + this.at;
     }
 }

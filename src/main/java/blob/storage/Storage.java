@@ -1,5 +1,16 @@
 package blob.storage;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
+
 import blob.exception.ErrorLoadingTaskException;
 import blob.exception.InvalidDateFormatException;
 import blob.tasks.Deadline;
@@ -7,19 +18,6 @@ import blob.tasks.Event;
 import blob.tasks.Task;
 import blob.tasks.TaskList;
 import blob.tasks.ToDo;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * The Storage class deals with loading and saving tasks from a text file.
@@ -89,6 +87,7 @@ public class Storage {
             }
             taskFileWriter.close();
         } catch (IOException e) {
+            // Do nothing
         }
     }
 }

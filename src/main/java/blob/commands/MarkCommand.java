@@ -3,6 +3,9 @@ package blob.commands;
 import blob.common.Messages;
 import blob.tasks.Task;
 
+/**
+ * The MarkCommand class represents a command to mark a task to be done.
+ */
 public class MarkCommand extends TaskCommand {
 
     /** The index of the task in the task list to be marked as done */

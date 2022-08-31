@@ -4,7 +4,9 @@ import blob.common.Messages;
 import blob.exception.InvalidDateFormatException;
 import blob.tasks.Deadline;
 
-
+/**
+ * The DeadlineCommand class represents the command to create a deadline task.
+ */
 public class DeadlineCommand extends TaskCommand {
 
     /** The description of the deadline task to be created */

@@ -5,26 +5,32 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-
 import java.util.Locale;
 
+/**
+ * The DateTimeParser deals with parsing dates and datetimes of different formats
+ */
 public class DateTimeParser {
 
     private final String[] dateFormats = {
-            "dd-MM-yyyy",
-            "yyyy-MM-dd",
-            "d MMM yyyy",
-            "MMM d yyyy",
+        "dd-MM-yyyy",
+        "yyyy-MM-dd",
+        "d MMM yyyy",
+        "MMM d yyyy",
     };
     private final String[] dateTimeFormats = {
-            "dd-MM-yyyy HH:mm",
-            "yyyy-MM-dd HH:mm",
-            "d MMM yyyy HH:mm",
-            "MMM d yyyy HH:mm",
+        "dd-MM-yyyy HH:mm",
+        "yyyy-MM-dd HH:mm",
+        "d MMM yyyy HH:mm",
+        "MMM d yyyy HH:mm",
     };
     private final DateTimeFormatter dateFormatter;
     private final DateTimeFormatter dateTimeFormatter;
 
+    /**
+     * Constructs a DateTimeParser that parses strings of different date and datetime formats
+     * into a string of a proper date or datetime format
+     */
     public DateTimeParser() {
         DateTimeFormatterBuilder dateFormatterBuilder = new DateTimeFormatterBuilder().parseCaseInsensitive();
         for (String dateFormat : dateFormats) {

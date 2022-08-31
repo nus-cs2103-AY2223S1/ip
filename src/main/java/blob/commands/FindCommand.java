@@ -1,13 +1,16 @@
 package blob.commands;
 
-import blob.common.Messages;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import blob.common.Messages;
+
+/**
+ * The DeadlineCommand class represents the command to find tasks based on a keyword.
+ */
 public class FindCommand extends TaskCommand {
     /** The keyword to find tasks for */
-    String keyword;
+    private String keyword;
 
     /**
      * Returns a command that when executed will attempt to find tasks that have descriptions

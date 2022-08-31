@@ -3,10 +3,13 @@ package blob.commands;
 import blob.common.Messages;
 import blob.tasks.Task;
 
+/**
+ * The MarkCommand class represents a command to mark a task to be undone.
+ */
 public class UnmarkCommand extends TaskCommand {
 
     /** The index of the task in the task list to be marked as undone */
-    int index;
+    private int index;
 
     /**
      * Returns a command that when executed will attempt to mark a task in the task list as undone.

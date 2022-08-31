@@ -10,6 +10,12 @@ public abstract class Task {
     protected boolean isDone;
     protected TaskType type;
 
+    /**
+     * Returns a Task given a description and a Tasktype.
+     *
+     * @param description The given task description.
+     * @param type The given TaskType.
+     */
     public Task(String description, TaskType type) {
         this.description = description;
         this.type = type;

@@ -3,6 +3,9 @@ package blob.commands;
 import blob.common.Messages;
 import blob.tasks.ToDo;
 
+/**
+ * The TodoCommand class represents the command to create a todo task.
+ */
 public class TodoCommand extends TaskCommand {
 
     /** The description of the todo task to be created */

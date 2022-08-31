@@ -1,10 +1,13 @@
 package blob.commands;
 
-import blob.common.Messages;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import blob.common.Messages;
+
+/**
+ * The ListCommand class represents a command to list all the tasks that are currently active.
+ */
 public class ListCommand extends TaskCommand {
 
     /**

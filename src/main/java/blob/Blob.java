@@ -1,17 +1,20 @@
 package blob;
 
+import java.util.Scanner;
+
 import blob.commands.Command;
 import blob.commands.CommandResult;
 import blob.commands.TaskCommand;
 import blob.exception.BlobException;
 import blob.exception.ErrorLoadingTaskException;
+import blob.parser.Parser;
 import blob.storage.Storage;
 import blob.tasks.TaskList;
-import blob.parser.Parser;
 import blob.ui.TextUi;
 
-import java.util.Scanner;
-
+/**
+ * The Blob class represents the Blob application, a chatbot to help users remember tasks.
+ */
 public class Blob {
     private final Storage storage;
     private final TaskList taskList;
@@ -65,12 +68,20 @@ public class Blob {
         }
     }
 
+    /**
+     * Ends the Blob interaction.
+     */
     public void end() {
         storage.saveTaskList(taskList);
         ui.sayGoodbyeToUser();
         System.exit(0);
     }
 
+    /**
+     * Starts the main application
+     *
+     * @param args The additional parameters to start the application with (not used)
+     */
     public static void main(String[] args) {
         Blob blob = new Blob("data/tasks.txt");
         blob.start();

@@ -4,6 +4,9 @@ import blob.common.Messages;
 import blob.exception.InvalidDateFormatException;
 import blob.tasks.Event;
 
+/**
+ * The EventCommand class represents the command to create an event task.
+ */
 public class EventCommand extends TaskCommand {
     /** The description of the event task to be created */
     private String taskDescription;

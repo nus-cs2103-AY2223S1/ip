@@ -1,10 +1,10 @@
 package blob.ui;
 
-import blob.common.Messages;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import blob.common.Messages;
 
 /**
  * Text UI of the Blob task manager application
@@ -19,8 +19,8 @@ public class TextUi {
     /** Prompt to alert user for input */
     private static final String USER_PROMPT = ">> ";
 
-    Scanner in;
-    PrintStream out;
+    private final Scanner in;
+    private final PrintStream out;
 
     public TextUi() {
         this(System.in, System.out);

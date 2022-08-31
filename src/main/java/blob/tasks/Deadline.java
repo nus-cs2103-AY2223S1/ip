@@ -1,9 +1,9 @@
 package blob.tasks;
 
-import blob.parser.DateTimeParser;
-import blob.exception.InvalidDateFormatException;
-
 import java.time.format.DateTimeParseException;
+
+import blob.exception.InvalidDateFormatException;
+import blob.parser.DateTimeParser;
 
 /**
  * The Deadline class encapsulates a type of task to be done.
@@ -12,11 +12,18 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     private String by;
 
+    /**
+     * Constructs a Deadline task with the given description and by date.
+     *
+     * @param description The given task description.
+     * @param by The string representation of the given deadline of the task.
+     * @throws InvalidDateFormatException
+     */
     public Deadline(String description, String by) throws InvalidDateFormatException {
         super(description, TaskType.DEADLINE);
         try {
             this.by = new DateTimeParser().parse(by);
-        } catch (DateTimeParseException exception){
+        } catch (DateTimeParseException exception) {
             throw new InvalidDateFormatException();
         }
     }
@@ -38,6 +45,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        return super.toFileString() + " | " + this.by ;
+        return super.toFileString() + " | " + this.by;
     }
 }
