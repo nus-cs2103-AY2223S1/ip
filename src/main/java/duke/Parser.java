@@ -1,11 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
+import duke.command.*;
 
 public class Parser {
     public static Command parse(String userInput) throws DukeException{
@@ -30,6 +25,8 @@ public class Parser {
             return new AddCommand(userInput);
         } else if (command.equals(Duke.Keyword.DELETE.getKeyword())) {
             return new DeleteCommand(userInput);
+        } else if (command.equals(Duke.Keyword.FIND.getKeyword())) {
+            return new FindCommand(userInput);
         }else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
