@@ -1,14 +1,17 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDateTime at;
 
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     public String getAt() {
-        return this.at;
+        return this.at.format(DateTimeFormatter.ofPattern("EE, dd MMM yyyy, HH:mm"));
     }
 
     @Override
