@@ -26,12 +26,12 @@ public class FindCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException();
         }
         TaskList filteredTasks = tasks.filter(this.inputStrings[1]);
-        ui.showMatchingTasks(filteredTasks);
+        return ui.showMatchingTasks(filteredTasks);
     }
 
     /**

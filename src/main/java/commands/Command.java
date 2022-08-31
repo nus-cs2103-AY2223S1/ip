@@ -15,14 +15,15 @@ public abstract class Command {
      * @param tasks   The specified tasks.
      * @param ui      The Ui class used to print messages to the console.
      * @param storage The storage that is used to manage tasks saved locally.
+     * @return The resulting output of executing the command.
      * @throws DukeException if the command did not complete successfully.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Indicates whether the chatbot should terminate after the command is executed.
      *
-     * @return whether the chatbot should terminate.
+     * @return true if the chatbot should terminate, false otherwise.
      */
     public abstract boolean isExit();
 }

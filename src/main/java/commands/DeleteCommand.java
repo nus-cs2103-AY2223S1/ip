@@ -26,12 +26,12 @@ public class DeleteCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Tasks are displayed as 1-indexed, but they are stored as 0-indexed.
         int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
         Task task = tasks.removeTask(taskIndex);
 
-        ui.showRemoveTask(task, tasks.size());
+        return ui.showRemoveTask(task, tasks.size());
     }
 
     /**

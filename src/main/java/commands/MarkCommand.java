@@ -26,14 +26,14 @@ public class MarkCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             // Tasks are displayed as 1-indexed, but they are stored as 0-indexed.
             int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
 
             Task task = tasks.getTask(taskIndex);
             task.markTask();
-            ui.showMarkTask(task);
+            return ui.showMarkTask(task);
         } catch (NumberFormatException | IndexOutOfBoundsException exception) {
             throw new DukeException("     ☹ OOPS!!! The index specified is invalid.");
         }

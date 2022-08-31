@@ -11,6 +11,7 @@ import commands.MarkCommand;
 import commands.TodoCommand;
 import commands.UnmarkCommand;
 import exceptions.DukeException;
+import exceptions.InvalidCommandException;
 
 /**
  * Used to parse user's input and returns the corresponding commands.
@@ -55,7 +56,7 @@ public class Parser {
             return new FindCommand(inputValues);
         }
         default: {
-            throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new InvalidCommandException();
         }
         }
     }

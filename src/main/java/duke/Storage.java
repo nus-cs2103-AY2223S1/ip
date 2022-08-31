@@ -18,7 +18,7 @@ import task.Todo;
 
 
 /**
- * Deals with loading tasks from the file and saving tasks in the file whenever Duke starts / shuts down.
+ * Deals with loading tasks from the file and saving tasks in the file whenever chatbot starts / shuts down.
  */
 public class Storage {
     // Used in the encoding of task data.

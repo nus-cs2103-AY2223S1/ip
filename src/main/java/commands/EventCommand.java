@@ -34,7 +34,7 @@ public class EventCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException(TaskType.E);
         }
@@ -47,7 +47,7 @@ public class EventCommand extends Command {
                     Task.DATE_TIME_PARSER));
             tasks.addTask(event);
 
-            ui.showAddTask(event, tasks.size());
+            return ui.showAddTask(event, tasks.size());
         } catch (DateTimeParseException exception) {
             throw new InvalidDateTimeException(Task.DATE_TIME_INPUT_FORMAT);
         }
