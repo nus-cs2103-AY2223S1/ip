@@ -48,6 +48,6 @@ public class Pikachu {
     }
 
     public static void main(String[] args) {
-        new Pikachu("./././data/pikachu.txt").run();
+        new Pikachu("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt").run();
     }
 }
