@@ -18,15 +18,10 @@ public class Duke {
     /**
      * Constructs a duke chatbot.
      */
-    public Duke() throws DukeException {
+    public Duke() {
         storage = new Storage("data", "duke.txt");
         ui = new Ui();
-        try {
-            tasks = new TaskList(storage.retrieveFile());
-        } catch (DukeException e) {
-            tasks = new TaskList();
-            throw e;
-        }
+        tasks = new TaskList(storage.retrieveFile());
     }
 
     public String greet() {

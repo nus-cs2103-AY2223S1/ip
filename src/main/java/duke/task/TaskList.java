@@ -26,19 +26,30 @@ public class TaskList {
      * Constructs a task list from a saved file.
      *
      * @param savedTasks The file the tasks are to be loaded from
-     * @throws DukeException If there is no such existing file
      */
-    public TaskList(File savedTasks) throws DukeException {
+    public TaskList(File savedTasks) {
         this.tasks = new LinkedList<>();
+        LinkedList<String> unparsableTasks = new LinkedList<>();
         try {
             Scanner sc = new Scanner(savedTasks);
             while (sc.hasNextLine()) {
                 String ln = sc.nextLine();
-                TaskType savedTask = TaskType.readSavedTaskType(ln.charAt(0));
-                this.tasks.add(savedTask.parseSavedFormat(ln));
+                try {
+                    // try to parse the saved task
+                    TaskType savedTask = TaskType.readSavedTaskType(ln.charAt(0));
+                    this.tasks.add(savedTask.parseSavedFormat(ln));
+                } catch (DukeException e) {
+                    // could not parse this task, ignore it and raise it as an error later
+                    unparsableTasks.add(e.getMessage());
+                }
             }
         } catch (FileNotFoundException e) {
-            throw new DukeException(String.format("You have no saved tasks."));
+            System.out.println("You have no saved tasks.");
+        }
+
+        if (!unparsableTasks.isEmpty()) {
+            String unparsableTasksList = String.join("\n", unparsableTasks);
+            System.out.println(String.format("Could not parse saved tasks:\n %s", unparsableTasksList));
         }
     }
 

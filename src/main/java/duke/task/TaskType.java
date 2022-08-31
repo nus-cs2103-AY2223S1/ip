@@ -27,11 +27,17 @@ public enum TaskType {
         }
 
         @Override
-        public ToDo parseSavedFormat(String savedFormat) {
-            String[] savedData = TaskType.parseFormatArray(savedFormat);;
-            boolean status = savedData[0].equals("Y");
-            String description = savedData[1];
-            return new ToDo(description, status);
+        public ToDo parseSavedFormat(String savedFormat) throws DukeException {
+            try {
+                String[] savedData = TaskType.parseFormatArray(savedFormat);
+                ;
+                boolean status = savedData[0].equals("Y");
+                String description = savedData[1];
+                return new ToDo(description, status);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // task was saved in the wrong format for some reason
+                throw new DukeException("Could not parse saved todo: " + savedFormat);
+            }
         }
     },
     /**
@@ -40,33 +46,50 @@ public enum TaskType {
     EVENT {
         @Override
         public Event validateCommand(String cmd) throws DukeException {
-            if (cmd.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
-                String[] sp = cmd.substring(6).split("\\/(at)\\s", 2);
-                LocalDateTime datetime;
+            if (cmd.matches("(?i)^event\\s.+\\s\\/(at)\\s.+\\s\\/(to)\\s.+")) {
+                String[] sp = cmd.substring(6).split("\\s\\/(((at))|((to)))\\s", 3);
+                LocalDateTime startDatetime;
+                LocalDateTime endDatetime;
                 try {
-                    datetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
+                    startDatetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
                 } catch (DateTimeParseException e) {
                     try {
-                        datetime = LocalDateTime.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                        startDatetime = LocalDateTime.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
                     } catch (DateTimeParseException err) {
                         throw new DukeException(String.format("Unknown date format %s!", sp[1]));
                     }
                 }
-                return new Event(sp[0], datetime);
+                try {
+                    endDatetime = LocalDate.parse(sp[2], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
+                } catch (DateTimeParseException e) {
+                    try {
+                        endDatetime = LocalDateTime.parse(sp[2], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                    } catch (DateTimeParseException err) {
+                        throw new DukeException(String.format("Unknown date format %s!", sp[2]));
+                    }
+                }
+                return new Event(sp[0], startDatetime, endDatetime);
 
             } else {
                 throw new DukeException("Hm... Duke's confused. Are you trying to create an event?"
-                        + "\nMake sure you follow the format: event [description] /at [event datetime]");
+                        + "\nMake sure you follow the format: event [description] /at [event start datetime DD/MM/YYYY"
+                        + " (optional: HH:MM)] /to [event end datetime DD/MM/YYYY (optional: HH:MM)]");
             }
         }
 
         @Override
-        public Event parseSavedFormat(String savedFormat) {
-            String[] savedData = TaskType.parseFormatArray(savedFormat);
-            boolean status = savedData[0].equals("Y");
-            String description = savedData[1];
-            LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
-            return new Event(description, datetime, status);
+        public Event parseSavedFormat(String savedFormat) throws DukeException {
+            try {
+                String[] savedData = TaskType.parseFormatArray(savedFormat);
+                boolean status = savedData[0].equals("Y");
+                String description = savedData[1];
+                LocalDateTime startDatetime = LocalDateTime.parse(savedData[2]);
+                LocalDateTime endDatetime = LocalDateTime.parse(savedData[3]);
+                return new Event(description, startDatetime, endDatetime, status);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // task was saved in the wrong format for some reason
+                throw new DukeException("Could not parse saved event: " + savedFormat);
+            }
         }
     },
     /**
@@ -95,12 +118,17 @@ public enum TaskType {
         }
 
         @Override
-        public Deadline parseSavedFormat(String savedFormat) {
-            String[] savedData = TaskType.parseFormatArray(savedFormat);
-            boolean status = savedData[0].equals("Y");
-            String description = savedData[1];
-            LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
-            return new Deadline(description, datetime, status);
+        public Deadline parseSavedFormat(String savedFormat) throws DukeException {
+            try {
+                String[] savedData = TaskType.parseFormatArray(savedFormat);
+                boolean status = savedData[0].equals("Y");
+                String description = savedData[1];
+                LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
+                return new Deadline(description, datetime, status);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // task was saved in the wrong format for some reason
+                throw new DukeException("Could not parse saved deadline: " + savedFormat);
+            }
         }
     };
 
@@ -114,7 +142,7 @@ public enum TaskType {
      */
     public abstract Task validateCommand(String cmd) throws DukeException;
 
-    public abstract Task parseSavedFormat(String savedFormat);
+    public abstract Task parseSavedFormat(String savedFormat) throws DukeException;
 
     /**
      * Returns the TaskType represented by the specified character.
