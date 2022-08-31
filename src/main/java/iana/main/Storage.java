@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import iana.exception.IanaException;
 import iana.tasks.Task;
 import iana.tasks.TaskList;

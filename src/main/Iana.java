@@ -1,10 +1,11 @@
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
+package iana.main;
 
 import iana.command.Command;
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * Represents the command line interface Iana used to manage tasks.

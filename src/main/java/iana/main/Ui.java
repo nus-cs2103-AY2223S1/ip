@@ -1,9 +1,8 @@
 package iana.main;
 
-import java.util.Scanner;
-
 import iana.tasks.Task;
 import iana.tasks.TaskList;
+import java.util.Scanner;
 
 /**
  * User interface that will interact with user.

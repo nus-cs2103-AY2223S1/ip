@@ -1,8 +1,8 @@
 package iana.tasks;
 
-import java.util.ArrayList;
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
+import java.util.ArrayList;
 
 /**
  * Represents the list that contains and manage all the current tasks.
