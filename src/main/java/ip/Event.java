@@ -1,26 +1,19 @@
 package ip;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 class Event extends Task {
 
-    protected String at;
+    protected LocalDateTime at;
 
     public Event(String description, String at) {
-        this(description, at, false);
-    }
-
-    protected Event(String description, String at, boolean isDone) {
-        super(description, isDone);
-        this.at = at;
+        super(description);
+        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     public String getAt() {
-        return this.at;
-    }
-
-    @Override
-    protected String getStorageString() {
-        String parStr = super.getStorageString();
-        return String.format("%s|%s|%s", "E", parStr, getAt());
+        return this.at.format(DateTimeFormatter.ofPattern("EE, dd MMM yyyy, HH:mm"));
     }
 
     @Override

@@ -3,13 +3,13 @@ todo borrow book
 list
 mark 1
 list
-deadline return book /by 7pm
+deadline return book /by 2022-09-01 1800
 list
 mark 2
 list
 unmark 2
 list
-event meeting /at Sunday 10am
+event meeting /at 2022-09-05 2000
 list
 mark 3
 list
