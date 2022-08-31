@@ -18,11 +18,12 @@ public class Dave2 {
 
     private static boolean isRunning = true;
 
-    public static String getResponse(String input) throws DaveException {
-        Pair<String, String> inputData = Parser.splitInputIntoCommand(scanner.nextLine());
-        Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), tasks);
-        String result  = command.execute();
-        return result;
+    /**
+     * Gets the Dave 2's current task list.
+     * @return Dave 2's current task list.
+     */
+    public static TaskList getTasks() {
+        return tasks;
     }
 
     @Deprecated

@@ -1,7 +1,9 @@
-package Ui;
-
+import Commands.Command;
+import DataStruct.Pair;
+import DaveExceptions.DaveException;
+import Parser.Parser;
+import Ui.DialogBox;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,20 +16,21 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GUi extends Application {
 
-    @FXML
     private ScrollPane scrollPane;
-    @FXML
     private VBox dialogContainer;
-    @FXML
     private TextField userInput;
-    @FXML
     private Button sendButton;
     private Scene scene;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/You.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Dave.png"));
+
+    private Dave2 dave = new Dave2();
 
     @Override
     public void start(Stage stage) {
@@ -100,7 +103,6 @@ public class GUi extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    @FXML
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
@@ -116,6 +118,21 @@ public class GUi extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        try{
+            Pair<String, String> inputData = Parser.splitInputIntoCommand(input);
+            Command command = Parser.dispatch(inputData.getHead(), inputData.getTail(), Dave2.getTasks());
+            String result  = command.execute();
+            if (!command.getIsRunning()) {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.exit(0);
+                    }
+                }, 1000L);
+            }
+            return result;
+        } catch (DaveException e) {
+            return e.toString();
+        }
     }
 }
