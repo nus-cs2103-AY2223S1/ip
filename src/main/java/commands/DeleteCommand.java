@@ -2,12 +2,11 @@ package commands;
 
 import byu.TaskList;
 import byu.Ui;
-
 import exceptions.InvalidIndexException;
 /**
  * Represents a command to delete a task to the list.
  */
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
 
     private int index;
 

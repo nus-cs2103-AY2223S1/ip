@@ -3,9 +3,9 @@ package exceptions;
 public class InvalidDescriptionException extends DukeException {
 
     private final String description;
-    private final static String INDEX = "index";
-    private final static String EVENT = "event";
-    private final static String DEADLINE = "deadline";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
+    private static final String INDEX = "index";
 
     public InvalidDescriptionException(String description) {
         this.description = description;

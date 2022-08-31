@@ -1,12 +1,11 @@
 package byu;
 
-import exceptions.InvalidIndexException;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 
+import exceptions.InvalidIndexException;
 import task.Task;
 
 /**
@@ -56,7 +55,7 @@ public class TaskList {
      * @param i the index of the Task to be marked.
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
-    public void mark(int i) throws InvalidIndexException  {
+    public void mark(int i) throws InvalidIndexException {
         if (i < 0 || i > numOfTasks) {
             throw new InvalidIndexException();
         }

@@ -1,11 +1,14 @@
 package byu;
 
-import exceptions.InvalidIndexException;
-import org.junit.jupiter.api.Test;
-import task.ToDo;
-import task.Task;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import exceptions.InvalidIndexException;
+import task.Task;
+import task.ToDo;
 
 public class TaskListTest {
 

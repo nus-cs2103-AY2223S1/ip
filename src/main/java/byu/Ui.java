@@ -1,8 +1,8 @@
 package byu;
 
-import exceptions.DukeException;
-
 import java.util.Scanner;
+
+import exceptions.DukeException;
 
 /**
  * Represents a user interface that deals with the interaction with users.

@@ -3,14 +3,16 @@ package byu;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.Scanner;
 
-import task.*;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 
 /**
  * Represents a storage that deals with loading tasks from the file
@@ -53,17 +55,17 @@ public class Storage {
             String[] details = line.split(" \\| ");
             Task t;
             switch (details[0]) {
-                case "D":
-                    t = new Deadline(details[2], details[3]);
-                    break;
-                case "E":
-                    t = new Event(details[2], details[3]);
-                    break;
-                case "T":
-                    t = new ToDo(details[2]);
-                    break;
-                default:
-                    t = new Task("unknown");
+            case "D":
+                t = new Deadline(details[2], details[3]);
+                break;
+            case "E":
+                t = new Event(details[2], details[3]);
+                break;
+            case "T":
+                t = new ToDo(details[2]);
+                break;
+            default:
+                t = new Task("unknown");
             }
             if (details[1].equals("1")) {
                 t.setDone(true);

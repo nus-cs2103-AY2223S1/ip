@@ -1,8 +1,9 @@
 package byu;
 
+import java.io.IOException;
+
 import commands.Command;
 import exceptions.DukeException;
-import java.io.IOException;
 
 /**
  * Represents a chatbot that helps to organize tasks.

@@ -2,7 +2,6 @@ package commands;
 
 import byu.TaskList;
 import byu.Ui;
-
 import exceptions.InvalidIndexException;
 
 /**
@@ -15,7 +14,7 @@ public abstract class Command {
      *
      * @param tasks the ToDoList containing all the tasks.
      * @param ui the Ui that interacts with users.
-     * @throws InvalidIndexException
+     * @throws InvalidIndexException if index description for a command is invalid.
      */
     public abstract void execute(TaskList tasks, Ui ui) throws InvalidIndexException;
 

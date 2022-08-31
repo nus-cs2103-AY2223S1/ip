@@ -1,17 +1,23 @@
 package byu;
 
-import commands.*;
+import java.util.Locale;
 
+import commands.AddCommand;
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeleteCommand;
+import commands.FindCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.NextCommand;
+import commands.UnmarkCommand;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
 import exceptions.InvalidDescriptionException;
 import exceptions.InvalidInstructionException;
-
-import java.util.Locale;
-
 import task.Deadline;
-import task.ToDo;
 import task.Event;
+import task.ToDo;
 
 /**
  * Represents a parser, that interprets a given string and translates them into commands.
@@ -24,7 +30,7 @@ public class Parser {
      * @param fullCommand the string to be parsed.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        Command c = new NextCommand();
+        Command c;
         Instruction i = getInstruction(fullCommand);
         String description = getDescription(i, fullCommand);
         switch (i) {
@@ -55,6 +61,8 @@ public class Parser {
         case FIND:
             c = new FindCommand(description);
             break;
+        default:
+            c = new NextCommand();
         }
         return c;
     }
@@ -69,7 +77,7 @@ public class Parser {
     private static Instruction getInstruction(String fullCommand) throws InvalidInstructionException {
         try {
             String instruction = fullCommand.split(" ")[0];
-            return  Instruction.valueOf(instruction.toUpperCase(Locale.ROOT));
+            return Instruction.valueOf(instruction.toUpperCase(Locale.ROOT));
         } catch (IllegalArgumentException e) {
             throw new InvalidInstructionException();
         }
@@ -78,7 +86,7 @@ public class Parser {
     /**
      * Returns the description in the command.
      *
-     * @param i the instruction in the command.
+     * @param i           the instruction in the command.
      * @param fullCommand the string to be parsed.
      * @throws EmptyDescriptionException if the description is empty.
      */
@@ -194,5 +202,5 @@ public class Parser {
             throw new InvalidDescriptionException("index");
         }
     }
-    
+
 }
