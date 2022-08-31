@@ -95,7 +95,7 @@ public class Deadline extends Task {
         return deadline;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String encode() {
         int typeKey = Deadline.TYPEKEY;
@@ -122,7 +122,7 @@ public class Deadline extends Task {
         return timeFormatted;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         String type = "\u001B[32m(DEAD)\u001B[0m";

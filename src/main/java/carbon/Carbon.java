@@ -1,8 +1,13 @@
 package carbon;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import carbon.error.CarbonException;
@@ -14,6 +19,7 @@ import carbon.error.CarbonException;
 public class Carbon extends Application {
     private boolean isRunning;
     private Ui ui;
+    private Gui gui;
     private Parser parser;
     private Storage storage;
 
@@ -51,13 +57,10 @@ public class Carbon extends Application {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
+        this.gui = new Gui(stage);
     }
 
     /**

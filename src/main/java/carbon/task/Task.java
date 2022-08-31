@@ -129,7 +129,7 @@ public abstract class Task {
         return hasKeyword;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         String doneness = this.isDone ? "X" : " ";

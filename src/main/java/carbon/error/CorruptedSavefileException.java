@@ -17,7 +17,7 @@ public class CorruptedSavefileException extends CarbonException {
         this.data = data;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return String.format("The savefiles appear to be corrupted.\n"

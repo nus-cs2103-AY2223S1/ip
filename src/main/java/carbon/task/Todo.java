@@ -49,7 +49,7 @@ public class Todo extends Task {
         return todo;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String encode() {
         int typeKey = Todo.TYPEKEY;
@@ -58,7 +58,7 @@ public class Todo extends Task {
         return result;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         String type = "\u001B[35m(TODO)\u001B[0m";

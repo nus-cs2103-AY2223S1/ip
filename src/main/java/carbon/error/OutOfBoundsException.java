@@ -18,7 +18,7 @@ public class OutOfBoundsException extends CarbonException {
         );
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return String.format(

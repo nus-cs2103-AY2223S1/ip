@@ -4,12 +4,12 @@ package carbon.error;
  * Exception class for invalid input parameters for a command.
  */
 public class InvalidParamException extends CarbonException {
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public InvalidParamException(String input) {
         super(input);
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return String.format(

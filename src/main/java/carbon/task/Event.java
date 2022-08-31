@@ -96,7 +96,7 @@ public class Event extends Task {
         return event;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String encode() {
         int typeKey = Event.TYPEKEY;
@@ -123,7 +123,7 @@ public class Event extends Task {
         return timeFormatted;
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         String type = "\u001B[34m(EVNT)\u001B[0m";

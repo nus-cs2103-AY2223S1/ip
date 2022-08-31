@@ -4,12 +4,12 @@ package carbon.error;
  * Exception Class for invalid inputs regarding date and time.
  */
 public class InvalidTimeException extends CarbonException {
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public InvalidTimeException(String input) {
         super(input);
     }
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return String.format(
