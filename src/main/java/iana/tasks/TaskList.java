@@ -73,6 +73,25 @@ public class TaskList {
     }
 
     /**
+     * Find tasks with specified keyword.
+     * @param keyword keyword of task.
+     * @return a list of all tasks with the keyword.
+     */
+    public TaskList findKeyword(String keyword) {
+        TaskList list = new TaskList();
+        for (Task task : this.taskList) {
+            if (task.containsKeyword(keyword)) {
+                try {
+                    list.add(task);
+                } catch (IanaException e) {
+                    break;
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
      * Return string representation of task.
      * @param taskNumber id of task to be printed.
      * @return string representation of task.

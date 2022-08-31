@@ -113,6 +113,10 @@ public class Task {
      * Returns string representation of task to be stored in storage.
      * @return string representation.
      */
+    public boolean containsKeyword(String keyword) {
+        return this.task.contains(keyword);
+    }
+ 
     public String toFileData() {
         return String.format("%d | %s", this.isCompleted ? 1 : 0, this.task);
     }

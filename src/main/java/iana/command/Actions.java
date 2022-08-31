@@ -43,5 +43,10 @@ public enum Actions {
     /**
      * Add a new deadline task.
      */
-    deadline
+    deadline,
+
+    /**
+     * Find tasks with keyword.
+     */
+    find
 }
