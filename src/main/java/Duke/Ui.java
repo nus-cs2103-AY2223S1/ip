@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner sc;
+    private StringBuilder sb;
 
     /**
      * Creates Ui object with a scanner.
@@ -17,19 +18,23 @@ public class Ui {
     }
 
     /**
-     * Prints welcome message to console.
+     * Greets the user with name and functions.
+     *
+     * @return a string of duke's welcome message.
      */
-    public void showWelcome() {
-        System.out.println("Hello! I'm Duke\nHow may I help you?\n");
-        System.out.println("list - lists out your tasks\nbye - quit\ntodo - todo task\n"
+    public String showWelcome() {
+        sb = new StringBuilder();
+        sb.append("Hello! I'm Duke\nHow may I help you?\n");
+        sb.append("list - lists out your tasks\nbye - quit\ntodo - todo task\n"
                 + "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n"
                 + "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");
+        return sb.toString();
     }
 
     /**
      * Reads user input command.
      *
-     * @return String of user input command.
+     * @return a string of user input command.
      */
     public String readCommand() {
         String fullCommand = sc.nextLine();
@@ -37,125 +42,164 @@ public class Ui {
     }
 
     /**
-     * Prints line to console.
+     * Line divider.
+     *
+     * @return a string of line divider.
      */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
+    public String showLine() {
+        sb = new StringBuilder();
+        sb.append("____________________________________________________________");
+        return sb.toString();
     }
 
     /**
-     * Prints list of tasks to console.
+     * Displays list of tasks stored by user.
      *
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of list of tasks stored by user.
      */
-    public void showTaskList(TaskList listOfTasks) {
-        System.out.println("Here are the tasks in your list:");
+    public String showTaskList(TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n");
         for (int index = 0; index < listOfTasks.getSize(); index++) {
-            System.out.println(index + 1 + "." + listOfTasks.getTask(index).toString());
+            sb.append(index + 1 + ". " + listOfTasks.getTask(index).toString());
+            sb.append(System.lineSeparator());
         }
+        return sb.toString();
     }
 
     /**
-     * Prints task as done confirmation to console.
+     * Displays task marked as done confirmation.
      *
      * @param taskIndex   position of Task marked done.
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of confirmation for tasks marked as done.
      */
-    public void showMarkedTask(int taskIndex, TaskList listOfTasks) {
-        System.out.println("Nice! I've marked this task as done:\n" + "["
+    public String showMarkedTask(int taskIndex, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Nice! I've marked this task as done:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
                 + listOfTasks.getTask(taskIndex).getDescription());
+        return sb.toString();
     }
 
     /**
-     * Prints task as not done confirmation to console.
+     * Displays task marked as not done confirmation.
      *
      * @param taskIndex   position of Task marked not done.
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of confirmation for tasks marked as not done.
      */
-    public void showUnmarkedTask(int taskIndex, TaskList listOfTasks) {
-        System.out.println("Ok, I've marked this task as not done yet:\n" + "["
+    public String showUnmarkedTask(int taskIndex, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Ok, I've marked this task as not done yet:\n" + "["
                 + listOfTasks.getTask(taskIndex).getStatusIcon() + "] "
                 + listOfTasks.getTask(taskIndex).getDescription());
+        return sb.toString();
     }
 
     /**
-     * Prints confirmation of Todo task added to list of tasks.
+     * Displays Todo task added to list of tasks.
      *
      * @param toDoTask    is the task to be added to list of tasks.
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of the Todo task added to list of tasks.
      */
-    public void showToDoTask(Task toDoTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
+    public String showToDoTask(Task toDoTask, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Got it. I've added this task:\n" + toDoTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        return sb.toString();
     }
 
     /**
-     * Prints confirmation of Deadline task added to list of tasks.
+     * Displays Deadline task added to list of tasks.
      *
      * @param deadlineTask is the task to be added to list of tasks.
      * @param listOfTasks  containing tasks stored by user.
+     * @return a string of the Deadline task added to list of tasks.
      */
-    public void showDeadlineTask(Task deadlineTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
+    public String showDeadlineTask(Task deadlineTask, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Got it. I've added this task:\n" + deadlineTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        return sb.toString();
     }
 
     /**
-     * Prints confirmation of Event task added to list of tasks.
+     * Displays Event task added to list of tasks.
      *
      * @param eventTask   is the task to be added to list of tasks.
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of the Event task added to list of tasks.
      */
-    public void showEventTask(Task eventTask, TaskList listOfTasks) {
-        System.out.println("Got it. I've added this task:\n" + eventTask + "\nNow you have "
+    public String showEventTask(Task eventTask, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Got it. I've added this task:\n" + eventTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        return sb.toString();
     }
 
     /**
-     * Prints confirmation of deleted task from list of tasks.
+     * Displays task deleted from the list of tasks.
      *
      * @param deletedTask is the task deleted from list of tasks.
      * @param listOfTasks containing tasks stored by user.
+     * @return a string of the task deleted from the list of tasks.
      */
-    public void showDeletedTask(Task deletedTask, TaskList listOfTasks) {
-        System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
+    public String showDeletedTask(Task deletedTask, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
                 + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
-
+        return sb.toString();
     }
 
     /**
-     * Prints list of matching tasks to console.
+     * Displays the matching tasks.
      *
      * @param matchingTasks is a list of tasks that matches the keyword.
+     * @return a string of list of matching tasks.
      */
-    public void showFindTask(TaskList matchingTasks) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String showFindTask(TaskList matchingTasks) {
+        sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:\n");
         for (int index = 0; index < matchingTasks.getSize(); index++) {
-            System.out.println(index + 1 + "." + matchingTasks.getTask(index).toString());
+            sb.append(index + 1 + "." + matchingTasks.getTask(index).toString());
+            sb.append(System.lineSeparator());
         }
+        return sb.toString();
     }
 
     /**
      * Prints error message to console.
      *
      * @param errorMessage error message String.
+     * @return a string of error message.
      */
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
+    public String showError(String errorMessage) {
+        sb = new StringBuilder();
+        sb.append(errorMessage);
+        sb.append(System.lineSeparator());
+        return sb.toString();
     }
 
     /**
      * Prints error in loading data message to console.
      */
-    public void showLoadingError() {
-        System.out.println("Unable to load data");
+    public String showLoadingError() {
+        sb = new StringBuilder();
+        sb.append("Unable to load data");
+        sb.append(System.lineSeparator());
+        return sb.toString();
     }
 
     /**
      * Prints bye message to console.
      */
-    public void showBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showBye() {
+        sb = new StringBuilder();
+        sb.append("Bye. Hope to see you again soon!");
+        sb.append(System.lineSeparator());
+        return sb.toString();
     }
 }

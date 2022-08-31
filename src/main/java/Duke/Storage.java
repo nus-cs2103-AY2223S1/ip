@@ -103,7 +103,7 @@ public class Storage {
             String taskToString = "";
             if (taskArr[0].equals("[T")) {
                 taskToString += "T | ";
-                if (taskArr[1].equals("[✓")) {
+                if (taskArr[1].equals("[X")) {
                     taskToString += "1 |";
                 } else {
                     taskToString += "0 |";
@@ -113,7 +113,7 @@ public class Storage {
 
             if (taskArr[0].equals("[D")) {
                 taskToString += "D | ";
-                if (taskArr[1].equals("[✓")) {
+                if (taskArr[1].equals("[X")) {
                     taskToString += "1 |";
                 } else {
                     taskToString += "0 |";
@@ -124,7 +124,7 @@ public class Storage {
 
             if (taskArr[0].equals("[E")) {
                 taskToString += "E | ";
-                if (taskArr[1].equals("[✓")) {
+                if (taskArr[1].equals("[X")) {
                     taskToString += "1 |";
                 } else {
                     taskToString += "0 |";

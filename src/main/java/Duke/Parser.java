@@ -15,30 +15,36 @@ public class Parser {
      * @param listOfTasks is the list of tasks stored.
      * @param ui          is the output text from Duke to console.
      * @param storage     deals with saving and loading tasks in Duke.txt.
-     * @throws DukeException if invalid command input.
-     * @throws IOException   if file does not open.
+     * @throws IOException if file does not open.
      */
-    public static void parse(String command, TaskList listOfTasks, Ui ui, Storage storage)
-            throws DukeException, IOException {
+    public static String parse(String command, TaskList listOfTasks, Ui ui, Storage storage)
+            throws IOException {
+        String reply = "";
+        Response firstWord = Response.OTHERS;
         String[] response = command.split(" ");
-        Response firstWord = Response.valueOf(response[0].toUpperCase());
+        try {
+            firstWord = Response.valueOf(response[0].toUpperCase());
+        } catch (Exception e) {
+            reply = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        }
+
         switch (firstWord) {
         case BYE:
-            ui.showBye();
+            reply = ui.showBye();
             break;
 
         case LIST:
-            ui.showTaskList(listOfTasks);
+            reply = ui.showTaskList(listOfTasks);
             break;
 
         case MARK:
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
                 listOfTasks.markAsDone(taskIndex);
-                ui.showMarkedTask(taskIndex, listOfTasks);
+                reply = ui.showMarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! You're missing an index for mark.");
+                return ":( OOPS!!! You're missing an index for mark.";
             }
             break;
 
@@ -46,10 +52,10 @@ public class Parser {
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
                 listOfTasks.markAsNotDone(taskIndex);
-                ui.showUnmarkedTask(taskIndex, listOfTasks);
+                reply = ui.showUnmarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! You're missing an index for unmark.");
+                return ":( OOPS!!! You're missing an index for unmark.";
             }
             break;
 
@@ -58,10 +64,10 @@ public class Parser {
                 String toDoTaskDescription = command.substring(5);
                 Todo toDoTask = new Todo(toDoTaskDescription);
                 listOfTasks.add(toDoTask);
-                ui.showToDoTask(toDoTask, listOfTasks);
+                reply = ui.showToDoTask(toDoTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                return ":( OOPS!!! The description of a todo cannot be empty.";
             }
             break;
 
@@ -72,14 +78,14 @@ public class Parser {
                 String deadlineDate = deadlineDescriptionWithDate.split(" /by ")[1];
                 Deadline deadlineTask = new Deadline(deadlineDescription, deadlineDate);
                 listOfTasks.add(deadlineTask);
-                ui.showDeadlineTask(deadlineTask, listOfTasks);
+                reply = ui.showDeadlineTask(deadlineTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                return ":( OOPS!!! The description of a deadline cannot be empty.";
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! You're missing some descriptions for your deadline.");
+                return ":( OOPS!!! You're missing some descriptions for your deadline.";
             } catch (DateTimeParseException e) {
-                throw new DukeException("☹ OOPS!!! You need to use yyyy-mm-dd for date format.");
+                return ":( OOPS!!! You need to use yyyy-mm-dd for date format.";
             }
             break;
 
@@ -90,14 +96,14 @@ public class Parser {
                 String eventDate = eventDescriptionWithDate.split(" /at ")[1];
                 Event eventTask = new Event(eventDescription, eventDate);
                 listOfTasks.add(eventTask);
-                ui.showEventTask(eventTask, listOfTasks);
+                reply = ui.showEventTask(eventTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (StringIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                return ":( OOPS!!! The description of an event cannot be empty.";
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! You're missing some descriptions for your event.");
+                return ":( OOPS!!! You're missing some descriptions for your event.";
             } catch (DateTimeParseException e) {
-                throw new DukeException("☹ OOPS!!! You need to use yyyy-mm-dd for date format.");
+                return ":( OOPS!!! You need to use yyyy-mm-dd for date format.";
             }
             break;
 
@@ -106,10 +112,10 @@ public class Parser {
                 int deleteIndex = Integer.parseInt(response[1]) - 1;
                 Task deletedTask = listOfTasks.getTask(deleteIndex);
                 listOfTasks.remove(deleteIndex + 1);
-                ui.showDeletedTask(deletedTask, listOfTasks);
+                reply = ui.showDeletedTask(deletedTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! You're missing an index for delete.");
+                return ":( OOPS!!! You're missing an index for delete.";
             }
             break;
 
@@ -122,14 +128,16 @@ public class Parser {
                         matchingTasks.add(task);
                     }
                 }
-                ui.showFindTask(matchingTasks);
+                reply = ui.showFindTask(matchingTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("☹ OOPS!!! The description of a find cannot be empty.");
+                return ":( OOPS!!! The description of a find cannot be empty.";
             }
             break;
 
-        default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        case OTHERS:
+            break;
         }
+
+        return reply;
     }
 }
