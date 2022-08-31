@@ -29,7 +29,7 @@ public class Parser {
     }
 
     /**
-     * categorises the client's inputs to decide the method to be called by the program next in response to it.
+     * Categorises the client's inputs to decide the method to be called by the program next in response to it.
      *
      * @return a String response to the command.
      * @param str The input passed into the method to be processed.

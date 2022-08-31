@@ -1,16 +1,28 @@
 package dukechatbot.duke;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
+/**
+ * This class encapsulates the main class to inject JavaFx into the Duke application.
+ *
+ * @author A0233290M
+ * @version Week4
+ */
 public class Main extends Application {
+    /**
+     * The Duke instance to be injected into the program run.
+     */
     private Duke dk = new Duke("Storage.txt");
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage stage) {
         try {
