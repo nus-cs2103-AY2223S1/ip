@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Storage {
 
     /*
-     * reads file that stores the existing tasks and parses it
+     * reads file that stores the existing tasks and parses it.
      * @return Task<List> list of tasks read from duke.txt
      */
     public TaskList taskListReader(){
@@ -36,7 +36,7 @@ public class Storage {
     }
 
     /*
-     * Writes the existing list of tasks back into duke.txt
+     * Writes the existing list of tasks back into duke.txt.
      * @param taskList the existing list of tasks
      */
     public void taskListWriter(TaskList taskList) {

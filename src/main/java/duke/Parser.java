@@ -10,6 +10,9 @@ public class Parser {
         } else if (command.split(" ")[0].toLowerCase().equals("delete")) {
             int number = Integer.parseInt(command.split(" ")[1]);
             taskList.deleteFromList(number, ui);
+        } else if (command.split(" ")[0].toLowerCase().equals("find")) {
+            String keyword = command.split(" ", 2)[1];
+            taskList.findTasksByKeyword(keyword, ui);
         } else {
             taskList.addToList(command, ui);
         }
