@@ -11,9 +11,9 @@ import duke.ui.Ui;
  * This class encapsulates a find command
  */
 public class FindCommand extends Command {
-    private String keyword;
+    private String[] keyword;
 
-    public FindCommand(String keyword) {
+    public FindCommand(String ...keyword) {
         this.keyword = keyword;
     }
 

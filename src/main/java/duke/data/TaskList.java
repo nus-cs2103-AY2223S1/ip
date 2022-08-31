@@ -94,17 +94,27 @@ public class TaskList {
 
     /**
      * Finds the tasks based on the given keyword
-     * @param keyword Keyword used to search for tasks
+     * @param keywords Keyword used to search for tasks
      * @return A list of tasks containing the keyword provided
      */
-    public ArrayList<Task> find(String keyword) {
+    public ArrayList<Task> find(String ...keywords) {
         ArrayList<Task> list = new ArrayList<>();
         for (Task task : this.tasks) {
-            if (task.getDescription().contains(keyword)) {
+            if (containsAllKeywords(task.getDescription(), keywords)) {
                 list.add(task);
             }
         }
 
         return list;
+    }
+
+    private boolean containsAllKeywords(String description, String ...keywords) {
+        for (String s : keywords) {
+            if (!description.contains(s)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

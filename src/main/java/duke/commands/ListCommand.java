@@ -5,7 +5,6 @@ import duke.storage.Storage;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +12,25 @@ import java.util.ArrayList;
  */
 public class ListCommand extends Command {
 
+    private String date;
+
+    /**
+     * Constructs a new list command
+     *
+     * @param info Essential information for the output list
+     */
+    public ListCommand(String... info) {
+        super();
+        if (info.length == 1) {
+            this.date = null;
+        } else {
+            this.date = info[1];
+        }
+    }
+
     /**
      * Checks if the command is an Exit Command
+     *
      * @return True if it is an Exit Command
      */
     @Override
@@ -30,7 +46,12 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) {
-        ArrayList<Task> list = taskList.list();
-        return ui.printList(list);
+        if (date == null) {
+            ArrayList<Task> list = taskList.list();
+            return ui.printList(list);
+        } else {
+            ArrayList<Task> list = taskList.getTasks(date);
+            return ui.printTasks(list, date);
+        }
     }
 }

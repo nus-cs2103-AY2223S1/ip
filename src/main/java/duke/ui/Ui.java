@@ -147,7 +147,8 @@ public class Ui {
         if (len == 0) {
             return String.format("No tasks on %s!", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         } else {
-            String header = String.format("Your %s for today include:\n", len == 1 ? "task" : "tasks");
+            String formattedDate = parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            String header = String.format("Your %s for %s include:\n", len == 1 ? "task" : "tasks", formattedDate);
             return header + stringBuilder;
         }
     }
