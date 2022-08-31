@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.TodoTask;
+
 import org.apache.commons.text.WordUtils;
 
 import java.util.Arrays;
@@ -53,13 +60,13 @@ public class Parser {
             if (strings.length > 4) {
                 throw new DukeException("Error parsing DeadlineTask");
             }
-            task = new DeadlineTask(description, Parser.parseDateTime(strings[3]), isDone);
+            task = new DeadlineTask(description, parseDateTime(strings[3]), isDone);
             break;
         case "E":
             if (strings.length > 4) {
                 throw new DukeException("Error parsing EventTask");
             }
-            task = new EventTask(description, Parser.parseDateTime(strings[3]), isDone);
+            task = new EventTask(description, parseDateTime(strings[3]), isDone);
             break;
         default:
             throw new DukeException("Error parsing Task");
@@ -78,7 +85,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(dateTime, DATETIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException(String.format("%s", dateTime));
+            throw new DukeException("DateTime should be in the format \"d-M-y HHmm\"");
         }
     }
 }

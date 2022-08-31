@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.Parser;
+
 import java.time.LocalDateTime;
 
 public class EventTask extends Task {
@@ -17,6 +21,6 @@ public class EventTask extends Task {
     @Override
     public String toData() {
         return String.format("%s | %s", super.toData(),
-                time.format(Parser.DATETIME_OUTPUT_FORMAT));
+                time.format(Parser.DATETIME_INPUT_FORMAT));
     }
 }

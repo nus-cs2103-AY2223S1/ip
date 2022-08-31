@@ -1,4 +1,6 @@
-abstract class Task {
+package duke.task;
+
+public abstract class Task {
     private final String description;
     private final char symbol;
     private boolean isDone;
