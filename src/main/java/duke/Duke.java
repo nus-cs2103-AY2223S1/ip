@@ -20,12 +20,10 @@ public class Duke {
 
     /**
      * Constructor for Duke.
-     *
-     * @param filePath String representation of path of the file.
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException | FileNotFoundException e) {
@@ -54,7 +52,12 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException | IOException de) {
+            return de.getMessage();
+        }
     }
 }

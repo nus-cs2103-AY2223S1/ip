@@ -42,5 +42,5 @@ public abstract class Command {
      * @throws DukeException The exception thrown when an action is unauthorized by Duke.
      * @throws IOException The exception thrown when accessing files is incorrect.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException;
 }

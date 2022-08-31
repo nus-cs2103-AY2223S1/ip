@@ -1,18 +1,17 @@
 package duke.storage;
 
-import duke.task.TaskList;
 import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.TaskList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
 
 /**
  * Storage is a Storage that loads and saves data to file.
@@ -22,14 +21,12 @@ import duke.task.Todo;
  */
 public class Storage {
     private static final String DIR = System.getProperty("user.dir");
-    private final String filePath;
+    private String filePath = "data/duke.txt";
 
     /**
      * Constructor for Storage.
-     *
-     * @param filePath The path of the file to store data.
      */
-    public Storage (String filePath) {
+    public Storage() {
         this.filePath = DIR + "/" + filePath;
     }
 

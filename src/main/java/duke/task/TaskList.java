@@ -1,10 +1,5 @@
 package duke.task;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.util.ArrayList;
 
 /**
@@ -82,6 +77,12 @@ public class TaskList {
         return unmarkedTask;
     }
 
+    /**
+     * Adds a task to the TaskList.
+     *
+     * @param task The task to be added.
+     * @return The added task.
+     */
     public Task addTask(Task task) {
         tasks.add(task);
         size++;
