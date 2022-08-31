@@ -87,7 +87,7 @@ public class Storage {
     }
 
     /**
-     * Write taskList to duke.txt.
+     * Writes taskList to duke.txt.
      *
      * @param taskList that is to be written to file.
      * @throws IOException when file does not exist.

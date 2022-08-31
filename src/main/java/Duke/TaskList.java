@@ -7,13 +7,13 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private ArrayList<Task> listOfTasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Creates a TaskList object with empty list of tasks.
      */
     public TaskList() {
-        this.listOfTasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     /**
@@ -22,7 +22,7 @@ public class TaskList {
      * @param listOfTasks list of tasks to store.
      */
     public TaskList(ArrayList<Task> listOfTasks) {
-        this.listOfTasks = listOfTasks;
+        this.tasks = listOfTasks;
     }
 
     /**
@@ -31,7 +31,7 @@ public class TaskList {
      * @param task object added to list of tasks.
      */
     public void add(Task task) {
-        this.listOfTasks.add(task);
+        this.tasks.add(task);
     }
 
     /**
@@ -40,7 +40,7 @@ public class TaskList {
      * @param index index of object removed from list of tasks.
      */
     public void remove(int index) {
-        this.listOfTasks.remove(index - 1);
+        this.tasks.remove(index - 1);
     }
 
     /**
@@ -49,7 +49,7 @@ public class TaskList {
      * @return size of the list of tasks.
      */
     public int getSize() {
-        return this.listOfTasks.size();
+        return this.tasks.size();
     }
 
     /**
@@ -59,7 +59,7 @@ public class TaskList {
      * @return Task at specified position of list of tasks in TaskList object.
      */
     public Task getTask(int index) {
-        return this.listOfTasks.get(index);
+        return this.tasks.get(index);
     }
 
     /**
@@ -68,7 +68,7 @@ public class TaskList {
      * @return ArrayList of Task representing list of tasks stored.
      */
     public ArrayList<Task> getListOfTasks() {
-        return this.listOfTasks;
+        return this.tasks;
     }
 
     /**
@@ -77,7 +77,7 @@ public class TaskList {
      * @param index position of task in list of tasks to be marked done.
      */
     public void markAsDone(int index) {
-        this.listOfTasks.get(index).markAsDone();
+        this.tasks.get(index).markAsDone();
     }
 
     /**
@@ -86,6 +86,6 @@ public class TaskList {
      * @param index position of task in list of tasks to be marked not done.
      */
     public void markAsNotDone(int index) {
-        this.listOfTasks.get(index).markAsNotDone();
+        this.tasks.get(index).markAsNotDone();
     }
 }

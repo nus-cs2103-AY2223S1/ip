@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 public class TaskListTest {
 
     @Test
-    public void add_task_taskAdded() {
+    public void addTaskTaskAdded() {
         TaskList tasks = new TaskList();
         tasks.add(new Todo("homework"));
         assertEquals(1, tasks.getSize());
     }
 
     @Test
-    public void remove_task_taskRemoved() {
+    public void removeTaskTaskRemoved() {
         TaskList tasks = new TaskList();
         tasks.add(new Todo("homework"));
         tasks.remove(1);
