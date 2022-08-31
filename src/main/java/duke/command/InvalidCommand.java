@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.common.Messages;
 import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
@@ -19,9 +20,8 @@ public class InvalidCommand extends Command {
      * @param ui the user interface object
      */
     public void execute(Storage storage, TaskList tasklist, Ui ui) {
-        System.out.println(ui.SPACER + "\n"
-                + "Sorry, I don't understand. T^T\n"
-                + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n"
-                + ui.SPACER);
+        System.out.println(Messages.SPACER + "\n"
+                + Messages.UNKNOWN_COMMAND
+                + Messages.SPACER);
     }
 }

@@ -1,2 +1,3 @@
 T | 0 | kartik
 E | 0 | kartik doing | rvrc
+D | 0 | valo | tntn

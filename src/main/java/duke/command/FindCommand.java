@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.ArrayList;
 
+import duke.common.Messages;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.ui.Ui;
@@ -42,14 +43,14 @@ public class FindCommand extends Command {
             }
         }
         if (foundTasksList.tasks.size() == 0) {
-            System.out.println(ui.SPACER + "\n"
+            System.out.println(Messages.SPACER + "\n"
                     + "I couldn't find matching tasks T^T\n"
-                    + ui.SPACER);
+                    + Messages.SPACER);
         } else {
-            System.out.println(ui.SPACER + "\n"
+            System.out.println(Messages.SPACER + "\n"
                     + "These are the tasks you are searching for ^3^:\n"
                     + foundTasksList.printList() + "\n"
-                    + ui.SPACER);
+                    + Messages.SPACER);
         }
     }
 }

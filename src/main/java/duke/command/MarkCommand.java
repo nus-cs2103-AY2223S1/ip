@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.ArrayList;
 
+import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -43,18 +44,18 @@ public class MarkCommand extends Command {
             int taskNum = Integer.parseInt(words.get(0));
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markDone();
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "Great Job on completing this task! ^.^ :\n"
                         + tasklist.printTaskStatus(taskNum - 1) + "\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException(ui.SPACER + "\n"
+                throw new DukeException(Messages.SPACER + "\n"
                         + "There's nothing in your list to mark! T^T\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else {
-                throw new DukeException(ui.SPACER + "\n"
+                throw new DukeException(Messages.SPACER + "\n"
                         + "Please enter a valid task number to mark. T^T\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             }
             break;
         case "unmark":
@@ -62,26 +63,25 @@ public class MarkCommand extends Command {
             taskNum = Integer.parseInt(words.get(0));
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markUndone();
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "Grrr, remember to finish your task! =3=:\n"
                         + tasklist.printTaskStatus(taskNum - 1) + "\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException(ui.SPACER + "\n"
+                throw new DukeException(Messages.SPACER + "\n"
                         + "There's nothing in your list to unmark! T^T\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else {
-                throw new DukeException(ui.SPACER + "\n"
+                throw new DukeException(Messages.SPACER + "\n"
                         + "Please enter a valid task number to unmark. T^T\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             }
             break;
         default:
             // Defensive coding for default statement.
-            System.out.println(ui.SPACER + "\n"
-                    + "Sorry, I don't understand. T^T\n"
-                    + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n"
-                    + ui.SPACER);
+            System.out.println(Messages.SPACER + "\n"
+                    + Messages.UNKNOWN_COMMAND
+                    + Messages.SPACER);
         }
     }
 }

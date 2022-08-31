@@ -2,27 +2,14 @@ package duke.ui;
 
 import java.util.Scanner;
 
+import duke.common.Messages;
+
 /**
  * Represents the user interface of the Duke program.
  * @author Huang Yuchen
  * @author hyuchen@u.nus.edu
  */
 public class Ui {
-    /* Rem bot logo */
-    public static final String LOGO = " ___  ___  __ __ \n"
-            + "| . \\| __>|  \\  \\\n"
-            + "|   /| _> |     |\n"
-            + "|_\\_\\|___>|_|_|_|\n";
-
-    /* line filler */
-    public static final String SPACER = "----------------------------------------------------";
-
-    /* Welcome message */
-    public static final String WELCOME = "Konnichiwa! I'm Rem desu! :>\n"
-            + "What can I do for you today?\n";
-
-    /* Goodbye message */
-    public static final String GOODBYE = "See you soon! <3";
     private final Scanner sc;
 
     /**
@@ -36,14 +23,14 @@ public class Ui {
      * Prints the starting message when bot is launched.
      */
     public void showWelcome() {
-        System.out.println(LOGO + "\n" + WELCOME + SPACER);
+        System.out.println(Messages.LOGO + "\n" + Messages.WELCOME + Messages.SPACER);
     }
 
     /**
      * Prints the goodbye message when bot is terminated.
      */
     public void showGoodbye() {
-        System.out.println(SPACER + "\n" + GOODBYE);
+        System.out.println(Messages.SPACER + "\n" + Messages.GOODBYE);
     }
 
     /**

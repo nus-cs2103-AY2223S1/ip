@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Deadline;
@@ -48,16 +49,16 @@ public class AddCommand extends Command {
             if (words.size() != 0) {
                 Todo todo = new Todo(input);
                 tasklist.addTask(todo);
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "I've added this task for you! :>\n"
                         + todo + "\n"
                         + "You have " + tasklist.tasks.size()
                         + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else {
-                throw new DukeException(ui.SPACER + "\n"
+                throw new DukeException(Messages.SPACER + "\n"
                         + "Please enter a task following 'todo' and I'll add it into your list. T^T\n"
-                        + ui.SPACER);
+                        + Messages.SPACER);
             }
             break;
         case "deadline":
@@ -69,21 +70,21 @@ public class AddCommand extends Command {
                 String newDdl = ddlDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
                 Deadline deadline = new Deadline(remainingDdlWords, newDdl);
                 tasklist.addTask(deadline);
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "I've added this task for you! :>\n"
                         + deadline + "\n"
                         + "You have " + tasklist.tasks.size()
                         + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else {
                 Deadline deadline = new Deadline(remainingDdlWords, ddl);
                 tasklist.addTask(deadline);
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "I've added this task for you! :>\n"
                         + deadline + "\n"
                         + "You have " + tasklist.tasks.size()
                         + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + ui.SPACER);
+                        + Messages.SPACER);
             }
             break;
         case "event":
@@ -95,29 +96,28 @@ public class AddCommand extends Command {
                 String newEvt = evtDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
                 Event event = new Event(remainingEventWords, newEvt);
                 tasklist.addTask(event);
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "I've added this task for you! :>\n"
                         + event + "\n"
                         + "You have " + tasklist.tasks.size()
                         + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + ui.SPACER);
+                        + Messages.SPACER);
             } else {
                 Event event = new Event(remainingEventWords, evt);
                 tasklist.addTask(event);
-                System.out.println(ui.SPACER + "\n"
+                System.out.println(Messages.SPACER + "\n"
                         + "I've added this task for you! :>\n"
                         + event + "\n"
                         + "You have " + tasklist.tasks.size()
                         + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + ui.SPACER);
+                        + Messages.SPACER);
             }
             break;
         default:
             // Defensive coding for default statement.
-            System.out.println(ui.SPACER + "\n"
-                    + "Sorry, I don't understand. T^T\n"
-                    + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n"
-                    + ui.SPACER);
+            System.out.println(Messages.SPACER + "\n"
+                    + Messages.UNKNOWN_COMMAND
+                    + Messages.SPACER);
         }
     }
 }
