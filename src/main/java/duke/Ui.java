@@ -9,20 +9,18 @@ public class Ui {
      * Outputs the greeting for Duke
      *
      */
-    public static void intro() {
-        System.out.println(UNDERLINE);
-        System.out.println("Hello! I'm Duke!");
-        System.out.println("What can I do for you?");
-        System.out.println(UNDERLINE);
+    public static String intro() {
+        String res = UNDERLINE + "\n" + "Hello! I'm Duke!"  + "\n" + "What can I do for you?" + "\n" + UNDERLINE;
+        return res;
     }
 
     /**
      * Outputs the ending for Duke
      *
      */
-    public static void end() {
+    public static String end() {
         String byeMessage = "Bye! See you again soon";
-        System.out.println(UNDERLINE + "\n" + byeMessage  + "\n" + UNDERLINE);
+        return UNDERLINE + "\n" + byeMessage  + "\n" + UNDERLINE;
     }
 
     /**
@@ -30,8 +28,8 @@ public class Ui {
      *
      * @param error Error message string
      */
-    public void showError(String error) {
-        System.out.println(UNDERLINE + "\n" + error + "\n" + UNDERLINE);
+    public String showError(String error) {
+        return UNDERLINE + "\n" + error + "\n" + UNDERLINE;
     }
 
     /**
@@ -51,7 +49,7 @@ public class Ui {
      *
      * @param message message from Duke
      */
-    public void printMessage(String message) {
-        System.out.println(UNDERLINE + "\n" + message + "\n" + UNDERLINE);
+    public String printMessage(String message) {
+        return UNDERLINE + "\n" + message + "\n" + UNDERLINE;
     }
 }
