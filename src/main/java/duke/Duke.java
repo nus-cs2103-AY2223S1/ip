@@ -1,6 +1,10 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * The Duke program implements a chatbot that
@@ -14,7 +18,7 @@ import duke.command.Command;
  * @version 0.1
  * @since 2022-08-23
  */
-public class Duke {
+public class Duke extends Application {
 
     private final Storage storage;
     private final TaskList taskList;
@@ -59,7 +63,24 @@ public class Duke {
         }
     }
 
+//    public static void main(String[] args) {
+//        new Duke("./data", "./data/Duke.txt").run();
+//    }
+
     public static void main(String[] args) {
-        new Duke("./data", "./data/Duke.txt").run();
+        try {
+            new Duke("./data", "./data/Duke.txt").start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
