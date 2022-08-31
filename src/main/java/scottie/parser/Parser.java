@@ -1,12 +1,12 @@
 package scottie.parser;
 
-import scottie.instructions.Instruction;
-import scottie.instructions.InvalidCommandException;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import scottie.instructions.Instruction;
+import scottie.instructions.InvalidCommandException;
 
 /**
  * A utility class for parsing user input into Instructions.

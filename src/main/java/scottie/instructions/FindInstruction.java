@@ -1,11 +1,11 @@
 package scottie.instructions;
 
+import java.util.List;
+import java.util.Map;
+
 import scottie.tasks.Task;
 import scottie.tasks.TaskList;
 import scottie.ui.Ui;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Encapsulates the find instruction which is used to

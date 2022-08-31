@@ -1,10 +1,10 @@
 package scottie.instructions;
 
+import java.util.Map;
+
 import scottie.tasks.Task;
 import scottie.tasks.TaskList;
 import scottie.ui.Ui;
-
-import java.util.Map;
 
 /**
  * Encapsulates the delete instruction which is used to

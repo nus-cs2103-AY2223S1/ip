@@ -1,8 +1,8 @@
 package scottie.tasks;
 
-import scottie.common.DateTimeUtil;
-
 import java.time.temporal.TemporalAccessor;
+
+import scottie.common.DateTimeUtil;
 
 /**
  * Encapsulates a task which is an event that takes place at a date and time.
