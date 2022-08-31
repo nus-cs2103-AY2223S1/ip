@@ -1,14 +1,5 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.exception.DukeFormatCommandException;
-import duke.exception.DukeIndexErrorException;
-import duke.exception.DukeInvalidCommandException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +8,15 @@ import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
+
+import duke.exception.DukeException;
+import duke.exception.DukeFormatCommandException;
+import duke.exception.DukeIndexErrorException;
+import duke.exception.DukeInvalidCommandException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * MakiBot
@@ -183,9 +183,9 @@ public class Duke {
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
             Task t = tasks.remove(taskNum);
-            System.out.printf("Noted. I've removed this task:\n" +
-                            "\t%s\n" +
-                            "Now you have %d tasks in the list.%n",
+            System.out.printf("Noted. I've removed this task:\n"
+                            + "\t%s\n"
+                            + "Now you have %d tasks in the list.%n",
                     t, tasks.size());
         } catch (NumberFormatException e) {
             throw new DukeIndexErrorException(tasks.size());

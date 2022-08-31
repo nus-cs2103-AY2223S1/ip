@@ -23,7 +23,6 @@ public class Event extends Task {
     }
 
     /**
-     *
      * {@inheritDoc}
      *
      * @return 'E'

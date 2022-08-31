@@ -1,7 +1,5 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.InvalidPathException;
@@ -10,6 +8,8 @@ import java.time.DateTimeException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 public class Ui {
     /** Scanner */
@@ -40,8 +40,8 @@ public class Ui {
     protected ZoneId getTimeZone(ZoneId timeZone) {
         boolean isValidAnswer = false;
 
-        System.out.println("You are currently in timezone: " + timeZone +
-                "\nWould you like to change your timezone? Y/N");
+        System.out.println("You are currently in timezone: " + timeZone
+                + "\nWould you like to change your timezone? Y/N");
 
         if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
             while (!isValidAnswer) {
@@ -69,8 +69,8 @@ public class Ui {
     protected String getSaveFile(String saveFilePath) {
         boolean isValidFilePath = false;
 
-        System.out.println("Your current save file is " + saveFilePath +
-                "\nWould you like to change your save file? Y/N");
+        System.out.println("Your current save file is " + saveFilePath
+                + "\nWould you like to change your save file? Y/N");
 
         if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
             do {
@@ -118,9 +118,9 @@ public class Ui {
      * @param size The current size of the list.
      */
     protected void printNewTaskMessage(Task task, int size) {
-        System.out.printf("Got it. I've added this task:\n" +
-                        "\t%s\n" +
-                        "Now you have %d tasks in the list.",
+        System.out.printf("Got it. I've added this task:\n"
+                        + "\t%s\n"
+                        + "Now you have %d tasks in the list.",
                 task, size);
     }
 

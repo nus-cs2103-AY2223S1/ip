@@ -1,9 +1,9 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeIndexErrorException;
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 public class TaskList {
     /** List of tasks */
@@ -72,10 +72,11 @@ public class TaskList {
      */
     private boolean containsAllKeywords(Task task, String[] keywords) {
         String description = task.getDescription();
-        for (String keyword : keywords)
+        for (String keyword : keywords) {
             if (!description.contains(keyword)) {
                 return false;
             }
+        }
         return true;
     }
 

@@ -13,7 +13,7 @@ public class Parser {
      *
      * @param input The input {@code String} to be parsed.
      * @return A length-2 {@code String} array with the command as the first element
-     * and the parameters as the second element.
+     *     and the parameters as the second element.
      */
     protected String[] parseFullCommand(String input) {
         return input.split(" ", 2);
