@@ -1,7 +1,9 @@
 package duke.frontend;
 
 import duke.Duke;
+import duke.Parser;
 import duke.Ui;
+import duke.command.Command;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -26,6 +29,7 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/remy.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/linguini.png"));
+    private boolean isExit;
 
     public void setDuke(Duke d) {
         duke = d;
@@ -53,6 +57,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        Command command = Parser.parse(input);
+        if (command.isExit()) {
+            this.handleExit();
+        }
         userInput.clear();
+    }
+
+    @FXML
+    private void handleExit() {
+        userInput.setDisable(true);
+        sendButton.setDisable(true);
     }
 }
