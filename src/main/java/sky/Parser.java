@@ -1,6 +1,16 @@
 package sky;
 
-import sky.command.*;
+import sky.command.Command;
+import sky.command.DeadlineCommand;
+import sky.command.DeleteCommand;
+import sky.command.EventCommand;
+import sky.command.ExitCommand;
+import sky.command.FindCommand;
+import sky.command.InvalidCommand;
+import sky.command.ListCommand;
+import sky.command.MarkCommand;
+import sky.command.TodoCommand;
+import sky.command.UnmarkCommand   ;
 
 /**
  * The Parser class deals with making sense of the user command.
