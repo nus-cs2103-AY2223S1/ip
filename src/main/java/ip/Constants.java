@@ -1,0 +1,5 @@
+package ip;
+
+class Constants {
+
+}

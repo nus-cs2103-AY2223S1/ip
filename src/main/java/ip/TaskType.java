@@ -1,3 +1,5 @@
-public enum TaskType {
+package ip;
+
+enum TaskType {
     TODO, DEADLINE, EVENT;
 }

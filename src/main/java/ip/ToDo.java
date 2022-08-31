@@ -1,13 +1,19 @@
-public class ToDo extends Task{
+package ip;
+
+class ToDo extends Task{
 
     public ToDo(String description) {
-        super(description);
+        this(description, false);
+    }
+
+    protected ToDo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     @Override
     protected String getStorageString() {
         String parStr = super.getStorageString();
-        return String.format("%s|%s|", "T", parStr);
+        return String.format("%s|%s", "T", parStr);
     }
 
     @Override

@@ -1,3 +1,5 @@
+package ip;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +20,7 @@ public class Duke {
     private static final String UNMARK_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String LIST_MESSAGE = "Here are the tasks in your list:";
     private static final String DELETE_MESSAGE = "Noted. I've removed this task:";
-    private static final String STORAGE_FILE_PATH = "/Duke.txt";
+    private static final String STORAGE_FILE_PATH = "Duke.txt";
 
     // Commands
     private static final String END_COMMAND = "bye";
@@ -29,7 +31,6 @@ public class Duke {
     private static final String DEADLINE_COMMAND = "deadline";
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
-
     // Data structures
     private static final List<Task> taskList = new ArrayList<>();
 
@@ -37,60 +38,80 @@ public class Duke {
         try {
             // Create Duke.txt if it doesn't exist.
             File f = new File(STORAGE_FILE_PATH);
-            boolean fileExists = f.createNewFile();
-            if (!fileExists) {
-                throw new IOException();
+            if (!f.exists()) {
+                boolean fileCreated = f.createNewFile();
+                if (!fileCreated) {
+                    throw new IOException();
+                }
+            } else {
+                // Read from Duke.txt and handle it as input.
+                Scanner sc = new Scanner(f);
+                while (sc.hasNext()) {
+                    loadTask(sc.nextLine());
+                }
+                sc.close();
             }
-
-            // Read from Duke.txt and handle it as input.
-            Scanner sc = new Scanner(f);
-            while (sc.hasNext()) {
-                handleInput(sc);
-            }
-            sc.close();
         } catch (IOException e) {
             prettyPrint("Storage file could not be created!");
-        } catch (DukeException de) {
+        }
+    }
+
+    private static void loadTask(String taskStr) {
+        try {
+            String[] taskArray = taskStr.split("\\|");
+            String taskTypeStr = taskArray[0];
+            String isDoneStr = taskArray[1];
+            String description = taskArray[2];
+
+
+            boolean isDone = isDoneStr.equals("X");
+
+            Task newTask;
+            switch (taskTypeStr) {
+                case "T":
+                    newTask = new ToDo(description, isDone);
+                    break;
+                case "D":
+                    String by = taskArray[3];
+                    newTask = new Deadline(description, by, isDone);
+                    break;
+                case "E":
+                    String at = taskArray[3];
+                    newTask = new Event(description, at, isDone);
+                    break;
+                default:
+                    throw new DukeException(String.format("Could not load task: %s", description));
+            }
+
+            taskList.add(newTask);
+        } catch (DukeException de){
             prettyPrint(de.toString());
         }
+
     }
 
-    private static void storeToFile(String storageString, TaskType type) {
+    private static void storeToFile() {
         try {
-            FileWriter fw = new FileWriter(STORAGE_FILE_PATH, true);
+            FileWriter fw = new FileWriter(STORAGE_FILE_PATH);
+            fw.write("");
 
-            String typeStr = "";
-            switch (type) {
-            case TODO:
-                typeStr = "T";
-                break;
-            case DEADLINE:
-                typeStr = "D";
-                break;
-            case EVENT:
-                typeStr = "E";
-                break;
+            for (Task t: taskList) {
+                fw.append(t.getStorageString());
+                if (!t.equals(taskList.get(taskList.size() - 1))) {
+                    fw.append("\n");
+                }
             }
-            fw.write(String.format("%s\n", storageString));
+
             fw.close();
         } catch (IOException e) {
-            prettyPrint("Failed to store this task.");
+            prettyPrint("Failed to save all data!");
         }
-    }
 
-    /**
-     * Adds param str to a List.
-     *
-     * @param str
-     */
-    private static void createTask(String str) {
-        Task newTask = new Task(str);
-        taskList.add(newTask);
-        prettyPrint(String.format("added: %s", newTask.getDescription()));
     }
 
     private static void createTask(String str, TaskType type){
         try {
+            str = str.strip();
             Task newTask;
             String description = "";
             String extraInfo = "";
@@ -132,8 +153,6 @@ public class Duke {
                 prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
                         CREATE_MESSAGE, TAB, newTask.toString(), TAB, taskList.size()));
             }
-
-            storeToFile(newTask.getStorageString(), type);
         } catch (DukeException e) {
             prettyPrint(e.toString());
         }
@@ -192,26 +211,15 @@ public class Duke {
         prettyPrint(printables);
     }
 
-    /**
-     * Printing empty list
-     */
     private static void prettyPrint() {
         prettyPrint("");
     }
 
-    /**
-     * Printing when everything has already been formatted into a single entry
-     * @param printable
-     */
     private static void prettyPrint(String printable) {
         String out = String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
         System.out.println(out);
     }
 
-    /**
-     * Printing when items are still in a List.
-     * @param printables
-     */
     private static void prettyPrint(List<String> printables) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < printables.size(); i++) {
@@ -273,6 +281,7 @@ public class Duke {
                 prettyPrint(e.toString());
             }
         }
+        storeToFile();
         prettyPrint(END_MESSAGE);
     }
 }
