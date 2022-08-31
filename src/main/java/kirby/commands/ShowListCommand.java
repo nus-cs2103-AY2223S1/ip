@@ -16,7 +16,6 @@ public class ShowListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        System.out.println("Here is your bag of fabulous tasks:");
         String resPara = "Your list of tasks: \n";
         if (tasks.getTaskCount() == 0) {
             return "You have no tasks added!";

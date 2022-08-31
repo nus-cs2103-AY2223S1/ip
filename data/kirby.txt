@@ -1,1 +1,2 @@
-kirby.Todo~hi
+kirby.Todo~hello
+kirby.Event~date test~2012-12-01

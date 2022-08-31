@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="dialog" text="Label" textFill="WHITE" wrapText="true">
          <HBox.margin>
-            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            <Insets bottom="4.0" left="4.0" right="4.0" top="20.0" />
          </HBox.margin>
          <font>
             <Font name="monofur   bold for Powerline" size="14.0" />
@@ -18,6 +18,6 @@
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
     </padding>
 </fx:root>
