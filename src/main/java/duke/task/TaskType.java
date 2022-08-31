@@ -30,7 +30,6 @@ public enum TaskType {
         public ToDo parseSavedFormat(String savedFormat) throws DukeException {
             try {
                 String[] savedData = TaskType.parseFormatArray(savedFormat);
-                ;
                 boolean status = savedData[0].equals("Y");
                 String description = savedData[1];
                 return new ToDo(description, status);
@@ -46,10 +45,12 @@ public enum TaskType {
     EVENT {
         @Override
         public Event validateCommand(String cmd) throws DukeException {
-            if (cmd.matches("(?i)^event\\s.+\\s\\/(at)\\s.+\\s\\/(to)\\s.+")) {
-                String[] sp = cmd.substring(6).split("\\s\\/(((at))|((to)))\\s", 3);
+            if (cmd.matches("(?i)^event\\s.+\\s/(at)\\s.+\\s/(to)\\s.+")) {
+                String[] sp = cmd.substring(6).split("\\s/((at)|(to))\\s", 3);
                 LocalDateTime startDatetime;
                 LocalDateTime endDatetime;
+
+                // attempt to parse the input start datetime
                 try {
                     startDatetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
                 } catch (DateTimeParseException e) {
@@ -59,6 +60,8 @@ public enum TaskType {
                         throw new DukeException(String.format("Unknown date format %s!", sp[1]));
                     }
                 }
+
+                // attempt to parse the input end datetime
                 try {
                     endDatetime = LocalDate.parse(sp[2], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
                 } catch (DateTimeParseException e) {
@@ -68,8 +71,15 @@ public enum TaskType {
                         throw new DukeException(String.format("Unknown date format %s!", sp[2]));
                     }
                 }
-                return new Event(sp[0], startDatetime, endDatetime);
 
+                // ensures that the start and end datetime is valid (start cannot be after end)
+                if (startDatetime.isAfter(endDatetime)) {
+                    String errorMessage = String.format("Event start datetime %s cannot be after end datetime %s",
+                                                        startDatetime, endDatetime);
+                    throw new DukeException(errorMessage);
+                }
+
+                return new Event(sp[0], startDatetime, endDatetime);
             } else {
                 throw new DukeException("Hm... Duke's confused. Are you trying to create an event?"
                         + "\nMake sure you follow the format: event [description] /at [event start datetime DD/MM/YYYY"
@@ -98,8 +108,8 @@ public enum TaskType {
     DEADLINE {
         @Override
         public Deadline validateCommand(String cmd) throws DukeException {
-            if (cmd.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
-                String[] sp = cmd.substring(9).split("\\/(by)\\s", 2);
+            if (cmd.matches("(?i)^deadline\\s.+\\s/(by)\\s.+")) {
+                String[] sp = cmd.substring(9).split("/(by)\\s", 2);
                 LocalDateTime datetime;
                 try {
                     datetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
