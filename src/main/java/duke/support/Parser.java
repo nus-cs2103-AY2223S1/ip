@@ -94,12 +94,6 @@ public class Parser {
                 Ui.printEvent(newTask);
                 a = sc.nextLine();
             } else {
-                // else
-                //                arr[pos] = a;
-                //                status[pos] = 0;
-                //                pos++;
-                //                System.out.println("added: " + a);
-                //                a = sc.nextLine();
                 DukeException.taskException();
                 a = sc.nextLine();
             }
