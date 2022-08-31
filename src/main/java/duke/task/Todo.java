@@ -1,9 +1,12 @@
 package duke.task;
 
-import duke.task.Task;
-
 public class Todo extends Task {
 
+    /**
+     * Returns a Todo object.
+     *
+     * @param taskName Name of the task
+     */
     public Todo(String taskName) {
         super(taskName);
     }

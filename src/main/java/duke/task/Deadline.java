@@ -9,6 +9,14 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     private LocalDateTime endDate;
 
+    /**
+     * Returns a Deadline object.
+     * Throws a DukeException if the endDate is not parsable.
+     *
+     * @param taskName Name of the task
+     * @param endDate  Date in dd-MM-yyyy HHmm format
+     * @throws DukeException If date is not parsable
+     */
     public Deadline(String taskName, String endDate) throws DukeException {
         super(taskName);
         try {

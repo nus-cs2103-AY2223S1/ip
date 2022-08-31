@@ -12,16 +12,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** Storage object used for file operations such as read and write of TaskList to text file. */
 public class Storage {
 
     private Ui ui;
     private String filePath;
 
+    /**
+     * Returns a Storage object.
+     *
+     * @param filePath File path of the text file used for storage.
+     */
     public Storage(String filePath) {
         this.ui = new Ui();
         this.filePath = filePath;
     }
 
+    /**
+     * Reads from the text file in the specified file path.
+     * Scan through every line in file and creates the relevant Task objects based on the task type.
+     *
+     * @return An ArrayList of Task objects.
+     */
     public ArrayList<Task> loadTaskList() {
         ArrayList<Task> taskList = new ArrayList<>();
         File file;
@@ -73,9 +85,14 @@ public class Storage {
         }
     }
 
-    public void saveTaskList(TaskList list) {
+    /**
+     * Saves the current TaskList into the text file located at file path specified by the user.
+     *
+     * @param currTaskList Current TaskList to be saved
+     */
+    public void saveTaskList(TaskList currTaskList) {
         File file;
-        ArrayList<Task> taskList = list.getTaskList();
+        ArrayList<Task> taskList = currTaskList.getTaskList();
         try {
             file = new File(this.filePath);
             if (file.isDirectory()) {

@@ -8,9 +8,15 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 
 public class Parser {
+    /**
+     * Returns parsed command from user input based on keywords.
+     * If there are no matching commands, a DukeException is thrown.
+     *
+     * @param userInput Input string from the user.
+     * @return A Command object based on parsed input.
+     */
     public static Command parse(String userInput) throws DukeException{
         String command;
-        String taskDetails;
 
         if (userInput.isEmpty()) {
             throw new DukeException("☹ OOPS!!! The user input cannot be empty.");
