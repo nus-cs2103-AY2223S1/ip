@@ -14,8 +14,19 @@ import duke.task.ToDo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Interprets user input and creating the corresponding command.
+ *
+ * @author Tan Jun Wei
+ */
 public abstract class Parser {
-
+    /**
+     * Parses the user input and creates the corresponding command.
+     *
+     * @param input String representing the user's input.
+     * @return The command corresponding to the user's input.
+     * @throws DukeException If the command is invalid.
+     */
     public static Command parse(String input) throws DukeException {
         String[] commandArgs = input.trim().split(" ", 2);
         String commandType = commandArgs[0];

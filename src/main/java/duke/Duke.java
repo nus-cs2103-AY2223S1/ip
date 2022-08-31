@@ -7,11 +7,21 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Duke is a personal task tracker, with local storage capabilities.
+ *
+ * @author Tan Jun Wei
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Returns a new Duke instance.
+     *
+     * @param filePath The path of the storage file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Drives the duke chat bot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -41,6 +54,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the duke program.
+     */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
