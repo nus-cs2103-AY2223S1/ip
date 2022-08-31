@@ -33,6 +33,7 @@ public class Task {
 
     /**
      * Checks if the task description matches the query.
+     *
      * @param query Query for the task to check.
      * @return True if the task description matches the query.
      */
@@ -46,6 +47,7 @@ public class Task {
 
     /**
      * Creates a string representation suitable for printing to screen.
+     *
      * @return String representation of task.
      */
     @Override
@@ -55,6 +57,7 @@ public class Task {
 
     /**
      * Creates a string array representation suitable for printing to files.
+     *
      * @return String array representation.
      */
     public String[] getAsStringArray() {

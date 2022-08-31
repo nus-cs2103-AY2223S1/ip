@@ -38,6 +38,7 @@ public class Duke {
 
     /**
      * Runs the chatbot execution.
+     *
      * @param args Command line args which are not used.
      */
     public static void main(String[] args) {

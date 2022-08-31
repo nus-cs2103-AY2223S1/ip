@@ -13,6 +13,7 @@ public class CommandMatcher {
 
     /**
      * Creates an object that handles checking and executing a command.
+     *
      * @param shouldRunAction Predicate to check if the command should be run.
      * @param action Action to run.
      */
@@ -23,6 +24,7 @@ public class CommandMatcher {
 
     /**
      * Creates an object that handles checking and executing a command.
+     *
      * @param prefix Prefix of the command which is checked.
      * @param action Action to run.
      */
@@ -34,6 +36,7 @@ public class CommandMatcher {
     /**
      * Checks if the string matches.
      * If it does, it would execute the action.
+     *
      * @param input String to check if it is for this command.
      * @return If the string matches.
      */

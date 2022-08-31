@@ -13,6 +13,7 @@ public class TaskStorage {
 
     /**
      * Gets ArrayList of previously saved tasks.
+     *
      * @return ArrayList of tasks.
      */
     public static ArrayList<Task> getTasks() {
@@ -26,6 +27,7 @@ public class TaskStorage {
 
     /**
      * Saves a list of tasks to the default file.
+     *
      * @param tasks List of tasks.
      */
     public static void saveTasks(List<Task> tasks) {

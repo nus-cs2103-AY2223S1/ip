@@ -27,6 +27,7 @@ public class Storage {
 
     /**
      * Gets a singleton object that manages a particular file.
+     *
      * @param fileName File name to identify file.
      * @return Object managing the file.
      */
@@ -47,6 +48,7 @@ public class Storage {
 
     /**
      * Gets lines from file as a String[][].
+     *
      * @return Array of String[], each storing comma-separated parts of a line.
      */
     public String[][] getLines() {
@@ -70,6 +72,7 @@ public class Storage {
 
     /**
      * Saves the string to the file on disk.
+     *
      * @param strings Strings to save.
      */
     public void saveLines(String[][] strings) {

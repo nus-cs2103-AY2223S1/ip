@@ -7,6 +7,7 @@ public class ToDo extends Task {
 
     /**
      * Creates a task item.
+     *
      * @param description Description of task.
      */
     public ToDo(String description) {
@@ -15,6 +16,7 @@ public class ToDo extends Task {
 
     /**
      * Creates a task item.
+     *
      * @param description Description of task.
      * @param isDone If the task is done.
      */
@@ -29,6 +31,7 @@ public class ToDo extends Task {
 
     /**
      * Get a string array representation suitable for printing to files.
+     *
      * @return String array representation.
      */
     @Override

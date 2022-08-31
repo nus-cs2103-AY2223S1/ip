@@ -10,6 +10,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a duke.tasks.Deadline object.
+     *
      * @param description Description of deadline.
      * @param by Time of deadline.
      */
@@ -19,6 +20,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a duke.tasks.Deadline object.
+     *
      * @param description Description of deadline.
      * @param by Time of deadline.
      * @param isDone If the task is done.

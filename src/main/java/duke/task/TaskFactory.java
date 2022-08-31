@@ -10,6 +10,7 @@ import duke.Ui;
 public class TaskFactory {
     /**
      * Constructs the task.
+     *
      * @param taskData Data for the task.
      * @return Task according to taskData.
      * @throws IllegalArgumentException If taskData does not conform to the format.
@@ -35,6 +36,7 @@ public class TaskFactory {
 
     /**
      * Constructs the task.
+     *
      * @param taskData Data for the task.
      * @return Optional of Task according to taskData, Optional.empty() if cannot construct.
      */

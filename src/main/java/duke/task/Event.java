@@ -10,6 +10,7 @@ public class Event extends Task {
 
     /**
      * Creates an event.
+     *
      * @param description Description of event.
      * @param at Time of event.
      */
@@ -19,6 +20,7 @@ public class Event extends Task {
 
     /**
      * Creates an event.
+     *
      * @param description Description of event.
      * @param at Time of event.
      * @param isDone If the task is done.

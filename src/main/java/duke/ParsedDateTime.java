@@ -22,6 +22,7 @@ public class ParsedDateTime {
 
     /**
      * Creates an object to handle if the date/time can be parsed.
+     *
      * @param input String that may represent date/time.
      */
     public ParsedDateTime(String input) {
@@ -39,6 +40,7 @@ public class ParsedDateTime {
 
     /**
      * Gets a nicely-formatted date.
+     *
      * @return The date if it parses, else the original string.
      */
     @Override

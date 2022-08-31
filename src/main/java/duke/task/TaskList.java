@@ -30,6 +30,7 @@ public class TaskList {
 
     /**
      * Gets task from index as string.
+     *
      * @param index Index as a string.
      * @return Optional.of(task) if successful, else Optional.empty().
      */
@@ -49,6 +50,7 @@ public class TaskList {
 
     /**
      * Get tasks that match the search term.
+     *
      * @param query Search term.
      * @return List of tasks.
      */
@@ -60,6 +62,7 @@ public class TaskList {
 
     /**
      * Gets the task list for other classes to work on.
+     *
      * @return The task list.
      */
     public static List<Task> getTaskList() {

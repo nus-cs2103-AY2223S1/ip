@@ -8,7 +8,8 @@ public class Ui {
 
     /**
      * Styles and prints lines with a border.
-     * @param lines Lines to be printed
+     *
+     * @param lines Line to be printed
      */
     public static void printStyledMessage(String... lines) {
         System.out.println(",----------------------------------------------------------------");
