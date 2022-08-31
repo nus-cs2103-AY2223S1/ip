@@ -36,7 +36,8 @@ public class AddDeadlineCommand extends Command {
             tasks.add(deadline);
             ui.printAddTask(deadline, tasks.size());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of a deadline cannot be empty.");
+            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of a deadline "
+                    + "cannot be empty.");
         }
     }
 }

@@ -36,7 +36,7 @@ public class Storage {
     public void createDirectory(String path) throws DukeException {
         File dir = new File(path);
         try {
-            if(!dir.exists()) {
+            if (!dir.exists()) {
                 dir.mkdir();
             }
         } catch (SecurityException e) {

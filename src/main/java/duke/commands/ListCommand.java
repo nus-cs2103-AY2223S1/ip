@@ -1,10 +1,8 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.exceptions.DukeIndexOutOfBoundsException;
 
 /**
  * Represents an executable <code>Command</code> to list the <code>Task</code>s in the <code>TaskList</code>.

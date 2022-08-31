@@ -5,7 +5,6 @@ import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exceptions.DukeIndexOutOfBoundsException;
-import duke.exceptions.DukeMissingArgumentException;
 
 /**
  * Represents an executable <code>Command</code> to delete a <code>Task</code>.

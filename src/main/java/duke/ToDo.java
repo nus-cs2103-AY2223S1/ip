@@ -29,7 +29,8 @@ public class ToDo extends Task {
      * Returns the <code>String</code> representation of this <code>ToDo</code> in the format to be stored in the local
      * storage.
      *
-     * @return <code>String</code> representation of this <code>ToDo</code> in the format to be stored in the local storage.
+     * @return <code>String</code> representation of this <code>ToDo</code> in the format to be stored in the local
+     *     storage.
      */
     public String toStorageFormat() {
         char done = isDone ? '1' : '0';

@@ -36,7 +36,8 @@ public class AddEventCommand extends Command {
             tasks.add(event);
             ui.printAddTask(event, tasks.size());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of an event cannot be empty.");
+            throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of an event "
+                    + "cannot be empty.");
         }
     }
 }

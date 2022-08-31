@@ -41,15 +41,16 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline.getDayOfWeek() + " " + deadline.getDayOfMonth() + " " +
-                deadline.getMonth() + " " + deadline.getYear() + " " + this.getTime() + ")";
+        return "[D]" + super.toString() + " (by: " + deadline.getDayOfWeek() + " " + deadline.getDayOfMonth() + " "
+                + deadline.getMonth() + " " + deadline.getYear() + " " + this.getTime() + ")";
     }
 
     /**
-     * Returns the <code>String</code> representation of this <code>Deadline</code> in the format to be stored in the local
-     * storage.
+     * Returns the <code>String</code> representation of this <code>Deadline</code> in the format to be stored in the
+     * local storage.
      *
-     * @return <code>String</code> representation of this <code>Deadline</code> in the format to be stored in the local storage.
+     * @return <code>String</code> representation of this <code>Deadline</code> in the format to be stored in the local
+     *     storage.
      */
     public String toStorageFormat() {
         char done = isDone ? '1' : '0';
