@@ -15,7 +15,7 @@ public class Storage {
     /**
      * Represents the path name.
      */
-    private String pathname;
+    private final String pathname;
 
     /**
      * Represents the file writer
@@ -42,7 +42,7 @@ public class Storage {
                 File txtFile = new File(pathname);
                 txtFile.createNewFile();
             } else {
-                String temp ="";
+                String temp = "";
                 for (int x = 0; x < length; x++) {
                     if (x == 0) {
                         temp += array[x];

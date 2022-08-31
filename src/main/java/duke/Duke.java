@@ -7,19 +7,19 @@ import duke.storage.Storage;
 import duke.task.TaskManager;
 import duke.ui.Ui;
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 /**
  * Represents a Duke class
@@ -35,8 +35,8 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Represents a storage for texts.
@@ -53,6 +53,9 @@ public class Duke extends Application {
      */
     private final Ui ui;
 
+    /**
+     * Basic constructor required for Launcher to work.
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage("data/tasks.txt");
@@ -61,7 +64,7 @@ public class Duke extends Application {
 
     /**
      * Represents a constructor method for Duke class
-     * @param filepath
+     * @param filepath path to file
      */
     public Duke(String filepath) {
         this.ui = new Ui();
@@ -215,7 +218,6 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-//        return "Duke heard: " + input;
         try {
             Command c = Parser.parse(input);
             return c.execute(taskManager, ui, storage);

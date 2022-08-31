@@ -49,8 +49,8 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println(formatMessage("Hello! I'm Duke\n" +
-                "     What can I do for you?"));
+        System.out.println(formatMessage("Hello! I'm Duke\n"
+                + "     What can I do for you?"));
         showLine();
     }
 
@@ -80,7 +80,7 @@ public class Ui {
 
     /**
      * Shows error in a formatted way.
-     * @param s
+     * @param s error message
      */
     public void showError(String s) {
         System.out.println(formatMessage(s));
@@ -93,48 +93,51 @@ public class Ui {
      * @param numOfTasks number of tasks in task list, if required
      * @param message additional details for the message, if required
      */
-    public String sendAndReturnMessage(Command.Action_keyword keyword, Task task, int numOfTasks, String message) {
-        if (keyword == Command.Action_keyword.DEADLINE || keyword == Command.Action_keyword.TODO || keyword == Command.Action_keyword.EVENT) {
-            String msg = formatMessage("Got it. I've added this task:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task + "\n" +
-                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
+    public String sendAndReturnMessage(Command.ActionKeywords keyword, Task task, int numOfTasks, String message) {
+        if (keyword == Command.ActionKeywords.DEADLINE || keyword == Command.ActionKeywords.TODO
+                || keyword == Command.ActionKeywords.EVENT) {
+            String msg = formatMessage("Got it. I've added this task:\n"
+                    + INDENTATION + EXTRA_INDENTATION + task + "\n"
+                    + INDENTATION + "Now you have " + numOfTasks
+                    + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.Action_keyword.DELETE) {
-            String msg = formatMessage("Noted. I've removed the task:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task + "\n" +
-                    INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
+        } else if (keyword == Command.ActionKeywords.DELETE) {
+            String msg = formatMessage("Noted. I've removed the task:\n"
+                    + INDENTATION + EXTRA_INDENTATION + task + "\n"
+                    + INDENTATION + "Now you have " + numOfTasks
+                    + (numOfTasks < 2 ? " task" : " tasks") + " in the list.");
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.Action_keyword.LIST) {
+        } else if (keyword == Command.ActionKeywords.LIST) {
             if (message.equals("")) {
                 String msg = formatMessage("There are currently no tasks in your list");
                 System.out.println(msg);
                 return msg;
             } else {
-                String msg = formatMessage("Here are the task(s) in your list:\n" +
-                        INDENTATION + message);
+                String msg = formatMessage("Here are the task(s) in your list:\n"
+                        + INDENTATION + message);
                 System.out.println(msg);
                 return msg;
             }
-        } else if (keyword == Command.Action_keyword.MARK) {
-            String msg = formatMessage("Nice! I've marked this task as done:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task);
+        } else if (keyword == Command.ActionKeywords.MARK) {
+            String msg = formatMessage("Nice! I've marked this task as done:\n"
+                    + INDENTATION + EXTRA_INDENTATION + task);
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.Action_keyword.UNMARK) {
-            String msg = formatMessage("OK, I've marked this task as not done yet:\n" +
-                    INDENTATION + EXTRA_INDENTATION + task);
+        } else if (keyword == Command.ActionKeywords.UNMARK) {
+            String msg = formatMessage("OK, I've marked this task as not done yet:\n"
+                    + INDENTATION + EXTRA_INDENTATION + task);
             System.out.println(msg);
             return msg;
-        } else if (keyword == Command.Action_keyword.FIND) {
+        } else if (keyword == Command.ActionKeywords.FIND) {
             if (message.equals("")) {
                 String msg = formatMessage("Sorry, there are matching tasks in your list");
                 System.out.println(msg);
                 return msg;
             } else {
-                String msg = formatMessage("Here are the matching tasks in your list:\n" +
-                        INDENTATION + message);
+                String msg = formatMessage("Here are the matching tasks in your list:\n"
+                        + INDENTATION + message);
                 System.out.println(msg);
                 return msg;
             }

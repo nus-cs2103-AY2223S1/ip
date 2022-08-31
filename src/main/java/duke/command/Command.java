@@ -5,7 +5,6 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskManager;
 import duke.ui.Ui;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -26,7 +25,7 @@ public abstract class Command {
     /**
      * Represents the type of commands the class understands.
      */
-    public enum Action_keyword {
+    public enum ActionKeywords {
         DEADLINE,
         DELETE,
         EVENT,
@@ -54,9 +53,9 @@ public abstract class Command {
         String[] splitResponse = s.split(" ");
         String keyword = splitResponse[0];
         if (splitResponse.length == 1) {
-            if (keyword.equals("todo") || keyword.equals("deadline") || keyword.equals("event") ||
-                    keyword.equals("delete") || keyword.equals("mark") || keyword.equals("unmark") ||
-            keyword.equals("find")) {
+            if (keyword.equals("todo") || keyword.equals("deadline") || keyword.equals("event")
+                    || keyword.equals("delete") || keyword.equals("mark") || keyword.equals("unmark")
+                    || keyword.equals("find")) {
                 throw new DukeException(keyword);
             } else if (keyword.equals("list")) {
                 return new ListCommand();
@@ -68,14 +67,14 @@ public abstract class Command {
         } else {
             switch (keyword) {
             case "todo":
-                return new AddCommand(Task.Task_type.TODO, s.substring(5), null);
+                return new AddCommand(Task.TaskType.TODO, s.substring(5), null);
             case "deadline": {
                 try {
                     String[] tempSplit = s.substring(9).split(" /by ");
                     if (tempSplit.length == 1) {
                         throw new DukeException("deadline format");
                     } else {
-                        return new AddCommand(Task.Task_type.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
+                        return new AddCommand(Task.TaskType.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
                     }
                 } catch (DateTimeParseException e) {
                     throw new DukeException("deadline format");
@@ -87,7 +86,7 @@ public abstract class Command {
                     if (tempSplit.length == 1) {
                         throw new DukeException("event format");
                     } else {
-                        return new AddCommand(Task.Task_type.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
+                        return new AddCommand(Task.TaskType.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
                     }
                 } catch (DateTimeParseException e) {
                     throw new DukeException("event format");
@@ -133,7 +132,7 @@ public abstract class Command {
         /**
          * Represents the task type.
          */
-        private final Task.Task_type task_type;
+        private final Task.TaskType taskType;
 
         /**
          * Represents what task has to be done.
@@ -151,8 +150,8 @@ public abstract class Command {
          * @param todo task to be done
          * @param by date when task has to be done, if any
          */
-        public AddCommand(Task.Task_type type, String todo, LocalDate by) {
-            this.task_type = type;
+        public AddCommand(Task.TaskType type, String todo, LocalDate by) {
+            this.taskType = type;
             this.todo = todo;
             this.by = by;
         }
@@ -162,22 +161,22 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
-         * @return
+         * @return message
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
-            if (task_type == Task.Task_type.TODO) {
-                Task task = Task.of(Task.Task_type.TODO, todo);
+            if (taskType == Task.TaskType.TODO) {
+                Task task = Task.of(Task.TaskType.TODO, todo);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(Action_keyword.TODO, task, tasks.numOfTasks(), null);
-            } else if (task_type == Task.Task_type.DEADLINE) {
-                Task task = Task.of(Task.Task_type.DEADLINE, todo + " /by " + by);
+                return ui.sendAndReturnMessage(ActionKeywords.TODO, task, tasks.numOfTasks(), null);
+            } else if (taskType == Task.TaskType.DEADLINE) {
+                Task task = Task.of(Task.TaskType.DEADLINE, todo + " /by " + by);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(Action_keyword.DEADLINE, task, tasks.numOfTasks(), null);
-            } else if (task_type == Task.Task_type.EVENT) {
-                Task task = Task.of(Task.Task_type.EVENT, todo + " /at " + by);
+                return ui.sendAndReturnMessage(ActionKeywords.DEADLINE, task, tasks.numOfTasks(), null);
+            } else if (taskType == Task.TaskType.EVENT) {
+                Task task = Task.of(Task.TaskType.EVENT, todo + " /at " + by);
                 tasks.addTask(task);
-                return ui.sendAndReturnMessage(Action_keyword.EVENT, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(ActionKeywords.EVENT, task, tasks.numOfTasks(), null);
             } else {
                 return null;
             }
@@ -207,14 +206,14 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
+         * @return message
          * @throws DukeException if it is found
-         * @return
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 Task task = tasks.removeTask(location);
-                return ui.sendAndReturnMessage(Action_keyword.DELETE, task, tasks.numOfTasks(), null);
+                return ui.sendAndReturnMessage(ActionKeywords.DELETE, task, tasks.numOfTasks(), null);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
             }
@@ -238,8 +237,8 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
+         * @return message
          * @throws IOException if there is such an exception
-         * @return
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
@@ -255,7 +254,7 @@ public abstract class Command {
      */
     public static class FindCommand extends Command {
 
-        private String s;
+        private final String s;
         /**
          * Creates Final Command through a constructor method.
          */
@@ -268,13 +267,12 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
-         * @throws IOException if there is such an exception
-         * @return
+         * @return message
          */
         @Override
-        public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
+        public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String res = tasks.findAndCraft(this.s);
-            return ui.sendAndReturnMessage(Action_keyword.FIND, null, 0, res);
+            return ui.sendAndReturnMessage(ActionKeywords.FIND, null, 0, res);
         }
     }
 
@@ -308,18 +306,18 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
+         * @return message
          * @throws DukeException if it is found
-         * @return
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException {
             try {
                 if (isCompleted) {
                     Task task = tasks.markTaskComplete(location);
-                    return ui.sendAndReturnMessage(Action_keyword.MARK, task, tasks.numOfTasks(), null);
+                    return ui.sendAndReturnMessage(ActionKeywords.MARK, task, tasks.numOfTasks(), null);
                 } else {
                     Task task = tasks.markTaskIncomplete(location);
-                    return ui.sendAndReturnMessage(Action_keyword.UNMARK, task, tasks.numOfTasks(), null);
+                    return ui.sendAndReturnMessage(ActionKeywords.UNMARK, task, tasks.numOfTasks(), null);
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("index out of bounds");
@@ -344,12 +342,12 @@ public abstract class Command {
          * @param tasks list of tasks
          * @param ui user interface being used
          * @param storage place where text is stored
-         * @return
+         * @return message
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
             String message = tasks.craftList();
-            return ui.sendAndReturnMessage(Action_keyword.LIST, null, tasks.numOfTasks(), message);
+            return ui.sendAndReturnMessage(ActionKeywords.LIST, null, tasks.numOfTasks(), message);
         }
     }
 
@@ -358,9 +356,9 @@ public abstract class Command {
      * @param tasks list of tasks
      * @param ui user interface being used
      * @param storage place where text is stored
+     * @return message
      * @throws DukeException if it is found
      * @throws IOException if there is such an exception
-     * @return
      */
     public abstract String execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
 

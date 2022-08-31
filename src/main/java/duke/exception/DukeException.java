@@ -11,7 +11,7 @@ public class DukeException extends Exception {
     /**
      * Represents a message.
      */
-    private String msg;
+    private final String msg;
 
     /**
      * Constructor for DukeException.

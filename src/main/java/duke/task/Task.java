@@ -13,7 +13,7 @@ public abstract class Task {
     /**
      * Represents the different action types the Task class can handle
      */
-    public enum Task_type {
+    public enum TaskType {
         TODO,
         DEADLINE,
         EVENT
@@ -38,7 +38,7 @@ public abstract class Task {
      * @param details Additional details of the task
      * @return Task created
      */
-    public static Task of(Task_type x, String details) {
+    public static Task of(TaskType x, String details) {
         switch (x) {
         case TODO:
             return new ToDo(details);
@@ -158,7 +158,7 @@ public abstract class Task {
          * @return boolean
          */
         @Override
-        public boolean contains (String s) {
+        public boolean contains(String s) {
             return this.todo.contains(s);
         }
     }
@@ -217,7 +217,8 @@ public abstract class Task {
          */
         @Override
         public String textFileMessage() {
-            return craftStringForFile(new String[]{"D", completionStatusForFile(), this.todo, String.valueOf(this.date)});
+            return craftStringForFile(new String[]
+                {"D", completionStatusForFile(), this.todo, String.valueOf(this.date)});
         }
 
         /**
@@ -226,7 +227,7 @@ public abstract class Task {
          * @return boolean
          */
         @Override
-        public boolean contains (String s) {
+        public boolean contains(String s) {
             return this.todo.contains(s) || this.date.toString().contains(s);
         }
     }
@@ -285,7 +286,8 @@ public abstract class Task {
          */
         @Override
         public String textFileMessage() {
-            return craftStringForFile(new String[]{"E", completionStatusForFile(), this.todo, String.valueOf(this.date)});
+            return craftStringForFile(new String[]
+                {"E", completionStatusForFile(), this.todo, String.valueOf(this.date)});
         }
 
         /**
@@ -294,7 +296,7 @@ public abstract class Task {
          * @return boolean
          */
         @Override
-        public boolean contains (String s) {
+        public boolean contains(String s) {
             return this.todo.contains(s) || this.date.toString().contains(s);
         }
     }

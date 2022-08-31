@@ -3,17 +3,11 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
-//    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 checkstyle {
     toolVersion = '10.2'
 }
-
-//javafx {
-//    version = "18.0.2"
-//    modules = [ 'javafx.controls' ]
-//}
 
 repositories {
     mavenCentral()
