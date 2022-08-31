@@ -12,6 +12,10 @@ public class Duke {
 
     /*
      * Constructor for Class Duke
+     * @param storage the storage object to read and write from Duke
+     * @param taskList the taskList object
+     * @param ui to print to the console
+     * @param parser to parse commands from the user. 
      */
     public Duke(Storage storage, TaskList taskList, UI ui, Parser parser) {
         this.storage = storage;
