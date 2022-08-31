@@ -79,6 +79,8 @@ public class ChatBot {
                     // Fallthrough
                 case "event":
                     throw new EmptyTaskException();
+                case "find":
+                    // Fallthrough
                 default:
                     throw new InvalidCommandException();
                 }
@@ -108,6 +110,9 @@ public class ChatBot {
                     break;
                 case "delete":
                     response = taskManager.delete(Integer.parseInt(arguments));
+                    break;
+                case "find":
+                    System.out.println(wrapMessage(taskManager.find(arguments)));
                     break;
                 default:
                     throw new InvalidCommandException();

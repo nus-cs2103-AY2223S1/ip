@@ -69,7 +69,7 @@ public class EventTask extends Task {
      */
     public String getTaskTime() {
         return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
-                + taskTime.getHour() + ":" + taskTime.getMinute());
+                + taskTime.getHour() + ":" + String.format("%02d", taskTime.getMinute()));
     }
 
     /**
@@ -90,7 +90,7 @@ public class EventTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + " | " + this.taskTime + "\n";
+        return TASK_TYPE + "<>" + (isCompleted() ? 1 : 0) + "<>" + getTaskName() + "<>" + this.taskTime + "\n";
     }
 
     /**
