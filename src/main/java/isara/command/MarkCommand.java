@@ -1,9 +1,12 @@
-package duke.command;
+package isara.command;
 
-import duke.Ui;
-import duke.exception.DukeException;
-import duke.processor.TaskList;
-import duke.task.Task;
+import java.io.File;
+
+import isara.Ui;
+import isara.exception.IsaraException;
+import isara.processor.TaskList;
+import isara.storage.Storage;
+import isara.task.Task;
 
 /**
  * Class that represents the command 'mark'.
@@ -20,6 +23,7 @@ public class MarkCommand extends Command {
      * @param taskIndex The index referring to the task in the taskList.
      */
     public MarkCommand(int taskIndex) {
+        super(false);
         this.taskIndex = taskIndex;
     }
 
@@ -27,19 +31,20 @@ public class MarkCommand extends Command {
      * Marks a task as done.
      *
      * @param tasks The list of tasks that the user has inputted.
-     * @throws DukeException Exceptions exclusive to the duke.Duke bot, thrown when
+     * @throws IsaraException Exceptions exclusive to the duke.Duke bot, thrown when
      *     the user does not input a number, or inputs invalid characters after the
      *     'mark' command.
      */
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public String execute(TaskList tasks, File file, Storage storage) throws IsaraException {
         try {
             Ui ui = new Ui();
             Task task = tasks.getTask(taskIndex);
             task.markAsDone();
-            ui.mark(task);
+            storage.writeAndSaveToFile(file, tasks);
+            return ui.mark(task);
         } catch (Exception e) {
-            throw new DukeException("☹ OOPS!!! The number you are talking about does not exist. "
+            throw new IsaraException("☹ OOPS!!! The number you are talking about does not exist. "
                     + "\nPerhaps it is not a number at all? Please check again!");
         }
     }

@@ -1,7 +1,7 @@
-package duke;
+package isara;
 
-import duke.task.Task;
-import duke.task.Event;
+import isara.task.Task;
+import isara.task.Event;
 
 import org.junit.jupiter.api.Test;
 

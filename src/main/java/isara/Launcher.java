@@ -1,4 +1,4 @@
-package duke;
+package isara;
 
 import javafx.application.Application;
 

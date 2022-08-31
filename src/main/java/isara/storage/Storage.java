@@ -1,4 +1,4 @@
-package duke.storage;
+package isara.storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.exception.DukeException;
-import duke.processor.TaskList;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import isara.exception.IsaraException;
+import isara.processor.TaskList;
+import isara.task.Deadline;
+import isara.task.Event;
+import isara.task.Task;
+import isara.task.ToDo;
 
 /**
  * Class that represents the storage in which
@@ -28,10 +28,10 @@ public class Storage {
      * Initializes a file that the bot will write into to save the tasks.
      *
      * @return The file that the bot will write into.
-     * @throws DukeException An exception that will be thrown if the file cannot
+     * @throws IsaraException An exception that will be thrown if the file cannot
      *     be initialized.
      */
-    public File initialize() throws DukeException {
+    public File initialize() throws IsaraException {
         try {
             File parentDirectory = new File(directory);
 
@@ -48,7 +48,7 @@ public class Storage {
             return dukeFile;
 
         } catch (IOException e) {
-            throw new DukeException("OOPS!! A new file cannot be created.");
+            throw new IsaraException("OOPS!! A new file cannot be created.");
         }
     }
 
@@ -57,10 +57,10 @@ public class Storage {
      *
      * @param dukeFile The file to be read.
      * @return The tasks fetched from the file.
-     * @throws DukeException An exception will be thrown if the bot fails to
+     * @throws IsaraException An exception will be thrown if the bot fails to
      *     read the set of tasks.
      */
-    public ArrayList<Task> readFile(File dukeFile) throws DukeException {
+    public ArrayList<Task> readFile(File dukeFile) throws IsaraException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             Scanner sc = new Scanner(dukeFile);
@@ -73,7 +73,7 @@ public class Storage {
                 switch (typeOfTask) {
                 case "T":
                     Task toDo = new ToDo(description);
-                    if (marked == "X") {
+                    if (marked.equals("X")) {
                         toDo.markAsDone();
                     }
                     tasks.add(toDo);
@@ -86,7 +86,7 @@ public class Storage {
                     String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
                     LocalDate deadlineDate = LocalDate.parse(by);
                     Task deadline = new Deadline(deadlineName, deadlineDate);
-                    if (marked == "X") {
+                    if (marked.equals("X")) {
                         deadline.markAsDone();
                     }
                     tasks.add(deadline);
@@ -98,7 +98,7 @@ public class Storage {
                             .trim();
                     String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
                     Task event = new Event(eventName, at);
-                    if (marked == "X") {
+                    if (marked.equals("X")) {
                         event.markAsDone();
                     }
                     tasks.add(event);
@@ -110,7 +110,7 @@ public class Storage {
             return tasks;
 
         } catch (IOException e) {
-            throw new DukeException("OOPS!! Failed to read file.");
+            throw new IsaraException("OOPS!! Failed to read file.");
         }
     }
 
@@ -119,10 +119,10 @@ public class Storage {
      *
      * @param dukeFile The file to write into.
      * @param tasks The tasks to be saved.
-     * @throws DukeException An exception is thrown if the bot fails to
+     * @throws IsaraException An exception is thrown if the bot fails to
      *     write into the file.
      */
-    public void writeAndSaveToFile(File dukeFile, TaskList tasks) throws DukeException {
+    public void writeAndSaveToFile(File dukeFile, TaskList tasks) throws IsaraException {
         try {
             FileWriter writer = new FileWriter(dukeFile);
             int numberOfTasks = tasks.getNumberOfTasks();
@@ -132,7 +132,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            throw new DukeException("OOPS!! Failed to write to file.");
+            throw new IsaraException("OOPS!! Failed to write to file.");
         }
     }
 }

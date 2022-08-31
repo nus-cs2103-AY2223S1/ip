@@ -1,7 +1,7 @@
-package duke;
+package isara;
 
-import duke.task.Task;
-import duke.task.Deadline;
+import isara.task.Task;
+import isara.task.Deadline;
 
 import java.time.LocalDate;
 

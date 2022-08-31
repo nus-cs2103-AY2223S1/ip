@@ -1,8 +1,8 @@
-package duke.processor;
+package isara.processor;
 
 import java.util.ArrayList;
 
-import duke.task.Task;
+import isara.task.Task;
 
 /**
  * Class that represents the list of tasks inputted by the user.

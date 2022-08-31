@@ -1,4 +1,4 @@
-package duke.task;
+package isara.task;
 
 /**
  * Class to represent Task (not to be instantiated, hence abstract).

@@ -1,9 +1,12 @@
-package duke.command;
+package isara.command;
 
-import duke.Ui;
-import duke.exception.DukeException;
-import duke.processor.TaskList;
-import duke.task.Task;
+import java.io.File;
+
+import isara.Ui;
+import isara.exception.IsaraException;
+import isara.processor.TaskList;
+import isara.storage.Storage;
+import isara.task.Task;
 
 /**
  * Class to represent the command 'delete'.
@@ -20,6 +23,7 @@ public class DeleteCommand extends Command {
      * @param taskIndex
      */
     public DeleteCommand(int taskIndex) {
+        super(false);
         this.taskIndex = taskIndex;
     }
 
@@ -27,19 +31,20 @@ public class DeleteCommand extends Command {
      * Deletes any task that has been inputted.
      *
      * @param tasks The list of tasks that the user has inputted.
-     * @throws DukeException Exceptions exclusive to the duke.Duke bot, thrown when
+     * @throws IsaraException Exceptions exclusive to the duke.Duke bot, thrown when
      *     the user does not include a proper description of the task.
      */
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public String execute(TaskList tasks, File file, Storage storage) throws IsaraException {
         try {
             Ui ui = new Ui();
             Task task = tasks.getTask(taskIndex);
             tasks.removeTask(taskIndex);
             int amountOfTasksLeft = tasks.getNumberOfTasks();
-            ui.delete(task, amountOfTasksLeft);
+            storage.writeAndSaveToFile(file, tasks);
+            return ui.delete(task, amountOfTasksLeft);
         } catch (Exception e) {
-            throw new DukeException("☹ OOPS!!! Looks like the task you're looking for does not exist :-(");
+            throw new IsaraException("☹ OOPS!!! Looks like the task you're looking for does not exist :-(");
         }
     }
 }

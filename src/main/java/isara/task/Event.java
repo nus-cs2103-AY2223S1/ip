@@ -1,4 +1,4 @@
-package duke.task;
+package isara.task;
 
 /**
  * Class to represent tasks of the type Event.

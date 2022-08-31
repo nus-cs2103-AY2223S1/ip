@@ -1,20 +1,20 @@
-package duke.processor;
+package isara.processor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import isara.command.ByeCommand;
+import isara.command.Command;
+import isara.command.DeleteCommand;
+import isara.command.FindCommand;
+import isara.command.ListCommand;
+import isara.command.MarkCommand;
+import isara.command.UnmarkCommand;
+import isara.exception.IsaraException;
+import isara.task.Deadline;
+import isara.task.Event;
+import isara.task.Task;
+import isara.task.ToDo;
 
 /**
  * Class that represents a parser to parse the user input.
@@ -68,10 +68,10 @@ public class Parser {
      *
      * @param input The user input.
      * @return An instance of Command.
-     * @throws DukeException An exception will be thrown if the command is
+     * @throws IsaraException An exception will be thrown if the command is
      *     not one of the available commands.
      */
-    public static Command parseCommand(String input) throws DukeException {
+    public static Command parseCommand(String input) throws IsaraException {
         String command = input.split(" ")[0].trim();
         CommandLine commandLine = CommandLine.valueOf(command.toUpperCase());
 
@@ -96,7 +96,7 @@ public class Parser {
             String keyword = input.split(" ")[1];
             return new FindCommand(keyword);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new IsaraException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -105,10 +105,10 @@ public class Parser {
      *
      * @param input The user input.
      * @return An instance of Task.
-     * @throws DukeException An exception will be thrown if the task type is
+     * @throws IsaraException An exception will be thrown if the task type is
      *     not one of the available tasks.
      */
-    public static Task parseTask(String input) throws DukeException {
+    public static Task parseTask(String input) throws IsaraException {
         String type = input.split(" ")[0].trim();
         TypeOfTask typeOfTask = TypeOfTask.valueOf(type.toUpperCase());
 
@@ -120,7 +120,7 @@ public class Parser {
                     return new ToDo(taskName);
                 }
             } catch (Exception e) {
-                throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
+                throw new IsaraException("☹ OOPS!!! Please specify what you want to do!");
             }
             break;
         case EVENT:
@@ -129,7 +129,7 @@ public class Parser {
                 String at = input.split("/at")[1].trim();
                 return new Event(taskName, at);
             } catch (Exception e) {
-                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                throw new IsaraException("☹ OOPS!!! The description of an event cannot be empty.");
             }
         case DEADLINE:
             try {
@@ -138,13 +138,13 @@ public class Parser {
                 LocalDate date = LocalDate.parse(by);
                 return new Deadline(taskName, date);
             } catch (DateTimeParseException e) {
-                throw new DukeException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
+                throw new IsaraException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
             } catch (Exception e) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                throw new IsaraException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
 
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new IsaraException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         return null;
     }

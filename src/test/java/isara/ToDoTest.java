@@ -1,7 +1,7 @@
-package duke;
+package isara;
 
-import duke.task.Task;
-import duke.task.ToDo;
+import isara.task.Task;
+import isara.task.ToDo;
 
 import org.junit.jupiter.api.Test;
 

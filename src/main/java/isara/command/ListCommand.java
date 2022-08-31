@@ -1,7 +1,10 @@
-package duke.command;
+package isara.command;
 
-import duke.Ui;
-import duke.processor.TaskList;
+import java.io.File;
+
+import isara.Ui;
+import isara.processor.TaskList;
+import isara.storage.Storage;
 
 /**
  * Class to represent the command 'list'.
@@ -9,14 +12,18 @@ import duke.processor.TaskList;
  * @author Melissa Anastasia Harijanto
  */
 public class ListCommand extends Command {
+    public ListCommand() {
+        super(false);
+    }
+
     /**
      * Prints the list of tasks that the user has inputted.
      *
      * @param tasks The list of tasks where the command is executed.
      */
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks, File file, Storage storage) {
         Ui ui = new Ui();
-        ui.list(tasks);
+        return ui.list(tasks);
     }
 }
