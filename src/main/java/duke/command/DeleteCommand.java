@@ -34,13 +34,14 @@ public class DeleteCommand extends Command {
      * @throws DukeException specific error message to be thrown
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task task = tasks.getTaskList().get(this.number - 1);
             tasks.delete(this.number - 1);
             int total = tasks.totalSize();
-            ui.showDelete(task,total);
+            String message = ui.showDelete(task,total);
             storage.store(tasks.getTaskList());
+            return message;
         }
         catch (IndexOutOfBoundsException e) {
             throw new DukeException("OH NO! You are not allowed here");

@@ -22,8 +22,9 @@ public class ByeCommand extends Command {
      * @throws DukeException specific error message to be thrown
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String message = ui.showBye();
         this.setExit();
+        return message;
     }
 }
