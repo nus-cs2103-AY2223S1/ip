@@ -110,6 +110,20 @@ public class TaskList {
         Ui.showDeleteTaskMessage(t, this.tasks.size());
     }
 
+    /**
+     * Finds task based on keyword.
+     *
+     * @param keyword The keyword to find.
+     */
+    public void findTask(String keyword) {
+        int i = 0;
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                i = i + 1;
+                System.out.println(i + "." + task);
+            }
+        }
+    }
 
     /**
      * Prints tasks based on date.
@@ -118,18 +132,19 @@ public class TaskList {
      */
     public void printTasksOnSpecificDate(LocalDate date) {
         Ui.showPrintTasksOnSpecificDateMessage(date);
-        int ListLength = tasks.size();
-        for (int i = 0; i < ListLength; i++) {
-            Task task = tasks.get(i);
+        int i = 0;
+        for (Task task : tasks) {
             if (this.getTaskType(task).equals("Deadlines")) {
                 Deadline d = (Deadline) task;
                 if (d.getDate().equals(date)) {
-                    System.out.println(d);
+                    i = i + 1;
+                    System.out.println(i + "." + d);
                 }
             } else if (this.getTaskType(task).equals("Events")) {
                 Event e = (Event) task;
                 if (e.getDate().equals(date)) {
-                    System.out.println(e);
+                    i = i + 1;
+                    System.out.println(i + "." + e);
                 }
             }
         }

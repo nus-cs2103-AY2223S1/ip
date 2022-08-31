@@ -18,7 +18,7 @@ public class DeleteCommand extends Command{
     }
 
     /**
-     * Deletes task in the lastlist.
+     * Deletes task in the tasklist.
      *
      * @param tasks The task to be executed.
      */

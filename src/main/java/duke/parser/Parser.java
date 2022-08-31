@@ -4,9 +4,10 @@ import java.time.LocalDate;
 
 import duke.command.Command;
 import duke.command.AddCommand;
-import duke.command.DeleteCommand;
 import duke.command.ByeCommand;
 import duke.command.DateCommand;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnMarkCommand;
@@ -52,6 +53,8 @@ public class Parser {
                return listTasksOnDate(arguments);
             } else if ("delete".equalsIgnoreCase(commandType)) {
                return deleteTask(arguments);
+            } else if ("find".equalsIgnoreCase(commandType)) {
+                return findTask(arguments);
             } else {
                 throw new InvalidInputException();
             }
@@ -91,6 +94,14 @@ public class Parser {
         }
         int taskNo = Integer.parseInt(arguments[1]);
         return new DeleteCommand(taskNo);
+    }
+
+    private static Command findTask (String[] arguments) throws EmptyDescriptionException {
+        if (arguments.length == 1) {
+            throw new EmptyDescriptionException();
+        }
+        String keyword = arguments[1];
+        return new FindCommand(keyword);
     }
 
     private static Command markTask (String[] arguments) throws EmptyDescriptionException {
