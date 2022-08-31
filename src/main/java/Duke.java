@@ -14,8 +14,8 @@ public class Duke {
         this.numOfTasks = this.tasks.size();
     }
 
-    private String taskTense() {
-        return numOfTasks == 1 ? " task" : " tasks";
+    private String returnTaskTense(ArrayList<Task> tasks) {
+        return tasks.size() == 1 ? " task" : " tasks";
     }
 
     private void greet() {
@@ -34,9 +34,9 @@ public class Duke {
             System.out.println("Nothing to do right now...");
         } else {
             System.out.println("Tasks: ");
-            System.out.println(convertTasksToListString());
+            System.out.println(convertTasksToListString(tasks));
         }
-        System.out.println("You have " + numOfTasks + taskTense() + "!");
+        System.out.println("You have " + numOfTasks + returnTaskTense(tasks) + "!");
     }
 
     private void changeTaskStatus(int index, boolean bool) throws DukeException {
@@ -97,7 +97,7 @@ public class Duke {
         }
         saveToHardDisk();
         System.out.println("Got it. I've added this task:\n" + "  " + tasks.get(numOfTasks - 1).toString());
-        System.out.println("Now you have " + numOfTasks + taskTense() + " in the list.");
+        System.out.println("Now you have " + numOfTasks + returnTaskTense(tasks) + " in the list.");
     }
 
     private void deleteTask(int index) throws DukeException {
@@ -112,7 +112,7 @@ public class Duke {
     }
 
     private void saveToHardDisk() throws DukeException {
-        byte[] data = convertTasksToListString().getBytes();
+        byte[] data = convertTasksToListString(tasks).getBytes();
         Path p = Paths.get("./data/duke.txt");
         Path dataPath = Paths.get("./data");
 
@@ -132,9 +132,9 @@ public class Duke {
         }
     }
 
-    private String convertTasksToListString() {
+    private String convertTasksToListString(ArrayList<Task> tasks) {
         StringBuilder list = new StringBuilder();
-        for (int i = 0; i < numOfTasks; i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             String newLine = (i + 1) + ". " + tasks.get(i).toString() + "\n";
             list.append(newLine);
         }
@@ -182,6 +182,25 @@ public class Duke {
         return tasks;
     }
 
+    private void printTasksOnDate(String dateStr) throws DukeException {
+        ArrayList<Task> tasksOnDate = new ArrayList<>();
+        boolean isThereTasks = false;
+        for (Task t : tasks) {
+            if (t.isOnThisDate(dateStr)) {
+                tasksOnDate.add(t);
+                isThereTasks = true;
+            }
+        }
+        if (isThereTasks) {
+            System.out.println("These are the tasks on " + dateStr + ":");
+            System.out.println(convertTasksToListString(tasksOnDate));
+            System.out.println("You have " + tasksOnDate.size() + returnTaskTense(tasksOnDate)
+                    + " on " + dateStr + ".");
+        } else {
+            System.out.println("There are no tasks on this date!");
+        }
+    }
+
     private void exit() {
         System.out.println("Bye. Hope to see you again soon!");
     }
@@ -220,6 +239,9 @@ public class Duke {
                     } catch (Exception e) {
                         throw new DukeException("Please input a number!");
                     }
+                } else if (input.startsWith("tasks on")) {
+                    String[] str = input.split("tasks on", 2);
+                    duke.printTasksOnDate(str[1].trim());
                 } else {
                     duke.addTask(input);
                 }

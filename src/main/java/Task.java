@@ -19,6 +19,8 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public abstract boolean isOnThisDate(String dateStr) throws DukeException;
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
