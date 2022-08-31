@@ -23,7 +23,7 @@ public class Deadline extends Task {
         return String.format("[D] | %d | %s | %s",
                 isMarked() ? 1 : 0,
                 getName(),
-                time);
+                localDate.toString());
     }
 
 }
