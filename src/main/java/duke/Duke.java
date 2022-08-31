@@ -1,12 +1,13 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.util.Scanner;
 
 /**
  * Initializer for the overall duke program.
@@ -44,7 +45,6 @@ public class Duke {
     }
 
     /**
-     *
      * Reads and handles user input until parser returns boolean to indicate end.
      *
      */
@@ -63,6 +63,10 @@ public class Duke {
 
     }
 
+    /**
+     * Main method that initialises an instance of the Duke chatbot.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         Duke chatBotInstance = new Duke();
         chatBotInstance.run();
