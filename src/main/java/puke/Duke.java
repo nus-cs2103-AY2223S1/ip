@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -22,9 +23,13 @@ import javafx.scene.image.ImageView;
  */
 public class Duke extends Application {
 
+
     private ScrollPane scrollPane;
+
     private VBox dialogContainer;
+
     private TextField userInput;
+
     private Button sendButton;
     private Scene scene;
 
@@ -52,7 +57,7 @@ public class Duke extends Application {
         stage.show();
 
         //Step 2. Formatting the window to look as expected
-        stage.setTitle("Duke");
+        stage.setTitle("Puke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -114,7 +119,6 @@ public class Duke extends Application {
      * @return a label with the specified text that has word wrap enabled.
      */
     private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
@@ -126,9 +130,11 @@ public class Duke extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
+    @FXML
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        String input = userInput.getText();
+        Label userText = new Label(input);
+        Label dukeText = new Label(getResponse(input));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
@@ -141,7 +147,12 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            return "Puke says: " + puke(receiver, Duke.d, input);
+        } catch (DukeException e) {
+            System.out.println("error");
+            return e.toString();
+        }
     }
 
 
@@ -176,59 +187,60 @@ public class Duke extends Application {
     }
 
     
-    public static void puke(Scanner sc, Duke d) throws DukeException {
+    public static String puke(Scanner bc, Duke d,String input) throws DukeException {
+        Scanner sc = new Scanner(input);
         String a = sc.next();
         if (a.equals("bye")) {
-            Duke.d.ui.systemMessage(1,d, new ToDo(""));
             ended = true;
-            return;
+            return Duke.d.ui.systemMessage(1,d, new ToDo(""));
         }
         if (a.equals("list")) {
-            Duke.d.tasklist.listTasks();
-            puke(sc,d);
+            return Duke.d.tasklist.listTasks();
+            //puke(sc,d,input);
         }
         String s = sc.nextLine();
 
         if (a.equals("mark")) {
             int pos = Character.getNumericValue(s.charAt(1));
-            Duke.d.ui.taskManager("do", pos, d);
-            puke(sc,d);
+            return Duke.d.ui.taskManager("do", pos, d);
+            //puke(sc,d, "");
         } else if (a.equals("unmark")) {
             int pos = Character.getNumericValue(s.charAt(1));
-            Duke.d.ui.taskManager("undo", pos, d);
-            puke(sc,d);
+            return Duke.d.ui.taskManager("undo", pos, d);
+            //puke(sc,d,s);
         } else if (a.equals("todo")) {
             String desc = Duke.d.p.getMessage(s, "ToDo");
             Task newTask = new ToDo(desc);
             Duke.d.tasklist.addIncrement(newTask);
-            Duke.d.ui.systemMessage(2, d, newTask);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
-            puke(sc,d);
+            return Duke.d.ui.systemMessage(2, d, newTask);
+            //puke(sc,d, "");
         } else if (a.equals("deadline")) {
             String desc = Duke.d.p.getMessage(s, "Deadline");
             String date = Duke.d.p.getDate(s);
+            System.out.println(date);
             Task newTask = new Deadline(desc, LocalDate.parse(date));
             Duke.d.tasklist.addIncrement(newTask);
-            Duke.d.ui.systemMessage(2, d, newTask);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
-            puke(sc,d);
+            return Duke.d.ui.systemMessage(2, d, newTask);
+            //puke(sc,d, "");
         } else if (a.equals("event")) {
             String desc = Duke.d.p.getMessage(s, "Event");
             String date = Duke.d.p.getDate(s);
             Task newTask = new Event(desc, LocalDate.parse(date));
             Duke.d.tasklist.addIncrement(newTask);
-            Duke.d.ui.systemMessage(2, d, newTask);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
-            puke(sc,d);
+            return Duke.d.ui.systemMessage(2, d, newTask);
+            //puke(sc,d, "");
         } else if (a.equals("delete")) {
             int pos = Character.getNumericValue(s.charAt(1));
             Task temp = Duke.d.tasklist.tasks.get(pos - 1);
             Duke.d.tasklist.delete(pos - 1);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
-            Duke.d.ui.systemMessage(3, d, temp);
+            return Duke.d.ui.systemMessage(3, d, temp);
         } else if (a.equals("find")) {
             String temp = d.p.getFindTask(s);
-            Duke.d.tasklist.find(temp);
+            return Duke.d.tasklist.find(temp);
 
         } else {
             throw new DukeException("    ____________________________________________________________\n     " +
@@ -240,7 +252,7 @@ public class Duke extends Application {
     private static boolean ended = false;
     public static void startBot() {
         try {
-            puke(Duke.d.receiver, d);
+            puke(Duke.d.receiver, d, "");
         } catch (DukeException e) {
             System.out.println(e);
         } catch (StackOverflowError e) {

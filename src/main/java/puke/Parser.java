@@ -49,6 +49,7 @@ public class Parser {
             result += s.charAt(r);
         }
         return result;
+
     }
 
     public static String getFindTask(String s) {
