@@ -141,7 +141,8 @@ public class TaskList {
             System.out.printf("Now you have %d tasks in the list\n",
                     storage.size());
         } catch (DateTimeParseException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException("Invalid date format!\n " +
+                    "please enter date in yyyy-mm-dd hhMM format");
         }
 
     }
