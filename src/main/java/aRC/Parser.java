@@ -25,38 +25,33 @@ public class Parser {
     /**
      * Evaluates user's input according to a set of fixed commands
      * @param input User input represented by a String
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parse(String input) throws DukeException {
+    public String parse(String input) throws DukeException {
         String[] command = input.split(" ");
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
 
         switch (mainCommand) {
         case "list":
-            this.parseList(commandArgs);
-            break;
+            return this.parseList(commandArgs);
         case "mark":
-            this.parseMark(commandArgs);
-            break;
+            return this.parseMark(commandArgs);
         case "unmark":
-            this.parseUnmark(commandArgs);
-            break;
+            return this.parseUnmark(commandArgs);
         case "todo":
-            this.parseTodo(commandArgs);
-            break;
+            return this.parseTodo(commandArgs);
         case "deadline":
-            this.parseDeadline(commandArgs);
-            break;
+            return this.parseDeadline(commandArgs);
         case "event":
-            this.parseEvent(commandArgs);
-            break;
+            return this.parseEvent(commandArgs);
         case "delete":
-            this.parseDelete(commandArgs);
-            break;
+            return this.parseDelete(commandArgs);
         case "find":
-            this.parseFind(commandArgs);
-            break;
+            return this.parseFind(commandArgs);
+        case "bye":
+            return this.parseBye(commandArgs);
         default:
             throw new InvalidCommandException();
         }
@@ -65,68 +60,79 @@ public class Parser {
     /**
      * Parses the list command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws InvalidArgumentException If additional arguments are entered
      */
-    public void parseList(String[] commandArgs) throws InvalidArgumentException {
+    public String parseList(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
         } else {
-            this.taskList.listTasks("");
+            return this.taskList.listTasks("");
         }
     }
 
     /**
      * Parses the mark command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseMark(String[] commandArgs) throws DukeException {
+    public String parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else {
             int index = validateIndex(commandArgs[0]) - 1;
-            this.taskList.getTask(index).mark();
+            String output = this.taskList.getTask(index).mark();
             this.storage.save(this.taskList);
+
+            return output;
         }
     }
 
     /**
      * Parses the unmark command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseUnmark(String[] commandArgs) throws DukeException {
+    public String parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else {
             int index = this.validateIndex(commandArgs[0]) - 1;
-            this.taskList.getTask(index).unmark();
+            String output = this.taskList.getTask(index).unmark();
             this.storage.save(this.taskList);
+
+            return output;
         }
     }
 
     /**
      * Parses the todo command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseTodo(String[] commandArgs) throws DukeException {
+    public String parseTodo(String[] commandArgs) throws DukeException {
         String title = String.join(" ", commandArgs);
 
         if (title == "") {
             throw new EmptyTitleException();
         } else {
-            this.taskList.addTask(new Todo(title, false));
+            String output = this.taskList.addTask(new Todo(title, false));
             this.storage.save(this.taskList);
+
+            return output;
         }
     }
 
     /**
      * Parses the deadline command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseDeadline(String[] commandArgs) throws DukeException {
+    public String parseDeadline(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/by")) {
             throw new InvalidArgumentException();
         } else {
@@ -141,8 +147,10 @@ public class Parser {
                 throw new InvalidArgumentException();
             } else {
                 LocalDate ld = this.validateDateTime(deadline);
-                this.taskList.addTask(new Deadline(title, false, ld));
+                String output = this.taskList.addTask(new Deadline(title, false, ld));
                 this.storage.save(this.taskList);
+
+                return output;
             }
         }
     }
@@ -150,9 +158,10 @@ public class Parser {
     /**
      * Parses the event command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseEvent(String[] commandArgs) throws DukeException {
+    public String parseEvent(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/at")) {
             throw new InvalidArgumentException();
         } else {
@@ -166,8 +175,10 @@ public class Parser {
             } else if (time == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.taskList.addTask(new Event(title, false, time));
+                String output = this.taskList.addTask(new Event(title, false, time));
                 this.storage.save(this.taskList);
+
+                return output;
             }
         }
     }
@@ -175,29 +186,47 @@ public class Parser {
     /**
      * Parses the delete command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws DukeException Throws a aRC.DukeException specific to this program
      */
-    public void parseDelete(String[] commandArgs) throws DukeException {
+    public String parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else {
             int index = this.validateIndex(commandArgs[0]) - 1;
-            this.taskList.deleteTask(index);
+            String output = this.taskList.deleteTask(index);
             this.storage.save(this.taskList);
+
+            return output;
         }
     }
 
     /**
      * Parses the find command
      * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
      * @throws InvalidArgumentException If no arguments are entered
      */
-    public void parseFind(String[] commandArgs) throws InvalidArgumentException {
+    public String parseFind(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length == 0) {
             throw new InvalidArgumentException();
         } else {
             String keyword = String.join(" ", commandArgs);
-            this.taskList.listTasks(keyword);
+            return this.taskList.listTasks(keyword);
+        }
+    }
+
+    /**
+     * Parses the bye command
+     * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
+     * @throws InvalidArgumentException If additional arguments are entered
+     */
+    public String parseBye(String[] commandArgs) throws InvalidArgumentException {
+        if (commandArgs.length != 0) {
+            throw new InvalidArgumentException();
+        } else {
+            return UI.sayBye();
         }
     }
 

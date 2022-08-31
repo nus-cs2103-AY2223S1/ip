@@ -37,42 +37,48 @@ public class TaskList {
     /**
      * Prints out all Tasks whose title matches keyword
      * @param keyword Keyword of Task
+     * @return List of matching Tasks
      */
-    public void listTasks(String keyword) {
-        System.out.println(String.format(
-                "Listing the%s tasks in your list...", !keyword.equals("") ? " matching" : ""
+    public String listTasks(String keyword) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(
+                "Listing the%s tasks in your list...\n", !keyword.equals("") ? " matching" : ""
         ));
 
         if (this.arrayList.size() == 0) {
-            System.out.println("You have no current tasks :-(");
+            sb.append("\tYou have no current tasks :-(");
         }
 
         for (int i = 0; i < this.arrayList.size(); i++) {
             if (this.arrayList.get(i).title.toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println(String.format("\t%d. %s", i + 1, this.arrayList.get(i)));
+                sb.append(String.format("\t%d. %s\n", i + 1, this.arrayList.get(i)));
             }
         }
+
+        return sb.toString();
     }
 
     /**
      * Adds a new aRC.Task to arraylist
      * @param newTask The new aRC.Task to be added
+     * @return An output message
      */
-    public void addTask(Task newTask) {
+    public String addTask(Task newTask) {
         this.arrayList.add(newTask);
-        System.out.println(String.format(
+        return String.format(
                 "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.",
-                newTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
+                newTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s");
     }
 
     /**
      * Deletes a aRC.Task from arraylist
      * @param index The index of the aRC.Task to be deleted
+     * @return An output message
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task deletedTask = this.arrayList.remove(index);
-        System.out.println(String.format(
+        return String.format(
                 "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
-                deletedTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
+                deletedTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s");
     }
 }
