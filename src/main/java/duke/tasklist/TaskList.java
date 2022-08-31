@@ -2,10 +2,8 @@ package duke.tasklist;
 
 import duke.listobjects.ListObject;
 
-import javax.print.DocFlavor;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class TaskList implements Serializable {
 
@@ -18,7 +16,7 @@ public class TaskList implements Serializable {
         this.tasksList = new ArrayList<ListObject>();
     }
 
-    public void setTasks(ArrayList<ListObject> list){
+    public void setTasks(ArrayList<ListObject> list) {
         this.tasksList = list;
     }
 
@@ -42,7 +40,7 @@ public class TaskList implements Serializable {
         }
     }
 
-    public void handleItemAddition(ListObject obj){
+    public void handleItemAddition(ListObject obj) {
         this.tasksList.add(obj);
     }
 
@@ -54,16 +52,16 @@ public class TaskList implements Serializable {
         }
     }
 
-    public String knowTaskCount(){
+    public String knowTaskCount() {
         return tasksList.size() + " tasks ";
     }
 
-    public ArrayList<ListObject> storeAllTasks(){
+    public ArrayList<ListObject> storeAllTasks() {
         return this.tasksList;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String str = "";
         for (int i = 0; i < this.tasksList.size(); i++) {
             str = str + i + ". " + tasksList.get(i).toString();
