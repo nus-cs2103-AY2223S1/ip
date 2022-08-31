@@ -22,6 +22,12 @@ public class Storage {
         }
     }
 
+    private static void WriteToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, false); // create a FileWriter in append mode
+        fw.write(textToAppend + "\n");
+        fw.close();
+    }
+
     private static void appendToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
         fw.write(textToAppend + "\n");
@@ -34,6 +40,15 @@ public class Storage {
         //Task task = new Task(inp);
         try {
             appendToFile(f.getAbsolutePath(), task.toString() + "\n");
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+    }
+
+    public void Writedata(Task task) throws IOException {
+        //Task task = new Task(inp);
+        try {
+            WriteToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
