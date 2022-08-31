@@ -66,19 +66,19 @@ public class Storage {
             case "T":
                 t.add(new Todo(args[2]));
                 if (args[1].equals("1")) {
-                    t.mark(i + 1);
+                    t.mark(i);
                 }
                 break;
             case "D":
                 t.add(new Deadline(args[2], args[3]));
                 if (args[1].equals("1")) {
-                    t.mark(i + 1);
+                    t.mark(i);
                 }
                 break;
             case "E":
                 t.add(new Event(args[2], args[3]));
                 if (args[1].equals("1")) {
-                    t.mark(i + 1);
+                    t.mark(i);
                 }
                 break;
             }
