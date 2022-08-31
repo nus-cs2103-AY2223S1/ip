@@ -1,5 +1,5 @@
 public class InvalidFormattingException extends Exception {
-    public InvalidFormattingException(String taskType) {
+    public InvalidFormattingException(CommandType taskType) {
         super("Wrong formatting for a " + taskType + " bro.");
     }
 }

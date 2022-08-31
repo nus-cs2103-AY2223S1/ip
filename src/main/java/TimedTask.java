@@ -28,17 +28,17 @@ public abstract class TimedTask extends Task {
         }
 
         @Override
-        public String showStatus() {
+        public String getStatus() {
             String deadlineDate = convertLocalDate();
             String dateAndTime = this.deadlineTime != null
                                  ? deadlineDate + " " + this.deadlineTime
                                  : deadlineDate;
 
-            return "[D]" + super.showStatus() + " (by: " + dateAndTime + ")";
+            return "[D]" + super.getStatus() + " (by: " + dateAndTime + ")";
         }
 
         @Override
-        public String showTaskListTextDescription() {
+        public String getStorageDescription() {
             String finishedStatus = super.finished ? "finished" : "unfinished";
 
             if (this.deadlineTime == null) {
@@ -62,17 +62,17 @@ public abstract class TimedTask extends Task {
         }
 
         @Override
-        public String showStatus() {
+        public String getStatus() {
             String eventDate = convertLocalDate();
             String dateAndTime = this.eventStartTime != null
                                  ? eventDate + " " + eventStartTime + "-" + eventEndTime
                                  : eventDate;
 
-            return "[E]" + super.showStatus() + " (at: " + dateAndTime + ")";
+            return "[E]" + super.getStatus() + " (at: " + dateAndTime + ")";
         }
 
         @Override
-        public String showTaskListTextDescription() {
+        public String getStorageDescription() {
             String finishedStatus = super.finished ? "finished" : "unfinished";
             if (this.eventStartTime == null) {
                 return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date
