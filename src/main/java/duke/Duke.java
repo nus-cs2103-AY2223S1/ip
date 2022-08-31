@@ -19,7 +19,7 @@ public class Duke {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
+    private static final String GREETING = "Hello! I'm Duke!\n";
 
     private TaskList tasks;
     private boolean tasksEnd = false;
@@ -36,10 +36,10 @@ public class Duke {
      */
     public void run() {
 
-        Parser.printMsg(String.format("%s%s", LOGO, GREETING));
+        tasks = Storage.load();
+        Parser.printMsg(String.format("%s%sYou have %s. What can I do for you?", LOGO, GREETING, tasks.lengthString()));
 
         Scanner sc = new Scanner(System.in);
-        tasks = Storage.load();
 
         while (!tasksEnd) {
             System.out.print(">> ");
