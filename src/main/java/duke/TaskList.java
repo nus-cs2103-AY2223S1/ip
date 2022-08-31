@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * The TaskList class contains the list of tasks used in Duke.
  */
 public class TaskList {
-    ArrayList<Task> list;
+    private ArrayList<Task> list;
 
     /**
      * Constructor for TaskList.
@@ -29,7 +29,7 @@ public class TaskList {
     public void printTaskList() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i+1 + "." + list.get(i).toString());
+            System.out.println(i + 1 + "." + list.get(i).toString());
         }
     }
 
@@ -118,5 +118,13 @@ public class TaskList {
      */
     public int getSize() {
         return this.list.size();
+    }
+
+    /**
+     * Returns list.
+     * @return list.
+     */
+    public ArrayList<Task> getList() {
+        return this.list;
     }
 }

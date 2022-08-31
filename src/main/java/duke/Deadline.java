@@ -1,7 +1,7 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 
 /**
  * The Deadline class represents a deadline task.
@@ -23,7 +23,7 @@ public class Deadline extends Task {
             LocalDate d1 = LocalDate.parse("2019-12-01");
             byDate = LocalDate.parse(by);
         } catch (DateTimeException e) {
-
+            // Do nothing as the input is not parsable as a Date.
         }
     }
 

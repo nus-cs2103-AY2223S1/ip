@@ -8,10 +8,10 @@ import java.util.Scanner;
  */
 
 public class Parser {
-    String input = "";
-    Scanner scan = new Scanner(System.in);
-    String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event", "find"};
-    TaskList list;
+    private String input = "";
+    private Scanner scan = new Scanner(System.in);
+    private String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event", "find"};
+    private TaskList list;
 
     /**
      * Constructor for Parser.
@@ -23,7 +23,6 @@ public class Parser {
     }
 
     /**
-     *
      * @param input The String input from the user.
      * @return Whether "bye" has been inputted.
      */
@@ -37,59 +36,56 @@ public class Parser {
             try {
                 if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
                     switch (split[0]) {
-                        case "delete": { // Checks for delete
-                            int index = Integer.parseInt(split[1]) - 1;
-                            this.list.deleteTask(index);
-                            break;
+                    case "delete": // Checks for delete
+                        int index = Integer.parseInt(split[1]) - 1;
+                        this.list.deleteTask(index);
+                        break;
+                    case "mark": // Checks for mark
+                        index = Integer.parseInt(split[1]) - 1;
+                        this.list.markTask(index);
+                        break;
+                    case "unmark": // Checks for unmark
+                        index = Integer.parseInt(split[1]) - 1;
+                        this.list.unmarkTask(index);
+                        break;
+                    case "todo": // Checks for Todo
+                        if (split.length < 2) {
+                            throw new DukeException("todo");
+                        } else {
+                            String description = split[1];
+                            this.list.addTodo(description);
                         }
-                        case "mark": { // Checks for mark
-                            int index = Integer.parseInt(split[1]) - 1;
-                            this.list.markTask(index);
-                            break;
+                        break;
+                    case "deadline": // Checks for Deadline
+                        if (split.length < 2) {
+                            throw new DukeException("deadline");
+                        } else {
+                            String[] temp = split[1].split(" /by ", 2);
+                            String description = temp[0];
+                            String by = temp[1];
+                            this.list.addDeadline(description, by);
                         }
-                        case "unmark": { // Checks for unmark
-                            int index = Integer.parseInt(split[1]) - 1;
-                            this.list.unmarkTask(index);
-                            break;
+                        break;
+                    case "event": // Checks for Event
+                        if (split.length < 2) {
+                            throw new DukeException("event");
+                        } else {
+                            String[] temp = split[1].split(" /at ", 2);
+                            String description = temp[0];
+                            String when = temp[1];
+                            this.list.addEvent(description, when);
                         }
-                        case "todo":  // Checks for Todo
-                            if (split.length < 2) {
-                                throw new DukeException("todo");
-                            } else {
-                                String description = split[1];
-                                this.list.addTodo(description);
-                            }
-                            break;
-                        case "deadline": {  // Checks for Deadline
-                            if (split.length < 2) {
-                                throw new DukeException("deadline");
-                            } else {
-                                String[] temp = split[1].split(" /by ", 2);
-                                String description = temp[0];
-                                String by = temp[1];
-                                this.list.addDeadline(description, by);
-                            }
-                            break;
+                        break;
+                    case "find":
+                        if (split.length < 2) {
+                            throw new DukeException("find");
+                        } else {
+                            String keyword = split[1];
+                            this.list.findTask(keyword).printTaskList();
                         }
-                        case "event": {  // Checks for Event
-                            if (split.length < 2) {
-                                throw new DukeException("event");
-                            } else {
-                                String[] temp = split[1].split(" /at ", 2);
-                                String description = temp[0];
-                                String when = temp[1];
-                                this.list.addEvent(description, when);
-                            }
-                            break;
-                        }
-                        case "find": {
-                            if (split.length < 2) {
-                                throw new DukeException("find");
-                            } else {
-                                String keyword = split[1];
-                                this.list.findTask(keyword).printTaskList();
-                            }
-                        }
+                        break;
+                    default: // Default case
+                        System.out.println("Wrong input");
                     }
                 } else {
                     throw new DukeException(); // Invalid input

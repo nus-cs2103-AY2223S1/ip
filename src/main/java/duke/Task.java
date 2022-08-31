@@ -48,11 +48,11 @@ public class Task {
         this.isDone = false;
     }
 
-    @Override
     /**
      * Returns the string representation of the object.
      * @return String representation of the object.
      */
+    @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }

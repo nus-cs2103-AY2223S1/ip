@@ -1,20 +1,20 @@
 package duke;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The Storage class contains the methods required to load from
  * and save to the save file.
  */
 public class Storage {
-    File log;
-    ArrayList<Task> list;
-    String filepath;
+    private File log;
+    private ArrayList<Task> list;
+    private String filepath;
 
     /**
      * Constructor for Storage.
@@ -45,18 +45,17 @@ public class Storage {
             String taskString = readFile.nextLine();
             String[] split = taskString.split(" \\| ");
             switch (split[0]) {
-                case "T": { // Checks for Todo
-                    list.add(new Todo(split[2]));
-                    break;
-                }
-                case "D": { // Checks for Deadline
-                    list.add(new Deadline(split[2], split[3]));
-                    break;
-                }
-                case "E": { // Checks for Event
-                    list.add(new Event(split[2], split[3]));
-                    break;
-                }
+            case "T": // Checks for Todo
+                list.add(new Todo(split[2]));
+                break;
+            case "D": // Checks for Deadline
+                list.add(new Deadline(split[2], split[3]));
+                break;
+            case "E": // Checks for Event
+                list.add(new Event(split[2], split[3]));
+                break;
+            default: // Default case
+                System.out.println("Wrong input");
             }
             if (split[1] == "X") {
                 list.get(list.size() - 1).markAsDone();
@@ -78,7 +77,7 @@ public class Storage {
             System.out.println(e.getMessage());
         }
 
-        for (Task value : list.list) {
+        for (Task value : list.getList()) {
             String logTask = "";
             if (value instanceof Todo) {
                 Todo task = (Todo) value;

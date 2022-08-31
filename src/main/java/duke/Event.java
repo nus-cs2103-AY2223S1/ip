@@ -1,7 +1,7 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 
 /**
  * The Event class represents an event task.
@@ -23,7 +23,7 @@ public class Event extends Task {
         try {
             whenDate = LocalDate.parse(this.when);
         } catch (DateTimeException e) {
-
+            // Do nothing as the input is not parsable as a Date.
         }
     }
 
