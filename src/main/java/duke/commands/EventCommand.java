@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.tasks.EventTask;
-import duke.TaskList;
-import duke.Storage;
 import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.tasks.EventTask;
 
 /**
  * Command that represents the adding of a event task.
@@ -32,7 +32,7 @@ public class EventCommand implements Command {
      */
     @Override
     public void execute(TaskList tasks, Storage storage) throws DukeException {
-        EventTask newTask = new EventTask(eventName,eventLocationString);
+        EventTask newTask = new EventTask(eventName, eventLocationString);
         tasks.add(newTask);
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask);

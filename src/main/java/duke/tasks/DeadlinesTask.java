@@ -1,5 +1,5 @@
 package duke.tasks;
-import java.lang.annotation.Inherited;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -31,7 +31,8 @@ public class DeadlinesTask extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        return "[" + TaskType.D +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (by: " + this.getDeadline().format(formatter) + ")";
+        return "[" + TaskType.D + "]" + "[" + this.getStatusIcon() + "] " + this.getName()
+                + " (by: " + this.getDeadline().format(formatter) + ")";
     }
     /**
      * Return the String representation of the object in CSV.
@@ -44,8 +45,9 @@ public class DeadlinesTask extends Task {
      * @return String representation of Deadlines Task in CSV.
      */
     @Override
-    public String toCSV() {
+    public String toCsv() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        return TaskType.D + "," + this.getStatusIcon()  + "," + this.getName() + "," + this.getDeadline().format(formatter);
+        return TaskType.D + "," + this.getStatusIcon() + "," + this.getName() + ","
+                + this.getDeadline().format(formatter);
     }
 }

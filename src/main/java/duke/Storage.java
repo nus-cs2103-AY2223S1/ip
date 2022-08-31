@@ -1,16 +1,18 @@
 package duke;
 
-import duke.tasks.DeadlinesTask;
-import duke.tasks.EventTask;
-import duke.tasks.Task;
-import duke.tasks.TodoTask;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import duke.tasks.DeadlinesTask;
+import duke.tasks.EventTask;
+import duke.tasks.Task;
+import duke.tasks.TodoTask;
+
+
 
 /**
  * Class that manages the storage of tasks into the text file.
@@ -34,7 +36,7 @@ public class Storage {
      * @return TaskList object.
      */
     public TaskList load() {
-        File fileDir =  new File(directory);
+        File fileDir = new File(directory);
         fileDir.mkdir();
         File f = new File(directory + fileName);
         TaskList taskList = new TaskList();
@@ -54,7 +56,7 @@ public class Storage {
     }
 
     private Task parseLine(String entry) {
-        String[] entryArray  = entry.split(",");
+        String[] entryArray = entry.split(",");
         String taskType = entryArray[0];
         String name = entryArray[2];
         boolean isMarked = entryArray[1].equals("X");
@@ -84,7 +86,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(directory + "/duke.txt");
             for (int i = 0; i < tasks.getSize(); i++) {
-                fw.write(tasks.get(i).toCSV() + System.lineSeparator());
+                fw.write(tasks.get(i).toCsv() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {

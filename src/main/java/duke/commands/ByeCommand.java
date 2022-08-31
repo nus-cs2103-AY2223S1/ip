@@ -1,8 +1,8 @@
 package duke.commands;
 
-import duke.TaskList;
-import duke.Storage;
 import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
 
 /**
  * Commands that represents the bye command.

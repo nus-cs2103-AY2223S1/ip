@@ -1,10 +1,19 @@
 package duke;
 
-import duke.commands.*;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.EventCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.NumericCommand;
+import duke.commands.TodoCommand;
+
+
 
 /**
  * Class that manages the input text.
@@ -86,8 +95,8 @@ public class Parser {
     }
 
     private String combineStringArray(String[] inputStringArray, int start, int end) {
-        String[] subArray =  Arrays.asList(inputStringArray).subList(start,end).toArray(new String[0]);
-        String combinedString = Arrays.stream(subArray).reduce("", (a,b) -> a + " "+ b).trim();
+        String[] subArray = Arrays.asList(inputStringArray).subList(start, end).toArray(new String[0]);
+        String combinedString = Arrays.stream(subArray).reduce("", (a, b) -> a + " " + b).trim();
         return combinedString;
     }
 

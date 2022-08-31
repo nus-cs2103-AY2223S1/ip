@@ -1,10 +1,11 @@
 package duke.commands;
 
-import duke.tasks.DeadlinesTask;
-import duke.TaskList;
-import duke.Storage;
-import duke.DukeException;
 import java.time.LocalDateTime;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.tasks.DeadlinesTask;
 
 /**
  * Command that represents the adding of a deadline task.
