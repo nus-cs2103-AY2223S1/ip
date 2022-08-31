@@ -98,4 +98,34 @@ public class Ui {
     public static void showErrorMessage(DukeException exc) {
         message(oopsMessage + lineBreak + exc);
     }
+
+    public static String getGreetingMessage() {
+        return greetingMessage;
+    }
+
+    public static String getTaskStatusString(String prefix, Task task) {
+        return prefix + lineBreak + indent + task;
+    }
+
+    public static String getTaskListString(TaskList taskList) throws DukeException {
+        String msg = "";
+        if (taskList.getSize() == 0) {
+            throw new DukeException(noTasksMessage);
+        }
+        for (int i = 0; i < taskList.getSize(); i++) {
+            msg += i + 1 + ". " + taskList.get(i);
+            if (i < taskList.getSize() - 1)  {
+                msg += lineBreak;
+            }
+        }
+        return msg;
+    }
+
+    public static String getTerminationString() {
+        return byeMessage;
+    }
+
+    public static String getErrorMessageString(DukeException exc) {
+        return oopsMessage + lineBreak + exc;
+    }
 }

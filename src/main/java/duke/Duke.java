@@ -202,7 +202,47 @@ public class Duke extends Application {
     }
 
     private String getResponse(String input) {
-        return "Lurch heard: " + input;
+        try {
+            Parser currentCommand = new Parser(input);
+            String direction = currentCommand.getDirection();
+            String meta = currentCommand.getMeta();
+            switch (direction) {
+                case "bye":
+                    return Ui.getTerminationString();
+                case "list":
+                    return Ui.getTaskListString(this.tasks);
+                case "unmark":
+                    Task unmarked = this.tasks.unmark(currentCommand.extractIndex());
+                    return Ui.getTaskStatusString(unmarkMessage, unmarked);
+                case "mark":
+                    Task marked = this.tasks.mark(currentCommand.extractIndex());
+                    return Ui.getTaskStatusString(markMessage, marked);
+                case "delete":
+                    Task deleted = this.tasks.delete(currentCommand.extractIndex());
+                    return Ui.getTaskStatusString(deleteMessage, deleted);
+                case "todo":
+                    if (meta == null) throw new DukeException("Description cannot be empty");
+                    Task todo = this.tasks.add(new Todo(meta));
+                    return Ui.getTaskStatusString(addedMessage, todo);
+                case "deadline":
+                    if (meta == null) throw new DukeException("Description cannot be empty");
+                    Task deadline = this.tasks.add(new Deadline(meta));
+                    return Ui.getTaskStatusString(addedMessage, deadline);
+                case "event":
+                    if (meta == null) throw new DukeException("Description cannot be empty");
+                    Task event = this.tasks.add(new Event(meta));
+                    return Ui.getTaskStatusString(addedMessage, event);
+                case "find":
+                    if (meta == null) throw new DukeException("Query cannot be empty");
+                    TaskList filtered = this.tasks.filter(meta);
+                    if (filtered.getSize() == 0) throw new DukeException("No results found");
+                    return Ui.getTaskListString(filtered);
+                default:
+                    throw new DukeException(invalidCommandMessage);
+            }
+        } catch (DukeException e) {
+            return Ui.getErrorMessageString(e);
+        }
     }
 
     public static void main(String[] args) {
