@@ -1,4 +1,0 @@
-T | 0 | live
-D | 1 | love | 2022-12-12
-D | 0 | go home | 2021-12-12
-T | 0 | lose

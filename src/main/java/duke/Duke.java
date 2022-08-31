@@ -1,6 +1,7 @@
 package duke;
 
 import duke.commands.Command;
+import duke.exceptions.DukeUnknownCommandException;
 
 import java.io.IOException;
 
@@ -33,10 +34,14 @@ public class Duke {
         Ui.printWelcome();
 
         while (true) {
-            Ui.printAskForCommand();
-            String line = Ui.getCommand();
-            Command c = Parser.parse(line);
-            c.execute(this.storage);
+            try {
+                Ui.printAskForCommand();
+                String line = Ui.getCommand();
+                Command c = Parser.parse(line);
+                c.execute(this.storage);
+            } catch (DukeUnknownCommandException e) {
+                Ui.printError(e.getMessage());
+            }
         }
 
     }

@@ -25,8 +25,8 @@ public class Parser {
      * @param fullCommand input taken from Ui.
      * @return command to be executed.
      */
-    public static Command parse(String fullCommand)  {
-        try {
+    public static Command parse(String fullCommand) throws DukeUnknownCommandException  {
+
             if (fullCommand.equals("bye")) {
                 return new ExitCommand(fullCommand);
             }
@@ -65,11 +65,6 @@ public class Parser {
 
             throw new DukeUnknownCommandException();
 
-        } catch (DukeUnknownCommandException e) {
-            Ui.printError(e.getMessage());
-        }
-
-        return null;
 
     }
 }
