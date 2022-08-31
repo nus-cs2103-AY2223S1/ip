@@ -10,6 +10,11 @@ public class DescriptionEmptyException extends Exception {
     public DescriptionEmptyException(Type content) {
         this.type = content;
     }
+    /**
+     * Returns the message of the exception.
+     *
+     * @return The message of the exception.
+     */
     @Override
     public String getMessage() {
         return "☹ OOPS!!! The description of " + (type == Type.EVENT ? "an " : "a ")

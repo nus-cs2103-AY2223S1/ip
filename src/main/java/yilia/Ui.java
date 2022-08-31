@@ -1,9 +1,9 @@
 package yilia;
 
-import java.util.Scanner;
-
 import yilia.task.Task;
 import yilia.task.TaskList;
+
+import java.util.Scanner;
 
 /**
  * Represents the user interface to interact with users.
@@ -101,7 +101,14 @@ public class Ui {
     public void showTask(int index, TaskList tasks) {
         System.out.println(index + "." + tasks.get(index));
     }
-
+    /**
+     * Shows the index out of bounds.
+     *
+     * @param index The index of the task.
+     */
+    public void showIndexOutOfBounds(int index) {
+        System.out.println("Index " + index + " out of bounds\nPlease input another index");
+    }
     /**
      * Farewells to users.
      */

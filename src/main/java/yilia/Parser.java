@@ -1,18 +1,7 @@
 package yilia;
 
-import yilia.command.AddCommand;
-import yilia.command.Command;
-import yilia.command.DeleteCommand;
-import yilia.command.ExitCommand;
-import yilia.command.FindCommand;
-import yilia.command.ListCommand;
-import yilia.command.MarkCommand;
-import yilia.command.UnmarkCommand;
-import yilia.exception.DescriptionEmptyException;
-import yilia.exception.KeywordMissingException;
-import yilia.exception.NoIndexException;
-import yilia.exception.TimeFormatException;
-import yilia.exception.YiliaException;
+import yilia.command.*;
+import yilia.exception.*;
 
 /**
  * Represents the parser to parse text to other meaning types.
@@ -35,17 +24,32 @@ public class Parser {
             if (info.length == 1) {
                 throw new NoIndexException("delete");
             }
-            return new DeleteCommand(Integer.parseInt(info[1]));
+            String[] nums = info[1].strip().split(" ");
+            int[] indices = new int[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                indices[i] = Integer.parseInt(nums[i].strip());
+            }
+            return new DeleteCommand(indices);
         } else if (info[0].equals("mark")) {
             if (info.length == 1) {
                 throw new NoIndexException("mark");
             }
-            return new MarkCommand(Integer.parseInt(info[1]));
+            String[] nums = info[1].strip().split(" ");
+            int[] indices = new int[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                indices[i] = Integer.parseInt(nums[i].strip());
+            }
+            return new MarkCommand(indices);
         } else if (info[0].equals("unmark")) {
             if (info.length == 1) {
                 throw new NoIndexException("unmark");
             }
-            return new UnmarkCommand(Integer.parseInt(info[1]));
+            String[] nums = info[1].strip().split(" ");
+            int[] indices = new int[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                indices[i] = Integer.parseInt(nums[i].strip());
+            }
+            return new UnmarkCommand(indices);
         } else if (info[0].equals("deadline")) {
             if (info.length == 1) {
                 throw new DescriptionEmptyException(Type.DEADLINE);

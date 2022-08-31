@@ -23,6 +23,15 @@ public class AddCommand extends Command {
         this.text = text;
         this.type = type;
     }
+    /**
+     * Executes the add command.
+     *
+     * @param tasks The tasks.
+     * @param ui The use interface.
+     * @param storage The local storage.
+     * @throws DescriptionEmptyException  If the description of a task is empty.
+     * @throws TimeFormatException  If the given time format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DescriptionEmptyException, TimeFormatException {
         if (type.equals(Type.TODO)) {

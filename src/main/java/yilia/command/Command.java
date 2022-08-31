@@ -27,6 +27,8 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks The tasks.
+     * @param ui The use interface.
+     * @param storage The local storage.
      * @throws DescriptionEmptyException  If the description of a task is empty.
      * @throws TimeFormatException  If the given time format is invalid.
      */

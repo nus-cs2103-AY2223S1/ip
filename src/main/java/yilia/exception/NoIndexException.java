@@ -8,6 +8,11 @@ public class NoIndexException extends Exception {
     public NoIndexException(String operation) {
         this.operation = operation;
     }
+    /**
+     * Returns the message of the exception.
+     *
+     * @return The message of the exception.
+     */
     @Override
     public String getMessage() {
         return "Please specify the index of items to " + operation;

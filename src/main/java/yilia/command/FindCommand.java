@@ -12,6 +12,13 @@ public class FindCommand extends Command {
     public FindCommand(String content) {
         this.content = content;
     }
+    /**
+     * Executes the find command.
+     *
+     * @param tasks The tasks.
+     * @param ui The use interface.
+     * @param storage The local storage.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         for (int i = 1; i <= tasks.size(); i++) {

@@ -8,19 +8,27 @@ import yilia.task.TaskList;
  * Represents a command to mark a task as done.
  */
 public class MarkCommand extends Command {
-    private final int index;
+    private final int[] indices;
 
-    public MarkCommand(int index) {
-        this.index = index;
+    public MarkCommand(int... indices) {
+        this.indices = indices;
     }
-
+    /**
+     * Executes the mark command.
+     *
+     * @param tasks The tasks.
+     * @param ui The use interface.
+     * @param storage The local storage.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            tasks.get(index).setDone();
-            ui.showMarkStatus(tasks.get(index));
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index " + index + " out of bounds\nPlease input another index");
+        for (int i = 0; i < indices.length; i++) {
+            try {
+                tasks.get(indices[i]).setDone();
+                ui.showMarkStatus(tasks.get(indices[i]));
+            } catch (IndexOutOfBoundsException e) {
+                ui.showIndexOutOfBounds(indices[i]);
+            }
         }
     }
 }
