@@ -14,7 +14,7 @@ All you need to do is,
 
 1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.6/duke.jar).
 2. place it in the directory that you would like to place your task list at.
-3. double-click it.
+3. open your terminal in the same directory, enter `java -jar duke.jar`.
 4. follow this [tutorial](#tutorial) to add your tasks. :blush:
 
 **Features**: 
