@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class MainWindow {
@@ -26,6 +25,10 @@ public class MainWindow {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        //Prints Welcome Message
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(Ui.getWelcomeMessage(), dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {
