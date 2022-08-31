@@ -41,31 +41,31 @@ public class Storage {
             boolean isTaskDone = Integer.parseInt(parsedTaskTextRepresentation[1]) == 1;
             String taskDescription = parsedTaskTextRepresentation[2];
             switch (taskType) {
-                case "T":
-                    Task savedTodo = new Todo(taskDescription);
-                    if (isTaskDone) {
-                        savedTodo.setCompleted();
-                    }
-                    userTasks.add(savedTodo);
-                    break;
-                case "D":
-                    LocalDate taskDeadline = LocalDate.parse(parsedTaskTextRepresentation[3]);
-                    Task savedDeadline = new Deadline(taskDescription, taskDeadline);
-                    if (isTaskDone) {
-                        savedDeadline.setCompleted();
-                    }
-                    userTasks.add(savedDeadline);
-                    break;
-                case "E":
-                    String taskEventTime = parsedTaskTextRepresentation[3];
-                    Task savedEvent = new Event(taskDescription, taskEventTime);
-                    if (isTaskDone) {
-                        savedEvent.setCompleted();
-                    }
-                    userTasks.add(savedEvent);
-                    break;
-                default:
-                    throw new DukeException("Corrupted task file");
+            case "T":
+                Task savedTodo = new Todo(taskDescription);
+                if (isTaskDone) {
+                    savedTodo.setCompleted();
+                }
+                userTasks.add(savedTodo);
+                break;
+            case "D":
+                LocalDate taskDeadline = LocalDate.parse(parsedTaskTextRepresentation[3]);
+                Task savedDeadline = new Deadline(taskDescription, taskDeadline);
+                if (isTaskDone) {
+                    savedDeadline.setCompleted();
+                }
+                userTasks.add(savedDeadline);
+                break;
+            case "E":
+                String taskEventTime = parsedTaskTextRepresentation[3];
+                Task savedEvent = new Event(taskDescription, taskEventTime);
+                if (isTaskDone) {
+                    savedEvent.setCompleted();
+                }
+                userTasks.add(savedEvent);
+                break;
+            default:
+                throw new DukeException("Corrupted task file");
             }
         }
         return userTasks;

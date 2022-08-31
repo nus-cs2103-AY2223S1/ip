@@ -1,7 +1,8 @@
 package duke;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Scanner;
+
 
 /**
  * A task-keeping chatbot with a command line interface.
@@ -81,6 +82,7 @@ public class Duke {
                     break;
                 case FIND:
                     this.ui.showMatchingTasks(Parser.parseSearchInput(userResponse), this.tasks);
+                    break;
                 default:
                     break;
                 }

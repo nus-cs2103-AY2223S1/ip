@@ -61,7 +61,7 @@ public class Ui {
      * @param taskNumber Index of the task as in the task list.
      */
     public void showMarkSuccess(int taskNumber) {
-        System.out.println( "    " + "Nice! I've marked task "
+        System.out.println("    " + "Nice! I've marked task "
                 + (taskNumber + 1) + " as done.\n");
     }
 
@@ -82,8 +82,8 @@ public class Ui {
      * @param tasks Current list of tasks stored by the bot.
      */
     public void showRemoveTaskSuccess(int taskNumber, TaskList tasks) {
-        System.out.println("    " + "Noted. I've removed task " + (taskNumber + 1) + ".\n" +
-                "    " + "Now you have " + tasks.length() +  " tasks in the list.\n");
+        System.out.println("    " + "Noted. I've removed task " + (taskNumber + 1) + ".\n"
+                + "    " + "Now you have " + tasks.length() + " tasks in the list.\n");
     }
 
     /**
@@ -96,6 +96,12 @@ public class Ui {
                 + tasks.length() + " tasks in the list.\n");
     }
 
+    /**
+     * Prints the tasks matching the user query string.
+     *
+     * @param searchInput The query string to search for.
+     * @param tasks The current <code>TaskList</code>
+     */
     public void showMatchingTasks(String searchInput, TaskList tasks) {
         System.out.println("    " + "Here are the matching tasks in your list:\n");
         System.out.println(tasks.getMatchingTasksRepresentation(searchInput));

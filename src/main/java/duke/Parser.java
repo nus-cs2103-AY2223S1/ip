@@ -38,7 +38,7 @@ public class Parser {
     public static Todo parseTodoTask(String userInput) {
         String[] parsedUserResponse = userInput.split(" ");
         String newTaskDescription = String.join(" ",
-                Arrays.copyOfRange(parsedUserResponse,1, parsedUserResponse.length));
+                Arrays.copyOfRange(parsedUserResponse, 1, parsedUserResponse.length));
         return new Todo(newTaskDescription);
     }
 
@@ -160,10 +160,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user input into a query string to be matched.
+     *
+     * @param userInput
+     * @return A query string.
+     */
     public static String parseSearchInput(String userInput) {
         String[] parsedUserResponse = userInput.split(" ");
-        String searchInput = String.join(" ",
-                Arrays.copyOfRange(parsedUserResponse,1, parsedUserResponse.length));
+        String searchInput = String.join(" ", Arrays.copyOfRange(parsedUserResponse, 1, parsedUserResponse.length));
         return searchInput;
     }
 }
