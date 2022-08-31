@@ -1,3 +1,5 @@
+package duke;
+
 public class ToDoCommand extends Command {
     public String input;
 

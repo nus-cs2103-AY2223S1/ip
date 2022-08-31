@@ -1,3 +1,5 @@
+package duke;
+
 public class OnCommand extends Command {
     public String input;
 

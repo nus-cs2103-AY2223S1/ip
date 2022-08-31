@@ -1,10 +1,11 @@
-public class ExitCommand extends Command {
+package duke;
+
+public class GreetCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        storage.save(taskList);
-        ui.showExit();
+        ui.showGreeting();
     }
 
     public boolean isExit() {
-        return true;
+        return false;
     }
 }

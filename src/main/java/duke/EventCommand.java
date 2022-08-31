@@ -1,7 +1,9 @@
-public class DeadlineCommand extends Command {
+package duke;
+
+public class EventCommand extends Command {
     private final String input;
 
-    public DeadlineCommand(String input) {
+    public EventCommand(String input) {
         this.input = input;
     }
 
@@ -10,14 +12,14 @@ public class DeadlineCommand extends Command {
             throw new DukeException("Hold up! Description cannot be empty!");
         }
 
-        String[] str = input.split(" /by ", 2);
+        String[] str = input.split(" /at ", 2);
         if (str.length < 2 || str[1].trim().length() == 0) {
-            throw new DukeException("Wait! When is the deadline??");
+            throw new DukeException("Wait! When is this event??");
         }
-        Deadline newDeadline = new Deadline(str[0], str[1]);
+        Event newEvent = new Event(str[0], str[1]);
 
-        taskList.addTask(newDeadline);
-        ui.showAddTask(newDeadline, taskList);
+        taskList.addTask(newEvent);
+        ui.showAddTask(newEvent, taskList);
     }
 
     public boolean isExit() {
