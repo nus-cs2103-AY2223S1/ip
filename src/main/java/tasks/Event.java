@@ -1,17 +1,21 @@
 package tasks;
 
+import utils.DateParser;
+
+import java.time.LocalDate;
+
 public class Event extends Task {
 
-    private final String time;
+    private final LocalDate localDate;
 
-    public Event(String name, String time) {
+    public Event(String name, String dateStr) {
         super(name);
-        this.time = time;
+        localDate = DateParser.stringToDate(dateStr);
     }
 
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (at: " + time + ")";
+        return "[E] " + super.toString() + " (at: " + localDate.toString() + ")";
     }
 
 }
