@@ -1,95 +1,114 @@
 package duke;
 
 /**
- * Ui Class handling user interaction
+ * Ui Class handling response message.
  *
  * @author Elbert Benedict
  */
 public class Ui {
     /**
-     * Prints Welcome Message.
+     * Returns Welcome Message.
+     *
+     * @return Welcome Message.
      */
-    public static void printWelcomeMessage() {
-        System.out.println("Hello from Botto\nWhat can I do for you?");
+    public static String getWelcomeMessage() {
+        return "Hello from Botto\nWhat can I do for you?\n";
     }
 
     /**
-     * Prints Goodbye Message.
+     * Returns Goodbye Message.
+     *
+     * @return Goodbye Message.
      */
-    public static void printGoodbyeMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public static String getGoodbyeMessage() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
-     * Prints the newly added task by the user.
+     * Returns message regarding the newly added task.
      *
      * @param task the newly added task.
      * @param taskNumber the number of tasks in the Tasklist.
+     * @return message regarding the newly added task.
      */
-    public static void printTaskAdded(Task task, int taskNumber) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + taskNumber + " tasks in the list.");
+    public static String getTaskAddedMessage(Task task, int taskNumber) {
+        String message = "Got it. I've added this task:\n"
+                            + task.toString() + "\n"
+                            + "Now you have " + taskNumber + " tasks in the list.\n";
+
+        return message;
     }
 
     /**
-     * Prints the tasklist added by the user.
+     * Returns message for the tasklist.
      *
-     * @param taskList the list of tasks to be printed.
+     * @param taskList the list of tasks.
      */
-    public static void printTaskList(TaskList taskList) {
-        System.out.println("Here are the tasks in your list:");
-        taskList.printSelf();
+    public static String getTaskListMessage(TaskList taskList) {
+        String message = "Here are the tasks in your list:\n" + taskList.toString() + "\n";
+        return message;
     }
 
     /**
-     * Print the newly deleted task.
+     * Returns deleted task message.
      *
      * @param task the newly deleted task.
      * @param taskLeft the number of tasks left in the list.
+     * @return deleted task message.
      */
-    public static void printDeletedTask(Task task, int taskLeft) {
-        System.out.println("Noted. I have removed this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + taskLeft + " tasks in the list.");
+    public static String getDeletedTaskMessage(Task task, int taskLeft) {
+        String message = "Noted. I have removed this task:\n"
+                            + task + "\n"
+                            + "Now you have " + taskLeft + " tasks in the list.\n";
+
+        return message;
     }
 
     /**
-     * Print the task that has been newly marked.
+     * Returns marked task message.
      *
      * @param task the newly marked task.
+     * @return marked task message.
      */
-    public static void printMarkedTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
+    public static String getMarkedTaskMessage(Task task) {
+        String message = "Nice! I've marked this task as done:\n"
+                            + task + "\n";
+
+        return message;
     }
 
     /**
-     * Print the task that hast just been unmarked.
+     * Returns unmarked task message.
      *
      * @param task the task that is just unmarked.
+     * @return unmarked task message.
      */
-    public static void printUnmarkedTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task);
+    public static String getUnmarkedTaskMessage(Task task) {
+        String message = "OK, I've marked this task as not done yet:\n"
+                            + task;
+
+        return message;
     }
 
     /**
-     * Prints error message of a DukeException.
+     * Returns the error message of a DukeException.
      *
      * @param error The DukeException which message is to be printed.
+     * @return error message of DukeException.
      */
-    public static void printDukeError(DukeException error) {
-        System.out.println(error.getMessage());
+    public static String getDukeErrorMessage(DukeException error) {
+        return error.getMessage() + "\n";
     }
 
     /**
-     * Prints the list of filtered tasks.
+     * Returns the list of filtered tasks message.
      *
      * @param filteredTasks the filtered tasks.
      */
-    public static void printFilteredTasks(TaskList filteredTasks) {
-        System.out.println("Here are the matching tasks in your list:");
-        filteredTasks.printSelf();
+    public static String getFilteredTasksMessage(TaskList filteredTasks) {
+        String message = "Here are the matching tasks in your list:\n"
+                            +filteredTasks.toString();
+
+        return message;
     }
 }
