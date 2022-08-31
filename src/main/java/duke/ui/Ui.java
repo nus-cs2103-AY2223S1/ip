@@ -1,5 +1,7 @@
 package duke.ui;
 
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Scanner;
 
 import duke.DukeException;
@@ -17,24 +19,36 @@ public class Ui {
     private static final String EXCEPTION_HEADER = "!>>";
 
     private final Scanner sysInScanner;
+    private final PrintWriter printWriter;
 
     /**
-     * Sole construtor of Ui.
+     * Construtor of Ui. Constructed Ui will print to System.out.
      */
     public Ui() {
         sysInScanner = new Scanner(System.in);
+        printWriter = new PrintWriter(System.out);
+    }
+
+    /**
+     * Constructs UI that will print to the provided Writer.
+     * @param writer the provided Writer.
+     */
+    public Ui(Writer writer) {
+        sysInScanner = new Scanner(System.in);
+        printWriter = new PrintWriter(writer);
     }
 
     private void outputString(String out, String header) {
         String[] splitOut = out.split("\n");
-        System.out.print(header + " ");
-        System.out.println(splitOut[0]);
+        printWriter.print(header + " ");
+        printWriter.println(splitOut[0]);
         for (int i = 1; i < splitOut.length; i++) {
             for (int j = 0; j < header.length() + 1; j++) {
-                System.out.print(" ");
+                printWriter.print(" ");
             }
-            System.out.println(splitOut[i]);
+            printWriter.println(splitOut[i]);
         }
+        printWriter.flush();
     }
 
     /**
@@ -117,7 +131,8 @@ public class Ui {
      * @return the command String
      */
     public String readCommand() {
-        System.out.print("<< ");
+        printWriter.print("<< ");
+        printWriter.flush();
         return sysInScanner.nextLine();
     }
 
