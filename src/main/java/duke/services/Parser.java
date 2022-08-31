@@ -27,11 +27,9 @@ public class Parser {
                     if (words.length == 1 && words[0].equals("list")) {
                         TaskList.listTasks(); //could put words.length == 1 cases all here
                     } else if (words.length == 1 && words[0].equals("SAVE")) {
-                        Storage.willWipeData = false;
-                        UI.sayLines(new String[] {"Data will be saved on exit"});
+                        Storage.wipeDataOnExit(false);
                     } else if (words.length == 1 && words[0].equals("WIPE")) {
-                        Storage.willWipeData = true;
-                        UI.sayLines(new String[] {"Data will be wiped on exit"});
+                        Storage.wipeDataOnExit(true);
                     } else if (words[0].equals("todo")) {
                         TaskList.addTodo(words);
                     } else if (words[0].equals("deadline")) {
@@ -84,11 +82,12 @@ public class Parser {
             throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
-        return descBuilder.deleteCharAt(descBuilder.length()-1).toString();
+        return descBuilder.substring(0, descBuilder.length() - 1);
     }
 
     /**
-     * Retrieves the timing argument in the command, which must be of the form d/M/yyyy followed by an optional (h:mm)am/pm
+     * Retrieves the timing argument in the command, which must be of the form d/M/yyyy
+     * followed by an optional (h:mm)am/pm
      * @param words The words of the command entered, first is some valid command name
      * @param flag The flag that the timing belongs to
      * @return The timing specified in words
@@ -150,10 +149,10 @@ public class Parser {
      *
      * @param words The words of the command entered, first is always some valid command name
      * @return The task number specified
-     * @throws IllegalArgumentException If the argument(s) supplied in words isn't an integer from 1 to the number of stored tasks
+     * @throws IllegalArgumentException If words has an invalid number of arguments or invalid argument value
      */
     public static int getTaskNumber(String[] words) {
-        if (TaskList.getTaskCount() == 0) {
+        if (TaskList.getTasks().size() == 0) {
             throw new IllegalArgumentException("OOPS!!! No tasks stored for me to do that");
         }
 
@@ -161,11 +160,12 @@ public class Parser {
 
         try {
             taskNumber = (words.length == 2) ? Integer.parseInt(words[1]) : 0;
-            if (taskNumber <= 0 || taskNumber > TaskList.getTaskCount()) {
+            if (taskNumber <= 0 || taskNumber > TaskList.getTasks().size()) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("OOPS!!! The task number must be from 1 to " + TaskList.getTaskCount());
+            throw new IllegalArgumentException("OOPS!!! The task number must be from 1 to "
+                    + TaskList.getTasks().size());
         }
 
         return taskNumber;

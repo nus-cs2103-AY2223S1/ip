@@ -7,8 +7,8 @@ public class UI {
      */
     public static void introduceSelf() {
         sayLines(new String[] {
-                "Hello! I'm Duke",
-                "What can I do for you?",
+            "Hello! I'm Duke",
+            "What can I do for you?",
         });
     }
 
@@ -28,7 +28,7 @@ public class UI {
      */
     public static void sayGoodbye() {
         sayLines(new String[] {
-                "Bye. Hope to see you again soon!",
+            "Bye. Hope to see you again soon!",
         });
     }
 }

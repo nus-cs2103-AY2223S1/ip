@@ -7,11 +7,15 @@ import java.io.IOException;
  */
 public class Duke {
 
+    /**
+     * Activates all of Duke's functionalities until stopped, and records saved data
+     * @throws IOException From issues in loading and saving data
+     */
     public static void run() throws IOException {
-        Storage.LoadData();
+        Storage.loadData();
         UI.introduceSelf();
         Parser.handleUserInputs();
-        Storage.SaveData();
+        Storage.saveData();
         UI.sayGoodbye();
     }
 

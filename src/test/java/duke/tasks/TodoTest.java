@@ -1,15 +1,16 @@
 package duke.tasks;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Todo_Test {
+import org.junit.jupiter.api.Test;
+
+
+public class TodoTest {
     @Test
     public void testDescription() {
         assertEquals(new Todo("run").toString(), "[T][ ] run");
-        assertEquals(new Todo("create  test methods for every single class").toString(),
-                "[T][ ] create  test methods for every single class");
+        assertEquals(new Todo("create  test methods for class").toString(),
+                "[T][ ] create  test methods for class");
     }
 
     @Test

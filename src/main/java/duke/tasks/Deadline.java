@@ -11,7 +11,7 @@ public class Deadline extends Task {
     private String deadline;
 
     /**
-     * Constructs a new Deadline with the given description and deadline 
+     * Constructs a new Deadline with the given description and deadline
      *
      * @param description The task description
      * @param deadline The task deadline

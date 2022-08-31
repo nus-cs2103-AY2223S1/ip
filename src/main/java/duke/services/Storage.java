@@ -1,39 +1,41 @@
 package duke.services;
 
-import duke.tasks.*;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.BufferedReader;
 import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.io.IOException;
-
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.Files;
 import java.util.Arrays;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
 
 /** Handles saving and loading data */
 public class Storage {
 
     /** Saved data on the stored tasks */
-    private static File saveData;
+    private static File dataSaved;
 
     /** Is data going to be wiped on exit? */
-    public static boolean willWipeData = false;
+    private static boolean willWipeData = false;
 
     /**
      * Loads saved data on stored tasks from Duke_Tasks.txt if it exists, otherwise creates it
      *
      * @throws IOException If an I/O error occurs or the parent directory doesn't exist
      */
-    public static void LoadData() throws IOException {
+    public static void loadData() throws IOException {
         Path path = Paths.get("Duke_Tasks");
         boolean directoryExists = Files.exists(path);
         if (directoryExists) {
-            saveData = path.toFile();
-            BufferedReader br = new BufferedReader(new FileReader(saveData));
+            dataSaved = path.toFile();
+            BufferedReader br = new BufferedReader(new FileReader(dataSaved));
             String line = br.readLine();
             String[] words;
             Task task;
@@ -52,12 +54,24 @@ public class Storage {
                 if (line.charAt(1) == '1') {
                     task.markAsDone();
                 }
-                TaskList.tasks.add(task);
+                TaskList.getTasks().add(task);
                 line = br.readLine();
             }
         } else {
-            saveData = Files.createFile(path).toFile();
+            dataSaved = Files.createFile(path).toFile();
         }
+    }
+
+    /**
+     * Tells storage whether to wipe or save data on exit and displays outcome
+     *
+     * @param willWipe True/false will make data be wiped/saved on exit resp.
+     */
+    public static void wipeDataOnExit(boolean willWipe) {
+        willWipeData = willWipe;
+        UI.sayLines(new String[] {
+            "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"}
+        );
     }
 
     /**
@@ -65,23 +79,25 @@ public class Storage {
      *
      * @throws IOException If an I/O error occurs or the parent directory doesn't exist
      */
-    public static void SaveData() throws IOException {
-        new FileWriter(saveData).close();
+    public static void saveData() throws IOException {
+        new FileWriter(dataSaved).close();
         if (!willWipeData) {
-            BufferedWriter bf = new BufferedWriter(new FileWriter(saveData));
-            StringBuilder sb = new StringBuilder();
-            for (Task task : TaskList.tasks) {
+            BufferedWriter bf = new BufferedWriter(new FileWriter(dataSaved));
+            StringBuilder lineBuilder = new StringBuilder();
+            for (Task task : TaskList.getTasks()) {
                 //[typeSymbol][1 or 0] [desc] [flag] [timing]
-                sb.append(task.getTypeSymbol()).append(task.getStatusIcon().equals("X") ? '1' : '0').append(" ")
+                lineBuilder.append(task.getTypeSymbol())
+                        .append(task.getStatusIcon().equals("X") ? '1' : '0')
+                        .append(" ")
                         .append(task.getDescription());
                 if (task instanceof Deadline) {
-                    sb.append(" /by ").append(((Deadline) task).getEnteredDeadline());
+                    lineBuilder.append(" /by ").append(((Deadline) task).getEnteredDeadline());
                 } else if (task instanceof Event) {
-                    sb.append(" /at ").append(((Event) task).getEnteredTime());
+                    lineBuilder.append(" /at ").append(((Event) task).getEnteredTime());
                 }
-                bf.write(sb.toString());
+                bf.write(lineBuilder.toString());
                 bf.newLine();
-                sb = new StringBuilder();
+                lineBuilder = new StringBuilder();
             }
             bf.close();
         }

@@ -5,6 +5,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
+checkstyle {
+    toolVersion = '10.2'
+}
+
 group 'org.example'
 version '0.1'
 mainClassName = 'duke.services.Duke'
