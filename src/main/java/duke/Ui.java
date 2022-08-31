@@ -9,11 +9,9 @@ import duke.task.Task;
  */
 public class Ui {
     public static final String LOADING_ERROR_MESSAGE = "Task list is empty.";
-    public static final String GREETING_MESSAGE = "Hello! I'm RatatouilleBot ☺\n + " +
+    public static final String GREETING_MESSAGE = "Hello! I'm RatatouilleBot~\n" +
             "I follow instructions and do what you say.\n" +
             "What can I do for you?\n";
-    public static final String GOODBYE_MESSAGE = "Bye. Please don't leave me :( Hope to see you again soon!";
-
     /**
      * Constructs an Ui instance without initiating any parameter.
      */
@@ -30,15 +28,8 @@ public class Ui {
     /**
      * Prints greeting message when Duke is initialised.
      */
-    public void showGreetingMessage() {
-        System.out.println(GREETING_MESSAGE);
-    }
-
-    /**
-     * Prints goodbye message when Duke is terminated.
-     */
-    public void showGoodbyeMessage() {
-        System.out.println(GOODBYE_MESSAGE);
+    public String getGreetingMessage() {
+        return GREETING_MESSAGE;
     }
 
     /**

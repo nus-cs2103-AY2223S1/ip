@@ -9,6 +9,8 @@ import duke.Ui;
  */
 public class ExitCommand extends Command {
     public static final boolean IS_EXIT = true;
+    public static final String GOODBYE_MESSAGE = "Bye. Please don't leave me :( Hope to see you again soon!";
+
 
     /**
      * Constructs a ExitCommand instance without initiating any parameter.
@@ -26,7 +28,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        return "";
+        return GOODBYE_MESSAGE;
     }
 
     /**
