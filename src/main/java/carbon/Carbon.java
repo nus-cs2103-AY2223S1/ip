@@ -16,10 +16,9 @@ import carbon.error.CarbonException;
  * Interacts with user through CLI to keep track of tasks.
  * Requires user to provide input and call task management commands.
  */
-public class Carbon extends Application {
+public class Carbon {
     private boolean isRunning;
     private Ui ui;
-    private Gui gui;
     private Parser parser;
     private Storage storage;
 
@@ -57,10 +56,8 @@ public class Carbon extends Application {
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void start(Stage stage) {
-        this.gui = new Gui(stage);
+    public String getResponse(String input) {
+        return "111";
     }
 
     /**
