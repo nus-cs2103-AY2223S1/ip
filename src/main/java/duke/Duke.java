@@ -7,16 +7,12 @@ import duke.exceptions.DukeException;
 
 public class Duke {
     private Ui ui;
-    private Storage storage;
-    private TaskList tasks;
     private Parser parser;
     private boolean isEnded;
 
     public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage();
-        this.tasks = new TaskList(this.ui, this.storage);
-        this.parser = new Parser(ui, storage, tasks);
+        this.parser = new Parser(ui);
         this.isEnded = false;
     }
 
@@ -28,10 +24,22 @@ public class Duke {
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
-                isEnded = parser.handler(command);
+                String response = parser.handler(command);
+                if (response.equals("Bye. Hope to see you again soon!\n")) {
+                    isEnded = true;
+                }
+                System.out.println(response);
             } catch (DukeException e) {
-                ui.printException(e);
+                System.out.println(ui.printException(e));
             }
+        }
+    }
+
+    public String getResponse(String input) {
+        try {
+            return parser.handler(input);
+        } catch (DukeException e) {
+            return ui.printException(e);
         }
     }
 
