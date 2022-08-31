@@ -1,24 +1,33 @@
-# duke.Duke project template
+# Duke
+> “Your mind is for having ideas, not holding them.” – David Allen
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+A project which frees your mind of holding to the tasks you need to do. Duke is
+- Text-based: Suitable for people who type fast
+- User friendly: easy to remember commands
+- **FREE** to use
 
-## Setting up in Intellij
+All you need to do is:
+1. Download lastest version of Duke from [here](https://github.com/ngquyduc/ip/releases).
+2. Run Duke.
+3. Add your tasks and you are good to go.
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Try to get yourself familiar with Sheep
+- [ ] `todo Do something` to add a todo task 
+- [ ] `deadline Deadline /by 2022-08-31` to add add deadline 
+- [ ] `event Event /at 2022-08-31` to add an event 
+- [ ] `list` to list out all the tasks 
+- [ ] `mark 1` to mark the 1st task as done 
+- [ ] `unmark 1` to unmark the 1st task 
+- [ ] `delete 1` to delete the 1st task 
+- [ ] `bye` to close Duke and store all ongoing tasks :wave:
+
+If you want to load a list of tasks, you can load it by replacing ./data/tasks.txt with your file path in main() of file Duke.java
+
+```
+public static void main(String[] args) {
+    new Duke("./data/tasks.txt").run();
+}
+```
+
+Hope you have good experience with Duke!!!
