@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -41,8 +40,8 @@ public class AddTaskCommand extends Command {
      * @throws DukeException If the command is not properly formatted, or lacks information
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         Task addedTask = this.taskType.validateCommand(this.userInput);
-        Ui.prettyPrint(tasks.addTask(addedTask));
+        return tasks.addTask(addedTask);
     }
 }

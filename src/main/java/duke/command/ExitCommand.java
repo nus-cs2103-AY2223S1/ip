@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -9,13 +8,6 @@ import duke.task.TaskList;
  * Represents a command that exits the duke program.
  */
 public class ExitCommand extends Command {
-    /**
-     * Constructs an ExitCommand.
-     */
-    public ExitCommand() {
-        this.stillRunning = false;
-    }
-
     /**
      * Executes the ExitCommand, displays the farewell message and saves the specified task list
      * to the hard disk with the specified Storage.
@@ -25,8 +17,8 @@ public class ExitCommand extends Command {
      * @throws DukeException If the file could not be saved to the hard disk
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
-        Ui.prettyPrint("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         storage.writeToFile(tasks.toSaveFormat());
+        return "Bye. Hope to see you again soon!";
     }
 }
