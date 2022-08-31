@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -26,7 +28,7 @@ public class Parser {
             break;
         case "TODO":
             if (inputArray.length < 2) {
-                throw new DukeException("The description of a Todo cannot be empty");
+                throw new DukeException("The description of a duke.Todo cannot be empty");
             }
             String[] taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
             tl.createToDo(taskDesc, ui);

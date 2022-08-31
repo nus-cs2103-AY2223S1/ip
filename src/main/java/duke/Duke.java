@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.io.IOException;

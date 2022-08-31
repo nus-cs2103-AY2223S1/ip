@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.Path;
@@ -19,10 +21,10 @@ public class Storage {
         writer.flush();
         for (Task curTask : taskList) {
             if (curTask instanceof Event) {
-                writer.write("Event | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + " | "
+                writer.write("duke.Event | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + " | "
                         + ((Event) curTask).getDatetime() + "\n");
             } else if (curTask instanceof Todo) {
-                writer.write("Todo | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + "\n");
+                writer.write("duke.Todo | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + "\n");
             } else if (curTask instanceof Deadline) {
                 writer.write("Deadline | " + curTask.getStatusNumber() + " | " + curTask.getDescription()
                         + " | " + ((Deadline) curTask).getDatetime() + "\n");
@@ -38,7 +40,7 @@ public class Storage {
         while (taskLine != null) {
             String[] taskDetails = taskLine.split("\\s\\|\\s");
             switch (taskDetails[0]) {
-            case "Event":
+            case "duke.Event":
                 Task loadEvent = new Event(taskDetails[2], taskDetails[3]);
                 if (taskDetails[1].equals("0")) {
                     loadEvent.markAsUndone();
@@ -58,7 +60,7 @@ public class Storage {
                 inputTasks.add(loadDeadline);
                 taskLine = reader.readLine();
                 break;
-            case "Todo":
+            case "duke.Todo":
                 Task loadTodo = new Todo(taskDetails[2]);
                 if (taskDetails[1].equals("0")) {
                     loadTodo.markAsUndone();
