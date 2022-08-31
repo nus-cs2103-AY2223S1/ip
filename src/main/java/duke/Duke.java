@@ -78,4 +78,25 @@ public class Duke {
         Duke duke = new Duke(SAVE_LOCATION);
         duke.run();
     }
+
+    public String getResponse(String input) {
+        // Split input to its proper form
+        String command;
+        String description;
+        if (input.contains(" ")) {
+            int index = input.indexOf(' ');
+            command = input.substring(0, index);
+            description = input.substring(index);
+        } else {
+            command = input;
+            description = "";
+        }
+
+        try {
+            Command c = Parser.parse(command, description, tasks);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return ui.printErr(e.getMessage());
+        }
+    }
 }
