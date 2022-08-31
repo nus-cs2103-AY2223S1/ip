@@ -2,17 +2,17 @@ package duke.chatbot.command;
 
 import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.Deadline;
-import duke.chatbot.parser.Parser;
+import duke.chatbot.util.MessageBuilder;
+import duke.chatbot.util.Parser;
 
 /**
  * A command that adds an instance of Deadline to the list of tasks
  * stored in the Duke application instance.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class AddDeadlineCommand extends Command {
     public AddDeadlineCommand(List<String> arguments) {
@@ -28,11 +28,11 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public CommandResult execute() throws InvalidInputException {
-        List<String> message = new ArrayList<>();
+        MessageBuilder message = new MessageBuilder();
         Deadline task = new Deadline(arguments.get(0), Parser.parseDateTime(arguments.get(1)));
         taskList.add(task);
-        message.add(MESSAGE_ADDED_TASK);
-        message.add(task.toString());
-        return new CommandResult(message);
+
+        message.addLines(MESSAGE_ADDED_TASK, task.toString());
+        return new CommandResult(message.toString());
     }
 }

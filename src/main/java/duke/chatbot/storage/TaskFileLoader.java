@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
-import duke.chatbot.parser.Parser;
+import duke.chatbot.util.Parser;
 
 /**
  * A file loader which loads tasks into the application task list
  * during runtime.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class TaskFileLoader {
     /** The file to load the list of tasks from */

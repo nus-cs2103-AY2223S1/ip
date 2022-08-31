@@ -2,17 +2,17 @@ package duke.chatbot.command;
 
 import static duke.chatbot.common.Message.MESSAGE_MARKED;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import duke.chatbot.data.task.Task;
+import duke.chatbot.util.MessageBuilder;
 
 /**
  * A command that marks the targeted task from the
  * list of Task in the application. The targeted
  * is chosen by an argument string with an integer in
  * the argument list.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class MarkCommand extends Command {
     public MarkCommand(List<String> arguments) {
@@ -26,13 +26,11 @@ public class MarkCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        List<String> message = new ArrayList<>();
-        message.add(MESSAGE_MARKED);
-
+        MessageBuilder message = new MessageBuilder();
         int entryNo = Integer.parseInt(arguments.get(0));
         Task task = taskList.get(entryNo);
         task.markDone();
-        message.add(task.toString());
-        return new CommandResult(message);
+        message.addLines(MESSAGE_MARKED, task.toString());
+        return new CommandResult(message.toString());
     }
 }

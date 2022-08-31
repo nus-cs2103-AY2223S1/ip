@@ -8,7 +8,7 @@ import duke.chatbot.data.task.TaskList;
 
 /**
  * A file saver which saves a list of tasks onto a file.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class TaskFileSaver {
     /** The file to save the list of tasks on */

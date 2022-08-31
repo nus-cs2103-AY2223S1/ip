@@ -2,13 +2,10 @@ package duke.chatbot.command;
 
 import static duke.chatbot.common.Message.MESSAGE_BYE;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A command that prints a farewell message and closes
  * the application.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class ExitCommand extends Command {
     /**
@@ -18,8 +15,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        List<String> message = new ArrayList<>();
-        message.add(MESSAGE_BYE);
-        return new CommandResult(message);
+        return new CommandResult(MESSAGE_BYE);
     }
 }
