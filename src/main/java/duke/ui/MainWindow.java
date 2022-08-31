@@ -1,5 +1,7 @@
-package duke;
+package duke.ui;
 
+import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,12 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.util.Objects;
-
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+
+    private static final String TERMINATE = "Bye. See you next time.";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -25,16 +27,25 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/userImage.png")));
-    private final Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/dukeImage.png")));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/userImage.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/dukeImage.png"));
 
+    /**
+     * Initialises Duke
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello! I'm Duke, What can I do for you?", dukeImage)
+        );
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    /**
+     * Set the Duke object
+     */
+    public void setDuke(Duke duke) {
+        this.duke = duke;
     }
 
     /**
@@ -50,5 +61,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (response.trim().equals(TERMINATE)) {
+            Platform.exit();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 import javafx.application.Application;
 
@@ -10,3 +10,4 @@ public class Launcher {
         Application.launch(Main.class, args);
     }
 }
+

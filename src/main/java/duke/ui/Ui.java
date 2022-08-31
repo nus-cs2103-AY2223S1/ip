@@ -1,7 +1,6 @@
 package duke.ui;
 
 import java.util.List;
-import java.util.Scanner;
 
 import duke.task.Task;
 
@@ -15,13 +14,6 @@ public class Ui {
     public Ui() {
         response = new StringBuilder();
     }
-
-//    /**
-//     * Shows the welcome message
-//     */
-//    public void showWelcome() {
-//        System.out.println(dialog("Hello! I'm Duke", "What can I do for you?"));
-//    }
 
     /**
      * To empty the response
@@ -52,7 +44,8 @@ public class Ui {
      * Shows that the command is not recognised.
      */
     public void showUnknownCommand() {
-        appendToResponse("I'm sorry, but I don't know what that means :-(", "Try HELP to find out the list of commands.");
+        appendToResponse("I'm sorry, but I don't know what that means :-(",
+                    "Try HELP to find out the list of commands.");
     }
 
     /**

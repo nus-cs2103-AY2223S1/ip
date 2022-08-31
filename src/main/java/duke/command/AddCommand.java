@@ -28,8 +28,4 @@ public class AddCommand extends Command {
         ui.showAddTask(taskToAdd, tasks.getNumOfRemainingTasks());
     }
 
-    @Override
-    public boolean bye() {
-        return false;
-    }
 }

@@ -34,8 +34,4 @@ public class DeleteCommand extends Command {
         ui.showDeletedTask(taskToDelete, tasks.getNumOfRemainingTasks());
     }
 
-    @Override
-    public boolean bye() {
-        return false;
-    }
 }

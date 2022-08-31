@@ -1,8 +1,9 @@
-package duke;
+package duke.ui;
 
 import java.io.IOException;
 import java.util.Objects;
 
+import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,7 +27,8 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.setTitle("Duke");
-            stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResource("/images/dukeImage.png")).openStream()));
+            stage.getIcons().add(new Image(Objects.requireNonNull(
+                        Main.class.getResource("/images/dukeImage.png")).openStream()));
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {

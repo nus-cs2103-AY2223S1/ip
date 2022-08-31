@@ -42,8 +42,4 @@ public class MarkCommand extends Command {
         ui.showTask(taskToMark);
     }
 
-    @Override
-    public boolean bye() {
-        return false;
-    }
 }

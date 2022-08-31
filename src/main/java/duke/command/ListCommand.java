@@ -14,8 +14,4 @@ public class ListCommand extends Command {
         ui.showList(tasks.getTasks());
     }
 
-    @Override
-    public boolean bye() {
-        return false;
-    }
 }

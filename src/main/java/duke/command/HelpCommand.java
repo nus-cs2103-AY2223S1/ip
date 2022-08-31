@@ -14,9 +14,5 @@ public class HelpCommand extends Command {
         ui.showHelpMenu();
     }
 
-    @Override
-    public boolean bye() {
-        return false;
-    }
 
 }

@@ -14,8 +14,4 @@ public class ExitCommand extends Command {
         ui.showBye();
     }
 
-    @Override
-    public boolean bye() {
-        return true;
-    }
 }

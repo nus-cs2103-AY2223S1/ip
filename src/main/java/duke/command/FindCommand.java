@@ -27,9 +27,4 @@ public class FindCommand extends Command {
         List<Task> taskList = tasks.find(stringToFind).getTasks();
         ui.showFindTask(taskList);
     }
-
-    @Override
-    public boolean bye() {
-        return false;
-    }
 }

@@ -19,10 +19,4 @@ public abstract class Command {
      */
     public abstract void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException;
 
-    /**
-     * A simple method to check whether the current Command is an Exit Command.
-     *
-     * @return True if the command is Exit Command, false otherwise.
-     */
-    public abstract boolean bye();
 }
