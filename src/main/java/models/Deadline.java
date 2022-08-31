@@ -1,3 +1,5 @@
+package models;
+
 public class Deadline extends Task {
     protected formatDate date;
 
@@ -13,6 +15,6 @@ public class Deadline extends Task {
 
     @Override
     public String toSave() {
-        return "D" + super.toSave() + this.description + "| " + this.by;
+        return "D" + super.toSave() + this.description + "| " + this.date;
     }
 }

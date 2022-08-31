@@ -1,7 +1,6 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-class Event extends Task {
+package models;
+
+public class Event extends Task {
     protected formatDate date;
 
     public Event(String description, String at) {
@@ -16,6 +15,6 @@ class Event extends Task {
 
     @Override
     public String toSave() {
-        return "E" + super.toSave() + this.description + "| " + this.at;
+        return "E" + super.toSave() + this.description + "| " + this.date;
     }
 }
