@@ -21,19 +21,21 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/falcon.jpg"));
+    private Image falconImage = new Image(this.getClass().getResourceAsStream("/images/falcon.jpg"));
+
+    public void setDuke(Duke d) {
+        duke = d;
+    }
 
     @FXML
     private void handleUserInput() {
-        String input = duke.run();
-        String response = duke.run();
+        String input = userInput.getText();
+        String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, falconImage)
         );
         userInput.clear();
-
-
     }
 
 }

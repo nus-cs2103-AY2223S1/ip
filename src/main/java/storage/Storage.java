@@ -38,7 +38,7 @@ public class Storage {
     private void getPath(String pathString) throws DukeException {
         String currPath = System.getProperty("user.dir");
         if (currPath.contains("ip")) {
-            this.path = Paths.get(currPath, "src", "main", "java", pathString);
+            this.path = Paths.get(currPath, "ip", "src", "main", "java", pathString);
         } else {
             throw new DukeException("Cannot run from outside of ip folder of Duke");
         }

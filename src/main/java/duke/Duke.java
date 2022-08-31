@@ -33,10 +33,10 @@ public class Duke extends Application {
 
     /**
      * Constructor.
-     * @param filePath Path where disk file should be created.
      */
-    public Duke(String filePath) {
+    public Duke() {
         try {
+            String filePath = "data/tasks.txt";
             ui = new UI();
             storage = new Storage(filePath);
             tasks = storage.syncArrayList();
@@ -46,29 +46,25 @@ public class Duke extends Application {
         }
     }
 
+
     /**
-     * Runs duke.Duke program.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.greetUser();
+    public String getResponse(String input) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+        try {
+            Command c =  Parser.parse(input);
+            ui.setCurrentInput(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+            if (isExit) {
+                System.exit(0);
             }
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
         }
-
-
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        String response = ui.getResponse();
+        return response;
     }
 }

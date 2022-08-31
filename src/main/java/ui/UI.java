@@ -100,4 +100,8 @@ public class UI {
     public String getResponse() {
     return this.response;
     }
+
+    public void setCurrentInput(String input) {
+        this.currentInput = input;
+    }
 }
