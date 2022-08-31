@@ -6,17 +6,13 @@ import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
 /**
- * Abstraction to list all tasks stored in a TaskList.
+ * Encapsulates clearing the stage's scrollPane.
  *
  * @author Kartikeya
  */
-public class ListItemsCommand implements Command {
-    /**
-     * {@inheritDoc}
-     * Shows contents of itemList to user.
-     */
+public class ClearScreenCommand implements Command {
     @Override
     public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
-        return itemList.toString();
+        return "Screen cleared!";
     }
 }

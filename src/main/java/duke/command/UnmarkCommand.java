@@ -22,9 +22,9 @@ public class UnmarkCommand implements Command {
      * Marks task at given index as incomplete, and shows output to user.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
         try {
-            ui.showToUser(itemList.unmark(Integer.parseInt(index)));
+            return itemList.unmark(Integer.parseInt(index));
         } catch (NumberFormatException e) {
             throw new DukeException("Please attach a valid number to the command.");
         }

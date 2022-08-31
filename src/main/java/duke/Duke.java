@@ -48,7 +48,17 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        new Duke().run();
+    /**
+     * Executes instructions passed into Apollo.
+     * @param input the input string
+     * @return the output string
+     */
+    public String execute(String input) {
+        try {
+            Command c = Parser.parseUserInput(input);
+            return c.execute(itemList, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

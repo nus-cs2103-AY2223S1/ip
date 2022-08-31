@@ -30,8 +30,8 @@ public class FindCommand implements Command {
      * Finds tasks matching input string, and shows output to user.
      */
     @Override
-    public void execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
-        ui.showToUser(executeFindItems(input, itemList));
+    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+        return executeFindItems(input, itemList);
     }
 
     /**
