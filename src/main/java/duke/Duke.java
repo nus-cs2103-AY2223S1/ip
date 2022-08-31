@@ -1,8 +1,7 @@
 package duke;
 
-import com.sun.tools.javac.Main;
-import java.lang.reflect.ParameterizedType;
 import java.util.Scanner;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
@@ -10,11 +9,19 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+
+/**
+ * Entry point of the Duke Chat Bot application
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
+    /** Ui class that prints terminal output. */
     private Ui ui;
-//    private Storage storage;
+
+    /** The list of tasks. */
     private TaskList tasks;
 
+    /** Constructor for Class Duke/ */
     public Duke() {
         this.ui = new Ui();
         try {
@@ -28,31 +35,23 @@ public class Duke {
         new Duke().run();
     }
 
+    /** Runs the program. */
     public void run () {
         this.ui.showWelcomeMessage();
-//        Scanner sc = new Scanner(System.in);
-//        while (true) {
-//            System.out.println("Enter your command:");
-//            String input = sc.nextLine();
-//            this.ui.echo(this.taskList, input);
-//        }
         Scanner sc = new Scanner(System.in);
         boolean isExit = false;
         while (!isExit) {
             try {
-                String fullCommand = ui.readCommand(sc);
-//                System.out.println(fullCommand);
-                ui.showLine(); // show the divider line ("_______")
+                String fullCommand = sc.nextLine();
+                ui.showLine();
                 Command c = Parser.parseCommand(fullCommand);
                 c.execute(this.tasks);
                 isExit = c.isExit();
-            } catch (Exception e) {
+            } catch (DukeException e) {
                 ui.showError(e);
             } finally {
                 ui.showLine();
             }
         }
     }
-
-
 }

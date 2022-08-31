@@ -2,18 +2,34 @@ package duke.command;
 
 import duke.task.TaskList;
 
-public class deleteCommand extends Command{
+/**
+ * DeleteCommand class to delete a task
+ */
+public class DeleteCommand extends Command{
     private int taskNo;
 
-    public deleteCommand (int taskNo){
+    /**
+     * Constructor of delete command.
+     *
+     * @param taskNo The task number to be deleted.
+     */
+    public DeleteCommand(int taskNo){
         this.taskNo = taskNo;
     }
 
+    /**
+     * Deletes task in the lastlist.
+     *
+     * @param tasks The task to be executed.
+     */
     @Override
     public void execute(TaskList tasks) {
         tasks.deleteTask(taskNo);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public boolean isExit() {
         return false;
