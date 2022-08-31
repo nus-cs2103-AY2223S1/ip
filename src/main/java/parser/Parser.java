@@ -12,7 +12,6 @@ import task.TaskList;
  * Handles the processing of user input and commands Bocil to do specific tasks.
  */
 public class Parser {
-
     /** Date patterns accepted by the parser. */
     private static final String[] DATE_PATTERNS = {
         "yyyy-M-d HH:mm", "yyyy/M/d HH:mm", "yyyy M d HH:mm",

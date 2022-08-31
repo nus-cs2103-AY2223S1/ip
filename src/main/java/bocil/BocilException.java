@@ -4,7 +4,6 @@ package bocil;
  * Describes all the exception handled by the program.
  */
 public class BocilException extends Exception {
-
     private static final String EMPTY_INPUT = "Please enter something!";
     private static final String FILE_NOT_FOUND = "I cannot find your file";
     private static final String INVALID_INDEX = "The task number is invalid";

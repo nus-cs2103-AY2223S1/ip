@@ -4,7 +4,6 @@ package task;
  * Represents todo tasks in the task list.
  */
 public class Todo extends Task {
-
     /**
      * Constructs an unmarked {@link Todo} object.
      *

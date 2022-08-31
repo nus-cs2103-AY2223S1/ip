@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Stores {@link Task} objects in an {@link ArrayList} object.
  */
 public class TaskList {
-
     private final ArrayList<Task> taskList;
 
     /**

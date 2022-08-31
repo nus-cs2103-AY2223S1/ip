@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
  * Represents event tasks in the task list.
  */
 public class Event extends Task {
-
     private final LocalDateTime time;
 
     /**

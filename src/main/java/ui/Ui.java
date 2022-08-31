@@ -6,18 +6,13 @@ import java.util.Scanner;
  * Handles interactions with the user.
  */
 public class Ui {
-
     private static final String BORDER = "_".repeat(60);
-    private final String name;
     private final Scanner sc;
 
     /**
      * Constructs a {@link Ui} object.
-     *
-     * @param name Name of the UI.
      */
-    public Ui(String name) {
-        this.name = name;
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 
@@ -31,9 +26,9 @@ public class Ui {
     }
 
     /**
-     * Formats the Duke's response in a specific format.
+     * Formats Bocil's response in a specific format.
      *
-     * @param input Response of the Duke that needs to be formatted.
+     * @param input Response of Bocil that needs to be formatted.
      * @return Output in a bordered format.
      */
     public String prettifyOutput(String input) {
@@ -41,22 +36,12 @@ public class Ui {
     }
 
     /**
-     * Prints the formatted Duke's response.
+     * Prints the formatted Bocil's response.
      *
-     * @param output Formatted response of the Duke.
+     * @param output Formatted response of Bocil.
      */
     public void printOutput(String output) {
         System.out.println(prettifyOutput(output));
-    }
-
-    /**
-     * Prints the introduction line of the UI.
-     */
-    public void introduce() {
-        String line1 = String.format("Hello! I'm %s", this.name);
-        String line2 = "What can I do for you?";
-        String join = String.join("\n", line1, line2);
-        this.printOutput(join);
     }
 
     /**

@@ -13,7 +13,6 @@ import task.Todo;
  * Executes commands on the task list and creates the program's response to the user input
  */
 public class Executor {
-
     private final TaskList taskList;
 
     /**
@@ -177,7 +176,7 @@ public class Executor {
     public String showList(String input) throws BocilException {
         if (input.equals("list")) {
             if (taskList.getSize() > 0) {
-                String header = "Here are the tasks in your list";
+                String header = "Here are the tasks in your list:";
                 return String.join("\n", header, taskList.toString());
             } else {
                 return "There are no tasks in your list";

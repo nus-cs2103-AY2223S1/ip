@@ -18,7 +18,6 @@ import task.Todo;
  * Stores the task list in a text file.
  */
 public class Storage {
-
     private final String filePath;
     private final Parser parser;
 

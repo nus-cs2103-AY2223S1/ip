@@ -4,7 +4,6 @@ package task;
  * Represents tasks in the task list.
  */
 public abstract class Task {
-
     private final String name;
     private boolean isDone;
 
