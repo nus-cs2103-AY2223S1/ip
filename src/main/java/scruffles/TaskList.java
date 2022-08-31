@@ -3,6 +3,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * This class is where the tasks are stored while the program is running
+ *
+ * @author Shamus Tan
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private int taskCount;
@@ -17,6 +22,11 @@ public class TaskList {
         this.taskCount = tasks.size();
     }
 
+    /**
+     * Used to convert the current TaskList into a string format that can be easily read by the program after saving
+     *
+     * @returns the TaskList in the required string format for saving to file
+     */
     public String saveToFile() {
         String output = "";
         for (Task task : tasks) {
@@ -39,6 +49,12 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Adds the tasks into the TaskList
+     *
+     * @param str the input string of the Task
+     * @param type the enumerated type of Task (TODO, DEADLINE, EVENT)
+     */
     public void add(String str, Scruffles.Type type) {
         if (type.equals(Scruffles.Type.TODO)) {
             try {
@@ -102,6 +118,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes the task of given number from the TaskList
+     *
+     * @param input the input string of the message
+     */
     public void delete(String input) {
         try {
             if (input.equals("delete") || input.equals("delete ")) {
@@ -123,9 +144,16 @@ public class TaskList {
             }
         } catch (OutOfBoundsException | DescriptionEmptyException e) {
             System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("grrrr >:( you need to input an integer woof woof!");
         }
     }
 
+    /**
+     * Marks or unmarks the task of given number from the TaskList
+     *
+     * @param input the input string of the message
+     */
     public void mark(String input) {
         try {
             if (input.equals("mark") || input.equals("mark ")) {
@@ -148,6 +176,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Displays the list in the program
+     *
+     * @return the list of tasks as a string
+     */
     public String list() {
         String output = "";
         if (tasks.isEmpty()) {

@@ -2,6 +2,13 @@ package scruffles;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * The main class of the program, Scruffles, which is an app that helps track your tasks. With this app you can keep
+ * track of deadlines, events, as well as mark them as done or even delete them when you do not need toi track them
+ * anymore
+ *
+ * @author Shamus Tan
+ */
 public class Scruffles {
     private Storage storage;
     private TaskList tasks;
@@ -24,6 +31,9 @@ public class Scruffles {
         }
     }
 
+    /**
+     * The method that executes the program
+     */
     public void run() {
         ui.greet();
         Scanner sc = new Scanner(System.in);

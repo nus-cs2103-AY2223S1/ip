@@ -2,6 +2,11 @@ package scruffles;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * An event is a task that occurs at a specific timing on a certain date
+ *
+ * @author Shamus Tan
+ */
 public class Event extends Task {
 
     protected LocalDate at;

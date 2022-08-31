@@ -1,6 +1,21 @@
 package scruffles;
+
+/**
+ * A class that handles parsing of inputs into Scruffles
+ *
+ * @author Shamus Tan
+ */
 public class Parser {
     private static Ui ui = new Ui();
+
+    /**
+     * The method of the parser that's used to parse inputs the program receives
+     *
+     * @param input the string input of the program
+     * @param tasks the TaskList of the current program
+     * @throws UnknownArgumentException when input is an unknown command
+     * @throws DescriptionEmptyException when a Task command has an incomplete input
+     */
     public static void parse(String input, TaskList tasks) throws UnknownArgumentException, DescriptionEmptyException {
         if (input.equals("list")) {
             ui.printMessage(tasks.list());

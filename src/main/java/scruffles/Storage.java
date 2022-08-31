@@ -8,6 +8,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for the storing and loading of previously saved data
+ *
+ * @author Shamus Tan
+ */
 public class Storage {
 
     private static String filePath;
@@ -16,6 +21,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the existing file from the filepath
+     *
+     * @throws FileNotFoundException when there is no file found at the filepath
+     * @returns the TaskList that was saved in the file
+     */
     public static ArrayList<Task> load() throws FileNotFoundException {
         File newFile = new File(filePath);
         Scanner scan = new Scanner(newFile);
@@ -46,6 +57,11 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Saves the TaskList into the filepath
+     *
+     * @param tasks the TaskList that is being saved into the file
+     */
     public static void save(TaskList tasks) {
         try {
             File newFile = new File(filePath);

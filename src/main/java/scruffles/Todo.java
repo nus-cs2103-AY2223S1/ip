@@ -1,4 +1,10 @@
 package scruffles;
+
+/**
+ * A standard task that has no deadline or timing
+ *
+ * @author Shamus Tan
+ */
 public class Todo extends Task {
 
     public Todo(String taskName) {

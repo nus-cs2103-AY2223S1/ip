@@ -1,6 +1,11 @@
 package scruffles;
 import java.time.LocalDate;
 
+/**
+ * A task that is due at a specific deadline, which is represented by a date
+ *
+ * @author Shamus Tan
+ */
 public class Deadline extends Task {
 
     protected LocalDate by;
