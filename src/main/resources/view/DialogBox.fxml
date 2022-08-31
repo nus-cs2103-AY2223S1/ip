@@ -5,12 +5,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="390.0" style="-fx-border-color: #322F3D; -fx-padding: 8px; -fx-spacing: 8px;" type="HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="390.0" style="-fx-border-color: #322F3D; -fx-padding: 8px; -fx-spacing: 8px;" type="HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="dialogText" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="317.0" style="-fx-background-color: #87556F; -fx-padding: 8px; -fx-background-radius: 8px;" textFill="WHITE" wrapText="true">
+      <Label fx:id="dialogText" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="317.0" prefWidth="317.0" style="-fx-background-color: #87556F; -fx-background-radius: 8px; -fx-word-wrap: break-word;" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
          <font>
             <Font name="Monaco" size="13.0" />
          </font>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
       </Label>
       <ImageView fx:id="displayPicture" fitHeight="33.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>

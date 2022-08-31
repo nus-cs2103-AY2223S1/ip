@@ -75,9 +75,9 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="43.0" prefHeight="515.0" prefWidth="400.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="43.0" prefHeight="515.0" prefWidth="397.0">
          <content>
-            <VBox fx:id="dialogContainer" onMouseClicked="#closeCommandsAccordion" onTouchPressed="#closeCommandsAccordion" prefHeight="513.0" prefWidth="399.0" style="-fx-background-color: #322F3D;" />
+            <VBox fx:id="dialogContainer" onMouseClicked="#closeCommandsAccordion" onTouchPressed="#closeCommandsAccordion" prefHeight="513.0" prefWidth="396.0" style="-fx-background-color: #322F3D;" />
          </content>
       </ScrollPane>
    </children>

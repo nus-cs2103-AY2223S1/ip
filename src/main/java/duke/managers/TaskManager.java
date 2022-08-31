@@ -47,7 +47,7 @@ public class TaskManager {
             // Implicitly invoke the display of the task defined in the Task class
             taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
-        return taskManagerDisplay.toString();
+        return (taskManagerDisplay + "\n").strip();
     }
 
     /**

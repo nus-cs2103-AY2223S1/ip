@@ -111,6 +111,7 @@ public class MainWindow extends AnchorPane {
     private void handleCommand() {
         String input = this.userInput.getText();
         String response = this.duke.handleCommand(input);
+
         this.dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, this.userImage),
                 DialogBox.getDukeDialog(response, this.dukeImage)
