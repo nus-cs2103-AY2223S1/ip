@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 import java.util.ArrayList;
 

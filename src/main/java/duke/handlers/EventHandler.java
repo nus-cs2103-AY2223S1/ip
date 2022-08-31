@@ -1,10 +1,10 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.Event;
-import models.TaskList;
+import duke.exceptions.DukeException;
+import duke.models.Event;
+import duke.models.TaskList;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class EventHandler {
 

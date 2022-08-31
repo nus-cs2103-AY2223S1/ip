@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 public class Todo extends Task {
     public Todo(String desc) {

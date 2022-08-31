@@ -1,6 +1,6 @@
-package handlers;
+package duke.handlers;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class ByeHandler {
     public static void handle() {

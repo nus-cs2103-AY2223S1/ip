@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import models.*;
+import duke.exceptions.DukeException;
+import duke.models.*;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class ToDoHandler {
     public static void handle(TaskList taskList, String input) throws DukeException {

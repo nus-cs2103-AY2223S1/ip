@@ -1,10 +1,10 @@
-package handlers;
+package duke.handlers;
 
-import models.TaskList;
-import models.Task;
-import services.Ui;
+import duke.models.TaskList;
+import duke.models.Task;
+import duke.services.Ui;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class ListHandler {
     public static void handle(TaskList taskList) {

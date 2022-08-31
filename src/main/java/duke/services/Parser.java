@@ -1,6 +1,6 @@
-package services;
-import utils.Commands;
-import static utils.Commands.UNKNOWN;
+package duke.services;
+import duke.utils.Commands;
+import static duke.utils.Commands.UNKNOWN;
 
 public class Parser {
     public String[] parseFullCommand(String input) {

@@ -1,6 +1,6 @@
-package services;
+package duke.services;
 
-import exceptions.DukeException;
+import duke.exceptions.DukeException;
 
 public class Ui {
     public static void dukePrint(String str) {

@@ -1,12 +1,14 @@
-import models.Deadline;
-import models.Event;
-import models.Task;
-import models.Todo;
-import models.TaskList;
+package duke.Storage;
+
+import duke.models.Deadline;
+import duke.models.Event;
+import duke.models.Task;
+import duke.models.Todo;
+import duke.models.TaskList;
 
 import java.io.*;
 import java.util.ArrayList;
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class Storage {
     public static final String FILE_PATH = "./data/duke.txt";

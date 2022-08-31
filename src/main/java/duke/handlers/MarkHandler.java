@@ -1,8 +1,8 @@
-package handlers;
-import models.Task;
-import models.TaskList;
+package duke.handlers;
+import duke.models.Task;
+import duke.models.TaskList;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class MarkHandler {
     public static void handle(TaskList taskList, String input) {

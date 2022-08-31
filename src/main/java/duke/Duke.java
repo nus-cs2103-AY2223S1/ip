@@ -1,12 +1,15 @@
-import exceptions.DukeException;
-import handlers.*;
-import models.TaskList;
-import services.Parser;
-import utils.Commands;
+package duke;
+
+import duke.Storage.Storage;
+import duke.exceptions.DukeException;
+import duke.handlers.*;
+import duke.models.TaskList;
+import duke.services.Parser;
+import duke.utils.Commands;
 
 import java.util.Scanner;
 
-import static services.Ui.dukePrint;
+import static duke.services.Ui.dukePrint;
 
 public class Duke {
     private Storage storage;

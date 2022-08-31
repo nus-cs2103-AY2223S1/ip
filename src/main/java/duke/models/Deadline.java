@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 public class Deadline extends Task {
     protected formatDate date;
