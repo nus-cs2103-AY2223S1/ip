@@ -30,6 +30,7 @@ public class Duke {
 
     /**
      * Returns the response corresponding to user input.
+     * 
      * @param command user input.
      * @return response as a String.
      */
