@@ -25,7 +25,11 @@ public class Todos {
      * constructor
      */
     public Todos() {
-        this.todos = new TaskList(storage);
+        this.todos = new TaskList();
+    }
+
+    public List<String> init() {
+        return todos.populate(storage);
     }
 
     private String taskCountMessage() {

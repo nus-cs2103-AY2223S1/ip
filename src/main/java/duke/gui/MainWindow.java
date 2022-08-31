@@ -4,12 +4,18 @@ import duke.ExecuteResult;
 import duke.Parser;
 import duke.modules.Todos;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static duke.Ui.say;
 
 public class MainWindow extends AnchorPane {
     @FXML
@@ -31,8 +37,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(
-                ChatMessage.getDukeDialog("Hello, Duke here! What can I do for you?", dukeImage));
+
+        // intro string
+        List<String> messages = new ArrayList<>(say("Hello, Duke here! What can I do for you?"));
+
+        // initialize plugins
+        Todos todos = new Todos();
+        messages.addAll(todos.init());
+
+        for (String message : messages) {
+            dialogContainer.getChildren().add(ChatMessage.getDukeDialog(message, dukeImage));
+        }
     }
 
     /**
