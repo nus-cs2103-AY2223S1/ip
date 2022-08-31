@@ -1,9 +1,8 @@
-package command;
+package alpha.command;
 
 import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
-import command.Command;
 
 import java.io.IOException;
 

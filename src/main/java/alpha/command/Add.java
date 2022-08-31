@@ -1,11 +1,11 @@
-package command;
+package alpha.command;
 
 import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
-import task.Deadline;
-import task.Event;
-import task.Task;
+import alpha.task.Deadline;
+import alpha.task.Event;
+import alpha.task.Task;
 
 import java.io.IOException;
 public class Add extends Command {

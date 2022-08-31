@@ -1,6 +1,6 @@
 package alpha;
 
-import task.Task;
+import alpha.task.Task;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ public class TaskList {
 
     public void printTasks(Ui uI) {
         if (tasks.isEmpty()) {
-            uI.colouredPrint(uI.ANSI_BLUE,">> " + "Your task list is empty!");
+            uI.colouredPrint(uI.ANSI_BLUE,">> " + "Your alpha.task list is empty!");
         } else {
-            uI.colouredPrint(uI.ANSI_BLUE,">> " + "Your task list is as follows:");
+            uI.colouredPrint(uI.ANSI_BLUE,">> " + "Your alpha.task list is as follows:");
             int count = 1;
             for (Task task : tasks) {
                 uI.colouredPrint(uI.ANSI_BLUE,count + ") " + task.toString());

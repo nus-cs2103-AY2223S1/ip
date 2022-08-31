@@ -1,7 +1,7 @@
 package alpha;
 
-import command.Command;
-import command.Exit;
+import alpha.command.Command;
+import alpha.command.Exit;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

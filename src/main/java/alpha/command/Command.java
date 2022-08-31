@@ -1,4 +1,4 @@
-package command;
+package alpha.command;
 
 import alpha.FileOperations;
 import alpha.TaskList;

@@ -1,4 +1,4 @@
-package task;
+package alpha.task;
 
 import alpha.Ui;
 
@@ -15,10 +15,10 @@ public abstract class Task {
         this.taskType = taskType;
     }
     public String getDescription() {
-        return description; // mark done task with X
+        return description; // mark done alpha.task with X
     }
     public String getStatus() {
-        return (status ? "X" : " "); // mark done task with X
+        return (status ? "X" : " "); // mark done alpha.task with X
     }
 
     public String getTaskType() {

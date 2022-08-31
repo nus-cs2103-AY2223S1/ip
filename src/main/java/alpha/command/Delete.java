@@ -1,9 +1,8 @@
-package command;
+package alpha.command;
 
 import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
-import command.Command;
 
 import java.io.IOException;
 
@@ -17,6 +16,6 @@ public class Delete extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws IOException {
         taskList.deleteTask(taskNumber);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "deleted: task.Task " + this.taskNumber);
+        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "deleted: alpha.task.Task " + this.taskNumber);
     }
 }

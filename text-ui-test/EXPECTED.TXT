@@ -7,16 +7,16 @@
 [33m>> added: event aiesec /19th august[0m
 [33m>> added: deadline ps0 /20th august[0m
 [33m>> added: todo return book[0m
-[33m>> marked: task.Task 1[0m
-[33m>> marked: task.Task 3[0m
-[33m>> Your task list is as follows:[0m
+[33m>> marked: alpha.task.Task 1[0m
+[33m>> marked: alpha.task.Task 3[0m
+[33m>> Your alpha.task list is as follows:[0m
 [33m1) [T] [X] todo read book[0m
 [33m2) [E] [ ] aiesec[0m[31m on 19th august[0m
 [33m3) [D] [X] ps0[0m[31m by 20th august[0m
 [33m4) [T] [ ] todo return book[0m
-[33m>> unmarked: task.Task 2[0m
-[33m>> unmarked: task.Task 3[0m
-[33m>> Your task list is as follows:[0m
+[33m>> unmarked: alpha.task.Task 2[0m
+[33m>> unmarked: alpha.task.Task 3[0m
+[33m>> Your alpha.task list is as follows:[0m
 [33m1) [T] [X] todo read book[0m
 [33m2) [E] [ ] aiesec[0m[31m on 19th august[0m
 [33m3) [D] [ ] ps0[0m[31m by 20th august[0m
