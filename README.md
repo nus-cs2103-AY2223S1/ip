@@ -15,7 +15,7 @@ All you need to do is,
 1. download it from [here](https://github.com/wweqg/ip/releases/download/v0.4/duke.jar).
 2. place it in the directory that you would like to place your task list at.
 3. double-click it.
-4. follow the [instructions](#tutorial) to add your tasks. :happy:
+4. follow the [instructions](#tutorial) to add your tasks. :blush:
 
 #### Features: 
 
@@ -28,7 +28,7 @@ All you need to do is,
 ## Tutorial
 
 Here is a quick tutorial on the command syntax !!! :+1:
-<u>Content inside the {} is to be decided by the user.</u>
+<u>Content inside the {} is to be decided by the user. </u>
 
 - `todo {Task}` To add a Todo task.
 - `deadline {Task} \by {'Date in' YYYY-MM-DD}` To add a deadline task.
