@@ -22,6 +22,7 @@ public class ParserDuke {
     private final String TODO_CMD = "todo ";
     private final String EVENT_CMD = "event ";
     private final String DEADLINE_CMD = "deadline ";
+    private final String FIND_CMD = "find ";
     private final String FILE_PATH = "src/main/java/duke/DukeTasks.txt";
 
     /**
@@ -120,6 +121,10 @@ public class ParserDuke {
                     System.out.println("Come Alive! Write an activity following 'event'");
                     System.out.println("***********************************************************************");
                 }
+            } else if (command.contains(FIND_CMD)) {
+                String target = command.replaceAll("find ", "");
+                System.out.println("Here is what you are looking for!");
+
             } else {
                 System.out.println("Why trouble me with the unrefined language of the youth! Speak plainly, my friend!");
                 System.out.println("***********************************************************************");
