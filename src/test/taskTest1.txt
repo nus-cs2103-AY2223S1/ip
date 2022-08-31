@@ -1,6 +1,2 @@
 T,0,sampletodo1
 T,1,sampletodo2
-D,0,sampledeadline1 ,2022-08-08
-D,1,sampledeadline2 ,2022-09-09
-E,0,sampleevent1 ,2022-10-10
-E,1,sampleevent2 ,2022-11-11
