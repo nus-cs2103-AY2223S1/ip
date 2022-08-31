@@ -41,7 +41,7 @@ public class Task implements Serializable {
         return false;
     }
     public static Task readTask(String[] values) {
-        boolean isDone = values[1].equals("0") ? true : false;
+        boolean isDone = values[1].equals("0");
         String description = values[2];
         return new Task(isDone, description);
 

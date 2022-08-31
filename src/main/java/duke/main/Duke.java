@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import duke.DialogueBox;
 import duke.parser.Parser;
-import duke.Storage;
+import duke.save.Storage;
 import duke.TaskList;
 import duke.ui.Ui;
 import javafx.scene.Scene;
