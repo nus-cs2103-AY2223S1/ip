@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Duke {
 
@@ -15,28 +14,28 @@ public class Duke {
     private final char TIME_DELIMITER = '/';
     private final String DATA_FILE_PATH = "./data.ser";
 
+    // Ui object to handle user interaction
+    private Ui ui;
+
+    // Storage object to handle storing the file on the hard disk
+    private Storage storage;
 
     // TaskList object to store the user's tasks
     private TaskList storedTasks;
 
+    
 
     // Constructor
     public Duke() {
-        // TaskList is initialized in the initialize() method
+        this.ui = new Ui();
+        ui.printWelcomeMessage();
+
+        this.storage = new Storage(DATA_FILE_PATH);
+
+        // Attempt to load the task list from the hard disk, if it exists
+        this.storedTasks = this.storage.readFromFile();
     }
 
-
-
-    public void listTasks() {
-        String result = "Here are the tasks in your list:\n";
-
-        for (int i = 0; i < this.storedTasks.getSize(); i++) {
-            String line = String.format("%d. %s\n", i + 1, this.storedTasks.getTask(i));
-            result = result.concat(line);
-        }
-
-        System.out.println(result);
-    }
 
 
     public void markTaskAsDoneOrUndone(String[] commands) {
@@ -70,7 +69,7 @@ public class Duke {
 
         // Add the string representation of the task to the result
         result = result.concat(String.format("%s\n", t));
-        System.out.println(result);
+        ui.printMessage(result);
     }
 
 
@@ -85,7 +84,7 @@ public class Duke {
         } catch (Exception e) {
             // Cannot create task due to invalid commands
             String result = String.format("OOPS!!! Invalid syntax for a %s task\n", e.getMessage());
-            System.out.println(result);
+            ui.printMessage(result);
             return;
         }
 
@@ -93,7 +92,7 @@ public class Duke {
 
         String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
                                         t, storedTasks.getSize());
-        System.out.println(result);
+        ui.printMessage(result);
     }
 
 
@@ -225,12 +224,12 @@ public class Duke {
 
         String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
                                         t, storedTasks.getSize());
-        System.out.println(result);
+        ui.printMessage(result);
     }
 
 
     public void exitDuke() {
-        System.out.println("Bye. Hope to see you again soon!\n");
+        ui.printExitMessage();
     }
 
 
@@ -242,7 +241,8 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            listTasks();
+            // listTasks();
+            ui.listTasks(this.storedTasks);
             break;
 
         
@@ -251,6 +251,7 @@ public class Duke {
             // Fall through
         case COMMAND_MARK_AS_UNDONE:
             markTaskAsDoneOrUndone(commands);
+            storage.writeToFile(this.storedTasks);
             break;
 
         
@@ -261,10 +262,12 @@ public class Duke {
             // Fall through
         case COMMAND_ADD_EVENT:
             addTask(commands);
+            storage.writeToFile(this.storedTasks);
             break;
 
         case COMMAND_DELETE:
             deleteTask(commands);
+            storage.writeToFile(this.storedTasks);
             break;
         
         case COMMAND_EXIT:
@@ -282,48 +285,23 @@ public class Duke {
 
 
     private void handleInvalidCommand() {
-        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-    }
-
-    
-    // Initialize the system by loading the TaskList from the hard disk, if it exists
-    private void initialize() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?\n");
-
-        // Load the TaskList from the file
-        this.storedTasks = TaskList.loadTaskListFromFile(DATA_FILE_PATH);
+        ui.printInvalidCommandMessage();
     }
 
 
-    public void processCommands() {
-
-        Scanner sc = new Scanner(System.in);
+    public void run() {
 
         while (true) {
 
-            // User's command can be identified by the first token
-            String[] commands = parseCommand(sc.nextLine());
+            String[] commands = Parser.parseCommand(ui.readCommand());
 
             // If need to exit
             if (executeCommand(commands)) {
-                sc.close();
+                ui.stopReadingUserInput();
                 return;
             }
         }
     }
-
-
-    public String[] parseCommand(String command) {
-        // Split string around whitespaces
-        return command.split("\\s");
-    }
-
 
 
     public static void main(String[] args) {
@@ -331,10 +309,10 @@ public class Duke {
         Duke d = new Duke();
 
         // Initialize the system
-        d.initialize();
+        // d.initialize();
 
         // Process user commands
-        d.processCommands();
+        d.run();
 
     }
 }
