@@ -18,7 +18,7 @@ public class Parser {
         if (input.isBlank() || input.isEmpty()) {
             throw new PloopyException("blank");
         }
-        String command = inputSequence[0];
+        String command = inputSequence[0].toLowerCase();
         switch (command) {
         case "mark":
             if (!isEmptyCommand(input, "mark".length())) {
