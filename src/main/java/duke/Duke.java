@@ -24,10 +24,22 @@ public class Duke {
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
-                isEnded = parser.handler(command);
+                String response = parser.handler(command);
+                if (response.equals("Bye. Hope to see you again soon!\n")) {
+                    isEnded = true;
+                }
+                System.out.println(response);
             } catch (DukeException e) {
-                ui.printException(e);
+                System.out.println(ui.printException(e));
             }
+        }
+    }
+
+    public String getResponse(String input) {
+        try {
+            return parser.handler(input);
+        } catch (DukeException e) {
+            return ui.printException(e);
         }
     }
 

@@ -29,15 +29,14 @@ public class Parser {
      * @return boolean end to determine execution finish
      * @throws DukeException when runtime errors occur
      */
-    public boolean handler(String input) throws DukeException {
+    public String handler(String input) throws DukeException {
         String[] args = input.split(" ", 2);
-        boolean isEnded = false;
+        //boolean isEnded = false;
         Task currTask;
 
         switch (args[0]) {
         case "list":
-            ui.listPrint(tasks.getTasks());
-            break;
+            return ui.listPrint(tasks.getTasks());
         case "todo":
             // Fallthrough
         case "deadline":
@@ -47,45 +46,40 @@ public class Parser {
                 currTask = this.makeTask(args[0], args[1]);
                 tasks.listAdd(currTask);
                 storage.save(tasks.getTasks());
-                ui.addTask(args[0], currTask, tasks.getSize());
+                return ui.addTask(args[0], currTask, tasks.getSize());
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(args[0]);
             }
-            break;
         case "delete":
             try {
                 currTask = tasks.listDelete(args[1]);
                 storage.save(tasks.getTasks());
-                ui.deleteTask(currTask, tasks.getSize());
+                return ui.deleteTask(currTask, tasks.getSize());
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(args[0]);
             }
-            break;
         case "mark":
             // mark is implemented as a toggle. note this.
             try {
                 currTask = tasks.listToggle(args[1]);
                 storage.save(tasks.getTasks());
-                ui.toggleTask(currTask);
+                return ui.toggleTask(currTask);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(args[0]);
             }
-            break;
         case "find":
             try {
-                ui.find(tasks.getTasks(), args[1]);
+                return ui.find(tasks.getTasks(), args[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(args[0]);
             }
-            break;
         case "bye":
-            isEnded = true;
-            ui.exit();
-            break;
+            //isEnded = true;
+            return ui.exit();
         default:
             throw new DukeUnknownInputException(args[0]);
         }
-        return isEnded;
+        //return isEnded;
     }
 
     private Task makeTask(String type, String item) throws DukeException {

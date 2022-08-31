@@ -8,110 +8,107 @@ public class Ui {
     private static final String DIVIDER = "-------------------------------------\n";
 
     /**
-     * Prints the greeting message
+     * Returns greeting message
      */
-    public void greet() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    public static String greet() {
 
         String message = "Hello! I'm Duke\n"
                 + "What can I do for you?\n";
-        System.out.println(DIVIDER + message + DIVIDER);
+
+        return message;
     }
 
     /**
-     * Prints the exit message
+     * Returns exit message
      */
-    public void exit() {
-        System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
+    public String exit() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
-     * Prints the TaskList's Tasks in pretty UI
+     * Returns Task ArrayList in string format
+     * @param input
      */
-    public void listPrint(ArrayList<Task> input) {
+    public String listPrint(ArrayList<Task> input) {
         if (input.isEmpty()) {
-            System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
+            return "List is empty\n";
         } else {
-            System.out.print(DIVIDER);
+            String returnVal = "Here are the list items:\n";
             for (int i = 0; i < input.size(); i++) {
-                System.out.println((i + 1) + ". " + input.get(i));
+                returnVal += (i + 1) + ". " + input.get(i) + "\n";
             }
-            System.out.println(DIVIDER);
+            return returnVal;
         }
     }
 
     /**
-     * Prints the newly added task to TaskList
+     * Returns new Task added, and Task ArrayList size
      * @param type Type of Task
      * @param currTask Task object
      * @param size New size of TaskList
      */
-    public void addTask(String type, Task currTask, int size) {
-        System.out.printf(DIVIDER + "OK, I've added this %s:\n %s\n"
-                + "Number of tasks in list: %d\n" + DIVIDER + "\n",
-                type, currTask, size);
+    public String addTask(String type, Task currTask, int size) {
+        return "OK, I've added this " + type + ":\n" + "   " +
+                currTask + "\n" + "Number of tasks in list: " +
+                size + "\n";
     }
 
     /**
-     * Prints the newly deleted task from TaskList
+     * Returns the deleted Task, and Task ArrayList size
      * @param currTask Task object
      * @param size New size of TaskList
      */
-    public void deleteTask(Task currTask, int size) {
-        System.out.printf(DIVIDER + "OK, I've removed this task:\n"
-                + "  %s \nNumber of tasks in list: %d\n" + DIVIDER + "\n",
-                currTask, size);
+    public String deleteTask(Task currTask, int size) {
+        return "OK, I've removed this task:\n" + "   " +
+                currTask + "\n" + "Number of tasks in list: " +
+                size + "\n";
     }
 
     /**
-     * Prints the newly toggled task from TaskList
+     * Returns the toggled Task
      * @param currTask Task Object
      */
-    public void toggleTask(Task currTask) {
+    public String toggleTask(Task currTask) {
         if (currTask.isCompleted()) {
-            System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
-                    + "  " + currTask + "\n" + DIVIDER);
+            return "Nice! I've marked this task as done:\n"
+                    + "   " + currTask + "\n";
         } else {
-            System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
-                    + "  " + currTask + "\n" + DIVIDER);
+            return "OK, I've marked this task as not done yet:\n"
+                    + "   " + currTask + "\n";
         }
     }
 
     /**
-     * Prints any exception message handled by Parser in pretty UI
+     * Returns any exception message handled by Parser
      * @param e Exception
      */
-    public void printException(DukeException e) {
-        System.out.println(DIVIDER + e.getMessage() + DIVIDER);
+    public String printException(DukeException e) {
+        return e.getMessage();
     }
 
     /**
-     * Prints out tasks matching regex in pretty UI
+     * Returns tasks matching regex in pretty UI
      * @param input Tasks ArrayList
      * @param regex
      */
-    public void find(ArrayList<Task> input, String regex) {
+    public String find(ArrayList<Task> input, String regex) {
         if (input.isEmpty()) {
-            System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
+            return "List is empty\n";
         } else {
             boolean hasValues = false;
-            System.out.print(DIVIDER);
+            String returnVal = "Here are the list items matching " + regex + "\n";
+
             for (int i = 0; i < input.size(); i++) {
                 String currLine = input.get(i).toString();
                 if (currLine.contains(regex)) {
                     hasValues = true;
-                    System.out.println((i + 1) + ". " + currLine);
+                    returnVal += (i + 1) + ". " + currLine + "\n";
                 }
             }
             if (!hasValues) {
-                System.out.println("List has no elements containing " + regex);
+                return "List has no elements containing " + regex;
             }
-            System.out.println(DIVIDER);
+            return returnVal;
         }
     }
 }
