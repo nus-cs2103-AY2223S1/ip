@@ -13,6 +13,7 @@ public class Meowmeow {
 
     /**
      * Constructor for the Meowmeow class.
+     *
      * @param filePath is a String that specifies the filepath of the save file.
      */
     public Meowmeow(String filePath) {
@@ -43,6 +44,7 @@ public class Meowmeow {
 
     /**
      * Main method that runs the program.
+     *
      * @param args the command line arguments.
      */
     public static void main(String[] args) {

@@ -1,4 +1,5 @@
 package meowmeow;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -30,12 +31,7 @@ public class TaskList {
         for (int i = 0; i < numOfInputs; i++) {
             task = taskList.get(i);
 
-            if (task.isDone()) { //task is done
-                System.out.println((i + 1) + ". " + task);
-
-            } else { //task is not done
-                System.out.println((i + 1) + ". " + task);
-            }
+            System.out.println((i + 1) + ". " + task);
         }
     }
 

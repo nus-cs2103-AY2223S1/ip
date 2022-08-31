@@ -9,6 +9,9 @@ import meowmeow.commands.FindCommand;
 import meowmeow.commands.ListCommand;
 import meowmeow.commands.MarkCommand;
 
+/**
+ * Class Parser is a class that parses the user's input and translates it into a Command.
+ */
 public class Parser {
 
     public static Command parse(String userInput) {

@@ -12,6 +12,7 @@ public class Task {
 
     /**
      * Constructor for Task.
+     *
      * @param taskName the name of the task.
      */
     public Task(String taskName) {
@@ -34,6 +35,7 @@ public class Task {
 
     /**
      * Method that returns a boolean showing whether the task is done or not.
+     *
      * @return a boolean showing whether the task is done or not.
      */
     public boolean isDone() {
@@ -42,6 +44,7 @@ public class Task {
 
     /**
      * Method that returns the name and completion status of the task.
+     *
      * @return the name and completion status of the task.
      */
     @Override
@@ -55,6 +58,7 @@ public class Task {
 
     /**
      * Method that returns the name and completion status of the task in a special format for creating a save file.
+     *
      * @return the name and completion status of the task.
      */
     public String getSaveData() {

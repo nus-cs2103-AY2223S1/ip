@@ -29,6 +29,7 @@ public class DefaultCommand extends Command {
 
     /**
      * isExit method that returns false for DefaultCommand.
+     *
      * @return false for DefaultCommand.
      */
     @Override
