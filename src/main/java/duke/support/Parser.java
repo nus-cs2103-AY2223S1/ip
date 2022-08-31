@@ -73,7 +73,6 @@ public class Parser {
             } else if (a.contains("deadline")) {
                 String description = a.substring(9, a.lastIndexOf("/") - 1);
                 String day = a.substring(a.lastIndexOf("/by") + 4);
-                String dayDescription = " (by: " + day + ")";
                 try {
                     LocalDate.parse(day);
                 } catch (DateTimeParseException exception) {
@@ -93,6 +92,16 @@ public class Parser {
                 this.taskList.addTask(newTask);
                 Ui.printEvent(newTask);
                 a = sc.nextLine();
+            } else if (a.contains("find")) {
+                String word = a.substring(5);
+                int index = 1;
+                Ui.printFind();
+                for (int i = 1; i <= Task.getNumberTasks(); i++) {
+                    if (this.taskList.getTaskArr()[i].output().contains(word)) {
+                        Ui.printFindTasks(index, this.taskList.getTaskArr()[i].output());
+                        index++;
+                    }
+                }
             } else {
                 DukeException.taskException();
                 a = sc.nextLine();

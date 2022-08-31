@@ -114,6 +114,20 @@ public class Ui {
     }
 
     /**
+     * Prints message displayed when the user tries to find a keyword in the TaskList.
+     */
+    public static void printFind() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
+
+    /**
+     * Prints descriptions of tasks that contains the keyword the user is trying to find.
+     */
+    public static void printFindTasks(int index, String output) {
+        System.out.println(index + ". " + output);
+    }
+
+    /**
      * Prints message displayed when there is an error saving the users input into a file.
      */
     public static void printFileSavingError() {
