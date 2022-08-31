@@ -1,5 +1,6 @@
 package duke.gui;
 
+import duke.ExecuteResult;
 import duke.Parser;
 import duke.modules.Todos;
 import javafx.fxml.FXML;
@@ -38,10 +39,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        Parser.execute(input, todos);
+        ExecuteResult result = Parser.execute(input, todos);
         dialogContainer.getChildren().addAll(
                 ChatMessage.getUserDialog(input, userImage),
-                ChatMessage.getDukeDialog("Bot got: " + input, dukeImage)
+                ChatMessage.getDukeDialog(String.join("\n", result.getReply()), dukeImage)
         );
         userInput.clear();
     }
