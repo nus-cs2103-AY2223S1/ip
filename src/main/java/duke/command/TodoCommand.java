@@ -28,11 +28,12 @@ public class TodoCommand extends Command {
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return Add ToDo message
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
+    public String run(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addToDo(this.description);
-        ui.printAdd(task, tasks.getSize());
         storage.save(tasks.getTaskListInString());
+        return ui.printAdd(task, tasks.getSize());
     }
 }

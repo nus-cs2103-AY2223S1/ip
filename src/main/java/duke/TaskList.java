@@ -1,12 +1,12 @@
 package duke;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * TaskList encapsulates a list of tasks and the operations that can be performed on these tasks.
@@ -165,7 +165,7 @@ public class TaskList {
         if (this.taskList.size() == 0) {
             return "There are no tasks in your list";
         } else {
-            StringBuilder str = new StringBuilder(String.format("There %s %d duke task(s) in your list:",
+            StringBuilder str = new StringBuilder(String.format("There %s %d Bob task(s) in your list:",
                     this.taskList.size() > 1 ? "are" : "is", this.taskList.size()));
             for (int i = 1; i <= this.taskList.size(); i++) {
                 str.append(String.format("%n%d. %s", i, taskList.get(i - 1)));

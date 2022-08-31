@@ -29,14 +29,15 @@ public class UnmarkCommand extends Command {
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return Unmark message of task
      * @throws InvalidInputException if index is invalid
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
+    public String run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
         if (indexToUnmark > tasks.getSize() || indexToUnmark < 0) {
             throw new InvalidInputException("The index provided is not within the list.");
         }
-        ui.printUnmark(tasks.unMarkTask(this.indexToUnmark));
         storage.save(tasks.getTaskListInString());
+        return ui.printUnmark(tasks.unMarkTask(this.indexToUnmark));
     }
 }

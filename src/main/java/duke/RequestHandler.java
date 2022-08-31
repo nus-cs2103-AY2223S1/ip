@@ -1,20 +1,12 @@
 package duke;
 
-import java.time.LocalDate;
-
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * RequestHandler parses the user input and calls the corresponding commands.
@@ -105,6 +97,8 @@ public class RequestHandler {
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }
             }
+        } catch(DateTimeParseException e) {
+            throw new IncompleteInputException("Please key in a valid date (yyyy-mm-dd)");
         } catch (NumberFormatException e) {
             throw new InvalidInputException("Please key in a valid positive index");
         } catch (IllegalArgumentException e) {
