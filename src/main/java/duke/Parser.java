@@ -43,7 +43,7 @@ public class Parser {
      *
      * @param input The exact user input to be parsed
      * @return The mapped Command if all input is valid.
-     * @throws DukeException if input formats not met or missing/invalid input.
+     * @throws DukeException If input formats not met or missing/invalid input.
      */
     public Command parse(String input) throws DukeException {
 

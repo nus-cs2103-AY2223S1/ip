@@ -8,14 +8,14 @@ public class Ui {
     private Scanner sc;
 
     /**
-     * Constructor for Ui
+     * Constructor for Ui.
      */
     public Ui() {
         sc = new Scanner(System.in);
     }
 
     /**
-     * Reads next input from user
+     * Reads next input from user.
      *
      * @return The input from the user in String format.
      */
@@ -24,14 +24,14 @@ public class Ui {
     }
 
     /**
-     * Prints a line to separate commands
+     * Prints a line to separate commands.
      */
     public void printBlankLine() {
         System.out.println("-------------------------------------------------");
     }
 
     /**
-     * Prints welcome image to user
+     * Prints welcome image to user.
      */
     public void showWelcome() {
         String logo = " ____        _        \n"

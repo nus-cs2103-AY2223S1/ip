@@ -78,7 +78,7 @@ public class TaskList {
      * Removes task from the task list.
      *
      * @param num The index of the task to be removed.
-     * @throws DukeException if index > size of list or index <= 0.
+     * @throws DukeException If index > size of list or index <= 0.
      */
     public String removeTask(String num) throws DukeException {
         int index = Integer.parseInt(num);
