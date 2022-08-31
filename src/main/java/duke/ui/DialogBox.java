@@ -1,49 +1,50 @@
 package duke.ui;
 
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 
 public class DialogBox extends HBox {
+    @FXML
+    private Label dialog;
+    @FXML
+    private ImageView displayPicture;
 
-    private static final double DIALOG_BOX_SPACING = 8.0;
-    private static final double DIALOG_BOX_PADDING = 12.0;
-
-    public DialogBox(String response, Image image, double imageSize) {
-        Label responseLabel = new Label(response);
-        responseLabel.setWrapText(true);
-
-        ImageView displayPicture = new ImageView(image);
-        displayPicture.setClip(new Circle(imageSize / 2, imageSize / 2, imageSize / 2));
-        displayPicture.setFitHeight(imageSize);
-        displayPicture.setFitWidth(imageSize);
-
-        this.setAlignment(Pos.CENTER_RIGHT);
-        this.setPadding(new Insets(DIALOG_BOX_PADDING));
-        this.setSpacing(DIALOG_BOX_SPACING);
-        this.getChildren().addAll(responseLabel, displayPicture);
+    private DialogBox(String text, Image img) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
     private void flip() {
-        this.setAlignment(Pos.CENTER_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.CENTER_LEFT);
     }
 
-    public static DialogBox getUserDialogBox(String response, Image image, double imageSize) {
-        return new DialogBox(response, image, imageSize);
+    public static DialogBox getUserDialogBox(String response, Image image) {
+        return new DialogBox(response, image);
     }
 
-    public static DialogBox getDukeDialogBox(String response, Image image, double imageSize) {
-        DialogBox dukeDialogBox = new DialogBox(response, image, imageSize);
+    public static DialogBox getDukeDialogBox(String response, Image image) {
+        DialogBox dukeDialogBox = new DialogBox(response, image);
         dukeDialogBox.flip();
         return dukeDialogBox;
     }
