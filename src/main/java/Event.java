@@ -12,6 +12,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String toSaveFormatString() {
+        return String.format("E|%d|%s|%s", isDone ? 1 : 0, taskName, eventDate);
+    }
+
+    @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), eventDate);
     }

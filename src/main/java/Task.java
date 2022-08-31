@@ -1,11 +1,11 @@
 /**
  * A class used to represent a task. A task has a name and completion status.
  */
-public class Task {
+public abstract class Task {
+    protected static final String MARK_CHARACTER = "X";
+
     protected String taskName = "";
     protected boolean isDone = false;
-
-    protected static final String MARK_CHARACTER = "X";
 
     public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
@@ -19,6 +19,8 @@ public class Task {
     public void unmark() {
         this.isDone = false;
     }
+
+    public abstract String toSaveFormatString();
 
     @Override
     public String toString() {

@@ -10,13 +10,17 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The main class for the Duke program
+ */
 public class Duke {
-    private static String botName = "Duke";
-    private static int lineLength = 80;
-    private static List<Task> taskList = new ArrayList<>();
-    private static boolean isRunning;
     private static final String DATA_FILE_PATH = "data";
     private static final String DATA_FILE_NAME = "duke.txt";
+
+    private static String botName = "Duke";
+    private static int lineLength = 80;
+    private static List<Task> tasks = new ArrayList<>();
+    private static boolean isRunning;
     private static FileWriter dataFileWriter;
 
     public static void main(String[] args) {
@@ -27,9 +31,6 @@ public class Duke {
                     + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.printf("Hello, I'm %s\n", botName);
-        System.out.println("What can I do for you?");
-
         try {
             loadData();
         } catch (IOException e) {
@@ -38,30 +39,33 @@ public class Duke {
             return;
         }
 
+        System.out.printf("Hello, I'm %s\n", botName);
+        System.out.println("What can I do for you?");
+
         Scanner scanner = new Scanner(System.in);
 
         isRunning = true;
         while (isRunning) {
-            GenerateLine(lineLength);
+            generateLine(lineLength);
             String input = scanner.nextLine();
-            GenerateLine(lineLength);
+            generateLine(lineLength);
 
             try {
-                if (ParseInput(input)) {
-                    dataFileWriter.append(input+"\n");
-                }
+                parseInput(input);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
-            } catch (IOException e) {
-                System.out.println("Error: Failed to write to save file");
             }
         }
 
         System.out.println("Goodbye.");
         try {
+            for (Task task: tasks) {
+                dataFileWriter.write(task.toSaveFormatString() + "\n");
+            }
+
             dataFileWriter.close();
         } catch (IOException e) {
-            System.out.println("Error: Failed to close file writer");
+            System.out.println("Error: Failed to save tasks");
         }
     }
 
@@ -71,7 +75,7 @@ public class Duke {
      *
      * @throws IOException
      */
-    public static void loadData() throws IOException {
+    private static void loadData() throws IOException {
         Path parentDir = Paths.get(DATA_FILE_PATH);
         if (!Files.exists(parentDir)) {
             Files.createDirectories(parentDir);
@@ -83,30 +87,64 @@ public class Duke {
         }
 
         Scanner scanner = new Scanner(dataFile);
+        int taskCount = 0;
         while (scanner.hasNextLine()) {
-            GenerateLine(lineLength);
-            String input = scanner.nextLine();
-            System.out.println(input);
-            GenerateLine(lineLength);
+            String saveFormatString = scanner.nextLine();
+            String[] args = saveFormatString.split("\\|", 4);
+            if (args.length < 3) {
+                System.out.println("Invalid task save string, task not added");
+                continue;
+            }
 
-            try {
-                ParseInput(input);
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
+            String taskType = args[0].strip();
+            boolean marked = args[1].strip() == "1" ? true : false;
+            String taskName = args[2].strip();
+            if (taskName == "") {
+                System.out.println("Invalid task save string, task not added");
+                continue;
+            }
+
+            LocalDate date = null;
+            if (args.length >= 4) {
+                try {
+                    date = LocalDate.parse(args[3].strip());
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid date in task save string, task not added");
+                }
+            }
+
+            switch (taskType) {
+            case "T":
+                tasks.add(new ToDo(taskName, marked));
+                taskCount++;
+                break;
+            case "D":
+                if (date != null) {
+                    tasks.add(new Deadline(taskName, marked, date));
+                    taskCount++;
+                }
+                break;
+            case "E":
+                if (date != null) {
+                    tasks.add(new Event(taskName, marked, date));
+                    taskCount++;
+                }
+                break;
             }
         }
         scanner.close();
 
-        dataFileWriter = new FileWriter(dataFile, true);
+        System.out.printf("%d tasks loaded from save\n", taskCount);
+
+        dataFileWriter = new FileWriter(dataFile);
     }
 
     /**
      * Parses an input string and calls the relevant method (if any)
-     * Calls AddToList by default
      *
      * @param input - the input string to be parsed
      */
-    public static boolean ParseInput(String input) throws DukeException {
+    private static void parseInput(String input) throws DukeException {
         String[] words = input.toLowerCase().split(" ", 2);
         String command = words[0];
         String args = "";
@@ -115,35 +153,33 @@ public class Duke {
         }
 
         switch (command) {
-            case "bye":
-                isRunning = false;
-                return false;
-            case "list":
-                DisplayList();
-                break;
-            case "mark":
-                TryMark(true, args);
-                break;
-            case "unmark":
-                TryMark(false, args);
-                break;
-            case "todo":
-                TryAddToDo(args);
-                break;
-            case "deadline":
-                TryAddDeadline(args);
-                break;
-            case "event":
-                TryAddEvent(args);
-                break;
-            case "delete":
-                TryDelete(args);
-                break;
-            default:
-                throw new DukeException("Command not recognised");
+        case "bye":
+            isRunning = false;
+            break;
+        case "list":
+            displayTasks();
+            break;
+        case "mark":
+            markTask(true, args);
+            break;
+        case "unmark":
+            markTask(false, args);
+            break;
+        case "todo":
+            addToDo(args);
+            break;
+        case "deadline":
+            addDeadline(args);
+            break;
+        case "event":
+            addEvent(args);
+            break;
+        case "delete":
+            deleteTask(args);
+            break;
+        default:
+            throw new DukeException("Command not recognised");
         }
-
-        return true;
     }
 
     /**
@@ -151,19 +187,19 @@ public class Duke {
      *
      * @param length - the character length of the line to print
      */
-    public static void GenerateLine(int length) {
+    private static void generateLine(int length) {
         System.out.println(String.format("%" + length + "s", "").replace(" ", "-"));
     }
 
     /**
-     * Adds a task to the list which is displayed when DisplayList is called
+     * Adds the given task to the list
      *
      * @param task - the task to add to the list
      */
-    public static void AddToList(Task task) {
-        taskList.add(task);
+    private static void addToList(Task task) {
+        tasks.add(task);
         System.out.printf("Task added: %s\n", task);
-        System.out.printf("You now have %d task(s) in the list\n", taskList.size());
+        System.out.printf("You now have %d task(s) in the list\n", tasks.size());
     }
 
     /**
@@ -171,13 +207,13 @@ public class Duke {
      *
      * @param args - the argument string to be parsed
      */
-    public static void TryAddToDo(String args) throws DukeException {
+    private static void addToDo(String args) throws DukeException {
         String name = args.strip();
         if (name == "") {
             throw new DukeException("Failed to create todo: No task name given");
         }
 
-        AddToList(new ToDo(name, false));
+        addToList(new ToDo(name, false));
     }
 
     /**
@@ -185,7 +221,7 @@ public class Duke {
      *
      * @param args - the argument string to be parsed
      */
-    public static void TryAddDeadline(String args) throws DukeException {
+    private static void addDeadline(String args) throws DukeException {
         String[] argsArr = args.split(" /by ", 2);
         if (argsArr.length < 2) {
             throw new DukeException("Failed to create deadline: Invalid number of arguments");
@@ -209,7 +245,7 @@ public class Duke {
             throw new DukeException("Failed to create deadline: Invalid date given");
         }
 
-        AddToList(new Deadline(name, false, date));
+        addToList(new Deadline(name, false, date));
     }
 
     /**
@@ -217,7 +253,7 @@ public class Duke {
      *
      * @param args - the argument string to be parsed
      */
-    public static void TryAddEvent(String args) throws DukeException {
+    private static void addEvent(String args) throws DukeException {
         String[] argsArr = args.split(" /at ", 2);
         if (argsArr.length < 2) {
             throw new DukeException("Failed to create event: Invalid number of arguments");
@@ -241,41 +277,41 @@ public class Duke {
             throw new DukeException("Failed to create event: Invalid date given");
         }
 
-        AddToList(new Deadline(name, false, date));
+        addToList(new Deadline(name, false, date));
     }
 
     /**
-     * Displays the list of tasks added to the list so far in order
+     * Displays all tasks in the list
      */
-    public static void DisplayList() {
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.printf("%d. %s\n", i + 1, taskList.get(i));
+    private static void displayTasks() {
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, tasks.get(i));
         }
 
-        System.out.printf("You have %d task(s) in your list\n", taskList.size());
+        System.out.printf("You have %d task(s) in your list\n", tasks.size());
     }
 
     /**
-     * Try to mark or unmark a task based on the parsed task index
+     * Marks or unmarks a task based on the given task index string
      *
-     * @param marked - if true, attempt to mark the task, otherwise attempt to unmark
-     * @param args - a list of string inputs, the first of which will be parsed as the task index to mark/unmark
+     * @param isMarked - if true, attempt to mark the task, otherwise attempt to unmark
+     * @param indexString - the index of the task to mark
      */
-    public static void TryMark(boolean marked, String args) throws DukeException {
+    private static void markTask(boolean isMarked, String indexString) throws DukeException {
         int index;
         try {
-            index = Integer.parseInt(args.strip());
+            index = Integer.parseInt(indexString.strip());
         } catch (NumberFormatException e) {
             throw new DukeException("Mark failed, invalid index");
         }
         index--;
 
-        if (index < 0 || index >= taskList.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new DukeException("Mark failed, index out of range");
         }
 
-        Task task = taskList.get(index);
-        if (marked) {
+        Task task = tasks.get(index);
+        if (isMarked) {
             task.mark();
             System.out.printf("Task marked as done: %s\n", task);
         } else {
@@ -284,22 +320,28 @@ public class Duke {
         }
     }
 
-    public static void TryDelete(String args) throws DukeException {
+    /**
+     * Deletes a task based on the given task index string
+     *
+     * @param indexString - the index of the task to delete
+     * @throws DukeException
+     */
+    private static void deleteTask(String indexString) throws DukeException {
         int index;
         try {
-            index = Integer.parseInt(args.strip());
+            index = Integer.parseInt(indexString.strip());
         } catch (NumberFormatException e) {
             throw new DukeException("Delete failed, invalid index");
         }
         index--;
 
-        if (index < 0 || index >= taskList.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new DukeException("Delete failed, index out of range");
         }
 
-        Task task = taskList.get(index);
-        taskList.remove(index);
+        Task task = tasks.get(index);
+        tasks.remove(index);
         System.out.printf("Task deleted: %s\n", task);
-        System.out.printf("You now have %d task(s) in the list\n", taskList.size());
+        System.out.printf("You now have %d task(s) in the list\n", tasks.size());
     }
 }
