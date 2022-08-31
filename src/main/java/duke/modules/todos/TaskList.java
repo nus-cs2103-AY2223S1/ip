@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static duke.Ui.say;
+import static duke.Ui.sayAsError;
 
 // "We will add validation to this later" - No one
 
@@ -34,7 +34,7 @@ public class TaskList implements Iterable<Task> {
             this.todos = storage.loadList();
         } catch (MessagefulException e) {
             this.todos = new ArrayList<>();
-            return say(e.getHint());
+            return sayAsError(e.getHint());
         }
         return List.of();
     }

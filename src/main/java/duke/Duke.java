@@ -21,9 +21,11 @@ public class Duke {
     public static void main(String[] args) {
 
         // intro string
-        List<String> messages = new ArrayList<>(say("Hello, Duke here! What can I do for you?"));
+        printLines(say("Hello, Duke here! What can I do for you?"));
 
         // initialize plugins
+        List<String> messages = new ArrayList<>();
+
         Todos todos = new Todos();
         messages.addAll(todos.init());
 
