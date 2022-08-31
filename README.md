@@ -28,7 +28,7 @@ All you need to do is,
 ## Tutorial
 
 Here is a quick tutorial on the command syntax !!! :+1:
-<u>Content inside the {} is to be decided by the user. </u>
+<u> Content inside the {} is to be decided by the user. <\u>
 
 - `todo {Task}` To add a Todo task.
 - `deadline {Task} \by {'Date in' YYYY-MM-DD}` To add a deadline task.
