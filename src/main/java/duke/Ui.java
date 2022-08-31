@@ -15,7 +15,7 @@ public class Ui {
         for (int i = 1; i <= list.size(); i++) {
             s =  s + "\n" + i + "." + list.get(i - 1).toString();
         }
-        return "Here are the tasks in your list:\n" + s;
+        return "Here are the tasks in your list:" + s;
     }
 
     public String deleteUi(Task task, ArrayList<Task> list) {

@@ -2,3 +2,7 @@
 [T][] task2
 [T][] task 11
 [D][] hw1 (by: Aug 20 2022)
+[T][] 1
+[T][] 2
+[D][] proj work (by: Aug 20 2022)
+[E][] outing 2 (at: 2-3pm)
