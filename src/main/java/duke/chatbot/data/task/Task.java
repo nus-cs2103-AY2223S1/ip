@@ -3,7 +3,7 @@ package duke.chatbot.data.task;
 /**
  * A task that contains a description and a boolean
  * that indicates whether the task has been completed.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public abstract class Task {
     /** A description of the task */

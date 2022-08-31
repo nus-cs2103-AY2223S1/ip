@@ -3,17 +3,15 @@ package duke.chatbot;
 import java.io.FileNotFoundException;
 
 import duke.chatbot.command.Command;
-import duke.chatbot.command.CommandResult;
 import duke.chatbot.command.InvalidInputCommand;
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
-import duke.chatbot.parser.Parser;
 import duke.chatbot.storage.Storage;
-import duke.chatbot.ui.Ui;
+import duke.chatbot.util.Parser;
 
 /**
- * The main application class.
- * @author Jordan Quah Shao Xuan
+ * The main application logic class.
+ * @author jq1836
  */
 public class Duke {
     /** The storage which handles saving and loading of files containing list of tasks */
@@ -22,8 +20,17 @@ public class Duke {
     /** The runtime instance of the list of tasks */
     private TaskList taskList;
 
-    /** The input and output handler */
-    private Ui ui;
+    /**
+     * Constructs an instance of Duke.
+     */
+    public Duke() {
+        try {
+            storage = Storage.of("duke.txt");
+            taskList = storage.getTaskList();
+        } catch (InvalidInputException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Saves into storage the current state of the task list.
@@ -33,50 +40,28 @@ public class Duke {
     }
 
     /**
-     * Takes and parses user input. Loops until an error occurs
-     * or and exit command is given by the user.
-     */
-    public void applicationLoop() {
-        Command command = null;
-        while (!Command.isExit(command)) {
-            try {
-                command = Parser.parseCommand(ui.getUserInput());
-                command.initData(taskList);
-                CommandResult result = command.execute();
-                ui.showMessage(result);
-            } catch (InvalidInputException e) {
-                ui.showMessage(new InvalidInputCommand().execute());
-            }
-        }
-        save();
-    }
-
-    /**
      * Exits the application.
      */
-    public void exit() {
+    private void exit() {
         System.exit(0);
     }
 
     /**
-     * Initialises the storage, task list and ui before starting the
-     * application loop.
+     * Returns a string response from passing the user input through Duke's logic.
+     * @param userInput A string that represents a user's input.
+     * @return A string response from passing the user input through Duke's logic.
      */
-    public void run() {
+    public String getResponse(String userInput) {
         try {
-            storage = Storage.of("duke.txt");
-            taskList = storage.getTaskList();
-            ui = new Ui();
-        } catch (InvalidInputException | FileNotFoundException e) {
-            ui.printInitErrorMessage();
-            exit();
+            Command command = Parser.parseCommand(userInput);
+            command.initData(taskList);
+            if (Command.isExit(command)) {
+                save();
+                exit();
+            }
+            return command.execute().getMessage();
+        } catch (InvalidInputException e) {
+            return new InvalidInputCommand().execute().getMessage();
         }
-        ui.greetUser();
-        applicationLoop();
-        exit();
-    }
-
-    public static void main(String ... args) {
-        new Duke().run();
     }
 }

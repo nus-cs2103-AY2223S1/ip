@@ -2,17 +2,17 @@ package duke.chatbot.command;
 
 import static duke.chatbot.common.Message.MESSAGE_DELETED;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import duke.chatbot.data.task.Task;
+import duke.chatbot.util.MessageBuilder;
 
 /**
  * A command that deletes the targeted task from the
  * list of Task in the application. The targeted task
  * is chosen by an argument string with an integer in
  * the argument list.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class DeleteCommand extends Command {
     public DeleteCommand(List<String> arguments) {
@@ -26,12 +26,11 @@ public class DeleteCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        List<String> message = new ArrayList<>();
-        message.add(MESSAGE_DELETED);
-
+        MessageBuilder message = new MessageBuilder();
         int entryNo = Integer.parseInt(arguments.get(0));
         Task task = taskList.remove(entryNo);
-        message.add(task.toString());
-        return new CommandResult(message);
+
+        message.addLines(MESSAGE_DELETED, task.toString());
+        return new CommandResult(message.toString());
     }
 }

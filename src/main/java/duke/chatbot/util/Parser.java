@@ -1,4 +1,4 @@
-package duke.chatbot.parser;
+package duke.chatbot.util;
 
 import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
 
@@ -30,7 +30,7 @@ import duke.chatbot.data.task.ToDo;
 
 /**
  * A parser class to extract information from strings.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class Parser {
     /**

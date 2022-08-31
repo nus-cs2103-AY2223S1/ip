@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * A type of task that has a date for the task to be
  * completed by.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class Deadline extends TimedTask {
     public Deadline(String description, LocalDateTime dateTime) {

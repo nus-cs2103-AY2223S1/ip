@@ -3,15 +3,13 @@ package duke.chatbot.command;
 import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
 import static duke.chatbot.common.Message.MESSAGE_LIST;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import duke.chatbot.data.task.Task;
+import duke.chatbot.util.MessageBuilder;
 
 /**
  * A command that prints the list of tasks in the application. Prints
  * an empty list message if the list is empty.
- * @author Jordan Quah Shao Xuan
+ * @author jq1836
  */
 public class ListCommand extends Command {
     /**
@@ -21,16 +19,18 @@ public class ListCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        List<String> message = new ArrayList<>();
+        MessageBuilder message = new MessageBuilder();
+
         if (taskList.isEmpty()) {
-            message.add(MESSAGE_EMPTY_LIST);
+            message.addLines(MESSAGE_EMPTY_LIST);
         } else {
-            message.add(MESSAGE_LIST);
+            message.addLines(MESSAGE_LIST);
             for (int entry = 1; entry <= taskList.size(); entry++) {
                 Task task = taskList.get(entry);
-                message.add(entry + ". " + task.toString());
+                message.addLines(entry + ". " + task.toString());
             }
         }
-        return new CommandResult(message);
+
+        return new CommandResult(message.toString());
     }
 }
