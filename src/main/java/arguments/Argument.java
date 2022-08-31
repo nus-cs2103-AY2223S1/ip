@@ -28,8 +28,10 @@ public abstract class Argument<T> {
      */
     public abstract void validate() throws DukeException;
 
-    // get must be abstract because how a particular Argument extracts a value may be different e.g parseInt vs
-    // parsing a datetime string, etc.
+    /**
+     * @return Argument passed in of type T
+     * @throws DukeException if any errors occur during validation
+     */
     public T getParameter() throws DukeException {
         validate();
         return value;
