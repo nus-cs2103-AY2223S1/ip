@@ -4,9 +4,6 @@ import duke.listobjects.ListObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Represents TaskList which stores a list of tasks the user wants to store and implements the Serializable interface
@@ -94,19 +91,6 @@ public class TaskList implements Serializable {
      */
     public ArrayList<ListObject> storeAllTasks() {
         return this.tasksList;
-    }
-
-    /**
-     * Finds tasks containing the keyword and displays them
-     * @param target String representing the keyword to search by
-     */
-    public void findByKeyword(String target) {
-        Stream<ListObject> filteredOptions = tasksList.stream().filter(x -> x.hasWord(target));
-        List<ListObject> eligibleTasks = filteredOptions.collect(Collectors.toList());
-        ArrayList<ListObject> filteredTasks = new ArrayList<>(eligibleTasks);
-        TaskList tasksToDisplay = new TaskList();
-        tasksToDisplay.setTasks(filteredTasks);
-        tasksToDisplay.printList();
     }
 
     /**
