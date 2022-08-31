@@ -27,6 +27,12 @@ public abstract class Task {
         this.name = name;
         this.isDone = isDone;
     }
+
+    /**
+     * Represents the object as a string.
+     *
+     * @return String representation of the task.
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatus(), this.getName());
@@ -41,16 +47,36 @@ public abstract class Task {
         return String.format("%s||%s||%s", this.getType(), this.getBooleanStatus(), this.getName());
     }
 
+    /**
+     * Gets the task name.
+     *
+     * @return Task name.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Gets the marked status of the task.
+     *
+     * @return Task mark status.
+     */
     public boolean isDone() {
         return this.isDone;
     }
 
+    /**
+     * Gets the task time.
+     *
+     * @return Task time.
+     */
     public abstract String getTime();
 
+    /**
+     * Gets the task type.
+     *
+     * @return Task type = ("T", "D", "E").
+     */
     public abstract String getType();
 
     /**

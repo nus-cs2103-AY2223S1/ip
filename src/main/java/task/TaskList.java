@@ -15,6 +15,11 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * Represents the object as a string.
+     *
+     * @return String representation of the task list.
+     */
     @Override
     public String toString() {
         String result = "";

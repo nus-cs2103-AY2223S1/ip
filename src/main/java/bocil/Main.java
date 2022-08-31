@@ -15,6 +15,11 @@ import ui.MainWindow;
 public class Main extends Application {
     private final Bocil bocil = new Bocil("./data/", "bocil.txt");
 
+    /**
+     * Starts the Bocil application.
+     *
+     * @param stage A {@link Stage} object to be shown.
+     */
     @Override
     public void start(Stage stage) {
         try {

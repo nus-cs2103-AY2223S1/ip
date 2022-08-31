@@ -59,6 +59,7 @@ public class DialogBox extends HBox {
      *
      * @param text Text that the user writes.
      * @param image The user's image.
+     * @return {@link DialogBox} object for the user.
      */
     public static DialogBox getUserDialog(String text, Image image) {
         return new DialogBox(text, image);
@@ -69,6 +70,7 @@ public class DialogBox extends HBox {
      *
      * @param text Text that Bocil writes.
      * @param image Bocil's image.
+     * @return {@link DialogBox} object for Bocil.
      */
     public static DialogBox getBocilDialog(String text, Image image) {
         var db = new DialogBox(text, image);

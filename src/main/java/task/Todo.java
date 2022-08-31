@@ -23,16 +23,25 @@ public class Todo extends Task {
         super(name, isDone);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format("[%s]%s", this.getType(), super.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getTime() {
         return "";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getType() {
         return "T";

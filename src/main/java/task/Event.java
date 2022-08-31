@@ -32,25 +32,32 @@ public class Event extends Task {
         this.time = time;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format("[%s]%s (at: %s)", this.getType(), super.toString(), this.getTime());
     }
 
     /**
-     * Describes the object in a specific format for saving it to the text file.
-     *
-     * @return String representation of the object.
+     * {@inheritDoc}
      */
     @Override
     public String toFileString() {
         return String.format("%s||%s", super.toFileString(), this.getTime());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String getTime() {
         return this.time.format(DateTimeFormatter.ofPattern("d MMMM yyyy HH:mm"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String getType() {
         return "E";
     }
