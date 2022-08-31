@@ -16,14 +16,15 @@ public class Ui {
 
     public static void displayStartUpText() {
         System.out.println("Hello from\n" + LOGO);
-        displayGreeting();
-    }
 
-    public static void displayGreeting() {
         generateLine();
         displayTasks();
         generateLine();
 
+        displayGreeting();
+    }
+
+    public static void displayGreeting() {
         System.out.printf("Hello, I'm %s\n", BOT_NAME);
         System.out.println("What can I do for you?");
     }
