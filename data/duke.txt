@@ -1,1 +1,3 @@
-event meeting /at tmr 2pm
+deadline,homework /by 2022-09-01
+event,meeting /at 2022-09-02
+todo,buy bread
