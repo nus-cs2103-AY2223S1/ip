@@ -20,9 +20,8 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
-    private static final String taskListTxt = "duke.txt";
 
-    private final TaskList tasks;
+    private TaskList tasks;
     private boolean tasksEnd = false;
 
     /**
@@ -40,60 +39,19 @@ public class Duke {
         Parser.printMsg(String.format("%s%s", LOGO, GREETING));
 
         Scanner sc = new Scanner(System.in);
-        load();
+        tasks = Storage.load();
 
         while (!tasksEnd) {
             System.out.print(">> ");
             String input = sc.nextLine();
             try {
                 execute(input);
-                write(tasks);
+                Storage.write(tasks);
             } catch (DukeException e) {
                 Parser.printMsg(e.getMessage());
             }
         }
     }
-
-    /**
-     * Writes {@code TaskList} taskList into data/duke.txt
-     * Overwrites the whole file with current taskList
-     * @param taskList the {@code TaskList} we are saving
-     */
-    public void write(TaskList taskList) {
-        File storageDirectory = new File("./data");
-        if (!storageDirectory.exists()) {
-            if (!storageDirectory.mkdir()) {
-                Parser.printMsg("Could not create /data directory");
-            }
-        }
-        try {
-            FileWriter fw = new FileWriter(String.format("./data/%s", taskListTxt));
-            for (Task task : taskList) {
-                fw.write(task.toData() + "\n");
-            }
-            fw.close();
-        } catch (IOException e) {
-            Parser.printMsg(String.format("Failed to write file at ./data/%s", taskListTxt));
-        }
-    }
-
-    /**
-     * Loads {@code TaskList} taskList from data/duke.txt
-     */
-    public void load() {
-        File f = new File(String.format("./data/%s", taskListTxt));
-        try {
-            if (f.exists()) {
-                Scanner sc = new Scanner(f);
-                while (sc.hasNextLine()) {
-                    tasks.add(Parser.parseTask(sc.nextLine()));
-                }
-            }
-        } catch (FileNotFoundException | DukeException e) {
-            Parser.printMsg(e.getMessage());
-        }
-    }
-
 
     /**
      * Execute the command entered by the user.
