@@ -1,4 +1,6 @@
-[D][ ] drinks (by: 12/12/2022 1200)
-[D][ ] groceries (by: 12/12/2022 1200)
-[T][ ] shopping
+[T][X] shopping
 [D][ ] laundry (by: 12/12/2222 1500)
+[D][ ] testing (by: 12/12/2222 1500)
+[D][ ] work (by: 12/12/2222 1500)
+[T][ ] fdjaosifjso
+[D][X] fjdoiasjfodais  (by: 12/12/2022 1200)
