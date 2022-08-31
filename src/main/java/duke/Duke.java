@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * The main application.
+ */
 public class Duke {
 
     public final String FILE_NAME;
@@ -18,7 +21,7 @@ public class Duke {
      * Returns a Duke instance.
      *
      * @param fileName The name of the file to store the tasks.
-     * @param fo The FileOperator to perform file manipulation.
+     * @param fo       The FileOperator to perform file manipulation.
      * @param taskList The TaskList instance to manage all tasks.
      */
     public Duke(String fileName, Storage fo, TaskList taskList) {
