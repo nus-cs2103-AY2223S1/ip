@@ -1,11 +1,15 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * Duke is a Chatbot that is able to store and keep track of tasks inputted by the user.
  */
-public class Duke {
+public class Duke extends Application {
 
     private Storage storage;
     private TaskList tasks;
@@ -16,9 +20,9 @@ public class Duke {
      *
      * @param filePath The relative path of the location to store the tasks.
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(System.getProperty("user.dir") + "/data/tasks.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
@@ -50,6 +54,15 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir") + "/data/tasks.txt").run();
+        new Duke().run();
+    }
+    
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
