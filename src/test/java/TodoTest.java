@@ -10,7 +10,6 @@ public class TodoTest {
     public void testIsTodo(){
         try {
             assertEquals(true, new Todo("Description", false).isTodo());
-            fail();
         }
         catch (DukeException e) {
             assertEquals("☹ OOPS!!! The description of a todo cannot be empty.", e.getMessage());
