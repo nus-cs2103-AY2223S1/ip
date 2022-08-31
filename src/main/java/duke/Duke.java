@@ -41,19 +41,16 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke chat-bot.
+     * Executes a command.
+     *
+     * @param command The command to execute.
      */
-    public void run() {
-        io.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                Command command = Parser.parseCommand(io.read());
-                command.execute(storage, io, tasks);
-                isExit = command.isExit();
-            } catch (DukeException e) {
-                io.print(e.getMessage());
-            }
+    public String run(String command) {
+        try {
+            Command c = Parser.parseCommand(command);
+            return c.execute(storage, tasks);
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 }

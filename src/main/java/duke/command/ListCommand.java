@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Io;
 import duke.util.Storage;
 
 /**
@@ -13,12 +12,11 @@ public class ListCommand extends Command {
      * Prints the {@code Task}s in the {@code TaskList} to the {@code UI}.
      *
      * @param storage The {@code Storage} to use.
-     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Io io, TaskList tasks) {
-        io.print("List of tasks:\n" + tasks);
+    public String execute(Storage storage, TaskList tasks) {
+        return "List of tasks:\n" + tasks;
     }
 
     /**

@@ -13,7 +13,4 @@ src/main/resources/docs/
 *.iml
 bin/
 
-text-io-test/ACTUAL.TXT
-text-io-test/EXPECTED-UNIX.TXT
-
 data/

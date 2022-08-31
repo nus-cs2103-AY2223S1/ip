@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Io;
 import duke.util.Storage;
 
 /**
@@ -28,15 +27,14 @@ public class UpdateStatusCommand extends Command {
      * Updates the {@code Task} at the given {@code index} in the {@code TaskList} according to {@code isDone}.
      *
      * @param storage The {@code Storage} to use.
-     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Io io, TaskList tasks) {
+    public String execute(Storage storage, TaskList tasks) {
         Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);
-        io.print("I've updated the status of this task\n\t" + task);
+        return "I've updated the status of this task\n\t" + task;
     }
 
     /**

@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Io;
 import duke.util.Storage;
 
 /**
@@ -25,18 +24,17 @@ public class FindCommand extends Command {
      * Searches the {@code TaskList} for the keyword.
      *
      * @param storage The {@code Storage} to use.
-     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Io io, TaskList tasks) {
+    public String execute(Storage storage, TaskList tasks) {
         TaskList foundTasks = new TaskList();
         for (Task task : tasks) {
             if (task.contains(keyword)) {
                 foundTasks.add(task);
             }
         }
-        io.print("Tasks containing \"" + keyword + "\":\n" + foundTasks);
+        return "Tasks containing \"" + keyword + "\":\n" + foundTasks;
     }
 
     /**

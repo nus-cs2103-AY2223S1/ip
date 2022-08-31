@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Io;
 import duke.util.Storage;
 
 /**
@@ -25,14 +24,13 @@ public class AddTaskCommand extends Command {
      * Adds the task to the task list.
      *
      * @param storage The {@code Storage} to use.
-     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Io io, TaskList tasks) {
+    public String execute(Storage storage, TaskList tasks) {
         tasks.add(task);
         storage.save(tasks);
-        io.print("I've added the following task:\n\t" + task);
+        return "I've added the following task:\n\t" + task;
     }
 
     /**

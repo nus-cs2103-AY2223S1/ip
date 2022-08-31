@@ -1,8 +1,6 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.task.TaskList;
-import duke.ui.Io;
 import duke.util.Storage;
 
 /**
@@ -25,14 +23,13 @@ public class DeleteTaskCommand extends Command {
      * Deletes the {@code Task} at the given {@code index} from the {@code TaskList}.
      *
      * @param storage The {@code Storage} to use.
-     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Io io, TaskList tasks) throws DukeException {
-        io.print("I'm removing the following task:\n\t" + tasks.get(index - 1));
+    public String execute(Storage storage, TaskList tasks) {
         tasks.remove(index - 1);
         storage.save(tasks);
+        return "I've removed the following task:\n\t" + tasks.get(index - 1);
     }
 
     /**
