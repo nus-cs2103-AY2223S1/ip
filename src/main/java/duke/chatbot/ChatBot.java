@@ -10,12 +10,25 @@ public class ChatBot {
     private final String name;
     private boolean runningState;
     private final TaskManager taskManager;
+
+    /**
+     * Constructor for a chatbot that can be intialized or terminated.
+     * Primarily used for processing commands to update its own task manager.
+     * Default state of the chat bot is runningState = false
+     *
+     * @param name string of the name of the chatbot
+     */
     public ChatBot(String name) {
         this.name =  name;
         this.runningState = false;
         this.taskManager = new TaskManager();
     }
 
+    /**
+     * Initializes the chatbot by setting its runningState to true and responds
+     * with a greeting message. The task manager is also initialized by loading
+     * any pre-existing data.
+     */
     public void initialize() {
         this.runningState = true;
         System.out.println(wrapMessage("Greetings, " + this.name + " at your service.\n" +
@@ -23,15 +36,31 @@ public class ChatBot {
         taskManager.load();
     }
 
+    /**
+     * Terminates the chatbot by setting its runningState to false and responds
+     * with a goodbye message.
+     */
     public void terminate() {
         this.runningState = false;
         System.out.println(wrapMessage("Goodbye! It was nice seeing you.\n"));
     }
 
+    /**
+     * Returns the runningState of the chatbot
+     *
+     * @return running state of the chatbot
+     */
     public boolean isRunning() {
         return this.runningState;
     }
 
+    /**
+     * Processes commands from an input by the user and calls the appropriate command
+     * for the task manager. Handles exceptions for invalid commands. Calls the
+     * save command of the task manager after every successful command processed.
+     *
+     * @param input string of the input provided by the user
+     */
     public void processCommand(String input) {
         Scanner inputScanner = new Scanner(input);
         try {
@@ -97,6 +126,11 @@ public class ChatBot {
         }
     }
 
+    /**
+     * Wraps a given string in a neat format for responses provided by the chatbot.
+     *
+     * @param str string of the text to be wrapped in a neat format
+     */
     private String wrapMessage(String str) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("------------------------------------------------------------\n");
