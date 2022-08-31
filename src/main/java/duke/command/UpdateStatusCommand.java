@@ -2,8 +2,8 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.ui.Io;
 import duke.util.Storage;
-import duke.util.Ui;
 
 /**
  * Encapsulates a command to check or uncheck a {@code Task} from a {@code TaskList}.
@@ -28,15 +28,15 @@ public class UpdateStatusCommand extends Command {
      * Updates the {@code Task} at the given {@code index} in the {@code TaskList} according to {@code isDone}.
      *
      * @param storage The {@code Storage} to use.
-     * @param ui The {@code UI} to use.
+     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Ui ui, TaskList tasks) {
+    public void execute(Storage storage, Io io, TaskList tasks) {
         Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);
-        ui.print("I've updated the status of this task\n\t" + task);
+        io.print("I've updated the status of this task\n\t" + task);
     }
 
     /**

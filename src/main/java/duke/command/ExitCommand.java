@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.task.TaskList;
+import duke.ui.Io;
 import duke.util.Storage;
-import duke.util.Ui;
 
 /**
  * Encapsulates a command that ends interaction.
@@ -23,12 +23,12 @@ public class ExitCommand extends Command {
      * Calls the {@code UI} to exit interaction.
      *
      * @param storage The {@code Storage} to use.
-     * @param ui The {@code UI} to use.
+     * @param io The {@code UI} to use.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Ui ui, TaskList tasks) {
-        ui.exit();
+    public void execute(Storage storage, Io io, TaskList tasks) {
+        io.exit();
     }
 
     /**

@@ -1,4 +1,4 @@
-package duke.util;
+package duke.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * A class that provides a simple user interface for the Duke system.
  */
-public class Ui {
+public class Io {
     private static final String LOGO = " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
@@ -23,7 +23,7 @@ public class Ui {
      * @param inputStream The input stream to use for user input.
      * @param printStream The print stream to use for output.
      */
-    public Ui(InputStream inputStream, PrintStream printStream) {
+    public Io(InputStream inputStream, PrintStream printStream) {
         this.inputStreamScanner = new Scanner(inputStream);
         this.printStream = printStream;
     }

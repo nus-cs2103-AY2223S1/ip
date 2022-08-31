@@ -1,14 +1,13 @@
 package duke;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.ui.Io;
 import duke.util.DataFileCorruptedException;
 import duke.util.Parser;
 import duke.util.Storage;
-import duke.util.Ui;
 
 /**
  * The main class of the Duke chat-bot.
@@ -16,7 +15,7 @@ import duke.util.Ui;
 public class Duke {
 
     private final Storage storage;
-    private final Ui ui;
+    private final Io io;
     private TaskList tasks;
 
     /**
@@ -26,16 +25,16 @@ public class Duke {
      */
     public Duke(Path path) {
         storage = new Storage(path);
-        ui = new Ui(System.in, System.out);
+        io = new Io(System.in, System.out);
         try {
             tasks = new TaskList(storage.load());
         } catch (DataFileCorruptedException e) {
-            ui.print(e.getMessage());
-            if (ui.readYesNoResponse("Do you want to reset the data file?")) {
+            io.print(e.getMessage());
+            if (io.readYesNoResponse("Do you want to reset the data file?")) {
                 tasks = new TaskList();
                 storage.save(tasks);
             } else {
-                ui.exit();
+                io.exit();
                 System.exit(0);
             }
         }
@@ -45,20 +44,16 @@ public class Duke {
      * Runs the Duke chat-bot.
      */
     public void run() {
-        ui.greet();
+        io.greet();
         boolean isExit = false;
         while (!isExit) {
             try {
-                Command command = Parser.parseCommand(ui.read());
-                command.execute(storage, ui, tasks);
+                Command command = Parser.parseCommand(io.read());
+                command.execute(storage, io, tasks);
                 isExit = command.isExit();
             } catch (DukeException e) {
-                ui.print(e.getMessage());
+                io.print(e.getMessage());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke(Paths.get(System.getProperty("user.dir"), "data", "data.txt")).run();
     }
 }
