@@ -8,9 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import kirby.ui.MainWindow;
+import kirby.ui.Ui;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Kirby using FXML.
  */
 public class Main extends Application {
 
@@ -28,8 +29,10 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Kirby Deluxe Bot");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setKirby(kirby);
+            fxmlLoader.<MainWindow>getController().showWelcome(Ui.showWelcome());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -2,7 +2,7 @@ package kirby.commands;
 
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.Ui;
+import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;

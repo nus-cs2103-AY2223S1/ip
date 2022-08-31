@@ -6,6 +6,7 @@ import java.io.IOException;
 import kirby.commands.Command;
 import kirby.exceptions.KirbyInvalidCommandException;
 import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.ui.Ui;
 
 /**
  * Kirby class implements the main method.

@@ -114,7 +114,7 @@ public class TaskList {
 
     /**
      * Prints the number of tasks in the list.
-     * 
+     *
      * @param x 1 if a removeTask function is calling this function. Otherwise. it is 0.
      */
     private String printTaskCount(int x) {

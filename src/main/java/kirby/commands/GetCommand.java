@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import kirby.HandleTime;
 import kirby.Storage;
 import kirby.TaskList;
-import kirby.Ui;
+import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.tasks.Task;
 
