@@ -1,7 +1,13 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyTodoException;
@@ -23,6 +29,7 @@ public class Parser {
      *
      * @param input The line of text inputted by the user.
      * @return A Command that performs the task specified by the user.
+     * @throws DukeException If input is invalid.
      */
     public static Command parse(String input) throws DukeException {
         if (input.equals("bye")) {
@@ -73,8 +80,8 @@ public class Parser {
             return new DeleteCommand(idx);
         } else if (words[0].equals("find")) {
             // find keyword: find matching tasks
-            String[] find = input.split(" find ", 2);
-            String keyword = find[0];
+            String[] find = input.split("find ", 2);
+            String keyword = find[1];
             return new FindCommand(keyword);
         } else {
             throw new UnknownCommandException();

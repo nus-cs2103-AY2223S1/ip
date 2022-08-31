@@ -15,6 +15,7 @@ import duke.task.Task;
  */
 public class TaskList {
 
+    /** List containing all the tasks currently in the TaskList */
     private List<Task> tasks;
 
     /**
@@ -38,7 +39,7 @@ public class TaskList {
      *
      * @return The number of Tasks in the list.
      */
-    public int size() {
+    public int getSize() {
         return tasks.size();
     }
 
@@ -48,7 +49,7 @@ public class TaskList {
      * @param idx The index of the task.
      * @return The Task at the given index.
      */
-    public Task get(int idx) {
+    public Task getTask(int idx) {
         return tasks.get(idx);
     }
 

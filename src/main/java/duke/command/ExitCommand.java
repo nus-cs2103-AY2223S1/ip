@@ -34,7 +34,7 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showBye();
         try {
-            storage.save(tasks);
+            storage.saveTasks(tasks);
         } catch (IOException e) {
             System.out.println("Error saving file!!");
         }

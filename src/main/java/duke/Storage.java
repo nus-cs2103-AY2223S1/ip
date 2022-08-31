@@ -37,7 +37,7 @@ public class Storage {
      *
      * @return A List of Tasks that have been stored in the data file.
      */
-    public List<Task> load() throws FileNotFoundException {
+    public List<Task> loadTasks() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
@@ -82,7 +82,7 @@ public class Storage {
      *
      * @param tasks The current List of Tasks.
      */
-    public void save(TaskList tasks) throws IOException {
+    public void saveTasks(TaskList tasks) throws IOException {
         tasks.saveTasks(this.filePath);
     }
 }

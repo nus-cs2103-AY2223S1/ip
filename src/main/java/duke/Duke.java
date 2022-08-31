@@ -26,7 +26,7 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.loadTasks());
         } catch (FileNotFoundException e) {
             ui.showLoadingError();
             tasks = new TaskList();

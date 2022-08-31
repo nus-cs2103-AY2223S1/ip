@@ -66,7 +66,7 @@ public class Ui {
     public void showAddTask(Task task, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
         System.out.println("\t " + task.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+        System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
     }
 
     /**
@@ -78,7 +78,7 @@ public class Ui {
     public void showDeleteTask(Task task, TaskList tasks) {
         System.out.println("Got it. I've removed this task:");
         System.out.println("\t " + task.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+        System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
     }
 
     /**
@@ -108,8 +108,8 @@ public class Ui {
      */
     public void showTasks(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            Task curr = tasks.get(i);
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task curr = tasks.getTask(i);
             System.out.format("%d. %s\n", i + 1, curr.toString());
         }
     }
@@ -130,8 +130,8 @@ public class Ui {
      */
     public void showMatchingTasks(TaskList tasks) {
         System.out.println("Here are the matching tasks in you list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            Task curr = tasks.get(i);
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task curr = tasks.getTask(i);
             System.out.format("%d. %s\n", i + 1, curr.toString());
         }
     }
