@@ -17,7 +17,7 @@ public class EventTest {
             assertEquals("[E][ ] Party (at: Oct 23 2022)", event.toString());
             fail();
         } catch (Exception e) {
-            assertEquals("OOPS!!! Date should be in yyyy-mm-dd format.", e.getMessage());
+            assertEquals("Oops!!! Date should be in yyyy-mm-dd format.", e.getMessage());
         }
     }
 

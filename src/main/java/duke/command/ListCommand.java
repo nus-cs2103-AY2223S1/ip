@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.Response;
+import duke.response.Response;
 import duke.task.TasksList;
 
 /**

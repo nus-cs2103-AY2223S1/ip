@@ -29,7 +29,7 @@ public class TaskListTest {
             tasksList.markAsUndone(-1);
             fail();
         } catch (Exception e) {
-            assertEquals("OOPS!!! Please enter a valid task number!", e.getMessage());
+            assertEquals("Oops!!! Please enter a valid task number!", e.getMessage());
         }
     }
 

@@ -1,5 +1,7 @@
 package duke;
 
+import duke.response.ExitResponse;
+import duke.response.Response;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

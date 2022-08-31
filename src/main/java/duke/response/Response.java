@@ -1,6 +1,10 @@
-package duke;
+package duke.response;
 
+/**
+ * Represents the Response to some user input.
+ */
 public class Response {
+
     private String message;
 
     public Response(String message) {

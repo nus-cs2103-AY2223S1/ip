@@ -1,7 +1,8 @@
 package duke.command;
 
-import duke.Response;
 import duke.exception.DukeException;
+import duke.response.Response;
+
 
 /**
  * Represent a command to be executed.

@@ -18,7 +18,7 @@ public class DeadlineTest {
             assertEquals("[D][ ] CS2100 (by: Oct 23 2022)", deadline.toString());
             fail();
         } catch (Exception e) {
-            assertEquals("OOPS!!! Date should be in yyyy-mm-dd format.", e.getMessage());
+            assertEquals("Oops!!! Date should be in yyyy-mm-dd format.", e.getMessage());
         }
     }
 

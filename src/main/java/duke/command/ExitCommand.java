@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.ExitResponse;
-import duke.Response;
+import duke.response.ExitResponse;
+import duke.response.Response;
 
 /**
  * Represents a command to exit the program.
