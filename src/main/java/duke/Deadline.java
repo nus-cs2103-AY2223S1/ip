@@ -102,8 +102,6 @@ public class Deadline extends Task {
         }
     }
 
-
-
     /**
      * Output the full details of the deadline being deleted in the console.
      */
