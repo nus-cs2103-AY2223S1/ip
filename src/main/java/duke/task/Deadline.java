@@ -35,7 +35,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public boolean happensOn(LocalDate searchDate) {
+    public boolean isOn(LocalDate searchDate) {
         return this.day.equals(searchDate);
     }
 

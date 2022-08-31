@@ -20,7 +20,7 @@ public class Task {
      * to retrieve the corresponding information.
      */
     public enum TaskType {
-            TODO, DEADLINE, EVENT
+        ToDo, Deadline, Event
     }
 
     /**
@@ -67,7 +67,7 @@ public class Task {
      * @param searchDate The date to be checked.
      * @return True if the task occurs on the given date.
      */
-    public boolean happensOn(LocalDate searchDate) {
+    public boolean isOn(LocalDate searchDate) {
         return false;
     }
 

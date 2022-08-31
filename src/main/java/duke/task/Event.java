@@ -45,7 +45,7 @@ public class Event extends Task {
     }
 
     @Override
-    public boolean happensOn(LocalDate searchDate) {
+    public boolean isOn(LocalDate searchDate) {
         return startDateTime.toLocalDate().equals(searchDate);
     }
 

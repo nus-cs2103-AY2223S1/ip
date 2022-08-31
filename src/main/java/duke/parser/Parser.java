@@ -6,7 +6,18 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.commands.*;
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DefaultCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.SearchCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -56,7 +67,7 @@ public class Parser {
             try {
                 return new TodoCommand(new ToDo(arr[1]));
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.TODO);
+                ui.invalidTaskInput(Task.TaskType.ToDo);
             }
             return null;
         case DeadlineCommand.COMMAND_WORD:
@@ -71,7 +82,7 @@ public class Parser {
                             dl[0], day, LocalTime.parse(datetime[1], timeFormatter)));
                 }
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.DEADLINE);
+                ui.invalidTaskInput(Task.TaskType.Deadline);
             } catch (DateTimeParseException e) {
                 ui.invalidDateTimeInput();
             }
@@ -90,7 +101,7 @@ public class Parser {
                             info[0], timings[0], startDateTime, LocalTime.parse(dateTimeInfo[1], timeFormatter)));
                 }
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.EVENT);
+                ui.invalidTaskInput(Task.TaskType.Event);
             } catch (DateTimeParseException e) {
                 ui.invalidStartEndDateInput();
             }

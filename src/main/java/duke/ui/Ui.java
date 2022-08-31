@@ -70,9 +70,9 @@ public class Ui {
      * @param t The type of the task for which information has been entered wrongly.
      */
     public void invalidTaskInput(TaskType t) {
-        if (t == TaskType.TODO) {
+        if (t == TaskType.ToDo) {
             System.out.println(SAD_FACE + "please tell me the name of the todo task.");
-        } else if (t == TaskType.DEADLINE) {
+        } else if (t == TaskType.Deadline) {
             System.out.println(
                     SAD_FACE + "for tasks with deadlines, please tell me the name of the task, followed "
                             + "by '/by',\n  and then the date/time it needs to be completed by\n"

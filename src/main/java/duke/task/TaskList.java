@@ -128,7 +128,7 @@ public class TaskList {
         String list = "";
         int x = 1;
         for (Task task : tasks) {
-            if (task.happensOn(date)) {
+            if (task.isOn(date)) {
                 list = list + "\n  " + x + ". " + task;
                 x++;
             }
