@@ -23,15 +23,16 @@ public class Ui {
      * Prints out the welcome message.
      */
     public void showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String logo = " ____  ____   __    ___   ___  _  _\n"
+                + "(  __)(  _ \\ /  \\  / __) / __)( \\/ )\n"
+                + " ) _)  )   /(  O )( (_ \\( (_ \\ )  /\n"
+                + "(__)  (__\\_) \\__/  \\___/ \\___/(__/\n";
 
-        System.out.println("Hello! I'm seedu.duke.Duke\n"
-                + "What can I do for you?\n");
+
+
+
+        System.out.println("Hello from\n" + logo);
+        System.out.println("What can I do for you?\n");
     }
 
     /**
@@ -92,7 +93,7 @@ public class Ui {
      * @param task The task to be marked.
      */
     public void showMarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "Nice! I've marked this seedu.duke.task as done:");
+        System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
     }
 
@@ -102,7 +103,7 @@ public class Ui {
      * @param task The task to be unmarked.
      */
     public void showUnmarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "OK, I've marked this seedu.duke.task as not done yet:");
+        System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
     }
 
@@ -111,7 +112,7 @@ public class Ui {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
-        System.out.println(Style.INDENTATION + "Got it. I've added this seedu.duke.task:");
+        System.out.println(Style.INDENTATION + "Got it. I've added this task:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
     }
 
@@ -120,7 +121,7 @@ public class Ui {
      * @param task The task to be deleted.
      */
     public void deleteTask(Task task) {
-        System.out.println(Style.INDENTATION + "Noted. I've removed this seedu.duke.task:");
+        System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
     }
 

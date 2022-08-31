@@ -1,12 +1,12 @@
 package seedu.duke.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class TaskListTest {
     @Test
-    public void addTask_DeadlineObject_toStringSuccess () {
+    public void addTask_deadlineObject_toStringSuccess() {
         TaskList tasks = new TaskList();
 
         Deadline deadline = new Deadline("return book", "2019-10-15");
