@@ -8,10 +8,7 @@ import java.util.Arrays;
 public class Parser {
     private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete", "find"};
 
-    public Parser() {
-    }
-
-    ;
+    public Parser() {}
 
     /**
      * Returns Keyword extracted from user input.

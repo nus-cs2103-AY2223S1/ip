@@ -7,7 +7,7 @@ public class Ui {
     public Ui() {};
 
     public static String showWelcome() {
-       return "Hello, what can I do for you?";
+        return "Hello, what can I do for you?";
     }
 
     public String showBye() {
@@ -19,7 +19,7 @@ public class Ui {
     }
 
     public String showTaskUnmarked(Task task) {
-       return "OK, I've marked this task as not done yet:\n\t" + task;
+        return "OK, I've marked this task as not done yet:\n\t" + task;
     }
 
     public String showTaskAdded(Task task) {
