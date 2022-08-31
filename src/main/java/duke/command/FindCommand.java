@@ -11,15 +11,15 @@ import duke.Ui;
  */
 public class FindCommand extends Command {
 
-    private String wordToFind;
+    private String[] wordsToFind;
 
     /**
      * Constructor of FindCommand.
      *
-     * @param wordToFind The keyword to search for.
+     * @param wordsToFind The keywords to search for.
      */
-    public FindCommand(String wordToFind) {
-        this.wordToFind = wordToFind;
+    public FindCommand(String[] wordsToFind) {
+        this.wordsToFind = wordsToFind;
     }
 
     /**
@@ -31,6 +31,6 @@ public class FindCommand extends Command {
      * @return Find word eventual message
      */
     public String run(TaskList tasks, Ui ui, Storage storage) {
-        return ui.printAnyOtherMessage(tasks.findTasks(wordToFind));
+        return ui.printAnyOtherMessage(tasks.findTasks(wordsToFind));
     }
 }

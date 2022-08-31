@@ -132,13 +132,21 @@ public class TaskList {
     /**
      * Finds and returns a list of tasks that contains the given wordToFind.
      *
-     * @param wordToFind The keyword to find in the TaskList.
+     * @param wordsToFind The keyword to find in the TaskList.
      * @return String representation of the list containing the tasks found.
      */
-    public String findTasks(String wordToFind) {
+    public String findTasks(String ...wordsToFind) {
         ArrayList<String> foundTasks = new ArrayList<>();
         for (Task task : taskList) {
-            if (task.containsWord(wordToFind)) {
+            boolean matchAllKeywords = true;
+            for (String keyword : wordsToFind) {
+                if (!task.containsWord(keyword)) {
+                    matchAllKeywords = false;
+                    break;
+                }
+            }
+
+            if (matchAllKeywords) {
                 foundTasks.add(task.toString());
             }
         }

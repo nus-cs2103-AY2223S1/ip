@@ -16,31 +16,16 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
-    /**
-     * Reads the user input.
-     *
-     * @return The line containing the user input.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
 
     /**
-     * Prints the horizontal line (divider).
-     */
-    public void printHorizontalLine() {
-        System.out.println(horizontalLine);
-    }
-
-    /**
-     * Prints the initial welcome message to be shown to the user.
+     * Returns the initial welcome message to be shown to the user.
      */
     public static String printWelcomeMessage() {
         return "Hey there! I'm Bob\nWhat can I do for you?";
     }
 
     /**
-     * Prints the bye message to the user.
+     * Returns the bye message to the user.
      */
     public String printByeMessage() {
         sc.close();
@@ -48,7 +33,7 @@ public class Ui {
     }
 
     /**
-     * Prints the mark message as well as the task that has been marked.
+     * Returns the mark message as well as the task that has been marked.
      *
      * @param task The task that has been marked.
      */
@@ -57,7 +42,7 @@ public class Ui {
     }
 
     /**
-     * Prints the message as well the task that has been unmarked.
+     * Returns the message as well the task that has been unmarked.
      *
      * @param task The task that has been unmarked.
      */
@@ -66,7 +51,7 @@ public class Ui {
     }
 
     /**
-     * Prints the message that task has been added.
+     * Returns the message that task has been added.
      *
      * @param addedTask String representation of added task.
      * @param size Size of list after task is added.
@@ -77,7 +62,7 @@ public class Ui {
     }
 
     /**
-     * Prints message of task being deleted.
+     * Returns message of task being deleted.
      *
      * @param deletedTask String representation of deleted task.
      * @param size The size of list after task is deleted.
@@ -88,14 +73,14 @@ public class Ui {
     }
 
     /**
-     * Prints loading error if file does not exist.
+     * Returns loading error if file does not exist.
      */
     public String printLoadingError() {
         return "No saved data found";
     }
 
     /**
-     * Prints any given message.
+     * Returns any given message.
      *
      * @param message Given message.
      */

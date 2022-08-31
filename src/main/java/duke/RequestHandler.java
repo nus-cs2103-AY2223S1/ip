@@ -103,7 +103,8 @@ public class RequestHandler {
                     return new DeleteCommand(itemNumber);
                 }
                 case FIND:
-                    return new FindCommand(furtherSplit);
+                    String[] splitIntoInputArray = furtherSplit.split("\\s+");
+                    return new FindCommand(splitIntoInputArray);
                 default:
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }
