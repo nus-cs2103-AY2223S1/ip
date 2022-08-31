@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.tools.Parser;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Duke is a bot that allows you to create a schedule, edit it, and memorises it.
@@ -23,11 +23,6 @@ public class Duke {
     /** Ui to be initialised */
     private Ui ui;
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
-    }
-
     /**
      * Constructs Duke with a default file name.
      */
@@ -42,7 +37,6 @@ public class Duke {
             ui.printException(e);
             taskList = new TaskList(new ArrayList<>());
         }
-
     }
 
     /**
@@ -61,6 +55,16 @@ public class Duke {
             ui.printException(e);
             taskList = new TaskList(new ArrayList<>());
         }
+    }
+
+    /**
+     * This is the main method where the program runs from.
+     *
+     * @param args Unused parameter
+     */
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 
     /**

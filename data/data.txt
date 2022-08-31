@@ -1,0 +1,2 @@
+D | X | finish IP for this week | 01/09/2022
+T | X | post UI text on MS teams

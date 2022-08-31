@@ -1,18 +1,18 @@
 package duke.tools;
 
+import java.util.Scanner;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
-
-import java.util.Scanner;
 
 /**
  * This class deals with interactions with the user.
  */
 public class Ui {
-    /** Controls termination of Duke program */
-    private Boolean isExit = false;
     /** Scanner object to read user input */
     private static Scanner sc = new Scanner(System.in);
+    /** Controls termination of Duke program */
+    private Boolean isExit = false;
 
     /**
      * Reads next line of user input command.

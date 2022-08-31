@@ -1,11 +1,5 @@
 package duke.tools;
 
-import duke.exceptions.DukeException;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +9,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import duke.exceptions.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 /**
  * This class deals with loading tasks from the file and saving tasks in the file.
@@ -149,8 +149,8 @@ public class Storage {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException("OOPS!!! Unable to create a new file. " +
-                    "Tasks might not be stored.");
+            throw new DukeException("OOPS!!! Unable to create a new file. "
+                    + "Tasks might not be stored.");
         }
     }
 }

@@ -1,12 +1,12 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Event;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
-
-import java.time.LocalDateTime;
 
 /**
  * This class performs create an event task with specified description
