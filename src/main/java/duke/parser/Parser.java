@@ -4,6 +4,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -56,6 +57,12 @@ public abstract class Parser {
             } catch (NumberFormatException e) {
                 throw new DukeException("Please specify a valid number.");
             }
+            break;
+        case "find":
+            if (commandArgs.length < 2) {
+                throw new DukeException("The search term cannot be empty.");
+            }
+            command = new FindCommand(commandArgs[1]);
             break;
         case "todo":
             if (commandArgs.length < 2) {

@@ -2,6 +2,7 @@ package duke.task;
 
 import duke.common.DukeException;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -55,6 +56,11 @@ public class TaskList {
             encodedTaskList.append(task.encode()).append("\n");
         }
         return encodedTaskList.toString();
+    }
+
+    public TaskList filter(Predicate<Task> predicate) {
+        return new TaskList(tasks.stream().filter(predicate)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
     }
 
     public String toString() {

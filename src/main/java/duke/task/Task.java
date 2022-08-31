@@ -23,6 +23,10 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String encode() {
         return this.description + Task.ENCODING_SEPARATOR + this.isDone;
     }
