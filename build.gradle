@@ -4,8 +4,6 @@ plugins {
     id 'checkstyle'
 }
 
-mainClassName = 'Duke'
-
 repositories {
     mavenCentral()
 }
