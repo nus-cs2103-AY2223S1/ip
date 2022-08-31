@@ -6,10 +6,18 @@ import duke.task.Event;
 public class EventCommand extends Command {
     private final String input;
 
+    /**
+     * Constructs a command to create a new event with the specified input.
+     *
+     * @param input The specified user input.
+     */
     public EventCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (input.isBlank()) {
             throw new DukeException("Hold up! Description cannot be empty!");
@@ -25,6 +33,9 @@ public class EventCommand extends Command {
         ui.showAddTask(newEvent, taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

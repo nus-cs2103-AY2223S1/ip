@@ -7,10 +7,16 @@ import duke.Ui;
 import duke.commands.Command;
 
 public class ListCommand extends Command {
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ui.showTaskList(taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }
