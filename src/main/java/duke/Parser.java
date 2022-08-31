@@ -1,16 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.CommandType;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.ToDoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.TasksList;
 
@@ -27,7 +17,7 @@ public class Parser {
      * @return The corresponding command to the user input.
      * @throws DukeException if there is no command corresponding to the user input.
      */
-    public Command handleCommand(String userInput, TasksList tasksList) throws DukeException {
+    public static Command handleCommand(String userInput, TasksList tasksList) throws DukeException {
         String[] inputArray = userInput.trim().split("\\s+", 2);
         CommandType commandType = CommandType.parseToCommand(inputArray[0].toLowerCase());
 
@@ -51,7 +41,7 @@ public class Parser {
         case FIND:
             return new FindCommand(tasksList, inputArray);
         default:
-            throw new DukeException("Invalid Command");
+            throw new DukeException("Please enter a valid request / command!");
         }
     }
 }

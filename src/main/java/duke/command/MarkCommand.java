@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
@@ -24,18 +25,18 @@ public class MarkCommand extends Command {
 
     /**
      * Mark the task in the TasksList as done.
-     * @return The message to be displayed upon the execution of the command.
+     * @return The Response to be displayed upon the execution of the command.
      * @throws DukeException If the task cannot be marked as done successfully.
      */
     @Override
-    public String execute() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArray.length < 2) {
             throw new DukeException("Missing Task Number!");
         }
         try {
             int taskNumber = Integer.parseInt(this.inputArray[1]);
             Task markedTask = this.tasksList.markAsDone(taskNumber);
-            return MarkCommand.MARK_MSG + markedTask;
+            return new Response(MarkCommand.MARK_MSG + markedTask);
         // exception due to parsing
         } catch (NumberFormatException exception) {
             throw new DukeException("Please enter a integer for task number!");

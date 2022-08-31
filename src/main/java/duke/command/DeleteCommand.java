@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
@@ -24,11 +25,11 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes the Task from the TasksList.
-     * @return The message to be displayed upon the execution of the command.
+     * @return The Response to be displayed upon the execution of the command.
      * @throws DukeException If the task cannot be deleted from the TasksList.
      */
     @Override
-    public String execute() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArray.length < 2) {
             throw new DukeException("Missing Task Number!");
         }
@@ -42,7 +43,7 @@ public class DeleteCommand extends Command {
             } else {
                 sb.append(this.tasksList.getLength() + " tasks in the list.\n");
             }
-            return sb.toString();
+            return new Response(sb.toString());
             // exception due to parsing
         } catch (NumberFormatException exception) {
             throw new DukeException("Please enter a integer for task number!");

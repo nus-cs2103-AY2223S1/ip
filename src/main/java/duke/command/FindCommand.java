@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.List;
 
+import duke.Response;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
@@ -28,11 +29,11 @@ public class FindCommand extends Command {
 
     /**
      * Finds the tasks that match the keyword.
-     * @return The list of matching Tasks represented in a single string.
+     * @return The list of matching Tasks represented in a single Response.
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public String execute() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArray.length < 2) {
             throw new DukeException("Missing keyword!");
         }
@@ -42,14 +43,14 @@ public class FindCommand extends Command {
         int size = matchingTasks.size();
 
         if (size == 0) {
-            return FindCommand.NOT_FOUND_MSG;
+            return new Response(FindCommand.NOT_FOUND_MSG);
         } else {
             StringBuilder sb = new StringBuilder();
             sb.append(FindCommand.FOUND_MSG);
             for (int i = 1; i <= size; i++) {
                 sb.append(String.format("%d. %s\n", i, matchingTasks.get(i - 1)));
             }
-            return sb.toString();
+            return new Response(sb.toString());
         }
     }
 }
