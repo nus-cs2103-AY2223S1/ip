@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,7 +25,7 @@ public class Storage {
                 try {
                     f.createNewFile();
                     FileWriter fw = new FileWriter(filePath);
-                    for (int i = 0; i < tasks.length(); i++) {
+                    for (int i = 0; i < tasks.getLength(); i++) {
                         fw.write(tasks.getTask(i).savedString() + System.lineSeparator());
                     }
                     fw.close();
@@ -33,7 +35,7 @@ public class Storage {
             } else {
                 try {
                     FileWriter fw = new FileWriter(filePath);
-                    for (int i = 0; i < tasks.length(); i++) {
+                    for (int i = 0; i < tasks.getLength(); i++) {
                         fw.write(tasks.getTask(i).savedString() + System.lineSeparator());
                     }
                     fw.close();

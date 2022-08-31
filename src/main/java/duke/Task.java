@@ -20,7 +20,7 @@ public class Task {
     }
 
     /**
-     * A method to return if the task is done or not.
+     * Return if the task is done or not.
      *
      * @return The boolean to indicate if task is done.
      */
@@ -29,7 +29,7 @@ public class Task {
     }
 
     /**
-     * A method to return the task description.
+     * Return the task description.
      *
      * @return A String description of the task.
      */
@@ -38,7 +38,7 @@ public class Task {
     }
 
     /**
-     * A method to return integer index of the task in the list of tasks.
+     * Return integer index of the task in the list of tasks.
      *
      * @return The integer index of the task in list of tasks.
      */
@@ -47,7 +47,7 @@ public class Task {
     }
 
     /**
-     * A method to change the task from undone to done. Outputs in the console
+     * Change the task from undone to done. Output in the console
      * details of the task done to inform the user about the change.
      */
     public void markDone() {
@@ -59,7 +59,7 @@ public class Task {
     }
 
     /**
-     * A method to change the task from done to undone. Outputs in the console
+     * Change the task from done to undone. Output in the console
      * details of the task undone to inform user about the change.
      */
     public void markUndone() {
@@ -71,7 +71,7 @@ public class Task {
     }
 
     /**
-     * A method to update the index of the task in the list of tasks.
+     * Update the index of the task in the list of tasks.
      *
      * @param newIndex The most current integer index of the task.
      */
@@ -82,14 +82,14 @@ public class Task {
     }
 
     /**
-     * A method to output in the console the task added to the list of tasks.
+     * Output in the console the task added to the list of tasks.
      */
     public void printAdded() {
         System.out.println(Ui.straightLine + "\n added: " + taskDescription + "\n" + Ui.straightLine + "\n\n");
     }
 
     /**
-     * A method to output in the console the full details of the task.
+     * Output in the console the full details of the task.
      */
     public void printTask() {
         if (!isDone) {
@@ -101,7 +101,7 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of the duke.Task.
+     * Return a string representation of the duke.Task.
      *
      * @return string describing the task.
      */
@@ -113,6 +113,11 @@ public class Task {
         }
     }
 
+    /**
+     * Return a string to be saved in the hard disk.
+     *
+     * @return A string representation of task to be saved in the hard disk.
+     */
     public String savedString() {
         if (!isDone) {
             return "GN<" + taskDescription + ">";
@@ -122,7 +127,7 @@ public class Task {
     }
 
     /**
-     * A method to output in the console the task deleted from the list of tasks.
+     * Output in the console the task deleted from the list of tasks.
      */
     public void printDeleted() {
         System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n" + Ui.straightLine + "\n");

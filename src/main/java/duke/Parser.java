@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+
 import java.util.Locale;
 
 public class Parser {
@@ -10,11 +11,23 @@ public class Parser {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * A constructor to initialize a Parser.
+     *
+     * @param tasks A TaskList object storing all the tasks.
+     * @param ui A Ui Object handling the Ui of the project.
+     */
     public Parser(TaskList tasks, Ui ui) {
         this.tasks = tasks;
         this.ui = ui;
     }
 
+    /**
+     * Return a String representation of the time.
+     *
+     * @param time the String input time from console.
+     * @return A String representation of time to be output in console.
+     */
     public String parseTime(String time) {
         if (time.startsWith("00")) {
             return "12" + ":" + time.substring(2) + "AM";
@@ -31,6 +44,12 @@ public class Parser {
 
     }
 
+    /**
+     * Take user input from console and parse the input to do the relevant actions
+     * like adding a task to the list.
+     *
+     * @param userInput the String input from the console.
+     */
     public void parse(String userInput) {
         if (userInput.startsWith("mark")) {
             try {
