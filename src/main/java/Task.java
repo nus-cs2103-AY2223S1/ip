@@ -1,5 +1,3 @@
-import java.util.Map;
-
 abstract class Task {
     private final String description;
     private final char symbol;

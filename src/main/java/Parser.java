@@ -1,13 +1,16 @@
 import org.apache.commons.text.WordUtils;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Parser {
 
     private static final String LINE = "──────────────────────────────────────────\n";
+
+    public static final DateTimeFormatter DATETIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-y HHmm");
+    public static final DateTimeFormatter DATETIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
 
     /**
      * Pretty-prints an output string
@@ -33,37 +36,49 @@ public class Parser {
     public static Task parseTask(String s) throws DukeException {
         String[] strings = s.split(" \\| ", -1);
         Task task;
-        Map<String, String> map = new HashMap<>();
         if (!strings[1].equals(" ") && !strings[1].equals("X")) {
             throw new DukeException("Error parsing Task");
         }
         boolean isDone = strings[1].equals("X");
-        map.put("description", strings[2]);
+        String description = strings[2];
 
         switch (strings[0]) {
         case "T":
             if (strings.length > 3) {
                 throw new DukeException("Error parsing TodoTask");
             }
-            task = new TodoTask(map, isDone);
+            task = new TodoTask(description, isDone);
             break;
         case "D":
             if (strings.length > 4) {
                 throw new DukeException("Error parsing DeadlineTask");
             }
-            map.put("by", strings[3]);
-            task = new DeadlineTask(map, isDone);
+            task = new DeadlineTask(description, Parser.parseDateTime(strings[3]), isDone);
             break;
         case "E":
             if (strings.length > 4) {
                 throw new DukeException("Error parsing EventTask");
             }
-            map.put("at", strings[3]);
-            task = new EventTask(map, isDone);
+            task = new EventTask(description, Parser.parseDateTime(strings[3]), isDone);
             break;
         default:
             throw new DukeException("Error parsing Task");
         }
         return task;
+    }
+
+    /**
+     * Parses a {@code LocalDateTime} from a string.
+     * The string must be in the format "d-M-y HHmm".
+     *
+     * @param dateTime The string to parse.
+     * @return The parsed {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
+        try {
+            return LocalDateTime.parse(dateTime, DATETIME_INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(String.format("%s", dateTime));
+        }
     }
 }
