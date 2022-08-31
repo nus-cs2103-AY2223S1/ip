@@ -50,6 +50,8 @@ public class Parser {
             return this.parseDelete(commandArgs);
         case "find":
             return this.parseFind(commandArgs);
+        case "bye":
+            return this.parseBye(commandArgs);
         default:
             throw new InvalidCommandException();
         }
@@ -211,6 +213,20 @@ public class Parser {
         } else {
             String keyword = String.join(" ", commandArgs);
             return this.taskList.listTasks(keyword);
+        }
+    }
+
+    /**
+     * Parses the bye command
+     * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
+     * @throws InvalidArgumentException If additional arguments are entered
+     */
+    public String parseBye(String[] commandArgs) throws InvalidArgumentException {
+        if (commandArgs.length != 0) {
+            throw new InvalidArgumentException();
+        } else {
+            return UI.sayBye();
         }
     }
 
