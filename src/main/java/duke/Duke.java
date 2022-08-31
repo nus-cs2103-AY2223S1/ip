@@ -43,6 +43,7 @@ public class Duke {
      * The main function.
      */
     public static void main(String[] args) {
-        new Duke("./src/main/java/duke.txt").run();
+        String FILEPATH = "./src/main/java/duke.txt";
+        new Duke(FILEPATH).run();
     }
 }
