@@ -19,7 +19,7 @@ public class MarkingCommand extends Command {
     }
 
     /**
-     * Mark the task if wantsToMark is true. Unmark otherwise.
+     * Marks the task if wantsToMark is true. Unmark otherwise.
      *
      * @param taskList TaskList object containing ArrayList of Task.
      * @param ui Ui object.

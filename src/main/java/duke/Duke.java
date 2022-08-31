@@ -15,6 +15,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
     /**
      * Initialises the Storage object with the saved tasks.
      *
@@ -35,6 +36,7 @@ public class Duke {
 
     /**
      * Displays response in GUI.
+     *
      * @param input is the command input.
      * @return the response for the command.
      */

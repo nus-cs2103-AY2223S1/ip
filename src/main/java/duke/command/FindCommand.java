@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find the list of wanted tasks and displays them.
+     * Finds the list of wanted tasks and displays them.
      *
      * @param taskList TaskList object containing ArrayList of Task.
      * @param ui Ui object.

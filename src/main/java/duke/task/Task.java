@@ -44,7 +44,7 @@ public abstract class Task {
     }
 
     /**
-     * Set isDone to bool.
+     * Sets isDone to bool.
      *
      * @param bool Boolean.
      */

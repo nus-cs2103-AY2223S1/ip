@@ -1,6 +1,6 @@
 package duke.task;
 
-/** Todo tasks without a deadline */
+/** This class encapsulates a Todo tasks without a deadline */
 public class Todo extends Task {
 
     public Todo(String description) {

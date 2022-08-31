@@ -69,7 +69,7 @@ public class TaskList {
     }
 
     /**
-     * Mark the task done.
+     * Marks the task done.
      *
      * @param taskID task index.
      */
@@ -79,7 +79,7 @@ public class TaskList {
     }
 
     /**
-     * Mark the task as not done.
+     * Marks the task as not done.
      *
      * @param taskID task index.
      */
