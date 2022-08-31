@@ -1,14 +1,13 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.Date;
 import duke.DukeException;
-import duke.Task;
 import duke.TaskList;
 import duke.task.Deadline;
 import duke.utils.Parser;
 import duke.utils.Storage;
-
-import java.io.IOException;
 
 /**
  * Handles the "deadline" command.
@@ -37,12 +36,12 @@ public class DeadlineCommand extends Command {
                 Deadline deadline = new Deadline(deadlineDetails[0], date);
                 taskList.addTask(deadline, storage);
             } else {
-                throw new DukeException("☹ OOPS!!! Please follow the syntax for an " +
-                        "'deadline' command: event [description] /by [date].");
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an "
+                        + "'deadline' command: event [description] /by [date].");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Please follow the syntax for an " +
-                    "'deadline' command: event [description] /by [date].");
+            throw new DukeException("☹ OOPS!!! Please follow the syntax for an "
+                    + "'deadline' command: event [description] /by [date].");
         }
     }
 }

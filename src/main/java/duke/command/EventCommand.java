@@ -1,14 +1,13 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.Date;
 import duke.DukeException;
-import duke.Task;
 import duke.TaskList;
 import duke.task.Event;
 import duke.utils.Parser;
 import duke.utils.Storage;
-
-import java.io.IOException;
 
 /**
  * Handles the "event" command.
@@ -37,12 +36,12 @@ public class EventCommand extends Command {
                 Event event = new Event(eventDetails[0], date);
                 taskList.addTask(event, storage);
             } else {
-                throw new DukeException("☹ OOPS!!! Please follow the syntax for an " +
-                        "'event' command: event [description] /at [date].");
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an "
+                        + "'event' command: event [description] /at [date].");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Please follow the syntax for an " +
-                    "'event' command: event [description] /at [date].");
+            throw new DukeException("☹ OOPS!!! Please follow the syntax for an "
+                    + "'event' command: event [description] /at [date].");
         }
     }
 }

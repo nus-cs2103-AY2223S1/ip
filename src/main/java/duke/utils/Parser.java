@@ -1,13 +1,22 @@
 package duke.utils;
 
-import duke.Date;
-import duke.DukeException;
-
-import duke.command.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.Date;
+import duke.DukeException;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteTaskCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.MarkTaskCommand;
+import duke.command.PrintListCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkTaskCommand;
+
 
 /**
  * Parses tbe input received by the AIlfred bot.
@@ -21,7 +30,7 @@ public class Parser {
      * @return Date object used to construct Deadlines or Events.
      * @throws DukeException Exception if date format is wrong.
      */
-    public static Date parseDate(String input) throws DukeException{
+    public static Date parseDate(String input) throws DukeException {
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate parsed = LocalDate.parse(input, dtf);
@@ -39,7 +48,7 @@ public class Parser {
      * @return Date object used to construct Deadlines or Events.
      * @throws DukeException Exception if date format is wrong.
      */
-    public static Date parseDateSave(String input) throws DukeException{
+    public static Date parseDateSave(String input) throws DukeException {
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM d yyyy");
             LocalDate parsed = LocalDate.parse(input, dtf);

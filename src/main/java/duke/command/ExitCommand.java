@@ -1,13 +1,13 @@
 package duke.command;
 
-import duke.utils.Storage;
 import duke.TaskList;
+import duke.utils.Storage;
 import duke.utils.Ui;
 
 /**
  * Handles the "bye" command.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     /**
      * Exits the application.

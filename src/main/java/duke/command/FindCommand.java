@@ -1,14 +1,13 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Task;
-import duke.TaskList;
-import duke.utils.Storage;
-import duke.utils.Ui;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.utils.Storage;
+import duke.utils.Ui;
 
 /**
  * Handles the "find" command.
@@ -44,7 +43,7 @@ public class FindCommand extends Command {
                         + keyWord + "\n");
             } else {
                 for (Integer i: taskIndexes) {
-                    message.append(i+1).append(". ").append(taskList.get(i).toString()).append("\n");
+                    message.append(i + 1).append(". ").append(taskList.get(i).toString()).append("\n");
                 }
             }
 

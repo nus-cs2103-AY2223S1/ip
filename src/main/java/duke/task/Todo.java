@@ -8,6 +8,10 @@ import duke.Task;
  */
 public class Todo extends Task {
 
+    /**
+     * Constructs a To do object.
+     * @param description Description of the to do object.
+     */
     public Todo(String description) {
         super(description);
     }

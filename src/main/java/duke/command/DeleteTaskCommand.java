@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
 import duke.Task;
 import duke.TaskList;
 import duke.utils.Storage;
 import duke.utils.Ui;
-
-import java.io.IOException;
 
 /**
  * Handles the "delete" command.
@@ -33,12 +33,12 @@ public class DeleteTaskCommand extends Command {
             taskList.deleteTask(i);
             int numOfTasks = taskList.size();
 
-            String message = "Noted. I've removed this task: \n  " +
-                    task + "\n" +
-                    "Now you have " + numOfTasks + " tasks in the list.\n";
+            String message = "Noted. I've removed this task: \n  "
+                    + task + "\n"
+                    + "Now you have " + numOfTasks + " tasks in the list.\n";
 
             Ui.printMessage(message);
-        }  catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please enter a valid index number!");
         }
 
