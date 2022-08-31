@@ -14,7 +14,7 @@ public class Duke {
 
     public enum Keyword {
         EXIT("bye"), LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), DELETE("delete"), MARK("mark"),
-        UNMARK("unmark");
+        UNMARK("unmark"), FIND("find");
 
         private String keyword;
 
