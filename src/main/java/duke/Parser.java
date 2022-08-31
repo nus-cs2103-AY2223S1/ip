@@ -1,5 +1,9 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -59,20 +63,34 @@ public class Parser {
             }
         } else if (words[0].equals("deadline")) {
             // deadline keyword: create new deadline item
-            String[] dl = input.split(" /by ", 2);
-            if (dl.length <= 1) {
+            String[] splitStringByBy = input.split(" /by ", 2);
+            if (splitStringByBy.length <= 1) {
                 throw new EmptyDateException();
             }
-            String desc = dl[0].split("deadline ", 2)[1];
-            return new AddCommand(new Deadline(desc, dl[1]));
+            String formattedDate = "";
+            try {
+                LocalDate unformattedDate = LocalDate.parse(splitStringByBy[1]);
+                formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
+            }
+            String desc = splitStringByBy[0].split("deadline ", 2)[1];
+            return new AddCommand(new Deadline(desc, formattedDate));
         } else if (words[0].equals("event")) {
             // event keyword: create new event item
-            String[] ev = input.split(" /at ", 2);
-            if (ev.length <= 1) {
+            String[] splitStringByAt = input.split(" /at ", 2);
+            if (splitStringByAt.length <= 1) {
                 throw new EmptyDateException();
             }
-            String desc = ev[0].split("event ", 2)[1];
-            return new AddCommand(new Event(desc, ev[1]));
+            String formattedDate = "";
+            try {
+                LocalDate unformattedDate = LocalDate.parse(splitStringByAt[1]);
+                formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
+            }
+            String desc = splitStringByAt[0].split("event ", 2)[1];
+            return new AddCommand(new Event(desc, formattedDate));
         } else if (words[0].equals("delete")) {
             // delete keyword: remove task from list
             String numString = words[1];

@@ -1,9 +1,5 @@
 package duke.task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 /**
  * The Event class represents a Task that occurs a given date.
  *
@@ -11,7 +7,6 @@ import java.time.format.DateTimeParseException;
  */
 public class Event extends Task {
     protected String at;
-    protected LocalDate date;
 
     /**
      * Constructor for a Event instance with a given date.
@@ -22,12 +17,6 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = at;
-        try {
-            this.date = LocalDate.parse(at);
-            this.at = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        } catch (DateTimeParseException e) {
-            System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
-        }
     }
 
     @Override
