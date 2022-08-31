@@ -4,8 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.commands.*;
 import org.junit.jupiter.api.Test;
+
+import duke.commands.ByeCommand;
+import duke.commands.DateCommand;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+
 
 public class ParserTest {
 
@@ -91,7 +101,7 @@ public class ParserTest {
 
     @Test
     public void parse_delete_success() throws DukeException {
-        assertTrue(Parser.parse("delete 1") instanceof MarkCommand);
+        assertTrue(Parser.parse("delete 1") instanceof DeleteCommand);
     }
 
     @Test

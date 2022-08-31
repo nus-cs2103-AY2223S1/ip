@@ -17,6 +17,11 @@ public class ToDo extends Task {
     }
 
 
+    /**
+     * Constructor for Todo when loaded from Storage.
+     * @param i Mark status.
+     * @param description Specified Todo description.
+     */
     public ToDo(int i, String description) {
         super(description);
         if (i == 1) {

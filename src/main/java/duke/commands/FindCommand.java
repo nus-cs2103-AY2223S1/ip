@@ -1,5 +1,5 @@
 package duke.commands;
-
+import java.util.ArrayList;
 
 import duke.DukeException;
 import duke.Storage;
@@ -7,9 +7,12 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
-import java.util.ArrayList;
 
+/**
+ * The FindCommand class represents user command find.
+ */
 public class FindCommand extends Command {
+
     public static final String COMMAND_WORD = "find";
 
     private String keyword;

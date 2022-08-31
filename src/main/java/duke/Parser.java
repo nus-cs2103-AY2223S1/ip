@@ -6,10 +6,12 @@ import duke.commands.DateCommand;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
+
 
 /**
  * The Parser class deals with making sense of the user command.

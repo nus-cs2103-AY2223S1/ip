@@ -130,6 +130,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Show all tasks found with specified keyword.
+     * @param foundTasks ArrayList that represents tasks containing specified keyword.
+     */
     public void showFoundTasks(ArrayList<Task> foundTasks) {
         int count = foundTasks.size();
         if (count == 0) {

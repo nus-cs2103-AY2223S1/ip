@@ -3,11 +3,6 @@ package duke;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
-/**
- * The TaskList class contains the task list.
- */
-
 import duke.task.Task;
 
 
@@ -71,6 +66,11 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Find tasks by a specified keyword.
+     * @param keyword Specified keyword.
+     * @return ArrayList that represents all tasks with keyword.
+     */
     public ArrayList<Task> findTasks(String keyword) {
         ArrayList<Task> temp = new ArrayList<>();
         for (Task t : taskList) {

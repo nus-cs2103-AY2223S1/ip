@@ -38,14 +38,13 @@ public class Event extends Task {
             }
         }
     }
-    
+
     /**
      * Constructor for Event when loaded from Storage.
      * @param i Mark status.
      * @param description Specified Event description.
      * @param eventAt Specified Event date.
      */
-
     public Event(int i, String description, String eventAt) {
         super(description);
         this.eventAt = eventAt;
