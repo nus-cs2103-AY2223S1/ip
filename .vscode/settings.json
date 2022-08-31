@@ -1,0 +1,8 @@
+{
+    "java.test.config": {
+
+        "name": "customConfig",
+        "workingDirectory": ".\\src\\test\\java"
+    },
+    "java.test.defaultConfig": "customConfig"
+}
