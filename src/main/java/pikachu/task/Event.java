@@ -17,7 +17,7 @@ public class Event extends Task {
         return "E";
     }
 
-    public String timing() {
+    public String getTiming() {
         return this.at;
     }
  

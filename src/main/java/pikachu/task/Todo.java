@@ -15,7 +15,7 @@ public class Todo extends Task {
         return "T";
     }
 
-    public String timing() {
+    public String getTiming() {
         return "";
     }
 

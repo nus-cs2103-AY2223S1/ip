@@ -20,12 +20,12 @@ public class Deadline extends Task {
     public String getName() {
         return "D";
     }
-    public String timing() {
+    public String getTiming() {
         return this.by.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + timing() + ")";
+        return "[D]" + super.toString() + " (by: " + getTiming() + ")";
     }
 }

@@ -22,7 +22,7 @@ abstract public class Task {
     }
 
     abstract public String getName();
-    abstract public String timing();
+    abstract public String getTiming();
 
     @Override
     public String toString() {

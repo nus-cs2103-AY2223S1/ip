@@ -35,7 +35,7 @@ public class Storage {
                     initialTasks.add(new Todo(taskDetails[2],isDone));
                 } else if (currLine.startsWith("D")) {
                     String[] taskDetails = currLine.split(" \\| ",4);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy");
                     taskDetails[3] = taskDetails[3].substring(0, taskDetails[3].length()-1);
                     LocalDate lt = LocalDate.parse(taskDetails[3], formatter);
                     boolean isDone = taskDetails[1].equals("1");
@@ -67,13 +67,13 @@ public class Storage {
                 f.createNewFile();
             }
             FileWriter myWriter = new FileWriter(filepath);
-            for (Task task :tasks) {
+            for (Task taskie :tasks) {
                 String str;
 
-                if (task.getName() == "T") {
-                    str = String.format("%s | %d | %s \n", task.getName(), task.isDone ? 1 : 0, task.description);
+                if (taskie.getName() == "T") {
+                    str = String.format("%s | %d | %s \n", taskie.getName(), taskie.isDone ? 1 : 0, taskie.description);
                 } else {
-                    str = String.format("%s | %d | %s | %s \n", task.getName(), task.isDone ? 1 : 0, task.description, task.timing());
+                    str = String.format("%s | %d | %s | %s \n", taskie.getName(), taskie.isDone ? 1 : 0, taskie.description, taskie.getTiming());
                 }
                 myWriter.write(str);
             }
