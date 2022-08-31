@@ -21,59 +21,57 @@ public class Parser {
      * Parses input string from user and dispatches an action accordingly.
      * Prints exception to the console if input is of invalid form.
      */
-    public void parse() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        while (!input.equals("bye")) {
-            try {
-                switch (input) {
-                    case "list":
-                        duke.printList();
-                        break;
-                    case "mark": {
-                        int index = sc.nextInt() - 1;
-                        duke.handleMark(index);
-                        break;
-                    }
-                    case "unmark": {
-                        int index = sc.nextInt() - 1;
-                        duke.handleUnmark(index);
-                        break;
-                    }
-                    case "todo": {
-                        String next = sc.nextLine();
-                        input += next;
-                        duke.handleToDo(input);
-                        break;
-                    }
-                    case "deadline": {
-                        input += sc.nextLine();
-                        duke.handleDeadline(input);
-                        break;
-                    }
-                    case "event": {
-                        input += sc.nextLine();
-                        duke.handleEvent(input);
-                        break;
-                    }
-                    case "delete": {
-                        int index = sc.nextInt() - 1;
-                        duke.handleDelete(index);
-                        break;
-                    }
-                    case "find": {
-                        input = sc.nextLine().trim();
-                        duke.find(input);
-                        break;
-                    }
-                    default:
-                        input += sc.nextLine();
-                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                }
-            } catch (DukeException e) {
-                duke.printException(e);
+    public String parse(String input) {
+        try {
+            if (input.equals("bye")) {
+                return duke.handleExit();
             }
-            input = sc.next();
+            if (input.equals("list")) {
+                return duke.handleList();
+            }
+            if (input.startsWith("mark")) {
+                String[] parts = input.split(" ");
+                int index = Integer.parseInt(parts[1]) - 1;
+                return duke.handleMark(index);
+            }
+            if (input.startsWith("unmark")) {
+                String[] parts = input.split(" ");
+                int index = Integer.parseInt(parts[1]) - 1;
+                return duke.handleUnmark(index);
+            }
+            if (input.startsWith("todo")) {
+                try {
+                    String desc = input.substring(5);
+                    return duke.handleToDo(desc);
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                }
+            }
+            if (input.startsWith("deadline")) {
+                int end = input.indexOf('/');
+                String desc = input.substring(9, end - 1);
+                String by = input.substring(end + 4);
+                return duke.handleDeadline(desc, by);
+            }
+            if (input.startsWith("event")) {
+                int end = input.indexOf('/');
+                String desc = input.substring(6, end - 1);
+                String at = input.substring(end + 4);
+                return duke.handleEvent(desc, at);
+            }
+            if (input.startsWith("delete")) {
+                String[] parts = input.split(" ");
+                int index = Integer.parseInt(parts[1]) - 1;
+                return duke.handleDelete(index);
+            }
+            if (input.startsWith("find")) {
+                String[] parts = input.split(" ");
+                String keyword = parts[1];
+                return duke.find(keyword);
+            }
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 }

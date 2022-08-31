@@ -9,8 +9,11 @@ import java.util.ArrayList;
 public class Duke {
 
     private Ui ui;
+    private Parser parser;
     private Storage storage;
     private TaskList tasks;
+
+    public static String GREETING = "Hello! I'm Ee Suan!\nWhat can I do for you?";
 
     /**
      * Constructor for Duke class.
@@ -28,134 +31,118 @@ public class Duke {
         }
     }
 
-    // main method to run Duke
-    public static void main(String[] args) {
-        Duke duke = new Duke("src/data/duke.txt");
-        duke.start();
-        Parser parser = new Parser(duke);
-        parser.parse();
-        duke.ui.exit();
-    }
-
-    private void start() {
-        ui.greet();
+    public String getResponse(String input) {
+        if (parser == null) {
+            parser = new Parser(this);
+        }
+        return parser.parse(input);
     }
 
     /**
-     * Prints list of tasks to console.
+     * Generates message of current list of tasks.
+     *
+     * @return String containing list of tasks.
      */
-    public void printList() {
-        ui.printList(tasks);
+    public String handleList() {
+        return ui.printList(tasks);
     }
 
     /**
      * Marks a task and prints it to console.
      *
      * @param index The index of the task to be marked.
+     * @return String reply from Duke.
      * @throws DukeException
      */
-    public void handleMark(int index) throws DukeException {
+    public String handleMark(int index) throws DukeException {
         tasks.mark(index);
         storage.save(tasks);
-        ui.dukeReply("Nice! I've marked this task as done: \n  " + tasks.get(index));
+        return ui.dukeReply("Nice! I've marked this task as done: \n  " + tasks.get(index));
     }
 
     /**
      * Unmarks a task and prints it to console.
      *
      * @param index The index of the task to be unmarked.
+     * @return String reply from Duke.
      * @throws DukeException
      */
-    public void handleUnmark(int index) throws DukeException {
+    public String handleUnmark(int index) throws DukeException {
         tasks.unmark(index);
         storage.save(tasks);
-        ui.dukeReply("OK, I've marked this task as not done yet: \n  " + tasks.get(index));
+        return ui.dukeReply("OK, I've marked this task as not done yet: \n  " + tasks.get(index));
     }
 
     /**
      * Dispatches instructions for processing a ToDo task.
      *
-     * @param input String description of the task.
+     * @param desc String description of the task.
+     * @return String reply of added task and updated list from Duke.
      * @throws DukeException
      */
-    public void handleToDo(String input) throws DukeException {
-        Task todo = createToDo(input);
+    public String handleToDo(String desc) throws DukeException {
+        Task todo = new ToDo(desc);
         tasks.addTask(todo);
-        ui.echoTask(todo, tasks);
         storage.save(tasks);
-    }
-
-    private Task createToDo(String input) throws DukeException {
-        try {
-            String description = input.substring(5);
-            return new ToDo(description);
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
+        return ui.echoTask(todo, tasks);
     }
 
     /**
      * Dispatches instructions for processing a Deadline task.
      *
-     * @param input String description of the task.
+     * @param desc String description of the task.
+     * @param by Date of the deadline.
+     * @return String reply of added task and updated list.
      * @throws DukeException
      */
-    public void handleDeadline(String input) throws DukeException {
-        Task deadline = createDeadline(input);
+    public String handleDeadline(String desc, String by) throws DukeException {
+        Task deadline = new Deadline(desc, by);
         tasks.addTask(deadline);
-        ui.echoTask(deadline, tasks);
         storage.save(tasks);
-    }
+        return ui.echoTask(deadline, tasks);
 
-    private Task createDeadline(String input) throws DukeException {
-        int end = input.indexOf('/');
-        String description = input.substring(9, end - 1);
-        String by = input.substring(end + 4);
-        return new Deadline(description, by);
     }
 
     /**
      * Dispatches instructions for processing an event task.
      *
-     * @param input String description of the task.
+     * @param desc String description of the task.
+     * @param at Date of the event.
+     * @return String reply of added task and updated list.
      * @throws DukeException
      */
-    public void handleEvent(String input) throws DukeException {
-        Task event = createEvent(input);
+    public String handleEvent(String desc, String at) throws DukeException {
+        Task event = new Event(desc, at);
         tasks.addTask(event);
-        ui.echoTask(event, tasks);
         storage.save(tasks);
-    }
-
-    private Task createEvent(String input) throws DukeException {
-        int end = input.indexOf('/');
-        String description = input.substring(6, end - 1);
-        String at = input.substring(end + 4);
-        return new Event(description, at);
+        return ui.echoTask(event, tasks);
     }
 
     /**
-     * Deletes a task and prints it, along with the updated list, to the console.
+     * Deletes a task and returns it, along with the updated list, as a String.
      *
      * @param index The index of the task to be deleted.
+     * @return String of deleted task and updated list.
      * @throws DukeException
      */
-    public void handleDelete(int index) throws DukeException {
+    public String handleDelete(int index) throws DukeException {
         Task taskToDelete = tasks.delete(index);
-        ui.echoDelete(taskToDelete, tasks);
         storage.save(tasks);
+        return ui.echoDelete(taskToDelete, tasks);
     }
 
-    public void find(String input) {
-        ArrayList<Task> newList = tasks.filterToArrayList(input);
-        ui.printFind(newList);
+    public String find(String keyword) {
+        ArrayList<Task> newList = tasks.filterToArrayList(keyword);
         storage.save(tasks);
+        return ui.printFind(newList);
     }
 
-    public void printException(DukeException e) {
-        ui.dukeReply(e.getMessage());
+    public String handleExit() {
+        return ui.exit();
     }
 }
+
+
 
 
 
