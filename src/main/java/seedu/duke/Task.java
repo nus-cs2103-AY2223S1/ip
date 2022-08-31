@@ -1,6 +1,6 @@
 package seedu.duke;
 
-/*
+/**
  * Represents a description and if the task is completed.
  */
 public class Task {
@@ -11,7 +11,7 @@ public class Task {
 
     /**
      * Constructor for Task
-     * 
+     *
      * @param description name of the task.
      */
     public Task(String description) {
@@ -21,15 +21,16 @@ public class Task {
 
     /**
      * Checks if the task is completed.
-     * 
+     *
      * @return X if completed and empty string if not completed.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
-    /** Returns the description of the task.
-     * 
+    /**
+     * Returns the description of the task.
+     *
      * @return the description of the task.
      */
     public String getDescription() {

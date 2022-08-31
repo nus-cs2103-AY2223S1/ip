@@ -3,7 +3,7 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*
+/**
  * Converts a string of input from user to recognised Commands.
  */
 public class Parser {
@@ -19,7 +19,7 @@ public class Parser {
 
     /**
      * Returns a Command object.
-     * 
+     *
      * @param input string inputs by the user.
      * @return a Command equivalent of the input string.
      */

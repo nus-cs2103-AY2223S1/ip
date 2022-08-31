@@ -2,7 +2,7 @@ package seedu.duke;
 
 import java.io.IOException;
 
-/*
+/**
  * Main class of the program.
  */
 public class Duke {
@@ -17,7 +17,7 @@ public class Duke {
 
     /**
      * A constructor for Duke.
-     * 
+     *
      * @param filePath the path of the output to be stored and loaded when the program starts.
      */
     public Duke(String filePath) {
@@ -56,13 +56,13 @@ public class Duke {
 
     /**
      * Main method of the Duke class.
-     * 
+     *
      * @param args
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         new Duke("data/Duke.txt").run();
-    
+
     }
 
-    
+
 }

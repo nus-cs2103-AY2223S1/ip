@@ -2,13 +2,13 @@ package seedu.duke;
 
 import java.util.ArrayList;
 
-/*
+/**
  * A wrapper containing an arraylist of tasks.
  */
 public class TaskList {
     /* The list of tasks */
     private ArrayList<Task> tasks;
-    
+
     /**
      * A constructor for Tasklist
      * @param tasks the list of tasks.
@@ -27,7 +27,7 @@ public class TaskList {
 
     /**
      * Adds a specified task.
-     * 
+     *
      * @param task A task.
      */
     public void add(Task task) {
@@ -36,7 +36,7 @@ public class TaskList {
 
     /**
      * Removes a task.
-     * 
+     *
      * @param taskNumber The index of the task to be removed in the Tasklist.
      */
     public void remove(int taskNumber) {
@@ -45,7 +45,7 @@ public class TaskList {
 
     /**
      * Returns the list of tasks.
-     * 
+     *
      * @return an arraylist of tasks stored.
      */
     public ArrayList<Task> getTasks() {

@@ -11,7 +11,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
+/**
  * Represents the path of the file in the hard disk where the output of the program is stored.
  */
 public class Storage {
@@ -20,7 +20,7 @@ public class Storage {
 
     /**
      * Constructor for Storage.
-     * 
+     *
      * @param filePath the path of the output file.
      */
     public Storage(String filePath) {
@@ -29,11 +29,11 @@ public class Storage {
 
     /**
      * Loads the output from the output file in hard disk to the program.
-     * 
+     *
      * @return an arraylist of tasks stored.
      * @throws IOException if file cannot be opened or read.
      */
-    public ArrayList<Task> load() throws IOException{
+    public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             Path path = Paths.get("./data/");
@@ -49,8 +49,8 @@ public class Storage {
 
                 if (action == 'T') {
                     task = new Todo(data.substring(7));
-                    
-                    
+
+
                 } else {
                     int symbol = data.indexOf("(");
                     int dash = data.indexOf("-");
@@ -68,17 +68,17 @@ public class Storage {
                     } else {
                         task = new Deadline(data.substring(7, symbol), date);
                     }
-                    
 
-                } 
-                    
+
+                }
+
                 char isDone = data.charAt(4);
                 tasks.add(task);
                 if (isDone == 'X') {
                     task.setDone();
-                    
+
                 }
-         
+
 
             }
             reader.close();
@@ -87,21 +87,21 @@ public class Storage {
 
         } catch (IOException e) {
             return tasks;
-            
-        } 
+
+        }
 
     }
 
     /**
      * Saves the new changes to the tasks to the output file in the hard disk.
-     * 
+     *
      * @param tasks the list of tasks currently in the program.
      */
     public void save(ArrayList<Task> tasks) {
         try {
             FileWriter writer = new FileWriter("./data/Duke.txt");
             String str = "";
-            for (int i = 0; i <tasks.size(); i++) {
+            for (int i = 0; i < tasks.size(); i++) {
                 str += tasks.get(i).toString();
                 str += "\n";
             }
@@ -113,5 +113,5 @@ public class Storage {
         }
     }
 
-    
+
 }

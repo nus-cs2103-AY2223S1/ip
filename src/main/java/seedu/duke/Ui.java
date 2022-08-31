@@ -3,8 +3,11 @@ package seedu.duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Handles the user interface of the program.
+ */
 public class Ui {
-    
+
     /* Greeting message */
     private final String WELCOME = "Hello! I'm Luke\nWhat can I do for you?";
     /* Message to be displayed when a task is added */
@@ -30,7 +33,7 @@ public class Ui {
 
     /**
      * Reads the input from the command line from the user.
-     * 
+     *
      * @return the input with prevailing spaces removed.
      */
     public String readCommand() {
@@ -40,7 +43,7 @@ public class Ui {
 
     /**
      * Prints message after adding a task
-     * 
+     *
      * @param task The task added.
      */
     public void add(Task task) {
@@ -49,7 +52,7 @@ public class Ui {
 
     /**
      * Prints the message after removing a task.
-     * 
+     *
      * @param task The task to be removed.
      */
     public void remove(Task task) {
@@ -66,7 +69,7 @@ public class Ui {
 
     /**
      * Prints Duke Exception message.
-     * 
+     *
      * @param e Duke exception.
      */
     public void showError(DukeException e) {
@@ -75,7 +78,7 @@ public class Ui {
 
     /**
      * Prints IOException message.
-     * 
+     *
      * @param e IOException.
      */
     public void showLoadingError(IOException e) {
