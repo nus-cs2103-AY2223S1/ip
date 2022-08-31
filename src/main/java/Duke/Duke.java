@@ -1,15 +1,13 @@
 package duke;
 
-
 import java.io.FileNotFoundException;
 
 /**
  * Main class for Duke application.
  */
-public class Duke  {
+public class Duke {
 
-
-    private TaskList tasklist;
+    private TaskList taskList;
     private Storage storage;
     private Ui ui;
 
@@ -19,29 +17,25 @@ public class Duke  {
      * @param path filepath of Duke.txt file.
      */
     public Duke(String path) {
-        tasklist = new TaskList();
+        taskList = new TaskList();
         ui = new Ui();
         storage = new Storage(path);
         try {
-            storage.readFromFile(tasklist);
+            storage.readFromFile(taskList);
         } catch (FileNotFoundException e) {
-            ui.fileNotFound();
-            tasklist = new TaskList();
+            ui.printfileNotFound();
+            taskList = new TaskList();
         }
     }
 
     /**
-     * Main method to run Duke application.
+     * Returns the response corresponding to user input.
+     * @param command user input.
+     * @return response as a String.
      */
-    public void run() {
-        ui.greet();
-        Parser.parse(tasklist, ui, storage);
+    public String getResponse(String command) {
+        return Parser.parse(command, taskList, ui, storage);
     }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
-
 }
 
 
