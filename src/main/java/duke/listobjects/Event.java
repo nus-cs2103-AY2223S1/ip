@@ -2,13 +2,12 @@ package duke.listobjects;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Event which is a Listobject with a task along with the event date, start and end time
  */
-public class Event extends ListObject{
+public class Event extends ListObject {
 
     String eventTime;
 
@@ -38,7 +37,7 @@ public class Event extends ListObject{
      * @return String representing Event object
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[E]" + super.toString() + " (at: " + formatDateTime(eventTime) + ")";
     }
 
@@ -47,14 +46,16 @@ public class Event extends ListObject{
      * @param txt String representing event time (date, start time, end time) in the format yyyy-MM-dd HH:mm HH:mm
      * @return String representing event time in format MMM dd yyyy HH:mm HH:mm as date, start and end times
      */
-    public String formatDateTime(String txt){
+
+    public String formatDateTime(String txt) {
+
 
         String[] words = txt.split(" ");
         String date = words[0];
         String start = words[1];
         String end = words[2];
 
-        //formate date of form yyyy-MM-dd
+        //format date of form yyyy-MM-dd
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate deadline = LocalDate.parse(date, formatter);
         DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");

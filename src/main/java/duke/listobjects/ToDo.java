@@ -1,9 +1,10 @@
 package duke.listobjects;
 
+
 /**
  * Represents ToDo which is a listObject with only a task decription
  */
-public class ToDo extends ListObject{
+public class ToDo extends ListObject {
 
     /**
      * Constructs a ToDo object with given task description and status
@@ -20,7 +21,7 @@ public class ToDo extends ListObject{
      * @return String representing ToDo object
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[T]" + super.toString();
     }
 

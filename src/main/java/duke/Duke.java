@@ -1,7 +1,6 @@
 package duke;
 
 import duke.ui.Ui;
-
 import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
@@ -15,24 +14,22 @@ import java.nio.file.Path;
  */
 public class Duke {
 
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Constructs a Duke object and creates a new Ui object for user interaction
      */
-    public Duke(){
+    public Duke() {
         this.ui = new Ui(System.in, System.out);
     }
 
     /**
      * Introduces Duke and initiates interactive conversation with user
      */
-    public void interact(){
+    public void interact() {
         this.ui.introduceDuke();
-
         this.ui.readAndRespond();
     }
-
 
     /**
      * Creates a new Duke object and begins interaction 

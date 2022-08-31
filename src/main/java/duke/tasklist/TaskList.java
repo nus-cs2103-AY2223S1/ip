@@ -2,10 +2,8 @@ package duke.tasklist;
 
 import duke.listobjects.ListObject;
 
-import javax.print.DocFlavor;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Represents TaskList which stores a list of tasks the user wants to store and implements the Serializable interface
@@ -28,7 +26,9 @@ public class TaskList implements Serializable {
      * Sets the taskslist of the TaskList object to be input list
      * @param list ArrayList of ListObjects the user wished to store
      */
-    public void setTasks(ArrayList<ListObject> list){
+
+    public void setTasks(ArrayList<ListObject> list) {
+
         this.tasksList = list;
     }
 
@@ -61,7 +61,9 @@ public class TaskList implements Serializable {
      * Adds a ListObject (task) to the taskslist field
      * @param obj ListObject representing the task to be added
      */
-    public void handleItemAddition(ListObject obj){
+
+    public void handleItemAddition(ListObject obj) {
+
         this.tasksList.add(obj);
     }
 
@@ -73,6 +75,7 @@ public class TaskList implements Serializable {
             System.out.println(i + ". " + tasksList.get(i).toString());
         }
     }
+
 
     /**
      * Returns the number of tasks stored
@@ -86,7 +89,7 @@ public class TaskList implements Serializable {
      * Returns the taskslist stored in the object
      * @return ArrayList representing the list of tasks stored
      */
-    public ArrayList<ListObject> storeAllTasks(){
+    public ArrayList<ListObject> storeAllTasks() {
         return this.tasksList;
     }
 
@@ -95,7 +98,7 @@ public class TaskList implements Serializable {
      * @return String representation of TaskList object
      */
     @Override
-    public String toString(){
+    public String toString() {
         String str = "";
         for (int i = 0; i < this.tasksList.size(); i++) {
             str = str + i + ". " + tasksList.get(i).toString();
