@@ -1,3 +1,7 @@
+package pikachu;
+
+import pikachu.command.Command;
+
 public class Pikachu {
 
     private Storage storage;

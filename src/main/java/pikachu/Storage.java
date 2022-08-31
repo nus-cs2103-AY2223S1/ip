@@ -1,3 +1,5 @@
+package pikachu;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,6 +8,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import pikachu.task.Deadline;
+import pikachu.task.Event;
+import pikachu.task.Task;
+import pikachu.task.Todo;
 
 public class Storage {
     String filepath;

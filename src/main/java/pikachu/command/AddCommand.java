@@ -1,9 +1,18 @@
+package pikachu.command;
 import java.time.LocalDate;
+
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.TaskList;
+import pikachu.Ui;
+import pikachu.task.Deadline;
+import pikachu.task.Event;
+import pikachu.task.Todo;
 
 public class AddCommand extends Command {
     String input;
 
-    AddCommand(String fullCommand) {
+    public AddCommand(String fullCommand) {
         input = fullCommand;
     }
 

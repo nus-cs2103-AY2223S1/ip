@@ -1,7 +1,16 @@
+package pikachu.command;
+
+import pikachu.Pikachu;
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.Ui;
+import pikachu.task.Task;
+import pikachu.TaskList;
+
 public class MarkCommand extends Command {
     String input;
 
-    MarkCommand(String fullCommand) {
+    public MarkCommand(String fullCommand) {
         this.input = fullCommand;
     }
 

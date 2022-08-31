@@ -1,7 +1,16 @@
+package pikachu.command;
+
+import pikachu.Pikachu;
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.Ui;
+import pikachu.task.Task;
+import pikachu.TaskList;
+
 public class UnmarkCommand extends Command {
     String input;
 
-    UnmarkCommand(String fullCommand) {
+    public UnmarkCommand(String fullCommand) {
         this.input = fullCommand;
     }
 

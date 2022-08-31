@@ -1,7 +1,16 @@
+package pikachu.command;
+
+import pikachu.Pikachu;
+import pikachu.PikachuException;
+import pikachu.Storage;
+import pikachu.Ui;
+import pikachu.task.Task;
+import pikachu.TaskList;
+
 public class DeleteCommand extends Command {
     String input;
 
-    DeleteCommand(String fullCommand) {
+    public DeleteCommand(String fullCommand) {
         this.input = fullCommand;
     }
 

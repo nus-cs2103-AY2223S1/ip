@@ -1,3 +1,13 @@
+package pikachu;
+
+import pikachu.command.AddCommand;
+import pikachu.command.Command;
+import pikachu.command.DeleteCommand;
+import pikachu.command.ExitCommand;
+import pikachu.command.ListCommand;
+import pikachu.command.MarkCommand;
+import pikachu.command.UnmarkCommand;
+
 public class Parser {
 
     public static Command parse(String fullCommand) throws PikachuException {
