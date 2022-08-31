@@ -26,8 +26,8 @@ public class DeleteCommand extends Command {
      * @throws DukeException Throws DukeException when the task index is out of index.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException {
-        taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1]),
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        return taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1]),
                 storage);
     }
 }

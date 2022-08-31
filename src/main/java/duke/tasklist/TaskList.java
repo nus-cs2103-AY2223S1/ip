@@ -32,13 +32,14 @@ public class TaskList {
      * @param i The index of the deleted task.
      * @param storage The storage containing the this taskList.
      */
-    public void delete(int i, Storage storage) throws DukeException{
+    public String delete(int i, Storage storage) throws DukeException{
         try {
             int index = i - 1;
             Task deletedTask = this.taskList.remove(i - 1);
-            System.out.println(" Noted. I've removed this task:\n" + deletedTask.printTask() +
+            String res = (" Noted. I've removed this task:\n" + deletedTask.printTask() +
                     "\n" + "Now you have " + this.countTask() + " tasks in the list.");
             storage.updateFile(this.taskList);
+            return res;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Sorry, the command is not in right format.");
         }
@@ -48,9 +49,9 @@ public class TaskList {
      * Add a task to the taskList and print response.
      * @param task Task to be added.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         this.taskList.add(task);
-        System.out.println("Got it. I've added this task:\n"+task.printTask()+
+        return ("Got it. I've added this task:\n"+task.printTask()+
                 "\nNow you have "+this.countTask()+" task in the list.");
     }
     /**
@@ -67,18 +68,20 @@ public class TaskList {
         return  "Here are the tasks in your list:\n" + res;
     }
     //mark a certain task as done and print reply
-    public void markAsDone(int i, Storage storage) throws DukeException {
+    public String markAsDone(int i, Storage storage) throws DukeException {
         this.taskList.get(i).taskDone();
-        System.out.println("Nice! I've marked this task as done:\n"
+        String res = ("Nice! I've marked this task as done:\n"
                 +this.taskList.get(i).printTask());
         storage.updateFile(this.taskList);
+        return res;
     }
     //mark a certain task as not done and print reply
-    public void markUndone(int i, Storage storage) throws DukeException {
+    public String markUndone(int i, Storage storage) throws DukeException {
         this.taskList.get(i).taskUndone();
-        System.out.println("OK, I've marked this task as not done yet:\n"
+        String res = ("OK, I've marked this task as not done yet:\n"
                 +this.taskList.get(i).printTask());
         storage.updateFile(this.taskList);
+        return res;
     }
 
     public List<Task> getTaskList(){

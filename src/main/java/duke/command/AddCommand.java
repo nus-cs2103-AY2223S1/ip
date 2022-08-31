@@ -31,8 +31,9 @@ public class AddCommand extends Command {
      *                       or the task cannot be created.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException {
-        taskList.addTask(Task.createATask(fullCommand));
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        String res = taskList.addTask(Task.createATask(fullCommand));
         storage.updateFile(taskList.getTaskList());
+        return res;
     }
 }

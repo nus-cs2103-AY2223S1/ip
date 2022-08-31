@@ -13,7 +13,8 @@ public class ExitCommand extends Command {
      * @param storage The object containing the corresponding file.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         super.setIsExitTrue();
+        return "Goodbye. Hope to see you soon.";
     }
 }

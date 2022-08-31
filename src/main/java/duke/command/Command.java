@@ -16,7 +16,7 @@ public abstract class Command {
      * @param storage The object containing the corresponding file.
      * @throws DukeException Throws exception when errors occur in execution.
      */
-    public abstract void execute(TaskList taskList, Storage storage) throws DukeException;
+    public abstract String execute(TaskList taskList, Storage storage) throws DukeException;
     /**
      * Change the isExit field of the object to true. Means the program will exit.
      */

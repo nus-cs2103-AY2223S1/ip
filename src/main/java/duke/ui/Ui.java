@@ -30,7 +30,7 @@ public class Ui {
         String res = s.nextLine();
         return res;
     }
-    public void showDukeException(String s){
-        System.out.println(s);
+    public String showDukeException(String s) {
+        return s;
     }
 }

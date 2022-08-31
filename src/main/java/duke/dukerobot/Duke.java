@@ -9,6 +9,7 @@ import duke.parser.Parser;
 import duke.ui.Ui;
 import duke.tasklist.TaskList;
 
+
 /**
  * Represents the duke robot. Contains the main function.
  */
@@ -16,9 +17,17 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+
+
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+
     /**
      * Class constructor.
-     * @param filepath Load taskList from this filepath, and save the taskList after updating.
      */
     public Duke(String filepath) {
         this.ui = new Ui();
@@ -29,31 +38,30 @@ public class Duke {
             this.ui.showFileCreatingError();
         }
     }
+
+
+
     /**
      * Instruct the robot to show user interface and read in command and execute.
      * Catch and dispose exceptions.
      */
-    public void run() {
-        this.ui.showWelcomeMessage();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(this.taskList, this.storage);
-                isExit = c.getIsExit();
-            } catch (DukeException e) {
-                ui.showDukeException(e.getMessage());
-            }
+    public String getResponse(String input) {
+        //this.ui.showWelcomeMessage()
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(this.taskList, this.storage);
+        } catch (DukeException e) {
+            return ui.showDukeException(e.getMessage());
         }
-        ui.showGoodbyeMessage();
     }
+        //ui.showGoodbyeMessage();
+
 
     /**
      * The start point of the program. Run the duke itself.
      * @param args
      */
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
+    //public static void main(String[] args) {
+      // new Duke("data/duke.txt").run();
+    //}
 }

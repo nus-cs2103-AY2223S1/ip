@@ -22,13 +22,13 @@ public class OtherCommand extends Command {
      * @param storage The object containing the corresponding file.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         if (this.fullCommand.split(" ")[0].equals("Get")) {
-            System.out.println(taskList.getASpecificDay(fullCommand));
+            return (taskList.getASpecificDay(fullCommand));
         } else if (this.fullCommand.split(" ")[0].equals("find")) {
-            System.out.println(taskList.find(fullCommand));
+            return (taskList.find(fullCommand));
         } else {
-            System.out.println(taskList.listAllTask());
+            return (taskList.listAllTask());
         }
     }
 }
