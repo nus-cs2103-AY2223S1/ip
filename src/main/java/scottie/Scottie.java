@@ -4,7 +4,7 @@ import scottie.instructions.Instruction;
 import scottie.instructions.InvalidCommandException;
 import scottie.parser.Parser;
 import scottie.tasks.TaskList;
-import scottie.ui.Ui;
+import scottie.ui.Cli;
 
 /**
  * Scottie is a task manager application used for recording and
@@ -12,28 +12,28 @@ import scottie.ui.Ui;
  */
 public class Scottie {
     /**
-     * Runs the Scottie application
+     * Runs the Scottie CLI application
      */
     private static void run() {
         TaskList taskList = new TaskList();
-        Ui ui = new Ui(System.in, System.out);
-        ui.showStartupMessage();
+        Cli cli = new Cli(System.in, System.out);
+        cli.showStartupMessage();
 
         while (true) {
             try {
-                Instruction instruction = Parser.parse(ui.readLine());
-                instruction.execute(taskList, ui);
+                Instruction instruction = Parser.parse(cli.readLine());
+                instruction.execute(taskList, cli);
                 if (instruction.endsProgram()) {
                     break;
                 }
             } catch (InvalidCommandException e) {
-                ui.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
+                cli.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
             }
         }
     }
 
     /**
-     * The entry point of the Scottie program.
+     * The entry point of the Scottie CLI program.
      */
     public static void main(String[] args) {
         run();
