@@ -21,7 +21,7 @@ public class Deadline extends Task {
      */
     @Override
     public String formatTask() {
-        return String.format("D | %s | %s | %s\n", (this.isDone ? "1" : "0"), this.taskName, this.deadline);
+        return String.format("D | %s | %s | %s\n", (this.getIsDone() ? "1" : "0"), this.getTaskName(), this.deadline);
     }
 
     /**

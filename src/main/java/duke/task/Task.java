@@ -1,9 +1,9 @@
 package duke.task;
 
 public class Task {
-    public String taskName;
+    private final String taskName;
 
-    public boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructor for the Task class.
@@ -29,6 +29,21 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the task status.
+     * @return the task status
+     */
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Returns the task name.
+     * @return the task name
+     */
+    public String getTaskName() {
+        return this.taskName;
+    }
     /**
      * Returns a string of tick or empty string depending on whether the task is done or not.
      *

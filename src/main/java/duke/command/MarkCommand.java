@@ -71,6 +71,12 @@ public class MarkCommand extends Command {
                         + ui.SPACER);
             }
             break;
+        default:
+            // Defensive coding for default statement.
+            System.out.println(ui.SPACER + "\n"
+                    + "Sorry, I don't understand. T^T\n"
+                    + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n"
+                    + ui.SPACER);
         }
     }
 }

@@ -55,17 +55,29 @@ public class Storage {
                 switch (taskType) {
                 case "T":
                     Todo todo = new Todo(indTask[2]);
-                    todo.isDone = indTask[1].equals("1");
+                    if (indTask[1].equals("1")) {
+                        todo.markDone();
+                    } else {
+                        todo.markUndone();
+                    }
                     tasks.add(todo);
                     break;
                 case "D":
                     Deadline deadlineTask = new Deadline(indTask[2], indTask[3]);
-                    deadlineTask.isDone = indTask[1].equals("1");
+                    if (indTask[1].equals("1")) {
+                        deadlineTask.markDone();
+                    } else {
+                        deadlineTask.markUndone();
+                    }
                     tasks.add(deadlineTask);
                     break;
                 case "E":
                     Event eventTask = new Event(indTask[2], indTask[3]);
-                    eventTask.isDone = indTask[1].equals("1");
+                    if (indTask[1].equals("1")) {
+                        eventTask.markDone();
+                    } else {
+                        eventTask.markUndone();
+                    }
                     tasks.add(eventTask);
                     break;
                 default:

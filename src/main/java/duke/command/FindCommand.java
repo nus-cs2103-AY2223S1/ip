@@ -32,7 +32,7 @@ public class FindCommand extends Command {
         String inputToFind = String.join(" ", words);
         TaskList foundTasksList = new TaskList();
         for (Task task : tasklist.tasks) {
-            if (task.taskName.contains(inputToFind)) {
+            if (task.getTaskName().contains(inputToFind)) {
                 foundTasksList.addTask(task);
             }
         }
