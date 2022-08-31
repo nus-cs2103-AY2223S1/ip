@@ -1,10 +1,10 @@
 package ted.task;
 
-import ted.exception.TedException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import ted.exception.TedException;
 
 /**
  * A class that encapsulate a deadline task
@@ -74,7 +74,7 @@ public class Deadline extends Task {
             throw new IllegalArgumentException("Date must not be null.");
         }
 
-        return date1.getYear() == date2.getYear() &&
-                date1.getDayOfYear() == date2.getDayOfYear();
+        return date1.getYear() == date2.getYear()
+                && date1.getDayOfYear() == date2.getDayOfYear();
     }
 }
