@@ -1,8 +1,4 @@
-D | 0 | blah | 2022-08-24
 T | 1 | test
-E | 0 | party | 2022-09-24
-T | 0 | test
-T | 0 | testing ljaf
-T | 0 | lasjfkla
-T | 0 | alsjflajf
-T | 0 | lfaksjfkl
+E | 1 | testing | 2022-08-31
+D | 1 | assignment | 2022-08-31
+T | 0 | testing

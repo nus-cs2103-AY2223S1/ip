@@ -29,18 +29,14 @@ public class Duke {
      * @param userInput input that user types into GUI.
      * @return response that duke gives.
      */
-    public String getResponse(String userInput) {
+    public String getResponse(String userInput) throws DukeException {
         boolean isExit = false;
         String dukeResponse = "";
-        try {
-            Command c = Parser.parse(userInput);
-            dukeResponse = c.execute(tasks, ui, storage);
-            isExit = c.isExit();
-            if (isExit) {
-                System.exit(0);
-            }
-        } catch (DukeException e) {
-            return e.getMessage();
+        Command c = Parser.parse(userInput);
+        dukeResponse = c.execute(tasks, ui, storage);
+        isExit = c.isExit();
+        if (isExit) {
+            System.exit(0);
         }
         return dukeResponse;
     }
