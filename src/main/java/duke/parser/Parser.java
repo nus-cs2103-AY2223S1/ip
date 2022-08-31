@@ -57,6 +57,8 @@ public class Parser {
             case "event":
                 tasklist.addTask(next);
                 break;
+            case "find":
+                tasklist.findWithFilter(next[1]);
             case "delete":
                 tasklist.delete(next[1]);
                 break;
