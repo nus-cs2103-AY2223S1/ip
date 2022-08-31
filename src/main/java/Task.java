@@ -3,98 +3,55 @@ import java.util.Map;
 abstract class Task {
     private final String description;
     private final char symbol;
-    private boolean isDone = false;
+    private boolean isDone;
 
     /**
-     * Initialises a Task with a symbol and description.
+     * Initialises a {@code Task} with a symbol and description.
      * 
-     * @param symbol The char representing the Task's type.
-     * @param description A string representing the Task's description.
+     * @param symbol The char representing the {@code Task}'s type.
+     * @param description A string representing the {@code Task}'s description.
+     * @param isDone The boolean representing whether the {@code Task} is done.
      */
-    private Task(char symbol, String description) {
+    protected Task(char symbol, String description, boolean isDone) {
         this.symbol = symbol;
         this.description = description;
+        this.isDone = isDone;
     }
 
     /**
-     * Initialises a Task with its type and arguments to be supplied to the constructor.
+     * Returns the char representation of whether a {@code Task} is done.
      *
-     * @param taskType The string representing the Task's type.
-     * @param args The array of strings representing the arguments to be supplied to the constructor.
-     * @return The task object.
-     */
-    public static Task of(String taskType, Map<String, String> args) {
-        switch (taskType) {
-        case "todo":
-            return new TodoTask(args);
-        case "deadline":
-            return new DeadlineTask(args);
-        case "event":
-            return new EventTask(args);
-        default:
-            return null;
-        }
-    }
-
-    /**
-     * Returns the char representation of whether a Task is done.
-     *
-     * @return The char representing the Task's status.
+     * @return The char representing the {@code Task}'s status.
      */
     private String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
     /**
-     * Sets the Task's isDone to isDone.
+     * Sets the {@code Task}'s isDone to isDone.
      *
-     * @param isDone The boolean to set the Task's isDone to.
+     * @param isDone The boolean to set the {@code Task}'s isDone to.
      */
     protected void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
     /**
-     * Returns the string representation of a Task.
+     * Returns the string representation of a {@code Task}.
      *
-     * @return The string representing the Task.
+     * @return The string representing the {@code Task}.
      */
     @Override
     public String toString() {
         return String.format("[%c][%s] %s", symbol, getStatusIcon(), description);
     }
 
-    private static class TodoTask extends Task {
-        public TodoTask(Map<String, String> args) {
-            super('T', args.get("description"));
-        }
-    }
-
-    private static class DeadlineTask extends Task {
-        private final String deadline;
-
-        public DeadlineTask(Map<String, String> args) {
-            super( 'D', args.get("description"));
-            deadline = args.get("by");
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%s (by: %s)", super.toString(), deadline);
-        }
-    }
-
-    private static class EventTask extends Task {
-        private final String time;
-
-        public EventTask(Map<String, String> args) {
-            super( 'E', args.get("description"));
-            time = args.get("at");
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%s (at: %s)", super.toString(), time);
-        }
+    /**
+     * Returns the string representation of a {@code Task} when stored in a data file.
+     *
+     * @return The string representing the {@code Task} when stored in a data file.
+     */
+    public String toData() {
+        return String.format("%s|%s|%s", symbol, getStatusIcon(), description);
     }
 }
