@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class MainWindow extends AnchorPane {
-    private final Long EXIT_DELAY = 1000L;
+    private static final Long EXIT_DELAY = 1000L;
     private final Image dukeDisplayImage = new Image(
         Objects.requireNonNull(this.getClass().getResourceAsStream("/images/duke.png")));
     private final Image userDisplayImage = new Image(
