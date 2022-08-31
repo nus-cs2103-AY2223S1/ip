@@ -6,20 +6,27 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-
+/**
+ * Represents Ui that interacts with the user and facilitates conversation
+ */
 public class Ui {
 
     private final Scanner in;
     private final PrintStream out;
     private static final String END_CMD = "bye";
 
+    /**
+     * Constructs a Ui object
+     * @param in InputStream for user commands
+     * @param out PrintStream for responses displayed
+     */
     public Ui(InputStream in, PrintStream out){
         this.in = new Scanner(in);
         this.out = out;
     }
 
     /**
-     * Method to print Duke's self-introduction and to customise its personality.
+     * Prints Duke's self-introduction and helps to customise its personality.
      */
     public void introduceDuke(){
         String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
@@ -31,7 +38,7 @@ public class Ui {
     }
 
     /**
-     * Method to exit chat if user types "bye" and print user input otherwise.
+     * Exits chat if user types "bye" and prints user input otherwise.
      */
     public static void echoAndExit(){
         String exitCmd = "bye";
@@ -48,17 +55,27 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints a farewell message at the end of the conversation
+     */
     public void bidFarewell(){
         System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
         System.out.println("\n***********************************************************************");
     }
 
+    /**
+     * Asks user to repeat message using standard commands if it does not comply with standard input format
+     * @param userMsg String representing user message
+     */
     public void askForClarification(String userMsg){
         System.out.print("Did you say..." + userMsg + "?\n");
         System.out.println("The shadow of my memory is long...State what you would ask clearly.");
         System.out.println("\n***********************************************************************");
     }
 
+    /**
+     * Reads user message and prints an appropriate response back
+     */
     public void readAndRespond(){
 
         Scanner readInput = this.in;
