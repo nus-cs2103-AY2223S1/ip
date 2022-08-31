@@ -13,7 +13,7 @@ public class Ui {
     private final PrintStream out;
     private static final String END_CMD = "bye";
 
-    public Ui(InputStream in, PrintStream out){
+    public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
     }
@@ -21,7 +21,7 @@ public class Ui {
     /**
      * Method to print Duke's self-introduction and to customise its personality.
      */
-    public void introduceDuke(){
+    public void introduceDuke() {
         String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
         String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself..." +
                 "\nBut you are young blood. What brings you to these ancient halls?"
@@ -33,39 +33,38 @@ public class Ui {
     /**
      * Method to exit chat if user types "bye" and print user input otherwise.
      */
-    public static void echoAndExit(){
+    public static void echoAndExit() {
         String exitCmd = "bye";
-        while(true){
+        while (true) {
             Scanner readinput = new Scanner(System.in);
             String userMsg = readinput.nextLine();
-            if(!userMsg.equals(exitCmd)) {
+            if (!userMsg.equals(exitCmd)) {
                 System.out.println(userMsg + "\n" + "***********************************************************************\n");
             } else {
                 System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
-
                 break;
             }
         }
     }
 
-    public void bidFarewell(){
+    public void bidFarewell() {
         System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
         System.out.println("\n***********************************************************************");
     }
 
-    public void askForClarification(String userMsg){
+    public void askForClarification(String userMsg) {
         System.out.print("Did you say..." + userMsg + "?\n");
         System.out.println("The shadow of my memory is long...State what you would ask clearly.");
         System.out.println("\n***********************************************************************");
     }
 
-    public void readAndRespond(){
+    public void readAndRespond() {
 
         Scanner readInput = this.in;
 
-        while(true){
+        while (true) {
             String userMsg = readInput.nextLine();
-            if(userMsg.equals(END_CMD)){
+            if (userMsg.equals(END_CMD)) {
                 bidFarewell();
                 break;
             } else {
@@ -73,11 +72,5 @@ public class Ui {
                 parseCmd.parseCommand();
             }
         }
-
     }
-
-
-
-
-
 }
