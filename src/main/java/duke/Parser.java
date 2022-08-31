@@ -5,6 +5,8 @@ import duke.modules.todos.Deadline;
 import duke.modules.todos.Event;
 import duke.modules.todos.Todo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static duke.Ui.say;
@@ -17,26 +19,6 @@ import static duke.Ui.sayError;
 public class Parser {
 
     /**
-     * Represents the result of an execution.
-     */
-    static class ExecuteResult {
-        /** Whether the program should exit after this command */
-        private final boolean shouldExitAfter;
-
-        /**
-         * Constructor
-         * @param shouldExitAfter Whether the program should exit after this command
-         */
-        public ExecuteResult(boolean shouldExitAfter) {
-            this.shouldExitAfter = shouldExitAfter;
-        }
-
-        public boolean shouldExitAfter() {
-            return shouldExitAfter;
-        }
-    }
-
-    /**
      * Parses and executes the given input using the given module instances.
      * @param line The input given to the bot.
      * @param todos The Todos module instance to use.
@@ -46,6 +28,7 @@ public class Parser {
         try {
             Scanner scanner = new Scanner(line);
             String command = scanner.hasNext() ? scanner.next() : "";
+            List<String> result = new ArrayList<>();
 
             switch (command) {
             case "":
@@ -53,7 +36,7 @@ public class Parser {
                 break;
             case "bye":
                 say("OK. See you next time! *boings away*");
-                return new ExecuteResult(true);
+                return new ExecuteResult(true, result);
             case "todo":
                 todos.cmdAdd(scanner, Todo::fromChat);
                 break;
@@ -85,6 +68,6 @@ public class Parser {
         } catch (MessagefulException e) {
             sayError(e);
         }
-        return new ExecuteResult(false);
+        return new ExecuteResult(false, List.of());
     }
 }
