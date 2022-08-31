@@ -1,10 +1,10 @@
 package caca.tasks;
 
-import caca.exceptions.InvalidDateException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import caca.exceptions.InvalidDateException;
 
 /**
  * This class represents events with date & time.
@@ -53,7 +53,7 @@ public class Event extends Task {
      * @param isDone True if event is marked as done; false otherwise.
      * @throws InvalidDateException If date entered by user is not in the specified format.
      */
-    public Event (String description, String dateTimeInput, boolean isDone) throws InvalidDateException {
+    public Event(String description, String dateTimeInput, boolean isDone) throws InvalidDateException {
         // Explicit constructor invocation adapted from
         // https://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html
         this(description, dateTimeInput);

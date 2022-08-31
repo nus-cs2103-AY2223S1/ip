@@ -1,5 +1,8 @@
 package caca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import caca.exceptions.EmptyInputException;
 import caca.exceptions.InvalidDateException;
 import caca.exceptions.InvalidIndexException;
@@ -9,14 +12,12 @@ import caca.tasks.Event;
 import caca.tasks.Task;
 import caca.tasks.Todo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This class contains CaCa's task list.
  * <p>
  * The list of operations that CaCa can perform with the tasks are listed below as
  * Function (description): command. e.g...
+ * <ul>
  * <li>Add tasks:</li>
  * <ul>
  *     <li>ToDos (tasks without any date & time): todo taskDescription</li>
@@ -83,9 +84,9 @@ public class TaskList {
      */
     public static void isValid(int taskIndex) throws InvalidIndexException {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
-            String MESSAGE = String.format("OOPS!!! You have entered an invalid task index. " +
-                    "It should be between 1 and %d.", tasks.size());
-            throw new InvalidIndexException(MESSAGE);
+            String message = String.format("OOPS!!! You have entered an invalid task index. "
+                    + "It should be between 1 and %d.", tasks.size());
+            throw new InvalidIndexException(message);
         }
     }
 
@@ -98,9 +99,9 @@ public class TaskList {
     public static void hasDescription(String[] command) throws EmptyInputException {
         String commandType = command[0];
         if (command.length == 1 || command[1].isBlank()) {
-            String MESSAGE = String.format("OOPS!!! The description of %s cannot be empty.",
+            String message = String.format("OOPS!!! The description of %s cannot be empty.",
                     commandType);
-            throw new EmptyInputException(MESSAGE);
+            throw new EmptyInputException(message);
         }
     }
 
@@ -134,9 +135,9 @@ public class TaskList {
 
         } else {
             if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
-                String MESSAGE = "OOPS!!! I do not accept blank details. "
+                String message = "OOPS!!! I do not accept blank details. "
                         + "A deadline must have both description and date & time.";
-                throw new MissingDetailException(MESSAGE);
+                throw new MissingDetailException(message);
 
             } else {
                 String description = detailedCommand[0];

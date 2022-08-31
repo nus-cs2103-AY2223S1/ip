@@ -1,10 +1,6 @@
 package caca;
 
-import caca.exceptions.InvalidDateException;
-import caca.tasks.Deadline;
-import caca.tasks.Event;
-import caca.tasks.Task;
-import caca.tasks.Todo;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import caca.exceptions.InvalidDateException;
+import caca.tasks.Deadline;
+import caca.tasks.Event;
+import caca.tasks.Task;
+import caca.tasks.Todo;
 
 /**
  * This class represents the storage system to save and read tasks from the hard disk.
@@ -52,7 +52,7 @@ public class Storage {
      * @throws FileNotFoundException If file is not found.
      */
     public void loadFile() throws FileNotFoundException {
-        String LINE = "____________________________________________________________\n";
+        String line = "____________________________________________________________\n";
 
         File file = new File(filePath);
 
@@ -75,12 +75,12 @@ public class Storage {
             }
 
             // Prints a line to end CaCa loading response.
-            System.out.println(LINE);
+            System.out.println(line);
 
         } else {
             System.out.println("The file to store all your tasks does not exist.\n"
                     + "I will create one now...\n"
-                    + LINE);
+                    + line);
         }
     }
 

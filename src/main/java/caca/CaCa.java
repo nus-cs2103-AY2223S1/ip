@@ -1,9 +1,9 @@
 package caca;
 
-import caca.exceptions.InvalidDateException;
-
 import java.io.IOException;
 import java.util.Scanner;
+
+import caca.exceptions.InvalidDateException;
 
 /**
  * CaCa is a personal assistant chatbot that helps users manage and track things.
@@ -18,9 +18,9 @@ public class CaCa {
 
     // Structure below is adapted from A-MoreOOP in
     // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
-    private Storage storage;
+    private final Storage storage;
 
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * A TaskList object containing all the tasks in a list.

@@ -1,9 +1,9 @@
 package caca;
 
+import java.io.IOException;
+
 import caca.exceptions.CaCaException;
 import caca.exceptions.EmptyInputException;
-
-import java.io.IOException;
 
 /**
  * This class deals with making sense of the user command.

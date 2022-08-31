@@ -1,10 +1,11 @@
 package caca;
 
-import caca.exceptions.InvalidIndexException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+import caca.exceptions.InvalidIndexException;
 
 /**
  * Test class for TaskList.

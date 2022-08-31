@@ -21,17 +21,17 @@ public class Ui {
         // https://manytools.org/hacker-tools/ascii-banner/
         // with the following settings:
         // Banner text: CaCa, Font: Big, Horizontal spacing: Normal, Vertical spacing: Normal.
-        String LOGO = "   _____       _____      \n"
+        String logo = "   _____       _____      \n"
                 + "  / ____|     / ____|     \n"
                 + " | |     __ _| |     __ _ \n"
                 + " | |    / _` | |    / _` |\n"
                 + " | |___| (_| | |___| (_| |\n"
                 + "  \\_____\\__,_|\\_____\\__,_|\n\n";
 
-        String GREETING = "Hello! I'm CaCa.\n"
+        String greeting = "Hello! I'm CaCa.\n"
                 + "What can I do for you?\n";
 
-        System.out.println(LINE + LOGO + GREETING + LINE);
+        System.out.println(LINE + logo + greeting + LINE);
     }
 
     /**

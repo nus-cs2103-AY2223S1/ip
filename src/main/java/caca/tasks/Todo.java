@@ -23,7 +23,7 @@ public class Todo extends Task {
      * @param description Task description.
      * @param isDone True if todo is marked as done; false otherwise.
      */
-    public Todo (String description, boolean isDone) {
+    public Todo(String description, boolean isDone) {
         super(description);
         this.isDone = isDone;
     }

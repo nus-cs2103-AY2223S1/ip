@@ -81,8 +81,8 @@ public abstract class Task {
     /**
      * Formats tasks in a file.
      *
-     * @return Format displayed in a file with task type, status (done or undone), description
-     * and date & time (when applicable).
+     * @return Format displayed in a file with task type, status (done or undone),
+     *     description and date & time (when applicable).
      */
     public abstract String toFileFormat();
 

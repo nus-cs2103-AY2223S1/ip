@@ -1,10 +1,10 @@
 package caca.tasks;
 
-import caca.exceptions.InvalidDateException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import caca.exceptions.InvalidDateException;
 
 /**
  * This class represents deadlines with date & time.
