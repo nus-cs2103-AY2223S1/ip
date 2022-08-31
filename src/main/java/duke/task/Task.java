@@ -28,6 +28,10 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Returns an encoded string representing the task.
      *
