@@ -12,6 +12,10 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
+    public TaskList(ArrayList<Task> tasks) {
+        this.taskList = tasks;
+    }
+
     public String showTasks(){
         Task cur;
         String output = "";

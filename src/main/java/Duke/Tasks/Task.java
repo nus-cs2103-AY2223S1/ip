@@ -1,6 +1,6 @@
 package Duke.Tasks;
 
-public abstract class Task {
+public class Task {
     protected String discription;
     protected boolean isDone;
 

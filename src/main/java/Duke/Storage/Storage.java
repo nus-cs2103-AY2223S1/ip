@@ -5,6 +5,7 @@ import Duke.Exceptions.StoredFileException;
 
 import Duke.Tasks.*;
 
+import java.io.EOFException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.io.File;
@@ -25,12 +26,7 @@ public class Storage {
 
     public Storage(String fileName){
         String dirPath = System.getProperty("user.dir");
-        this.filePath = Paths.get(dirPath, "data" ,fileName + ".txt");
-    }
-
-    public Storage(String dir, String fileName){
-        String dirPath = System.getProperty("user.dir");
-        this.filePath = Paths.get(dirPath, dir, fileName + ".txt");
+        this.filePath = Paths.get(dirPath, "src", "test", "artifacts", "ip_jar", "data", fileName + ".txt");
     }
 
     public TaskList obtain() throws StoredFileException{
@@ -64,6 +60,34 @@ public class Storage {
 
 
     }
+
+    public ArrayList<Task> load() {
+        ArrayList<Task> tasks = null;
+
+        try {
+            File text = new File(String.valueOf(filePath));
+
+            Scanner sc = new Scanner(text);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                Task task = new Task(line);
+                tasks.add(task);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("sth wrong");
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer ");
+        }
+
+        // return tasks == null ? new ArrayList<>() : tasks;
+        return new ArrayList<>();
+
+
+
+
+    }
+
 
 
     private Task readTask(String content) throws StoredFileException {

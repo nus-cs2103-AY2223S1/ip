@@ -5,35 +5,50 @@ import Duke.Tasks.TaskList;
 
 import Duke.UI.Ui;
 
+
 import Duke.Storage.Storage;
+import Duke.Tasks.Task;
+import Duke.Tasks.TaskList;
 
-
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
 
 
 public class Duke {
-    private TaskList tasks;
-    private Storage storage;
+
+    private static final Storage storage = new Storage("Duke");;
+
+    private static final ArrayList<Task> tasks = storage.load();
+
+    private static final Ui ui = new Ui();
+
+    private void launch() throws FileNotFoundException {
+        System.out.println("Hello World!!!!");
 
 
-    private Ui ui;
 
-    public Duke() {
+//        try {
+//            FileInputStream fis = new FileInputStream(String.valueOf(filePath));
+//            ObjectInputStream reader = new ObjectInputStream(fis);
+//
+//        } catch (IOException e){
+//            System.out.println("wromg");
+//        }
 
-        String home = System.getProperty("user.home");
-        java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "src", "data","Duke.txt");
-
-        ui = new Ui();
-        storage = new Storage("Duke");
-
-        try { tasks = storage.obtain(); } catch (DukeException e)
-        {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
 
     }
+
+
+
 
     public void run() {
         ui.showWelcome();
@@ -56,9 +71,10 @@ public class Duke {
 
 
     }
-   public static void main(String[] args) throws DukeException {
+   public static void main(String[] args) throws DukeException, FileNotFoundException {
         System.out.println("Hello World!");
-        new Duke().run();
+
+        new Duke().launch();
 
 
 
