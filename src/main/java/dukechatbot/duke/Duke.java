@@ -1,4 +1,5 @@
 package dukechatbot.duke;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,17 +25,18 @@ public class Duke {
     private Ui ui;
     private ArrayList<Task> al;
     private Parser parse;
-
+    private MainWindow gui;
     /**
      * Constructs an instance of the Duke class.
      *
      * @param filePath path of file to be read for loading and saving task list contents.
      */
     public Duke(String filePath) {
+        this.gui = new MainWindow();
         this.al = new ArrayList<>();
         this.ui = new Ui(al);
         try {
-            this.tasks = new TaskList(al);
+            this.tasks = new TaskList(this.al, this.ui);
             this.storage = new Storage(filePath, this.tasks, this.ui);
             this.parse = new Parser(tasks, ui);
         } catch (IOException ioe) {
@@ -84,4 +86,13 @@ public class Duke {
         storage.save();
         ui.bye();
     }
+
+    public String getResponse(String input) throws IOException {
+        String response = parse.categorise(input);
+        if (response.equals(this.ui.bye())) {
+            System.exit(0);
+        }
+        return response;
+    }
+
 }

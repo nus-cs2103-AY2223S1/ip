@@ -29,25 +29,21 @@ public class Ui {
     /**
      * Prints out logo and greets user upon program run.
      */
-    public void greet() {
+    public String greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("--------------------------------------\n");
-        System.out.println("\tHello I'm Duke, what can I do for you?");
-        System.out.println("--------------------------------------\n");
+        return "Hello from\n" + logo
+                + "Hello I'm Duke, what can I do for you?";
     }
 
     /**
      * Says goodbye to the user when the program run is terminated by user.
      */
-    public void bye() {
-        System.out.println("--------------------------------------\n");
-        System.out.println("\tBye. Hope to see you soon again!");
-        System.out.println("--------------------------------------\n");
+    public String bye() {
+        return "\tBye. Hope to see you soon again!";
     }
 
     /**
@@ -63,21 +59,19 @@ public class Ui {
      * Shows success of adding task into the task list when user tries to add a task.
      * @param t the task that the user has told Duke to add into their task list.
      */
-    public void added(Task t) {
-        System.out.println("------------------------------\n");
-        System.out.printf("\tGot it. I've added this task: \n\t\t%s\n", t.toString());
-        System.out.println("\tNow you have " + this.tl.size() + " task(s) in the list.");
-        System.out.println("------------------------------\n");
+    public String added(Task t) {
+        String response = "Got it. I've added this task: \n" + t.toString()
+            + "\n\tNow you have " + this.tl.size() + " task(s) in the list.";
+        return response;
     }
     /**
      * Shows success of marking the task in the task list as done.
      * @param t the task that the user has told Duke to mark as done.
      */
-    public void marked(Task t) {
-        System.out.println("-------------------------------\n");
-        System.out.println("\tNice! I have marked this task as done: ");
-        System.out.println("\t\t" + t.toString());
-        System.out.println("-------------------------------\n");
+    public String marked(Task t) {
+        String response =
+            "Nice! I have marked this task as done: \n\t" + t.toString();
+        return response;
     }
 
     /**
@@ -85,11 +79,9 @@ public class Ui {
      * to the user.
      * @param t the task that the user has told Duke to mark as not done.
      */
-    public void unmarked(Task t) {
-        System.out.println("-------------------------------\n");
-        System.out.println("\tOK, I've marked this task as not done yet: ");
-        System.out.println("\t\t" + t.toString());
-        System.out.println("-------------------------------\n");
+    public String unmarked(Task t) {
+        String response = ("OK, I've marked this task as not done yet: ") + ("\n\t" + t.toString());
+        return response;
     }
 
     /**
@@ -98,12 +90,10 @@ public class Ui {
      * @param tl the task list associated that is to show the
      *           number of tasks left in the list.
      */
-    public void removed(Task t, ArrayList<Task> tl) {
-        System.out.println("------------------------------\n");
-        System.out.println("\tNoted. I've removed this task:");
-        System.out.println("\t\t" + t.toString());
-        System.out.println("\tNow you have " + tl.size() + " task(s) in the list.");
-        System.out.println("------------------------------\n");
+    public String removed(Task t, ArrayList<Task> tl) {
+        String response = ("\tNoted. I've removed this task:")
+                    + "\t\t" + t.toString() + ("\tNow you have " + tl.size() + " task(s) in the list.");
+        return response;
     }
 
     /**
@@ -140,16 +130,16 @@ public class Ui {
      * lists out the tasks in the task list to the user.
      * @param tl containing the tasks stored in the task list.
      */
-    public void listOut(ArrayList<Task> tl) {
+    public String listOut(ArrayList<Task> tl) {
         int count = 1;
-        System.out.println("-------------------------------\n");
-        System.out.println("\tHere are the tasks in your list: ");
+        StringBuilder response = new StringBuilder();
+        response.append(("Here are the tasks in your list: "));
         for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
             Task curr = it.next();
-            System.out.println("\t\t" + count + ". " + curr.toString());
+            response.append("\n\t").append(count).append(". ").append(curr.toString());
             count++;
         }
-        System.out.println("-------------------------------\n");
+        return response.toString();
     }
 
     /**
@@ -157,16 +147,16 @@ public class Ui {
      * the user's find query.
      * @param tl containing the tasks store in the task list.
      */
-    public void listMatch(ArrayList<Task> tl) {
+    public String listMatch(ArrayList<Task> tl) {
         int count = 1;
-        System.out.println("-------------------------------\n");
-        System.out.println("\tHere are the matching tasks in your list: ");
+        StringBuilder response = new StringBuilder();
+        response.append(("\tHere are the matching tasks in your list: "));
         for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
             Task curr = it.next();
-            System.out.println("\t\t" + count + ". " + curr.toString());
+            response.append("\t\t").append(count).append(". ").append(curr.toString());
             count++;
         }
-        System.out.println("-------------------------------\n");
+        return response.toString();
     }
 
 }

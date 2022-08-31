@@ -31,16 +31,21 @@ public class Parser {
     /**
      * categorises the client's inputs to decide the method to be called by the program next in response to it.
      *
+     * @return a String response to the command.
      * @param str The input passed into the method to be processed.
      * @throws DukeException when the command input is unknown.
      */
-    public void categorise(String str) throws DukeException {
+    public String categorise(String str) throws DukeException {
+        String response = null;
         String uncap = str.toLowerCase();
+        if (str.equals("bye")) {
+            return this.ui.bye();
+        }
         if (uncap.startsWith("find")) {
-            tasks.find(uncap.substring(5), ui);
+            response = tasks.find(uncap.substring(5), ui);
         } else if (uncap.startsWith("delete")) {
             Integer i = Integer.parseInt(String.valueOf(str.charAt(7)));
-            tasks.delete(i, ui);
+            response = tasks.delete(i, ui);
         } else {
             if (!uncap.equals("list")) {
                 if (!uncap.startsWith("mark") && !uncap.startsWith("unmark")) {
@@ -77,20 +82,20 @@ public class Parser {
                     } else {
                         this.ui.showUnknownCommandError();
                     }
-                    this.tasks.add(t);
-                    this.ui.added(t);
+                    response = this.tasks.add(t);
                 } else {
                     if (uncap.startsWith("unmark")) {
                         int i = Integer.parseInt(String.valueOf(uncap.charAt(7)));
-                        tasks.unmark(i, ui);
+                        response = tasks.unmark(i, ui);
                     } else if (uncap.startsWith("mark")) {
                         int i = Integer.parseInt(String.valueOf(uncap.charAt(5)));
-                        tasks.mark(i, ui);
+                        response = tasks.mark(i, ui);
                     }
                 }
             } else {
-                ui.listOut(this.tasks.getArrayList());
+                response = ui.listOut(this.tasks.getArrayList());
             }
         }
+        return response;
     }
 }

@@ -12,14 +12,16 @@ public class TaskList {
      * TaskList
      */
     private ArrayList<Task> tl;
+    private Ui ui;
 
     /**
      * Constructs the instance of Task List with its associated
      * array list.
      * @param tl the array list that is associated with the TaskList instance.
      */
-    public TaskList(ArrayList<Task> tl) {
+    public TaskList(ArrayList<Task> tl, Ui ui) {
         this.tl = tl;
+        this.ui = ui;
     }
 
     /**
@@ -35,8 +37,9 @@ public class TaskList {
      * Adds task into the array list associated with the TaskList instance.
      * @param t the task to be added into the array list.
      */
-    public void add(Task t) {
+    public String add(Task t) {
         this.tl.add(t);
+        return this.ui.added(t);
     }
 
     /**
@@ -57,7 +60,7 @@ public class TaskList {
             toAdd = new Todo(ln.substring(7));
         } else if (tag.equals("D")) {
             id = ln.indexOf("(by:");
-            toAdd = new Deadline(ln.substring(7,id - 1), ln.substring(id + 5 , ln.length() - 1));
+            toAdd = new Deadline(ln.substring(7, id - 1), ln.substring(id + 5 , ln.length() - 1));
         } else if (tag.equals("E")) {
             id = ln.indexOf("(at:");
             String timeAttr = ln.substring(id + 5, id + 21)
@@ -78,10 +81,10 @@ public class TaskList {
      * @param ui the instance of Ui to allow
      *           for printing out of the success of delete to user.
      */
-    public void delete(Integer id, Ui ui) {
+    public String delete(Integer id, Ui ui) {
         int actualId = id - 1;
         Task t = this.tl.remove(actualId);
-        ui.removed(t, this.tl);
+        return this.ui.removed(t, this.tl);
     }
 
     /**
@@ -90,10 +93,10 @@ public class TaskList {
      * @param ui the instance of Ui to allow for printing out of the success of marking
      *           the task as done to user.
      */
-    public void mark(int id, Ui ui) {
+    public String mark(int id, Ui ui) {
         Task t = this.tl.get(id - 1);
         t.markAsDone();
-        ui.marked(t);
+        return ui.marked(t);
     }
 
     /**
@@ -102,10 +105,10 @@ public class TaskList {
      * @param ui the instance of Ui to allow
      *           for printing out of the success of marking the task as not done to user.
      */
-    public void unmark(int id, Ui ui) {
+    public String unmark(int id, Ui ui) {
         Task t = this.tl.get(id - 1);
         t.markAsUndone();
-        ui.unmarked(t);
+        return ui.unmarked(t);
     }
 
     /**
@@ -115,7 +118,7 @@ public class TaskList {
      * @param ui the instance of Ui to allow
      *           for printing of the tasks that are found.
      */
-    public void find(String desc, Ui ui) {
+    public String find(String desc, Ui ui) {
         int count = 1;
         ArrayList<Task> tempList = new ArrayList<>();
         for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
@@ -124,6 +127,6 @@ public class TaskList {
                 tempList.add(curr);
             }
         }
-        ui.listMatch(tempList);
+        return ui.listMatch(tempList);
     }
 }
