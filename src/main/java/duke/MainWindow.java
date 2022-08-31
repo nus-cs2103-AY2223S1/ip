@@ -6,10 +6,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -55,13 +53,13 @@ public class MainWindow extends AnchorPane {
             color = "#ffb6c1";
             response = e.getMessage();
         }
-        DialogBox userGUI = DialogBox.getUserDialog(input, userImage);
-        userGUI.setStyle("-fx-background-color:" + color + ";"
-                + "maxHeight=-Infinity; maxWidth=-Infinity; prefWidth=388.0; spacing=15; -fx-background-radius: 16;");
-        DialogBox dukeGUI = DialogBox.getDukeDialog(response, dukeImage);
-        dukeGUI.setStyle("-fx-background-color:" + color + ";"
-                + "maxHeight=-Infinity; maxWidth=-Infinity; prefWidth=388.0; spacing=15; -fx-background-radius: 16;");
-        dialogContainer.getChildren().addAll(userGUI, dukeGUI);
+        DialogBox userGui = DialogBox.getUserDialog(input, userImage);
+        userGui.setStyle("-fx-background-color:" + color + "; "
+                + "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0; spacing:15; -fx-background-radius: 16;");
+        DialogBox dukeGui = DialogBox.getDukeDialog(response, dukeImage);
+        dukeGui.setStyle("-fx-background-color:" + color + "; "
+                + "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0; spacing:15; -fx-background-radius: 16;");
+        dialogContainer.getChildren().addAll(userGui, dukeGui);
         userInput.clear();
     }
 }
