@@ -12,7 +12,7 @@ public abstract class Task {
     private static final String FILE_WRITING_DELIMITER = "|";
 
     protected String taskTitle;
-    protected boolean done;
+    protected boolean isDone;
     protected TaskType taskType;
 
     protected Task(String taskTitle, TaskType taskType) {
@@ -21,7 +21,7 @@ public abstract class Task {
 
     protected Task(String taskTitle, boolean done, TaskType taskType) {
         this.taskTitle = taskTitle;
-        this.done = done;
+        this.isDone = done;
         this.taskType = taskType;
     }
 
@@ -29,18 +29,18 @@ public abstract class Task {
      * Changes the internal state to be done.
      */
     public void markDone() {
-        done = true;
+        isDone = true;
     }
 
     /**
      * Changes the internal state to be undone.
      */
     public void markUndone() {
-        done = false;
+        isDone = false;
     }
 
     protected String getStringRepresentation(String label, String displayedText) {
-        return "[" + (done ? "X" : " ") + "] " + "[" + label + "] " + displayedText;
+        return "[" + (isDone ? "X" : " ") + "] " + "[" + label + "] " + displayedText;
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class Task {
 
     protected String getFileRepresentation(String label, String dateTime) {
         String output = label + " " + FILE_WRITING_DELIMITER + " "
-                + (done ? "1" : "0")
+                + (isDone ? "1" : "0")
                 + " " + FILE_WRITING_DELIMITER + " " + taskTitle;
         if (dateTime != null) {
             output += " " + FILE_WRITING_DELIMITER + " " + dateTime;

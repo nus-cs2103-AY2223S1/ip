@@ -39,10 +39,8 @@ public class Parser {
     private static final String DELIMITER = "/";
     private static final String BY_DATE_DELIMITER = "/by";
     private static final String AT_DATE_DELIMITER = "/at";
-    private static final String MISSING_AT_DELIMITER_ERROR_MESSAGE =
-            "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
-    private static final String MISSING_BY_DELIMITER_ERROR_MESSAGE =
-            "Oops! You didn't specify the date and time with the delimiter " + BY_DATE_DELIMITER;
+    private static final String MISSING_DATE_DELIMITER_ERROR_MESSAGE =
+            "Oops! You didn't specify the date and time with the delimiter ";
     private static final String INDEX_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the index, starting from 1.";
     private static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
@@ -52,11 +50,11 @@ public class Parser {
     private static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
             "Oops! The date and time should follow the format: " + INPUT_DATE_TIME_FORMAT;
 
-    private static final Function<String, Command> addDeadlineCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> ADD_DEADLINE_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             String taskTitle = getTaskTitle(commandArgument);
-            LocalDateTime deadline = getByDate(commandArgument);
+            LocalDateTime deadline = getDate(commandArgument, BY_DATE_DELIMITER);
             DeadlineTask task = new DeadlineTask(taskTitle, deadline);
             newCommand = new AddDeadlineCommand(task);
         } catch (DukeMissingTaskTitleException | DukeCommandFormatException | DukeMissingTaskDateTimeException
@@ -66,11 +64,11 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> addEventCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> ADD_EVENT_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             String taskTitle = getTaskTitle(commandArgument);
-            LocalDateTime dateTime = getAtDate(commandArgument);
+            LocalDateTime dateTime = getDate(commandArgument, AT_DATE_DELIMITER);
             EventTask task = new EventTask(taskTitle, dateTime);
             newCommand = new AddEventCommand(task);
         } catch (DukeMissingTaskTitleException | DukeCommandFormatException | DukeMissingTaskDateTimeException
@@ -80,7 +78,7 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> addTodoCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> ADD_TODO_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             String taskTitle = getTaskTitle(commandArgument);
@@ -92,7 +90,7 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> deleteCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> DELETE_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             int taskIndex = getTaskIndexFromCommand(commandArgument);
@@ -103,14 +101,14 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> displayListCommandSupplier =
+    private static final Function<String, Command> DISPLAY_LIST_COMMAND_SUPPLIER =
             commandArgument -> new DisplayListCommand();
 
-    private static final Function<String, Command> exitCommandSupplier = commandArgument -> new ExitCommand();
+    private static final Function<String, Command> EXIT_COMMAND_SUPPLIER = commandArgument -> new ExitCommand();
 
-    private static final Function<String, Command> findCommandSupplier = FindCommand::new;
+    private static final Function<String, Command> FIND_COMMAND_SUPPLIER = FindCommand::new;
 
-    private static final Function<String, Command> markDoneCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> MARK_DONE_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             int taskIndex = getTaskIndexFromCommand(commandArgument);
@@ -121,7 +119,7 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> markUndoneCommandSupplier = commandArgument -> {
+    private static final Function<String, Command> MARK_UNDONE_COMMAND_SUPPLIER = commandArgument -> {
         Command newCommand;
         try {
             int taskIndex = getTaskIndexFromCommand(commandArgument);
@@ -132,7 +130,7 @@ public class Parser {
         return newCommand;
     };
 
-    private static final Function<String, Command> unknownCommandSupplier = commandArgument -> new UnknownCommand();
+    private static final Function<String, Command> UNKNOWN_COMMAND_SUPPLIER = commandArgument -> new UnknownCommand();
 
     private final Map<String, Function<String, Command>> commandMap;
 
@@ -142,15 +140,15 @@ public class Parser {
      */
     public Parser() {
         commandMap = new HashMap<>();
-        commandMap.put(CommandType.ADD_DEADLINE.toString(), addDeadlineCommandSupplier);
-        commandMap.put(CommandType.ADD_EVENT.toString(), addEventCommandSupplier);
-        commandMap.put(CommandType.ADD_TODO.toString(), addTodoCommandSupplier);
-        commandMap.put(CommandType.DELETE.toString(), deleteCommandSupplier);
-        commandMap.put(CommandType.DISPLAY_LIST.toString(), displayListCommandSupplier);
-        commandMap.put(CommandType.EXIT.toString(), exitCommandSupplier);
-        commandMap.put(CommandType.FIND.toString(), findCommandSupplier);
-        commandMap.put(CommandType.MARK_DONE.toString(), markDoneCommandSupplier);
-        commandMap.put(CommandType.MARK_UNDONE.toString(), markUndoneCommandSupplier);
+        commandMap.put(CommandType.ADD_DEADLINE.toString(), ADD_DEADLINE_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.ADD_EVENT.toString(), ADD_EVENT_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.ADD_TODO.toString(), ADD_TODO_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.DELETE.toString(), DELETE_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.DISPLAY_LIST.toString(), DISPLAY_LIST_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.EXIT.toString(), EXIT_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.FIND.toString(), FIND_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.MARK_DONE.toString(), MARK_DONE_COMMAND_SUPPLIER);
+        commandMap.put(CommandType.MARK_UNDONE.toString(), MARK_UNDONE_COMMAND_SUPPLIER);
     }
 
     /**
@@ -162,7 +160,7 @@ public class Parser {
     public Command parse(String input) {
         String instruction = getCommandInstruction(input);
         String argument = getCommandArgument(input);
-        Function<String, Command> supplier = commandMap.getOrDefault(instruction, unknownCommandSupplier);
+        Function<String, Command> supplier = commandMap.getOrDefault(instruction, UNKNOWN_COMMAND_SUPPLIER);
         return supplier.apply(argument);
     }
 
@@ -204,30 +202,16 @@ public class Parser {
         return removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
     }
 
-    private static LocalDateTime getByDate(String commandArgument)
+    private static LocalDateTime getDate(String commandArgument, String delimiter)
             throws DukeCommandFormatException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
-        int indexOfDelimiter = getIndexOfFirstOccurrence(commandArgument, BY_DATE_DELIMITER);
+        int indexOfDelimiter = getIndexOfFirstOccurrence(commandArgument, delimiter);
         if (indexOfDelimiter == commandArgument.length()) {
-            throw new DukeCommandFormatException(MISSING_BY_DELIMITER_ERROR_MESSAGE);
+            throw new DukeCommandFormatException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
         }
         String rawDateString = commandArgument.substring(indexOfDelimiter + BY_DATE_DELIMITER.length());
         String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
         if (refinedDateString.isEmpty()) {
-            throw new DukeMissingTaskDateTimeException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
-        }
-        return getLocalDateTimeFromString(refinedDateString);
-    }
-
-    private static LocalDateTime getAtDate(String commandArgument)
-            throws DukeCommandFormatException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
-        int indexOfDelimiter = getIndexOfFirstOccurrence(commandArgument, AT_DATE_DELIMITER);
-        if (indexOfDelimiter == commandArgument.length()) {
-            throw new DukeCommandFormatException(MISSING_AT_DELIMITER_ERROR_MESSAGE);
-        }
-        String rawDateString = commandArgument.substring(indexOfDelimiter + AT_DATE_DELIMITER.length());
-        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
-        if (refinedDateString.isEmpty()) {
-            throw new DukeMissingTaskDateTimeException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
+            throw new DukeMissingTaskDateTimeException(MISSING_DATE_DELIMITER_ERROR_MESSAGE + delimiter);
         }
         return getLocalDateTimeFromString(refinedDateString);
     }
