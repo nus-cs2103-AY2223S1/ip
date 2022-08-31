@@ -22,14 +22,16 @@ public class Unmark extends Task {
 
     /**
      * Executes input list task
+     *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
      * @param storage Class to write/read commands from file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.markUndone(num);
-        ui.showUndoneTask(tasks, num);
         storage.write(tasks.getTasks());
+        return ui.showUndoneTask(tasks, num);
     }
 }

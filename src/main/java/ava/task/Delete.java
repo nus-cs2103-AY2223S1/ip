@@ -1,8 +1,8 @@
 package ava.task;
 
+import ava.Ui;
 import ava.processor.Storage;
 import ava.processor.TaskList;
-import ava.Ui;
 
 /**
  * Class to represent "Delete" tasks.
@@ -12,6 +12,8 @@ public class Delete extends Task {
 
     /**
      * The constructor for Delete task
+     *
+     * @param num Index of the task to be deleted.
      */
     public Delete(int num) {
         super("delete", false);
@@ -23,12 +25,13 @@ public class Delete extends Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
-     * @param storage Class to write/read commands from file.
+     * @param storage Class to read/write commands to file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task taskDeleted = tasks.delete(num);
-        ui.showDeleteTask(tasks, taskDeleted);
         storage.write(tasks.getTasks());
+        return ui.showDeleteTask(tasks, taskDeleted);
     }
 }

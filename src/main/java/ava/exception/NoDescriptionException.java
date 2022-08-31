@@ -5,11 +5,11 @@ package ava.exception;
  */
 public class NoDescriptionException extends Exception {
     /**
-     * The Constructor for NoCommandException.
+     * The Constructor for NoDescriptionException.
      *
      * @param message Message of the exception.
      */
     public NoDescriptionException(String message) {
-        super(String.format("☹ OOPS!!! The description of a " + message + " cannot be empty."));
+        super(String.format("The description of a " + message + " cannot be empty."));
     }
 }

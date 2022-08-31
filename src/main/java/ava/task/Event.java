@@ -18,6 +18,7 @@ public class Event extends Task {
      *
      * @param description Task description.
      * @param isDone Task state.
+     * @param time Time of the event.
      */
     public Event(String description, boolean isDone, LocalDateTime time) {
         super(description, isDone);
@@ -58,26 +59,28 @@ public class Event extends Task {
     }
 
     /**
-     * Overridden toString method for Event task details
+     * Obtains a string representation of the task.
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString()
-                + " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return super.toString() + " at: "
+                + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 
     /**
      * Executes process of given Event task.
+     *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
      * @param storage Class to write/read commands from file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(this);
-        ui.showAddOnTask(tasks, (tasks.size() - 1));
         storage.write(tasks.getTasks());
+        return ui.showAddOnTask(tasks, (tasks.size() - 1));
     }
 }

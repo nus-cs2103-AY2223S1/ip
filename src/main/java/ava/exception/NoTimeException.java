@@ -10,6 +10,6 @@ public class NoTimeException extends Exception {
      * @param message Message of the exception.
      */
     public NoTimeException(String message) {
-        super(String.format("☹ OOPS!!! The Time of " + message + " is missing!"));
+        super(String.format("The Time of " + message + " is missing!"));
     }
 }

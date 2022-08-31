@@ -68,12 +68,12 @@ public class Storage {
     /**
      * Writes tasks with a specified format to the file.
      *
-     * @param task An ArrayList of tasks to write.
+     * @param tasks An ArrayList of tasks to write.
      */
-    public void write(ArrayList<Task> task) {
+    public void write(ArrayList<Task> tasks) {
         try {
             FileWriter fileWriter = new FileWriter(FILE_PATH, false);
-            for (Task t : task) {
+            for (Task t : tasks) {
                 fileWriter.write(t.formatChange() + "\n");
             }
             fileWriter.close();
