@@ -1,12 +1,13 @@
 package stashy.storage;
 
-import org.junit.jupiter.api.Test;
-import stashy.data.exception.StashyException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import stashy.data.exception.StashyException;
 
 /**
  * Test class for Storage.

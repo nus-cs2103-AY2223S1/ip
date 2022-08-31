@@ -1,6 +1,7 @@
 package stashy.parser;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,8 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.regex.Matcher;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for Parser.
@@ -59,13 +59,13 @@ public class ParserTest {
     @Test
     public void testValidDateTime() {
         String[] dateTimeStrings = {
-                "Dec 12 2018 1030", "Dec 12 2018 10:31",
-                "25/12/2016 0027", "25/12/2015 00:27",
-                "2020/01/01 1201", "2020/01/01 12:01",
-                "2022/07/14T2358", "2022/07/14T23:59",
-                "2021-08-11 1111", "2021-08-10 11:11",
-                "19 Apr 2013 1725", "19 Apr 2031 17:25",
-                "Sep 30, 1965 1801", "Sep 30, 1965 18:00"};
+            "Dec 12 2018 1030", "Dec 12 2018 10:31",
+            "25/12/2016 0027", "25/12/2015 00:27",
+            "2020/01/01 1201", "2020/01/01 12:01",
+            "2022/07/14T2358", "2022/07/14T23:59",
+            "2021-08-11 1111", "2021-08-10 11:11",
+            "19 Apr 2013 1725", "19 Apr 2031 17:25",
+            "Sep 30, 1965 1801", "Sep 30, 1965 18:00"};
 
         for (String dateTimeString : dateTimeStrings) {
             boolean isParsed = false;
@@ -89,13 +89,13 @@ public class ParserTest {
     @Test
     public void testInvalidDateTime() {
         String[] dateTimeStrings = {
-                "Dec-12-2018 1030", "Dec-12-2018 10:31",
-                "25/12/2016, 0027", "25/12/2015, 00:27",
-                "2020/01/01, 1201", "2020/01/01, 12:01",
-                "2022/07/14TZ2358", "2022/07/14TZ23:59",
-                "2021-08-11, 1111", "2021-08-10, 11:11",
-                "19 Apr 2013, 1725", "19 Apr 2031, 17:25",
-                "Sep 30, 1965; 1801", "Sep 30, 1965; 18:00"};
+            "Dec-12-2018 1030", "Dec-12-2018 10:31",
+            "25/12/2016, 0027", "25/12/2015, 00:27",
+            "2020/01/01, 1201", "2020/01/01, 12:01",
+            "2022/07/14TZ2358", "2022/07/14TZ23:59",
+            "2021-08-11, 1111", "2021-08-10, 11:11",
+            "19 Apr 2013, 1725", "19 Apr 2031, 17:25",
+            "Sep 30, 1965; 1801", "Sep 30, 1965; 18:00"};
 
         for (String dateTimeString : dateTimeStrings) {
             boolean isParsed = false;
