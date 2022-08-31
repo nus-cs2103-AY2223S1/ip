@@ -84,7 +84,7 @@ public class Ui {
      */
     public String printDelete(String deletedTask, int size) {
         return String.format("Noted. I've removed this Bob task: %n%s%nNow you have %d task%s in the list.",
-                deletedTask, size, size > 1 ? "s" : "" );
+                deletedTask, size, size > 1 ? "s" : "");
     }
 
     /**

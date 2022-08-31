@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Deadline command is a command that creates a new Deadline.
@@ -39,6 +39,6 @@ public class DeadlineCommand extends Command {
     public String run(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addDeadline(this.description, this.doBy);
         storage.save(tasks.getTaskListInString());
-        return ui.printAdd(task,tasks.getSize());
+        return ui.printAdd(task, tasks.getSize());
     }
 }
