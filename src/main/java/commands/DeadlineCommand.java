@@ -34,7 +34,7 @@ public class DeadlineCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1 || inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException(TaskType.D);
         }
@@ -43,12 +43,13 @@ public class DeadlineCommand extends Command {
         if (deadlineStrings.length == 1 || deadlineStrings[1].trim().isEmpty()) {
             throw new EmptyDateTimeException(TaskType.D);
         }
+
         try {
             Deadline deadline = new Deadline(deadlineStrings[0], false,
                     LocalDateTime.parse(deadlineStrings[1], Task.DATE_TIME_PARSER));
             tasks.addTask(deadline);
 
-            ui.showAddTask(deadline, tasks.size());
+            return ui.showAddTask(deadline, tasks.size());
         } catch (DateTimeParseException exception) {
             throw new InvalidDateTimeException(Task.DATE_TIME_INPUT_FORMAT);
         }

@@ -13,8 +13,8 @@ public class ListCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showCurrentTasks(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showCurrentTasks(tasks);
     }
 
     /**

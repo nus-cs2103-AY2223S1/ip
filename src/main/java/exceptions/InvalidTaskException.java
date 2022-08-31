@@ -14,7 +14,7 @@ public class InvalidTaskException extends DukeException {
      * @param taskData The specified task data.
      */
     public InvalidTaskException(String taskData) {
-        super("     ☹ OOPS!!! Invalid format for \n" + taskData);
+        super("😅 OOPS!!! Invalid format for \n" + taskData);
     }
 
     /**
@@ -25,6 +25,6 @@ public class InvalidTaskException extends DukeException {
      * @param taskData The specified task data.
      */
     public InvalidTaskException(TaskType taskType, String taskData) {
-        super("     ☹ OOPS!!! Invalid format for " + taskType.getValue() + "\n" + taskData);
+        super("😅 OOPS!!! Invalid format for " + taskType.getValue() + "\n" + taskData);
     }
 }

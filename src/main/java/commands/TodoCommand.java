@@ -28,7 +28,7 @@ public class TodoCommand extends Command {
      * <p>
      * {@inheritDoc}
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (inputStrings.length == 1) {
             throw new EmptyDescriptionException(TaskType.T);
         }
@@ -36,7 +36,7 @@ public class TodoCommand extends Command {
         Todo todo = new Todo(inputStrings[1].trim(), false);
         tasks.addTask(todo);
 
-        ui.showAddTask(todo, tasks.size());
+        return ui.showAddTask(todo, tasks.size());
     }
 
     /**
