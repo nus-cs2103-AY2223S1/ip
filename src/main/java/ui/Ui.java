@@ -20,6 +20,7 @@ public class Ui {
 
     /**
      * Prints a single string with separators and padding.
+     *
      * @param msg String to be printed.
      */
     public void printMsg(String msg) {
@@ -30,6 +31,7 @@ public class Ui {
 
     /**
      * Prints multiple strings with separators and padding.
+     *
      * @param msgs Strings to be printed.
      */
     public void printMultiMsg(String[] msgs) {
@@ -42,6 +44,7 @@ public class Ui {
 
     /**
      * Reads a single line from the standard input.
+     *
      * @return String read from input.
      * @throws DukeException If reading input fails.
      */
@@ -68,6 +71,7 @@ public class Ui {
 
     /**
      * Prints error message to screen with formatting.
+     *
      * @param msg
      */
     public void showError(String msg) {

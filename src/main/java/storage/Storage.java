@@ -14,6 +14,7 @@ public class Storage {
 
     /**
      * Constructs a new Storage object that stores/reads from file path.
+     *
      * @param filePath File path to be read from/written to.
      */
     public Storage(String filePath) {
@@ -22,6 +23,7 @@ public class Storage {
 
     /**
      * Saves a task list to the file in the file path.
+     *
      * @param tasks Task list to be saved.
      */
     public void save(TaskList tasks) {
@@ -35,6 +37,7 @@ public class Storage {
 
     /**
      * Loads a task list from the file in the file path.
+     *
      * @return Task list that was read from the file path.
      * @throws DukeException If loading from the stored file path failed (e.g. file does not exist).
      */

@@ -16,6 +16,7 @@ public class TaskList implements Serializable {
 
     /**
      * Marks a particular task as done.
+     *
      * @param idx Index of the task to be marked as done.
      * @return Task that was marked done.
      */
@@ -27,6 +28,7 @@ public class TaskList implements Serializable {
 
     /**
      * Deletes a particular task.
+     *
      * @param idx Index of the task to be deleted.
      * @return Task that was deleted.
      */
@@ -38,6 +40,7 @@ public class TaskList implements Serializable {
 
     /**
      * Adds a new task to the list.
+     *
      * @param task Task to be added.
      * @return Task that was added.
      */
@@ -46,12 +49,29 @@ public class TaskList implements Serializable {
         return task;
     }
 
+    public String[] findAndReturnStringArr(String searchString) {
+        List<Task> results = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.contains(searchString)) {
+                results.add(t);
+            }
+        }
+
+        String[] outputStrings = new String[results.size() + 1];
+        outputStrings[0] = "Here are the matching tasks in your list:";
+        for (int i = 0; i < results.size(); i++) {
+            outputStrings[i + 1] = (i + 1) + ". " + results.get(i).toString();
+        }
+        return outputStrings;
+    }
+
     public int getSize() {
         return tasks.size();
     }
 
     /**
      * Returns an array of the string representation of each task in the list.
+     *
      * @return Array of string representations.
      */
     public String[] toStringArr() {

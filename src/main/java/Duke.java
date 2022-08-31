@@ -12,6 +12,7 @@ public class Duke {
 
     /**
      * Instantiates a Duke object with storage at some file path.
+     *
      * @param filePath File path for storage.
      */
     public Duke(String filePath) {

@@ -8,7 +8,8 @@ public abstract class Task implements Serializable {
 
     /**
      * Constructs a new task with a title and whether it is done.
-     * @param title Title of task.
+     *
+     * @param title  Title of task.
      * @param isDone Whether task is done.
      */
     public Task(String title, boolean isDone) {
@@ -25,6 +26,10 @@ public abstract class Task implements Serializable {
 
     public boolean isDone() {
         return this.isDone;
+    }
+
+    public boolean contains(String substring) {
+        return this.title.contains(substring);
     }
 
     @Override
