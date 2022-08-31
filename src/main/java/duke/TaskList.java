@@ -32,16 +32,13 @@ public class TaskList {
 
     // Todo: include more support for date string
     private static String parseDateTimeString(String arg) {
-        String result = arg;
-
-        return result;
+        return arg;
     }
 
     private static LocalDate parseString2LocalDate(String arg) {
         // current supported format: "2009-10-12"
         String dateString = parseDateTimeString(arg);
-        LocalDate res = LocalDate.parse(dateString);
-        return res;
+        return LocalDate.parse(dateString);
     }
 
     /**
@@ -53,11 +50,7 @@ public class TaskList {
         boolean isDone;
         LocalDate localDate;
         String description;
-        if (line.substring(4, 5).equals("0")) {
-            isDone = false;
-        } else {
-            isDone = true;
-        }
+        isDone = !(line.charAt(4) == '0');
         switch (line.substring(0, 1)) {
         case "T":
             description = line.split("\\|", 3)[2];
@@ -108,14 +101,14 @@ public class TaskList {
             if (args.length != 2) {
                 throw new DukeException("Invalid Input");
             }
-            taskToCreate = new Event(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));;
+            taskToCreate = new Event(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));
             break;
 
         default:
             throw new DukeException("Invalid Input");
         }
         this.addTask(taskToCreate);
-        Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate.toString());
+        Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate);
     }
 
     private void handleDelete(String command) throws DukeException {
@@ -148,6 +141,7 @@ public class TaskList {
             }
             newArr.add(arr.get(i));
         }
+        this.taskArrayList = newArr;
     }
 
     private void handleMarkDoneUndone(String[] command) throws DukeException {
