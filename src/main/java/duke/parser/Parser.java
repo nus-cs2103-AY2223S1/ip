@@ -13,7 +13,6 @@ import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
-import duke.commands.TasksCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 import duke.data.exception.DukeException;
@@ -24,7 +23,7 @@ import duke.data.exception.DukeException;
 public class Parser {
 
     /**
-     * Checks if the input is valid
+     * Makes sense of the commands provided by the user
      * @param input The input provided by the user
      * @return A Command to be executed
      * @throws DukeException If the input is invalid
@@ -60,10 +59,6 @@ public class Parser {
         case "delete":
             checkInput(components);
             return new DeleteCommand(Integer.parseInt(components[1]));
-        case "tasks":
-            checkInput(components);
-            checkDate(components[1]);
-            return new TasksCommand(components[1]);
         case "find":
             checkInput(components);
             return new FindCommand(components[1].split(" "));
