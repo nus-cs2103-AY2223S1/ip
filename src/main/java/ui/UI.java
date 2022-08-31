@@ -6,10 +6,11 @@ import java.util.Scanner;
  */
 public class UI {
     private String currentInput;
+    private String response;
     /**
      * Greets user.
      */
-    public static void greetUser() {
+    public  void greetUser() {
         String logo = "_______     _\n"
                 + "|  ___|    | |\n"
                 + "|  |_  ____| |_____ ____  _  __\n"
@@ -21,6 +22,7 @@ public class UI {
         // prompt user
         System.out.println("What would you like to do next?");
         System.out.print(">> ");
+        this.response = "Hi";
     }
 
     /**
@@ -47,6 +49,7 @@ public class UI {
      */
     public void showError(String errorMsg) {
         System.out.println(errorMsg);
+        this.response  = errorMsg;
     }
 
     /**
@@ -54,6 +57,7 @@ public class UI {
      */
     public void showLoadingError() {
         System.out.println("error loading");
+        this.response = "error loading";
     }
 
     /**
@@ -62,6 +66,7 @@ public class UI {
      */
     public void showMessage(String msg) {
         System.out.println(msg);
+        this.response = "msg";
     }
 
     /**
@@ -70,6 +75,7 @@ public class UI {
      */
     public void showExitMessage() {
         System.out.print("Thank you for swinging by :)");
+        this.response = "Thank you for swinging by :)";
     }
 
     /**
@@ -80,6 +86,7 @@ public class UI {
         System.out.println("Hi, it seems you are having trouble using Falcon, "
                 + "\ntry these command: "
                 + "\ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind");
+        this.response = "Help";
     }
 
     /**
@@ -88,5 +95,9 @@ public class UI {
      */
     public String getCurrentInput() {
         return currentInput;
+    }
+
+    public String getResponse() {
+    return this.response;
     }
 }
