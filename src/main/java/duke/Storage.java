@@ -1,13 +1,13 @@
 package duke;
 
-import duke.exceptions.DukeException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.exceptions.DukeException;
 
 /**
  * Represents a <code>Storage</code> class that reads and writes to the local storage.
