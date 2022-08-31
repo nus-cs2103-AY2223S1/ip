@@ -93,13 +93,13 @@ public class Storage {
             Task curr = tasks.get(i);
             String status = curr.getStatusIcon().equals("X") ? "1" : "0";
             if (curr instanceof Todo) {
-                writer.write("T | " + status + " | " + curr.getDescription() + "\n");
+                writer.write("T | " + status + " | " + curr.getDescription() + System.lineSeparator());
             } else if (curr instanceof Deadline) {
                 writer.write("D | " + status + " | " + curr.getDescription() + " | "
-                        + ((Deadline) curr).getBy().toString() + "\n");
+                        + ((Deadline) curr).getBy().toString() + System.lineSeparator());
             } else if (curr instanceof Event) {
                 writer.write("E | " + status + " | " + curr.getDescription() + " | "
-                        + ((Event) curr).getAt().toString() + "\n");
+                        + ((Event) curr).getAt().toString() + System.lineSeparator());
             }
         }
         writer.close();

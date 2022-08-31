@@ -7,41 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String BORDER = "    ============================================================";
-    private static final String INDENT = "     ";
     private Scanner sc = new Scanner(System.in);
-
-    /**
-     * Shows the borders/outlines for Duke's messages.
-     */
-    public void showLine() {
-        System.out.println(BORDER);
-    }
-
-    /**
-     * Shows Duke's welcome message.
-     */
-    public String showWelcome() {
-        String content;
-        String logo = "      ______  ______  _    _  ______\n"
-                + "     |  ____||  ____|| |  | ||  __  |\n"
-                + "     | |____ | |     | |__| || |  | |\n"
-                + "     |  ____|| |     |  __  || |  | |\n"
-                + "     | |____ | |____ | |  | || |__| |\n"
-                + "     |______||______||_|  |_||______|\n";
-        content = logo + System.lineSeparator() + "Hello! I'm Echo" + System.lineSeparator()
-                + "What can I do for you?";
-        return content;
-    }
-
-    /**
-     * Reads user's full input.
-     *
-     * @return The command inputted by the user.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
 
     /**
      * Shows the message when a task is added.
