@@ -37,12 +37,13 @@ public abstract class Command {
     }
 
     /**
-     * Runs the command
+     * Runs the command.
      *
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return String representation of task executed
      * @throws InvalidInputException if input is invalid
      */
-    public abstract void run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException;
+    public abstract String run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException;
 }

@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author Eugene Tan
  */
 public class Storage {
-    private final String filePath;
+    private String filePath;
+    private File dataFile;
 
     /**
      * Constructor class for storage.
@@ -21,7 +22,17 @@ public class Storage {
      * @param filePath The file path to find the necessary file.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
+        try {
+            this.filePath = filePath;
+            File folder = new File(filePath);
+            folder.mkdir();
+            this.dataFile = new File(filePath + "/bob.txt");
+            if (!this.dataFile.exists()) {
+                this.dataFile.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println("Sorry, something went wrong in creating the file");
+        }
     }
 
     /**
@@ -32,7 +43,7 @@ public class Storage {
      */
     public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> loadedData = new ArrayList<>();
-        File file = new File(filePath);
+        File file = new File(filePath + "/bob.txt");
         Scanner sc = new Scanner(file);
 
         while (sc.hasNext()) {
@@ -51,7 +62,7 @@ public class Storage {
      */
     public void save(ArrayList<String> data) {
         try {
-            FileWriter file = new FileWriter(filePath);
+            FileWriter file = new FileWriter(filePath + "/bob.txt");
 
             for (int i = 0; i < data.size(); i++) {
                 file.write(String.format("%s%n", data.get(i)));

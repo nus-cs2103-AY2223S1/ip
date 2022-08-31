@@ -35,17 +35,16 @@ public class Ui {
     /**
      * Prints the initial welcome message to be shown to the user.
      */
-    public void printWelcomeMessage() {
-        System.out.printf("Hey there! I'm Bob\nWhat can I do for you?\n");
-        printHorizontalLine();
+    public static String printWelcomeMessage() {
+        return "Hey there! I'm Bob\nWhat can I do for you?";
     }
 
     /**
      * Prints the bye message to the user.
      */
-    public void printByeMessage() {
-        System.out.println("Bye! Hope to see you again soon!");
+    public String printByeMessage() {
         sc.close();
+        return "Bye! Hope to see you again soon!";
     }
 
     /**
@@ -53,9 +52,8 @@ public class Ui {
      *
      * @param task The task that has been marked.
      */
-    public void printMark(String task) {
-        System.out.println("Nice! I have marked this Bob task as done:");
-        System.out.println(task);
+    public String printMark(String task) {
+        return String.format("Nice! I have marked this Bob task as done: %n%s%n", task);
     }
 
     /**
@@ -63,40 +61,37 @@ public class Ui {
      *
      * @param task The task that has been unmarked.
      */
-    public void printUnmark(String task) {
-        System.out.println("OK, I've marked this Bob task as not done yet:");
-        System.out.println(task);
+    public String printUnmark(String task) {
+        return String.format("OK, I've marked this Bob task as not done yet: %n%s%n", task);
     }
 
     /**
      * Prints the message that task has been added.
      *
-     * @param add String representation of added task.
+     * @param addedTask String representation of added task.
      * @param size Size of list after task is added.
      */
-    public void printAdd(String add, int size) {
-        System.out.println("Got it. I've added this Bob task:");
-        System.out.println(add);
-        System.out.println(String.format("Now you have %d Bob task%s in the list.", size, size != 1 ? "s" : ""));
+    public String printAdd(String addedTask, int size) {
+        return String.format("Got it. I've added this Bob task: %n%s%nNow you have %d task%s in the list.",
+                addedTask, size, size > 1 ? "s" : "");
     }
 
     /**
      * Prints message of task being deleted.
      *
-     * @param delete String representation of deleted task.
+     * @param deletedTask String representation of deleted task.
      * @param size The size of list after task is deleted.
      */
-    public void printDelete(String delete, int size) {
-        System.out.println("Noted. I've removed this bob task:");
-        System.out.println(delete);
-        System.out.println(String.format("Now you have %d Bob task%s in the list.", size, size != 1 ? "s" : ""));
+    public String printDelete(String deletedTask, int size) {
+        return String.format("Noted. I've removed this Bob task: %n%s%nNow you have %d task%s in the list.",
+                deletedTask, size, size > 1 ? "s" : "" );
     }
 
     /**
      * Prints loading error if file does not exist.
      */
-    public void printLoadingError() {
-        System.out.println("No saved data found");
+    public String printLoadingError() {
+        return "No saved data found";
     }
 
     /**
@@ -104,7 +99,7 @@ public class Ui {
      *
      * @param message Given message.
      */
-    public void printAnyOtherMessage(String message) {
-        System.out.println(message);
+    public String printAnyOtherMessage(String message) {
+        return message;
     }
 }

@@ -21,9 +21,10 @@ public class ListCommand extends Command {
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return List message of all tasks
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
-        ui.printAnyOtherMessage(tasks.toString());
+    public String run(TaskList tasks, Ui ui, Storage storage) {
+        return ui.printAnyOtherMessage(tasks.toString());
     }
 }

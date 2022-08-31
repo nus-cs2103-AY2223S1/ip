@@ -28,8 +28,9 @@ public class FindCommand extends Command {
      * @param tasks The Tasklist containing all tasks.
      * @param ui Ui handling the user interactions.
      * @param storage Storage storing the file.
+     * @return Find word eventual message
      */
-    public void run(TaskList tasks, Ui ui, Storage storage) {
-        ui.printAnyOtherMessage(tasks.findTasks(wordToFind));
+    public String run(TaskList tasks, Ui ui, Storage storage) {
+        return ui.printAnyOtherMessage(tasks.findTasks(wordToFind));
     }
 }

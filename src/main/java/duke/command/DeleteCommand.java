@@ -21,20 +21,21 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes a task, updates and saves the new tasks and prints out delete message.
+     * Deletes a task, updates and saves the new tasks and returns delete message.
      *
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return delete task message
      * @throws InvalidInputException
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
+    public String run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException {
         if (deleteIndex > tasks.getSize() || deleteIndex < 0) {
             throw new InvalidInputException("The index provided is not within the list.");
         }
         String task = tasks.deleteTask(this.deleteIndex);
-        ui.printDelete(task, tasks.getSize());
         storage.save(tasks.getTaskListInString());
+        return ui.printDelete(task, tasks.getSize());
     }
 }

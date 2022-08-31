@@ -1,10 +1,10 @@
 package duke.command;
 
-import java.time.LocalDate;
-
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+
+import java.time.LocalDate;
 
 /**
  * Event Command is a Command that creates new Event.
@@ -33,11 +33,12 @@ public class EventCommand extends Command {
      * @param tasks Tasklist containing the tasks
      * @param ui Ui handling the user interaction
      * @param storage Storage to store data
+     * @return Add event message
      */
     @Override
-    public void run(TaskList tasks, Ui ui, Storage storage) {
+    public String run(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addEvent(this.description, this.at);
-        ui.printAdd(task, tasks.getSize());
         storage.save(tasks.getTaskListInString());
+        return ui.printAdd(task, tasks.getSize());
     }
 }
