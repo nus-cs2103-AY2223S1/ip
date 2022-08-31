@@ -21,9 +21,15 @@ public class List extends Task {
      * @param tasks TaskList
      * @param ui Class to print the ui.
      * @param storage Class to write/read commands from file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showListDetails(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        if (tasks.size() < 1) {
+            return "No tasks yet!";
+        } else {
+            return formatOutput("Here are the tasks in your list:", tasks.toStringArray())
+                    + "\n\nJiayous!";
+        }
     }
 }

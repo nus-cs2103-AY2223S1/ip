@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="dialog" style="-fx-background-color: #FAF2E9; -fx-background-radius: 5; -fx-padding: 10;" text="Label" wrapText="true">
+        <font>
+            <Font name="Segoe UI" size="18.0" />
+        </font>
+    </Label>
+    <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+    <padding>
+        <Insets bottom="15.0" top="15.0" />
+    </padding>
+</fx:root>

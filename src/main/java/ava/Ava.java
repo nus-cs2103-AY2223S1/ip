@@ -1,7 +1,6 @@
 package ava;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import ava.exception.NoCommandException;
 import ava.processor.Parser;
@@ -13,49 +12,48 @@ import ava.task.Task;
  * This is the Main Class that contains the Main method.
  */
 public class Ava {
-    private Ui ui;
-    private TaskList tasklist;
+    private static final String FILE_PATH = "data/ava.txt";
     private Storage storage;
+    private Ui ui;
+    private TaskList tasks;
+    private boolean isBye;
 
-    /**
-     * Private constructor of Ava.
-     *
-     * @param filePath Path of the file to write/read.
-     */
-    private Ava(String filePath) {
+    /** Constructor of Ava. */
+    public Ava() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(FILE_PATH);
         try {
-            tasklist = new TaskList(storage.read());
+            tasks = new TaskList(storage.read());
         } catch (IOException e) {
-            tasklist = new TaskList();
+            tasks = new TaskList();
         }
     }
 
     /**
      * Runs the main logic of the program.
      *
+     * @return The response from executing the command.
      * @throws NoCommandException If there are no commands.
      */
-    public void run() throws NoCommandException {
-        ui.printGreetings();
-        boolean isStillRunning = true;
-        Scanner sc = new Scanner(System.in);
-        while (isStillRunning) {
-            String chat = sc.nextLine();
-            Task incomingTask = Parser.parse(chat, tasklist);
-            incomingTask.execute(tasklist, ui, storage);
-            isStillRunning = !incomingTask.isBye;
+    public String run(String input) {
+        String output = "";
+        try {
+            Task t = Parser.parse(input, tasks);
+            output = t.execute(tasks, ui, storage);
+            isBye = t.isBye();
+        } catch (NoCommandException e) {
+            e.printStackTrace();
         }
-        ui.exit();
+        assert !output.equals("");
+        return output;
     }
 
     /**
-     * Runs the run method.
+     * Checks if the last user command is an exit command.
      *
-     * @param args
+     * @return True if the last user command is an exit command, false otherwise.
      */
-    public static void main(String[] args) throws NoCommandException {
-        new Ava("data/ava.txt").run();
+    public boolean isBye() {
+        return isBye;
     }
 }

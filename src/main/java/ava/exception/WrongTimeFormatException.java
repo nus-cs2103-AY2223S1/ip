@@ -8,6 +8,6 @@ public class WrongTimeFormatException extends Exception {
      * The Constructor for WrongTimeFormatException.
      */
     public WrongTimeFormatException() {
-        super(String.format("☹ OOPS!!! Please input format is wrong. Please input in yyyy-MM-dd HH:mm format."));
+        super(String.format("Input format is wrong. Please input in yyyy-MM-dd HH:mm format."));
     }
 }

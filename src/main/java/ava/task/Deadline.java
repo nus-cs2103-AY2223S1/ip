@@ -18,6 +18,7 @@ public class Deadline extends Task {
      *
      * @param description Task description.
      * @param isDone Task state.
+     * @param time Time of the deadline.
      */
     public Deadline(String description, boolean isDone, LocalDateTime time) {
         super(description, isDone);
@@ -58,14 +59,14 @@ public class Deadline extends Task {
     }
 
     /**
-     * Overridden toString method for Deadline task details.
+     * Obtains a string representation of the task.
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString()
-                + " (by: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return super.toString() + " is due by "
+                + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 
     /**
@@ -74,11 +75,12 @@ public class Deadline extends Task {
      * @param tasks TaskList.
      * @param ui Class to print the ui.
      * @param storage Class to write/read commands from file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(this);
-        ui.showAddOnTask(tasks, (tasks.size() - 1));
         storage.write(tasks.getTasks());
+        return ui.showAddOnTask(tasks, (tasks.size() - 1));
     }
 }

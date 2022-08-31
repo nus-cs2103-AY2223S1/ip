@@ -25,12 +25,13 @@ public class Mark extends Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
-     * @param storage Class to write/read commands from file.
+     * @param storage Class to read/write to file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.markDone(num);
-        ui.showDoneTask(tasks, num);
         storage.write(tasks.getTasks());
+        return ui.showDoneTask(tasks, num);
     }
 }

@@ -51,13 +51,13 @@ public class Todo extends Task {
     }
 
     /**
-     * Overridden toString method for Todo task details.
+     * Obtains a string representation of the task.
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return super.toString();
     }
 
     /**
@@ -66,11 +66,12 @@ public class Todo extends Task {
      * @param tasks TaskList.
      * @param ui Class to print the ui.
      * @param storage Class to write/read commands from file.
+     * @return The response of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(this);
-        ui.showAddOnTask(tasks, (tasks.size() - 1));
         storage.write(tasks.getTasks());
+        return ui.showAddOnTask(tasks, (tasks.size() - 1));
     }
 }

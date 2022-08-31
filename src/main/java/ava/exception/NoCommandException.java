@@ -10,6 +10,6 @@ public class NoCommandException extends Exception {
      * @param message Message of the exception.
      */
     public NoCommandException(String message) {
-        super(String.format("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
+        super(String.format("Why is there no command?"));
     }
 }

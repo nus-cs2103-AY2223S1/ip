@@ -7,6 +7,7 @@ import ava.Ui;
 import ava.exception.NoCommandException;
 import ava.exception.NoDescriptionException;
 import ava.exception.NoTimeException;
+import ava.exception.UnknownCommandException;
 import ava.exception.WrongTimeFormatException;
 import ava.task.Bye;
 import ava.task.Deadline;
@@ -206,10 +207,11 @@ public class Parser {
                 return find(chat, tasklist);
 
             default:
-                throw new NoCommandException(chat);
+                throw new UnknownCommandException(chat);
             }
 
-        } catch (NoDescriptionException | NoCommandException | NoTimeException | WrongTimeFormatException e) {
+        } catch (NoDescriptionException | NoCommandException | NoTimeException
+                | WrongTimeFormatException | UnknownCommandException e) {
             e.printStackTrace();
             return null;
         }
