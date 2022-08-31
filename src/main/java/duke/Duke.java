@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-
 import java.util.Scanner;
 
 /**
@@ -10,6 +9,11 @@ import java.util.Scanner;
 public class Duke {
     private static boolean isRunning;
 
+    /**
+     * The method used to run the Duke program.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         try {
             Storage.loadData();

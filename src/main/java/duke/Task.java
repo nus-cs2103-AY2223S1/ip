@@ -9,11 +9,22 @@ public abstract class Task {
     protected String taskName = "";
     protected boolean isDone = false;
 
+    /**
+     * The constructor for a Task.
+     *
+     * @param taskName A string that is the name of the task.
+     * @param isDone A boolean that represents whether this task is complete.
+     */
     public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
         this.isDone = isDone;
     }
 
+    /**
+     * Gets the name of the task.
+     *
+     * @return A string that is name of the task.
+     */
     public String getTaskName() {
         return this.taskName;
     }

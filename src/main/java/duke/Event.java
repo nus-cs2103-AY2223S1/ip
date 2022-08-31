@@ -3,11 +3,18 @@ package duke;
 import java.time.LocalDate;
 
 /**
- * Class used to represent an Event type task that has a start and end datetime.
+ * Class used to represent a task that has a start date.
  */
 public class Event extends Task {
     protected LocalDate eventDate;
 
+    /**
+     * The constructor for an Event.
+     *
+     * @param taskName A string that is the name of the task.
+     * @param isDone A boolean that represents whether this task is complete.
+     * @param eventDate A LocalDate that contains information about the start date of this task.
+     */
     public Event(String taskName, boolean isDone, LocalDate eventDate) {
         super(taskName, isDone);
         this.eventDate = eventDate;

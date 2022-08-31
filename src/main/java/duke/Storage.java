@@ -3,14 +3,11 @@ package duke;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-
 import java.util.Scanner;
 
 /**
@@ -79,6 +76,7 @@ public class Storage {
                     TaskList.addToList(new Event(taskName, marked, date));
                 }
                 break;
+            default:
             }
         }
         scanner.close();
@@ -92,7 +90,7 @@ public class Storage {
      *
      * @throws IOException If the save file or file path could not be accessed.
      */
-    public static void saveData() throws IOException{
+    public static void saveData() throws IOException {
         Path parentDir = Paths.get(DATA_FILE_PATH);
         if (!Files.exists(parentDir)) {
             Files.createDirectories(parentDir);
