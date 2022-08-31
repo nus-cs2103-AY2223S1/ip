@@ -1,12 +1,10 @@
 import exception.EmptyTaskDescException;
 import exception.EmptyTaskTimeException;
 import exception.NoSuchTaskException;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Task;
-import tasks.Todo;
+import tasks.*;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +16,9 @@ public class Duke {
         EVENT
     }
 
-    List<Task> taskList;
+    private List<Task> taskList;
+    private SaveData data;
+    private static final File savefile = new File("savedata.txt");
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -33,7 +33,7 @@ public class Duke {
     }
 
     public Duke() {
-        taskList = new ArrayList<>();
+
     }
 
     public void start() {
@@ -42,6 +42,23 @@ public class Duke {
                 "Hello! I'm Duke\n" +
                 "What can I do for you?"
         );
+        data = new SaveData();
+        boolean isSaveFileCreated = savefile.exists();
+        if (!isSaveFileCreated) {
+            try {
+                isSaveFileCreated = savefile.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error while creating save file: " + e);
+            }
+        }
+
+        if (!isSaveFileCreated) {
+            System.out.println("Unable to find or create save file, exiting...");
+            System.exit(1);
+        }
+
+        data.loadFromFile(new File("savedata.txt"));
+        taskList = data.getTaskList();
         loop(sc);
     }
 
@@ -58,6 +75,7 @@ public class Duke {
                 body = input.substring(spaceIndex + 1);
             }
 
+            boolean isModified = false;
             if ("bye".equals(command)) {
                 System.out.println("Bye. Hope to see you again soon!");
                 return;
@@ -65,14 +83,23 @@ public class Duke {
                 printTaskList();
             } else if ("mark".equals(command)) {
                 markTask(body);
+                isModified = true;
             } else if ("unmark".equals(command)) {
                 unmarkTask(body);
+                isModified = true;
             } else if ("delete".equals(command)) {
                 deleteTask(body);
+                isModified = true;
             } else if (isTaskType(command)) {
                 addTask(command, body);
+                isModified = true;
             } else {
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+
+            if (isModified) {
+                data.setTaskList(taskList);
+                data.saveToFile(savefile);
             }
         }
     }

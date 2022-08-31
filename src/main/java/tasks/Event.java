@@ -14,4 +14,11 @@ public class Event extends Task {
         return "[E] " + super.toString() + " (at: " + time + ")";
     }
 
+    @Override
+    public String toDataString() {
+        return String.format("[E] | %d | %s | %s",
+                isMarked() ? 1 : 0,
+                getName(),
+                time);
+    }
 }
