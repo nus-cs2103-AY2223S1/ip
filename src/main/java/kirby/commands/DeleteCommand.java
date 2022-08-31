@@ -5,6 +5,8 @@ import kirby.TaskList;
 import kirby.ui.Ui;
 import kirby.exceptions.KirbyMissingArgumentException;
 
+import java.io.IOException;
+
 /**
  * DeleteCommand class handles the command to delete a task.
  */
@@ -36,6 +38,11 @@ public class DeleteCommand extends Command {
         }
         String strResult = tasks.removeTaskString(taskIndex - 1);
         tasks.removeTask(taskIndex - 1);
+        try {
+            storage.writeTask(tasks.getList());
+        } catch (IOException e) {
+            return (e.getMessage());
+        }
         return strResult;
     }
 

@@ -21,7 +21,7 @@
       </Button>
         <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="339.0" style="-fx-background-color: black;" />
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="339.0" style="-fx-background-color: 'black';" />
             </content>
          <padding>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

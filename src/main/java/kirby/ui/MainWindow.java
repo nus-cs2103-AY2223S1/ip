@@ -1,4 +1,5 @@
 package kirby.ui;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import kirby.Kirby;
+import kirby.commands.ExitCommand;
 import kirby.exceptions.KirbyInvalidCommandException;
 import kirby.exceptions.KirbyMissingArgumentException;
 
@@ -30,6 +32,7 @@ public class MainWindow extends AnchorPane {
     private Kirby kirby;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/mario.png"));
     private Image kirbyImage = new Image(this.getClass().getResourceAsStream("/images/kirby_picture.png"));
+    private String output = ("I loved talking to you ･ω･\n" + "Hope to see you again!");
 
     @FXML
     public void initialize() {
