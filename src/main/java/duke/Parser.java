@@ -26,7 +26,7 @@ public class Parser {
         try {
             switch (splitInput[0]) {
             //Handle case when task aTodo
-            case "todo" :
+            case "todo":
                 checkForMissingArgs(splitInput);
                 String tDescription = splitInput[1].trim();
                 return duke.addTodo(tDescription);
@@ -46,7 +46,7 @@ public class Parser {
             }
 
             //Handle case when user wants to list tasks
-            case "list" :
+            case "list":
                 return duke.printList();
 
             //Handle case when user wants to handleMark task
@@ -71,12 +71,12 @@ public class Parser {
             }
 
             //Handle case when user wants to find tasks
-            case "find" :
+            case "find":
                 String str = splitInput[1].trim();
                 return duke.find(str);
 
             //Handle case when user wants to quit bot
-                case "bye" :
+                case "bye":
                     return duke.handleBye();
 
             //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
