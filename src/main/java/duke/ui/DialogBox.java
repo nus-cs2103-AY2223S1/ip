@@ -13,10 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
-/**
- * A class that composed ImageView and Label control.
- */
 public class DialogBox extends HBox {
 
     @FXML
