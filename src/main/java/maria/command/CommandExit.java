@@ -10,9 +10,11 @@ public class CommandExit extends Command {
     /**
      * Executes the command.
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The program will exit before returning anything
      */
     @Override
-    public void execute(TaskManager taskManager) {
+    public String execute(TaskManager taskManager) {
         System.exit(0);
+        return ""; // Will never be run anyway
     }
 }

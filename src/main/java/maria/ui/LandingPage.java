@@ -6,12 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import maria.Parser;
 import maria.TaskManager;
 import maria.command.Command;
+import maria.command.CommandExecutor;
 import maria.command.CommandFindTask;
 import maria.task.Task;
 import maria.task.TaskList;
@@ -24,22 +27,16 @@ public class LandingPage extends VBox {
     private TaskManager taskManager;
 
     @FXML
-    private Button buttonNewTodo;
+    private TextArea textAreaDisplay;
 
     @FXML
-    private Button buttonNewDeadline;
+    private TextField textFieldCommand;
 
     @FXML
-    private Button buttonNewEvent;
+    private Button buttonExecuteCommand;
 
     @FXML
-    private Button buttonSearch;
-
-    @FXML
-    private TextField textFieldSearch;
-
-    @FXML
-    private VBox vBoxTasks;
+    private Button buttonHelp;
 
     /**
      * Creates a LandingPage object with the associated task manager.
@@ -59,83 +56,42 @@ public class LandingPage extends VBox {
         }
 
         this.taskManager = taskManager;
-        populateExistingTasks();
+        this.textAreaDisplay.setText("Hi, I am Maria, your personal assistant.\n"
+                + "Type 'help' or click the Help button to get started.");
 
     }
 
-    /**
-     * Refreshes the tasks in the tasks VBox.
-     *
-     * This function is to be called after any modification to the tasks.
-     */
-    public void refreshTasks() {
+    @FXML
+    private void buttonExecuteCommandClicked() {
 
-        this.vBoxTasks.getChildren().clear();
-        populateExistingTasks();
+        String commandString = this.textFieldCommand.getText();
+        Command command = Parser.parse(commandString);
+        this.taskManager.getCommandExecutor().executeCommand(command);
+
+        pollResultDisplayQueue();
 
     }
 
-    /**
-     * Initializes the existing tasks into the tasks VBox.
-     */
-    private void populateExistingTasks() {
+    @FXML
+    private void buttonHelpClicked() {
 
-        TaskList tasks = this.taskManager.getTaskList();
+    }
 
-        for (Task task : tasks) {
-            this.vBoxTasks.getChildren().add(new TaskItem(this, this.taskManager, task));
+    private void pollResultDisplayQueue() {
+
+        String content = this.taskManager.getResultDisplayQueue().poll();
+
+        if (content != null) {
+
+            String displayedText = textAreaDisplay.getText();
+
+            if (displayedText.isEmpty()) {
+                textAreaDisplay.setText(content);
+            } else {
+                textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
+            }
+
         }
-
-    }
-
-    /**
-     * Opens a AddTodo screen.
-     */
-    @FXML
-    private void buttonNewTodoClicked() {
-        showAddTaskWindow(new AddTodo(this, this.taskManager), "Add Todo");
-    }
-
-    /**
-     * Opens a AddDeadline screen.
-     */
-    @FXML
-    private void buttonNewDeadlineClicked() {
-        showAddTaskWindow(new AddDeadline(this, this.taskManager), "Add Deadline");
-    }
-
-    /**
-     * Opens a AddEvent screen.
-     */
-    @FXML
-    private void buttonNewEventClicked() {
-        showAddTaskWindow(new AddEvent(this, this.taskManager), "Add Event");
-    }
-
-    /**
-     * Executes the find task command and displays the result in a new window.
-     */
-    @FXML
-    private void buttonSearchClicked() {
-
-        Command command = new CommandFindTask(this.textFieldSearch.getText());
-        command.execute(this.taskManager);
-
-        TasksFindResult tasksFindResult = new TasksFindResult(this, this.taskManager);
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(tasksFindResult));
-        stage.setTitle("Find Results");
-        stage.show();
-
-    }
-
-    private void showAddTaskWindow(AnchorPane window, String title) {
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(window));
-        stage.setTitle(title);
-        stage.show();
 
     }
 

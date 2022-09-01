@@ -21,7 +21,7 @@ public class TaskTodo extends Task {
      */
     @Override
     public String toString() {
-        return "[Todo]" + super.toString();
+        return "[Todo] " + super.toString();
     }
 
     /**

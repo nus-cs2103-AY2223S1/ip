@@ -27,16 +27,20 @@ public class CommandAddEvent extends Command {
     /**
      * Executes the command.
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The display message for the execution
      */
     @Override
-    public void execute(TaskManager taskManager) {
+    public String execute(TaskManager taskManager) {
 
         try {
             Task task = new TaskEvent(this.name, this.done, this.start, this.end);
             taskManager.getTaskList().add(task);
+            return "Added a event task " + task;
         } catch (TaskNoNameException e) {
             System.out.println("Error in creating Event. " + e.getMessage());
         }
+
+        return "";
 
     }
 }

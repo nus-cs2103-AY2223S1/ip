@@ -29,7 +29,7 @@ public class TaskDeadline extends Task {
      */
     @Override
     public String toString() {
-        return "[Deadline]" + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
+        return "[Deadline] " + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
     }
 
     /**

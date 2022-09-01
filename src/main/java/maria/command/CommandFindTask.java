@@ -23,9 +23,10 @@ public class CommandFindTask extends Command {
      * Finds all the tasks that contains the search string (case-sensitive) and add them to the task manager.
      *
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The display message for the execution
      */
     @Override
-    public void execute(TaskManager taskManager) {
+    public String execute(TaskManager taskManager) {
 
         List<Task> filteredList = new ArrayList<>();
 
@@ -35,7 +36,15 @@ public class CommandFindTask extends Command {
             }
         }
 
-        taskManager.setTaskListFindResult(filteredList);
+        if (filteredList.size() == 0) {
+            return "There are no tasks available.";
+        } else {
+            // Converts the task list to a multiline string for display
+            return "Your tasks are \n" + filteredList.stream()
+                    .map(task -> "- " + task)
+                    .reduce((acc, str) -> acc + "\n" + str).get();
+        }
+
 
     }
 

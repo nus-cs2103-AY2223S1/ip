@@ -8,19 +8,26 @@ import maria.task.Task;
  */
 public class CommandMarkTask extends Command {
 
-    private Task task;
+    private final int index;
 
-    public CommandMarkTask(Task task) {
-        this.task = task;
+    public CommandMarkTask(int index) {
+        this.index = index;
     }
 
     /**
      * Executes the command.
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The display message for the execution
      */
     @Override
-    public void execute(TaskManager taskManager) {
-        taskManager.getTaskList().get(taskManager.getTaskList().indexOf(this.task)).setIsDone(true);
+    public String execute(TaskManager taskManager) {
+
+        Task task = taskManager.getTaskList().get(this.index);
+
+        task.setIsDone(true);
         taskManager.getTaskList().mutatedTask();
+
+        return "Your task " + task.getName() + " has been completed.";
+
     }
 }

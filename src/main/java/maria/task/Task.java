@@ -51,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "";
+        return this.name + " [" + (this.isDone ? "Done" : "Not Done") + "]";
     }
 
     /**

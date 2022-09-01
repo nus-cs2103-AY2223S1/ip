@@ -25,16 +25,20 @@ public class CommandAddDeadline extends Command {
     /**
      * Executes the command.
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The display message for the execution
      */
     @Override
-    public void execute(TaskManager taskManager) {
+    public String execute(TaskManager taskManager) {
 
         try {
             Task task = new TaskDeadline(this.name, this.done, this.deadline);
             taskManager.getTaskList().add(task);
+            return "Added a deadline task " + task;
         } catch (TaskNoNameException e) {
             System.out.println("Error in creating Deadline. " + e.getMessage());
         }
+
+        return "";
 
     }
 }

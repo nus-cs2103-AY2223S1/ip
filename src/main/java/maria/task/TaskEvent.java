@@ -33,7 +33,7 @@ public class TaskEvent extends Task {
      */
     @Override
     public String toString() {
-        return "[Event]" + super.toString() + " (from "
+        return "[Event] " + super.toString() + " (from "
                 + DukeDateTimeFormatter.formatDisplay(this.startTime) + " to "
                 + DukeDateTimeFormatter.formatDisplay(this.endTime) + ")";
     }

@@ -4,18 +4,15 @@ import maria.TaskManager;
 
 public class CommandUnknown extends Command {
 
-    private int index;
-
-    public CommandUnknown() {
-
-    }
+    public CommandUnknown() {}
 
     /**
      * Executes the command.
      * @param taskManager The overall-in-charge for all task related affairs
+     * @return The display message for the execution
      */
     @Override
-    public void execute(TaskManager taskManager) {
-        System.out.println("Unknown command.");
+    public String execute(TaskManager taskManager) {
+        return "Unknown command. You can click 'Help' to see the commands.";
     }
 }
