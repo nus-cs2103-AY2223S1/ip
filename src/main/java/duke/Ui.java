@@ -5,7 +5,8 @@ package duke;
  */
 public class Ui {
     /**
-     * Prints a welcome message when the program starts.
+     * Returns a welcome message for when the user launch the application.
+     * @return A welcome message.
      */
     public String welcome() {
         return "Hi, I'm Jamie.\nWhat do you want to do?"
@@ -14,7 +15,9 @@ public class Ui {
     }
 
     /**
-     * The method to list out the tasks that are present in taskList.
+     * Returns the taskList in string form.
+     * @param tasks The taskList that is being printed.
+     * @return The tasks in the taskList in string form.
      */
     public String printTaskList(TaskList tasks) {
         StringBuilder result = new StringBuilder("Here are your tasks\n");
@@ -26,18 +29,19 @@ public class Ui {
     }
 
     /**
-     * Prints out the message when a task is added.
-     * @param task The task that is added.
+     * Returns a message for when a task is added.
+     * @param task The task added.
+     * @return A string of the message.
      */
     public String addTasksUi(Task task) {
-        return "Got it! I've added this task:\n  "
-                + task;
+        return "Got it! I've added this task:\n  " + task;
     }
 
     /**
-     * Prints out the message for when a task is being marked.
-     * @param marking The marking that is being done.
-     * @param task The task that is being marked.
+     * Returns a message for when a task is marked.
+     * @param marking The marking being done to a task.
+     * @param task The task being marked.
+     * @return A string of the message.
      */
     public String markingUi(String marking, Task task) {
         if (marking.equals("mark")) {
@@ -50,8 +54,9 @@ public class Ui {
     }
 
     /**
-     * Prints out the message for when a task is deleted.
-     * @param task The task that is deleted.
+     * Returns a message for when a task is deleted.
+     * @param task The task deleted.
+     * @return A string of the message.
      */
     public String deleteUi(Task task) {
         return "Ok, I've removed this task:\n  "
@@ -59,38 +64,43 @@ public class Ui {
     }
 
     /**
-     * Prints out the message that displays the number of tasks in the list of tasks.
-     * @param tasks The list of tasks.
+     * Returns a message for the number of tasks in the taskList.
+     * @param tasks The taskList that is being counted.
+     * @return A string of the message containing the number of tasks.
      */
     public String numberOfTasksUi(TaskList tasks) {
         return "\nYou now have " + tasks.size() + " tasks in the list :)";
     }
 
     /**
-     * Prints out an error message when there are missing numbers.
-     * @param command The command that was called.
+     * Returns an error message when there is missing number after a command.
+     * @param command The command called.
+     * @return A string of the error message.
      */
     public String missingNumberAfterCommand(String command) {
         return "Please enter numbers after " + command;
     }
 
     /**
-     * Prints out an error message when an invalid command is called.
+     * Returns an error message when there is a invalid command.
+     * @return A string of the error message.
      */
     public String invalidCommand() {
         return "Please enter a valid command";
     }
 
     /**
-     * Prints out an error message when something is missing in the description of a task.
-     * @param task The task that has a missing description.
+     * Returns an error message when there is something missing in a task command.
+     * @param task The task command called.
+     * @return A string of the error message.
      */
     public String someThingMissingError(String task) {
         return "Something is missing in the description of this + " + task + "! >:(";
     }
 
     /**
-     * The error message for when there is no such task.
+     * Returns an error message when there is no such task.
+     * @return A string of the error message.
      */
     public String noSuchTaskError() {
         return "There's no such task!";

@@ -20,16 +20,15 @@ public class Duke {
         ui = new Ui();
         tasks = new TaskList(storage.load());
     }
-
-    public static void main(String[] args) {
-        Application.launch(Main.class, args);
-    }
-
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the response of duke when the input is given.
+     * @param input The input that is being read.
+     * @return The response by duke to the input.
      */
     public String getResponse(String input) {
         return parser.parse(input);
+    }
+    public static void main(String[] args) {
+        Application.launch(Main.class, args);
     }
 }

@@ -9,9 +9,12 @@ public class Parser {
     public Parser(Duke duke) {
         this.duke = duke;
     }
+
     /**
-    * Starts the parser object and carry out the user commands.
-    */
+     * Starts the parser with the input.
+     * @param input The input that is being placed into the parser.
+     * @return The appropriate response to the input.
+     */
     public String parse(String input) {
         if (input.equals("list")) {
             return duke.ui.printTaskList(duke.tasks);

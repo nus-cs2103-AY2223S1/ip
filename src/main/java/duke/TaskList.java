@@ -93,7 +93,7 @@ public class TaskList {
     /**
      * Returns a list of tasks that contains the keyword.
      * @param keyWord Keyword that is being searched for.
-     * @return A taskList containing tasks that contains the keyword.
+     * @return A taskList containing tasks that contain the keyword.
      * @throws DukeException If the new taskList is empty.
      */
     public TaskList find(String keyWord) throws DukeException {
