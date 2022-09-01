@@ -9,60 +9,73 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
-    public void delete(int taskNumber, Storage fo) {
+    public String delete(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
-            System.out.println("\tInvalid Task Number!");
+            return "Invalid Task Number!";
         } else {
             Task deletedTask = tasks.remove(taskNumber);
             fo.writeAllTasksToFile(this);
-            System.out.println("\tNoted. I have removed the following task:");
-            System.out.println("\t\t" + deletedTask);
-            System.out.println(getCountInWords());
+            StringBuilder sb = new StringBuilder();
+            sb.append("Noted. I have removed the following task:\n");
+            sb.append("\t" + deletedTask + "\n");
+            sb.append(getCountInWords());
+            return sb.toString();
         }
     }
 
     public int count() {
         return tasks.size();
     }
+
     public Task get(int taskNumber) {
         return tasks.get(taskNumber);
     }
 
-    public void markAsDone(int taskNumber, Storage fo) {
+    public String markAsDone(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
-            System.out.println("\tInvalid Task Number!");
+            return "Invalid Task Number!";
         } else {
             get(taskNumber).markAsDone();
             fo.writeAllTasksToFile(this);
-            System.out.println("\tAwesome! I have marked this task as done:");
-            System.out.println("\t\t" + get(taskNumber));
+            StringBuilder sb = new StringBuilder();
+            sb.append("Awesome! I have marked this task as done:");
+            sb.append(get(taskNumber));
+            return sb.toString();
         }
     }
 
-    public void markAsNotDone(int taskNumber, Storage fo) {
+    public String markAsNotDone(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
-            System.out.println("\tInvalid Task Number!");
+            return "Invalid Task Number!";
         } else {
             get(taskNumber).markAsNotDone();
             fo.writeAllTasksToFile(this);
-            System.out.println("\tAwesome! I have unmarked this task to be not completed:");
-            System.out.println("\t\t" + get(taskNumber));
+            StringBuilder sb = new StringBuilder();
+            sb.append("Awesome! I have unmarked this task to be not completed:\n");
+            sb.append("\t" + get(taskNumber));
+            return sb.toString();
         }
     }
-    public void add(Task task, Storage fo) {
+
+    public String add(Task task, Storage fo) {
         tasks.add(task);
-        System.out.println(String.format("\tGotcha. I have added this task:"));
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Gotcha. I have added this task:\n"));
 
         fo.addTaskToFile(task);
-        System.out.println("\t\t" + task); // exploiting polymorphism
-        System.out.println(getCountInWords());
+        sb.append("\t" + task); // exploiting polymorphism
+        sb.append(getCountInWords());
+        return sb.toString();
     }
 
-    public void listTasks() {
+    public String listTasks() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < count(); i++) {
-            System.out.println(String.format("\t%d. %s", i + 1, tasks.get(i)));
+            sb.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
+        return sb.toString();
     }
+
     public String getCountInWords() {
         return String.format("\tNow you have %d task%s in the list",
                 count(), count() > 1 ? "s" : "");
@@ -77,18 +90,19 @@ public class TaskList {
      *
      * @param keyword The keyword to search in the task description.
      */
-    public void find(String keyword) {
+    public String find(String keyword) {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {
             if (task.getDescription().contains(keyword)) {
-                sb.append("\t\t" + task.toString() + "\n");
-;            }
+                sb.append("\t" + task.toString() + "\n");
+                ;
+            }
         }
         if (sb.toString().equals("")) {
-            System.out.println("\tSorry, I could not find any tasks with your keyword :(");
+            return "Sorry, I could not find any tasks with your keyword :(";
         } else {
-            System.out.println("\tHere are your results: ");
-            System.out.print(sb);
+            sb.insert(0, "Here are your results: ");
+            return sb.toString();
         }
     }
 }
