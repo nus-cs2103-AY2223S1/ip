@@ -11,7 +11,7 @@ public class CommandUnmarkTask extends Command {
     private final int index;
 
     public CommandUnmarkTask(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     /**

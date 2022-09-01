@@ -11,7 +11,7 @@ public class CommandMarkTask extends Command {
     private final int index;
 
     public CommandMarkTask(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     /**

@@ -23,17 +23,17 @@ public class CommandListAllTasks extends Command {
 
         if (tasks.size() == 0) {
             return "There are no tasks available.";
-        } else {
-
-            // Converts the task list to a multiline string for display
-            String result = "Your tasks are \n" + tasks.stream()
-                    .map(task -> "- " + task)
-                    .reduce((acc, str) -> acc + "\n" + str).get();
-
-            assert !result.equals("Your tasks are \n") : "No tasks have been added.";
-
-            return result;
-
         }
+
+        // Converts the task list to a multiline string for display
+        StringBuilder result = new StringBuilder("Your tasks are \n");
+
+        for (int i = 0; i < tasks.size(); ++i) {
+            result.append(i + 1).append(". ")
+                    .append(tasks.get(i).toString())
+                    .append(i == tasks.size() - 1 ? "" : "\n");
+        }
+
+        return result.toString();
     }
 }

@@ -87,21 +87,21 @@ public class LandingPage extends VBox {
 
         String content = this.taskManager.getResultDisplayQueue().poll();
 
-        if (content != null) {
-
-            String displayedText = textAreaDisplay.getText();
-
-            if (displayedText.isEmpty()) {
-                this.textAreaDisplay.setText(content);
-            } else {
-                this.textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
-            }
-
-            // Scroll to end
-            this.textAreaDisplay.selectEnd();
-            this.textAreaDisplay.deselect();
-
+        if (content == null) {
+            return;
         }
+
+        String displayedText = textAreaDisplay.getText();
+
+        if (displayedText.isEmpty()) {
+            textAreaDisplay.setText(content);
+        } else {
+            textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
+        }
+
+        // Scroll to end
+        this.textAreaDisplay.selectEnd();
+        this.textAreaDisplay.deselect();
 
     }
 
