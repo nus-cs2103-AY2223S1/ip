@@ -65,4 +65,15 @@ public class Roger {
             return new Response(e.getMessage(), false, true);
         }
     }
+
+    /**
+     * Returns Roger's greeting to the user upon program startup
+     *
+     * @return Roger's greeting.
+     */
+    public Response getGreeting() {
+        String greeting = "Hello, this is Roger. \n"
+                + "What you wan? What you wan?";
+        return new Response(greeting, false, false);
+    }
 }

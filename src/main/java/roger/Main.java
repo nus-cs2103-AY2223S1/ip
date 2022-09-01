@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import roger.storage.Storage;
 import roger.ui.Parser;
+import roger.ui.Response;
+import roger.ui.controllers.DialogBox;
 import roger.ui.controllers.MainWindow;
 
 /**
@@ -35,8 +37,10 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setRogerClass(roger);
+            MainWindow mainWindow = fxmlLoader.<MainWindow>getController();
+            mainWindow.setRogerClass(roger);
             stage.show();
+            mainWindow.greet();
         } catch (IOException e) {
             e.printStackTrace();
         }

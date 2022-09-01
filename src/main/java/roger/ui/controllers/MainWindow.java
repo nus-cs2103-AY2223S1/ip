@@ -8,8 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import roger.ui.Response;
+
 import roger.Roger;
+import roger.ui.Response;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -27,8 +28,11 @@ public class MainWindow extends AnchorPane {
     private Roger roger;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Roger.png"));
+    private Image rogerImage = new Image(this.getClass().getResourceAsStream("/images/Roger.png"));
 
+    /**
+     * Initialize the GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -36,6 +40,15 @@ public class MainWindow extends AnchorPane {
 
     public void setRogerClass(Roger r) {
         roger = r;
+    }
+
+    /**
+     * Greet the user.
+     */
+    @FXML
+    public void greet() {
+        Response greeting = roger.getGreeting();
+        dialogContainer.getChildren().addAll(DialogBox.getRogerDialog(greeting.getMessage(), rogerImage));
     }
 
     /**
@@ -49,7 +62,7 @@ public class MainWindow extends AnchorPane {
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getRogerDialog(response.getMessage(), dukeImage)
+                DialogBox.getRogerDialog(response.getMessage(), rogerImage)
         );
         userInput.clear();
         if (response.isExit()) {
