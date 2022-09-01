@@ -43,7 +43,7 @@ public class Parser {
                 if (arguments == null) {
                     throw new DukeException("Deadline description cannot be empty");
                 }
-                
+
                 String[] deadlineArgs = arguments.split("/by", 2);
                 if (deadlineArgs.length == 1) {
                     throw new DukeException("Deadline requires a /by date");
@@ -117,7 +117,7 @@ public class Parser {
                             matchingTasks.addTask(tl.getTask(i));
                         }
                     }
-                    
+
                     return "Here are your matching tasks:\n" + matchingTasks.listTasks();
 //                } catch ()
             }
