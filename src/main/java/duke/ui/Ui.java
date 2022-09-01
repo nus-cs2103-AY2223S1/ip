@@ -54,4 +54,12 @@ public class Ui {
         }
     }
 
+    public String returnMessages(String... messages) {
+        StringBuilder sb = new StringBuilder();
+        for (String m : messages) {
+            sb.append(m);
+        }
+        return sb.toString();
+    }
+
 }

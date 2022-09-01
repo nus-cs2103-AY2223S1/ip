@@ -26,9 +26,14 @@ public class FindCommand extends Command {
         this.taskSubstring = taskSubstring;
     }
 
+//    @Override
+//    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
+//        taskList.findTask(taskSubstring);
+//    }
+
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        taskList.findTask(taskSubstring);
+    public String execute(TaskList taskList, Ui ui, StorageFile storage) {
+        return taskList.findTask(taskSubstring);
     }
 
 }

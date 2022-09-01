@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.common.Messages;
 import duke.exceptions.UnableToSaveException;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
@@ -31,9 +32,16 @@ public class DeadlineCommand extends Command {
         this.deadline = deadline;
     }
 
+//    @Override
+//    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
+//        taskList.addDeadlineTask(description, deadline);
+//        storage.saveList(taskList);
+//    }
+
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
+    public String execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
         taskList.addDeadlineTask(description, deadline);
         storage.saveList(taskList);
+        return Messages.MESSAGE_TASK_ADDED;
     }
 }

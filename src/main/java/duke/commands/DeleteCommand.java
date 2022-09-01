@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.common.Messages;
 import duke.exceptions.InvalidInputException;
 import duke.exceptions.UnableToSaveException;
 import duke.storage.StorageFile;
@@ -27,10 +28,17 @@ public class DeleteCommand extends Command {
         this.taskNumber = taskNumber;
     }
 
+//    @Override
+//    public void execute(
+//            TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
+//        taskList.deleteTask(taskNumber);
+//        storage.saveList(taskList);
+//    }
     @Override
-    public void execute(
+    public String execute(
             TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
         taskList.deleteTask(taskNumber);
         storage.saveList(taskList);
+        return Messages.MESSAGE_TASK_REMOVED;
     }
 }

@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.common.Messages;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -20,8 +21,13 @@ public class InvalidCommand extends Command {
         this.errorMessage = errorMessage;
     }
 
+//    @Override
+//    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
+//        ui.showMessages(errorMessage);
+//    }
+
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.showMessages(errorMessage);
+    public String execute(TaskList taskList, Ui ui, StorageFile storage) {
+        return Messages.MESSAGE_INVALID_COMMAND;
     }
 }

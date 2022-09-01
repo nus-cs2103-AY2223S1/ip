@@ -37,31 +37,58 @@ public class Parser {
         switch (command) {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case TodoCommand.COMMAND_WORD:
-            return prepareTodoTask();
-        case DeadlineCommand.COMMAND_WORD:
-            return prepareDeadlineTask();
-        case EventCommand.COMMAND_WORD:
-            return prepareEventTask();
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case MarkCommand.COMMAND_WORD:
-            return prepareMark();
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-        case FindCommand.COMMAND_WORD:
-            return prepareFindTask();
         default:
             return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
         }
     }
 
-    private Command prepareTodoTask() {
+    public Command parseTwoArgsCommand(String userInput, String secondInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
+        }
+
+        final String command = matcher.group("commandWord").toLowerCase();
+
+        switch (command) {
+        case TodoCommand.COMMAND_WORD:
+            return prepareTodoTask(secondInput);
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(secondInput);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete(secondInput);
+        case FindCommand.COMMAND_WORD:
+            return prepareFindTask(secondInput);
+        default:
+            return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
+        }
+    }
+
+    public Command parseThreeArgsCommand(String userInput, String secondInput, String thirdInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
+        }
+
+        final String command = matcher.group("commandWord").toLowerCase();
+
+        switch (command) {
+        case EventCommand.COMMAND_WORD:
+            return prepareEventTask(secondInput, thirdInput);
+        case DeadlineCommand.COMMAND_WORD:
+            return prepareDeadlineTask(secondInput, thirdInput);
+        default:
+            return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
+        }
+    }
+
+    private Command prepareTodoTask(String secondInput) {
         try {
-            System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
-            final String description = Ui.readNextLine();
+            final String description = secondInput;
             if (description.equals("")) {
                 throw new EmptyBodyException();
             }
@@ -71,46 +98,39 @@ public class Parser {
         }
     }
 
-    private Command prepareEventTask() {
+    private Command prepareEventTask(String secondInput, String thirdInput) {
         try {
-            System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
-            final String description = Ui.readNextLine();
-            if (description.equals("")) {
+            if (secondInput.equals("")) {
                 throw new EmptyBodyException();
             }
-            System.out.println(Messages.MESSAGE_EVENT);
-            final String eventDate = Ui.readNextLine();
-            if (!eventDate.matches(String.valueOf(DATE_FORMAT))) {
+            if (!thirdInput.matches(String.valueOf(DATE_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
             }
-            return new EventCommand(description, eventDate);
+            return new EventCommand(secondInput, thirdInput);
         } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareDeadlineTask() {
+    private Command prepareDeadlineTask(String secondInput, String thirdInput) {
         try {
-            System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
-            final String description = Ui.readNextLine();
-            if (description.equals("")) {
+            if (secondInput.equals("")) {
                 throw new EmptyBodyException();
             }
-            System.out.println(Messages.MESSAGE_DEADLINE);
-            final String deadline = Ui.readNextLine();
-            if (!deadline.matches(String.valueOf(DATE_FORMAT))) {
+
+            if (!thirdInput.matches(String.valueOf(DATE_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
             }
-            return new DeadlineCommand(description, deadline);
+
+            return new DeadlineCommand(secondInput, thirdInput);
         } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareMark() {
+    private Command prepareMark(String secondInput) {
         try {
-            System.out.println(Messages.MESSAGE_MARK_TASK);
-            final String taskNumber = Ui.readNextLine();
+            final String taskNumber = secondInput;
             if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
             }
@@ -120,10 +140,9 @@ public class Parser {
         }
     }
 
-    private Command prepareFindTask() {
+    private Command prepareFindTask(String secondInput) {
         try {
-            System.out.println(Messages.MESSAGE_FIND_TASK);
-            final String taskSubstring = Ui.readNextLine();
+            final String taskSubstring = secondInput;
             if (taskSubstring.equals("")) {
                 throw new EmptyBodyException();
             }
@@ -133,10 +152,9 @@ public class Parser {
         }
     }
 
-    private Command prepareDelete() {
+    private Command prepareDelete(String secondInput) {
         try {
-            System.out.println(Messages.MESSAGE_TASK_REMOVE);
-            final String taskNumber = Ui.readNextLine();
+            final String taskNumber = secondInput;
             if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
             }

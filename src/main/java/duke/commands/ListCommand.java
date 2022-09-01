@@ -15,8 +15,13 @@ public class ListCommand extends Command {
             + ": Displays all tasks as a list with index numbers.\n"
             + "\tEx. " + COMMAND_WORD;
 
+//    @Override
+//    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
+//        ui.showMessages(Messages.MESSAGE_TASK_LIST, taskList.toString());
+//    }
+
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.showMessages(Messages.MESSAGE_TASK_LIST, taskList.toString());
+    public String execute(TaskList taskList, Ui ui, StorageFile storage) {
+        return taskList.toString();
     }
 }

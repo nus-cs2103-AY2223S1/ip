@@ -27,6 +27,7 @@ public abstract class Command {
      * @throws UnableToSaveException unable to save file
      * @throws InvalidInputException invalid input given
      */
-    public abstract void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException;
+//    public abstract void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException;
+    public abstract String execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException;
 
 }

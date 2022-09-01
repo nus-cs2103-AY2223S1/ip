@@ -99,7 +99,22 @@ public class TaskList {
         System.out.printf(MESSAGE_TASK_MARKED, taskNumber);
     }
 
-    public void findTask(String taskSubstring) {
+//    public void findTask(String taskSubstring) {
+//        StringBuilder sb = new StringBuilder();
+//        for (Task task : tasks) {
+//            if (task.toString().contains(taskSubstring)) {
+//                sb.append(task).append("\n");
+//            }
+//        }
+//
+//        if (sb.toString().isEmpty()) {
+//            System.out.println(MESSAGE_NO_TASK_FOUND);
+//        } else {
+//            System.out.println(sb);
+//        }
+//    }
+
+    public String findTask(String taskSubstring) {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {
             if (task.toString().contains(taskSubstring)) {
@@ -108,9 +123,9 @@ public class TaskList {
         }
 
         if (sb.toString().isEmpty()) {
-            System.out.println(MESSAGE_NO_TASK_FOUND);
+            return MESSAGE_NO_TASK_FOUND;
         } else {
-            System.out.println(sb);
+            return sb.toString();
         }
     }
 
