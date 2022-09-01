@@ -3,7 +3,7 @@ import task_classes.Event;
 import task_classes.Task;
 import task_classes.Todo;
 import utils.FileIO;
-import utils.InputParser;
+import utils.Parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,54 +41,7 @@ public class Duke {
     public String handleCommand(HashMap<String, String> command) {
         String reply = "";
         try {
-            switch (command.get("keyword")) {
-                case "Bye":
-                case "bye":
-                    reply = this.closeCommand(command);
-                    break;
 
-                case "list":
-                case "List":
-                    reply = this.listCommand(command);
-                    break;
-
-                case "mark":
-                case "Mark":
-                    reply = this.markCommand(command);
-                    break;
-
-                case "unmark":
-                case "Unmark":
-                    reply = this.unMarkCommand(command);
-                    break;
-
-                case "todo":
-                case "Todo":
-                    reply = this.addTodoCommand(command);
-                    break;
-
-                case "deadline":
-                case "Deadline":
-                    reply = this.addDeadlineCommand(command);
-                    break;
-
-                case "event":
-                case "Event":
-                    reply = this.addEventCommand(command);
-                    break;
-
-                case "delete":
-                case "Delete":
-                case "remove":
-                case "Remove":
-                    reply = this.deleteCommand(command);
-                    break;
-
-
-                default:
-                    reply = command.toString();
-                    break;
-            }
         } catch (IllegalArgumentException e) {
             return "Something went wrong 😔: " + e.getMessage();
         }
@@ -98,7 +51,7 @@ public class Duke {
     }
 
     private String deleteCommand(HashMap<String, String> commandObj) {
-        if (!commandObj.containsKey("args") || !InputParser.IsInteger(commandObj.get("args"))) {
+        if (!commandObj.containsKey("args") || !Parser.IsInteger(commandObj.get("args"))) {
             throw new IllegalArgumentException("Delete command must contain a numeric argument!");
         }
 
@@ -155,7 +108,7 @@ public class Duke {
     }
 
     private String markCommand(HashMap<String, String> commandObj) {
-        if (!commandObj.containsKey("args") || !InputParser.IsInteger(commandObj.get("args"))) {
+        if (!commandObj.containsKey("args") || !Parser.IsInteger(commandObj.get("args"))) {
             throw new IllegalArgumentException("Mark needs an index");
         }
 
@@ -169,7 +122,7 @@ public class Duke {
     }
 
     private String unMarkCommand(HashMap<String, String> commandObj) {
-        if (!commandObj.containsKey("args") || !InputParser.IsInteger(commandObj.get("args"))) {
+        if (!commandObj.containsKey("args") || !Parser.IsInteger(commandObj.get("args"))) {
             throw new IllegalArgumentException("Unmark needs an index");
         }
 

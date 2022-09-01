@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InputParser {
+public class Parser {
     private static Pattern intPattern = Pattern.compile("\\d+");
 
     public static boolean IsInteger(String s) {

@@ -1,7 +1,7 @@
 package task_classes;
 
 import org.json.JSONObject;
-import utils.InputParser;
+import utils.Parser;
 
 import java.time.LocalDate;
 
@@ -10,12 +10,12 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = InputParser.parseStringtoDate(by);
+        this.by = Parser.parseStringtoDate(by);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + InputParser.parseDatetoString(by) + ")";
+        return "[D]" + super.toString() + " (by: " + Parser.parseDatetoString(by) + ")";
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Deadline extends Task {
         object.put("type", "Deadline");
         object.put("description", this.description);
         object.put("done", this.isDone);
-        object.put("by", InputParser.parseDatetoString(this.by));
+        object.put("by", Parser.parseDatetoString(this.by));
         return object;
     }
 

@@ -1,4 +1,4 @@
-import utils.InputParser;
+import utils.Parser;
 
 import java.util.HashMap;
 
@@ -20,7 +20,7 @@ public class Ui {
     }
 
     public HashMap<String, String> read(String s) {
-        return InputParser.getInputArguments(s);
+        return Parser.getInputArguments(s);
     }
 
     public void printWithHorizontalRule(String s) {
