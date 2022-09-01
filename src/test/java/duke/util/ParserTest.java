@@ -222,6 +222,16 @@ public class ParserTest {
     }
 
     @Test
+    public void parseTask_lessArgument_throwsException() {
+        try {
+            Parser.parseTask("T | 0 description");
+            fail();
+        } catch (ParseException e) {
+            assertEquals("Parsing error: T | 0 description", e.getMessage());
+        }
+    }
+
+    @Test
     public void parseTask_correctTask_returnsTask() {
         assertEquals(new TodoTask("Task Description"), Parser.parseTask("T | 0 | Task Description"));
         assertEquals(new DeadlineTask("Task Description", LocalDateTime.of(2019, 1, 1, 12, 12)),
