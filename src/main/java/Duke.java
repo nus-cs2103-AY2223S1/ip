@@ -1,99 +1,10 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
 
     private static final ArrayList<Task> LIST_OF_THINGS = new ArrayList<>();
-
-    private abstract static class Task {
-        private final String task_name;
-        private boolean isCompleted;
-
-        private static class TodoTask extends Task {
-
-            public TodoTask(String name) {
-                super(name);
-            }
-
-            @Override
-            public String toString() {
-                if (isCompleted()) {
-                    return String.format("[T][X] %s", getTaskName());
-                } else {
-                    return String.format("[T][ ] %s", getTaskName());
-                }
-            }
-        }
-
-        private static class DeadlineTask extends Task {
-
-            private final String deadline;
-
-            public DeadlineTask(String name, String date) {
-                super(name);
-                deadline = date;
-            }
-
-            @Override
-            public String toString() {
-                if (isCompleted()) {
-                    return String.format("[D][X] %s (By: %s)", getTaskName(), deadline);
-                } else {
-                    return String.format("[D][ ] %s (By: %s)", getTaskName(), deadline);
-                }
-            }
-        }
-
-        private static class EventTask extends Task {
-
-            private final String datetime;
-
-            public EventTask(String name, String date) {
-                super(name);
-                datetime = date;
-            }
-
-            @Override
-            public String toString() {
-                if (isCompleted()) {
-                    return String.format("[E][X] %s (At: %s)", getTaskName(), datetime);
-                } else {
-                    return String.format("[E][ ] %s (At: %s)", getTaskName(), datetime);
-                }
-            }
-        }
-
-        public Task(String name) {
-            task_name = name;
-            isCompleted = false;
-        }
-
-        public String getTaskName() {
-            return task_name;
-        }
-
-        public void markComplete() {
-            isCompleted = true;
-        }
-
-        public void markIncomplete() {
-            isCompleted = false;
-        }
-
-        public boolean isCompleted() {
-            return isCompleted;
-        }
-
-        @Override
-        public String toString() {
-            if (isCompleted) {
-                return String.format("[X] %s", task_name);
-            } else {
-                return String.format("[ ] %s", task_name);
-            }
-        }
-    }
 
     public static boolean isMarkCommand(String str) {
         if (str.length() < 6) {
@@ -126,7 +37,7 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hi, I'm Duke. What can I do for you?");
         Scanner keyboard = new Scanner(System.in);
         String message = keyboard.nextLine();
