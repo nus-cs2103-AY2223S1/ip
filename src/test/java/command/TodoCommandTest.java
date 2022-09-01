@@ -14,7 +14,7 @@ public class TodoCommandTest {
     private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t %1$s.";
 
     @Test
-    public void executeTest() {
+    public void todoCommand_AddTodo_IfTodoIsWorking() {
         TaskList list = new TaskList(new ArrayList<>());
         TodoCommand command = new TodoCommand("test");
         Task task = new Task(Commands.TODO, "test", null);

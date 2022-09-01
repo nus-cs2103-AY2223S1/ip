@@ -61,7 +61,7 @@ public class TaskList {
      *
      * @return a String representing the entire task list.
      */
-    public String toSimpleString() {
+    public String toFileEncodedString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
             sb.append(tasks.get(i - 1).toSimpleString()).append("\n");

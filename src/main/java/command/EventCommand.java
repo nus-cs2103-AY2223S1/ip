@@ -14,6 +14,11 @@ public class EventCommand extends Command {
     private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s.";
     private final Task task;
 
+    /**
+     * Creates an EventCommand with the given description and dateTime.
+     * @param description the description of the task
+     * @param dateTime the date/time when the event will occur
+     */
     public EventCommand(String description, LocalDateTime dateTime) {
         this.task = new Task(Commands.EVENT, description, dateTime);
     }

@@ -14,15 +14,12 @@ public abstract class Command {
     /**
      * Returns a CommandResult object based on the type of Command
      * executed.
-     *
-     * @return
      */
     public abstract CommandResult execute();
 
     /**
      * Sets the task list to be used by the command.
      * The task list is then modified by various commands, such as the {@link TodoCommand}.
-     * <p>
      * Some commands do not require a task list, and therefore this method is
      * not called in the execution of the command.
      *

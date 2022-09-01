@@ -80,7 +80,7 @@ public class Henry {
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
-                storage.appendToFile(result.getTaskList().get().toSimpleString());
+                storage.appendToFile(result.getTaskList().get().toFileEncodedString());
             }
             return result;
         } catch (Exception e) {

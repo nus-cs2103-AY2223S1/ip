@@ -54,17 +54,17 @@ public class Parser {
         case EchoCommand.COMMAND_WORD:
             return new EchoCommand(args);
         case MarkCommand.COMMAND_WORD:
-            if (isArgsFormattedCorrectly(args)) {
+            if (isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new MarkCommand(Integer.parseInt(args));
         case UnmarkCommand.COMMAND_WORD:
-            if (isArgsFormattedCorrectly(args)) {
+            if (isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new UnmarkCommand(Integer.parseInt(args.trim()));
         case DeleteCommand.COMMAND_WORD:
-            if (isArgsFormattedCorrectly(args)) {
+            if (isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new DeleteCommand(Integer.parseInt(args.trim()));
@@ -75,9 +75,9 @@ public class Parser {
         case TodoCommand.COMMAND_WORD:
             return new TodoCommand(args);
         case DeadlineCommand.COMMAND_WORD:
-            return parseDeadlineArgs(args);
+            return parseDeadlineArguments(args);
         case EventCommand.COMMAND_WORD:
-            return parseEventArgs(args);
+            return parseEventArguments(args);
         default:
             throw new HenryException("UNKNOWN COMMAND!");
         }
@@ -87,7 +87,7 @@ public class Parser {
         return args.split(" ");
     }
 
-    private Command parseDeadlineArgs(String args) {
+    private Command parseDeadlineArguments(String args) {
         Matcher matcher = DEADLINE_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
@@ -101,7 +101,7 @@ public class Parser {
         }
     }
 
-    private Command parseEventArgs(String args) {
+    private Command parseEventArguments(String args) {
         Matcher matcher = EVENT_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
@@ -115,7 +115,7 @@ public class Parser {
         }
     }
 
-    private boolean isArgsFormattedCorrectly(String args) {
+    private boolean isInputValid(String args) {
         return !args.matches("\\d+");
     }
 }
