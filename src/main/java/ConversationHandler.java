@@ -1,13 +1,12 @@
 import task_classes.Deadline;
 import task_classes.Event;
-import task_classes.Todo;
-import utils.InputParser;
-import utils.IOUtils;
 import task_classes.Task;
+import task_classes.Todo;
+import utils.IOUtils;
+import utils.InputParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class ConversationHandler {
 

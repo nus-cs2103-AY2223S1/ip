@@ -1,7 +1,6 @@
 import utils.IOUtils;
 
 import java.util.Scanner;
-
 public class Main {
     public static String logo = ".__ .  ..  ..___" + "\n" +
             "|  \\|  ||_/ [__ " + "\n" +

@@ -7,7 +7,16 @@
 plugins {
     id "application"
 }
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repository-achartengine.forge.cloudbees.com/snapshot/"
+    }
+}
+
 apply plugin : "java"
+
 ext {
     javaMainClass = "Main"
     standardInput = System.in
@@ -17,10 +26,19 @@ application {
     mainClassName = javaMainClass
 }
 
+dependencies {
+    implementation 'org.json:json:20220320'
+}
+
 task runMain(type: Exec) {
     dependsOn build
     group = "Execution"
-    description = "Run the main class"
+
     standardInput = System.in
+    description = "Run the main class"
     commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), javaMainClass
+}
+
+repositories {
+    mavenCentral()
 }
