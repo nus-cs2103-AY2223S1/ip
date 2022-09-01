@@ -3,9 +3,9 @@ package duke;
 import duke.commands.Command;
 
 public class Duke {
-    private final Ui ui;
-    private final Storage storage;
-    private final TaskList tasks;
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -23,10 +23,11 @@ public class Duke {
     private void run() {
         ui.showGreeting();
         boolean isExit = false;
+
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
