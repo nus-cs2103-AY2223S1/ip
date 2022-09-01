@@ -25,7 +25,7 @@ public class FileParser {
         List<Task> result = new ArrayList<>();
         String[] lines = data.split("\n");
         for (String line : lines) {
-            String[] d = line.split("\\|", 5);
+            String[] d = line.split("\\|", 6);
             if (line.length() > 0) {
                 switch (d[0]) {
                     case "D":

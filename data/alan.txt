@@ -3,3 +3,5 @@ D| |throw stuff|by|tomorrow|
 T| |throw stuff|||
 D|X|fix bugs|by|Aug 26 2022 12:00|
 E| |watch lecture|by|Apr 30 2023 13:14|
+
+E| |watch jame's tutorial|at|now (-:|
