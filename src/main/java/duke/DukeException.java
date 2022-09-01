@@ -4,7 +4,7 @@ package duke;
  * DukeException represents the possible exceptions that might occur while using Duke.
  */
 public class DukeException extends RuntimeException {
-    private final String message;
+    private final String MESSAGE;
 
     /**
      * Constructs a DukeException.
@@ -12,7 +12,7 @@ public class DukeException extends RuntimeException {
      * @param message Exception message.
      */
     public DukeException(String message) {
-        this.message = message;
+        this.MESSAGE = message;
     }
 
     /**
@@ -22,7 +22,7 @@ public class DukeException extends RuntimeException {
      */
     @Override
     public String getMessage() {
-        return this.message;
+        return this.MESSAGE;
     }
 
     /**
@@ -31,6 +31,6 @@ public class DukeException extends RuntimeException {
      * @return String representing this exception.
      */
     public String toString() {
-        return "DukeException: " + message;
+        return "DukeException: " + MESSAGE;
     }
 }

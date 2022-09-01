@@ -2,7 +2,10 @@ package duke;
 
 import duke.task.*;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -62,9 +65,9 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
-        this.file.delete();
+        file.delete();
         temp.renameTo(new File("data/tasks.txt"));
-        this.file = temp;
+        file = temp;
     }
 
     /**

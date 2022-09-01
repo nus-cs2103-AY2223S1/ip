@@ -9,15 +9,15 @@ import duke.task.TaskList;
  */
 public class UnmarkCommand implements Command{
 
-    private final int toUnmark;
+    private final int TO_UN_MARK;
 
     /**
      * Constructs an UnmarkCommand.
      *
-     * @param toUnmark Index of the task to be unmarked in Duke's TaskList.
+     * @param TO_UN_MARK Index of the task to be unmarked in Duke's TaskList.
      */
-    public UnmarkCommand(int toUnmark) {
-        this.toUnmark = toUnmark;
+    public UnmarkCommand(int TO_UN_MARK) {
+        this.TO_UN_MARK = TO_UN_MARK;
     }
 
     /**
@@ -30,7 +30,7 @@ public class UnmarkCommand implements Command{
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.dukePrint(tasks.unmark(toUnmark));
+        Ui.dukePrint(tasks.unmark(TO_UN_MARK));
         storage.refresh(tasks);
     }
 

@@ -24,23 +24,23 @@ public class Parser {
         Command res;
         try {
             switch (head) {
-                case "BYE":
-                    res = new ExitCommand();
-                    break;
-                case "LIST":
-                    res = new ListCommand();
-                    break;
-                case "MARK":
-                    res = new MarkCommand(Integer.parseInt(inputs[1]) - 1);
-                    break;
-                case "UNMARK":
-                    res = new UnmarkCommand(Integer.parseInt(inputs[1]) - 1);
-                    break;
-                case "DELETE":
-                    res = new DeleteCommand(Integer.parseInt(inputs[1]) - 1);
-                    break;
-                default:
-                    res = new AddCommand(inputs);
+            case "BYE":
+                res = new ExitCommand();
+                break;
+            case "LIST":
+                res = new ListCommand();
+                break;
+            case "MARK":
+                res = new MarkCommand(Integer.parseInt(inputs[1]) - 1);
+                break;
+            case "UNMARK":
+                res = new UnmarkCommand(Integer.parseInt(inputs[1]) - 1);
+                break;
+            case "DELETE":
+                res = new DeleteCommand(Integer.parseInt(inputs[1]) - 1);
+                break;
+            default:
+                res = new AddCommand(inputs);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Missing parameters (require Integer) for the command!");

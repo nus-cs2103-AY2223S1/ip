@@ -8,15 +8,15 @@ import duke.task.TaskList;
  * Represents the command for marking a task in Duke's TaskList.
  */
 public class MarkCommand implements Command{
-    private final int toMark;
+    private final int TO_MARK;
 
     /**
      * Constructs a MarkCommand.
      *
-     * @param toMark Index of the task to be marked in Duke's TaskList.
+     * @param TO_MARK Index of the task to be marked in Duke's TaskList.
      */
-    public MarkCommand(int toMark) {
-        this.toMark = toMark;
+    public MarkCommand(int TO_MARK) {
+        this.TO_MARK = TO_MARK;
     }
 
     /**
@@ -29,7 +29,7 @@ public class MarkCommand implements Command{
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.dukePrint(tasks.mark(toMark));
+        Ui.dukePrint(tasks.mark(TO_MARK));
         storage.refresh(tasks);
     }
 

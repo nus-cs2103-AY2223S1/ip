@@ -7,7 +7,7 @@ import duke.task.TaskList;
 /**
  * Represents the command for asking Duke to list its tasks in the TaskList.
  */
-public class ListCommand implements Command{
+public class ListCommand implements Command {
 
     /**
      * Executes the command by retrieving the list from Duke's TaskList and printing it.

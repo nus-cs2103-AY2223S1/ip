@@ -9,15 +9,15 @@ import duke.task.TaskList;
  */
 public class DeleteCommand implements Command{
 
-    private final int toDelete;
+    private final int TO_DELETE;
 
     /**
      * Constructs a DeleteCommand.
      *
-     * @param toDelete Index of the task to be deleted in Duke's TaskList.
+     * @param TO_DELETE Index of the task to be deleted in Duke's TaskList.
      */
-    public DeleteCommand(int toDelete) {
-        this.toDelete = toDelete;
+    public DeleteCommand(int TO_DELETE) {
+        this.TO_DELETE = TO_DELETE;
     }
 
     /**
@@ -29,7 +29,7 @@ public class DeleteCommand implements Command{
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.dukePrint(tasks.delete(toDelete));
+        Ui.dukePrint(tasks.delete(TO_DELETE));
         storage.refresh(tasks);
     }
 
