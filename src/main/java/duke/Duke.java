@@ -5,14 +5,12 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
-
 /**
  * An interactive chatbot.
  *
  * @author Lan Jingbo, Jerry
  */
 public class Duke {
-
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
@@ -127,6 +125,7 @@ public class Duke {
      * Run the chatbot, Life is good.
      */
     public void run() {
+
         ui.greet();
 
         while (true) {
@@ -177,7 +176,6 @@ public class Duke {
             System.err.println(e.getMessage());
         }
     }
-
     /**
      * main function for running.
      * @param args nothing here
