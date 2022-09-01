@@ -24,7 +24,7 @@ public class Duke {
      * Constructs a new {@code Duke} with a datafile path.
      *
      * @param path    The path to the datafile.
-     * @param printer A {@Code Consumer<String>} that prints a message to GUI.
+     * @param printer A {@code Consumer<String>} that prints a message to GUI.
      */
     public Duke(Path path, Consumer<String> printer) {
         this.printer = printer;
@@ -42,6 +42,7 @@ public class Duke {
                 System.exit(0);
             }
         }
+        printer.accept("Welcome to Duke!");
     }
 
     /**

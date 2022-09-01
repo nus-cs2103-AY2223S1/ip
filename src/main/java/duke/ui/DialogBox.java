@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 //@@author RezwanArefin01-reused
 //Source: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
@@ -22,12 +24,15 @@ import javafx.scene.layout.HBox;
 public class DialogBox extends HBox {
 
     @FXML
-    private Label text;
+    private TextFlow textFlow;
+    @FXML
+    private Text text;
     @FXML
     private ImageView displayPicture;
 
     /**
      * Creates a new DialogBox with the given message and image.
+     *
      * @param message The message to display.
      * @param img The image to display.
      */
@@ -52,16 +57,20 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.setAlignment(Pos.TOP_RIGHT);
+        db.textFlow.setTextAlignment(TextAlignment.RIGHT);
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
         db.flip();
+        db.setAlignment(Pos.TOP_LEFT);
+        db.textFlow.setTextAlignment(TextAlignment.LEFT);
         return db;
     }
 }

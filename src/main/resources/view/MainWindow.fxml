@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <VBox spacing="1.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.ui.MainWindow">
    <children>
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" vvalue="1.0">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefWidth="700.0" vvalue="1.0" VBox.vgrow="ALWAYS">
       <content>
-        <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="400.0" spacing="1.0">
+        <VBox fx:id="dialogContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="552.0" prefWidth="400.0" spacing="1.0">
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
@@ -25,7 +25,7 @@
                   <Insets />
                </opaqueInsets>
                <font>
-                  <Font name="Source Code Pro" size="16.0" />
+                  <Font name="Source Code Pro" size="14.0" />
                </font>
                <HBox.margin>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -33,7 +33,7 @@
             </TextField>
           <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" text="Send">
                <font>
-                  <Font name="Source Code Pro" size="16.0" />
+                  <Font name="Source Code Pro" size="14.0" />
                </font>
                <HBox.margin>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
