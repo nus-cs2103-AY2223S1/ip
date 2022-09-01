@@ -49,4 +49,8 @@ public class Ui {
         return this.userInput;
     }
 
+    public void setUserInput(String userInput) {
+        this.userInput = userInput;
+    }
+
 }

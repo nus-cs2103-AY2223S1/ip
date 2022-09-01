@@ -27,19 +27,26 @@ public class MarkCommand extends Command {
      * @param storage Storage option.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         String inputString = ui.userString();
+
+        StringBuilder sb = new StringBuilder();
+
         int index = Integer.parseInt(inputString.split(" ")[1]) - 1;
         if (this.mark) {
             taskList.get(index).completed();
-            System.out.println("Nice! I've marked this task as done:");
+            sb.append("Nice! I've marked this task as done:\n");
+
         } else {
             taskList.get(index).uncompleted();
-            System.out.println("OK, I've marked this task as not done yet:");
+            sb.append("OK, I've marked this task as not done yet:\n");
+
         }
 
-        System.out.printf("\t%s\n", taskList.get(index));
+        sb.append(String.format("\t%s\n", taskList.get(index)));
+
         storage.save(taskList);
+        return sb.toString();
     }
 
     @Override

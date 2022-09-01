@@ -3,7 +3,6 @@ package duke.data;
 import java.util.Scanner;
 
 import duke.commands.Command;
-import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -16,6 +15,7 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
+
 
     public Duke() {
         this.ui = new Ui(new Scanner(System.in));
@@ -42,6 +42,27 @@ public class Duke {
                 System.out.println("Index input is greater than todolist length");
             }
         } while (!terminate);
+    }
+
+    public String getResponse(String input) {
+
+        try {
+            Command c = Parser.parseCommand(input);
+            ui.setUserInput(input);
+            return c.execute(taskList, ui, storage);
+        } catch (DukeException de) {
+            return de.getMessage();
+        }
+    }
+
+    public boolean isEnd(String input) {
+        try {
+            Command c = Parser.parseCommand(input);
+            return c.isEnd();
+        } catch (DukeException de) {
+            System.out.println(de.getMessage());
+            return false;
+        }
     }
 
 

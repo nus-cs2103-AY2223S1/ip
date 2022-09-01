@@ -16,14 +16,21 @@ public class DeleteCommand extends Command {
      * @param storage Storage option.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        System.out.println("Noted. I've removed this task:");
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Noted. I've removed this task:\n");
+
         String userInput = ui.userString();
         int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-        System.out.printf("\t%s\n", taskList.get(index));
+
+        sb.append(String.format("\t%s\n", taskList.get(index)));
         taskList.remove(index);
-        System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+
+        sb.append(String.format("Now you have %d tasks in the list.\n", taskList.size()));
         storage.save(taskList);
+        return sb.toString();
     }
 
     @Override

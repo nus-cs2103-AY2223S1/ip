@@ -16,8 +16,8 @@ public class EndCommand extends Command {
      * @param storage Storage option.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        return;
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return "Bye bye!";
     }
 
     @Override

@@ -14,12 +14,13 @@ public class TodoCommand extends Command {
      * Executes the command.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         String userInput = ui.userString();
         String[] splitInput = userInput.split(" ");
-
-        System.out.println("Got it. I've added this task");
         StringBuilder todo = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Got it. I've added this task\n");
 
         for (int i = 1; i < splitInput.length; ++i) {
             todo.append(' ');
@@ -28,9 +29,10 @@ public class TodoCommand extends Command {
 
         ToDo todoTask = new ToDo(todo.toString());
         taskList.add(todoTask);
-        System.out.printf("\t %s\n", todoTask);
-        System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+        sb.append(String.format("\t %s\n", todoTask));
+        sb.append(String.format("Now you have %d tasks in the list.\n", taskList.size()));
         storage.save(taskList);
+        return sb.toString();
 
     }
 
