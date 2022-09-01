@@ -17,9 +17,9 @@ public class ByeCommand extends Command {
      * @param taskList {@inheritDoc}
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList taskList) {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String execute(Storage storage, UI ui, TaskList taskList) {
         System.exit(0);
+        return "Bye. Hope to see you again soon!";
     }
 
 }

@@ -1,5 +1,9 @@
 package duke.utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -16,12 +20,9 @@ import duke.exception.InputException;
 import duke.exception.MarkException;
 import duke.exception.TaskException;
 import duke.exception.TimeException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
- * Duke utility function to parse through the input from the user, and output the commands to be
+ * duke.Duke utility function to parse through the input from the user, and output the commands to be
  * executed accordingly.
  */
 public class Parser {

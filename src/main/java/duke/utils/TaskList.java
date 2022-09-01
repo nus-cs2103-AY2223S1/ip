@@ -1,10 +1,11 @@
 package duke.utils;
 
-import duke.task.Task;
 import java.util.List;
 
+import duke.task.Task;
+
 /**
- * Duke utility function to handle updating of the task list while Duke is running.
+ * duke.Duke utility function to handle updating of the task list while duke.Duke is running.
  */
 public class TaskList {
 
@@ -18,7 +19,7 @@ public class TaskList {
     /**
      * Adds a task into the task list.
      *
-     * @param task A Duke Task
+     * @param task A duke.Duke Task
      * @see Task
      */
     public void add(Task task) {
@@ -38,7 +39,7 @@ public class TaskList {
      * Gets a task from the task list.
      *
      * @param num The number of the task.
-     * @return A Duke Task
+     * @return A duke.Duke Task
      * @see Task
      */
     public Task getTask(int num) {
@@ -48,10 +49,12 @@ public class TaskList {
     /**
      * Prints the tasks in the task list.
      */
-    public void read() {
+    public String read() {
+        String out = "";
         for (int i = 0; i < size(); i++) {
-            System.out.println(i + 1 + ". " + getTask(i));
+            out = out + i + 1 + ". " + getTask(i) + "\n";
         }
+        return out;
     }
 
     /**

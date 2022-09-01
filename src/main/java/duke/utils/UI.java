@@ -1,10 +1,11 @@
 package duke.utils;
 
-import duke.exception.DukeException;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+
 /**
- * Duke utility function to handle common outputs to be printed.
+ * duke.Duke utility function to handle common outputs to be printed.
  */
 public class UI {
 
@@ -15,10 +16,10 @@ public class UI {
     }
 
     /**
-     * Prints the Duke welcome message.
+     * Prints the duke.Duke welcome message.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
     }
 
     /**
@@ -26,25 +27,26 @@ public class UI {
      *
      * @return String input.
      */
-    public String readCommand() {
-        return reader.nextLine();
+    public String readCommand(String input) {
+        return input;
     }
 
     /**
-     * Prints Duke error messages.
+     * Prints duke.Duke error messages.
      *
-     * @param e Errors related to Duke.
+     * @param e Errors related to duke.Duke.
      * @see DukeException
      */
-    public void showError(DukeException e) {
-        System.out.println(e);
+    public String showError(DukeException e) {
+        return e.toString();
     }
 
-    public void showTasks() {
-        System.out.println("Here are the tasks in your list:");
+    public String showTasks() {
+        return "Here are the tasks in your list:\n";
     }
 
-    public void showMatchingTasks() {
-        System.out.println("Here are the matching tasks in your list:");
+    public String showMatchingTasks() {
+        return "Here are the matching tasks in your list:\n";
     }
+
 }

@@ -17,8 +17,7 @@ public class ListCommand extends Command {
      * @param taskList {@inheritDoc}
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList taskList) {
-        ui.showTasks();
-        taskList.read();
+    public String execute(Storage storage, UI ui, TaskList taskList) {
+        return ui.showTasks() + taskList.read();
     }
 }
