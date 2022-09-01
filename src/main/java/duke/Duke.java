@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidDescriptionException;
@@ -10,12 +9,25 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Represents the chatbot and how it facilitates the interactions between
+ * the user and the chatbot.
+ */
 public class Duke {
 
+    private static String welcome = "Hello! I'm Seaward,\n"
+            + "your friendly neighbourhood chatbot.\n"
+            + "Type something and I will reply!";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Parser parser;
 
+    /**
+     * Returns a Duke object which takes in a string that represents the file path that contains the
+     * tasks of the user which is then passed into the storage object.
+     * @param filePath A string representing the file path that stores the tasks.
+     */
     public Duke(String filePath) {
         // Deals with interactions with the user
         // Most likely will be using Scanner
@@ -28,33 +40,30 @@ public class Duke {
 
         // Loading the tasks in the file to the taskList
         tasks = new TaskList(storage.load());
+
+        // Initialises the parser to read user commands
+        parser = new Parser(tasks, storage, ui);
     }
 
-    public void run() {
+    /**
+     * Returns a welcome message that greets the user when the user runs the chatbot.
+     * @return A welcome message.
+     */
+    public static String getWelcome() {
+        return welcome;
+    }
 
-        // Deals with reading user commands
-        Parser parser = new Parser(tasks, storage, ui);
-
-        // Greets the user
-        System.out.println(ui.getWelcome());
-
-        // Awaiting input
-        Scanner input = new Scanner(System.in);
-        while (true) {
-            String s = input.nextLine();
-            try {
-                System.out.println(parser.readInputString(s));
-                if (s.equals("bye")) {
-                    break;
-                }
-            } catch (InvalidDescriptionException | InvalidCommandException | IOException e) {
-                System.out.println(e.getMessage());
-            }
+    /**
+     * Returns an appropriate response from the parser according to the user input.
+     * @param input A string that represents the user input.
+     * @return A string that contains a success or failure message.
+     */
+    public String getResponse(String input) {
+        try {
+            String response = parser.readInputString(input);
+            return response;
+        } catch (InvalidDescriptionException | InvalidCommandException | IOException e) {
+            return e.getMessage();
         }
-        input.close();
-    }
-
-    public static void main(String[] args) {
-        new Duke("tasks.txt").run();
     }
 }

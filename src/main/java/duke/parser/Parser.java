@@ -77,7 +77,7 @@ public class Parser {
                     break;
                 }
             }
-            return ui.getByeMessage();
+            return "";
         case "list": {
             int numOfTasks = taskList.getNumOfTasks();
             if (numOfTasks == 0) {
@@ -160,7 +160,7 @@ public class Parser {
             }
         }
         default:
-            throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new InvalidCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 

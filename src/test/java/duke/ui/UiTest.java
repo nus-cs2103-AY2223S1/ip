@@ -1,15 +1,18 @@
 package duke.ui;
 
-import duke.tasklist.TaskList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import duke.tasklist.TaskList;
+
+
 
 public class UiTest {
-    Ui ui = new Ui();
-    TaskList taskList = new TaskList(new ArrayList<>());
+    private Ui ui = new Ui();
+    private TaskList taskList = new TaskList(new ArrayList<>());
 
     @Test
     public void testGetEmptyList() {

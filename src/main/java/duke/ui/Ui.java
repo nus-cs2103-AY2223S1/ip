@@ -12,25 +12,6 @@ import duke.tasklist.TaskList;
 
 public class Ui {
     /**
-     * Returns a welcome message when Seaward is first running.
-     * Also, it prompts the user to enter a command in.
-     * @return A welcome message.
-     */
-    public String getWelcome() {
-        return "Hello! I'm Seaward,\n"
-                    + "your friendly neighbourhood chatbot.\n"
-                    + "Type something and I will reply!";
-    }
-
-    /**
-     * Returns a goodbye message when a bye command is received by Seaward.
-     * @return A goodbye message.
-     */
-    public String getByeMessage() {
-        return "Seaward out!";
-    }
-
-    /**
      * Returns a message informing the user that there are no tasks in their list.
      * @return A empty list message.
      */
@@ -89,7 +70,7 @@ public class Ui {
      * Returns a success message informing the user that they have added a task.
      * @param description Description of the task.
      * @param numOfTasks Number of tasks in the list after adding the task.
-     * @return A success mesaage.
+     * @return A success message.
      */
     public String getAddTaskMessage(String description, int numOfTasks) {
         return "Noted. I have added:\n" + description + "\n"
@@ -97,10 +78,18 @@ public class Ui {
                 + numOfTasks + " task(s) in your list.";
     }
 
+    /**
+     * Returns a failure message informing the user that there are no matching tasks in the tasklist.
+     * @return A failure message.
+     */
     public String getNoMatchingTaskMessage() {
         return "Sorry! There are no matching tasks that contains ";
     }
 
+    /**
+     * Returns a success message informing the user that there is a matching task in the tasklist.
+     * @return A success message.
+     */
     public String getMatchingTaskMessage() {
         return "Here are the matching tasks in your list:";
     }
