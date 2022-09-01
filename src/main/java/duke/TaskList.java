@@ -13,6 +13,17 @@ public class TaskList {
         taskArray.add(task);
     }
 
+    public List<Integer> findTasks(String description) {
+        List<Integer> searchResults = new ArrayList<>();
+        for (int i = 0; i < taskArray.size(); i++) {
+            String taskDescription = taskArray.get(i).getDescription();
+            if (taskDescription.contains(description)) {
+                searchResults.add(i);
+            }
+        }
+        return searchResults;
+    }
+
     public void delete(int index) {
         taskArray.remove(index);
     }
