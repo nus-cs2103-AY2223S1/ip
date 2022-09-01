@@ -51,6 +51,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.Event~" + this.description + "~" + this.at;
+        return "kirby.tasks.Event~" + this.description + "~" + this.at;
     }
 }

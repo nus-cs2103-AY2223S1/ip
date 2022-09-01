@@ -52,6 +52,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.tasks.Deadline-" + this.description + "~" + this.by;
+        return "kirby.tasks.Deadline~" + this.description + "~" + this.by;
     }
 }

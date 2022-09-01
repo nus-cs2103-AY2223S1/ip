@@ -85,13 +85,13 @@ public class Storage {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("~");
                 switch (parts[0]) {
-                case "kirby.Todo":
+                case "kirby.tasks.Todo":
                     result.add(new Todo(parts[1]));
                     break;
                 case "kirby.tasks.Deadline":
                     result.add(new Deadline(parts[1], parts[2]));
                     break;
-                case "kirby.Event":
+                case "kirby.tasks.Event":
                     result.add(new Event(parts[1], parts[2]));
                     break;
                 default:

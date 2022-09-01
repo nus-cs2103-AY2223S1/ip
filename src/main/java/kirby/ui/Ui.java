@@ -9,6 +9,6 @@ public class Ui {
      * @return String of welcome message.
      */
     public static String showWelcome() {
-        return "Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?";
+        return "Hai I'm Kirby (੭｡╹▿╹｡)੭  \n" + "What amazing plans do you have today?";
     }
 }

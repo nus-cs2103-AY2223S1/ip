@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     public String setMarkedString(int taskNumber) {
-        return "Awesome :D I've marked " + tasks.get(taskNumber).toString() + " completed!";
+        return "Awesome :D I've marked \n" + tasks.get(taskNumber).toString() + " completed!";
     }
 
     /**
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     public String setUnmarkedString(int taskNumber) {
-        return "Okay, I've marked " + tasks.get(taskNumber).toString() + " pending!";
+        return "Okay, I've marked \n" + tasks.get(taskNumber).toString() + " pending!";
     }
 
     /**
@@ -80,7 +80,7 @@ public class TaskList {
     }
 
     public String addTaskString(Task task) {
-        return "Added into your bag of fabulous tasks: " + task.toString() + "\n" + printTaskCount(0);
+        return "Added into bag of fabulous tasks: \n" + task.toString() + "\n" + printTaskCount(0);
     }
 
     /**
@@ -94,7 +94,7 @@ public class TaskList {
     }
 
     public String removeTaskString(int taskIndex) {
-        return "Removed from your bag of fabulous tasks: " + tasks.get(taskIndex).toString() + "\n" + printTaskCount(1);
+        return "Removed from bag of fabulous tasks: \n" + tasks.get(taskIndex).toString() + "\n" + printTaskCount(1);
     }
     /**
      * Removes a task from the list.

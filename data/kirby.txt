@@ -1,2 +1,3 @@
-kirby.Todo~hello
-kirby.Event~date test~2012-12-01
+kirby.tasks.Todo~hi
+kirby.tasks.Deadline~ewd~2012-21-32
+kirby.tasks.Deadline~csd~1999-12-23

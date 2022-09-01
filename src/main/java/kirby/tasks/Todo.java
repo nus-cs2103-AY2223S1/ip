@@ -34,6 +34,6 @@ public class Todo extends Task {
      */
     @Override
     public String toFileOutput() {
-        return "kirby.Todo~" + this.description;
+        return "kirby.tasks.Todo~" + this.description;
     }
 }
