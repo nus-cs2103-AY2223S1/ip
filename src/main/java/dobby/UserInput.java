@@ -21,13 +21,12 @@ public class UserInput {
      *
      * @return String of the task type.
      */
-    public String readCommand() {
-        String input = scanner.nextLine();
+    public String readCommand(String input) {
         if (!input.contains(" ")) {
             taskType = input;
         } else {
-            taskType = Parser.getCmd(input);
-            rest = Parser.getRest(input);
+            taskType = Parser.getTaskType(input);
+            rest = Parser.getRestOfCommand(input);
             if (taskType.equals("mark") || taskType.equals("unmark") || taskType.equals("delete")) {
                 ind = Integer.parseInt(rest);
             } else if (taskType.equals("todo") || taskType.equals("find")) {

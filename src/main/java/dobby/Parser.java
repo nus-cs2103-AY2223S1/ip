@@ -29,10 +29,8 @@ public class Parser {
         try {
             int endIndex = rest.indexOf("/") - 1;
             return rest.substring(0, endIndex);
-        } catch (StringIndexOutOfBoundsException e) {
-            return "missingDate";
-        } catch(NullPointerException e) {
-            return "";
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            return "noDate";
         }
     }
 
@@ -66,7 +64,7 @@ public class Parser {
      * @param task The user input
      * @return String of command of user's input
      */
-    public static String getCmd(String task) {
+    public static String getTaskType(String task) {
         return task.split(" ")[0];
     }
 
@@ -76,25 +74,26 @@ public class Parser {
      * @param task The user input.
      * @return String of user's input without the command
      */
-    public static String getRest(String task) {
+    public static String getRestOfCommand(String task) {
         int firstSpace = task.indexOf(" ");
         String rest = task.substring(firstSpace + 1);
         return rest;
     }
 
     public static String getDateType(String rest) {
-        String dateType;
         try {
             int i = rest.indexOf("/");
-            dateType = rest.substring(i + 1, i + 3);
+            if (i == -1) {
+                return "noDate";
+            } else {
+                return rest.substring(i + 1, i + 3);
+            }
         } catch (StringIndexOutOfBoundsException e) {
-            dateType = "noDate";
+            return "noDate";
         }
-        return dateType;
     }
 
     //methods for interpreting .txt file
-
     /**
      * Parses the task in the saved file and returns the status of the task
      *

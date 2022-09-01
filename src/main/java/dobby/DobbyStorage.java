@@ -40,15 +40,6 @@ public class DobbyStorage {
     public static void load(DobbyList dl, String filePath) {
         try {
             File file = new File(filePath);
-//            if(!file.exists()) {
-//                DobbyChat.noFileToLoadFrom();
-//            }
-//            Scanner s = new Scanner(file);
-//            String task;
-//            while(s.hasNext()) {
-//                task = s.nextLine();
-//                dl.addTask(task);
-//            }
             file.createNewFile();
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String task;

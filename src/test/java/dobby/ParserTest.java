@@ -19,7 +19,7 @@ public class ParserTest {
     @Test
     public void getCmdFromUser_stringFromUser_TaskDate() {
         Parser parser = new Parser();
-        assertEquals(parser.getCmd("deadline deadlineTest /by 2022-07-07 2005"), "deadline");
+        assertEquals(parser.getTaskType("deadline deadlineTest /by 2022-07-07 2005"), "deadline");
     }
     @Test
     public void getCorrectDateFormat_stringOfDate_dateWithCorrectFormat() {

@@ -23,7 +23,7 @@ public class ByeCommand extends Command {
     public void execute(DobbyList dl, UserInput ui) throws IOException {
         isBye();
         DobbyStorage.save(dl, Dobby.getFilePath());
-        DobbyChat.sayBye();
+        DobbyChat.getBye();
         isBye = true;
     }
 }

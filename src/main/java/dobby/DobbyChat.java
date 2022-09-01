@@ -6,20 +6,13 @@ import dobby.tasks.Task;
  * DobbyChat is a class that handles various outputs Dobby will give.
  */
 public class DobbyChat {
-    private static final String hello = "Hello! I'm Dobby\n"
-            + "\t" + "How can I help you?";
-    private static final String bye = "Byebye. Dobby will miss you!";
-    private static final String line = "\t----------------------------------------------";
-
     /**
      * Prints messages in a specific format.
      *
      * @param c String to be printed.
      */
     private static void printChat(String c) {
-        System.out.println(line);
-        System.out.println("\t" + c);
-        System.out.println(line);
+        System.out.println(c);
     }
 
     /**
@@ -34,15 +27,28 @@ public class DobbyChat {
     /**
      * Prints message to welcome users.
      */
-    public static void sayHello() {
-        printChat(hello);
+    public static void getHello() {
+        printChat("Hello! I'm Dobby\n" + "How can I help you?");
     }
 
     /**
      * Prints message to bid farewell to users.
      */
-    public static void sayBye() {
-        printChat(bye);
+    public static void getBye() {
+        printChat("Byebye. Dobby will miss you!");
+    }
+
+    public static void getHelp() {
+        printChat("Here are some commands Dobby understands:\n"
+                + "\t1. todo [task name]\n"
+                + "\t2. deadline [task name] /by [YYYY-MM-DD HHMM]\n"
+                + "\t3. event [task name] /at [YYYY-MM-DD HHMM]\n"
+                + "\t4. list\n"
+                + "\t5. done [task number]\n"
+                + "\t6. delete [task number]\n"
+                + "\t7. find [keyword]\n"
+                + "\t8. date [date]\n"
+                + "\t9. bye\n");
     }
 
     /**
@@ -51,7 +57,7 @@ public class DobbyChat {
      * @param s task to be marked
      */
     public static void marked(String s) {
-        String marked = "Well done master! Dobby has marked the following task as done: \n\t";
+        String marked = "Well done master! Dobby has marked the following task as done: \n";
         String toPrint = marked + s;
         printChat(toPrint);
     }
@@ -62,7 +68,7 @@ public class DobbyChat {
      * @param s task to be unmarked
      */
     public static void unmarked(String s) {
-        String unmarked = "OK, Dobby will take care of\n\t";
+        String unmarked = "OK, Dobby will take care of\n";
         String toPrint = unmarked + s;
         printChat(toPrint);
     }
@@ -74,10 +80,10 @@ public class DobbyChat {
      * @param list list where task is added to
      */
     public static void added(Task task, DobbyList list) {
-        String taskString = task.toString() + "\n\t";
+        String taskString = task.toString() + "\n";
 
-        String accept = "Yes master, Dobby will add the following to the list: \n\t";
-        String length = "\n\tYou now have " + list.getLength() + " task(s) left.\n";
+        String accept = "Yes master, Dobby will add the following to the list: \n";
+        String length = "\nYou now have " + list.getLength() + " task(s) left.\n";
         printChat(accept + taskString + length);
     }
 
@@ -91,11 +97,11 @@ public class DobbyChat {
         if (list.isEmpty()) {
             printChat("There is no task left for Dobby to delete, YAYYYYY");
         } else {
-            String taskString = task.toString() + "\n\t";
+            String taskString = task.toString() + "\n";
 
-            String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n\n\t"
-                    + "Dobby has removed this task: \n\t";
-            String length = "\n\tYou now have " + (list.getLength() - 1) + " task(s) in the list.\n";
+            String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n\n"
+                    + "Dobby has removed this task: \n";
+            String length = "\nYou now have " + (list.getLength() - 1) + " task(s) in the list.\n";
             printChat(deleted + taskString + length);
         }
     }
@@ -114,12 +120,6 @@ public class DobbyChat {
         printChat("Please add the event date after the task name using /at");
     }
 
-    /**
-     * Error message when no date is added after task description.
-     */
-    public static void noDate() {
-        printChat("Please add the date after the task name using /at or /by");
-    }
     /**
      * Error message when false command is entered.
      */
@@ -206,5 +206,9 @@ public class DobbyChat {
 
     public static void noFileToLoadFrom() {
         printChat("Dobby can't find any previous tasks to load from");
+    }
+
+    public static void error() {
+        printChat("there is an error here");
     }
 }

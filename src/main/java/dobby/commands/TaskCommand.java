@@ -2,9 +2,7 @@ package dobby.commands;
 
 import java.util.Objects;
 
-import dobby.DobbyChat;
-import dobby.DobbyList;
-import dobby.UserInput;
+import dobby.*;
 import dobby.tasks.Deadline;
 import dobby.tasks.Event;
 import dobby.tasks.Todo;
@@ -26,7 +24,7 @@ public class TaskCommand extends Command {
             String desc = ui.getDesc();
             String date;
             if (desc.equals("")) {
-                DobbyChat.noDate();
+                DobbyChat.noTaskDesc();
             } else {
                 if (cmd.equals("todo")) {
                     Todo newTodo = new Todo(desc);
@@ -34,18 +32,23 @@ public class TaskCommand extends Command {
                     DobbyChat.added(newTodo, dl);
                 } else {
                     date = ui.getDate();
-                    if (Objects.equals(date, "wrongDateFormat")) {
+                    //if date has the wrong format
+                    if (date.equals( "wrongDateFormat")) {
                         DobbyChat.wrongDateFormat();
+                    //if user didnt use the /by command
                     } else if(date.equals("wrongDeadline")) {
                         DobbyChat.noDeadlineDate();
+                    //if user didnt use the /at command
                     } else if(date.equals("wrongEvent")) {
                         DobbyChat.noEventDate();
-                    } else if (Objects.equals(date, "noDate")) {
+                    //if user didnt include the date
+                    } else if (date.equals("noDate") | desc.equals("noDate")) {
                         if (cmd.equals("event")) {
                             DobbyChat.noEventDate();
                         } else {
                             DobbyChat.noDeadlineDate();
                         }
+                    //user entered everything correctly
                     } else {
                         if (cmd.equals("deadline")) {
                             Deadline newDeadline = new Deadline(desc, date);
@@ -61,6 +64,8 @@ public class TaskCommand extends Command {
             }
             //only when there is no space behind "deadline", else is handled above
         } catch (StringIndexOutOfBoundsException e) {
+            DobbyChat.noTaskDesc();
+        } catch (NullPointerException e) {
             DobbyChat.noTaskDesc();
         }
     }
