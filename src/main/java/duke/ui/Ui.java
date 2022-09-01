@@ -11,41 +11,11 @@ import java.io.PrintStream;
  * UI of the application Inspired by AddressBook
  */
 public class Ui {
-    private final BufferedReader in;
-    private final PrintStream out;
 
     /**
-     * Initialises Ui to allow input and output.
+     * Initialises Ui.
      */
     public Ui() {
-        this(new InputStreamReader(System.in), System.out);
-    }
-
-    /**
-     * Initialises Ui to allow input and output.
-     *
-     * @param in
-     * @param out
-     */
-    public Ui(InputStreamReader in, PrintStream out) {
-        this.in = new BufferedReader(in);
-        this.out = out;
-    }
-
-    /**
-     * Method to read inputs from user line by line.
-     *
-     * @return input
-     */
-    public String readCommand() {
-        String input = "";
-        try {
-            input = in.readLine();
-            return input;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return input;
     }
 
     /**
@@ -60,42 +30,12 @@ public class Ui {
     }
 
     /**
-     * Method to returns a exit message to the user.
+     * Method to returns an exit message to the user.
      *
      * @return exitMessage
      */
     public static String exitMessage() {
         return "Bye. Hope to see you again soon!";
-    }
-
-    /**
-     * Generic method to print a message.
-     *
-     * @param strArray
-     */
-    public void printMessage(String[] strArray) {
-        this.out.println("_______________________________________________________");
-        this.out.println("\tHere are the tasks in your list:");
-        for (String str : strArray) {
-            this.out.println("\t" + str);
-        }
-        this.out.println("_______________________________________________________");
-    }
-
-    /**
-     * Generic method to print a message.
-     *
-     * @param strArray
-     * @param message
-     * @return printString
-     */
-    public void printMessage(String[] strArray, String message) {
-        this.out.println("_______________________________________________________");
-        this.out.println(String.format("\t %s", message));
-        for (String str : strArray) {
-            this.out.println("\t" + str);
-        }
-        this.out.println("_______________________________________________________");
     }
 
     /**
