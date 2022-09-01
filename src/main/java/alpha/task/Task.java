@@ -16,10 +16,10 @@ public abstract class Task {
         this.taskType = taskType;
     }
     public String getDescription() {
-        return description; // mark done alpha.task with X
+        return description;
     }
     public String getStatus() {
-        return (status ? "X" : " "); // mark done alpha.task with X
+        return (status ? "X" : " ");
     }
 
     public String getTaskType() {
@@ -32,15 +32,4 @@ public abstract class Task {
     public String toString() {
         return String.format(uI.ANSI_BLUE + "[ %s ] [ %s ] %s", this.getTaskType(), this.getStatus(), this.getDescription() + uI.ANSI_RESET);
     }
-
-    //@Override
-    /*public boolean equals(Object obj) {
-        if(this == obj) {
-            return true;
-        } else if(obj instanceof Task) {
-            Task t = (Task) obj;
-            return (t.getDescription().equals(this.getDescription()) && t.getStatus().equals(this.getStatus()) && t.getTaskType().equals(this.getTaskType()));
-        }
-        return false;
-    }*/
 }

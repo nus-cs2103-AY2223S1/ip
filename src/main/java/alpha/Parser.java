@@ -5,7 +5,6 @@ import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Todo;
 
-import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -54,6 +53,10 @@ public class Parser {
             }
             case "help": {
                 return new Help();
+            }
+            case "find": {
+                checkInvalidInput(input, 4);
+                return new Find(inputTokens[1]);
             }
             case "bye": {
                 return new Exit();

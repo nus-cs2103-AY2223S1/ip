@@ -16,7 +16,7 @@ public class Deadline extends Task {
         return this.deadline;
     }
     @Override
-    public String toString() throws DateTimeException {
+    public String toString() {
         return super.toString() + String.format(ANSI_RED + " (by: %s)", deadline + ANSI_RESET);
     }
 

@@ -1,1 +1,3 @@
-[D] [ ] xyz (by Dec 12 2002)
+T | X | read
+D |   | book return | Dec 12 2020
+E |   | buy book | Dec 12 2022

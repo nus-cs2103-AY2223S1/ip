@@ -6,6 +6,7 @@ import alpha.TaskList;
 import alpha.Ui;
 
 public class Help extends Command{
+
     @Override
     public void execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
         uI.colouredPrint(uI.ANSI_WHITE, "   COMMAND \t\t" + "FORMAT");
@@ -16,5 +17,6 @@ public class Help extends Command{
         uI.colouredPrint(uI.ANSI_WHITE, "5. unmark  \t\t" + "unmark taskNumber");
         uI.colouredPrint(uI.ANSI_WHITE, "6. delete  \t\t" + "delete taskNumber");
         uI.colouredPrint(uI.ANSI_WHITE, "7. list    \t\t" + "list");
+        uI.colouredPrint(uI.ANSI_WHITE, "8. find    \t\t" + "find keyword");
     }
 }
