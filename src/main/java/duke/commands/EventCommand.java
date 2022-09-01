@@ -23,7 +23,9 @@ public class EventCommand extends Command {
         StringBuilder event = new StringBuilder();
 
         for (int i = 1; i < splitInput.length; ++i) {
-            if (splitInput[i].equals("/at")) break;
+            if (splitInput[i].equals("/at")) {
+                break;
+            }
             event.append(" " + splitInput[i]);
         }
 

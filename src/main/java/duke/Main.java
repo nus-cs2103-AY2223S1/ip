@@ -7,6 +7,10 @@ import duke.data.Duke;
  */
 public class Main {
 
+    /**
+     * Main runner for the Duke bot.
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

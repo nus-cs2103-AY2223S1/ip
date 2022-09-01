@@ -3,7 +3,6 @@ package duke.data;
 import java.util.Scanner;
 
 import duke.commands.Command;
-import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -17,6 +16,9 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Constructor for a Duke bot.
+     */
     public Duke() {
         this.ui = new Ui(new Scanner(System.in));
         this.storage = new Storage();

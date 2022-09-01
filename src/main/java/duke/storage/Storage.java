@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import duke.data.TaskList;
-import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.ToDo;
 
 /**
@@ -88,6 +88,8 @@ public class Storage {
                 case "D":
                     Task deadline = new Deadline(taskString[2], taskString[3], taskString[1].equals("Y"));
                     taskList.add(deadline);
+                    break;
+                default:
                     break;
                 }
             }

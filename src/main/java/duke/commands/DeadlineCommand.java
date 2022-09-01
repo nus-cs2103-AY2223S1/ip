@@ -23,7 +23,9 @@ public class DeadlineCommand extends Command {
         StringBuilder deadline = new StringBuilder();
 
         for (int i = 1; i < splitInput.length; ++i) {
-            if (splitInput[i].equals("/by")) break;
+            if (splitInput[i].equals("/by")) {
+                break;
+            }
             deadline.append(" " + splitInput[i]);
         }
 
