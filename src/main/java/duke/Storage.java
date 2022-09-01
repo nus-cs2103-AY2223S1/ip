@@ -64,37 +64,43 @@ public class Storage {
                 String marked = temp.next();
                 String description = temp.next();
 
-                if (type.equals("D")) {
-                    String ignore1 = temp.next();
-                    String date = temp.next();
-                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String dateAlt = input.format(alt.parse(date));
-                    Deadline d = new Deadline(description, dateAlt);
-                    if (isMarked(marked)) {
-                        d.mark();
+                switch (type) {
+                    case "D": {
+                        String ignore1 = temp.next();
+                        String date = temp.next();
+                        DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
+                        DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        String dateAlt = input.format(alt.parse(date));
+                        Deadline d = new Deadline(description, dateAlt);
+                        if (isMarked(marked)) {
+                            d.mark();
+                        }
+                        tasks.add(d);
+                        break;
                     }
-                    tasks.add(d);
-                } else if (type.equals("E")) {
-                    String ignore1 = temp.next();
-                    String date = temp.next();
-                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String dateAlt = input.format(alt.parse(date));
-                    Deadline d = new Deadline(description, dateAlt);
-                    Event e = new Event(description, dateAlt);
-                    if (isMarked(marked)) {
-                        e.mark();
+                    case "E": {
+                        String ignore1 = temp.next();
+                        String date = temp.next();
+                        DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
+                        DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        String dateAlt = input.format(alt.parse(date));
+                        Deadline d = new Deadline(description, dateAlt);
+                        Event e = new Event(description, dateAlt);
+                        if (isMarked(marked)) {
+                            e.mark();
+                        }
+                        tasks.add(e);
+                        break;
                     }
-                    tasks.add(e);
-                } else if (type.equals("T")) {
-                    Todo t = new Todo(description);
-                    if (isMarked(marked)) {
-                        t.mark();
-                    }
-                    tasks.add(t);
-                } else {
-                    throw new DukeException("Invalid or no input read.");
+                    case "T":
+                        Todo t = new Todo(description);
+                        if (isMarked(marked)) {
+                            t.mark();
+                        }
+                        tasks.add(t);
+                        break;
+                    default:
+                        throw new DukeException("Invalid or no input read.");
                 }
             }
             return tasks;
