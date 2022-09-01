@@ -29,7 +29,7 @@ public class Event extends Task {
     public Event(String description, boolean isDone , String at) {
 
         super(description, isDone);
-        this.at= LocalDate.parse(at);
+        this.at = LocalDate.parse(at);
     }
 
     /**

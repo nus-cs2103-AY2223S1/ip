@@ -1,15 +1,17 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.exceptions.DukeMissingIndexException;
 
-import java.util.ArrayList;
+
 
 /**
  * Represents <code>TaskList</code> to hold <code>Task</code>
  */
 public class TaskList {
 
-    private static ArrayList<Task> taskList = new ArrayList<>();;
+    private static ArrayList<Task> taskList = new ArrayList<>();
 
     /**
      * Add a task into the taskList.
@@ -77,6 +79,11 @@ public class TaskList {
         taskList.remove(index);
     }
 
+    /**
+     * find and print all task with the prefix.
+     *
+     * @param prefix prefix of task to find.
+     */
     public static void find(String prefix) {
         System.out.println("Here are the matching tasks in your list:");
 

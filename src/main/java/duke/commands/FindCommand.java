@@ -3,10 +3,17 @@ package duke.commands;
 import duke.Storage;
 import duke.Ui;
 import duke.exceptions.DukeEmptyCommandException;
-import duke.exceptions.DukeEmptyDescriptionException;
 
-public class FindCommand extends Command{
+/**
+ * Represents a <code>Command</code> to find tasks.
+ */
+public class FindCommand extends Command {
 
+    /**
+     * Constructs a <code>FindCommand</code>.
+     *
+     * @param description
+     */
     public FindCommand(String description) {
         super(description);
     }

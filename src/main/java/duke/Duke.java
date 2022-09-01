@@ -1,9 +1,10 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.commands.Command;
 import duke.exceptions.DukeUnknownCommandException;
 
-import java.io.IOException;
 
 /**
  * Chatbot that read user input to modify a tasklist
@@ -46,6 +47,11 @@ public class Duke {
 
     }
 
+    /**
+     * Start duke.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         Duke duke = new Duke("data/tasks.txt");

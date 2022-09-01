@@ -25,45 +25,45 @@ public class Parser {
      * @param fullCommand input taken from Ui.
      * @return command to be executed.
      */
-    public static Command parse(String fullCommand) throws DukeUnknownCommandException  {
+    public static Command parse(String fullCommand) throws DukeUnknownCommandException {
 
-            if (fullCommand.equals("bye")) {
-                return new ExitCommand(fullCommand);
-            }
+        if (fullCommand.equals("bye")) {
+            return new ExitCommand(fullCommand);
+        }
 
-            if (fullCommand.equals("list")) {
-                return new ReadCommand(fullCommand);
-            }
+        if (fullCommand.equals("list")) {
+            return new ReadCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("mark")) {
-                return new MarkCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("mark")) {
+            return new MarkCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("unmark")) {
-                return new UnMarkCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("unmark")) {
+            return new UnMarkCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("delete")) {
-                return new DeleteCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("delete")) {
+            return new DeleteCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("deadline")) {
-                return new AddDeadlineCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("deadline")) {
+            return new AddDeadlineCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("event")) {
-                return new AddEventCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("event")) {
+            return new AddEventCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("todo")) {
-                return new AddToDoCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("todo")) {
+            return new AddToDoCommand(fullCommand);
+        }
 
-            if (fullCommand.startsWith("find")) {
-                return new FindCommand(fullCommand);
-            }
+        if (fullCommand.startsWith("find")) {
+            return new FindCommand(fullCommand);
+        }
 
-            throw new DukeUnknownCommandException();
+        throw new DukeUnknownCommandException();
 
 
     }

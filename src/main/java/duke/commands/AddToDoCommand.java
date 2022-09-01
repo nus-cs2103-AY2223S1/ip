@@ -10,7 +10,7 @@ import duke.exceptions.DukeEmptyCommandException;
 /**
  * Represents a <code>Command</code> to add <code>ToDo</code>.
  */
-public class AddToDoCommand extends Command{
+public class AddToDoCommand extends Command {
 
     /**
      * Constructs a <code>AddToDoCommand</code> command.

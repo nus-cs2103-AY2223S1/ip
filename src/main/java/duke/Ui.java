@@ -136,6 +136,11 @@ public class Ui {
         System.out.println(error);
     }
 
+    /**
+     * Prints the found tasks.
+     *
+     * @param prefix prefix of tasks to find.
+     */
     public static void printFind(String prefix) {
         printSeparator();
         TaskList.find(prefix);

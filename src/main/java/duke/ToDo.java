@@ -3,7 +3,7 @@ package duke;
 /**
  * Represents a standard <code>Task</code>.
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * construct a <code>ToDo</code> <code>Task</code>.

@@ -19,6 +19,11 @@ public class ReadCommand extends Command {
         super(description);
     }
 
+    /**
+     * Read the current task in the tasklist.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
         try {
             if (description.length() > 4) {
