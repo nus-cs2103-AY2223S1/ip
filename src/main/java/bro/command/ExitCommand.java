@@ -6,7 +6,7 @@ import bro.Ui;
 
 public class ExitCommand extends Command {
 
-    public ExitCommand(){}
+    public ExitCommand() {}
 
     @Override
     public void execute(TaskList tasklist, Ui ui, Storage storage) {

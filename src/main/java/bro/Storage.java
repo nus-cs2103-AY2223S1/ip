@@ -45,18 +45,18 @@ public class Storage {
                     }
                 }
                 else if(s.startsWith("[D]")){
-                    String k = s.substring(6, s.indexOf(" (by")).trim();
-                    String h = s.split("by:")[1].replace(')', ' ').trim();
-                    Task t = new Deadline(k, h);
+                    String desc = s.substring(6, s.indexOf(" (by")).trim();
+                    String by = s.split("by:")[1].replace(')', ' ').trim();
+                    Task t = new Deadline(desc, by);
                     list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
                     }
                 }
                 else if(s.startsWith("[E]")){
-                    String k = s.substring(6, s.indexOf(" (at")).trim();
-                    String h = s.split("at:")[1].replace(')', ' ').trim();
-                    Task t = new Event(k, h);
+                    String desc = s.substring(6, s.indexOf(" (at")).trim();
+                    String at = s.split("at:")[1].replace(')', ' ').trim();
+                    Task t = new Event(desc, at);
                     list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
