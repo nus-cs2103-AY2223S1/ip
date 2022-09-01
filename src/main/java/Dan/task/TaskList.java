@@ -1,5 +1,6 @@
 package dan.task;
 
+import dan.task.Task;
 import java.util.List;
 
 import dan.DanException;

@@ -11,7 +11,7 @@ import dan.parser.Parser;
 import dan.ui.Ui;
 
 /**
- * Dan is a personal chat bot that helps its user keep track of tasks. It currently implements the following commands:
+ * Dan is a personal chat bot that helps its user keep track of tasks. It currently supports the following commands:
  * 1.
  *
  * @author Daniel Lee
