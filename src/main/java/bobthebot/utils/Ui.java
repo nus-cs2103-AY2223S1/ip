@@ -2,7 +2,6 @@ package bobthebot.utils;
 
 import bobthebot.tasks.Task;
 import bobthebot.tasks.ToDoList;
-import bobthebot.tasks.Todo;
 
 /**
  * Class which handles the interaction of BobTheBot and the user.

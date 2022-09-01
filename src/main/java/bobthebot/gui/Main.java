@@ -1,5 +1,8 @@
 package bobthebot.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
@@ -11,18 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends Application {
 

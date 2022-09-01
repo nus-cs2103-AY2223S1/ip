@@ -45,10 +45,9 @@ public class BobTheBot {
         scanner.close();
     }
 
-//    /**
-//     * Main class where constructor is called and BobTheBot is run.
-//     */
-//    public static void main(String[] args) {
-//        new BobTheBot("./../../data/data.txt").run();
-//    }
+    /*
+    public static void main(String[] args) {
+        new BobTheBot("./../../data/data.txt").run();
+    }
+    */
 }
