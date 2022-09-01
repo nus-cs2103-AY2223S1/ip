@@ -2,7 +2,17 @@ package duke.main;
 
 import java.time.DateTimeException;
 
-import duke.command.*;
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventsCommand;
+import duke.command.AddTodoCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ErrorCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * Represents a Parser that determines what kind of input was obtained
@@ -34,15 +44,15 @@ public class Parser {
                 } else if (command.equals("unmark")) {
                     return new UnmarkCommand(task);
                 } else if (command.equals("todo")) {
-                    return new AddTodoCommand(task);
+                    return new AddTodoCommand(input);
                 } else if (command.equals("deadline")) {
-                    return new AddDeadlineCommand(task, inputs[3]);
+                    return new AddDeadlineCommand(input);
                 } else if (command.equals("event")) {
-                    return new AddEventsCommand(task, inputs[3]);
+                    return new AddEventsCommand(input);
                 } else if (command.equals("delete")) {
                     return new DeleteCommand(inputs[1]);
                 } else if (command.equals("find")) {
-                    return new FindCommand(inputs[1]);
+                    return new FindCommand(input);
                 } else {
                     return new ErrorCommand();
                 }

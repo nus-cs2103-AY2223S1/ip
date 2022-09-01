@@ -20,12 +20,12 @@ public class AddDeadlineCommand extends Command {
     /**
      * Constructor for the AddDeadlineCommand.
      *
-     * @param taskName
-     * @param date
+     * @param task
      */
-    public AddDeadlineCommand(String taskName, String date) throws DateTimeParseException {
-        this.taskName = taskName;
-        this.localDate = LocalDate.parse(date);
+    public AddDeadlineCommand(String task) throws DateTimeParseException {
+        int dateIndex = task.indexOf("by");
+        this.taskName = task.substring(9, dateIndex);
+        this.localDate = LocalDate.parse(task.substring(dateIndex + 3));
     }
 
     /**
@@ -42,6 +42,5 @@ public class AddDeadlineCommand extends Command {
         taskList.addTasks(deadline);
         storage.saveTasks(taskList);
         return deadline + " added!";
-//        ui.repeater(deadline + " added!");
     }
 }

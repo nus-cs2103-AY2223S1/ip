@@ -36,8 +36,8 @@ public class Duke {
             if (command instanceof ByeCommand) {
                 isBye = true;
             }
-            return command.execute(taskList, ui, storage) + "\n You have "
-                    + taskList.length() + " items in the list";
+            return command.execute(taskList, ui, storage) + "\n\n You have "
+                    + taskList.length() + " items in the list btw! hehe";
         } catch (InputMismatchException | IndexOutOfBoundsException
                 | NumberFormatException | NullPointerException e) {
             return new ErrorCommand().execute(taskList, ui, storage);
@@ -52,7 +52,4 @@ public class Duke {
         return isBye;
     }
 
-    //    public static void main(String[] args) {
-//        Duke duke = new Duke("./data/duke.main.Duke.txt");
-//    }
 }

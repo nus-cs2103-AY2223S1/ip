@@ -13,7 +13,7 @@ import duke.task.Task;
  * Tests the storage class
  */
 public class StorageTest {
-    private final String File_Path = "src/test/data/duke.main.Duke.txt";
+    private final String filePath = "src/test/data/duke.main.Duke.txt";
 
     /**
      * Test Case of load() method.
@@ -21,7 +21,7 @@ public class StorageTest {
      */
     @Test
     public void load_loadingOneTask_dataLoaded() throws IOException {
-        Storage storage = new Storage(File_Path);
+        Storage storage = new Storage(filePath);
         TaskListStub taskList = new TaskListStub(storage.loadTasks());
         Task task = taskList.getTask(0);
 

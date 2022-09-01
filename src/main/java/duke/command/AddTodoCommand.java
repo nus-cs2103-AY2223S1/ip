@@ -16,10 +16,10 @@ public class AddTodoCommand extends Command {
     /**
      * Constructor for the AddEventCommand.
      *
-     * @param taskName
+     * @param task
      */
-    public AddTodoCommand(String taskName) {
-        this.taskName = taskName;
+    public AddTodoCommand(String task) {
+        this.taskName = task.substring(5);
     }
 
     /**

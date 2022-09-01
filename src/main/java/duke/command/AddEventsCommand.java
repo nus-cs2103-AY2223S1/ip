@@ -20,12 +20,12 @@ public class AddEventsCommand extends Command {
     /**
      * Constructor for the AddEventCommand.
      *
-     * @param taskName
-     * @param date
+     * @param task
      */
-    public AddEventsCommand(String taskName, String date) throws DateTimeParseException {
-        this.taskName = taskName;
-        this.localDate = LocalDate.parse(date);
+    public AddEventsCommand(String task) throws DateTimeParseException {
+        int dateIndex = task.indexOf("at");
+        this.taskName = task.substring(6, dateIndex);
+        this.localDate = LocalDate.parse(task.substring(dateIndex + 3));
     }
     /**
      * Execute method that is used to add an Event task to a tasklist, save the event

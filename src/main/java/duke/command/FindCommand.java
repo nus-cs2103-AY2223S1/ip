@@ -12,7 +12,7 @@ public class FindCommand extends Command {
     private String input;
 
     public FindCommand(String input) {
-        this.input = input;
+        this.input = input.substring(5);
     }
 
     @Override
