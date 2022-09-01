@@ -15,7 +15,7 @@ public abstract class Command {
      * @param ui User Interface of the to-do-list.
      * @param storage Storage option.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Returns a flag whether the command will terminate the program.

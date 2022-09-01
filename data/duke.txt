@@ -1,5 +1,5 @@
 E,Y, meeting,2022-08-25 0900
-E,Y, sleep,2022-08-24 2359
-D,N, buy food,2022-08-25 2300
+D,Y, buy food,2022-08-25 2300
 T,N, eat food
 T,N, do work
+T,N, breathe

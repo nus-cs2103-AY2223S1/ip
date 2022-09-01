@@ -16,16 +16,23 @@ public class ListCommand extends Command {
      * @param storage Storage option.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+
+        StringBuilder sb = new StringBuilder();
+
         System.out.println("Here are the tasks in your list:");
+        sb.append("Here are the tasks in your list:\n");
 
         if (taskList.size() == 0) {
             System.out.println("Oops, there are no tasks. Please add tasks to the list!");
+            sb.append("Oops, there are no tasks. Please add tasks to the list!");
         } else {
             for (int i = 0; i < taskList.size(); ++i) {
                 System.out.printf(" %d. %s\n", i + 1, taskList.get(i));
+                sb.append(String.format(" %d. %s\n", i + 1, taskList.get(i)));
             }
         }
+        return sb.toString();
     }
 
 

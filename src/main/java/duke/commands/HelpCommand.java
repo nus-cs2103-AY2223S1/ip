@@ -16,7 +16,10 @@ public class HelpCommand extends Command {
      * @param storage Storage option.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+
+        StringBuilder ret = new StringBuilder();
+
         String[] commands = new String[]{"help: prints the help menu",
                 "list: prints out the todo list",
                 "bye: closes the program",
@@ -29,7 +32,10 @@ public class HelpCommand extends Command {
 
         for (int i = 0; i < commands.length; ++i) {
             System.out.printf("\t%s", commands[i]);
+            ret.append(String.format("\t%s\n", commands[i]));
         }
+
+        return ret.toString();
     }
 
     @Override
