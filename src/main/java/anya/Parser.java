@@ -14,27 +14,39 @@ public class Parser {
     }
 
     // anya.task.Task related
-    public static String parseTaskName(String userInput) {
-        if (userInput.contains(" /by ") || userInput.contains(" /at ")) {
-            String inputTask = userInput.split(" ", 2)[1];
-            String[] details = inputTask.split(" /");
-            return details[0];
+    public static String parseTaskName(String userInput) throws AnyaException{
+        try {
+            if (userInput.contains(" /by ") || userInput.contains(" /at ")) {
+                String inputTask = userInput.split(" ", 2)[1];
+                String[] details = inputTask.split(" /");
+                return details[0];
+            }
+            return userInput.split(" ", 2)[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AnyaException("The task name cannot be empty.");
         }
-        return userInput.split(" ", 2)[1];
     }
 
-    public static LocalDateTime parseDateTime(String userInput) {
+    public static LocalDateTime parseDateTime(String userInput) throws AnyaException{
         String[] details = userInput.split(" /by ", 2);
-        String dateTimeStr = details[1];
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-        return dateTime;
+        try {
+            String dateTimeStr = details[1];
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+            return dateTime;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AnyaException("deadline command missing /by");
+        }
     }
 
-    public static String parseEventDetails(String userInput) {
+    public static String parseEventDetails(String userInput) throws AnyaException{
         String[] details = userInput.split(" /at ", 2);
-        String eventDetails = details[1];
-        return eventDetails;
+        try {
+            String eventDetails = details[1];
+            return eventDetails;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AnyaException("event command missing /at");
+        }
     }
 
     public static String parseKeyword(String userInput) {

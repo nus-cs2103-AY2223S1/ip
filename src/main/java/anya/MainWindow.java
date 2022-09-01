@@ -23,8 +23,8 @@ public class MainWindow extends AnchorPane {
 
     private Anya anya;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/UserDefault.png"));
+    private Image anyaImage = new Image(this.getClass().getResourceAsStream("/images/AnyaDefault.png"));
 
     @FXML
     public void initialize() {
@@ -33,6 +33,7 @@ public class MainWindow extends AnchorPane {
 
     public void setAnya(Anya anya) {
         this.anya = anya;
+        displayInitialMessage();
     }
 
     /**
@@ -45,8 +46,13 @@ public class MainWindow extends AnchorPane {
         String response = anya.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, anyaImage)
         );
         userInput.clear();
+    }
+
+    private void displayInitialMessage() {
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(anya.getLoadFileStatus(), anyaImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(anya.greet(), anyaImage));
     }
 }

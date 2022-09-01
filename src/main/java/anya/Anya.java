@@ -19,115 +19,130 @@ public class Anya {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.ui.loadingFileMessage();
             this.tasks = new TaskList(storage.loadFile());
         } catch (IOException e) {
-            this.ui.errorMessage(e.getMessage() + " Creating a new database");
             this.tasks = new TaskList();
-        } finally {
-            this.ui.loadFileSuccessMessage();
-            getList(tasks);
         }
     }
 
-    public void run() {
-        String userInput;
-        String command;
-
-        // Greet
-        ui.greetMessage();
-
-        // Get user input
-        userInput = this.ui.readLine();
-
-        while (!userInput.equals("bye")) {
-            try {
-                command = Parser.parseCommand(userInput);
-                if (command.equals("list")) {
-                    getList(tasks);
-                } else if (command.equals("find")) {
-                    String keyword = Parser.parseKeyword(userInput);
-                    find(tasks, keyword);
-                } else if (command.equals("mark")) {
-                    int index = Parser.parseCommandIndex(userInput);
-                    mark(tasks, index);
-                } else if (command.equals("unmark")) {
-                    int index = Parser.parseCommandIndex(userInput);
-                    unmark(tasks, index);
-                } else if (command.equals("delete")) {
-                    int index = Parser.parseCommandIndex(userInput);
-                    delete(tasks, index);
-                } else if (command.equals("todo")) {
-                    try {
-                        String taskName = Parser.parseTaskName(userInput);
-                        Task task = new Todo(taskName);
-                        addTask(tasks, task);
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        throw new AnyaException("The description of a todo cannot be empty.");
-                    }
-                } else if (command.equals("deadline")) {
-                    try {
-                        String taskName = Parser.parseTaskName(userInput);
-                        LocalDateTime dateTime = Parser.parseDateTime(userInput);
-                        Task task = new Deadline(taskName, dateTime);
-                        addTask(tasks, task);
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        throw new AnyaException("The description/cut-off time of a deadline cannot be empty.");
-                    } catch (DateTimeParseException e) {
-                        this.ui.errorMessage("Invalid format.");
-                        this.ui.deadlineFormatExample();
-                    }
-                } else if (command.equals("event")) {
-                    try {
-                        String taskName = Parser.parseTaskName(userInput);
-                        String eventDetails = Parser.parseEventDetails(userInput);
-                        Task task = new Event(taskName, eventDetails);
-                        addTask(tasks, task);
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        throw new AnyaException("The description/time of an event cannot be empty.");
-                    }
-                } else {
-                    throw new AnyaException("Anya doesn't understand this command.");
-                }
-
-            } catch (AnyaException e) {
-                this.ui.errorMessage(e.getMessage());
-            }
-
-            userInput = this.ui.readLine();
-        }
-
-        // Exit
+    /**
+     * Takes in a user input and runs the relevant commands.
+     *
+     * @param userInput A string of command.
+     * @return A response depending on the command entered.
+     */
+    String getResponse(String userInput) {
+        String command = Parser.parseCommand(userInput);
         try {
-            this.ui.savingFileMessage();
-            this.storage.saveFile(tasks);
-            this.ui.saveFileSuccessMessage();
-        } catch (IOException e) {
-            this.ui.errorMessage(e.getMessage() + " Sorry, Anya is unable to save data.");
+            if (command.equals("bye")) {
+                return exit();
+            } else if (command.equals("list")) {
+                return getList(tasks);
+            } else if (command.equals("find")) {
+                String keyword = Parser.parseKeyword(userInput);
+                return find(tasks, keyword);
+            } else if (command.equals("mark")) {
+                int index = Parser.parseCommandIndex(userInput);
+                return mark(tasks, index);
+            } else if (command.equals("unmark")) {
+                int index = Parser.parseCommandIndex(userInput);
+                return unmark(tasks, index);
+            } else if (command.equals("delete")) {
+                int index = Parser.parseCommandIndex(userInput);
+                return delete(tasks, index);
+            } else if (command.equals("todo")) {
+                String taskName = Parser.parseTaskName(userInput);
+                Task task = new Todo(taskName);
+                return addTask(tasks, task);
+            } else if (command.equals("deadline")) {
+                String taskName = Parser.parseTaskName(userInput);
+                LocalDateTime dateTime = Parser.parseDateTime(userInput);
+                Task task = new Deadline(taskName, dateTime);
+                return addTask(tasks, task);
+            } else if (command.equals("event")) {
+                String taskName = Parser.parseTaskName(userInput);
+                String eventDetails = Parser.parseEventDetails(userInput);
+                Task task = new Event(taskName, eventDetails);
+                return addTask(tasks, task);
+            } else {
+                throw new AnyaException("Anya doesn't understand this command.");
+            }
+        } catch (AnyaException e) {
+            return this.ui.getErrorMessage(e.getMessage());
+        } catch (DateTimeParseException e) {
+            String message = this.ui.getErrorMessage("Invalid format.\n");
+            message += this.ui.deadlineFormatExample();
+            return message;
         }
-        this.ui.closeScanner();
-        this.ui.exitMessage();
     }
 
+    /**
+     * Returns a greeting message.
+     *
+     * @return A greeting message.
+     */
+    public String greet() {
+        // great message
+        String message = this.ui.getGreetMessage();
+        return message;
+    }
+
+    /**
+     * Returns the status of loading the saved data.
+     *
+     * @return A success message and a list of previously stored tasks; a failure message otherwise.
+     */
+    public String getLoadFileStatus() {
+        if (this.tasks.getLength() == 0) {
+            return this.ui.getLoadFileFailureMessage();
+        } else {
+            String message = this.ui.getLoadFileSuccessMessage() + "\n";
+            message += getList(this.tasks);
+            return message;
+        }
+    }
+
+    /**
+     * Saves the current TaskList into a database.
+     *
+     * @return A success message if file is successfully saved; a failure message otherwise.
+     */
+    public String exit() {
+        StringBuilder message = new StringBuilder();
+        try {
+            this.ui.getSavingFileMessage();
+            this.storage.saveFile(tasks);
+            message.append(this.ui.getSaveFileSuccessMessage() + "\n");
+        } catch (IOException e) {
+            message.append(this.ui.getErrorMessage(e.getMessage() + " Sorry, Anya is unable to save data.\n"));
+        }
+        message.append(this.ui.getExitMessage());
+        return message.toString();
+
+        // Implement terminating of program
+    }
 
     /**
      * Appends a Task to the end of the TaskList.
      *
      * @param tasks A collection of Tasks.
      * @param task The task to be added into the TaskList.
+     * @return The task added and the current number of tasks.
      */
-    public void addTask(TaskList tasks, Task task) {
+    public String addTask(TaskList tasks, Task task) {
         tasks.addTask(task);
-        this.ui.addTaskMessage(task, tasks.getLength());
+        return this.ui.getAddTaskMessage(task, tasks.getLength());
     }
 
     /**
-     * Prints out the tasks in the TaskList
+     *
+     * Returns a string of tasks in the TaskList.
      *
      * @param tasks A collection of Tasks.
+     * @return A list of current tasks
      */
-    public void getList(TaskList tasks) {
-        this.ui.getListMessage(tasks);
+    public String getList(TaskList tasks) {
+        return this.ui.getListMessage(tasks);
     }
 
     /**
@@ -136,11 +151,16 @@ public class Anya {
      *
      * @param tasks A collection of Tasks.
      * @param index The index of the task in the TaskList to be marked.
+     * @return The task that is marked.
      */
-    public void mark(TaskList tasks, int index) {
-        Task task = tasks.getTaskFromIndex(index);
-        task.markDone();
-        this.ui.markTaskMessage(task);
+    public String mark(TaskList tasks, int index) throws AnyaException{
+        try {
+            Task task = tasks.getTaskFromIndex(index);
+            task.markDone();
+            return this.ui.getMarkTaskMessage(task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
+        }
     }
 
     /**
@@ -149,11 +169,16 @@ public class Anya {
      *
      * @param tasks A collection of Tasks.
      * @param index The index of the task in the TaskList to be unmarked
+     * @return The task that is unmarked.
      */
-    public void unmark(TaskList tasks, int index) {
-        Task task = tasks.getTaskFromIndex(index);
-        task.markUndone();
-        this.ui.unmarkTaskMessage(task);
+    public String unmark(TaskList tasks, int index) throws AnyaException{
+        try {
+            Task task = tasks.getTaskFromIndex(index);
+            task.markUndone();
+            return this.ui.getUnmarkTaskMessage(task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
+        }
     }
 
     /**
@@ -162,11 +187,16 @@ public class Anya {
      *
      * @param tasks A collection of Tasks.
      * @param index The index of the task in the TaskList to be removed
+     * @return The task that is removed.
      */
-    public void delete(TaskList tasks, int index) {
-        Task removedTask = tasks.getTaskFromIndex(index);
-        tasks.deleteTaskFromIndex(index);
-        this.ui.deleteTaskMessage(removedTask);
+    public String delete(TaskList tasks, int index) throws AnyaException{
+        try {
+            Task removedTask = tasks.getTaskFromIndex(index);
+            tasks.deleteTaskFromIndex(index);
+            return this.ui.getDeleteTaskMessage(removedTask);
+        } catch (IndexOutOfBoundsException e) {
+            throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
+        }
     }
 
     /**
@@ -174,14 +204,10 @@ public class Anya {
      *
      * @param tasks A collection of Tasks.
      * @param keyword The word that the task must contain.
+     * @return A filtered list of tasks that contains the keyword.
      */
-    public void find(TaskList tasks, String keyword) {
+    public String find(TaskList tasks, String keyword) {
         TaskList filteredTasks = tasks.getMatchingTasks(keyword);
-        this.ui.filteredTaskMessage(filteredTasks, keyword);
-    }
-
-    // For demo
-    String getResponse(String input) {
-        return "Anya heard: " + input;
+        return this.ui.getFilteredTaskMessage(filteredTasks, keyword);
     }
 }

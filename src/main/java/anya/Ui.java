@@ -7,105 +7,92 @@ import anya.task.TaskList;
 
 public class Ui {
 
-    private Scanner sc;
-
-    // Constructor
-    public Ui() {
-        this.sc = new Scanner(System.in);
+    public String getGreetMessage() {
+        String message = "Hello! Anya is happy to meet you.\nHow can Anya help?";
+        return message;
     }
 
-    // Instance methods
-    private void breakLine() {
-        System.out.println("---------------------------------------------------------------------");
+    public String getExitMessage() {
+        String message = "Anya is sad to see you leave. Please be back soon.";
+        return message;
     }
 
-    public String readLine() {
-        return this.sc.nextLine();
+    public String getAddTaskMessage(Task task, int taskListLength) {
+        String taskAddedMessage = "Anya added: " + task;
+        String numTaskMessage = "Anya sees that you have " + taskListLength + " task(s) in your list.";
+        return taskAddedMessage + "\n" + numTaskMessage;
     }
 
-    public void closeScanner() {
-        this.sc.close();
+    public String getDeleteTaskMessage(Task task) {
+        String message = "Anya has removed this task : \n" + task.toString();
+        return message;
     }
 
-    public void greetMessage() {
-        System.out.println("Hello! Anya is happy to meet you.\nHow can Anya help?");
-        breakLine();
-    }
-
-    public void exitMessage() {
-        System.out.println("Anya is sad to see you leave. Please be back soon.");
-        breakLine();
-    }
-
-    public void addTaskMessage(Task task, int taskListLength) {
-        System.out.println("Anya added: " + task);
-        System.out.println("Anya sees that you have " + taskListLength + " task(s) in your list.");
-        breakLine();
-    }
-
-    public void deleteTaskMessage(Task task) {
-        System.out.println("Anya has removed this task : \n" + task.toString());
-        breakLine();
-    }
-
-    public void getListMessage(TaskList taskList) {
-        System.out.println("Anya is getting you your list...");
+    public String getListMessage(TaskList taskList) {
+        StringBuilder message = new StringBuilder("Anya is getting you your list...\n");
         for (int i = 0; i < taskList.getLength(); i++) {
             int num = i + 1;
-            System.out.println(num + ". " + taskList.getTaskFromIndex(num).toString());
+            message.append(num + ". " + taskList.getTaskFromIndex(num).toString() + "\n");
         }
-        breakLine();
+        return message.toString();
     }
 
-    public void markTaskMessage(Task task) {
-        System.out.println("Anya has marked this task as done: \n  " + task.toString());
-        breakLine();
+    public String getMarkTaskMessage(Task task) {
+        String message = "Anya has marked this task as done: \n  " + task.toString();
+        return message;
     }
 
-    public void unmarkTaskMessage(Task task) {
-        System.out.println("Anya has marked this task as uncompleted: \n  " + task.toString());
-        breakLine();
+    public String getUnmarkTaskMessage(Task task) {
+        String message = "Anya has marked this task as uncompleted: \n  " + task.toString();
+        return message;
     }
 
-    public void savingFileMessage() {
-        System.out.println("Anya is saving your data...");
+    public String getSavingFileMessage() {
+        String message = "Anya is saving your data...";
+        return message;
     }
 
-    public void saveFileSuccessMessage() {
-        System.out.println("Anya has successfully saved your data!");
-        breakLine();
+    public String getSaveFileSuccessMessage() {
+        String message = "Anya has successfully saved your data!";
+        return message;
     }
 
-    public void loadingFileMessage() {
-        System.out.println("Anya is loading your saved file...");
+    public String getLoadingFileMessage() {
+        String message = "Anya is loading your saved file...";
+        return message;
     }
 
-    public void loadFileSuccessMessage() {
-        System.out.println("Anya has finished loading your saved file!");
-        breakLine();
+    public String getLoadFileFailureMessage() {
+        String message = "Anya is unable to find your previous saved file. \nAnya has created one for you!";
+        return message;
     }
 
-    public void errorMessage(String errorMessage) {
-        System.out.println("Anya spotted an error: " + errorMessage);
-        breakLine();
+    public String getLoadFileSuccessMessage() {
+        String message = "Anya has found and loaded your saved file!";
+        return message;
     }
 
-    public void deadlineFormatExample() {
-        System.out.println("Format: <name> /by <dd/MM/yyyy> <HHmm>.");
-        System.out.println("Example: return book /by 01/01/2022 2030");
-        breakLine();
+    public String getErrorMessage(String errorMessage) {
+        String message = "Anya spotted an error: \n" + errorMessage;
+        return message;
     }
 
-    public void filteredTaskMessage(TaskList filteredTasks, String keyword) {
+    public String deadlineFormatExample() {
+        String formatMessage = "Format: <name> /by <dd/MM/yyyy> <HHmm>.";
+        String exampleMessage = "Example: return book /by 01/01/2022 2030";
+        return formatMessage + "\n" + exampleMessage;
+    }
+
+    public String getFilteredTaskMessage(TaskList filteredTasks, String keyword) {
         if (filteredTasks.getLength() == 0) {
-            System.out.println("Anya couldn't find any matching tasks with keyword: " + keyword);
+            return "Anya couldn't find any matching tasks with keyword: " + keyword;
         } else {
-            System.out.println("Anya has found these matching tasks in your list:");
+            StringBuilder message = new StringBuilder("Anya has found these matching tasks in your list:\n");
             for (int i = 0; i < filteredTasks.getLength(); i++) {
                 int index = i + 1;
-                System.out.println(index + ". " + filteredTasks.getTaskFromIndex(index).toString());
+                message.append(index + ". " + filteredTasks.getTaskFromIndex(index).toString()+"\n");
             }
+            return message.toString();
         }
-        breakLine();
     }
 }
