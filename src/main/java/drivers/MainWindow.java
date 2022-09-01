@@ -28,13 +28,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-//        dialogContainer.getChildren().add(
-//                DialogBox.getTumuDialog(tumu.runGreeting(), tumuImage)
-//        );
     }
 
     public void setTumu(Tumu d) {
         tumu = d;
+        dialogContainer.getChildren().add(
+                DialogBox.getTumuDialog(tumu.runGreeting(), tumuImage)
+        );
     }
 
     /**
