@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (index > taskList.listSize()) {
-            throw new DukeException("There is no " + index + " index in the list. （ﾟДﾟ ）\n");
+            throw new DukeException("There is no " + index + " index in the list.\n");
         } else {
             Task curr = taskList.getTaskAtIndex(index - 1);
             taskList.removeTaskAtIndex(index - 1);

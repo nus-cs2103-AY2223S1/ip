@@ -12,11 +12,12 @@ import duke.task.TaskList;
  * Represents the main functions of Duke chatbot and initializes require variables.
  */
 public class Duke {
-    private List<Task> list = new ArrayList<>();
 
+    private List<Task> list = new ArrayList<>();
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private boolean isExit;
 
     /**
      * Initialises Duke chatbot.
@@ -34,28 +35,29 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+    //@@author alvintfl-reused
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
+        }
+        return ui.getResponse();
     }
 
     /**
-     * Runs the interaction between user and Duke chatbot.
+     * Returns welcome message to be printed in GUI
+     * @return welcome message
      */
-    public void run() {
+    public String getWelcome() {
         ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
+        return ui.getResponse();
     }
+    //@@author
 }

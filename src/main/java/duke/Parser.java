@@ -49,7 +49,7 @@ public class Parser {
         case "find":
             return new FindCommand(commandSegments[1].trim());
         default:
-            throw new DukeException(mainCommand + "? (´･_･`) I don't know what that means\n");
+            throw new DukeException(mainCommand + "? I don't know what that means\n");
         }
     }
 }

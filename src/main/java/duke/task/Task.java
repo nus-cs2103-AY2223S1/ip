@@ -36,6 +36,7 @@ public class Task {
         return this.getStatusIcon() + "|" + this.description;
     }
 
+    //@inheritdoc
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

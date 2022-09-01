@@ -18,7 +18,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (index > taskList.listSize()) {
-            throw new DukeException("There is no " + index + " index in the list. （ﾟДﾟ ）\n");
+            throw new DukeException("There is no " + index + " index in the list. \n");
         } else {
             taskList.markTaskAtIndex(index - 1);
             ui.printMessage("[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n");
