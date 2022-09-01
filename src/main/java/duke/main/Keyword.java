@@ -42,6 +42,6 @@ public enum Keyword {
                 return k;
             }
         }
-        throw new DukeException("\tSorry, I don't understand...");
+        throw new DukeException("Sorry, I don't understand...");
     }
 }

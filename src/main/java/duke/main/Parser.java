@@ -31,7 +31,7 @@ public class Parser {
         } catch (DukeException de) {
             throw de;
         } catch (ArrayIndexOutOfBoundsException aioobe) {
-            throw new DukeException("\tHey! Did you forget to add a task name / number?");
+            throw new DukeException("Hey! Did you forget to add a task name / number?");
         }
     }
 
@@ -70,9 +70,9 @@ public class Parser {
             }
             }
         } catch (ArrayIndexOutOfBoundsException aioobe) {
-            throw new DukeException("\tLooks like you're missing a timing / task name for this task...");
+            throw new DukeException("Looks like you're missing a timing / task name for this task...");
         } catch (NumberFormatException nfe) {
-            throw new DukeException("\tSorry, that Task Number doesn't look right...");
+            throw new DukeException("Sorry, that Task Number doesn't look right...");
         } catch (DukeException de) {
             throw de;
         }

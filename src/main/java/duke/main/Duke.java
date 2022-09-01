@@ -2,13 +2,13 @@ package duke.main;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+import duke.ui.Ui;
 
 /**
  * Main class of Duke.
@@ -29,9 +29,6 @@ public class Duke {
         ui = new Ui();
         storage = new Storage();
         try {
-            // Greets User
-            ui.greetUser();
-
             tasks = new TaskList(storage.readTaskListFromFile());
         } catch (DukeException e) {
             ui.printErrorMessage(e);
@@ -42,20 +39,17 @@ public class Duke {
     /**
      * Executes the Duke chatbot logic.
      */
-    public void run() {
+    public String getResponse(String input) {
         // Helper Fields
-        Scanner sc = new Scanner(System.in);
         boolean isExit = false;
 
         while (!isExit) {
 
-            // Retrieve Input and Parse
-            String input = sc.nextLine();
+            // Parse Input
             try {
                 Parser.parse(input);
             } catch (DukeException de) {
-                ui.printErrorMessage(de);
-                continue;
+                return ui.printErrorMessage(de);
             }
 
             // Valid Input
@@ -66,8 +60,7 @@ public class Duke {
                 case TODO: {
                     Task task = new ToDo(argument);
                     tasks.addTask(task);
-                    ui.displayTaskAddedMessage(task, tasks.size());
-                    break;
+                    return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case DEADLINE: {
                     String[] taskTokens = argument.split(" /by ");
@@ -76,8 +69,7 @@ public class Duke {
                     LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(deadline);
                     Task task = new Deadline(taskName, deadlineDate);
                     tasks.addTask(task);
-                    ui.displayTaskAddedMessage(task, tasks.size());
-                    break;
+                    return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case EVENT: {
                     String[] taskTokens = argument.split(" /at ");
@@ -86,34 +78,28 @@ public class Duke {
                     LocalDateTime[] eventDuration = DateTimeFormatUtils.parseDuration(duration);
                     Task task = new Event(taskName, eventDuration[0], eventDuration[1]);
                     tasks.addTask(task);
-                    ui.displayTaskAddedMessage(task, tasks.size());
-                    break;
+                    return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case LIST: {
-                    tasks.displayTaskList();
-                    break;
+                    return tasks.displayTaskList();
                 }
                 case FIND: {
-                    tasks.searchTaskList(argument);
-                    break;
+                    return tasks.searchTaskList(argument);
                 }
                 case DELETE: {
                     Task deletedTask = tasks.getTask(argument);
                     tasks.deleteTask(argument);
-                    ui.displayTaskDeletedMessage(deletedTask, tasks.size());
-                    break;
+                    return ui.displayTaskDeletedMessage(deletedTask, tasks.size());
                 }
                 case MARK:
                 case UNMARK: {
                     tasks.markUnmarkTask(argument, command);
                     Task task = tasks.getTask(argument);
-                    ui.displayTaskMarkUnmarkMessage(task, command);
-                    break;
+                    return ui.displayTaskMarkUnmarkMessage(task, command);
                 }
                 case BYE: {
-                    ui.sayGoodbye();
                     isExit = true;
-                    break;
+                    return ui.sayGoodbye();
                 }
                 default: {
                     System.out.print("Unexpected Error in Run");
@@ -124,18 +110,10 @@ public class Duke {
                 storage.saveTaskListToFile(tasks);
 
             } catch (DukeException de) {
-                ui.printErrorMessage(de);
+                return ui.printErrorMessage(de);
             }
         }
-    }
-
-    /**
-     * Main method of Duke class.
-     *
-     * @param args User command line arguments.
-     */
-    public static void main(String[] args) {
-        new Duke().run();
+        return "";
     }
 
 }

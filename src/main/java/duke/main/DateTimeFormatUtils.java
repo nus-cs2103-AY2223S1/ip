@@ -27,8 +27,8 @@ public class DateTimeFormatUtils {
             LocalDateTime inputDate = LocalDateTime.parse(date, INPUT_FORMAT);
             return inputDate;
         } catch (DateTimeParseException e) {
-            throw new DukeException("\tDate Format Police here!!"
-                    + "\n\tYour deadline has to be in YYYY-MM-DD HHmm format!!");
+            throw new DukeException("Uh Oh!!"
+                    + "\nYour deadline has to be in YYYY-MM-DD HHmm format!!");
         }
     }
 
@@ -48,8 +48,8 @@ public class DateTimeFormatUtils {
             LocalDateTime endDate = LocalDateTime.parse(input[1], INPUT_FORMAT);
             return new LocalDateTime[]{startDate, endDate};
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("\tDate Format Police here!!"
-                    + "\n\tYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
+            throw new DukeException("Uh Oh!!"
+                    + "\nYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
         }
     }
 
