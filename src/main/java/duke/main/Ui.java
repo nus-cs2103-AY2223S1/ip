@@ -18,27 +18,27 @@ public class Ui {
     /**
      * Outputs greeting message to user.
      */
-    public void greetUser() {
-        System.out.println("\tHey there! I'm Tutter! \n\tHow can I help?");
+    public String greetUser() {
+        return "\tHey there! I'm Tutter! \n\tHow can I help?";
     }
 
     /**
      * Outputs goodbye message to user.
      */
-    public void sayGoodbye() {
-        System.out.println("\tGoodbye!");
+    public String sayGoodbye() {
+        return "\tGoodbye!";
     }
 
     /**
      * Outputs error message when
      */
-    public void showLoadingError() {
-        System.out.print("\n\tLooks like I can't find your old task list..."
-                + "\n\tGuess we'll have to start a new one!\n");
+    public String showLoadingError() {
+        return "\n\tLooks like I can't find your old task list..."
+                + "\n\tGuess we'll have to start a new one!\n";
     }
 
-    public void printErrorMessage(DukeException de) {
-        System.out.println(de.getMessage());
+    public String printErrorMessage(DukeException de) {
+        return de.getMessage();
     }
 
     /**
@@ -47,12 +47,13 @@ public class Ui {
      * @param task Task object that was added to the task list.
      * @param size Number of tasks in the task list.
      */
-    public void displayTaskAddedMessage(Task task, int size) {
+    public String displayTaskAddedMessage(Task task, int size) {
         if (task != null) {
             String output = String.format("\tYou have added \"%s\" into your Task List!\n"
                     + "\tYou have %d tasks in your Task List!", task, size);
-            System.out.println(output);
+            return output;
         }
+        return "";
     }
 
     /**
@@ -61,19 +62,17 @@ public class Ui {
      * @param task    Task to be marked or unmarked.
      * @param command Keyword corresponding to mark or unmark.
      */
-    public void displayTaskMarkUnmarkMessage(Task task, Keyword command) throws DukeException {
+    public String displayTaskMarkUnmarkMessage(Task task, Keyword command) throws DukeException {
         switch (command) {
         case MARK: {
             String taskListString = String.format("\tGood Job! The following task "
                     + "has been marked as done:\n\t%s", task);
-            System.out.println(taskListString);
-            break;
+            return taskListString;
         }
         case UNMARK: {
             String taskListString = String.format("\tOkay! The following task "
                     + "has been marked as not done:\n\t%s", task);
-            System.out.println(taskListString);
-            break;
+            return taskListString;
         }
         default: {
             throw new DukeException("Unexpected Error in displayTaskMarkUnmarkMessage!");
@@ -87,10 +86,10 @@ public class Ui {
      * @param task Task to be deleted.
      * @param size Size of task list after deleting task.
      */
-    public void displayTaskDeletedMessage(Task task, int size) {
+    public String displayTaskDeletedMessage(Task task, int size) {
         String output = String.format("\tYou have deleted \"%s\" into your Task List!\n"
                 + "\tYou have %d tasks in your Task List!", task, size);
-        System.out.println(output);
+        return output;
     }
 
 }

@@ -51,12 +51,12 @@ public class TaskList {
     /**
      * Outputs all tasks in task list.
      */
-    public void displayTaskList() {
+    public String displayTaskList() {
         if (this.tasks.size() == 0) {
-            System.out.println("\tLooks like you don't have any tasks for now!");
-            return;
+            return "\tLooks like you don't have any tasks for now!";
         }
 
+        String taskListString = "";
         for (int i = 1; i <= tasks.size(); i++) {
             Task currTask = tasks.get(i - 1);
 
@@ -65,10 +65,9 @@ public class TaskList {
                 break;
             }
 
-            // Output string
-            String taskListString = String.format("\t%d. %s", i, currTask);
-            System.out.println(taskListString);
+            taskListString += String.format("\t%d. %s\n", i, currTask);
         }
+        return taskListString;
     }
 
     /**
@@ -129,25 +128,26 @@ public class TaskList {
      *
      * @param searchTerm Term to be searched for.
      */
-    public void searchTaskList(String searchTerm) {
+    public String searchTaskList(String searchTerm) {
         if (this.tasks.size() == 0) {
-            System.out.println("\tLooks like you don't have any tasks for now!");
-            return;
+            return "\tLooks like you don't have any tasks for now!";
         }
 
         int count = 1;
+        String output = "";
         for (int i = 0; i < tasks.size(); i++) {
             Task currTask = tasks.get(i);
             if (currTask.toString().contains(searchTerm)) {
-                String output = String.format("\t%d. %s", count, currTask);
-                System.out.println(output);
+                output += String.format("\t%d. %s\n", count, currTask);
                 count++;
             }
         }
 
         // No tasks found
         if (count == 1) {
-            System.out.println("\tI don't think we have that one..");
+            return "\tI don't think we have that one..";
+        } else {
+            return output;
         }
     }
 }
