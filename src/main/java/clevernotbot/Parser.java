@@ -5,6 +5,8 @@ public class Parser {
     public Command parseText(String text) {
         String[] txtArr = text.split(" ");
         switch (txtArr[0]) {
+        case "find":
+            return new FindCommand(text, false);
         case "mark":
             return new MarkCommand(text, false);
         case "unmark":

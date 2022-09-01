@@ -31,6 +31,22 @@ public class TaskList {
         return tasks.get(idx);
     }
 
+    /**
+     * Returns an ArrayList of task with the search word provided.
+     *
+     * @param searchWord The word that you want to search in the list.
+     * @return An ArrayList of task with the search word provided.
+     */
+    public ArrayList<Task> findTasks(String searchWord){
+        ArrayList<Task> taskArr = new ArrayList<>();
+        for (Task task: tasks) {
+            if((task.getName().toLowerCase()).contains(searchWord.toLowerCase())) {
+                taskArr.add(task);
+            }
+        }
+        return taskArr;
+    }
+
     public ArrayList<Task> getTaskList(){
         return tasks;
     }
