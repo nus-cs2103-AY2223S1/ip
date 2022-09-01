@@ -1,6 +1,6 @@
-package test.java.duke;
+package duke;
 
-import main.java.duke.Parser;
+//import duke.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

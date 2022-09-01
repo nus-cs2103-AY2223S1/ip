@@ -3,6 +3,17 @@ package duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 /**
  * The self-named main class that controls our lovely chatbot, Duke
  *
@@ -10,11 +21,17 @@ import java.io.IOException;
  * @version 1.0
  */
 
-public class Duke {
+public class Duke extends Application {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
 
     /**
      * Loads Duke up with the appropriate list of tasks
@@ -30,6 +47,10 @@ public class Duke {
             ui.showLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    public Duke() throws FileNotFoundException {
+        this("./src/duke.txt");
     }
 
     /**
@@ -104,3 +125,4 @@ public class Duke {
         }
     }
 }
+
