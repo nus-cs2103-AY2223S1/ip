@@ -1,9 +1,9 @@
 package duke.commands;
 
+import duke.others.DukeException;
 import duke.storage.Storage;
 import duke.storage.TaskList;
 import duke.task.Task;
-import duke.ui.Ui;
 
 /**
  * Represents a command that adds a task to the task list.
@@ -29,17 +29,21 @@ public class AddCommand extends Command {
      * Executes the AddCommand by storing the task to the given task list.
      * Writes the result to the local disk.
      *
-     * @param tasks Task List that stores the task.
-     * @param ui Ui that shows message to the user.
+     * @param tasks Task List that stores tasks.
      * @param storage Storage in charge of writing to the local disk.
+     * @return A string showing a message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(taskToAdd);
-        String successMessage = MESSAGE_SUCCESS + taskToAdd.toString()
-                + "\n" + tasks.getCount();
-        ui.showSuccessMessage(successMessage);
-        storage.appendToFile(taskToAdd.toString(), ui);
+    public String execute(TaskList tasks, Storage storage) {
+        try {
+            tasks.add(taskToAdd);
+            String successMessage = MESSAGE_SUCCESS + taskToAdd.toString()
+                    + "\n" + tasks.getCount();
+            storage.appendToFile(taskToAdd.toString());
+            return successMessage;
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 
     /**

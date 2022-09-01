@@ -6,7 +6,6 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,15 +37,15 @@ public class Storage {
      * Appends the given text to the file.
      *
      * @param textToAppend Text to be appended.
-     * @param ui Ui that shows message to the user.
+     * @throws DukeException If the specified file cannot be written to.
      */
-    public void appendToFile(String textToAppend, Ui ui) {
+    public void appendToFile(String textToAppend) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath, true);
             fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
-            ui.showError(e.getMessage());
+            throw new DukeException("☹ Error occurs when writing to local file");
         }
     }
 
@@ -54,9 +53,9 @@ public class Storage {
      * Overwrites the file with content stored in the task list.
      *
      * @param tasks Task list whose content is used in overriding.
-     * @param ui Ui that shows message to the user.
+     * @throws DukeException If the specified file cannot be written to.
      */
-    public void overwriteFile(TaskList tasks, Ui ui) {
+    public void overwriteFile(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
             StringBuilder textToAdd = new StringBuilder();
@@ -66,7 +65,7 @@ public class Storage {
             fw.write(textToAdd.toString());
             fw.close();
         } catch (IOException e) {
-            ui.showError(e.getMessage());
+            throw new DukeException("☹ Error occurs when writing to local file");
         }
     }
 
@@ -75,7 +74,7 @@ public class Storage {
      * and returns the ArrayList with parsed tasks inside.
      *
      * @return ArrayList that contains tasks stored in the local file.
-     * @throws DukeException If the specified file is not found in loca ldisk.
+     * @throws DukeException If the specified file is not found in local disk.
      */
     public List<Task> load() throws DukeException {
         try {

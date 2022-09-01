@@ -1,9 +1,9 @@
 package duke.commands;
 
+import duke.others.DukeException;
 import duke.storage.Storage;
 import duke.storage.TaskList;
 import duke.task.Task;
-import duke.ui.Ui;
 
 /**
  * Represents a command that marks the given task as done.
@@ -29,19 +29,21 @@ public class MarkCommand extends Command {
      * Tells the user if the provided index is invalid.
      *
      * @param tasks Task List that stores tasks.
-     * @param ui Ui that sends message to the user.
      * @param storage Storage in charge of writing to the local disk.
+     * @return A string showing a message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         try {
             Task task = tasks.findTask(this.index);
             task.markAsDone();
             String successMessage = MESSAGE_SUCCESS + task.toString();
-            ui.showSuccessMessage(successMessage);
-            storage.overwriteFile(tasks, ui);
+            storage.overwriteFile(tasks);
+            return successMessage;
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("☹ Please enter an index in the range!");
+            return "☹ Please enter an index in the range!";
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 

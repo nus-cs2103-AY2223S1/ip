@@ -32,13 +32,17 @@ public class TaskList {
 
     /**
      * Goes through all tasks stored in the list.
+     *
+     * @return A string of a task list
      */
-    public void iterate() {
+    public String iterate() {
         int i = 1;
+        StringBuilder str = new StringBuilder();
         for (Task task : tasks) {
-            System.out.println(i + "." + task.toString());
+            str.append(i).append(".").append(task.toString()).append("\n");
             i++;
         }
+        return str.toString();
     }
 
     /**

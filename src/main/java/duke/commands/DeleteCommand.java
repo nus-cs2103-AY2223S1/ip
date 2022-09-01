@@ -4,7 +4,6 @@ import duke.others.DukeException;
 import duke.storage.Storage;
 import duke.storage.TaskList;
 import duke.task.Task;
-import duke.ui.Ui;
 
 /**
  * Represents a command that deletes a task from the task list.
@@ -30,20 +29,22 @@ public class DeleteCommand extends Command {
      * Tells the user if the provided index is invalid.
      *
      * @param tasks Task List that stores tasks.
-     * @param ui Ui that sends message to the user.
      * @param storage Storage in charge of writing to the local disk.
+     * @return A string showing a message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         try {
             Task task = tasks.findTask(this.index);
             tasks.delete(task);
             String successMessage = MESSAGE_SUCCESS + task.toString()
                     + "\n" + tasks.getCount();
-            ui.showSuccessMessage(successMessage);
-            storage.overwriteFile(tasks, ui);
+            storage.overwriteFile(tasks);
+            return successMessage;
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("☹ Please enter an index in the range!");
+            return "☹ Please enter an index in the range!";
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 

@@ -5,7 +5,6 @@ import duke.others.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.storage.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a bot that will carry out different command with user input.
@@ -14,10 +13,6 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
-
-    public Duke() {
-    }
 
     /**
      * Constructs a new Duke instance,
@@ -26,12 +21,10 @@ public class Duke {
      * @param filePath path of the local path.
      */
     public Duke(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -41,16 +34,16 @@ public class Duke {
      *
      * @param args Arguments.
      */
-//    public static void main(String[] args) {
-//        Duke duke = new Duke("data/duke.txt");
-//        duke.run();
-//    }
+/*    public static void main(String[] args) {
+        Duke duke = new Duke("data/duke.txt");
+        duke.run();
+    }*/
 
     /**
      * Runs the bot by taking in user input,
      * which is then parsed into commands and executed.
      */
-    public void run() {
+/*    public void run() {
 
         ui.showWelcome();
         boolean isRunning = true;
@@ -60,7 +53,7 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                c.execute(tasks, storage);
                 isRunning = c.isRunning();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
@@ -68,9 +61,20 @@ public class Duke {
                 ui.showLine();
             }
         }
-    }
+    }*/
 
+    /**
+     * Returns a string of Duke's response to the given input.
+     *
+     * @param input User input.
+     * @return A string of responses.
+     */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

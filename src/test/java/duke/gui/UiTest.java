@@ -1,6 +1,4 @@
-package duke.ui;
-
-import org.junit.jupiter.api.Test;
+package duke.gui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.storage.Storage;
 import duke.storage.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a command that stops the programme.
@@ -15,12 +14,12 @@ public class ExitCommand extends Command {
      * Execute the command by ending the programme.
      *
      * @param tasks Task List that stores tasks.
-     * @param ui Ui that sends message to the user.
      * @param storage Storage in charge of writing to the local disk.
+     * @return A string showing a message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showSuccessMessage(MESSAGE_SUCCESS);
+    public String execute(TaskList tasks, Storage storage) {
+        return MESSAGE_SUCCESS;
     }
 
     /**
