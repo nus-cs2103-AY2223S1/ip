@@ -12,9 +12,9 @@ public class Event extends Task {
     /**
      * Constructs a new event task.
      *
-     * @param description the description of this event
-     * @param isDone boolean indicating whether this task is done
-     * @param at LocalDate indicating when the event will occur
+     * @param description Description of this event.
+     * @param isDone Boolean indicating whether this task is done.
+     * @param at LocalDate indicating when the event will occur.
      */
     public Event(String description, boolean isDone, LocalDate at) {
         super(description, isDone);
@@ -24,7 +24,7 @@ public class Event extends Task {
     /**
      * Returns the string format of this event task to be saved in the save file.
      *
-     * @return a string representation of this event task in the format it is saved in the save file.
+     * @return String representation of this event task in the format it is saved in the save file.
      */
     public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
@@ -34,7 +34,7 @@ public class Event extends Task {
     /**
      * String representation of this event.
      *
-     * @return a string representing this event.
+     * @return String representing this event.
      */
     @Override
     public String toString() {
@@ -48,8 +48,8 @@ public class Event extends Task {
     /**
      * Returns a boolean indicating if this event is the same as the obj.
      *
-     * @param obj the Object to be compared to
-     * @return true if this event and obj are the same, false otherwise.
+     * @param obj Object to be compared.
+     * @return True if this event and obj are the same, false otherwise.
      */
     @Override
     public boolean equals(Object obj) {

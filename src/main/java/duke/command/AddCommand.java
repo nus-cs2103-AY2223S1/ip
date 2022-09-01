@@ -29,10 +29,10 @@ public class AddCommand implements Command{
     /**
      * Executes the add command and prints the results of this add command using Duke's Ui.
      *
-     * @param tasks TaskList which contains all the tasks Duke currently has
-     * @param ui The Ui created when starting Duke
-     * @param storage The Storage created when starting Duke
-     * @throws DukeException
+     * @param tasks TaskList which contains all the tasks Duke currently has.
+     * @param ui Ui created when starting Duke.
+     * @param storage Storage created when starting Duke.
+     * @throws DukeException Exception from executing command.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -61,7 +61,7 @@ public class AddCommand implements Command{
     /**
      * Returns whether this command is an exit command.
      *
-     * @return false.
+     * @return False since this is not an exit.
      */
     @Override
     public boolean isExit() {

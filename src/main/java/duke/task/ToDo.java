@@ -7,8 +7,8 @@ public class ToDo extends Task {
     /**
      * Constructs a ToDo task.
      *
-     * @param description the description of this todo
-     * @param isDone boolean indicating whether this task is done
+     * @param description Description of this todo.
+     * @param isDone Boolean indicating whether this task is done.
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
@@ -17,7 +17,7 @@ public class ToDo extends Task {
     /**
      * Returns the string format of this todo task to be saved in the save file.
      *
-     * @return a string representation of this todo task in the format it is saved in the save file.
+     * @return String representation of this todo task in the format it is saved in the save file.
      */
     public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
@@ -27,7 +27,7 @@ public class ToDo extends Task {
     /**
      * String representation of this todo.
      *
-     * @return a string representing this todo.
+     * @return String representing this todo.
      */
     @Override
     public String toString() {

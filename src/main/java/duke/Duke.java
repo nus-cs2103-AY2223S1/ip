@@ -15,7 +15,7 @@ public class Duke {
     /**
      * Constructs a Duke.
      *
-     * @param filePath string representing the file path of a save file
+     * @param filePath String representing the file path of a save file.
      */
     public Duke(String filePath) {
         ui = new Ui();

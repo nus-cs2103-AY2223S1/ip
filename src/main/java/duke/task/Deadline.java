@@ -12,9 +12,9 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline task.
      *
-     * @param description the description of this deadline
-     * @param isDone boolean indicating whether this task is done
-     * @param by LocalDate indicating the deadline
+     * @param description Description of this deadline.
+     * @param isDone Boolean indicating whether this task is done.
+     * @param by LocalDate indicating the deadline.
      */
     public Deadline(String description, boolean isDone, LocalDate by) {
         super(description, isDone);
@@ -24,7 +24,7 @@ public class Deadline extends Task {
     /**
      * Returns the string format of this deadline task to be saved in the save file.
      *
-     * @return a string representation of this deadline task in the format it is saved in the save file.
+     * @return String representation of this deadline task in the format it is saved in the save file.
      */
     public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
@@ -32,9 +32,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * String representation of this daedline.
+     * String representation of this deadline.
      *
-     * @return a string representing this deadline.
+     * @return String representing this deadline.
      */
     @Override
     public String toString() {
@@ -48,8 +48,8 @@ public class Deadline extends Task {
     /**
      * Returns a boolean indicating if this deadline is the same as the obj.
      *
-     * @param obj the Object to be compared to
-     * @return true if this deadline and obj are the same, false otherwise.
+     * @param obj Object to be compared to.
+     * @return True if this deadline and obj are the same, false otherwise.
      */
     @Override
     public boolean equals(Object obj) {

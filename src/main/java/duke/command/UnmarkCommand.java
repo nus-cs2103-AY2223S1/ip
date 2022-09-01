@@ -5,28 +5,28 @@ import duke.Ui;
 import duke.task.TaskList;
 
 /**
- * Represents the command for unmarking a task in Duke's TaskList.
+ * Represents the command for un-marking a task in Duke's TaskList.
  */
 public class UnmarkCommand implements Command{
 
     private final int toUnmark;
 
     /**
-     * Constructs an UnmarkCommand
+     * Constructs an UnmarkCommand.
      *
-     * @param toUnmark the index of the task to be unmarked in Duke's TaskList.
+     * @param toUnmark Index of the task to be unmarked in Duke's TaskList.
      */
     public UnmarkCommand(int toUnmark) {
         this.toUnmark = toUnmark;
     }
 
     /**
-     * Executes the unmark command by unmarking the task and printing the unmark message.
+     * Executes the un-mark command by un-marking the task and printing the un-mark message.
      * Refreshes the storage to write the new changes.
      *
-     * @param tasks TaskList which contains all the tasks Duke currently has
-     * @param ui The Ui created when starting Duke
-     * @param storage The Storage created when starting Duke
+     * @param tasks TaskList which contains all the tasks Duke currently has.
+     * @param ui Ui created when starting Duke.
+     * @param storage Storage created when starting Duke.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
@@ -37,7 +37,7 @@ public class UnmarkCommand implements Command{
     /**
      * Returns whether this command is an exit command.
      *
-     * @return false.
+     * @return False since this is not an exit.
      */
     @Override
     public boolean isExit() {

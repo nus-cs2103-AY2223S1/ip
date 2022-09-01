@@ -11,7 +11,7 @@ public class Ui {
     private final Scanner sc;
 
     /**
-     * Constructs an Ui
+     * Constructs an Ui.
      */
     public Ui() {
         sc = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class Ui {
     }
 
     /**
-     * Prints the exit message
+     * Prints the exit message.
      */
     public void showBye() {
         dukePrint("Bye.", ">:)");
@@ -41,15 +41,14 @@ public class Ui {
     }
 
     /**
-     * Prints an error message
+     * Prints an error message.
      *
-     * @param msg the message of the error.
+     * @param msg The message of the error.
      */
     public void showError(String msg) {
         dukePrint("Something bad happened! :O", "Error message: " + msg);
     }
 
-<<<<<<< HEAD
     public void showLine() {
         System.out.println(SEPARATOR);
     }
@@ -57,10 +56,8 @@ public class Ui {
     /**
      * Reads a command from the user input.
      *
-     * @return a String containing the user input
+     * @return String containing the user input.
      */
-=======
->>>>>>> branch-A-CodingStandard
     public String readCommand() {
         return sc.nextLine();
     }
@@ -75,7 +72,7 @@ public class Ui {
     /**
      * Format for printing messages.
      *
-     * @param lines messages to be printed
+     * @param lines Messages to be printed
      */
     public static void dukePrint(String... lines) {
         StringBuilder res = new StringBuilder(SEPARATOR);

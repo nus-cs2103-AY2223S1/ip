@@ -7,9 +7,9 @@ public class DukeException extends RuntimeException {
     private final String message;
 
     /**
-     * Constructs a DukeException
+     * Constructs a DukeException.
      *
-     * @param message exception message
+     * @param message Exception message.
      */
     public DukeException(String message) {
         this.message = message;
@@ -18,7 +18,7 @@ public class DukeException extends RuntimeException {
     /**
      * Returns the exception message.
      *
-     * @return exception message
+     * @return Exception message.
      */
     @Override
     public String getMessage() {
@@ -28,7 +28,7 @@ public class DukeException extends RuntimeException {
     /**
      * Returns the string representation of this exception.
      *
-     * @return a string representing this exception
+     * @return String representing this exception.
      */
     public String toString() {
         return "DukeException: " + message;

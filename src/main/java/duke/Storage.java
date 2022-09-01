@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A class for storing and retrieving save data for Duke
+ * A class for storing and retrieving save data for Duke.
  */
 public class Storage {
     File file;
@@ -18,7 +18,7 @@ public class Storage {
     /**
      * Constructs a Storage.
      *
-     * @param filePath file path of the save data
+     * @param filePath String filepath of the save data.
      */
     public Storage(String filePath) {
         file = new File(filePath);
@@ -27,7 +27,7 @@ public class Storage {
     /**
      * Loads the tasks from the save data.
      *
-     * @return an ArrayList of tasks retrieved from the save data
+     * @return ArrayList of tasks retrieved from the save data.
      */
     public ArrayList<Task> load() {
         ArrayList<Task> res = new ArrayList<>();
@@ -51,7 +51,7 @@ public class Storage {
     /**
      * Refreshes the save data.
      *
-     * @param tasks the TaskList to obtain new data from.
+     * @param tasks TaskList to obtain new data from.
      */
     public void refresh(TaskList tasks) {
         File temp = new File("data/temp.txt");
@@ -70,7 +70,7 @@ public class Storage {
     /**
      * Adds a new task to the save data.
      *
-     * @param task task to be added to the save data
+     * @param task Task to be added to the save data.
      */
     public void addTaskToStorage(Task task) {
         try {
@@ -85,8 +85,8 @@ public class Storage {
     /**
      * Readings a line from the save data and converts it to a task.
      *
-     * @param fileLine the file line to be read
-     * @return a task based on the file line
+     * @param fileLine File line to be read.
+     * @return Task based on the file line.
      */
     public static Task fileLineToTask(String fileLine) {
         String delimiter = " \\| ";

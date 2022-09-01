@@ -14,7 +14,7 @@ public class DeleteCommand implements Command{
     /**
      * Constructs a DeleteCommand.
      *
-     * @param toDelete the index of the task to be deleted in Duke's TaskList
+     * @param toDelete Index of the task to be deleted in Duke's TaskList.
      */
     public DeleteCommand(int toDelete) {
         this.toDelete = toDelete;
@@ -24,8 +24,8 @@ public class DeleteCommand implements Command{
      * Executes the delete command and prints the results of this delete command using Duke's Ui.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has
-     * @param ui The Ui created when starting Duke
-     * @param storage The Storage created when starting Duke
+     * @param ui Ui created when starting Duke.
+     * @param storage Storage created when starting Duke.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
@@ -36,7 +36,7 @@ public class DeleteCommand implements Command{
     /**
      * Returns whether this command is an exit command.
      *
-     * @return false.
+     * @return False since this is not an exit.
      */
     @Override
     public boolean isExit() {
