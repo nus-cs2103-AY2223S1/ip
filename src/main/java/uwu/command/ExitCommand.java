@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
      */
     public void execute (TaskList tasks, Ui ui, Storage storage) {
         ui.leaveChat();
-    };
+    }
 
     /**
      * Returns whether ExitCommand exits the program.
@@ -28,5 +28,5 @@ public class ExitCommand extends Command {
      */
     public boolean isExit() {
         return true;
-    };
+    }
 }

@@ -20,13 +20,13 @@ import uwu.Ui;
  */
 public class AddCommand extends Command {
     /** The description of the task. */
-    String description;
+    private String description;
 
     /** The type of task to be added. */
-    String taskType;
+    private String taskType;
 
     /** The user command parsed into AddCommand. */
-    String userCommand;
+    private String userCommand;
 
     /**
      * Constructor for an AddCommand object.
@@ -64,6 +64,7 @@ public class AddCommand extends Command {
                 ui.addTask(todo, tasks.size());
                 break;
         case "deadline":
+            // Fallthrough.
         case "event":
             String descriptor = taskType.equals("deadline") ? "/by" : "/at";
 

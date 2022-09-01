@@ -19,7 +19,7 @@ public class ListCommand extends Command {
      */
     public void execute (TaskList tasks, Ui ui, Storage storage) {
         ui.listTasks(tasks);
-    };
+    }
 
     /**
      * Returns whether ListCommand exits the program.
@@ -28,5 +28,5 @@ public class ListCommand extends Command {
      */
     public boolean isExit() {
         return false;
-    };
+    }
 }

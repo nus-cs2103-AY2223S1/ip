@@ -15,10 +15,10 @@ import uwu.Ui;
  */
 public class DeleteCommand extends Command {
     /** The index of the task to be deleted. */
-    int index;
+    private int index;
 
     /** The user command parsed into DeleteCommand. */
-    String userCommand;
+    private String userCommand;
 
     /**
      * Constructor for a DeleteCommand object.
@@ -48,7 +48,7 @@ public class DeleteCommand extends Command {
         Task task = tasks.remove(index);
         storage.save(tasks.taskListToStorageString());
         ui.deleteTask(task, tasks.size());
-    };
+    }
 
     /**
      * Returns whether DeleteCommand exits the program.
@@ -57,5 +57,5 @@ public class DeleteCommand extends Command {
      */
     public boolean isExit() {
         return false;
-    };
+    }
 }

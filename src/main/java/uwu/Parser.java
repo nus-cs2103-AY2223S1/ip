@@ -45,7 +45,7 @@ public class Parser {
                 return new DeleteCommand(userCommand);
             } else if (userCommand.startsWith("find")) {
                 return new FindCommand(userCommand);
-            }else {
+            } else {
                 throw new UnknownCommandException("\tsorry >< \n\ti don't know what that means TT");
             }
     }

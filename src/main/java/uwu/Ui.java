@@ -1,16 +1,16 @@
 package uwu;
 
+import java.util.Scanner;
+
 import uwu.task.Task;
 import uwu.task.TaskList;
-
-import java.util.Scanner;
 
 /**
  * Text UI of the application.
  */
 public class Ui {
     /** The Scanner to read the user's input. */
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Reads the user's input.
@@ -31,7 +31,7 @@ public class Ui {
     }
 
     /**
-     * Greets users.
+     * Prints greetings to users.
      */
     public void greetUsers() {
         String greetings = "\thellu!\n\ti am oo woo <:\n\thow can i be of service today?";
@@ -39,7 +39,7 @@ public class Ui {
     }
 
     /**
-     * Leaves chat.
+     * Prints farewell words to users.
      */
     public void leaveChat() {
         String farewellWords = "\tgood work today!\n\thope to see you again soon~";

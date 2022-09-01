@@ -15,13 +15,13 @@ import uwu.Ui;
  */
 public class MarkCommand extends Command {
     /** The index of the task to be marked or unmarked. */
-    int index;
+    private int index;
 
     /** The user command parsed into MarkCommand. */
-    String userCommand;
+    private String userCommand;
 
     /** The type of command, mark or unmark. */
-    String taskType;
+    private String taskType;
 
     /**
      * Constructor for a MarkCommand object.
@@ -64,7 +64,7 @@ public class MarkCommand extends Command {
             storage.save(tasks.taskListToStorageString());
             break;
         }
-    };
+    }
 
     /**
      * Returns whether MarkCommand exits the program.
@@ -73,5 +73,5 @@ public class MarkCommand extends Command {
      */
     public boolean isExit() {
         return false;
-    };
+    }
 }
