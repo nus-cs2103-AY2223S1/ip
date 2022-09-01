@@ -61,7 +61,7 @@ public class Parser {
             try {
                 int index = restOfCommand.lastIndexOf("/at");
                 if (index == -1) {
-                    throw new DukeException("To add a deadline, please specify '/by dd/mm/yy'.");
+                    throw new DukeException("To add an event, please specify '/at dd/mm/yy'.");
                 }
 
                 description = restOfCommand.substring(0, index);

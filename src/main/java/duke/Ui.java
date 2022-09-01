@@ -49,10 +49,10 @@ public class Ui {
     public void printString(String input) {
         // String indentedInput = input.replaceAll("(?m)^", "\t");
         // System.out.println("\t----------------------------------");
-        System.out.println("----------------------------------");
+        showLine();
         // System.out.println(indentedInput);
         System.out.println(input);
-        System.out.println("----------------------------------");
+        showLine();
         // System.out.println("\t----------------------------------");
     }
 }

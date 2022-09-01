@@ -14,7 +14,7 @@ public class TaskList {
      * Creates a TaskList with no tasks stored.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -23,7 +23,7 @@ public class TaskList {
      * @param persistedTasks The tasks that were stored previously.
      */
     public TaskList(List<Task> persistedTasks) {
-        this.tasks = persistedTasks;
+        tasks = persistedTasks;
     }
 
     /**
@@ -86,7 +86,7 @@ public class TaskList {
      * Returns the list of tasks.
      */
     public List<Task> getTasks() {
-        return this.tasks;
+        return tasks;
     }
 
     /**
