@@ -12,9 +12,14 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-
+    /** The bot. */
     private Isara isara = new Isara();
 
+    /**
+     * Starts the GUI application and initializes all the needed variables for the stage.
+     *
+     * @param stage The stage to be set.
+     */
     @Override
     public void start(Stage stage) {
         try {
@@ -22,7 +27,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(isara);
+            fxmlLoader.<MainWindow>getController().setIsara(isara);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

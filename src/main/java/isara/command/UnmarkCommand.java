@@ -30,10 +30,13 @@ public class UnmarkCommand extends Command {
     /**
      * Unmarks a task as undone.
      *
-     * @param tasks The list of tasks that the user has inputted.
+     * @param tasks The list of tasks where the command is executed.
+     * @param file The file to write into.
+     * @param storage The storage where the file is located.
+     * @return String that is related to the command line.
      * @throws IsaraException Exceptions exclusive to the duke.Duke bot, thrown when
-     *     the user does not input a number, or inputs invalid characters after the
-     *     'unmark' command.
+     *         the user does not input a number, or inputs invalid characters after the
+     *         'mark' command.
      */
     @Override
     public String execute(TaskList tasks, File file, Storage storage) throws IsaraException {

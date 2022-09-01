@@ -13,6 +13,9 @@ import isara.task.Task;
  * Class that represents the command 'find'.
  */
 public class FindCommand extends Command {
+    /**
+     * Keyword to help find the tasks.
+     */
     private String keyword;
 
     /**
@@ -28,7 +31,10 @@ public class FindCommand extends Command {
     /**
      * Finds the tasks with the associated keyword.
      *
-     * @param tasks List of tasks that has been inputted by the user.
+     * @param tasks The list of tasks where the command is executed.
+     * @param file The file to write into.
+     * @param storage The storage where the file is located.
+     * @return String that is related to the command line.
      * @throws IsaraException An exception is thrown if the bot cannot find any tasks with the keyword.
      */
     @Override

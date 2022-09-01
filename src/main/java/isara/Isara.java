@@ -17,17 +17,17 @@ import isara.task.Task;
  */
 public class Isara {
     /** List of tasks. */
-    protected TaskList tasks;
+    private TaskList tasks;
     /**
      * The location where the bot will write into.
      */
-    protected Storage storage;
+    private Storage storage;
     /**
      * Ui that prints statements for the bot.
      */
-    protected Ui ui;
-
-    protected File dukeFile;
+    private Ui ui;
+    private File dukeFile;
+    private boolean hasExit;
 
     /**
      * Constructs an instance of the Duke chatbot.
@@ -63,9 +63,7 @@ public class Isara {
             } else if (Parser.isCommand(commandLine)) {
                 Command command = Parser.parseCommand(userInput);
                 output = command.execute(tasks, dukeFile, storage);
-                if (commandLine.equals("bye")) {
-                    return output;
-                }
+                hasExit = command.getExitStatus();
                 return output;
             } else {
                 return ui.commandDoesNotExist();
@@ -76,11 +74,19 @@ public class Isara {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets response from the bot.
      */
     protected String getResponse(String input) {
         return run(input);
+    }
+
+    /**
+     * Gets the exit status from the bot.
+     *
+     * @return Boolean value whether the bot has exited or not.
+     */
+    public boolean getExitStatus() {
+        return hasExit;
     }
 
 }

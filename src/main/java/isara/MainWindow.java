@@ -1,5 +1,9 @@
 package isara;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -26,6 +30,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image isaraImage = new Image(this.getClass().getResourceAsStream("/images/isara.png"));
 
+    /**
+     * Initialize the GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -33,8 +40,13 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getIsaraDialog("Hello! Isara here, how can I help you?", isaraImage));
     }
 
-    public void setDuke(Isara d) {
-        isara = d;
+    /**
+     * Set the bot.
+     *
+     * @param isara The bot.
+     */
+    public void setIsara(Isara isara) {
+        this.isara = isara;
     }
 
     /**
@@ -50,5 +62,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getIsaraDialog(response, isaraImage)
         );
         userInput.clear();
+
+        if (isara.getExitStatus()) {
+            CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS).execute(Platform::exit);
+        }
     }
 }

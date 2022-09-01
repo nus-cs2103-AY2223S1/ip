@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
     /**
      * Constructs an instance of 'DeleteCommand'.
      *
-     * @param taskIndex
+     * @param taskIndex The index of the task to be deleted.
      */
     public DeleteCommand(int taskIndex) {
         super(false);
@@ -28,11 +28,13 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes any task that has been inputted.
+     * Deletes tasks and prints the delete statement.
      *
-     * @param tasks The list of tasks that the user has inputted.
-     * @throws IsaraException Exceptions exclusive to the duke.Duke bot, thrown when
-     *     the user does not include a proper description of the task.
+     * @param tasks The list of tasks where the command is executed.
+     * @param file The file to write into.
+     * @param storage The storage where the file is located.
+     * @return String that is related to the command line.
+     * @throws IsaraException The exception that is thrown if one of the commands catch an error.
      */
     @Override
     public String execute(TaskList tasks, File file, Storage storage) throws IsaraException {
