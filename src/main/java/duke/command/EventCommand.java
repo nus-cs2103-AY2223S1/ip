@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Event;
 
 public class EventCommand extends Command {
@@ -14,9 +13,9 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.addTask(event);
-        ui.printAddTaskReply(event.toString(), taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.wrapper.getAddTaskResponse(event.toString(), taskList.getNumOfTask());
     }
 }

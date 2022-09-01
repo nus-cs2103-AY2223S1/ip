@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Deadline;
 
 public class DeadlineCommand extends Command {
@@ -14,10 +13,10 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.addTask(deadline);
-        ui.printAddTaskReply(deadline.toString(), taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.wrapper.getAddTaskResponse(deadline.toString(), taskList.getNumOfTask());
     }
 
 }

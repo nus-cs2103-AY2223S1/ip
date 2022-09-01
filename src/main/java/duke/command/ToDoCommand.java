@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.ToDo;
 
 public class ToDoCommand extends Command {
@@ -15,9 +14,9 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.addTask(todo);
-        ui.printAddTaskReply(todo.toString(), taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.wrapper.getAddTaskResponse(todo.toString(), taskList.getNumOfTask());
     }
 }

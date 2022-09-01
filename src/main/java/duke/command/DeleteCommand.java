@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 public class DeleteCommand extends Command {
     private final int index;
@@ -14,10 +13,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         String deletedTaskDesc = taskList.getTaskN(index).toString();
         taskList.deleteTaskN(index);
-        ui.printDeleteTaskReply(deletedTaskDesc, taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.wrapper.getDeleteResponse(deletedTaskDesc, taskList.getNumOfTask());
     }
 }

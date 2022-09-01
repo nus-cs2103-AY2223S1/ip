@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 public class UnmarkCommand extends Command {
     private final int index;
@@ -14,10 +13,10 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.markTaskN(index, false);
-        ui.printUnmarkTaskReply(taskList.getTaskN(index).toString());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.wrapper.getUnmarkResponse(taskList.getTaskN(index).toString());
 
     }
 }
