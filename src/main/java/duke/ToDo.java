@@ -16,21 +16,21 @@ public class ToDo extends Task {
     }
 
     /**
-     * A method to update the duke.ToDo from incomplete to complete.
+     * Updates the duke.ToDo from incomplete to complete.
      */
     public void markDone() {
         super.markDone();
     }
 
     /**
-     * A method to update the duke.ToDo from complete to incomplete.
+     * Updates the duke.ToDo from complete to incomplete.
      */
     public void markUndone() {
         super.markUndone();
     }
 
     /**
-     * A method to update the index of the duke.ToDo in the list of tasks.
+     * Updates the index of the duke.ToDo in the list of tasks.
      *
      * @param newIndex The most current integer index of the duke.ToDo.
      */

@@ -23,21 +23,21 @@ public class Deadline extends Task {
     }
 
     /**
-     * A method to update the deadline from incomplete to complete.
+     * Updates the deadline from incomplete to complete.
      */
     public void markDone() {
         super.markDone();
     }
 
     /**
-     * A method to update the deadline from complete to incomplete.
+     * Updates the deadline from complete to incomplete.
      */
     public void markUndone() {
         super.markUndone();
     }
 
     /**
-     * A method to update the index of the deadline in the list of tasks.
+     * Updates the index of the deadline in the list of tasks.
      *
      * @param newIndex The most current integer index of the task.
      */
@@ -47,7 +47,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Output the deadline added to the list of tasks in the console.
+     * Outputs the deadline added to the list of tasks in the console.
      */
     @Override
     public void printAdded() {
@@ -57,7 +57,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Output the full details of the deadline in the console.
+     * Outputs the full details of the deadline in the console.
      */
     @Override
     public void printTask() {
@@ -71,7 +71,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of the duke.Deadline.
+     * Returns a string representation of the duke.Deadline.
      *
      * @return string describing the duke.Deadline.
      */
@@ -87,7 +87,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string to be saved in the hard disk.
+     * Returns a string to be saved in the hard disk.
      *
      * @return A string representation of deadline to be saved in the hard disk.
      */
@@ -103,7 +103,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Output the full details of the deadline being deleted in the console.
+     * Outputs the full details of the deadline being deleted in the console.
      */
     public void printDeleted() {
         if (!this.getStatus()) {

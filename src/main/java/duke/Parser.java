@@ -23,7 +23,7 @@ public class Parser {
     }
 
     /**
-     * Return a String representation of the time.
+     * Returns a String representation of the time.
      *
      * @param time the String input time from console.
      * @return A String representation of time to be output in console.
@@ -45,7 +45,7 @@ public class Parser {
     }
 
     /**
-     * Take user input from console and parse the input to do the relevant actions
+     * Takes user input from console and parse the input to do the relevant actions
      * like adding a task to the list.
      *
      * @param userInput the String input from the console.

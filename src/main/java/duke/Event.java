@@ -24,7 +24,7 @@ public class Event extends Task {
     }
 
     /**
-     * Change the task from undone to done and produces output in the console
+     * Changes the task from undone to done and produces output in the console
      * to let user know it has been changed.
      */
     public void markDone() {
@@ -32,7 +32,7 @@ public class Event extends Task {
     }
 
     /**
-     * Change the task from done to undone and produces output in the console
+     * Changes the task from done to undone and produces output in the console
      * to let user know it has been changed.
      */
     public void markUndone() {
@@ -40,7 +40,7 @@ public class Event extends Task {
     }
 
     /**
-     * Update the index of the task to reflect the task's position in
+     * Updates the index of the task to reflect the task's position in
      * the list of tasks.
      *
      * @param newIndex The current index of the event in the list of tasks.
@@ -51,7 +51,7 @@ public class Event extends Task {
     }
 
     /**
-     * Output in the console to let user know full details of the event and inform
+     * Outputs in the console to let user know full details of the event and inform
      * the user it has been added to list of tasks.
      */
     @Override
@@ -62,7 +62,7 @@ public class Event extends Task {
     }
 
     /**
-     * Output in the console the details of the event.
+     * Outputs in the console the details of the event.
      */
     @Override
     public void printTask() {
@@ -76,7 +76,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string representation of the duke.Event.
+     * Returns a string representation of the duke.Event.
      *
      * @return string describing the event.
      */
@@ -92,7 +92,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a string to be saved in the hard disk.
+     * Returns a string to be saved in the hard disk.
      *
      * @return A string representation of event to be saved in the hard disk.
      */
@@ -108,7 +108,7 @@ public class Event extends Task {
     }
 
     /**
-     * Output in the console the details of the event and informs users the task
+     * Outputs in the console the details of the event and informs users the task
      * has been deleted.
      */
     @Override
