@@ -1,8 +1,6 @@
 package duke.controller;
 
 import duke.DukeApplication;
-
-import duke.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -35,11 +33,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         this.scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("How may I help you?"));
     }
 
     public void setDuke(DukeApplication d) {
         this.duke = d;
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("How may I help you?"));
     }
 
     /**
@@ -53,11 +51,5 @@ public class MainWindow extends AnchorPane {
         String response = this.duke.process(input);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response));
         userInput.clear();
-    }
-
-    private String welcomeMsg() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("How may I help you?");
-        return stringBuilder.toString();
     }
 }

@@ -15,11 +15,9 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private final Scanner sc;
-    private MainWindow window;
 
     public Ui() {
         this.sc = new Scanner(System.in);
-        this.window = new MainWindow();
     }
 
     /**
@@ -54,11 +52,9 @@ public class Ui {
      * Print welcome message at the start of the program.
      */
     public void showWelcomeMsg() {
-        /*
         System.out.println(HORIZONTAL_LINE);
         System.out.println(LOGO);
         System.out.println("How may I help you?");
         System.out.println(HORIZONTAL_LINE);
-         */
     }
 }

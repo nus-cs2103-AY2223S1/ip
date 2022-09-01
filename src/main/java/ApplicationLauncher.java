@@ -1,7 +1,9 @@
+import duke.Main;
 import javafx.application.Application;
 
-import duke.Main;
-
+/**
+ * Launcher for GUI Duke Application
+ */
 public class ApplicationLauncher {
 
     public static void main(String[] args) {

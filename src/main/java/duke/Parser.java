@@ -2,7 +2,17 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.CommandType;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ICommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.SaveCommand;
+import duke.command.UnmarkCommand;
+import duke.command.WrongCommand;
 
 /**
  * Represents a parser to parse string inputs from user

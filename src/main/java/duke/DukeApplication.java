@@ -35,6 +35,11 @@ public class DukeApplication {
         }
     }
 
+    /**
+     * Returns response from command execution.
+     * @param input String input from input text field.
+     * @return String response from the command execution.
+     */
     public String process(String input) {
         ICommand cmd = Parser.parse(input);
         return cmd.execute(storage, taskList, ui);
