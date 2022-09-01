@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import belly.Belly;
 import brain.Brain;
-import duke.DukeException;
+import tobtob.TobTobException;
 import processor.TaskDatetimeFormatter;
 import task.Deadline;
 import task.Event;
@@ -34,11 +34,11 @@ public class Executor {
      *
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
-     * @throws DukeException If {@code commandDescription} is an empty string
+     * @throws TobTobException If {@code commandDescription} is an empty string
      */
-    public String showBrain(String commandDescription) throws DukeException {
+    public String showBrain(String commandDescription) throws TobTobException {
         if (!commandDescription.equals("")) {
-            throw DukeException.shouldHaveNoDescriptionError("list");
+            throw TobTobException.shouldHaveNoDescriptionError("list");
         }
 
         return brain.show();
@@ -49,12 +49,12 @@ public class Executor {
      *
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
-     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * @throws TobTobException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
      *      than total {@link Task}s
      */
-    public String markTask(String commandDescription) throws DukeException {
+    public String markTask(String commandDescription) throws TobTobException {
         if (commandDescription.equals("")) {
-            throw DukeException.emptyCommandDescriptionError();
+            throw TobTobException.emptyCommandDescriptionError();
         }
 
         try {
@@ -68,9 +68,9 @@ public class Executor {
             belly.saveToHardDisk(brain.migrateBrainToTxt());
             return result;
         } catch (NumberFormatException e) {
-            throw DukeException.integerIndexError("mark");
+            throw TobTobException.integerIndexError("mark");
         } catch (IndexOutOfBoundsException e) {
-            throw DukeException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.size());
         }
     }
 
@@ -79,12 +79,12 @@ public class Executor {
      *
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
-     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * @throws TobTobException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
      *      than total {@link Task}s
      */
-    public String unmarkTask(String commandDescription) throws DukeException {
+    public String unmarkTask(String commandDescription) throws TobTobException {
         if (commandDescription.equals("")) {
-            throw DukeException.emptyCommandDescriptionError();
+            throw TobTobException.emptyCommandDescriptionError();
         }
 
         try {
@@ -98,9 +98,9 @@ public class Executor {
             belly.saveToHardDisk(brain.migrateBrainToTxt());
             return result;
         } catch (NumberFormatException e) {
-            throw DukeException.integerIndexError("unmark");
+            throw TobTobException.integerIndexError("unmark");
         } catch (IndexOutOfBoundsException e) {
-            throw DukeException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.size());
         }
     }
 
@@ -111,14 +111,14 @@ public class Executor {
      * @param taskDescriptionDatetime {@code String[]} of taskDescription and datetime
      * @param separatorIndex int index of the separator
      * @return <code>String</code>
-     * @throws DukeException If {@code commandDescription} is an empty {@link String}/{@code commandDescription}
+     * @throws TobTobException If {@code commandDescription} is an empty {@link String}/{@code commandDescription}
      *      for {@link Deadline} is not separated using " /by "/{@code commandDescription}
      *      for {@link Deadline} is not separated using " /at "
      */
     public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex)
-            throws DukeException {
+            throws TobTobException {
         if (taskDescriptionDatetime[0].equals("")) {
-            throw DukeException.emptyCommandDescriptionError();
+            throw TobTobException.emptyCommandDescriptionError();
         }
 
         Task task;
@@ -144,7 +144,7 @@ public class Executor {
         case "deadline":
             separator = " /by ";
             if (separatorIndex == -1) {
-                throw DukeException.taskIncorrectFormatError(separator, taskType);
+                throw TobTobException.taskIncorrectFormatError(separator, taskType);
             } else {
                 datetimeString = taskDescriptionDatetime[1];
                 datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
@@ -162,7 +162,7 @@ public class Executor {
         default:
             separator = " /at ";
             if (separatorIndex == -1) {
-                throw DukeException.taskIncorrectFormatError(separator, taskType);
+                throw TobTobException.taskIncorrectFormatError(separator, taskType);
             } else {
                 datetimeString = taskDescriptionDatetime[1];
                 datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
@@ -185,12 +185,12 @@ public class Executor {
      *
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
-     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * @throws TobTobException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
      *      than total {@link Task}s
      */
-    public String trashFromBrain(String commandDescription) throws DukeException {
+    public String trashFromBrain(String commandDescription) throws TobTobException {
         if (commandDescription.equals("")) {
-            throw DukeException.emptyCommandDescriptionError();
+            throw TobTobException.emptyCommandDescriptionError();
         }
 
         try {
@@ -207,9 +207,9 @@ public class Executor {
 
             return result;
         } catch (NumberFormatException e) {
-            throw DukeException.integerIndexError("delete");
+            throw TobTobException.integerIndexError("delete");
         } catch (IndexOutOfBoundsException e) {
-            throw DukeException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.size());
         }
     }
 
@@ -233,11 +233,11 @@ public class Executor {
      *
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
-     * @throws DukeException If {@code commandDescription} is not empty.
+     * @throws TobTobException If {@code commandDescription} is not empty.
      */
-    public String hibernate(String commandDescription) throws DukeException {
+    public String hibernate(String commandDescription) throws TobTobException {
         if (!commandDescription.equals("")) {
-            throw DukeException.shouldHaveNoDescriptionError("bye");
+            throw TobTobException.shouldHaveNoDescriptionError("bye");
         }
 
         String result = "";

@@ -1,6 +1,6 @@
 package processor;
 
-import duke.DukeException;
+import tobtob.TobTobException;
 import executor.Executor;
 
 /**
@@ -23,9 +23,9 @@ public class Parser {
      *
      * @param input a {@link String} input by the user
      * @return {@link String}
-     * @throws DukeException If the command is not recognized or {@link Executor} throws an Error
+     * @throws TobTobException If the command is not recognized or {@link Executor} throws an Error
      */
-    public String parse(String input) throws DukeException {
+    public String parse(String input) throws TobTobException {
         System.out.println(input);
         String command = input.split(" ")[0].toLowerCase();
         int inputLength = input.length();
@@ -73,7 +73,7 @@ public class Parser {
         case "find":
             return executor.findInBrain(commandDescription);
         default:
-            throw DukeException.commandNotRecognizedError(command);
+            throw TobTobException.commandNotRecognizedError(command);
         }
     }
 }

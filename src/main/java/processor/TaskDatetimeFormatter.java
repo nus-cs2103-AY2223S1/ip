@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-import duke.DukeException;
+import tobtob.TobTobException;
 
 /**
  * Represents a formatter that process a datetime object
@@ -19,13 +19,13 @@ public class TaskDatetimeFormatter {
      *
      * @param datetimeString a {@link String} to convert
      * @return {@link LocalDate}
-     * @throws DukeException If {@code datetimeString} doesn't follow the format.
+     * @throws TobTobException If {@code datetimeString} doesn't follow the format.
      */
-    public static LocalDate stringToDatetime(String datetimeString) throws DukeException {
+    public static LocalDate stringToDatetime(String datetimeString) throws TobTobException {
         try {
             return LocalDate.parse(datetimeString, formatter);
         } catch (DateTimeParseException e) {
-            throw DukeException.datetimeFormatErrorMessage(datetimeString);
+            throw TobTobException.datetimeFormatErrorMessage(datetimeString);
         }
     }
 }

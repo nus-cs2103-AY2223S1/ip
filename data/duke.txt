@@ -1,9 +1,0 @@
-T @@ X @@ read book
-D @@   @@ return book @@ 2022-08-25
-E @@   @@ project meeting @@ 2022-08-06
-T @@ X @@ go clubbing
-E @@   @@ Funeral @@ 2023-08-21
-T @@   @@ join sports club
-D @@   @@ return book @@ 2021-02-20
-D @@   @@ do homework @@ 2023-04-02
-T @@   @@ go to heaven

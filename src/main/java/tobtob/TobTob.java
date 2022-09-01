@@ -1,67 +1,48 @@
 package tobtob;
 
-import java.util.Scanner;
+import belly.Belly;
+import brain.Brain;
+import executor.Executor;
+import processor.Parser;
 
 /**
- * Represent a Ui that interacts with the user
+ * Represents a manager that manages the whole process (main logic) of the chatbot
  */
 public class TobTob {
-    private static final String TOB_TOB_LOGO = "            __                  __           __                  __\n"
-            + "           |  |____    _____   |  |_____    |  |____    _____   |  |_____\n"
-            + "           |   ___/   /     \\  |        \\   |   ___/   /     \\  |        \\\n"
-            + "           |  |      |  / \\  | |   / \\   |  |  |      |  / \\  | |   / \\   |\n"
-            + "           |  \\_____ |  \\ /  | |   \\ /   |  |  \\_____ |  \\ /  | |   \\ /   |\n"
-            + "            \\______/  \\_____/   \\_______/    \\______/  \\_____/   \\_______/";
+    private final static String TOB_TOB_GREETING = "Tob Tob! Who's there?\nWhat do you want Tob Tob to do for you today?";
 
-    private static final int TOB_TOB_LUCKY_NUMBER = 88;
-    private static final String TOB_TOB_BOUNDARY = new String(new char[TOB_TOB_LUCKY_NUMBER]).replace("\0", "~");
-    private static final Scanner sc = new Scanner(System.in);
+    private Belly belly;
+    private Brain brain;
+    private Parser parser;
+    private Executor executor;
 
-    /**
-     * Returns a {@link String} of the input by user.
-     *
-     * @return {@link String}
-     */
-    public String readInput() {
-        return sc.nextLine().strip();
+    public TobTob() {
+        belly = new Belly();
+        try {
+            brain = new Brain(belly.puke());
+        } catch (TobTobException e) {
+            brain = new Brain();
+        }
+        executor = new Executor(brain, belly);
+        parser = new Parser(executor);
     }
 
-    /**
-     * Prints the specified {@link String} with indentation
-     *
-     * @param s a {@link String} to print
-     */
-    public void printTobTobIndent(String s) {
-        System.out.print("\t");
-        System.out.println(s.replace("\n", "\n\t"));
+    public static String getGreeting() {
+        return TOB_TOB_GREETING;
     }
 
-    /**
-     * Prints the boundary
-     */
-    public void printTobTobBoundary() {
-        printTobTobIndent(TOB_TOB_BOUNDARY);
+    public String getResponse(String input) {
+        try {
+            return parser.parse(input);
+        } catch (TobTobException e) {
+            return e.getMessage();
+        }
     }
 
-    /**
-     * Greets the user
-     */
-    public void tobTobGreets() {
-        printTobTobIndent(TOB_TOB_LOGO);
-        printTobTobIndent("");
-        printTobTobBoundary();
-        printTobTobIndent("Tob Tob! Who's there?");
-        printTobTobIndent("What do you want Tob Tob to do for you today?");
-        printTobTobBoundary();
-    }
-
-    /**
-     * Informs the user that there is no file saved before
-     */
-    public void tobTobNeverMetBefore() {
-        printTobTobBoundary();
-        printTobTobIndent("We've never met before!");
-        printTobTobIndent("Let me introduce myself");
-        printTobTobBoundary();
+    public boolean isByeCommand(String input) {
+        if (input.toLowerCase().equals("bye")) {
+            return true;
+        }
+        return false;
     }
 }

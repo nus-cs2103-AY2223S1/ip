@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.DukeException;
+import tobtob.TobTobException;
 import processor.TaskDatetimeFormatter;
 import task.Deadline;
 import task.Event;
@@ -20,17 +20,17 @@ import task.Todo;
  * Represents a storage system to load data from or save data to local hard disk.
  */
 public class Belly {
-    public static final String FILE_DIRECTORY = "../data/";
-    public static final String FILE_NAME = "duke.txt";
+    public static final String FILE_DIRECTORY = "data/";
+    public static final String FILE_NAME = "tobtob.txt";
     public static final String FILE_PATH = FILE_DIRECTORY + FILE_NAME;
 
     /**
      * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
      *
      * @return {@link ArrayList}&lt;{@link Task}&gt;
-     * @throws DukeException If there is no file found in the path
+     * @throws TobTobException If there is no file found in the path
      */
-    public ArrayList<Task> puke() throws DukeException {
+    public ArrayList<Task> puke() throws TobTobException {
         try {
             File file = new File(FILE_PATH);
             Scanner sc = new Scanner(file);
@@ -66,7 +66,7 @@ public class Belly {
 
             return taskList;
         } catch (FileNotFoundException e) {
-            throw DukeException.fileNotFoundError(FILE_PATH);
+            throw TobTobException.fileNotFoundError(FILE_PATH);
         }
     }
 
