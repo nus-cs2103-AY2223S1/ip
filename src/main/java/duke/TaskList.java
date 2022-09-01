@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import duke.controller.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;

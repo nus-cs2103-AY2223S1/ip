@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import duke.controller.Ui;
 import duke.task.Task;
 
 /**
