@@ -8,12 +8,12 @@ import java.util.ArrayList;
  */
 public class Duke {
 
+    private static String GREETING = "Hello! I'm Ee Suan!\nWhat can I do for you?";
+
     private Ui ui;
     private Parser parser;
     private Storage storage;
     private TaskList tasks;
-
-    public static String GREETING = "Hello! I'm Ee Suan!\nWhat can I do for you?";
 
     /**
      * Constructor for Duke class.
@@ -29,6 +29,10 @@ public class Duke {
             ui.dukeReply(e.getMessage());
             tasks = new TaskList();
         }
+    }
+
+    public static String getGreeting() {
+        return GREETING;
     }
 
     public String getResponse(String input) {
