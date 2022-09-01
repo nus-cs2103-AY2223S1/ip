@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Chacha {
     public static void main(String[] args) {
@@ -88,5 +90,14 @@ public class Chacha {
         }
         System.out.println("Bye. Hope to see you again soon!");
         input.close();
+    }
+
+    private static void loadData(String filePath) throws FileNotFoundException {
+        File f = new File(filePath); // create a File for the given file path
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        while (s.hasNext()) {
+            //load task objects into array
+            System.out.println(s.nextLine());
+        }
     }
 }
