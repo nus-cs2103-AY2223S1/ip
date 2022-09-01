@@ -1,15 +1,16 @@
 package duke.util;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import duke.command.Command;
 import duke.command.ErrorCommand;
 import duke.command.UnknownCommand;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
 
-    Parser testSubject = new Parser();
+    private Parser testSubject = new Parser();
 
     @Test
     public void parse_unknownInstructionInput_unknownCommandOutput() {

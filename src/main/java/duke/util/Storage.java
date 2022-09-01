@@ -1,10 +1,10 @@
 package duke.util;
 
-import duke.exception.DukeIoException;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import duke.exception.DukeIoException;
 
 /**
  * This class is responsible for file saving. It plays a database-like role.

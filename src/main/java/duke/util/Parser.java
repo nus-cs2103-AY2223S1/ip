@@ -1,5 +1,12 @@
 package duke.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 import duke.command.AddDeadlineCommand;
 import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
@@ -21,13 +28,6 @@ import duke.exception.DukeMissingTaskTitleException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
 /**
  * A command parser that parses user commands. It returns the corresponding Command based on input string, employing a

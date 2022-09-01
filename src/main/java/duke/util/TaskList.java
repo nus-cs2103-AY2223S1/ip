@@ -1,5 +1,8 @@
 package duke.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.Duke;
 import duke.exception.DukeCommandFormatException;
 import duke.exception.DukeDateTimeFormatException;
@@ -7,9 +10,6 @@ import duke.exception.DukeIndexOutOfBoundException;
 import duke.exception.DukeMissingTaskDateTimeException;
 import duke.exception.DukeMissingTaskTitleException;
 import duke.task.Task;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A wrapper class that wraps a list of Task and facilitates some fundamental operations, such as add, find, delete and
@@ -57,7 +57,9 @@ public class TaskList {
      * @param newTask The Task to be added into the list.
      * @return A string as a response of the operation.
      */
-    public String addNewTask(Task newTask) throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
+    public String addNewTask(Task newTask)
+            throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException,
+            DukeDateTimeFormatException {
         tasks.add(newTask);
         return "Added: " + newTask.toString();
     }
