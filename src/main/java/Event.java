@@ -1,13 +1,18 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String time;
+    protected LocalDateTime startTime;
+    protected LocalDateTime endTime;
     /**
      * Construct Task with a fixed name.
      *
      * @param name The name of the task.
      */
-    public Event(String name, String time) {
+    public Event(String name, LocalDateTime startTime, LocalDateTime endTime) {
         super(name);
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Event(SaveLine line) {
@@ -21,7 +26,9 @@ public class Event extends Task {
      * @return A String with the task name and status.
      */
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), time);
+        return String.format("[E]%s (from %s to %s)", super.toString(),
+            startTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")),
+            endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
     }
 
     @Override
