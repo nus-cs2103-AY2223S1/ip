@@ -9,6 +9,9 @@ import duke.task.Task;
 import duke.task.ToDo;
 import duke.ui.Ui;
 
+/**
+ * Main driver class.
+ */
 public class Duke {
 
     private static final String COMMAND_EXIT = "bye";
@@ -20,22 +23,24 @@ public class Duke {
     private static final String COMMAND_ADD_EVENT = "event";
     private static final String COMMAND_DELETE = "delete";
 
-
     private final char TIME_DELIMITER = '/';
     private final String DATA_FILE_PATH = "./data.ser";
 
-    // Ui object to handle user interaction
+
+    /** Ui object to handle user interaction */ 
     private Ui ui;
 
-    // Storage object to handle storing the file on the hard disk
+    /** Storage object to handle storing the file on the hard disk */
     private Storage storage;
 
-    // TaskList object to store the user's tasks
+    /** TaskList object to store the user's tasks */
     private TaskList storedTasks;
 
 
 
-    // Constructor
+    /**
+     * Creates a new Duke object.
+     */
     public Duke() {
         this.ui = new Ui();
         ui.printWelcomeMessage();
@@ -47,8 +52,7 @@ public class Duke {
     }
 
 
-
-    public void markTaskAsDoneOrUndone(String[] commands) {
+    private void markTaskAsDoneOrUndone(String[] commands) {
         
         String result = "";
 
@@ -83,7 +87,7 @@ public class Duke {
     }
 
 
-    public void addTask(String[] commands) {
+    private void addTask(String[] commands) {
         
         // Create the correct type of task based on the first token
         Task t = null;
@@ -106,7 +110,7 @@ public class Duke {
     }
 
 
-    public Task createTask(String[] commands) throws Exception {
+    private Task createTask(String[] commands) throws Exception {
         
         String description = "";
         boolean isDeadline = false;
@@ -170,7 +174,7 @@ public class Duke {
     }
 
 
-    public boolean isValidEventCommand(String[] commands) {
+    private boolean isValidEventCommand(String[] commands) {
         /*  Format of Deadline task: deadline description /by dateAndTime
             Format of Event task: event description /at dateAndTime
 
@@ -203,7 +207,7 @@ public class Duke {
 
 
     // Return the index of the first delimiter in the commands array
-    public int findDelimiter(String[] commands) throws Exception {
+    private int findDelimiter(String[] commands) throws Exception {
         for (int i = 0; i < commands.length; i++) {
             if (commands[i].charAt(0) == TIME_DELIMITER) {
                 return i;
@@ -214,7 +218,7 @@ public class Duke {
     }
 
 
-    public boolean isValidToDoCommand(String[] commands) {
+    private boolean isValidToDoCommand(String[] commands) {
         // Format of ToDo task: todo description
 
         // Therefore, second token onwards is the description
@@ -223,7 +227,7 @@ public class Duke {
     }
 
 
-    public void deleteTask(String[] commands) {
+    private void deleteTask(String[] commands) {
 
         // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
@@ -238,14 +242,14 @@ public class Duke {
     }
 
 
-    public void exitDuke() {
+    private void exitDuke() {
         ui.printExitMessage();
     }
 
 
     // Calls the relevant function based on the given command
     // Return true if need to exit program
-    public boolean executeCommand(String[] commands) {
+    private boolean executeCommand(String[] commands) {
 
         // The first token is used to identify which action to take
         switch (commands[0]) {
@@ -302,7 +306,7 @@ public class Duke {
     }
 
 
-    public void run() {
+    private void run() {
 
         while (true) {
 

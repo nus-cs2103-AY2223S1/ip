@@ -9,19 +9,31 @@ import java.io.ObjectOutputStream;
 
 import duke.data.TaskList;
 
+/**
+ * Reads and writes data to the hard disk.
+ */
 public class Storage {
 
+    /** Relative file path of the data file */
     private String dataFilePath;
 
 
-
+    /**
+     * Creates a new Storage object that stores data at the specified data path.
+     * 
+     * @param dataFilePath Relative file path of the data file
+     */
     public Storage(String dataFilePath) {
         this.dataFilePath = dataFilePath;
     }
 
 
-    // Serialize task list to the data file
-    // Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
+    /**
+     * Serializes (write to file) the specified TaskList object to the data file.
+     * Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
+     * 
+     * @param tasks TaskList object to serialize.
+     */
     public void writeToFile(TaskList tasks) {
 
         try {
@@ -36,18 +48,22 @@ public class Storage {
 
         } catch (FileNotFoundException e) {
             System.out.println("Error, cannot open file");
-            System.out.println(e);
+            // System.out.println(e);
 
         } catch (IOException e) {
             System.out.println("Error when writing to file");
-            System.out.println(e);
+            // System.out.println(e);
         }
 
     }
 
 
-    // Deserialize task list from the data file
-    // Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
+    /**
+     * Returns the deserialized (read from file) TaskList object from the data file.
+     * Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
+     * 
+     * @return TaskList object that was deserialized from the data file.
+     */
     public TaskList readFromFile() {
         
         try {
@@ -62,7 +78,6 @@ public class Storage {
 
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find data.ser file. Creating new task list instead.");
-            return new TaskList();
             // System.out.println(e);
 
         } catch (IOException e) {
