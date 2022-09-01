@@ -9,6 +9,5 @@ import ted.ui.Ui;
  * Represents commands that users can input to the bot.
  */
 public abstract class Command {
-    public abstract void execute(TaskList tasks, Ui ui, Storage st) throws TedException;
-    public abstract boolean isExit();
+    public abstract String execute(TaskList tasks, Ui ui, Storage st) throws TedException;
 }

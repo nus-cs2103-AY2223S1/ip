@@ -27,21 +27,13 @@ public class MarkCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return bot response to mark command.
      * @throws TedException if error occurs while marking task or updating file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) throws TedException {
-        ui.markResponse(tasks.markTask(taskIndex));
+    public String execute(TaskList tasks, Ui ui, Storage st) throws TedException {
+        String temp = tasks.markTask(taskIndex);
         st.updateFile(tasks);
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return ui.markResponse(temp);
     }
 }

@@ -44,7 +44,7 @@ public class TaskList {
      * @return String of task list.
      */
     public String list() {
-        String listOfTasks = "Your tasklist:\n";
+        String listOfTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
             int bulletPoint = i + 1;
             listOfTasks = listOfTasks + bulletPoint + ". " + tasks.get(i) + "\n";
@@ -132,7 +132,7 @@ public class TaskList {
      * @return String of filtered task list.
      */
     public String findTasks(String keyword) {
-        String temp = "Here are the matching tasks in your list:\n";
+        String temp = "";
         int count = 1;
 
         for (int i = 0; i < tasks.size(); i++) {

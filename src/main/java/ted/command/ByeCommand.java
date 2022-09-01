@@ -15,19 +15,10 @@ public class ByeCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return response to bye command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) {
-        ui.showExit();
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return true;
+    public String execute(TaskList tasks, Ui ui, Storage st) {
+        return ui.showExit();
     }
 }

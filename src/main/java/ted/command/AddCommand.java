@@ -27,21 +27,12 @@ public class AddCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return bot response to add command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) {
+    public String execute(TaskList tasks, Ui ui, Storage st) {
         String temp = tasks.addTask(task);
-        ui.addResponse(temp, tasks.getSize());
         st.updateFile(tasks);
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return ui.addResponse(temp, tasks.getSize());
     }
 }

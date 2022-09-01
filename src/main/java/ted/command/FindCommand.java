@@ -27,19 +27,10 @@ public class FindCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return bot response to find command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) {
-        ui.tedResponse(tasks.findTasks(keyword));
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+    public String execute(TaskList tasks, Ui ui, Storage st) {
+        return ui.findResponse(tasks.findTasks(keyword));
     }
 }

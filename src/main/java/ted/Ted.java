@@ -29,24 +29,27 @@ public class Ted {
     }
 
     /**
-     * Runs the task bot.
+     * Returns bot response to user input.
+     *
+     * @param input user input.
+     * @return bot response.
      */
-    public void run() {
-        ui.welcomeUser();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (TedException e) {
-                ui.tedResponse(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (TedException e) {
+            return e.getMessage();
         }
     }
 
-    public static void main(String[] args) {
-        new Ted("data/ted.txt", "ted.txt").run();
+    /**
+     * Returns a welcome message to the user.
+     *
+     * @return welcome message string.
+     */
+    public static String getWelcome() {
+        return "Hello! I'm Ted and I'm here to help you keep track of your tasks |._.|\n"
+                + "How can I assist you today?\n";
     }
 }

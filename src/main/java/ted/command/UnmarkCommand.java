@@ -27,21 +27,13 @@ public class UnmarkCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return bot response to unmark command.
      * @throws TedException if error occurs while unmarking task or updating file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) throws TedException {
-        ui.unmarkResponse(tasks.unmarkTask(taskIndex));
+    public String execute(TaskList tasks, Ui ui, Storage st) throws TedException {
+        String temp = tasks.unmarkTask(taskIndex);
         st.updateFile(tasks);
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return ui.unmarkResponse(temp);
     }
 }

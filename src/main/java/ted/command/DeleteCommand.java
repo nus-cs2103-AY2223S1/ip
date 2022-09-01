@@ -27,22 +27,13 @@ public class DeleteCommand extends Command {
      * @param tasks TaskList of bot.
      * @param ui Ui of bot.
      * @param st Storage of bot.
+     * @return bot response to delete command.
      * @throws TedException if error occurs while deleting task or updating file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) throws TedException {
+    public String execute(TaskList tasks, Ui ui, Storage st) throws TedException {
         String temp = tasks.deleteTask(taskIndex);
-        ui.deleteResponse(temp, tasks.getSize());
         st.updateFile(tasks);
-    }
-
-    /**
-     * Returns boolean indicating whether to exit program.
-     *
-     * @return boolean indicating exit status of program.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return ui.deleteResponse(temp, tasks.getSize());
     }
 }
