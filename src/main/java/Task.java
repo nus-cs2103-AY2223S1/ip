@@ -1,11 +1,15 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
     protected String type;
+    protected LocalDate dateAndTime;
 
     public Task(String desc) {
         this.description = desc;
         this.isDone = false;
+        this.dateAndTime = null;
     }
 
     public String getTask() {

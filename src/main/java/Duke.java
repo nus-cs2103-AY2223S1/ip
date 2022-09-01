@@ -1,7 +1,6 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
@@ -69,9 +68,7 @@ public class Duke {
                 }
             }
             reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
 
         System.out.println("Hello! Duke here, how can I help you?");
         Scanner sc = new Scanner(System.in);
@@ -182,13 +179,18 @@ public class Duke {
                 } else if (!task.contains("/by")) {
                     throw new DukeException("Invalid input for a deadline!");
                 } else {
-                    storage.add(store);
                     Deadline deadline = new Deadline(task);
-                    list.add(deadline);
-                    i++;
-                    System.out.println("I've added this task to the list:");
-                    System.out.println("  " + deadline.getTask());
-                    System.out.println("You have a total of " + i + " tasks in the list.");
+                    try {
+                        String taskDescription = deadline.getTask();
+                        storage.add(store);
+                        list.add(deadline);
+                        i++;
+                        System.out.println("I've added this task to the list:");
+                        System.out.println("  " + taskDescription);
+                        System.out.println("You have a total of " + i + " tasks in the list.");
+                    } catch (NullPointerException e) {
+                        System.out.println("Invalid date input!");
+                    }
                 }
             } else if (str.contains("event")) {
                 String task = sc.nextLine();
@@ -198,13 +200,18 @@ public class Duke {
                 } else if (!task.contains("/at")) {
                     throw new DukeException("Invalid input for an event!");
                 } else {
-                    storage.add(store);
                     Event event = new Event(task);
-                    list.add(event);
-                    i++;
-                    System.out.println("I've added this task to the list:");
-                    System.out.println("  " + event.getTask());
-                    System.out.println("You have a total of " + i + " tasks in the list.");
+                    try {
+                        String taskDescription = event.getTask();
+                        storage.add(store);
+                        list.add(event);
+                        i++;
+                        System.out.println("I've added this task to the list:");
+                        System.out.println("  " + taskDescription);
+                        System.out.println("You have a total of " + i + " tasks in the list.");
+                    } catch (NullPointerException e) {
+                        System.out.println("Invalid date input!");
+                    }
                 }
             } else {
                 throw new DukeException("Invalid input!");
@@ -219,8 +226,6 @@ public class Duke {
                 writer.write(storage.get(j) + "\n");
             }
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
     }
 }
