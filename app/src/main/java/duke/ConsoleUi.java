@@ -1,20 +1,35 @@
 package duke;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConsoleUi extends Ui {
     private Scanner sc;
+    private boolean isAlive;
 
     /**
      * Creates a new console-based UI handler.
      */
-    public ConsoleUi() {
+    public ConsoleUi(InputAcceptor ia) {
+        super(ia);
         sc = new Scanner(System.in);
     }
 
     @Override
-    public String getLine() {
-        return sc.nextLine();
+    public void runInputLoop() {
+        isAlive = true;
+        while (isAlive) {
+            try {
+                processInput(sc.nextLine());
+            } catch (NoSuchElementException e) {
+                isAlive = false;
+            }
+        }
+    }
+
+    @Override
+    public void stopInputLoop() {
+        isAlive = false;
     }
 
     /**

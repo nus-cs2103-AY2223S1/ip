@@ -1,17 +1,30 @@
 package duke;
 
 public abstract class Ui {
+    private InputAcceptor inputAcceptor;
     /**
      * Creates a new UI handler.
      */
-    public Ui() {
+    public Ui(InputAcceptor ia) {
+        inputAcceptor = ia;
     }
 
     /**
-     * Gets a line of user input.
-     * @return The user input.
+     * Starts the user interface input loop.
      */
-    public abstract String getLine();
+    public abstract void runInputLoop();
+
+    /**
+     * Stops the user interface input loop.
+     */
+    public abstract void stopInputLoop();
+
+    /**
+     *
+     */
+    public void processInput(String input) {
+        inputAcceptor.input(input);
+    }
 
     /**
      * Display some output to the user.

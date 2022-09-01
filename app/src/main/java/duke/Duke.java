@@ -1,10 +1,8 @@
 package duke;
 
 import java.time.format.DateTimeParseException;
-import java.util.NoSuchElementException;
 
-public class Duke {
-    private boolean isAlive;
+public class Duke implements InputAcceptor {
     private Ui ui;
     private Storage storage;
     private Parser parser;
@@ -13,11 +11,14 @@ public class Duke {
     /**
      * Creates a new Duke chatbot.
      */
-    public Duke(String fileName, Ui ui) {
-        this.ui = ui;
+    public Duke(String fileName) {
         storage = new Storage(fileName);
         parser = new Parser();
         tasks = storage.load();
+    }
+
+    public void setUi(Ui ui) {
+        this.ui = ui;
     }
 
     /**
@@ -26,18 +27,13 @@ public class Duke {
     public void run() {
         ui.respond("Hello! You have " + tasks.size() + " tasks. What can I do for you today?");
 
-        isAlive = true;
-        while (isAlive) {
-            try {
-                String in;
-                in = ui.getLine();
-                String[] splits = parser.splitOnFirst(in, " ");
-                ui.respond(handle(splits[0], splits[1]));
-            } catch (NoSuchElementException e) {
-                isAlive = false;
-                ui.respond(handle("bye",""));
-            }
-        }
+        ui.runInputLoop();
+    }
+
+    @Override
+    public void input(String input) {
+        String[] splits = parser.splitOnFirst(input, " ");
+        ui.respond(handle(splits[0], splits[1]));
     }
 
     private int checkTask(String id) {
@@ -106,7 +102,7 @@ public class Duke {
             storage.save(tasks);
             return "OK, this task has been deleted:\n" + removedTask;
         case "bye":
-            isAlive = false;
+            ui.stopInputLoop();
             return "Goodbye!";
         case "todo":
             if (params.equals("")) {
@@ -145,7 +141,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("tasks.txt", new ConsoleUi());
+        Duke duke = new Duke("tasks.txt");
+        duke.setUi(new ConsoleUi(duke));
         duke.run();
     }
 }
