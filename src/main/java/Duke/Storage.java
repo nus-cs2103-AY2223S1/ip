@@ -35,13 +35,13 @@ public class Storage {
     /**
      * Updates file contents whenever a task is changed (eg. marked/deleted)
      * @param newTask updated task
-     * @param delete whether to delete the file or not
+     * @param isDelete whether to delete the file or not
      * @param index task number to update
      */
-    public void fileUpdater(Task newTask, boolean delete, int index) {
+    public void fileUpdater(Task newTask, boolean isDelete, int index) {
         try {
             List<String> list = Files.readAllLines(Path.of(this.filePath));
-            if (delete) {
+            if (isDelete) {
                 list.remove(index);
             } else {
                 list.set(index, newTask.toString());
