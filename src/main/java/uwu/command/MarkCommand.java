@@ -1,14 +1,11 @@
 package uwu.command;
 
+import uwu.Storage;
+import uwu.Ui;
 import uwu.exception.NullTaskException;
 import uwu.exception.UwuException;
-
-import uwu.Storage;
-
 import uwu.task.Task;
 import uwu.task.TaskList;
-
-import uwu.Ui;
 
 /**
  * Marks or unmarks a task in the task list.
@@ -44,7 +41,7 @@ public class MarkCommand extends Command {
      * @param storage The task list that is stored in the user's hard disk.
      * @throws UwuException If task index is out of bounds.
      */
-    public void execute (TaskList tasks, Ui ui, Storage storage) throws UwuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (index >= tasks.size()) {
             throw new NullTaskException("\thm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
                     + "\n\tplease check that you have keyed in the right task number~ <:");
@@ -63,6 +60,8 @@ public class MarkCommand extends Command {
             ui.unmarkTask(unmarkedTask);
             storage.save(tasks.taskListToStorageString());
             break;
+        default:
+            throw new NullTaskException("\toops something went wrong!");
         }
     }
 

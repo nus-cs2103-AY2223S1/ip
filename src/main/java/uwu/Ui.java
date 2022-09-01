@@ -26,7 +26,7 @@ public class Ui {
      * Prints a horizontal line to separate chat messages.
      */
     public void showLine() {
-        String horizontalLine ="----------------------------------------------------------------------";
+        String horizontalLine = "--------------------------------------------------------------------------------";
         System.out.println(horizontalLine);
     }
 
@@ -107,12 +107,18 @@ public class Ui {
 
     /**
      * Displays the error encountered during execution.
+     *
      * @param e The exception message.
      */
     public void showError(String e) {
         System.out.println(e);
     }
 
+    /**
+     * Displays the list of tasks containing the keyword.
+     *
+     * @param tasks The list of tasks containing the keyword.
+     */
     public void findTask(TaskList tasks) {
         if (tasks.size() == 0) {
             System.out.println("\thm...looks like there are no tasks matching the keyword ><\n\ttry another one~");

@@ -8,14 +8,14 @@ import uwu.task.TaskList;
  * The UwuBot program to be executed.
  */
 public class UwuBot {
+    /** The ui to print out UwuBot's response. */
+    private static Ui ui = new Ui();
+
     /** The task list that is stored in the user's hard disk. */
     private Storage storage;
 
     /** The list where tasks are added to. */
     private TaskList tasks;
-
-    /** The ui to print out UwuBot's response. */
-    private static Ui ui = new Ui();
 
     /**
      * Constructor for UwuBot object.

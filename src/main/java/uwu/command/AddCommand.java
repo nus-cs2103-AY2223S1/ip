@@ -1,19 +1,17 @@
 package uwu.command;
 
+import uwu.Storage;
+import uwu.Ui;
 import uwu.exception.EmptyInputException;
 import uwu.exception.IncorrectFormatException;
 import uwu.exception.InvalidDateException;
+import uwu.exception.NullTaskException;
 import uwu.exception.UwuException;
-
-import uwu.Storage;
-
 import uwu.task.Deadline;
 import uwu.task.Event;
 import uwu.task.Task;
 import uwu.task.TaskList;
 import uwu.task.ToDos;
-
-import uwu.Ui;
 
 /**
  * Adds a task to the task list.
@@ -58,13 +56,13 @@ public class AddCommand extends Command {
 
         switch (taskType) {
         case "todo":
-                ToDos todo = new ToDos(description);
-                tasks.add(todo);
-                storage.save(tasks.taskListToStorageString());
-                ui.addTask(todo, tasks.size());
-                break;
+            ToDos todo = new ToDos(description);
+            tasks.add(todo);
+            storage.save(tasks.taskListToStorageString());
+            ui.addTask(todo, tasks.size());
+            break;
         case "deadline":
-            // Fallthrough.
+        // Fallthrough.
         case "event":
             String descriptor = taskType.equals("deadline") ? "/by" : "/at";
 
@@ -78,7 +76,7 @@ public class AddCommand extends Command {
                         + "\n\tplease enter a date after the " + descriptor
                         + " in this format:" + "\n\tyyyy-mm-dd HH:mm"
                         + "\n\tthankiew <:");
-                }
+            }
 
             int startIndex = userCommand.indexOf(descriptor + " ");
             int userCmdLen = userCommand.length();
@@ -96,6 +94,9 @@ public class AddCommand extends Command {
             storage.save(tasks.taskListToStorageString());
             ui.addTask(task, tasks.size());
             break;
+        default:
+            throw new NullTaskException("\tsomething went wrong while adding your task..."
+                    + "\n\tmake sure your task is of type todo, deadline or event~!");
         }
     }
 

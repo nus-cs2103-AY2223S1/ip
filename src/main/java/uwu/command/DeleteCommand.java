@@ -1,14 +1,12 @@
 package uwu.command;
 
+import uwu.Storage;
+import uwu.Ui;
 import uwu.exception.NullTaskException;
 import uwu.exception.UwuException;
-
-import uwu.Storage;
-
 import uwu.task.Task;
 import uwu.task.TaskList;
 
-import uwu.Ui;
 
 /**
  * Deletes a task from the task list.
@@ -40,7 +38,7 @@ public class DeleteCommand extends Command {
      * @param storage The task list that is stored in the user's hard disk.
      * @throws UwuException If task index is out of bounds.
      */
-    public void execute (TaskList tasks, Ui ui, Storage storage) throws UwuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (index >= tasks.size()) {
             throw new NullTaskException("\thm...it seems that task " + String.valueOf(index + 1) + " does not exist ><"
                     + "\n\tplease check that you have keyed in the right task number~ <:");
