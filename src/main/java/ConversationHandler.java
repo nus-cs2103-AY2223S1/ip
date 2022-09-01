@@ -2,6 +2,7 @@ import task_classes.Deadline;
 import task_classes.Event;
 import task_classes.Task;
 import task_classes.Todo;
+import utils.FileIO;
 import utils.IOUtils;
 import utils.InputParser;
 
@@ -21,49 +22,62 @@ public class ConversationHandler {
     public String handleCommand(String input) {
 //        We get the first word, since that determines the command
         HashMap<String, String> command = InputParser.getInputArguments(input);
+        String reply = "";
         try {
             switch (command.get("keyword")) {
                 case "Bye":
                 case "bye":
-                    return this.closeCommand(command);
+                    reply = this.closeCommand(command);
+                    break;
 
                 case "list":
                 case "List":
-                    return this.listCommand(command);
+                    reply = this.listCommand(command);
+                    break;
 
                 case "mark":
                 case "Mark":
-                    return this.markCommand(command);
+                    reply = this.markCommand(command);
+                    break;
 
                 case "unmark":
                 case "Unmark":
-                    return this.unMarkCommand(command);
+                    reply = this.unMarkCommand(command);
+                    break;
 
                 case "todo":
                 case "Todo":
-                    return this.addTodoCommand(command);
+                    reply = this.addTodoCommand(command);
+                    break;
 
                 case "deadline":
                 case "Deadline":
-                    return this.addDeadlineCommand(command);
+                    reply = this.addDeadlineCommand(command);
+                    break;
 
                 case "event":
                 case "Event":
-                    return this.addEventCommand(command);
+                    reply = this.addEventCommand(command);
+                    break;
 
                 case "delete":
                 case "Delete":
                 case "remove":
                 case "Remove":
-                    return this.deleteCommand(command);
+                    reply = this.deleteCommand(command);
+                    break;
 
 
                 default:
-                    return input;
+                    reply = input;
+                    break;
             }
         } catch (IllegalArgumentException e) {
             return "Something went wrong 😔: " + e.getMessage();
         }
+
+        FileIO.getInstance().saveList(list);
+        return reply;
     }
 
     private String deleteCommand(HashMap<String, String> commandObj) {
