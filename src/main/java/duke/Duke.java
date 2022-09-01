@@ -5,7 +5,7 @@ import duke.exception.DukeCommandAlreadyExecutedException;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
+import duke.util.CliUi;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,7 +32,7 @@ public class Duke extends Application {
             + "\n" + TAB + "What can I help you?";
 
     private final TaskList taskList;
-    private final Ui ui;
+    private final CliUi cliUi;
     private final Storage storage;
     private final Parser parser;
 
@@ -50,7 +50,7 @@ public class Duke extends Application {
      */
     public Duke() {
         this.taskList = new TaskList();
-        this.ui = new Ui();
+        this.cliUi = new CliUi();
         this.storage = new Storage(DEFAULT_FILE_PATH);
         this.parser = new Parser();
     }
@@ -62,7 +62,7 @@ public class Duke extends Application {
      */
     public Duke(String filePath) {
         this.taskList = new TaskList();
-        this.ui = new Ui();
+        this.cliUi = new CliUi();
         this.storage = new Storage(filePath);
         this.parser = new Parser();
     }
@@ -77,7 +77,7 @@ public class Duke extends Application {
     }
 
     private void greet() {
-        ui.printOutput(GREETING_MESSAGE);
+        cliUi.printOutput(GREETING_MESSAGE);
     }
 
     private void startListening() {
@@ -85,15 +85,15 @@ public class Duke extends Application {
         boolean isExit = false;
 
         while (!isExit) {
-            String input = ui.readInput();
+            String input = cliUi.readInput();
 
             Command nextCommand = parser.parse(input);
             isExit = nextCommand.isExit();
 
             try {
-                nextCommand.execute(ui, taskList, storage);
+                nextCommand.execute(cliUi, taskList, storage);
             } catch (DukeCommandAlreadyExecutedException exception) {
-                ui.printOutput(exception.getMessage());
+                cliUi.printOutput(exception.getMessage());
             }
         }
     }

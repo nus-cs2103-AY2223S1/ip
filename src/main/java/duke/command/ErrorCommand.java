@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
+import duke.util.CliUi;
 
 /**
  * A command class that handles an error that occurs during the phase of parsing.
@@ -26,13 +26,13 @@ public class ErrorCommand extends Command {
      * Handles an error that occurs during the phase of parsing.
      * Prints the error message.
      *
-     * @param ui An object that facilitates output that might be required by the command.
+     * @param cliUi An object that facilitates output that might be required by the command.
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
      */
     @Override
-    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
-        ui.printOutput(errorMessage);
+    protected void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
+        cliUi.printOutput(errorMessage);
     }
 }
