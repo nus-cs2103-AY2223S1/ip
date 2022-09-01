@@ -10,6 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 //import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +31,7 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     private DialogBox(String text, Image img) {
+        Circle circle = new Circle(50, 50, 50);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -35,9 +40,10 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        this.setBackground(new Background(new BackgroundFill(Color.BEIGE, null , null)));
         dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setClip(circle);
     }
 
     /**
@@ -48,6 +54,7 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null , null)));
     }
 
     public static DialogBox getUserDialog(String text, Image img) {

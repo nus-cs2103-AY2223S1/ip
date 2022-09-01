@@ -7,7 +7,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="dialog" lineSpacing="1.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" />
+      <Text fx:id="dialog" lineSpacing="1.0" stroke="#803d3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" />
       <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
    </children>
    <padding>

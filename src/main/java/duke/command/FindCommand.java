@@ -21,11 +21,14 @@ public class FindCommand extends Command {
         for (int i = 0; i < taskList.length(); i++) {
             String taskString = taskList.getTask(i).toString();
             if (taskString.contains(input)) {
-                ui.repeater(i + 1 + ". " + taskString);
-                output += i + 1 + ". " + taskString + "\n";
+                output += taskString + "\n";
             }
         }
-        output += "I found these/this!";
-        return output;
+        if (output == "") {
+            return "Sorry! I couldnt find anything :(";
+        } else {
+            output += "I found these/this!";
+            return output;
+        }
     }
 }
