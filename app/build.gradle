@@ -42,12 +42,12 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'duke.Duke'
+    mainClass = 'duke.DukeGuiLauncher'
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'duke.Duke'
+        attributes 'Main-Class': 'duke.DukeGuiLauncher'
     }
 }
 
