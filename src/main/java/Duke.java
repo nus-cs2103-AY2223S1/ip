@@ -14,6 +14,7 @@ public class Duke {
 
 
         // Main code
+        // Greg's Introduction
         System.out.println(spacing);
         System.out.println("Hello! I am Greg!");
         System.out.println("What do you need help with?");
@@ -77,7 +78,14 @@ public class Duke {
             // Deadline
             else if (word.startsWith("deadline")) {
                 String[] deadlineTask = (word.replace("deadline ", "")).split("/by ");
-                Deadline deadline = new Deadline(deadlineTask[0], deadlineTask[1]);
+                Deadline deadline;
+                if (deadlineTask[1].length() > 10) { // Deadline has a time 
+                    String[] dlDateAndTime = deadlineTask[1].split(" ");
+                    String time = dlDateAndTime[1].substring(0, 2) + ":" + dlDateAndTime[1].substring(2,4);
+                    deadline = new Deadline(deadlineTask[0], dlDateAndTime[0], time);
+                } else { // Deadline without at specific time
+                    deadline = new Deadline(deadlineTask[0], deadlineTask[1]); 
+                }
                 tasks.add(deadline);
                 numTasks += 1;
                 System.out.println("\n" +spacing);
@@ -90,7 +98,9 @@ public class Duke {
             // Event
             else if (word.startsWith("event")) {
                 String[] eventTask = word.replace("event ", "").split("/at ");
-                Event event = new Event(eventTask[0], eventTask[1]);
+                String[] eventDateAndTime = eventTask[1].split(" ");
+                String eventTime = eventDateAndTime[1].substring(0,2) + ":" + eventDateAndTime[1].substring(2,4);
+                Event event = new Event(eventTask[0], eventDateAndTime[0], eventTime);
                 tasks.add(event);
                 numTasks += 1;
                 System.out.println("\n" +spacing);
