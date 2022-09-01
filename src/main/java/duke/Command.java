@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 /*
@@ -8,35 +10,35 @@ import java.util.Scanner;
  */
 public enum Command {
     /**
-     * Command to list all available Tasks
+     * duke.Command to list all available Tasks
      */
     list,
     /**
-     * Command to create a new Todo
+     * duke.Command to create a new duke.Todo
      */
     todo,
     /**
-     * Command to create a new Deadline
+     * duke.Command to create a new duke.Deadline
      */
     deadline,
     /**
-     * Command to create a new Event
+     * duke.Command to create a new duke.Event
      */
     event,
     /**
-     * Command to exit the system
+     * duke.Command to exit the system
      */
     bye,
     /**
-     * Command to delete a Task
+     * duke.Command to delete a duke.Task
      */
     delete,
     /**
-     * Command to mark a task as complete
+     * duke.Command to mark a task as complete
      */
     mark,
     /**
-     * Command to mark a task as incomplete
+     * duke.Command to mark a task as incomplete
      */
     unmark;
 

@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.Serializable;
 
 public class Event extends Task implements Serializable {
@@ -5,7 +7,7 @@ public class Event extends Task implements Serializable {
     private String eventTime;
 
     /**
-     * Constructor to create a new Event
+     * Constructor to create a new duke.Event
      *
      * @param task      the task that you want to complete (String)
      * @param eventTime the time range for this event (String)

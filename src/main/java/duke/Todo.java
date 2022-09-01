@@ -1,9 +1,11 @@
+package duke;
+
 import java.io.Serializable;
 
 public class Todo extends Task implements Serializable {
 
     /**
-     * Constructor to create a new Deadline
+     * Constructor to create a new duke.Deadline
      *
      * @param task the task that you want to complete (String)
      */

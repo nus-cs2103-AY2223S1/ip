@@ -1,3 +1,7 @@
+import duke.AllTasksList;
+import duke.Command;
+import duke.Storage;
+
 import java.util.Scanner;
 
 public class Duke {

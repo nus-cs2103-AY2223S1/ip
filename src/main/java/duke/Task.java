@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.Serializable;
 
 public abstract class Task implements Serializable {
@@ -6,7 +8,7 @@ public abstract class Task implements Serializable {
     protected boolean isComplete = false;
 
     /**
-     * Constructor to create new Task class
+     * Constructor to create new duke.Task class
      *
      * @param task
      */
@@ -15,10 +17,10 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Factory method used to create a new Task
+     * Factory method used to create a new duke.Task
      *
      * @param userCommand the command entered by the user to be parsed by the method
-     * @return a Task obj, either a Todo, Deadline or Event
+     * @return a duke.Task obj, either a duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
     public static Task createTask(String[] commandArray) throws DukeException {
@@ -82,7 +84,7 @@ public abstract class Task implements Serializable {
      * A method used to validate a userCommand to for a specific task type
      *
      * @param userCommand the command entered by the user to be parsed by the method
-     * @param taskType    the task type either Todo, Deadline or Event
+     * @param taskType    the task type either duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
     private static void validateTaskCreation(

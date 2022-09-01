@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +9,7 @@ public class Deadline extends Task implements Serializable {
     private LocalDateTime dueDate;
 
     /**
-     * Constructor to create a new Deadline
+     * Constructor to create a new duke.Deadline
      *
      * @param task    the task that you want to complete (String)
      * @param dueDate the dueDate for this deadline (String)

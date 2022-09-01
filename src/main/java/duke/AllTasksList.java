@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -24,7 +26,7 @@ public class AllTasksList implements Serializable {
         try {
             this.allTasks.get(index).markAsDone();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Error: Task not found");
+            throw new DukeException("Error: duke.Task not found");
         }
     }
 
@@ -38,7 +40,7 @@ public class AllTasksList implements Serializable {
         try {
             this.allTasks.get(index).unmark();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Error: Task not found");
+            throw new DukeException("Error: duke.Task not found");
         }
     }
 
@@ -55,7 +57,7 @@ public class AllTasksList implements Serializable {
             this.allTasks.remove(index);
             this.getSize();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Error: Task not found");
+            throw new DukeException("Error: duke.Task not found");
         }
     }
 

@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
@@ -19,7 +21,7 @@ public class Storage {
     private static final String STORAGE_PATH = "storage/storage.txt";
 
     /**
-     * Method used to init the Storage on a device, creating the directory and file if it doesn't exist.
+     * Method used to init the duke.Storage on a device, creating the directory and file if it doesn't exist.
      */
     public static void initStorage() {
         try {
@@ -69,7 +71,7 @@ public class Storage {
             fileIn.close();
             return allTasks;
         } catch (FileNotFoundException e) {
-            System.out.println("Storage file not found!");
+            System.out.println("duke storage file not found!");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
