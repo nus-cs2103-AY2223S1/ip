@@ -1,7 +1,7 @@
 package processor;
 
-import tobtob.TobTobException;
 import executor.Executor;
+import tobtob.TobTobException;
 
 /**
  * Represents a parser that process the input

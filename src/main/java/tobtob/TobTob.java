@@ -9,7 +9,8 @@ import processor.Parser;
  * Represents a manager that manages the whole process (main logic) of the chatbot
  */
 public class TobTob {
-    private final static String TOB_TOB_GREETING = "Tob Tob! Who's there?\nWhat do you want Tob Tob to do for you today?";
+    private static final String TOB_TOB_GREETING = "Tob Tob! Who's there?\n"
+        + "What do you want Tob Tob to do for you today?";
 
     private Belly belly;
     private Brain brain;
@@ -17,6 +18,9 @@ public class TobTob {
     private Executor executor;
     private String initializationErrorMessage = "";
 
+    /**
+     * TobTob constructor.
+     */
     public TobTob() {
         belly = new Belly();
         try {
@@ -29,10 +33,21 @@ public class TobTob {
         parser = new Parser(executor);
     }
 
+    /**
+     * Returns {@code TOB_TOB_GREETING}
+     *
+     * @return {@link String}
+     */
     public static String getGreeting() {
         return TOB_TOB_GREETING;
     }
 
+    /**
+     * Returns the output to be shown to user
+     *
+     * @param input {@link String} input from user
+     * @return {@link String} output
+     */
     public String getResponse(String input) {
         if (initializationErrorMessage.startsWith("Oopsieee! Error loading file in")) {
             return initializationErrorMessage;
@@ -45,6 +60,12 @@ public class TobTob {
         }
     }
 
+    /**
+     * Returns whether {@code input} is a bye command
+     *
+     * @param input {@link String} input from user
+     * @return {@link boolean}
+     */
     public boolean isByeCommand(String input) {
         if (input.toLowerCase().equals("bye")) {
             return true;

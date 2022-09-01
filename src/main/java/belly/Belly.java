@@ -9,12 +9,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import tobtob.TobTobException;
 import processor.TaskDatetimeFormatter;
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.Todo;
+import tobtob.TobTobException;
 
 /**
  * Represents a storage system to load data from or save data to local hard disk.

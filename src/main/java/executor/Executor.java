@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 import belly.Belly;
 import brain.Brain;
-import tobtob.TobTobException;
 import processor.TaskDatetimeFormatter;
 import task.Deadline;
 import task.Event;
 import task.Task;
 import task.Todo;
+import tobtob.TobTobException;
 
 /**
  * Represents an executor that execute whatever thing a parser tells from the command
