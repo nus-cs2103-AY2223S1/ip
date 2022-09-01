@@ -40,7 +40,11 @@ public enum Command {
     /**
      * duke.Command to mark a task as incomplete
      */
-    unmark;
+    unmark,
+    /**
+     * duke.Command to find a task
+     */
+    find;
 
     private static final String LOGO =
             " ____        _        \n" +
@@ -194,6 +198,9 @@ public enum Command {
             case list:
                 Command.listTasks(allTasks);
                 break;
+            case find:
+                 allTasks.find(commandArray);
+                 break;
             case mark:
                 Command.markTask(commandArray, allTasks);
                 break;
