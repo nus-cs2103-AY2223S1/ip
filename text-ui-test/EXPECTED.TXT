@@ -5,7 +5,7 @@
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] read book
-	Now you have 3 tasks in the list.
+	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Date is not in yyyy-MM-dd format.
@@ -16,12 +16,12 @@
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] join sports club
-	Now you have 4 tasks in the list.
+	Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Got it. I've added this task:
 	  [T][ ] borrow book
-	Now you have 5 tasks in the list.
+	Now you have 6 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Date is not in yyyy-MM-dd format.
@@ -33,17 +33,18 @@
 	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	[[T][X] read book, [T][ ] join sports club, [T][ ] read book, [T][ ] join sports club, [T][ ] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][ ] hello, [T][ ] read book, [T][ ] join sports club, [T][ ] borrow book]
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
-	  [T][X] read book
+	  [T][X] hello
 	____________________________________________________________
 	____________________________________________________________
-	Index 5 out of bounds for length 5
+	Nice! I've marked this task as done:
+	  [T][X] borrow book
 	____________________________________________________________
 	____________________________________________________________
-	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club, [T][ ] borrow book]
+	[[T][X] read book, [T][ ] join sports club, [T][X] hello, [T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
 	____________________________________________________________
 	____________________________________________________________
 	The description of this task cannot be empty.
@@ -53,14 +54,14 @@
 	____________________________________________________________
 	____________________________________________________________
 	Got it. I've deleted this task:
-	  [T][ ] borrow book
-	Now you have 4 tasks in the list.
+	  [T][ ] join sports club
+	Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club]
+	[[T][X] read book, [T][ ] join sports club, [T][X] hello, [T][ ] read book, [T][X] borrow book]
 	____________________________________________________________
 	____________________________________________________________
-	[[T][X] read book, [T][ ] join sports club, [T][X] read book, [T][ ] join sports club]
+	[[T][X] read book, [T][ ] join sports club, [T][X] hello, [T][ ] read book, [T][X] borrow book]
 	____________________________________________________________
 	____________________________________________________________
 	For input string: "mark"
@@ -100,7 +101,7 @@
 	____________________________________________________________
 	Got it. I've deleted this task:
 	  [T][ ] read book
-	Now you have 3 tasks in the list.
+	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	I'm sorry, but I don't know what that means.
