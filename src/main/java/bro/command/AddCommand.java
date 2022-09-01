@@ -1,5 +1,6 @@
 package bro.command;
 
+import bro.BroException;
 import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
@@ -16,7 +17,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
+    public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         String type = this.task.getTaskType();
         switch (type) {
             case ("bro.task.Todo"):

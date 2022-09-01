@@ -70,7 +70,7 @@ public class Parser {
     public static LocalDateTime deadlineParser(String by) throws BroException {
         try {
             return LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
         }
     }
@@ -78,7 +78,7 @@ public class Parser {
     public static LocalDateTime eventParser(String at) throws BroException {
         try {
             return LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
         }
     }

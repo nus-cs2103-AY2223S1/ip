@@ -26,7 +26,7 @@ public class TaskList {
         }
     }
 
-    public void markTask(int n, Storage sto){
+    public void markTask(int n, Storage sto) {
         this.tasks.get(n - 1).markAsDone();
         try {
             sto.modifyTaskFile(this.tasks);
@@ -37,7 +37,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void unmarkTask(int n, Storage sto){
+    public void unmarkTask(int n, Storage sto) {
         this.tasks.get(n - 1).markAsNotDone();
         try {
             sto.modifyTaskFile(this.tasks);
@@ -48,7 +48,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void todoTask(Task t, Storage sto){
+    public void todoTask(Task t, Storage sto) {
         t.markAsNotDone();
         tasks.add(t);
         try {
@@ -84,7 +84,7 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
-    public void deleteTask(int n, Storage sto){
+    public void deleteTask(int n, Storage sto) {
         ui.deleteUi(tasks, n);
         tasks.remove(n - 1);
         try {
