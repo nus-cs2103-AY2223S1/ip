@@ -37,36 +37,18 @@ public class TaskList {
     /**
      * Add new task from the users into the existing taskList.
      * Keep track of the number of tasks in the list.
-     * @param s Task given by the users
+     * Update the keyword hashtable.
+     * @param Task task: Task given by the users to add into the list.
+     * @return int noOfTasks: the current number of tasks in the list after adding it to the list.
      */
-    void add(String s) {
-        String[] strarr = s.split(" ");
-        String typeOfTask = strarr[0];
-        Task newTask = new Task(s);
-        try {
-            if (typeOfTask.equals("todo")) {
-                String[] descriptionList1 = this.processDescription(strarr);
-                newTask = new ToDo(descriptionList1[0]);
-                updateKeyword(descriptionList1[0], newTask);
-            } else if (typeOfTask.equals("deadline")) {
-                String[] descriptionList2 = this.processDescription(strarr);
-                newTask = new Deadline(descriptionList2[0],descriptionList2[1]);
-                updateKeyword(descriptionList2[0], newTask);
-            } else if (typeOfTask.equals("event")) {
-                String[] descriptionList3 = this.processDescription(strarr);
-                newTask = new Event(descriptionList3[0],descriptionList3[1]);
-                updateKeyword(descriptionList3[0], newTask);
-            }
-            list.add(newTask);
-            this.noOfTasks++;
-            String addedTask = newTask.toString();
-            ui.add(addedTask, this.noOfTasks);
-        } catch (TaskWithNoDescriptionException ex) {
-            System.err.print(ex);
-        }
+    int add(Task task) {
+        this.list.add(task);
+        this.noOfTasks++;
+        updateKeyword(task.getTaskDescription(), task);
+        return this.noOfTasks;
     }
 
-    void updateKeyword(String s, Task newTask) {
+    private void updateKeyword(String s, Task newTask) {
         String[] strarr = s.split(" ");
         for (int i = 0; i < strarr.length; i++) {
             if (taskByKeyword.containsKey(strarr[i])) {
@@ -81,20 +63,22 @@ public class TaskList {
 
     /**
      * Delete the task with this taskNo from the list.
-     * @param taskNo TaskNo given by the users.
+     * Keep track of the number of tasks in the list.
+     * Update the keyword hashtable.
+     * @param int taskNo: TaskNo given by the users for deletion.
+     * @return String[] task info: which contains the deleted task description and the current number of tasks in the list after deletion.
      */
-    void delete(int taskNo) {
-        Task currentTask = list.get(taskNo - 1);
+    String[] delete(int taskNo) {
+        Task currentTask = this.list.get(taskNo - 1);
         String currentTaskDescription = currentTask.getTaskDescription();
         removeTaskFromKeyword(currentTaskDescription, currentTask);
-        list.remove(taskNo - 1);
-        noOfTasks--;
-        String deletedTask = currentTask.toString();
-        ui.delete(deletedTask, this.noOfTasks);
+        this.list.remove(taskNo - 1);
+        this.noOfTasks--;
+        String[] tasklistInfo = {currentTask.toString(), String.valueOf(noOfTasks)};
+        return tasklistInfo;
     }
 
-
-    void removeTaskFromKeyword(String s, Task deletedTask) {
+    private void removeTaskFromKeyword(String s, Task deletedTask) {
         String[] strarr = s.split(" ");
         for (int i = 0; i < strarr.length; i++) {
             if (taskByKeyword.get(strarr[i]).size() == 1) {
@@ -105,9 +89,13 @@ public class TaskList {
         }
     }
 
-    void findTaskWithThisKeyword(String s) {
+    /**
+     * Find tasks that contain the keyword s and print it out.
+     * @param String keyword: Keyword given by the users.
+     */
+    void findTaskWithThisKeyword(String keyword) {
         System.out.println("Here are the matching tasks in your list:");
-        List<Task> tasks = taskByKeyword.get(s);
+        List<Task> tasks = taskByKeyword.get(keyword);
         for (int i = 1; i < tasks.size() + 1; i++) {
             String matchingTask = tasks.get(i - 1).toString();
             System.out.println(i + ". " + matchingTask);
@@ -127,46 +115,26 @@ public class TaskList {
 
     /**
      * Mark the task with this taskNo as done.
-     * @param taskNo TaskNo given by the users.
+     * @param int taskNo: TaskNo given by the users to mark it as done.
+     * @return String markedTask: the string version of the task that is marked.
      */
-    void mark(int taskNo) {
+    String mark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.markAsDone();
         String markedTask = taskToBeModify.toString();
-        ui.mark(markedTask);
+        return markedTask;
     }
 
     /**
      * Unmark the task with this taskNo.
-     * @param taskNo TaskNo given by the users.
+     * @param int taskNo: TaskNo given by the users to mark it as undone.
+     * @return String unmarkedTask: the string version of the task that is unmarked.
      */
-    void unmark(int taskNo) {
+    String unmark(int taskNo) {
         Task taskToBeModify = list.get(taskNo - 1);
         taskToBeModify.markAsUndone();
         String unmarkedTask = taskToBeModify.toString();
-        ui.unmark(unmarkedTask);
-    }
-
-    private String[] processDescription(String[] strarr) throws TaskWithNoDescriptionException {
-        if (strarr.length > 1) {
-            String description = strarr[1];
-            String date = "";
-            String[] strarr1 = new String[2];
-            for (int i = 2; i < strarr.length; i++) {
-                if (strarr[i].equals("/by") || strarr[i].equals("/at")) {
-                    date = strarr[i + 1];
-                    break;
-                } else {
-                    description = description + " " + strarr[i];
-                }
-            }
-            strarr1[0] = description;
-            strarr1[1] = date;
-            return strarr1;
-        } else {
-            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a "
-                    + strarr[0] + " cannot be empty.");
-        }
+        return unmarkedTask;
     }
 
 }

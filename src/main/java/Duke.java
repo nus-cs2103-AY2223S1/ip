@@ -1,16 +1,18 @@
 package duke;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 /**
- * Represents a ChatBot for managing tasks such as deadline, todo and event.
+ * Represents a ChatBot for managing tasks of 3 types: deadline, todo and event.
  */
 
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Parser parser;
     private final static String FILE_LOCATION = "./data/duke.txt";
 
     /**
@@ -18,46 +20,33 @@ public class Duke {
      * @param filePath
      * @throws Exception
      */
-    public Duke(String filePath) throws Exception {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        tasks = new TaskList(storage.readFile());
+    public Duke(String filePath) throws Exception{
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
+        this.tasks = new TaskList(storage.readFile());
+        this.parser = new Parser();
     }
 
     /**
      * Run the ChatBot.
-     * Receive command from the users and implement it.
-     * @throws Exception
+     * Receive command from the users, implement it and return the respective response.
+     * @throws IOException
      */
-    public void run() throws Exception {
+    public void run() throws IOException{
         ui.greet();
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
-            String str = sc.nextLine();
-            String[] strArr = str.split(" ");
-            String command = strArr[0];
-            if (command.equals("bye")) {
-                ui.exit();
-                storage.saveNewChanges(this.tasks);
-                break;
-            } else if (command.equals("list")) {
-                tasks.getPrintedList();
-            } else if (command.equals("mark")) {
-                int taskNo = Integer.parseInt(strArr[1]);
-                tasks.mark(taskNo);
-            } else if (command.equals("unmark")) {
-                int taskNo = Integer.parseInt(strArr[1]);
-                tasks.unmark(taskNo);
-            } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                tasks.add(str);
-            } else if (command.equals("delete")) {
-                int taskNo = Integer.parseInt(strArr[1]);
-                tasks.delete(taskNo);
-            } else if (command.equals("find")) {
-                tasks.findTaskWithThisKeyword(strarr[1]);
-            } else {
-                storage.saveNewChanges(this.tasks);
-                throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means");
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = parser.parse(fullCommand);
+                isExit = c.execute(tasks, ui, storage);
+                if (isExit == true) {
+                    storage.saveNewChanges(tasks);
+                }
+            } catch (MismatchInputException e) {
+                storage.saveNewChanges(tasks);
+            } catch (TaskWithNoDescriptionException e) {
+                storage.saveNewChanges(tasks);
             }
         }
     }

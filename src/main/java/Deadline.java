@@ -3,6 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a deadline task with task description and deadline date.
+ */
 class Deadline extends Task {
 
     private LocalDate time;
