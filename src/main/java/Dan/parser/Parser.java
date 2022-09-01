@@ -2,7 +2,9 @@ package dan.parser;
 
 import java.time.format.DateTimeParseException;
 
-
+import dan.DanException;
+import dan.task.TaskList;
+import dan.ui.Ui;
 /**
  * A parser to help parse and execute command-line inputs by the user
  */
@@ -46,6 +48,10 @@ public class Parser {
 
             case "delete":
                 tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
+                break;
+
+            case "find":
+                tasks.findTask(input.split(" ", 1)[1]);
                 break;
 
             case "todo":

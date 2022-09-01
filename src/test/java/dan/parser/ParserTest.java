@@ -1,5 +1,6 @@
-package dan;
+package dan.parser;
 
+import dan.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

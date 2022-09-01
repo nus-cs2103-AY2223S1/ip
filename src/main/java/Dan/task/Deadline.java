@@ -18,7 +18,7 @@ public class Deadline extends Task {
      * @param dateString A String representing a date-time in the pattern "dd/MM/yyyy HHmm"
      * @throws DateTimeParseException If the date-time string is not part of its regular pattern
      */
-    Deadline(String description, String dateString) throws DateTimeParseException {
+    public Deadline(String description, String dateString) throws DateTimeParseException {
         super(description);
         this.dateString = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }

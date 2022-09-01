@@ -1,8 +1,13 @@
 package dan.task;
 
 import java.util.List;
-import java.util.ArrayList;
 
+import dan.DanException;
+import dan.ui.Ui;
+
+/**
+ * Represents a list of tasks
+ */
 public class TaskList {
     private List<Task> tasks;
 
@@ -10,6 +15,12 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    /**
+     * Adds a task to the list of tasks
+     *
+     * @param input task details sent in after parsing
+     * @throws DanException if the input format is not expected
+     */
     public void addTask(String input) throws DanException {
         String description;
         String dateString;
@@ -51,18 +62,27 @@ public class TaskList {
         Ui.printLine();
     }
 
+    /**
+     * Displays the the current tasks in the list
+     *
+     * @throws DanException if there are no available tasks
+     */
     public void showTasks() throws DanException {
         if (tasks.isEmpty()) {
             throw new DanException("Your list is empty!");
         }
         Ui.printLine();
         Ui.printIndent("Here are the tasks in your list:");
-        }
-        Ui.printIndent(this.toString());
+        Ui.printIndent(this);
         Ui.printLine();
+        }
 
-    }
-
+    /**
+     * Marks the indicated task as completed
+     *
+     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @throws DanException if the given task number does not exist in the list
+     */
     public void markTask(int index) throws DanException {
         if (index > tasks.size()) {
             Ui.printIndent("tasks.size(): " + tasks.size());
@@ -74,6 +94,12 @@ public class TaskList {
                 + "  %s", task));
     }
 
+    /**
+     * Marks the indicated task as uncompleted
+     *
+     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @throws DanException if the given task number does not exist in the list
+     */
     public void unMarkTask(int index) throws DanException {
         if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
@@ -84,6 +110,12 @@ public class TaskList {
                 + "  %s", task));
     }
 
+    /**
+     * Removes the indicated task from the list
+     *
+     * @param index Task number (as displayed in `showTasks()`) of the task that is completed
+     * @throws DanException if the given task number does not exist in the list
+     */
     public void deleteTask(int index) throws DanException {
         if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
@@ -96,7 +128,11 @@ public class TaskList {
         Ui.printLine();
     }
 
-
+    /**
+     * Searches the task list for all tasks' descriptions that contains the keyword
+     *
+     * @param keyword String to be searched for among the tasks in the list
+     */
     public void findTask(String keyword) {
         StringBuilder result = new StringBuilder();
         for (int i =1; i <= tasks.size(); i++) {
@@ -114,10 +150,15 @@ public class TaskList {
         Ui.printLine();
     }
 
-    protected List<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
+    /**
+     * Displays the list of tasks in a 1-indexed numbered list.
+     *
+     * @return Text display of the tasks in the list
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

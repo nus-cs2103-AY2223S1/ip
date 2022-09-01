@@ -1,4 +1,6 @@
-package dan;
+package dan.task;
+
+import dan.DanException;
 
 import java.util.ArrayList;
 import java.util.List;
