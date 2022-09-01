@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 /**
  * Represents a task to be done.

@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 /**
  * Abstract representation of a task in the Sakura database.

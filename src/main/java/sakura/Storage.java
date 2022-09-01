@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 import java.io.*;
 import java.util.ArrayList;
