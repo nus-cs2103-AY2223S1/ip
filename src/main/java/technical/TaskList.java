@@ -1,3 +1,10 @@
+package technical;
+
+import functional.Deadline;
+import functional.Event;
+import functional.Task;
+import functional.Todo;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +37,7 @@ public class TaskList {
   }
 
   /**
-   * Append a Todo to the todoList.
+   * Append a functional.Todo to the todoList.
    *
    * @param arguments The command arguments.
    */
@@ -52,7 +59,7 @@ public class TaskList {
   }
 
   /**
-   * Append a Deadline to the todoList.
+   * Append a functional.Deadline to the todoList.
    *
    * @param arguments The command arguments.
    */
@@ -96,7 +103,7 @@ public class TaskList {
   }
 
   /**
-   * Append a Event to the todoList.
+   * Append a functional.Event to the todoList.
    *
    * @param arguments The command arguments.
    */

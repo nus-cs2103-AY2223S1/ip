@@ -1,9 +1,13 @@
+package functional;
+
+import technical.SaveLine;
+
 public abstract class Task {
     protected String name;
     protected boolean done;
 
     /**
-     * Construct Task with a fixed name.
+     * Construct functional.Task with a fixed name.
      *
      * @param name The name of the task.
      */

@@ -1,3 +1,7 @@
+package functional;
+
+import technical.SaveLine;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -5,7 +9,7 @@ public class Event extends Task {
     protected LocalDateTime startTime;
     protected LocalDateTime endTime;
     /**
-     * Construct Task with a fixed name.
+     * Construct functional.Task with a fixed name.
      *
      * @param name The name of the task.
      */

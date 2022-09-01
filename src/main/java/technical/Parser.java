@@ -1,3 +1,5 @@
+package technical;
+
 import java.io.IOException;
 
 public class Parser {

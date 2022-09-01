@@ -1,6 +1,10 @@
+package functional;
+
+import technical.SaveLine;
+
 public class Todo extends Task {
     /**
-     * Construct Task with a fixed name.
+     * Construct functional.Task with a fixed name.
      *
      * @param name The name of the task.
      */
