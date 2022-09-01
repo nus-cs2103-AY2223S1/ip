@@ -139,7 +139,7 @@ public class Parser {
     private void handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
         Task task = taskList.toggleTaskStatus(index);
-        task.toggleStatus();
+
         ui.showMarkTask(task);
         storage.updateFile(taskList.list);
     }

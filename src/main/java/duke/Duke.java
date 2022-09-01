@@ -1,18 +1,21 @@
 package duke;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.*;
 
-import duke.Exceptions.descriptionException;
+import java.util.Scanner;
+
 import duke.Exceptions.NoSuchCommandException;
-import duke.Parser;
-import duke.Task.Task;
+
+/**
+ * Main class for duke application
+ */
 public class Duke {
     private TaskList taskList;
     private Parser parser;
     private Ui ui;
     private Storage storage;
+
+    /**
+     * Enum list of commands
+     */
     public enum Commands {
         LIST,
         BYE,
@@ -24,7 +27,15 @@ public class Duke {
         DELETE,
         FIND
     }
-    public Duke(Parser parser, Ui ui, TaskList taskList, Storage storage){
+
+    /**
+     * Constructor for Duke
+     * @param parser
+     * @param ui
+     * @param taskList
+     * @param storage
+     */
+    public Duke(Parser parser, Ui ui, TaskList taskList, Storage storage) {
         this.parser = parser;
         this.ui = ui;
         this.taskList = taskList;
@@ -53,6 +64,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main function of duke
+     * @param args
+     */
     public static void main(String[] args) {
         Ui ui = new Ui();
         Parser parser = new Parser();
@@ -61,6 +76,5 @@ public class Duke {
         Duke duke = new Duke(parser, ui, taskList, storage);
 
         duke.run();
-        
     }
 }
