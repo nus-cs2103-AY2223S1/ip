@@ -6,12 +6,16 @@ import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * The only public-facing class that interacts directly with the user.
  * Duke is a personal time management virtual assistant, targeted at those who prefer using CLI instead of GUI.
  */
-public class Duke {
+public class Duke extends Application {
 
     public static final String TAB = "    ";
 
@@ -65,6 +69,15 @@ public class Duke {
                 ui.printOutput(exception.getMessage());
             }
         }
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     /**
