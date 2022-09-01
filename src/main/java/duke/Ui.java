@@ -64,9 +64,4 @@ public class Ui {
     public void showDoNotKnowMessage() {
         System.out.println(line + "sorry I do not know what this means :((\n" + line);
     }
-
-
-
 }
-
-
