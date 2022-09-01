@@ -13,6 +13,7 @@ public class Duke {
 
     private static final String COMMAND_EXIT = "bye";
     private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_FIND = "find";
     private static final String COMMAND_MARK_AS_DONE = "mark";
     private static final String COMMAND_MARK_AS_UNDONE = "unmark";
     private static final String COMMAND_ADD_TODO = "todo";
@@ -243,6 +244,15 @@ public class Duke {
     }
 
 
+    private void findTasks(String[] commands) {
+
+        // Keyword is the second token
+        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
+
+        ui.listTasks(searchResults, true);
+    }
+
+
     // Calls the relevant function based on the given command
     // Return true if need to exit program
     public boolean executeCommand(String[] commands) {
@@ -251,9 +261,12 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            ui.listTasks(this.storedTasks);
+            ui.listTasks(this.storedTasks, false);
             break;
 
+        case COMMAND_FIND:
+            findTasks(commands);
+            break;
         
         // Handle marking a task as done and undone in the same function
         case COMMAND_MARK_AS_DONE:

@@ -25,8 +25,9 @@ public class Ui {
     }
     
     
-    public void listTasks(TaskList tasks) {
-        String result = "Here are the tasks in your list:\n";
+    public void listTasks(TaskList tasks, boolean isSearchResult) {
+        // Modify the header sentence based on whether the specified tasks are from a search result or not
+        String result = isSearchResult ? "Here are the matching tasks in your list:\n" : "Here are the tasks in your list:\n";
         
         for (int i = 0; i < tasks.getSize(); i++) {
             String line = String.format("%d. %s\n", i + 1, tasks.getTask(i));
