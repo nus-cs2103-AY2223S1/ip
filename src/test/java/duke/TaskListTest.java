@@ -26,6 +26,6 @@ public class TaskListTest {
             fail();
         }
 
-        assertEquals(deadline, taskList.get(0));
+        assertEquals(deadline, taskList.getTask(0));
     }
 }

@@ -5,7 +5,6 @@ import duke.task.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -51,7 +50,7 @@ public class TaskList {
         }
     }
 
-    public Task get(int i) throws IndexOutOfBoundsException {
+    public Task getTask(int i) throws IndexOutOfBoundsException {
         return this.tasks.get(i);
     }
 
@@ -70,7 +69,7 @@ public class TaskList {
      * @throws IOException if an error occurs while writing to the output file.
      */
     public void remove(int i, Storage storage) throws IOException {
-        Task task = this.get(i);
+        Task task = this.getTask(i);
         String commandString = this.addCommands.get(i);
         this.tasks.remove(i);
         this.addCommands.remove(i);
@@ -94,7 +93,7 @@ public class TaskList {
      * @throws IOException if an error occurs while writing to the output file.
      */
     public void mark(int i, Storage storage) throws IOException {
-        this.get(i).mark();
+        this.getTask(i).mark();
         String commandString = this.addCommands.get(i);
         if (!commandString.contains("/done")) {
             this.addCommands.set(i, commandString + " /done");
@@ -105,7 +104,7 @@ public class TaskList {
         try {
             storage.write(sj.toString());
         } catch (IOException e) {
-            this.get(i).unmark();
+            this.getTask(i).unmark();
             this.addCommands.set(i, commandString);
             throw new IOException("There was a problem writing the change to the file. duke.task.Task not marked.");
         }
@@ -119,7 +118,7 @@ public class TaskList {
      * @throws IOException if an error occurs while writing to the output file.
      */
     public void unmark(int i, Storage storage) throws IOException {
-        this.get(i).unmark();
+        this.getTask(i).unmark();
         String commandString = this.addCommands.get(i);
         if (commandString.contains("/done")) {
             this.addCommands.set(i, commandString.replace("/done", ""));
@@ -130,7 +129,7 @@ public class TaskList {
         try {
             storage.write(sj.toString());
         } catch (IOException e) {
-            this.get(i).mark();
+            this.getTask(i).mark();
             this.addCommands.set(i, commandString);
             throw new IOException("There was a problem writing the change to the file. duke.task.Task not unmarked.");
         }
@@ -153,7 +152,7 @@ public class TaskList {
     public String toString() {
         return String.join("\n",
                 IntStream.range(1, this.size() + 1)
-                    .mapToObj(i -> String.format("%d. %s", i, this.get(i - 1).toString()))
+                    .mapToObj(i -> String.format("%d. %s", i, this.getTask(i - 1).toString()))
                     .toArray(String[]::new));
     }
 }

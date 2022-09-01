@@ -33,7 +33,7 @@ public class UpdateUnmarkCommand extends UpdateCommand {
 
         Task task;
         try {
-            task = taskList.get(taskIndex);
+            task = taskList.getTask(taskIndex);
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(

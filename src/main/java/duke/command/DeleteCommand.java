@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
 
         Task task;
         try {
-            task = taskList.get(taskIndex);
+            task = taskList.getTask(taskIndex);
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(
