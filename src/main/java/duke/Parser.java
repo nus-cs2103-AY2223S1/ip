@@ -140,7 +140,7 @@ public class Parser {
             if (res.isEmpty()) {
                 Ui.showLine();
                 Ui.show("\tSorry! No tasks match your term. Make sure your term is the exact capitalization" +
-                    "as in your task list!");
+                        "as in your task list!");
                 Ui.showLine();
             } else {
                 Ui.showLine();
@@ -148,8 +148,6 @@ public class Parser {
                 res.showList();
                 Ui.showLine();
             }
-
-
 
 
         } else {
