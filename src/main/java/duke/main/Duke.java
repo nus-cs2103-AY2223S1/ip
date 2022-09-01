@@ -24,25 +24,25 @@ public class Duke {
     private static final String INTRO = "Hello! I'm Duke\n"
             + "What can I do for you?";
 
-    private DukeIo userIO;
+    private DukeIo userInputOutput;
     private TaskList tasks;
     private Storage dukeData;
 
     private Duke(TaskList tasks, Storage dukeData) {
-        userIO = new DukeIo();
+        userInputOutput = new DukeIo();
         this.dukeData = dukeData;
         this.tasks = tasks;
     }
 
     private boolean handleInput() {
-        String txt = userIO.readLine();
+        String txt = userInputOutput.readLine();
         Command c = Parser.parseCommand(txt);
         try {
-            c.execute(tasks, userIO, dukeData);
+            c.execute(tasks, userInputOutput, dukeData);
         } catch (DukeException e) {
-            userIO.printError(e);
+            userInputOutput.printError(e);
         } catch (IOException e) {
-            userIO.printError(e);
+            userInputOutput.printError(e);
             return true;
         }
 
@@ -51,6 +51,7 @@ public class Duke {
 
     /**
      * Creates a duke object using the sepecied filepath.
+     * 
      * @param filepath
      * @return Duke
      */
@@ -74,6 +75,7 @@ public class Duke {
 
     /**
      * Creates a Duke object with the default save path.
+     * 
      * @return Duke
      */
     public static Duke createApplication() {
@@ -95,7 +97,7 @@ public class Duke {
     }
 
     /**
-     * Initiate the running loop. Will exit when <code>handleInput</code> returns false.
+     * Initiates the running loop. Will exit when <code>handleInput</code> returns false.
      */
     public void run() {
         while (handleInput()) {
@@ -104,6 +106,7 @@ public class Duke {
 
     /**
      * Runs the Duke Program
+     * 
      * @param args
      */
     public static void main(String[] args) {

@@ -19,14 +19,16 @@ public class ByCommand extends DataCommand {
 
     /**
      * Takes in ParsedData potentially containing a datetime pattern.
-     * @param d ParsedData containing a possible datetime pattern
+     * 
+     * @param parsedData ParsedData containing a possible datetime pattern
      */
-    public ByCommand(ParsedData d) {
-        super(d);
+    public ByCommand(ParsedData parsedData) {
+        super(parsedData);
     }
 
     /**
      * {@inheritDoc} Prints all task (with datetime assigned) that is before the specified date.
+     * 
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */
     @Override

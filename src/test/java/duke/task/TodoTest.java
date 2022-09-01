@@ -27,15 +27,15 @@ public class TodoTest {
     public void markTest() {
         try {
             Todo dummy = Todo.createTodo("dummy test123");
-            assertEquals(false, dummy.completed);
+            assertEquals(false, dummy.isComplete);
             dummy.mark();
-            assertEquals(true, dummy.completed);
+            assertEquals(true, dummy.isComplete);
             dummy.mark();
-            assertEquals(true, dummy.completed);
+            assertEquals(true, dummy.isComplete);
             dummy.unmark();
-            assertEquals(false, dummy.completed);
+            assertEquals(false, dummy.isComplete);
             dummy.unmark();
-            assertEquals(false, dummy.completed);
+            assertEquals(false, dummy.isComplete);
         } catch (CorruptedLineException e) {
             fail();
         }

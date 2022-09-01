@@ -22,6 +22,7 @@ public class Event extends Task {
 
     /**
      * Creates an Event from ParsedData
+     * 
      * @param data ParsedData containing information for both
      * @return Event
      * @throws DukeException Throws when data given is invalid/insufficient
@@ -39,6 +40,7 @@ public class Event extends Task {
 
     /**
      * Creates Deadline given the 2 seperate information.
+     * 
      * @param description Description of Task
      * @param period When/where its at
      * @return Event
@@ -54,6 +56,7 @@ public class Event extends Task {
 
     /**
      * {@inheritDoc} Adds [E] tag to identify as event
+     * 
      * @return String
      */
     @Override
@@ -66,6 +69,6 @@ public class Event extends Task {
      */
     @Override
     public ParsedData convertToParseData() {
-        return new ParsedData(completed ? "Ec" : "Ex", description, period);
+        return new ParsedData(isComplete ? "Ec" : "Ex", description, period);
     }
 }

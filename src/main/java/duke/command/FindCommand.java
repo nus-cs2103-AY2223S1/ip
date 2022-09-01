@@ -38,11 +38,9 @@ public class FindCommand extends DataCommand {
 
         io.printLine();
         io.printTask(FIND_TXT, 0);
-        String sBefore;
-        String sAfter;
         for (int i = 0; i < tasks.size(); i++) {
-            sBefore = tasks.get(i).toString();
-            sAfter = sBefore.replaceAll(searchString, RED_TXT);
+            String sBefore = tasks.get(i).toString();
+            String sAfter = sBefore.replaceAll(searchString, RED_TXT);
             if (sAfter.length() != sBefore.length()) {
                 io.printTask(String.format("%d. %s", i + 1, sAfter), 2);
             }
