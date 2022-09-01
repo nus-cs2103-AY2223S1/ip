@@ -1,5 +1,6 @@
 package duke.support;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -75,15 +76,18 @@ public class Parser {
                 String day = a.substring(a.lastIndexOf("/by") + 4);
                 try {
                     LocalDate.parse(day);
+                    Deadline newTask = new Deadline(description, day);
+                    // add task to this TaskList
+                    this.taskList.addTask(newTask);
+                    Ui.printDeadline(newTask);
+                    a = sc.nextLine();
                 } catch (DateTimeParseException exception) {
                     DukeException.dateTimeException();
+                } catch (DateTimeException exceptionTwo) {
+                    DukeException.dateTimeException();
+                } finally {
                     a = sc.nextLine();
                 }
-                Deadline newTask = new Deadline(description, day);
-                // add task to this TaskList
-                this.taskList.addTask(newTask);
-                Ui.printDeadline(newTask);
-                a = sc.nextLine();
             } else if (a.contains("event")) {
                 String description = a.substring(6, a.lastIndexOf("/") - 1);
                 String time = a.substring(a.lastIndexOf("/at") + 4);
