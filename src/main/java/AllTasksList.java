@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /*
  * All Tasks List class used to store the tasks created by the user.
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  * @author Cui Shen Yi
  * @version CS2103T AY22/23 Semester 1
  */
-public class AllTasksList {
+public class AllTasksList implements Serializable {
 
     /**
      * ArrayList used to store all the tasks created by the user

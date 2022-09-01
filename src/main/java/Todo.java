@@ -1,5 +1,7 @@
-public class Todo extends Task {
-  
+import java.io.Serializable;
+
+public class Todo extends Task implements Serializable {
+
     /**
      * Constructor to create a new Deadline
      *
