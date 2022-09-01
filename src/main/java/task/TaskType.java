@@ -24,6 +24,12 @@ public enum TaskType {
     TaskType(String type) {
         this.type = type;
     }
+
+    /**
+     * Returns task type enum given the correct string
+     * @param typeString String corresponding to a task type
+     * @return The appropriate task type enum
+     */
     public static TaskType getTypeByString(String typeString) {
         return STRING_TASK_TYPE_MAP.get(typeString);
     }
