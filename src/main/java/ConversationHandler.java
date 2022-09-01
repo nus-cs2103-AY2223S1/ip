@@ -11,23 +11,17 @@ import java.util.Scanner;
 
 public class ConversationHandler {
 
-    private Scanner in;
-    private boolean active = true;
+    private boolean open = true;
     private ArrayList<Task> list = new ArrayList<>();
 
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
-        this.in = new Scanner(System.in);
-        this.active = true;
+        this.open = true;
 
-        while (this.active && this.in.hasNext()) {
-            String line = this.in.nextLine();
-            String output = commandHandler(line);
-            IOUtils.printContentWithHR(output);
-        }
+
     }
 
-    public String commandHandler(String input) {
+    public String handleCommand(String input) {
 //        We get the first word, since that determines the command
         HashMap<String, String> command = InputParser.getInputArguments(input);
         try {
@@ -172,9 +166,12 @@ public class ConversationHandler {
     }
 
     private String closeCommand(HashMap<String, String> commandObj) {
-        this.in.close();
-        this.active = false;
+        this.open = false;
         return "Bye. Hope to see you again!";
+    }
+
+    public boolean isOpen() {
+        return this.open;
     }
 
 

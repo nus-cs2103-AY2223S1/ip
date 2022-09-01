@@ -10,6 +10,7 @@ plugins {
 apply plugin : "java"
 ext {
     javaMainClass = "Main"
+    standardInput = System.in
 }
 
 application {
@@ -20,5 +21,6 @@ task runMain(type: Exec) {
     dependsOn build
     group = "Execution"
     description = "Run the main class"
+    standardInput = System.in
     commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), javaMainClass
 }
