@@ -63,7 +63,7 @@ public class TaskList {
             response += UI.noListFound;
         } else {
             for (int i = 1; i <= taskList.size(); ++i) {
-                response += (i + ". " + taskList.get(i - 1).toString());
+                response += (i + ". " + taskList.get(i - 1).toString()) + "\n";
             }
         }
         return response;
@@ -118,7 +118,7 @@ public class TaskList {
             throw new DukeException("I cannot delete this task because task does not exist");
         }
 
-        response = UI.removeTask + taskList.get(index).toString() + UI.numberOfTaskLeft + (taskList.size() - 1) + "\n";
+        response = UI.removeTask + taskList.get(index).toString() + "\n" + UI.numberOfTaskLeft + (taskList.size() - 1) + "\n";
 
         taskList.remove(index);
 
