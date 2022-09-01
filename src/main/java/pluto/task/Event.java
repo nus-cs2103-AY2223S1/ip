@@ -5,8 +5,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
+    /** Event time */
     private LocalDateTime at;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param description Event description.
+     * @param at Event time.
+     */
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
@@ -25,6 +31,7 @@ public class Event extends Task {
         return String.format("E | %d | %s | %s", done, description, dtf.format(at));
     }
 
+    @Override
     public LocalDate getDateMaybe() {
         return at.toLocalDate();
     }

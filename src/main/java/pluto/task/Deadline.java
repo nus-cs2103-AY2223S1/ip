@@ -7,8 +7,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
+    /** Deadline time */
     private LocalDateTime by;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param description Deadline description.
+     * @param by Task deadline.
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
@@ -27,6 +33,7 @@ public class Deadline extends Task {
         return String.format("D | %d | %s | %s", done, description, dtf.format(by));
     }
 
+    @Override
     public LocalDate getDateMaybe() {
         return by.toLocalDate();
     }

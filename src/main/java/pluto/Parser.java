@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class Parser {
+    /** Types of commands */
     enum Type {
         TODO,
         DEADLINE,
@@ -33,6 +34,12 @@ public class Parser {
         BYE
     }
 
+    /**
+     * Parses the string input to meaningful commands.
+     * @param inputLine Input by the user.
+     * @return Command to be executed.
+     * @throws PlutoException If inputLine cannot be parsed properly.
+     */
     public static Command parse(String inputLine) throws PlutoException {
 
         isOnlyCommand(inputLine.toLowerCase());
@@ -68,6 +75,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string to the corresponding addCommand Task.
+     * @param input Input by the user.
+     * @param type Type of task.
+     * @return Corresponding AddCommand.
+     * @throws PlutoException If input cannot be parsed properly.
+     */
     public static Command parseTask(String input, Type type) throws PlutoException {
         switch (type) {
         case TODO:
@@ -89,6 +103,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks whether command description is missing or not.
+     * @param str Input by the user.
+     * @throws PlutoException If str doesn't have a description.
+     */
     public static void isOnlyCommand(String str) throws PlutoException {
         HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark", "unmark", "delete", "show"));
         if (commands.contains(str.strip())) {
@@ -96,6 +115,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string to a LocalDateTime instance.
+     * @param date Date string.
+     * @return LocalDateTime instance.
+     * @throws PlutoException If date format is incorrect.
+     */
     public static LocalDateTime parseDate(String date) throws PlutoException {
         try {
             return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
@@ -105,6 +130,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string to a LocalDate instance.
+     * @param date Date string.
+     * @return LocalDate instance.
+     * @throws PlutoException If date format is incorrect.
+     */
     public static LocalDate parseDateOnly(String date) throws PlutoException {
         try {
             return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -113,6 +144,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an string of integer to an integer.
+     * @param idx String of integer.
+     * @return Integer value of the string.
+     * @throws PlutoException If idx string has characters other than numbers.
+     */
     public static int parseIdx(String idx) throws PlutoException {
         try {
             return Integer.parseInt(idx.strip()) - 1;

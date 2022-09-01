@@ -3,10 +3,17 @@ package pluto;
 import pluto.command.Command;
 
 public class Pluto {
+    /** Writer and reader from local file */
     private Storage storage;
+    /** List of tasks created bu the user */
     private TaskList tasks;
+    /** To display appropriate messages to the user */
     private Ui ui;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param filePath Path of file to read and write files from.
+     */
     public Pluto(String filePath) {
         ui = new Ui();
         try {
@@ -18,6 +25,9 @@ public class Pluto {
         }
     }
 
+    /**
+     * Runs the programme by taking inputs and displaying relevant outputs.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

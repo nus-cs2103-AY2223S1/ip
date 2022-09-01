@@ -6,6 +6,12 @@ import pluto.Ui;
 
 public class ListCommand extends Command {
 
+    /**
+     * {@inheritDoc}
+     *
+     * Displays all tasks in the task list.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.nTasks() == 0) {
             ui.print("\tNo tasks added yet.");

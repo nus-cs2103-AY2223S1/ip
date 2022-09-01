@@ -9,12 +9,23 @@ import pluto.task.Task;
 import java.time.LocalDate;
 
 public class ShowCommand extends Command {
+    /** Date whose tasks need to be retrieved */
     private LocalDate date;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param date Date to find tasks.
+     */
     public ShowCommand(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Displays all tasks of a date.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.nTasks(); i++) {

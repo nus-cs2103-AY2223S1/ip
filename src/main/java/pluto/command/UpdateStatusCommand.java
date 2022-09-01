@@ -9,14 +9,28 @@ import java.io.IOException;
 
 public class UpdateStatusCommand extends Command {
 
+    /** Index of the task whose status needs to be updated */
     private int idx;
+    /** Status of the updated task */
     private boolean isDone;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param idx Index of task to update status.
+     * @param isDone Status of the task.
+     */
     public UpdateStatusCommand(int idx, boolean isDone) {
         this.idx = idx;
         this.isDone = isDone;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Changes the status of a task, updates the local file,
+     * and displays an appropriate message.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         tasks.markTask(idx, isDone);
         try {

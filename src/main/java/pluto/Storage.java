@@ -11,9 +11,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
+    /** File object to read and write tasks into */
     private File file;
+    /** Path of the file */
     private String path;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param path Path of the file.
+     * @throws PlutoException If file is not created properlu.
+     */
     public Storage(String path) throws PlutoException {
         try {
             this.file = new File(path);
@@ -24,6 +31,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasks from the local file to a list.
+     * @return List of tasks read from the local file.
+     * @throws PlutoException If file cannot be parsed properly to tasks.
+     */
     public ArrayList<Task> load() throws PlutoException {
         ArrayList<Task> missions = new ArrayList<>();
         try {
@@ -63,18 +75,34 @@ public class Storage {
         return missions;
     }
 
+    /**
+     * Writes strings at the end of the file.
+     * @param str String to be written.
+     * @throws IOException If str cannot be written properly.
+     */
     public void appendToFile(String str) throws IOException {
         FileWriter fwriter = new FileWriter(this.path, true);
         fwriter.write(str);
         fwriter.close();
     }
 
+    /**
+     * Marks the status of tasks parsed during load().
+     * @param t Task to be marked.
+     * @param status Status of the task after marking.
+     */
     private void markTasks(Task t, String status) {
         if (Integer.parseInt(status) == 1) {
             t.markAsDone();
         }
     }
 
+    /**
+     * Writes all the tasks in a blank file.
+     * @param tasks List of tasks to write.
+     * @throws IOException If problem encountered during writing tasks.
+     * @throws PlutoException If accessing tasks from TaskList generates error.
+     */
     public void rewriteFile(TaskList tasks) throws IOException, PlutoException {
         FileWriter fwriter = new FileWriter(this.path);
         for (int i = 0; i < tasks.nTasks(); i++) {
