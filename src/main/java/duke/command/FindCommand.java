@@ -7,7 +7,6 @@ import java.util.List;
 import duke.DukeException;
 import duke.TaskList;
 import duke.utils.Storage;
-import duke.utils.Ui;
 
 /**
  * Handles the "find" command.
@@ -23,10 +22,11 @@ public class FindCommand extends Command {
      * Finds the tasks with descriptions containing the keyWord.
      * @param taskList TaskList to update tasks data.
      * @param storage Storage to save updates to TaskList.
+     * @return String message of running the "find" command.
      * @throws DukeException Find command with improper syntax.
      */
     @Override
-    public void run(TaskList taskList, Storage storage) throws DukeException, IOException {
+    public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         if (keyWord.split(" ").length == 1) {
             List<Integer> taskIndexes = new ArrayList<>(100);
             StringBuilder message = new StringBuilder();
@@ -47,7 +47,7 @@ public class FindCommand extends Command {
                 }
             }
 
-            Ui.printMessage(message.toString());
+            return message.toString();
 
         } else {
             throw new DukeException("☹ OOPS!!! Please only input ONE keyword.");

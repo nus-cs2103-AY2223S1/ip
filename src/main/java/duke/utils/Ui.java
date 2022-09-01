@@ -38,8 +38,9 @@ public class Ui {
 
     /**
      * Prints the goodbye message to the console.
+     * @return Goodbye message to exit the application.
      */
-    public static void bye() {
-        printMessage(UI_GOODBYE);
+    public static String bye() {
+        return UI_GOODBYE;
     }
 }

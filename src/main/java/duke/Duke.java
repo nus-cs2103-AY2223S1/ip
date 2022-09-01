@@ -45,4 +45,20 @@ public class Duke {
         }
         scanner.close();
     }
+
+    /**
+     * Provides the String message to be displayed.
+     * @param input String to be parsed.
+     * @return Message to be displayed.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseCommand(input);
+            String res = c.run(taskList, storage);
+
+            return res;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 }

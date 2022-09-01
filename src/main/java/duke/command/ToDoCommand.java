@@ -22,13 +22,14 @@ public class ToDoCommand extends Command {
      * Handles a to do task.
      * @param taskList TaskList to add to do task to.
      * @param storage Storage to save new to do task.
+     * @return String message of running the"todo" command.
      * @throws DukeException To do task has no description.
      */
     @Override
-    public void run(TaskList taskList, Storage storage) throws DukeException, IOException {
+    public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         if (commandDetails.length >= 2) {
             Todo todo = new Todo(commandDetails[1]);
-            taskList.addTask(todo, storage);
+            return taskList.addTask(todo, storage);
         } else {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }

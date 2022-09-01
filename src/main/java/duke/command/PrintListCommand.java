@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.TaskList;
 import duke.utils.Storage;
-import duke.utils.Ui;
 
 /**
  * Handles the "list" command.
@@ -14,9 +13,10 @@ public class PrintListCommand extends Command {
      * Prints all values of list currently.
      * @param taskList TaskList to print from.
      * @param storage Storage to store duke.TaskList data to.
+     * @return String message of running the "list" command.
      */
     @Override
-    public void run(TaskList taskList, Storage storage) {
+    public String run(TaskList taskList, Storage storage) {
         StringBuilder message = new StringBuilder();
         // Empty list
         if (taskList.size() == 0) {
@@ -26,6 +26,6 @@ public class PrintListCommand extends Command {
                 message.append(i + 1).append(". ").append(taskList.get(i)).append("\n");
             }
         }
-        Ui.printMessage(String.valueOf(message));
+        return String.valueOf(message);
     }
 }
