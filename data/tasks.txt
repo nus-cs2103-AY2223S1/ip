@@ -3,4 +3,5 @@ E |   | todo | 2022-12-20 1200
 T | X | todo
 T | X | todo
 D |   | deadline | 2023-11-23 1930
-
+T |   | todo
+T | X | todo
