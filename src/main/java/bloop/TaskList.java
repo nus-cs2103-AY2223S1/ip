@@ -134,6 +134,11 @@ public class TaskList {
         ui.print("I've added this task -\n\t\t" + task + "\n\tNow you have " + tasks.size() + " tasks in the list");
     }
 
+    /**
+     * Looks for all the tasks that have the keyword in them.
+     *
+     * @param keyword The keyword contained in tasks.
+     */
     public void findTasks(String keyword) {
         System.out.println(ui.getSeparator());
         System.out.println("\tMatching tasks -");
