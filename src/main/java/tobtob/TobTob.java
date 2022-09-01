@@ -15,7 +15,7 @@ public class TobTob {
     private Brain brain;
     private Parser parser;
     private Executor executor;
-    private String initializationErrorMessage;
+    private String initializationErrorMessage = "";
 
     public TobTob() {
         belly = new Belly();
