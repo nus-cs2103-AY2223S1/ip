@@ -19,7 +19,7 @@ public abstract class Task implements Serializable {
     /**
      * Factory method used to create a new duke.Task
      *
-     * @param userCommand the command entered by the user to be parsed by the method
+     * @param commandArray the command entered by the user to be parsed by the method
      * @return a duke.Task obj, either a duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
