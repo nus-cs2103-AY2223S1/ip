@@ -33,7 +33,7 @@ public class TaskListReader {
     }
 
     /**
-     * Getter for the full path of the data file.
+     * Retrieves for the full path of the data file.
      *
      * @return file path of the data file its loading and saving from.
      */
