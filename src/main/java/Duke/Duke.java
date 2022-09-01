@@ -1,12 +1,12 @@
+/**
+ * Main class
+ */
 package Duke;
 
 import Command.Command;
 
 import java.time.format.DateTimeParseException;
 
-/**
- * Main class
- */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -15,10 +15,12 @@ public class Duke {
     /**
      * Constructor that initialises the relative file path to save / load
      * the specific file
+     *
+     * @param filePath which contains the relative path of the saved task list
      */
-    public Duke() {
+    public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(Constants.FILE_PATH);
+        storage = new Storage(filePath);
         tasks = new TaskList(storage.readFile());
     }
 
@@ -45,24 +47,7 @@ public class Duke {
         }
     }
 
-    /**
-     * Returns a string that will be printed in the UI after the user
-     * keys in a specific command
-     *
-     * @param command
-     * @return string that prints the final output to the UI
-     */
-    public String getResponse(String command) {
-        try {
-            Command c = Parser.parse(command);
-            String output = c.execute(tasks, ui, storage);
-            return output;
-        } catch (Exception e) {
-            return ui.showError(e.getMessage());
-        }
-    }
-
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke("data/tasks.txt").run();
     }
 }

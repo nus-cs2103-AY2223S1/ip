@@ -1,7 +1,5 @@
+T > [ ] > list
 T > [X] > list
-D > [X] > peepe > 12-Dec-2022 17:00
+D > [X] > projectr > 12-Dec-2302 18:00
+D > [ ] > peepe > 12-Dec-2022 17:00
 E > [ ] > todolist > 11-Feb-2021 18:00
-D > [ ] > project lala > 22-Dec-2100 13:00
-D > [ ] > report > 20-Jan-2022 19:00
-T > [ ] > 1
-T > [ ] > 1
