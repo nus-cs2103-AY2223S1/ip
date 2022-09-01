@@ -1,15 +1,8 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 class Ui {
-    private static final String SEPARATING_LINE = "    ____________________________________________________________";
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String OPENING =
             "    Hello! I'm Duke\n    What can I do for you?\n    Type help for detailed useful guide.";
     private static final String ENDING = "    Bye. Hope to see you again soon!";
@@ -24,11 +17,10 @@ class Ui {
      * Prints the given string in a formatted manner.
      *
      * @param s string to be printed
+     * @return String to be displayed to the user
      */
-    protected static void formatPrint(String s) {
-        System.out.println(SEPARATING_LINE);
-        System.out.println(s);
-        System.out.println(SEPARATING_LINE);
+    protected static String formatPrint(String s) {
+        return s;
     }
 
     /**
@@ -36,7 +28,7 @@ class Ui {
      *
      * @param taskList the list of tasks
      */
-    protected static void listPrint(TaskList taskList) {
+    protected static String listPrint(TaskList taskList) {
         ArrayList<Task> arr = taskList.getTaskArrayList();
         int count = 1;
         String result = "Here are the tasks in your list:\n";
@@ -47,49 +39,33 @@ class Ui {
             result += "    " + count + ". " + t.toString();
             count++;
         }
-        Ui.formatPrint(result);
+        return Ui.formatPrint(result);
     }
 
     /**
      * Greets the user.
+     *
+     * @return greeting string to be displayed to user
      */
-    protected static void greet() {
-        System.out.println("Hello from\n" + LOGO);
-        Ui.formatPrint(OPENING);
+    protected static String greet() {
+        // Todo: figure out how to greet first
+        return Ui.formatPrint(OPENING);
     }
 
     /**
      * Says bye to the user.
-     */
-    protected static void bye() {
-        Ui.formatPrint(ENDING);
-    }
-
-    /**
-     * Reads the user input by one line.
      *
-     * @return the user input in string
+     * @return bye string to be displayed to user
      */
-    protected static String readInput() {
-        Scanner sc = new Scanner(System.in);
-        String temp = sc.nextLine();
-        return temp;
-    }
-
-    /**
-     * Outputs to the user with the given string.
-     *
-     * @param arg string to output
-     */
-    protected static void output(String arg) {
-        System.out.println(arg);
+    protected static String bye() {
+        return Ui.formatPrint(ENDING);
     }
 
     /**
      * Prints output for no matching result case.
      */
-    protected static void processUnfoundResult() {
-        Ui.formatPrint(ERROR_UNFOUND_MESSAGE);
+    protected static String processUnfoundResult() {
+        return ERROR_UNFOUND_MESSAGE;
     }
 
     /**
@@ -97,34 +73,34 @@ class Ui {
      *
      * @param t task object to be modified on
      * @param isDone the state the task object is changed to
+     * @return result string to be displayed to user
      */
-    protected static void taskStateChangePrint(Task t, boolean isDone) {
+    protected static String taskStateChangePrint(Task t, boolean isDone) {
         String res;
         if (isDone) {
             res = "Nice! I've marked this task as done:\n";
         } else {
             res = "OK, I've marked this task as not done yet:\n";
         }
-        Ui.formatPrint(res + t.toString());
+        return Ui.formatPrint(res + t.toString());
     }
 
     /**
      * Processes the exception output.
      *
      * @param msg the error message to decide which scenario
+     * @return result string to be displayed to user
      */
-    protected static void processExceptionOutput(String msg) {
+    protected static String processExceptionOutput(String msg) {
         switch (msg) {
         case "Unable to parse query":
             // flow through
         case "Unable to process query":
-            Ui.formatPrint(ERROR_PROCESS_MESSAGE);
-            break;
+            return Ui.formatPrint(ERROR_PROCESS_MESSAGE);
         case "Unable to write the record":
-            Ui.formatPrint(ERROR_WRITE_MESSAGE);
-            break;
+            return Ui.formatPrint(ERROR_WRITE_MESSAGE);
         default:
-            Ui.formatPrint(ERROR_DEFAULT_MESSAGE);
+            return Ui.formatPrint(ERROR_DEFAULT_MESSAGE);
         }
     }
 }

@@ -1,34 +1,28 @@
 package duke;
-// Todo: better organize package
 
 /**
- * Main file that contains the flow of the program
+ * duke.Main file that contains the flow of the program
  */
 public class Duke {
     private static final String filePath = "data/duke.txt";
+    private TaskList taskList;
+    private Storage storage;
 
     /**
-     * Main method to run the program.
-     *
-     * @param args default input from command line
+     * Constructs an instance of Duke that will initialize the set-ups
      */
-    public static void main(String[] args) {
-        TaskList taskList = new TaskList();
-        Storage storage = new Storage(filePath);
+    public Duke() {
+        this.taskList = new TaskList();
+        this.storage = new Storage(filePath);
         storage.readResult(taskList);
 
-        // opening
-        Ui.greet();
+    }
 
-        int statusCode = 1;
-
-        // respond to the input
-        while (true) {
-            String str = Ui.readInput();
-            statusCode = Parser.parseCommand(str, taskList, storage);
-            if (statusCode == 0) {
-                break;
-            }
-        }
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return Parser.parseCommand(input, this.taskList, this.storage);
     }
 }
