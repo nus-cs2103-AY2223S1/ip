@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
 
         try {
             if (description.length() <= 7) {
@@ -38,12 +38,12 @@ public class DeleteCommand extends Command {
             if (index <= 0) {
                 throw new DukeArrayOutOfBoundException();
             }
-            Ui.printDeleteTask(index - 1);
-            TaskList.delete(index - 1);
+            return Ui.printDeleteTask(index - 1);
+
         } catch (DukeException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         } catch (NumberFormatException e) {
-            Ui.printError("Index can only be Integer");
+            return Ui.printError("Index can only be Integer");
         }
 
     }

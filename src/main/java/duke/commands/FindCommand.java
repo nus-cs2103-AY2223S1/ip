@@ -19,16 +19,16 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
         try {
             if (description.length() <= 5) {
                 throw new DukeEmptyCommandException();
             }
 
             String prefix = description.substring(5);
-            Ui.printFind(prefix);
+            return Ui.printFind(prefix);
         } catch (DukeEmptyCommandException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         }
     }
 }

@@ -26,7 +26,7 @@ public class AddToDoCommand extends Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
 
         try {
             if (description.length() <= 5) {
@@ -36,9 +36,9 @@ public class AddToDoCommand extends Command {
 
             Task newTask = new ToDo(information);
             TaskList.add(newTask);
-            Ui.printAddTask(newTask);
+            return Ui.printAddTask(newTask);
         } catch (DukeEmptyCommandException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         }
 
     }

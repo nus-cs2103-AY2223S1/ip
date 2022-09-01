@@ -26,7 +26,7 @@ public class UnMarkCommand extends Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
 
         try {
             if (description.length() <= 7) {
@@ -39,11 +39,11 @@ public class UnMarkCommand extends Command {
                 throw new DukeArrayOutOfBoundException();
             }
             TaskList.unMark(index - 1);
-            Ui.printTaskIsUndone(index - 1);
+            return Ui.printTaskIsUndone(index - 1);
         } catch (DukeException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         } catch (NumberFormatException e) {
-            Ui.printError("Index can only be Integer");
+            return Ui.printError("Index can only be Integer");
         }
 
     }

@@ -32,7 +32,7 @@ public class AddEventCommand extends Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
 
         try {
             if (description.length() <= 6) {
@@ -47,11 +47,11 @@ public class AddEventCommand extends Command {
 
             Task newTask = new Event(information[0], information[1]);
             TaskList.add(newTask);
-            Ui.printAddTask(newTask);
+            return Ui.printAddTask(newTask);
         } catch (DukeException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         } catch (DateTimeException e) {
-            Ui.printError("Sorry i could not recognize the date. Pls use this format \"YYYY-MM-DD\"");
+            return Ui.printError("Sorry i could not recognize the date. Pls use this format \"YYYY-MM-DD\"");
         }
 
     }

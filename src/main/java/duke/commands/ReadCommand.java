@@ -24,15 +24,15 @@ public class ReadCommand extends Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
         try {
             if (description.length() > 4) {
                 throw new DukeTooManyArgumentException();
             }
 
-            Ui.printRead();
+            return Ui.printRead();
         } catch (DukeException e) {
-            Ui.printError(e.getMessage());
+            return Ui.printError(e.getMessage());
         }
     }
 }

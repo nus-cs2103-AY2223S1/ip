@@ -2,7 +2,13 @@ package duke;
 
 import java.io.IOException;
 
+//import javafx.application.Application;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Label;
+//import javafx.stage.Stage;
+
 import duke.commands.Command;
+import duke.exceptions.DukeException;
 import duke.exceptions.DukeUnknownCommandException;
 
 
@@ -28,37 +34,49 @@ public class Duke {
         }
     }
 
-    /**
-     * Run <code>Duke</code> to start taking input
-     */
-    public void run() {
-        Ui.printWelcome();
+//    /**
+//     * Run <code>Duke</code> to start taking input
+//     */
+//    public void run() {
+//        Ui.printWelcome();
+//
+//        while (true) {
+//            try {
+//                Ui.printAskForCommand();
+//                String line = Ui.getCommand();
+//                Command c = Parser.parse(line);
+//                c.execute(this.storage);
+//            } catch (DukeUnknownCommandException e) {
+//                Ui.printError(e.getMessage());
+//            }
+//        }
+//
+//    }
 
-        while (true) {
-            try {
-                Ui.printAskForCommand();
-                String line = Ui.getCommand();
-                Command c = Parser.parse(line);
-                c.execute(this.storage);
-            } catch (DukeUnknownCommandException e) {
-                Ui.printError(e.getMessage());
-            }
+//    /**
+//     * Start duke.
+//     *
+//     * @param args
+//     */
+//    public static void main(String[] args) {
+//
+//        Duke duke = new Duke("data/tasks.txt");
+//
+//        duke.run();
+//
+//    }
+
+    public String getResponse(String line) {
+        try {
+            Command command = Parser.parse(line);
+            String res = command.execute(this.storage);
+            System.out.println(res);
+            return res;
+        } catch (DukeException de) {
+            return Ui.printError(de.getMessage());
         }
-
     }
 
-    /**
-     * Start duke.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        Duke duke = new Duke("data/tasks.txt");
-
-        duke.run();
-
-    }
 
 
 }

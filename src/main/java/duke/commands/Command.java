@@ -23,5 +23,5 @@ public abstract class Command {
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public abstract void execute(Storage storage);
+    public abstract String execute(Storage storage);
 }

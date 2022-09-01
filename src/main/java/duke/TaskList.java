@@ -25,19 +25,20 @@ public class TaskList {
     /**
      * Prints out the list of tasks currently stored.
      */
-    public static void read() {
+    public static String read() {
         if (taskList.size() == 0) {
             System.out.println("You have no task");
-            return;
+            return "You have no task";
         }
 
-        System.out.println("Here are the tasks in your list:");
+        StringBuilder ret = new StringBuilder();
+        ret.append("Here are the tasks in your list: \n");
         for (int i = 0; i < taskList.size(); i++) {
-            Task curr = taskList.get(i);
-            if (curr != null) {
-                System.out.println(i + 1 + "." + curr.toString());
-            }
+            Task task = taskList.get(i);
+            ret.append(i + 1).append(". ").append(task).append("\n");
         }
+
+        return ret.toString();
     }
 
     /**
@@ -84,8 +85,10 @@ public class TaskList {
      *
      * @param prefix prefix of task to find.
      */
-    public static void find(String prefix) {
-        System.out.println("Here are the matching tasks in your list:");
+    public static String find(String prefix) {
+
+        StringBuilder ret = new StringBuilder();
+        ret.append("Here are the matching tasks in your list:");
 
         for (int i = 0; i < taskList.size(); i++) {
             Task curr = taskList.get(i);
@@ -94,9 +97,10 @@ public class TaskList {
             }
 
             if (curr.startsWith(prefix)) {
-                System.out.println(i + 1 + "." + curr.toString());
+                ret.append(i + 1).append(". ").append(curr);
             }
         }
+        return ret.toString();
     }
 
     /**

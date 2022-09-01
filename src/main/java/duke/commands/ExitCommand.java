@@ -6,7 +6,7 @@ import duke.Ui;
 /**
  * Represents a <code>Command</code> to exit Duke.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     /**
      * Constructs a <code>ExitCommand</code>.
@@ -22,9 +22,9 @@ public class ExitCommand extends Command{
      *
      * @param storage Storage object that communicate with local storage.
      */
-    public void execute(Storage storage) {
+    public String execute(Storage storage) {
         storage.save();
-        Ui.printExit();
-        System.exit(0);
+        return Ui.printExit();
+        //System.exit(0);
     }
 }
