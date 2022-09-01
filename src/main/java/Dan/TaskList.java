@@ -57,10 +57,10 @@ public class TaskList {
         }
         Ui.printLine();
         Ui.printIndent("Here are the tasks in your list:");
-        for (int i = 1; i <= tasks.size(); i++) {
-            Ui.printIndent(i + "." + tasks.get(i - 1));
         }
+        Ui.printIndent(this.toString());
         Ui.printLine();
+
     }
 
     public void markTask(int index) throws DanException {
@@ -96,8 +96,35 @@ public class TaskList {
         Ui.printLine();
     }
 
+
+    public void findTask(String keyword) {
+        StringBuilder result = new StringBuilder();
+        for (int i =1; i <= tasks.size(); i++) {
+            Task task = tasks.get(i - 1);
+            if (task.description.contains(keyword)) {
+                result.append(i + "." + task + "\n");
+            }
+        }
+        Ui.printLine();
+        Ui.printIndent("Alright! Here are the matching tasks in your list");
+        Ui.printIndent(
+                (result.toString().length() == 0)
+                ? "I couldn't find any task that matches your description"
+                : result.toString());
+        Ui.printLine();
+    }
+
     protected List<Task> getTasks() {
         return tasks;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i =1; i <= tasks.size(); i++) {
+            result.append(i + "." + tasks.get(i - 1) + "\n");
+        }
+        return result.toString();
     }
 
 }
