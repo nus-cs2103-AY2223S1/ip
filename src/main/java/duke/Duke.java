@@ -65,11 +65,11 @@ public class Duke {
 
         // Mark the task as done or undone depending on the command
         if (action.equals(COMMAND_MARK_AS_DONE)) {
-            t = t.markAsDone();
+            t = t.markTask();
             result = "Nice! I've marked this task as done:\n";
         
         } else {
-            t = t.markAsUndone();
+            t = t.unmarkTask();
             result = "OK, I've marked this task as undone:\n";
         }
 
@@ -318,7 +318,7 @@ public class Duke {
         Duke d = new Duke();
 
         // Process user commands
-        d.run();
+        d.run();        
 
     }
 }

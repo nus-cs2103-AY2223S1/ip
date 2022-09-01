@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 public class TodoTest {
 
     @Test
-    public void testMarkAsDone() {
+    public void testMarkTask() {
         ToDo t = new ToDo("Todo");
-        t = t.markAsDone();
+        t = t.markTask();
         assertTrue(t.isDone);
     }
 
     @Test
-    public void testMarkAsUndone() {
+    public void testUnmarkTask() {
         ToDo t = new ToDo("Todo");
-        t = t.markAsUndone();
+        t = t.unmarkTask();
         assertFalse(t.isDone);
     }
 

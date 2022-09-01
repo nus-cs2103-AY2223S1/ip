@@ -44,12 +44,12 @@ public class Deadline extends Task {
 
     
     @Override
-    public Deadline markAsDone() {
+    public Deadline markTask() {
         return new Deadline(description, true, dateAndTime);
     }
     
     @Override
-    public Deadline markAsUndone() {
+    public Deadline unmarkTask() {
         return new Deadline(description, false, dateAndTime);
     }
 
@@ -65,10 +65,4 @@ public class Deadline extends Task {
         return String.format("[%s]%s (by: %s)", DEADLINE_LETTER, super.toString(), dateAndTimeToString());
     }
 
-
-    public static void main(String[] args) {
-        Deadline d = new Deadline("return book", "2022-12-16 18:35");
-
-        System.out.println(d);
-    }
 }

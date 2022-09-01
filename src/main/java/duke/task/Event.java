@@ -20,12 +20,12 @@ public class Event extends Task {
     
 
     @Override
-    public Event markAsDone() {
+    public Event markTask() {
         return new Event(description, true, dateAndTime);
     }
 
     @Override
-    public Event markAsUndone() {
+    public Event unmarkTask() {
         return new Event(description, false, dateAndTime);
     }
 

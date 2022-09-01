@@ -18,8 +18,8 @@ public abstract class Task implements Serializable {
         this.isDone = isDone;
     }
 
-    public abstract Task markAsDone();
-    public abstract Task markAsUndone();
+    public abstract Task markTask();
+    public abstract Task unmarkTask();
     
 
 

@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 public class DeadlineTest {
 
     @Test
-    public void testMarkAsDone() {
+    public void testMarkTask() {
         Deadline d = new Deadline("Deadline", "2022-12-16 18:00");
-        d = d.markAsDone();
+        d = d.markTask();
         assertTrue(d.isDone);
     }
 
     @Test
-    public void testMarkAsUndone() {
+    public void testUnmarkTask() {
         Deadline d = new Deadline("Deadline", "2022-12-16 18:00");
-        d = d.markAsUndone();
+        d = d.unmarkTask();
         assertFalse(d.isDone);
     }
 

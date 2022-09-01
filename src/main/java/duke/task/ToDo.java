@@ -15,12 +15,12 @@ public class ToDo extends Task {
     
 
     @Override
-    public ToDo markAsDone() {
+    public ToDo markTask() {
         return new ToDo(this.description, true);
     }
 
     @Override
-    public ToDo markAsUndone() {
+    public ToDo unmarkTask() {
         return new ToDo(this.description, false);
     }
 
