@@ -26,7 +26,7 @@ public class DeleteCommand extends Command{
             int pos = java.lang.Integer.parseInt(rest.get(0));
             Task t = tl.get(pos - 1);
             tl.deleteTask(pos);
-            ui.say("Poolsheen has forgot: " + t.description + " and you now have " + tl.size() + " tasks left");
+            ui.say("Poolsheen has forgot: " + t.description + " and you now have " + tl.getSize() + " tasks left");
         }
     }
 }

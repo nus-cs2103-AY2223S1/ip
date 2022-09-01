@@ -26,17 +26,17 @@ public class TaskListTest {
     }
 
     @Test
-    public void size_emptyTaskList_success() {
+    public void getSize_emptyTaskList_success() {
         TaskList tl = new TaskList(new ArrayList<Task>(100));
-        assertEquals(0, tl.size());
+        assertEquals(0, tl.getSize());
     }
 
     @Test
-    public void size_twoSizeTaskList_success() {
+    public void getSize_twoSizeTaskList_success() {
         TaskList tl = new TaskList(new ArrayList<Task>(100));
         tl.add(new ToDoStub());
         tl.add(new ToDoStub());
-        assertEquals(2, tl.size());
+        assertEquals(2, tl.getSize());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class TaskListTest {
         TaskList tl = new TaskList(new ArrayList<Task>(100));
         tl.add(new ToDoStub());
         tl.deleteTask(1);
-        assertEquals(0, tl.size());
+        assertEquals(0, tl.getSize());
     }
 
     @Test

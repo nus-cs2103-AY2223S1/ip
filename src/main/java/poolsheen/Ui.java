@@ -94,13 +94,13 @@ public class Ui {
             return "";
         } else {
             String displayStr = "";
-            for (int i = 0; i < tl.size(); i++) {
+            for (int i = 0; i < tl.getSize(); i++) {
                 int currPos = i + 1;
                 Task t = tl.get(i);
                 if (t != null) {
                     String line = currPos + ". " + t;
                     displayStr += this.BEGIN_SPACE + line;
-                    if (currPos < tl.size()) {
+                    if (currPos < tl.getSize()) {
                         displayStr += "\n";
                     }
                 }

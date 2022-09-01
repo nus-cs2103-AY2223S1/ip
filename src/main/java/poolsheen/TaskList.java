@@ -30,7 +30,7 @@ public class TaskList {
         return arl.isEmpty();
     }
 
-    public int size() {
+    public int getSize() {
         return arl.size();
     }
 

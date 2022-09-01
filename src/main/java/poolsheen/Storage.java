@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.Scanner;
 
-import poolsheen.task.Task;
-import poolsheen.task.Event;
 import poolsheen.task.Deadline;
+import poolsheen.task.Event;
+import poolsheen.task.Task;
 import poolsheen.task.ToDo;
 
 /**
@@ -112,7 +112,7 @@ public class Storage {
     public void update(TaskList tl) throws IOException{
         FileWriter fw = new FileWriter(this.filePath);
         String str = "";
-        int max = tl.size();
+        int max = tl.getSize();
         for (int pos = 0 ; pos < max; pos++) {
             Task t = tl.get(pos);
             int listPos = pos + 1;
