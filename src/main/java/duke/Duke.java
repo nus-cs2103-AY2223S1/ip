@@ -36,6 +36,7 @@ public class Duke {
             parser.read();
         }
 
+        
     /**
      * Main method to run duke program
      * @param args
