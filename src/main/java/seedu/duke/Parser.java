@@ -39,6 +39,11 @@ public class Parser {
     private final String[] commandWords = new String[]{"list", "mark",
             "unmark", "todo", "event", "deadline", "delete", "bye", "find"};
 
+    /**
+     * Makes sense of the user input text
+     *
+     * @param text String to be parsed
+     */
     public void parse(String text) throws EmptyMessageException, InvalidCommandException {
         if (checkCommand(text, 0)) {
             this.ui.displayList(this.tasks.getTasks());
