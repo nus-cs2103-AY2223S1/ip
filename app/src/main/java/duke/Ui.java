@@ -1,39 +1,34 @@
 package duke;
 
-import java.util.Scanner;
-
-public class Ui {
-    private Scanner sc;
-
+public abstract class Ui {
+    private InputAcceptor inputAcceptor;
     /**
      * Creates a new UI handler.
      */
-    public Ui() {
-        sc = new Scanner(System.in);
+    public Ui(InputAcceptor ia) {
+        inputAcceptor = ia;
     }
 
     /**
-     * Gets a line of user input.
-     * @return The user input.
+     * Starts the user interface input loop.
      */
-    public String getLine() {
-        return sc.nextLine();
-    }
+    public abstract void runInputLoop();
 
     /**
-     * Displays a divider.
+     * Stops the user interface input loop.
      */
-    public void showDivider() {
-        System.out.println("    __________________________________________________");
+    public abstract void stopInputLoop();
+
+    /**
+     *
+     */
+    public void processInput(String input) {
+        inputAcceptor.input(input);
     }
 
     /**
      * Display some output to the user.
      * @param response The output to be shown.
      */
-    public void respond(String response) {
-        showDivider();
-        System.out.println("    " + response.replace("\n", "\n    "));
-        showDivider();
-    }
+    public abstract void respond(String response);
 }

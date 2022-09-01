@@ -1,16 +1,42 @@
 package duke;
 
 import java.time.format.DateTimeParseException;
-import java.util.NoSuchElementException;
 
-public class Duke {
-    private static boolean isAlive;
-    private static Ui ui;
-    private static Storage storage;
-    private static Parser parser;
-    private static TaskList tasks;
+public class Duke implements InputAcceptor {
+    private Ui ui;
+    private Storage storage;
+    private Parser parser;
+    private TaskList tasks;
 
-    private static int checkTask(String id) {
+    /**
+     * Creates a new Duke chatbot.
+     */
+    public Duke(String fileName) {
+        storage = new Storage(fileName);
+        parser = new Parser();
+        tasks = storage.load();
+    }
+
+    public void setUi(Ui ui) {
+        this.ui = ui;
+    }
+
+    /**
+     * Runs the Duke chatbot.
+     */
+    public void run() {
+        ui.respond("Hello! You have " + tasks.size() + " tasks. What can I do for you today?");
+
+        ui.runInputLoop();
+    }
+
+    @Override
+    public void input(String input) {
+        String[] splits = parser.splitOnFirst(input, " ");
+        ui.respond(handle(splits[0], splits[1]));
+    }
+
+    private int checkTask(String id) {
         try {
             int task = Integer.parseInt(id);
             if (task > tasks.size() || task <= 0) {
@@ -22,7 +48,7 @@ public class Duke {
         }
     }
 
-    private static String handle(String command, String params) {
+    private String handle(String command, String params) {
         switch (command) {
         case "list":
             StringBuilder out = new StringBuilder();
@@ -76,7 +102,7 @@ public class Duke {
             storage.save(tasks);
             return "OK, this task has been deleted:\n" + removedTask;
         case "bye":
-            isAlive = false;
+            ui.stopInputLoop();
             return "Goodbye!";
         case "todo":
             if (params.equals("")) {
@@ -115,24 +141,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        ui = new Ui();
-        storage = new Storage("tasks.txt");
-        parser = new Parser();
-        tasks = storage.load();
-
-        ui.respond("Hello! You have " + tasks.size() + " tasks. What can I do for you today?");
-
-        isAlive = true;
-        while (isAlive) {
-            try {
-                String in;
-                in = ui.getLine();
-                String[] splits = parser.splitOnFirst(in, " ");
-                ui.respond(handle(splits[0], splits[1]));
-            } catch (NoSuchElementException e) {
-                isAlive = false;
-                ui.respond(handle("bye",""));
-            }
-        }
+        Duke duke = new Duke("tasks.txt");
+        duke.setUi(new ConsoleUi(duke));
+        duke.run();
     }
 }
