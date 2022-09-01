@@ -1,9 +1,9 @@
 package duke;
 
-import duke.command.Command;
-
 import java.io.IOException;
 import java.util.Scanner;
+
+import duke.command.Command;
 
 /**
  * A program that keeps track of a task list defined by the user.
@@ -29,7 +29,7 @@ public class Duke {
             storage.load(taskList, ui);
         } catch (IOException e) {
             ui.showLoadingError();
-            this.taskList = new TaskList();     // if error loading, use an empty task list
+            this.taskList = new TaskList(); // if error loading, use an empty task list
         }
     }
 

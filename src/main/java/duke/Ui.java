@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * Prints messages for user.
  */
 public class Ui {
-    private final PrintStream OUTPUT = System.out;
+    private static final PrintStream OUTPUT = System.out;
 
     /**
      * Prints 30 "-" that act as a divider.

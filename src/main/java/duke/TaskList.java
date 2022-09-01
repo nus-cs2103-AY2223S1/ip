@@ -1,18 +1,19 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
+
+import duke.task.Task;
+
 
 /**
  * Stores taskList and the list of addCommands to be written into output file.
  */
 public class TaskList {
     private ArrayList<Task> tasks;
-    private ArrayList<String> addCommands;   // running these commands will always give the tasks array
+    private ArrayList<String> addCommands; // running these commands will always give the tasks array
 
     /**
      * Constructor for TaskList that initialises an empty task list.
@@ -50,6 +51,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the Task instance at index i.
+     *
+     * @param i 0-based index of Task.
+     * @return Task at index i.
+     * @throws IndexOutOfBoundsException if i < 0 or i >= size of TaskList.
+     */
     public Task getTask(int i) throws IndexOutOfBoundsException {
         return this.tasks.get(i);
     }
@@ -135,6 +143,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Searches for tasks that have descriptions containing the keyword.
+     *
+     * @param keyword String to be searched.
+     * @return TaskList containing the matching tasks.
+     */
     public TaskList search(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         ArrayList<String> matchingAddCommands = new ArrayList<>();
