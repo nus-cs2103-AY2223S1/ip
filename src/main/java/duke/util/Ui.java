@@ -3,7 +3,7 @@ package duke.util;
 import java.util.Scanner;
 
 /**
- * To handle the interactions with the user.
+ * Handles the interactions with the user.
  */
 public class Ui {
     private Scanner scanner;
@@ -16,11 +16,11 @@ public class Ui {
     }
 
     /**
-     * A welcome message to be shown when the starting the ChatBot.
+     * A welcome message for the user.
      *
-     * @return a String representation of a Welcome Message
+     * @return String representation of a Welcome Message
      */
-    public String showWelcome() {
+    public String welcomeMessage() {
         String logo = " _           _        \n"
                 + "| |    _   _| | _____ \n"
                 + "| |   | | | | |/ / _ \\\n"
@@ -36,9 +36,16 @@ public class Ui {
     }
 
     /**
+     * Displays the welcome message.
+     */
+    public void displayWelcome() {
+        System.out.println(this.welcomeMessage());
+    }
+
+    /**
      * Reads the next line of user input.
      *
-     * @return the String representation of the next line of user input
+     * @return String representation of the next line of user input
      */
     public String readCommand() {
         return this.scanner.nextLine();
@@ -52,9 +59,9 @@ public class Ui {
     }
 
     /**
-     * Display the error messages.
+     * Displays the error messages.
      *
-     * @param errorMessage a String representation of the error message to be shown
+     * @param errorMessage String representation of the error message to be shown
      */
     public void showError(String errorMessage) {
         System.out.println(errorMessage);

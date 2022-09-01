@@ -12,7 +12,7 @@ import duke.command.WrongCommand;
 import duke.exception.DukeException;
 
 /**
- * A class to handle the process of parsing the user inputs and to carry out the
+ * Handles the process of parsing the user inputs and carry out the
  * corresponding commands.
  */
 public class Parser {
@@ -30,16 +30,16 @@ public class Parser {
     public static final String EVENT = "event";
 
     /**
-     * Default constructor to create an instance of a Parser
+     * Default constructor to create an instance of a Parser.
      */
     public Parser() {
     }
 
     /**
-     * Processes the user input and check it against the specified commands and carry out
+     * Processes the user input, checks it against the specified commands and carry out
      * the valid commands depending on the keywords used.
      *
-     * @param fullCommand a String representing the entire line of user input
+     * @param fullCommand String representing the entire line of user input
      * @return an instance of a Command corresponding to the keyword used in user input
      * @throws DukeException if an error specific to the ChatBot occurs
      */

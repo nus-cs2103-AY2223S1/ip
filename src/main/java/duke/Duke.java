@@ -20,9 +20,9 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Contructor to create an instance of Duke.
+     * Constructor to create an instance of Duke.
      *
-     * @param filePath the String representation of the relative file path to store the data
+     * @param filePath String representation of the relative file path to store the data
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -38,10 +38,10 @@ public class Duke {
     }
 
     /**
-     * To kickstart the entire ChatBot.
+     * Kickstarts the entire ChatBot.
      */
     public void run() {
-        System.out.println(ui.showWelcome());
+        ui.displayWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {

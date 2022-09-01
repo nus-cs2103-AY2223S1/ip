@@ -13,10 +13,11 @@ public class ListCommand extends Command {
      * consisting of the task type (T, D, E), task status (completed tasks are marked with X) and
      * task description.
      *
-     * @param tasks a list that keeps track of the tasks added/removed
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles the writing/reading of data from a txt file
+     * @param tasks List that keeps track of the tasks added/removed
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing/reading of data from a txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(this);
         for (int i = 0; i < tasks.size(); i++) {
@@ -25,18 +26,19 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Check if it is the exit command in order to exit loop
+     * Checks if it is the exit command in order to exit loop.
      *
      * @return false since a ListCommand does not end the ChatBot
      */
+    @Override
     public boolean isExit() {
         return false;
     }
 
     /**
-     * A String representation of successfully executing the ListCommand.
+     * String representation of successfully executing the ListCommand.
      *
-     * @return a String to notify the user of the tasks he has in his to-do list
+     * @return String to notify the user of the tasks he has in his to-do list
      */
     @Override
     public String toString() {

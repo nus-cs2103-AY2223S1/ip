@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * The Event class extends from Task as it is a more specific/well-defined
+ * Extends from Task as it is a more specific/well-defined
  * task, it is differentiated with the "event" keyword in user-input.
  */
 public class Event extends Task {
@@ -11,11 +11,11 @@ public class Event extends Task {
 
     /**
      * Constructor method for an instance of Event and it also utilises
-     * the constructor of it's parent class (Task)
+     * the constructor of the parent class.
      *
      * @param description String that contains the details about the task
      * @param at String that contains the information of the specific time of event
-     * @param isDone a boolean to keep track if the task has been marked before
+     * @param isDone Boolean to keep track if the task has been marked before
      */
     public Event(String description, String at, boolean isDone) {
         super(description, isDone);
@@ -23,9 +23,9 @@ public class Event extends Task {
     }
 
     /**
-     * A string method to represent the Event task.
+     * Provides a String representation of the Event task.
      *
-     * @return a string representation of a task with a specific time-frame.
+     * @return String representation of a task with a specific time-frame.
      */
     @Override
     public String toString() {

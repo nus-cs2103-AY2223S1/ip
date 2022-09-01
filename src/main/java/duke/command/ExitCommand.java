@@ -10,8 +10,6 @@ public class ExitCommand extends Command {
 
     /**
      * Default constructor method to create an instance of ExitCommand.
-     *
-     * @return an instance of ExitCommand
      */
     public ExitCommand() {
     }
@@ -19,19 +17,21 @@ public class ExitCommand extends Command {
     /**
      * Executes the ExitCommand which prints the goodbye message.
      *
-     * @param tasks a list that keeps track of the tasks added/removed
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles the writing/reading of data from a txt file
+     * @param tasks List that keeps track of the tasks added/removed
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing/reading of data from a txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(this);
     }
 
     /**
-     * Check if it is the ExitCommand in order to exit loop
+     * Checks if it is the ExitCommand in order to exit loop.
      *
      * @return true since it is the ExitCommand
      */
+    @Override
     public boolean isExit() {
         return true;
     }
@@ -39,7 +39,7 @@ public class ExitCommand extends Command {
     /**
      * Farewell message to the user when the ExitCommand is executed.
      *
-     * @return a String representation of the farewell message
+     * @return String representation of the farewell message
      */
     @Override
     public String toString() {

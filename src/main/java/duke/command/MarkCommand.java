@@ -17,8 +17,7 @@ public class MarkCommand extends Command {
     /**
      * Constructor to create an instance of MarkCommand.
      *
-     * @param taskDetails a string representation of the task description
-     * @return an instance of MarkCommand
+     * @param taskDetails String representation of the task description
      */
     public MarkCommand(String taskDetails) {
         this.taskNumber = Integer.parseInt(taskDetails);
@@ -26,14 +25,15 @@ public class MarkCommand extends Command {
 
     /**
      * Executes the MarkCommand by marking the task specified as completed with an 'X'.
-     * Storing the updated tasks by writing to the txt file.
+     * Stores the updated tasks by writing to the txt file.
      *
-     * @param tasks a list that keeps track of the tasks added/removed
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles the writing/reading of data from a txt file
+     * @param tasks List that keeps track of the tasks added/removed
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing/reading of data from a txt file
      * @throws DukeException if the specified task is invalid
      * @throws IOException if an error occurred while writing data to the txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
             String errorMessage = "__________________________________________________\n"
@@ -48,18 +48,19 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Check if it is the exit command in order to exit loop
+     * Checks if it is the exit command in order to exit loop.
      *
      * @return false since a MarkCommand does not end the ChatBot
      */
+    @Override
     public boolean isExit() {
         return false;
     }
 
     /**
-     * A String representation of successfully executing the MarkCommand.
+     * String representation of successfully executing the MarkCommand.
      *
-     * @return a String to notify the user that the specified task has been marked
+     * @return String to notify the user that the specified task has been marked
      */
     @Override
     public String toString() {

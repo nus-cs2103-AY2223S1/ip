@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class UiTest {
     @Test
-    public void showWelcomeTest() {
+    public void welcomeMessageTest() {
         String logo = " _           _        \n"
                 + "| |    _   _| | _____ \n"
                 + "| |   | | | | |/ / _ \\\n"
@@ -20,6 +20,6 @@ public class UiTest {
                 + "How may I assist you today?\n"
                 + "__________________________________________________";
         Ui ui = new Ui();
-        assertEquals(expectedOutput, ui.showWelcome());
+        assertEquals(expectedOutput, ui.welcomeMessage());
     }
 }

@@ -27,7 +27,6 @@ public class AddCommand extends Command {
      * @param taskType Integer value representing the type of task, 0-TODO Task,
      *                 1-DEADLINE Task, 2-EVENT Task
      * @param taskDetails String representation of the task description
-     * @return instance of AddCommand
      */
     public AddCommand(int taskType, String taskDetails) {
         this.taskType = taskType;
@@ -35,14 +34,15 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Create the corresponding task based on the taskType in AddCommand and adds task
+     * Creates the corresponding task based on the taskType in AddCommand and adds task
      * to the TaskList. The task list is then stored on a file under data/tasks.txt
      *
-     * @param tasks a list to add and keep track of the tasks
-     * @param ui an instance of ui that handles the interaction with user inputs
-     * @param storage a storage that handles the writing and reading of tasks from a txt file
+     * @param tasks List to add and keep track of the tasks
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing and reading of tasks from a txt file
      * @throws IOException if the writeToFile method fails while storing the TaskList on a local txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         if (this.taskType == 0) {
             tasks.add(new Todo(this.taskDetails, false));
@@ -63,8 +63,8 @@ public class AddCommand extends Command {
      * Takes in dates in the format YYYY-MM-DD and transform them into MMM d yyyy.
      * (2019-05-05 to May 5 2019)
      *
-     * @param dateInput a String representation of the date in YYYY-MM-DD format.
-     * @return a string representation of the same date in MMM d yyyy format.
+     * @param dateInput String representation of the date in YYYY-MM-DD format.
+     * @return String representation of the same date in MMM d yyyy format.
      */
     public String formatDate(String dateInput) {
         try {
@@ -76,18 +76,19 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Check if it is the exit command.
+     * Checks if it is the exit command.
      *
      * @return false since an AddCommand does not terminate the ChatBot.
      */
+    @Override
     public boolean isExit() {
         return false;
     }
 
     /**
-     * A string representation of successfully executing the AddCommand
+     * String representation of successfully executing the AddCommand.
      *
-     * @return a String to notify user that task has been successfully added
+     * @return String to notify user that task has been successfully added
      */
     @Override
     public String toString() {

@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     /**
      * Constructor to create an instance of FindCommand.
      *
-     * @param keyWord the keyword to search for in the list of tasks
+     * @param keyWord String to search for in the list of tasks
      */
     public FindCommand(String keyWord) {
         this.keyWord = keyWord;
@@ -23,9 +23,9 @@ public class FindCommand extends Command {
      * Executes the FindCommand to filter the tasks according to the keyword
      * specified by the user and print out all the matching tasks.
      *
-     * @param tasks the list of tasks to keep track of in the to-do list
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles reading/writing of data to txt file
+     * @param tasks List of tasks to keep track of in the to-do list
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles reading/writing of data to txt file
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
@@ -40,7 +40,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Check if the command is the ExitCommand to end the ChatBot.
+     * Checks if the command is the ExitCommand to end the ChatBot.
      *
      * @return false since the FindCommand does not terminate the ChatBot
      */
@@ -50,9 +50,9 @@ public class FindCommand extends Command {
     }
 
     /**
-     * A String representation to indicate that FindCommand has been successfully executed.
+     * String representation to indicate that FindCommand has been successfully executed.
      *
-     * @return a String to notify user of the following tasks
+     * @return String to notify user of the following tasks
      */
     @Override
     public String toString() {

@@ -8,7 +8,7 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * DeleteCommand encapsulates the logic behind deleting a task from the TaskList.
+ * Encapsulates the logic behind deleting a task from the TaskList.
  */
 public class DeleteCommand extends Command {
     private int taskNumber;
@@ -17,7 +17,6 @@ public class DeleteCommand extends Command {
      * Constructor to create an instance of DeleteCommand.
      *
      * @param taskDetails a String representation containing details about the task
-     * @return an instance of DeleteCommand
      */
     public DeleteCommand(String taskDetails) {
         this.taskNumber = Integer.parseInt(taskDetails);
@@ -25,14 +24,15 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes the DeleteCommand and removes the corresponding task from the TaskList.
-     * The updated TaskList is then stored into a txt file under data/tasks.txt
+     * Stores the updated TaskList into a txt file under data/tasks.txt
      *
-     * @param tasks a list that keeps track of the tasks added/removed
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles the writing/reading of data from a txt file
+     * @param tasks List that keeps track of the tasks added/removed
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing/reading of data from a txt file
      * @throws DukeException if the TaskList is empty or an invalid task number in user's input
      * @throws IOException if an error occurs while writing to a txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         //Exception: Throw an error when user tries to delete from an empty list
         if (tasks.isEmpty()) {
@@ -57,18 +57,19 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Check if it is the exit command in order to exit loop
+     * Checks if it is the exit command in order to exit loop.
      *
      * @return false since a DeleteCommand does not end the ChatBot
      */
+    @Override
     public boolean isExit() {
         return false;
     }
 
     /**
-     * A String representation of successfully executing the DeleteCommand.
+     * String representation of successfully executing the DeleteCommand.
      *
-     * @return a String to notify the user that a task has been removed
+     * @return String to notify the user that a task has been removed
      */
     @Override
     public String toString() {
@@ -79,7 +80,7 @@ public class DeleteCommand extends Command {
     /**
      * Overridden equals method to check if 2 instances of DeleteCommand are the same.
      *
-     * @param o Object o be compared against an instance of DeleteCommand
+     * @param o Object to be compared against an instance of DeleteCommand
      * @return true if both are instances of DeleteCommand and they contain the same task number else false
      */
     @Override

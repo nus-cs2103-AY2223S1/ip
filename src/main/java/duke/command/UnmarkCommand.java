@@ -17,8 +17,7 @@ public class UnmarkCommand extends Command {
     /**
      * Constructor to create an instance of UnmarkCommand.
      *
-     * @param taskDetails a String representation of the task descriptions
-     * @return an instance of UnmarkCommand
+     * @param taskDetails String representation of the task descriptions
      */
     public UnmarkCommand(String taskDetails) {
         this.taskNumber = Integer.parseInt(taskDetails);
@@ -28,12 +27,13 @@ public class UnmarkCommand extends Command {
      * Executes the UnmarkCommand by unmarking the task specified as not completed by removing
      * the 'X' symbol. Storing the updated tasks by writing to the txt file.
      *
-     * @param tasks a list that keeps track of the tasks added/removed
-     * @param ui ui that handles the interaction with user inputs
-     * @param storage storage that handles the writing/reading of data from a txt file
+     * @param tasks List that keeps track of the tasks added/removed
+     * @param ui Ui that handles the interaction with user inputs
+     * @param storage Storage that handles the writing/reading of data from a txt file
      * @throws DukeException if the specified task is invalid
      * @throws IOException if an error occurred while writing data to the txt file
      */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
             String errorMessage = "__________________________________________________\n"
@@ -48,18 +48,19 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Check if it is the exit command in order to exit loop
+     * Checks if it is the exit command in order to exit loop
      *
      * @return false since a UnmarkCommand does not end the ChatBot
      */
+    @Override
     public boolean isExit() {
         return false;
     }
 
     /**
-     * A String representation of successfully executing the UnmarkCommand.
+     * String representation of successfully executing the UnmarkCommand.
      *
-     * @return a String to notify the user that the specified task has been unmarked
+     * @return String to notify the user that the specified task has been unmarked
      */
     @Override
     public String toString() {

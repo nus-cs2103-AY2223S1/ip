@@ -1,8 +1,8 @@
 package duke.task;
 
 /**
- * This class is used to simulate the individual task entered by the
- * user and encapsulates the task description as well as task status
+ * Simulates the individual task entered by the user and
+ * encapsulates the task description as well as task status
  * within its fields.
  */
 public class Task {
@@ -12,11 +12,10 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * This is a constructor for Task. It creates an instance of Task and sets
-     * the fields of the Task instance.
+     * Constructor to create an instance of Task.
      *
-     * @param description This is a String describing the task to be done.
-     * @param isDone a boolean to keep track if the task has been marked before
+     * @param description String describing the task to be done.
+     * @param isDone Boolean to keep track if the task has been marked before
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -24,10 +23,9 @@ public class Task {
     }
 
     /**
-     * This method is used to check the status of the task (done/undone)
-     * and mark it with an X if it is done.
+     * Checks the status of the task (done/undone) and mark it with an X if it is done.
      *
-     * @return a String representation of "X" for tasks that are done and an empty space
+     * @return String representation of "X" for tasks that are done and an empty space
      *     " " for tasks that are undone.
     */
     public String getStatusIcon() {
@@ -35,24 +33,24 @@ public class Task {
     }
 
     /**
-     * This method is used to mark the field isDone for each task as done (true).
+     * Marks the field isDone for each task as done (true).
      */
     public void markTaskDone() {
         isDone = true;
     }
 
     /**
-     * This method is used to mark the field isDone for each task as undone (false).
+     * Mark the field isDone for each task as undone (false).
      */
     public void markTaskUndone() {
         isDone = false;
     }
 
     /**
-     * This method provides a string representation of the task status and task
+     * Provides a string representation of the task status and task
      * description as follows "[task status] task_description".
      *
-     * @return a String representation of the formatted task.
+     * @return String representation of the formatted task.
      */
     @Override
     public String toString() {
