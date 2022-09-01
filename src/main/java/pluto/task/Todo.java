@@ -4,6 +4,10 @@ import java.time.LocalDate;
 
 public class Todo extends Task {
 
+    /**
+     * Constructor that initializes global variables.
+     * @param description Task description.
+     */
     public Todo(String description) {
         super(description);
     }
@@ -20,6 +24,7 @@ public class Todo extends Task {
         return String.format("T | %d | %s", done, description);
     }
 
+    @Override
     public LocalDate getDateMaybe() {
         return null;
     }

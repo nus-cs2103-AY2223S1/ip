@@ -9,12 +9,24 @@ import pluto.task.Task;
 import java.io.IOException;
 
 public class DeleteCommand extends Command {
+    /** Index of the task to be deleted */
     private int idx;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param idx Index of task to delete.
+     */
     public DeleteCommand(int idx) {
         this.idx = idx;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Deletes a task from the task list, updates the local file,
+     * and displays an appropriate message.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         Task t = tasks.deleteTask(idx);
         try {

@@ -5,20 +5,38 @@ import pluto.task.Task;
 import java.util.ArrayList;
 
 public class TaskList {
+    /** List of tasks */
     private ArrayList<Task> missions;
 
+    /**
+     * Constructor that initializes global variables.
+     */
     public TaskList() {
         this.missions = new ArrayList<>();
     }
 
+    /**
+     * Constructor that initializes global variables.
+     * @param missions List of existing tasks.
+     */
     public TaskList(ArrayList<Task> missions) {
         this.missions = missions;
     }
 
+    /**
+     * Adds a task to the task list.
+     * @param t Task to be added.
+     */
     public void addTask(Task t) {
         missions.add(t);
     }
 
+    /**
+     * Adds a task to the task list at a specific index.
+     * @param idx Index at which task should be added.
+     * @param t Task to be added.
+     * @throws PlutoException If invalid idx.
+     */
     public void addTask(int idx, Task t) throws PlutoException {
         try {
             missions.add(idx, t);
@@ -27,6 +45,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task from the task list.
+     * @param idx Index of task to be deleted.
+     * @return Task that is deleted.
+     * @throws PlutoException If invalid idx.
+     */
     public Task deleteTask(int idx) throws PlutoException {
         try {
             return missions.remove(idx);
@@ -35,6 +59,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the task at an index.
+     * @param idx Index of the task to return.
+     * @return Task at the index idx.
+     * @throws PlutoException If invalid idx.
+     */
     public Task getTask(int idx) throws PlutoException {
         try {
             return missions.get(idx);
@@ -43,6 +73,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Change the status of a task.
+     * @param idx Index of the task whose status is to be changed.
+     * @param markStatus Status of the task after changing.
+     * @throws PlutoException If invalid idx.
+     */
     public void markTask(int idx, boolean markStatus) throws PlutoException {
         try {
             if (markStatus) {
@@ -55,6 +91,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the size of the task list.
+     * @return Number of tasks in the task list.
+     */
     public int nTasks() {
         return missions.size();
     }

@@ -8,13 +8,25 @@ import pluto.Storage;
 import pluto.PlutoException;
 
 public class AddCommand extends Command {
+    /** Task to be added */
     private Task t;
 
+    /**
+     * Constructor that initializes global variables.
+     * @param t Task to add.
+     */
     public AddCommand(Task t) {
         super();
         this.t = t;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Appends the task to the task list, updates the local file,
+     * and displays an appropriate message.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PlutoException {
         try {
             storage.appendToFile(t.toFile());
