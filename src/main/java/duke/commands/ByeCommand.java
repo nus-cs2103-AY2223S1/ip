@@ -13,13 +13,9 @@ public class ByeCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            ui.printFarewell();
-            storage.saveToFile(tasks);
-            ui.exit();
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
+        javafx.application.Platform.exit();
+        storage.saveToFile(tasks);
+        return Ui.formatFarewellString();
     }
 }

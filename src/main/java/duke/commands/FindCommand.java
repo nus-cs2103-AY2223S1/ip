@@ -25,11 +25,7 @@ public class FindCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            ui.printTaskFind(taskList, keyword);
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        return Ui.formatFindTaskString(taskList, keyword);
     }
 }

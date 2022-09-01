@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 import duke.commands.Command;
 import duke.exceptions.DukeException;
+import duke.gui.Main;
 import duke.tools.Parser;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
+import javafx.application.Application;
+
 
 /**
  * Duke is a bot that allows you to create a schedule, edit it, and memorises it.
  */
 public class Duke {
-
     /** Name of file where tasks are stored */
-    private String fileName;
+    private final String fileName;
     /** Storage to be initialised */
-    private Storage storage;
+    private final Storage storage;
     /** TaskList to be initialised */
     private TaskList taskList;
-    /** Ui to be initialised */
-    private Ui ui;
 
     /**
      * Constructs Duke with a default file name.
@@ -29,12 +29,10 @@ public class Duke {
     public Duke() {
         fileName = "data.txt";
         storage = new Storage(fileName);
-        ui = new Ui();
 
         try {
             taskList = storage.loadFromFile();
         } catch (DukeException e) {
-            ui.printException(e);
             taskList = new TaskList(new ArrayList<>());
         }
     }
@@ -47,12 +45,10 @@ public class Duke {
     public Duke(String fileName) {
         this.fileName = fileName;
         storage = new Storage(fileName);
-        ui = new Ui();
 
         try {
             taskList = storage.loadFromFile();
         } catch (DukeException e) {
-            ui.printException(e);
             taskList = new TaskList(new ArrayList<>());
         }
     }
@@ -62,25 +58,22 @@ public class Duke {
      *
      * @param args Unused parameter
      */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public static void main(String... args) {
+        Application.launch(Main.class, args);
     }
 
     /**
-     * Initiate Duke program.
+     * Returns response from Duke according to the input.
+     *
+     * @param input Input from user.
+     * @return String response from Duke.
      */
-    public void run() {
-        ui.printGreeting();
-
-        while (ui.canContinue()) {
-            try {
-                String str = ui.readCommand();
-                Command command = Parser.parseCommand(str);
-                command.execute(taskList, ui, storage);
-            } catch (DukeException e) {
-                ui.printException(e);
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parseCommand(input);
+            return command.execute(taskList, storage);
+        } catch (DukeException de) {
+            return Ui.formatExceptionString(de);
         }
     }
 }
