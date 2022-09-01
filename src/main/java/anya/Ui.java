@@ -1,7 +1,5 @@
 package anya;
 
-import java.util.Scanner;
-
 import anya.task.Task;
 import anya.task.TaskList;
 
@@ -38,12 +36,12 @@ public class Ui {
     }
 
     public String getMarkTaskMessage(Task task) {
-        String message = "Anya has marked this task as done: \n  " + task.toString();
+        String message = "Anya has marked this task as done: \n" + task.toString();
         return message;
     }
 
     public String getUnmarkTaskMessage(Task task) {
-        String message = "Anya has marked this task as uncompleted: \n  " + task.toString();
+        String message = "Anya has marked this task as uncompleted: \n" + task.toString();
         return message;
     }
 
@@ -54,11 +52,6 @@ public class Ui {
 
     public String getSaveFileSuccessMessage() {
         String message = "Anya has successfully saved your data!";
-        return message;
-    }
-
-    public String getLoadingFileMessage() {
-        String message = "Anya is loading your saved file...";
         return message;
     }
 
