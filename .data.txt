@@ -1,0 +1,2 @@
+deadline name 5 sleep done 1 1 deadline 22 2 Sep 2022 at 00:00:00
+event name 15 CS2102 tutorial done 1 0 startTime 22 2 Sep 2022 at 09:00:00 endTime 22 2 Sep 2022 at 10:00:00

@@ -15,7 +15,8 @@ public class Deadline extends Task {
 
     public Deadline(SaveLine line) {
         super(line);
-        deadline = line.getValue("deadline");
+        deadline = LocalDateTime
+            .parse(line.getValue("deadline"), DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
     }
 
     /**
@@ -32,7 +33,7 @@ public class Deadline extends Task {
     public SaveLine toData() {
         SaveLine ret = super.toData();
         ret.setInfoType("deadline");
-        ret.addNameData("deadline", deadline);
+        ret.addNameData("deadline", deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
         return ret;
     }
 }

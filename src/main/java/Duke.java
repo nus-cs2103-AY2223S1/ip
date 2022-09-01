@@ -141,7 +141,7 @@ public class Duke {
             reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
             return;
         }
-        todoList.add(new Deadline(deadlineName.toString(), deadlineDeadline));
+        taskList.add(new Deadline(deadlineName.toString(), deadlineDeadline));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         justAddedComment();
     }
@@ -197,7 +197,7 @@ public class Duke {
             reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
             return;
         }
-        todoList.add(new Event(eventName.toString(), eventStartTime, eventEndTime));
+        taskList.add(new Event(eventName.toString(), eventStartTime, eventEndTime));
         SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         justAddedComment();
     }

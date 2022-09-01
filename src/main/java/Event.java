@@ -17,7 +17,10 @@ public class Event extends Task {
 
     public Event(SaveLine line) {
         super(line);
-        time = line.getValue("time");
+        startTime = LocalDateTime
+            .parse(line.getValue("startTime"), DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
+        endTime = LocalDateTime
+            .parse(line.getValue("endTime"), DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
     }
 
     /**
@@ -35,7 +38,8 @@ public class Event extends Task {
     public SaveLine toData() {
         SaveLine ret = super.toData();
         ret.setInfoType("event");
-        ret.addNameData("time", time);
+        ret.addNameData("startTime", startTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+        ret.addNameData("endTime", endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
         return ret;
     }
 }
