@@ -16,13 +16,27 @@ public class FileHandler {
         }
         reader.close();
         return outputMessage.toString();
-
     }
 
     public static void writeToFile(String content) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(RELATIVE_PATH));
         writer.write(content);
         writer.close();
+    }
+
+    public static String readLine(int lineNum) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(RELATIVE_PATH));
+        String line = reader.readLine();
+        int counter = 0;
+        while(line != null) {
+            counter++;
+            line = reader.readLine();
+            if (counter == lineNum) {
+                return line;
+            }
+        }
+        reader.close();
+        return "";
     }
 
     public static boolean editLine(String content, int lineNum) throws IOException {

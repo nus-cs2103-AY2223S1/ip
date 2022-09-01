@@ -11,9 +11,9 @@ public abstract class Task {
         @Override
         public String toString() {
             if (isCompleted()) {
-                return String.format("[T][X] %s", getTaskName());
+                return String.format("[T][Y] %s", getTaskName());
             } else {
-                return String.format("[T][ ] %s", getTaskName());
+                return String.format("[T][N] %s", getTaskName());
             }
         }
     }
@@ -30,9 +30,9 @@ public abstract class Task {
         @Override
         public String toString() {
             if (isCompleted()) {
-                return String.format("[D][X] %s (By: %s)", getTaskName(), deadline);
+                return String.format("[D][Y] %s| %s", getTaskName(), deadline);
             } else {
-                return String.format("[D][ ] %s (By: %s)", getTaskName(), deadline);
+                return String.format("[D][N] %s| %s", getTaskName(), deadline);
             }
         }
     }
@@ -49,9 +49,9 @@ public abstract class Task {
         @Override
         public String toString() {
             if (isCompleted()) {
-                return String.format("[E][X] %s (At: %s)", getTaskName(), datetime);
+                return String.format("[E][Y] %s| %s", getTaskName(), datetime);
             } else {
-                return String.format("[E][ ] %s (At: %s)", getTaskName(), datetime);
+                return String.format("[E][N] %s| %s", getTaskName(), datetime);
             }
         }
     }

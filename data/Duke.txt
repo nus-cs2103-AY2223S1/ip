@@ -1,7 +1,1 @@
-Line 100
-line 2
-MORE STUFF
-MORE STUFF
-MORE STUFF
-Line 100
-MORE STUFF
+[D][N] 8 | die
