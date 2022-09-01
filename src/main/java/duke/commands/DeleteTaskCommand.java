@@ -1,9 +1,9 @@
-package commands;
+package duke.commands;
 
-import tasks.Task;
-import tasks.TaskList;
-import ui.Ui;
-import utils.Storage;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
+import duke.utils.Storage;
 
 public class DeleteTaskCommand extends Command {
 

@@ -1,10 +1,10 @@
-package commands;
+package duke.commands;
 
-import exceptions.EmptyTaskDescException;
-import exceptions.EmptyTaskTimeException;
-import tasks.*;
-import ui.Ui;
-import utils.Storage;
+import duke.exceptions.EmptyTaskDescException;
+import duke.exceptions.EmptyTaskTimeException;
+import duke.tasks.*;
+import duke.ui.Ui;
+import duke.utils.Storage;
 
 public class AddTaskCommand extends Command {
 

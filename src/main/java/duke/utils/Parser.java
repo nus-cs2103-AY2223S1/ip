@@ -1,9 +1,9 @@
-package utils;
+package duke.utils;
 
-import commands.*;
-import tasks.TaskList;
-import tasks.TaskType;
-import ui.Ui;
+import duke.commands.*;
+import duke.tasks.TaskList;
+import duke.tasks.TaskType;
+import duke.ui.Ui;
 
 public class Parser {
 

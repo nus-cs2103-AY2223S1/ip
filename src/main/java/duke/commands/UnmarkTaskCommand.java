@@ -1,9 +1,9 @@
-package commands;
+package duke.commands;
 
-import tasks.Task;
-import tasks.TaskList;
-import utils.Storage;
-import ui.Ui;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+import duke.utils.Storage;
+import duke.ui.Ui;
 
 public class UnmarkTaskCommand extends Command {
 

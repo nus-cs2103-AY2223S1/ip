@@ -1,8 +1,10 @@
-import commands.Command;
-import tasks.*;
-import ui.Ui;
-import utils.Parser;
-import utils.Storage;
+package duke;
+
+import duke.commands.Command;
+import duke.tasks.*;
+import duke.ui.Ui;
+import duke.utils.Parser;
+import duke.utils.Storage;
 
 import java.io.File;
 import java.util.Scanner;

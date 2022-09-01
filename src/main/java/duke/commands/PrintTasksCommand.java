@@ -1,7 +1,7 @@
-package commands;
+package duke.commands;
 
-import tasks.TaskList;
-import ui.Ui;
+import duke.tasks.TaskList;
+import duke.ui.Ui;
 
 public class PrintTasksCommand extends Command {
 

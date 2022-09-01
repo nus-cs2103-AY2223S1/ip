@@ -1,13 +1,13 @@
-package ui;
+package duke.ui;
 
-import tasks.Task;
-import tasks.TaskList;
+import duke.tasks.Task;
+import duke.tasks.TaskList;
 
 public class Ui {
 
     public void showWelcome() {
         System.out.println(
-                "Hello! I'm Duke\n" +
+                "Hello! I'm duke.Duke\n" +
                         "What can I do for you?"
         );
     }
@@ -31,14 +31,14 @@ public class Ui {
 
     public void showAddTaskResponse(Task newTask, TaskList tasks) {
         String response = String.format(
-                "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
+                "Got it. I've added this task:\n  %s\nNow you have %d duke.tasks in the list.",
                 newTask, tasks.getSize());
         System.out.println(response);
     }
 
     public void showDeleteTaskResponse(Task deletedTask, TaskList tasks) {
         String response = String.format(
-                "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
+                "Noted. I've removed this task:\n  %s\nNow you have %d duke.tasks in the list",
                 deletedTask, tasks.getSize()
         );
         System.out.println(response);
@@ -59,7 +59,7 @@ public class Ui {
     }
 
     public void showTasks(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the duke.tasks in your list:");
         System.out.print(tasks.toString());
     }
 

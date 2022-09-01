@@ -1,6 +1,6 @@
-package commands;
+package duke.commands;
 
-import ui.Ui;
+import duke.ui.Ui;
 
 public class UnrecognisedCommand extends Command {
 
