@@ -1,6 +1,4 @@
-E | 1 |           meeting           |           22 Dec 2022 19:00 PM
-T | 1 |          homework
-T | 1 |         clean chores
-E | 0 |        festival        |        12 Dec 2022 15:00 PM
-T | 1 |       labwork
-E | 1 |      fest202      |      12 Dec 2022 18:00 PM
+E | 1 |             meeting             |             22 Dec 2022 19:00 PM
+T | 1 |           clean chores
+E | 1 |          festival          |          12 Dec 2022 15:00 PM
+T | 1 |         labwork
