@@ -47,6 +47,8 @@ public class Parser {
             return Ui.displayList(list);
         } else if (userInput.equals("/?")) {
             return Ui.showHelp();
+        } else if (userInput.equals("hello")) {
+            return "hiii!!";
         } else {
             return "what's this?! REDO!!!!";
         }

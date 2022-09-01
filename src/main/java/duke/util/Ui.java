@@ -22,7 +22,7 @@ public class Ui {
 
     public static String showHello() {
         StringBuilder str = new StringBuilder();
-        str.append("\nHello! What plans do you currently have?");
+        str.append("Hello! What plans do you currently have?");
         str.append("\nUse /? for help");
         return str.toString();
     }
