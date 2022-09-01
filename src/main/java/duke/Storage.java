@@ -9,10 +9,9 @@ import java.io.FileWriter;
 
 
 public class Storage {
-    public static void writeToFile(ArrayList<Task> array, int counter) {
-        for (int i = 0; i < counter; i++) {
+    public static void writeToFile(ArrayList<Task> array) {
+        for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null) {
-                int j = i + 1;
                 try {
                     FileWriter fw = new FileWriter("data/duke.txt",true);
                     fw.write(array.get(i).toString() + System.lineSeparator());
@@ -25,7 +24,7 @@ public class Storage {
 
     }
 
-    public boolean fileExists() {
+    public static boolean fileExists() {
         File f = new File("data/duke.txt");
         return f.exists();
     }

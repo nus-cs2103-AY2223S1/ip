@@ -16,13 +16,13 @@ public class Deadline extends Task{
         this.date = date;
     }
 
-/**
- * Returns string representation of the task
- *
- * @return String representation of this task
- *
- */
 
+    /**
+     * Returns string representation of the task
+     *
+     * @return String representation of this task
+     *
+     */
     @Override
     public String toString() {
         LocalDate d1 = LocalDate.parse(this.date);

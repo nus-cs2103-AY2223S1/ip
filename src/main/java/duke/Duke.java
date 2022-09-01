@@ -1,8 +1,10 @@
 package duke;
-import java.io.*;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import javafx.application.Application;
 
 /**
  * Main class that calls the parsing of the user input.
@@ -23,9 +25,10 @@ public class Duke {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Parser p = new Parser();
-        p.startParse();
+        Application.launch(Main.class,args);
+    }
 
-
+    public String getResponse(String input) {
+        return Parser.startParse(input);
     }
 }
