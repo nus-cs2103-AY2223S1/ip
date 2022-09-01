@@ -23,7 +23,7 @@ public class MainWindow extends AnchorPane {
     /** <Code>String</Code> of all available commands and their format. */
     private static final String AVAILABLE_COMMANDS =
             "Available commands:\n"
-                    + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n"
+                    + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD]\n"
                     + "   event      [TASK DESCRIPTION] /at [VENUE]\n"
                     + "   todo       [TASK DESCRIPTION]\n"
                     + "   delete     [TASK NUMBER]\n"
