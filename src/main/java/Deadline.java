@@ -1,12 +1,17 @@
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class Deadline extends Task {
     private String description;
-    private String date;
+    private LocalDate date;
     private boolean isDone;
     private String type;
 
     public Deadline(String description, String date) {
         this.description = description;
-        this.date = date;
+        this.date = LocalDate.parse(date);
         this.type = "D";
     }
 
@@ -31,12 +36,13 @@ public class Deadline extends Task {
     }
 
     public String getDate() {
-        return date;
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return formattedDate;
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(by: " + date + ")";
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(by: " + getDate() + ")";
     }
      
 }
