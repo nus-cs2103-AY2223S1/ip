@@ -1,16 +1,18 @@
 package betago;
 
+import java.util.Scanner;
+
 import betago.exceptions.EmptyListException;
 import betago.exceptions.InvalidCommandException;
 
-import java.util.Scanner;
+
 
 /**
  * Parser class that reads input from user and calls the corresponding methods accordingly.
  */
 public class Parser {
-    private TaskList tasks;
-    private Storage storage;
+    private final TaskList tasks;
+    private final Storage storage;
 
     /**
      * Constructor for Parser.
@@ -27,7 +29,7 @@ public class Parser {
     public void readCommands() {
 
         Scanner sc = new Scanner(System.in);
-        String str= sc.nextLine();
+        String str = sc.nextLine();
         String[] inputs = str.split(" ", 2);
 
         while (!str.equalsIgnoreCase("bye")) {

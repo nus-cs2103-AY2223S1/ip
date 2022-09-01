@@ -1,19 +1,19 @@
 package betago;
 
-import betago.exceptions.InvalidDataFileException;
-import betago.tasks.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import betago.exceptions.InvalidDataFileException;
+import betago.tasks.Task;
+
 /**
  * Storage class that loads and saves data file.
  */
 public class Storage {
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /**
      * Constructor for Storage.
@@ -71,7 +71,7 @@ public class Storage {
     public void saveItems() {
         try {
             FileWriter fw = new FileWriter("data/duke.txt", false);
-            for(int i = 0; i < this.tasks.size(); i++) {
+            for (int i = 0; i < this.tasks.size(); i++) {
                 Task temp = this.tasks.get(i);
                 fw.write(temp.saveTask());
             }

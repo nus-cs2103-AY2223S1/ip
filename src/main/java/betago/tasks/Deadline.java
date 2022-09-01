@@ -1,10 +1,10 @@
 package betago.tasks;
 
-import betago.exceptions.InvalidCommandException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import betago.exceptions.InvalidCommandException;
 
 /**
  * Deadline class is a type of task where users can store their task description
@@ -33,9 +33,9 @@ public class Deadline extends Task {
                 this.byDateTime = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 break;
             } catch (DateTimeParseException e) {
-                if(i == formatPatterns.length - 1) {
-                    throw new InvalidCommandException("Please enter the date and time in these format:\n" +
-                            "yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
+                if (i == formatPatterns.length - 1) {
+                    throw new InvalidCommandException("Please enter the date and time in these format:\n"
+                            + "yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
                 }
             }
         }

@@ -1,5 +1,12 @@
 package betago;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
 import betago.exceptions.EmptyListException;
 import betago.exceptions.InvalidCommandException;
 import betago.exceptions.InvalidDataFileException;
@@ -7,14 +14,6 @@ import betago.tasks.Deadline;
 import betago.tasks.Event;
 import betago.tasks.Task;
 import betago.tasks.Todo;
-
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 /**
  * TaskList class that stores Tasks in an ArrayList.
@@ -60,7 +59,7 @@ public class TaskList {
         }
         System.out.print("Here are the tasks in your list:\n");
         for (int i = 0; i < this.list.size(); i++) {
-            System.out.print(i+1);
+            System.out.print(i + 1);
             System.out.println(". " + this.list.get(i).toString());
         }
         System.out.print("\n");
@@ -77,21 +76,20 @@ public class TaskList {
         if (inputs.length != 2) {
             throw new InvalidCommandException("No task number indicated.");
         } else {
-            try{
+            try {
                 int marker = Integer.valueOf(inputs[1]);
                 if (marker < 1 || marker > this.list.size()) {
                     Ui.printInvalidMarkerError();
-                } else if (inputs[0].equalsIgnoreCase("mark")){
+                } else if (inputs[0].equalsIgnoreCase("mark")) {
                     this.list.get(marker - 1).markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(this.list.get(marker-1).toString() + "\n");
+                    System.out.println(this.list.get(marker - 1).toString() + "\n");
                 } else {
                     this.list.get(marker - 1).markAsNotDone();
                     System.out.println("Nice! I've marked this task as not done yet:");
-                    System.out.println(this.list.get(marker-1).toString() + "\n");
+                    System.out.println(this.list.get(marker - 1).toString() + "\n");
                 }
-            }
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 throw new InvalidCommandException("Invalid item to be marked.");
             }
         }
@@ -103,7 +101,7 @@ public class TaskList {
      * @param str Add todo command that the user provided.
      * @throws InvalidCommandException If no description is provided.
      */
-    public void addTodo(String str) throws InvalidCommandException{
+    public void addTodo(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
             throw new InvalidCommandException("No description stated.");
@@ -176,17 +174,16 @@ public class TaskList {
         if (inputs.length != 2) {
             throw new InvalidCommandException("No task number indicated.");
         } else {
-            try{
+            try {
                 int marker = Integer.valueOf(inputs[1]);
                 if (marker < 1 || marker > this.list.size()) {
                     System.out.println("Please indicate a valid task number!\n");
-                }  else {
+                } else {
                     System.out.println("Noted. I have removed this task:\n" + this.list.get(marker - 1).toString());
                     this.list.remove(marker - 1);
                     System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
                 }
-            }
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 throw new InvalidCommandException("Invalid item to be marked.");
             }
         }
@@ -222,13 +219,13 @@ public class TaskList {
      * @param str Line of text from the data file to load task.
      * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
      */
-    public void loadDeadline(String str) throws InvalidDataFileException{
+    public void loadDeadline(String str) throws InvalidDataFileException {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
             throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
         } else {
             try {
-                String dateTime[] = inputs[3].split(",", 2);
+                String[] dateTime = inputs[3].split(",", 2);
                 try {
                     Deadline temp;
                     if (dateTime.length == 2) {
@@ -247,9 +244,12 @@ public class TaskList {
                         throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
                     }
                     this.list.add(temp);
-                } catch (DateTimeParseException e) {}
+                } catch (DateTimeParseException e) {
+                    //Need to check this
+                }
             } catch (InvalidCommandException e) {
-                throw new InvalidDataFileException("Invalid Input from Data File: Invalid BetaGo.Tasks.Deadline BetaGo.Tasks.Task");
+                throw new InvalidDataFileException(
+                        "Invalid Input from Data File: Invalid BetaGo.Tasks.Deadline BetaGo.Tasks.Task");
             }
 
         }
@@ -261,7 +261,7 @@ public class TaskList {
      * @param str Line of text from the data file to load task.
      * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
      */
-    public void loadEvent(String str) throws InvalidDataFileException{
+    public void loadEvent(String str) throws InvalidDataFileException {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
             throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
@@ -277,11 +277,13 @@ public class TaskList {
             this.list.add(temp);
         }
     }
-
+    /**
+     * Save current items in the list to the file.
+     */
     public void saveItems() {
         try {
             FileWriter fw = new FileWriter("data/duke.txt", false);
-            for(int i = 0; i < this.list.size(); i++) {
+            for (int i = 0; i < this.list.size(); i++) {
                 Task temp = this.list.get(i);
                 fw.write(temp.saveTask());
             }
@@ -291,23 +293,29 @@ public class TaskList {
         }
     }
 
+    /**
+     * Find tasks that match the keyword inputted by user.
+     *
+     * @param str Line of text command from user including keyword to search.
+     * @throws InvalidCommandException If no keyword is provided.
+     */
     public void findTasks(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
             throw new InvalidCommandException("No keyword input");
         } else {
             ArrayList<Task> matched = new ArrayList<>();
-            for(int i = 0; i < this.list.size(); i++) {
-               if(this.list.get(i).containKeyword(inputs[1])) {
-                   matched.add(this.list.get(i));
-               }
+            for (int i = 0; i < this.list.size(); i++) {
+                if (this.list.get(i).containKeyword(inputs[1])) {
+                    matched.add(this.list.get(i));
+                }
             }
             if (matched.size() == 0) {
                 System.out.println("There are no matching tasks found.\n");
             } else {
                 System.out.println("Here are the matching tasks in your list:");
                 for (int i = 0; i < matched.size(); i++) {
-                    System.out.print(i+1);
+                    System.out.print(i + 1);
                     System.out.println(". " + matched.get(i).toString());
                 }
                 System.out.print("\n");

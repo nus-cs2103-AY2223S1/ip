@@ -1,6 +1,9 @@
 package betago.exceptions;
 
-public class EmptyListException extends Exception{
+/**
+ * EmptyListException that is thrown when list is currently empty.
+ */
+public class EmptyListException extends Exception {
     public EmptyListException(String message) {
         super(message);
     }

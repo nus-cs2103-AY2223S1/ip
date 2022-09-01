@@ -6,13 +6,13 @@ package betago;
  */
 public class Duke {
     /** Storage variable to load and save tasks from data file */
-    private Storage storage;
+    private final Storage storage;
 
     /** TaskList variable to store tasks */
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /** Parser variable to read commands from the user */
-    private Parser commander;
+    private final Parser commander;
 
     /**
      * Constructor for Duke.

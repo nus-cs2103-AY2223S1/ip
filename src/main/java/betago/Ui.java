@@ -9,7 +9,8 @@ public class Ui {
      * Prints a greeting message for the user.
      */
     public static void greet() {
-        System.out.println("Greetings Human! I am BetaGo, your personal robot assistant!\nHow may I assist you today?\n");
+        System.out.println(
+                "Greetings Human! I am BetaGo, your personal robot assistant!\nHow may I assist you today?\n");
     }
 
     /**
@@ -65,8 +66,8 @@ public class Ui {
      * Prints an invalid todo description message where the user did not input a description for the todo task.
      */
     public static void printInvalidTodoDescriptionError() {
-        System.out.println("Please indicate a valid description for your Todo task!\n" +
-                "Do enter the command in this format: 'todo (description)'\n");
+        System.out.println("Please indicate a valid description for your Todo task!\n"
+                + "Do enter the command in this format: 'todo (description)'\n");
     }
 
     /**
@@ -74,9 +75,9 @@ public class Ui {
      * description or valid due date in the correct format for the deadline task.
      */
     public static void printInvalidDeadlineDescriptionError() {
-        System.out.println("Please indicate a valid description and due date for your Deadline task!\n" +
-                "Do enter the command in this format: 'deadline (description) /by (date) (time)'\n" +
-                "Please enter the date in one of the following format: yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
+        System.out.println("Please indicate a valid description and due date for your Deadline task!\n"
+                + "Do enter the command in this format: 'deadline (description) /by (date) (time)'\n"
+                + "Please enter the date in one of the following format: yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
     }
 
     /**
@@ -84,8 +85,8 @@ public class Ui {
      * description or valid location in the correct format for the event task.
      */
     public static void printInvalidEventDescriptionError() {
-        System.out.println("Please indicate a valid description and location for your Event task!\n" +
-                "Do enter the command in this format: 'deadline (description) /at (location)'\n");
+        System.out.println("Please indicate a valid description and location for your Event task!\n"
+                + "Do enter the command in this format: 'deadline (description) /at (location)'\n");
     }
 
     /**
