@@ -32,6 +32,15 @@ public class MessagePrinter {
     }
 
     /**
+     * The constructor of the class
+     */
+    public MessagePrinter(int horizontalLineLength, char horizontalLineSymbol, int indentationLevel) {
+        setHorizontalLineLength(horizontalLineLength);
+        setHorizontalLineSymbol(horizontalLineSymbol);
+        setIndentationLevel(indentationLevel);
+    }
+
+    /**
      * Set the indentation level to given value.
      * @param indentationLevel
      */
@@ -114,7 +123,6 @@ public class MessagePrinter {
     public String printMessage(String msg) {
         StringBuilder result = new StringBuilder();
         result.append(printLine()).append(System.lineSeparator());
-        result.append(" ");
         result.append(Arrays.stream(msg.split(System.lineSeparator()))
                         .reduce("", (x, y) -> x
                                 + (x.equals("") ? "" : System.lineSeparator())

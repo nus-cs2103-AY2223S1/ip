@@ -1,3 +1,4 @@
+
 import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,8 +30,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke(Duke duke) {
+        boot(duke);
     }
 
     /**
@@ -40,11 +41,35 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+        if (input.isEmpty()) {
+            return;
+        }
+        if (input.equals("boot")) {
+            userInput.clear();
+            addDialogBox(DialogBox.getUserDialog("boot", userImage));
+            boot(null);
+            return;
+        }
         String response = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
         userInput.clear();
+        DialogBox userDialog = DialogBox.getUserDialog(input, userImage);
+        DialogBox dukeDialog = DialogBox.getDukeDialog(response, dukeImage);
+        addDialogBox(userDialog);
+        addDialogBox(dukeDialog);
+    }
+
+    @FXML
+    private void addDialogBox(DialogBox dialogBox) {
+        dialogContainer.getChildren().add(dialogBox);
+    }
+
+    @FXML
+    private void boot(Duke duke) {
+        if (duke == null) {
+            duke = new Duke();
+        }
+        this.duke = duke;
+        addDialogBox(DialogBox.getDukeDialog(duke.getResponse("greet"), dukeImage));
+        return;
     }
 }

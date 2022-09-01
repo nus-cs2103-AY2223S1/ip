@@ -18,6 +18,8 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    public static final double ROW_HEIGHT = 18;
+    public static final int ROW_LENGTH = 35;
     @FXML
     private Label dialog;
     @FXML
@@ -29,6 +31,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+//            setMinHeight(getNumberOfRows(text) * ROW_HEIGHT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,6 +39,15 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         displayPicture.setImage(img);
     }
+
+//    private int getNumberOfRows(String s) {
+//        int result = 0;
+//        String[] strings = s.split(System.lineSeparator());
+//        for (String row : strings) {
+//            result += (row.length() / ROW_LENGTH) + 1;
+//        }
+//        return result;
+//    }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.

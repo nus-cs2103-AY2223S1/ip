@@ -6,7 +6,6 @@ import duke.command.Command;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
-import duke.gui.GUI;
 import duke.util.MessagePrinter;
 import duke.util.Parser;
 import duke.util.Storage;
@@ -20,7 +19,6 @@ public class Duke {
     private MessagePrinter messagePrinter;
     private TaskList tasks;
     private Storage storage;
-    private GUI gui;
 
     /**
      * The constructor of the Duke with given storage path.
@@ -55,10 +53,9 @@ public class Duke {
 
     private void initialize(String storagePath) {
         this.tasks = new TaskList();
-        this.messagePrinter = new MessagePrinter();
+        this.messagePrinter = new MessagePrinter(39, '*', 0);
         this.storage = new Storage(storagePath);
         this.execute(Command.greet());
-        this.gui = new GUI();
     }
 
     /**

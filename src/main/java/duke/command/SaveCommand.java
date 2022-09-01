@@ -23,7 +23,7 @@ public class SaveCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
-        storage.write(taskList.toFormattedString());
+        storage.write(taskList);
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
         return messagePrinter.printMessage("Your " + size + " " + temp + " been saved successfully");

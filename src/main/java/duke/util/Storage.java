@@ -37,7 +37,7 @@ public class Storage {
     }
 
     /**
-     * Return the path of the Storage.
+     * Returns the path of the Storage.
      * @return The path of the Storage.
      */
     public Path getPath() {
@@ -45,7 +45,7 @@ public class Storage {
     }
 
     /**
-     * Write given content the Path.
+     * Writes given content to the Path.
      * @param content The given content.
      */
     public void write(String content) {
@@ -60,7 +60,15 @@ public class Storage {
     }
 
     /**
-     * Read given content from the Path.
+     * Writes given content to the Path.
+     * @param content The given content.
+     */
+    public <T> void write(Savable<T> content) {
+        write(content.toFormattedString());
+    }
+
+    /**
+     * Reads given content from the Path.
      * @return The content in the Path. Returns empty String if file does not exist.
      */
     public String read() {
@@ -78,7 +86,7 @@ public class Storage {
     }
 
     /**
-     * Check whether directory exists. Create if does not exist.
+     * Checks whether directory exists. Create if does not exist.
      */
     private void checkDirectory() {
         File temp = this.path.getParent().toFile();
@@ -88,7 +96,7 @@ public class Storage {
     }
 
     /**
-     * Check whether file exists. Create if does not exist.
+     * Checks whether file exists. Create if does not exist.
      */
     private void checkFile() {
         File temp = this.path.toFile();
@@ -102,7 +110,7 @@ public class Storage {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.
