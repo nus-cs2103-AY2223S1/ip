@@ -14,14 +14,12 @@ import duke.task.Task;
 public class TaskList {
 
     private ArrayList<Task> taskArrayList;
-    private int index;
 
     /**
      * Constructs a TaskList when there is no previous saved data.
      */
     public TaskList() {
         this.taskArrayList = new ArrayList<>(100);
-        this.index = 0;
     }
 
     /**
@@ -29,7 +27,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> taskArrayList) {
         this.taskArrayList = taskArrayList;
-        this.index = taskArrayList.size();
     }
 
     /**
@@ -47,7 +44,6 @@ public class TaskList {
      */
     public void add(Task t) {
         this.taskArrayList.add(t);
-        this.index++;
     }
 
     /**
@@ -56,7 +52,6 @@ public class TaskList {
      * @param i Index of the task in the list to be deleted.
      */
     public void delete(int i) {
-        this.index--;
         this.taskArrayList.remove(i - 1);
     }
 

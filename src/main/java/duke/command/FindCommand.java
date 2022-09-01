@@ -4,8 +4,6 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-import java.io.IOException;
-
 /**
  * Command that finds tasks in the list matching the input String.
  * CS2103T iP
