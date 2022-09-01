@@ -6,10 +6,10 @@ package bocil;
 public class BocilException extends Exception {
     private static final String EMPTY_INPUT = "Please enter something!";
     private static final String FILE_NOT_FOUND = "I cannot find your file";
-    private static final String INVALID_INDEX = "The task number is invalid";
-    private static final String INVALID_FORMAT = "The task format is invalid";
-    private static final String INVALID_DATE_FORMAT = "The date format is invalid";
-    private static final String UNKNOWN_COMMAND = "I don't know what that means";
+    private static final String INVALID_INDEX = "The task number you input is invalid";
+    private static final String INVALID_FORMAT = "The task format you input is invalid";
+    private static final String INVALID_DATE_FORMAT = "The date format you input is invalid";
+    private static final String UNKNOWN_COMMAND = "I can't understand what you are saying..";
 
     /**
      * Constructs a {@link BocilException} object using a specific message.

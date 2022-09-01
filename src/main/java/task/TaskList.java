@@ -7,12 +7,16 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private final ArrayList<Task> taskList;
+    private int marked;
+    private int unmarked;
 
     /**
      * Constructs an empty {@link TaskList} object.
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
+        this.marked = 0;
+        this.unmarked = 0;
     }
 
     /**
@@ -44,11 +48,34 @@ public class TaskList {
     }
 
     /**
+     * Calculates the number of marked {@link Task} objects stored.
+     *
+     * @return Number of the marked {@link Task} objects inside.
+     */
+    public int getSizeMarked() {
+        return this.marked;
+    }
+
+    /**
+     * Calculates the number of unmarked {@link Task} objects stored.
+     *
+     * @return Number of the unmarked {@link Task} objects inside.
+     */
+    public int getSizeUnmarked() {
+        return this.unmarked;
+    }
+
+    /**
      * Adds a {@link Task} object into the {@code taskList}.
      *
      * @param task {@link Task} object to be added.
      */
     public void addTask(Task task) {
+        if (task.isDone()) {
+            this.marked += 1;
+        } else {
+            this.unmarked += 1;
+        }
         this.taskList.add(task);
     }
 
@@ -58,6 +85,12 @@ public class TaskList {
      * @param num The index + 1 of the task to be removed.
      */
     public void removeTask(int num) {
+        Task task = this.taskList.get(num);
+        if (task.isDone()) {
+            this.marked -= 1;
+        } else {
+            this.unmarked -= 1;
+        }
         this.taskList.remove(num - 1);
     }
 

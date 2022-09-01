@@ -47,9 +47,11 @@ public class Executor {
             throw BocilException.bocilInvalidFormatException();
         }
         this.taskList.addTask(task);
-        String header = "Got it. I've added this task:";
+        int size = taskList.getSize();
+        String header = "NICE! We got a new task to complete:";
         String line = String.format("  %s", task);
-        String footer = String.format("Now you have %s task in the list", taskList.getSize());
+        String footer = String.format("Now we have %s task%s in the list, %s marked and %s unmarked",
+                size, size > 0 ? "s" : "", taskList.getSizeMarked(), taskList.getSizeUnmarked());
         return String.join("\n", header, line, footer);
     }
 
@@ -62,10 +64,13 @@ public class Executor {
      */
     public String markAsDone(String[] split) throws BocilException {
         Task task;
+        String header;
+        boolean isDone;
         try {
             if (split.length == 2) {
                 int num = Integer.parseInt(split[1]);
                 task = this.taskList.getTask(num);
+                isDone = task.isDone();
                 task.mark();
             } else {
                 throw BocilException.bocilInvalidIndexException();
@@ -73,7 +78,11 @@ public class Executor {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
-        String header = "Nice! I've marked this task as done:";
+        if (!isDone) {
+            header = "GG! We've completed this task:";
+        } else {
+            header = "I've marked this task as completed already:";
+        }
         String line = String.format("  %s", task);
         return String.join("\n", header, line);
     }
@@ -87,10 +96,13 @@ public class Executor {
      */
     public String unmarkAsDone(String[] split) throws BocilException {
         Task task;
+        String header;
+        boolean isDone;
         try {
             if (split.length == 2) {
                 int num = Integer.parseInt(split[1]);
                 task = this.taskList.getTask(num);
+                isDone = task.isDone();
                 task.unmark();
             } else {
                 throw BocilException.bocilInvalidIndexException();
@@ -98,7 +110,11 @@ public class Executor {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
-        String header = "OK, I've marked this task as not done yet:";
+        if (!isDone) {
+            header = "I've marked this task as not completed already:";
+        } else {
+            header = "OK, I'll mark this task as not completed for now:";
+        }
         String line = String.format("  %s", task);
         return String.join("\n", header, line);
     }
@@ -112,6 +128,7 @@ public class Executor {
      */
     public String deleteTaskFromList(String[] split) throws BocilException {
         Task task;
+        String header;
         try {
             if (split.length == 2) {
                 int num = Integer.parseInt(split[1]);
@@ -123,8 +140,12 @@ public class Executor {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
-        String header = "Noted. I've removed this task:";
-        String line = String.format("  %s", task.toString());
+        if (task.isDone()) {
+            header = "I will clear this finished task from the list, so we can do new ones:";
+        } else {
+            header = "NOOO... I will cancel this uncompleted task, if that's what you wish for:";
+        }
+        String line = String.format("  %s", task);
         return String.join("\n", header, line);
     }
 
@@ -144,10 +165,10 @@ public class Executor {
             throw BocilException.bocilUnknownCommandException();
         }
         if (matchedTasks.getSize() > 0) {
-            String header = "Here are the matching tasks in your list";
+            String header = "Here are the matching tasks in our list:";
             return String.join("\n", header, matchedTasks.toString());
         } else {
-            return "There are no matching tasks in your list";
+            return "I can't find any matching tasks in our list.";
         }
     }
 
@@ -160,7 +181,7 @@ public class Executor {
      */
     public String endProgram(String input) throws BocilException {
         if (input.equals("bye")) {
-            return "Bye. Hope to see you again soon!";
+            return "Bye! See you next time!";
         } else {
             throw BocilException.bocilUnknownCommandException();
         }
@@ -176,10 +197,10 @@ public class Executor {
     public String showList(String input) throws BocilException {
         if (input.equals("list")) {
             if (taskList.getSize() > 0) {
-                String header = "Here are the tasks in your list:";
+                String header = "Here are the tasks that we have right now:";
                 return String.join("\n", header, taskList.toString());
             } else {
-                return "There are no tasks in your list";
+                return "We don't have any tasks in our list right now. Lets add some!";
             }
         } else {
             throw BocilException.bocilUnknownCommandException();
