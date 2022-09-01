@@ -1,12 +1,12 @@
-public class DeleteFunction extends Function{
+public class DeleteCommand extends Command {
 
-    public DeleteFunction(String function,boolean exit){
-        super(function,exit);
+    public DeleteCommand(String commandName, boolean exit){
+        super(commandName,exit);
     }
 
-    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException {
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         try{
-            String[] desc = getFunction().split(" ");
+            String[] desc = getCommandName().split(" ");
             if(desc.length <= 1){
                 throw new CleverNotBotException("Invalid arguments. Please enter a number!",textBox);
             }

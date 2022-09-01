@@ -1,16 +1,16 @@
 import java.util.Arrays;
 
-public class AddFunctionToDo extends Function {
+public class AddCommandToDo extends Command {
 
-    public AddFunctionToDo(String function, boolean exit) {
-        super(function, exit);
+    public AddCommandToDo(String commandName, boolean exit) {
+        super(commandName, exit);
     }
 
-    public void run(TaskList tasks, UITextBox textBox, Storage storage) throws CleverNotBotException {
-        String[] desc = getFunction().split(" ");
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+        String[] desc = getCommandName().split(" ");
         try {
             if (desc.length != 1) {
-                //removes the function name "todo" eg. [todo,borrow,book] -> [borrow,book]
+                //removes the command name "todo" eg. [todo,borrow,book] -> [borrow,book]
                 String[] descOnly = Arrays.copyOfRange(desc, 1, desc.length);
                 String joinDesc = String.join(" ", descOnly);
                 Task newTask = new ToDo(joinDesc, false);

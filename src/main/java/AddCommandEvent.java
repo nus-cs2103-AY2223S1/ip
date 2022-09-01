@@ -1,25 +1,23 @@
-import java.util.Arrays;
+public class AddCommandEvent extends Command {
 
-public class AddFunctionEvent extends Function {
-
-    public AddFunctionEvent(String function, boolean exit) {
-        super(function, exit);
+    public AddCommandEvent(String commandName, boolean exit) {
+        super(commandName, exit);
     }
 
-    public void run(TaskList tasks, UITextBox textBox, Storage storage) throws CleverNotBotException {
-        String[] desc = getFunction().split(" ");
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
+        String[] desc = getCommandName().split(" ");
         try{
             if (desc.length == 1) {
                 throw new CleverNotBotException("Please fill in the description of Event!", textBox);
-            } else if (!getFunction().contains("/at")) {
+            } else if (!getCommandName().contains("/at")) {
                 throw new CleverNotBotException("Please include a /at in your description of Deadline! ", textBox);
             } else {
                 String searchWord = " /at";
                 int start = "event ".length();
-                int mid = getFunction().indexOf(searchWord);
-                String functionName = getFunction().substring(start, mid);
-                String at = getFunction().substring(mid + searchWord.length() + 1); // to remove the space;
-                Task newTask = new Event(functionName, false, at);
+                int mid = getCommandName().indexOf(searchWord);
+                String commandName = getCommandName().substring(start, mid);
+                String at = getCommandName().substring(mid + searchWord.length() + 1); // to remove the space;
+                Task newTask = new Event(commandName, false, at);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
                 textBox.chat(String.format(

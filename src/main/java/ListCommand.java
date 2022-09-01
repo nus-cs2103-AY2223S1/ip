@@ -1,11 +1,11 @@
-public class ListFunction extends Function {
+public class ListCommand extends Command {
 
-    public ListFunction(String function,boolean exit){
-        super(function,exit);
+    public ListCommand(String commandName, boolean exit){
+        super(commandName,exit);
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException{
         if (tasks.getSize() < 1) { textBox.chat("There is no task currently assigned.");
         }else {
             int counter = 1;

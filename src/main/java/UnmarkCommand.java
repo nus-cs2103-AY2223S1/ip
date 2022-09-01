@@ -1,12 +1,12 @@
-public class UnmarkFunction extends Function {
+public class UnmarkCommand extends Command {
 
-    public UnmarkFunction(String function,boolean exit){
-        super(function,exit);
+    public UnmarkCommand(String commandName, boolean exit){
+        super(commandName,exit);
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
-        int number = Integer. parseInt(getFunction().split(" ")[1]) - 1; //mark 3 -> 3, because number 3 is actually idx 2
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException{
+        int number = Integer. parseInt(getCommandName().split(" ")[1]) - 1; //mark 3 -> 3, because number 3 is actually idx 2
         Task taskToUnmark = tasks.getTask(number);
         if(taskToUnmark.checkMarked().equals("X")) {
             Task unmarkedTask = taskToUnmark.toggleCompleted();

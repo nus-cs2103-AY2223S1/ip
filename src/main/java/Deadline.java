@@ -23,7 +23,7 @@ public class Deadline extends Task{
     }
 
     private void applyDate(String dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         this.date = LocalDateTime.parse(dateTime, formatter);
     }
 
@@ -45,14 +45,14 @@ public class Deadline extends Task{
 
     }
 
-    @Override
-    public String toString(){
-        return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(),dateTime);
-    }
-
     public static void validDateTime(String date) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime d = LocalDateTime.parse(date, formatter);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(),getDateTime());
     }
 
 }
