@@ -19,6 +19,9 @@ public class MainWindow extends AnchorPane {
         Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
     private final Image henryImage = new Image(
         Objects.requireNonNull(this.getClass().getResourceAsStream("/images/henry.png")));
+    private static final String GREETING = "HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?";
+
+    // FXML
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -32,6 +35,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+            DialogBox.getHenryDialog(GREETING, henryImage)
+        );
     }
 
     public void setHenry(Henry h) {

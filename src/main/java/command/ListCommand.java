@@ -7,9 +7,10 @@ package command;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    private static final String MESSAGE_SUCCESS = "HERE'S YOUR CURRENT LIST:\n %1$s";
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(taskList.toString());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.toString()), taskList);
     }
 }

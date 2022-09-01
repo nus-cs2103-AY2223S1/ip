@@ -10,7 +10,10 @@
         <Label fx:id="dialog" style="-fx-border-width: 1; -fx-border-color: #000000; -fx-border-radius: 5;" text="Label" wrapText="true">
          <padding>
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-         </padding></Label>
+         </padding>
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin></Label>
         <Circle fx:id="displayPicture" radius="50.0" />
     </children>
     <padding>

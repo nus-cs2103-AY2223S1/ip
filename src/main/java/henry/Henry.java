@@ -4,7 +4,9 @@ import java.nio.file.Path;
 
 import command.Command;
 import command.CommandResult;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.util.Duration;
 
 /**
  * The base class of the Henry application.
@@ -39,8 +41,10 @@ public class Henry {
      */
     public String getResponse(String input) {
         if (input.equalsIgnoreCase("bye")) {
-            Platform.exit();
-            return "";
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+            return "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
         }
         Command parsed = parser.parseCommand(input);
         CommandResult result = executeCommand(parsed);

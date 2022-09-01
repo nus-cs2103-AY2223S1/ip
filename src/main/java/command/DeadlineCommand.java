@@ -11,7 +11,7 @@ import henry.Task;
 public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";
-    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t %1$s.";
+    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s.";
     private final Task task;
 
     public DeadlineCommand(String description, LocalDateTime dateTime) {
