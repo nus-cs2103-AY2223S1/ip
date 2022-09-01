@@ -2,9 +2,9 @@
 
 ### _A personal assistant chatbot that helps users manage and track tasks._
 
-> "It is our attitude at the beginning of a difficult task which, more than anything else, will affect its successful outcome." – William James ([source](https://www.brainyquote.com/quotes/william_james_157168))
+<br> 
 
-<hr>
+> "It is our attitude at the beginning of a difficult task which, more than anything else, will affect its successful outcome." – William James ([source](https://www.brainyquote.com/quotes/william_james_157168))
 
 Start your task easily and boost your productivity with CaCa 🤖, a chatbot which frees your mind 🤯 of having to remember and keep track of overwhelming things you need to do! ✅
 
@@ -69,3 +69,18 @@ Functions with respective commands are listed below as Function (description): `
     - e.g. `delete 3`
 - Find task (finds all matching tasks from list): `find task`
     - e.g. `find book`
+
+<hr>
+
+# A small peek into CaCa 🤫
+
+This is CaCa's profile picture in the chat!
+
+<img src="https://user-images.githubusercontent.com/97394017/187884738-5b1159c7-362f-4e1d-b161-1da7d3ccff56.jpg" width="200">
+
+This is your profile picture in the chat, matching perfectly with CaCa!
+
+<img src="https://user-images.githubusercontent.com/97394017/187886431-1089218b-978f-42bf-8561-2a9cf4265897.jpg" width="200">
+
+Credits for [CaCa image](https://m.duitang.com/blog/?id=1325275816) and [User image](https://m.duitang.com/blog/?id=1325275817).
+
