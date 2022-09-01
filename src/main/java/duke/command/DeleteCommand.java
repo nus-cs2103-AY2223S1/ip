@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.*;
-import duke.task.Task;
-
 import java.io.IOException;
+
+import duke.Parser;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Task;
 
 /**
  * A command that deletes a task from the task list.
