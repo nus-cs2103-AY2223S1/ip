@@ -20,7 +20,7 @@ public class ByeCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        Storage.storageWrite(taskList);
+        Storage.writeStorage(taskList);
         builder.append(Ui.bye());
         System.exit(0);
     }

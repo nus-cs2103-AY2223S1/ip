@@ -19,7 +19,7 @@ public class Duke {
 
     public Duke() {
         try {
-            storage.storageRead(response);
+            storage.readStorage(response);
             tasks = storage.getTaskList();
         } catch (IOException e) {
             tasks = new TaskList(new ArrayList<>());

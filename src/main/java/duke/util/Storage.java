@@ -33,7 +33,7 @@ public class Storage {
      *
      * @throws IOException the io exception
      */
-    public void storageRead(Response response) throws IOException {
+    public void readStorage(Response response) throws IOException {
         try {
             File file = new File(FILE_PATH);
             FileReader fr = new FileReader(file.getPath());
@@ -100,7 +100,7 @@ public class Storage {
      *
      * @param tasks the task list
      */
-    public static void storageWrite(TaskList tasks) {
+    public static void writeStorage(TaskList tasks) {
         try {
             File myFile = new File(FILE_PATH);
             OutputStream os = new FileOutputStream(myFile);
