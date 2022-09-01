@@ -47,11 +47,11 @@ public class Storage {
             
 
         } catch (FileNotFoundException e) {
-            System.out.println("Error, cannot open file");
+            System.out.println("Error, cannot open file.");
             // System.out.println(e);
 
         } catch (IOException e) {
-            System.out.println("Error when writing to file");
+            System.out.println("Error when writing to file.");
             // System.out.println(e);
         }
 
@@ -77,19 +77,20 @@ public class Storage {
             return tasks;
 
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find data.ser file. Creating new task list instead.");
+            System.out.println("Cannot find data.ser file.");
             // System.out.println(e);
 
         } catch (IOException e) {
-            System.out.println("Error when reading file");
+            System.out.println("Error when reading file.");
             // System.out.println(e);
 
         } catch (ClassNotFoundException e) {
-            System.out.println("Error, serialized object can't be deserialized");
+            System.out.println("Error, serialized object can't be deserialized.");
             // System.out.println(e);
         }
 
         // Some error occured when reading from file so return an empty task list instead
+        System.out.println("Creating new task list instead.\n");
         return new TaskList();
     }
     

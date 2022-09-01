@@ -250,7 +250,7 @@ public class Duke {
 
     private void findTasks(String[] commands) {
 
-        // Keyword is the second token
+        // Keyword to search for is the second token
         TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
 
         ui.listTasks(searchResults, true);
@@ -268,10 +268,12 @@ public class Duke {
             ui.listTasks(this.storedTasks, false);
             break;
 
+
         case COMMAND_FIND:
             findTasks(commands);
             break;
         
+
         // Handle marking a task as done and undone in the same function
         case COMMAND_MARK_AS_DONE:
             // Fall through
@@ -308,7 +310,6 @@ public class Duke {
             handleInvalidCommand();
         }
 
-
         // Don't exit the program if something goes wrong
         return false;
     }
@@ -322,7 +323,7 @@ public class Duke {
     private void run() {
 
         while (true) {
-
+            
             String[] commands = Parser.parseCommand(ui.readCommand());
 
             // If need to exit
