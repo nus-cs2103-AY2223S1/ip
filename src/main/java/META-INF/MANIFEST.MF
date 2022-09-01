@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-duke.duke.javafx.Main-Class: duke.duke.Duke
+Main-Class: duke.javafx.Launcher
 

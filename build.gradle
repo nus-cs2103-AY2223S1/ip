@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.javafx.Launcher"
 }
 
 shadowJar {
