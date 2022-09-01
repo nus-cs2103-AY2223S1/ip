@@ -4,16 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Deals with interactions with the user
- */
 public class UI {
 
-    /**
-     * Prints a text surrounded by a chat box.
-     *
-     * @param text Text to be printed out.
-     */
+    public UI(){}
+
     public void chat(String text){
         List<String> textLines;
         int max;
@@ -34,12 +28,6 @@ public class UI {
 
     }
 
-    /**
-     * Returns a text surrounded by a chat box.
-     *
-     * @param text Text to be printed out.
-     * @return A text surrounded by a chat box.
-     */
     public String coverText(String text){
         List<String> textLines;
         int max;

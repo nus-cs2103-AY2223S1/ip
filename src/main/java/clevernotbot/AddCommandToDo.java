@@ -2,29 +2,12 @@ package clevernotbot;
 
 import java.util.Arrays;
 
-/**
- * Represents a command used to add a ToDo Task.
- */
-public class AddToDoCommand extends Command {
+public class AddCommandToDo extends Command {
 
-    /**
-     * Constructor for the AddToDoCommand.
-     *
-     * @param commandName Description of Command.
-     * @param exit Checking if program intends to exit.
-     */
-    public AddToDoCommand(String commandName, boolean exit) {
+    public AddCommandToDo(String commandName, boolean exit) {
         super(commandName, exit);
     }
 
-    /**
-     * Runs the add ToDo command.
-     *
-     * @param tasks The task list used to store all tasks.
-     * @param textBox UI for the textbox.
-     * @param storage The data where it is stored.
-     * @throws CleverNotBotException Gives an exception when todo's description is empty.
-     */
     public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
         try {
@@ -41,10 +24,10 @@ public class AddToDoCommand extends Command {
                                 "\nNow you have %d tasks in the list."
                         , newTask.toString(), tasks.getSize()));
             } else {
-                throw new CleverNotBotException("Please fill in the description of ToDo!", textBox);
+                throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
             }
         } catch(CleverNotBotException e){
-            throw new CleverNotBotException("Please fill in the description of ToDo!", textBox);
+            throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
         }
 
     }

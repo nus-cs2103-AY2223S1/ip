@@ -28,10 +28,10 @@ public class ParserTest {
         Command testCommand8 = testParser.parseText(txtTest8);
         Command testCommand9 = testParser.parseText(txtTest9);
 
-        assertTrue(testCommand1 instanceof AddToDoCommand);
-        assertTrue(testCommand2 instanceof AddDeadLineCommand);
+        assertTrue(testCommand1 instanceof AddCommandToDo);
+        assertTrue(testCommand2 instanceof AddCommandDeadLine);
         assertTrue(testCommand3 instanceof MarkCommand);
-        assertTrue(testCommand4 instanceof AddEventCommand);
+        assertTrue(testCommand4 instanceof AddCommandEvent);
         assertTrue(testCommand5 instanceof UnmarkCommand);
         assertTrue(testCommand6 instanceof ListCommand);
         assertTrue(testCommand7 instanceof DeleteCommand);

@@ -3,25 +3,14 @@ package clevernotbot;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * Deals with loading tasks from the file and saving tasks in the file
- */
 public class Storage {
     private String fileLocation = "/data/cleverNotBot.txt";
     private File file;
 
-    /**
-     * Constructor for Storage.
-     */
     public Storage(){
         this.file = new File(this.fileLocation);
     }
 
-    /**
-     * Gets Task from the saved file.
-     *
-     * @return An ArrayList full of tasks.
-     */
     public ArrayList<Task> getTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
         String line;
@@ -45,11 +34,6 @@ public class Storage {
         return tasks;
     }
 
-    /**
-     * Writes tasks to file.
-     *
-     * @param tasks The tasks that needs to put in.
-     */
     public void writeToFile(ArrayList<Task> tasks) {
         try {
             // if the file above doesn't exist, create it.
@@ -85,16 +69,9 @@ public class Storage {
         }
     }
 
-    /**
-     * Converts line to Tasks.
-     * E.g. "D | 0 | return book | 02-12-2022 18:00" -> new Dateline("return book",false,02-12-2022 18:00")
-     *
-     * @param line Line that stored in the file.
-     * @return Task.
-     */
     private Task convertLineToTask(String line) {
         String[] content = line.split(" \\| ");
-        /* Debug line
+        /* debug line
         System.out.println(file.getAbsolutePath());
         System.out.println(String.join(",",content));
          */
