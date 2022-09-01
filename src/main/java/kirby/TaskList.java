@@ -44,7 +44,7 @@ public class TaskList {
     }
 
     public String setMarkedString(int taskNumber) {
-        return "Awesome :D I've marked \n" + tasks.get(taskNumber).toString() + " completed!";
+        return "Awesome :D I've marked \n" + tasks.get(taskNumber).toString();
     }
 
     /**
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     public String setUnmarkedString(int taskNumber) {
-        return "Okay, I've marked \n" + tasks.get(taskNumber).toString() + " pending!";
+        return "Okay, I've unmarked \n" + tasks.get(taskNumber).toString();
     }
 
     /**
