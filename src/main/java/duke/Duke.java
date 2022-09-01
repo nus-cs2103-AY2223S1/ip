@@ -11,6 +11,8 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    private boolean isExit = false;
+
     /**
      * Creates a Duke program.
      *
@@ -27,24 +29,36 @@ public class Duke {
      * Runs the Duke program until user exits.
      */
     public void run() {
-        ui.showWelcome();
+        ui.printWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readUserInput();
-                parser.parse(fullCommand, tasks);
+                String dukeResponse = parser.parse(fullCommand, tasks);
                 storage.saveData(tasks);
                 isExit = parser.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
-                ui.showLine();
+                ui.printLine();
             }
         }
         ui.exit();
     }
 
-    public static void main(String[] args) {
-        new Duke("./data").run();
+
+    public String getResponse(String userInput) {
+        String dukeResponse;
+        try {
+            dukeResponse = parser.parse(userInput, tasks);
+            storage.saveData(tasks);
+            isExit = parser.isExit();
+            if (isExit) {
+                dukeResponse = ui.exit();
+            }
+            return dukeResponse;
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

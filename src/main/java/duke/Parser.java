@@ -58,12 +58,12 @@ public class Parser {
      * @param tasks list of stored <code>Task</code>
      * @throws DukeException if the index is out of range of the <code>TaskList</code>
      */
-    private void parseEdit(String cmd, String[] splitInput, TaskList tasks) throws DukeException {
+    private String parseEdit(String cmd, String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
         if (len != 2 || !isInteger(splitInput[1])) {
             throw new DukeException("Duke: To edit tasks, indicate the index of the task using an integer!");
         }
-        tasks.editTaskList(cmd, parseInt(splitInput[1]) - 1);
+        return tasks.editTaskList(cmd, parseInt(splitInput[1]) - 1);
     }
 
     /**
@@ -73,25 +73,28 @@ public class Parser {
      * @param tasks list of stored tasks
      * @throws DukeException if user input is invalid
      */
-    private void parseCreateTask(String[] splitInput, TaskList tasks) throws DukeException {
+    private String parseCreateTask(String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
+        String createdTaskMessage = "";
         if (len == 0) {
             throw new DukeException("No input!");
         } else if (splitInput[0].equals("todo")) {
-            tasks.editTaskList("todo", getTaskField(splitInput, 1, len), "");
+            createdTaskMessage = tasks.editTaskList("todo", getTaskField(splitInput, 1, len), "");
         } else if (splitInput[0].equals("deadline")) {
             int index = getDateIndex(splitInput);
             String taskDescription = getTaskField(splitInput, 1, index);
             String date = getTaskField(splitInput, index + 1, len);
-            tasks.editTaskList("deadline", taskDescription, date);
+            createdTaskMessage = tasks.editTaskList("deadline", taskDescription, date);
         } else if (splitInput[0].equals("event")) {
             int index = getDateIndex(splitInput);
             String taskDescription = getTaskField(splitInput, 1, index);
             String date = getTaskField(splitInput, index + 1, len);
-            tasks.editTaskList("event", taskDescription, date);
+            createdTaskMessage = tasks.editTaskList("event", taskDescription, date);
         } else {
             throw new DukeException("Duke: OH NO!!! I'm sorry, but I don't know what that means :-(");
         }
+        System.out.println(createdTaskMessage);
+        return createdTaskMessage;
     }
 
     /**
@@ -101,13 +104,13 @@ public class Parser {
      * @param tasks list of stored tasks
      * @throws DukeException if user input does not have a keyword
      */
-    private void parseFind(String[] splitInput, TaskList tasks) throws DukeException {
+    private String parseFind(String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
         if (len == 1) {
             throw new DukeException("Duke: To search for tasks, enter a keyword");
         }
         String keyword = String.join(" ", Arrays.copyOfRange(splitInput, 1, len));
-        tasks.find(keyword);
+        return tasks.find(keyword);
     }
 
     /**
@@ -117,24 +120,26 @@ public class Parser {
      * @param tasks list of stored tasks
      * @throws DukeException if command does not follow the format
      */
-    public void parse(String userInput, TaskList tasks) throws DukeException {
+    public String parse(String userInput, TaskList tasks) throws DukeException {
         String[] splitInput = userInput.split(" ");
+        String output = "";
         if (userInput.equals("bye")) {
             isExit = true;
         } else if (userInput.equals("list")) {
-            Ui.printTaskList(tasks);
-        } else if(splitInput[0].equals("find")) {
-            parseFind(splitInput, tasks);
+            output = Ui.printTaskList(tasks);
+        } else if (splitInput[0].equals("find")) {
+            output = parseFind(splitInput, tasks);
         } else if (splitInput[0].equals("mark")) {
-            parseEdit("mark", splitInput, tasks);
+            output = parseEdit("mark", splitInput, tasks);
         } else if (splitInput[0].equals("unmark")) {
-            parseEdit("unmark", splitInput, tasks);
+            output = parseEdit("unmark", splitInput, tasks);
         } else if (splitInput[0].equals("delete")) {
-            parseEdit("delete", splitInput, tasks);
+            output = parseEdit("delete", splitInput, tasks);
         } else if (splitInput[0].equals("delete")) {
             throw new DukeException("Duke: To delete tasks, indicate the index of the task using an integer!");
         } else {
-            parseCreateTask(splitInput, tasks);
+            output = parseCreateTask(splitInput, tasks);
         }
+        return output;
     }
 }

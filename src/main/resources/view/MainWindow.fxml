@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #3b2a0c;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
+    <children>
+        <TextField fx:id="userInput" layoutX="10.0" layoutY="549.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="306.0" promptText="Type here..." AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="84.0">
+         <font>
+            <Font name="Verdana Italic" size="12.0" />
+         </font></TextField>
+        <Button fx:id="sendButton" layoutX="316.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" snapToPixel="false" text="Send" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="8.0">
+         <padding>
+            <Insets left="1.0" right="1.0" />
+         </padding></Button>
+      <Label layoutX="14.0" layoutY="2.0" prefHeight="27.0" prefWidth="101.0" text="Duke" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="19.0" />
+         </font></Label>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" layoutX="10.0" layoutY="32.0" prefHeight="517.0" prefWidth="370.0" vvalue="1.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.0">
+            <content>
+            <Group>
+               <children>
+                      <VBox fx:id="dialogContainer" prefHeight="516.0" prefWidth="377.0" style="-fx-background-color: #21130d;" />
+               </children>
+            </Group>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
