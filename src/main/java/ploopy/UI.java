@@ -42,10 +42,14 @@ public class UI {
         System.out.println(messageFormatter(GREETING));
     }
 
+    /**
+     * Tells the user the necessary input format
+     * to prevent exceptions.
+     */
     public void correctFormatForUser() {
         System.out.println(messageFormatter("Please use the following format\n"
                 + "[task type] [task name] / [at or by] [task date]\n"
-                + "e.g: event concert /at 12/12/2020 1800" ));
+                + "e.g: event concert /at 12/12/2020 1800"));
     }
 
 

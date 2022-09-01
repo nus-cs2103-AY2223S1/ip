@@ -9,21 +9,20 @@ import java.time.format.DateTimeFormatter;
  */
 
 public abstract class Task {
+    /** Input string to Date formatter */
+    private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm");
+    /** Date to output String formatter */
+    private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
+    /** Type of task */
+    protected String type;
     /** Name of task */
     private final String name;
     /** Boolean for task being done or not */
     private boolean done;
-    /** Type of task */
-    protected String type;
     /** Date of task (If applicable) */
     private LocalDateTime dateTime;
     /** String format of date */
     private String dateStringForm;
-    /** Input string to Date formatter */
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm");
-    /** Date to output String formatter */
-    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
-
     /**
      * Constructor that takes a name and date
      *
@@ -36,7 +35,7 @@ public abstract class Task {
 
         if (date != null) {
             dateStringForm = date;
-            this.dateTime = LocalDateTime.parse(date, inputFormatter);
+            this.dateTime = LocalDateTime.parse(date, INPUT_FORMATTER);
         } else {
             dateStringForm = "";
         }
@@ -121,7 +120,7 @@ public abstract class Task {
      * @return Formatted date.
      */
     public String getDate() {
-        return outputFormatter.format(dateTime);
+        return OUTPUT_FORMATTER.format(dateTime);
     }
 
     /**
