@@ -13,6 +13,9 @@ public class TaskListTest {
     List<Task> tasks = new ArrayList<>();
     TaskList taskList = new TaskList(tasks);
 
+    /**
+     * Tests whether the taskList correctly modifies the status of the tasks or not.
+     */
     @Test
     public void modifiyTaskStatus_taskNumber_AlphaException() {
         taskList.addToTaskList(new Todo("read", "T"));

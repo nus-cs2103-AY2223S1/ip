@@ -6,6 +6,12 @@ import alpha.TaskList;
 import alpha.Ui;
 
 public class Help extends Command{
+
+    /**
+     * {@inheritDoc}
+     *
+     * Displays all the recognised input commands and their expected format.
+     */
     @Override
     public void execute(TaskList tasks, Ui uI, FileOperations fileOperations) {
         uI.colouredPrint(uI.ANSI_WHITE, "   COMMAND \t\t" + "FORMAT");

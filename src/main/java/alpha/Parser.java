@@ -11,6 +11,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
+
+    /**
+     * Interprets the message entered by the user.
+     *
+     * @param input The message to be interpreted.
+     * @return Command to be executed.
+     * @throws AlphaException If the input is invalid.
+     */
     public Command interpretMessage(String input) throws AlphaException {
         String[] inputTokens = input.split(" ", 2);
         switch (inputTokens[0]) {
@@ -65,12 +73,25 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks the validity of the input message.
+     *
+     * @param input Input message whose validity needs to be checked.
+     * @param commandLength The required length of the input message.
+     * @throws AlphaException If the task description is missing.
+     */
     public void checkInvalidInput(String input, int commandLength) throws AlphaException {
         if (input.length() == commandLength) {
             throw new AlphaException("Invalid input: Task description is missing!");
         }
     }
 
+    /**
+     * Checks the validity of the input message.
+     *
+     * @param date Input date whose validity needs to be checked.
+     * @throws AlphaException If the date is not entered in the required format.
+     */
     public String checkDateFormat(String date) throws AlphaException {
         DateTimeFormatter dTF = DateTimeFormatter.ofPattern("MMM d yyyy");
         String formattedDeadline;
