@@ -138,6 +138,49 @@ public class Parser {
     }
 
     /**
+     * Returns the task to be added.
+     *
+     * @param task the task type.
+     * @param input the user's input.
+     * @return the task to be added.
+     * @throws AddToListException
+     */
+    public static Task parseTask(TaskList.TaskType task, String input) throws AddToListException {
+        try {
+            String content = "";
+            LocalDateTime time = LocalDateTime.now();
+            switch (task) {
+            case TODO:
+                content = input.substring(5);
+                return new Todo(content);
+            case DEADLINE:
+                // the content and time of the task
+                String deadline = input.substring(9);
+                // the index of the character in the string before which is the content
+                int i = Parser.parseContent(deadline);
+                content = deadline.substring(0, i - 1);
+                time = parseTime(deadline.substring(i + 1));
+                return new Deadline(content, time);
+            case EVENT:
+                // the content and time of the task
+                String event = input.substring(6);
+                // the index of the character in the string before which is the content
+                int j = Parser.parseContent(event);
+                content = event.substring(0, j - 1);
+                time = Parser.parseTime(event.substring(j + 1));
+                return new Event(content, time);
+            }
+           return new Todo("");
+        } catch (StringIndexOutOfBoundsException e) {
+            // if the format is wrong, there will be a
+            // StringIndexOutOfBoundsException, catch it
+            // and throw an AddToListException
+            throw new AddToListException(AddToListException.Type.FORMAT);
+        } catch (AddToListException e) {
+            throw e;
+        }
+    }
+    /**
      * Parses the user's input to mark command.
      *
      * @param input the user's command.

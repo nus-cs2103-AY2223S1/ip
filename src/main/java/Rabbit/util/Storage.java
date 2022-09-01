@@ -21,11 +21,19 @@ public class Storage {
     private Path path;
     private File file;
 
-    public Storage() {
+    private TaskList list;
+
+    public Storage(TaskList list) throws ImportDataException{
+        this.list = list;
         final String dir = System.getProperty("user.dir");
         this.path = Paths.get(dir, "data", "data.txt");
         this.initiate();
         this.file = new File(path.toString());
+        try {
+            this.importData(this.list);
+        } catch (ImportDataException e) {
+            throw e;
+        }
     }
 
     /**

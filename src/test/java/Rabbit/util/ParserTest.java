@@ -19,6 +19,5 @@ public class ParserTest {
             System.out.println("Test failed due to exception.");
             fail();
         }
-
     }
 }

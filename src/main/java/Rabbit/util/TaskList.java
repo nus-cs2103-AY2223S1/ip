@@ -61,11 +61,11 @@ public class TaskList {
      *  Adds the input lines the user types into
      *  a list with a size no more than 100.
      *
-     * @param task the type of the task that is to be added.
+     * @param taskType the type of the task that is to be added.
      * @param input the content (and the time) of the task the user inputs.
      * @return the content of the task.
      */
-    public String addToList(TaskType task, String input) throws AddToListException {
+    public String addToList(TaskType taskType, String input) throws AddToListException {
         if (this.list.size() == 100) {
             // throws an exception when there are already 100 lines in
             // the list when the user is trying to input a new line.
@@ -73,43 +73,11 @@ public class TaskList {
         }
 
         try {
-            // initialise the task to be added
-            Task added = new Todo("");
-            String content = "";
-            LocalDateTime time = LocalDateTime.now();
-            switch (task) {
-            case TODO:
-                content = input.substring(5);
-                added = new Todo(content);
-                list.add(added);
-                break;
-            case DEADLINE:
-                // the content and time of the task
-                String deadline = input.substring(9);
-                // the index of the character in the string before which is the content
-                int i = Parser.parseContent(deadline);
-                content = deadline.substring(0, i - 1);
-                time = Parser.parseTime(deadline.substring(i + 1));
-                added = new Deadline(content, time);
-                list.add(added);
-                break;
-            case EVENT:
-                // the content and time of the task
-                String event = input.substring(6);
-                // the index of the character in the string before which is the content
-                int j = Parser.parseContent(event);
-                content = event.substring(0, j - 1);
-                time = Parser.parseTime(event.substring(j + 1));
-                added = new Event(event.substring(0, j - 1), time);
-                this.list.add(added);
-                break;
-            }
-            return added.getContent();
-        } catch (StringIndexOutOfBoundsException e) {
-            // if the format is wrong, there will be a
-            // StringIndexOutOfBoundsException, catch it
-            // and throw an AddToListException
-            throw new AddToListException(AddToListException.Type.FORMAT);
+            Task task = Parser.parseTask(taskType, input);
+            list.add(task);
+            return task.getContent();
+        } catch (AddToListException e) {
+            throw e;
         }
     }
 
