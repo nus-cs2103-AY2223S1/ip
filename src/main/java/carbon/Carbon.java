@@ -13,6 +13,7 @@ public class Carbon {
 
     /**
      * Creates an instance of Carbon.
+     * Main constructor.
      * Initializes with required components: UI, Storage, and Parser.
      *
      * @return Carbon object.
@@ -42,7 +43,7 @@ public class Carbon {
     public String getResponse(String input) {
         String log;
         try {
-            log = this.parser.process(input);
+            log = this.parser.processCommand(input);
         } catch (CarbonException error) {
             log = error.toString();
         }

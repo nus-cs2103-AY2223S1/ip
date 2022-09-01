@@ -73,31 +73,28 @@ public class TaskList {
             if (len <= requiredLen) {
                 CarbonException invalidParam = new InvalidParamException(input);
                 throw invalidParam;
-            } else {
-                taskNumber = Integer.valueOf(input.substring(requiredLen));
             }
+            taskNumber = Integer.valueOf(input.substring(requiredLen));
         } else {
             int requiredLen = "unmark ".length();
             if (len <= requiredLen) {
                 CarbonException invalidParam = new InvalidParamException(input);
                 throw invalidParam;
-            } else {
-                taskNumber = Integer.valueOf(input.substring(requiredLen));
             }
+            taskNumber = Integer.valueOf(input.substring(requiredLen));
         }
 
         if (taskNumber < 1 || taskNumber > this.tasks.size()) {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
             throw outOfBounds;
-        } else {
-            String log = this.setTaskDoneness(taskNumber, isDone);
-            return log;
         }
+        String log = this.setDone(taskNumber, isDone);
+        return log;
     }
 
-    private String setTaskDoneness(int taskNumber, boolean isDone) {
+    private String setDone(int taskNumber, boolean isDone) {
         Task task = this.tasks.get(taskNumber - 1);
-        task.changeDoneness(isDone);
+        task.setDone(isDone);
         String log = String.format("Got it! \n\n    %s", task);
         return log;
     }
