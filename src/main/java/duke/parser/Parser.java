@@ -1,5 +1,6 @@
 package duke.parser;
 
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class Parser {
      * @param str The command input by user.
      * @return A boolean value to indicate if the command needs another input.
      */
-    public static boolean multipleVariable(String str) {
+    public static boolean hasMultipleVariables(String str) {
         String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
         return checkList.contains(str.toLowerCase());

@@ -1,5 +1,5 @@
-
 package duke.storage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,11 +10,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.ui.Ui;
 import duke.dukeexception.DukeException;
 import duke.dukeexception.TypeNotExistException;
 import duke.tasks.Task;
-
+import duke.ui.Ui;
 
 /**
  * A class represents a duke.Storage.
@@ -64,7 +63,7 @@ public class Cache {
      * @return A recovered list of previous work or a blank list if no cache.
      * @throws DukeException If IOException occurs during the process.
      */
-    public static TaskList recovery(File f) throws DukeException, FileNotFoundException {
+    public static TaskList recover(File f) throws DukeException, FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         String[] commands;
         String type;

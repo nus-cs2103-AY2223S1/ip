@@ -1,7 +1,14 @@
-
 package duke;
 
-import duke.dukeexception.*;
+import java.io.IOException;
+import java.util.Scanner;
+
+import duke.dukeexception.DateTimeFormatException;
+import duke.dukeexception.DukeException;
+import duke.dukeexception.IncompleteCommandException;
+import duke.dukeexception.NoSuchCommandException;
+import duke.dukeexception.TaskCompletionException;
+import duke.dukeexception.TaskOutOfBoundException;
 import duke.parser.CommandType;
 import duke.parser.Parser;
 import duke.storage.Cache;
@@ -9,8 +16,6 @@ import duke.storage.TaskList;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * The main class for personal assistant bot Duke.
@@ -54,7 +59,7 @@ public class Duke {
      * 9. find [String]: to find the corresponding task.
      * 10. list: to list all ongoing tasks.
      */
-    public static void run() throws IncomplateCommandException, TaskOutOfBoundException,
+    public static void run() throws IncompleteCommandException, TaskOutOfBoundException,
             NoSuchCommandException, TaskCompletionException, DateTimeFormatException {
         Scanner in = new Scanner(System.in);
         boolean lastCommandOrNot = false;
@@ -63,82 +68,79 @@ public class Duke {
         String suggestion;
         String[] commandList;
         Integer taskIndex = null;
-        Integer i;
         CommandType type;
 
         Ui.greet();
         while (!lastCommandOrNot) {
             command = in.nextLine().trim();
             commandList = command.split(" ", 2);
-            command = (Parser.multipleVariable(commandList[0])) ? commandList[0] : command;
+            command = (Parser.hasMultipleVariables(commandList[0])) ? commandList[0] : command;
             type = CommandType.map(command);
 
             try {
                 switch (type) {
-                case BYE: {
+                case BYE:
                     Ui.bye();
                     lastCommandOrNot = true;
                     break;
-                }
+
                 case MARK:
-                case UNMARK: {
+                case UNMARK:
                     taskIndex = Parser.strToInt(commandList[1]) - 1;
                     task = taskList.get(taskIndex);
                     switch (type) {
-                    case MARK: {
-                        if (!task.checkDone()) {
+                    case MARK:
+                        if (!task.isDone()) {
                             Ui.mark(task);
                         } else {
                             System.out.println("     :( OOPS!!! The task specified is already done");
                             throw new TaskCompletionException("");
                         }
                         break;
-                    }
-                    case UNMARK: {
-                        if (task.checkDone()) {
+                    case UNMARK:
+                        if (task.isDone()) {
                             Ui.unmark(task);
                         } else {
                             System.out.println("     :( OOPS!!! The task specified is not done yet");
                             throw new TaskCompletionException("");
                         }
                         break;
-                    }
                     default:
                         throw new NoSuchCommandException(
                                 "     :( Unfortunately, but I cannot understand what that means :-(");
                     }
                     break;
-                }
-                case DELETE: {
+
+                case DELETE:
                     taskIndex = Parser.strToInt(commandList[1]) - 1;
                     task = taskList.get(taskIndex);
                     Ui.delete(task);
                     taskList.remove(task);
-                    for (i = taskIndex; i < taskList.countTask(); i++) {
+                    for (Integer i = taskIndex; i < taskList.countTask(); i++) {
                         taskList.get(i).updateRemoval();
                     }
                     break;
-                }
-                case LIST: {
+
+                case LIST:
                     Ui.list(taskList);
                     break;
-                }
-                case TODO: {
+
+                case TODO:
                     taskList.add(Ui.addToDo(commandList[1]));
                     break;
-                }
-                case DEADLINE: {
+
+                case DEADLINE:
                     taskList.add(Ui.addDeadline(commandList[1]));
                     break;
-                }
-                case EVENT: {
+
+                case EVENT:
                     taskList.add(Ui.addEvent(commandList[1]));
                     break;
-                }
-                case FIND: {
+
+                case FIND:
                     Ui.find(commandList[1].trim(), taskList);
                     break;
-                }
+
                 default:
                     throw new NoSuchCommandException(
                             "     :( Unfortunately, but I cannot understand what that means :-(");
@@ -151,7 +153,7 @@ public class Duke {
                     System.out.println("     :( OOPS!!! The description of a task cannot be empty.");
                     suggestion = "Try again with a task description that you wanna track";
                 }
-                throw new IncomplateCommandException(e.getMessage(), suggestion);
+                throw new IncompleteCommandException(e.getMessage(), suggestion);
 
                 //IndexOutOfBoundsException mark 1 > totalNumber
                 //check mark/ unmark
@@ -159,8 +161,9 @@ public class Duke {
                 if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                     System.out.println("     :( OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
                     suggestion = "Try again with a task index";
+                    throw new TaskOutOfBoundException(e.getMessage(), suggestion);
                 }
-                throw new TaskOutOfBoundException(e.getMessage());
+                throw new TaskOutOfBoundException(e.getMessage(), "");
             }
         }
     }

@@ -1,5 +1,9 @@
 package duke.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 import duke.dukeexception.DateTimeFormatException;
 import duke.dukeexception.DukeException;
 import duke.storage.Cache;
@@ -9,9 +13,6 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 /**
  * The user interface.
@@ -190,7 +191,7 @@ public class Ui {
         printLine();
         System.out.println("     :) Heyyo!!! Some saved work found in: "
                 + file.getAbsolutePath() + "\n     Loading...");
-        TaskList taskList = Cache.recovery(file);
+        TaskList taskList = Cache.recover(file);
         System.out.println("     :) Done loading~ Thanks for waiting!!!");
         printLine();
         return taskList;
@@ -206,7 +207,7 @@ public class Ui {
         Integer index = 0;
         printLine();
         for (Task task : taskList.getList()) {
-            if (task.findName(str)) {
+            if (task.hasName(str)) {
                 findList.add(task);
             }
         }

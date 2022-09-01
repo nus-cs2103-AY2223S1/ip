@@ -76,7 +76,7 @@ public class Task {
      * Returns whether the task is completed.
      * @return True if done, False if have not yet done.
      */
-    public boolean checkDone() {
+    public boolean isDone() {
         return this.isDone;
     }
 
@@ -93,7 +93,7 @@ public class Task {
      * @return The indicator.
      */
 
-    public boolean findName(String ... keywords) {
+    public boolean hasName(String ... keywords) {
         boolean isFound = false;
         for (String str: keywords) {
             isFound = this.name.contains(str) | isFound;
