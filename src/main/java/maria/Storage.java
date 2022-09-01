@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 /**
@@ -28,6 +29,8 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        assert Files.exists(Paths.get(this.fileName)) : "The file " + this.fileName + " doesn't exist.";
 
     }
 

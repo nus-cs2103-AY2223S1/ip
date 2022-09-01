@@ -24,12 +24,16 @@ public class CommandListAllTasks extends Command {
         if (tasks.size() == 0) {
             return "There are no tasks available.";
         } else {
+
             // Converts the task list to a multiline string for display
-            return "Your tasks are \n" + tasks.stream()
+            String result = "Your tasks are \n" + tasks.stream()
                     .map(task -> "- " + task)
                     .reduce((acc, str) -> acc + "\n" + str).get();
+
+            assert !result.equals("Your tasks are \n") : "No tasks have been added.";
+
+            return result;
+
         }
-
-
     }
 }
