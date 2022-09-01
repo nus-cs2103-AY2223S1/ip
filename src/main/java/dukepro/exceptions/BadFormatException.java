@@ -1,5 +1,8 @@
-package Duke.DukeExceptions;
+package dukepro.exceptions;
 
+/**
+ * Class for BadFormatException.
+ */
 public class BadFormatException extends DukeException {
     private static String line = "_______________________________________";
     private String taskType;
@@ -46,7 +49,7 @@ public class BadFormatException extends DukeException {
             String ret = line + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
                     + " <YOUR TASK HERE> " + separator + " <LOCATION>\n" + line;
             return ret;
-        } else if (this.taskType.equals("delete") || this.taskType.equals(("done"))){
+        } else if (this.taskType.equals("delete") || this.taskType.equals(("done"))) {
             String ret = line + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
                     + " <YOUR TASK HERE> " + " <TASK ID>\n" + line;
             return ret;

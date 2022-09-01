@@ -1,8 +1,11 @@
-package Duke.DukeTasks;
+package dukepro.tasks;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+/**
+ * Class for Deadline.
+ */
 public class Deadline extends Task {
     protected LocalDate by;
 

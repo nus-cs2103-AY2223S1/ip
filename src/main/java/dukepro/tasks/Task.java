@@ -1,7 +1,10 @@
-package Duke.DukeTasks;
+package dukepro.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * Class for Task.
+ */
 public class Task {
     private String name;
     private boolean finished = false;

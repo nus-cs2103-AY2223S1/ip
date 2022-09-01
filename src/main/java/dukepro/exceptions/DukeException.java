@@ -1,5 +1,8 @@
-package Duke.DukeExceptions;
+package dukepro.exceptions;
 
+/**
+ * Class for DukeException.
+ */
 public class DukeException extends Exception {
     private static String line = "_______________________________________";
 

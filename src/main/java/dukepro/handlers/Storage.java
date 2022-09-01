@@ -1,11 +1,18 @@
-package Duke.DukeHandlers;
+package dukepro.handlers;
 
-import Duke.DukeTasks.Task;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import dukepro.tasks.Task;
+
+/**
+ * Class for Storage.
+ */
 public class Storage {
     private String line = "_______________________________________";
 

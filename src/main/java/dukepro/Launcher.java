@@ -1,7 +1,10 @@
-package Duke;
+package dukepro;
 
 import javafx.application.Application;
 
+/**
+ * Class for Launcher.
+ */
 public class Launcher {
     /**
      * This is the main method for Launcher that

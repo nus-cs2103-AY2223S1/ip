@@ -1,5 +1,8 @@
-package Duke.DukeExceptions;
+package dukepro.exceptions;
 
+/**
+ * Class for BadTaskOperationException.
+ */
 public class BadTaskOperationException extends DukeException {
     private static String line = "_______________________________________";
     private String taskType;

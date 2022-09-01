@@ -1,21 +1,23 @@
-package Duke;
+package dukepro;
 
-import Duke.DukeExceptions.DukeException;
-import Duke.DukeHandlers.Interact;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
+import dukepro.exceptions.DukeException;
+import dukepro.handlers.Interact;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Class for DukePro.
+ */
 public class DukePro extends Application {
     private Interact interact;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
@@ -52,7 +54,7 @@ public class DukePro extends Application {
         Label dukeText;
         try {
             dukeText = new Label(getResponse(interact.handle(userInput.getText())));
-        } catch (DukeException e){
+        } catch (DukeException e) {
             dukeText = new Label(getResponse(e.toString()));
         }
         dialogContainer.getChildren().addAll(
@@ -101,7 +103,7 @@ public class DukePro extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setTitle("Duke");
+        stage.setTitle("dukepro");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);

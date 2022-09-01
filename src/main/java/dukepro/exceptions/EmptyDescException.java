@@ -1,5 +1,8 @@
-package Duke.DukeExceptions;
+package dukepro.exceptions;
 
+/**
+ * Class for EmptyDescException.
+ */
 public class EmptyDescException extends DukeException {
     private static String line = "_______________________________________";
 

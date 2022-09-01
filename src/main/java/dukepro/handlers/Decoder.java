@@ -1,17 +1,20 @@
-package Duke.DukeHandlers;
+package dukepro.handlers;
 
-import Duke.DukeExceptions.BadFormatException;
-import Duke.DukeExceptions.BadTaskOperationException;
-import Duke.DukeExceptions.DukeException;
-import Duke.DukeExceptions.EmptyDescException;
-import Duke.DukeTasks.Deadline;
-import Duke.DukeTasks.Event;
-import Duke.DukeTasks.Task;
-import Duke.DukeTasks.Todo;
-
-import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
+import dukepro.exceptions.BadFormatException;
+import dukepro.exceptions.BadTaskOperationException;
+import dukepro.exceptions.DukeException;
+import dukepro.exceptions.EmptyDescException;
+import dukepro.tasks.Deadline;
+import dukepro.tasks.Event;
+import dukepro.tasks.Task;
+import dukepro.tasks.Todo;
+
+/**
+ * Class for Decoder.
+ */
 public class Decoder {
 
     /**
@@ -174,7 +177,7 @@ public class Decoder {
      * @return A LocalDate.
      * @throws BadFormatException if input is bad.
      */
-    public static LocalDate parseLD(String str) throws BadFormatException{
+    public static LocalDate parseLD(String str) throws BadFormatException {
         try {
             String[] splitted = str.split(" ");
             return LocalDate.parse(splitted[splitted.length - 1].stripLeading());

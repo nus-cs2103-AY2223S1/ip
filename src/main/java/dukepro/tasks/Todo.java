@@ -1,5 +1,8 @@
-package Duke.DukeTasks;
+package dukepro.tasks;
 
+/**
+ * Class for Todo.
+ */
 public class Todo extends Task {
     /**
      * Creates a Todo.

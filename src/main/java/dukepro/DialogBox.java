@@ -1,4 +1,4 @@
-package Duke;
+package dukepro;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * Class for DialogBox.
+ */
 public class DialogBox extends HBox {
     private Label text;
     private ImageView displayPicture;

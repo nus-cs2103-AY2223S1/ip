@@ -1,14 +1,16 @@
-package Duke.DukeHandlers;
-
-import Duke.DukeHandlers.Storage;
-import Duke.DukeTasks.Task;
+package dukepro.handlers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import dukepro.tasks.Task;
+
+/**
+ * Class for TasksManager.
+ */
 public class TasksManager {
-    private Storage storage;
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private Storage storage;
 
     /**
      * Creates a TasksManager class.

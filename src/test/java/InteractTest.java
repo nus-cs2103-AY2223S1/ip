@@ -1,7 +1,7 @@
-import Duke.DukeExceptions.DukeException;
-import Duke.DukeHandlers.Decoder;
-import Duke.DukeHandlers.TasksManager;
-import Duke.DukeTasks.*;
+import dukepro.exceptions.DukeException;
+import dukepro.handlers.Decoder;
+import dukepro.handlers.TasksManager;
+import dukepro.tasks.*;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

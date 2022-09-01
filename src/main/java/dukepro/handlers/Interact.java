@@ -1,9 +1,10 @@
-package Duke.DukeHandlers;
+package dukepro.handlers;
 
-import Duke.DukeExceptions.DukeException;
+import dukepro.exceptions.DukeException;
 
-import java.util.Scanner;
-
+/**
+ * Class for Interact.
+ */
 public class Interact {
     private String line = "_______________________________________";
     private TasksManager tasksManager;
