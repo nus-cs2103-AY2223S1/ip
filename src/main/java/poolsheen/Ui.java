@@ -1,6 +1,5 @@
 package poolsheen;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import poolsheen.task.Task;
@@ -16,8 +15,8 @@ public class Ui {
     private static final String LOGO = "\n" + "POOLSHEEN";
 
     /** The message first printed when the Poolsheen program runs. */
-    private static final String WELCOME_MESSAGE = "Hello from" + LOGO + "\n" +
-            "Type something in for Poolsheen to respond to you:";
+    private static final String WELCOME_MESSAGE = "Hello from" + LOGO + "\n"
+            + "Type something in for Poolsheen to respond to you:";
 
     /** The message printed last whenever Poolsheen replys. */
     private static final String LAST_REPLY = "meow *_*";
@@ -53,9 +52,9 @@ public class Ui {
      * @param message The message to be printed.
      */
     public void say(String message) {
-        System.out.println(HORIZONTAL_LINE + "\n" +
-                newLine(message) +
-                newLine(LAST_REPLY) + HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE + "\n"
+                + newLine(message)
+                + newLine(LAST_REPLY) + HORIZONTAL_LINE);
     }
 
     /**
@@ -64,12 +63,12 @@ public class Ui {
      * @param errMsg The string obtained from an error's getMessage function.
      */
     public void showError(String errMsg, String errorType) {
-        System.out.println(HORIZONTAL_LINE + "\n" +
-                newLine("The following UI error has occurred") +
-                newLine("The error type is: " + errorType) +
-                newLine(errMsg) +
-                newLine("Please try again!") +
-                newLine(LAST_REPLY) + HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE + "\n"
+                + newLine("The following UI error has occurred")
+                + newLine("The error type is: " + errorType)
+                + newLine(errMsg)
+                + newLine("Please try again!")
+                + newLine(LAST_REPLY) + HORIZONTAL_LINE);
     }
 
     /**
@@ -77,11 +76,11 @@ public class Ui {
      */
     public void displayList(TaskList tl) {
         if (tl.isEmpty()) {
-            this.say("Poolsheen thinks back... " +
-                    "and remembers you said nothing :(");
+            this.say("Poolsheen thinks back... "
+                    + "and remembers you said nothing :(");
         } else {
-            String displayStr = "Poolsheen thinks back... " +
-                    "and remembers you said:\n";
+            String displayStr = "Poolsheen thinks back... "
+                    + "and remembers you said:\n";
             this.say(displayStr + this.getListOfTasks(tl));
         }
     }

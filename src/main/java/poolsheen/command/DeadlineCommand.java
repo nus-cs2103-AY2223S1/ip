@@ -5,9 +5,9 @@ import java.util.List;
 
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
-import poolsheen.task.Deadline;
 import poolsheen.TaskList;
 import poolsheen.Ui;
+import poolsheen.task.Deadline;
 
 /**
  * Represents a DeadlineCommand which when executed will cause the Poolsheen program to

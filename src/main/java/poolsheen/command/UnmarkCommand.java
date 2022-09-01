@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
-import poolsheen.task.Task;
 import poolsheen.TaskList;
 import poolsheen.Ui;
+import poolsheen.task.Task;
 
 /**
  * Represents a MarkCommand which when executed will cause the Poolsheen program to
  * unmark the task of that respective position which Poolsheen remembers.
  */
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     public UnmarkCommand(ArrayList<String> rest) {
         super(false, rest);
     }
@@ -27,7 +27,7 @@ public class UnmarkCommand extends Command{
             Task t = tl.get(pos - 1);
             tl.unmark(pos);
             ui.say("Poolsheen thinks you are not done with "
-                    + t.description);
+                    + t.getDescription());
         }
     }
 }

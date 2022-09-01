@@ -4,10 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import poolsheen.task.Deadline;
 import poolsheen.task.Event;
@@ -63,7 +62,7 @@ public class Storage {
                 Predicate<String> pred = x -> x.equals("");
                 arl.removeIf(pred);
                 //Uncomment to see how the file contents are parsed as arrays.
-//                System.out.println(arl.toString());
+                //System.out.println(arl.toString());
                 String taskType = arl.get(1);
                 boolean isDone;
                 if (arl.get(2).equals("X")) {
@@ -109,11 +108,11 @@ public class Storage {
      *
      * @param tl The ArrayList of Tasks to refer to when updating.
      */
-    public void update(TaskList tl) throws IOException{
+    public void update(TaskList tl) throws IOException {
         FileWriter fw = new FileWriter(this.filePath);
         String str = "";
         int max = tl.getSize();
-        for (int pos = 0 ; pos < max; pos++) {
+        for (int pos = 0; pos < max; pos++) {
             Task t = tl.get(pos);
             int listPos = pos + 1;
             str += listPos + "|" + String.join("|" , t.toArr());

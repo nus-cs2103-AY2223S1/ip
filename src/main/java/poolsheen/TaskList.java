@@ -8,7 +8,7 @@ import poolsheen.task.Task;
  * Represents a collection of all the tasks that Poolsheen remembers.
  */
 public class TaskList {
-    ArrayList<Task> arl;
+    private ArrayList<Task> arl;
 
     /**
      * Public constructor to initialise an already filled TaskList.
@@ -90,7 +90,7 @@ public class TaskList {
     public TaskList find(String keyword) {
         ArrayList<Task> finalArl = new ArrayList<>(100);
         for (Task t : this.arl) {
-            for (String word : t.description.split(" ")) {
+            for (String word : t.getDescription().split(" ")) {
                 if (keyword.toUpperCase().equals(word.toUpperCase())) {
                     finalArl.add(t);
                 }

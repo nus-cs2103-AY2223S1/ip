@@ -5,10 +5,10 @@ package poolsheen;
  */
 public class IncompleteCommandException extends RuntimeException {
     /** The type of command. */
-    String commandType;
+    private String commandType;
 
     /** What the user should do to prevent this exception from being thrown again. */
-    String whatToDo;
+    private String whatToDo;
 
     /**
      * A public constructor to initialise an IncompleteCommandException object.

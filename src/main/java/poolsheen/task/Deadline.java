@@ -1,7 +1,7 @@
 package poolsheen.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import poolsheen.IncompleteCommandException;
 
@@ -32,7 +32,7 @@ public class Deadline extends Task {
 
     @Override
     public String[] toArr() {
-        return new String[] {"D", this.getStatusIcon(), this.description, this.time.toString()};
+        return new String[] {"D", this.getStatusIcon(), this.getDescription(), this.time.toString()};
     }
 
     @Override

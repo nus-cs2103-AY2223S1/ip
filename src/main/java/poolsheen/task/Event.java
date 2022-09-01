@@ -1,7 +1,7 @@
 package poolsheen.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import poolsheen.IncompleteCommandException;
 
@@ -30,7 +30,7 @@ public class Event extends Task {
 
     @Override
     public String[] toArr() {
-        return new String[] {"E", this.getStatusIcon(), this.description, this.time.toString()};
+        return new String[] {"E", this.getStatusIcon(), this.getDescription(), this.time.toString()};
     }
 
     @Override

@@ -3,16 +3,16 @@ package poolsheen;
 
 import java.util.ArrayList;
 
-import poolsheen.command.Command;
 import poolsheen.command.ByeCommand;
+import poolsheen.command.Command;
 import poolsheen.command.DeadlineCommand;
 import poolsheen.command.DeleteCommand;
 import poolsheen.command.EventCommand;
+import poolsheen.command.FindCommand;
 import poolsheen.command.ListCommand;
 import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
-import poolsheen.command.FindCommand;
 
 
 /**

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
-import poolsheen.task.Task;
 import poolsheen.TaskList;
 import poolsheen.Ui;
+import poolsheen.task.Task;
 
 /**
  * Represents a DeleteCommand which when executed will cause the Poolsheen program to
  * delete one task of the respective index that Poolsheen remembers.
  */
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     public DeleteCommand(ArrayList<String> rest) {
         super(false, rest);
     }
@@ -26,7 +26,7 @@ public class DeleteCommand extends Command{
             int pos = java.lang.Integer.parseInt(rest.get(0));
             Task t = tl.get(pos - 1);
             tl.deleteTask(pos);
-            ui.say("Poolsheen has forgot: " + t.description + " and you now have " + tl.getSize() + " tasks left");
+            ui.say("Poolsheen has forgot: " + t.getDescription() + " and you now have " + tl.getSize() + " tasks left");
         }
     }
 }

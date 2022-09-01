@@ -10,10 +10,6 @@ import poolsheen.command.Command;
  * @version CS2103 AY22/23 Sem 1
  */
 public class Poolsheen {
-    public static void main(String[] args) {
-        new Poolsheen(SAVE_FILE_PATH).run();
-    }
-
     private static final String SAVE_FILE_PATH = "SAVE.TXT";
 
     /** Whether if this poolsheen object has stopped running */
@@ -62,7 +58,7 @@ public class Poolsheen {
             } catch (IOException e) {
                 ui.showError(e.getMessage(), "IOException");
             } catch (UnknownCommandException e) {
-            ui.showError(e.toString(), "UnknownCommandException");
+                ui.showError(e.toString(), "UnknownCommandException");
             } catch (IncompleteCommandException e) {
                 ui.showError(e.toString(), "IncompleteCommandException");
             } catch (IndexOutOfBoundsException e) {
@@ -71,10 +67,10 @@ public class Poolsheen {
             } catch (NumberFormatException e) {
                 ui.showError("Poolsheen believes this command needs an integer.",
                         "NumberFormatException");
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 ui.showError("Poolsheen has never seen this command and is confused.",
                         "IllegalArgumentException");
-            }  catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("An unexpected error has occurred and the program will end.");
                 System.out.println("Error is: " + e.toString());
                 this.exit();
@@ -88,5 +84,9 @@ public class Poolsheen {
      */
     private void exit() {
         this.hasExited = true;
+    }
+
+    public static void main(String[] args) {
+        new Poolsheen(SAVE_FILE_PATH).run();
     }
 }

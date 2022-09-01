@@ -6,14 +6,26 @@ import java.time.LocalDate;
  * Class for the details of a task that Poolsheen can remember.
  */
 public abstract class Task {
-    /** The details of the task. */
-    public String description;
 
     /** If the task is finished. */
     protected boolean isDone;
 
     /** The time for the task. */
     protected LocalDate time;
+
+    /** The details of the task. */
+    private String description;
+
+    /**
+     * A protected constructor for Tasks.
+     *
+     * @param description The description of the task.
+     * @param isDone If the task is done or not.
+     */
+    protected Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
 
     /**
      * Returns the status of the task.
@@ -23,6 +35,14 @@ public abstract class Task {
     public String getStatusIcon() {
         // mark done task with X
         return isDone ? "X" : "-";
+    }
+
+    /**
+     * Returns the description of the task.
+     * @return A string containing the task's description.
+     */
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -37,17 +57,6 @@ public abstract class Task {
      */
     public void markAsNotDone() {
         this.isDone = false;
-    }
-
-    /**
-     * A protected constructor for Tasks.
-     *
-     * @param description The description of the task.
-     * @param isDone If the task is done or not.
-     */
-    protected Task(String description, boolean isDone) {
-        this.description = description;
-        this.isDone = isDone;
     }
 
     /**

@@ -1,9 +1,9 @@
 package poolsheen.task;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
 
@@ -29,13 +29,13 @@ public class ToDoTest {
     }
 
     @Test
-    public void getStatusIcon_ToDoDone_success() {
+    public void getStatusIcon_toDoDone_success() {
         ToDo td = new ToDo("desc", true);
         assertEquals("X", td.getStatusIcon());
     }
 
     @Test
-    public void getStatusIcon_ToDoNotDone_success() {
+    public void getStatusIcon_toDoNotDone_success() {
         ToDo td = new ToDo("desc", false);
         assertEquals("-", td.getStatusIcon());
     }

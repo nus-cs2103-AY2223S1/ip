@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
-import poolsheen.task.Event;
 import poolsheen.Ui;
+import poolsheen.task.Event;
 
 /**
  * Represents an EventCommand which when executed will cause the Poolsheen program to
  * add one Event task for Poolsheen to remember.
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     public EventCommand(ArrayList<String> rest) {
         super(false, rest);
     }

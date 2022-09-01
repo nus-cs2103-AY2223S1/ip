@@ -11,11 +11,11 @@ import poolsheen.Ui;
  * Each command extends from this class.
  */
 public abstract class Command {
-    /** If this command will cause the program to stop running. */
-    private boolean isEnder;
-
     /** The array list of strings that make up for the rest of the user input. */
     protected ArrayList<String> rest;
+
+    /** If this command will cause the program to stop running. */
+    private boolean isEnder;
 
     /**
      * A protected constructor to create a Command object.
