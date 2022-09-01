@@ -67,7 +67,6 @@ public abstract class Task {
         this.status = status;
     }
 
-
     /**
      * Returns the details of the task as a String.
      *
