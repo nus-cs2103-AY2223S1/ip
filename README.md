@@ -22,7 +22,7 @@ Features:
 and it is **FREE**!
 
 <hr />
-If you Java programmer, you can use it to practice Java too. Here's the main method:
+If you Java programmer, you can use it to practice Java too. Here's the <code>main</code> method:
 
 ~~~ruby
 public class Main {
