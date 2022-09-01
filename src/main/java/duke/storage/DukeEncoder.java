@@ -1,7 +1,4 @@
-package duke.Storage;
-
-import duke.TaskList.Task;
-
+package duke.storage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import duke.task.Task;
+
+/**
+ * Class to update list after each command.
+ */
 public class DukeEncoder {
     /**
      * Updates the change to List.txt.

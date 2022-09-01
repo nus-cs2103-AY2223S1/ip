@@ -1,14 +1,11 @@
-package Ui;
+package duke.ui;
 
+/**
+ * Represents constants used in the whole program.
+ */
 public class Constants {
     // Logo
-    public static final String LOGO =
-            "   _____    _____   ___    __    ___    ____    _______ \n" +
-                    "  / ____|  / ____| |__ \\  /_ |  / _ \\  |___ \\  |__   __|\n" +
-                    " | |      | (___      ) |  | | | | | |   __) |    | |   \n" +
-                    " | |       \\___ \\    / /   | | | | | |  |__ <     | |   \n" +
-                    " | |____   ____) |  / /_   | | | |_| |  ___) |    | |   \n" +
-                    "  \\_____| |_____/  |____|  |_|  \\___/  |____/     |_|   \n";
+    public static final String LOGO = "CS2103T - AY 22/23 Sem 1";
 
     // Arrow to start the answer
     public static final String ARROW = "--> ";

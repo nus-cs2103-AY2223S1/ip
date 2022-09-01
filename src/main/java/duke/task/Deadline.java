@@ -1,8 +1,11 @@
-package duke.TaskList;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a deadline task.
+ */
 public class Deadline extends Task {
 
     protected LocalDate by;
@@ -35,7 +38,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString()  + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**
