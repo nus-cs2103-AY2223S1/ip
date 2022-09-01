@@ -2,6 +2,10 @@ package duke;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a to-do type task
+ * @author Reuben Chay
+ */
 public class ToDo extends Task {
 
     ToDo(String name) {
@@ -18,6 +22,10 @@ public class ToDo extends Task {
         return true;
     }
 
+    /**
+     * Returns a string representing this class' information
+     * @return string including task type, done/undone and task name
+     */
     @Override
     public String toString() {
         String out = "[T]";

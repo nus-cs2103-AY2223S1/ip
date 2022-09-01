@@ -3,6 +3,10 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Helper class to manage the list of tasks present when program is running
+ * @author Reuben Chay
+ */
 public class TaskList {
     private List<Task> list;
 
@@ -15,7 +19,7 @@ public class TaskList {
     }
 
     /**
-     * Helper function to print the task description
+     * Prints each task description in the list
      */
     public void taskPrinter() {
         if (list.isEmpty()) {

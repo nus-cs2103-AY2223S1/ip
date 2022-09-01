@@ -5,12 +5,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
+/**
+ * Represents a Deadline-type task
+ * @author Reuben Chay
+ */
 public class Deadline extends Task {
 
     private LocalDate date;
     private LocalDateTime dateTime;
 
+    /**
+     * Constructs a deadline class
+     * @param name name of task
+     * @param dateTime date and time of task
+     */
     Deadline(String name, String dateTime) {
         super(name);
         try {
@@ -27,7 +35,10 @@ public class Deadline extends Task {
         this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
     }
 
-
+    /**
+     * Returns if type of class is to-do
+     * @return true if type is to-do, false otherwise
+     */
     @Override
     boolean isToDo() {
         return false;

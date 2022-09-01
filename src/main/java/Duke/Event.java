@@ -5,11 +5,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ *  Represents an event task in the task list
+ * @author Reuben Chay
+ */
 public class Event extends Task {
 
     private LocalDate date;
     private LocalDateTime dateTime;
 
+    /**
+     * Constructs event class ie. constructor
+     * @param name name of task
+     * @param dateTime date and time of task in string format
+     */
     Event(String name, String dateTime) {
         super(name);
         try {
@@ -32,6 +41,10 @@ public class Event extends Task {
         return false;
     }
 
+    /**
+     * Returns date and time of task
+     * @return date and time of task using LocalDateTime library
+     */
     @Override
     LocalDateTime getDateTime() {
         return this.dateTime;

@@ -1,6 +1,17 @@
 package duke;
 
+/**
+ * Represents the Duke class to run the Duke program
+ * @author Reuben Chay
+ */
 public class Duke {
+
+    /**
+     * Main driver function to run the Duke program
+     * @param args arguments supplied
+     * @throws DukeException exceptions specific to the Duke program
+     * @throws IllegalArgumentException exceptions representing illegal/disallowed user inputs
+     */
     public static void main(String[] args) throws DukeException, IllegalArgumentException {
 
         TaskList list = new TaskList();

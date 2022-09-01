@@ -6,6 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Helper class to manage file operations, specifically to manage
+ * .txt file added tasks will be stored to
+ * @author Reuben Chay
+ */
 public class Storage {
     private String filePath;
 
@@ -14,8 +19,8 @@ public class Storage {
     }
 
     /**
-     * Helper function to write task descriptions to the file
-     * @param task task which we want information for
+     * Writes task description to the file when a task is added
+     * @param task task being added
      */
     public void writeToFile(Task task) {
         try {
@@ -27,6 +32,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates file contents whenever a task is changed (eg. marked/deleted)
+     * @param newTask updated task
+     * @param delete whether to delete the file or not
+     * @param index task number to update
+     */
     public void fileUpdater(Task newTask, boolean delete, int index) {
         try {
             List<String> list = Files.readAllLines(Path.of(this.filePath));

@@ -2,6 +2,11 @@ package duke;
 
 import java.time.LocalDateTime;
 
+/**
+ * Abstract class representing a task
+ * Each sub-class of task will be a specific task type
+ * @author Reuben Chay
+ */
 abstract public class Task {
     private String name;
     private boolean done;
@@ -11,10 +16,16 @@ abstract public class Task {
         this.done = false;
     }
 
+    /**
+     * Marks a class as done
+     */
     void Done() {
         this.done = true;
     }
 
+    /**
+     * Marks a class as undone
+     */
     void unDone() {
         this.done = false;
     }
