@@ -1,5 +1,7 @@
 package duke;
 
+import javafx.application.Application;
+
 /**
  * Duke is an assistant that helps keep track of deadlines, events and todos.
  */
@@ -7,6 +9,7 @@ public class Duke {
     protected final TaskList tasks;
     protected final Ui ui;
     protected final Storage storage;
+    protected final Parser parser = new Parser(this);
 
     /**
      * The constructor that creates a Duke object.
@@ -18,17 +21,15 @@ public class Duke {
         tasks = new TaskList(storage.load());
     }
 
-    /**
-     * Starts the jamie program.
-     */
-    public void run() {
-        ui.welcome();
-        Parser parser = new Parser(this);
-        parser.start();
-        ui.bye();
+    public static void main(String[] args) {
+        Application.launch(Main.class, args);
     }
 
-    public static void main(String[] args) {
-        new Duke("Data/DukeTasks.txt").run();
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return parser.parse(input);
     }
 }
