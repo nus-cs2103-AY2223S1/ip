@@ -4,6 +4,7 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 /**
  * Encapsulation of the command of deleting tasks from the list.
@@ -35,14 +36,18 @@ public class DeleteCommand extends Command {
      * @throws DukeException if the index is out of range
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
-        ui.deleteMessage(tasks, index, false);
+        String info = tasks.get(index).toString();
+//        ui.deleteMessage(tasks, index, false);
         tasks.remove(index);
         storage.writeFile(tasks, ui);
-        ui.deleteMessage(tasks, index, true);
+//        ui.deleteMessage(tasks, index, true);
+        return "Noted. I've removed this task:\n"
+                + info + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**

@@ -35,9 +35,14 @@ public class FindCommand extends Command {
      * @param storage the storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> result = tasks.find(keyword);
-        ui.findMessage(result);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        ArrayList<Task> matches = tasks.find(keyword);
+//        ui.findMessage(matches);
+        String result = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < matches.size(); i++) {
+            result += i + 1 + ". " + matches.get(i).toString() + "\n";
+        }
+        return result;
     }
 
     /**

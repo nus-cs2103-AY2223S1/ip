@@ -35,13 +35,15 @@ public class UnmarkCommand extends Command {
      * @throws DukeException if the index is out of range
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
         tasks.get(index).setStatus(false);
         storage.writeFile(tasks, ui);
-        ui.unmarkMessage(tasks, index);
+//        ui.unmarkMessage(tasks, index);
+        return "OK, I've marked this task as not done yet:\n"
+                + tasks.get(index).toString();
     }
 
     /**

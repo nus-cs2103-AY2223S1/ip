@@ -34,10 +34,13 @@ public class AddCommand extends Command {
      * @param storage the storage
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(task);
         storage.writeFile(tasks, ui);
-        ui.addMessage(tasks, task);
+//        ui.addMessage(tasks, task);
+        return "Got it. I've added this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**

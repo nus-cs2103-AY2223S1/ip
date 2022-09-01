@@ -19,7 +19,7 @@ public abstract class Command {
      * @param ui the UI
      * @param storage the storage
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns a boolean value represent whether to exit the programme

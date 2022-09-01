@@ -35,13 +35,15 @@ public class MarkCommand extends Command {
      * @throws DukeException if the index is out of range
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
         tasks.get(index).setStatus(true);
         storage.writeFile(tasks, ui);
-        ui.markMessage(tasks, index);
+//        ui.markMessage(tasks, index);
+        return "Nice! I've marked this task as done:\n"
+                + tasks.get(index).toString();
     }
 
     /**

@@ -37,22 +37,17 @@ public class Duke extends Application {
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
-    private DialogBox greetingMessage;
+//    private DialogBox greetingMessage;
     private Scene scene;
 
     /**
-     * Default class constructor.
+     * Class constructor.
      */
     public Duke() {}
 
-    /**
-     * Class constructor.
-     *
-     * @param filePath The path of the file that stores the tasks
-     */
-    public Duke(String filePath) {
+    public void initialiseJarvis() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("data/tasks.txt");
         try {
             tasks = new TaskList(storage.load(ui));
         } catch (DukeException e) {
@@ -61,72 +56,23 @@ public class Duke extends Application {
         }
     }
 
-    /**
-     * Encapsulates the main logic of the chatbot.
-     */
-    public void run() {
-        ui.greet();
-        storage.load(ui);
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-    }
-
-    /**
-     * Starts up the chatbot and runs its main logic.
-     * @param args the command line arguments
-     * @throws DukeException when error encountered
-     */
-    public static void main(String[] args) throws DukeException {
-        new Duke("data/tasks.txt").run();
-    }
-
-    /**
-     * The main entry point for all JavaFX applications.
-     * The start method is called after the init method has returned,
-     * and after the system is ready for the application to begin running.
-     *
-     * <p>
-     * NOTE: This method is called on the JavaFX Application Thread.
-     * </p>
-     *
-     * @param stage the primary stage for this application, onto which
-     *                     the application scene can be set.
-     *                     Applications may create other stages, if needed, but they will not be
-     *                     primary stages.
-     */
-    @Override
-    public void start(Stage stage) {
-        //Step 1. Formatting the window to look as expected.
-
-        //The container for the content of the chat to scroll.
+    public void initialiseScene (Stage stage) {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
 
-        Label greeting = new Label("Hello. I'm Jarvis.\n" + "What can I do for you?");
-        greetingMessage = DialogBox.getDukeDialog(greeting, new ImageView(jarvis));
+//        Label greeting = new Label("Hello. I'm Jarvis.\n" + "What can I do for you?");
+//        greetingMessage = DialogBox.getDukeDialog(greeting, new ImageView(jarvis));
 
         userInput = new TextField();
         sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton, greetingMessage);
+//        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton, greetingMessage);
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
 
-        stage.setScene(scene);
-        stage.show();
-
-        //Step 2. Formatting the window to look as expected
         stage.setTitle("Jarvis");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -154,6 +100,30 @@ public class Duke extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
+
+    /**
+     * The main entry point for all JavaFX applications.
+     * The start method is called after the init method has returned,
+     * and after the system is ready for the application to begin running.
+     *
+     * <p>
+     * NOTE: This method is called on the JavaFX Application Thread.
+     * </p>
+     *
+     * @param stage the primary stage for this application, onto which
+     *                     the application scene can be set.
+     *                     Applications may create other stages, if needed, but they will not be
+     *                     primary stages.
+     */
+    @Override
+    public void start(Stage stage) {
+        // Initialisation
+        initialiseJarvis();
+        initialiseScene(stage);
+
+        stage.setScene(scene);
+        stage.show();
 
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
@@ -201,6 +171,8 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Jarvis heard: " + input;
+        Command c = Parser.parse(input);
+//        c.execute(tasks, ui, storage);
+        return c.execute(tasks, ui, storage);
     }
 }
