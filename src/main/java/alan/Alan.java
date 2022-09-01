@@ -1,3 +1,5 @@
+package alan;
+
 import alanExceptions.AlanException;
 import tasks.TaskList;
 import util.Executor;
@@ -13,7 +15,6 @@ import java.util.Scanner;
 public class Alan {
     public static Alan instance;
     private Storage alanIO;
-    private final Scanner input;
     private final Ui ui;
     private final FileParser fileParser;
     private final Executor executor;
@@ -23,7 +24,6 @@ public class Alan {
      * Private Constructor.
      */
     private Alan() {
-        this.input = new Scanner(System.in);
         this.ui = new Ui();
         this.executor = new Executor();
         this.taskList = new TaskList();
@@ -36,8 +36,17 @@ public class Alan {
         }
     }
 
+    public static Alan getInstance() {
+        if (Alan.instance == null) {
+            Alan.instance = new Alan();
+        }
+        Alan.instance.begin();
+        return Alan.instance;
+    }
+
+
     /**
-     * Entry creates an Alan singleton
+     * Entry creates an alan.Alan singleton
      *
      * @param args args.
      */
@@ -45,68 +54,65 @@ public class Alan {
         if (Alan.instance == null) {
             Alan.instance = new Alan();
         }
-        Alan.instance.start();
+        Alan.instance.begin();
     }
 
-    private void start() {
+    private void begin() {
         try {
             this.taskList = new TaskList(fileParser.parseFile(alanIO.read()));
         } catch (AlanException e) {
             executor.excException(e.getMessage());
         }
-        greet();
-        run();
     }
 
-    private void run() {
+    public String getResponse(String input) {
+        String response;
         System.out.println("How may I be of service?");
 
-        label:
-        while (true) {
-            String userInput = input.nextLine();
-            String command = userInput.split(" ", 2)[0];
+        String command = input.split(" ", 2)[0];
 
-            try {
-                switch (command) {
-                    case "bye":
-                        break label;
-                    case "list":
-                        executor.excList(taskList);
-                        break;
-                    case "event":
-                        executor.excEvent(taskList, userInput);
-                        break;
-                    case "deadline":
-                        executor.excDeadline(taskList, userInput);
-                        break;
-                    case "todo":
-                        executor.excTodo(taskList, userInput);
-                        break;
-                    case "find":
-                        executor.excFind(taskList, userInput);
-                        break;
-                    case "mark":
-                        executor.excMark(taskList, userInput);
-                        break;
-                    case "unmark":
-                        executor.excUnmark(taskList, userInput);
-                        break;
-                    case "delete":
-                        executor.excDelete(taskList, userInput);
-                        break;
-                    case "help":
-                        // TODO: 18/8/22
-                        break;
-                    default:
-                        System.out.println(ui.invalid());
-                        break;
-                }
-            } catch (AlanException exception) {
-                executor.excException(exception.getMessage());
+        try {
+            switch (command) {
+                case "bye":
+                    response = executor.excBye();
+                    break;
+                case "list":
+                    response = executor.excList(taskList);
+                    break;
+                case "event":
+                    response = executor.excEvent(taskList, input);
+                    break;
+                case "deadline":
+                    response = executor.excDeadline(taskList, input);
+                    break;
+                case "todo":
+                    response = executor.excTodo(taskList, input);
+                    break;
+                case "find":
+                    response = executor.excFind(taskList, input);
+                    break;
+                case "mark":
+                    response = executor.excMark(taskList, input);
+                    break;
+                case "unmark":
+                    response = executor.excUnmark(taskList, input);
+                    break;
+                case "delete":
+                    response = executor.excDelete(taskList, input);
+                    break;
+                case "help":
+                    // TODO: 18/8/22
+                    response = "Sorry i cant help you just yet ):";
+                    break;
+                default:
+                    response = ui.invalid();
+                    break;
             }
+        } catch (AlanException exception) {
+            response = executor.excException(exception.getMessage());
         }
 
-        System.out.println(ui.basic("Goodbye! See you soon!") );
+        return response;
     }
 
     // Prints a greeting

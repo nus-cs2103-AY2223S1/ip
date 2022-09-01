@@ -111,7 +111,9 @@ public class Ui {
      * @return Formatted text.
      */
     public String addSeparator(String reply) {
-        String separator = "_________________________________________";
-        return separator + "\n" + reply + "\n" + separator;
+        // Deprecated because of change to GUI
+        //String separator = "_________________________________________";
+        //return separator + "\n" + reply + "\n" + separator;
+        return reply;
     }
 }
