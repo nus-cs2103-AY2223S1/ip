@@ -19,6 +19,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+/**
+ * The DialogBox encapsulates the dialog and displayPicture.
+ */
 public class DialogBox extends HBox {
     @FXML
     private Text dialog;
