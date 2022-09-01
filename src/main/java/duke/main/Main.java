@@ -3,6 +3,7 @@ package duke.main;
 import java.io.IOException;
 import java.util.Objects;
 
+import duke.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+
+            // Dialog box title and icon
             stage.setTitle("Tutter's Speakeasy");
             stage.getIcons().add(new Image(Objects.requireNonNull(
                     Main.class.getResource("/images/Duke.png")).openStream()));

@@ -1,4 +1,4 @@
-package duke.main;
+package duke.ui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -25,6 +25,12 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /***
+     * Constructs a new dialog box object.
+     *
+     * @param text String text to be displayed in dialog box.
+     * @param img Image to be displayed in dialog box.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -49,10 +55,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns dialog box with user specifications, with the given text and image.
+     *
+     * @param text String text to be displayed.
+     * @param img Image to be displayed.
+     * @return Dialog box with the given specifications.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns dialog box with chatbot response specifications, with the given text and image.
+     *
+     * @param text String text to be displayed.
+     * @param img Image to be displayed.
+     * @return Dialog box with the given specifications.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

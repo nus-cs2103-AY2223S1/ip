@@ -1,6 +1,7 @@
-package duke.main;
+package duke.ui;
 
 import duke.exception.DukeException;
+import duke.main.Keyword;
 import duke.task.Task;
 
 /**
@@ -19,22 +20,22 @@ public class Ui {
      * Outputs greeting message to user.
      */
     public String greetUser() {
-        return "\tHey there! I'm Tutter! \n\tHow can I help?";
+        return "Hey there! I'm Tutter! \nHow can I help?";
     }
 
     /**
      * Outputs goodbye message to user.
      */
     public String sayGoodbye() {
-        return "\tGoodbye!";
+        return "Goodbye!";
     }
 
     /**
      * Outputs error message when
      */
     public String showLoadingError() {
-        return "\n\tLooks like I can't find your old task list..."
-                + "\n\tGuess we'll have to start a new one!\n";
+        return "\nLooks like I can't find your old task list..."
+                + "\nGuess we'll have to start a new one!\n";
     }
 
     public String printErrorMessage(DukeException de) {
@@ -49,8 +50,8 @@ public class Ui {
      */
     public String displayTaskAddedMessage(Task task, int size) {
         if (task != null) {
-            String output = String.format("\tYou have added \"%s\" into your Task List!\n"
-                    + "\tYou have %d tasks in your Task List!", task, size);
+            String output = String.format("You have added \"%s\" into your Task List!\n"
+                    + "You have %d tasks in your Task List!", task, size);
             return output;
         }
         return "";
@@ -65,13 +66,13 @@ public class Ui {
     public String displayTaskMarkUnmarkMessage(Task task, Keyword command) throws DukeException {
         switch (command) {
         case MARK: {
-            String taskListString = String.format("\tGood Job! The following task "
-                    + "has been marked as done:\n\t%s", task);
+            String taskListString = String.format("Good Job! The following task "
+                    + "has been marked as done:\n%s", task);
             return taskListString;
         }
         case UNMARK: {
-            String taskListString = String.format("\tOkay! The following task "
-                    + "has been marked as not done:\n\t%s", task);
+            String taskListString = String.format("Okay! The following task "
+                    + "has been marked as not done:\n%s", task);
             return taskListString;
         }
         default: {
@@ -87,8 +88,8 @@ public class Ui {
      * @param size Size of task list after deleting task.
      */
     public String displayTaskDeletedMessage(Task task, int size) {
-        String output = String.format("\tYou have deleted \"%s\" into your Task List!\n"
-                + "\tYou have %d tasks in your Task List!", task, size);
+        String output = String.format("You have deleted \"%s\" into your Task List!\n"
+                + "You have %d tasks in your Task List!", task, size);
         return output;
     }
 

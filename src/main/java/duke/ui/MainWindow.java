@@ -1,5 +1,6 @@
-package duke.main;
+package duke.ui;
 
+import duke.main.Duke;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,14 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
 
-    private final static String EXIT_STRING = "\tGoodbye!";
+    /* String corresponding to exit command issued by user */
+    private final static String EXIT_STRING = "bye";
 
     @FXML
     private ScrollPane scrollPane;
@@ -34,6 +34,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+    /**
+     * Initialises the dialog box properties
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -52,15 +55,17 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText() + "\t";
+        String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getUserDialog(input + "\t", userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
         userInput.clear();
 
-        if (response.equals(EXIT_STRING)) {
+        // Exits programme if Exit command is issued by user
+        if (input.equals(EXIT_STRING)) {
             Platform.exit();
         }
     }

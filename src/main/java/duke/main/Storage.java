@@ -36,7 +36,7 @@ public class Storage {
             try {
                 Files.createDirectory(directoryPath);
             } catch (IOException e) {
-                throw new DukeException("\tError finding your save directory!");
+                throw new DukeException("Error finding your save directory!");
             }
         }
 
@@ -57,7 +57,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new DukeException("\tError finding your save directory!");
+            throw new DukeException("Error finding your save directory!");
         }
     }
 
@@ -80,8 +80,8 @@ public class Storage {
             return taskList;
         } catch (InvalidPathException | IOException | DukeException e) {
             taskList.clear();
-            throw new DukeException("\n\tLooks like I can't find your old task list..."
-                    + "\n\tGuess we'll have to start a new one!\n");
+            throw new DukeException("\nLooks like I can't find your old task list..."
+                    + "\nGuess we'll have to start a new one!\n");
         }
     }
 
