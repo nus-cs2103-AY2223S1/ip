@@ -17,11 +17,11 @@ public class TaskList {
         taskArray.remove(index);
     }
 
-    public Task get(int index) {
+    public Task getTask(int index) {
         return taskArray.get(index);
     }
 
-    public int size() {
+    public int getSize() {
         return taskArray.size();
     }
 }

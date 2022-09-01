@@ -20,23 +20,23 @@ public class Parser {
             if (input.startsWith("mark")) {
                 dummyString = input.substring(5); //get number of task
                 counter = Integer.parseInt(dummyString) - 1;//convert to index of task (int)
-                tasks.get(counter).mark();
+                tasks.getTask(counter).mark();
                 System.out.println("Nice! I've marked this task as done:\n" +
-                        "[" + tasks.get(counter).getStatusIcon() + "] " + tasks.get(counter).getDescription());
+                        "[" + tasks.getTask(counter).getStatusIcon() + "] " + tasks.getTask(counter).getDescription());
                 storage.saveFile(tasks);
 
             } else if (input.startsWith("unmark")) {
                 dummyString = input.substring(7); //get number of task
                 counter = Integer.parseInt(dummyString) - 1; //convert to index of task (int)
-                tasks.get(counter).unmark();
+                tasks.getTask(counter).unmark();
                 System.out.println("OK, I've marked this task as not done yet:\n" +
-                        "[" + tasks.get(counter).getStatusIcon() + "] " + tasks.get(counter).getDescription());
+                        "[" + tasks.getTask(counter).getStatusIcon() + "] " + tasks.getTask(counter).getDescription());
                 storage.saveFile(tasks);
 
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
-                for (int i = 0; i < tasks.size(); i++) { //iterate through all tasks
-                    System.out.println( (i+1) + "." + tasks.get(i).toString());
+                for (int i = 0; i < tasks.getSize(); i++) { //iterate through all tasks
+                    System.out.println( (i+1) + "." + tasks.getTask(i).toString());
                 }
 
             } else if (input.startsWith("delete")) {
@@ -45,11 +45,11 @@ public class Parser {
                 }
                 dummyString = input.substring(7); //get item number to be deleted
                 counter = Integer.parseInt(dummyString) - 1;//convert to index of task (int)
-                dummyTask = tasks.get(counter);
+                dummyTask = tasks.getTask(counter);
                 tasks.delete(counter);
                 System.out.println("Noted. I've removed this task:");
                 System.out.println("  " + dummyTask.toString());
-                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("Now you have " + tasks.getSize() + " tasks in the list.");
                 storage.saveFile(tasks);
 
             } else if (input.startsWith("todo")) {
@@ -61,7 +61,7 @@ public class Parser {
                 tasks.add(dummyTask);
                 System.out.println("Got it. I've added this task:");
                 System.out.println("  " + dummyTask);
-                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("Now you have " + tasks.getSize() + " tasks in the list.");
                 storage.saveFile(tasks);
 
             } else if (input.startsWith("deadline")) {
@@ -73,8 +73,8 @@ public class Parser {
                 end = counter - 1;
                 tasks.add(new Deadline(input.substring(start, end), input.substring(counter + 4)));
                 System.out.println("Got it. I've added this task:");
-                System.out.println("  " + tasks.get(tasks.size() - 1).toString());
-                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("  " + tasks.getTask(tasks.getSize() - 1).toString());
+                System.out.println("Now you have " + tasks.getSize() + " tasks in the list.");
                 storage.saveFile(tasks);
 
             } else if (input.startsWith("event")) {
@@ -86,8 +86,8 @@ public class Parser {
                 end = counter - 1;
                 tasks.add(new Event(input.substring(start, end), input.substring(counter + 4)));
                 System.out.println("Got it. I've added this task:");
-                System.out.println("  " + tasks.get(tasks.size() - 1).toString());
-                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("  " + tasks.getTask(tasks.getSize() - 1).toString());
+                System.out.println("Now you have " + tasks.getSize() + " tasks in the list.");
                 storage.saveFile(tasks);
 
             } else { //random input
