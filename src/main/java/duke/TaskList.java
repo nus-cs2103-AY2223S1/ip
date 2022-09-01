@@ -32,4 +32,14 @@ public class TaskList {
     public int size() {
         return tasks.size();
     }
+
+    public ArrayList<Task> find(String match) {
+        ArrayList<Task> matches = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(match)) {
+                matches.add(task);
+            }
+        }
+        return matches;
+    }
 }

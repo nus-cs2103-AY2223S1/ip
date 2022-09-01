@@ -2,6 +2,8 @@ package duke;
 
 import duke.task.Task;
 
+import java.util.ArrayList;
+
 public class Ui {
 
     private static final String line = "Dino:\n";
@@ -60,4 +62,10 @@ public class Ui {
         System.out.println("\tYou have " + taskList.size() + " task" + (taskList.size() > 1 ? "s!" : "!"));
     }
 
+    public void match(ArrayList<Task> matching) {
+        System.out.println("\tHere are the matching tasks Dino found:");
+        for (int i = 0; i < matching.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + matching.get(i).toString());
+        }
+    }
 }

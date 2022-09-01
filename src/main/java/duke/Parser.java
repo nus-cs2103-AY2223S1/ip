@@ -13,7 +13,8 @@ public class Parser {
         DEADLINE,
         TODO,
         EVENT,
-        DELETE
+        DELETE,
+        FIND
     }
 
     public Command parse(String command) throws DukeException {
@@ -44,6 +45,8 @@ public class Parser {
                 return new AddCommand(str, 2);
             case DELETE:
                 return new DeleteCommand(str);
+            case FIND:
+                return new FindCommand(str);
         }
         return new ExitCommand();
     }
