@@ -85,6 +85,6 @@ public class Parser {
         //Update the save file
         FileWriting.update("./data/duke.txt", list);
 
-        return Ui.line() + "\n" + message + "\n" + Ui.line();
+        return message + "\n";
     }
 }

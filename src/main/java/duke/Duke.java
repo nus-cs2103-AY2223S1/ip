@@ -24,7 +24,7 @@ public class Duke {
     /**
      * This method runs the duke program
      */
-    public void run() {
+    public static void run() {
         Ui.welcome();
     }
 
