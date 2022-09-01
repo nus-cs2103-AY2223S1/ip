@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a task with a task description and a boolean indicator for task status (done / not done)
+ */
 public class Task {
     protected String description;
     protected boolean isDone;

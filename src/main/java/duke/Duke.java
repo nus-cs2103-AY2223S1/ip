@@ -13,6 +13,10 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Creates Duke chatbot object,
+     * creates ui, parser, storage and tasklist objects
+     */
     public Duke(String filePath) {
         ui = new Ui();
         parser = new Parser();

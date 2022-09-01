@@ -1,11 +1,12 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import duke.task.Task;
+
 
 /**
  * Represents a storage for the task list, provides save/load task list methods.
@@ -24,7 +25,7 @@ public class Storage {
      */
     public void save(TaskList taskList) {
         int i = filepath.lastIndexOf('/');
-        File dir = new File(filepath.substring(0,i));
+        File dir = new File(filepath.substring(0, i));
         if (!dir.exists()) {
             dir.mkdirs();
         }

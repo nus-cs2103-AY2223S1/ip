@@ -1,8 +1,9 @@
 package duke;
 
+import java.time.LocalDate;
+
 import duke.task.Task;
 
-import java.time.LocalDate;
 
 /**
  * Represents duke chatbot Ui that user sees.
@@ -15,15 +16,16 @@ public class Ui {
     public void printStartUpUi() {
         System.out.println("========================================================================================");
         System.out.println("Hello! I'm Duke, your personalized chatbot to arrange your tasks!");
-        System.out.println("Duke allows you to freely add, delete, mark task status, search tasks by time, " +
-                "\nand list all tasks");
+        System.out.println("Duke allows you to freely add, delete, mark task status, search tasks by time, "
+                + "\nand list all tasks");
         System.out.println("________________________________________________________________________________________");
         System.out.println("Please type 'help' command for more information on Duke task types and command format.");
         System.out.println("========================================================================================");
     }
 
     /**
-     * Prints duke information message that user sees when he/her uses help command to get information about duke chatbot.
+     * Prints duke information message that user sees when he/her uses help command to get information
+     * about duke chatbot.
      * The information includes task type, command format, and other notes.
      */
     public void printDukeInfo() {
@@ -91,20 +93,26 @@ public class Ui {
     public void printListCommandUi(String command, String str, TaskList taskList) {
         // for list, list date, search
         if (str.trim().equals("0")) { //list
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
             System.out.println("Here are the tasks in your list:");
             taskList.printTaskList();
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
         } else if (str.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) { //list date
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
             System.out.println("Here are unfinished tasks on this date in your list:");
             taskList.searchByDate(LocalDate.parse(str)).printTaskList();
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
         } else {
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
             System.out.println("Here are the matching tasks in your list:");
             taskList.searchByKeyword(str).printTaskList();
-            System.out.println("________________________________________________________________________________________");
+            System.out.println("________________________________________________________________________________"
+                    + "________");
         }
     }
 
