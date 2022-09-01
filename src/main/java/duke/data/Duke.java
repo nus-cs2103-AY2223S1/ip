@@ -16,7 +16,9 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
-
+    /**
+     * Constructor for a Duke bot.
+     */
     public Duke() {
         this.ui = new Ui(new Scanner(System.in));
         this.storage = new Storage();

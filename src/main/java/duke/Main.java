@@ -30,6 +30,10 @@ import duke.data.Duke;
  */
 public class Main extends Application {
 
+    /**
+     * Start the GUI.
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         Duke duke = new Duke();
