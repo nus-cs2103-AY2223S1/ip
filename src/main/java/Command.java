@@ -96,6 +96,7 @@ public enum Command {
                 Command.parseAndExecuteCommand(userInput, scanner, allTasks);
 
                 System.out.println(BORDER + "\n");
+                Storage.storeTasks(allTasks);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }

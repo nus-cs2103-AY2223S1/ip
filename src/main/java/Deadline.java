@@ -1,4 +1,6 @@
-public class Deadline extends Task {
+import java.io.Serializable;
+
+public class Deadline extends Task implements Serializable {
 
     private String dueDate;
 
