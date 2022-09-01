@@ -18,7 +18,7 @@ public class Parser {
      * @throws IllegalDateTimeException If date and time string does not
      *                                  follow the defined format.
      */
-    public LocalDateTime parseDateTime(String dateTime) throws IllegalDateTimeException {
+    public static LocalDateTime parseDateTime(String dateTime) throws IllegalDateTimeException {
         // abide by format dd-MM-yyyy-HH-mm (e.g. 23-04-2000-23-04)
         String[] dateTimeData = dateTime.split("-");
         if (dateTimeData.length != 5) {
@@ -49,7 +49,7 @@ public class Parser {
      * @return The parsed command wrapped in a Command object
      * @throws DukeException If the user-entered command does not abide by format
      */
-    public Command parseCommand(String[] commandArgs) 
+    public static Command parseCommand(String[] commandArgs)
             throws DukeException {
         String keyword = commandArgs[0];
         switch (keyword) {

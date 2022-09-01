@@ -12,16 +12,14 @@ import java.util.ArrayList;
  */
 public class Storage {
 
-    private File saveFile;
+    private static File saveFile;
 
-    /**
-     * Constructor for a new Storage object.
-     */
-    public Storage() {
+    static {
         try {
-            this.saveFile = createSaveDirectory();
+            Storage.saveFile = createSaveDirectory();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 
@@ -29,7 +27,7 @@ public class Storage {
      * Returns the present working directory of the program.
      * @return Present working directory in absolute path form
      */
-    public String getPresentWorkingDirectory() {
+    public static String getPresentWorkingDirectory() {
         return new File("").getAbsolutePath();
     }
 
@@ -38,9 +36,9 @@ public class Storage {
      * @return The directory created in which the output file is saved.
      * @throws IOException If the path cannot be found.
      */
-    public File createSaveDirectory() throws IOException {
+    public static File createSaveDirectory() throws IOException {
         try {
-            String path = this.getPresentWorkingDirectory() +
+            String path = Storage.getPresentWorkingDirectory() +
                     File.separator + "data";
             File dir = new File(path);
             if (!dir.exists()) {
@@ -58,7 +56,7 @@ public class Storage {
      * Saves the current task array to the output file.
      * @param tasks Current array of tasks
      */
-    public void saveToDirectory(ArrayList<Task> tasks) {
+    public static void saveToDirectory(ArrayList<Task> tasks) {
         try {
             PrintWriter printWriter = new PrintWriter(saveFile);
             tasks.forEach(task -> printWriter.write(task.toString() + "\n"));

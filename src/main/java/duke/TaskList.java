@@ -10,24 +10,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private ArrayList<Task> addedTasks;
-
-    private Storage storage;
-
-    private Ui ui;
-
-    /**
-     * Constructor to initialise the TaskList with given arguments.
-     * 
-     * @param parser The Parser object
-     * @param storage The Storage object
-     * @param ui The Ui object
-     */
-    public TaskList(Parser parser, Storage storage, Ui ui) {
-        this.storage = storage;
-        this.ui = ui;
-        this.addedTasks = new ArrayList<>(100);
-    }
+    private ArrayList<Task> addedTasks = new ArrayList<>(100);
     
     /**
      * Returns the size of the task array.
@@ -37,7 +20,17 @@ public class TaskList {
     public int getSize() {
         return this.addedTasks.size();
     }
-    
+
+    /**
+     * Returns the task at the specified array.
+     */
+    public Task getTask(int index) throws TaskNotFoundException {
+        if (index > this.getSize() || index < 0) {
+            throw new TaskNotFoundException(String.valueOf(index));
+        }
+        return this.addedTasks.get(index);
+    }
+
     /**
      * Adds a given task to the task array.
      * 
@@ -45,9 +38,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.addedTasks.add(task);
-        this.storage.saveToDirectory(this.addedTasks);
-        this.ui.taskAddedMessage(task);
-        this.ui.taskListSizeMessage(this.getSize());
+        Storage.saveToDirectory(this.addedTasks);
     }
 
     /**
@@ -56,24 +47,13 @@ public class TaskList {
      * @param index The index at which the contained task is to be deleted.
      * @throws TaskNotFoundException If there is no task at the specified index.
      */
-    public void deleteTask(int index) throws TaskNotFoundException {
+    public Task deleteTask(int index) throws TaskNotFoundException {
         if (index > this.getSize() || index < 0) {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         Task removedTask = this.addedTasks.remove(index - 1);
-        this.storage.saveToDirectory(this.addedTasks);
-        this.ui.taskDeletedMessage(removedTask);
-        this.ui.taskListSizeMessage(this.getSize());
-    }
-
-    /**
-     * Prints all task to output.
-     */
-    public void listTask() {
-        System.out.println("Listing your current tasks:");
-        for (int i = 0; i < this.getSize(); ++i) {
-            this.ui.printTaskWithIndex(this.addedTasks.get(i), i);
-        }
+        Storage.saveToDirectory(this.addedTasks);
+        return removedTask;
     }
 
     /**
@@ -81,19 +61,15 @@ public class TaskList {
      * in their task name, then prints these tasks to output.
      * @param chars The sequence of chars to search tasks by
      */
-    public void findTask(String chars) {
-        Boolean isAnyTaskFound = false;
-        System.out.println("Tasks matching your search term:");
+    public ArrayList<String> findTask(String chars) {
+        ArrayList<String> foundTasks = new ArrayList<>(100);
         for (int i = 0; i < this.getSize(); ++i) {
             Task searchedTask = this.addedTasks.get(i);
             if (searchedTask.doesNameContain(chars)) {
-                this.ui.printTaskWithIndex(searchedTask, i);
-                isAnyTaskFound = true;
+                foundTasks.add((i + 1) + ". " + searchedTask);
             }
         }
-        if (!isAnyTaskFound) {
-            System.out.println("No tasks found matching that search term.");
-        }
+        return foundTasks;
     }
 
     /**
@@ -102,14 +78,14 @@ public class TaskList {
      * @param index The index at which the contained task is to be marked done.
      * @throws TaskNotFoundException If there is no task at the specified index.
      */
-    public void markTask(int index) throws TaskNotFoundException {
+    public Task markTask(int index) throws TaskNotFoundException {
         if (index > this.getSize() || index < 0) {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         Task taskToMark = this.addedTasks.get(index - 1);
         taskToMark.mark();
-        this.storage.saveToDirectory(this.addedTasks);
-        this.ui.taskMarkedMessage(taskToMark);
+        Storage.saveToDirectory(this.addedTasks);
+        return taskToMark;
     }
 
     /**
@@ -118,13 +94,14 @@ public class TaskList {
      * @param index The index at which the contained task is to be marked undone.
      * @throws TaskNotFoundException If there is no task at the specified index.
      */
-    public void unmarkTask(int index) throws TaskNotFoundException {
+    public Task unmarkTask(int index) throws TaskNotFoundException {
         if (index > this.getSize() || index < 0) {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         Task taskToUnmark = this.addedTasks.get(index - 1);
         taskToUnmark.unmark();
-        this.storage.saveToDirectory(this.addedTasks);
-        this.ui.taskMarkedMessage(taskToUnmark);
+        Storage.saveToDirectory(this.addedTasks);
+        return taskToUnmark;
     }
+
 }
