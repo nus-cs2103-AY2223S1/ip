@@ -23,5 +23,4 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    |____/ \__,_|_|\_\___|
    ```
    
-   :sparkles Now with GUI :sparkles
 ![Screenshot_1](https://user-images.githubusercontent.com/53963433/187814401-be9b142c-8053-4f86-8045-6e6dcfb06238.png)
