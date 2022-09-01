@@ -52,7 +52,6 @@ public class TaskList {
                         addTask.markNotDone();
                     }
                 } catch (DokeException e) {
-                    ui.printOut("Sorry, something went wrong");
                 }
             }
         } catch (FileNotFoundException e) {
