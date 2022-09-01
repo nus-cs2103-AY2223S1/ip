@@ -1,6 +1,7 @@
 package duke.TaskList;
 
 import Ui.Constants;
+import duke.Storage.DukeEncoder;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,8 @@ public class TaskOperation {
      */
     public static String add(Task task, ArrayList<Task> workList) {
         workList.add(task);
+        // Update data
+        DukeEncoder.rewriteList(workList);
         return (Constants.ARROW + "Added task: " + task.toString()) + "\n" +
               ("Now you have " + workList.size() + " task(s) on your list.");
     }
@@ -26,6 +29,8 @@ public class TaskOperation {
      */
     public static String delete(Task task, ArrayList<Task> workList) {
         workList.remove(task);
+        // Update data
+        DukeEncoder.rewriteList(workList);
         return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n" +
                ("Now you have " + workList.size() + " task(s) on your list.");
     }

@@ -1,14 +1,18 @@
 package duke.Exception;
 
 public class DukeException {
+    String message;
     /**
      * Constructor for DukeException
      * @param message
      */
     public DukeException(String message) {
-        System.out.println(message);
+        this.message = message;
     }
 
+    public String throwDukeException() {
+        return this.message;
+    }
     /**
      * Prints error message for invalid input from user.
      */
