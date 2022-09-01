@@ -1,31 +1,16 @@
-<<<<<<< HEAD
-import java.time.LocalDate;
-=======
->>>>>>> branch-Level-8
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task{
     private String dateTime;
-<<<<<<< HEAD
-    //private LocalDateTime date;
-=======
     private LocalDateTime date;
->>>>>>> branch-Level-8
 
-    public Deadline(String name, boolean completed, String dateTime){
-        super(name,completed);
+    public Deadline(String name, boolean completed, String dateTime) {
+        super(name, completed);
         this.dateTime = dateTime;
-<<<<<<< HEAD
-        //stringToDate(dateTime);
+        applyDate(dateTime);
     }
-    /*
-    public void stringToDate(String dateTime){
-        String[] dateTimeArr = dateTime.split(" ");
-        LocalDate.parse(
-        .format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-    }
-    */
+
     @Override
     public String getTime() {
         return dateTime;
@@ -34,8 +19,6 @@ public class Deadline extends Task{
     @Override
     public String getTaskType() {
         return "D";
-=======
-        applyDate(dateTime);
 
     }
 
@@ -48,28 +31,28 @@ public class Deadline extends Task{
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"));
     }
 
+    public String getDateTime(String format){
+        return date.format(DateTimeFormatter.ofPattern(format));
+    }
+
     public String getDate(){
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
->>>>>>> branch-Level-8
     }
 
     @Override
     public Task toggleCompleted(){
-<<<<<<< HEAD
         return new Deadline(getName(),!isCompleted(), dateTime);
-=======
-        return new Deadline(getName(),!isCompleted(),dateTime);
 
->>>>>>> branch-Level-8
     }
 
     @Override
     public String toString(){
-<<<<<<< HEAD
-        return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(), dateTime);
-=======
         return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(),dateTime);
->>>>>>> branch-Level-8
+    }
+
+    public static void validDateTime(String date) throws Exception {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime d = LocalDateTime.parse(date, formatter);
     }
 
 }

@@ -19,6 +19,7 @@ public class AddFunctionDeadLine extends Function {
                 int mid = getFunction().indexOf(searchWord);
                 String functionName = getFunction().substring(start, mid);
                 String dateTime = getFunction().substring(mid + searchWord.length() + 1); // to remove the space
+                Deadline.validDateTime(dateTime);
                 Task newTask = new Deadline(functionName, false, dateTime);
                 tasks.addTask(newTask);
                 storage.writeToFile(tasks.getTaskList());
@@ -30,6 +31,9 @@ public class AddFunctionDeadLine extends Function {
             }
         } catch (CleverNotBotException e){
             throw new CleverNotBotException("Deadline description must not be empty or must contain /by!", textBox);
+        } catch (Exception ex){
+            throw new CleverNotBotException("Incorrect date format! Please enter DD-MM-YYYY HH:mm" +
+                    "\nFor example, 22-09-2022 19:40", textBox);
         }
     }
 
