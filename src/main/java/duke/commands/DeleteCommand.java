@@ -24,19 +24,19 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
+    public String execute(List tasks, Ui ui, Storage storage) {
         try {
             tasks.deleteTask(taskNumber);
             storage.save();
             toDelete = tasks.getTask(taskNumber);
-            ui.showToUser(String.format(MESSAGE_SUCCESS, toDelete, tasks.numberOfTasks()));
+            return ui.showToUser(String.format(MESSAGE_SUCCESS, toDelete, tasks.numberOfTasks()));
         } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
     @Override
-    public boolean isExit() {
+    public boolean shouldExit() {
         return false;
     }
 

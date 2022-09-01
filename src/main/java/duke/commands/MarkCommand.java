@@ -25,19 +25,19 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
+    public String execute(List tasks, Ui ui, Storage storage) {
         try {
             task = tasks.getTask(taskToMark);
             task.markTaskAsDone();
             storage.save();
-            ui.showToUser(String.format(MESSAGE_SUCCESS, task, tasks.numberOfTasks()));
+            return ui.showToUser(String.format(MESSAGE_SUCCESS, task, tasks.numberOfTasks()));
         } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
     @Override
-    public boolean isExit() {
+    public boolean shouldExit() {
         return false;
     }
 

@@ -73,40 +73,42 @@ public class Ui {
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
-    public void showWelcomeMessage() {
-        showToUser(MESSAGE_GREET, DIVIDER);
+    public String showWelcomeMessage() {
+        return showToUser(MESSAGE_GREET, DIVIDER);
     }
 
-    public void showLine() {
-        showToUser(DIVIDER);
+    public String showLine() {
+        return showToUser(DIVIDER);
     }
 
     /** Shows message(s) to the user */
-    public void showToUser(String... message) {
+    public String showToUser(String... message) {
+        StringBuilder output = new StringBuilder();
         for (String m : message) {
-            out.println(m.replace("\n", LS));
+            output.append(m);
         }
+        return output.toString();
     }
 
     /**
      * Generates and prints the goodbye message at the end of the application.
      */
-    public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE);
+    public String showGoodbyeMessage() {
+        return showToUser(MESSAGE_GOODBYE);
     }
 
     /**
      * Generates and prints the error message if there is an exception.
      */
-    public void showErrorMessage(String errorMessage) {
-        showToUser(errorMessage);
+    public String showErrorMessage(String errorMessage) {
+        return showToUser(errorMessage);
     }
 
     /**
      * Generates and prints the error message if there is an error in initializing application.
      */
-    public void showLoadingError() {
-        showToUser(MESSAGE_INIT_FAILED);
+    public String showLoadingError() {
+        return showToUser(MESSAGE_INIT_FAILED);
     }
 
     /** Formats a list of strings as a viewable indexed list. */
@@ -133,7 +135,7 @@ public class Ui {
     }
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
-    public void showToUserAsIndexedList(ArrayList<Task> taskItems) {
-        showToUser(getIndexedListForViewing(taskItems));
+    public String showToUserAsIndexedList(ArrayList<Task> taskItems) {
+        return showToUser(getIndexedListForViewing(taskItems));
     }
 }

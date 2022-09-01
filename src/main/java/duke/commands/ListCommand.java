@@ -18,13 +18,12 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
-        ui.showToUser(MESSAGE_SUCCESS);
-        ui.showToUserAsIndexedList(tasks.getTaskList());
+    public String execute(List tasks, Ui ui, Storage storage) {
+        return ui.showToUser(MESSAGE_SUCCESS) + ui.showToUserAsIndexedList(tasks.getTaskList());
     }
 
     @Override
-    public boolean isExit() {
+    public boolean shouldExit() {
         return false;
     }
 

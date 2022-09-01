@@ -26,18 +26,18 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
+    public String execute(List tasks, Ui ui, Storage storage) {
         try {
             tasks.addTask(toAdd);
             storage.save();
-            ui.showToUser(String.format(MESSAGE_SUCCESS, toAdd, tasks.numberOfTasks()));
+            return ui.showToUser(String.format(MESSAGE_SUCCESS, toAdd, tasks.numberOfTasks()));
         } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
     @Override
-    public boolean isExit() {
+    public boolean shouldExit() {
         return false;
     }
 

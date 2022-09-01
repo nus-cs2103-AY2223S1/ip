@@ -15,17 +15,17 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
+    public String execute(List tasks, Ui ui, Storage storage) {
         try {
             storage.save();
-            ui.showGoodbyeMessage();
+            return ui.showGoodbyeMessage();
         } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
     @Override
-    public boolean isExit() {
+    public boolean shouldExit() {
         return true;
     }
 

@@ -1,4 +1,5 @@
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -30,6 +33,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hi! I'm Floren, your dearest assistant. Nice to meet you!", dukeImage));
     }
 
     public void setDuke(Duke d) {
@@ -43,11 +48,15 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.run(input);
+        String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (duke.shouldExit()) {
+            CompletableFuture.delayedExecutor(2, TimeUnit.SECONDS).execute(Platform::exit);
+        }
     }
 }

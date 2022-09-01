@@ -32,9 +32,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(List tasks, Ui ui, Storage storage) {
+    public String execute(List tasks, Ui ui, Storage storage) {
         List tasksFound = getTasksWithDescriptionContainingAnyKeyword(keywords, tasks);
-        ui.showToUserAsIndexedList(tasksFound.getTaskList());
+        return ui.showToUserAsIndexedList(tasksFound.getTaskList());
     }
 
     /**
@@ -57,8 +57,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        // TODO Auto-generated method stub
+    public boolean shouldExit() {
         return false;
     }
 

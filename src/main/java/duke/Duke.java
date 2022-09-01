@@ -7,17 +7,13 @@ import duke.storage.Storage;
 import duke.task.List;
 import duke.ui.Ui;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
 /**
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
     private static final String FILE_PATH = "Duke/duke.txt";
+    private boolean isExit = false;
     private Storage storage;
     private List tasks;
     private Ui ui;
@@ -54,19 +50,46 @@ public class Duke {
      */
     public void run() {
         ui.showWelcomeMessage();
-        boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.getUserCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                isExit = c.isExit();
+                isExit = c.shouldExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e.getMessage());
             } finally {
                 ui.showLine();
             }
         }
+    }
+
+    /**
+     * Runs the main logic of the program.
+     *
+     * @return The response from executing the command.
+     * @throws DukeException If there are no commands.
+     */
+    public String getResponse(String input) {
+        String output = "";
+        try {
+            Command c = Parser.parse(input);
+            output = c.execute(tasks, ui, storage);
+            isExit = c.shouldExit();
+        } catch (DukeException e) {
+            return ui.showErrorMessage(e.getMessage());
+        }
+        assert !output.equals("");
+        return output;
+    }
+
+    /**
+     * Checks if the last user command is an exit command.
+     *
+     * @return True if the last user command is an exit command, false otherwise.
+     */
+    public boolean shouldExit() {
+        return isExit;
     }
 
 }
