@@ -8,21 +8,6 @@ import duke.util.Ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import javafx.application.Application;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-
 
 /**
  * Main code for Duke.
@@ -44,23 +29,14 @@ public class Duke {
         isExiting = false;
     }
 
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    public void run() {
-        Ui.showHello();
-        Scanner sc = new Scanner(System.in);
-        do {
-            String userInput = sc.nextLine();
-            try {
-                isExiting = p.parseInput(userInput, false);
-            } catch (DukeException e) {
-                Ui.showErrorOccurred(e);
-            }
-        } while (!isExiting);
-        sc.close();
-        exit();
+    public String getResponse(String userInput) {
+        String response;
+        try {
+            response = p.parseInput(userInput, false);
+        } catch (DukeException e) {
+            return Ui.showErrorOccurred(e);
+        }
+        return response;
     }
 
     public void exit() {
@@ -68,6 +44,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+
     }
 }

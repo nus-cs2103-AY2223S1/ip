@@ -36,21 +36,19 @@ public class Parser {
      * @throws FileParseException If there's an error when the line was written to save file previously.
      * @throws NoArgumentException If only the command is given without any arguments.
      */
-    public boolean parseInput(String userInput, boolean fromSave)
+    public String parseInput(String userInput, boolean fromSave)
             throws WrongArgumentException, FileParseException, NoArgumentException {
         if (isListCommand(userInput.split(" ")[0])) {
-            this.parseListCommands(userInput, fromSave);
+            return this.parseListCommands(userInput, fromSave);
         } else if (userInput.equals("bye")) {
-            Ui.showBye();
-            return true;
+            return Ui.showBye();
         } else if (userInput.equals("list")) {
-            Ui.displayList(list);
+            return Ui.displayList(list);
         } else if (userInput.equals("/?")) {
-            Ui.showHelp();
+            return Ui.showHelp();
         } else {
-            System.out.println("what's this?! REDO!!!!");
+            return "what's this?! REDO!!!!";
         }
-        return false;
     }
 
     private boolean isListCommand(String input) {
@@ -71,7 +69,7 @@ public class Parser {
      * @throws FileParseException If there's an error when the line was written to save file previously.
      * @throws NoArgumentException If only the command is given without any arguments.
      */
-    private void parseListCommands(String input, boolean fromSave)
+    private String parseListCommands(String input, boolean fromSave)
             throws WrongArgumentException, FileParseException, NoArgumentException {
         String mark = null;
         String[] arr;
@@ -88,23 +86,19 @@ public class Parser {
             switch (command) {
             case mark: {
                 int index = Integer.parseInt(arr[1]) - 1;
-                Ui.markTaskDone(list.markAsDone(index));
-                return;
+                return Ui.markTaskDone(list.markAsDone(index));
             }
             case unmark: {
                 int index = Integer.parseInt(arr[1]) - 1;
-                Ui.markTaskNotDone(list.markAsNotDone(index));
-                return;
+                return Ui.markTaskNotDone(list.markAsNotDone(index));
             }
             case delete: {
                 int index = Integer.parseInt(arr[1]) - 1;
-                Ui.deleteTask(list.delete(index));
-                return;
+                return Ui.deleteTask(list.delete(index));
             }
             case find:
                 String keyword = arr[1];
-                Ui.findKeyword(keyword, list.searchFor(keyword));
-                return;
+                return Ui.findKeyword(keyword, list.searchFor(keyword));
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new WrongArgumentException(arr[1], e);
@@ -157,9 +151,9 @@ public class Parser {
             list.markAsDone(list.getSize() - 1);
         }
         if (!fromSave) {
-            Ui.addTask(list.lastTaskAdded());
-            Ui.getListSize(list);
+            return Ui.addTask(list.lastTaskAdded()) + Ui.getListSize(list);
         }
 
+        return "";
     }
 }
