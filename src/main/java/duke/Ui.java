@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 /**
  * The Ui class handles most of the messages shown to the user.
  */
@@ -28,47 +30,58 @@ public class Ui {
     /**
      * Message shown when user stops using Duke.
      */
-    public static void endMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public static String endMessage() {
+        return ("Bye. Hope to see you again soon!");
     }
 
     /**
      * Message shown when a task is deleted.
      * @param task task to be deleted.
      */
-    public static void deleteTask(Task task) {
-        System.out.println("Noted. I've removed this task:" + "\n" + "\t" + task.toString());
+    public static String deleteTask(Task task) {
+        return ("Noted. I've removed this task:" + "\n" + "\t" + task.toString());
     }
 
     /**
      * Message shown when a task is marked.
      * @param task Task to be marked.
      */
-    public static void markTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:" + "\n" + "\t" + task.toString());
+    public static String markTask(Task task) {
+        return ("Nice! I've marked this task as done:" + "\n" + "\t" + task.toString());
     }
 
     /**
      * Message shown when a task is unmarked.
      * @param task Task to be unmarked.
      */
-    public static void unmarkTask(Task task) {
-        System.out.println("Ok, I've marked this task as not done yet:" + "\n" + "\t" + task.toString());
+    public static String unmarkTask(Task task) {
+        return ("Ok, I've marked this task as not done yet:" + "\n" + "\t" + task.toString());
     }
 
     /**
      * Message shown when a task is added.
      * @param task Task to be added.
      */
-    public static void addTask(Task task) {
-        System.out.println("Got it. I've added this task:" + "\n\t" + task.toString());
+    public static String addTask(Task task) {
+        return ("Got it. I've added this task:" + "\n\t" + task.toString());
     }
 
     /**
      * Message shown when the number of tasks has to be shown to the user.
      * @param numOfTasks Number of tasks left in the list.
      */
-    public static void numOfTasks(int numOfTasks) {
-        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+    public static String numOfTasks(int numOfTasks) {
+        return ("Now you have " + numOfTasks + " tasks in the list.");
+    }
+
+    /**
+     * Returns the String representing the Tasks to be printed.
+     * @param list
+     * @return String representing Tasks to be printed.
+     */
+    public static String printList(TaskList list) {
+        StringBuilder print = new StringBuilder("Here are the tasks in your list:\n");
+        print.append(list.toString());
+        return print.toString();
     }
 }

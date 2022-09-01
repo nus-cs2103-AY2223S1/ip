@@ -1,7 +1,8 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+
+import duke.command.Command;
 
 /**
  * Duke is a bot which helps to record things which people want to remember.
@@ -16,37 +17,27 @@ public class Duke {
 
     /**
      * Constructor for Duke.
-     *
-     * @param filepath File path where saved data is stored.
      */
-    public Duke(String filepath) {
-        storage = new Storage(filepath);
+    public Duke() {
+        this.storage = new Storage("./data/duke.txt");
         try {
-            tasks = new TaskList(storage.load());
+            this.tasks = new TaskList(this.storage.load());
         } catch (FileNotFoundException e) {
-            Ui.showLoadingError();
-            tasks = new TaskList();
+            this.tasks = new TaskList();
         }
     }
 
     /**
-     * Starts the Duke bot.
+     *  Parses the user input and returns the string output from the Parser to be shown to the user.
+     * @param input
+     * @return string output to be printed.
      */
-    public void run() {
-        Ui.startMessage();
-        Parser parser = new Parser(this.tasks);
-        String input = "";
-        Scanner scan = new Scanner(System.in);
-        input = scan.nextLine();
-
-        while (parser.parse(input)) {
-            input = scan.nextLine();
-            storage.writeToFile(tasks);
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(this.tasks, this.storage);
+        } catch (DukeException e) {
+            return e.getDescription();
         }
-        Ui.endMessage();
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
     }
 }

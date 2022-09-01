@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * The Task class represents a task which will be inherited from by

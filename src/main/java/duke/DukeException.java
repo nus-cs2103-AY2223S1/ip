@@ -3,7 +3,7 @@ package duke;
 /**
  * The unique exceptions thrown by Duke.
  */
-public class DukeException extends Exception {
+public class DukeException extends RuntimeException {
     protected String description;
 
     /**
@@ -11,7 +11,7 @@ public class DukeException extends Exception {
      */
     public DukeException() {
         super();
-        this.description = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        this.description = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     }
 
     /**
@@ -20,7 +20,7 @@ public class DukeException extends Exception {
      */
     public DukeException(String task) {
         super();
-        this.description = " ☹ OOPS!!! The description of a " + task + " cannot be empty.";
+        this.description = "OOPS!!! The description of a " + task + " cannot be empty.";
     }
 
     /**

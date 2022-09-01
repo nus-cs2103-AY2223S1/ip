@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 public class Event extends Task {
 
-    protected String when;
+    private String when;
     protected LocalDate whenDate;
 
     /**
@@ -25,6 +25,14 @@ public class Event extends Task {
         } catch (DateTimeException e) {
             // Do nothing as the input is not parsable as a Date.
         }
+    }
+
+    /**
+     * Getter method for when.
+     * @return when.
+     */
+    public String getWhen() {
+        return this.when;
     }
 
     /**

@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
  */
 public class Deadline extends Task {
 
-    protected String by;
+    private String by;
     protected LocalDate byDate;
 
     /**
@@ -25,6 +25,14 @@ public class Deadline extends Task {
         } catch (DateTimeException e) {
             // Do nothing as the input is not parsable as a Date.
         }
+    }
+
+    /**
+     * Getter method for by.
+     * @return by.
+     */
+    public String getBy() {
+        return this.by;
     }
 
     /**

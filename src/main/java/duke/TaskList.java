@@ -2,6 +2,11 @@ package duke;
 
 import java.util.ArrayList;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 /**
  * The TaskList class contains the list of tasks used in Duke.
  */
@@ -37,38 +42,37 @@ public class TaskList {
      * Deletes the Task at index from the TaskList.
      * @param index The position of the Task to be deleted.
      */
-    public void deleteTask(int index) {
-        Ui.deleteTask(this.list.get(index));
+    public Task deleteTask(int index) {
+        Task task = this.list.get(index);
         this.list.remove(index);
-        Ui.numOfTasks(this.list.size());
+        return task;
     }
 
     /**
      * Marks the Task at index.
      * @param index The position of the Task to be marked.
      */
-    public void markTask(int index) {
+    public Task markTask(int index) {
         this.list.get(index).markAsDone();
-        Ui.markTask(this.list.get(index));
+        return this.list.get(index);
     }
 
     /**
      * Unmarks the Task at index.
      * @param index The position of the Task to be unmarked.
      */
-    public void unmarkTask(int index) {
+    public Task unmarkTask(int index) {
         this.list.get(index).markAsUndone();
-        Ui.unmarkTask(this.list.get(index));
+        return this.list.get(index);
     }
 
     /**
      * Adds a Todo object in the TaskList.
      * @param description The description of the Todo object.
      */
-    public void addTodo(String description) {
+    public Task addTodo(String description) {
         this.list.add(new Todo(description));
-        Ui.addTask(this.list.get(list.size() - 1));
-        Ui.numOfTasks(this.list.size());
+        return this.list.get(list.size() - 1);
     }
 
     /**
@@ -76,10 +80,9 @@ public class TaskList {
      * @param description The description of the Deadline object.
      * @param by When the Deadline object has to be completed by.
      */
-    public void addDeadline(String description, String by) {
+    public Task addDeadline(String description, String by) {
         this.list.add(new Deadline(description, by));
-        Ui.addTask(this.list.get(list.size() - 1));
-        Ui.numOfTasks(this.list.size());
+        return this.list.get(list.size() - 1);
     }
 
     /**
@@ -87,10 +90,9 @@ public class TaskList {
      * @param description The description of the Event object.
      * @param when When the Event will occur.
      */
-    public void addEvent(String description, String when) {
+    public Task addEvent(String description, String when) {
         this.list.add(new Event(description, when));
-        Ui.addTask(this.list.get(list.size() - 1));
-        Ui.numOfTasks(this.list.size());
+        return this.list.get(list.size() - 1);
     }
 
     /**
@@ -126,5 +128,14 @@ public class TaskList {
      */
     public ArrayList<Task> getList() {
         return this.list;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder listString = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            listString.append(i + 1 + "." + list.get(i).toString() + "\n");
+        }
+        return listString.toString();
     }
 }

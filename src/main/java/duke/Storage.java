@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 /**
  * The Storage class contains the methods required to load from
  * and save to the save file.
@@ -41,6 +46,7 @@ public class Storage {
      */
     public ArrayList<Task> load() throws FileNotFoundException {
         Scanner readFile = new Scanner(log);
+
         while (readFile.hasNext()) {
             String taskString = readFile.nextLine();
             String[] split = taskString.split(" \\| ");
@@ -84,10 +90,10 @@ public class Storage {
                 logTask = String.format("T | %s | %s", task.getStatusIcon(), task.getDescription());
             } else if (value instanceof Deadline) {
                 Deadline task = (Deadline) value;
-                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.by);
+                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.getBy());
             } else {
                 Event task = (Event) value;
-                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.when);
+                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.getWhen());
             }
             retString = retString + logTask + System.lineSeparator();
         }
