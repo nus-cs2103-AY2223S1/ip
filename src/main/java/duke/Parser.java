@@ -66,99 +66,98 @@ public class Parser {
      * @param storage  the storage system
      * @param taskList the list of task
      */
-    public void executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
+    public String executeInput(Ui ui, String input, Storage storage, TaskList taskList) {
         String[] inputArr = input.split(" ", 2);
         String commandString = inputArr[0];
 
         try {
-
             switch (this.analyzeCommand(commandString)) {
-
+            case BYE:
+                return ui.showBye();
             case LIST:
-                handleListComand(ui, taskList);
-                break;
+                return handleListComand(ui, taskList);
             case TODO:
-                handleTodoCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleTodoCommand(ui, storage, taskList, inputArr[1]);
             case EVENT:
-                handleEventCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleEventCommand(ui, storage, taskList, inputArr[1]);
             case DEADLINE:
-                handleDeadlineCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleDeadlineCommand(ui, storage, taskList, inputArr[1]);
             case MARK:
-                handleMarkCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleMarkCommand(ui, storage, taskList, inputArr[1]);
             case UNMARK:
-                handleUnmarkCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleUnmarkCommand(ui, storage, taskList, inputArr[1]);
             case DELETE:
-                handleDeleteCommand(ui, storage, taskList, inputArr[1]);
-                break;
+                return handleDeleteCommand(ui, storage, taskList, inputArr[1]);
             case FIND:
-                handleFindCommand(ui, taskList, inputArr[1]);
+                return handleFindCommand(ui, taskList, inputArr[1]);
             }
         } catch (NoSuchCommandException e) {
-
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e);
         }
+        return "";
     }
 
-    private void handleListComand(Ui ui, TaskList taskList) {
-        ui.showAllTask(taskList);
+    private String handleListComand(Ui ui, TaskList taskList) {
+        return ui.showAllTask(taskList);
     }
 
-    private void handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleTodoCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Task task = new Todo(input);
         taskList.addTask(task);
-        ui.showAddTask(taskList, task);
         storage.updateFile(taskList.list);
+        return ui.showAddTask(taskList, task);
+
     }
 
-    private void handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleEventCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         String[] inputArr = input.split("/at");
         String description = inputArr[0];
         LocalDateTime time = formatTime(inputArr[1].strip());
         Task task = new Event(description, time);
         taskList.addTask(task);
-        ui.showAddTask(taskList, task);
         storage.updateFile(taskList.list);
+
+        return ui.showAddTask(taskList, task);
     }
 
-    private void handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleDeadlineCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         String[] inputArr = input.split("/by");
         String description = inputArr[0];
         LocalDateTime time = formatTime(inputArr[1].strip());
         Task task = new Event(description, time);
         taskList.addTask(task);
-        ui.showAddTask(taskList, task);
         storage.updateFile(taskList.list);
+
+        return ui.showAddTask(taskList, task);
     }
 
-    private void handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleMarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
         Task task = taskList.toggleTaskStatus(index);
-
-        ui.showMarkTask(task);
         storage.updateFile(taskList.list);
+
+        return ui.showMarkTask(task);
     }
 
-    private void handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleUnmarkCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
         Task task = taskList.toggleTaskStatus(index);
-        ui.showUnmarkTask(task);
         storage.updateFile(taskList.list);
+
+        return ui.showUnmarkTask(task);
     }
 
-    private void handleDeleteCommand(Ui ui, Storage storage, TaskList taskList, String input) {
+    private String handleDeleteCommand(Ui ui, Storage storage, TaskList taskList, String input) {
         Integer index = Integer.parseInt(input) - 1;
         Task task = taskList.deleteTask(index);
-        ui.showRemoveTask(taskList, task);
         storage.updateFile(taskList.list);
+
+        return ui.showRemoveTask(taskList, task);
     }
-    private void handleFindCommand(Ui ui, TaskList taskList, String input) {
-        ui.showFindTask(taskList.filterTask(input));
+    private String handleFindCommand(Ui ui, TaskList taskList, String input) {
+        return ui.showFindTask(taskList.filterTask(input));
     }
 
 
