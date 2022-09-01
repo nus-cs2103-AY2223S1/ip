@@ -24,6 +24,10 @@ public class TobTobException extends Exception {
             + "Please make sure that it's in format 'yyyy-mm-dd'";
     private static final String FILE_NOT_FOUND_ERROR_MESSAGE =
             "Oopsieee! There is no file in path %s";
+    private static final String FILE_LOADING_ERROR_MESSAGE =
+            "Oopsieee! Error loading file in %s.\n"
+            + "Seems like the file has been modified externally.\n"
+            + "Please fix the file/delete it and restart application to continue using Tob Tob";
 
     /**
      * TobTobException constructor with the specified error message
@@ -111,5 +115,15 @@ public class TobTobException extends Exception {
      */
     public static TobTobException fileNotFoundError(String filePath) {
         return new TobTobException(String.format(FILE_NOT_FOUND_ERROR_MESSAGE, filePath));
+    }
+
+    /**
+     * Returns a {@link TobTobException} instance with FILE_LOADING_ERROR_MESSAGE.
+     *
+     * @param filePath {@link String}
+     * @return {@link TobTobException}
+     */
+    public static TobTobException fileLoadingError(String filePath) {
+        return new TobTobException(String.format(FILE_LOADING_ERROR_MESSAGE, filePath));
     }
 }

@@ -37,12 +37,16 @@ public class Brain {
     }
 
     /**
-     * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
+     * Adds a task to <code>taskList</code> and returns the {@link String} representation
+     * of the task.
      *
      * @param task {@link Task} object to add to <code>taskList</code>
+     * @return {@link String} representation of the task
      */
-    public void add(Task task) {
+    public String add(Task task) {
         taskList.add(task);
+
+        return task.toString();
     }
 
     /**
@@ -55,12 +59,17 @@ public class Brain {
     }
 
     /**
-     * Removes a {@link Task} in the specified index of <code>taskList</code>.
+     * Removes a {@link Task} in the specified index of <code>taskList</code> and
+     * returns the {@link String} representation of the task.
      *
      * @param index index of the {@link Task} in <code>taskList</code> to remove
+     * @return {@link String} representation of the task
      */
-    public void remove(int index) {
+    public String remove(int index) {
+        Task task = taskList.get(index);
         taskList.remove(index);
+
+        return task.toString();
     }
 
     /**

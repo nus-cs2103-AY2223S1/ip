@@ -67,6 +67,8 @@ public class Belly {
             return taskList;
         } catch (FileNotFoundException e) {
             throw TobTobException.fileNotFoundError(FILE_PATH);
+        } catch (IndexOutOfBoundsException e) {
+            throw TobTobException.fileLoadingError(FILE_PATH);
         }
     }
 

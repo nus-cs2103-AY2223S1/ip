@@ -15,12 +15,14 @@ public class TobTob {
     private Brain brain;
     private Parser parser;
     private Executor executor;
+    private String initializationErrorMessage;
 
     public TobTob() {
         belly = new Belly();
         try {
             brain = new Brain(belly.puke());
         } catch (TobTobException e) {
+            initializationErrorMessage = e.getMessage();
             brain = new Brain();
         }
         executor = new Executor(brain, belly);
@@ -32,6 +34,10 @@ public class TobTob {
     }
 
     public String getResponse(String input) {
+        if (initializationErrorMessage.startsWith("Oopsieee! Error loading file in")) {
+            return initializationErrorMessage;
+        }
+
         try {
             return parser.parse(input);
         } catch (TobTobException e) {

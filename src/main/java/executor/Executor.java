@@ -61,10 +61,9 @@ public class Executor {
             String result = "";
             int index = Integer.parseInt(commandDescription);
             Task task = brain.get(index - 1);
-            task.markAsDone();
 
             result += "Yoohooo! Tob Tob has marked this task as done:\n";
-            result += task.toString();
+            result += task.markAsDone();
             belly.saveToHardDisk(brain.migrateBrainToTxt());
             return result;
         } catch (NumberFormatException e) {
@@ -91,10 +90,9 @@ public class Executor {
             String result = "";
             int index = Integer.parseInt(commandDescription);
             Task task = brain.get(index - 1);
-            task.markAsUndone();
 
             result += "Saddd! Tob Tob has marked this task as not done yet:\n";
-            result += task.toString();
+            result += task.markAsUndone();
             belly.saveToHardDisk(brain.migrateBrainToTxt());
             return result;
         } catch (NumberFormatException e) {
@@ -132,10 +130,9 @@ public class Executor {
         switch (taskType) {
         case "todo":
             task = new Todo(taskDescription);
-            brain.add(task);
 
             result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-            result += task.toString();
+            result += brain.add(task);
             result += "\n\n";
             result += brain.show();
             belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -149,10 +146,9 @@ public class Executor {
                 datetimeString = taskDescriptionDatetime[1];
                 datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
                 task = new Deadline(taskDescription, datetime);
-                brain.add(task);
 
                 result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-                result += task.toString();
+                result += brain.add(task);
                 result += "\n\n";
                 result += brain.show();
                 belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -167,10 +163,9 @@ public class Executor {
                 datetimeString = taskDescriptionDatetime[1];
                 datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
                 task = new Event(taskDescription, datetime);
-                brain.add(task);
 
                 result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-                result += task.toString();
+                result += brain.add(task);
                 result += "\n\n";
                 result += brain.show();
                 belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -196,11 +191,9 @@ public class Executor {
         try {
             String result = "";
             int index = Integer.parseInt(commandDescription);
-            Task task = brain.get(index - 1);
-            brain.remove(index - 1);
 
             result += "Ewww! This task is no longer in Tob Tob's Brain:\n";
-            result += task.toString();
+            result += brain.remove(index - 1);
             result += "\n";
             result += brain.show();
             belly.saveToHardDisk(brain.migrateBrainToTxt());

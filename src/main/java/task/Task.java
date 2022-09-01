@@ -38,17 +38,25 @@ public class Task {
     }
 
     /**
-     * Changes {@code isDone} to {@code true}
+     * Changes {@code isDone} to {@code true} and returns task string representation
+     *
+     * @return {@link String} representation of the task
      */
-    public void markAsDone() {
+    public String markAsDone() {
         isDone = true;
+
+        return toString();
     }
 
     /**
-     * Changes {@code isDone} to {@code false}
+     * Changes {@code isDone} to {@code false} and returns task string representation
+     *
+     * @return {@link String} representation of the task
      */
-    public void markAsUndone() {
+    public String markAsUndone() {
         isDone = false;
+
+        return toString();
     }
 
     /**
