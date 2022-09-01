@@ -13,6 +13,7 @@ import duke.task.TaskList;
  * Prints the tasks that contain a given search query in its description.
  * Usage: find [0]
  * [0]: search query
+ *
  * @since Level-9
  */
 public class FindCommand extends Command {

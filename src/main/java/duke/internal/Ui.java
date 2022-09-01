@@ -46,6 +46,7 @@ public class Ui {
 
     /**
      * Prints an error message to the command line.
+     *
      * @param message the error message to print
      * @return this UI object for method chaining
      */
@@ -56,6 +57,7 @@ public class Ui {
 
     /**
      * Prints a normal message to the command line.
+     *
      * @param message the message to print
      * @return this UI object for method chaining
      */
@@ -66,6 +68,7 @@ public class Ui {
 
     /**
      * Prints the size of a task list to the command line.
+     *
      * @param tasks the task list
      * @return this UI object for method chaining
      */

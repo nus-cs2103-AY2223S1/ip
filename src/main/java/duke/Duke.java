@@ -29,10 +29,7 @@ public class Duke {
         }
         this.tasks = tasks;
     }
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
+
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
@@ -44,6 +41,7 @@ public class Duke {
             return e.toString();
         }
     }
+
     public String getWelcome() {
         return ui.showWelcome().flush();
     }

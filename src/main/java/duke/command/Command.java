@@ -12,12 +12,14 @@ import duke.task.TaskList;
 public abstract class Command {
     /**
      * Returns whether Duke should exit after executing this command.
+     *
      * @return true if the command is a terminal command, false otherwise.
      */
     public abstract boolean isTerminal();
 
     /**
      * Executes this command, potentially modifying the task list, storage, and UI.
+     *
      * @param tasks the task list
      * @param storage the storage helper for the task list
      * @param ui the user interface
