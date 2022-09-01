@@ -19,10 +19,13 @@ public class AddCommand extends Command {
             + "%1$s" + "\n"
             + "You have " + "%2$s" + " tasks in the list.\n";
 
-    public Task toAdd;
+    private final Task toAdd;
 
     public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
+    }
+    public Task getTask() {
+        return toAdd;
     }
 
     @Override

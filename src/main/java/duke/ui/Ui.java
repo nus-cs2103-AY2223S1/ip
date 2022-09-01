@@ -2,11 +2,10 @@ package duke.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Text UI of the application.
@@ -15,7 +14,7 @@ public class Ui {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
     private static final String MESSAGE_GREET = "OMG HII! I am Floren! What can I do for you?";
     private static final String MESSAGE_GOODBYE = "Hiks. I'm sad, but see you again!!";
-    public static final String MESSAGE_INIT_FAILED = "Failed to initialise Duke application. Exiting...";
+    private static final String MESSAGE_INIT_FAILED = "Failed to initialise Duke application. Exiting...";
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
     private static final String MESSAGE_EMPTY_LIST = "Your list is empty. Try adding what you wanna do!\n";
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
@@ -28,6 +27,9 @@ public class Ui {
         this(System.in, System.out);
     }
 
+    /**
+     * Constructor for Ui with specified InputStream and PrintStream
+     */
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
@@ -115,7 +117,7 @@ public class Ui {
             return MESSAGE_EMPTY_LIST;
         }
         final StringBuilder formatted = new StringBuilder();
-        int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
+        int displayIndex = DISPLAYED_INDEX_OFFSET;
         for (Task taskItem : taskItems) {
             formatted.append(getIndexedListItem(displayIndex, taskItem.toString())).append("\n");
             displayIndex++;

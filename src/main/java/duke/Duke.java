@@ -13,17 +13,17 @@ import duke.ui.Ui;
  */
 public class Duke {
     private Storage storage;
-    private List tasks;
-    private Ui ui;
+    private final List tasks;
+    private final Ui ui;
 
     /**
      * Sets up the required objects and loads up the data from the storage file.
      *
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
         try {
-            storage = new Storage(filePath);
+            storage = new Storage();
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class Duke {
     /** Runs the program until termination. */
     public static void main(String[] args) {
 
-        new Duke("Duke/Duke.txt").run();
+        new Duke().run();
     }
 
     /**

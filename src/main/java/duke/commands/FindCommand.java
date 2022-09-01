@@ -24,13 +24,6 @@ public class FindCommand extends Command {
         this.keywords = keywords;
     }
 
-    /**
-     * Returns a copy of keywords in this command.
-     */
-    public Set<String> getKeywords() {
-        return new HashSet<>(keywords);
-    }
-
     @Override
     public void execute(List tasks, Ui ui, Storage storage) {
         List tasksFound = getTasksWithDescriptionContainingAnyKeyword(keywords, tasks);
@@ -58,7 +51,6 @@ public class FindCommand extends Command {
 
     @Override
     public boolean isExit() {
-        // TODO Auto-generated method stub
         return false;
     }
 

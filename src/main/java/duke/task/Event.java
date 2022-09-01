@@ -8,6 +8,9 @@ import duke.exception.DukeException;
 public class Event extends Task {
     protected String at;
 
+    /**
+     * Constructor for Event task.
+     */
     public Event(String description, String at) throws DukeException {
         super(description);
         this.at = at;
