@@ -20,8 +20,8 @@ public class ParserTest {
         try {
             p.executeCommand("delete", "delete 2");
             p.executeCommand("deadline", "deadline leetcode /by 2022-03-11");
-            TaskList result = p.executeCommand("mark", "mark 1");
-            assertEquals(desiredOutput, result.getList());
+            String result = p.executeCommand("mark", "mark 1");
+            assertEquals(desiredOutput, result);
 
         } catch (DukeException e) {
             System.out.println(e.getMessage());

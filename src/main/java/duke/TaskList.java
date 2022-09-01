@@ -80,53 +80,64 @@ public class TaskList {
      * A method to mark a specific task in the TaskList.
      *
      * @param i The index of the Task to be marked.
+     * @return String the resulting String after the Task has been marked.
      */
-    public void markTask(int i) {
-        if (i >= 100) return;
-        if (this.tasks.get(i) == null) return;
+    public String markTask(int i) {
+        if (i >= 100) return null;
+        if (this.tasks.get(i) == null) return null;
         this.tasks.get(i).doTask();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + this.tasks.get(i));
+        return "Nice! I've marked this task as done:\n"
+                + "  " + this.tasks.get(i);
     }
 
     /**
      * A method to unmark a specific task in the TaskList.
      *
      * @param i The index of the Task to be unmarked.
+     * @return String the resulting String after the Task has been unmarked.
      */
-    public void unmarkTask(int i) {
-        if (i >= 100) return;
-        if (this.tasks.get(i) == null) return;
+    public String unmarkTask(int i) {
+        if (i >= 100) return null;
+        if (this.tasks.get(i) == null) return null;
         this.tasks.get(i).undoTask();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + this.tasks.get(i));
+        return "OK, I've marked this task as not done yet:\n"
+                + "  " + this.tasks.get(i);
     }
 
     /**
      * A method to delete a specific task in the TaskList.
      *
      * @param i The index of the Task to be deleted.
+     * @return String the resulting String after the Task has been deleted.
      */
-    public void deleteTask(int i) {
-        if (i >= 100) return;
-        if (this.tasks.get(i) == null) return;
+    public String deleteTask(int i) {
+        if (i >= 100) return null;
+        if (this.tasks.get(i) == null) return null;
         Task t = this.tasks.get(i);
         this.tasks.remove(i);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + t);
-        System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+        return "Noted. I've removed this task:\n"
+                + "  " + t + "\n"
+                + "Now you have " + this.tasks.size() + " tasks in the list.";
     }
 
     /**
      * A method to add Tasks into the TaskList.
      *
      * @param t The Task to be added into the TaskList.
+     * @return String the resulting String after the Task has been added.
      */
-    public void addTask(Task t) {
-        this.tasks = t.printAndStoreTask(this.tasks);
+    public String addTask(Task t) {
+        return t.printAndStoreTask(this.tasks);
     }
 
-    public void findTask(String keyword) {
+    /**
+     * A method to find Tasks from within the TaskList.
+     *
+     * @param keyword The keyword to search for.
+     * @return String the resulting String displayed when the Task is found,
+     * or it does not exist.
+     */
+    public String findTask(String keyword) {
         String result = "";
         int counter = 1;
         for (int i = 0; i < this.tasks.size(); i++) {
@@ -136,9 +147,9 @@ public class TaskList {
             }
         }
         if (result.isEmpty()) {
-            System.out.println("Sorry! None of the tasks match " + "\"" + keyword + "\"");
+            return "Sorry! None of the tasks match " + "\"" + keyword + "\"";
         } else {
-            System.out.println("Here are the matching tasks in your list:\n" + result);
+            return "Here are the matching tasks in your list:\n" + result;
         }
     }
 

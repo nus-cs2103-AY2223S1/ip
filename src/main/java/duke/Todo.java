@@ -24,15 +24,14 @@ public class Todo extends Task {
      * A method which adds a task to the given taskList input.
      *
      * @param taskList The taskList before a Todo Task is added.
-     * @return ArrayList of type Task The taskList after the Todo Task is added.
+     * @return String The String displayed when after the Todo Task is added.
      */
     @Override
-    public ArrayList<Task> printAndStoreTask(ArrayList<Task> taskList) {
+    public String printAndStoreTask(ArrayList<Task> taskList) {
         taskList.add(this);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + this);
-        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-        return taskList;
+        return "Got it. I've added this task:\n"
+                + "  " + this + "\n"
+                + "Now you have " + taskList.size() + " tasks in the list.";
     }
 
     /**

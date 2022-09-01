@@ -11,11 +11,11 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner scanner;
-    final static String LOGO =
-            "   __ __    ____       ___               __\n" +
-                    "  / // /__ / / /__    / _ \\___ ____  ___/ /__ _\n" +
-                    " / _  / -_) / / _ \\  / ___/ _ `/ _ \\/ _  / _ `/\n" +
-                    "/_//_/\\__/_/_/\\___/ /_/   \\_,_/_//_/\\_,_/\\_,_/\n";
+    private final static String LOGO =
+            "   __ __    ____       ___               __\n"
+            + "  / // /__ / / /__    / _ \\___ ____  ___/ /__ _\n"
+            + " / _  / -_) / / _ \\  / ___/ _ `/ _ \\/ _  / _ `/\n"
+            + "/_//_/\\__/_/_/\\___/ /_/   \\_,_/_//_/\\_,_/\\_,_/\n";
 
     /**
      * Ui constructor that creates an instance of the Ui Object

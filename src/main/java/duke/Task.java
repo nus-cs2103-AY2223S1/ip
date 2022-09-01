@@ -49,7 +49,7 @@ public class Task {
      * @param taskList The taskList before a Task is added.
      * @return ArrayList of type Task The taskList after the Task is added.
      */
-    public ArrayList<Task> printAndStoreTask(ArrayList<Task> taskList) {
+    public String printAndStoreTask(ArrayList<Task> taskList) {
         return null;
     }
 
