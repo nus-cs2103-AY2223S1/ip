@@ -29,8 +29,8 @@ public class Storage {
             }
 
             String taskName = sc.nextLine();
-            String done = sc.nextLine();
-            boolean isDone = Integer.parseInt(done) == 1;
+            String doneIndicator = sc.nextLine();
+            boolean isDone = Integer.parseInt(doneIndicator) == 1;
 
             Task task;
             if (taskType.equals("T")) {
@@ -45,6 +45,7 @@ public class Storage {
             } else {
                 throw new RuntimeException("Duke cannot understand the input file.");
             }
+
             if (isDone) {
                 task.mark();
             }
@@ -55,8 +56,8 @@ public class Storage {
 
     public void saveFile(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(file);
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task task = tasks.getTask(i);
             fw.write(task.saveStringToFile());
         }
         fw.close();
