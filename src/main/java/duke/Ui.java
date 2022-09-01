@@ -60,6 +60,7 @@ public class Ui {
     }
 
     public static void printLines(List<String> lines) {
+        if (lines.isEmpty()) return;
         System.out.println(String.join("\n", lines) + "\n─────");
     }
 
