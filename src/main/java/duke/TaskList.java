@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Datastructure class to store the list of tasks.
  */
 public class TaskList {
     private List<Task> tasks;
@@ -26,17 +26,24 @@ public class TaskList {
         }
     }
 
+    /**
+     * @param task Task to be added into the collection of tasks
+     */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * @param i 0-based index of the task to be removed
+     * @return Task that was removed from the collection
+     */
     public Task remove(int i) {
         return this.tasks.remove(i);
     }
 
     /**
-     * @param i
-     * @return
+     * @param i 0 based index of the task to be marked
+     * @return toString() of the task
      */
     public String mark(int i) {
         this.tasks.get(i).mark();
@@ -53,8 +60,8 @@ public class TaskList {
     }
 
     /**
-     * @param word
-     * @return
+     * @param word Word to find in the list of tasks
+     * @return String of the filtered tasks
      */
     public String find(String word) {
         String filtered = tasks.stream()
@@ -68,7 +75,7 @@ public class TaskList {
     }
 
     /**
-     * @return
+     * @return list of tasks
      */
     public String toString() {
         String out = "";

@@ -9,7 +9,6 @@ import duke.Ui;
 
 /**
  * AddCommand stores the Task to be executed.
- * It does it with interaction with the UI and the TaskList.
  */
 public class AddCommand extends Command {
     private Task task;

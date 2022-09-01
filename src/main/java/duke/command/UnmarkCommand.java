@@ -19,6 +19,9 @@ public class UnmarkCommand extends Command {
         return "Task unmarked: " + tasks.unmark(indexToUnmark);
     }
 
+    /**
+     * @return false
+     */
     @Override
     public boolean isExit() {
         return false;

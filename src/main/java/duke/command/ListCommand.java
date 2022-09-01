@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- *
+ * ListCommand lists all the tasks
  */
 public class ListCommand extends Command {
 
@@ -14,6 +14,9 @@ public class ListCommand extends Command {
         return tasks.toString();
     }
 
+    /**
+     * @return false
+     */
     @Override
     public boolean isExit() {
         return false;

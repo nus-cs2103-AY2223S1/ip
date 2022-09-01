@@ -11,13 +11,12 @@ import javafx.stage.Stage;
 
 
 /**
- *
+ * Main entry point to run the java app
  */
 public class Main extends Application {
     private static final String FILE_PATH = "data/tasks.txt";
 
     private final Duke duke = new Duke(FILE_PATH);
-
     @Override
     public void start(Stage stage) {
         try {

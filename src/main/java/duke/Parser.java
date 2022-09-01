@@ -10,7 +10,7 @@ import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 
 /**
- *
+ * Parser helps
  */
 public class Parser {
 
