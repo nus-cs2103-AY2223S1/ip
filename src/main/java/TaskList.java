@@ -32,6 +32,10 @@ public class TaskList {
         return db.size();
     }
 
+    public Task getTask(int i) {
+        return db.get(i);
+    }
+
     /**
      * Marks the input task as completed.
      * @param userInput Input task number
