@@ -31,7 +31,7 @@ public class Parser {
 
         //"clear": Clears the list
         } else if (in.equals("clear")) {
-            message = Ui.clear();
+            message = list.clear();
 
         //"list": Shows current list
         } else if (in.equals("list")) {
@@ -85,6 +85,6 @@ public class Parser {
         //Update the save file
         FileWriting.update("./data/duke.txt", list);
 
-        return Ui.line() + "\n" + message + Ui.line();
+        return Ui.line() + "\n" + message + "\n" + Ui.line();
     }
 }
