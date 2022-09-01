@@ -49,16 +49,16 @@ public class Storage {
                     if (type.equals("E")) {
                         String currentTask = task.substring(9, task.indexOf(" (at: "));
                         String eventTime = task.substring(task.indexOf(" (at: ") + 6,task.indexOf(")"));
-                        Task curr = new Events(" " + currentTask, eventTime);
+                        Task curr = new Events(currentTask, eventTime);
                         tasks.add(curr);
                     } else if (type.equals("T")) {
                         String currentTask = task.substring(9);
-                        Task curr = new ToDos( " " + currentTask);
+                        Task curr = new ToDos(currentTask);
                         tasks.add(curr);
                     } else if (type.equals("D")) {
                         String currentTask = task.substring(9, task.indexOf(" (by: "));
                         String eventTime = task.substring(task.indexOf(" (by: "));
-                        Task curr = new Deadline(" " + currentTask, eventTime);
+                        Task curr = new Deadline(currentTask, eventTime);
                         tasks.add(curr);
                     } else {
                         break;

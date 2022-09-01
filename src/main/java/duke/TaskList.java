@@ -41,32 +41,33 @@ public class TaskList {
      * needed anymore
      * @param task Task that needs to be removed
      */
-    public void delete(Task task) {
-        System.out.println("Noted I have removed this task");
-        System.out.println(task);
+    public String delete(Task task) {
         lst.remove(task);
-        System.out.println("Now you have" + " " + lst.size() + " " + "tasks in list");
+        return "Noted I have removed this task\n"
+                + task.toString() + "\n" +
+                "Now you have" + " " + lst.size() + " " + "tasks in list";
     }
 
     /**
      * Adds a task to the list
      * @param task Task that needs to be added
      */
-    public void add(Task task) {
-        System.out.println("Got it.I've added this task");
+    public String add(Task task) {
         lst.add(task);
-        System.out.println(task);
-        System.out.println("Now you have" + " " + lst.size() + " " + "tasks in list");
+        return "Got it.I've added this task\n" +
+                task.toString()  + "\n" +
+                "Now you have" + " " + lst.size() + " " + "tasks in list";
     }
 
     /**
      * Marks a test to indicate it as done
      * @param task Task to be marked
      */
-    public void mark(Task task) {
-        System.out.println("Nice I have marked this as done:");
+    public String mark(Task task) {
         task.mark();
-        System.out.println(" " + task);
+        return "Nice I have marked this as done:\n" + " " + task;
+
+
     }
 
     /**
@@ -74,10 +75,9 @@ public class TaskList {
      * to be done
      * @param task Task to be unmarked
      */
-    public void unmark(Task task) {
-        System.out.println("Ok I have marked this as still to be done:");
+    public String unmark(Task task) {
         task.unmark();
-        System.out.println(" " + task);
+        return  "Ok I have marked this as still to be done:\n"  + " " + task;
     }
 
 
@@ -85,21 +85,24 @@ public class TaskList {
      * Prints out all tasks already in TaskList
      * and lists them in order
      */
-    public void list() {
-        System.out.println("This is your tasks in your list: \n");
+    public String list() {
+
+        String lists = "This is your tasks in your list:\n";
         for (Task item : lst) {
             if (item != null)
-                System.out.println(lst.indexOf(item) + 1 + "." + item);
+                lists += lst.indexOf(item) + 1 + "." + item + "\n";;
         }
+        return lists;
     }
 
-    public void find(String searchTask) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String find(String searchTask) {
+        String found = "Here are the matching tasks in your list:\n";
         for (Task item:lst) {
             String taskName = item.description;
             if (taskName.contains(searchTask)) {
-                System.out.println(item);
+               found += taskName + "\n";
             }
         }
+        return found;
     }
 }
