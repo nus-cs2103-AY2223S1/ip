@@ -12,13 +12,13 @@ class TaskTest {
     }
 
     @Test
-    void testMarkTask() {
+    void test_markTask() {
         t.markTask();
         assertEquals("X", t.getStatusIcon());
     }
 
     @Test
-    void testUnmarkTask() {
+    void test_unmarkTask() {
         t.unmarkTask();
         assertEquals(" ", t.getStatusIcon());
     }
