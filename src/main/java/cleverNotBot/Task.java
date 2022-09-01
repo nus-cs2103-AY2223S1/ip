@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public abstract class Task {
     private final String name;
     private final boolean completed;
@@ -25,7 +27,7 @@ public abstract class Task {
     public abstract String getTaskType();
 
     public abstract Task toggleCompleted();
-    //return new Task(name,!completed);
+    //return new Task.Task(name,!completed);
 
 
     @Override

@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 import java.util.Arrays;
 
 public class AddCommandToDo extends Command {
@@ -22,10 +24,10 @@ public class AddCommandToDo extends Command {
                                 "\nNow you have %d tasks in the list."
                         , newTask.toString(), tasks.getSize()));
             } else {
-                throw new CleverNotBotException("Please fill in the description of ToDo!", textBox);
+                throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
             }
         } catch(CleverNotBotException e){
-            throw new CleverNotBotException("Please fill in the description of ToDo!", textBox);
+            throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
         }
 
     }

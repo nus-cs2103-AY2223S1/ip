@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 import java.util.Scanner;
 
 public class CleverNotBot {

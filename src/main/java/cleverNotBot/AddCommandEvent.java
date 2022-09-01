@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class AddCommandEvent extends Command {
 
     public AddCommandEvent(String commandName, boolean exit) {
@@ -8,9 +10,9 @@ public class AddCommandEvent extends Command {
         String[] desc = getCommandName().split(" ");
         try{
             if (desc.length == 1) {
-                throw new CleverNotBotException("Please fill in the description of Event!", textBox);
+                throw new CleverNotBotException("Please fill in the description of Task.Event!", textBox);
             } else if (!getCommandName().contains("/at")) {
-                throw new CleverNotBotException("Please include a /at in your description of Deadline! ", textBox);
+                throw new CleverNotBotException("Please include a /at in your description of Task.Deadline! ", textBox);
             } else {
                 String searchWord = " /at";
                 int start = "event ".length();
@@ -27,7 +29,7 @@ public class AddCommandEvent extends Command {
                         , newTask.toString(), tasks.getSize()));
             }
         } catch(CleverNotBotException e){
-            throw new CleverNotBotException("Event description must not be empty or must contain /at!", textBox);
+            throw new CleverNotBotException("Task.Event description must not be empty or must contain /at!", textBox);
         }
 
     }

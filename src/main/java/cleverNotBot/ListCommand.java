@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class ListCommand extends Command {
 
     public ListCommand(String commandName, boolean exit){
@@ -5,7 +7,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException{
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         if (tasks.getSize() < 1) { textBox.chat("There is no task currently assigned.");
         }else {
             int counter = 1;

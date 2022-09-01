@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class AddCommandDeadLine extends Command {
 
     public AddCommandDeadLine(String commandName, boolean exit) {
@@ -8,9 +10,9 @@ public class AddCommandDeadLine extends Command {
         String[] desc = getCommandName().split(" ");
         try {
             if (desc.length == 1) {
-                throw new CleverNotBotException("Please fill in the description of Deadline!", textBox);
+                throw new CleverNotBotException("Please fill in the description of Task.Deadline!", textBox);
             } else if (!getCommandName().contains("/by")) {
-                throw new CleverNotBotException("Please include a /by in your description of Deadline! ", textBox);
+                throw new CleverNotBotException("Please include a /by in your description of Task.Deadline! ", textBox);
             } else {
                 String searchWord = " /by";
                 int start = "deadline ".length();
@@ -29,7 +31,7 @@ public class AddCommandDeadLine extends Command {
                         , newTask.toString(), tasks.getSize()));
             }
         } catch (CleverNotBotException e){
-            throw new CleverNotBotException("Deadline description must not be empty or must contain /by!", textBox);
+            throw new CleverNotBotException("Task.Deadline description must not be empty or must contain /by!", textBox);
         } catch (Exception ex){
             throw new CleverNotBotException("Incorrect date format! Please enter DD-MM-YYYY HH:mm" +
                     "\nFor example, 22-09-2022 19:40", textBox);

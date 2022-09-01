@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class GreetCommand extends Command {
 
     public GreetCommand(String commandName, boolean exit){
@@ -5,7 +7,7 @@ public class GreetCommand extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException{
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         textBox.chat("Hello! I'm CleverNotBot\n What can I do for you?");
     }
 }

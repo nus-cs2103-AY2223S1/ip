@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 import java.io.*;
 import java.util.ArrayList;
 

@@ -1,6 +1,7 @@
+package cleverNotBot;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class TaskList {
     private ArrayList<Task> tasks;

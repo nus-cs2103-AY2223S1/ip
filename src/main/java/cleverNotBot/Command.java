@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public abstract class Command {
     private String commandName;
     private boolean exit;

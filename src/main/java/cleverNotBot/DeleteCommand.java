@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class DeleteCommand extends Command {
 
     public DeleteCommand(String commandName, boolean exit){
@@ -10,7 +12,7 @@ public class DeleteCommand extends Command {
             if(desc.length <= 1){
                 throw new CleverNotBotException("Invalid arguments. Please enter a number!",textBox);
             }
-            Task deletedTask = tasks.getTask(Integer.parseInt(desc[1]) - 1); // Task 3 is in idx 2
+            Task deletedTask = tasks.getTask(Integer.parseInt(desc[1]) - 1); // Task.Task 3 is in idx 2
             tasks.removeTask(deletedTask);
             storage.writeToFile(tasks.getTaskList());
             textBox.chat(String.format(

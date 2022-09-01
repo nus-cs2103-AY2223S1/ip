@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class ToDo extends Task{
 
     public ToDo(String name, boolean completed){

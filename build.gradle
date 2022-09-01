@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClassName = "CleverNotBot"
+    mainClassName = "cleverNotBot.CleverNotBot"
 }
 
 shadowJar {

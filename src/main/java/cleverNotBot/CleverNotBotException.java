@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class CleverNotBotException extends Exception{
     private String errorMessage;
     private UI textBox;

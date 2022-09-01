@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class UnmarkCommand extends Command {
 
     public UnmarkCommand(String commandName, boolean exit){
@@ -5,7 +7,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException{
+    public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         int number = Integer. parseInt(getCommandName().split(" ")[1]) - 1; //mark 3 -> 3, because number 3 is actually idx 2
         Task taskToUnmark = tasks.getTask(number);
         if(taskToUnmark.checkMarked().equals("X")) {

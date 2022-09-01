@@ -1,3 +1,5 @@
+package cleverNotBot;
+
 public class Parser {
 
     public Command parseText(String text) {
