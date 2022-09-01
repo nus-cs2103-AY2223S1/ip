@@ -32,9 +32,13 @@ public class TaskList {
     /**
      * Prints the list of tasks that are recorded.
      */
-    public void printList() {
+    public String printList() {
         ArrayList<Task> list = this.taskArrayList;
-        list.forEach(t -> System.out.println(list.indexOf(t) + 1 + ". " + list.get(list.indexOf(t)).toString()));
+        String str = "";
+        for (int i = 0; i < list.size(); i++) {
+            str += i + 1 + ". " + list.get(i).toString() + "\n";
+        }
+        return str;
     }
 
     /**
@@ -91,16 +95,18 @@ public class TaskList {
      *
      * @param s Input string to be checked against.
      */
-    public void find(String s) {
+    public String find(String s) {
         int counter = 1;
         ArrayList<Task> list = this.taskArrayList;
+        String str = "";
         for (int i = 0; i < list.size(); i++) {
             Task t = list.get(i);
             if (t.toString().contains(s)) {
-                System.out.println(counter + ". " + t);
+                str = str + counter + ". " + t + "\n";
                 counter++;
             }
         }
+        return str;
     }
 
 }

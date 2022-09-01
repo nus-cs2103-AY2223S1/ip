@@ -34,9 +34,9 @@ public class ExitCommand extends Command {
      * @throws IOException If there is an issue saving the list to Storage.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         storage.save(taskList.getTaskArrayList());
-        ui.showGoodbye();
+        return ui.showGoodbye();
     }
 
 }

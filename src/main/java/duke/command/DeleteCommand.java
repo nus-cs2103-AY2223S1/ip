@@ -42,15 +42,15 @@ public class DeleteCommand extends Command {
      * @throws DukeException If the input index is invalid.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();
         if ((index > 0) && index <= list.size() && (list.get(index - 1) != null)) {
             Task t = list.get(index - 1);
             taskList.delete(this.index);
-            ui.showDelete(t, list.size());
+            return ui.showDelete(t, list.size());
         } else {
-            String s = "☹ OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
-            throw new DukeException(s);
+            String s = "OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
+            return s;
         }
     }
 

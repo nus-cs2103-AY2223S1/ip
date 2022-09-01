@@ -31,6 +31,6 @@ public abstract class Command {
      * @throws DukeException If the input task or index is invalid.
      * @throws IOException If there is an issue with saving the list to Storage.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException;
 
 }

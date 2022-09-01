@@ -53,19 +53,19 @@ public class AddCommand extends Command {
      * @throws DukeException If the input task is invalid.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.type.equals("todo")) {
             Todo t = new Todo(description);
             taskList.add(t);
-            ui.showAdd(t, taskList.getTaskArrayList().size());
+            return ui.showAdd(t, taskList.getTaskArrayList().size());
         } else if (this.type.equals("deadline")) {
             Deadline d = new Deadline(this.description, this.date);
             taskList.add(d);
-            ui.showAdd(d, taskList.getTaskArrayList().size());
+            return ui.showAdd(d, taskList.getTaskArrayList().size());
         } else {
             Event e = new Event(this.description, this.date);
             taskList.add(e);
-            ui.showAdd(e, taskList.getTaskArrayList().size());
+            return ui.showAdd(e, taskList.getTaskArrayList().size());
         }
     }
 
