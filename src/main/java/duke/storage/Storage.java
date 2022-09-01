@@ -1,9 +1,4 @@
-package duke;
-
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +7,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * The Storage class encapsulates the file used as a local database and its associated methods.
@@ -65,6 +67,8 @@ public class Storage {
                 case "E":
                     newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
                     break;
+                default:
+                    throw new DukeException("Corrupted storage.");
                 }
                 taskList.addTask(newTask);
             }
@@ -75,7 +79,9 @@ public class Storage {
         } catch (DateTimeParseException e) {
             throw new DukeException("Saved file is corrupted.");
         } finally {
-            if (sc != null) sc.close();
+            if (sc != null) {
+                sc.close();
+            }
         }
     }
 

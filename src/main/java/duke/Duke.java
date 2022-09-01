@@ -2,6 +2,9 @@ package duke;
 
 import duke.command.Command;
 import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import javafx.stage.Stage;
 
 /**
  * The Duke class represent a chatbot called Duke that is able to take in user inputs
@@ -10,46 +13,33 @@ import duke.parser.Parser;
 public class Duke {
     private final Storage storage;
     private TaskList taskList;
-    private final Ui ui;
     private final Parser parser;
+    private final Stage stage;
 
     /**
      * Initializes a Duke chatbot.
-     * The filePath argument specify the file to be retrieved or created as the task list database.
-     *
-     * @param filePath File path containing the saved task list.
      */
-    public Duke(String filePath) {
-        this.storage = new Storage(filePath);
-        this.ui = new Ui();
+    public Duke(Stage stage) throws DukeException {
+        this.storage = new Storage("data/duke.txt");
         this.parser = new Parser();
+        this.taskList = storage.load();
+        this.stage = stage;
+    }
+
+    public String getResponse(String input) {
         try {
-            this.taskList = storage.load();
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
-
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
-
-    /**
-     * Starts the Duke chatbot.
-     */
-    public void run() {
-        boolean terminateFlag = false;
-        ui.printWelcome();
-
-        while (!terminateFlag) {
-            try {
-                Command currentCommand = parser.parse(ui.getCommand());
-                currentCommand.execute(taskList, ui, storage);
-                terminateFlag = currentCommand.isTerminatorGetter();
-            } catch (DukeException e) {
-                ui.printException(e);
+            Command currentCommand = this.parser.parse(input);
+            if (currentCommand.getIsTerminator()) {
+                end();
             }
+            return currentCommand.execute(taskList, storage);
+        } catch (DukeException e) {
+            return "OOPS! " + e.getMessage();
         }
+    }
+
+    private void end() {
+        stage.close();
+        System.exit(0);
     }
 }

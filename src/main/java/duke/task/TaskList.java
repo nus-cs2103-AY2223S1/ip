@@ -1,8 +1,8 @@
-package duke;
-
-import duke.task.Task;
+package duke.task;
 
 import java.util.ArrayList;
+
+import duke.DukeException;
 
 /**
  * The TaskList class encapsulates the list of tasks and its associated methods.
@@ -82,7 +82,7 @@ public class TaskList {
     }
 
     public TaskList getTaskListWithKeyword(String keyword) {
-       TaskList listWithKeyword = new TaskList();
+        TaskList listWithKeyword = new TaskList();
         for (Task task : this.taskList) {
             if (task.containKeyword(keyword)) {
                 listWithKeyword.addTask(task);
@@ -96,7 +96,9 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        if (taskList.isEmpty()) return "List is empty";
+        if (taskList.isEmpty()) {
+            return "List is empty";
+        }
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
             result.append(i + 1).append(".").append(taskList.get(i)).append(i == taskList.size() - 1 ? "" : "\n");
@@ -110,7 +112,9 @@ public class TaskList {
      * @return String representation of the TaskList to store in a file.
      */
     public String toStorageString() {
-        if (taskList.isEmpty()) return "";
+        if (taskList.isEmpty()) {
+            return "";
+        }
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
             result.append(taskList.get(i).toStorageString()).append(i == taskList.size() - 1 ? "" : "\n");

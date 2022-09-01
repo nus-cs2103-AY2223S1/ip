@@ -1,23 +1,29 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
 
+/**
+ * The UnmarkCommand class represents the unmark command to mark a task in the task list as unfinished.
+ */
 public class UnmarkCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes an instance of UnmarkCommand.
+     *
+     * @param index The index of the task in the task list to be marked unfinished.
+     */
     public UnmarkCommand(int index) {
         super(false);
         this.index = index;
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.markTaskN(index, false);
-        ui.printUnmarkTaskReply(taskList.getTaskN(index).toString());
         storage.overwriteFile(taskList.toStorageString());
-
+        return Command.WRAPPER.getUnmarkResponse(taskList.getTaskN(index).toString());
     }
 }

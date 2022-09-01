@@ -1,23 +1,30 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
 
+/**
+ * The DeleteCommand class represents the command of deleting a task in Duke's task list.
+ */
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Initializes an instance of DeleteCommand.
+     *
+     * @param index The index of the task in the task list to be deleted.
+     */
     public DeleteCommand(int index) {
         super(false);
         this.index = index;
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         String deletedTaskDesc = taskList.getTaskN(index).toString();
         taskList.deleteTaskN(index);
-        ui.printDeleteTaskReply(deletedTaskDesc, taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.WRAPPER.getDeleteResponse(deletedTaskDesc, taskList.getNumOfTask());
     }
 }

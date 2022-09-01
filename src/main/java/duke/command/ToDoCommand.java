@@ -1,13 +1,20 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
 import duke.task.ToDo;
 
+/**
+ * The ToDoCommand class represents the todo command to add a new todo to the task list.
+ */
 public class ToDoCommand extends Command {
     private final ToDo todo;
 
+    /**
+     * Initializes a new instance of ToDo.
+     *
+     * @param todo The todo to be added to the task list.
+     */
     public ToDoCommand(ToDo todo) {
         super(false);
         this.todo = todo;
@@ -15,9 +22,9 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.addTask(todo);
-        ui.printAddTaskReply(todo.toString(), taskList.getNumOfTask());
         storage.overwriteFile(taskList.toStorageString());
+        return Command.WRAPPER.getAddTaskResponse(todo.toString(), taskList.getNumOfTask());
     }
 }
