@@ -19,9 +19,9 @@ And it is **FREE**!
 
 Features:
 
- [X] Managing tasks
- [ ] Managing deadlines
- [ ] Reminders (coming soon)
+* [X] Managing tasks
+* [ ] Managing deadlines
+* [ ] Reminders (coming soon)
 
 If you're a Java programmer, you can use it to practice Java too. Here's the main method:
 ```java
