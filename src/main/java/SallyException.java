@@ -1,6 +1,6 @@
 public class SallyException extends Exception {
-    public SallyException() {
-        super();
+    public SallyException(String message) {
+        super(message);
     }
 
     public static class SallyTaskNotFoundException extends SallyException {

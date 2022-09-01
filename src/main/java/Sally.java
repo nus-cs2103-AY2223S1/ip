@@ -16,6 +16,17 @@ public class Sally {
     private TaskList tasks;
     private Ui ui;
 
+    public Sally(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (SallyException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
     public static void main(String[] args) {
         printBorder();
         System.out.println("Hello! I'm Sally");
@@ -27,106 +38,10 @@ public class Sally {
         } catch (FileNotFoundException e) {
         }
         sc = new Scanner(System.in);
-        messaging();
+        run();
     }
 
-    public static void readsFile() throws FileNotFoundException {
-        String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
-        File file = new File(filePath);
-        Scanner sc = new Scanner(file);
-
-        while(sc.hasNext()) {
-            String input = sc.nextLine(); //scans the first input of file
-            String[] arrOfInput = input.split("\\|");
-
-            //Variables to create new Task
-            String taskTypeString = arrOfInput[0].trim();
-            String isDoneString = arrOfInput[1].trim();
-            String description = arrOfInput[2].trim();
-            String moreInfo = "";
-            if (taskTypeString.equals("E") || taskTypeString.equals("D")) {
-                moreInfo = moreInfo + arrOfInput[3].trim();
-            }
-
-            //Convert String to each variable type
-            Task.Type taskType = toTaskType(taskTypeString);
-            boolean isDone = toIsDone(isDoneString);
-
-            Task.makeTask(description, moreInfo, taskType, false);
-            int maxLength = list.size();
-            Task task = list.get(maxLength - 1);
-
-            if (isDone) {
-                task.markAsDone();
-            } else {
-                task.markAsUndone();
-            }
-        }
-    }
-
-    public static boolean toIsDone(String s) {
-        if (s.contains("1")) {
-            return true;
-        } else if (s.contains("0")) {
-            return false;
-        }
-        return false;
-    }
-
-    public static Task.Type toTaskType(String s) {
-        try {
-            if (s.contains("T")) {
-                return Task.Type.TODO;
-            } else if (s.contains("D")) {
-                return Task.Type.DEADLINE;
-            } else if (s.contains("E")) {
-                return Task.Type.EVENT;
-            } else {
-                throw new SallyException.SallyInvalidInputException();
-            }
-        } catch (SallyException e) {
-            System.out.println(e);
-        }
-        return Task.Type.TODO;
-    }
-
-    public static void savesFile() throws IOException {
-        String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
-        FileWriter writer = new FileWriter(filePath);
-
-        String typeSymbol;
-        String description;
-        String moreInfo;
-        String separator = " | ";
-        String newFile = "";
-
-        for (Task task : list) {
-            int indexDone = task.isDone ? 1 : 0;
-            description = task.description;
-            moreInfo = task.getMoreInfo();
-
-            System.out.println("taskType = " + task.taskType);
-            switch (task.taskType) {
-                case TODO:
-                    typeSymbol = "T";
-                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + "\n");
-                    break;
-                case DEADLINE:
-                    typeSymbol = "D";
-                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
-                    break;
-                case EVENT:
-                    typeSymbol = "E";
-                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
-                    break;
-            }
-
-        }
-        writer.write((newFile));
-        writer.close();
-    }
-
-    public static void messaging() {
+    public void run() {
         String message = sc.nextLine();
 
         if (message.equals("bye")) {
@@ -272,7 +187,7 @@ public class Sally {
         } catch (SallyException e) {
             System.out.println(e);
         } finally {
-            messaging();
+            run();
         }
     }
 
