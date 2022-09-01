@@ -4,7 +4,7 @@ package exceptions;
  * Exception occurs when a task is not entered during a todo.
  */
 public class TodoException extends TumuException {
-    private static String TODO_EXCEPTION = "Please enter a task.";
+    private static final String TODO_EXCEPTION = "Please enter a task.";
 
     /**
      * Constructor for the TodoException class.

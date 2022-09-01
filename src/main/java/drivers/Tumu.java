@@ -1,5 +1,7 @@
 package drivers;
 
+import commands.Command;
+import exceptions.TumuException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,9 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import commands.Command;
-import exceptions.TumuException;
 
 /**
  * Chatbot driver code. Receives the input from the user
@@ -62,8 +61,8 @@ public class Tumu extends Application {
         } catch (TumuException e) {
             output += ui.notifyUser(e.toString());
         } catch (NumberFormatException e) {
-            output += ui.notifyUser("Please (un)mark or delete a task by " +
-                    "its list position (must be an integer)!");
+            output += ui.notifyUser("Please (un)mark or delete a task by "
+                    + "its list position (must be an integer)!");
         } catch (NullPointerException e) {
             output += ui.notifyUser("Please type a task description for the task!");
         }
@@ -155,7 +154,5 @@ public class Tumu extends Application {
 
         stage.setScene(scene);
         stage.show();
-
-        // more code to be added here later
     }
 }

@@ -3,9 +3,9 @@ package commands;
 import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
-import exceptions.DENoArgException;
-import exceptions.DENoTimingException;
-import exceptions.DETimingOverflowException;
+import exceptions.DeadlineEventNoArgException;
+import exceptions.DeadlineEventNoTimingException;
+import exceptions.DeadlineEventTimingOverflowException;
 import exceptions.TumuException;
 import tasks.Deadline;
 
@@ -36,14 +36,14 @@ public class DeadlineCmd extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         //Check for "/by", if not available then prompt user to add timing.
         if (!body.contains("/by")) {
-            throw new DENoTimingException("by");
+            throw new DeadlineEventNoTimingException("by");
         } else {
             //Parse the string. Make sure there is no multiple "/by" statements.
             String[] parse = body.split("/by");
             if (parse.length > 2) {
-                throw new DETimingOverflowException();
+                throw new DeadlineEventTimingOverflowException();
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
-                throw new DENoArgException();
+                throw new DeadlineEventNoArgException();
             } else {
                 return addTaskType(new Deadline(parse[0].trim(),
                         parse[1].replaceAll("\\s+", "")), storage, tasks, ui);

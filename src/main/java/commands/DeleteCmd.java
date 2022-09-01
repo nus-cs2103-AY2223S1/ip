@@ -17,7 +17,7 @@ public class DeleteCmd extends Command {
      * Constructor for the DeleteCmd class.
      * @param body The rest of the instruction issued by the user after command.
      * @throws NumberFormatException Thrown when the parsed information of task cannot be converted into
-     * an integer.
+     *     an integer.
      */
     public DeleteCmd(String body) throws NumberFormatException {
         taskIndex = Integer.parseInt(body);

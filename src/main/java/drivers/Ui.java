@@ -1,7 +1,5 @@
 package drivers;
 
-import java.util.Scanner;
-
 /**
  * Deals with interactions from the user.
  */
@@ -10,8 +8,8 @@ public class Ui {
      * Greeting message to the user during chat-bot startup.
      */
     public String greeting() {
-        return "Hi! I am Tumu. Nice to meet you!\n" +
-                "\tWhat is on your mind today?\n";
+        return "Hi! I am Tumu. Nice to meet you!\n"
+                + "\tWhat is on your mind today?\n";
     }
 
     /**
