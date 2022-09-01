@@ -10,14 +10,14 @@ import tasks.Task;
 public class ChatResponse {
 
     /**
-     * Prints the welcome text.
+     * Returns the welcome text.
      */
     public static String chatShowWelcome() {
         return String.format("Hello! I'm Duke!\nWhat can I do for you?");
     }
 
     /**
-     * Prints a generic Exception.
+     * Returns a generic Exception.
      *
      * @param e Exception to returnChat.
      */
@@ -26,7 +26,7 @@ public class ChatResponse {
     }
 
     /**
-     * Prints goodbye message.
+     * Returns goodbye message.
      */
     public static String returnChatGoodbye() {
         return String.format("Bye. Hope to see you again soon!");
@@ -53,7 +53,7 @@ public class ChatResponse {
     }
 
     /**
-     * Prints the flavour text when marking a task.
+     * Returns the flavour text when marking a task.
      *
      * @param task Task to mark.
      */
@@ -62,7 +62,7 @@ public class ChatResponse {
     }
 
     /**
-     * Prints the flavour text when marking a task.
+     * Returns the flavour text when marking a task.
      *
      * @param task Task to unmark.
      */
@@ -71,7 +71,7 @@ public class ChatResponse {
     }
 
     /**
-     * Prints the flavour text when adding a task.
+     * Returns the flavour text when adding a task.
      *
      * @param task     Task that is added.
      * @param taskList Current task list after task is added.
@@ -81,7 +81,7 @@ public class ChatResponse {
     }
 
     /**
-     * Prints the flavour text when deleting a task.
+     * Returns the flavour text when deleting a task.
      *
      * @param task     Task that is added.
      * @param taskList Current task list after task is added.
@@ -91,32 +91,32 @@ public class ChatResponse {
     }
 
     /**
-     * Prints flavour text for creating new directory.
+     * Returns flavour text for creating new directory.
      *
      * @param dirName Name of directory.
      */
     public static String returnChatCreateNewDirectory(String dirName) {
-        return String.format("Creating new directory '%s' to store data...\n", dirName);
+        return String.format("Created new directory '%s' to store data.\n", dirName);
     }
 
     /**
-     * Prints flavour text for creating new storage file.
+     * Returns flavour text for creating new storage file.
      *
      * @param storageName Name of storage file.
      */
     public static String returnChatCreateNewStorage(String storageName) {
-        return String.format("Creating new file '%s' to store data...\n", storageName);
+        return String.format("Created new file '%s' to store data.\n", storageName);
     }
 
     /**
-     * Prints flavour text for saving task list to storage file.
+     * Returns flavour text for saving task list to storage file.
      */
     public static String returnChatSaving() {
         return String.format("Saving...\n");
     }
 
     /**
-     * Prints the task list where tasks matches a given target.
+     * Returns the task list where tasks matches a given target.
      */
     public static String returnChatFindResults(TaskList taskList) {
         String results = String.format("Here are the matching tasks in your list: \n");
