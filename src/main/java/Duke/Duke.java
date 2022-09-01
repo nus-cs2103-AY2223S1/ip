@@ -1,16 +1,45 @@
 package Duke;
 
+import javafx.application.Application;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
-public class Duke {
+public class Duke extends Application {
 
     private TaskList items;
     private Ui ui;
     private Storage storage;
 
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
+    /**
+     * Default constructor cos Java is dumb.
+     */
+    public Duke(){}
+
     /**
      * Creates a Duke instance.
-     * @param filePath
+     * @param filePath the fileName.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -23,6 +52,90 @@ public class Duke {
         }
     }
 
+    @Override
+    public void start(Stage stage) {
+        ui = new Ui("tasks");
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
+        scrollPane.setContent(dialogContainer);
+
+        userInput = new TextField();
+        sendButton = new Button("Send");
+
+        AnchorPane mainLayout = new AnchorPane();
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+
+        scene = new Scene(mainLayout);
+
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setTitle("Duke");
+        stage.setResizable(false);
+        stage.setMinHeight(600.0);
+        stage.setMinWidth(400.0);
+
+        mainLayout.setPrefSize(400.0, 600.0);
+
+        scrollPane.setPrefSize(385, 535);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
+
+        // You will need to import `javafx.scene.layout.Region` for this.
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        userInput.setPrefWidth(325.0);
+
+        sendButton.setPrefWidth(55.0);
+
+        AnchorPane.setTopAnchor(scrollPane, 1.0);
+
+        AnchorPane.setBottomAnchor(sendButton, 1.0);
+        AnchorPane.setRightAnchor(sendButton, 1.0);
+
+        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setBottomAnchor(userInput, 1.0);
+
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+
+    }
+
+    /**
+     * Iteration 2:
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
+     */
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
+    /**
+     * Gets a response from Ui.
+     * @param input the command.
+     * @return the output.
+     */
+    private String getResponse(String input) {
+        return ui.getResponse(input);
+    }
+
     /**
      * Runs a Duke instance.
      */
@@ -32,92 +145,13 @@ public class Duke {
         boolean done = false;
 
         while(!done) {
-            try {
-                String toParse = ui.getInput();
-                input = Parser.parseInput(toParse);
-            } catch (DukeException ex) {
-                ui.printMsg(ex.getMessage());
-                continue;
+            String output = ui.getResponse(ui.getInput());
+            if (output.equals("Bye. Hope to see you again soon!")) {
+                done = true;
             }
+            ui.printMsg(output);
 
-            if (input[0].equals("list")) {
-                // when user request list
-                ui.printList();
-                items.printList();
-            } else {
-                switch(input[0]) {
-                case "mark":
-                    // when user wants to mark as done
-                    int num = Integer.valueOf(input[1]);
-                    if (num > items.getSize()) {
-                        ui.printMsg("No such task");
-                    } else {
-                        Task tsk = items.markTask(num);
-                        ui.printMark(tsk);
-                    }
-                    break;
-
-                case "unmark":
-                    // when user wants to mark as not done
-                    int numb = Integer.valueOf(input[1]);
-                    if (numb > items.getSize()) {
-                        ui.printMsg("No such task");
-                    } else {
-                        Task tsk = items.unmarkTask(numb);
-                        ui.printUnMark(tsk);
-                    }
-                    break;
-
-                case "find":
-                    TaskList resultList = items.findTask(input[1]);
-                    ui.printResultList();
-                    resultList.printList();
-                    break;
-
-                case "todo":
-                    // when user wants to add todo task
-                    Task t1 = new Todo(input[1]);
-                    items.addTask(t1);
-                    ui.printAddTask(t1, items.getSize());
-                    break;
-
-                case "deadline":
-                    // when user wants to add deadline task
-                    try {
-                        Task t2 = new Deadline(input[1], input[2]);
-                        items.addTask(t2);
-                        ui.printAddTask(t2, items.getSize());
-                    } catch (DukeException ex) {
-                        ui.printMsg(ex.getMessage());
-                    }
-                    break;
-
-                case "event":
-                    // when user wants to add event task
-                    Task t3 = new Event(input[1], input[2]);
-                    items.addTask(t3);
-                    ui.printAddTask(t3, items.getSize());
-                    break;
-
-                case "delete":
-                    // when user wants to delete task
-                    try {
-                        Task t4 = items.deleteTask(Integer.valueOf(input[1]));
-                        ui.printDeleteTask(t4, items.getSize());
-                    } catch (IndexOutOfBoundsException ex) {
-                        ui.printMsg("Invalid index");
-                    }
-                    break;
-
-                case "bye":
-                    done = true;
-                    break;
-                }
-            }
-            ui.printMsg("");
-            storage.saveFile(items.toStringList());
         }
-        ui.printBye();
     }
 
     public static void main(String[] args) {

@@ -1,8 +1,6 @@
 package Duke;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TaskList {
 
@@ -17,22 +15,25 @@ public class TaskList {
      * @param input search term.
      * @return the result list.
      */
-    public TaskList findTask(String input) {
-        TaskList resultList = new TaskList(new ArrayList<Task>());
-        for (Task t : lst) {
-            if (isSimilar(input, t.getDescription())) {
-                resultList.addTask(t);
+    public String findTask(String input) {
+        StringBuilder str = new StringBuilder();
+        str.append("Here are the matching tasks in your list: \n");
+        for(int i = 1; i <= lst.size(); i++){
+            Task task = lst.get(i-1);
+            if(task.getDescription().contains(input)){
+                str.append(i).append(". ").append(task).append(" \n");
             }
         }
-        return resultList;
+        return str.toString();
     }
 
     /**
      * Adds task to list.
      * @param t task to add.
      */
-    public void addTask(Task t) {
+    public String addTask(Task t) {
         this.lst.add(t);
+        return "Got it. I've added this task: \n  " + t +" \n Now you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
     }
 
     /**
@@ -40,10 +41,10 @@ public class TaskList {
      * @param i index of task starting from 1.
      * @return the deleted task.
      */
-    public Task deleteTask(int i) {
+    public String deleteTask(int i) {
         Task removed = lst.get(i - 1);
         lst.remove(i - 1);
-        return removed;
+        return "Noted. I've removed this task: \n  " + removed + " \nNow you have " + lst.size() + " tasks in the list.\n";
     }
 
     /**
@@ -51,10 +52,10 @@ public class TaskList {
      * @param i index of task starting from 1.
      * @return the marked task.
      */
-    public Task markTask(int i) {
+    public String markTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsDone();
-        return t;
+        return "Nice! I've marked this task as done:\n  " + t;
     }
 
     /**
@@ -62,25 +63,33 @@ public class TaskList {
      * @param i index of task starting from 1.
      * @return the marked task.
      */
-    public Task unmarkTask(int i) {
+    public String unmarkTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsNotDone();
-        return t;
+        return "OK, I've marked this task as not done yet:\n  " + t;
     }
 
     /**
-     * Prints items in list.
+     * Display items in list.
+     * @return the list.
      */
-    public void printList() {
-        int count = 1;
-        for (Task tsk : this.lst) {
-            System.out.println(String.valueOf(count++) + "." + tsk);
+    public String displayList() {
+        if(lst.size() == 0 ) {
+            return "You do not have any tasks currently";
         }
+
+        StringBuilder str = new StringBuilder();
+        str.append("Here are the tasks in your list: \n");
+        for (int i = 1; i <= lst.size(); i++) {
+            Task task = lst.get(i - 1);
+            str.append(i).append(". ").append(task).append("\n");
+        }
+        return str.toString();
     }
 
     /**
      * Converts list to list of string.
-     * @return
+     * @return string representation of list.
      */
     public ArrayList<String> toStringList() {
         ArrayList<String> items = new ArrayList<>();
@@ -105,11 +114,5 @@ public class TaskList {
      */
     public int getSize() {
         return lst.size();
-    }
-
-    private static boolean isSimilar(String input, String toCompare){
-        Pattern pattern = Pattern.compile(".*" + input + ".*");
-        Matcher matcher = pattern.matcher(toCompare);
-        return (matcher.find());
     }
 }

@@ -6,6 +6,6 @@ public class DukeException extends Exception {
      * @param message error to print.
      */
     public DukeException(String message) {
-        super("☹ OOPS!!! " + message);
+        super("OOPS!!! " + message);
     }
 }
