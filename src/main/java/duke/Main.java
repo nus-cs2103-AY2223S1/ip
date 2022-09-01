@@ -9,13 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * @author Jeffry Lum
- * https://se-education.org/guides/tutorials/javaFxPart4.html
+ * @author Jeffry Lum - reused
+ * Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
 
-    private Dukebot dukebot = new Dukebot();
+    private Duke duke = new Duke();
 
     @Override
     public void start(Stage stage) {
@@ -24,7 +24,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(dukebot);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.setTitle("Duke");
             stage.show();
             fxmlLoader.<MainWindow>getController().displayStartupMessages();

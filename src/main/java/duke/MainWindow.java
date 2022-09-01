@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Dukebot dukebot;
+    private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -32,12 +32,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Dukebot d) {
-        dukebot = d;
+    public void setDuke(Duke d) {
+        duke = d;
     }
 
     public void displayStartupMessages() {
-        String startupMessage = dukebot.handleStartup();
+        String startupMessage = duke.handleStartup();
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(startupMessage, dukeImage)
         );
@@ -55,13 +55,13 @@ public class MainWindow extends AnchorPane {
             userInput.clear();
             return;
         }
-        String response = dukebot.getResponse(input);
+        String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        if (dukebot.isExit()) {
+        if (duke.isExit()) {
             System.exit(0);
         }
     }
