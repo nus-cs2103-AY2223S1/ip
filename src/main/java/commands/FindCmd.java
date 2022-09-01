@@ -33,13 +33,15 @@ public class FindCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         List<Task> wantedTasks = tasks.tasksContain(body);
-        ui.notifyUser("Here are the matching tasks in your list:");
+        String output = "";
+        output += ui.notifyUser("Here are the matching tasks in your list:");
         int counter = 1;
         for (Task task : wantedTasks) {
-            ui.notifyUser(String.format("%d. %s", counter, task));
+            output += ui.notifyUser(String.format("%d. %s", counter, task));
             counter++;
         }
+        return output;
     }
 }

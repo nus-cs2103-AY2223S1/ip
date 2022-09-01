@@ -31,12 +31,11 @@ public class TodoCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         if (body.isBlank()) {
             throw new TodoException();
         } else {
-            addTaskType(new Todo(body), tasks, ui);
+            return addTaskType(new Todo(body), storage, tasks, ui);
         }
-        saveUserTasks(storage, tasks);
     }
 }

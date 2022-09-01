@@ -20,12 +20,13 @@ public class ListUserTextCmd extends Command {
      * @param storage Stores and retrieves data from a local .txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.notifyUser("Here are your current tasks:");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String output = ui.notifyUser("Here are your current tasks:");
         List<String> taskPrint = new ArrayList<>();
         tasks.fillTaskPrint(taskPrint);
         for (String task : taskPrint) {
-            ui.notifyUser(task);
+            output += ui.notifyUser(task);
         }
+        return output;
     }
 }

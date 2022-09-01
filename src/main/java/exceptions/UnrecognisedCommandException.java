@@ -1,7 +1,5 @@
 package exceptions;
 
-import exceptions.TumuException;
-
 /**
  * Exception occurs when a command issued is unrecognised.
  */
@@ -23,7 +21,9 @@ public class UnrecognisedCommandException extends TumuException {
      */
     @Override
     public String toString() {
-        return String.format("Oops! Sorry, I don't " +
-                "understand this command: %s", command);
+        return String.format("Oops! Sorry, I don't "
+                + "understand this command: %s.\nTry typing the following "
+                + "commands instead: todo, deadline, event, mark, unmark, "
+                + "delete, find, list.", command);
     }
 }

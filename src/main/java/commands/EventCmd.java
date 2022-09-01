@@ -33,7 +33,7 @@ public class EventCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         //Check for "/at", if not available then prompt user to add timing.
         if (!body.contains("/at")) {
             throw new DENoTimingException("at");
@@ -45,11 +45,9 @@ public class EventCmd extends Command {
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
                 throw new DENoArgException();
             } else {
-                addTaskType(new Event(parse[0].trim(),
-                        parse[1].replaceAll("\\s+", "")), tasks, ui);
+                return addTaskType(new Event(parse[0].trim(),
+                        parse[1].replaceAll("\\s+", "")), storage, tasks, ui);
             }
         }
-
-        saveUserTasks(storage, tasks);
     }
 }

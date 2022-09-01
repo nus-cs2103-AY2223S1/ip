@@ -59,7 +59,7 @@ public class Storage {
      *
      * @param userTasks A list of the tasks stored within the local txt file.
      */
-    public void saveData(List<Task> userTasks) {
+    public void saveData(List<Task> userTasks, Ui ui) {
         try {
             getFile();
             FileWriter fileWriter = new FileWriter(filePath);
@@ -70,7 +70,7 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            System.out.println("\tAn I/O error has occurred.");
+            ui.notifyUser("An I/O error has occurred.");
             e.printStackTrace();
         }
     }

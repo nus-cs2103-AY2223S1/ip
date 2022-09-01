@@ -30,11 +30,13 @@ public class UnmarkTaskCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         Task task = tasks.unmarkTask(taskIndex);
+        String output = "";
         if (task != null) {
-            ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
+            output += ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
         }
-        saveUserTasks(storage, tasks);
+        saveUserTasks(storage, tasks, ui);
+        return output;
     }
 }

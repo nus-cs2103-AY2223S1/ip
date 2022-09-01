@@ -6,7 +6,7 @@ package exceptions;
  */
 public class DETimingOverflowException extends TumuException {
     private static String TIMING_OVERFLOW_EXCEPTION =
-            "There's too many timings, I'm confused.";
+            "There's too many timings, I'm confused...";
 
     /**
      * Constructor for the DETimingOverflowException class.
