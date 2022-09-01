@@ -70,25 +70,24 @@ public class Storage {
             List<String> tasks = Files.readAllLines(Path.of(this.filePath));
             for (String x : tasks) {
                 String taskType = x.substring(1,2);
-                Boolean done = x.substring(4,5).equals("X");
+                boolean isDone = x.substring(4,5).equals("X");
                 String[] arr = x.substring(6).split("\\(");
                 String taskName = arr[0].trim();
-                // String date = arr[1].replace(")","").trim();
                 Task toAdd;
                 if (taskType.equals("T")) {
                     toAdd = new ToDo(taskName);
                 } else if (taskType.equals("D")) {
                     toAdd = new Deadline(taskName, arr[1].replace(")", "").
-                            replace("by","").trim(), true);
+                                    replace("by","").trim(), true);
                 } else {
                     toAdd = new Event(taskName, arr[1].replace(")","").
-                            replace("at","").trim(), true);
+                                    replace("at","").trim(), true);
                 }
 
                 if (toAdd == null) {
                     throw new DukeException("File could not be read properly to retrieve task list.");
                 } else {
-                    if (done) {
+                    if (isDone) {
                         toAdd.Done();
                     }
                     list.add(toAdd);
@@ -117,4 +116,6 @@ public class Storage {
         }
     }
 
+
 }
+

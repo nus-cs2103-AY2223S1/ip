@@ -30,7 +30,7 @@ public class Deadline extends Task {
         }
     }
 
-    Deadline(String name, String dateTime, boolean exist) {
+    Deadline(String name, String dateTime, boolean isExist) {
         super(name);
         this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
     }
@@ -53,7 +53,8 @@ public class Deadline extends Task {
     public String toString() {
         String out = "[D]";
         out += super.toString();
-        out += " (by " + this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+        out += " (by " + this.dateTime.format(DateTimeFormatter.
+                ofPattern("MMM dd yyyy HHmm")) + ")";
         return out;
     }
 

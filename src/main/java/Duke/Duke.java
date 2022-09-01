@@ -122,7 +122,8 @@ public class Duke {
                             } else if (!date.startsWith("at")) {
                                 throw new IllegalArgumentException("Event time must be specified with at");
                                 } else {
-                                task = new Event(parser.replaceAll(arr[0], "event"), parser.replaceAll(arr[1], "at"));
+                                task = new Event(parser.replaceAll(arr[0], "event"),
+                                        parser.replaceAll(arr[1], "at"));
                             }
                         }
                     } else if (input.startsWith("deadline")) {
@@ -139,7 +140,8 @@ public class Duke {
                             } else if (!date.startsWith("by")) {
                                 throw new IllegalArgumentException("Deadline time must be specified with by");
                             } else {
-                                task = new Deadline(parser.replaceAll(arr[0], "deadline"), parser.replaceAll(arr[1], "by"));
+                                task = new Deadline(parser.replaceAll(arr[0], "deadline"),
+                                        parser.replaceAll(arr[1], "by"));
                             }
                         }
                     }
@@ -147,7 +149,8 @@ public class Duke {
                         throw new IllegalArgumentException("Please provide a proper format");
                     }
 
-                    if (!task.isToDo() && task.getDateTime() == null) { // to deal with incorrect date format (to-do no date)
+                    if (!task.isToDo() && task.getDateTime() == null) {
+                        // to deal with incorrect date format (to-do no date)
                         throw new DukeException("Input date-time in the format yyyy-MM-dd HHmm");
                     } else {
                         list.getList().add(task);
