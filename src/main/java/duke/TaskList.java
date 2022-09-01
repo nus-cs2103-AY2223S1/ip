@@ -63,7 +63,7 @@ public class TaskList {
         this.list.add(task);
         StringBuilder stringBuilder = new StringBuilder("Got it. I've added this task:\n");
         stringBuilder.append(task);
-        stringBuilder.append(String.format("\nNow you have %d tasks in the list.", this.list.size()));
+        stringBuilder.append(String.format("Now you have %d tasks in the list.", this.list.size()));
         return stringBuilder.toString();
     }
 
@@ -80,7 +80,7 @@ public class TaskList {
         Task task = this.list.remove(index);
         StringBuilder stringBuilder = new StringBuilder("Noted. I've removed this task:\n");
         stringBuilder.append(task);
-        stringBuilder.append(String.format("\nNow you have %d tasks in the list.", this.list.size()));
+        stringBuilder.append(String.format("Now you have %d tasks in the list.", this.list.size()));
         return stringBuilder.toString();
     }
 
@@ -123,7 +123,7 @@ public class TaskList {
         for (int i = 0; i < this.list.size(); i++) {
             Task task = this.list.get(i);
             if (task.matchKeyword(searchStr.subSequence(0, searchStr.length()))) {
-                stringBuilder.append(String.format("%d.%s", index++, task));
+                stringBuilder.append(String.format("%d. %s", index++, task));
             }
         }
         stringBuilder.append("Search completed.");
@@ -151,7 +151,7 @@ public class TaskList {
         }
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < this.list.size(); i++) {
-            stringBuilder.append(String.format("%d.%s", i + 1, this.list.get(i).toString()));
+            stringBuilder.append(String.format("%d. %s", i + 1, this.list.get(i).toString()));
         }
         stringBuilder.append("When you're ready, you may mark them as complete.");
         return stringBuilder.toString();
