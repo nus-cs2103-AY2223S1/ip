@@ -22,10 +22,11 @@ Features:
 and it is **FREE**!
 
 <hr />
-If you Java programmer, you can use it to practice Java too. Here's the <code>main</code> method:
+If you Java programmer, you can use it to practice Java too. Here's the main method:
 
-<pre><code>public class Main {
+~~~ruby
+public class Main {
    public static void main(String[] args) {
       Application.launch(MainApp.class, args);
    }
-}</code></pre>
+}
