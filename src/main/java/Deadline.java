@@ -10,9 +10,11 @@ public class Deadline extends Task {
         super.isDone = false;
         super.type = "D";
 
-        String dateInString = parts[1];
-        DateFormatter newDate = new DateFormatter(dateInString);
-        super.dateAndTime = newDate.formattedDate();
+        try {
+            String dateInString = parts[1];
+            DateFormatter newDate = new DateFormatter(dateInString);
+            super.dateAndTime = newDate.formattedDate();
+        } catch (ArrayIndexOutOfBoundsException e) {}
     }
 
     @Override
@@ -21,8 +23,10 @@ public class Deadline extends Task {
         if (this.isDone) {
             mark = "X";
         }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         String formattedDate = dateAndTime.format(formatter);
         return "[" + type + "][" + mark + "]" + this.description + "(by: " + formattedDate + ")";
+
     }
 }

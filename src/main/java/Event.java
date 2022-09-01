@@ -10,9 +10,11 @@ public class Event extends Task {
         super.isDone = false;
         super.type = "E";
 
-        String dateInString = parts[1];
-        DateFormatter newDate = new DateFormatter(dateInString);
-        super.dateAndTime = newDate.formattedDate();
+        try {
+            String dateInString = parts[1];
+            DateFormatter newDate = new DateFormatter(dateInString);
+            super.dateAndTime = newDate.formattedDate();
+        } catch (ArrayIndexOutOfBoundsException e) {}
     }
 
     @Override
@@ -21,6 +23,7 @@ public class Event extends Task {
         if (this.isDone) {
             mark = "X";
         }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         String formattedDate = dateAndTime.format(formatter);
         return "[" + type + "][" + mark + "]" + this.description + "(at: " + formattedDate + ")";
