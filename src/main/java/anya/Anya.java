@@ -135,7 +135,6 @@ public class Anya {
     }
 
     /**
-     *
      * Returns a string of tasks in the TaskList.
      *
      * @param tasks A collection of Tasks.
@@ -153,7 +152,7 @@ public class Anya {
      * @param index The index of the task in the TaskList to be marked.
      * @return The task that is marked.
      */
-    public String mark(TaskList tasks, int index) throws AnyaException{
+    public String mark(TaskList tasks, int index) throws AnyaException {
         try {
             Task task = tasks.getTaskFromIndex(index);
             task.markDone();
@@ -171,7 +170,7 @@ public class Anya {
      * @param index The index of the task in the TaskList to be unmarked
      * @return The task that is unmarked.
      */
-    public String unmark(TaskList tasks, int index) throws AnyaException{
+    public String unmark(TaskList tasks, int index) throws AnyaException {
         try {
             Task task = tasks.getTaskFromIndex(index);
             task.markUndone();
@@ -189,7 +188,7 @@ public class Anya {
      * @param index The index of the task in the TaskList to be removed
      * @return The task that is removed.
      */
-    public String delete(TaskList tasks, int index) throws AnyaException{
+    public String delete(TaskList tasks, int index) throws AnyaException {
         try {
             Task removedTask = tasks.getTaskFromIndex(index);
             tasks.deleteTaskFromIndex(index);

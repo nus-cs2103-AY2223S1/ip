@@ -14,7 +14,7 @@ public class Parser {
     }
 
     // anya.task.Task related
-    public static String parseTaskName(String userInput) throws AnyaException{
+    public static String parseTaskName(String userInput) throws AnyaException {
         try {
             if (userInput.contains(" /by ") || userInput.contains(" /at ")) {
                 String inputTask = userInput.split(" ", 2)[1];
@@ -27,7 +27,7 @@ public class Parser {
         }
     }
 
-    public static LocalDateTime parseDateTime(String userInput) throws AnyaException{
+    public static LocalDateTime parseDateTime(String userInput) throws AnyaException {
         String[] details = userInput.split(" /by ", 2);
         try {
             String dateTimeStr = details[1];
@@ -39,7 +39,7 @@ public class Parser {
         }
     }
 
-    public static String parseEventDetails(String userInput) throws AnyaException{
+    public static String parseEventDetails(String userInput) throws AnyaException {
         String[] details = userInput.split(" /at ", 2);
         try {
             String eventDetails = details[1];

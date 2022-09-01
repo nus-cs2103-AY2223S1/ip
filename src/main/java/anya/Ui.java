@@ -90,7 +90,7 @@ public class Ui {
             StringBuilder message = new StringBuilder("Anya has found these matching tasks in your list:\n");
             for (int i = 0; i < filteredTasks.getLength(); i++) {
                 int index = i + 1;
-                message.append(index + ". " + filteredTasks.getTaskFromIndex(index).toString()+"\n");
+                message.append(index + ". " + filteredTasks.getTaskFromIndex(index).toString() + "\n");
             }
             return message.toString();
         }
