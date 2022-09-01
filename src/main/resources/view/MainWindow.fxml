@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainWindow">
-<children>
-  <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" AnchorPane.bottomAnchor="1.0" />
-  <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
-  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0">
+<AnchorPane styleClass="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #000000" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainWindow">
+  <children>
+  <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Type &quot;help&quot; to see the list of commands" style="-fx-background-color: #000000; -fx-text-fill: white; " AnchorPane.bottomAnchor="1.0">
+         <font>
+            <Font name="Orbitron Bold" size="12.0" />
+         </font></TextField>
+  <Button fx:id="sendButton" layoutX="324.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #000000; -fx-border-color: #FFFFFF; -fx-border-radius: 10; -fx-background-radius: 10;" text="Send" textFill="WHITE">
+         <font>
+            <Font name="Orbitron Bold" size="12.0" />
+         </font></Button>
+  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" style="-fx-background-color: #000000">
     <content>
-      <VBox fx:id="dialogContainer" prefWidth="388.0" />
+<!--      <VBox fx:id="dialogContainer" prefWidth="388.0" style="-fx-background-color: #000000;"/>-->
+        <VBox fx:id="dialogContainer" prefWidth="388.0" styleClass="dialog">
+            <stylesheets>
+                <URL value="@../style/style.css"/>
+            </stylesheets>
+        </VBox>
     </content>
   </ScrollPane>
 </children>

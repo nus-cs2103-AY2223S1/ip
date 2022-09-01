@@ -4,13 +4,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-<children>
-  <Label fx:id="dialog" text="Label" wrapText="true" />
-  <ImageView fx:id="displayPicture" fitHeight="69.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
-</children>
-<padding>
-  <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
-</padding>
+<fx:root alignment="TOP_RIGHT" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label fx:id="dialog" style="-fx-background-color: #FFFFFF; -fx-label-padding: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="Label" wrapText="true">
+         <font>
+            <Font name="Orbitron Bold" size="12.0" />
+         </font>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </Label>
+    <ImageView fx:id="displayPicture" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+  </children>
+  <padding>
+    <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+  </padding>
+  <spacing>
+    5
+  </spacing>
 </fx:root>
