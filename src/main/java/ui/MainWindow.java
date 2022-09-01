@@ -46,6 +46,9 @@ public class MainWindow extends AnchorPane {
         stage = st;
     }
 
+    /**
+     * Shows welcome message to the user
+     */
     @FXML
     public void showWelcome() {
         String welc = jarvis.getWelcome();

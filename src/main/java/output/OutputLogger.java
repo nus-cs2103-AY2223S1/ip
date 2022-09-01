@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Class for static methods related to console output
+ * Class for static methods related to string output
  */
 public class OutputLogger {
     private static final String NAME = "JARVIS";
@@ -63,18 +63,6 @@ public class OutputLogger {
      * Print chatbot introduction for the user
      */
     public static String getIntroduction() {
-//        String logo = "\n"
-//                +
-//                "     _   _    ___ __   __ ___  ___ \n"
-//                +
-//                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n"
-//                +
-//                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n"
-//                +
-//                "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
-//
-//        System.out.print(logo);
-
         return output(String.format("Hello, I'm %s!\nWhat can I do for you?", NAME));
     }
 

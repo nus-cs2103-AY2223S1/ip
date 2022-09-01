@@ -8,19 +8,27 @@ import input.Input;
 import output.OutputLogger;
 import task.TaskModel;
 
-
 /**
- * Entry point for the chatbot
+ * Class that is a glue between main logic and UI classes
  */
 public class Jarvis {
     private TaskModel taskModel;
     private CommandRunner cmdRunner;
 
+    /**
+     * Initialise Jarvis instance
+     * @throws StorageException if there was any issue initialising storage
+     */
     public Jarvis() throws StorageException {
         taskModel = new TaskModel();
         cmdRunner = new CommandRunner(taskModel);
     }
 
+    /**
+     * Returns a CommandResponse given the input message from the user
+     * @param userInput Input message from the user
+     * @return Appropriate response or error from a Command
+     */
     public CommandResponse getResponse(String userInput) {
         try {
             CommandResponse res = cmdRunner.run(Input.newInput(userInput));
@@ -30,51 +38,19 @@ public class Jarvis {
         }
     }
 
+    /**
+     * Returns the welcome message from the chatbot
+     * @return Welcome message
+     */
     public String getWelcome() {
         return OutputLogger.getIntroduction();
     }
 
+    /**
+     * Saves data to disk
+     * @throws DukeException if there were issues saving data
+     */
     public void save() throws DukeException {
         taskModel.save();
     }
-
-    /**
-     * Entry point for Duke
-     * @param args CLI args
-     */
-//    public static void main(String[] args) {
-//        Scanner sc = new Scanner(System.in);
-//        CommandRunner cmdRunner = null;
-//        boolean canRun = true;
-//        try {
-//            cmdRunner = new CommandRunner(taskModel);
-//        } catch (StorageException e) {
-//            OutputLogger.output("There was an issue loading tasks. Shutting down...");
-//            canRun = false;
-//        }
-//
-//        if (canRun) {
-//            OutputLogger.printIntroduction();
-//        }
-//
-//        while (canRun) {
-//            try {
-//                System.out.print(">> ");
-//                String input = sc.nextLine().trim();
-//
-//                Input ir = Input.newInput(input);
-//
-//                CommandResponse res = cmdRunner.run(ir);
-//                OutputLogger.output(res.getMessage());
-//                if (res.isExit()) {
-//                    break;
-//                }
-//            } catch (DukeException err) {
-//                OutputLogger.output(err.getMessage());
-//            } catch (Exception err) {
-//                System.out.println(err);
-//                OutputLogger.output("An unrecognised issue has occurred:\n" + err.getMessage());
-//            }
-//        }
-//    }
 }
