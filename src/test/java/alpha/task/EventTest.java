@@ -1,5 +1,6 @@
-package alpha;
+package alpha.task;
 
+import alpha.Ui;
 import alpha.task.Event;
 import org.junit.jupiter.api.Test;
 
