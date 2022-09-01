@@ -1,3 +1,7 @@
+package amanda.manager;
+
+import amanda.exception.*;
+import amanda.task.*;
 import java.util.StringTokenizer;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
@@ -40,7 +44,7 @@ public class TaskMaker {
                     curr = tokens.nextToken();
                     try{
                         if (validateDate(curr)) {
-                            Date date = inputFormat.parse(tokens.nextToken());
+                            Date date = inputFormat.parse(curr);
                             deadline = outputFormat.format(date);
                         } else {
                             throw new AmandaException("\nPlease enter the date and time in the correct format, don't waste my time!\n");

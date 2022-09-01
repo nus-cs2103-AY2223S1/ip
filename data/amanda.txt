@@ -1,5 +1,2 @@
-T/0/ buy
-T/0/ hi
-D/0/ eat/ Sun 07 22 2001 04:00 PM
-D/0/ eat/ Sun Jul 22 2001 04:00 PM
-E/0/ go/ Sat Jun 04 2022 11:59 PM
+D/1/ eat/ Sun Jul 22 2001 11:59 PM
+T/1/ cry

@@ -1,62 +1,50 @@
+import amanda.command.*;
+import amanda.ui.*;
+import amanda.manager.*;
+import amanda.exception.*;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Amanda {
-    public static void main(String[] args) {
+
+    private StoreManager store;
+    private TaskManager tasks;
+    private Ui ui;
+
+    public Amanda (String filePath) {
+        QueryInterpreter interpreter = new QueryInterpreter();
+        store = new StoreManager(filePath);
+        ui = new Ui();
         try {
-            String logo ="                                           _\n"
-                        +"            __ _ _ __ ___   __ _ _ __   __| | __ _\n"
-                        +"           / _' | '_ ` _ \\ / _` | '_ \\ / _` |/ _` |\n"
-                        +"          | (_| | | | | | | (_| | | | | (_| | (_| |\n"
-                        +"           \\__,_|_| |_| |_|\\__,_|_| |_|\\__,_|\\__,_|\n";
-            System.out.println(logo);
-            System.out.println("    ............................................................");
-            System.out.println("     Urgh! It's you\n     What do you want?");
-            System.out.println("    ............................................................\n");
-
-            StoreManager manager = new StoreManager();
-            QueryInterpreter interpreter = new QueryInterpreter();
-            TaskMaker taskMaker = new TaskMaker();
-            manager.load();
-
-            Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
-
-            while (!interpreter.getType(input).equals("bye")) {
-                System.out.println("    ............................................................");
-                if (interpreter.getType(input).equals("list")) {
-                    manager.list();
-                    input = sc.nextLine();
-                } else if (interpreter.getType(input).equals("mark")) {
-                    manager.markTask(Integer.parseInt(interpreter.getIndex(input)));
-                    manager.store();
-                    input = sc.nextLine();
-                } else if (interpreter.getType(input).equals("unmark")) {
-                    manager.unmarkTask(Integer.parseInt(interpreter.getIndex(input)));
-                    manager.store();
-                    input = sc.nextLine();
-                } else if(interpreter.getType(input).equals("delete")) {
-                    manager.deleteTask(Integer.parseInt(interpreter.getIndex(input)));
-                    manager.store();
-                    input = sc.nextLine();
-                } else {
-                    if (interpreter.getType(input).equals("task")) {
-                        Task currTask = taskMaker.make(input);
-                        manager.add(currTask);
-                        manager.store();
-                        input = sc.nextLine();
-                    }
-                }
-            }
-            sc.close();
-
-            System.out.println("    ............................................................");
-            System.out.println("     Finally! I'll take a nap, please don't call me again.");
-            System.out.println("    ............................................................\n");
-
-        } catch (IOException | AmandaException e) {
-            System.out.println(e.getMessage());
+            tasks = new TaskManager();
+            store.load(tasks);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        Scanner sc = new Scanner(System.in);
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand(sc);
+                ui.showLine(); // show the divider line ("_______")
+                Command c = QueryInterpreter.interpret(fullCommand);
+                c.execute(tasks, ui, store);
+                isExit = c.isExit();
+            } catch (AmandaException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
+        sc.close();
+    }
+
+    public static void main(String[] args) {
+        Amanda amanda = new Amanda("data/Amanda.txt");
+        amanda.run();
     }
 }

@@ -1,3 +1,5 @@
+package amanda.task;
+
 public class Todo extends Task {
 
     protected String by;

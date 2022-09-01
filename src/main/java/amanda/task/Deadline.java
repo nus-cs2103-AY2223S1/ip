@@ -1,8 +1,10 @@
-public class Event extends Task {
+package amanda.task;
+
+public class Deadline extends Task {
 
     protected String by;
 
-    public Event(String description, String by) {
+    public Deadline(String description, String by) {
         super(description);
         this.by = by;
     }
@@ -13,6 +15,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at:" + by + ")";
+        return "[D]" + super.toString() + " (by:" + by + ")";
     }
 }
