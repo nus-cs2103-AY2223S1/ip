@@ -9,7 +9,7 @@ import duke.exception.DukeException;
  */
 public class List {
 
-    private ArrayList<Task> taskList = new ArrayList<>();
+    private final ArrayList<Task> taskList = new ArrayList<>();
 
     public List() {
     }
@@ -29,6 +29,11 @@ public class List {
         return taskList;
     }
 
+    /**
+     * delete the task in the list according to the number given.
+     * @param taskNumber task number to delete
+     * @throws DukeException
+     */
     public void deleteTask(int taskNumber) throws DukeException {
         if (taskNumber < 0 || taskNumber > this.taskList.size() - 1) {
             throw new DukeException("You cannot delete what you don't have from the beginning, auch!\n");

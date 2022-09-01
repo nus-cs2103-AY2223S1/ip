@@ -17,8 +17,7 @@ public class UnmarkCommand extends Command {
             + "%1$s" + "\n"
             + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private int taskToMark;
-    private Task task;
+    private final int taskToMark;
 
     public UnmarkCommand(int taskToMark) {
         this.taskToMark = taskToMark;
@@ -27,7 +26,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
-            task = tasks.getTask(taskToMark);
+            Task task = tasks.getTask(taskToMark);
             task.markTaskAsNotDone();
             storage.save();
             return ui.showToUser(String.format(MESSAGE_SUCCESS, task, tasks.numberOfTasks()));

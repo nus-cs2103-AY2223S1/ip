@@ -12,11 +12,10 @@ import duke.ui.Ui;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
-    private static final String FILE_PATH = "Duke/duke.txt";
     private boolean isExit = false;
     private Storage storage;
-    private List tasks;
-    private Ui ui;
+    private final List tasks;
+    private final Ui ui;
 
     /**
      * Sets up the required objects and loads up the data from the storage file.
@@ -25,7 +24,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         try {
-            storage = new Storage(FILE_PATH);
+            storage = new Storage();
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
         }
@@ -71,7 +70,7 @@ public class Duke {
      * @throws DukeException If there are no commands.
      */
     public String getResponse(String input) {
-        String output = "";
+        String output;
         try {
             Command c = Parser.parse(input);
             output = c.execute(tasks, ui, storage);

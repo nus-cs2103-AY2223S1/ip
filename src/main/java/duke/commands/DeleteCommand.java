@@ -16,8 +16,7 @@ public class DeleteCommand extends Command {
             + "%1$s" + "\n"
             + "Remaining " + "%2$s" + " tasks in the list.\n";
 
-    private int taskNumber;
-    private Task toDelete;
+    private final int taskNumber;
 
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -28,7 +27,7 @@ public class DeleteCommand extends Command {
         try {
             tasks.deleteTask(taskNumber);
             storage.save();
-            toDelete = tasks.getTask(taskNumber);
+            Task toDelete = tasks.getTask(taskNumber);
             return ui.showToUser(String.format(MESSAGE_SUCCESS, toDelete, tasks.numberOfTasks()));
         } catch (DukeException e) {
             return ui.showErrorMessage(e.getMessage());

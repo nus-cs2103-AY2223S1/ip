@@ -9,6 +9,9 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task.
+     */
     public Task(String description) throws DukeException {
         if (description.equals("blah")) {
             throw new DukeException("I blah don't blah know blah ... blah ... zzz\n");
