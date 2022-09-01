@@ -5,8 +5,6 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.io.IOException;
-
 public class Unmark extends Command {
 
     /** Task number of the task to be marked as done */
@@ -31,7 +29,7 @@ public class Unmark extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, false);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "unmarked: Task " + this.taskNumber);
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "unmarked: Task " + this.taskNumber);
     }
 
     /**

@@ -1,8 +1,6 @@
 package alpha;
 
 import alpha.task.Task;
-
-import java.time.DateTimeException;
 import java.util.List;
 
 public class TaskList {
@@ -35,12 +33,12 @@ public class TaskList {
      */
     public void printTasks(Ui uI){
         if (tasks.isEmpty()) {
-            uI.colouredPrint(uI.ANSI_BLUE, ">> " + "Your task list is empty!");
+            uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "Your task list is empty!");
         } else {
-            uI.colouredPrint(uI.ANSI_BLUE, ">> " + "Your task list is as follows:");
+            uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "Your task list is as follows:");
             int count = 1;
             for (Task task : tasks) {
-                uI.colouredPrint(uI.ANSI_BLUE, count + ") " + task.toString());
+                uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), count + ") " + task.toString());
                 count++;
             }
         }
@@ -49,13 +47,13 @@ public class TaskList {
     /**
      * Modifies the status of the task at the provided index in the list.
      *
-     * @param taskNumeber The task number of the task whose status needs to be modified.
+     * @param taskNumber The task number of the task whose status needs to be modified.
      * @param taskStatus The status to which the task status needs to be modified.
      * @throws AlphaException If the task number is out of bounds of the task list.
      */
-    public void modifyTaskStatus(int taskNumeber, boolean taskStatus) throws AlphaException {
+    public void modifyTaskStatus(int taskNumber, boolean taskStatus) throws AlphaException {
         try {
-            tasks.get(taskNumeber - 1).changeStatus(taskStatus);
+            tasks.get(taskNumber - 1).changeStatus(taskStatus);
         } catch (IndexOutOfBoundsException e) {
             throw new AlphaException("Invalid input: This task number doesn't exist!");
         }

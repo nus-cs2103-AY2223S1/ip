@@ -1,8 +1,5 @@
 package alpha.task;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     /** Deadline for the task */
@@ -36,7 +33,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.ANSI_RED + " (by: %s)", this.getDeadline() + uI.ANSI_RESET);
+        return super.toString() + String.format(uI.getANSI_CODE("ANSI_RED") +
+                " (by: %s)", this.deadline + uI.getANSI_CODE(""));
     }
 
     /**
@@ -51,7 +49,9 @@ public class Deadline extends Task {
             return true;
         } else if(obj instanceof Deadline) {
             Deadline d = (Deadline) obj;
-            return (d.getDescription().equals(this.getDescription()) && d.getStatus().equals(this.getStatus()) && d.getTaskType().equals(this.getTaskType()) && d.getDeadline().equals(this.getDeadline()));
+
+            return (d.getDescription().equals(this.getDescription()) && d.getStatus().equals(this.getStatus())
+                    && d.getTaskType().equals(this.getTaskType()) && d.getDeadline().equals(this.getDeadline()));
         }
         return false;
     }

@@ -4,8 +4,6 @@ import alpha.command.*;
 import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Todo;
-
-import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +28,8 @@ public class Parser {
                 checkInvalidInput(input, 5);
                 String[] taskInfo = inputTokens[1].split(" /on ", 2);;
                 if (taskInfo.length <= 1) {
-                    throw new AlphaException("Invalid input: Incorrect format! Enter help to learn about the command formats.");
+                    throw new AlphaException("Invalid input: Incorrect format! " +
+                            "Enter help to learn about the command formats.");
                 }
                 String formattedDate = checkDateFormat(taskInfo[1]);
                 return new Add(new Event(taskInfo[0], formattedDate, "E"));
@@ -40,7 +39,8 @@ public class Parser {
                 checkInvalidInput(input, 8);
                 String[] taskInfo = inputTokens[1].split(" /by ", 2);
                 if (taskInfo.length <= 1) {
-                    throw new AlphaException("Invalid input: Incorrect format! Enter help to learn about the command formats.");
+                    throw new AlphaException("Invalid input: Incorrect format! " +
+                            "Enter help to learn about the command formats.");
                 }
                 String formattedDate = checkDateFormat(taskInfo[1]);
                 return new Add(new Deadline(taskInfo[0], formattedDate, "D"));

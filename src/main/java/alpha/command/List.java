@@ -4,8 +4,6 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.time.DateTimeException;
-
 public class List extends Command {
 
     /**
@@ -14,7 +12,7 @@ public class List extends Command {
      * Displays the list of tasks in the task list.
      */
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws DateTimeException {
+    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
         taskList.printTasks(uI);
     }
 

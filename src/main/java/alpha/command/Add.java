@@ -8,9 +8,6 @@ import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Task;
 
-import java.io.IOException;
-import java.time.DateTimeException;
-
 public class Add extends Command {
 
     /** Task to be added to tbe list */
@@ -47,7 +44,7 @@ public class Add extends Command {
             textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "added: " + task.getDescription());
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "added: " + task.getDescription());
     }
 
     /**

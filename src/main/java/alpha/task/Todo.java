@@ -24,7 +24,8 @@ public class Todo extends Task {
             return true;
         } else if(obj instanceof Todo) {
             Todo t = (Todo) obj;
-            return (t.getDescription().equals(this.getDescription()) && t.getStatus().equals(this.getStatus()) && t.getTaskType().equals(this.getTaskType()));
+            return (t.getDescription().equals(this.getDescription()) && t.getStatus().equals(this.getStatus())
+                    && t.getTaskType().equals(this.getTaskType()));
         }
         return false;
     }

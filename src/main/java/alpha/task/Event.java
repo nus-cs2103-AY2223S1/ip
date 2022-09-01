@@ -1,9 +1,5 @@
 package alpha.task;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class Event extends Task {
 
     /** Event task date */
@@ -37,7 +33,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.ANSI_RED + " (on: %s)", this.getDate() + uI.ANSI_RESET);
+        return super.toString() + String.format(uI.getANSI_CODE("ANSI_RED") + " (on: %s)", date + uI.getANSI_CODE(""));
+
     }
 
     /**
@@ -52,7 +49,8 @@ public class Event extends Task {
             return true;
         } else if(obj instanceof Event) {
             Event e = (Event) obj;
-            return (e.getDescription().equals(this.getDescription()) && e.getStatus().equals(this.getStatus()) && e.getTaskType().equals(this.getTaskType()) && e.getDate().equals(this.getDate()));
+            return (e.getDescription().equals(this.getDescription()) && e.getStatus().equals(this.getStatus())
+                    && e.getTaskType().equals(this.getTaskType()) && e.getDate().equals(this.getDate()));
         }
         return false;
     }

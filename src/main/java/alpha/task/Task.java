@@ -67,12 +67,15 @@ public abstract class Task {
         this.status = status;
     }
 
+
     /**
      * Returns the details of the task as a String.
      *
      * @return String to display the details of the task.
      */
+    @Override
     public String toString() {
-        return String.format(uI.ANSI_BLUE + "[ %s ] [ %s ] %s", this.getTaskType(), this.getStatus(), this.getDescription() + uI.ANSI_RESET);
+        return String.format(uI.getANSI_CODE("ANSI_BLUE") + "[ %s ] [ %s ] %s", this.getTaskType(),
+                this.getStatus(), this.getDescription() + uI.getANSI_CODE("ANSI_RESET"));
     }
 }

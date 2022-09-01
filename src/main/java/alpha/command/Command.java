@@ -5,7 +5,6 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.io.IOException;
 public abstract class Command {
 
     /**

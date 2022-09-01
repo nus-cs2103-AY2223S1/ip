@@ -23,7 +23,8 @@ public class Ui {
      * Prints the message to be displayed at the start of the execution.
      */
     public void welcomeMessage() {
-        System.out.println("\n------------------\n" + ANSI_BLUE_BOLD + "HELLO, I AM ALPHA!" + ANSI_RESET + "\n------------------");
+        System.out.println("\n------------------\n" + ANSI_BLUE_BOLD +
+                "HELLO, I AM ALPHA!" + ANSI_RESET + "\n------------------");
         System.out.println(ANSI_BLUE + "What can I do for you?" + ANSI_RESET);
         System.out.println(ANSI_WHITE + "(enter help to learn about the commands)" + ANSI_RESET);
 
@@ -38,6 +39,27 @@ public class Ui {
     public String takeUserInput(Scanner in) {
         String input = in.nextLine();
         return input;
+    }
+
+    /**
+     * Returns the required ANSI_CODE.
+     *
+     * @param ANSI_CODE ANSI_CODE required.
+     * @return ANSI_CODE.
+     */
+    public String getANSI_CODE(String ANSI_CODE) {
+        switch (ANSI_CODE) {
+            case ("ANSI_WHITE"):
+                return ANSI_WHITE;
+            case ("ANSI_RED"):
+                return ANSI_RED;
+            case ("ANSI_BLUE"):
+                return ANSI_BLUE;
+            case ("ANS-_BLUE_BOLD"):
+                return ANSI_BLUE_BOLD;
+            default:
+                return ANSI_RESET;
+        }
     }
 
     /**
