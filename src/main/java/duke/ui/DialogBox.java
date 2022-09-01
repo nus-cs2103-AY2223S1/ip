@@ -12,12 +12,14 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 //@@author RezwanArefin01-reused
-//Source: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
+//Adapted from: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
 /**
  * A DialogBox containing an image and a text.
  */
@@ -28,7 +30,7 @@ public class DialogBox extends HBox {
     @FXML
     private Text text;
     @FXML
-    private ImageView displayPicture;
+    private Circle circle;
 
     /**
      * Creates a new DialogBox with the given message and image.
@@ -47,7 +49,7 @@ public class DialogBox extends HBox {
         }
 
         text.setText(message);
-        displayPicture.setImage(img);
+        circle.setFill(new ImagePattern(img));
     }
 
     /**

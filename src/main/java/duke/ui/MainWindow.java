@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 //@@author RezwanArefin01-reused
-//Source: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
+//Adapted from: https://se-education.org/guides/tutorials/javaFxPart4.html#javafx-tutorial-part-4-using-fxml
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -32,8 +32,13 @@ public class MainWindow extends VBox {
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
     @FXML
-    public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+    private void initialize() {
+        scrollPane.setOnScroll(event -> {
+            scrollPane.setVvalue(scrollPane.getVvalue() - event.getDeltaX() / dialogContainer.getHeight());
+        });
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue(1.0);
+        });
     }
 
     protected void initDuke(Path path) {
