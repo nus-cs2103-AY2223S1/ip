@@ -33,7 +33,6 @@ public class TodoCommand extends Command {
             Todo todo = new Todo(input);
             taskList.createTask(todo, builder);
         } else {
-            builder.append("Description of a todo cannot be empty");
             throw new DukeException("Description of a todo cannot be empty");
         }
     };

@@ -19,7 +19,6 @@ public class UnknownCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        builder.append("I don't know what you are telling me to do");
         throw new DukeException("I don't know what you are telling me to do");
     }
 }

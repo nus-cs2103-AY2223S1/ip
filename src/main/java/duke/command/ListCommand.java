@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
         if (taskList.getSize() == 0) {
-            builder.append(Ui.formatMessage("Your list is empty!"));
+            builder.append("Your list is empty!");
         } else {
             String toDisplay = "Your current list is:\n  ";
             for (int i = 0; i < taskList.getSize() - 1; i++) {

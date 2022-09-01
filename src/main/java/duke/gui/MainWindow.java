@@ -2,6 +2,7 @@ package duke.gui;
 
 import duke.Duke;
 import duke.DukeException;
+import duke.util.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -33,12 +34,11 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setDuke(Duke d) {
+        String greet = Ui.greet();
         this.duke = d;
+        this.dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(greet, dukeImage));
+        this.dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(this.duke.getResponse().displayMessage(), dukeImage));
     }
-
-    //private String getResponse(String input) {
-    //    return "Duke heard: " + input;
-    //}
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to

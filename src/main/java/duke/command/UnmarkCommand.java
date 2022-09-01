@@ -35,7 +35,6 @@ public class UnmarkCommand extends Command {
             builder.append("I've marked this task as not done.. \n  "
                     + taskList.getTask(index).toString());
         } catch (IndexOutOfBoundsException e) {
-            builder.append("Index is out of bounds!");
             throw new DukeException("Index is out of bounds!");
         }
     }

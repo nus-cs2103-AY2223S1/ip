@@ -52,7 +52,6 @@ public class FindCommand extends Command {
                 builder.append(message);
             }
         } else {
-            builder.append("I'm only able to find one word in the list for now..");
             throw new DukeException("I'm only able to find one word in the list for now..");
         }
     }

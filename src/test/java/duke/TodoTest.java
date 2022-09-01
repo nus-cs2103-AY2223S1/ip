@@ -16,7 +16,7 @@ public class TodoTest {
     @Test
     public void toDo_createTodo_correctStringFormat(){
         Todo todo = new Todo("Run the first test");
-        todo.taskDone();
+        todo.setDone();
         assertEquals("[T][X] Run the first test", todo.toString());
     }
 
@@ -26,7 +26,7 @@ public class TodoTest {
     @Test
     public void toDo_createTodo_correctType(){
         Todo todo = new Todo("Run the second test");
-        todo.taskDone();
+        todo.setDone();
         assertEquals("T", todo.getType());
     }
 }

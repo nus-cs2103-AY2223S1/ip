@@ -1,6 +1,7 @@
 package duke.command;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import duke.DukeException;
 import duke.Response;
@@ -32,14 +33,17 @@ public class DeadlineCommand extends Command {
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
         String[] segments = input.split("/by");
-        if (segments.length != 2) {
-            builder.append("Error with deadline input");
-            throw new DukeException("Error with deadline input");
-        } else {
-            String time = segments[1].strip();
-            LocalDate date = LocalDate.parse(time);
-            Deadline deadline = new Deadline(segments[0], date);
-            taskList.createTask(deadline, builder);
+        try {
+            if (segments.length != 2) {
+                throw new DukeException("Please follow the format \n'deadline task /by YYYY-MM-DD'!");
+            } else {
+                String time = segments[1].strip();
+                LocalDate date = LocalDate.parse(time);
+                Deadline deadline = new Deadline(segments[0], date);
+                taskList.createTask(deadline, builder);
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please follow the format \n'deadline task /by YYYY-MM-DD'!");
         }
     };
 }

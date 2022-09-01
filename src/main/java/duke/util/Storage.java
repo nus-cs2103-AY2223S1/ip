@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import duke.Response;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -20,7 +21,7 @@ import duke.task.Todo;
  * Class that deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
-    private TaskList taskList = new TaskList(new ArrayList<>());
+    private TaskList tasks = new TaskList(new ArrayList<>());
     private static String FILE_PATH;
 
     public Storage(String filePath) {
@@ -32,41 +33,41 @@ public class Storage {
      *
      * @throws IOException the io exception
      */
-    public void storageRead() throws IOException {
+    public void storageRead(Response response) throws IOException {
         try {
             File file = new File(FILE_PATH);
             FileReader fr = new FileReader(file.getPath());
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
             if (line == null) {
-                System.out.println("Your task list is empty.");
+                response.append("Your task list is empty.");
             } else {
-                System.out.println("These are the tasks you had previously");
+                response.append("These are the tasks you had previously:\n");
                 while (line != null) {
                     String[] segments = line.split(">");
                     switch (segments[0]) {
                     case "T":
-                        taskList.createTaskSilently(new Todo(segments[2]));
+                        tasks.createTaskSilently(new Todo(segments[2]));
                         if (segments[1].equals("X")) {
-                            taskList.getTask(taskList.getSize() - 1).setDone();
+                            tasks.getTask(tasks.getSize() - 1).setDone();
                         }
                         break;
 
                     case "E":
-                        String time = segments[3].strip();
+                        String time = segments[3];
                         LocalDate date = LocalDate.parse(time);
-                        taskList.createTaskSilently(new Event(segments[2], date));
+                        tasks.createTaskSilently(new Event(segments[2], date));
                         if (segments[1].equals("X")) {
-                            taskList.getTask(taskList.getSize() - 1).setDone();
+                            tasks.getTask(tasks.getSize() - 1).setDone();
                         }
                         break;
 
                     case "D":
-                        String time2 = segments[1].strip();
+                        String time2 = segments[3];
                         LocalDate date2 = LocalDate.parse(time2);
-                        taskList.createTaskSilently(new Deadline(segments[2], date2));
+                        tasks.createTaskSilently(new Deadline(segments[2], date2));
                         if (segments[1].equals("X")) {
-                            taskList.getTask(taskList.getSize() - 1).setDone();
+                            tasks.getTask(tasks.getSize() - 1).setDone();
                         }
                         break;
 
@@ -77,20 +78,17 @@ public class Storage {
                     line = br.readLine();
                 }
             }
-            String toDisplay = "  <----\n";
-            for (int i = 0; i < taskList.getSize(); i++) {
-                toDisplay += "  " + (i + 1) + ": " + taskList.getTask(i) + "\n";
+            for (int i = 0; i < tasks.getSize(); i++) {
+                response.append("  " + (i + 1) + ": " + tasks.getTask(i) + "\n");
             }
-            toDisplay += "  ---->";
-            System.out.println(toDisplay);
             br.close();
         } catch (FileNotFoundException e) {
             if (new File("data").mkdir()) {
-                System.out.println("Directory does not exist, creating one for you.");
-                System.out.println("Creating a save file for you (duke.txt)");
+                response.append("Directory for a save file does not exist, creating one for you.\n");
+                response.append("Creating a save file for you (duke.txt)");
                 new File("data/duke.txt").createNewFile();
             } else if (new File("data/duke.txt").createNewFile()) {
-                System.out.println("Save file does not exist, creating one for you.");
+                response.append("Save file does not exist, creating one for you.");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,14 +98,14 @@ public class Storage {
     /**
      * Writes the current information to a save file.
      *
-     * @param taskList the task list
+     * @param tasks the task list
      */
-    public static void storageWrite(TaskList taskList) {
+    public static void storageWrite(TaskList tasks) {
         try {
             File myFile = new File(FILE_PATH);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
-            for (Task task : taskList.getTaskList()) {
+            for (Task task : tasks.getTaskList()) {
                 switch (task.getType()) {
 
                 case "T":
@@ -142,6 +140,6 @@ public class Storage {
      * @return the task list
      */
     public TaskList getTaskList() {
-        return this.taskList;
+        return this.tasks;
     }
 }

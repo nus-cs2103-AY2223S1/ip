@@ -2,10 +2,8 @@ package duke;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.command.Command;
-import duke.command.UnknownCommand;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -16,17 +14,15 @@ import duke.util.Ui;
  */
 public class Duke {
     private static Storage storage = new Storage("./././././data/duke.txt");
-    private TaskList taskList;
-    //private Scanner sc = new Scanner(System.in);
+    private TaskList tasks;
     private static Response response = new Response(new StringBuilder());
 
     public Duke() {
-        Ui.greet();
         try {
-            storage.storageRead();
-            taskList = storage.getTaskList();
+            storage.storageRead(response);
+            tasks = storage.getTaskList();
         } catch (IOException e) {
-            taskList = new TaskList(new ArrayList<>());
+            tasks = new TaskList(new ArrayList<>());
         }
     }
 
@@ -35,7 +31,7 @@ public class Duke {
             try {
                 response.reset();
                 Command command = Parser.parseCommand(input);
-                command.run(taskList, response);
+                command.run(tasks, response);
                 String message = Ui.formatMessage(response.displayMessage());
                 response.reset();
                 return message;
@@ -43,6 +39,10 @@ public class Duke {
                 return Ui.formatMessage(e.toString());
             }
         }
+    }
+
+    public Response getResponse() {
+        return this.response;
     }
 }
 

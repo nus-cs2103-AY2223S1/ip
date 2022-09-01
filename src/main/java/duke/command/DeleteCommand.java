@@ -32,7 +32,6 @@ public class DeleteCommand extends Command {
         try {
             taskList.deleteTask(index, builder);
         } catch (IndexOutOfBoundsException e) {
-            builder.append("Index is out of bounds");
             throw new DukeException("Index is out of bounds");
         }
     }
