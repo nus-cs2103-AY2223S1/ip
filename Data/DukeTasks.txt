@@ -4,4 +4,6 @@ D*1*homework *12/12/1212 1212
 T*0*read
 T*1*play
 D*0*2103t *1/9/2022 2359
-D*0*testing *12/12/1212 1212
+D*1*testing *12/12/1212 1212
+T*1*read
+T*1*read

@@ -29,34 +29,33 @@ public class Storage {
             if (!tasks.createNewFile()) {
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(tasks.getPath()));
-                    label:
                     for (String line; (line = reader.readLine()) != null; ) {
                         String[] taskInfo = line.split("[*]", 4);
 
                         switch (taskInfo[0]) {
-                            case "T":
-                                Task toDo = new ToDo(taskInfo[2]);
-                                if (taskInfo[1].equals("1")) {
-                                    toDo.setDone();
-                                }
-                                taskList.add(toDo);
-                                break;
-                            case "D":
-                                Task deadline = new Deadline(taskInfo[2], taskInfo[3]);
-                                if (taskInfo[1].equals("1")) {
-                                    deadline.setDone();
-                                }
-                                taskList.add(deadline);
-                                break;
-                            case "E":
-                                Task event = new Event(taskInfo[2], taskInfo[3]);
-                                if (taskInfo[1].equals("1")) {
-                                    event.setDone();
-                                }
-                                taskList.add(event);
-                                break;
-                            default:
-                                break label;
+                        case "T":
+                            Task toDo = new ToDo(taskInfo[2]);
+                            if (taskInfo[1].equals("1")) {
+                                toDo.setDone();
+                            }
+                            taskList.add(toDo);
+                            break;
+                        case "D":
+                            Task deadline = new Deadline(taskInfo[2], taskInfo[3]);
+                            if (taskInfo[1].equals("1")) {
+                                deadline.setDone();
+                            }
+                            taskList.add(deadline);
+                            break;
+                        case "E":
+                            Task event = new Event(taskInfo[2], taskInfo[3]);
+                            if (taskInfo[1].equals("1")) {
+                                event.setDone();
+                            }
+                            taskList.add(event);
+                            break;
+                        default:
+                            break;
                         }
                     }
                     reader.close();
