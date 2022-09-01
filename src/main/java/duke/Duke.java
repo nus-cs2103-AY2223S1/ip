@@ -11,20 +11,34 @@ import java.util.ArrayList;
  */
 public class Duke {
 
+    /**
+     * Tasklist used.
+     */
     private static TaskList taskList = new TaskList(new ArrayList<Task>());
-    private static Storage storage = new Storage(taskList);
-    private static Ui ui = new Ui(storage);
-    private static Parser parser = new Parser(storage, ui);
 
     /**
-     * Starts the Duke chatbot.
-     *
-     * @throws IOException
+     * Storage used.
      */
-    public static void run() throws IOException {
-        storage.readFromFile();
-        parser.parse();
+    private static Storage storage = new Storage(taskList);
+
+    /**
+     * UI used.
+     */
+    private static Ui ui = new Ui(storage);
+
+    /**
+     * Parser used.
+     */
+    static Parser parser = new Parser(storage, ui);
+
+    /**
+     * Gets the response from the parser and ui processors.
+     */
+    String getResponse(String input) throws IOException {
+
+        return parser.parse(input);
     }
+
 
     /**
      * Main method.
@@ -32,7 +46,7 @@ public class Duke {
      * @param args
      * @throws DukeException
      */
-    public static void main(String[] args) throws DukeException, IOException {
+    public static void main(String[] args) {
         String divider = "---------------------------------------------------" +
                 "-------------------------------------------------------------";
 
@@ -44,7 +58,6 @@ public class Duke {
         System.out.println(divider);
         System.out.println("Hello I am \n" + logo + "\nType help to see user guide.\n\nWhat can I do for you?");
         System.out.println(divider);
-        run();
     }
 }
 
