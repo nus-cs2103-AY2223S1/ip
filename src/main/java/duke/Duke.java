@@ -63,6 +63,9 @@ public class Duke {
                 case UNMARK:
                     UnmarkHandler.handle(list, fullCommand[1]);
                     break;
+                case FIND:
+                    FindHandler.handle(list, fullCommand[1]);
+                    break;
                 case DELETE:
                     DeleteHandler.handle(list, fullCommand[1]);
                     break;
