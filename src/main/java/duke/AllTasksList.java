@@ -92,4 +92,16 @@ public class AllTasksList implements Serializable {
                 "Now you have " + this.allTasks.size() + " tasks in the list."
         );
     }
+
+    public void find(String[] commandArr) {
+        ArrayList<Task> allTaskCopy = new ArrayList<>();
+        allTaskCopy.addAll(this.allTasks);
+        allTaskCopy.removeIf(s -> s.toString().indexOf(commandArr[1]) < 0);
+
+        String output = "";
+        for (int i = 0; i < allTaskCopy.size(); i++) {
+            output += "\n" + (i + 1) + ". " + allTaskCopy.get(i).toString();
+        }
+        System.out.println(output);
+    }
 }
