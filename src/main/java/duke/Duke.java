@@ -20,13 +20,8 @@ public class Duke {
 
     public Duke() {
         storage = new Storage("data" + File.separator + "taskList.txt");
-        try {
-            list = new TaskList(storage.load());
-        } catch (FileNotFoundException e) {
-            list = new TaskList();
-        }
+        list = new TaskList(storage);
         p = new Parser(list);
-        isExiting = false;
     }
 
     public String getResponse(String userInput) {

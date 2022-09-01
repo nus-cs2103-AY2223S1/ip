@@ -41,6 +41,7 @@ public class Parser {
         if (isListCommand(userInput.split(" ")[0])) {
             return this.parseListCommands(userInput, fromSave);
         } else if (userInput.equals("bye")) {
+            list.save();
             return Ui.showBye();
         } else if (userInput.equals("list")) {
             return Ui.displayList(list);

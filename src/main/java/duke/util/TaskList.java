@@ -3,65 +3,76 @@ package duke.util;
 import duke.exception.DukeException;
 import duke.exception.FileParseException;
 import duke.task.Task;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
  * Handles anything that is related to TaskList and Tasks.
  */
 public class TaskList {
-    private final ArrayList<Task> store;
+    private ArrayList<Task> listOfTasks;
+    private final Storage storage;
 
-    public TaskList(ArrayList<String> fileInput) {
-        this.store = new ArrayList<>();
+    public TaskList(Storage storage) {
+        this.listOfTasks = new ArrayList<>();
         Parser p = new Parser(this);
-        if (!fileInput.isEmpty()) {
-            for (String line : fileInput) {
-                try {
-                    p.parseInput(line, true);
-                } catch (FileParseException e) {
-                    Ui.warnCorruptedLine(e);
-                } catch (DukeException e) {
-                    Ui.showUnknownError();
+        this.storage = storage;
+        try {
+            ArrayList<String> fileInput = storage.load();
+            if (!fileInput.isEmpty()) {
+                for (String line : fileInput) {
+                    try {
+                        p.parseInput(line, true);
+                    } catch (FileParseException e) {
+                        Ui.warnCorruptedLine(e);
+                    } catch (DukeException e) {
+                        Ui.showUnknownError();
+                    }
                 }
             }
+        } catch (FileNotFoundException e) {
+            this.listOfTasks = new ArrayList<>();
         }
     }
 
     public TaskList() {
-        this.store = new ArrayList<>();
+        this.storage = new Storage("data" + File.separator + "taskList");
+        this.listOfTasks = new ArrayList<>();
     }
 
     public ArrayList<Task> getArray() {
-        return this.store;
+        return this.listOfTasks;
     }
 
     public Task markAsDone(int i) {
-        Task task = this.store.get(i);
+        Task task = this.listOfTasks.get(i);
         task.setDone(true);
         return task;
     }
 
     public Task markAsNotDone(int i) {
-        Task task = this.store.get(i);
+        Task task = this.listOfTasks.get(i);
         task.setDone(false);
         return task;
     }
 
     public Task delete(int i) {
-        return this.store.remove(i);
+        return this.listOfTasks.remove(i);
     }
 
     public void add(Task task) {
-        this.store.add(task);
+        this.listOfTasks.add(task);
     }
 
     public int getSize() {
-        return this.store.size();
+        return this.listOfTasks.size();
     }
 
     public ArrayList<Task> searchFor(String keyword) {
         ArrayList<Task> output = new ArrayList<>();
-        for (Task t : this.store) {
+        for (Task t : this.listOfTasks) {
             if (t.getDescription().contains(keyword)) {
                 output.add(t);
             }
@@ -70,7 +81,11 @@ public class TaskList {
     }
 
     public Task lastTaskAdded() {
-        return this.store.get(this.store.size() - 1);
+        return this.listOfTasks.get(this.listOfTasks.size() - 1);
+    }
+
+    public void save() {
+        storage.saveToFile(this);
     }
 
 }
