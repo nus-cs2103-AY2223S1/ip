@@ -7,14 +7,12 @@ import utils.IOUtils;
 import utils.InputParser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class ConversationHandler {
 
     private boolean open = true;
-    private ArrayList<Task> list = new ArrayList<>();
+    private ArrayList<Task> list;
 
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
