@@ -51,4 +51,7 @@ public class Constants {
 
     // Find message
     public static final String FIND_MESSAGE = "Here are the matching tasks in your list:";
+
+    // Exit message
+    public static final String EXIT_MESSAGE = "Great that you joined. See you soon. Bye!";
 }

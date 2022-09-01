@@ -1,6 +1,7 @@
 package duke.TaskList;
 
 import Ui.Constants;
+import duke.Storage.DukeEncoder;
 
 import java.util.ArrayList;
 
@@ -12,10 +13,12 @@ public class TaskOperation {
      * @param task text the user typed
      * @param workList
      */
-    public static void add(Task task, ArrayList<Task> workList) {
-        System.out.println(Constants.ARROW + "Added task: " + task.toString());
+    public static String add(Task task, ArrayList<Task> workList) {
         workList.add(task);
-        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
+        // Update data
+        DukeEncoder.rewriteList(workList);
+        return (Constants.ARROW + "Added task: " + task.toString()) + "\n" +
+              ("Now you have " + workList.size() + " task(s) on your list.");
     }
 
     /**
@@ -24,19 +27,22 @@ public class TaskOperation {
      * @param task text the user typed
      * @param workList
      */
-    public static void delete(Task task, ArrayList<Task> workList) {
-        System.out.println(Constants.ARROW + "Deleted task: " + task.toString());
+    public static String delete(Task task, ArrayList<Task> workList) {
         workList.remove(task);
-        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
+        // Update data
+        DukeEncoder.rewriteList(workList);
+        return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n" +
+               ("Now you have " + workList.size() + " task(s) on your list.");
     }
 
     /**
      * Print all item in the word list
      */
-    public static void listItems(ArrayList<Task> workList) {
-        System.out.println(Constants.LISTING_MESSAGE);
+    public static String listItems(ArrayList<Task> workList) {
+        String toPrint = Constants.LISTING_MESSAGE + "\n";
         for (int i = 0; i < workList.size(); i++) {
-            System.out.println((i+1) + ") " + workList.get(i).toString());
+            toPrint += ((i+1) + ") " + workList.get(i).toString()) + "\n";
         }
+        return toPrint;
     }
 }

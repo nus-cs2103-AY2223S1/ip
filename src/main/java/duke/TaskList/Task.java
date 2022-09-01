@@ -1,6 +1,9 @@
 package duke.TaskList;
 
 import Ui.Constants;
+import duke.Storage.DukeEncoder;
+
+import java.util.ArrayList;
 
 public class Task {
     protected String detail;
@@ -34,19 +37,21 @@ public class Task {
     /**
      * Mark task as Done and Print acknowledge message.
      */
-    public void markAsDone() {
-        System.out.println(Constants.MARK_AS_DONE_MESSAGE);
+    public String markAsDone(ArrayList<Task> workList) {
         this.isDone = true;
-        System.out.println(this.toString());
+        // Update data
+        DukeEncoder.rewriteList(workList);
+        return Constants.MARK_AS_DONE_MESSAGE + this;
     }
 
     /**
      * Mark task as not Done and Print acknowledge message.
      */
-    public void unmark() {
-        System.out.println(Constants.UNMARK_MESSAGE);
+    public String unmark(ArrayList<Task> workList) {
         this.isDone = false;
-        System.out.println(this.toString());
+        // Update data
+        DukeEncoder.rewriteList(workList);
+        return Constants.UNMARK_MESSAGE + this;
     }
 
     /**
