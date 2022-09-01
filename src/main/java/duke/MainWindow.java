@@ -33,6 +33,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(Duke d) {
         duke = d;
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.startService(), dukeImage));
     }
 
     /**
@@ -46,6 +47,14 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
+        );
+        userInput.clear();
+    }
+
+    @FXML
+    private void sayHello() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello ! I am Duke.\n What can I do for you? \n", dukeImage)
         );
         userInput.clear();
     }

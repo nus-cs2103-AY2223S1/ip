@@ -16,12 +16,9 @@ public class Duke {
     private static DukeTaskManager taskManager;
     private static DukeUi dukeUi;
 
-    private MainWindow mainWindowController;
     private static Stage stage;
 
-    public void setMainWindowController(MainWindow mw) {
-        mainWindowController = mw;
-    }
+    private static final String START_MESSAGE = "Hello! I am Duke. \nWhat can I do for you? \n";
 
     public void setStage(Stage stage) {
         Duke.stage = stage;
@@ -29,9 +26,10 @@ public class Duke {
     /**
      * Starts the process of running Duke
      */
-    public static void startService() {
+    public String startService() {
         dukeUi = new DukeUi();
         taskManager = new DukeTaskManager(Storage.loadData());
+        return START_MESSAGE;
     }
 
 
