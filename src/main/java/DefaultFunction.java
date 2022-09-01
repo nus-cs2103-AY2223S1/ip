@@ -5,7 +5,7 @@ public class DefaultFunction extends Function{
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException{
+    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
         textBox.chat("This command doesn't exist!");
     }
 }

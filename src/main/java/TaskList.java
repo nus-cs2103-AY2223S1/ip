@@ -3,11 +3,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> tasks =  new ArrayList<Task>();;
+    private ArrayList<Task> tasks;
     private int size;
 
-    public TaskList(){
-        size = 0;
+    public TaskList(ArrayList<Task> tasks){
+        this.tasks = tasks;
+        size = tasks.size();
     }
 
     public void addTask(Task element){
@@ -29,7 +30,7 @@ public class TaskList {
         return tasks.get(idx);
     }
 
-    public List<Task> getTaskList(){
+    public ArrayList<Task> getTaskList(){
         return tasks;
     }
     public int getSize(){

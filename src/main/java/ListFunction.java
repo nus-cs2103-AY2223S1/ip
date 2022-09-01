@@ -5,7 +5,7 @@ public class ListFunction extends Function {
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException{
+    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
         if (tasks.getSize() < 1) { textBox.chat("There is no task currently assigned.");
         }else {
             int counter = 1;

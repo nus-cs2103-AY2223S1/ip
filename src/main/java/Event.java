@@ -7,6 +7,16 @@ public class Event extends Task{
     }
 
     @Override
+    public String getTime() {
+        return at;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "E";
+    }
+
+    @Override
     public Task toggleCompleted(){
         return new Event(getName(),!isCompleted(),at);
     }

@@ -5,7 +5,7 @@ public class GreetFunction extends Function {
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException{
+    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
         textBox.chat("Hello! I'm CleverNotBot\n What can I do for you?");
     }
 }
