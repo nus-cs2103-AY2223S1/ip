@@ -27,20 +27,22 @@ public class Task {
 
     /**
      * Alters isDone field to signify marked
+     * @return Return string to show its done
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("\t[X] " + this.description);
+        return "Nice! I've marked this task as done:\n\t[X] " + this.description;
     }
 
     /**
      * Alters isDone field to signify unmarked
+     * @return Return string to show its not done
      */
-    public void markAsNotDone() {
+    public String markAsNotDone() {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("\t[ ] " + this.description);
+        return "OK, I've marked this task as not done yet:\n\t[ ] " + this.description;
     }
 
 

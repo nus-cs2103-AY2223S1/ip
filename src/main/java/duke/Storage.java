@@ -153,6 +153,9 @@ public class Storage {
             //Read from the original file and write to the new
             //unless content matches data to be removed.
             while ((line = br.readLine()) != null) {
+                if(line.trim().equals(textToRemove)) {
+                    continue;
+                }
                 if (!line.trim().equals(textToRemove)) {
                     pw.println(line);
                     pw.flush();

@@ -1,7 +1,10 @@
-[T][ ] read book
-[T][ ] return book
-[T][ ] go library
-[D][ ] go sch (by: by sunday)
 [E][ ] project meeting  (at: Mon 2-4pm)
 [T][X] go meet rueben
-[T][ ] go back home
+[T][X] go back to hall
+[T][ ] rueben
+[D][ ] go beach  (by: Sunday)
+[E][ ] go to drink water  (at: Tuesday 2-4pm)
+[T][ ] use computer
+[T][ ] go where
+[D][ ] drink coke  (by: Sunday)
+[T][ ] bye bye

@@ -21,6 +21,10 @@ public class Ui {
         System.out.println(greet);
     }
 
+    public void print(String input) {
+        System.out.println(input);
+    }
+
     /**
      * Method to run at the end of running program
      */
