@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.exception.DukeException;
+import duke.gui.UI;
 import duke.task.Task;
 
 /**
@@ -21,6 +22,13 @@ public class Duke {
         taskList = new TaskList();
         ArrayList<Task> tasks = taskList.getTasks();
         Storage.load(tasks);
+    }
+
+    /**
+     * The main class, running the chat-bot.
+     */
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
     /**
@@ -78,10 +86,12 @@ public class Duke {
     }
 
     /**
-     * The main class, running the chat-bot.
+     * Placeholder for now.
+     *
+     * @param in User's input.
+     * @return Output by Elp's logic unit to return to the user.
      */
-    public static void main(String[] args) {
-        new Duke().run();
+    public String getResponse(String in) {
+        return "test123";
     }
-
 }

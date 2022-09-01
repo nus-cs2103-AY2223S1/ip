@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
+import duke.gui.UI;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
