@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
+import duke.storage.Storage;
+import duke.task.TaskList;
 
 /**
  * The Command class represents the command entered by user.

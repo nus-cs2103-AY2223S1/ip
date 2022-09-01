@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+//@@author Rachel-AG-reused
+//Reused from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modifications
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -26,6 +30,8 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    private static final String WELCOME_MSG = "Hello! I'm Duke.\nWhat can I do for you?";
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -33,6 +39,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(Duke d) {
         duke = d;
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(WELCOME_MSG, dukeImage));
     }
 
     /**
@@ -50,3 +57,4 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 }
+//@@author

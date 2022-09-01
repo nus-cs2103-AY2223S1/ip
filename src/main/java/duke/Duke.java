@@ -2,6 +2,8 @@ package duke;
 
 import duke.command.Command;
 import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
 import javafx.stage.Stage;
 
 /**

@@ -4,7 +4,7 @@ package duke.command;
  * The Ui Class encapsulates all the input and output interaction between Duke and user.
  */
 public class ResponseWrapper {
-    private static final String WELCOME_MSG = "Hello! I'm Duke.\nWhat can I do for you?";
+
     /**
      * Initializes an instance of Ui.
      */
@@ -12,14 +12,7 @@ public class ResponseWrapper {
     }
 
     /**
-     * Displays the welcome message.
-     */
-    protected String getWelcomeMessage() {
-        return WELCOME_MSG;
-    }
-
-    /**
-     * Displays the list of task in the taskList.
+     * Returns the response of list command using the list of task in the taskList.
      *
      * @param taskList Tasks to be displayed.
      */
@@ -32,7 +25,7 @@ public class ResponseWrapper {
     }
 
     /**
-     * Displays the response after successfully adding a task to the list of task.
+     * Returns the response after successfully adding a task to the list of task.
      *
      * @param taskDesc String representation of the task.
      * @param totalTask Number of saved task.
@@ -43,7 +36,7 @@ public class ResponseWrapper {
     }
 
     /**
-     * Displays the response after successfully marking a task as done.
+     * Returns the response after successfully marking a task as done.
      *
      * @param taskDesc String representation of the task.
      */
@@ -52,7 +45,7 @@ public class ResponseWrapper {
     }
 
     /**
-     * Displays the response after successfully marking a task as not done.
+     * Returns the response after successfully marking a task as not done.
      *
      * @param taskDesc String representation of the task.
      */
@@ -61,7 +54,7 @@ public class ResponseWrapper {
     }
 
     /**
-     * Displays the response after successfully deleting a task.
+     * Returns the response after successfully deleting a task.
      *
      * @param taskDesc String representation of the task.
      */
