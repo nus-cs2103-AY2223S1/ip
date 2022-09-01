@@ -192,9 +192,9 @@ public class Parser {
         return removeHeadingAndTailingWhiteSpaces(rawArgument);
     }
 
-    private static String getTaskTitle(String commandArgument) throws DukeMissingTaskTitleException {
-        int indexOfEnd = getIndexOfFirstDelimiter(commandArgument);
-        String roughTaskTitle = commandArgument.substring(0, indexOfEnd);
+    private static String getTaskTitle(String ... commandArgument) throws DukeMissingTaskTitleException {
+        int indexOfEnd = getIndexOfFirstDelimiter(commandArgument[0]);
+        String roughTaskTitle = commandArgument[0].substring(0, indexOfEnd);
         String realTaskTitle = removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
         if (realTaskTitle.isEmpty()) {
             throw new DukeMissingTaskTitleException(TASK_TITLE_MISSING_ERROR_MESSAGE);
