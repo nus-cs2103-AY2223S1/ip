@@ -5,12 +5,27 @@ import java.nio.file.NoSuchFileException;
 
 import java.util.Scanner;
 
-
+/**
+ * Dan is a personal chat bot that helps its user keep track of tasks. It currently implements the following commands:
+ * 1.
+ *
+ * @author Daniel Lee
+ * @version 0.1
+ */
 public class Dan {
     private TaskListReader tlr;
     private TaskList tasks;
     private Parser parser;
-    
+
+    /**
+     * Initialises the chat bot, Dan.
+     * The application reads the data file specified at its default storage location to generate it's list of tasks
+     * If the file is not found, a new data file is created.
+     *
+     * default storage location: src/main/data
+     *
+     * @param fileName Name of the data storage file
+     */
     public Dan(String fileName) {
         tlr = new TaskListReader(fileName);
         try {
@@ -31,10 +46,9 @@ public class Dan {
         }
     }
 
-    public static void main(String[] args) {
-        new Dan("TestData1.txt").run();
-    }
-    
+    /**
+     * Runs the chat bot.
+     */
     public void run() {
         Scanner sc = new Scanner(System.in);
         Ui.greet();
@@ -49,5 +63,14 @@ public class Dan {
             }
         }
         // writes list every iteration
+    }
+
+    /**
+     * The main driver of the chatbot.
+     *
+     * @param args Command-line commands for the application
+     */
+    public static void main(String[] args) {
+        new Dan("TestData1.txt").run();
     }
 }
