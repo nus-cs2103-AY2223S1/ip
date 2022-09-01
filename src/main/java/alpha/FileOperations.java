@@ -14,13 +14,28 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileOperations {
+
+    /** File to store data locally */
     File f;
+
+    /** Directory of the file */
     final String FILE_PATH;
 
+    /**
+     * Constructor to initialise the global variables.
+     *
+     * @param FILE_PATH To initialise the directory of the file.
+     */
     public FileOperations(String FILE_PATH) {
         this.FILE_PATH = FILE_PATH;
         f = new File(FILE_PATH);
     }
+
+    /**
+     * Creates a file in the specified directory if it does not already exist.
+     *
+     * @throws AlphaException If the file cannot be created in the specified directory.
+     */
     public void createFile() throws AlphaException {
         try {
             f.createNewFile();
@@ -29,6 +44,12 @@ public class FileOperations {
         }
     }
 
+    /**
+     * Writes data to the file.
+     *
+     * @param textToAppend Text to be added to the file.
+     * @throws AlphaException If file cannot be found or unable to write to file.
+     */
     public void writeToFile(String textToAppend) throws AlphaException {
         try {
             FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
@@ -39,6 +60,12 @@ public class FileOperations {
         }
     }
 
+    /**
+     * Rewrites the entire file.
+     *
+     * @param taskList The list of tasks to be added to the file.
+     * @throws AlphaException If file cannot be found or unable to write to file.
+     */
     public void rewriteFile(TaskList taskList) throws AlphaException {
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
@@ -63,9 +90,15 @@ public class FileOperations {
 
     }
 
+    /**
+     * Reads data from the file.
+     * Returns the list of the tasks stored in the file.
+     *
+     * @return List of tasks.
+     * @throws AlphaException If file is not found or cannot be read.
+     */
     public List<Task> readFile() throws AlphaException {
         List<Task> tasksInFile = new ArrayList<>();
-        //File f = new File(filePath); // create a File for the given file path
         Scanner s;
         try {
             s = new Scanner(f); // create a Scanner using the File as the source

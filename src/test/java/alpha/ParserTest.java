@@ -14,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ParserTest {
     Parser parser = new Parser();
 
+    /**
+     * Tests whether the interpretMessage() in Parser class correctly interprets the user input or not.
+     */
     @Test
     public void interpretMessage_inputMessage_command() throws AlphaException {
         assertEquals(new Add(new Todo("read", "T")), parser.interpretMessage("todo read"));
@@ -24,6 +27,9 @@ public class ParserTest {
         assertEquals(new Delete(2), parser.interpretMessage("delete 2"));
     }
 
+    /**
+     * Tests whether the interpretMessage() in Parser class throws appropriate Exceptions for invalid inputs or not.
+     */
     @Test
     public void interpretMessage_inputMessage_exception() {
         try {

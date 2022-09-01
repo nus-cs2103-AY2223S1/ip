@@ -8,12 +8,25 @@ import alpha.Ui;
 import java.io.IOException;
 
 public class Mark extends Command {
+
+    /** Task number of the task to be marked as done */
     private int taskNumber;
 
+    /**
+     * Constructor that initialises the global variables.
+     *
+     * @param taskNumber To initialise the task number of the task to be marked as done.
+     */
     public Mark(int taskNumber) {
         this.taskNumber = taskNumber;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Marks the task with the given task number as done and rewrites the file.
+     * Displays a message to indicate the successful completion of marking the task.
+     */
     @Override
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, true);
@@ -21,6 +34,12 @@ public class Mark extends Command {
         uI.colouredPrint(uI.ANSI_BLUE, ">> " + "marked: Task " + this.taskNumber);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Checks the equality of two objects
+     * Returns true if both objects are instance of Mark class and mark the task with the same task number.
+     */
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {
