@@ -1,9 +1,9 @@
+package duke;
+
 /**
  * This class handles all commands related to adding tasks
  * and inherits from the Command class.
  */
-package duke;
-
 public class AddCommand extends Command {
     private Task task;
 
@@ -21,12 +21,12 @@ public class AddCommand extends Command {
      * Adds a task to the tasklist.
      */
     @Override
-    public TaskList execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(task);
-        ui.displayTask(ui.ADDED, task);
-        ui.showTotalTasks(taskList);
+        String str = ui.displayTask(ui.ADDED, task);
+        str += ui.showTotalTasks(taskList);
         storage.save(taskList, ui);
-        return taskList;
+        return str;
     }
 
     /**

@@ -1,11 +1,11 @@
-/**
- * This class handles all features related to the tasklist.
- */
 package duke;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class handles all features related to the tasklist.
+ */
 public class TaskList {
     /** Tasks to be stored */
     private List<Task> tasks;

@@ -1,9 +1,9 @@
+package duke;
+
 /**
  * This class handles all commands related to unmarking tasks
  * and inherits from the Command class.
  */
-package duke;
-
 public class UnmarkCommand extends Command {
     private int index;
 
@@ -21,14 +21,12 @@ public class UnmarkCommand extends Command {
      * Unmarks a task from the tasklist.
      */
     @Override
-    public TaskList execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
 
         taskList.unmarkTask(index);
         Task temp = taskList.getTask(index);
-
-        ui.displayTask(ui.UNMARKED, temp);
         storage.save(taskList, ui);
-        return taskList;
+        return ui.displayTask(ui.UNMARKED, temp);
     }
 
     /**

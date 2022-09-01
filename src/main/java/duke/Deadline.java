@@ -1,8 +1,8 @@
+package duke;
+
 /**
  * This class is used to construct a deadline task.
  */
-package duke;
-
 import java.time.LocalDate;
 
 import static duke.DukeConstants.KEY_SEPARATOR;

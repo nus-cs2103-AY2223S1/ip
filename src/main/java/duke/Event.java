@@ -1,6 +1,3 @@
-/**
- * This class is used to construct an Event task.
- */
 package duke;
 
 import java.time.LocalDate;
@@ -8,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 
 import static duke.DukeConstants.KEY_SEPARATOR;
 
+/**
+ * This class is used to construct an Event task.
+ */
 public class Event extends Task {
     private LocalDate at;
     private String time;

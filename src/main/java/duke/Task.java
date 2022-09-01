@@ -1,11 +1,8 @@
+package duke;
+
 /**
  * This class is used to construct a task.
  */
-package duke;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Task {
     /** Description of the task */
     protected String description;

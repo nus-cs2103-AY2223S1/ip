@@ -1,10 +1,8 @@
+package duke;
+
 /**
  * This class handles the display for user interaction.
  */
-package duke;
-
-import java.util.Scanner;
-
 public class Ui {
 
     protected final String ADDED = "oke i added this:";
@@ -12,29 +10,22 @@ public class Ui {
     protected final String MARKED = "oke this is done now:";
     protected final String UNMARKED = "oke this is undone now:";
 
-    private Scanner scanner;
 
     /**
      * Constructor for the Ui class.
      */
     public Ui () {
-        System.out.println("----------------------");
+
     }
 
-    /**
-     * Prints a welcome message.
-     */
-    public void showWelcome() {
-        System.out.println("hi im chompers what can i do for u today!");
-        scanner = new Scanner(System.in);
-    }
 
     /**
      * Prints an exit message.
+     *
+     * @return String message.
      */
-    public void showExit() {
-        System.out.println("bye see u");
-        scanner.close();
+    public String showExit() {
+        return "bye see u\n";
     }
 
     /**
@@ -42,21 +33,20 @@ public class Ui {
      *
      * @param message Message to be printed.
      * @param task Task to be displayed.
+     * @return String displaying the task.
      */
-    public void displayTask(String message, Task task) {
-        System.out.println(message);
-        System.out.println(task);
+    public String displayTask(String message, Task task) {
+        return message + "\n" + task + "\n";
     }
 
     /**
      * Prints the entire list of tasks.
      *
      * @param taskList Tasklist to be printed.
+     * @return String containing all the tasks.
      */
-    public void printTasks(TaskList taskList) {
-        System.out.println("here! ur tasks:");
-        System.out.println(taskList.toString());
-
+    public String printTasks(TaskList taskList) {
+        return "here! ur tasks:\n" + taskList + "\n";
     }
 
     /**
@@ -64,22 +54,23 @@ public class Ui {
      * in the taskList.
      *
      * @param taskList Tasklist to be used.
+     * @return String containing the total number of tasks.
      */
-    public void showTotalTasks(TaskList taskList) {
-        System.out.println("now u have " + taskList.getSize() + " task(s)!");
+    public String showTotalTasks(TaskList taskList) {
+        return "now u have " + taskList.getSize() + " task(s)!\n";
     }
 
     /**
      * Displays the matching tasks for the user.
      *
      * @param taskList Tasklist to be displayed.
+     * @return String showing tasks with matching keyword.
      */
-    public void showMatchingTasks(TaskList taskList) {
+    public String showMatchingTasks(TaskList taskList) {
         if(taskList.getSize() > 0) {
-            System.out.println("here are the matching tasks:");
-            System.out.println(taskList);
+            return "here are the matching tasks: \n" + taskList + "\n";
         } else {
-            System.out.println("there are no tasks matching this keyword!");
+           return "there are no tasks matching this keyword!\n";
         }
     }
     
@@ -87,20 +78,11 @@ public class Ui {
      * Displays an error message.
      *
      * @param message Message to be displayed.
+     * @return String with error message.
      */
-    public void showError(String message) {
-        System.out.println("error! " + message);
+    public String showError(String message) {
+        return "error! " + message + "\n";
     }
 
-    /**
-     * Reads the user input.
-     *
-     * @return String containing the user input.
-     */
-    public String readCommand() {
-        String str;
-        scanner = new Scanner(System.in);
-        str = scanner.nextLine();
-        return str;
-    }
+
 }

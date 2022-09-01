@@ -1,11 +1,10 @@
-/**
- * This class is the main program for running Duke.
- */
-
 package duke;
 
 import java.io.FileNotFoundException;
 
+/**
+ * This class is the main program for running Duke.
+ */
 public class Duke {
 
     /** The tasklist to store the tasks */
@@ -33,27 +32,25 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+       // new Duke().run();
     }
 
     /**
-     * Runs the main program.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        String reply = "";
+    public String getResponse(String input) {
         Parser parser = new Parser();
-        boolean isExit = false;
-        ui.showWelcome();
 
-        while(!isExit) {
-            try {
-                reply = ui.readCommand();
-                Command c = parser.parse(taskList, reply, ui);
-                taskList = c.execute(taskList, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
+        try {
+            Command c = parser.parse(taskList, input, ui);
+            String reply = c.execute(taskList, ui, storage);
+            return reply;
+
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
         }
     }
+
+
 }

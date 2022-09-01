@@ -1,6 +1,3 @@
-/**
- * This class handles the parsing of user commands.
- */
 package duke;
 
 import java.time.LocalDate;
@@ -8,6 +5,9 @@ import java.time.format.DateTimeParseException;
 
 import static duke.DukeConstants.EXIT;
 
+/**
+ * This class handles the parsing of user commands.
+ */
 public class Parser {
 
     /**
@@ -33,18 +33,20 @@ public class Parser {
             return new ExitCommand();
         } else if (input.equals("list")) {
             return new ListCommand();
+        } else if (input.equals("poyo")) { // for fun
+            return new NullCommand("poyo");
         } else {
             String[] subStrs = input.split(" ", 2); // to identify the keyword used
             int index;
             Task temp;
             switch (subStrs[0]) {
             case "mark":
-                if(subStrs.length == 1) { // no number was given
+                if (subStrs.length == 1) { // no number was given
                     throw new DukeException(DukeException.MISSING_INDEX);
                 }
                 try {
                     index = Integer.parseInt(subStrs[1]) - 1;
-                    if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
+                    if (index < 0 || index >= taskList.getSize()) { // to check if index is out of range
                         throw new DukeException(DukeException.OUT_OF_RANGE);
                     }
 
@@ -53,47 +55,45 @@ public class Parser {
                     throw new DukeException(DukeException.WRONG_FORMAT);
                 }
             case "unmark":
-                if(subStrs.length == 1) {
+                if (subStrs.length == 1) {
                     throw new DukeException(DukeException.MISSING_INDEX);
                 }
                 try {
                     index = Integer.parseInt(subStrs[1]) - 1;
-                    if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
+                    if (index < 0 || index >= taskList.getSize()) { // check if index is out of range
                         throw new DukeException(DukeException.OUT_OF_RANGE);
                     }
                     return new UnmarkCommand(index);
 
                 } catch (NumberFormatException e) {
                     throw new DukeException(DukeException.WRONG_FORMAT);
-                    // ui.showError("Invalid input");
                 }
             case "delete":
-                if(subStrs.length == 1) {
+                if (subStrs.length == 1) {
                     throw new DukeException(DukeException.MISSING_INDEX);
                 }
                 try {
                     index = Integer.parseInt(subStrs[1]) - 1;
-                    if(index < 0 || index >= taskList.getSize()) {
+                    if (index < 0 || index >= taskList.getSize()) {
                         throw new DukeException(DukeException.OUT_OF_RANGE);
 
                     }
                     return new DeleteCommand(index);
                 } catch (NumberFormatException e) {
-                    ui.showError("Invalid input");
+                    return new NullCommand("invalid input");
                 }
-                break;
             case "todo":
-                if(subStrs.length == 1) {
+                if (subStrs.length == 1) {
                     throw new DukeException(DukeException.MISSING_DESCRIPTION);
                 }
                 temp = new Todo(subStrs[1]);
                 return new AddCommand(temp);
             case "deadline":
-                if(subStrs.length == 1) {
+                if (subStrs.length == 1) {
                     throw new DukeException(DukeException.MISSING_DESCRIPTION);
                 }
                 String[] dlDescs = subStrs[1].split(" /by ", 2);
-                if(dlDescs.length < 2) {
+                if (dlDescs.length < 2) {
                     throw new DukeException(DukeException.MISSING_DATE);
                 }
                 try {
@@ -105,16 +105,16 @@ public class Parser {
                     throw new DukeException(DukeException.WRONG_FORMAT_DATE);
                 }
             case "event":
-                if(subStrs.length == 1) {
+                if (subStrs.length == 1) {
                     throw new DukeException(DukeException.MISSING_DESCRIPTION);
                 }
                 String[] eventDescs = subStrs[1].split(" /at ", 2);
-                if(eventDescs.length < 2) {
+                if (eventDescs.length < 2) {
                     throw new DukeException(DukeException.MISSING_DATE);
                 }
                 try {
                     String[] timeDescs = eventDescs[1].split(" ", 2);
-                    if(timeDescs.length > 1) {
+                    if (timeDescs.length > 1) {
                         LocalDate date = LocalDate.parse(timeDescs[0]);
                         temp = new Event(eventDescs[0], date, timeDescs[1]);
                     } else {
@@ -125,16 +125,15 @@ public class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException(DukeException.WRONG_FORMAT_DATE);
                 }
-                case "find":
-                    if(subStrs.length == 1) { // no number was given
-                        throw new DukeException(DukeException.MISSING_DESCRIPTION);
-                    } else {
-                        return new FindCommand(subStrs[1]);
-                    }
-                default:
-                    throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
+            case "find":
+                if (subStrs.length == 1) { // no number was given
+                    throw new DukeException(DukeException.MISSING_DESCRIPTION);
+                } else {
+                    return new FindCommand(subStrs[1]);
+                }
+            default:
+                throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
             }
         }
-        return new ExitCommand();
     }
 }

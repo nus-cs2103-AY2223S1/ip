@@ -1,10 +1,9 @@
+package duke;
+
 /**
  * This class handles all commands related to deleting tasks
  * and inherits from the Command class.
  */
-
-package duke;
-
 public class DeleteCommand extends Command {
     /** Index of task to be deleted at */
     private int index;
@@ -23,13 +22,13 @@ public class DeleteCommand extends Command {
      * Deletes a task from the tasklist.
      */
     @Override
-    public TaskList execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task temp = taskList.getTask(index);
         taskList.removeTask(index);
         storage.save(taskList, ui);
-        ui.displayTask(ui.DELETED, temp);
-        ui.showTotalTasks(taskList);
-        return taskList;
+        String str = ui.displayTask(ui.DELETED, temp);
+        str += ui.showTotalTasks(taskList);
+        return str;
     }
 
     /**

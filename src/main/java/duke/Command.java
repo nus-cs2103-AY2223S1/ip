@@ -1,9 +1,8 @@
+package duke;
+
 /**
  * This class handles all user commands.
  */
-
-package duke;
-
 public abstract class Command {
 
     /**
@@ -19,9 +18,9 @@ public abstract class Command {
      * @param taskList Tasklist to be edited.
      * @param ui Ui for display.
      * @param storage Storage to write/read from file.
-     * @return Updated TaskList.
+     * @return String to display.
      */
-    public abstract TaskList execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
 
     /**
      * Returns a boolean to check if user has exited the program.

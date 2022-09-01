@@ -1,6 +1,3 @@
-/**
- * This class handles features related to storing tasks.
- */
 package duke;
 
 import java.io.File;
@@ -14,6 +11,9 @@ import java.util.Scanner;
 
 import static duke.DukeConstants.KEY_SEPARATOR;
 
+/**
+ * This class handles features related to storing tasks.
+ */
 public class Storage {
     private String filePath;
 

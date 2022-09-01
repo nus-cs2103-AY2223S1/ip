@@ -1,8 +1,8 @@
+package duke;
+
 /**
  * This class handles all exceptions specific to duke.
  */
-package duke;
-
 public class DukeException extends Exception {
 
     protected static final String UNRECOGNISED_COMMAND = "i don't know what that means!";

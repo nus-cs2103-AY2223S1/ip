@@ -1,9 +1,9 @@
+package duke;
+
 /**
  * This class handles all commands related to marking tasks
  * and inherits from the Command class.
  */
-package duke;
-
 public class MarkCommand extends Command {
     private int index;
 
@@ -21,12 +21,12 @@ public class MarkCommand extends Command {
      * Marks a task from the tasklist.
      */
     @Override
-    public TaskList execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markTask(index);
         Task temp = taskList.getTask(index);
-        ui.displayTask(ui.MARKED, temp);
+
         storage.save(taskList, ui);
-        return taskList;
+        return ui.displayTask(ui.MARKED, temp);
     }
 
     /**

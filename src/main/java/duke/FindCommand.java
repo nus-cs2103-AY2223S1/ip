@@ -1,8 +1,8 @@
+package duke;
+
 /**
  * This class handles the find command and extends from Command class.
  */
-package duke;
-
 public class FindCommand extends Command {
 
     private String description;
@@ -21,10 +21,10 @@ public class FindCommand extends Command {
      * Finds tasks in the tasklist.
      */
     @Override
-    public TaskList execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tempList = taskList.findTasks(this.description);
-        ui.showMatchingTasks(tempList);
-        return taskList;
+
+        return ui.showMatchingTasks(tempList);
     }
 
     /**

@@ -1,10 +1,10 @@
-/**
- * This class is used to construct a Todo task.
- */
 package duke;
 
 import static duke.DukeConstants.KEY_SEPARATOR;
 
+/**
+ * This class is used to construct a Todo task.
+ */
 public class Todo extends Task {
 
     /**
