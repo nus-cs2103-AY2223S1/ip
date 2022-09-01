@@ -52,7 +52,7 @@ public class InputParser {
     }
 
     public static String parseDatetoString(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
     }
 
 

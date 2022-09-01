@@ -18,7 +18,7 @@ repositories {
 apply plugin : "java"
 
 ext {
-    javaMainClass = "Main"
+    javaMainClass = "Duke"
     standardInput = System.in
     standardOutput = System.out
     errorOutput = System.err

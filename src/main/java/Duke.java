@@ -3,29 +3,42 @@ import task_classes.Event;
 import task_classes.Task;
 import task_classes.Todo;
 import utils.FileIO;
-import utils.IOUtils;
 import utils.InputParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class ConversationHandler {
+public class Duke {
 
     private boolean open = true;
     private ArrayList<Task> list;
 
-    public ConversationHandler() {
-        IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
+    private Ui ui;
+
+    public Duke() {
+        this.ui = new Ui();
+
+    }
+
+    public void run() {
+        this.ui.start();
         this.open = true;
         list = new ArrayList<>();
         for (Task t: FileIO.getInstance().readTaskList()) {
             list.add(t);
         }
+
+        Scanner in = new Scanner(System.in);
+
+        while (this.isOpen() && in.hasNext()) {
+            String line = in.nextLine();
+            String output = this.handleCommand(ui.read(line));
+            ui.printWithHorizontalRule(output);
+        }
     }
 
-    public String handleCommand(String input) {
-//        We get the first word, since that determines the command
-        HashMap<String, String> command = InputParser.getInputArguments(input);
+    public String handleCommand(HashMap<String, String> command) {
         String reply = "";
         try {
             switch (command.get("keyword")) {
@@ -73,7 +86,7 @@ public class ConversationHandler {
 
 
                 default:
-                    reply = input;
+                    reply = command.toString();
                     break;
             }
         } catch (IllegalArgumentException e) {
@@ -99,7 +112,7 @@ public class ConversationHandler {
 
     private String addEventCommand(HashMap<String, String> commandObj) {
         if (!commandObj.containsKey("args") || !commandObj.containsKey("/at")) {
-            throw new IllegalArgumentException("Event must have a name and a date!");
+            throw new IllegalArgumentException("Event must have a Name and a date!");
         }
 
         String name = commandObj.get("args");
@@ -114,7 +127,7 @@ public class ConversationHandler {
 
     private String addDeadlineCommand(HashMap<String, String> commandObj) {
         if (!commandObj.containsKey("args") || !commandObj.containsKey("args")) {
-            throw new IllegalArgumentException("Deadline must have a name and a deadline!");
+            throw new IllegalArgumentException("Deadline must have a Name and a deadline!");
         }
 
         String name = commandObj.get("args");
@@ -129,7 +142,7 @@ public class ConversationHandler {
 
     private String addTodoCommand(HashMap<String, String> commandObj) {
         if (!commandObj.containsKey("args")) {
-            throw new IllegalArgumentException("TODO must have a name!");
+            throw new IllegalArgumentException("TODO must have a Name!");
         }
 
         String name = commandObj.get("args");
@@ -189,5 +202,10 @@ public class ConversationHandler {
         return this.open;
     }
 
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
+    }
 
 }
