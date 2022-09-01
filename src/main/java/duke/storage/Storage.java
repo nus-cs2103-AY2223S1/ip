@@ -1,12 +1,10 @@
 package duke.storage;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-
-import java.io.IOException;
 import java.io.FileNotFoundException;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +14,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String FILE_PATH;
+    private static String FILEPATH;
     private File f;
     private ArrayList<String> tasksList;
 
@@ -27,8 +25,8 @@ public class Storage {
      * @param filePath A <code>String</code> representing the file path.
      */
     public Storage(String filePath) {
-        FILE_PATH = filePath;
-        f = new File(FILE_PATH);
+        FILEPATH = filePath;
+        f = new File(FILEPATH);
         tasksList = new ArrayList<>();
     }
 
@@ -46,7 +44,7 @@ public class Storage {
                 }
                 sc.close();
             }
-        }  catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return tasksList;
@@ -58,7 +56,7 @@ public class Storage {
      * @throws IOException If FILE_PATH is invalid.
      */
     public void appendToFile(String textToAppend) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
+        FileWriter fw = new FileWriter(FILEPATH, true); // create a FileWriter in append mode
         fw.write(textToAppend);
         fw.write(System.lineSeparator());
         fw.close();

@@ -1,24 +1,17 @@
 package duke.parser;
 
 import java.io.IOException;
+
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidDescriptionException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-<<<<<<< HEAD
 /**
  * Represents the location where the commands entered into the program are
  * processed and how should the <code>Ui</code>, or Seaward, should respond.
  */
-=======
-import duke.exception.InvalidCommandException;
-import duke.exception.InvalidDescriptionException;
-
-import java.io.IOException;
-
->>>>>>> branch-A-CodingStandard
 public class Parser {
 
     private static TaskList taskList;
@@ -45,7 +38,7 @@ public class Parser {
      * @param s Command given by the user.
      * @return A response depending on the command given by the user.
      * @throws InvalidCommandException If the command is not one of the cases, or if the index does not
-     * exist in the <code>TaskList</code> object.
+     *     exist in the <code>TaskList</code> object.
      * @throws InvalidDescriptionException If the command does not have a valid description.
      * @throws IOException If the <code>Storage</code> object cannot read or write to the file.
      */
@@ -122,7 +115,7 @@ public class Parser {
             if (index + 1 > numOfTasks) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            String result = ui.getDeleteMessage(taskList.readTask(newNumOfTasks), newNumOfTasks);
+            String result = ui.getDeleteMessage(taskList.readTask(index), index);
             taskList.deleteTask(index);
             return result;
         }

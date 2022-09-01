@@ -11,24 +11,15 @@ import duke.tasklist.TaskList;
  */
 
 public class Ui {
-
-    private final static String WELCOME = "Hello! I'm Seaward,\n" +
-            "your friendly neighbourhood chatbot.\n" +
-            "Type something and I will reply!";
-    private final static String BYE = "Seaward out!";
-    private final static String EMPTY_TASK_MESSAGE = "You currently have no tasks. Add some!";
-    private final static String MARKED_TASK_MESSAGE = "I have marked this task as done:\n";
-    private final static String UNMARKED_TASK_MESSAGE = "I have marked this task as undone:\n";
-    private final static String NO_MATCHING_TASK_MESSAGE = "Sorry! There are no matching tasks that contains ";
-    private final static String MATCHING_TASK_MESSAGE = "Here are the matching tasks in your list:";
-
     /**
      * Returns a welcome message when Seaward is first running.
      * Also, it prompts the user to enter a command in.
      * @return A welcome message.
      */
     public String getWelcome() {
-        return WELCOME;
+        return "Hello! I'm Seaward,\n"
+                    + "your friendly neighbourhood chatbot.\n"
+                    + "Type something and I will reply!";
     }
 
     /**
@@ -36,7 +27,7 @@ public class Ui {
      * @return A goodbye message.
      */
     public String getByeMessage() {
-        return BYE;
+        return "Seaward out!";
     }
 
     /**
@@ -44,7 +35,7 @@ public class Ui {
      * @return A empty list message.
      */
     public String getEmptyTaskMessage() {
-        return EMPTY_TASK_MESSAGE;
+        return "You currently have no tasks. Add some!";
     }
 
     /**
@@ -53,17 +44,17 @@ public class Ui {
      * @return A list of the tasks.
      */
     public String getList(TaskList taskList) {
-        String list = "";
+        StringBuilder list = new StringBuilder();
         for (int i = 0; i < taskList.getNumOfTasks(); i++) {
             int index = i + 1;
             String taskDescription = taskList.readTask(i);
             if (index == taskList.getNumOfTasks()) {
-                list = list + index + "." + taskDescription;
+                list.append(index).append(".").append(taskDescription);
             } else {
-                list = list + index + "." + taskDescription + "\n";
+                list.append(index).append(".").append(taskDescription).append("\n");
             }
         }
-        return list;
+        return list.toString();
     }
 
     /**
@@ -71,7 +62,7 @@ public class Ui {
      * @return A success message.
      */
     public String getMarkedTaskMessage() {
-        return MARKED_TASK_MESSAGE;
+        return "I have marked this task as done:\n";
     }
 
     /**
@@ -79,7 +70,7 @@ public class Ui {
      * @return A success message.
      */
     public String getUnmarkedTaskMessage() {
-        return UNMARKED_TASK_MESSAGE;
+        return "I have marked this task as undone:\n";
     }
 
     /**
@@ -107,10 +98,10 @@ public class Ui {
     }
 
     public String getNoMatchingTaskMessage() {
-        return NO_MATCHING_TASK_MESSAGE;
+        return "Sorry! There are no matching tasks that contains ";
     }
 
     public String getMatchingTaskMessage() {
-        return MATCHING_TASK_MESSAGE;
+        return "Here are the matching tasks in your list:";
     }
 }

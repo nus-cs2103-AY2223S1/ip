@@ -1,12 +1,12 @@
 package duke.tasklist;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.util.ArrayList;
-import java.time.LocalDate;
 
 /**
  * Represents a list of tasks that the user has added. A <code>TaskList</code>
@@ -162,9 +162,11 @@ public class TaskList {
      */
     public void changeDateFormat(int index) {
         if (taskList.get(index) instanceof Deadline) {
-            ((Deadline) taskList.get(index)).changeDateFormat();
+            Deadline temp = (Deadline) taskList.get(index);
+            temp.changeDateFormat();
         } else if (taskList.get(index) instanceof Event) {
-            ((Event) taskList.get(index)).changeDateFormat();
+            Event temp = (Event) taskList.get(index);
+            temp.changeDateFormat();
         }
     }
 
