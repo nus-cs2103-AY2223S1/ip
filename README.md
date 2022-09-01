@@ -1,6 +1,6 @@
 # CHAN BOT
 
-> super great!
+> super great! [source](https://github.com/nus-cs2103-AY2223S1/ip)
 
 CHAN BOT frees your mind of having to remember things you need to do. It's,
 
