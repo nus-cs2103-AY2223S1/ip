@@ -42,17 +42,17 @@ public class Duke {
         input = Ui.awaitUserInput(sc);
 
         while (true) {
-            boolean notTerminated;
+            boolean shouldContinueInput;
 
             try {
-                notTerminated = Parser.settleInput(input, tasks);
+                shouldContinueInput = Parser.settleInput(input, tasks);
             } catch (DukeException e) {
                 Ui.print(e + "\n");
                 input = Ui.awaitUserInput(sc);
                 continue;
             }
 
-            if (notTerminated) {
+            if (shouldContinueInput) {
                 input = Ui.awaitUserInput(sc);
             } else {
                 break;
