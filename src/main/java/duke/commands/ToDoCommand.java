@@ -7,7 +7,7 @@ import duke.Ui;
 import duke.task.ToDo;
 
 public class ToDoCommand extends Command {
-    public String input;
+    private String input;
 
     public ToDoCommand(String input) {
         this.input = input;

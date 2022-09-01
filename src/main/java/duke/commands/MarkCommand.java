@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class MarkCommand extends Command {
-    public String input;
+    private String input;
 
     public MarkCommand(String input) {
         this.input = input;

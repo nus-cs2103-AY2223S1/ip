@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class UnmarkCommand extends Command {
-    public String input;
+    private String input;
 
     public UnmarkCommand(String input) {
         this.input = input;
