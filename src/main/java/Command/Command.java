@@ -1,3 +1,7 @@
+/**
+ * This class gets the specific command from the Parser class and
+ * executes the specific command to do the tasks required
+ */
 package Command;
 
 import Duke.DukeException;
@@ -5,10 +9,6 @@ import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
-/**
- * This class gets the specific command from the Parser class and
- * executes the specific command to do the tasks required
- */
 public abstract class Command {
     private boolean isExit;
 
@@ -29,7 +29,7 @@ public abstract class Command {
     /**
      * Checks if the program should exit or not
      *
-     * @return true if program should exit and false if program should not exit
+     * @return true is program should exit and false if program should not exit
      */
     public boolean isExit() {
         return this.isExit;
@@ -38,12 +38,11 @@ public abstract class Command {
     /**
      * Executes the task according to the command made by the user in the child classes
      *
-     * @param taskList which contains the current task list
+     * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
      * @throws DukeException which handles all the errors that could possibly happen
      *         if the program could not do the task
-     * @return string that will be printed in the UI
      */
-    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 }
