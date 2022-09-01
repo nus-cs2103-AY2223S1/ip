@@ -81,7 +81,7 @@ public class Storage {
         try {
             File file = new File(filePath);
             Scanner s = new Scanner(file);
-            List<Task> tasks= new ArrayList<>();
+            List<Task> tasks = new ArrayList<>();
             while (s.hasNext()) {
                 String str = s.nextLine();
                 Task task = fileInterpreter(str);
@@ -112,7 +112,7 @@ public class Storage {
                     str.indexOf(" ("));
             String dateString = str.substring(str.indexOf(":") + 2, str.indexOf(")"));
             LocalDate localDate = Parser.parseDateFormats(dateString);
-            if (str.contains("[D]")){
+            if (str.contains("[D]")) {
                 task = new Deadline(message, localDate);
             } else {
                 task = new Event(message, localDate);
