@@ -1,7 +1,3 @@
-/**
- * This class gets the specific command from the Parser class and
- * executes the specific command to do the tasks required
- */
 package Command;
 
 import Duke.DukeException;
@@ -9,6 +5,10 @@ import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
+/**
+ * This class gets the specific command from the Parser class and
+ * executes the specific command to do the tasks required
+ */
 public abstract class Command {
     private boolean isExit;
 
@@ -44,5 +44,5 @@ public abstract class Command {
      * @throws DukeException which handles all the errors that could possibly happen
      *         if the program could not do the task
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 }
