@@ -9,7 +9,7 @@
 
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-      <TextFlow fx:id="textFlow" minHeight="50.0">
+      <TextFlow fx:id="textFlow">
          <children>
             <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
