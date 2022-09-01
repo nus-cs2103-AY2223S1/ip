@@ -33,6 +33,10 @@ public class Duke {
         }
     }
 
+    public Duke() {
+        ui = new Ui();
+    }
+
     /**
      * Runs the Duke task manager. Takes in user input and performs tasks accordingly.
      */
@@ -60,6 +64,19 @@ public class Duke {
     public static void main(String[] args) throws DukeException, IOException {
         String filePath = "data/duke.txt";
         new Duke(filePath).run();
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
+        }
     }
 
 }

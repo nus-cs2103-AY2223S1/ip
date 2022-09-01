@@ -28,5 +28,5 @@ public abstract class Command {
      * @param ui      The Ui instance for the task manager.
      * @param storage The Storage instance for the task manager.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

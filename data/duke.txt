@@ -1,7 +1,5 @@
 D # 0 # return book # June 6th
-E # 0 # shopback talk # Aug 26 2022
-T # 0 # introduce packages
-D # 1 # example of a deadline # Aug 09 2022
 E # 0 # example of event event # Sep 10 2022
-T # 0 # random todo
 D # 1 # cut nails # Aug 31 2022
+D # 0 # submit assignment # Aug 31 2022
+E # 0 # birthday # Aug 14 2022

@@ -31,13 +31,13 @@ public class ExitCommand extends Command {
      * @param storage The Storage instance for the task manager.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             storage.saveTasks(tasks);
         } catch (IOException e) {
-            System.out.println("Error saving file!!");
+            return "Error saving file!!";
         }
+        return ui.showBye();
     }
 
     /**

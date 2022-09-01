@@ -32,9 +32,9 @@ public class DeleteCommand extends Command {
      * @param storage The Storage instance for the task manager.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task deleted = tasks.deleteTask(idx);
-        ui.showDeleteTask(deleted, tasks);
+        return ui.showDeleteTask(deleted, tasks);
     }
 
     /**

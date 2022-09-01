@@ -23,15 +23,15 @@ public class Ui {
     /**
      * Method that prints a welcome message for the user.
      */
-    public void showWelcome() {
-        System.out.println("Hello! I'm Edric\nWhat can I do for you?");
+    public String showWelcome() {
+        return "Hello! I'm Edric\nWhat can I do for you?";
     }
 
     /**
      * Method that prints a goodbye message for the user.
      */
-    public void showBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -44,8 +44,8 @@ public class Ui {
     /**
      * Method that prints a message to indicate a loading error.
      */
-    public void showLoadingError() {
-        System.out.println("Error Loading Storage File!");
+    public String showLoadingError() {
+        return "Error Loading Storage File!";
     }
 
     /**
@@ -53,8 +53,8 @@ public class Ui {
      *
      * @param message The error message to be displayed.
      */
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return message;
     }
 
     /**
@@ -63,10 +63,10 @@ public class Ui {
      * @param task The task that has been added to the list.
      * @param tasks The current list of tasks.
      */
-    public void showAddTask(Task task, TaskList tasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("\t " + task.toString());
-        System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
+    public String showAddTask(Task task, TaskList tasks) {
+        return "Got it. I've added this task:" + "\n"
+                + "\t " + task.toString() + "\n"
+                + "Now you have " + tasks.getSize() + " tasks in the list";
     }
 
     /**
@@ -75,10 +75,10 @@ public class Ui {
      * @param task The task that has been deleted from the list.
      * @param tasks The current list of tasks.
      */
-    public void showDeleteTask(Task task, TaskList tasks) {
-        System.out.println("Got it. I've removed this task:");
-        System.out.println("\t " + task.toString());
-        System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
+    public String showDeleteTask(Task task, TaskList tasks) {
+        return "Got it. I've removed this task:" + "\n"
+                + "\t " + task.toString() + "\n"
+                + "Now you have " + tasks.getSize() + " tasks in the list";
     }
 
     /**
@@ -86,9 +86,9 @@ public class Ui {
      *
      * @param task The task that has been marked as done.
      */
-    public void showMarkTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("\t" + task.toString());
+    public String showMarkTask(Task task) {
+        return "Nice! I've marked this task as done:" + "\n"
+                + "\t" + task.toString();
     }
 
     /**
@@ -96,9 +96,9 @@ public class Ui {
      *
      * @param task The task that has been marked as not done.
      */
-    public void showUnmarkTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("\t" + task.toString());
+    public String showUnmarkTask(Task task) {
+        return "OK, I've marked this task as not done yet:" + "\n"
+                + "\t" + task.toString();
     }
 
     /**
@@ -106,12 +106,13 @@ public class Ui {
      *
      * @param tasks The List of Tasks.
      */
-    public void showTasks(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
+    public String showTasks(TaskList tasks) {
+        StringBuilder allTasks = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
-            System.out.format("%d. %s\n", i + 1, curr.toString());
+            allTasks.append(String.format("%d. %s\n", i + 1, curr.toString()));
         }
+        return allTasks.toString();
     }
 
     /**
@@ -128,12 +129,13 @@ public class Ui {
      *
      * @param tasks The TaskList containing the matching tasks.
      */
-    public void showMatchingTasks(TaskList tasks) {
-        System.out.println("Here are the matching tasks in you list:");
+    public String showMatchingTasks(TaskList tasks) {
+        StringBuilder matchingTasks = new StringBuilder("Here are the matching tasks in you list:\n");
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
-            System.out.format("%d. %s\n", i + 1, curr.toString());
+            matchingTasks.append(String.format("%d. %s\n", i + 1, curr.toString()));
         }
+        return matchingTasks.toString();
     }
 
 }

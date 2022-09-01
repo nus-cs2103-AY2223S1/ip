@@ -33,9 +33,9 @@ public class UnmarkCommand extends Command {
      * @param storage The Storage instance for the task manager.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.unmarkTask(idx);
-        ui.showUnmarkTask(task);
+        return ui.showUnmarkTask(task);
     }
 
     /**

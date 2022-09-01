@@ -20,8 +20,8 @@ public class ListCommand extends Command {
      * @param storage The Storage instance for the task manager.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showTasks(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showTasks(tasks);
     }
 
     /**

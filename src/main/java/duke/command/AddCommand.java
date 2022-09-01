@@ -31,9 +31,9 @@ public class AddCommand extends Command {
      * @param storage The Storage instance for the task manager.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addTask(this.task);
-        ui.showAddTask(this.task, tasks);
+        return ui.showAddTask(this.task, tasks);
     }
 
     /**
