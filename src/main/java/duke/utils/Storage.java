@@ -36,17 +36,8 @@ public class Storage {
         this.directory = new File(directoryPath);
 
         try {
-            if (this.directory.exists()) {
-                System.out.println("Directory located... \n");
-            } else {
-                System.out.println("Creating a directory to store save file... \n");
+            if (!this.directory.exists()) {
                 Files.createDirectories(Path.of(directoryPath));
-            }
-
-            if (this.file.createNewFile()) {
-                System.out.println("Creating a new save file...");
-            } else {
-                System.out.println("Previous save file located, loading contents of save file...");
             }
 
         } catch (IOException e) {

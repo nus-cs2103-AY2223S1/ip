@@ -12,12 +12,12 @@ public class Ui {
                                         + "     / _____ \\   _| |_  | | | |   | |    |  __/ | (_| |\n"
                                         + "    /_/     \\_\\ |_____| |_| |_|   |_|     \\___|  \\__,_|\n";
 
-    private static final String UI_GREETING = "                      Hello! I am \n" + UI_LOGO
-                                            + "      Your personal assistant. What can I do for you?\n";
+    private static final String UI_GREETING = "            Hello! I am \n" + UI_LOGO
+                                            + "Your personal assistant. What can I do for you?\n";
 
 
-    private static final String UI_GOODBYE = "               ☺ Saving your data before you go...\n"
-                                           + "               Bye. Hope to see you again soon!\n";
+    private static final String UI_GOODBYE = "☺ Saving your data before you go...\n"
+                                           + "Bye. Hope to see you again soon!\n";
 
     /**
      * Prints the intended message to the console.
@@ -32,8 +32,8 @@ public class Ui {
     /**
      * Prints the greeting message to the console.
      */
-    public static void greet() {
-        printMessage(UI_GREETING);
+    public static String greet() {
+        return UI_GREETING;
     }
 
     /**

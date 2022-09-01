@@ -48,4 +48,14 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+
+    /**
+     * Creates a dialog box to show greeting message.
+     */
+    public void greet() {
+        String greeting = duke.getGreeting();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(greeting, dukeImage)
+        );
+    }
 }
