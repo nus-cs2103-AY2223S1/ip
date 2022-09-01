@@ -69,7 +69,7 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> mark = (
+    private static final BiFunction<TaskList, String, String> markTask = (
             taskList, input) -> {
         int i = Integer.parseInt(input.split(" ")[1]);
         return taskList.markDone(i);
@@ -90,7 +90,7 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> unmark = (
+    private static final BiFunction<TaskList, String, String> unmarkTask = (
             taskList, input) -> {
         int i = Integer.parseInt(input.split(" ")[1]);
         return taskList.markUnDone(i);
@@ -111,7 +111,7 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> list = (
+    private static final BiFunction<TaskList, String, String> listTasks = (
             taskList, input) -> {
         // List inputs in 'userInput' list.
         return taskList.toString();
@@ -132,7 +132,7 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> find = (
+    private static final BiFunction<TaskList, String, String> findTask = (
             taskList, input) -> {
         return taskList.findWord(input.split(" ")[1]);
     };
@@ -169,10 +169,10 @@ public class Parser {
         commands.put("event", addTask);
         commands.put("todo", addTask);
         commands.put("delete", deleteTask);
-        commands.put("mark", mark);
-        commands.put("unmark", unmark);
-        commands.put("list", list);
-        commands.put("find", find);
+        commands.put("mark", markTask);
+        commands.put("unmark", unmarkTask);
+        commands.put("list", listTasks);
+        commands.put("find", findTask);
         commands.put("bye", quit);
     }
 
