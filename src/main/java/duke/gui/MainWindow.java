@@ -25,11 +25,17 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Baymax.jpg"));
+
+    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. "
+            + "Let me retrieve your stored task list!";
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(MESSAGE_WELCOME, dukeImage)
+        );
     }
 
     public void setDuke(Duke d) {

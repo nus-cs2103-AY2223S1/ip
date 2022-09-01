@@ -3,7 +3,6 @@ package duke.commands;
 import duke.Storage;
 import duke.Task;
 import duke.TaskList;
-import duke.Ui;
 import duke.exceptions.DukeIndexOutOfBoundsException;
 
 /**
@@ -24,12 +23,11 @@ public class DeleteCommand extends Command {
      * Deletes the specified <code>Task</code> from the <code>TaskList</code>.
      *
      * @param tasks <code>TaskList</code> to be interacted with this command.
-     * @param ui <code>Ui</code> to print messages after the command executes.
      * @param storage <code>Storage</code> that interacts with the local storage.
      * @throws DukeIndexOutOfBoundsException If user inputted an index outside the range.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
+    public String execute(TaskList tasks, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(7)) - 1;
             Task task = tasks.get(index);

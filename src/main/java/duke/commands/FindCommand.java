@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Represents an executable <code>Command</code> to find <code>Task</code>s.
@@ -22,11 +21,10 @@ public class FindCommand extends Command {
      * Finds the <code>Task</code>/s that matches the given input.
      *
      * @param tasks <code>TaskList</code> to be interacted with this command.
-     * @param ui <code>Ui</code> to print messages after the command executes.
      * @param storage <code>Storage</code> that interacts with the local storage.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         return tasks.find(description);
     }
 }

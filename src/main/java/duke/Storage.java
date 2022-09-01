@@ -107,7 +107,7 @@ public class Storage {
     public void save(TaskList taskList) throws DukeException {
         try {
             writer = new FileWriter(file);
-            for (int i = 0; i < taskList.size(); i++) {
+            for (int i = 0; i < taskList.getSize(); i++) {
                 writer.write(taskList.get(i).toStorageFormat());
             }
             writer.close();

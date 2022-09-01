@@ -3,7 +3,6 @@ package duke.commands;
 import duke.Deadline;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exceptions.DukeMissingArgumentException;
 
 /**
@@ -24,17 +23,16 @@ public class AddDeadlineCommand extends Command {
      * Adds a new <code>Deadline</code> into the <code>TaskList</code>
      *
      * @param tasks <code>TaskList</code> to be interacted with this command.
-     * @param ui <code>Ui</code> to print messages after the command executes.
      * @param storage <code>Storage</code> that interacts with the local storage.
      * @throws DukeMissingArgumentException If the input is missing a description or time.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
+    public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
             String[] str = description.substring(9).split(" /by ");
             Deadline deadline = new Deadline(str[0], str[1], false);
             tasks.add(deadline);
-            int numberOfTasks = tasks.size();
+            int numberOfTasks = tasks.getSize();
             String response;
             if (numberOfTasks < 2) {
                 response = "Got it. I've added this task:\n " + deadline

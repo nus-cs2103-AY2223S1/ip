@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exceptions.DukeException;
 
 /**
@@ -25,18 +24,8 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks <code>TaskList</code> to be interacted with this command.
-     * @param ui <code>Ui</code> to print messages after the command executes.
      * @param storage <code>Storage</code> that interacts with the local storage.
      * @throws DukeException If command fails to execute.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
-
-    /**
-     * Returns whether the command is the exit command.
-     *
-     * @return True if and only if the <code>Command</code> is the exit command.
-     */
-    public boolean isExit() {
-        return false;
-    }
+    public abstract String execute(TaskList tasks, Storage storage) throws DukeException;
 }

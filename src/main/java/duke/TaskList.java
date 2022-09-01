@@ -49,7 +49,7 @@ public class TaskList {
      *
      * @return The number of <code>Task</code> in this <code>TaskList</code>.
      */
-    public int size() {
+    public int getSize() {
         return this.tasks.size();
     }
 
