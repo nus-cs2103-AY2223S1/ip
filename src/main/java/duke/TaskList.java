@@ -80,7 +80,7 @@ public class TaskList {
         }
     }
 
-    private void createEvent(TaskEnum taskEnum, String command) throws DukeException {
+    private String createEvent(TaskEnum taskEnum, String command) throws DukeException {
         String[] args;
         Task taskToCreate;
         switch (taskEnum) {
@@ -108,20 +108,19 @@ public class TaskList {
             throw new DukeException("Invalid Input");
         }
         this.addTask(taskToCreate);
-        Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate);
+        return Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate);
     }
 
-    private void handleDelete(String command) throws DukeException {
-        String[] args = command.split(" ", 2);
+    private String handleDelete(String indexStr) throws DukeException {
         int index;
         try {
-            index = Integer.parseInt(args[1]) - 1;
+            index = Integer.parseInt(indexStr) - 1;
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid command");
         }
         Task curr = this.taskArrayList.get(index);
         this.remove(index);
-        Ui.formatPrint("Noted. I've removed this task:\n" + curr.toString()
+        return Ui.formatPrint("Noted. I've removed this task:\n" + curr.toString()
                 + "Now you have " + this.taskArrayList.size() + " tasks in the list.");
     }
 
@@ -144,7 +143,7 @@ public class TaskList {
         this.taskArrayList = newArr;
     }
 
-    private void handleMarkDoneUndone(String[] command) throws DukeException {
+    private String handleMarkDoneUndone(String[] command) throws DukeException {
 
         int index = Integer.parseInt(command[1]) - 1;
         if (index < 0 || index > this.taskArrayList.size() - 1) {
@@ -154,13 +153,13 @@ public class TaskList {
         if (command[0].equals("mark")) {
             if (!curr.isDone) {
                 curr.isDone = true;
-                Ui.taskStateChangePrint(curr, true);
             }
+            return Ui.taskStateChangePrint(curr, true);
         } else { // command [0].equals("unmark")
             if (curr.isDone) {
                 curr.isDone = false;
-                Ui.taskStateChangePrint(curr, false);
             }
+            return Ui.taskStateChangePrint(curr, false);
         }
     }
 
@@ -179,40 +178,29 @@ public class TaskList {
      * @param args string of command in the relevant formats
      * @throws DukeException the exception containing the error message when encountered error
      */
-    protected void parseInstructions(String args) throws DukeException {
+    protected String parseInstructions(String args) throws DukeException {
         String[] arguments = args.split(" ", 2);
         try {
             switch (arguments[0]) {
-            case "mark": // same flow as case "unmark"
+            case "mark": // flow through
             case "unmark":
-                this.handleMarkDoneUndone(arguments);
-                break;
-
+                return this.handleMarkDoneUndone(arguments);
             case "delete":
-                this.handleDelete(arguments[1]);
-                break;
-
+                return this.handleDelete(arguments[1]);
             case "deadline":
-                this.createEvent(TaskEnum.Deadline, arguments[1]);
-                break;
-
+                return this.createEvent(TaskEnum.Deadline, arguments[1]);
             case "todo":
-                this.createEvent(TaskEnum.Todo, arguments[1]);
-                break;
-
+                return this.createEvent(TaskEnum.Todo, arguments[1]);
             case "event":
-                this.createEvent(TaskEnum.Event, arguments[1]);
-                break;
-
+                return this.createEvent(TaskEnum.Event, arguments[1]);
             case "find":
                 TaskList res = this.findSimilarItems(arguments[1]);
                 if (res.taskArrayList.size() >= 1) {
-                    Ui.listPrint(res);
+                    return Ui.listPrint(res);
                 } else {
-                    Ui.processUnfoundResult();
+                    return Ui.processUnfoundResult();
                 }
 
-                break;
 
             default:
                 throw new DukeException("Unable to parse query");

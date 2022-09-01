@@ -7,12 +7,13 @@ public class Parser {
     static final String LIST_WORD = "list";
     static final String END_WORD = "bye";
 
-    private static void endProgram(Storage storage, TaskList taskList) {
-        Ui.bye();
+    private static String endProgram(Storage storage, TaskList taskList) {
+
         int exitCode = storage.writeResult(taskList);
         if (exitCode == -1) {
-            Ui.processExceptionOutput("Unable to write the record");
+            return Ui.processExceptionOutput("Unable to write the record") + Ui.bye();
         }
+        return Ui.bye();
     }
 
     /**
@@ -21,26 +22,21 @@ public class Parser {
      * @param args raw string of the input
      * @param taskList current TaskList storing
      * @param storage the storage unit
-     * @return
+     * @return String to be displayed to user
      */
-    protected static int parseCommand(String args, TaskList taskList, Storage storage) {
+    protected static String parseCommand(String args, TaskList taskList, Storage storage) {
         String command = args.replace("\n", "").replace("/r", "");
         switch (command) {
         case LIST_WORD:
-            Ui.listPrint(taskList);
-            break;
+            return Ui.listPrint(taskList);
         case END_WORD:
-            endProgram(storage, taskList);
-            return 0;
+            return endProgram(storage, taskList);
         default:
             try {
-                taskList.parseInstructions(command);
+                return taskList.parseInstructions(command);
             } catch (DukeException de) {
-                Ui.processExceptionOutput(de.getMsg());
+                return Ui.processExceptionOutput(de.getMsg());
             }
         }
-        return 1;
     }
-
-
 }

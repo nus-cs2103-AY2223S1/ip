@@ -35,7 +35,7 @@ class Storage {
                 line = br.readLine();
             }
         } catch (IOException e) {
-            Ui.output("Unable to load existing record. Generating a new one.");
+            Ui.formatPrint("Unable to load existing record. Generating a new one.");
         }
     }
 
@@ -66,7 +66,7 @@ class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            Ui.output("Fail to write file.");
+            Ui.formatPrint("Fail to write file.");
             return -1;
         }
         return 0;
