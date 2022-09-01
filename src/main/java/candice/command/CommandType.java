@@ -1,3 +1,5 @@
+package candice.command;
+
 public enum CommandType {
     BYE,
     LIST,

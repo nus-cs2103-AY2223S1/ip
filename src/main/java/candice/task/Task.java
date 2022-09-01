@@ -1,3 +1,5 @@
+package candice.task;
+
 public abstract class Task {
     boolean finished = false;
     final String taskName;

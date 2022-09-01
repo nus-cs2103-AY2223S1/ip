@@ -1,3 +1,7 @@
+package candice.task;
+
+import candice.Storage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 

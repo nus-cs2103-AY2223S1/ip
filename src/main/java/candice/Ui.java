@@ -1,5 +1,10 @@
+package candice;
+
+import candice.task.Task;
+import candice.task.TaskList;
+
 /**
- * Prints out
+ * Prints out visual response to update the user on what is going on.
  */
 public class Ui {
     private static final String LINE_BREAK = "------------------------------------------------------------";

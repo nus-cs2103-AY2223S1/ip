@@ -1,3 +1,9 @@
+package candice;
+
+import candice.command.Command;
+import candice.exception.*;
+import candice.task.TaskList;
+
 import java.io.IOException;
 
 import java.lang.IllegalArgumentException;
@@ -11,10 +17,10 @@ import java.util.Scanner;
 /**
  * Executes the programme
  */
-public class Duke {
+public class Candice {
     TaskList taskList;
 
-    public Duke(Path storagePath) {
+    public Candice(Path storagePath) {
         Storage storage = new Storage(storagePath);
         this.taskList = new TaskList(storage);
         this.taskList.parseTaskListText();
@@ -66,6 +72,6 @@ public class Duke {
             }
         }
 
-        new Duke(storagePath).run();
+        new Candice(storagePath).run();
     }
 }
