@@ -1,12 +1,14 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+
 
 /**
  * Represents duke chatbot parser that make sense of user commands.
@@ -43,7 +45,7 @@ public class Parser {
                         + "please refer to command format information.");
             }
         } catch (Exception e) {
-           throw new DukeException(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 
@@ -60,7 +62,7 @@ public class Parser {
         String[] taskString = line.split(" ", 2);
         String taskType = taskString[0];
         if (taskString.length == 1 && !taskType.equals("list") && !taskType.equals("bye") && !taskType.equals("help")) {
-            throw new DukeException ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         } else if (taskType.equals("todo")) {
             String description = taskString[1].trim();
             if (description.equals("")) { // task description empty
@@ -70,8 +72,8 @@ public class Parser {
             return String.format("todo %d", taskList.getSize());
         } else if (taskType.equals("deadline")) {
             if (!taskString[1].contains("/by")) { // command not properly formatted
-                throw new DukeException("☹ OOPS!!! The command not properly formatted.\n" +
-                        "Please follow the format: Deadline {description} /by {date}.");
+                throw new DukeException("☹ OOPS!!! The command not properly formatted.\n"
+                        + "Please follow the format: Deadline {description} /by {date}.");
             }
             String[] descriptions = taskString[1].split("/by");
             String description = descriptions[0].trim();
@@ -106,7 +108,7 @@ public class Parser {
                 return "list 0";
             } else if (!taskString[1].trim().matches(".*\\d.*")) {
                 return String.format("list %s", taskString[1].trim());
-            }else { //list date
+            } else { //list date
                 LocalDate date = parseDate(taskString[1].trim());
                 return String.format("list %s", date);
             }
@@ -127,7 +129,7 @@ public class Parser {
         } else if (taskType.equals("bye") || taskType.equals("help")) {
             return taskType;
         } else {
-            throw new DukeException ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 

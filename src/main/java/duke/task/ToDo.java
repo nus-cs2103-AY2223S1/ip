@@ -1,5 +1,9 @@
 package duke.task;
 
+/**
+ * Represents a task to do with a task description
+ * Inherits from Task class
+ */
 public class ToDo extends Task {
 
     public ToDo(String description) {

@@ -2,6 +2,10 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an Event task with an event description, start date and end date
+ * Inherits from Task class
+ */
 public class Event extends Task {
     private LocalDate startDate;
     private LocalDate endDate;
