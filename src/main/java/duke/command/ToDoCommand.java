@@ -22,19 +22,19 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Adds Todo task to the task list.
+     * Adds Todo task to the task list and
+     * return message that task was added.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return The string representation of message of task being added.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         ToDo toDo = new ToDo(description);
         taskList.add(toDo, storage);
         String message = "Nice! This task has been successfully added!";
-        ui.displayCommandMessage(message, toDo, taskList.getSize());
-        ui.printBorder();
+        return ui.displayCommandMessage(message, toDo, taskList.getSize());
     }
 }

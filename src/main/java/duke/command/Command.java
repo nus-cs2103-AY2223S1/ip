@@ -9,7 +9,7 @@ import duke.Ui;
  */
 public abstract class Command {
 
-    public abstract void execute(Ui ui, Storage storage, TaskList taskList);
+    public abstract String execute(Ui ui, Storage storage, TaskList taskList);
 
     /**
      * Checks whether the current command is a ByeCommand.

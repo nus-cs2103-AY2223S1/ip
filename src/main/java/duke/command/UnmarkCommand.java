@@ -23,19 +23,18 @@ public class UnmarkCommand extends Command {
 
     /**
      * Unmarks the task in the task list
-     * and display the message that the task has been removed.
+     * and returns the message that the task has been removed.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return String representation of message of task being removed.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         Task unmarkedTask = taskList.getTask(position - 1);
         taskList.unmark(position - 1, storage);
         String commandMessage = "Congratulations! This task has been successfully unmarked!";
-        ui.displayCommandMessage(commandMessage, unmarkedTask, null);
-        ui.printBorder();
+        return ui.displayCommandMessage(commandMessage, unmarkedTask, null);
     }
 }

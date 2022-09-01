@@ -25,18 +25,18 @@ public class MarkCommand extends Command {
     /**
      * Executes the mark command.
      * Marks the task in the task list.
+     * Returns string representation of marked task.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return String representation of marked task.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         Task markedTask = taskList.getTask(position - 1);
         taskList.mark(position - 1, storage);
         String commandMessage = "Congratulations! This task has been marked as done!";
-        ui.displayCommandMessage(commandMessage, markedTask, null);
-        ui.printBorder();
+        return ui.displayCommandMessage(commandMessage, markedTask, null);
     }
 }

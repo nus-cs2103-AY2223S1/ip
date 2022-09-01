@@ -9,66 +9,58 @@ import java.util.Scanner;
 public class Ui {
 
     /**
-     * Greets the user when Duke bot starts.
+     * Returns the greeting by Duke.
+     *
+     * @return The greeting by Duke.
      */
-    public void Greet() {
-        System.out.println("Hello, this is Siri! It is a pleasure to meet you!");
-        System.out.println("How may I assist you?");
-        printBorder();
+    public String Greet() {
+        MultiLineFormatter multiLineFormatter = new MultiLineFormatter();
+        multiLineFormatter.add("Hello, this is Siri! It is a pleasure to meet you!\n");
+        multiLineFormatter.add("How may I assist you?");
+        return multiLineFormatter.getFullMessage();
     }
 
     /**
      * Bids farewell to the user after they key in bye.
-     */
-    public void GoodBye() {
-        printBorder();
-        System.out.println("So Long, farewell!");
-        printBorder();
-    }
-
-    /**
-     * Reads the command given by the user in the terminal.
      *
-     * @param userInput The scanner which will read from the terminal.
-     * @return The command that the user input in the terminal.
+     * @return The farewell to the user.
      */
-    public String readCommand(Scanner userInput) {
-        return userInput.nextLine().strip();
+    public String GoodBye() {
+        return "So Long, Farewell!";
     }
 
     /**
-     * Prints the border of hexes.
-     */
-    public void printBorder() {
-        System.out.println("##############################################");
-    }
-
-    /**
-     * Displays either the message of the task, the task itself and the
+     * Returns either the message of the task, the task itself and the
      * number of tasks in the list.
      *
      * @param message The message of the task.
      * @param task The task.
      * @param size The size of the task list.
+     * @return The message, task and number of tasks in list.
      */
-    public void displayCommandMessage(String message, Task task, Integer size) {
+    public String displayCommandMessage(String message, Task task, Integer size) {
+        MultiLineFormatter multiLineFormatter = new MultiLineFormatter();
         if (message != null) {
-            System.out.println(message);
+            multiLineFormatter.add(message);
+            multiLineFormatter.add("\n");
         }
         if (task != null) {
-            System.out.println("\t\t\t" + task);
+            multiLineFormatter.add("\t\t" + task);
+            multiLineFormatter.add("\n");
         }
         if (size != null) {
             String numOfTasks = String.format("You currently have %d tasks in the list", size);
-            System.out.println(numOfTasks);
+            multiLineFormatter.add(numOfTasks);
         }
+        return multiLineFormatter.getFullMessage();
     }
 
     /**
-     * Prints the message for the exception.
+     * Return the message for the exception.
      * @param message The message for the exception.
+     * @return The message for the exception.
      */
-    public void showExceptionMessage(String message) {
-        System.out.println(message);
+    public String showExceptionMessage(String message) {
+        return "Hey Listen! There is an error!\n" + message;
     }
 }
