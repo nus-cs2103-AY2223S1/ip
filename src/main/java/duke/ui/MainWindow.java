@@ -22,8 +22,8 @@ public class MainWindow extends VBox {
 
     private Duke duke;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
     /**
      * Setter for Duke.
@@ -34,6 +34,10 @@ public class MainWindow extends VBox {
         this.duke = duke;
     }
 
+    /**
+     * Initializes the GUI with settings and configurations.
+     *
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -42,6 +46,11 @@ public class MainWindow extends VBox {
         );
     }
 
+    /**
+     * Handles key enter or submit button press from TextBox GUI.
+     * Adds two conversation bubbles, Duke and User.
+     *
+     */
     @FXML
     private void submitHandler() {
         String input = userInput.getText();

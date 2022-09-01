@@ -9,17 +9,9 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Greet user message.
-     *
-     */
-    public void greetUser() {
-        String message = "Hello! I'm Duke\n" + "What can I do for you?";
-        System.out.println(message);
-    }
-
-    /**
      * Bye to user (End process message).
      *
+     * @return String representation of Bye message.
      */
     public String byeMsg() {
         return "Bye. Hope to see you again soon!\n" + "Application closing in 3 seconds...";
@@ -80,6 +72,7 @@ public class Ui {
     /**
      * File Loading Tasks Error.
      *
+     * @return String representation of loading error.
      */
     public String showLoadingError() {
         return "OOPS!!! Failed to load tasks because file cannot be opened!";
