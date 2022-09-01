@@ -1,10 +1,13 @@
-package duke.TaskList;
-
-import Ui.Constants;
-import duke.Storage.DukeEncoder;
-
+package duke.task;
 import java.util.ArrayList;
 
+import duke.storage.DukeEncoder;
+import duke.ui.Constants;
+
+
+/**
+ * Represents a general task.
+ */
 public class Task {
     protected String detail;
     protected boolean isDone;

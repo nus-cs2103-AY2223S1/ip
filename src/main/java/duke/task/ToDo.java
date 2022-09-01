@@ -1,21 +1,25 @@
-package duke.TaskList;
+package duke.task;
 
-public class Event extends Task {
-
-    protected String at;
+/**
+ * Represents a to-do task.
+ */
+public class ToDo extends Task {
     /**
-     * Constructor for event.
+     * Constructor for to-do.
      *
      * @param detail String
      */
-    public Event(String detail, String at) {
+    public ToDo(String detail) {
         super(detail);
-        this.at = at;
     }
 
-    public Event(String detail, boolean isDone, String at) {
+    /**
+     * Constructor for to-do.
+     *
+     * @param detail String
+     */
+    public ToDo(String detail, boolean isDone) {
         super(detail, isDone);
-        this.at = at;
     }
 
     /**
@@ -24,7 +28,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[T]" + super.toString();
     }
 
     /**
@@ -33,6 +37,6 @@ public class Event extends Task {
      */
     @Override
     public String storedData() {
-        return "E" + "|" + super.storedData() + "|" + at;
+        return "T" + "|" + super.storedData();
     }
 }
