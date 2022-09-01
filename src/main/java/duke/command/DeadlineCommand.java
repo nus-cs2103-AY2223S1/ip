@@ -28,19 +28,18 @@ public class DeadlineCommand extends Command {
 
     /**
      * Adds the deadline task to the taskList.
-     * Displays the message that the deadline task was added.
+     * Returns the message that the deadline task was added.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return The message that deadline task was added.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         Deadline deadline = new Deadline(this.description, this.deadline);
         taskList.add(deadline,storage);
         String message = "Nice! This task has been successfully added!";
-        ui.displayCommandMessage(message, deadline, taskList.getSize());
-        ui.printBorder();
+        return ui.displayCommandMessage(message, deadline, taskList.getSize());
     }
 }

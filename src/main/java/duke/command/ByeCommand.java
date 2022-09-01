@@ -10,14 +10,16 @@ import duke.Ui;
 public class ByeCommand extends Command {
 
     /**
-     * The goodbye message is displayed.
+     * The goodbye message is being returned.
      *
-     * @param ui Ui object which handles the interaction with the user
-     * @param storage Storage object which handles interaction with data in file
-     * @param taskList List of tasks
+     * @param ui Ui object which handles the interaction with the user.
+     * @param storage Storage object which handles interaction with data in file.
+     * @param taskList List of tasks.
+     * @return The goodbye message.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.GoodBye();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
+        return ui.GoodBye();
     }
 }
+

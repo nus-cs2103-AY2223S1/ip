@@ -17,7 +17,7 @@ public class DukeException extends Exception{
 
     @Override
     public String toString() {
-        String border = "##############################################";
-        return border + "\n" + super.getMessage() + "\n" + border;
+        return super.getMessage();
     }
 }
+

@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.MultiLineFormatter;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -31,10 +32,10 @@ public class FindCommand extends Command{
      * @param ui Ui object which handles the interaction with the user
      * @param storage Storage object which handles interaction with data in file
      * @param taskList List of tasks
+     * @return The string of list of tasks which contains the keyword
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         ArrayList<Task> tempTaskArray = new ArrayList<>();
         for (int i = 0; i < taskList.getSize(); i++) {
             if (taskList.getTask(i).isContainsKeyword(keyword)) {
@@ -43,15 +44,18 @@ public class FindCommand extends Command{
         }
         if (tempTaskArray.size() == 0) {
             String message = "\t" + "No search results are available for this keyword!";
-            ui.displayCommandMessage(message, null, null);
+            return ui.displayCommandMessage(message, null, null);
         } else {
-            String findMessage = "\t" + "Here are the list of matching tasks!";
-            ui.displayCommandMessage(findMessage,null,null);
+            MultiLineFormatter mf = new MultiLineFormatter();
+            String findMessage = "Here are the list of matching tasks!";
+            mf.add(findMessage);
+            mf.add("\n");
             for (int j = 0; j < tempTaskArray.size(); j++) {
-                String itemDisplayed = String.format("\t\t\t%d. %s", j + 1, tempTaskArray.get(j));
-                ui.displayCommandMessage(itemDisplayed, null, null);
+                String itemDisplayed = String.format("\t\t%d. %s", j + 1, tempTaskArray.get(j));
+                mf.add(itemDisplayed);
+                mf.add("\n");
             }
+            return mf.getFullMessage();
         }
-        ui.printBorder();
     }
 }

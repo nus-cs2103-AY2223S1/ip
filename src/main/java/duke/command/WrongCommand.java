@@ -10,17 +10,16 @@ import duke.Ui;
 public class WrongCommand extends Command {
 
     /**
-     * Displays the message that the command is invalid.
+     * Returns the message that the command is invalid.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return The message that command is invalid.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         String message = "Please enter some valid Command";
-        ui.displayCommandMessage(message, null, null);
-        ui.printBorder();
+        return ui.displayCommandMessage(message, null, null);
     }
 }

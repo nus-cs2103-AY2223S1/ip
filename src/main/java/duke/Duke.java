@@ -35,37 +35,26 @@ public class Duke {
     }
 
     /**
-     * Gets the command from the terminal, parses
-     * the command and executes the command given.
+     * Returns reply which is given by the Duke Bot.
+     *
+     * @return The reply given by Duke.
      */
-    public void run() {
-        ui.Greet();
-        boolean isTerminated = false;
+    public String getReply(String input) {
         Scanner scanner = new Scanner(System.in);
-        while (!isTerminated) {
-            try {
-                String completeCommand = ui.readCommand(scanner);
-                Command command = Parser.parse(completeCommand, taskList);
-                command.execute(ui, storage, taskList);
-                isTerminated = command.isTerminated();
-            } catch (DukeException e) {
-                ui.showExceptionMessage(e.toString());
-            } catch (NumberFormatException e) {
-                ui.printBorder();
-                ui.showExceptionMessage("Please enter a valid number");
-                ui.printBorder();
-            } catch (DateTimeParseException e) {
-                ui.printBorder();
-                ui.showExceptionMessage("Sorry! Please include a valid date entry");
-                ui.printBorder();
-            }
+        String reply;
+        try {
+            Command command = Parser.parse(input, taskList);
+            reply = command.execute(ui, storage, taskList);
+        } catch (DukeException e) {
+            reply = ui.showExceptionMessage(e.toString());
+        } catch (NumberFormatException e) {
+            reply = ui.showExceptionMessage("Please enter a valid number");
+        } catch (DateTimeParseException e) {
+            reply = ui.showExceptionMessage("Sorry! Please include a valid date entry");
         }
         scanner.close();
+        return reply;
     }
-
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
 
 }
+

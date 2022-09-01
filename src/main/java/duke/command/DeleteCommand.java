@@ -24,19 +24,18 @@ public class DeleteCommand extends Command {
 
     /**
      * Removes the task from the task list.
-     * Displays the message that the task was removed.
+     * Returns the message that the task was removed.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @return The message that task was removed.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
-        ui.printBorder();
+    public String execute(Ui ui, Storage storage, TaskList taskList) {
         Task deletedTask = taskList.getTask(position - 1);
         taskList.remove(position - 1, storage);
         String commandMessage = "Noted! This task has been successfully removed!";
-        ui.displayCommandMessage(commandMessage, deletedTask, taskList.getSize());
-        ui.printBorder();
+        return ui.displayCommandMessage(commandMessage, deletedTask, taskList.getSize());
     }
 }
