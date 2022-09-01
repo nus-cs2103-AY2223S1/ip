@@ -18,14 +18,16 @@ public class Task {
      *
      * @param command The command that determines whether this task is done or not done.
      */
-    public void toggleDone(String command) {
+    public String toggleDone(String command) {
         if (command.startsWith("mark ")) {
             this.isDone = true;
-            System.out.println("Nice! I've marked this task as done: \n" + this.toString());
+            return "Nice! I've marked this task as done: \n" + this;
         } else if (command.startsWith("unmark ")) {
             this.isDone = false;
-            System.out.println("OK, I've marked this task as not done yet: \n" + this.toString());
+            return "OK, I've marked this task as not done yet: \n" + this;
         }
+
+        return "Oops! Something went wrong!";
     }
 
     /**

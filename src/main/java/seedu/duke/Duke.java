@@ -3,23 +3,34 @@ package seedu.duke;
 public class Duke {
     private static Storage save;
     private static Ui ui;
+    private static Parser parser;
 
     /**
      * A constructor that returns an instance of Duke.
-     *
-     * @param filePath The path to the save file where data is stored.
      */
-    public Duke(String filePath) {
-        save = new Storage(filePath);
+    public Duke(String fileType) {
+        save = new Storage(fileType);
 
         TaskList taskList = new TaskList(save);
-        ui = new Ui(taskList);
+        parser = new Parser(taskList);
+        ui = new Ui(parser);
     }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return parser.parse(input);
+    }
+
 
     /**
      * Prints out greeting, initialises the TaskList and opens the scanner to start
      * receiving commands.
      */
+
+    /*
     public static void run() {
         ui.introduction();
     }
@@ -28,6 +39,9 @@ public class Duke {
         new Duke("data/duke.txt").run();
 
     }
+
+     */
+
 
 }
 
