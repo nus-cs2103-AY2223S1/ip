@@ -1,11 +1,11 @@
 package alpha;
 
-import alpha.command.Mark;
-
 public class AlphaException extends Exception{
+
     public AlphaException(String message) {
         super(message);
     }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {

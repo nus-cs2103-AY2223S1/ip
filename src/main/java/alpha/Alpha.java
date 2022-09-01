@@ -2,13 +2,10 @@ package alpha;
 
 import alpha.command.Command;
 import alpha.command.Exit;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.DateTimeException;
 import java.util.Scanner;
 
 public class Alpha {
+
     Ui uI = new Ui();
     Parser parser = new Parser();
     TaskList taskList;
@@ -22,9 +19,10 @@ public class Alpha {
              fileOperations.createFile();
              taskList = new TaskList(fileOperations.readFile());
          } catch(AlphaException e) {
-             uI.colouredPrint(uI.ANSI_RED, e.getMessage());
+             uI.colouredPrint(uI.getANSI_CODE("ANSI_RED"), e.getMessage());
          }
      }
+
     public void run() {
         Scanner in = new Scanner(System.in);
         uI.welcomeMessage();
@@ -37,13 +35,14 @@ public class Alpha {
                 if (c instanceof Exit) {
                     isExit = true;
                 }
-            } catch (AlphaException | DateTimeException e) {
-                uI.colouredPrint(uI.ANSI_RED, e.getMessage());
+            } catch (AlphaException e) {
+                uI.colouredPrint(uI.getANSI_CODE("ANSI_RED"), e.getMessage());
             }
         }
-        uI.colouredPrint(uI.ANSI_BLUE, ">> Bye, see you soon!");
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> Bye, see you soon!");
         System.exit(0);
     }
+
     public static void main(String[] args) {
         new Alpha("./alpha.Alpha.txt").run();
     }

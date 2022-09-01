@@ -5,9 +5,8 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.io.IOException;
-
 public class Mark extends Command {
+
     private int taskNumber;
 
     public Mark(int taskNumber) {
@@ -18,7 +17,7 @@ public class Mark extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, true);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "marked: Task " + this.taskNumber);
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "marked: Task " + this.taskNumber);
     }
 
     @Override

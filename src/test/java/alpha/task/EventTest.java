@@ -1,12 +1,12 @@
 package alpha.task;
 
 import alpha.Ui;
-import alpha.task.Event;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EventTest {
+
     Event event = new Event("birthday", "Sep 04 2022", "E");
     Ui uI = new Ui();
 
@@ -17,6 +17,8 @@ public class EventTest {
 
     @Test
     public void toString_noInput_String() {
-        assertEquals(String.format(uI.ANSI_BLUE + "[ %s ] [ %s ] %s", "E", " ", "birthday" + uI.ANSI_RESET) + String.format(uI.ANSI_RED + " (on: %s)", "Sep 04 2022" + uI.ANSI_RESET), event.toString());
+        assertEquals(String.format(uI.getANSI_CODE("ANSI_BLUE") + "[ %s ] [ %s ] %s", "E", " ", "birthday"
+                + uI.getANSI_CODE("")) + String.format(uI.getANSI_CODE("ANSI_RED") + " (on: %s)", "Sep 04 2022"
+                + uI.getANSI_CODE("")), event.toString());
     }
 }

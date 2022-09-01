@@ -5,10 +5,8 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.io.IOException;
-import java.util.AbstractList;
-
 public class Delete extends Command {
+
     private int taskNumber;
 
     public Delete(int taskNumber) {
@@ -19,7 +17,7 @@ public class Delete extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.deleteTask(taskNumber);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "deleted: Task " + this.taskNumber);
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "deleted: Task " + this.taskNumber);
     }
 
     @Override

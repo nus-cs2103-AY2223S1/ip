@@ -3,7 +3,6 @@ package alpha;
 import alpha.task.Task;
 import alpha.task.Todo;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 

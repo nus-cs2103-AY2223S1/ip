@@ -4,13 +4,13 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
-import java.time.DateTimeException;
-
 public class List extends Command {
+
     @Override
-    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws DateTimeException {
+    public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) {
         taskList.printTasks(uI);
     }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {

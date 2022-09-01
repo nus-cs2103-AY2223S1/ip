@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileOperations {
+
     File f;
     final String FILE_PATH;
 
@@ -21,6 +22,7 @@ public class FileOperations {
         this.FILE_PATH = FILE_PATH;
         f = new File(FILE_PATH);
     }
+
     public void createFile() throws AlphaException {
         try {
             f.createNewFile();
@@ -65,7 +67,6 @@ public class FileOperations {
 
     public List<Task> readFile() throws AlphaException {
         List<Task> tasksInFile = new ArrayList<>();
-        //File f = new File(filePath); // create a File for the given file path
         Scanner s;
         try {
             s = new Scanner(f); // create a Scanner using the File as the source

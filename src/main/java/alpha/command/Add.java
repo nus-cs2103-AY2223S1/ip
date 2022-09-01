@@ -8,9 +8,6 @@ import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Task;
 
-import java.io.IOException;
-import java.time.DateTimeException;
-
 public class Add extends Command {
 
     private Task task;
@@ -18,6 +15,7 @@ public class Add extends Command {
     public Add(Task task) {
         this.task = task;
     }
+
     @Override
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.addToTaskList(task);
@@ -34,7 +32,7 @@ public class Add extends Command {
             textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        uI.colouredPrint(uI.ANSI_BLUE, ">> " + "added: " + task.getDescription());
+        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "added: " + task.getDescription());
     }
 
     @Override
