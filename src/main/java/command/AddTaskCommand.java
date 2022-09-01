@@ -27,7 +27,7 @@ public class AddTaskCommand extends Command {
         String endLine = String.format(
                 "Now you have %d tasks in the list.",
                 list.getTaskCount());
-        System.out.println(Ui.formatLinesIntoParagraph(
+        setOutputMessage(Ui.formatLinesIntoParagraph(
                 startLine,
                 task,
                 endLine

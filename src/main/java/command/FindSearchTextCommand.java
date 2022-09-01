@@ -41,6 +41,6 @@ public class FindSearchTextCommand extends Command {
         for (String match : matchedTasks) {
             res += Ui.formatLine(match);
         }
-        System.out.println(Ui.formatParagraph(res));
+        setOutputMessage(res);
     }
 }
