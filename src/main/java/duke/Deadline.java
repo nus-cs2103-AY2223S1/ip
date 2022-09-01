@@ -8,14 +8,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     private LocalDateTime deadline;
-    
     public static final String ENCODED_TASK_TYPE = "D";
 
     /**
      * Returns a Deadline instance with the given description and the deadline.
      *
      * @param description The Deadline description.
-     * @param deadline The deadline by which the task needs to be completed.
+     * @param deadline    The deadline by which the task needs to be completed.
      */
     public Deadline(String description, LocalDateTime deadline) {
         super(description);
@@ -45,8 +44,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D] %s %s (by: %s)", getStatusIcon(), getDescription(), 
-        getDeadline());
+        return String.format("[D] %s %s (by: %s)", getStatusIcon(), getDescription(),
+                getDeadline());
     }
 
     /**
