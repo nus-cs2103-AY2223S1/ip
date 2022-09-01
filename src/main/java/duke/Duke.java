@@ -55,7 +55,7 @@ public class Duke {
         if (input.contains(" ")) {
             int index = input.indexOf(' ');
             command = input.substring(0, index);
-            description = input.substring(index);
+            description = input.substring(index + 1);
         } else {
             command = input;
             description = "";

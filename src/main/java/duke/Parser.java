@@ -49,15 +49,15 @@ public class Parser {
                 return new ListCommand();
                 // No need for break since it is unreachable
             case "mark":
-                index = Integer.parseInt(description.substring(1)) - 1;
+                index = Integer.parseInt(description) - 1;
                 return new MarkCommand(index);
                 // No need for break since it is unreachable
             case "unmark":
-                index = Integer.parseInt(description.substring(1)) - 1;
+                index = Integer.parseInt(description) - 1;
                 return new UnmarkCommand(index);
                 // No need for break since it is unreachable
             case "delete":
-                index = Integer.parseInt(description.substring(1)) - 1;
+                index = Integer.parseInt(description) - 1;
                 return new DeleteCommand(index);
                 // No need for break since it is unreachable
             case "todo":
