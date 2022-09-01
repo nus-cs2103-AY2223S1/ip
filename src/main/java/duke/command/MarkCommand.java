@@ -34,6 +34,6 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String taskDescription = tasks.markOrUnmark(this.arguments, true);
 
-        return ui.taskMarkedMsg(taskDescription);
+        return ui.getTaskMarkedMsg(taskDescription);
     }
 }

@@ -22,6 +22,6 @@ public class ListCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String items = tasks.allItems();
 
-        return ui.allTasksMsg(items);
+        return ui.getAllTasksMsg(items);
     }
 }

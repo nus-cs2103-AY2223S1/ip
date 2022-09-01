@@ -13,7 +13,7 @@ public class Ui {
      *
      * @return String representation of Bye message.
      */
-    public String byeMsg() {
+    public String getByeMsg() {
         return "Bye. Hope to see you again soon!\n" + "Application closing in 3 seconds...";
     }
 
@@ -22,7 +22,7 @@ public class Ui {
      *
      * @return Message conveying that task has successfully been added, and the current number of tasks.
      */
-    public String taskAddedMsg(int newTaskCount, Task task) {
+    public String getTaskAddedMsg(int newTaskCount, Task task) {
         return "Got it. I've added this task:\n" + "  " + task + "\n" + "Now you have "
                 + newTaskCount + " tasks in the list.";
     }
@@ -42,7 +42,7 @@ public class Ui {
      *
      * @param taskDescription The description of the task marked.
      */
-    public String taskMarkedMsg(String taskDescription) {
+    public String getTaskMarkedMsg(String taskDescription) {
         return "Nice! I've marked this task as done:\n" + taskDescription;
     }
 
@@ -51,7 +51,7 @@ public class Ui {
      *
      * @param taskDescription The description of the task unmarked.
      */
-    public String taskUnmarkedMsg(String taskDescription) {
+    public String getTaskUnmarkedMsg(String taskDescription) {
         return "OK, I've marked this task as not done yet:\n" + taskDescription;
     }
 
@@ -61,7 +61,7 @@ public class Ui {
      * @param allTasks String representation of allTasks.
      * @return A formatted string representation of all tasks.
      */
-    public String allTasksMsg(String allTasks) {
+    public String getAllTasksMsg(String allTasks) {
         if (allTasks.trim().isEmpty()) {
             return "There are no tasks yet...";
         }
@@ -74,7 +74,7 @@ public class Ui {
      *
      * @return String representation of loading error.
      */
-    public String showLoadingError() {
+    public String getLoadingErrorMsg() {
         return "OOPS!!! Failed to load tasks because file cannot be opened!";
     }
 
@@ -84,7 +84,7 @@ public class Ui {
      * @param error Error message.
      * @return Formatted duke error message.
      */
-    public String dukeErrorMsg(String error) {
+    public String formatDukeErrorMsg(String error) {
         return "OOPS!!! " + error;
     }
 
@@ -93,7 +93,7 @@ public class Ui {
      *
      * @return Formatted invalid date error message.
      */
-    public String dateErrorMsg() {
+    public String getDateErrorMsg() {
         return "OOPS!!! Your date format has to be in the form 'yyyy-mm-dd'";
     }
 
@@ -102,7 +102,7 @@ public class Ui {
      *
      * @return Formatted invalid number error message.
      */
-    public String numberCastErrorMsg() {
+    public String getNumberCastErrorMsg() {
         return "OOPS!!! Please input a valid index (i.e. a number)";
     }
 
@@ -112,7 +112,7 @@ public class Ui {
      * @param searchResults String representation of all string results.
      * @return String representation of all search results.
      */
-    public static String searchResultsMsg(String searchResults) {
+    public static String getSearchResultsMsg(String searchResults) {
         return "Here are the matching tasks in your list:\n" + searchResults;
     }
 }

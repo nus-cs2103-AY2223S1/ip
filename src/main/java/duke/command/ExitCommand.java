@@ -33,6 +33,6 @@ public class ExitCommand extends Command {
             }
         }).start();
 
-        return ui.byeMsg();
+        return ui.getByeMsg();
     }
 }

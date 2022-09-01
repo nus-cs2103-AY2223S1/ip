@@ -43,15 +43,15 @@ public class AddCommand extends Command {
         if (this.command.equals("todo")) {
             ToDo newToDo = tasks.addToDo(this.arguments);
 
-            return ui.taskAddedMsg(tasks.getTaskLen(), newToDo);
+            return ui.getTaskAddedMsg(tasks.getTaskLen(), newToDo);
         } else if (this.command.equals("deadline")) {
             Deadline newDeadline = tasks.addDeadline(this.arguments);
 
-            return ui.taskAddedMsg(tasks.getTaskLen(), newDeadline);
+            return ui.getTaskAddedMsg(tasks.getTaskLen(), newDeadline);
         } else {
             Event newEvent = tasks.addEvent(this.arguments);
 
-            return ui.taskAddedMsg(tasks.getTaskLen(), newEvent);
+            return ui.getTaskAddedMsg(tasks.getTaskLen(), newEvent);
         }
     }
 }

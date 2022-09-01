@@ -34,6 +34,6 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String searchResults = tasks.findMatches(this.searchInput);
 
-        return Ui.searchResultsMsg(searchResults);
+        return Ui.getSearchResultsMsg(searchResults);
     }
 }

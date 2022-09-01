@@ -38,7 +38,7 @@ public class Duke {
         try {
             this.tasks = new TaskList(this.storage.load());
         } catch (FileNotFoundException e) {
-            System.out.println(this.ui.showLoadingError());
+            System.out.println(this.ui.getLoadingErrorMsg());
             this.tasks = new TaskList();
         }
     }
@@ -60,11 +60,11 @@ public class Duke {
             Command c = Parser.parse(userInput);
             dukeMessage = c.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
-            dukeMessage = this.ui.dukeErrorMsg(e.getMessage());
+            dukeMessage = this.ui.formatDukeErrorMsg(e.getMessage());
         } catch (NumberFormatException e) {
-            dukeMessage = this.ui.numberCastErrorMsg();
+            dukeMessage = this.ui.getNumberCastErrorMsg();
         } catch (DateTimeParseException e) {
-            dukeMessage = this.ui.dateErrorMsg();
+            dukeMessage = this.ui.getDateErrorMsg();
         }
 
         return dukeMessage;

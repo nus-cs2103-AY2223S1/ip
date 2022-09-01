@@ -34,6 +34,6 @@ public class UnmarkCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String taskDescription = tasks.markOrUnmark(this.arguments, false);
 
-        return ui.taskUnmarkedMsg(taskDescription);
+        return ui.getTaskUnmarkedMsg(taskDescription);
     }
 }
