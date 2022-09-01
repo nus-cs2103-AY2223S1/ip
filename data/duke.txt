@@ -1,7 +1,0 @@
-T , 0 , borrow book
-E , 0 , project meeting , 2019-10-15
-E , 0 , do lab , 2019-10-15
-T , 0 , borrow book
-D , 0 , return book , 2019-10-15
-T , 0 , borrow book
-T , 0 , borrow book

@@ -54,8 +54,9 @@ public class AddCommand extends Command {
      * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
+     * @return the reply from the bot
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = new Task("null");
         if (typeOfTask.equals("deadline")) {
             task = new Deadline(description, deadline);
@@ -66,9 +67,8 @@ public class AddCommand extends Command {
         }
 
         tasks.addTask(task);
-        ui.addTask(task);
-        ui.displayNumberOfTasks(tasks.getNumberOfTasks());
         storage.writeToFile(tasks);
+        return ui.addTask(task) + ui.displayNumberOfTasks(tasks.getNumberOfTasks());
     }
 
 }

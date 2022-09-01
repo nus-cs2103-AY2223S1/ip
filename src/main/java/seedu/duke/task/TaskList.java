@@ -1,8 +1,8 @@
 package seedu.duke.task;
 
-import java.util.ArrayList;
-
 import seedu.duke.ui.Style;
+
+import java.util.ArrayList;
 
 /**
  * A class representing a list of tasks.
@@ -87,10 +87,13 @@ public class TaskList {
     /**
      * Prints out all the tasks stored in ArrayList
      */
-    public void listTasks() {
+    public String listTasks() {
+        String output = "";
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println(Style.INDENTATION + (i + 1) + "." + getTask(i + 1));
+            output += Style.INDENTATION + (i + 1) + "." + getTask(i + 1) + "\n";
         }
+        return output;
     }
 
     public ArrayList<Task> getAllTasks() {
@@ -108,14 +111,17 @@ public class TaskList {
      *
      * @param keyword Specifies the keyword to match the tasks to.
      */
-    public void displayMatchingTasks(String keyword) {
+    public String displayMatchingTasks(String keyword) {
+        String text = "";
         int j = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = getTask(i + 1);
             if (task.toString().contains(keyword)) {
                 System.out.println(Style.INDENTATION + (j + 1) + "." + task);
+                text += Style.INDENTATION + (j + 1) + "." + task + "\n";
                 j++;
             }
         }
+        return text;
     }
 }

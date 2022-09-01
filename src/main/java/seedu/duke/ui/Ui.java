@@ -1,9 +1,9 @@
 package seedu.duke.ui;
 
-import java.util.Scanner;
-
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+
+import java.util.Scanner;
 
 /**
  * Ui Class responsible for handling all Ui displaying related matters.
@@ -47,8 +47,10 @@ public class Ui {
      *
      * @param errorMessage The error message.
      */
-    public void showError(String errorMessage) {
-        System.out.println(Style.INDENTATION + errorMessage + "\n");
+    public String showError(String errorMessage) {
+        String text = Style.INDENTATION + errorMessage + "\n";
+        System.out.println(text);
+        return text;
     }
 
     /**
@@ -74,27 +76,36 @@ public class Ui {
     /**
      * Prints out good bye message.
      */
-    public void showGoodbye() {
-        System.out.println(Style.INDENTATION + "Bye. Hope to see you again soon!\n");
+    public String showGoodbye() {
+        String text = Style.INDENTATION + "Bye. Hope to see you again soon!\n";
+        System.out.println(text);
+
+        return text;
     }
 
     /**
      * Displays all the tasks in the list.
-     * @param tasks
+     * @param tasks The tasklist
      */
-    public void showList(TaskList tasks) {
-        System.out.println(Style.INDENTATION + "Here are the tasks in your list:");
-        tasks.listTasks();
-        System.out.println("");
+    public String showList(TaskList tasks) {
+        String text = Style.INDENTATION + "Here are the tasks in your list:\n"
+                + tasks.listTasks();
+
+        System.out.println(text);
+
+        return text;
     }
 
     /**
      * Displays task after it has been marked.
      * @param task The task to be marked.
      */
-    public void showMarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
-        System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
+    public String showMarkStatus(Task task) {
+        String text = Style.INDENTATION + "Nice! I've marked this task as done:\n"
+                + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
+
+        System.out.println(text);
+        return text;
     }
 
 
@@ -102,43 +113,54 @@ public class Ui {
      * Displays task after it has been unmarked.
      * @param task The task to be unmarked.
      */
-    public void showUnmarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
-        System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
+    public String showUnmarkStatus(Task task) {
+        String text = Style.INDENTATION + "OK, I've marked this task as not done yet:\n"
+                + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
+        System.out.println(text);
+        return text;
     }
 
     /**
      * Displays teh task that has been added to ArrayList.
      * @param task The task to be added.
      */
-    public void addTask(Task task) {
-        System.out.println(Style.INDENTATION + "Got it. I've added this task:");
-        System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
+    public String addTask(Task task) {
+        String text = Style.INDENTATION + "Got it. I've added this task:\n"
+                + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
+        System.out.println(text);
+        return text;
     }
 
     /**
      * Displays the task after it has been deleted.
      * @param task The task to be deleted.
      */
-    public void deleteTask(Task task) {
-        System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
-        System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
+    public String deleteTask(Task task) {
+        String text = Style.INDENTATION + "Noted. I've removed this task:"
+                + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
+        System.out.println(text);
+        return text + "\n";
     }
 
     /**
      * Displays the number of tasks in the list in an appropriate format.
      * @param numberOfTasks The number of tasks in the list.
      */
-    public void displayNumberOfTasks(int numberOfTasks) {
+    public String displayNumberOfTasks(int numberOfTasks) {
         String taskOrTasks = numberOfTasks == 1 ? "task" : "tasks";
-        System.out.println(Style.INDENTATION + "Now you have " + numberOfTasks + " "
-                + taskOrTasks + " in the list.\n");
+        String text = Style.INDENTATION + "Now you have " + numberOfTasks + " "
+                + taskOrTasks + " in the list.\n";
+        System.out.println(text);
+        return text;
     }
 
     /**
      * Displays the header comment before the matching tasks.
      */
-    public void displayMatchingTasks() {
-        System.out.println(Style.INDENTATION + "Here are the matching tasks in your list:");
+    public String displayMatchingTasks() {
+        String text = Style.INDENTATION + "Here are the matching tasks in your list:\n";
+        System.out.println(text);
+
+        return text;
     }
 }

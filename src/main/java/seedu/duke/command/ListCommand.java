@@ -22,8 +22,10 @@ public class ListCommand extends Command {
      * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
+     * @return the reply from the bot
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showList(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.showList(tasks);
+
     }
 }

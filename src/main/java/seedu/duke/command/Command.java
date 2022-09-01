@@ -27,7 +27,7 @@ public abstract class Command {
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Returns a boolean of whether the Command object isExit is true.

@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
-import java.util.Objects;
-
 import seedu.duke.storage.Storage;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+
+import java.util.Objects;
 
 /**
  * A class which extends from the Command abstract class.
@@ -36,15 +36,18 @@ public class MarkCommand extends Command {
      * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
+     * @return the reply from the bot
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String output = "";
         if (this.toMark) {
             Task task = tasks.markTask(index);
-            ui.showMarkStatus(task);
+            output += ui.showMarkStatus(task);
         } else {
             Task task = tasks.unmarkTask(index);
-            ui.showUnmarkStatus(task);
+            output += ui.showUnmarkStatus(task);
         }
         storage.writeToFile(tasks);
+        return output;
     }
 }
