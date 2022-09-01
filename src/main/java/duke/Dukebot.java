@@ -1,24 +1,31 @@
 package duke;
 
+import duke.messages.ExceptionMessages;
+import duke.messages.ResponseMessages;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.TaskList;
+import duke.tasks.Todo;
+
 import java.io.IOException;
 
 /**
- * Main driver class for the chatbot
+ * duke.Main driver class for the chatbot
  */
 public class Dukebot {
     private TaskList taskList;
     private Storage storage;
     private Parser parser;
     private TextUi ui;
-    private boolean toExit;
+    private boolean isExit;
 
 
     /**
      * Initializes necessary components of the chatbot
      */
-    public Dukebot(TextUi ui) {
-        this.toExit = false;
-        this.ui = ui;
+    public Dukebot() {
+        this.isExit = false;
+        this.ui = new TextUi();
         this.handleStartup();
     }
 
@@ -26,82 +33,119 @@ public class Dukebot {
      * The running loop of a bot instance.
      */
     public void run() {
-        while(!toExit) {
+        while(!isExit) {
             String input = ui.getInput();
             handleInput(input);
         }
     }
 
-    private void handleStartup() {
+    public boolean isExit() {
+        return isExit;
+    }
+
+    public String getResponse(String input) {
+        return handleInput(input);
+    }
+
+    public String handleStartup() {
         this.parser = new Parser();
-        ui.display(Messages.STARTUP);
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.STARTUP);
         try {
             this.storage = new Storage();
             storage.createStorage();
             this.taskList = storage.loadFromStorage();
+            sb.append(handleList());
+            return sb.toString();
         } catch (IOException e) {
-            ui.display(ExceptionMessages.LOAD_ERROR);
+            sb.append(ExceptionMessages.LOAD_ERROR);
             this.taskList = new TaskList();
+            return sb.toString();
         }
     }
 
-    private void handleBye() {
-        ui.display(Messages.ENDING);
-        toExit = true;
+    private String handleBye() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.ENDING);
+        isExit = true;
+        return sb.toString();
         // Not necessary to save to storage here as saving is done for every TaskList modification.
     }
 
-    private void handleList() {
-        ui.display(Messages.LIST_TASKS);
+    private String handleList() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.LIST_TASKS);
         for (int i = 0; i < this.taskList.getSize(); i++) {
-            ui.display((i + 1) + "." + taskList.get(i).toString());
+            sb.append(i + 1);
+            sb.append(".");
+            sb.append(taskList.get(i).toString());
+            sb.append("\n");
         }
+        return sb.toString();
     }
 
-    private void handleRemove(String[] inputArgs) throws DukeException {
+    private String handleRemove(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
-        ui.display(Messages.TASK_REMOVED);
-        ui.display(taskList.get(index).toString());
         taskList.remove(Integer.parseInt(inputArgs[1]) - 1);
-        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_REMOVED);
+        sb.append(taskList.get(index).toString());
+        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
+        sb.append("\n");
+        return sb.toString();
     }
 
-    private void handleMark(String[] inputArgs) throws DukeException {
+    private String handleMark(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
         taskList.mark(index);
-        ui.display(Messages.TASK_MARKED);
-        ui.display(this.taskList.get(index).toString());
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_MARKED);
+        sb.append(taskList.get(index).toString());
+        sb.append("\n");
+        return sb.toString();
     }
 
-    private void handleUnmark(String[] inputArgs) throws DukeException {
+    private String handleUnmark(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
-        taskList.get(index).markUndone();
-        ui.display(Messages.TASK_UNMARKED);
-        ui.display(taskList.get(index).toString());
+        taskList.unmark(index);
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_UNMARKED);
+        sb.append(taskList.get(index).toString());
+        sb.append("\n");
+        return sb.toString();
     }
 
-    private void handleTodo(String[] inputArgs) throws DukeException {
+    private String handleTodo(String[] inputArgs) throws DukeException {
         Todo t = parser.parseTodo(inputArgs);
         taskList.add(t);
-        ui.display(Messages.TASK_ADDED);
-        ui.display(taskList.get(taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_ADDED);
+        sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
+        sb.append("\n");
+        return sb.toString();
     }
 
-    private void handleDeadline(String[] inputArgs) throws DukeException {
+    private String handleDeadline(String[] inputArgs) throws DukeException {
         Deadline d = parser.parseDeadline(inputArgs);
         taskList.add(d);
-        ui.display(Messages.TASK_ADDED);
-        ui.display(taskList.get(taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_ADDED);
+        sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
+        sb.append("\n");
+        return sb.toString();
     }
 
-    private void handleEvent(String[] inputArgs) throws DukeException {
+    private String handleEvent(String[] inputArgs) throws DukeException {
         Event e = parser.parseEvent(inputArgs);
         taskList.add(e);
-        ui.display(Messages.TASK_ADDED);
-        ui.display(taskList.get(taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(ResponseMessages.TASK_ADDED);
+        sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
+        sb.append("\n");
+        return sb.toString();
     }
 
     /**
@@ -109,62 +153,67 @@ public class Dukebot {
      * @param inputArgs the full command entered by the user
      * @throws DukeException if there command is incorrectly formatted
      */
-    private void handleFind(String[] inputArgs) throws DukeException {
+    private String handleFind(String[] inputArgs) throws DukeException {
         String key = parser.parseFind(inputArgs);
-        ui.display(String.format(Messages.FIND_TASKS, key));
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(ResponseMessages.FIND_TASKS, key));
         for (int i = 0; i < taskList.getSize(); i++) {
             if (taskList.get(i).getDescription().contains(key)) {
-                ui.display(taskList.get(i).toString());
+                sb.append(taskList.get(i).toString());
+                sb.append("\n");
             }
         }
+        return sb.toString();
     }
+
     /**
      * Overarching handler for commands entered by the user
      * @param input a full command entered by the user
      */
-    private void handleInput(String input) {
+    private String handleInput(String input) {
+        String response;
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
         try {
             switch (keyWord) {
             case "bye":
-                handleBye();
+                response = handleBye();
+                return response;
             case "list":
-                handleList();
-                break;
+                response = handleList();
+                return response;
             case "remove":
-                handleRemove(inputArgs);
+                response = handleRemove(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "mark":
-                handleMark(inputArgs);
+                response = handleMark(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "unmark":
-                handleUnmark(inputArgs);
+                response = handleUnmark(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "todo":
-                handleTodo(inputArgs);
+                response = handleTodo(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "deadline":
-                handleDeadline(inputArgs);
+                response = handleDeadline(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "event":
-                handleEvent(inputArgs);
+                response = handleEvent(inputArgs);
                 storage.writeToStorage(taskList);
-                break;
+                return response;
             case "find":
-                handleFind(inputArgs);
+                response = handleFind(inputArgs);
+                return response;
             default:
                 throw new DukeException(ExceptionMessages.UNSUPPORTED_ACTION);
             }
-        } catch (DukeException e) {
-            ui.display(e.getMessage());
-        } catch (IOException e) {
-            ui.display("Error writing to storage");
+        } catch (DukeException | IOException e) {
+            return e.getMessage();
         }
 
     }

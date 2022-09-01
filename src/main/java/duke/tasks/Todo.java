@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 /**
  * Represents a Todo with no specific timeframe

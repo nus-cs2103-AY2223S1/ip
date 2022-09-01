@@ -1,4 +1,4 @@
-package duke;
+package duke.tasks;
 
 /**
  * Represents an Event at a specified time

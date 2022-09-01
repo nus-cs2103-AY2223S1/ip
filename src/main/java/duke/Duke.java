@@ -8,8 +8,7 @@ package duke;
 public class Duke {
 
     public static void main(String[] args) {
-        TextUi ui = new TextUi();
-        Dukebot driver = new Dukebot(ui);
+        Dukebot driver = new Dukebot();
         driver.run();
     }
 }

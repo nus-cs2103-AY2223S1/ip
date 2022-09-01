@@ -1,5 +1,10 @@
 package duke;
 
+import duke.messages.ExceptionMessages;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+
 /**
  * Processes the entered command.
  * Checks for formatting errors.
