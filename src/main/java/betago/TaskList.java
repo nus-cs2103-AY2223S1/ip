@@ -108,7 +108,7 @@ public class TaskList {
         } else {
             Todo temp = new Todo(inputs[1]);
             this.list.add(temp);
-            System.out.println("Got it. I've added this BetaGo.Tasks.Todo task:\n" + temp.toString());
+            System.out.println("Got it. I've added this Todo task:\n" + temp.toString());
             System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
         }
     }
@@ -131,7 +131,7 @@ public class TaskList {
                 try {
                     Deadline temp = new Deadline(when[0], when[1]);
                     this.list.add(temp);
-                    System.out.println("Got it. I've added this BetaGo.Tasks.Deadline task:\n" + temp.toString());
+                    System.out.println("Got it. I've added this Deadline task:\n" + temp.toString());
                     System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
                 } catch (InvalidCommandException e) {
                     System.out.println(e.getMessage());
@@ -157,7 +157,7 @@ public class TaskList {
             } else {
                 Event temp = new Event(where[0], where[1]);
                 this.list.add(temp);
-                System.out.println("Got it. I've added this BetaGo.Tasks.Event task:\n" + temp.toString());
+                System.out.println("Got it. I've added this Event task:\n" + temp.toString());
                 System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
             }
         }
