@@ -40,5 +40,4 @@ public class DeleteCommand extends Command {
         System.out.println(taskList.remove(query).toString());
         System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
     }
-
 }

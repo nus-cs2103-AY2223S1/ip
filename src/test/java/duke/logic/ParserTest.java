@@ -1,18 +1,24 @@
 package duke.logic;
 
-import duke.command.*;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
+import duke.command.ByeCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 public class ParserTest {
     private static LocalDate date = LocalDate.now();

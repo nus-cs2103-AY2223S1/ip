@@ -1,10 +1,10 @@
 package duke.command;
 
-import duke.task.Deadline;
+import java.time.LocalDate;
+
 import duke.exception.IllegalDescriptionException;
 import duke.logic.TaskList;
-
-import java.time.LocalDate;
+import duke.task.Deadline;
 
 /**
  * DeadlineCommand is a command for Duke to remember a deadline.

@@ -1,10 +1,10 @@
 package duke.logic;
 
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import duke.task.Task;
 
 /**
  * Storage deals with writing task history to a file.

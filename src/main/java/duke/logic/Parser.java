@@ -1,12 +1,23 @@
 package duke.logic;
 
-import duke.command.*;
-import duke.exception.*;
-
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Locale;
+
+import duke.command.ByeCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.IllegalDescriptionException;
+import duke.exception.IllegalKeywordException;
+import duke.exception.IllegalTaskException;
+import duke.exception.IllegalTimeException;
+import duke.exception.IllegalTokenException;
 
 /**
  * Parser deals with making sense of user input.
@@ -14,9 +25,6 @@ import java.util.Locale;
  * @author totsukatomofumi
  */
 public class Parser {
-    /** Task list to be passed into command constructors. */
-    private TaskList taskList;
-
     /** HashMap to contain abbreviated month and their numerical representation as a string pairs. */
     private static HashMap<String, String> months = new HashMap<>();
 
@@ -28,6 +36,9 @@ public class Parser {
             ++dayNum;
         }
     }
+
+    /** Task list to be passed into command constructors. */
+    private TaskList taskList;
 
     /**
      * Constructor for the parser.
@@ -47,16 +58,19 @@ public class Parser {
     public Runnable parse(String response) {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
-        String lresponse = response.toLowerCase();  //for any caps commands
-
-        if (lresponse.equals("bye")) {   //bye command
+        //for any caps commands
+        String lresponse = response.toLowerCase();
+        //bye command
+        if (lresponse.equals("bye")) {
             return new ByeCommand();
-        } else if (lresponse.equals("list")) {   //list command
+        //list command
+        } else if (lresponse.equals("list")) {
             return new ListCommand(taskList);
         }
 
         try {
-            if (lresponse.equals("mark") || lresponse.startsWith("mark ")) {  //mark command
+            //mark command
+            if (lresponse.equals("mark") || lresponse.startsWith("mark ")) {
                 //no task specified, mark<space> is 5 char long
                 if (response.length() < 6) {
                     throw new IllegalTaskException("No task specified.");
@@ -64,8 +78,10 @@ public class Parser {
                 //taking index 5 inclusive onward
                 //minus 1 to convert into index starting from 0
                 int query = Integer.parseInt(response.substring(5).strip()) - 1;
-                return new MarkCommand(taskList, query);    //will throw illegaltaskexception
-            } else if (lresponse.equals("unmark") || lresponse.startsWith("unmark ")) {   //unmark command
+                //will throw illegaltaskexception
+                return new MarkCommand(taskList, query);
+            //unmark command
+            } else if (lresponse.equals("unmark") || lresponse.startsWith("unmark ")) {
                 //no task specified, unmark<space> is 7 char long
                 if (response.length() < 8) {
                     throw new IllegalTaskException("No task specified.");
@@ -73,8 +89,10 @@ public class Parser {
                 //taking index 7 inclusive onward
                 //minus 1 to convert into index starting from 0
                 int query = Integer.parseInt(response.substring(7).strip()) - 1;
-                return new UnmarkCommand(taskList, query);  //will throw illegaltaskexception
-            } else if (lresponse.equals("delete") || lresponse.startsWith("delete ")) {   //delete command
+                //will throw illegaltaskexception
+                return new UnmarkCommand(taskList, query);
+            //delete command
+            } else if (lresponse.equals("delete") || lresponse.startsWith("delete ")) {
                 //no task specified, delete<space> is 7 char long
                 if (response.length() < 8) {
                     throw new IllegalTaskException("No task specified.");
@@ -89,7 +107,8 @@ public class Parser {
                     throw new IllegalKeywordException("No keyword specified.");
                 }
                 //taking index 5 inclusive onward
-                return new FindCommand(taskList, response.substring(5).stripLeading()); //ensure no leading whitespaces
+                //ensure no leading whitespaces
+                return new FindCommand(taskList, response.substring(5).stripLeading());
             }
         } catch (NumberFormatException | IllegalTaskException e) {
             return () -> {
@@ -119,10 +138,13 @@ public class Parser {
                 }
                 //cut away deadline<space>
                 response = response.substring(9);
-                if (response.equals("/by") || response.startsWith("/by ")) {    //e.g. deadline /by <time>
-                    throw new IllegalDescriptionException("No description specified."); //or deadline /by
+                //e.g. deadline /by <time>
+                //or deadline /by
+                if (response.equals("/by") || response.startsWith("/by ")) {
+                    throw new IllegalDescriptionException("No description specified.");
                 }
-                if (response.endsWith(" /by")) {    //e.g. deadline <desc> /by
+                //e.g. deadline <desc> /by
+                if (response.endsWith(" /by")) {
                     throw new IllegalTimeException("No time specified.");
                 }
                 int tokenPosition = response.indexOf(" /by ");
@@ -130,13 +152,15 @@ public class Parser {
                     throw new IllegalTokenException("No token found.");
                 }
                 String description = response.substring(0, tokenPosition);
-                String time = response.substring(tokenPosition + 5);    //starting from after /by<space>
+                //starting from after /by<space>
+                String time = response.substring(tokenPosition + 5);
                 //as of now still can have e.g deadline <space><space><space> /by <time>
                 //to ensure whitespaces alone as a description or time is not allowed
                 if (description.strip().length() == 0) {
                     throw new IllegalDescriptionException("No description specified.");
                 }
-                if (time.length() == 0) {   //should not even come here as if time is pure whitespace, will be truncated
+                //should not even come here as if time is pure whitespace, will be truncated
+                if (time.length() == 0) {
                     throw new IllegalTimeException("No time specified.");
                 }
                 //strip leading get rid of white spaces infront, back alr dealt with
@@ -163,7 +187,8 @@ public class Parser {
                 if (description.strip().length() == 0) {
                     throw new IllegalDescriptionException("No description specified.");
                 }
-                if (time.length() == 0) {   //should not even come here as if time is pure whitespace, will be truncated
+                //should not even come here as if time is pure whitespace, will be truncated
+                if (time.length() == 0) {
                     throw new IllegalTimeException("No time specified.");
                 }
                 //strip leading get rid of white spaces infront, back alr dealt with
@@ -187,7 +212,7 @@ public class Parser {
             System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(");
         };
     }
-    
+
     /**
      * Parses string to the appropriate time it represents, if any.
      *
@@ -216,8 +241,10 @@ public class Parser {
             if (str.length() > 4) {
                 arr[2] = str.substring(4);
             }
-        }   //if any of these if statements go through, arr will have atleast 2 no null elements
-        if (arr[0] == null || arr[1] == null) { //no method of parsing, arr[1] check redundant but just in case
+        }
+        //if any of these if statements go through, arr will have atleast 2 no null elements
+        //no method of parsing, arr[1] check redundant but just in case
+        if (arr[0] == null || arr[1] == null) {
             throw new IllegalTimeException("Unable to parse due to invalid format.");
         }
         sDay = arr[0].strip();
@@ -227,7 +254,8 @@ public class Parser {
             throw new IllegalTimeException("Invalid day or month values.");
         }
         //convert month to number
-        if (sMonth.length() == 3) {  //length of 3 may indicate abbrev
+        //length of 3 may indicate abbrev
+        if (sMonth.length() == 3) {
             sMonth = Parser.months.get(sMonth.toLowerCase());
             if (sMonth == null) {
                 throw new IllegalTimeException("Invalid abbreviated month.");

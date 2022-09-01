@@ -8,9 +8,6 @@ import java.util.Scanner;
  * @author totsukatomofumi
  */
 public class Ui {
-    /** Scanner object to parse System.in. */
-    private Scanner scanner;
-
     /** Logo of Duke. */
     private static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -20,6 +17,9 @@ public class Ui {
 
     /** Prompt. */
     private static String prompt = "> ";
+
+    /** Scanner object to parse System.in. */
+    private Scanner scanner;
 
     /**
      * Constructs a Ui.
@@ -36,7 +36,8 @@ public class Ui {
     public void start(Parser parser) {
         System.out.println(Ui.logo);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
-        System.out.print(prompt);   //prompt
+        //prompt
+        System.out.print(prompt);
 
         while (scanner.hasNextLine()) {
             parser.parse(scanner.nextLine()).run();

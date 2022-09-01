@@ -1,7 +1,5 @@
 package duke.logic;
 
-import duke.task.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -11,15 +9,17 @@ import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 /**
  * TaskList stores user tasks and manages them.
  *
  * @author totsukatomofumi
  */
 public class TaskList extends ArrayList<Task> {
-    /** Storage object for writing task history to a file. */
-    private Storage storage;
-
     /**
      * HashMap to contain set chars representing task types and function to return a new task of that
      * corresponding type pairs.
@@ -30,10 +30,13 @@ public class TaskList extends ArrayList<Task> {
     static {
         TaskList.taskMap.put('T', (index, length) -> line -> new ToDo(line.substring(index)));
         TaskList.taskMap.put('D', (index, length) -> line -> new Deadline(line.substring(index, index + length),
-                        LocalDate.parse(line.substring(index + length))));
+                LocalDate.parse(line.substring(index + length))));
         TaskList.taskMap.put('E', (index, length) -> line -> new Event(line.substring(index, index + length),
                 LocalDate.parse(line.substring(index + length))));
     }
+
+    /** Storage object for writing task history to a file. */
+    private Storage storage;
 
     private TaskList() {
         super();
@@ -50,7 +53,8 @@ public class TaskList extends ArrayList<Task> {
         //retrieve or else clear the file
         try {
             this.retrieve();
-        } catch (IOException e) {   //thrown
+        //thrown
+        } catch (IOException e) {
             //make sure file is not deleted, else make again
             this.storage.createRequiredFiles();
             this.storage.clear();
@@ -65,7 +69,7 @@ public class TaskList extends ArrayList<Task> {
     public boolean exists(int query) {
         return query < super.size() && query >= 0;
     }
-    
+
     private void updateStorage() {
         if (this.storage != null) {
             this.storage.update(this);
@@ -146,7 +150,8 @@ public class TaskList extends ArrayList<Task> {
                 ++index;
             }
             //throw bad file exception
-            if (index == line.length()) {   //no '_' encountered
+            //no '_' encountered
+            if (index == line.length()) {
                 retriever.close();
                 throw new IOException("Text file containing history has invalid formatting for parsing.");
             }
@@ -154,11 +159,13 @@ public class TaskList extends ArrayList<Task> {
             int length;
             try {
                 length = Integer.parseInt(strLength.toString());
-            } catch (NumberFormatException e) { //formatting is all messed up
+            //formatting is all messed up
+            } catch (NumberFormatException e) {
                 retriever.close();
                 throw new IOException("Text file containing history has invalid formatting for parsing.");
             }
-            index++;    //increment to first index of task description
+            //increment to first index of task description
+            index++;
             //retrieve task according to char
             Task toAdd = TaskList.taskMap.get(line.charAt(0)).apply(index, length).apply(line);
             if (toAdd != null) {
@@ -166,7 +173,8 @@ public class TaskList extends ArrayList<Task> {
                     toAdd.mark();
                 }
                 super.add(toAdd);
-            } else {    //if null means no task category was identified
+            //if null means no task category was identified
+            } else {
                 retriever.close();
                 throw new IOException("Unable to identify task type as type found in file was invalid.");
             }
@@ -174,6 +182,12 @@ public class TaskList extends ArrayList<Task> {
         retriever.close();
     }
 
+    /**
+     * Returns a list of tasks that contain the keyword specified.
+     *
+     * @param keyword the keyword specified to search tasks.
+     * @return the list of tasks found to contain the keyword.
+     */
     public TaskList search(String keyword) {
         TaskList result = new TaskList();
         for (Task task : this) {
@@ -184,6 +198,11 @@ public class TaskList extends ArrayList<Task> {
         return result;
     }
 
+    /**
+     * Returns a string representation of the task list.
+     *
+     * @return a string representation of the task list.
+     */
     @Override
     public String toString() {
         String list = "";
