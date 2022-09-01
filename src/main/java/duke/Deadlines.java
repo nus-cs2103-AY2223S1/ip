@@ -1,8 +1,8 @@
-package main.java;
+package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 // got date
-public class Deadlines extends main.java.Task {
+public class Deadlines extends Task {
 
     protected LocalDate by;
 

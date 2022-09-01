@@ -1,7 +1,7 @@
-package main.java;
+package duke;
 
 // events have extra location feature
-public class Events extends main.java.Task {
+public class Events extends Task {
     protected String location;
 
     public Events(String taskName, String location) {

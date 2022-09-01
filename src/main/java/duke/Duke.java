@@ -1,11 +1,10 @@
+package duke;
+
 import java.io.*;
 import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import main.java.*;
-import main.java.Task;
 
 public class Duke {
 
@@ -15,7 +14,7 @@ public class Duke {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello! I'm Duke");
+        System.out.println("Hello! I'm duke.Duke");
         System.out.println("What can I do for you?");
         read();
         while (sc.hasNext()) {
