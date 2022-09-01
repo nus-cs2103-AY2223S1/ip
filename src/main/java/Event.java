@@ -1,12 +1,17 @@
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class Event extends Task {
     private String description;
-    private String range;
+    private LocalDate range;
     private boolean isDone;
     private String type;
 
     public Event(String description, String range) {
         this.description = description;
-        this.range = range;
+        this.range = LocalDate.parse(range);
         this.type = "E";
     }
 
@@ -30,13 +35,14 @@ public class Event extends Task {
         return type;
     }
 
-    public String getRange() {
-        return range;
+    public String getDate() {
+        String formattedDate = range.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return formattedDate;
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(at: " + range + ")";
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(at: " + getDate() + ")";
     }
      
 }
