@@ -1,4 +1,4 @@
-package cleverNotBot;
+package clevernotbot;
 
 public class CleverNotBotException extends Exception{
     private String errorMessage;

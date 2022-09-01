@@ -1,4 +1,4 @@
-package cleverNotBot;
+package clevernotbot;
 
 public abstract class Task {
     private final String name;

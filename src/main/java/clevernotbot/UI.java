@@ -1,4 +1,4 @@
-package cleverNotBot;
+package clevernotbot;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package cleverNotBot;
+package clevernotbot;
 
 public class ToDo extends Task{
 

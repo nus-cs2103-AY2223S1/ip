@@ -1,4 +1,4 @@
-package cleverNotBot;
+package clevernotbot;
 
 public abstract class Command {
     private String commandName;
