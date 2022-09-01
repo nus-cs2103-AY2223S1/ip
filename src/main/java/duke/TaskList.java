@@ -106,7 +106,7 @@ public class TaskList {
         String numberToRemove = taskNumber.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
         if (numberToRemoveInt > taskListLength() - 1) {
-            throw new DukeException("You hav less than " + taskListLength() + "tasks!");
+            throw new DukeException("You have less than " + taskListLength() + " tasks!");
         }
         Task t = taskList.get(numberToRemoveInt);
         taskList.remove(numberToRemoveInt);
