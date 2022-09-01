@@ -1,3 +1,4 @@
 T | 0 | read book
 T | 0 | lab1
 T | 0 | read novel
+T | 0 | CS2103T ip
