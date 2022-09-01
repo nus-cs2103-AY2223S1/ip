@@ -70,8 +70,6 @@ public class TaskList {
         return task;
     }
 
-    //@@author DanielLimWeiEn -reused
-
     /**
      * Find tasks with user input.
      * @param target The user input.
@@ -91,5 +89,4 @@ public class TaskList {
 
         return filtered;
     }
-    //@@author
 }

@@ -18,7 +18,6 @@ import java.util.Scanner;
 public class Storage {
     private final File file;
 
-    //@@author DanielLimWeiEn -reused
     /**
      * Construct a new Storage object with a given file path.
      * Ensures the file is accessible.
@@ -41,9 +40,7 @@ public class Storage {
 
         this.file = file;
     }
-    //@@author
 
-    //@@author DanielLimWeiEn -reused
     /**
      * Saves the {@code Task}s from a {@code TaskList} to the {@code file}.
      * @param taskList The {@code TaskList} to save.
@@ -80,9 +77,7 @@ public class Storage {
         }
         fileWriter.close();
     }
-    //@@author
 
-    //@@author DanielLimWeiEn -reused
     /**
      * Loads the {@code Task}s from the {@code file}.
      *
@@ -134,5 +129,4 @@ public class Storage {
 
         return tasks;
     }
-    //@@author
 }

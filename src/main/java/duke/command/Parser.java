@@ -5,7 +5,6 @@ import duke.utilities.DukeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-//@@author DanielLimWeiEn -reused
 /**
  * Parser to make sense of user input.
  */
@@ -22,8 +21,6 @@ public class Parser {
 
         if (input.equals("list")) {
             return "list|";
-        } else if (input.equals("bye")) {
-            return "bye|";
         } else if (segments[0].equals("find")) {
             input = input.replace("find", "");
             if (input.equals("")) {
@@ -84,7 +81,7 @@ public class Parser {
                 taskId = -1;
             } else {
                 int index = Integer.parseInt(segments[1]);
-                taskId = index;
+                taskId = index - 1;
             }
             return "delete|" + taskId;
         } else {
@@ -92,4 +89,3 @@ public class Parser {
         }
     }
 }
-//@@author DanielLimWeiEn

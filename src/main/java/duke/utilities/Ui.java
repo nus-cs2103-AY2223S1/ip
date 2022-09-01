@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static String LINE = "--------------------";
+    private static String line = "--------------------";
 
     private Scanner s;
 
@@ -24,136 +24,103 @@ public class Ui {
     }
 
     /**
-     * Greets the user
-     * @return Greets the user
+     * Greets the user.
      */
-    public String printDukeOpening() {
+    public void printDukeOpening() {
         String name = "Turtle";
-        String output = "Hello I am " + name + "!\n" + "What can I do for you?";
-        System.out.println(output);
-        System.out.println(LINE);
-        return output;
+        System.out.println("Hello I am " + name + "!");
+        System.out.println("What can I do for you?");
+        System.out.println(line);
     }
 
     /**
      * Ends the user interaction.
-     * @return Ends the user interaction.
      */
-    public String printDukeClosing() {
-        String output = "Goodbye!";
-        System.out.println(output);
-        System.out.println(LINE);
-        return output;
+    public void printDukeClosing() {
+        System.out.println("Goodbye!");
+        System.out.println(line);
     }
 
     /**
      * Tells user that there is error.
-     * @return Tells user that there is error.
      */
-    public String printDukeException(DukeException e) {
-        String output = "OOPS!!!" + e.getMessage() + "\n";
-        System.out.println(output);
-        System.out.println(LINE);
-        return output;
+    public void printDukeException(DukeException e) {
+        System.out.println("OOPS!!!" + e.getMessage());
+        System.out.println(line);
     }
 
     /**
      * Tells user that there is IO error.
-     * @return Tells user that there is IO error.
      */
-    public String printIoException(IOException e) {
-        String output = "OOPS!!! " + e.getMessage();
-        System.out.println(output);
-        System.out.println(LINE);
-        return output;
+    public void printIoException(IOException e) {
+        System.out.println("OOPS!!! " + e.getMessage());
+        System.out.println(line);
     }
 
     /**
      * Tells user that date format is wrong.
-     * @return Tells user that date format is wrong.
      */
-    public String printDateTimeParseException() {
-        String output = "All dates must be in the format (yyyy-MM-dd HH:mm)!";
-        System.out.println(output);
-        System.out.println(LINE);
-        return output;
+    public void printDateTimeParseException() {
+        System.out.println("All dates must be in the format (yyyy-MM-dd HH:mm)!");
+        System.out.println(line);
     }
 
     /**
      * Displays all the tasks.
-     * @return Displays all the tasks.
      */
-    public String printTasks(TaskList taskList) {
+    public void printTasks(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
-        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
+        System.out.println("Here are the tasks in your list: ");
 
         for (int i = 0; i < tasks.size(); i++) {
-            output.append((i + 1) + "." + tasks.get(i) + "\n");
+            System.out.println(i + 1 + "." + tasks.get(i));
         }
-        System.out.println(output.toString());
-        System.out.println(LINE);
-        return output.toString();
+        System.out.println(line);
     }
 
     /**
      * Tells user task is added.
-     * @return Tells user task is added.
      */
-    public String printAddTask(Task task, TaskList taskList) {
-        StringBuilder output = new StringBuilder();
-        output.append("Got it. I've added this task:\n");
-        output.append(task.toString() + "\n");
-        output.append("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.\n");
-        System.out.println(output.toString());
-        System.out.println(LINE);
-        return output.toString();
+    public void printAddTask(Task task, TaskList taskList) {
+        System.out.println("Got it. I've added this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.");
+        System.out.println(line);
     }
 
     /**
      * Tells user task status have changed.
-     * @return Tells user task status have changed.
      */
-    public String printChangeTaskStatus(Task task, boolean isDone) {
-        StringBuilder output = new StringBuilder();
+    public void printChangeTaskStatus(Task task, boolean isDone) {
         if (isDone) {
-            output.append("Nice! I've marked this task as done:\n");
-            output.append("  " + task.toString() );
+            System.out.println(("Nice! I've marked this task as done:"));
+            System.out.println(task.toString());
         } else {
-            output.append("OK, I've marked this task as not done yet:\n");
-            output.append("  " + task.toString() );
+            System.out.println(("OK, I've marked this task as not done yet:"));
+            System.out.println(task.toString());
         }
-        System.out.println(output.toString());
-        System.out.println(LINE);
-        return output.toString();
+        System.out.println(line);
     }
 
     /**
      * Tells user that tasks is deleted
-     * @return Tells user that tasks is deleted
      */
-    public String printDeleteTask(Task task, TaskList taskList) {
-        StringBuilder output = new StringBuilder();
-        output.append("Noted. I've removed this task:\n");
-        output.append(task.toString() + "\n");
-        output.append("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.\n");
-        System.out.println(output.toString());
-        System.out.println(LINE);
-        return output.toString();
+    public void printDeleteTask(Task task, TaskList taskList) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + taskList.getNumberOfTasks() + " tasks in the list.");
+        System.out.println(line);
     }
 
     /**
      * Displays the tasks with the user input.
-     * @return Displays the tasks with the user input.
      */
-    public String printMatchTask(ArrayList<Task> tasks) {
-        StringBuilder output = new StringBuilder();
+    public void printMatchTask(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
-            output.append((i + 1) + "." + t.toString() + "\n");
+            System.out.println((i + 1) + "." + t.toString());
         }
-        System.out.println(output.toString());
-        System.out.println(LINE);
-        return (output.toString());
+        System.out.println(line);
     }
 
     /**
@@ -170,7 +137,7 @@ public class Ui {
 
     /**
      * Goes to next line.
-     * @return next line
+     * @return
      */
     public String nextLine() {
         return this.s.nextLine();
