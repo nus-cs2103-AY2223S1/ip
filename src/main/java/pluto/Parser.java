@@ -1,6 +1,13 @@
 package pluto;
 
-import pluto.command.*;
+import pluto.command.AddCommand;
+import pluto.command.DeleteCommand;
+import pluto.command.ListCommand;
+import pluto.command.ShowCommand;
+import pluto.command.Command;
+import pluto.command.ExitCommand;
+import pluto.command.UpdateStatusCommand;
+
 import pluto.task.Deadline;
 import pluto.task.Todo;
 import pluto.task.Event;
@@ -38,47 +45,47 @@ public class Parser {
             throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         switch (enumCommand) {
-            case TODO:
-                return parseTask(textArr[1].strip(), Type.TODO);
-            case DEADLINE:
-                return parseTask(textArr[1].strip(), Type.DEADLINE);
-            case EVENT:
-                return parseTask(textArr[1].strip(), Type.EVENT);
-            case MARK:
-                return new UpdateStatusCommand(parseIdx(textArr[1]), true);
-            case UNMARK:
-                return new UpdateStatusCommand(parseIdx(textArr[1]), false);
-            case DELETE:
-                return new DeleteCommand(parseIdx(textArr[1]));
-            case LIST:
-                return new ListCommand();
-            case SHOW:
-                return new ShowCommand(parseDateOnly(textArr[1]));
-            case BYE:
-                return new ExitCommand();
-            default:
-                throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+        case TODO:
+            return parseTask(textArr[1].strip(), Type.TODO);
+        case DEADLINE:
+            return parseTask(textArr[1].strip(), Type.DEADLINE);
+        case EVENT:
+            return parseTask(textArr[1].strip(), Type.EVENT);
+        case MARK:
+            return new UpdateStatusCommand(parseIdx(textArr[1]), true);
+        case UNMARK:
+            return new UpdateStatusCommand(parseIdx(textArr[1]), false);
+        case DELETE:
+            return new DeleteCommand(parseIdx(textArr[1]));
+        case LIST:
+            return new ListCommand();
+        case SHOW:
+            return new ShowCommand(parseDateOnly(textArr[1]));
+        case BYE:
+            return new ExitCommand();
+        default:
+            throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
     public static Command parseTask(String input, Type type) throws PlutoException {
         switch (type) {
-            case TODO:
-                return new AddCommand(new Todo(input));
-            case DEADLINE:
-                String[] arrDeadline = input.split("/by", 2);
-                if (arrDeadline.length == 1) {
-                    throw new PlutoException("\tOOPS!!! The deadline date is required.");
-                }
-                return new AddCommand(new Deadline(arrDeadline[0].strip(), parseDate(arrDeadline[1].strip())));
-            case EVENT:
-                String[] arrEvent = input.split("/at", 2);
-                if (arrEvent.length == 1) {
-                    throw new PlutoException("\tOOPS!!! The event date is required.");
-                }
-                return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));
-            default:
-                throw new PlutoException("\tOOPS!!! pluto.task.Task must be a pluto.task.Todo, pluto.task.Deadline or pluto.task.Event.");
+        case TODO:
+            return new AddCommand(new Todo(input));
+        case DEADLINE:
+            String[] arrDeadline = input.split("/by", 2);
+            if (arrDeadline.length == 1) {
+                throw new PlutoException("\tOOPS!!! The deadline date is required.");
+            }
+            return new AddCommand(new Deadline(arrDeadline[0].strip(), parseDate(arrDeadline[1].strip())));
+        case EVENT:
+            String[] arrEvent = input.split("/at", 2);
+            if (arrEvent.length == 1) {
+                throw new PlutoException("\tOOPS!!! The event date is required.");
+            }
+            return new AddCommand(new Event(arrEvent[0].strip(), parseDate(arrEvent[1].strip())));
+        default:
+            throw new PlutoException("\tOOPS!!! Task must be a Todo, Deadline or Event.");
         }
     }
 
@@ -93,6 +100,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException e) {
+            System.out.println(date);
             throw new PlutoException("\tOOPS!!! dd-MM-yyyy HHmm date format required.");
         }
     }

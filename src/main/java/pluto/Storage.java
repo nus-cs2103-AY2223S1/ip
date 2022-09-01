@@ -30,24 +30,31 @@ public class Storage {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String text = sc.nextLine().strip();
-                String[] textArr = text.split(" | ", 7);
+                String[] textArr = text.split("\\s+\\|\\s+", 3);
                 String command = textArr[0];
+                int lastPipe = textArr[2].lastIndexOf("|");
+                String date = null;
+                String description = null;
+                if (lastPipe != -1) {
+                    date = textArr[2].substring(lastPipe + 1).strip();
+                    description = textArr[2].substring(0, lastPipe).strip();
+                }
                 switch (command) {
-                    case "T":
-                        Task todo = new Todo(textArr[4]);
-                        markTasks(todo, textArr[2]);
-                        missions.add(todo);
-                        break;
-                    case "D":
-                        Task deadline = new Deadline(textArr[4], Parser.parseDate(textArr[6]));
-                        markTasks(deadline, textArr[2]);
-                        missions.add(deadline);
-                        break;
-                    case "E":
-                        Task event = new Event(textArr[4], Parser.parseDate(textArr[6]));
-                        markTasks(event, textArr[2]);
-                        missions.add(event);
-                        break;
+                case "T":
+                    Task todo = new Todo(textArr[2]);
+                    markTasks(todo, textArr[1]);
+                    missions.add(todo);
+                    break;
+                case "D":
+                    Task deadline = new Deadline(description, Parser.parseDate(date));
+                    markTasks(deadline, textArr[1]);
+                    missions.add(deadline);
+                    break;
+                case "E":
+                    Task event = new Event(description, Parser.parseDate(date));
+                    markTasks(event, textArr[1]);
+                    missions.add(event);
+                    break;
                 }
             }
         } catch (IOException e) {
