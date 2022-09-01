@@ -1,9 +1,2 @@
-T|0|test1
-T|0|test 2
-T|1|test3
-T|0|test4
-D|1|test5|2020-12-12
-T|0|test 10
-E|0|test7|meow
 T|0|read book
-T|0|return book
+D|0|die|2020-01-14

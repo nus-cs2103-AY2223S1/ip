@@ -3,7 +3,6 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 /**
  * A task-keeping chatbot with a command line interface.
  *
@@ -20,7 +19,6 @@ public class Duke {
      * Constructor for the <code>Duke</code> chatbot.
      *
      * @param filePath The URL location of the local storage text file.
-     * @return A <code>Duke</code> chatbot instance.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -36,65 +34,52 @@ public class Duke {
     }
 
     /**
-     * Starts the bot for the user.
-     *
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        this.ui.showWelcome();
-        Scanner sc = new Scanner(System.in);
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userResponse = sc.nextLine();
-                Command command = Parser.parseUserResponse(userResponse);
-                switch (command) {
-                case BYE:
-                    this.storage.saveTasks(this.tasks);
-                    this.ui.showGoodbye();
-                    isExit = true;
-                    break;
-                case LIST:
-                    this.ui.showTasks(this.tasks);
-                    break;
-                case MARK:
-                    this.tasks.markTask(Parser.parseTaskNumber(userResponse));
-                    this.ui.showMarkSuccess(Parser.parseTaskNumber(userResponse));
-                    break;
-                case UNMARK:
-                    this.tasks.unmarkTask(Parser.parseTaskNumber(userResponse));
-                    this.ui.showUnmarkSuccess(Parser.parseTaskNumber(userResponse));
-                    break;
-                case TODO:
-                    this.tasks.addTask(Parser.parseTodoTask(userResponse));
-                    this.ui.showAddTaskSuccess(this.tasks);
-                    break;
-                case EVENT:
-                    this.tasks.addTask(Parser.parseEventTask(userResponse));
-                    this.ui.showAddTaskSuccess(this.tasks);
-                    break;
-                case DEADLINE:
-                    this.tasks.addTask(Parser.parseDeadlineTask(userResponse));
-                    this.ui.showAddTaskSuccess(this.tasks);
-                    break;
-                case DELETE:
-                    this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
-                    this.ui.showRemoveTaskSuccess(Parser.parseTaskNumber(userResponse), this.tasks);
-                    break;
-                case FIND:
-                    this.ui.showMatchingTasks(Parser.parseSearchInput(userResponse), this.tasks);
-                    break;
-                default:
-                    break;
-                }
-            } catch (DukeException e) {
-                this.ui.showError(e);
-            }
-        }
-        sc.close();
-
+    public String getWelcome() {
+        return this.ui.showWelcome();
     }
 
-    public static void main(String[] args) {
-        new Duke("src/main/java/tasks.txt").run();
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String userResponse) {
+        try {
+            Command command = Parser.parseUserResponse(userResponse);
+            switch (command) {
+            case BYE:
+                this.storage.saveTasks(this.tasks);
+                return this.ui.showGoodbye();
+            case LIST:
+                return this.ui.showTasks(this.tasks);
+            case MARK:
+                this.tasks.markTask(Parser.parseTaskNumber(userResponse));
+                return this.ui.showMarkSuccess(Parser.parseTaskNumber(userResponse));
+            case UNMARK:
+                this.tasks.unmarkTask(Parser.parseTaskNumber(userResponse));
+                return this.ui.showUnmarkSuccess(Parser.parseTaskNumber(userResponse));
+            case TODO:
+                this.tasks.addTask(Parser.parseTodoTask(userResponse));
+                return this.ui.showAddTaskSuccess(this.tasks);
+            case EVENT:
+                this.tasks.addTask(Parser.parseEventTask(userResponse));
+                return this.ui.showAddTaskSuccess(this.tasks);
+            case DEADLINE:
+                this.tasks.addTask(Parser.parseDeadlineTask(userResponse));
+                return this.ui.showAddTaskSuccess(this.tasks);
+            case DELETE:
+                this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
+                return this.ui.showRemoveTaskSuccess(Parser.parseTaskNumber(userResponse), this.tasks);
+            case FIND:
+                return this.ui.showMatchingTasks(Parser.parseSearchInput(userResponse), this.tasks);
+            default:
+                break;
+            }
+        } catch (DukeException e) {
+            return this.ui.showError(e);
+        }
+        return "";
     }
 }

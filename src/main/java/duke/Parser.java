@@ -99,64 +99,62 @@ public class Parser {
         switch(mainCommand) {
         case "bye":
             if (parsedUserResponse.length > 1) {
-                throw new DukeException("    " + "Invalid number of arguments, only one required\n");
+                throw new DukeException("Invalid number of arguments, only one required\n");
             } else {
                 return Command.BYE;
             }
         case "list":
             if (parsedUserResponse.length > 1) {
-                throw new DukeException("    " + "Invalid number of arguments, only one required\n");
+                throw new DukeException("Invalid number of arguments, only one required\n");
             } else {
                 return Command.LIST;
             }
         case "mark":
             if (parsedUserResponse.length != 2) {
-                throw new DukeException("    " + "Invalid number of arguments, two required\n");
+                throw new DukeException("Invalid number of arguments, two required\n");
             } else {
                 return Command.MARK;
             }
         case "unmark":
             if (parsedUserResponse.length != 2) {
-                throw new DukeException("    " + "Invalid number of arguments, two required\n");
+                throw new DukeException("Invalid number of arguments, two required\n");
             } else {
                 return Command.UNMARK;
             }
         case "todo":
             if (parsedUserResponse.length < 2) {
-                throw new DukeException("    "
-                        + "☹ OOPS!!! The description of a todo cannot be empty.\n");
+                throw new DukeException("The description of a todo cannot be empty.\n");
             } else {
                 return Command.TODO;
             }
         case "deadline":
             int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
             if (bySeparationIndex == -1) {
-                throw new DukeException("    " + "Error: No date added for the deadline.\n");
+                throw new DukeException("Error: No date added for the deadline.\n");
             } else {
                 return Command.DEADLINE;
             }
         case "event":
             int atSeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
             if (atSeparationIndex == -1) {
-                throw new DukeException("    " + "Error: No date added for the event.\n");
+                throw new DukeException("Error: No date added for the event.\n");
             } else {
                 return Command.EVENT;
             }
         case "delete":
             if (parsedUserResponse.length != 2) {
-                throw new DukeException("    " + "Invalid number of arguments, two required\n");
+                throw new DukeException("Invalid number of arguments, two required\n");
             } else {
                 return Command.DELETE;
             }
         case "find":
             if (parsedUserResponse.length < 2) {
-                throw new DukeException("    " + "Invalid number of arguments, at least two required\n");
+                throw new DukeException("Invalid number of arguments, at least two required\n");
             } else {
                 return Command.FIND;
             }
         default:
-            throw new DukeException("    "
-                    + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+            throw new DukeException("I'm sorry, but I don't know what that means :-(\n");
         }
     }
 

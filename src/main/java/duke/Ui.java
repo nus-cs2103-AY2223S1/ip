@@ -11,46 +11,46 @@ public class Ui {
      * Prints the welcome message.
      *
      */
-    public void showWelcome() {
+    public String showWelcome() {
         String dukeGreeting = "Hello! I'm Duke\nWhat can I do for you?";
-        System.out.println(dukeGreeting);
+        return dukeGreeting;
     }
 
     /**
      * Prints the goodbye message.
      *
      */
-    public void showGoodbye() {
-        String dukeGoodbye = "    " + "Bye. Hope to see you again soon!";
-        System.out.println(dukeGoodbye);
+    public String showGoodbye() {
+        String dukeGoodbye = "Bye. Hope to see you again soon!";
+        return dukeGoodbye;
     }
 
     /**
      * Prints the error message arising from invalid user input.
      *
      */
-    public void showError(DukeException e) {
-        System.out.println(e.getMessage());
+    public String showError(DukeException e) {
+        return e.getMessage();
     }
 
     /**
      * Prints the error message arising from issues in loading or storing tasks locally.
      *
      */
-    public void showLoadingError(Exception e) {
-        System.out.println(e.getMessage());
+    public String showLoadingError(Exception e) {
+        return e.getMessage();
     }
 
     /**
      * Prints the tasks currently in the task list.
      *
      */
-    public void showTasks(TaskList tasks) {
+    public String showTasks(TaskList tasks) {
         if (tasks.length() != 0) {
-            System.out.println("    " + "Here are the tasks in your list:\n");
-            System.out.println(tasks.toString());
+            String listResponse = "Here are the tasks in your list:\n";
+            return listResponse + tasks.toString();
         } else {
-            System.out.println("    " + "There are no tasks in your list.\n");
+            return "There are no tasks in your list.\n";
         }
 
     }
@@ -60,9 +60,9 @@ public class Ui {
      *
      * @param taskNumber Index of the task as in the task list.
      */
-    public void showMarkSuccess(int taskNumber) {
-        System.out.println("    " + "Nice! I've marked task "
-                + (taskNumber + 1) + " as done.\n");
+    public String showMarkSuccess(int taskNumber) {
+        return "Nice! I've marked task "
+                + (taskNumber + 1) + " as done.\n";
     }
 
     /**
@@ -70,9 +70,9 @@ public class Ui {
      *
      * @param taskNumber Index of the task as in the task list.
      */
-    public void showUnmarkSuccess(int taskNumber) {
-        System.out.println("    " + "OK, I've marked task "
-                + (taskNumber + 1) + " as not done yet.\n");
+    public String showUnmarkSuccess(int taskNumber) {
+        return "OK, I've marked task "
+                + (taskNumber + 1) + " as not done yet.\n";
     }
 
     /**
@@ -81,9 +81,9 @@ public class Ui {
      * @param taskNumber Index of the task as in the task list.
      * @param tasks Current list of tasks stored by the bot.
      */
-    public void showRemoveTaskSuccess(int taskNumber, TaskList tasks) {
-        System.out.println("    " + "Noted. I've removed task " + (taskNumber + 1) + ".\n"
-                + "    " + "Now you have " + tasks.length() + " tasks in the list.\n");
+    public String showRemoveTaskSuccess(int taskNumber, TaskList tasks) {
+        return "Noted. I've removed task " + (taskNumber + 1) + ".\n"
+                + "Now you have " + tasks.length() + " tasks in the list.\n";
     }
 
     /**
@@ -91,9 +91,9 @@ public class Ui {
      *
      * @param tasks Current list of tasks stored by the bot.
      */
-    public void showAddTaskSuccess(TaskList tasks) {
-        System.out.println("    " + "Task added. You now have "
-                + tasks.length() + " tasks in the list.\n");
+    public String showAddTaskSuccess(TaskList tasks) {
+        return "Task added. You now have "
+                + tasks.length() + " tasks in the list.\n";
     }
 
     /**
@@ -102,8 +102,8 @@ public class Ui {
      * @param searchInput The query string to search for.
      * @param tasks The current <code>TaskList</code>
      */
-    public void showMatchingTasks(String searchInput, TaskList tasks) {
-        System.out.println("    " + "Here are the matching tasks in your list:\n");
-        System.out.println(tasks.getMatchingTasksRepresentation(searchInput));
+    public String showMatchingTasks(String searchInput, TaskList tasks) {
+        String matchingStart = "Here are the matching tasks in your list:\n";
+        return matchingStart + tasks.getMatchingTasksRepresentation(searchInput);
     }
 }
