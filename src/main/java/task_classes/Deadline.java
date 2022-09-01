@@ -1,18 +1,21 @@
 package task_classes;
 
 import org.json.JSONObject;
+import utils.InputParser;
+
+import java.time.LocalDate;
 
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDate by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = InputParser.parseStringtoDate(by);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + InputParser.parseDatetoString(by) + ")";
     }
 
     @Override
@@ -21,7 +24,7 @@ public class Deadline extends Task {
         object.put("type", "Deadline");
         object.put("description", this.description);
         object.put("done", this.isDone);
-        object.put("by", this.by);
+        object.put("by", InputParser.parseDatetoString(this.by));
         return object;
     }
 

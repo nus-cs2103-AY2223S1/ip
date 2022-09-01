@@ -1,18 +1,21 @@
 package task_classes;
 
 import org.json.JSONObject;
+import utils.InputParser;
+
+import java.time.LocalDate;
 
 public class Event extends Task {
-    protected String at;
+    protected LocalDate at;
 
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.at = InputParser.parseStringtoDate(at);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + InputParser.parseDatetoString(at) + ")";
     }
 
     @Override
@@ -21,7 +24,7 @@ public class Event extends Task {
         object.put("type", "Event");
         object.put("description", this.description);
         object.put("done", this.isDone);
-        object.put("at", this.at);
+        object.put("at", InputParser.parseDatetoString(this.at));
         return object;
     }
 

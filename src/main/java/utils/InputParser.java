@@ -1,5 +1,7 @@
 package utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +47,15 @@ public class InputParser {
         return result;
     }
 
+    public static LocalDate parseStringtoDate(String date) {
+        return LocalDate.parse(date);
+    }
+
+    public static String parseDatetoString(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+
     public static void main (String[] args) {
 //        System.out.println(getInputArguments("hello"));
 //        System.out.println(getInputArguments("hello args"));
@@ -52,5 +63,7 @@ public class InputParser {
 //        System.out.println(getInputArguments("hello args /at 2pm"));
 //        System.out.println(getInputArguments("hello args /at 2pm /by 1 2 3 4 5 /hello greetings asdf sd"));
         System.out.println(getInputArguments("deadline do things /by tmr"));
+        LocalDate date = parseStringtoDate("2019-12-01");
+        System.out.println(parseDatetoString(date));
     }
 }
