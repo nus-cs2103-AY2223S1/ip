@@ -41,7 +41,7 @@ public class GetCommand extends Command {
         if (res.size() < 1) {
             return "No tasks found!";
         } else {
-            String resListPara = "";
+            String resListPara = "Here are the tasks: \n";
             for (Task re : res) {
                 resListPara += re.toString() + "\n";
             }
