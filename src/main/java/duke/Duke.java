@@ -1,6 +1,7 @@
 package duke;
 
 import commands.Command;
+import common.ChatResponse;
 import common.Parser;
 import common.Storage;
 import common.Ui;
@@ -16,15 +17,19 @@ import java.io.IOException;
 public class Duke {
     static final String storageName = "storage.txt";
     static final String storageDirName = "data";
-
     private Storage storage;
     private TaskList taskList = new TaskList();
+
+    public Duke() {
+        initialize();
+    }
 
     /**
      * Driver code that starts Duke.
      *
      * @param args Accepts any String arguments.
      */
+    @Deprecated
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.initialize();
@@ -32,25 +37,40 @@ public class Duke {
         duke.shutdown();
     }
 
+    protected String getResponse(String input) {
+        String msg = "";
+        try {
+            Command c = Parser.parseInput(input);
+            msg += c.execute(this.taskList);
+            this.storage.writeToStorage(this.taskList);
+            return msg;
+        } catch (DukeException e) {
+            return e.toString();
+        }
+    }
+
     /**
      * Initializes Duke by attempting to load from storage (or creating storage if it does not exist),
      * and print relevant items to terminal.
      */
-    public void initialize() {
+    public String initialize() {
+        String msg = "";
         this.storage = new Storage(storageName, storageDirName);
         try {
-            this.storage.initializeStorage();
+            msg += this.storage.initializeStorage();
             this.storage.readFromStorage(this.taskList);
         } catch (IOException e) {
-            Ui.printError(e);
             this.taskList = new TaskList();
+            return ChatResponse.returnChatError(e);
         }
-        Ui.showWelcome();
+        msg += ChatResponse.chatShowWelcome();
+        return msg;
     }
 
     /**
      * Shuts down Duke by saving task list to storage, and printing out relevant items to terminal.
      */
+    @Deprecated
     public void shutdown() {
         this.storage.writeToStorage(this.taskList);
         Ui.printSaving();
@@ -62,6 +82,7 @@ public class Duke {
      * Loop that is called to receive and process user input.
      * This loop continues to run until the exit signal is flagged as true.
      */
+    @Deprecated
     public void runLoop() {
         boolean isExit = false;
         while (!isExit) {
