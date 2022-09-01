@@ -139,7 +139,7 @@ public class TaskList {
      * @param index Index of task to be undone. 1 based indexing.
      * @return      <Code>String</Code> output to be shown to user.
      */
-    public String markUnDone(int index) {
+    public String markUndone(int index) {
         taskList.get(index - 1).markUnDone();
         return String.format(
                 "OK, I've marked this task as not done yet:%n   %s%n",
