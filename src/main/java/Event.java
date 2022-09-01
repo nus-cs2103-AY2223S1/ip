@@ -15,6 +15,11 @@ public class Event extends Task {
         this.endTime = endTime;
     }
 
+    public Event(SaveLine line) {
+        super(line);
+        time = line.getValue("time");
+    }
+
     /**
      * Shows the event name and status as a String.
      *
@@ -24,5 +29,13 @@ public class Event extends Task {
         return String.format("[E]%s (from %s to %s)", super.toString(),
             startTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")),
             endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    }
+
+    @Override
+    public SaveLine toData() {
+        SaveLine ret = super.toData();
+        ret.setInfoType("event");
+        ret.addNameData("time", time);
+        return ret;
     }
 }

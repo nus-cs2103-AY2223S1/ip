@@ -13,6 +13,11 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(SaveLine line) {
+        super(line);
+        deadline = line.getValue("deadline");
+    }
+
     /**
      * Shows the deadline name and status as a String.
      *
@@ -21,5 +26,13 @@ public class Deadline extends Task {
     public String toString() {
         return String.format("[D]%s (by %s)", super.toString(),
             deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    }
+
+    @Override
+    public SaveLine toData() {
+        SaveLine ret = super.toData();
+        ret.setInfoType("deadline");
+        ret.addNameData("deadline", deadline);
+        return ret;
     }
 }
