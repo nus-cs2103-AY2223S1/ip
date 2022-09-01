@@ -30,14 +30,9 @@ public class EventCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.addTask(event);
-            storage.appendToFile(event);
-            ui.printAddTask(event);
-            ui.printListSize(taskList);
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        taskList.addTask(event);
+        storage.appendToFile(event);
+        return Ui.formatAddTaskString(event);
     }
 }

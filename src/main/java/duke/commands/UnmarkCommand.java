@@ -25,13 +25,9 @@ public class UnmarkCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.getTask(index).markAsUndone();
-            storage.saveToFile(taskList);
-            ui.printMarkAsUndone(index, taskList.getTask(index));
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        taskList.getTask(index).markAsUndone();
+        storage.saveToFile(taskList);
+        return Ui.formatMarkAsUndoneString(index, taskList.getTask(index));
     }
 }

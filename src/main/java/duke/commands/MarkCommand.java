@@ -25,13 +25,9 @@ public class MarkCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            taskList.getTask(index).markAsDone();
-            storage.saveToFile(taskList);
-            ui.printMarkAsDone(index, taskList.getTask(index));
-        } catch (DukeException e) {
-            ui.printException(e);
-        }
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        taskList.getTask(index).markAsDone();
+        storage.saveToFile(taskList);
+        return Ui.formatMarkAsDoneString(index, taskList.getTask(index));
     }
 }

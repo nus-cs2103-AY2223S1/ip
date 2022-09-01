@@ -1,7 +1,5 @@
 package duke.tools;
 
-import java.util.Scanner;
-
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
 
@@ -9,97 +7,90 @@ import duke.tasks.Task;
  * This class deals with interactions with the user.
  */
 public class Ui {
-    /** Scanner object to read user input */
-    private static Scanner sc = new Scanner(System.in);
-    /** Controls termination of Duke program */
-    private Boolean isExit = false;
-
     /**
-     * Reads next line of user input command.
+     * Creates a greetings message.
      *
-     * @return String of user input command.
+     * @return Greeting message.
      */
-    public String readCommand() {
-        return sc.nextLine();
+    public static String formatGreetingString() {
+        return "Hello!\nHow may i help you today?";
     }
 
     /**
-     * Checks if Duke program is to terminate.
+     * Creates a farewell message.
      *
-     * @return If Duke program should continue.
+     * @return Farewell message.
      */
-    public Boolean canContinue() {
-        return !isExit;
+    public static String formatFarewellString() {
+        return "Bye! Hope to see you again soon!";
     }
 
     /**
-     * Prints greeting.
-     */
-    public void printGreeting() {
-        System.out.println("Hello!\nHow may i help you today?");
-    }
-
-    /**
-     * Prints farewell.
-     */
-    public void printFarewell() {
-        System.out.println("Bye! Hope to see you again soon!");
-    }
-
-    /**
-     * Prints status of TaskList.
-     * If TaskList is not empty, prints all content of TaskList.
+     * Creates a message of status of TaskList.
+     * If TaskList is not empty, include all contents of TaskList.
      *
      * @param taskList List of task to be printed.
-     * @throws DukeException
+     * @return List status message.
+     * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
-    public void printListStatus(TaskList taskList) throws DukeException {
+    public static String formatListStatusString(TaskList taskList) throws DukeException {
+        String output;
         if (taskList.getSize() == 0) {
-            System.out.println("There are currently no tasks in your list");
+            output = "There are currently no tasks in your list";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            output = "Here are the tasks in your list:\n";
             for (int i = 0; i < taskList.getSize(); i++) {
-                System.out.printf("%d. %s\n", i + 1, taskList.getTask(i));
+                output = output.concat(String.format("%d. %s\n", i + 1,
+                        taskList.getTask(i)));
             }
+            output.concat(String.format("Now you have %d tasks in the list.\n",
+                    taskList.getSize()));
         }
+        return output;
     }
 
     /**
-     * Prints message of all task found containing keyword.
+     * Create a message of all task found containing keyword.
      *
      * @param taskList TaskList to search through with keyword.
      * @param keyword Keyword to find.
-     * @throws DukeException
+     * @return Find string message.
+     * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
-    public void printTaskFind(TaskList taskList, String keyword) throws DukeException {
+    public static String formatFindTaskString(TaskList taskList, String keyword) throws DukeException {
+        String output;
         if (taskList.isEmpty()) {
-            System.out.println("There are currently no tasks in your list");
+            output = "There are currently no tasks in your list";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            output = "Here are the matching tasks in your list:\n";
             int findCount = 0;
             for (int i = 0; i < taskList.getSize(); i++) {
                 if (taskList.getTask(i).isFoundInDescription(keyword)) {
-                    System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i)));
+                    output = output.concat(String.format("%d. %s\n", i + 1,
+                            taskList.getTask(i)));
                     findCount++;
                 }
             }
             if (findCount == 0) {
-                System.out.println("Oh no, there are no matching tasks found :(");
+                output = output.concat("Oh no, there are no matching tasks found :(");
             } else {
-                System.out.printf("There are %d matching tasks found\n", findCount);
+                output = output.concat(String.format("There are %d matching tasks found\n",
+                        findCount));
             }
         }
+        return output;
     }
 
     /**
-     * Prints message marking task as done in TaskList.
+     * Creates a message marking task as done in TaskList.
      *
      * @param index Index of task that is marked.
      * @param task Task marked as done.
+     * @return Message.
      */
-    public void printMarkAsDone(int index, Task task) {
-        System.out.println("Nice! I've marked this task as done:\n"
-                + String.format("%d. %s", index + 1, task));
+    public static String formatMarkAsDoneString(int index, Task task) {
+        return String.format("Nice! I've marked this task as done:\n%d. %s",
+                index + 1, task);
     }
 
     /**
@@ -107,61 +98,49 @@ public class Ui {
      *
      * @param index Index of task that is marked.
      * @param task Task marked as undone.
+     * @return Message.
      */
-    public void printMarkAsUndone(int index, Task task) {
-        System.out.println("Ok! I've marked this task as not done yet:\n"
-                + String.format("%d. %s", index + 1, task));
+    public static String formatMarkAsUndoneString(int index, Task task) {
+        return String.format("Ok! I've marked this task as not done yet:\n%d. %s",
+                index + 1, task);
     }
 
     /**
-     * Prints message of deleting task from TaskList.
+     * Creates a message of deleting task from TaskList.
      *
      * @param index Index of task that is deleted.
      * @param task Task that was deleted.
+     * @return Message.
      */
-    public void printDeleteTask(int index, Task task) {
-        System.out.println("Noted. I've removed this task:\n"
-                + String.format("%d. %s", index + 1, task));
+    public static String formatDeleteTaskString(int index, Task task) {
+        return String.format("Noted. I've removed this task:\n%d. %s",
+                index + 1, task);
     }
 
     /**
-     * Prints message that TaskList is empty and no task can be deleted.
+     * Creates a message that TaskList is empty and no task can be deleted.
      */
-    public void printDeleteOnEmptyList() {
-        System.out.println("OOPS!!! There are currently no task to delete");
+    public static String formatNoTaskToDeleteString() {
+        return "OOPS!!! There are currently no task to delete";
     }
 
     /**
-     * Prints message of adding task to TaskList.
+     * Creates a message of adding task to TaskList.
      *
      * @param task Task that was added.
+     * @return Message.
      */
-    public void printAddTask(Task task) {
-        System.out.println("Got it! I've added this task:\n> " + task);
+    public static String formatAddTaskString(Task task) {
+        return "Got it! I've added this task:\n> " + task;
     }
 
     /**
-     * Prints message of number of task in TaskList.
-     *
-     * @param taskList TaskList stored in Duke.
-     */
-    public void printListSize(TaskList taskList) {
-        System.out.printf("Now you have %d tasks in the list.\n", taskList.getSize());
-    }
-
-    /**
-     * Prints message of DukeException that occurred.
+     * Creates a message of DukeException that occurred.
      *
      * @param e DukeException containing error message.
+     * @return Error message.
      */
-    public void printException(DukeException e) {
-        System.out.println(e.getMessage());
-    }
-
-    /**
-     * Terminates Duke program.
-     */
-    public void exit() {
-        isExit = true;
+    public static String formatExceptionString(DukeException e) {
+        return e.getMessage();
     }
 }

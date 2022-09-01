@@ -26,18 +26,14 @@ public class DeleteCommand implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            if (taskList.isEmpty()) {
-                ui.printDeleteOnEmptyList();
-            } else {
-                Task task = taskList.getTask(index);
-                taskList.deleteTask(index);
-                storage.saveToFile(taskList);
-                ui.printDeleteTask(index, task);
-            }
-        } catch (DukeException e) {
-            ui.printException(e);
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
+        if (taskList.isEmpty()) {
+            return Ui.formatNoTaskToDeleteString();
+        } else {
+            Task task = taskList.getTask(index);
+            taskList.deleteTask(index);
+            storage.saveToFile(taskList);
+            return Ui.formatDeleteTaskString(index, task);
         }
     }
 }

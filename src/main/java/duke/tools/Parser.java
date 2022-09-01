@@ -159,7 +159,7 @@ public class Parser {
             return LocalDateTime.parse(str, DATE_PARSE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please enter a valid date and time format:\n"
-                    + "day/month/year 24hour time > dd/mm/yyyy HH:mm");
+                    + "day/month/year 24hour time > dd/mm/yyyy HHmm");
         }
     }
 
