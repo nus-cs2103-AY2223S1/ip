@@ -27,6 +27,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + getTaskTypeIcon() + "]" + super.toString() + " (" + timeQualifier + ": " + timeDescription.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")\n";
+        return "[" + getTaskTypeIcon() + "]" + super.toString() + " (" + timeQualifier + ": " + timeDescription.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
