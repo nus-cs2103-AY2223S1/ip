@@ -1,8 +1,9 @@
 package task_classes;
 
 import org.json.JSONObject;
+import utils.JSONParsable;
 
-public abstract class Task {
+public abstract class Task implements JSONParsable {
     protected String description;
     protected boolean isDone;
 

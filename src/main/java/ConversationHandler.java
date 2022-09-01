@@ -16,8 +16,6 @@ public class ConversationHandler {
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
         this.open = true;
-
-
     }
 
     public String handleCommand(String input) {

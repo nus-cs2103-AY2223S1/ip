@@ -1,9 +1,9 @@
 package utils;
 
+import org.json.JSONArray;
 import task_classes.Task;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class FileIO {
@@ -15,7 +15,7 @@ public class FileIO {
     // This is a singleton class
     private FileIO(){
 
-    };
+    }
 
     public static FileIO getInstance() {
         if (instance == null) {
@@ -24,16 +24,26 @@ public class FileIO {
         return instance;
     }
 
-    public Task[] readTaskList() {
-        try {
-            FileReader saveFileReader = new FileReader(saveFilePath);
-        } catch (FileNotFoundException e) {
-            return null;
+//    public Task[] readTaskList() {
+//        try {
+//            FileReader saveFileReader = new FileReader(saveFilePath);
+//        } catch (FileNotFoundException e) {
+//            return null;
+//        }
+//        return
+//    }
+
+    public void saveList(ArrayList<JSONParsable> list) {
+        JSONArray saveData = new JSONArray();
+        for (JSONParsable obj : list) {
+            saveData.put(obj.toJSONObject());
         }
-
-    }
-
-    public void writeTaskList(ArrayList<Task> taskList) {
-
+        try {
+            FileWriter file = new FileWriter(saveFilePath);
+            file.write(saveData.toString(4));
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
