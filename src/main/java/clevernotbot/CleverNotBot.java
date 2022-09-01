@@ -13,10 +13,10 @@ public class CleverNotBot {
 
         hl.parseText("greet").run(tasks, textBox, storage);
         while (sc.hasNext()) {
-            String ip = sc.nextLine();
-            Command nxtStep = hl.parseText(ip);
-            nxtStep.run(tasks, textBox, storage);
-            if (nxtStep.isExitingProgram()) {
+            String inp = sc.nextLine();
+            Command commandToRun = hl.parseText(inp);
+            commandToRun.run(tasks, textBox, storage);
+            if (commandToRun.isExitingProgram()) {
                 break;
             }
         }
