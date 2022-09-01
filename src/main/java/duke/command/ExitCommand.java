@@ -1,8 +1,11 @@
 package duke.command;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.function.Consumer;
+
 import duke.task.TaskList;
 import duke.util.Storage;
-import duke.util.Ui;
 
 /**
  * Encapsulates a command that ends interaction.
@@ -10,25 +13,21 @@ import duke.util.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Returns true, since this is a terminal command.
-     *
-     * @return true
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
-
-    /**
      * Calls the {@code UI} to exit interaction.
      *
      * @param storage The {@code Storage} to use.
-     * @param ui The {@code UI} to use.
+     * @param printer The {@code Consumer<String>} to use for printing.
      * @param tasks The {@code TaskList} to use.
      */
     @Override
-    public void execute(Storage storage, Ui ui, TaskList tasks) {
-        ui.exit();
+    public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
+        printer.accept("Bye! Hope to see you soon.");
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 1000L);
     }
 
     /**

@@ -1,14 +1,15 @@
 package duke;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.function.Consumer;
 
 import duke.command.Command;
 import duke.task.TaskList;
 import duke.util.DataFileCorruptedException;
 import duke.util.Parser;
 import duke.util.Storage;
-import duke.util.Ui;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * The main class of the Duke chat-bot.
@@ -16,49 +17,45 @@ import duke.util.Ui;
 public class Duke {
 
     private final Storage storage;
-    private final Ui ui;
+    private final Consumer<String> printer;
     private TaskList tasks;
 
     /**
      * Constructs a new {@code Duke} with a datafile path.
      *
-     * @param path The path to the datafile.
+     * @param path    The path to the datafile.
+     * @param printer A {@code Consumer<String>} that prints a message to GUI.
      */
-    public Duke(Path path) {
-        storage = new Storage(path);
-        ui = new Ui(System.in, System.out);
+    public Duke(Path path, Consumer<String> printer) {
+        this.printer = printer;
+        this.storage = new Storage(path);
         try {
             tasks = new TaskList(storage.load());
         } catch (DataFileCorruptedException e) {
-            ui.print(e.getMessage());
-            if (ui.readYesNoResponse("Do you want to reset the data file?")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage() + "\n"
+                    + "Do you want to reset the datafile?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
                 tasks = new TaskList();
                 storage.save(tasks);
             } else {
-                ui.exit();
                 System.exit(0);
             }
         }
+        printer.accept("Welcome to Duke!");
     }
 
     /**
-     * Runs the Duke chat-bot.
+     * Executes a command.
+     *
+     * @param command The command to execute.
      */
-    public void run() {
-        ui.greet();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                Command command = Parser.parseCommand(ui.read());
-                command.execute(storage, ui, tasks);
-                isExit = command.isExit();
-            } catch (DukeException e) {
-                ui.print(e.getMessage());
-            }
+    public void execute(String command) {
+        try {
+            Command cmd = Parser.parseCommand(command);
+            cmd.execute(storage, printer, tasks);
+        } catch (Exception e) {
+            printer.accept(e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke(Paths.get(System.getProperty("user.dir"), "data", "data.txt")).run();
     }
 }
