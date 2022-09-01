@@ -4,6 +4,10 @@ import duke.command.*;
 
 import java.util.Locale;
 
+/**
+ * Makes sense of the user commands.
+ * @author Lim Ai Lin
+ */
 public class Parser {
     private enum Commands {
         BYE,
@@ -16,6 +20,12 @@ public class Parser {
         DELETE
     }
 
+    /**
+     * @param command The input String to be parsed.
+     * @return The Command the user wishes to execute.
+     * @throws DukeException
+     *          Thrown if user inputs an unknown command.
+     */
     public Command parse(String command) throws DukeException {
         String[] str = command.split("\\s", 2);
 

@@ -9,6 +9,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * Executes the commands to add tasks to the list.
+ * @author Lim Ai Lin
+ */
 public class AddCommand extends Command {
     String[] str;
     Commands command;
@@ -18,12 +22,25 @@ public class AddCommand extends Command {
         EVENT
     }
 
+    /**
+     * Creates a new AddCommand object.
+     * @param str The array String of the task containing the description and date and time if necessary.
+     * @param i The integer specifying the type of task.
+     */
     public AddCommand(String[] str, int i) {
         this.str = str;
         Commands[] commands = new Commands[]{Commands.DEADLINE, Commands.TODO, Commands.EVENT};
         this.command = commands[i];
     }
 
+    /**
+     * Executes the add command the user inputs.
+     * @param tasks The list in which the task is to be added.
+     * @param ui The ui to deal with user interactions.
+     * @param storage The storage to be updated with the newly added task.
+     * @throws DukeException
+     *          Thrown when the task has no name or no date and time is given when necessary.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task myTask = null;

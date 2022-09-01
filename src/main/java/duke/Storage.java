@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Loads tasks and saves tasks in the specified file.
+ * @author Lim Ai Lin
+ */
 public class Storage {
 
     private enum Commands {
@@ -21,6 +25,10 @@ public class Storage {
     private final File file;
     private final String filePath;
 
+    /**
+     * Creates a storage object to load and save all tasks.
+     * @param filePath The text file to load the tasks from and save the tasks to.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(filePath);

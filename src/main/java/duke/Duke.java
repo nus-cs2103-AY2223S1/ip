@@ -6,6 +6,10 @@ import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Main class of Duke.
+ * @author Lim Ai Lin
+ */
 public class Duke {
 
     private final Storage storage;
@@ -13,6 +17,10 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
 
+    /**
+     * Creates a Duke object which saves all tasks into the filePath.
+     * @param filePath The text file to save the tasks.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         parser = new Parser();
