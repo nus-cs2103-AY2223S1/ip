@@ -35,7 +35,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        String mark = isDone ? "X" : "";
+        String mark = isDone ? "X" : " ";
         return "[" + mark + "] " + this.name;
     }
 }

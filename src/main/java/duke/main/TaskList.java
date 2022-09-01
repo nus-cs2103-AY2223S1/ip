@@ -6,7 +6,7 @@ import duke.task.Task;
 
 
 /**
- * Represents a tasklist that is used to store all tasks that is input into Duke
+ * Represents a tasklist that is used to store all tasks that is input into duke.main.Duke
  */
 public class TaskList {
     private ArrayList<Task> taskList;

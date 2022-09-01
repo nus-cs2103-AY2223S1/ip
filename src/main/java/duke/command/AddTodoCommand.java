@@ -31,11 +31,11 @@ public class AddTodoCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task todo = new Todo(taskName);
         taskList.addTasks(todo);
         storage.saveTasks(taskList);
-        ui.repeater(todo + " added!");
+        return todo + " added!";
     }
 
 }

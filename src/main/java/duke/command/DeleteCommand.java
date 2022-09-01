@@ -32,10 +32,10 @@ public class DeleteCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task task = taskList.getTask(index - 1);
         taskList.deleteTasks(index - 1);
         storage.saveTasks(taskList);
-        ui.repeater(task + " deleted!");
+        return task + " deleted!";
     }
 }

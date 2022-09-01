@@ -6,40 +6,21 @@ import java.util.Scanner;
  * Represents the UI that is used for the interaction with the user
  */
 public class Ui {
-    private Scanner scanner;
-
-    /**
-     * Constructor for UI
-     *
-     * @param scanner
-     */
-    public Ui(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    /**
-     * readInput method that reads the input from the user
-     *
-     * @return String
-     */
-    public String readInput() {
-        return scanner.nextLine();
-    }
 
     /**
      * greet method that Sends a greeting to the user
      *
      */
-    public static void greet() {
-        System.out.println("Hello! I'm BotChat123 \nWhat can I do for you?");
+    public static String greet() {
+        return "Hello! I'm BotChat123 \nWhat can I do for you?";
     }
 
     /**
      * bye method that is sent on termination of conversation with the user
      *
      */
-    public static void bye() {
-        System.out.println("Bye. Please chat with me again!");
+    public static String bye() {
+        return "Bye. Please chat with me again!";
     }
 
     /**
@@ -47,10 +28,13 @@ public class Ui {
      *
      * @param taskList
      */
-    public static void list(TaskList taskList) {
+    public static String list(TaskList taskList) {
+        String output = "";
         for (int i = 0; i < taskList.length(); i++) {
             System.out.println(i + 1 + ": " + taskList.getTask(i));
+            output += i + 1 + ": " + taskList.getTask(i) + "\n";
         }
+        return output;
     }
 
     /**

@@ -102,13 +102,13 @@ public class Storage {
     }
 
     /**
-     * saveTasks method that saves changes to the tasklist into a Duke.txt file
+     * saveTasks method that saves changes to the tasklist into a duke.main.Duke.txt file
      *
      * @param taskList
      */
     public void saveTasks(TaskList taskList) {
         try {
-            File myFile = new File("./data/Duke.txt");
+            File myFile = new File("./data/duke.main.Duke.txt");
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
 

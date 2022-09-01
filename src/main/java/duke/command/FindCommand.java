@@ -16,13 +16,16 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String output = "";
         for (int i = 0; i < taskList.length(); i++) {
             String taskString = taskList.getTask(i).toString();
             if (taskString.contains(input)) {
                 ui.repeater(i + 1 + ". " + taskString);
+                output += i + 1 + ". " + taskString + "\n";
             }
         }
-        ui.repeater("I found these/this!");
+        output += "I found these/this!";
+        return output;
     }
 }

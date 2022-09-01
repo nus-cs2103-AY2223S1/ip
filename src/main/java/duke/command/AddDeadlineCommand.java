@@ -37,10 +37,11 @@ public class AddDeadlineCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task deadline = new Deadlines(taskName, localDate);
         taskList.addTasks(deadline);
         storage.saveTasks(taskList);
-        ui.repeater(deadline + " added!");
+        return deadline + " added!";
+//        ui.repeater(deadline + " added!");
     }
 }

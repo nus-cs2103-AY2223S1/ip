@@ -18,5 +18,5 @@ public abstract class Command {
      * @param ui
      * @param storage
      */
-    public abstract void execute(TaskList task, Ui ui, Storage storage);
+    public abstract String execute(TaskList task, Ui ui, Storage storage);
 }

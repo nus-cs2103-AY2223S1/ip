@@ -2,16 +2,7 @@ package duke.main;
 
 import java.time.DateTimeException;
 
-import duke.command.AddDeadlineCommand;
-import duke.command.AddEventsCommand;
-import duke.command.AddTodoCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ErrorCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 /**
  * Represents a Parser that determines what kind of input was obtained
@@ -33,6 +24,8 @@ public class Parser {
         try {
             if (command.equals("list")) {
                 return new ListCommand();
+            } else if (command.equals("bye")) {
+                return new ByeCommand();
             } else {
                 String task = inputs[1];
 

@@ -19,7 +19,7 @@ public class ErrorCommand extends Command {
      * @param storage
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.repeater("Sorry, I do not accept that as a task!");
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return "Sorry, I do not accept that as a task!";
     }
 }

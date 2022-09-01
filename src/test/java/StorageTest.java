@@ -13,7 +13,7 @@ import duke.task.Task;
  * Tests the storage class
  */
 public class StorageTest {
-    private final String File_Path = "src/test/data/Duke.txt";
+    private final String File_Path = "src/test/data/duke.main.Duke.txt";
 
     /**
      * Test Case of load() method.
