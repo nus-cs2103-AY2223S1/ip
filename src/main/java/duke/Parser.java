@@ -1,6 +1,9 @@
 package duke;
 import java.io.IOException;
 
+/**
+ * The Parser class parses user commands and executes the command.
+ */
 public class Parser {
     private TaskList tasks;
     private Storage storage;
@@ -10,11 +13,23 @@ public class Parser {
     int start;
     int end;
 
+    /**
+     * Creates a new Parser which will parse user commands and execute the command.
+     *
+     * @param tasks The current list of tasks.
+     * @param storage The location where the files will be saved to and loaded from.
+     */
     public Parser(TaskList tasks, Storage storage) {
         this.tasks = tasks;
         this.storage = storage;
     }
 
+    /**
+     * Parses the input provided and executes it.
+     *
+     * @param input The input provided by user to parser.
+     * @throws IOException When system I/O fails.
+     */
     public void parse(String input) throws IOException {
         try {
             if (input.startsWith("mark")) {
