@@ -25,18 +25,23 @@ public class MarkCommand extends Command {
      */
     @Override
     public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
-        //mark 3 -> 2, because number 3 is actually idx 2
-        int number = Integer.parseInt(getCommandName().split(" ")[1]) - 1;
-        Task taskToMark = tasks.getTask(number);
-        if (taskToMark.checkMarked().equals(" ")) {
-            Task markedTask = taskToMark.toggleCompleted();
-            tasks.removeTask(taskToMark);
-            tasks.addTaskByIdx(number, markedTask);
-            textBox.chat(String.format("Nice! I've marked this task as done:\n  [%s] %s",
-                    markedTask.checkMarked(), markedTask.getName()));
-        } else {
-            textBox.chat("Hey! This task is already marked!");
+        try {
+            //mark 3 -> 2, because number 3 is actually idx 2
+            int number = Integer.parseInt(getCommandName().split(" ")[1]) - 1;
+            Task taskToMark = tasks.getTask(number);
+            if (taskToMark.checkMarked().equals(" ")) {
+                Task markedTask = taskToMark.toggleCompleted();
+                tasks.removeTask(taskToMark);
+                tasks.addTaskByIdx(number, markedTask);
+                textBox.chat(String.format("Nice! I've marked this task as done:\n  [%s] %s",
+                        markedTask.checkMarked(), markedTask.getName()));
+            } else {
+                textBox.chat("Hey! This task is already marked!");
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            String exceptionErrorMessage = String.format(
+                    "Invalid number. Please input the number from 1 - %d", tasks.getSize());
+            throw new CleverNotBotException(exceptionErrorMessage, textBox);
         }
-
     }
 }
