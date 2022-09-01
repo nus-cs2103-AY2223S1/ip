@@ -46,45 +46,6 @@ public class Storage {
     }
 
     /**
-     * Either displays all tasks stored in file (when applicable) as soon as the program starts,
-     * or prompts user if file does not exist.
-     *
-     * @throws FileNotFoundException If file is not found.
-     */
-    public void loadFile() throws FileNotFoundException {
-        String line = "____________________________________________________________\n";
-
-        File file = new File(filePath);
-
-        if (file.exists()) {
-
-            String openFileMsg = "Opening the file that stores all your tasks...\n\n";
-            String showTaskmsg = "These are the tasks in your list:";
-            System.out.println(openFileMsg + showTaskmsg);
-
-            // Prints all tasks found in the file.
-            Scanner sc = new Scanner(file);
-            if (!sc.hasNextLine()) {
-                System.out.println("There is no task in your list.");
-
-            } else {
-                while (sc.hasNextLine()) {
-                    String task = sc.nextLine();
-                    System.out.println(task);
-                }
-            }
-
-            // Prints a line to end CaCa loading response.
-            System.out.println(line);
-
-        } else {
-            System.out.println("The file to store all your tasks does not exist.\n"
-                    + "I will create one now...\n"
-                    + line);
-        }
-    }
-
-    /**
      * Creates a file if file does not exist in hard disk.
      *
      * @param dirPath Directory path of created file.

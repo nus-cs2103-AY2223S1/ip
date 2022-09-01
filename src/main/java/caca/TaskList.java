@@ -51,10 +51,11 @@ public class TaskList {
      * @param tasks The list of tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
+
         if (tasks == null) {
-            this.tasks = new ArrayList<>();
+            TaskList.tasks = new ArrayList<>();
         } else {
-            this.tasks = tasks;
+            TaskList.tasks = tasks;
         }
     }
 
@@ -108,25 +109,41 @@ public class TaskList {
     /**
      * Adds a ToDo task to user list.
      *
-     * @param taskDescription Task description entered by user.
+     * @param command User command as input.
+     * @return CaCa's response after adding a new ToDo.
+     * @throws EmptyInputException If task description is empty or left blank.
      */
-    public static void addToDo(String taskDescription) {
+    public static String addToDo(String[] command) throws EmptyInputException {
+        // Checks for valid description, i.e. not empty or blank.
+        hasDescription(command);
+
+        String taskDescription = command[1];
         Task taskToAdd = new Todo(taskDescription);
         tasks.add(taskToAdd);
 
-        System.out.println("Got it. I've added this task:");
-        System.out.println(taskToAdd);
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        String response = String.format("Got it. I've added this task:\n"
+                + "%s\n"
+                + "Now you have %d tasks in the list.\n",
+                taskToAdd, tasks.size());
+
+        return response;
     }
 
     /**
      * Adds a Deadline to user list.
      *
-     * @param taskInfo Task information with task description and task date & time.
+     * @param command User command as input.
+     * @return CaCa's response after adding a new Deadline.
      * @throws MissingDetailException If task description or task date & time is missing.
      * @throws InvalidDateException If date entered by user is not in the specified format.
+     * @throws EmptyInputException If task description is empty or left blank.
      */
-    public static void addDeadline(String taskInfo) throws MissingDetailException, InvalidDateException {
+    public static String addDeadline(String[] command) throws
+            MissingDetailException, InvalidDateException, EmptyInputException {
+        // Checks for valid description, i.e. not empty or blank, before adding deadline.
+        hasDescription(command);
+
+        String taskInfo = command[1];
         String[] detailedCommand = taskInfo.split(" /by ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
@@ -145,9 +162,11 @@ public class TaskList {
                 Task taskToAdd = new Deadline(description, by);
                 tasks.add(taskToAdd);
 
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskToAdd);
-                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                String response = String.format("Got it. I've added this task:\n"
+                        + "%s\n"
+                        + "Now you have %d tasks in the list.\n",
+                        taskToAdd, tasks.size());
+                return response;
             }
         }
     }
@@ -155,11 +174,18 @@ public class TaskList {
     /**
      * Adds an Event to user list.
      *
-     * @param taskInfo Task information with task description and task date & time.
+     * @param command User command as input.
+     * @return CaCa's response after adding a new Event.
      * @throws MissingDetailException If task description or task date & time is missing.
      * @throws InvalidDateException If date entered by user is not in the specified format.
+     * @throws EmptyInputException If task description is empty or left blank.
      */
-    public static void addEvent(String taskInfo) throws MissingDetailException, InvalidDateException {
+    public static String addEvent(String[] command) throws
+            MissingDetailException, InvalidDateException, EmptyInputException {
+        // Checks for valid description, i.e. not empty or blank, before adding deadline.
+        hasDescription(command);
+
+        String taskInfo = command[1];
         String[] detailedCommand = taskInfo.split(" /at ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
@@ -178,26 +204,34 @@ public class TaskList {
                 Task taskToAdd = new Event(description, at);
                 tasks.add(taskToAdd);
 
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskToAdd);
-                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                String response = String.format("Got it. I've added this task:\n"
+                        + "%s\n"
+                        + "Now you have %d tasks in the list.\n",
+                        taskToAdd, tasks.size());
+                return response;
             }
         }
     }
 
     /**
      * Displays a list of all the tasks stored in CaCa.
+     *
+     * @return Entire list of tasks.
      */
-    public static void listTasks() {
+    public static String listTasks() {
+        String response = "";
+
         if (tasks.isEmpty()) {
-            // No task in the tasks list.
-            System.out.println("There is no task in your list!");
+            return "There is no task in your list!";
+
         } else {
-            System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
-                System.out.printf("%d.%s%n", i + 1, task);
+                response = String.format("%s%d.%s\n", response, i + 1, task);
             }
+
+            String responseHeader = "Here are the tasks in your list:";
+            return String.format("%s\n%s", responseHeader, response);
         }
     }
 
@@ -205,9 +239,10 @@ public class TaskList {
      * Marks a task as done in task list.
      *
      * @param index Task index entered by user.
+     * @return CaCa's response after marking a task as done.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void markTask(String index) throws InvalidIndexException {
+    public static String markTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
@@ -215,17 +250,18 @@ public class TaskList {
         Task taskToMark = tasks.get(taskIndex - 1);
         taskToMark.markAsDone();
 
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskToMark);
+        String response = String.format("Nice! I've marked this task as done:\n%s", taskToMark);
+        return response;
     }
 
     /**
      * Marks a task as not done in task list.
      *
      * @param index Task index entered by user.
+     * @return CaCa's response after marking a task as not done (unmark).
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void unmarkTask(String index) throws InvalidIndexException {
+    public static String unmarkTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
@@ -233,17 +269,18 @@ public class TaskList {
         Task taskToUnmark = tasks.get(taskIndex - 1);
         taskToUnmark.markAsUndone();
 
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskToUnmark);
+        String response = String.format("OK, I've marked this task as not done yet:\n%s", taskToUnmark);
+        return response;
     }
 
     /**
      * Deletes a task from task list.
      *
      * @param index Task index entered by user.
+     * @return CaCa's response after deleting a task.
      * @throws InvalidIndexException If task index is invalid, i.e. out of range.
      */
-    public static void deleteTask(String index) throws InvalidIndexException {
+    public static String deleteTask(String index) throws InvalidIndexException {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
 
@@ -251,35 +288,41 @@ public class TaskList {
         Task taskToDelete = tasks.get(taskIndex - 1);
         tasks.remove(taskToDelete);
 
-        System.out.println("Noted. I've removed this task:\n" + taskToDelete);
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        String response = String.format("Noted. I've removed this task:\n"
+                + "%s\n"
+                + "Now you have %d tasks in the list.\n",
+                taskToDelete, tasks.size());
+        return response;
     }
 
     /**
      * Finds all matching tasks from the list with the given keyword.
      *
      * @param keyword Keyword entered by user.
+     * @return CaCa's response after finding the corresponding task.
      */
-    public static void findTask(String keyword) {
+    public static String findTask(String keyword) {
         List<Task> matchingTasks = new ArrayList<>();
-
-        System.out.println("Here are the matching tasks in your list:");
 
         int taskCount = 1;
 
+        String response = "Here are the matching tasks in your list:\n";
+
         for (Task task : tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.printf("%d.%s%n", taskCount, task);
+                response = String.format("%s%d.%s\n", response, taskCount, task);
                 taskCount += 1;
 
-                // Add all matching tasks into the array.
                 matchingTasks.add(task);
             }
         }
 
         if (matchingTasks.size() < 1) {
-            System.out.println("OOPS!!! There is no matching task in your list.");
+            return "OOPS!!! There is no matching task in your list.";
         }
+
+        return response;
+
     }
 
 }

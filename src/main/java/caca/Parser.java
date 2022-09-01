@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import caca.exceptions.CaCaException;
 import caca.exceptions.EmptyInputException;
+import caca.ui.Ui;
 
 /**
  * This class deals with making sense of the user command.
@@ -12,11 +13,6 @@ import caca.exceptions.EmptyInputException;
  * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Parser {
-
-    /**
-     * A horizontal line to be displayed as separator for each activity with CaCa.
-     */
-    private static final String LINE = "____________________________________________________________\n";
 
     /**
      * A TaskList object containing all the tasks in a list.
@@ -28,102 +24,85 @@ public class Parser {
      */
     private final Storage storage;
 
+
+    private final Ui ui;
+
     /**
      * Constructor for creating a Parser to deal with user command.
      *
-     * @param tasks A list of tasks to be updated according to user command.
+     * @param tasks   A list of tasks to be updated according to user command.
      * @param storage The storage system to update tasks in the local file.
+     * @param ui User interactions with CaCa on greeting and goodbye.
      */
-    public Parser(TaskList tasks, Storage storage) {
+    public Parser(TaskList tasks, Storage storage, Ui ui) {
         this.tasks = tasks;
         this.storage = storage;
+        this.ui = ui;
     }
 
     /**
-     * Indicates whether user command has stopped and ended the program.
+     * Displays the response message from CaCa to user.
      *
      * @param input User input as command.
-     * @return True if input has ended the program; false otherwise.
-     * @throws IOException If there exists failed or interrupted I/O operations.
+     * @return CaCa's response to user.
      */
-    public boolean hasStopped(String input) throws IOException {
+    public String parse(String input) {
         // Detect user command, where 1st element is the type of action to be done (command type),
         // 2nd element is the task description, with or without date/time.
         String[] command = input.split(" ", 2);
         String commandType = command[0];
 
-        // Prints a line after a user input, to start CaCa response.
-        System.out.print(LINE);
+        String response = "";
 
         try {
             if (commandType.isBlank()) {
                 throw new EmptyInputException("OOPS!!! You have entered an empty input.");
 
             } else if (commandType.equals("bye")) {
-                Ui.bye();
-                return false;
+                return ui.bye();
 
             } else if (commandType.equals("todo")) {
-                // Checks for valid description, i.e. not empty or blank, before adding todo.
-                TaskList.hasDescription(command);
-
-                TaskList.addToDo(command[1]);
-
+                response = TaskList.addToDo(command);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("deadline")) {
-                // Checks for valid description, i.e. not empty or blank, before adding deadline.
-                TaskList.hasDescription(command);
-
-                TaskList.addDeadline(command[1]);
-
+                response = TaskList.addDeadline(command);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("event")) {
-                // Checks for valid description, i.e. not empty or blank, before adding event.
-                TaskList.hasDescription(command);
-
-                TaskList.addEvent(command[1]);
-
+                response = TaskList.addEvent(command);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("list")) {
-                TaskList.listTasks();
+                return TaskList.listTasks();
 
             } else if (commandType.equals("mark")) {
-                TaskList.markTask(command[1]);
-
+                response = TaskList.markTask(command[1]);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("unmark")) {
-                TaskList.unmarkTask(command[1]);
-
+                response = TaskList.unmarkTask(command[1]);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("delete")) {
-                TaskList.deleteTask(command[1]);
-
+                response = TaskList.deleteTask(command[1]);
                 storage.updateFile(tasks);
 
             } else if (commandType.equals("find")) {
-                TaskList.findTask(command[1]);
+                return TaskList.findTask(command[1]);
 
             } else {
                 // Invalid input.
-                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                return "OOPS!!! I'm sorry, but I don't know what that means :-(";
 
             }
 
-        } catch (CaCaException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Please try again!");
-
-        } finally {
-            // Prints a line to end CaCa response.
-            System.out.println(LINE);
+        } catch (CaCaException | IOException e) {
+            return String.format("%s\nPlease try again!", e.getMessage());
         }
 
-        return true;
+        return response;
+
     }
 
 }

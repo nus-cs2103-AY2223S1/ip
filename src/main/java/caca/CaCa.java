@@ -1,9 +1,7 @@
 package caca;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 import caca.exceptions.InvalidDateException;
+import caca.ui.Ui;
 
 /**
  * CaCa is a personal assistant chatbot that helps users manage and track things.
@@ -18,9 +16,11 @@ public class CaCa {
 
     // Structure below is adapted from A-MoreOOP in
     // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
-    private final Storage storage;
+    private Storage storage;
 
-    private final Ui ui;
+    private Ui ui;
+
+    private Parser parser;
 
     /**
      * A TaskList object containing all the tasks in a list.
@@ -34,10 +34,11 @@ public class CaCa {
      * @param filePath Relative file path to store tasks locally.
      */
     public CaCa(String dirPath, String filePath) {
-        ui = new Ui();
-        storage = new Storage(dirPath, filePath);
         try {
+            storage = new Storage(dirPath, filePath);
             tasks = storage.readFile();
+            ui = new Ui();
+            parser = new Parser(tasks, storage, ui);
         } catch (InvalidDateException e) {
             System.out.println("You have keyed in an invalid date and time!\n"
                     + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
@@ -46,38 +47,13 @@ public class CaCa {
     }
 
     /**
-     * Runs CaCa chatbot program.
+     * Gets the response from CaCa to the user.
      *
-     * @throws IOException If there exists failed or interrupted I/O operations.
+     * @param input User input
+     * @return CaCa's response to user.
      */
-    public void run() throws IOException {
-        Parser parser = new Parser(tasks, storage);
-        // Greets user.
-        ui.greet();
-
-        // Load file that was previously saved to local hard disk.
-        storage.loadFile();
-
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            // Reads user input.
-            String input = sc.nextLine();
-            boolean isRunning = parser.hasStopped(input);
-            if (!isRunning) {
-                break;
-            }
-        }
-    }
-
-    /**
-     * The main chatbot program.
-     *
-     * @param args Command line arguments.
-     * @throws IOException If there exists failed or interrupted I/O operations.
-     */
-    public static void main(String[] args) throws IOException {
-        new CaCa("data/", "data/caca.txt").run();
+    public String getResponse(String input) {
+        return parser.parse(input);
     }
 
 }
