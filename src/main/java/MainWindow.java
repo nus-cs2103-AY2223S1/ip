@@ -47,7 +47,7 @@ public class MainWindow extends AnchorPane {
         if (input.equals("boot")) {
             userInput.clear();
             addDialogBox(DialogBox.getUserDialog("boot", userImage));
-            boot(null);
+            boot();
             return;
         }
         String response = duke.getResponse(input);
@@ -64,12 +64,14 @@ public class MainWindow extends AnchorPane {
     }
 
     @FXML
-    private void boot(Duke duke) {
-        if (duke == null) {
-            duke = new Duke();
+    private void boot(Duke... dukes) {
+        if (dukes.length == 0) {
+            this.duke = new Duke();
+        } else if (dukes[0] == null) {
+            this.duke = new Duke();
+        } else {
+            this.duke = dukes[0];
         }
-        this.duke = duke;
         addDialogBox(DialogBox.getDukeDialog(duke.getResponse("greet"), dukeImage));
-        return;
     }
 }
