@@ -1,12 +1,10 @@
 package henry;
 
 import java.nio.file.Path;
-import java.util.Objects;
 
 import command.Command;
 import command.CommandResult;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
 
 /**
  * The base class of the Henry application.
@@ -15,6 +13,7 @@ import javafx.scene.image.Image;
 public class Henry {
 
     private static final String home = System.getProperty("user.home");
+    // The text file is created on the user's Desktop
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
 
     private final Ui ui;

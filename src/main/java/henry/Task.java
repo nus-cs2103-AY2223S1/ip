@@ -39,19 +39,6 @@ public class Task {
         this.isDone = isDone;
     }
 
-    private String getStatusIcon() {
-        return isDone ? "[X]" : "[ ]"; // mark done task with X
-    }
-
-    /**
-     * Sets the status of this task as the input boolean.
-     *
-     * @param status the desired status of the task
-     */
-    public void setComplete(boolean status) {
-        this.isDone = status;
-    }
-
     public static Task parseTask(String input) {
         String[] tokens = input.split("\\|");
         Commands type;
@@ -83,6 +70,19 @@ public class Task {
     private static LocalDateTime parseDateTime(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(input, formatter);
+    }
+
+    private String getStatusIcon() {
+        return isDone ? "[X]" : "[ ]"; // mark done task with X
+    }
+
+    /**
+     * Sets the status of this task as the input boolean.
+     *
+     * @param status the desired status of the task
+     */
+    public void setComplete(boolean status) {
+        this.isDone = status;
     }
 
     @Override
