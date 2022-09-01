@@ -22,3 +22,10 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+   
+
+Images of profile pictures are taken from:
+<a href="https://www.flaticon.com/free-icons/profile" title="profile icons">Profile icons created by Freepik - Flaticon</a>
+
+Background picture taken from:
+<a href="https://www.freepik.com/free-vector/colorful-memphis-style-poster-vector_18234258.htm#query=free%20png%20background&position=22&from_view=search">Image by rawpixel.com</a> on Freepik 

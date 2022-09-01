@@ -1,12 +1,12 @@
-/**
- * Exits the program
- */
 package Command;
 
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
+/**
+ * Exits the program
+ */
 public class ExitCommand extends Command {
 
     public ExitCommand() {
@@ -19,10 +19,11 @@ public class ExitCommand extends Command {
      * @param taskList which contains the current tasklist
      * @param ui which handles the user interface
      * @param storage which handles the saving and loading of file
+     * @return string that will be printed in the UI
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         super.setExit();
-        ui.printBye();
+        return ui.printBye();
     }
 }

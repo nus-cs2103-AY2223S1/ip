@@ -1,6 +1,3 @@
-/**
- * This class deals with loading tasks from the file and saving tasks in the file
- */
 package Duke;
 
 import Tasks.Deadline;
@@ -18,9 +15,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * This class deals with loading tasks from the file and saving tasks in the file
+ */
 public class Storage {
     private String filepath;
 
+    /**
+     * Constructor that takes in the filepath
+     *
+     * @param filepath
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
@@ -47,6 +52,8 @@ public class Storage {
 
     /**
      * Loads the existing saved file to task list
+     *
+     * @return ArrayList<Task> to be loaded in the bot
      */
     public ArrayList<Task> readFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
@@ -82,6 +89,7 @@ public class Storage {
 
     /**
      * Creates a new directory and file if the file does not exist
+     *
      * @param file
      */
     private void createDirectoryAndFile(File file) {
