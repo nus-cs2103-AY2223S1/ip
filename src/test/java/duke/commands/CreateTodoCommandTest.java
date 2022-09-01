@@ -1,11 +1,9 @@
 package duke.commands;
 
 import duke.storage.Storage;
-import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ public class CreateTodoCommandTest {
         Todo todo = new Todo("Test");
         CreateTodoCommand command = new CreateTodoCommand(todo);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertEquals(taskList.getNumTasks(), 1);
     }
@@ -31,7 +29,7 @@ public class CreateTodoCommandTest {
         Todo todo = new Todo("Test");
         CreateTodoCommand command = new CreateTodoCommand(todo);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertDoesNotThrow(() -> assertEquals(taskList.get(0), todo));
     }

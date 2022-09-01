@@ -4,7 +4,6 @@ import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ public class CreateDeadlineCommandTest {
         Deadline deadline = new Deadline("Test", LocalDate.now());
         CreateDeadlineCommand command = new CreateDeadlineCommand(deadline);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertEquals(taskList.getNumTasks(), 1);
     }
@@ -31,7 +30,7 @@ public class CreateDeadlineCommandTest {
         Deadline deadline = new Deadline("Test", LocalDate.now());
         CreateDeadlineCommand command = new CreateDeadlineCommand(deadline);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertDoesNotThrow(() -> assertEquals(taskList.get(0), deadline));
     }

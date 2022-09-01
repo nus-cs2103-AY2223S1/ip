@@ -4,7 +4,6 @@ import duke.exceptions.NoSuchTaskException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,14 +23,14 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand command = new DeleteTaskCommand(1);
 
         assertThrows(NoSuchTaskException.class,
-                () -> command.execute(getTaskList(), new Ui(), new Storage("")));
+                () -> command.execute(getTaskList(), new Storage("")));
     }
 
     @Test
     public void execution_validIndex_exceptionNotThrown() {
         DeleteTaskCommand command = new DeleteTaskCommand(0);
 
-        assertDoesNotThrow(() -> command.execute(getTaskList(), new Ui(), new Storage("")));
+        assertDoesNotThrow(() -> command.execute(getTaskList(), new Storage("")));
     }
 
     @Test
@@ -40,7 +39,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand command = new DeleteTaskCommand(0);
         TaskList taskList = getTaskList();
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertEquals(taskList.getNumTasks(), 0);
     }

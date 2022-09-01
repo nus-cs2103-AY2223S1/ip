@@ -1,9 +1,9 @@
 package duke.commands;
 
+import duke.Response;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 import java.util.List;
 
@@ -12,11 +12,12 @@ import java.util.List;
  */
 public class ListTasksCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public Response execute(TaskList taskList, Storage storage) {
         List<Task> tasks = taskList.getAll();
-        ui.showMessage("Here are the tasks in your list:");
+        StringBuilder message = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.getNumTasks(); i++) {
-            ui.showMessage(String.format("%d. %s", i + 1, tasks.get(i)));
+            message.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
+        return new Response(message.toString());
     }
 }

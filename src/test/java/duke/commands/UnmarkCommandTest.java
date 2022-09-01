@@ -4,7 +4,6 @@ import duke.exceptions.NoSuchTaskException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,14 +23,14 @@ public class UnmarkCommandTest {
         UnmarkCommand command = new UnmarkCommand(1);
 
         assertThrows(NoSuchTaskException.class,
-                () -> command.execute(getTaskList(), new Ui(), new Storage("")));
+                () -> command.execute(getTaskList(), new Storage("")));
     }
 
     @Test
     public void execution_validIndex_exceptionNotThrown() {
         UnmarkCommand command = new UnmarkCommand(0);
 
-        assertDoesNotThrow(() -> command.execute(getTaskList(), new Ui(), new Storage("")));
+        assertDoesNotThrow(() -> command.execute(getTaskList(), new Storage("")));
     }
 
     @Test
@@ -42,7 +41,7 @@ public class UnmarkCommandTest {
 
         assertEquals(taskList.get(0).isCompleted(), true);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertEquals(taskList.get(0).isCompleted(), false);
     }

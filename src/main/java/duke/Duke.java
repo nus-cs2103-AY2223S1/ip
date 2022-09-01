@@ -5,25 +5,25 @@ import duke.exceptions.*;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.TextUi;
 
 import java.io.File;
 import java.util.Scanner;
 
 /**
- * The entry point to the application.
+ * Runs the CLI Application.
  */
 class Duke {
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
-    private TaskList taskList;
-    private Storage storage;
-    private Ui ui;
+    private final TaskList taskList;
+    private final Storage storage;
+    private final TextUi textUi;
 
     public Duke() {
         Storage storage = new Storage(DATA_PATH);
         this.storage = storage;
         this.taskList = new TaskList(storage.load());
-        this.ui = new Ui();
+        this.textUi = new TextUi();
     }
 
 
@@ -31,7 +31,7 @@ class Duke {
      * Initialises the application and begins interacting with the user.
      */
     public void run() {
-        this.ui.showWelcomeMessage();
+        textUi.showWelcomeMessage();
 
         boolean isExit = false;
 
@@ -43,11 +43,11 @@ class Duke {
                 String fullCommand = scanner.nextLine();
 
                 Command c = Parser.parse(fullCommand);
-                c.execute(this.taskList, this.ui, this.storage);
-
+                Response response = c.execute(taskList, storage);
+                System.out.println(response.getMessage());
                 isExit = c.isExit();
             } catch (InvalidCommandException e) {
-                ui.showMessage(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 

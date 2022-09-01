@@ -4,7 +4,6 @@ import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ public class CreateEventCommandTest {
         Event event = new Event("Test", LocalDate.now());
         CreateEventCommand command = new CreateEventCommand(event);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertEquals(taskList.getNumTasks(), 1);
     }
@@ -31,7 +30,7 @@ public class CreateEventCommandTest {
         Event event = new Event("Test", LocalDate.now());
         CreateEventCommand command = new CreateEventCommand(event);
 
-        command.execute(taskList, new Ui(), new Storage(""));
+        command.execute(taskList, new Storage(""));
 
         assertDoesNotThrow(() -> assertEquals(taskList.get(0), event));
     }

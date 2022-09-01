@@ -1,10 +1,10 @@
 package duke.commands;
 
+import duke.Response;
 import duke.exceptions.NoSuchTaskException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Deletes a task from the task list.
@@ -21,9 +21,10 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws NoSuchTaskException {
+    public Response execute(TaskList taskList, Storage storage) throws NoSuchTaskException {
         Task task = taskList.delete(index);
-        ui.showMessage(String.format("Noted. I've removed this task:\n\t%s\n", task));
+        String message = String.format("Noted. I've removed this task:\n\t%s\n", task);
         storage.save(taskList);
+        return new Response(message);
     }
 }

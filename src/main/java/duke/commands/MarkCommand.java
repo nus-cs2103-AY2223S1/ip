@@ -1,10 +1,10 @@
 package duke.commands;
 
+import duke.Response;
 import duke.exceptions.NoSuchTaskException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Marks a task as completed.
@@ -21,9 +21,11 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws NoSuchTaskException {
+    public Response execute(TaskList taskList, Storage storage) throws NoSuchTaskException {
         Task task = taskList.get(index);
+        String message = String.format("OK, I've marked this task as completed:\n\t%s", task);
         task.markAsCompleted();
         storage.save(taskList);
+        return new Response(message);
     }
 }

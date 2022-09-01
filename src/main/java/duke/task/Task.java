@@ -32,12 +32,10 @@ public class Task {
 
     public void markAsCompleted() {
         this.completed = true;
-        System.out.println(String.format("Nice! I've marked this task as done:\n\t%s", this));
     }
 
     public void markAsIncomplete() {
         this.completed = false;
-        System.out.println(String.format("OK, I've marked this task as not done yet:\n\t%s", this));
     }
 
     private String getStatusIcon() {
