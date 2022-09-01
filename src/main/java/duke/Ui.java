@@ -7,11 +7,8 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private static String INDENT = "     ";
-    private static String LINE = "    _______________________________________________________";
-
-    public Ui() {
-    }
+    private static final String INDENT = "     ";
+    private static final String LINE = "    _______________________________________________________";
 
     /**
      * Prints text with a specific format.

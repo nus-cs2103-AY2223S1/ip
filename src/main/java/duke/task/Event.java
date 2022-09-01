@@ -18,8 +18,15 @@ public class Event extends Task {
     /** Time of the event */
     private String time;
 
-    public Event(String name, String dateAndTime) {
-        super(name);
+    /**
+     * Constructs a new event task with given
+     * description and date and time of the event.
+     *
+     * @param description of the event.
+     * @param dateAndTime of the event.
+     */
+    public Event(String description, String dateAndTime) {
+        super(description);
         this.date = getDateFromInput(dateAndTime);
         this.time = getTimeFromInput(dateAndTime);
     }

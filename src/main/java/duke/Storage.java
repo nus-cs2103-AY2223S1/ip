@@ -24,6 +24,11 @@ public class Storage {
     /** File that is saved */
     private File dataFile;
 
+    /**
+     * Constructs a new storage object with given file path.
+     *
+     * @param filePath in which the history will be saved to.
+     */
     public Storage(String filePath) {
         this.dataFile = new File(filePath);
     }
@@ -87,7 +92,8 @@ public class Storage {
         try {
             FileWriter filewriter = new FileWriter(dataFile.getPath());
 
-            for (Task task : taskList.getList()) {
+            for (int i = 0; i < taskList.getListSize(); i++) {
+                Task task = taskList.getTask(0);
                 filewriter.write(task.toMemoryString() + System.lineSeparator());
             }
             filewriter.close();

@@ -14,6 +14,14 @@ public class Parser {
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Constructs a new parser object with given
+     * task list, Ui and storage.
+     *
+     * @param taskList to be used.
+     * @param ui used to display texts.
+     * @param storage used to save and load.
+     */
     public Parser(TaskList taskList, Ui ui, Storage storage) {
         this.taskList = taskList;
         this.ui = ui;
@@ -30,7 +38,7 @@ public class Parser {
         String userInput = input.trim();
         if (userInput.equals("list")) {
             ui.printTaskList(taskList);
-        }else if (containsOperationWord(userInput)) {
+        } else if (containsOperationWord(userInput)) {
             executeCommand(userInput.trim());
         } else {
             throw new DukeException();
@@ -43,7 +51,7 @@ public class Parser {
             String firstWord = tokens[0];
 
             switch (firstWord) {
-            case "find" :
+            case "find":
                 String wordToFind = tokens[1];
                 String filteredListString = taskList.getTaskStringFiltered(wordToFind);
                 ui.printFilteredList(filteredListString);
@@ -145,5 +153,4 @@ public class Parser {
             this.ui.printTaskUnmarkedMsg(task);
         }
     }
-
 }

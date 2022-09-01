@@ -5,8 +5,13 @@ package duke.task;
  */
 public class ToDos extends Task {
 
-    public ToDos(String name) {
-        super(name);
+    /**
+     * Constructs a new todo task with given description.
+     *
+     * @param description of the task.
+     */
+    public ToDos(String description) {
+        super(description);
     }
 
     @Override

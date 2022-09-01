@@ -13,12 +13,13 @@ public class TaskList {
     /** List of tasks */
     private List<Task> list = new ArrayList<>();
 
+    /**
+     * Constructs a new task list.
+     *
+     * @param list of tasks.
+     */
     public TaskList(List<Task> list) {
         this.list = list;
-    }
-
-    public List<Task> getList() {
-        return list;
     }
 
     public Task getTask(int number) {
@@ -66,7 +67,7 @@ public class TaskList {
             if (i == list.size() - 1) {
                 text += i + 1 + ". " + list.get(i);
             } else {
-                text += i + 1 + ". " + list.get(i) +"\n     ";
+                text += i + 1 + ". " + list.get(i) + "\n     ";
             }
         }
 
@@ -82,7 +83,6 @@ public class TaskList {
     public String getTaskStringFiltered(String keyword) {
 
         List<Task> resultList = new ArrayList<>();
-
         for (Task task : this.list) {
             if (task.getName().contains(keyword)) {
                 resultList.add(task);
@@ -90,12 +90,11 @@ public class TaskList {
         }
 
         String text = "";
-
         for (int i = 0; i < resultList.size(); i++) {
             if (i == resultList.size() - 1) {
                 text += i + 1 + ". " + resultList.get(i);
             } else {
-                text += i + 1 + ". " + resultList.get(i) +"\n     ";
+                text += i + 1 + ". " + resultList.get(i) + "\n     ";
             }
         }
 

@@ -12,9 +12,14 @@ public abstract class Task {
     /** Name of this task */
     private String name;
 
-    public Task(String name) {
-       this.done = false;
-       this.name = name;
+    /**
+     * Constructs a new Task object with given description.
+     *
+     * @param description of the task.
+     */
+    public Task(String description) {
+        this.done = false;
+        this.name = description;
     }
 
     public String getName() {
@@ -36,6 +41,11 @@ public abstract class Task {
      */
     public abstract String toMemoryString();
 
+    /**
+     * Returns string representation of the task.
+     *
+     * @return String representation of the task.
+     */
     @Override
     public String toString() {
         return (this.isDone() ? "[X] " : "[ ] ") + this.name;
