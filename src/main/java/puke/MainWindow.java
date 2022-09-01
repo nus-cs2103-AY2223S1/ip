@@ -2,12 +2,13 @@ package puke;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import puke.Duke;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -43,11 +44,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        //String response = duke.getResponse(input);
-        //dialogContainer.getChildren().addAll(
-                //DialogBox.getUserDialog(input, userImage),
-                //DialogBox.getDukeDialog(response, dukeImage)
-        //);
+        String response = duke.getResponse(input);
+        Label inputLabel = new Label("You say: " + input);
+        Label responseLabel = new Label(response);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(inputLabel, new ImageView(userImage)),
+                DialogBox.getDukeDialog(responseLabel, new ImageView(dukeImage))
+        );
         userInput.clear();
     }
 }

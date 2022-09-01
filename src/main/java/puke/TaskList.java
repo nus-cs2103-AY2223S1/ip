@@ -31,14 +31,10 @@ public class TaskList {
      * Lists all the tasks that are currently in the list
      */
     public String listTasks() {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     Here are the tasks in your list:");
         String temp = "";
         for(int i = 0; i < this.tasks.size() ; i++) {
-            System.out.println("     " + (i+1) + "." + this.tasks.get(i));
             temp += "     " + (i+1) + "." + this.tasks.get(i) + "\n";
         }
-        System.out.println("    ____________________________________________________________");
         return "    ____________________________________________________________\n"
                 + "     Here are the tasks in your list:\n"
                 + temp
@@ -73,7 +69,6 @@ public class TaskList {
                 count++;
             }
         }
-        System.out.println(s1 + "\n" + str + "\n" + s1);
         return s1 + "\n" + str + "\n" + s1;
     }
 
