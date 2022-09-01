@@ -274,21 +274,25 @@ public class Duke {
             storage.writeToFile(this.storedTasks);
             break;
 
+
         case COMMAND_DELETE:
             deleteTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
         
+
         case COMMAND_EXIT:
             exitDuke();
             return true;
         
+
         // Command is invalid
         default:
             handleInvalidCommand();
         }
 
-        // Don't exit the program
+
+        // Don't exit the program if something goes wrong
         return false;
     }
 
