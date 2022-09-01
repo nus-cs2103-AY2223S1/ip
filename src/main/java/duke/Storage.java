@@ -1,20 +1,28 @@
 package duke;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.ArrayList;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
-    private final String filePathStr;
+    private String filePathStr;
 
     /**
      * Constructs a storage object with the specified file path.
@@ -68,7 +76,8 @@ public class Storage {
                 tasks.add(newTask);
             }
         } catch (IOException | NullPointerException e) {
-            throw new DukeException("There was an error loading your existing tasks, no tasks were loaded :(");
+            throw new DukeException("There was an error loading "
+                    + "your existing tasks, no tasks were loaded :(");
         }
         return tasks;
     }
@@ -97,7 +106,8 @@ public class Storage {
                 Files.newOutputStream(filePath))) {
             out.write(data, 0, data.length);
         } catch (IOException x) {
-            throw new DukeException("There was an error saving your changes!");
+            throw new DukeException("There was an error "
+                    + "saving your changes!");
         }
     }
 }

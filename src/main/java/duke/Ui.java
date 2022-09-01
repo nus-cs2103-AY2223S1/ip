@@ -1,14 +1,15 @@
 package duke;
-import duke.task.Task;
 
+import duke.task.Task;
 import java.util.Scanner;
 
 /**
  * Deals with interactions with the user
  */
 public class Ui {
-    private final Scanner scanner = new Scanner(System.in);
-    private static final String line = "---------------------------------------------------";
+    private final Scanner SCANNER = new Scanner(System.in);
+    private static final String LINE = "---------------"
+            + "------------------------------------";
 
     /**
      * Reads the command typed by the user
@@ -16,7 +17,7 @@ public class Ui {
      * @return The command that the user typed
      */
     public String readCommand() {
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     /**
@@ -33,17 +34,17 @@ public class Ui {
      * Displays a line
      */
     public void showLine() {
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     /**
      * Displays greeting
      */
     public void showGreeting() {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println("Hi there! I'm Duke\n" +
                 "     What's up?");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     /**
@@ -69,8 +70,10 @@ public class Ui {
      * @param taskList The list of tasks
      */
     public void showAddTask(Task task, TaskList taskList) {
-        System.out.println("Got it. I've added this task:\n" + "  " + task.toString());
-        System.out.println("Now you have " + taskList.size() + showTaskTense(taskList) + " in the list.");
+        System.out.println("Got it. I've added this task:\n"
+                + "  " + task.toString());
+        System.out.println("Now you have " + taskList.size()
+                + showTaskTense(taskList) + " in the list.");
     }
 
     /**
@@ -80,8 +83,10 @@ public class Ui {
      * @param taskList The list of tasks
      */
     public void showDeleteTask(Task task, TaskList taskList) {
-        System.out.println("Done! " + task.toString() + " has been deleted :(");
-        System.out.println("Now you have " + taskList.size() + showTaskTense(taskList) + " left.");
+        System.out.println("Done! " + task.toString()
+                + " has been deleted :(");
+        System.out.println("Now you have " + taskList.size()
+                + showTaskTense(taskList) + " left.");
     }
 
     /**
@@ -116,7 +121,8 @@ public class Ui {
             System.out.println("Tasks: ");
             System.out.println(taskList);
         }
-        System.out.println("You have " + taskList.size() + showTaskTense(taskList) + "!");
+        System.out.println("You have " + taskList.size()
+                + showTaskTense(taskList) + "!");
     }
 
     /**
@@ -127,10 +133,11 @@ public class Ui {
      */
     public void showTasksOnDate(TaskList taskList, String dateStr) {
         if (taskList.size() != 0) {
-            System.out.println("These are the tasks on " + dateStr + ":");
+            System.out.println("These are the tasks on "
+                    + dateStr + ":");
             System.out.println(taskList);
-            System.out.println("You have " + taskList.size() + showTaskTense(taskList)
-                    + " on " + dateStr + ".");
+            System.out.println("You have " + taskList.size()
+                    + showTaskTense(taskList) + " on " + dateStr + ".");
         } else {
             System.out.println("There are no tasks on this date!");
         }

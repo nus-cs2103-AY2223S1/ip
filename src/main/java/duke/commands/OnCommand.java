@@ -4,10 +4,9 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.commands.Command;
 
 public class OnCommand extends Command {
-    public String input;
+    private String input;
 
     /**
      * Constructs command to return the list of tasks with a specified input date.

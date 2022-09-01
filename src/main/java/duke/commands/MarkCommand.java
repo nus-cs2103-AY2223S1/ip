@@ -4,10 +4,9 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.commands.Command;
 
 public class MarkCommand extends Command {
-    public String input;
+    private String input;
 
     /**
      * Constructs a command to mark a specified task as done.

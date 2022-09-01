@@ -6,9 +6,9 @@ import duke.commands.Command;
  * Represents the chatbot.
  */
 public class Duke {
-    private final Ui ui;
-    private final Storage storage;
-    private final TaskList tasks;
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
     /**
      * Constructs a chatbot.
@@ -31,10 +31,11 @@ public class Duke {
     private void run() {
         ui.showGreeting();
         boolean isExit = false;
+
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();

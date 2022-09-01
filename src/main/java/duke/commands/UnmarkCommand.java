@@ -4,10 +4,9 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.commands.Command;
 
 public class UnmarkCommand extends Command {
-    public String input;
+    private String input;
 
     /**
      * Constructs command for marking a task as not done.
