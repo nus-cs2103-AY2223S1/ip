@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 import java.io.IOException;
 
@@ -13,39 +13,38 @@ public class Parser {
      * @param input string command given by user
      * @param taskList Tasklist object created with Sakura
      */
-    public static void parseCommand(String input, TaskList taskList) {
-        Sakura.ui.printDiv();
+    public static String parseCommand(String input, TaskList taskList) {
+        System.out.println(Sakura.ui.printDiv());
         if (input.equals("bye")) {
             Sakura.inProgress = false;
-            exit();
+            return exit();
         } else if (input.equals("list")) {
-            Ui.showAllTask(taskList.tasks);
+            return Ui.showAllTask(taskList.tasks);
         } else if (input.toLowerCase().startsWith("mark")) {
-            taskList.markTask(input);
+            return taskList.markTask(input);
         } else if (input.toLowerCase().startsWith("unmark")) {
-            taskList.unmarkTask(input);
+            return taskList.unmarkTask(input);
         } else if (input.toLowerCase().startsWith("todo") || input.toLowerCase().startsWith("deadline") || input.toLowerCase().startsWith("event")) {
-            taskList.addTask(input);
+            return taskList.addTask(input);
         } else if (input.toLowerCase().startsWith("delete")) {
-            taskList.deleteTask(input);
+            return taskList.deleteTask(input);
         } else if (input.toLowerCase().startsWith("find")) {
-            taskList.searchTask(input);
+            return taskList.searchTask(input);
         } else {
-            SakuraException.genericTask();
+            return SakuraException.genericTask();
         }
-        Sakura.ui.printDiv();
     }
 
     /**
      * Saves user input data into storage database specified.
      * Display exit Ui interface.
      */
-    private static void exit() {
+    private static String exit() {
         try {
             Sakura.storage.saveData(Sakura.taskList);
-            Sakura.ui.showExit();
+            return Sakura.ui.showExit();
         } catch (IOException e) {
-            SakuraException.saveError();
+            return SakuraException.saveError();
         }
     }
 }

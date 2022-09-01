@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 import java.util.Scanner;
 
@@ -10,13 +10,12 @@ public class Sakura {
     public static TaskList taskList;
     public static Ui ui;
     public static Storage storage;
+    public String filePath = "./data/Sakura.txt";
 
     /**
-     * Constructor for Sakura
-     *
-     * @param filePath the path to an existing txt database file or the path to save the new txt database file
+     * Constructor for Sakura.
      */
-    public Sakura(String filePath) {
+    public Sakura() {
         storage = new Storage(filePath);
         ui = new Ui();
         taskList = new TaskList(storage.loadData());
@@ -40,6 +39,11 @@ public class Sakura {
      * @param args Entry point argument.
      */
     public static void main(String[] args) throws IndexOutOfBoundsException {
-        new Sakura("./data/Sakura.txt").run();
+        new Sakura().run();
+    }
+
+    public String getResponse(String input) {
+        System.out.println(ui.greet());
+        return Parser.parseCommand(input, taskList);
     }
 }

@@ -1,4 +1,4 @@
-package Sakura;
+package sakura;
 
 import org.junit.jupiter.api.Test;
 
