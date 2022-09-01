@@ -5,6 +5,16 @@ public class ToDo extends Task{
     }
 
     @Override
+    public String getTime() {
+        return "inf";
+    }
+
+    @Override
+    public String getTaskType() {
+        return "T";
+    }
+
+    @Override
     public Task toggleCompleted(){
         return new ToDo(getName(),!isCompleted());
     }

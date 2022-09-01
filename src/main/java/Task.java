@@ -20,6 +20,10 @@ public abstract class Task {
         return isCompleted()? "X":" ";
     }
 
+    public abstract String getTime();
+
+    public abstract String getTaskType();
+
     public abstract Task toggleCompleted();
     //return new Task(name,!completed);
 

@@ -4,7 +4,7 @@ public class DeleteFunction extends Function{
         super(function,exit);
     }
 
-    public void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException {
+    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException {
         try{
             String[] desc = getFunction().split(" ");
             if(desc.length <= 1){
@@ -12,6 +12,7 @@ public class DeleteFunction extends Function{
             }
             Task deletedTask = tasks.getTask(Integer.parseInt(desc[1]) - 1); // Task 3 is in idx 2
             tasks.removeTask(deletedTask);
+            storage.writeToFile(tasks.getTaskList());
             textBox.chat(String.format(
                          "Noted. I've removed this task:"+
                          "\n  %s"+

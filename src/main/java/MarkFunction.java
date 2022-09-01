@@ -5,7 +5,7 @@ public class MarkFunction extends Function{
     }
 
     @Override
-    public void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException{
+    public void run(TaskList tasks,UITextBox textBox, Storage storage) throws CleverNotBotException{
         int number = Integer. parseInt(getFunction().split(" ")[1]) - 1; //mark 3 -> 3, because number 3 is actually idx 2
         Task taskToMark = tasks.getTask(number);
         if(taskToMark.checkMarked().equals(" ")) {

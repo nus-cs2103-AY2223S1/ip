@@ -15,5 +15,5 @@ public abstract class Function {
         return exit;
     }
 
-    public abstract void run(TaskList tasks,UITextBox textBox) throws CleverNotBotException;
+    public abstract void run(TaskList tasks,UITextBox textBox,Storage storage) throws CleverNotBotException;
 }
