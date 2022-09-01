@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     public Task getTask(int i) {
-        return db.get(i);
+        return db.get(i - 1);
     }
 
     /**
@@ -81,9 +81,10 @@ public class TaskList {
     /**
      * Deletes a specified task from Duke's memory.
      * @param userInput Task number to be deleted
+     * @return Deleted task
      */
-    public void delete(int userInput) {
-        Task tmp = db.remove(userInput - 1);
+    public Task delete(int userInput) {
+        return db.remove(userInput - 1);
     }
 
     @Override

@@ -78,6 +78,13 @@ public class Parser {
                     return new UnmarkCommand(tmp);
                 }
 
+                case "delete":
+                    if (userInput.length < 2) {
+                    throw new DukeException("Missing task to delete.");
+                } else {
+                    int tmp = Integer.parseInt(userInput[1]);
+                    return new DeleteCommand(tmp);
+                }
 
             default:
                 throw new DukeException("Unrecognized command.");
