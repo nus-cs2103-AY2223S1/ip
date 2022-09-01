@@ -101,7 +101,6 @@ public class Sally {
             description = task.description;
             moreInfo = task.getMoreInfo();
 
-            System.out.println("taskType = " + task.taskType);
             switch (task.taskType) {
                 case TODO:
                     typeSymbol = "T";
