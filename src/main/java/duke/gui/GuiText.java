@@ -9,7 +9,7 @@ import duke.tools.TaskList;
  */
 public class GuiText {
 
-    private static final String GREET_STRING = "Hello! I'm Duke\nWhat can I do for you?";
+    private static final String GREET_STRING = "Hello! I'm Shiro\nWhat can I do for you?";
     private static final String BYE_STRING = "Bye! Hope to see you again soon";
     private static final String START_LISTING_STRING = "Here are the tasks in your list:";
     private static final String END_LISTING_STRING = "That's all!";

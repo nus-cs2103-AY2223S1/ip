@@ -39,7 +39,7 @@ public class EventCommand implements Command {
         Storage storage = SessionManager.getStorage();
         taskList.addTask(event);
         storage.appendToFile(event);
-        return GuiText.formatAddTaskString(taskList.getSize(), event);
+        return GuiText.formatAddTaskString(taskList.getSize() - 1, event);
     }
 
     /**

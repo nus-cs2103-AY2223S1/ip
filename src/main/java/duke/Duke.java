@@ -1,6 +1,6 @@
 package duke;
 
-import duke.gui.Main;
+import duke.gui.Gui;
 import duke.tools.SessionManager;
 import javafx.application.Application;
 
@@ -13,8 +13,8 @@ public class Duke {
      *
      * @param args Unused parameter
      */
-    public static void main(String[] args) {
+    public static void main(String ... args) {
         SessionManager.startSession();
-        Application.launch(Main.class, args);
+        Application.launch(Gui.class, args);
     }
 }

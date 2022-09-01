@@ -39,7 +39,7 @@ public class DeadlineCommand implements Command {
         Storage storage = SessionManager.getStorage();
         taskList.addTask(deadline);
         storage.appendToFile(deadline);
-        return GuiText.formatAddTaskString(taskList.getSize(), deadline);
+        return GuiText.formatAddTaskString(taskList.getSize() - 1, deadline);
     }
 
     /**

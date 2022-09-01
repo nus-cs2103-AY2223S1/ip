@@ -36,7 +36,7 @@ public class TodoCommand implements Command {
         Storage storage = SessionManager.getStorage();
         taskList.addTask(todo);
         storage.appendToFile(todo);
-        return GuiText.formatAddTaskString(taskList.getSize(), todo);
+        return GuiText.formatAddTaskString(taskList.getSize() - 1, todo);
     }
 
     /**
