@@ -11,6 +11,7 @@ import duke.task.TaskList;
 public class Duke {
     private TaskList listOfTasks;
     private FileStorage storage;
+    private Ui ui;
 
     private Parser parser;
 
@@ -20,6 +21,7 @@ public class Duke {
     public Duke() {
         storage = new FileStorage(System.getProperty("user.home"));
         parser = new Parser();
+        ui = new Ui();
         try {
             initializeDataFile();
             listOfTasks = new TaskList(storage.retrieveFileContents());
@@ -50,7 +52,7 @@ public class Duke {
         String response = "";
         try {
             Command command = parser.parse(input);
-            response = command.execute(listOfTasks, storage);
+            response = command.execute(listOfTasks, storage, ui);
         } catch (DukeException e) {
             response = e.getMessage();
         }

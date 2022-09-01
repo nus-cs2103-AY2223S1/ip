@@ -148,7 +148,7 @@ public class Parser {
         date = LocalDate.parse(components[0]);
         switch (type) {
         case DEADLINE:
-            if (components.length != 1) {
+            if (components.length != 1 && !components[1].trim().equals("")) {
                 time = LocalTime.parse(components[1]);
             }
             task = new Deadline(description, date, time, type);

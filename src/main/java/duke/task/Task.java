@@ -38,11 +38,7 @@ public abstract class Task {
      * @return The integer signifying the task's status.
      */
     public Integer getDoneStatus() {
-        if (this.isDone) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return this.isDone ? 1 : 0;
     }
 
     /**

@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.TaskList;
 
 
@@ -20,11 +21,13 @@ public class MarkCommand extends Command {
      *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
+     * @param ui The Ui of Duke.
+     * @return The message meant for the GUI.
      */
     @Override
-    public String execute(TaskList list, FileStorage storage) {
+    public String execute(TaskList list, FileStorage storage, Ui ui) {
         list.markTaskDone(index);
         storage.writeToFile(list.getList());
-        return String.format("Nice! I've marked this task as done:\n  %s", list.retrieveTask(index));
+        return ui.getMarkDoneMessage(list.retrieveTask(index));
     }
 }

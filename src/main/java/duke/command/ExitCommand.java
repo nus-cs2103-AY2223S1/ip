@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.TaskList;
 
 /**
@@ -14,9 +15,11 @@ public class ExitCommand extends Command {
      *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
+     * @param ui The Ui of Duke.
+     * @return The message meant for the GUI.
      */
     @Override
-    public String execute(TaskList list, FileStorage storage) {
-        return "Farewell, till we meet again";
+    public String execute(TaskList list, FileStorage storage, Ui ui) {
+        return ui.getOutroMessage();
     }
 }

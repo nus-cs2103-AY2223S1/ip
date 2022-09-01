@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.TaskList;
 
 
@@ -9,5 +10,5 @@ import duke.task.TaskList;
  */
 public abstract class Command {
 
-    public abstract String execute(TaskList list, FileStorage storage);
+    public abstract String execute(TaskList list, FileStorage storage, Ui ui);
 }

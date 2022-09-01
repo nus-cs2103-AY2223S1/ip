@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -20,13 +21,14 @@ public class DeleteCommand extends Command {
      *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
+     * @param ui The ui of Duke.
+     * @return The string meant for the GUI.
      */
     @Override
-    public String execute(TaskList list, FileStorage storage) {
+    public String execute(TaskList list, FileStorage storage, Ui ui) {
         Task task = list.retrieveTask(index);
         list.deleteTask(index);
         storage.writeToFile(list.getList());
-        return String.format("Noted. I've removed this task:\n  %s"
-                + "\nNow you have %d tasks in the list.", task , list.getListSize());
+        return ui.getDeletedTaskMessage(list, task);
     }
 }

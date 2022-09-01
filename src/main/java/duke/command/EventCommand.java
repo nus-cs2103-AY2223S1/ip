@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -19,12 +20,13 @@ public class EventCommand extends Command {
      *
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
+     * @param ui The Ui of Duke.
+     * @return The message meant for the GUI.
      */
     @Override
-    public String execute(TaskList list, FileStorage storage) {
+    public String execute(TaskList list, FileStorage storage, Ui ui) {
         list.addTask(task);
         storage.writeToFile(list.getList());
-        return String.format("Got it. I've added this task:\n  %s"
-                + "\nNow you have %d tasks in the list.", task , list.getListSize());
+        return ui.getAddedTaskMessage(list, task);
     }
 }
