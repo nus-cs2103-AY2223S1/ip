@@ -38,5 +38,5 @@ shadowJar {
 
 run{
     standardInput = System.in
-    enableAssertion = true;
+    enableAssertions = true;
 }

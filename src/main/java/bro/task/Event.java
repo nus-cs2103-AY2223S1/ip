@@ -1,5 +1,6 @@
 package bro.task;
 
+import bro.BroException;
 import bro.Parser;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class Event extends Task {
     protected boolean isMonthFormat;
     protected Parser parser;
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws BroException {
         super(description);
         this.at = at;
         isMonthFormat = false;

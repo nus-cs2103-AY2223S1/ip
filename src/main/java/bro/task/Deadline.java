@@ -1,5 +1,6 @@
 package bro.task;
 
+import bro.BroException;
 import bro.Parser;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ public class Deadline extends Task {
     protected String by;
     private boolean isMonthFormat;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws BroException {
         super(description);
         this.by = by;
         isMonthFormat = false;

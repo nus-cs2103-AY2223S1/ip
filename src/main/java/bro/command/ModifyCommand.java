@@ -1,5 +1,6 @@
 package bro.command;
 
+import bro.BroException;
 import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
@@ -18,13 +19,21 @@ public class ModifyCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
+    public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         switch (modifyType) {
         case MARK:
-            tasklist.markTask(this.index, storage);
+            try {
+                tasklist.markTask(this.index, storage);
+            } catch (IndexOutOfBoundsException e) {
+                throw new BroException("Index is out of bound. Enter a valid index");
+            }
             break;
         case UNMARK:
-            tasklist.unmarkTask(this.index, storage);
+            try {
+                tasklist.unmarkTask(this.index, storage);
+            } catch (IndexOutOfBoundsException e) {
+                throw new BroException("Index is out of bound. Enter a valid index");
+            }
             break;
         }
     }

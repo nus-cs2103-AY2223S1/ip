@@ -21,9 +21,10 @@ public class Parser {
 
     public Command parse(String str) throws BroException {
 
-        this.checkEmptyInput(str);
         String[] in = str.split(" ");
         String input = in[0];
+        this.checkEmptyInput(str);
+        this.checkInput(input, in.length);
             switch (input) {
             case "list":
                 return new ListCommand();
@@ -54,23 +55,31 @@ public class Parser {
         }
     }
 
-    public static LocalDateTime deadlineParser(String by) throws DateTimeParseException {
-        LocalDateTime byStore = null;
-        try {
-            byStore = LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
-        } catch (DateTimeParseException e){
-            System.out.println(e.getMessage());
+    public void checkInput(String str, int n) throws BroException {
+        switch (str){
+        case "todo":
+            if(n < 2) { throw new BroException("Please give the description!");}
+            break;
+        case "deadline":
+        case "event":
+            if(n < 4) { throw new BroException("Please give the description and time!"); }
+            break;
         }
-        return byStore;
     }
 
-    public static LocalDateTime eventParser(String at) {
-        LocalDateTime atStore = null;
+    public static LocalDateTime deadlineParser(String by) throws BroException {
         try {
-            atStore = LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
-        }catch (DateTimeParseException e){
-            System.out.println(e.getMessage());
+            return LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
+        } catch (DateTimeParseException e){
+            throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
         }
-        return atStore;
+    }
+
+    public static LocalDateTime eventParser(String at) throws BroException {
+        try {
+            return LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
+        }catch (DateTimeParseException e){
+            throw new BroException("Please enter the date in the format dd/MM/yyyy kkmm");
+        }
     }
 }

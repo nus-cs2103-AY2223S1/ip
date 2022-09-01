@@ -1,5 +1,6 @@
 package bro.command;
 
+import bro.BroException;
 import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
@@ -11,5 +12,5 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public abstract void execute(TaskList tasklist, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException;
 }
