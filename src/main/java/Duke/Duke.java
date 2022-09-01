@@ -88,6 +88,8 @@ public class Duke {
                             System.out.println("Now you have " + list.getList().size() + " task(s) in the list");
                         }
                     }
+                } else if (input.startsWith("find")) {
+                    list.findTask(parser.replaceAll(input, "find"));
                 } else {
                     Task task;
                     if (input.startsWith("todo")) {

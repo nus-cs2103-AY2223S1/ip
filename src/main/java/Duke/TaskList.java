@@ -15,6 +15,32 @@ public class TaskList {
     }
 
     /**
+     * Prints tasks found when find is called
+     * @param search the keyword to search for
+     */
+    public void findTask(String search) {
+        List<Task> foundTasks = new ArrayList<>();
+        for (Task task : this.list) {
+            if (task.getName().contains(search)) {
+                foundTasks.add(task);
+            }
+        }
+
+        if (foundTasks.isEmpty()) {
+            System.out.println("No tasks found matching " + search);
+        } else {
+            String out = "";
+            out += "Here are the matching tasks in your list:\n";
+            int num = 1;
+            for (Task task : foundTasks) {
+                out += num + ". " + task.toString() + "\n";
+                num++;
+            }
+            System.out.println(out);
+        }
+    }
+
+    /**
      * Helper function to print the task description
      */
     public void taskPrinter() {
