@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import command.Command;
 import command.CommandResult;
+import exceptions.HenryException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.util.Duration;
@@ -83,6 +84,8 @@ public class Henry {
                 storage.appendToFile(result.getTaskList().get().toFileEncodedString());
             }
             return result;
+        } catch (HenryException he) {
+            throw he;
         } catch (Exception e) {
             ui.output(e.getMessage());
             throw new RuntimeException(e);

@@ -23,7 +23,7 @@ public class FindCommand extends Command {
         int argsLength = searchTerms.length;
         termsToFind = new String[argsLength];
         for (int i = 0; i < termsToFind.length; i++) {
-            termsToFind[i] = searchTerms[i].toLowerCase();
+            termsToFind[i] = searchTerms[i].toLowerCase().trim();
         }
     }
 

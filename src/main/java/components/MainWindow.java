@@ -2,6 +2,7 @@ package components;
 
 import java.util.Objects;
 
+import exceptions.HenryException;
 import henry.Henry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,11 +52,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = henry.getResponse(input);
-        dialogContainer.getChildren().addAll(
-            DialogBox.getUserDialog(input, userImage),
-            DialogBox.getHenryDialog(response, henryImage)
-        );
+        try {
+            String response = henry.getResponse(input);
+            dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getHenryDialog(response, henryImage)
+            );
+        } catch (HenryException e) {
+            dialogContainer.getChildren().add(
+                DialogBox.getHenryDialog(e.getMessage(), henryImage)
+            );
+        }
         userInput.clear();
     }
 }

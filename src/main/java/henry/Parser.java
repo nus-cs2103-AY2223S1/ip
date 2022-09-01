@@ -54,22 +54,25 @@ public class Parser {
         case EchoCommand.COMMAND_WORD:
             return new EchoCommand(args);
         case MarkCommand.COMMAND_WORD:
-            if (isInputValid(args)) {
+            if (!isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new MarkCommand(Integer.parseInt(args));
         case UnmarkCommand.COMMAND_WORD:
-            if (isInputValid(args)) {
+            if (!isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new UnmarkCommand(Integer.parseInt(args.trim()));
         case DeleteCommand.COMMAND_WORD:
-            if (isInputValid(args)) {
+            if (!isInputValid(args)) {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new DeleteCommand(Integer.parseInt(args.trim()));
         case FindCommand.COMMAND_WORD:
-            return new FindCommand(parseFindArgs(args.trim()));
+            if (!isFindInputValid(args)) {
+                throw new HenryException("PLEASE PREFIX YOUR SEARCH TERMS WITH \"--\"!");
+            }
+            return new FindCommand(parseFindArguments(args.trim()));
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case TodoCommand.COMMAND_WORD:
@@ -83,8 +86,8 @@ public class Parser {
         }
     }
 
-    private String[] parseFindArgs(String args) {
-        return args.split(" ");
+    private String[] parseFindArguments(String args) {
+        return args.split("--");
     }
 
     private Command parseDeadlineArguments(String args) {
@@ -115,7 +118,11 @@ public class Parser {
         }
     }
 
+    private boolean isFindInputValid(String args) {
+        return args.matches("(--\\w*\\s*)+");
+    }
+
     private boolean isInputValid(String args) {
-        return !args.matches("\\d+");
+        return args.matches("\\d+");
     }
 }
