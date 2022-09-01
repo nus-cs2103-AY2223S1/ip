@@ -82,11 +82,6 @@ public class SaveLine {
       // conclude type data pair
       typeData.add(new Pair<>(type, data));
     }
-    System.out.println("infoType: " + infoType);
-    System.out.println("typeData length: " + typeData.size());
-    for (Pair<String, String> i : typeData) {
-      System.out.println(i.getKey() + " : " + i.getValue());
-    }
     return new SaveLine(infoType, typeData);
   }
 
