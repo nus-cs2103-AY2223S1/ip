@@ -43,6 +43,9 @@ public class Ui {
         return sc.nextLine();
     }
 
+    /**
+     * Shows an error when loading a file.
+     */
     public static void showLoadingError() {
         showLine();
         System.out.println("Error: Cannot load file!");
