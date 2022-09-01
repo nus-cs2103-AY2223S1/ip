@@ -57,6 +57,16 @@ public class TaskList {
         return new TaskList(tasksOnDate);
     }
 
+    public TaskList getTasksWithWord(String input) throws DukeException {
+        ArrayList<Task> tasksWithWord = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.doesDescriptionContain(input)) {
+                tasksWithWord.add(t);
+            }
+        }
+        return new TaskList(tasksWithWord);
+    }
+
     @Override
     public String toString() {
         return convertTasksToListString(tasks);

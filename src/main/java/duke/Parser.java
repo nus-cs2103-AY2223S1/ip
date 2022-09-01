@@ -9,49 +9,54 @@ public class Parser {
         String[] input = command.split(" ", 2);
 
         switch (input[0]) {
-                case "bye": {
+                case "bye":
                     return new ExitCommand();
-                } case "list": {
+                case "list":
                     return new ListCommand();
-                } case "delete": {
+                case "delete":
                     if (input.length < 2) {
                         throw new DukeException("Please input a task number");
                     }
                     return new DeleteCommand(input[1]);
-                } case "todo": {
+                case "todo":
                     if (input.length < 2) {
                         throw new DukeException("Please input a description");
                     }
                     return new ToDoCommand(input[1]);
-                } case "event": {
+                case "event":
                     if (input.length < 2) {
                         throw new DukeException("Please input a description");
                     }
                     return new EventCommand(input[1]);
-                } case "deadline": {
+                case "deadline":
                     if (input.length < 2) {
                         throw new DukeException("Please input a description");
                     }
                     return new DeadlineCommand(input[1]);
-                } case "mark": {
+                case "mark":
                     if (input.length < 2) {
                         throw new DukeException("Please input a task number");
                     }
                     return new MarkCommand(input[1]);
-                } case "unmark": {
+                case "unmark":
                     if (input.length < 2) {
                         throw new DukeException("Please input a task number");
                     }
                     return new UnmarkCommand(input[1]);
-                } case "on": {
+                case "on":
                     if (input.length < 2) {
                         throw new DukeException("Please input a date!");
                     }
                     return new OnCommand(input[1]);
-                } default: {
+                case "find":
+                    if (input.length < 2) {
+                        return new FindCommand("");
+                    }
+                    return new FindCommand(input[1].trim());
+                default:
                     throw new DukeException("What's " + command + " ??\n"
                             + "Please say something I can understand!");
-                }
+
             }
 
     }

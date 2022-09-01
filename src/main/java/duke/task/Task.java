@@ -25,6 +25,8 @@ public abstract class Task {
 
     public abstract boolean isOnThisDate(String dateStr) throws DukeException;
 
+    public abstract boolean doesDescriptionContain(String input) throws DukeException;
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
