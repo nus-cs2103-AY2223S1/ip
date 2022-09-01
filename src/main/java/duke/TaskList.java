@@ -146,4 +146,20 @@ public class TaskList {
         return new TaskList(tasksAtDate);
     }
 
+    /**
+     * Returns a task list containing tasks that have task description related to keyword.
+     *
+     * @param keyword task description keyword.
+     * @return task list.
+     */
+    public TaskList searchByKeyword(String keyword) {
+        TaskList tasksByKeyword = new duke.TaskList();
+        for (Task t : tasks) {
+            if (t.getDescription().contains(keyword)) {
+                tasksByKeyword.addTask(t);
+            }
+        }
+        return tasksByKeyword;
+    }
+
 }

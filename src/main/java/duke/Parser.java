@@ -103,8 +103,10 @@ public class Parser {
             return String.format("event %d", taskList.getSize());
         } else if (taskType.equals("list")) {
             if (taskString.length == 1 || taskString[1].trim().equals("")) { //list command
-                return "list all";
-            } else { // list date
+                return "list 0";
+            } else if (!taskString[1].trim().matches(".*\\d.*")) {
+                return String.format("list %s", taskString[1].trim());
+            }else { //list date
                 LocalDate date = parseDate(taskString[1].trim());
                 return String.format("list %s", date);
             }
