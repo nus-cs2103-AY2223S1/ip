@@ -46,7 +46,7 @@ public class TaskList {
         }
         Ui.printLine();
         Ui.printIndent("Okay okay, I'll add this task then:");
-        Ui.printIndent(tasks.get(tasks.size() -1).toString());
+        Ui.printIndent(tasks.get(tasks.size() - 1).toString());
         Ui.printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
         Ui.printLine();
     }
@@ -57,7 +57,7 @@ public class TaskList {
         }
         Ui.printLine();
         Ui.printIndent("Here are the tasks in your list:");
-        for (int i =1; i <= tasks.size(); i++) {
+        for (int i = 1; i <= tasks.size(); i++) {
             Ui.printIndent(i + "." + tasks.get(i - 1));
         }
         Ui.printLine();

@@ -10,7 +10,7 @@ public class Dan {
     private TaskListReader tlr;
     private TaskList tasks;
     private Parser parser;
-    
+
     public Dan(String fileName) {
         tlr = new TaskListReader(fileName);
         try {
@@ -34,7 +34,7 @@ public class Dan {
     public static void main(String[] args) {
         new Dan("TestData1.txt").run();
     }
-    
+
     public void run() {
         Scanner sc = new Scanner(System.in);
         Ui.greet();
