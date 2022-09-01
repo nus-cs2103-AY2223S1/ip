@@ -14,7 +14,7 @@ public class Duke {
     private Ui ui;
 
     public Duke(String filePath) {
-        System.out.println("Hello! I'm Duke.Duke\nWhat can I do for you?\n");
+        System.out.println("Hello! I'm Duke.\nWhat can I do for you?\n");
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());

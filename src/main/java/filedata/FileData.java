@@ -62,7 +62,7 @@ public class FileData {
 
     public ArrayList<Task> storeArray() {
         ArrayList<Task> tasks = new ArrayList<>(100);
-        try {
+        try { 
             if (!this.file.exists()) {
                 throw new FileNotFoundException();
             } else {

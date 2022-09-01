@@ -19,7 +19,7 @@ public class DateFormat {
     protected String stringDate;
     protected String stringTime;
     protected LocalDateTime dateAndTime;
-    protected HashMap<String, String> months = new HashMap<>();
+    protected static HashMap<String, String> months = new HashMap<>();
 
     /**
      * Constructor for DateFormat that takes in a date
@@ -32,7 +32,6 @@ public class DateFormat {
         this.date = date;
         this.dateFormatted = null;
         this.timeFormatted = null;
-        dateAndTimeFormatter();
 
         months.put("JAN", "1");
         months.put("FEB", "2");
@@ -46,6 +45,8 @@ public class DateFormat {
         months.put("OCT", "10");
         months.put("NOV", "11");
         months.put("DEC", "12");
+
+        dateAndTimeFormatter();
     }
 
     /**
@@ -216,7 +217,7 @@ public class DateFormat {
                 }
             }
         } else {
-            this.afterBy = this.afterBy.substring(1);
+            afterBy = afterBy.substring(1); // When read from text file, it has an extra ":".
             if (this.afterBy.indexOf(" ") < 2) {
                 int afterDaySpaceIndex = afterBy.indexOf(" ");
                 String afterDay;
@@ -363,7 +364,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("16/10/2021 1800");
+        DateFormat d4 = new DateFormat("Feb 10 2022 1800");
         System.out.println(d4.formatDate("MMM d yyyy"));
         System.out.println(d4.formatTime());
     }
