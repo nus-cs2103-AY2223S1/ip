@@ -8,6 +8,7 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.mark(taskNo);
+            storage.write(tasks.toStringWritable());
             ui.showOutput("Nice! I've marked this task as done:");
             ui.showOutput(tasks.getTask(taskNo).toString());
         } catch (ArrayIndexOutOfBoundsException err) {

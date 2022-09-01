@@ -8,6 +8,7 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.unmark(taskNo);
+            storage.write(tasks.toStringWritable());
             ui.showOutput("Ok, I've marked this task as not done yet:");
             ui.showOutput(tasks.getTask(taskNo).toString());
         } catch (ArrayIndexOutOfBoundsException err) {

@@ -8,6 +8,7 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task tmp = tasks.delete(taskNo);
+            storage.write(tasks.toStringWritable());
             ui.showOutput("Noted. I've removed this task:");
             ui.showOutput(tmp.toString());
         } catch (ArrayIndexOutOfBoundsException err) {
