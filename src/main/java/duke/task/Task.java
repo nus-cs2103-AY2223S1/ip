@@ -20,7 +20,7 @@ public abstract class Task {
      * @param title the name of the task
      * @param status whether the task is completed or not
      */
-    Task(String title, boolean status) {
+    public Task(String title, boolean status) {
         this.title = title;
         this.status = status;
     }
@@ -58,7 +58,7 @@ public abstract class Task {
      * @param status the status to be set
      * @return the task after changing status
      */
-    Task setStatus(boolean status) {
+    public Task setStatus(boolean status) {
         this.status = status;
         return this;
     }
