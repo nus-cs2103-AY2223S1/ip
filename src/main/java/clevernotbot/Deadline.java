@@ -3,7 +3,7 @@ package clevernotbot;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     private String dateTime;
     private LocalDateTime date;
 
@@ -29,21 +29,21 @@ public class Deadline extends Task{
         this.date = LocalDateTime.parse(dateTime, formatter);
     }
 
-    public String getDateTime(){
+    public String getDateTime() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"));
     }
 
-    public String getDateTime(String format){
+    public String getDateTime(String format) {
         return date.format(DateTimeFormatter.ofPattern(format));
     }
 
-    public String getDate(){
+    public String getDate() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override
-    public Task toggleCompleted(){
-        return new Deadline(getName(),!isCompleted(), dateTime);
+    public Task toggleCompleted() {
+        return new Deadline(getName(), !isCompleted(), dateTime);
 
     }
 
@@ -53,8 +53,8 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String toString(){
-        return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(),getDateTime());
+    public String toString() {
+        return String.format("[D][%s] %s (by: %s)", checkMarked(), getName(), getDateTime());
     }
 
 }

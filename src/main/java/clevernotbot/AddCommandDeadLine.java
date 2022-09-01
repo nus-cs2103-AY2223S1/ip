@@ -30,9 +30,9 @@ public class AddCommandDeadLine extends Command {
                                 "\nNow you have %d tasks in the list."
                         , newTask.toString(), tasks.getSize()));
             }
-        } catch (CleverNotBotException e){
+        } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Task.Deadline description must not be empty or must contain /by!", textBox);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new CleverNotBotException("Incorrect date format! Please enter DD-MM-YYYY HH:mm" +
                     "\nFor example, 22-09-2022 19:40", textBox);
         }

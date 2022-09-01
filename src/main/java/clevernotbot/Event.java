@@ -1,10 +1,10 @@
 package clevernotbot;
 
-public class Event extends Task{
+public class Event extends Task {
     private String at;
 
-    public Event(String name, boolean completed, String at){
-        super(name,completed);
+    public Event(String name, boolean completed, String at) {
+        super(name, completed);
         this.at = at;
     }
 
@@ -19,12 +19,12 @@ public class Event extends Task{
     }
 
     @Override
-    public Task toggleCompleted(){
-        return new Event(getName(),!isCompleted(),at);
+    public Task toggleCompleted() {
+        return new Event(getName(), !isCompleted(), at);
     }
 
     @Override
-    public String toString(){
-        return String.format("[E][%s] %s (at: %s)",checkMarked(),getName(),at);
+    public String toString() {
+        return String.format("[E][%s] %s (at: %s)", checkMarked(), getName(), at);
     }
 }

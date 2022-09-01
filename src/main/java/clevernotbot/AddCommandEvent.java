@@ -8,7 +8,7 @@ public class AddCommandEvent extends Command {
 
     public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
         String[] desc = getCommandName().split(" ");
-        try{
+        try {
             if (desc.length == 1) {
                 throw new CleverNotBotException("Please fill in the description of Task.Event!", textBox);
             } else if (!getCommandName().contains("/at")) {
@@ -28,7 +28,7 @@ public class AddCommandEvent extends Command {
                                 "\nNow you have %d tasks in the list."
                         , newTask.toString(), tasks.getSize()));
             }
-        } catch(CleverNotBotException e){
+        } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Task.Event description must not be empty or must contain /at!", textBox);
         }
 

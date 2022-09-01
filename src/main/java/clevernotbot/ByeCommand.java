@@ -2,8 +2,8 @@ package clevernotbot;
 
 public class ByeCommand extends Command {
 
-    public ByeCommand(String commandName, boolean exit){
-        super(commandName,exit);
+    public ByeCommand(String commandName, boolean exit) {
+        super(commandName, exit);
     }
 
     @Override

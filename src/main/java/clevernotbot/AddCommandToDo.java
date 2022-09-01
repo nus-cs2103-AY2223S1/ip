@@ -26,7 +26,7 @@ public class AddCommandToDo extends Command {
             } else {
                 throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
             }
-        } catch(CleverNotBotException e){
+        } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Please fill in the description of Task.ToDo!", textBox);
         }
 

@@ -1,9 +1,9 @@
 package clevernotbot;
 
-public class ToDo extends Task{
+public class ToDo extends Task {
 
-    public ToDo(String name, boolean completed){
-        super(name,completed);
+    public ToDo(String name, boolean completed) {
+        super(name, completed);
     }
 
     @Override
@@ -17,12 +17,12 @@ public class ToDo extends Task{
     }
 
     @Override
-    public Task toggleCompleted(){
-        return new ToDo(getName(),!isCompleted());
+    public Task toggleCompleted() {
+        return new ToDo(getName(), !isCompleted());
     }
 
     @Override
-    public String toString(){
-        return String.format("[T][%s] %s",checkMarked(),getName());
+    public String toString() {
+        return String.format("[T][%s] %s", checkMarked(), getName());
     }
 }

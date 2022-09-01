@@ -2,8 +2,8 @@ package clevernotbot;
 
 public class DefaultCommand extends Command {
 
-    public DefaultCommand(String commandName, boolean exit){
-        super(commandName,exit);
+    public DefaultCommand(String commandName, boolean exit) {
+        super(commandName, exit);
     }
 
     @Override

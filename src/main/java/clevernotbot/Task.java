@@ -5,21 +5,21 @@ public abstract class Task {
     private final boolean completed;
 
 
-    public Task(String name, boolean completed){
+    public Task(String name, boolean completed) {
         this.name = name;
         this.completed = completed;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public boolean isCompleted(){
+    public boolean isCompleted() {
         return completed;
     }
 
-    public String checkMarked(){
-        return isCompleted()? "X":" ";
+    public String checkMarked() {
+        return isCompleted() ? "X" : " ";
     }
 
     public abstract String getTime();

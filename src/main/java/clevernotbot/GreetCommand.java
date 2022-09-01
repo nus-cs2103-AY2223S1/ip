@@ -2,8 +2,8 @@ package clevernotbot;
 
 public class GreetCommand extends Command {
 
-    public GreetCommand(String commandName, boolean exit){
-        super(commandName,exit);
+    public GreetCommand(String commandName, boolean exit) {
+        super(commandName, exit);
     }
 
     @Override
