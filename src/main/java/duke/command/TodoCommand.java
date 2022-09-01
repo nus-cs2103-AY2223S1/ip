@@ -8,16 +8,16 @@ import duke.Task;
 
 public class TodoCommand extends Command {
     private String task;
-    
+
     public TodoCommand(String task) {
         super();
         this.task = task;
     }
-    
+
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(new Task(task));
-        ui.printAddTaskSuccessfully(tasks);
+        return ui.printAddTaskSuccessfully(tasks);
     }
 
     @Override

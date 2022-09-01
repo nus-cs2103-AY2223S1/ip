@@ -15,12 +15,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (index == -1 || index >= tasks.size()) {
             throw new DukeException(String.format("Task number %d not found! Unable to delete task.", index + 1));
         }
         Task deleted = tasks.remove(index);
-        ui.wrapPrint("Noted. I've removed this task:\n" + deleted.toString());
+        return "Noted. I've removed this task:\n" + deleted.toString();
     }
 
     @Override

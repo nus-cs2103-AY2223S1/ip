@@ -11,9 +11,10 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.wrapPrint("Bye. Hope to see you again soon!");
         storage.save(tasks);
+        return "Bye. Hope to see you again soon!";
     }
 
     @Override

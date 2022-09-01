@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> foundTasks = tasks.find(toFind);
         if (foundTasks.size() == 0) {
             throw new DukeException(String.format("No tasks found containing \"%s\"", toFind));
@@ -26,5 +26,6 @@ public class FindCommand extends Command {
         for (int i = 0; i < foundTasks.size(); i++) {
             listString.append(String.format("%d.%s\n", i + 1, foundTasks.get(i).toString()));
         }
+        return listString.toString();
     }
 }

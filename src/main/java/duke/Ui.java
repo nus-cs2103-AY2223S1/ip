@@ -28,21 +28,21 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating that a task has been added.
-     * Takes in the full task list and prints out info about
-     * the newly added task, together with the number of tasks
-     * in the task list.
+     * Returns a message indicating that a task has been added.
+     * Takes in the full task list and returns info about the
+     * newly added task, together with the number of tasks in
+     * the task list.
      * 
      * @param tasks the full task list
+     * @return the message to print
      */
-    public void printAddTaskSuccessfully(TaskList tasks) {
+    public String printAddTaskSuccessfully(TaskList tasks) {
         String taskString = "tasks";
         if (tasks.size() == 1) {
             taskString = "task";
         }
-        wrapPrint("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1).toString()
-                + String.format(
-                "\nNow you have %d %s in the list.", tasks.size(), taskString));
+        return "Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1).toString()
+                + String.format("\nNow you have %d %s in the list.", tasks.size(), taskString);
     }
 
     /**
