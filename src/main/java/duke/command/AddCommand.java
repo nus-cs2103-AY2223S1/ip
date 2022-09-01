@@ -11,11 +11,12 @@ import duke.task.ToDo;
 
 /**
  * Executes the commands to add tasks to the list.
+ *
  * @author Lim Ai Lin
  */
 public class AddCommand extends Command {
-    String[] str;
-    Commands command;
+    private final String[] STR;
+    private final Commands COMMAND;
     private enum Commands {
         DEADLINE,
         TODO,
@@ -24,17 +25,19 @@ public class AddCommand extends Command {
 
     /**
      * Creates a new AddCommand object.
+     *
      * @param str The array String of the task containing the description and date and time if necessary.
      * @param i The integer specifying the type of task.
      */
     public AddCommand(String[] str, int i) {
-        this.str = str;
+        this.STR = str;
         Commands[] commands = new Commands[]{Commands.DEADLINE, Commands.TODO, Commands.EVENT};
-        this.command = commands[i];
+        this.COMMAND = commands[i];
     }
 
     /**
      * Executes the add command the user inputs.
+     *
      * @param tasks The list in which the task is to be added.
      * @param ui The ui to deal with user interactions.
      * @param storage The storage to be updated with the newly added task.
@@ -44,11 +47,11 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task myTask = null;
-        switch(command) {
+        switch(COMMAND) {
         case DEADLINE:
             String[] dl = new String[2];
             try {
-                dl = str[1].split(" /by ");
+                dl = STR[1].split(" /by ");
             } catch (Exception e) {
                 ui.emptyDescription();
             }
@@ -62,7 +65,7 @@ public class AddCommand extends Command {
 
         case TODO:
             try {
-                myTask = new ToDo(str[1]);
+                myTask = new ToDo(STR[1]);
             } catch (Exception e) {
                 throw new DukeException("Oops! The description of a todo cannot be empty!");
             }
@@ -71,7 +74,7 @@ public class AddCommand extends Command {
         case EVENT:
             String[] evnt;
             try {
-                evnt = str[1].split(" /at ");
+                evnt = STR[1].split(" /at ");
             } catch (Exception e) {
                 throw new DukeException("Oops! The description of an event cannot be empty!");
             }

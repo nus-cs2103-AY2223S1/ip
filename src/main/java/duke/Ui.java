@@ -4,11 +4,12 @@ import duke.task.Task;
 
 /**
  * Deals with interactions with the user.
+ *
  * @author Lim Ai Lin
  */
 public class Ui {
 
-    private static final String line = "Dino:\n";
+    private static final String LINE = "Dino:\n";
 
     /**
      * Creates a new Ui object.
@@ -21,7 +22,7 @@ public class Ui {
                 " __/ (  | (  |\n" +
                 "/__.-'|_|--|_|\n");
 
-        System.out.println(line
+        System.out.println(LINE
                 + "\tHello! I'm Dino\n"
                 + "\tWhat can I do for you?\n");
     }
@@ -37,7 +38,7 @@ public class Ui {
      * Prints a message showing bot and user interaction.
      */
     public void showLine() {
-        System.out.print(line);
+        System.out.print(LINE);
     }
 
     /**
@@ -48,24 +49,30 @@ public class Ui {
     }
 
     /**
+     * Throws an exception when the user does not enter a valid description.
+     *
      * @throws DukeException
-     *          Throws an exception when the user does not enter a valid description.
+     *          Thrown when description is empty.
      */
     public void emptyDescription() throws DukeException {
         throw new DukeException("RAWR! Empty description.");
     }
 
     /**
+     * Throws an exception when the user does not enter a valid task.
+     *
      * @throws DukeException
-     *          Throws an exception when the user does not enter a valid task.
+     *          Thrown when task is invalid.
      */
     public void invalidTask() throws DukeException {
         throw new DukeException("RAWR! Invalid task.");
     }
 
     /**
+     * Throws an exception when the user does not enter a date when needed.
+     *
      * @throws DukeException
-     *          Throws an exception when the user does not enter a date when needed.
+     *          Thrown when there is a missing date.
      */
     public void missingDate() throws DukeException {
         throw new DukeException("RAWR! Missing date.");
@@ -73,6 +80,7 @@ public class Ui {
 
     /**
      * Prints a message when the user has marked a task.
+     *
      * @param myTask The task that the user has marked.
      */
     public void complete(Task myTask) {
@@ -81,6 +89,7 @@ public class Ui {
 
     /**
      * Prints a message when the user has unmarked a task.
+     *
      * @param myTask The task that the user has unmarked.
      */
     public void incomplete(Task myTask) {
@@ -96,6 +105,7 @@ public class Ui {
 
     /**
      * Prints a message when the user has added a new task to the list.
+     *
      * @param taskList The tasklist the user has added to.
      * @param task The task the user has added.
      */
@@ -106,6 +116,7 @@ public class Ui {
 
     /**
      * Prints a message when the user has removed a new task from the list.
+     *
      * @param taskList The tasklist the user has removed from.
      * @param task The task the user has removed.
      */

@@ -6,6 +6,7 @@ import java.util.Locale;
 
 /**
  * Makes sense of the user commands.
+ *
  * @author Lim Ai Lin
  */
 public class Parser {
@@ -21,6 +22,8 @@ public class Parser {
     }
 
     /**
+     * Parses the input by the user.
+     *
      * @param command The input String to be parsed.
      * @return The Command the user wishes to execute.
      * @throws DukeException
