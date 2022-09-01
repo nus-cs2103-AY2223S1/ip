@@ -110,6 +110,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Determines if given string contains specified command
+     *
+     * @param s String to be checked for command
+     * @param i index of command to be checked
+     * @return whether command is present in string
+     */
     private boolean checkCommand(String s, int i) {
         return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,
                 commandWords[i].length()));
