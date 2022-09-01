@@ -1,10 +1,10 @@
 package duke;
 
+import java.time.LocalDate;
+
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
-
-import java.time.LocalDate;
 
 /**
  * Parser class to manage user inputs
@@ -92,7 +92,10 @@ public class Parser {
             case find:
                 String item = command[1];
                 result = tasks.find(item);
-        }
+                break;
+            default:
+                result = "Invalid Command";
+            }
 
         } catch (IllegalArgumentException e) {
             return "Invalid command";

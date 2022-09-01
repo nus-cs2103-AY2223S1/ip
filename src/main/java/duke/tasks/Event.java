@@ -34,7 +34,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         String s = super.toString();
-        return "[E]" + s + " (at: " + time +")";
+        return "[E]" + s + " (at: " + time + ")";
     }
 
     /**

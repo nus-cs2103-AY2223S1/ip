@@ -27,17 +27,11 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-
-    public static DialogBox getUserDialog(Label l, ImageView iv) {
-        return new DialogBox(l, iv);
-    }
-
-    public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        var db = new DialogBox(l, iv);
-        db.flip();
-        return db;
-    }
-
+    /**
+     * Constructor for DialogBox
+     * @param l
+     * @param iv
+     */
     public DialogBox(Label l, ImageView iv) {
         dialog = l;
         displayPicture = iv;
@@ -50,6 +44,11 @@ public class DialogBox extends HBox {
         this.getChildren().addAll(dialog, displayPicture);
     }
 
+    /**
+     * Constructor for Dialog box
+     * @param text
+     * @param img
+     */
     public DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));

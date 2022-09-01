@@ -1,16 +1,16 @@
 package duke;
 
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.Todo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
 
 /**
  * Represents the list of tasks that the user has keyed in.
@@ -136,7 +136,7 @@ public class TaskList {
             count = list.size();
             String s = "";
             s += "Added Task\n";
-            s +=list.get(count - 1) + "\n";
+            s += list.get(count - 1) + "\n";
             s += "Now you have " + count + " tasks in the list" + "\n";
             return s;
         } catch (ArrayIndexOutOfBoundsException e) {

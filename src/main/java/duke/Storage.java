@@ -1,12 +1,12 @@
 package duke;
 
-import duke.tasks.Task;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+
+import duke.tasks.Task;
 
 /**
  * Represents the storage component of the Duke chatbot. The Storage class handles then reading and writing
