@@ -6,17 +6,21 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline instance
-     * @param name Description of task
-     * @param datetime Deadline of task
+     * @param data String passed in from Storage
      */
-    public Deadline(String name, String datetime) {
-        super(name);
-        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-    }
-
     public Deadline(String[] data) {
         super(data[2], (data[1].equals("1")));
         this.datetime = LocalDateTime.parse(data[3]);
+    }
+
+    /**
+     * Constructor for Deadline instance
+     * @param name Description of task
+     * @param datetime Datetime of task
+     */
+    public Deadline(String name, LocalDateTime datetime) {
+        super(name);
+        this.datetime = datetime;
     }
 
     /**

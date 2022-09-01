@@ -9,9 +9,9 @@ public class Event extends Task {
      * @param name Description of event
      * @param datetime Date/time of the event
      */
-    public Event(String name, String datetime) {
+    public Event(String name, LocalDateTime datetime) {
         super(name);
-        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        this.datetime = datetime;
     }
 
     public Event(String[] data) {
