@@ -1,0 +1,12 @@
+Label {
+    -fx-background-color: #a8dadc;
+    -fx-text-fill: #1d3557;
+    -fx-border-width: 0;
+    -fx-border-color: #E8E8E8 transparent transparent transparent;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px 10px 10px 10px;
+    /* Use this to add margins in JavaFX */
+    -fx-border-insets: 0px 5px 0px 5px;
+    -fx-background-insets: 0px 5px 0px 5px;
+}

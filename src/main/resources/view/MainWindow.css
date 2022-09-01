@@ -1,0 +1,35 @@
+.root {
+    -fx-base: #e0fbfc;
+}
+
+.dialog-container {
+    -fx-background-color: #e0fbfc;
+}
+
+.send-btn {
+    -fx-background-color: #1d3557;
+    -fx-text-fill: #a8dadc;
+    -border-width: 0;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.send-btn:hover {
+    -fx-background-color: #a8dadc;
+    -fx-text-fill: #1d3557;
+    -fx-border-color: #1d3557;
+    -fx-cursor: hand;
+}
+
+.user-input {
+    -fx-background-color: #ecf8f8;
+    -fx-text-fill: #1d3557;
+    -fx-border-color: #1d3557;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    /* Use this to add margins in JavaFX */
+    -fx-border-insets: 0px 0.5px 0px 1px;
+    -fx-background-insets: 0px 0.5px 0px 1px;
+}
+
