@@ -19,7 +19,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 //@@author RezwanArefin01-reused
@@ -69,6 +68,13 @@ public class DialogBox extends HBox {
         getChildren().setAll(tmp);
     }
 
+    /**
+     * Returns a {@code DialogBox} with the given image in left side, and message in right side.
+     *
+     * @param text The text to display.
+     * @param img The image to display.
+     * @return The {@code DialogBox}
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox db = new DialogBox(text, img);
         db.textFlow.setBackground(USER_BACKGROUND);
@@ -76,6 +82,12 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Returns a {@code DialogBox} with the given image in right side, and message in left side.
+     * @param text The text to display.
+     * @param img The image to display.
+     * @return The {@code DialogBox}.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         DialogBox db = new DialogBox(text, img);
         db.flip();

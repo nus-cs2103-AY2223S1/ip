@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Consumer;
 
 import duke.Duke;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -31,6 +32,14 @@ public class MainWindow extends VBox {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
+    /**
+     * Initializes the MainWindow.
+     *
+     * Performs the following tasks currently:
+     * - Adds scrolling support for the {@code ScrollPane}.
+     * - Moves the scroll bar to the end when a new child is added to the {@code VBox}.
+     * - Disables the {@code Button} if the {@code TextField} is empty.
+     */
     @FXML
     private void initialize() {
         scrollPane.setOnScroll(event -> {
@@ -39,8 +48,14 @@ public class MainWindow extends VBox {
         dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
             scrollPane.setVvalue(1.0);
         });
+        sendButton.disableProperty().bind(Bindings.isEmpty(userInput.textProperty()));
     }
 
+    /**
+     * Initializes the {@code Duke} used for the core logic.
+     *
+     * @param path The path to the data file.
+     */
     protected void initDuke(Path path) {
         Consumer<String> printer = s -> {
             // JavaFX 11 doesn't support tab sizes, so we have to replace with spaces instead.
@@ -56,11 +71,11 @@ public class MainWindow extends VBox {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText().strip();
+        userInput.clear();
         if (input.isEmpty()) {
             return;
         }
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
-        userInput.clear();
         duke.execute(input);
     }
 }

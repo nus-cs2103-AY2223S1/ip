@@ -18,6 +18,11 @@ import javafx.stage.Stage;
  */
 public class Gui extends Application {
 
+    /**
+     * Starts the GUI.
+     *
+     * @param stage The primary stage for this application.
+     */
     @Override
     public void start(Stage stage) {
         try {
