@@ -19,7 +19,11 @@ public class Deadline extends Task{
     }
 
     public String getDue() {
-        return this.by;
+        if (dueTime == null) {
+            return this.dueDate.toString();
+        } else {
+            return this.dueDate + " " + this.dueTime;
+        }
     }
 
     @Override

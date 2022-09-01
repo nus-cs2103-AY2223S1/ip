@@ -29,23 +29,30 @@ public class Duke {
             BufferedReader fileRead = new BufferedReader(new FileReader(dataStore));
             String st;
             while ((st = fileRead.readLine()) != null) {
-                String[] stSplit = st.split(" \\| ");
-                if (stSplit[0].equals("T")) {
-                    Todo newTask = new Todo(stSplit[2]);
+                String[] strSplit = st.split(" \\| ");
+                if (strSplit[0].equals("T")) {
+                    Todo newTask = new Todo(strSplit[2]);
                     tasks.add(newTask);
                     numTasks += 1;
                 }
-                else if (stSplit[0].equals("D")) {
-                    Deadline newTask = new Deadline(stSplit[2], stSplit[3]);
+                else if (strSplit[0].equals("D")) {
+                    Deadline newTask;
+                    if (strSplit[3].length() > 10) {
+                        String[] dlDateAndTime = strSplit[3].split(" ");
+                        newTask = new Deadline(strSplit[2], dlDateAndTime[0], dlDateAndTime[1]);
+                    } else {
+                        newTask = new Deadline(strSplit[2], strSplit[3]);
+                    }
                     tasks.add(newTask);
                     numTasks += 1;
                 } 
-                else if (stSplit[0].equals("E")) {
-                    Event newTask = new Event(stSplit[2], stSplit[3]);
+                else if (strSplit[0].equals("E")) {
+                    String[] eventDateAndTime = strSplit[3].split(" ");
+                    Event newTask = new Event(strSplit[2], eventDateAndTime[0], eventDateAndTime[1]);
                     tasks.add(newTask);
                     numTasks += 1;
                 }
-                if (stSplit[1].equals("1")) {
+                if (strSplit[1].equals("1")) {
                     tasks.get(numTasks-1).setStatus(1);
                 }
             }
@@ -76,21 +83,33 @@ public class Duke {
             // 3. Mark task as done 
             else if (word.startsWith("mark")) {
                 int taskNumber = Integer.parseInt(word.split(" ")[1]) - 1;
-                tasks.get(taskNumber).setStatus(1);
-                System.out.println("\n" + spacing);
-                System.out.println("Nice! I have marked this task as done:");
-                System.out.println("[" + tasks.get(taskNumber).getStatusIcon() +"] " + tasks.get(taskNumber).getTask());
-                System.out.println(spacing + "\n");
+                if (taskNumber < numTasks) {
+                    tasks.get(taskNumber).setStatus(1);
+                    System.out.println("\n" + spacing);
+                    System.out.println("Nice! I have marked this task as done:");
+                    System.out.println("[" + tasks.get(taskNumber).getStatusIcon() +"] " + tasks.get(taskNumber).getTask());
+                    System.out.println(spacing + "\n");
+                } else {
+                    System.out.println("\n" +spacing);
+                    System.out.println("No task at position " + Integer.toString(taskNumber+1) + "!\n");
+                    System.out.println(spacing + "\n");
+                }
             }
 
             // 4. Mark task as undone
             else if (word.startsWith("unmark")) {
                 int taskNumber = Integer.parseInt(word.split(" ")[1]) - 1;
-                tasks.get(taskNumber).setStatus(0);
-                System.out.println("\n" + spacing);
-                System.out.println("Ok, I have marked this task as not done yet:");
-                System.out.println("[" + tasks.get(taskNumber).getStatusIcon() +"] " + tasks.get(taskNumber).getTask());
-                System.out.println(spacing + "\n");
+                if (taskNumber < numTasks) {
+                    tasks.get(taskNumber).setStatus(0);
+                    System.out.println("\n" + spacing);
+                    System.out.println("Ok, I have marked this task as not done yet:");
+                    System.out.println("[" + tasks.get(taskNumber).getStatusIcon() +"] " + tasks.get(taskNumber).getTask());
+                    System.out.println(spacing + "\n");
+                } else {
+                    System.out.println("\n" +spacing);
+                    System.out.println("No task at position " + Integer.toString(taskNumber+1) + "!\n");
+                    System.out.println(spacing + "\n");
+                }
             }
 
             // 5. Adding in tasks

@@ -13,7 +13,7 @@ public class Event extends Task {
     }
 
     public String getDue() {
-        return this.time;
+        return this.eventDate + " " + this.eventTime;
     }
 
     @Override
