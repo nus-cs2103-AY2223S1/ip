@@ -65,7 +65,7 @@ public class Storage {
 
     public void appendToFile(String str) throws IOException {
         FileWriter fwriter = new FileWriter(this.path, true);
-        fwriter.write(str);
+        fwriter.write(str + "\n");
         fwriter.close();
     }
 
