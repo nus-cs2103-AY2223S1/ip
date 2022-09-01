@@ -1,5 +1,6 @@
 package drivers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -50,5 +51,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getTumuDialog(response, tumuImage)
         );
         userInput.clear();
+
+        if (input.equalsIgnoreCase("bye")) {
+            Platform.exit();
+        }
     }
 }
