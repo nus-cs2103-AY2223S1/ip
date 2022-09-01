@@ -16,6 +16,7 @@ import maria.TaskManager;
 import maria.command.Command;
 import maria.command.CommandExecutor;
 import maria.command.CommandFindTask;
+import maria.command.CommandHelp;
 import maria.task.Task;
 import maria.task.TaskList;
 
@@ -80,6 +81,9 @@ public class LandingPage extends VBox {
 
     @FXML
     private void buttonHelpClicked() {
+
+        this.taskManager.getCommandExecutor().executeCommand(new CommandHelp());
+        pollResultDisplayQueue();
 
     }
 

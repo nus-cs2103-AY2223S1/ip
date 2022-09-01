@@ -8,6 +8,7 @@ import maria.command.CommandAddEvent;
 import maria.command.CommandAddTodo;
 import maria.command.CommandExit;
 import maria.command.CommandFindTask;
+import maria.command.CommandHelp;
 import maria.command.CommandListAllTasks;
 import maria.command.CommandMarkTask;
 import maria.command.CommandRemoveTask;
@@ -64,6 +65,9 @@ public class Parser {
             case "find": {
                 String searchString = commandStrArr[1];
                 return new CommandFindTask(searchString);
+            }
+            case "help": {
+                return new CommandHelp();
             }
             default:
                 return new CommandUnknown();

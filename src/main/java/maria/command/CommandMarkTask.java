@@ -22,6 +22,10 @@ public class CommandMarkTask extends Command {
     @Override
     public String execute(TaskManager taskManager) {
 
+        if (this.index >= taskManager.getTaskList().size() || this.index <= 0) {
+            return "Index is invalid.";
+        }
+
         Task task = taskManager.getTaskList().get(this.index);
 
         task.setIsDone(true);
