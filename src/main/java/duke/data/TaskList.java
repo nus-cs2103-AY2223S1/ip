@@ -3,6 +3,10 @@ package duke.data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import duke.data.exception.DukeException;
 import duke.tasks.Task;
@@ -34,18 +38,17 @@ public class TaskList {
      * @param date Date of the tasks
      * @return A string consisting of all the tasks
      */
-    public ArrayList<Task> getTasks(String date) {
-        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        ArrayList<Task> list = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
-                if (task.getDate().equals(parsedDate)) {
-                    list.add(task);
-                }
-            }
-        }
+    public List<Task> getTasks(String date) {
+        Predicate<Task> isTaskValid = task -> {
+            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            boolean hasValidTaskType = task.getTaskType().equals("D") || task.getTaskType().equals("E");
+            boolean hasCorrectDate = task.getDate() != null && task.getDate().equals(parsedDate);
+            return hasValidTaskType && hasCorrectDate;
+        };
 
-        return list;
+        List<Task> results = tasks.stream().filter(isTaskValid).collect(Collectors.toList());
+
+        return results;
     }
 
     /**
@@ -74,6 +77,7 @@ public class TaskList {
         if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exists!");
         }
+
         return this.tasks.get(i);
     }
 
@@ -87,6 +91,7 @@ public class TaskList {
         if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exist!");
         }
+
         Task task = this.tasks.get(i - 1);
         this.tasks.remove(i - 1);
         return task;
@@ -97,24 +102,20 @@ public class TaskList {
      * @param keywords Keyword used to search for tasks
      * @return A list of tasks containing the keyword provided
      */
-    public ArrayList<Task> find(String ...keywords) {
-        ArrayList<Task> list = new ArrayList<>();
-        for (Task task : this.tasks) {
-            if (containsAllKeywords(task.getDescription(), keywords)) {
-                list.add(task);
-            }
-        }
+    public List<Task> find(String ...keywords) {
+        List<Task> results = tasks.stream()
+                .filter(task -> containsAllKeywords(task.getDescription(), keywords))
+                .collect(Collectors.toList());
 
-        return list;
+        return results;
     }
 
     private boolean containsAllKeywords(String description, String ...keywords) {
-        for (String s : keywords) {
-            if (!description.contains(s)) {
-                return false;
-            }
-        }
+        long numOfKeywords = Arrays.stream(keywords)
+                .filter(description::contains)
+                .count();
 
-        return true;
+        return numOfKeywords == keywords.length;
+
     }
 }

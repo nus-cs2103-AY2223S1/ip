@@ -3,6 +3,7 @@ package duke.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import duke.data.exception.DukeException;
@@ -132,7 +133,7 @@ public class Ui {
      * @param date Date of the tasks
      * @return A string consisting of the tasks
      */
-    public String printTasks(ArrayList<Task> list, String date) {
+    public String printTasks(List<Task> list, String date) {
         StringBuilder stringBuilder = new StringBuilder();
         LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int len = list.size();
@@ -158,7 +159,7 @@ public class Ui {
      * @param list List of tasks to print
      * @return A string of the tasks
      */
-    public String printFind(ArrayList<Task> list) {
+    public String printFind(List<Task> list) {
         StringBuilder stringBuilder = new StringBuilder();
         int count = 1;
         for (Task task: list) {

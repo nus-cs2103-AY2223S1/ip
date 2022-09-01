@@ -1,11 +1,12 @@
 package duke.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.data.TaskList;
 import duke.storage.Storage;
 import duke.tasks.Task;
 import duke.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * This class represents a command to list out the tasks in the task list
@@ -51,7 +52,7 @@ public class ListCommand extends Command {
             ArrayList<Task> list = taskList.list();
             return ui.printList(list);
         } else {
-            ArrayList<Task> list = taskList.getTasks(date);
+            List<Task> list = taskList.getTasks(date);
             return ui.printTasks(list, date);
         }
     }
