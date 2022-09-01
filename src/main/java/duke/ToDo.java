@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Represents a type of task called "ToDo"

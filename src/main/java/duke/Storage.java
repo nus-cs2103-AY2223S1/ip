@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,18 +40,18 @@ public class Storage {
                 if ((commandType.equals("MARK"))) {
                     int markIdx = Integer.parseInt(input.substring(5)) - 1;
                     ls.get(markIdx).markIsDone();
-                } if ((commandType.equals("UNMARK"))) {
+                } else if ((commandType.equals("UNMARK"))) {
                     int unmarkIdx = Integer.parseInt(input.substring(7)) - 1;
                     ls.get(unmarkIdx).unmarkIsDone();
-                } if (commandType.equals("TODO")) {
+                } else if (commandType.equals("TODO")) {
                     ls.add(new ToDo(input.substring(5)));
-                } if (commandType.equals("DEADLINE")) {
+                } else if (commandType.equals("DEADLINE")) {
                     String dlAction = input.substring(9, input.indexOf("/") - 1);
                     ls.add(new Deadline(dlAction, Parser.formatEventTime(input)));
-                } if (commandType.equals("EVENT")) {
+                } else if (commandType.equals("EVENT")) {
                     String eAction = input.substring(6, input.indexOf("/") - 1);
                     ls.add(new Event(eAction, Parser.formatEventTime(input)));
-                } if (commandType.equals("DELETE")) {
+                } else if (commandType.equals("DELETE")) {
                     int deleteIdx = Integer.parseInt(input.substring(7)) - 1;
                     ls.remove(deleteIdx);
                 }
@@ -67,7 +67,7 @@ public class Storage {
      * @param text to save
      * @throws IOException if the user's input cannot be saved
      */
-    public void save(String text) throws IOException {
+    public void saveToFile(String text) throws IOException {
         try {
             Files.write(Paths.get(filePath), ("\n" + text).getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {

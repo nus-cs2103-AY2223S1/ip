@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,13 +48,13 @@ public class Duke {
      * The crux of the pain our dear chatbot, Duke, has to go through
      */
     public void run() {
-        ui.saysHi();
+        ui.sayHi();
         tasks.listAll(); // prints out contents of pre-existing file
         while (true) {
             try {
                 String fullCommand = ui.readCommand();
                 String commandType = Parser.getCommandType(fullCommand);
-                storage.save(fullCommand);
+                storage.saveToFile(fullCommand);
 
                 switch(commandType) {
                 case "LIST":
@@ -85,13 +85,17 @@ public class Duke {
                     break;
                 case "FIND":
                     String keyword = fullCommand.substring(5);
-                    tasks.find(keyword);
+                    tasks.findTask(keyword);
                     break;
                 case "BYE":
-                    ui.saysBye();
+                    ui.sayBye();
+                    break;
+                default:
+                    throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+                if (commandType.equals("BYE")) {
                     break;
                 }
-                if (commandType.equals("BYE")) { break; }
             } catch (IllegalArgumentException iae) {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             } catch (IOException e) {

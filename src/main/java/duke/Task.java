@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Represents the job to be done, and whether it is done
@@ -11,6 +11,10 @@ public class Task {
     protected String action;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task
+     * @param action description of task
+     */
     public Task(String action) {
         this.action = action;
         this.isDone = false;
@@ -33,8 +37,10 @@ public class Task {
     /**
      * Getter to get the action description
      * @return the description of the action
-     */ 
-    public String getAction() { return this.action; }
+     */
+    public String getAction() {
+        return this.action;
+    }
 
     /**
      * Getter to get the action status

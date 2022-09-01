@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Ui {
 
     private static final String line = "-----------------------------";
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     public Ui() {
     }
@@ -21,20 +21,20 @@ public class Ui {
     /**
      * Our lovely Duke gives a sweet intro
      */
-    public void saysHi() {
-        System.out.println(line + "\n" +
-                "Hello! I'm Duke\n" +
-                "What can I do for you\n" +
-                line + "\n");
+    public void sayHi() {
+        System.out.println(line + "\n"
+                + "Hello! I'm Duke\n"
+                + "What can I do for you\n"
+                + line + "\n");
     }
 
     /**
      * Our lovely Duke gives its parting words
      */
-    public void saysBye() {
-        System.out.println(line + "\n" +
-                "Bye. Hope to see you again soon!\n" +
-                line + "\n");
+    public void sayBye() {
+        System.out.println(line + "\n"
+                + "Bye. Hope to see you again soon!\n"
+                + line + "\n");
     }
 
     /**

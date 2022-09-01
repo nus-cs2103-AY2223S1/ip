@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.util.ArrayList;
 
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class TaskList {
 
+    private static final String LINE = "-----------------------------";
     private ArrayList<Task> tasks;
-    private static final String line = "-----------------------------";
 
     /**
      * If there are no pre-existing Tasklist, create a new Tasklist
@@ -33,22 +33,22 @@ public class TaskList {
      * Prints out all the tasks in the current TaskList
      */
     public void listAll() {
-        System.out.println(line + "\n");
+        System.out.println(LINE + "\n");
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
             System.out.println((i + 1) + "." + t);
         }
-        System.out.println(line + "\n");
+        System.out.println(LINE + "\n");
     }
 
     /**
      * Finds all the tasks which contain the specified keyword and prints them out
      * @input keyword to check
-     */ 
-    public void find(String keyword) {
+     */
+    public void findTask(String keyword) {
         ArrayList<Task> matched = new ArrayList<>();
-        System.out.println(line + "\n");
+        System.out.println(LINE + "\n");
         System.out.println("Here are the matching tasks in your list:");
         for (Task t : tasks) {
             if (t.getAction().contains(keyword)) {
@@ -60,18 +60,17 @@ public class TaskList {
             System.out.println((j + 1) + "." + task);
         }
     }
-   
     /**
      * Marks a task (with a specified index) as "Done"
      * @input idx of task in TaskList
      */
     public void mark(int idx) {
-        Task t = tasks.get(idx);
-        t.markIsDone();
-        System.out.println(line + "\n"
+        Task task = tasks.get(idx);
+        task.markIsDone();
+        System.out.println(LINE + "\n"
                 + "Nice! I've marked this task as done:\n"
-                + "[X] " + t + "\n" +
-                line + "\n");
+                + "[X] " + task + "\n"
+                + LINE + "\n");
     }
 
     /**
@@ -79,25 +78,25 @@ public class TaskList {
      * @input index of task in TaskList
      */
     public void unmark(int idx) {
-        Task t = tasks.get(idx);
-        t.unmarkIsDone();
-        System.out.println(line + "\n"
+        Task task = tasks.get(idx);
+        task.unmarkIsDone();
+        System.out.println(LINE + "\n"
                 + "OK, I've marked this task as not done yet:\n"
-                + "[ ] " + t + "\n"
-                + line + "\n");
+                + "[ ] " + task + "\n"
+                + LINE + "\n");
     }
 
     /**
      * Adds a task into TaskList
      * @input task to be added into TaskList
      */
-    public void add(Task t) {
-        tasks.add(t);
-        System.out.println(line + "\n" +
-                "Got it. I've added this task: " + "\n"
-                + t + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.\n"
-                + line + "\n");
+    public void add(Task task) {
+        tasks.add(task);
+        System.out.println(LINE + "\n"
+                + "Got it. I've added this task: " + "\n"
+                + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.\n"
+                + LINE + "\n");
     }
 
     /**
@@ -105,10 +104,10 @@ public class TaskList {
      * @input index of task to be removed from TaskList
      */
     public void delete(int idx) {
-        Task t = tasks.remove(idx);
-        System.out.println(line + "\n" + "Noted. I've removed this task:" + "\n"
-                + t + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.\n" +
-                line + "\n");
+        Task task = tasks.remove(idx);
+        System.out.println(LINE + "\n" + "Noted. I've removed this task:" + "\n"
+                + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.\n"
+                + LINE + "\n");
     }
 }

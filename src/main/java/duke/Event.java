@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +14,11 @@ public class Event extends Task {
 
     protected LocalDateTime at;
 
+    /**
+     * Constructor for a type of task called Deadline
+     * @param action description of Event task
+     * @param at when to commence with the Event task
+     */
     public Event(String action, LocalDateTime at) {
         super(action);
         this.at = at;

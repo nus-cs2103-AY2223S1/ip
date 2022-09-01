@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * A self-made Exception class that is supposed to handle Exceptions
