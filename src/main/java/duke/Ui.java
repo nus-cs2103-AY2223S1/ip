@@ -9,7 +9,7 @@ public class Ui {
      * Displays a goodbye message.
      */
     public String bye() {
-        return String.format("\tBye! Hope to see you again soon!\n");
+        return String.format("Bye! Hope to see you again soon!\n");
     }
 
     /**
@@ -27,7 +27,7 @@ public class Ui {
      * @return A String to indicate successful addition of todo.
      */
     public String printTodo(Task todo, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.", todo, size);
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.", todo, size);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Ui {
      * @return A String to indicate successful addition of deadline.
      */
     public String printDeadline(Task deadline, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n",
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.",
                 deadline, size);
     }
 
@@ -50,7 +50,7 @@ public class Ui {
      * @return A String to indicate successful addition of event.
      */
     public String printEvent(Task event, int size) {
-        return String.format("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.",
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.",
                 event, size);
     }
 
@@ -62,13 +62,13 @@ public class Ui {
      */
     public String listTasks(TaskList tasks) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\tHere are the tasks in your list.");
+        sb.append("Here are the tasks in your list.");
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.getTask(i);
-            sb.append("\n\t");
+            sb.append("\n");
             sb.append(i + 1 + ". " + task.toString());
         }
-        return  sb.toString();
+        return sb.toString();
     }
 
     /**
@@ -79,7 +79,7 @@ public class Ui {
      * @return A String to indicate successful deletion of task.
      */
     public String printDelete(Task task, int size) {
-        return String.format("\tNoted. I've removed this task:\n\t%s\n" + "\tNow you have %d tasks in the list.\n",
+        return String.format("Noted. I've removed this task:\n%s" + "\nNow you have %d tasks in the list.",
                 task, size);
     }
 
@@ -90,7 +90,7 @@ public class Ui {
      * @return A String to indicate successful marking of task.
      */
     public String printMarkedTask(Task task) {
-        return String.format("\tNice! I've marked this task as done:\n\t%s", task);
+        return String.format("Nice! I've marked this task as done:\n%s", task);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Ui {
      * @return A String to indicate successful unmarking of task.
      */
     public String printUnmarkedTask(Task task) {
-        return String.format("\tOkay, I've marked this task as not done yet:\n\t%s", task);
+        return String.format("Okay, I've marked this task as not done yet:\n%s", task);
     }
 
     /**
@@ -110,11 +110,11 @@ public class Ui {
      * @return A String to indicate the lists of tasks filtered by user's keyword.
      */
     public String printFind(ArrayList<Task> lst) {
-        System.out.println("\tHere are the matching tasks in your list.");
         StringBuilder sb = new StringBuilder();
-        sb.append("\tHere are the matching tasks in your list.");
+        sb.append("Here are the matching tasks in your list.");
         for (int i = 0; i < lst.size(); i++) {
             Task task = lst.get(i);
+            sb.append("\n");
             sb.append(i+1 + ". " + task.toString());
         }
         return sb.toString();
