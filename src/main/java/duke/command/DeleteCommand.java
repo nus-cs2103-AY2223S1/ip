@@ -26,11 +26,11 @@ public class DeleteCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            Ui.showMsg(taskList.delete(index));
+            return taskList.delete(index);
         } catch (DukeException e) {
-            Ui.showError(e.getMessage());
+            return e.getMessage();
         }
     }
 

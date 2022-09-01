@@ -15,8 +15,8 @@ public class ExitCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        Ui.showMsg("Thank you!");
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return "Thank you!";
     }
 
     /**

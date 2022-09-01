@@ -45,19 +45,16 @@ public class AddCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         switch (type) {
         case TODO:
-            Ui.showMsg(taskList.add(new ToDo("0", description)));
-            break;
+            return taskList.add(new ToDo("0", description));
         case DEADLINE:
-            Ui.showMsg(taskList.add(new Deadline("0", description, dateString)));
-            break;
+            return taskList.add(new Deadline("0", description, dateString));
         case EVENT:
-            Ui.showMsg(taskList.add(new Event("0", description, dateString)));
-            break;
+            return taskList.add(new Event("0", description, dateString));
         default:
-            return;
+            return "";
         }
     }
 

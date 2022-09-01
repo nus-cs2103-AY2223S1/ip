@@ -15,8 +15,8 @@ public class SaveCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        storage.save(taskList.toSave());
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return storage.save(taskList.toSave());
     }
 
     /**

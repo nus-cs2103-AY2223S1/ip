@@ -26,11 +26,11 @@ public class UnmarkCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            Ui.showMsg(taskList.unmarkDone(index));
+            return taskList.unmarkDone(index);
         } catch (DukeException e) {
-            Ui.showError(e.getMessage());
+            return e.getMessage();
         }
     }
 

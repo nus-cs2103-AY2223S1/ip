@@ -14,7 +14,7 @@ public interface ICommand {
      * @param taskList TaskList object for operations on the list of tasks.
      * @param ui Ui object for displaying messages.
      */
-    void execute(Storage storage, TaskList taskList, Ui ui);
+    String execute(Storage storage, TaskList taskList, Ui ui);
 
     /**
      * Returns if command is an ExitCommand.

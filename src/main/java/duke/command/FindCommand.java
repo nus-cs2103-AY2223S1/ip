@@ -25,8 +25,8 @@ public class FindCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        Ui.showMsg(taskList.find(this.searchStr));
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return taskList.find(this.searchStr);
     }
 
     /**

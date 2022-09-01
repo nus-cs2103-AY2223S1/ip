@@ -35,6 +35,11 @@ public class DukeApplication {
         }
     }
 
+    public String process(String input) {
+        ICommand cmd = Parser.parse(input);
+        return cmd.execute(storage, taskList, ui);
+    }
+
     /**
      * Main method for Duke program.
      * @param args Command line arguments.

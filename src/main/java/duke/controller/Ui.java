@@ -60,6 +60,5 @@ public class Ui {
         System.out.println("How may I help you?");
         System.out.println(HORIZONTAL_LINE);
          */
-        window.showWelcome(LOGO);
     }
 }

@@ -15,8 +15,8 @@ public class ListCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        Ui.showMsg(taskList.toString());
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return taskList.toString();
     }
 
     /**

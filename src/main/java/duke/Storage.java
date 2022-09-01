@@ -43,16 +43,16 @@ public class Storage {
      * Writes content to file at filePath.
      * @param it Iterator of the arrayList from TaskList.
      */
-    public void save(Iterator<Task> it) {
+    public String save(Iterator<Task> it) {
         try {
             FileWriter fw = new FileWriter(filePath, false);
             while (it.hasNext()) {
                 fw.write(it.next().toStringSaveFormat());
             }
             fw.close();
-            Ui.showError("Successfully saved contents into duke.txt");
+            return "Successfully saved contents into duke.txt";
         } catch (IOException e) {
-            Ui.showError("Error in saving data.");
+            return "Error in saving data.";
         }
     }
 }

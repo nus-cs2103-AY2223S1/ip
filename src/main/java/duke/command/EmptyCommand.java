@@ -15,8 +15,8 @@ public class EmptyCommand implements ICommand {
      * @param ui Ui object for displaying messages.
      */
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        return;
+    public String execute(Storage storage, TaskList taskList, Ui ui) {
+        return "";
     }
 
     /**
