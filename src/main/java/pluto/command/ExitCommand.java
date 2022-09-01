@@ -12,4 +12,12 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.print("\tSee You Later!");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ExitCommand) {
+            return true;
+        }
+        return false;
+    }
 }

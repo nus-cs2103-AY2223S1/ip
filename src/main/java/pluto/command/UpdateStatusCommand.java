@@ -35,4 +35,13 @@ public class UpdateStatusCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof UpdateStatusCommand) {
+            UpdateStatusCommand other = (UpdateStatusCommand) o;
+            return this.idx == other.idx && this.isDone == other.isDone;
+        }
+        return false;
+    }
+
 }

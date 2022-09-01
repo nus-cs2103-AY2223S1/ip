@@ -32,4 +32,13 @@ public class ShowCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ShowCommand) {
+            ShowCommand other = (ShowCommand) o;
+            return this.date.equals(other.date);
+        }
+        return false;
+    }
+
 }

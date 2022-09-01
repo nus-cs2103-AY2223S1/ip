@@ -28,4 +28,13 @@ public class Event extends Task {
     public LocalDate getDateMaybe() {
         return at.toLocalDate();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event other = (Event) o;
+            return this.at.equals(other.at) && this.description.equals(other.description) && this.isDone == other.isDone;
+        }
+        return false;
+    }
 }

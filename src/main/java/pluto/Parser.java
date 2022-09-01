@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class Parser {
-    private enum Type {
+    enum Type {
         TODO,
         DEADLINE,
         EVENT,

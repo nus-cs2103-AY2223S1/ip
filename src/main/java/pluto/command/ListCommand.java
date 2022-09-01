@@ -15,4 +15,12 @@ public class ListCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ListCommand) {
+            return true;
+        }
+        return false;
+    }
+
 }

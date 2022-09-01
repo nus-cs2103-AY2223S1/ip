@@ -43,4 +43,5 @@ public abstract class Task {
     }
 
     public abstract LocalDate getDateMaybe();
+
 }

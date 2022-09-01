@@ -30,4 +30,13 @@ public class DeleteCommand extends Command {
         }
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof DeleteCommand) {
+            DeleteCommand other = (DeleteCommand) o;
+            return this.idx == other.idx;
+        }
+        return false;
+    }
 }

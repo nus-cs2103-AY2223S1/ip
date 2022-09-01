@@ -23,4 +23,13 @@ public class Todo extends Task {
     public LocalDate getDateMaybe() {
         return null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Todo) {
+            Todo other = (Todo) o;
+            return this.description.equals(other.description) && this.isDone == other.isDone;
+        }
+        return false;
+    }
 }
