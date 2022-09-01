@@ -9,7 +9,7 @@ public class Parser {
      *
      * @param input The input string to be parsed.
      */
-    public static boolean parseInput(String input) throws DukeException {
+    public static void parseInput(String input) throws DukeException {
         String[] words = input.toLowerCase().split(" ", 2);
         String command = words[0];
         String args = "";
@@ -22,7 +22,8 @@ public class Parser {
             Ui.displayGreeting();
             break;
         case "bye":
-            return false;
+            Duke.exit();
+            break;
         case "list":
             Ui.displayTasks();
             break;
@@ -49,7 +50,5 @@ public class Parser {
         default:
             throw new DukeException("Command not recognised");
         }
-
-        return true;
     }
 }
