@@ -15,3 +15,6 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+#javafx
+/.javafx-sdk-18.0.2/

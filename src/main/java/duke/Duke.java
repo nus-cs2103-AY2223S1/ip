@@ -1,20 +1,16 @@
 
 package duke;
 
-import java.io.IOException;
-import java.util.Scanner;
-
-import duke.dukeexception.DateTimeFormatException;
-import duke.dukeexception.DukeException;
-import duke.dukeexception.IncomplateCommandException;
-import duke.dukeexception.NoSuchCommandException;
-import duke.dukeexception.TaskCompletionException;
-import duke.dukeexception.TaskOutOfBoundException;
+import duke.dukeexception.*;
 import duke.parser.CommandType;
 import duke.parser.Parser;
 import duke.storage.Cache;
 import duke.storage.TaskList;
 import duke.tasks.Task;
+import duke.ui.Ui;
+
+import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * The main class for personal assistant bot Duke.
@@ -168,4 +164,14 @@ public class Duke {
             }
         }
     }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
+
+
 }

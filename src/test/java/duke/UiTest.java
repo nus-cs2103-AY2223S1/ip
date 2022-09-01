@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import duke.dukeexception.DateTimeFormatException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
+import duke.ui.Ui;
 
 public class UiTest {
     @Test

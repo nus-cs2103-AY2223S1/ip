@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.Ui;
+import duke.ui.Ui;
 import duke.dukeexception.DukeException;
 import duke.dukeexception.TypeNotExistException;
 import duke.tasks.Task;
@@ -81,7 +81,7 @@ public class Cache {
                 isDone = commands[1].trim().equals("1") ? true : false;
                 description = commands[2].trim();
 
-                // sync task using duke.Ui functions
+                // sync task using ui.Ui functions
                 if (type.equals("T")) {
                     taskList.add(Ui.syncToDo(description, isDone));
                 } else if (type.equals("D")) {
