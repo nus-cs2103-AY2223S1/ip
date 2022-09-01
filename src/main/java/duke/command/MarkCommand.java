@@ -18,7 +18,7 @@ public class MarkCommand extends Command {
             storage.write(tasks.toStringWritable());
             ui.showOutput("Nice! I've marked this task as done:");
             ui.showOutput("\t" + tasks.getTask(taskNo).toString());
-        } catch (ArrayIndexOutOfBoundsException err) {
+        } catch (IndexOutOfBoundsException err) {
             throw new DukeException("Invalid task index to mark.");
         }
     }
