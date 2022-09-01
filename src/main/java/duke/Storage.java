@@ -42,7 +42,7 @@ public class Storage {
      * @throws IOException error if specified file cannot be read
      * @throws FileNotFoundException error if specified file cannot be found
      */
-    public void checkExistsOrCreateNewFile(TaskList tasklist) throws IOException, FileNotFoundException {
+    public void checkExistsOrCreateNewFile(TaskList tasklist) throws IOException, FileNotFoundException, DukeException {
         File f = new File(this.saveFilePath);
         if (f.exists()) {
             readFile(f, tasklist);
@@ -59,7 +59,7 @@ public class Storage {
      * @param tasklist Taskslist to which tasks read are to be appended
      * @throws FileNotFoundException error if specified file is not found
      */
-    private void readFile(File f, TaskList tasklist) throws FileNotFoundException {
+    private void readFile(File f, TaskList tasklist) throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(f);
         String tempLine = "";
         while (s.hasNext()) {

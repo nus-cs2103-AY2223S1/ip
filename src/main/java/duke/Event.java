@@ -15,10 +15,14 @@ public class Event extends Task{
      * @param taskDescription description of task
      * @param dateTime date that task is due
      */
-    public Event(String taskDescription, String dateTime) {
+    public Event(String taskDescription, String dateTime) throws DukeException {
         super(taskDescription.replace("event ", ""));
         this.dateTime = dateTime;
-        this.dateTimeProper = LocalDateTime.parse(dateTime);
+        try {
+            this.dateTimeProper = LocalDateTime.parse(dateTime);
+        } catch (Exception e) {
+            throw new DukeException("Date and Time of your event must be in the following format: YYYY-MM-DDTHH:MM");
+        }
     }
 
     /**
@@ -27,10 +31,14 @@ public class Event extends Task{
      * @param dateTime date that task is due
      * @param isCompleted completion status of task
      */
-    public Event(String taskDescription, String dateTime, boolean isCompleted) {
+    public Event(String taskDescription, String dateTime, boolean isCompleted) throws DukeException{
         super(taskDescription, isCompleted);
         this.dateTime = dateTime;
-        this.dateTimeProper = LocalDateTime.parse(dateTime);
+        try {
+            this.dateTimeProper = LocalDateTime.parse(dateTime);
+        } catch (Exception e) {
+            throw new DukeException("Date and Time of your event must be in the following format: YYYY-MM-DDTHH:MM");
+        }
     }
 
     /**

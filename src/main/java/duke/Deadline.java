@@ -16,10 +16,14 @@ public class Deadline extends Task{
      * @param taskDescription description of task
      * @param date date that task is due
      */
-    public Deadline(String taskDescription, String date) {
+    public Deadline(String taskDescription, String date) throws DukeException{
         super(taskDescription.replace("deadline ", ""));
         this.date = date;
-        this.dateProper = LocalDate.parse(date);
+        try {
+            this.dateProper = LocalDate.parse(date);
+        } catch (Exception e) {
+            throw new DukeException("Date has to follow the following format: YYYY-MM-DD");
+        }
     }
 
     /**
@@ -28,10 +32,14 @@ public class Deadline extends Task{
      * @param date date that task is due
      * @param isCompleted completion status of task
      */
-    public Deadline(String taskDescription, String date, boolean isCompleted) {
+    public Deadline(String taskDescription, String date, boolean isCompleted) throws DukeException{
         super(taskDescription, isCompleted);
         this.date = date;
-        this.dateProper = LocalDate.parse(date);
+        try {
+            this.dateProper = LocalDate.parse(date);
+        } catch (Exception e) {
+            throw new DukeException("Date has to follow thw following format: YYYY-MM-DD");
+        }
     }
 
     /**

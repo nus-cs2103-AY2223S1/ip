@@ -24,20 +24,20 @@ public class TaskList {
         userTasks.add(new ToDo(taskDescription, isCompleted));
     }
 
-    public void appendDeadline(String taskDescription, String date) {
+    public void appendDeadline(String taskDescription, String date) throws DukeException {
         date = date.replace("by ","");
         userTasks.add(new Deadline(taskDescription, date));
     }
 
-    public void appendDeadlineFromFile(String taskDescription, String date, boolean isCompleted) {
+    public void appendDeadlineFromFile(String taskDescription, String date, boolean isCompleted) throws DukeException {
         userTasks.add(new Deadline(taskDescription, date, isCompleted));
     }
-    public void appendEvent(String taskDescription, String dateTime) {
+    public void appendEvent(String taskDescription, String dateTime) throws DukeException {
         dateTime = dateTime.replace("at ","");
         userTasks.add(new Event(taskDescription, dateTime));
     }
 
-    public void appendEventFromFile(String taskDescription, String dateTime, boolean isCompleted) {
+    public void appendEventFromFile(String taskDescription, String dateTime, boolean isCompleted) throws DukeException {
         userTasks.add(new Event(taskDescription, dateTime, isCompleted));
     }
 
@@ -68,7 +68,7 @@ public class TaskList {
         String content = "";
         int index = userTasks.size();
         for (int i = 0; i < index; i++) {
-            content += String.valueOf(i + 1) + ". " + userTasks.get(i).returnDescription();
+            content += "  " + String.valueOf(i + 1) + ". " + userTasks.get(i).returnDescription();
             if(i != index - 1) {
                 content += "\n";
             }
