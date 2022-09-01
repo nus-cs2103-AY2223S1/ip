@@ -10,13 +10,27 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private final String filePathStr;
 
+    /**
+     * Constructs a storage object with the specified file path.
+     *
+     * @param filePathStr The specified file path.
+     */
     public Storage(String filePathStr) {
         this.filePathStr = filePathStr;
     }
 
+    /**
+     * Loads tasks from file.
+     *
+     * @return List of tasks from file.
+     * @throws DukeException If there is an error in loading the tasks from file.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         Path filePath = Paths.get(filePathStr);
@@ -39,7 +53,7 @@ public class Storage {
                 // process data
                 switch (line.charAt(4)) {
                     case 'T':
-                        newTask = ToDo.createTodoFromString(line);
+                        newTask = ToDo.createToDoFromString(line);
                         break;
                     case 'E':
                         newTask = Event.createEventFromString(line);
@@ -59,6 +73,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the specified list of tasks.
+     *
+     * @param taskList The specified list of tasks.
+     * @throws DukeException If the list could not be saved.
+     */
     public void save(TaskList taskList) throws DukeException {
         byte[] data = taskList.toString().getBytes();
         Path filePath = Paths.get(filePathStr);

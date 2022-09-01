@@ -2,7 +2,17 @@ package duke;
 
 import duke.commands.*;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
+    /**
+     * Parses user's input command.
+     *
+     * @param command The user's input command.
+     * @return The command to be done.
+     * @throws DukeException If the input is incorrect.
+     */
     public static Command parse(String command) throws DukeException {
         command = command.toLowerCase();
 

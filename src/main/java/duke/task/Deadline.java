@@ -5,12 +5,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a deadline.
+ */
 public class Deadline extends Task {
     protected LocalDateTime dateTime;
     protected static DateTimeFormatter dateTimeInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     protected static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
     protected static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Constructs a deadline with the specified description, date and time.
+     *
+     * @param description The specified description.
+     * @param by The specified date and time.
+     * @throws DukeException If the date is not provided in the right format.
+     */
     public Deadline(String description, String by) throws DukeException {
         super(description);
         try {
@@ -20,17 +30,26 @@ public class Deadline extends Task {
         }
     }
 
-    public Deadline(String description, LocalDateTime dateTime) {
+    private Deadline(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
     }
 
+    /**
+     * Creates a deadline from the data from the storage.
+     *
+     * @param line The line representing the deadline in storage.
+     * @return The deadline with the specified details.
+     */
     public static Deadline createDeadlineFromString(String line) {
         return new Deadline(line.substring(10, line.indexOf("(by:") - 1),
                 LocalDateTime.parse(line.substring(line.indexOf("(by:") + 5, line.lastIndexOf(")")),
                         dateTimeOutputFormatter));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isOnThisDate(String dateStr) throws DukeException {
         if (dateStr.isBlank()) {
             throw new DukeException("Date cannot be blank!");
@@ -43,6 +62,9 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dateTime.format(dateTimeOutputFormatter) + ")";

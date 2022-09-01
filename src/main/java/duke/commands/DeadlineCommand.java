@@ -6,10 +6,18 @@ import duke.task.Deadline;
 public class DeadlineCommand extends Command {
     private final String input;
 
+    /**
+     * Constructs a command to create a new deadline with the specified input.
+     *
+     * @param input The specified user input.
+     */
     public DeadlineCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (input.isBlank()) {
             throw new DukeException("Hold up! Description cannot be empty!");
@@ -25,6 +33,9 @@ public class DeadlineCommand extends Command {
         ui.showAddTask(newDeadline, taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

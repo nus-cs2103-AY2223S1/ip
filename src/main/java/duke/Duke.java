@@ -2,11 +2,19 @@ package duke;
 
 import duke.commands.Command;
 
+/**
+ * Represents the chatbot.
+ */
 public class Duke {
     private final Ui ui;
     private final Storage storage;
     private final TaskList tasks;
 
+    /**
+     * Constructs a chatbot.
+     *
+     * @param filePath The file path of the storage.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

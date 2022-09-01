@@ -9,10 +9,18 @@ import duke.commands.Command;
 public class MarkCommand extends Command {
     public String input;
 
+    /**
+     * Constructs a command to mark a specified task as done.
+     *
+     * @param input The user input for task number.
+     */
     public MarkCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             int index = Integer.parseInt(input.trim()) - 1;
@@ -23,6 +31,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }
