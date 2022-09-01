@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Parser class helps break down user command and handle any exceptions in the process.
+ */
 public class Parser {
 
     /**
@@ -27,7 +30,7 @@ public class Parser {
                 throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
             }
             return splitCommands;
-        
+
         case "find":
             if (splitCommands.length == 1) {
                 throw new DukeException("\u2639 OOPS!!! Keyword cannot be blank.");
@@ -42,10 +45,10 @@ public class Parser {
             String regex = splitCommands[0].equals("deadline") ? " /by " : " /at ";
             String[] details = splitCommands[1].split(regex);
             if (details.length != 2 || details[0].isEmpty() || details[1].isEmpty()) {
-                throw new DukeException("\u2639 OOPS!!! Please make sure task description and dates are inputted properly!");
+                throw new DukeException("\u2639 OOPS!!! Make sure task description and dates are inputted properly!");
             }
             return new String[]{ splitCommands[0], details[0], details[1] };
-    
+
         case "mark":
         case "unmark":
         case "delete":

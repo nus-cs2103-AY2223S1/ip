@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.DukeException;
 
+/**
+ * Deadline class.
+ */
 public class Deadline extends TimedTask {
     /**
      * Creates a new Deadline. DukeException is thrown if datetime format is not followed.

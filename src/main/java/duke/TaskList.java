@@ -1,8 +1,5 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TimedTask;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import duke.task.Task;
+import duke.task.TimedTask;
 
 /**
  * List of tasks with methods to add, delete and interact with the tasks.
@@ -82,6 +82,11 @@ public class TaskList {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Filter tasks by keyword.
+     * @param keyword Keyword to search tasks by.
+     * @return List of tasks with the given keyword.
+     */
     public TaskList filter(String keyword) {
         return new TaskList(tasks.stream()
                 .filter(x -> x.getDescription().contains(keyword))
