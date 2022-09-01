@@ -11,11 +11,11 @@ public class MarkCommand extends TaskListIndexCommand {
     /**
      * The text that is displayed when a task is marked as done.
      */
-    private static final String markedText = "Nice! I've marked this task as done:";
+    private static final String MARKED_TEXT = "Nice! I've marked this task as done:";
     /**
      * The text that is displayed when a task is unmarked.
      */
-    private static final String unmarkedText = "Noted. I've unchecked this task:";
+    private static final String UNMARKED_TEXT = "Noted. I've unchecked this task:";
 
     /**
      * The completion status that this command will mark a task as.
@@ -36,8 +36,8 @@ public class MarkCommand extends TaskListIndexCommand {
 
     private String outputText() {
         return statusToMark
-                ? markedText
-                : unmarkedText;
+                ? MARKED_TEXT
+                : UNMARKED_TEXT;
     }
 
     /**

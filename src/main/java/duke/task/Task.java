@@ -11,10 +11,10 @@ import duke.core.DukeException;
  * A class that represents a task in the task list.
  */
 public abstract class Task {
-    private static final String serializerSeparator = "---";
+    private static final String SERIALIZER_SEPARATOR = "---";
     protected String text = "";
     protected LocalDate details;
-    protected boolean complete = false;
+    protected boolean isComplete = false;
 
     /**
      * Deserializes the string version of a task into a Task object.
@@ -24,7 +24,7 @@ public abstract class Task {
     public static Task deserialize(String serializedTask) {
 
         Task task = null;
-        String[] args = serializedTask.split(serializerSeparator);
+        String[] args = serializedTask.split(SERIALIZER_SEPARATOR);
 
         TaskType type;
 
@@ -49,7 +49,7 @@ public abstract class Task {
         }
 
         if (task != null) {
-            task.complete = Boolean.parseBoolean(args[1]);
+            task.isComplete = Boolean.parseBoolean(args[1]);
             task.text = args[2];
             if (args.length >= 4) {
                 try {
@@ -76,7 +76,7 @@ public abstract class Task {
     }
 
     public void setComplete(boolean complete) {
-        this.complete = complete;
+        this.isComplete = complete;
     }
 
     public DukeException invalidParameterError() {
@@ -89,11 +89,11 @@ public abstract class Task {
      */
     public final String serialize() {
         return getTaskType()
-                + serializerSeparator
-                + complete
-                + serializerSeparator
+                + SERIALIZER_SEPARATOR
+                + isComplete
+                + SERIALIZER_SEPARATOR
                 + text
-                + serializerSeparator
+                + SERIALIZER_SEPARATOR
                 + details;
     }
 
@@ -101,7 +101,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + (complete ? "X" : " ") + "] " + text;
+        return "[" + (isComplete ? "X" : " ") + "] " + text;
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class Task {
         } else if (o instanceof Task) {
             Task other = (Task) o;
             return this.getTaskType() == other.getTaskType()
-                    && this.complete == other.complete
+                    && this.isComplete == other.isComplete
                     && this.text.equals(other.text)
                     && ((this.details == null && other.details == null)
                     || this.details.equals(other.details));

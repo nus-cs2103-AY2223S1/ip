@@ -7,8 +7,8 @@ import duke.task.TaskList;
  */
 public class FindCommand extends TaskListCommand {
 
-    private static final String successText = "Here are the matching tasks in your list:";
-    private static final String failureText = "No matching tasks found.";
+    private static final String SUCCESS_TEXT = "Here are the matching tasks in your list:";
+    private static final String FAILURE_TEXT = "No matching tasks found.";
 
     /**
      * Constructor for a TaskListCommand.
@@ -32,8 +32,8 @@ public class FindCommand extends TaskListCommand {
         TaskList tempTaskList = new TaskList();
         taskList.findInList(toSearch).forEach(tempTaskList::addTask);
         return tempTaskList.taskCount() > 0
-                ? successText + "\n" + tempTaskList.listTasks()
-                : failureText;
+                ? SUCCESS_TEXT + "\n" + tempTaskList.enumerateTasks()
+                : FAILURE_TEXT;
 
     }
 }

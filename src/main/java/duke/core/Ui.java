@@ -11,15 +11,15 @@ public class Ui {
     /**
      * The greeting message used when main is loaded.
      */
-    private static final String welcomeMessage = "Hello! I'm Duke\nWhat can I do for you?";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
     /**
      * The indentation that is displayed with each message.
      */
-    private static final String indentation = "    ";
+    private static final String INDENTATION = "    ";
     /**
      * A line that is printed to show text boundaries.
      */
-    private static final String line = "____________________________________________________________";
+    private static final String LINE = "____________________________________________________________";
 
     /**
      * Whether the UI should exit. Meant to be checked after every command.
@@ -45,7 +45,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        showMessage(welcomeMessage);
+        showMessage(WELCOME_MESSAGE);
         showLine();
     }
 
@@ -53,7 +53,7 @@ public class Ui {
      * Displays a horizontal line.
      */
     public void showLine() {
-        showMessage(line);
+        showMessage(LINE);
     }
 
     /**
@@ -73,14 +73,14 @@ public class Ui {
      */
     public void showMessage(String message) {
         Stream<String> messageLines = message.lines();
-        messageLines.forEach(x -> System.out.println(indentation + x));
+        messageLines.forEach(x -> System.out.println(INDENTATION + x));
     }
 
-    public void setIsExit(boolean isExit) {
+    public void setExitStatus(boolean isExit) {
         this.isExit = isExit;
     }
 
-    public boolean isExit() {
+    public boolean getExitStatus() {
         return isExit;
     }
 

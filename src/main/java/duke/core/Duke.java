@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import duke.commands.AddTaskCommand;
 import duke.commands.DeleteTaskCommand;
-import duke.commands.Exit;
+import duke.commands.ExitCommand;
 import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -37,7 +37,7 @@ public class Duke {
      */
     public Duke(String fileName) {
         this.parser = new Parser(new ArrayList<>(Arrays.asList(
-                new Exit("bye", this.ui),
+                new ExitCommand("bye", this.ui),
                 new AddTaskCommand<>("todo", taskList, null, ToDo::new),
                 new AddTaskCommand<>("deadline", taskList, " /by ", Deadline::new),
                 new AddTaskCommand<>("event", taskList, " /at ", Event::new),
@@ -88,7 +88,7 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 ui.showMessage(parser.parseInput(fullCommand));
-                isExit = ui.isExit();
+                isExit = ui.getExitStatus();
             } catch (DukeException e) {
                 ui.showError(e);
             } finally {

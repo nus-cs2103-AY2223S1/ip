@@ -10,7 +10,7 @@ public class ListCommand extends TaskListCommand {
     /**
      * Text to display when there are no outstanding tasks.
      */
-    private static final String noTasksText = "Good job! You have no outstanding tasks.";
+    private static final String NO_TASKS_TEXT = "Good job! You have no outstanding tasks.";
     /**
      * Text to display before enumerating the tasks in the list.
      */
@@ -29,7 +29,7 @@ public class ListCommand extends TaskListCommand {
     @Override
     public String execute(String parameters) {
         return taskList.taskCount() == 0
-                ? noTasksText
-                : tasksText + "\n" + taskList.listTasks();
+                ? NO_TASKS_TEXT
+                : tasksText + "\n" + taskList.enumerateTasks();
     }
 }

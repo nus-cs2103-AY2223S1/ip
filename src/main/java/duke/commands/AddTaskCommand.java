@@ -17,7 +17,7 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
     /**
      * Text to be displayed when this task is successfully executed.
      */
-    private static final String taskAddedText = "Got it. I've added this task:";
+    private static final String ADDED_TASK_TEXT = "Got it. I've added this task:";
 
     /**
      * The string that delimits arguments of this command.
@@ -94,7 +94,7 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
      * @return String output.
      */
     private String generateOutput(T t) {
-        return taskAddedText + "\n  "
+        return ADDED_TASK_TEXT + "\n  "
                 + t
                 + "\n"
                 + taskCountText();

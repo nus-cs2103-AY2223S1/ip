@@ -59,7 +59,7 @@ public class TaskList {
      *
      * @return String with all the tasks separated by newlines.
      */
-    public String listTasks() {
+    public String enumerateTasks() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 1; i <= taskCount(); i++) {
             stringBuilder.append("  ").append(i).append(". ");
