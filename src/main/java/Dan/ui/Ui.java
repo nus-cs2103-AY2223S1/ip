@@ -1,4 +1,4 @@
-package dan;
+package dan.ui;
 
 /**
  * Manages the display of the user interface.

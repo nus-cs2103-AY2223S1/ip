@@ -1,4 +1,4 @@
-package dan;
+package dan.task;
 
 /**
  * Represents a Task.

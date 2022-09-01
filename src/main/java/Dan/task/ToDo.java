@@ -1,4 +1,4 @@
-package dan;
+package dan.task;
 
 /**
  * One of the task types. The simplest form of task.
@@ -7,7 +7,7 @@ public class ToDo extends Task {
     private static final String ICON = "T";
 
     /**
-     * Creates a ToDo task with its associated description.
+     * Creates a To-Do task with its associated description.
      *
      * @param description The description of the to-do task
      */

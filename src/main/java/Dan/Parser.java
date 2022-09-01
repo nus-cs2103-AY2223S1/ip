@@ -1,4 +1,4 @@
-package dan;
+package dan.parser;
 
 import java.time.format.DateTimeParseException;
 
