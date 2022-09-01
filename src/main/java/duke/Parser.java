@@ -29,7 +29,7 @@ public class Parser {
      */
     public static Command parseCommand(String userInput, TaskList taskList) {
         try {
-            String [] inputArr = userInput.split(" ", 2);
+            String[] inputArr = userInput.split(" ", 2);
             CommandType command = CommandType.parse(inputArr[0]);
             switch (command) {
             case BYE:

@@ -29,7 +29,7 @@ public class Duke {
     public static String greetUser() {
         try {
             Command welcomeCommand = new WelcomeCommand();
-            Response response = welcomeCommand.action();
+            Response response = welcomeCommand.execute();
             return response.toString();
         } catch (DukeException e) {
             return e.getMessage();
@@ -37,14 +37,15 @@ public class Duke {
     }
 
     /**
-     * Performs an action in response to the command and return the response.
+     * Executes an action in response to the command and return the response.
      *
+     * @param input The user input command.
      * @return The Response to be displayed.
      */
     public Response getResponse(String input) {
         try {
             Command command = Parser.parseCommand(input, taskList);
-            Response response = command.action();
+            Response response = command.execute();
             taskList.saveTasks();
             return response;
         } catch (DukeException e) {

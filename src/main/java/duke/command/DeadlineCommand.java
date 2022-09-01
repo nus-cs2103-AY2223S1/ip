@@ -30,7 +30,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public Response action() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
@@ -42,8 +42,8 @@ public class DeadlineCommand extends Command {
         String date = descriptionDate[1];
         Deadline event = new Deadline(task, date);
         this.taskList.addTask(event);
-        return new Response("Got it. I've added this task: " + "\n"
+        return new Response("Got it. I've added this task: \n"
                 + event + "\n"
-                + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
+                + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");
     }
 }

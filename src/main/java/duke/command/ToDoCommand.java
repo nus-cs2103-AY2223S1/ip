@@ -30,14 +30,14 @@ public class ToDoCommand extends Command {
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public Response action() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of a todo cannot be empty.");
         }
         ToDo toDo = new ToDo(this.inputArr[1]);
         this.taskList.addTask(toDo);
-        return new Response("Got it. I've added this task: " + "\n"
+        return new Response("Got it. I've added this task: \n"
                 + toDo + "\n"
-                + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
+                + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");
     }
 }

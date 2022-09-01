@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * A duke.Response from the application to some user input.
+ * A Response from the application to some user input.
  */
 public class Response {
     private String message;
@@ -10,20 +10,20 @@ public class Response {
     /**
      * Creates a response with the specified String message.
      *
-     * @param message The duke.Response message.
+     * @param message The Response message.
      */
     public Response(String message) {
         this.message = message;
     }
 
     /**
-     * Converts the duke.Response to its String representation.
+     * Converts the Response to its String representation.
      *
-     * @return The String representation of the duke.Response.
+     * @return The String representation of the Response.
      */
     @Override
     public String toString() {
-        return this.message;
+        return message;
     }
 
     /**
@@ -35,6 +35,7 @@ public class Response {
 
     /**
      * Returns a boolean indicating whether to exit the Duke window.
+     *
      * @return Boolean indicating whether it is an exitResponse.
      */
     public boolean isExitResponse() {

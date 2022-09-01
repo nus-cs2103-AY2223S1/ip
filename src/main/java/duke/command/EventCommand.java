@@ -30,7 +30,7 @@ public class EventCommand extends Command {
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public Response action() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of an event cannot be empty.");
         }
@@ -42,8 +42,8 @@ public class EventCommand extends Command {
         String date = descriptionDate[1];
         Event event = new Event(description, date);
         this.taskList.addTask(event);
-        return new Response("Got it. I've added this task: " + "\n"
+        return new Response("Got it. I've added this task: \n"
                 + event + "\n"
-                + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
+                + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");
     }
 }

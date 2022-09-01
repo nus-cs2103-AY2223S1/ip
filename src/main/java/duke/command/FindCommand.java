@@ -29,11 +29,11 @@ public class FindCommand extends Command {
     /**
      * Finds all the tasks that match the keywords.
      *
-     * @return String representing the list of matching tasks.
+     * @return Response to display the list of matching tasks.
      * @throws DukeException If the input array is invalid.
      */
     @Override
-    public Response action() throws DukeException {
+    public Response execute() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("Missing keyword.");
         }

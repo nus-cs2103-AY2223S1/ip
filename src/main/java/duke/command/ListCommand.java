@@ -11,6 +11,7 @@ public class ListCommand extends Command {
 
     /**
      * Creates a ListCommand to display the tasks in the TaskList.
+     *
      * @param taskList The TaskList to display.
      */
     public ListCommand(TaskList taskList) {
@@ -19,10 +20,11 @@ public class ListCommand extends Command {
 
     /**
      * Displays the Tasks in the TaskList.
+     *
      * @return The Response to be displayed.
      */
     @Override
-    public Response action() {
+    public Response execute() {
         return new Response(this.taskList.toString());
     }
 }

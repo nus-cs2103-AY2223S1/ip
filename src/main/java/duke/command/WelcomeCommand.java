@@ -14,7 +14,7 @@ public class WelcomeCommand extends Command {
      * @return The Response to be displayed.
      */
     @Override
-    public Response action() {
+    public Response execute() {
         return new Response(GREETING);
     }
 }
