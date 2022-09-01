@@ -8,9 +8,8 @@ import duke.task.TaskList;
  * The Command class represents the command entered by user.
  */
 public abstract class Command {
+    protected static final ResponseWrapper WRAPPER = new ResponseWrapper();
     private final boolean isTerminator;
-    protected final static ResponseWrapper wrapper = new ResponseWrapper();;
-
     /**
      * Initializes an instance of a Command.
      *

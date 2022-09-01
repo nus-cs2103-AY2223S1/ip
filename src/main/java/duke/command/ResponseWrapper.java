@@ -59,8 +59,8 @@ public class ResponseWrapper {
      * @param taskDesc String representation of the task.
      */
     protected String getDeleteResponse(String taskDesc, int totalTask) {
-        return "Noted. I've removed this task:\n\t" + taskDesc +
-                "\nNow you have " + totalTask + " tasks in the list.";
+        return "Noted. I've removed this task:\n\t" + taskDesc
+                + "\nNow you have " + totalTask + " tasks in the list.";
     }
 
 }

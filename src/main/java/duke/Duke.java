@@ -16,9 +16,9 @@ public class Duke {
     private final Parser parser;
     private final Stage stage;
 
-    //    /**
-//     * Initializes a Duke chatbot.
-//     */
+    /**
+     * Initializes a Duke chatbot.
+     */
     public Duke(Stage stage) throws DukeException {
         this.storage = new Storage("data/duke.txt");
         this.parser = new Parser();
