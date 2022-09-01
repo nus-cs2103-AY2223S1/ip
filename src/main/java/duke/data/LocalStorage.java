@@ -14,6 +14,10 @@ public class LocalStorage {
     private final static String FILE_PATH = "./data/duke.txt";
     private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(X| )\\] (.*?)(?: \\(.*: (.*)\\))?$");
 
+    /**
+     * Writes a list of tasks into a .txt file as specified by FILE_PATH.
+     * @param tasklist: The ArrayList of tasks to be written.
+     **/
     public void write(ArrayList<Task> tasklist) {
         try {
             File dukeFile = new File(FILE_PATH);
@@ -33,6 +37,11 @@ public class LocalStorage {
         }
     }
 
+    /**
+     * Loads Tasks from a .txt file as specified by FILE_PATH.
+     * Tasks should follow the following REGEX "^\\[(T|D|E)\\]\\[(X| )\\] (.*?)(?: \\(.*: (.*)\\))?$".
+     * @return TaskList: TaskList generated from the Tasks.
+     **/
     public TaskList load() {
         try {
             TaskList result = new TaskList();

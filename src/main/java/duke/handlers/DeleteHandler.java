@@ -6,6 +6,11 @@ import duke.models.TaskList;
 import static duke.services.Ui.dukePrint;
 
 public class DeleteHandler {
+    /**
+     * Handles the mark Duke command.
+     * Deletes a Task from the provided list based on position index provided in input.
+     * @param list: TaskList containing the Tasks to delete.
+     **/
     public static void handle(TaskList list, String input) {
         int taskNum = Integer.parseInt(input) - 1;
         try {
