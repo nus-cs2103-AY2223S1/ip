@@ -20,6 +20,7 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    //@@author DanielLimWeiEn -reused
     /**
      * Constructs a new {@code Duke} with a datafile path.
      *
@@ -66,6 +67,7 @@ public class Duke {
                     break;
                 case "delete":
                     Task deleted = this.tasks.removeTask(Integer.parseInt(parts[1]));
+                    System.out.println(Integer.parseInt(parts[1]));
                     this.ui.printDeleteTask(deleted, this.tasks);
                     break;
                 case "todo":
@@ -116,6 +118,92 @@ public class Duke {
         this.ui.closeScanner();
         System.exit(0);
     }
+    //@@author
+
+    /**
+     * Runs the Duke GUI
+     *
+     * @param input The input text from which to get a response.
+     * @return Returns the properly formatted response to display on the GUI.
+     */
+    public String getResponse(String input) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String response = "";
+        try {
+            String information = Parser.parseCommand(input);
+            String[] infoArray = information.split("\\|");
+            System.out.println("/" + infoArray[0]+"/");
+
+            switch (infoArray[0]) {
+                case "hello":
+                    response = this.ui.printDukeOpening();
+                    break;
+                case "bye":
+                    response = this.ui.printDukeClosing();
+                    this.storage.writeTasksToStorage(this.tasks);
+                    break;
+                case "list":
+                    response = this.ui.printTasks(this.tasks);
+                    break;
+                case "mark":
+                    Task marked = this.tasks.changeTaskStatus(Integer.parseInt(infoArray[1]), true);
+                    response = this.ui.printChangeTaskStatus(marked, true);
+                    break;
+                case "unmark":
+                    Task unmarked = this.tasks.changeTaskStatus(Integer.parseInt(infoArray[1]), false);
+                    response = this.ui.printChangeTaskStatus(unmarked, false);
+                    break;
+                case "delete":
+                    Task deleted = this.tasks.removeTask(Integer.parseInt(infoArray[1]));
+                    response = this.ui.printDeleteTask(deleted, this.tasks);
+                    break;
+                case "find":
+                    ArrayList<Task> targetTasks = this.tasks.findMatchTasks(infoArray[1]);
+                    response = this.ui.printMatchTask(targetTasks);
+                    break;
+                case "todo":
+                    Task todo = new Todo(infoArray[1]);
+                    tasks.addTask(todo);
+                    response = this.ui.printAddTask(todo, this.tasks);
+                    break;
+                case "deadline":
+                    Task deadline = new Deadline(
+                            infoArray[1],
+                            LocalDateTime.parse(infoArray[2], dateTimeFormatter)
+                    );
+                    tasks.addTask(deadline);
+                    response = this.ui.printAddTask(deadline, this.tasks);
+                    break;
+                case "event":
+                    Task event = new Event(
+                            infoArray[1],
+                            LocalDateTime.parse(infoArray[2], dateTimeFormatter),
+                            LocalDateTime.parse(infoArray[3], dateTimeFormatter)
+                    );
+                    tasks.addTask(event);
+                    response = this.ui.printAddTask(event, this.tasks);
+                    break;
+                default:
+                    throw new DukeException("I'm sorry but I don't know what that means!");
+            }
+        } catch (DukeException e) {
+            response = this.ui.printDukeException(e);
+        } catch (DateTimeParseException e) {
+            response = this.ui.printDateTimeParseException();
+        } catch (IOException e) {
+            response = this.ui.printIoException(e);
+        } catch (Exception e) {
+            response = "An unexpected exception has occurred.";
+        }
+
+        try {
+            this.storage.writeTasksToStorage(this.tasks);
+        } catch (IOException e) {
+            this.ui.printIoException(e);
+        }
+        return response;
+    }
+
 
     /**
      * The main method that is the entry to the Duke Application.
