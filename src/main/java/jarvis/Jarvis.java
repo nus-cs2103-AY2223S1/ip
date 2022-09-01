@@ -1,7 +1,5 @@
 package jarvis;
 
-import java.util.Scanner;
-
 import jarvis.command.Command;
 import jarvis.parser.Parser;
 import jarvis.storage.Storage;
@@ -25,32 +23,17 @@ public class Jarvis {
         try {
             tasks = new TaskList(storage.loadTasks());
         } catch (JarvisException e) {
-            this.ui.printMessage("Error loading tasks.");
+            this.ui.showMessage("Error loading tasks. Creating new task list...");
+            tasks = new TaskList();
         }
     }
 
-    /**
-     *
-     */
-    public void run() {
-        this.ui.greet();
-
-        Scanner sc = new Scanner(System.in);
-        boolean terminated = false;
-
-        while (!terminated) {
-            try {
-                Command command = Parser.parseUserCommand(sc);
-                String keyCommand = command.getKeyCommand();
-
-                if (keyCommand.equals("bye")) {
-                    terminated = true;
-                }
-
-                this.ui.printMessage(command.execute(tasks, storage));
-            } catch (JarvisException e) {
-                this.ui.printMessage(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parseUserCommand(input);
+            return command.execute(tasks, storage);
+        } catch (JarvisException e) {
+            return e.getMessage();
         }
     }
 }

@@ -1,7 +1,5 @@
 package jarvis.parser;
 
-import java.util.Scanner;
-
 import jarvis.JarvisException;
 import jarvis.command.AddCommand;
 import jarvis.command.ByeCommand;
@@ -18,13 +16,11 @@ public class Parser {
     /**
      * Parses user commands.
      *
-     * @param sc scans in user command.
-     * @return command entered by user.
+     * @param command full command entered by user
+     * @return parsed command.
      * @throws JarvisException exception for invalid commands.
      */
-    public static Command parseUserCommand(Scanner sc) throws JarvisException {
-        System.out.print("<< ");
-        String command = sc.nextLine();
+    public static Command parseUserCommand(String command) throws JarvisException {
         String[] arguments = command.trim().split(" ");
         switch (arguments[0]) {
         case "bye":

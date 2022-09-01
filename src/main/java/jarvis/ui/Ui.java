@@ -20,14 +20,14 @@ public class Ui {
      *
      * @param message feedback message.
      */
-    public void printMessage(String message) {
-        System.out.println(">> " + message);
+    public String showMessage(String message) {
+        return message;
     }
 
     /**
      * Prints greeting message.
      */
-    public void greet() {
-        System.out.println(">> Hello! I am Jarvis! What can I do for you?");
+    public String greet() {
+        return "Hello! I am Jarvis! What can I do for you?";
     }
 }
