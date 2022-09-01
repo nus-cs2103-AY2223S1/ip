@@ -42,6 +42,9 @@ public abstract class Task implements Serializable {
     public abstract Task unmarkTask();
     
 
+    public String getDescription() {
+        return this.description;
+    }
 
     private String getStatusIcon() {
         return isDone ? "X" : " ";

@@ -21,6 +21,10 @@ public class TaskList implements Serializable {
         this.tasks = new LinkedList<>();
     }
 
+    private TaskList(LinkedList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
 
     public int getSize() {
         return this.tasks.size();
@@ -61,6 +65,27 @@ public class TaskList implements Serializable {
     public Task removeTask(int indexNumber) {
         Task t = this.tasks.remove(indexNumber);
         return t;
+    }
+
+
+    /**
+     * Returns all Task objects which contain the specified keyword in the description.
+     * 
+     * @param keyword Keyword to search for in the description.
+     * @return TaskList containing the Task objects.
+     * 
+     */
+    public TaskList searchTasks(String keyword) {
+
+        LinkedList<Task> results = new LinkedList<>();
+
+        for (Task t : this.tasks) {
+            if (t.getDescription().contains(keyword)) {
+                results.add(t);
+            }
+        }
+
+        return new TaskList(results);
     }
 
 
