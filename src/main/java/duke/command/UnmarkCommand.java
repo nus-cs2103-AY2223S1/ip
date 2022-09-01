@@ -30,9 +30,9 @@ public class UnmarkCommand extends Command {
      * @param storage Storage that stores all tasks on Disk.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String taskDescription = tasks.markOrUnmark(this.arguments, false);
 
-        ui.showTaskUnmarked(taskDescription);
+        return ui.taskUnmarkedMsg(taskDescription);
     }
 }

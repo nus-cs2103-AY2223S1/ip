@@ -18,9 +18,9 @@ public class ListCommand extends Command {
      * @param storage Storage that stores all tasks on Disk.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String items = tasks.allItems();
 
-        ui.showAllTasks(items);
+        return ui.allTasksMsg(items);
     }
 }

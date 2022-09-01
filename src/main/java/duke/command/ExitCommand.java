@@ -18,9 +18,19 @@ public class ExitCommand extends Command {
      * @param storage Storage that stores all tasks on Disk.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        super.isExit = true;
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        storage.save(tasks);
 
-        ui.sayBye();
+        new Thread(() -> {
+            try {
+                Runnable runnable = () -> System.exit(0);
+                Thread.sleep(3000);
+                runnable.run();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }).start();
+
+        return ui.byeMsg();
     }
 }

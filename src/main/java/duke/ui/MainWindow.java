@@ -1,13 +1,11 @@
 package duke.ui;
 
 import duke.Duke;
-import duke.exception.DukeException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Controller for MainWindow.
@@ -17,8 +15,15 @@ import java.time.format.DateTimeParseException;
 public class MainWindow extends VBox {
     @FXML
     private TextField userInput;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox dialogContainer;
 
     private Duke duke;
+
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
     /**
      * Setter for Duke.
@@ -30,20 +35,21 @@ public class MainWindow extends VBox {
     }
 
     @FXML
-    private void submitHandler() {
-        String input = userInput.getText();
-        try {
-            duke.handleUserInput(input);
-        } catch (DukeException e) {
-//            this.ui.showDukeError(e.getMessage());
-            System.out.println(e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-//            this.ui.showNumberCastError();
-        } catch (DateTimeParseException e) {
-            System.out.println(e.getMessage());
-//            this.ui.showInvalidDateError();
-        }
+    public void initialize() {
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("Hello! I'm Duke\n" + "What can I do for you?", this.dukeImage)
+        );
     }
 
+    @FXML
+    private void submitHandler() {
+        String input = userInput.getText();
+        String dukeMessage = this.duke.handleUserInput(input);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, this.userImage),
+                DialogBox.getDukeDialog(dukeMessage, this.dukeImage)
+        );
+        userInput.clear();
+    }
 }

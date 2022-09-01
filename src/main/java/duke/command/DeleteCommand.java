@@ -30,9 +30,9 @@ public class DeleteCommand extends Command {
      * @param storage Storage that stores all tasks on Disk.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String deletedTaskDesc = tasks.deleteItem(this.arguments);
 
-        ui.showTaskDeleted(tasks.getTaskLen(), deletedTaskDesc);
+        return ui.taskDeletedMsg(tasks.getTaskLen(), deletedTaskDesc);
     }
 }

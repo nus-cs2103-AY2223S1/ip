@@ -38,19 +38,19 @@ public class AddCommand extends Command {
      * @param storage Storage that stores all tasks on Disk.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (this.command.equals("todo")) {
             ToDo newToDo = tasks.addToDo(this.arguments);
 
-            ui.showTaskAdded(tasks.getTaskLen(), newToDo);
+            return ui.taskAddedMsg(tasks.getTaskLen(), newToDo);
         } else if (this.command.equals("deadline")) {
             Deadline newDeadline = tasks.addDeadline(this.arguments);
 
-            ui.showTaskAdded(tasks.getTaskLen(), newDeadline);
+            return ui.taskAddedMsg(tasks.getTaskLen(), newDeadline);
         } else {
             Event newEvent = tasks.addEvent(this.arguments);
 
-            ui.showTaskAdded(tasks.getTaskLen(), newEvent);
+            return ui.taskAddedMsg(tasks.getTaskLen(), newEvent);
         }
     }
 }

@@ -23,6 +23,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             VBox box = fxmlLoader.load();
             Scene scene = new Scene(box);
+            stage.setTitle("Duke");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();

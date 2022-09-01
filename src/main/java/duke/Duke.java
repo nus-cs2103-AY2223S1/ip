@@ -38,7 +38,7 @@ public class Duke {
         try {
             this.tasks = new TaskList(this.storage.load());
         } catch (FileNotFoundException e) {
-            this.ui.showLoadingError();
+            System.out.println(this.ui.showLoadingError());
             this.tasks = new TaskList();
         }
     }
@@ -47,16 +47,26 @@ public class Duke {
      * Executes the command given by the user and act accordingly.
      *
      * @param userInput The input that user provides.
+     * @return The message Duke wants to say to the user.
      * @throws DukeException if user input is not in a valid format.
      * @throws NumberFormatException if indexes provided for commands that require it cannot be casted into
      *                               integer (e.g. mark, delete).
      * @throws DateTimeParseException if date provided for commands is invalid.
      */
-    public void handleUserInput(String userInput) throws DukeException,
-            NumberFormatException, DateTimeParseException {
+    public String handleUserInput(String userInput) {
+        String dukeMessage = "";
 
-        Command c = Parser.parse(userInput);
-        c.execute(this.tasks, this.ui, this.storage);
-        this.storage.save(this.tasks);
+        try {
+            Command c = Parser.parse(userInput);
+            dukeMessage = c.execute(this.tasks, this.ui, this.storage);
+        } catch (DukeException e) {
+            dukeMessage = this.ui.dukeErrorMsg(e.getMessage());
+        } catch (NumberFormatException e) {
+            dukeMessage = this.ui.numberCastErrorMsg();
+        } catch (DateTimeParseException e) {
+            dukeMessage = this.ui.dateErrorMsg();
+        }
+
+        return dukeMessage;
     }
 }
