@@ -33,7 +33,6 @@ public class Ui {
      */
     public void showOutput(String s) {
         System.out.println(s);
-        System.out.println();
     }
 
     /**
