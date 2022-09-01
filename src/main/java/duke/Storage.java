@@ -55,7 +55,7 @@ public class Storage {
 	 * @return The formatted string.
 	 */
 	public String fileFormatString(Task task) {
-		boolean temp = task.getStatusIcon().equals("X");
+		String temp = task.getStatusIcon();
 		if (task instanceof DeadlineTask) {
 			DeadlineTask deadlineTask = (DeadlineTask) task;
 			return "D | " + temp + " | "

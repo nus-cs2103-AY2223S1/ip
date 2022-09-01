@@ -27,7 +27,7 @@ public class Ui {
 	/**
 	 * To run the program after receiving the user input.
 	 */
-	public void run() {
+	public String run() {
 		String response;
 		while (!this.parser.isItDone()) {
 			try {
@@ -43,5 +43,6 @@ public class Ui {
 				System.out.println("Oh no! Deadline Date and Time is specified wrongly, " + e);
 			}
 		}
+		return "It's over?";
 	}
 }

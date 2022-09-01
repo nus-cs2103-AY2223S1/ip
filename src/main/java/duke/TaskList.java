@@ -73,12 +73,13 @@ public class TaskList {
 	 *
 	 * @param task
 	 */
-	public static void markString(Task task) {
+	public static String markString(Task task) {
 		task.mark();
-		System.out.println("-----------------------------------------------");
-		System.out.println("Nice! I've marked this task as done:");
-		System.out.println(task);
-		System.out.println("-----------------------------------------------");
+//		System.out.println("-----------------------------------------------");
+//		System.out.println("Nice! I've marked this task as done:");
+//		System.out.println(task);
+//		System.out.println("-----------------------------------------------");
+		return "Nice! I've marked this task as done:\n" + task;
 	}
 
 	/**
@@ -86,12 +87,13 @@ public class TaskList {
 	 *
 	 * @param task
 	 */
-	public static void unMarkString(Task task) {
+	public static String unMarkString(Task task) {
 		task.unMark();
-		System.out.println("-----------------------------------------------");
-		System.out.println("OK, I've marked this task as not done yet:");
-		System.out.println(task);
-		System.out.println("-----------------------------------------------");
+//		System.out.println("-----------------------------------------------");
+//		System.out.println("OK, I've marked this task as not done yet:");
+//		System.out.println(task);
+//		System.out.println("-----------------------------------------------");
+		return "OK, I've marked this task as not done yet:\n" + task;
 	}
 
 	/**
@@ -101,7 +103,7 @@ public class TaskList {
 	 * @param parts The string response broken down into its keywords.
 	 * @throws DukeException If the keywords are missing or invalid.
 	 */
-	public void updateTask(Parser.Update update, String[] parts ) throws DukeException {
+	public String updateTask(Parser.Update update, String[] parts ) throws DukeException {
 		String part2;
 		switch (update) {
 		case MARK:
@@ -116,12 +118,12 @@ public class TaskList {
 				if (this.list.size() < number || number <= 0) {
 					throw new DukeException("There's no such task to mark!");
 				} else {
-					markString(this.list.get(number - 1));
+					return markString(this.list.get(number - 1));
 				}
 			} else {
 				throw new DukeException("I don't know which to mark!");
 			}
-			break;
+//			break;
 		case UNMARK:
 			/** when there is no number declared */
 			if (parts.length <= 1) {
@@ -134,13 +136,14 @@ public class TaskList {
 				if (this.list.size() < number || number <= 0) {
 					throw new DukeException("There's no such task to unmark!");
 				} else {
-					unMarkString(this.list.get(number - 1));
+					return unMarkString(this.list.get(number - 1));
 				}
 			} else {
 				throw new DukeException("I don't know which to unmark!");
 			}
-			break;
+//			break;
 		}
+		return "ERROR! There seems to be an issue.";
 	}
 
 	/**
@@ -148,12 +151,14 @@ public class TaskList {
 	 *
 	 * @param task The task added into the arraylist.
 	 */
-	public void addDetailedTask(Task task) {
-		System.out.println("-----------------------------------------------");
-		System.out.println("Got it. I've added this task:");
-		System.out.println(task);
-		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
-		System.out.println("-----------------------------------------------");
+	public String addDetailedTask(Task task) {
+//		System.out.println("-----------------------------------------------");
+//		System.out.println("Got it. I've added this task:");
+//		System.out.println(task);
+//		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
+//		System.out.println("-----------------------------------------------");
+		return "Got it. I've added this task:\n" + task + "\n"
+				+  "Now you have " + this.list.size() +" tasks in the list.";
 	}
 
 	/**
@@ -163,7 +168,7 @@ public class TaskList {
 	 * @param parts    The string response broken down into its keywords.
 	 * @throws DukeException If the keywords are missing or invalid.
 	 */
-	public void addTaskType(Parser.Type type, String[] parts) throws DukeException {
+	public String addTaskType(Parser.Type type, String[] parts) throws DukeException {
 		String part2;
 		switch (type) {
 		case DEADLINE:
@@ -182,8 +187,8 @@ public class TaskList {
 			}
 			DeadlineTask deadline = new DeadlineTask(deadlineParts[0], deadlineParts[1]);
 			this.list.add(deadline);
-			addDetailedTask(deadline);
-			break;
+			return addDetailedTask(deadline);
+//			break;
 		case TODO:
 			/** no task declared */
 			if (parts.length <= 1) {
@@ -192,8 +197,8 @@ public class TaskList {
 			part2 = parts[1];
 			TodoTask todo = new TodoTask(part2);
 			this.list.add(todo);
-			addDetailedTask(todo);
-			break;
+			return addDetailedTask(todo);
+//			break;
 		case EVENT:
 			/** no task declared */
 			if (parts.length <= 1) {
@@ -210,9 +215,10 @@ public class TaskList {
 			}
 			EventTask event = new EventTask(eventParts[0], eventParts[1]);
 			this.list.add(event);
-			addDetailedTask(event);
-			break;
+			return addDetailedTask(event);
+//			break;
 		}
+		return "ERROR! There seems to be an issue.";
 	}
 
 	/**
@@ -220,13 +226,15 @@ public class TaskList {
 	 *
 	 * @param number The index to be removed.
 	 */
-	public void deleteTask(int number) {
-		Task temp = this.list.get(number - 1);
+	public String deleteTask(int number) {
+		Task task = this.list.get(number - 1);
 		this.list.remove(number - 1);
-		System.out.println("-----------------------------------------------");
-		System.out.println("Noted. I've removed this task:");
-		System.out.println(temp);
-		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
-		System.out.println("-----------------------------------------------");
+//		System.out.println("-----------------------------------------------");
+//		System.out.println("Noted. I've removed this task:");
+//		System.out.println(task);
+//		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
+//		System.out.println("-----------------------------------------------");
+		return "Noted. I've removed this task:\n" + task + "\n"
+				+ "Now you have " + this.list.size() +" tasks in the list.";
 	}
 }
