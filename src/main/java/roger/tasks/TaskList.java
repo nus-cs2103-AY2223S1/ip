@@ -22,7 +22,7 @@ public class TaskList {
     }
 
     /**
-     * Create a TaskList, and initialise it with a list of tasks.
+     * Create a TaskList, and initialize it with a list of tasks.
      *
      * @param tasks The tasks to be added.
      */

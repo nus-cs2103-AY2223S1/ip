@@ -5,7 +5,8 @@ import roger.storage.StorageParser;
 import roger.tasks.Event;
 import roger.tasks.ToDo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StorageParserTest {
     @Test
@@ -19,7 +20,7 @@ public class StorageParserTest {
     }
 
     @Test
-    public void toTask_invalidTaskString_ExceptionThrown() {
+    public void toTask_invalidTaskString_exceptionThrown() {
         assertThrows(IllegalArgumentException.class, () -> StorageParser.toTask("foo bar"));
     }
 }

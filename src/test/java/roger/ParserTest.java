@@ -5,7 +5,8 @@ import roger.commands.AddEventCommand;
 import roger.exceptions.RogerInvalidInputException;
 import roger.ui.Parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ParserTest {
