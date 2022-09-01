@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         String[] s = command.split(" ");
         if (s.length != 2) {
             throw new DukeException("delete command in this format: delete <index>");
@@ -27,6 +27,6 @@ public class DeleteCommand extends Command {
         } catch (NumberFormatException e) {
             throw new DukeException("delete command in this format: delete <index>");
         }
-        ui.showDelete(tasks.deleteTask(indexOfTask - 1));
+        return Ui.showDelete(tasks.deleteTask(indexOfTask - 1));
     }
 }

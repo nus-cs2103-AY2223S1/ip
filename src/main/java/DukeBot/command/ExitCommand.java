@@ -21,10 +21,10 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         if (!command.equals("bye")) {
             throw new DukeException("Not sure what that means.");
         }
-        ui.showBye();
+        return Ui.showBye();
     }
 }

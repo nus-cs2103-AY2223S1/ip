@@ -9,41 +9,36 @@ public class Duke {
 
     private static Storage storage;
     private static TaskList tasks = new TaskList();
-    private Ui ui;
+    private Parser p;
+    boolean isExit;
 
-    /**
-     * Runs the Duke program.
-     */
-    public void run() {
-        this.ui = new Ui();
+    public Duke() {
         storage = new Storage("src/main/tasks.txt");
         try {
             tasks = storage.load();
         } catch (DukeException e) {
-            ui.showError(e);
+            Ui.showError(e);
             System.out.println("Creating new file.");
             tasks = new TaskList();
         }
-        ui.showWelcome();
-        boolean isExit = false;
-        Parser p = new Parser(tasks);
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = p.parse(fullCommand);
-                c.execute(ui);
-                isExit = c.isExit();
-                ui.showLine();
-            } catch (DukeException e) {
-                ui.showError(e);
-            }
-        }
+        p = new Parser(tasks);
         storage.write(tasks);
     }
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
+    public boolean isExit() {
+        return isExit;
     }
+    public String getResponse(String s) {
+        try {
+            Command c = p.parse(s);
+            String response = c.execute();
+            isExit = c.isExit();
+            return response;
+        } catch (DukeException e) {
+            return Ui.showError(e);
+        } finally {
+            storage.write(tasks);
+        }
+    }
+
 }

@@ -20,7 +20,7 @@ public class NewTaskCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         Task newTask;
         if (command.startsWith("todo")) {
             if (command.equals("todo")) {
@@ -44,6 +44,6 @@ public class NewTaskCommand extends Command {
             newTask = new Deadline(s[0], s[1]);
         }
         tasks.addTask(newTask);
-        ui.showNewTask(newTask);
+        return Ui.showNewTask(newTask);
     }
 }

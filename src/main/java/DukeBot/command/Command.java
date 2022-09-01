@@ -20,5 +20,5 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute(Ui ui) throws DukeException;
+    public abstract String execute() throws DukeException;
 }

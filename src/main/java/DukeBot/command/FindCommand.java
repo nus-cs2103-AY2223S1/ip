@@ -17,20 +17,18 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         String[] strings = command.split(" ", 2);
         if (strings.length != 2) {
             throw new DukeException("Find command in this format: find <task>");
         }
         String taskToFind = strings[1];
         TaskList tasksToShow = new TaskList();
-        int count = 0;
         for (Task task : tasks) {
             if (task.getDescription().contains(taskToFind)) {
-                count++;
                 tasksToShow.add(task);
             }
         }
-        ui.showList(tasksToShow, true);
+        return Ui.showList(tasksToShow, true);
     }
 }

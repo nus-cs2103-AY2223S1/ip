@@ -7,90 +7,86 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private Scanner scanner;
-
-    /**
-     * Initialises the Ui object and a Scanner that reads the user's input.
-     */
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
-
     /**
      * Prints a line onto the output.
      */
-    public void showLine() {
+    public static void showLine() {
         System.out.println("-----------------------------------------------");
     }
 
     /**
-     * Prints the new task onto the output.
+     * Returns the new task as a string.
      *
      * @param newTask to be printed on the output.
+     * @return New task in string format.
      */
-    public void showNewTask(Task newTask) {
-        System.out.println("    Got it. I've added this task:");
-        System.out.print("      ");
-        System.out.println(newTask);
-        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+    public static String showNewTask(Task newTask) {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Got it. I've added this task:\n");
+        toReturn.append(newTask);
+        toReturn.append(String.format("Now you have %d tasks in the list.", Task.getTaskCount()));
+        return toReturn.toString();
     }
 
     /**
-     * Prints the welcome message onto the output.
+     * Returns the welcome message.
+     *
+     * @return A string containing the welcome message.
      */
-    public void showWelcome() {
-        System.out.println("--------------------------------------------");
-        System.out.println("| Hi this is Thesh. What can I do for you? |");
-        System.out.println("--------------------------------------------");
+    public static String showWelcome() {
+        return "Hi this is Duke. What can I do for you?";
     }
 
     /**
-     * Prints the error onto the output.
+     * Returns the error as a string.
      *
      * @param e to be printed on the output.
+     * @return The error in string format.
      */
-    public void showError(Exception e) {
-        System.out.println(e);
-        showLine();
+    public static String showError(Exception e) {
+        return e.toString();
     }
 
     /**
-     * Lists out the tasks onto the output.
+     * Returns a string that lists out the tasks.
      *
      * @param tasks
+     * @return String with all the tasks listed out
      */
-    public void showList(TaskList tasks, boolean isFind) {
+    public static String showList(TaskList tasks, boolean isFind) {
+        StringBuilder toReturn = new StringBuilder();
         if (isFind) {
-            System.out.println("Here are the matching tasks in your list:");
+            toReturn.append("Here are the matching tasks in your list:\n");
         } else {
-            System.out.println("    Here are the tasks in your list:");
+            toReturn.append("    Here are the tasks in your list:\n");
         }
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
+            toReturn.append(String.format("      %d. %s\n", i + 1, tasks.get(i)));
         }
+        return toReturn.toString();
     }
 
     /**
-     * Prints goodbye message onto output.
+     * Returns the goodbye message.
+     *
+     * @return goodbye message.
      */
-    public void showBye() {
-        System.out.println("    Bye. Hope to see you again soon!");
+    public static String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
+     * Returns message saying task deleted.
      *
+     * @param deletedTask Task that is deleted.
+     * @return A message saying task is deleted.
      */
-    public void showDelete(Task deletedTask) {
-        System.out.println("    Noted. I've removed this task:");
-        System.out.println(String.format("      %s", deletedTask));
-        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+    public static String showDelete(Task deletedTask) {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Noted. I've removed this task:\n");
+        toReturn.append(String.format("      %s\n", deletedTask));
+        toReturn.append(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+        return toReturn.toString();
     }
-    /**
-     * Reads the user's next command.
-     *
-     * @return The user's command as a String.
-     */
-    public String readCommand() {
-        return scanner.nextLine();
-    }
+
 }

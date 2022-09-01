@@ -17,12 +17,13 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         String[] s = command.split(" ");
         if (s.length != 2) {
             throw new DukeException("list command in this format: list <index>");
         }
         int indexOfTask;
+        StringBuilder toReturn = new StringBuilder();
         try {
             indexOfTask = Integer.parseInt(s[1]);
         } catch (NumberFormatException e) {
@@ -31,14 +32,14 @@ public class MarkCommand extends Command {
         switch (s[0]) {
         case "mark":
             tasks.get(indexOfTask - 1).markComplete();
-            System.out.println("    Nice! I've marked this task as done:");
-            System.out.println(String.format("      %s", tasks.get(indexOfTask - 1)));
-            break;
+            toReturn.append("Nice! I've marked this task as done:\n");
+            toReturn.append(String.format("      %s", tasks.get(indexOfTask - 1)));
+            return toReturn.toString();
         case "unmark":
             tasks.get(indexOfTask - 1).markIncomplete();
-            System.out.println("    OK, I've marked this task as not done yet");
-            System.out.println(String.format("      %s", tasks.get(indexOfTask - 1)));
-            break;
+            toReturn.append("    OK, I've marked this task as not done yet");
+            toReturn.append(String.format("      %s", tasks.get(indexOfTask - 1)));
+            return toReturn.toString();
         default:
             throw new DukeException("Not sure what that means.");
         }

@@ -16,10 +16,10 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui) throws DukeException {
+    public String execute() throws DukeException {
         if (!command.equals("list")) {
             throw new DukeException("Sorry, I'm not sure what that means");
         }
-        ui.showList(tasks, false);
+        return Ui.showList(tasks, false);
     }
 }
