@@ -11,6 +11,13 @@ public class Event extends Task {
     protected static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
     protected static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Constructs an event with the specified description, date and time.
+     *
+     * @param description The specified description.
+     * @param at The specified date and time.
+     * @throws DukeException If the date is not provided in the right format.
+     */
     public Event(String description, String at) throws DukeException {
         super(description);
         try {
@@ -20,17 +27,26 @@ public class Event extends Task {
         }
     }
 
-    public Event(String description, LocalDateTime dateTime) {
+    private Event(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
     }
 
+    /**
+     * Creates an event from the data from the storage.
+     *
+     * @param line The line representing the event in storage.
+     * @return The event with the specified details.
+     */
     public static Event createEventFromString(String line) {
         return new Event(line.substring(10, line.indexOf("(at:") - 1),
                 LocalDateTime.parse(line.substring(line.indexOf("(at:") + 5, line.lastIndexOf(")")),
                         dateTimeOutputFormatter));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isOnThisDate(String dateStr) throws DukeException {
         if (dateStr.isBlank()) {
             throw new DukeException("Date cannot be blank!");
@@ -43,6 +59,9 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + dateTime.format(dateTimeOutputFormatter) + ")";

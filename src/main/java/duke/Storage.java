@@ -53,7 +53,7 @@ public class Storage {
                 // process data
                 switch (line.charAt(4)) {
                     case 'T':
-                        newTask = ToDo.createTodoFromString(line);
+                        newTask = ToDo.createToDoFromString(line);
                         break;
                     case 'E':
                         newTask = Event.createEventFromString(line);
