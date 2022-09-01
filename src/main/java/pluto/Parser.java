@@ -1,13 +1,13 @@
 package pluto;
 
 import pluto.command.AddCommand;
+import pluto.command.Command;
 import pluto.command.DeleteCommand;
+import pluto.command.ExitCommand;
+import pluto.command.FindCommand;
 import pluto.command.ListCommand;
 import pluto.command.ShowCommand;
-import pluto.command.Command;
-import pluto.command.ExitCommand;
 import pluto.command.UpdateStatusCommand;
-
 import pluto.task.Deadline;
 import pluto.task.Todo;
 import pluto.task.Event;
@@ -31,6 +31,7 @@ public class Parser {
         DELETE,
         LIST,
         SHOW,
+        FIND,
         BYE
     }
 
@@ -43,7 +44,7 @@ public class Parser {
     public static Command parse(String inputLine) throws PlutoException {
 
         isOnlyCommand(inputLine.toLowerCase());
-        String[] textArr = inputLine.split(" ", 2);
+        String[] textArr = inputLine.split("\\s+", 2);
         String command = textArr[0].strip();
         Type enumCommand;
         try {
@@ -68,6 +69,8 @@ public class Parser {
             return new ListCommand();
         case SHOW:
             return new ShowCommand(parseDateOnly(textArr[1]));
+        case FIND:
+            return new FindCommand(textArr[1]);
         case BYE:
             return new ExitCommand();
         default:

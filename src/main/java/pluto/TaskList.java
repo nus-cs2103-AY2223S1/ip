@@ -3,6 +3,7 @@ package pluto;
 import pluto.task.Task;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TaskList {
     /** List of tasks */
@@ -97,6 +98,24 @@ public class TaskList {
      */
     public int nTasks() {
         return missions.size();
+    }
+
+    public TaskList filter(String keyword) {
+        TaskList filtered = new TaskList();
+        String[] keywords = keyword.split("\\s+");
+        for (Task t: missions) {
+            boolean allFound = true;
+            for (String s: keywords) {
+                if (!t.getDescription().toUpperCase().contains(s.toUpperCase())) {
+                    allFound = false;
+                    break;
+                }
+            }
+            if (allFound) {
+                filtered.addTask(t);
+            }
+        }
+        return filtered;
     }
 
     @Override
