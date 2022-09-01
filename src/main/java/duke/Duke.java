@@ -57,7 +57,7 @@ public class Duke extends Application {
         Duke.greet();
 
         // Process
-        ProcessUserInput.process(workList);
+        ProcessUserInput.process(workList, "");
 
         // Bye
         Duke.exit();

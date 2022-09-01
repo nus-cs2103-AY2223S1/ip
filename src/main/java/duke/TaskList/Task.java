@@ -34,19 +34,17 @@ public class Task {
     /**
      * Mark task as Done and Print acknowledge message.
      */
-    public void markAsDone() {
-        System.out.println(Constants.MARK_AS_DONE_MESSAGE);
+    public String markAsDone() {
         this.isDone = true;
-        System.out.println(this.toString());
+        return Constants.MARK_AS_DONE_MESSAGE + this;
     }
 
     /**
      * Mark task as not Done and Print acknowledge message.
      */
-    public void unmark() {
-        System.out.println(Constants.UNMARK_MESSAGE);
+    public String unmark() {
         this.isDone = false;
-        System.out.println(this.toString());
+        return Constants.UNMARK_MESSAGE + this;
     }
 
     /**

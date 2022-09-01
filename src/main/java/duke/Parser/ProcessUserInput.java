@@ -6,17 +6,13 @@ import duke.TaskList.*;
 import Ui.Constants;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProcessUserInput {
     /**
      * Converts user command.
      * @param workList
      */
-    public static void process(ArrayList<Task> workList) {
-        // User Input
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+    public static String process(ArrayList<Task> workList, String userInput) {
 
         // Processing
         while (!userInput.equals(Constants.EXIT)) {
@@ -24,13 +20,12 @@ public class ProcessUserInput {
             int index;
             switch (typeOfTask) {
             case Constants.LIST:
-                duke.TaskList.TaskOperation.listItems(workList);
-                break;
+                return duke.TaskList.TaskOperation.listItems(workList);
             case Constants.UNMARK:
                 try {
                     userInput.substring(8);
                     index = Integer.parseInt(userInput.split(" ")[1]);
-                    workList.get(index - 1).unmark();
+                    return workList.get(index - 1).unmark();
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyMarkingException();
                     break;
@@ -41,12 +36,11 @@ public class ProcessUserInput {
                     new DukeException.EmptyMarkingException();
                     break;
                 }
-                break;
             case Constants.MARK:
                 try {
                     userInput.substring(6);
                     index = Integer.parseInt(userInput.split(" ")[1]);
-                    workList.get(index - 1).markAsDone();
+                    return workList.get(index - 1).markAsDone();
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyMarkingException();
                     break;
@@ -57,25 +51,23 @@ public class ProcessUserInput {
                     new DukeException.EmptyMarkingException();
                     break;
                 }
-                break;
             case Constants.TODO:
                 try {
                     // Error when to-do followed by a blank space
                     userInput.substring(6);
                     // Error when just to-do
-                    TaskOperation.add(new ToDo(userInput.substring(5)), workList);
+                    return TaskOperation.add(new ToDo(userInput.substring(5)), workList);
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyTodoException();
                     break;
                 }
-                break;
             case Constants.DEADLINE:
                 try {
                     // Error when deadline followed by a blank space
                     userInput.substring(10);
                     // Error when just deadline
                     String[] deadline = userInput.substring(9).split(" /by ");
-                    TaskOperation.add(new Deadline(deadline[0], deadline[1]), workList);
+                    return TaskOperation.add(new Deadline(deadline[0], deadline[1]), workList);
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyDeadlineException();
                     break;
@@ -89,7 +81,7 @@ public class ProcessUserInput {
                     userInput.substring(7);
                     // Error when just event
                     String[] event = userInput.substring(6).split(" /at ");
-                    TaskOperation.add(new Event(event[0], event[1]), workList);
+                    return TaskOperation.add(new Event(event[0], event[1]), workList);
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyEventException();
                     break;
@@ -101,7 +93,7 @@ public class ProcessUserInput {
                 try {
                     userInput.substring(8);
                     index =  Integer.parseInt(userInput.split(" ")[1]);
-                    TaskOperation.delete(workList.get(index-1), workList);
+                    return TaskOperation.delete(workList.get(index-1), workList);
                 } catch (StringIndexOutOfBoundsException e) {
                     new DukeException.EmptyDeleteException();
                     break;
@@ -112,7 +104,6 @@ public class ProcessUserInput {
                     new DukeException.EmptyDeleteException();
                     break;
                 }
-                break;
             case Constants.FIND:
                 System.out.println(Constants.FIND_MESSAGE);
                 String keyword = userInput.substring(5);
@@ -128,12 +119,10 @@ public class ProcessUserInput {
             }
             // Update data
             DukeEncoder.rewriteList(workList);
-
-            // Next input
-            userInput = scanner.nextLine();
         }
 
         // Update data
         DukeEncoder.rewriteList(workList);
+        return "Great that you joined. See you soon. Bye!";
     }
 }
