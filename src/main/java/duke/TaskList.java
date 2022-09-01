@@ -35,43 +35,49 @@ public class TaskList {
     /**
      * prints the list of tasks
      */
-    public void printTaskList() {
+    public String printTaskList() {
+        String string = "";
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) == null) {
                 break;
             }
-            System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
+            string += Integer.toString(i + 1) + ". " + list.get(i).getTask() + "\n";
         }
+        return string;
     }
 
     /**
      *  Prints tasks that match the filter
      * @param filter the string used to filter the tasks
      */
-    public void printFilteredTaskList(String filter) {
-        System.out.println("Here are the matching tasks in your list:\n");
+    public String printFilteredTaskList(String filter) {
+        String string = "";
+        string += "Here are the matching tasks in your list:\n";
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) == null) {
                 break;
             }
             if (list.get(i).getItem().contains(filter)) {
-                System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
+                string += Integer.toString(i + 1) + ". " + list.get(i).getTask() + "\n";
             }
         }
+        return string;
     }
 
     /**
      * sets the task to done
      * @param index Index of the task in the list
      */
-    public void setDone(int index) {
+    public String setDone(int index) {
         try {
+            String string = "";
             list.get(index).setDone();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(list.get(index).getTask());
+            string += "Nice! I've marked this task as done:\n";
+            string += list.get(index).getTask() + "\n";
             storage.writeToFile();
+            return string;
         } catch (NullPointerException e) {
-            System.out.println("Oops! Looks like the task number is incorrect :(");
+            return ("Oops! Looks like the task number is incorrect :(");
         }
     }
 
@@ -79,14 +85,16 @@ public class TaskList {
      * Sets the task to not done
      * @param index Index of the task in the list
      */
-    public void setUndone(int index) {
+    public String setUndone(int index) {
         try {
+            String string = "";
             list.get(index).setNotDone();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(list.get(index).getTask());
+            string += "OK, I've marked this task as not done yet:\n";
+            string += list.get(index).getTask();
             storage.writeToFile();
+            return string;
         } catch (NullPointerException e) {
-            System.out.println("Oops! Looks like the task number is incorrect :(");
+            return ("Oops! Looks like the task number is incorrect :(");
         }
     }
 
@@ -94,8 +102,9 @@ public class TaskList {
      * Creates a deadline object and stores it
      * @param item the input of the user
      */
-    public void createDeadline(String item) {
+    public String createDeadline(String item) {
         try {
+            String string = "";
             int slash = 0;
             for (int i = 0; i < item.length(); i++) {
                 if (item.charAt(i) == '/') {
@@ -105,16 +114,17 @@ public class TaskList {
             }
             LocalDate date = LocalDate.parse(item.substring(slash + 4));
             list.add(new Deadline(item.substring(9, slash - 1), date));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size() - 1).getTask());
+            string += "Got it. I've added this task:\n";
+            string += list.get(list.size() - 1).getTask() + "\n";
             storage.writeToFile();
             count = count + 1;
-            System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
+            string += "Now you have " + Integer.toString(count) + " tasks in the list";
+            return string;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! The description of a deadline has to be in the format"
+            return ("☹ OOPS!!! The description of a deadline has to be in the format"
                     + " deadline <task> /by <date and time>");
         } catch (DateTimeParseException e) {
-            System.out.println("OOPS!! Format of the date is wrong");
+            return ("OOPS!! Format of the date is wrong");
         }
     }
 
@@ -122,8 +132,9 @@ public class TaskList {
      * Creates and event object and stores it
      * @param item the user's input
      */
-    public void createEvent(String item) {
+    public String createEvent(String item) {
         try {
+            String string = "";
             int slash = 0;
             for (int i = 0; i < item.length(); i++) {
                 if (item.charAt(i) == '/') {
@@ -132,13 +143,14 @@ public class TaskList {
                 }
             }
             list.add(new Event(item.substring(6, slash - 1), item.substring(slash + 4)));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size() - 1).getTask());
+            string += "Got it. I've added this task:\n";
+            string += list.get(list.size() - 1).getTask() + "\n";
             storage.writeToFile();
             count = count + 1;
-            System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
+            string += "Now you have " + Integer.toString(count) + " tasks in the list\n";
+            return string;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! The description of a event has to be in the format event"
+            return ("☹ OOPS!!! The description of a event has to be in the format event"
                     + " <task> /at <date and time>");
         }
     }
@@ -147,16 +159,18 @@ public class TaskList {
      * Creates a todo object and stores it
      * @param item The user's input
      */
-    public void createTask(String item) {
+    public String createTask(String item) {
         try {
+            String string = "";
             list.add(new Todo(item.substring(5)));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size() - 1).getTask());
+            string += "Got it. I've added this task:\n";
+            string += list.get(list.size() - 1).getTask() + "\n";
             storage.writeToFile();
             count = count + 1;
-            System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
+            string += "Now you have " + Integer.toString(count) + " tasks in the list";
+            return string;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+            return ("☹ OOPS!!! The description of a todo cannot be empty.");
         }
     }
 
@@ -164,17 +178,19 @@ public class TaskList {
      * Deletes a task from the list
      * @param index Index of the task
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         try {
+            String string = "";
             String text = list.get(index).getTask();
             list.remove(index);
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(text);
+            string += "Noted. I've removed this task:\n";
+            string += text + "\n";
             storage.writeToFile();
             count = count - 1;
-            System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
+            string += "Now you have " + Integer.toString(count) + " tasks in the list";
+            return string;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Oops! Looks like the task number is incorrect :(");
+            return ("Oops! Looks like the task number is incorrect :(");
         }
     }
 

@@ -24,17 +24,19 @@ public class Ui {
     /**
      * Prints initial UI of the app
      */
-    public void initialize() {
-        System.out.println("Hello from\n" + logo);
+    public String initialize() {
+        String string = "";
+        string += "Hello from\n" + logo + "\n";
 
-        printText("Hello I'm Duke\nWhat can I do for you");
+        string += "Hello I'm Duke\nWhat can I do for you";
+        return string;
     }
 
     /**
      * Prints final UI of the app
      */
-    public void exit() {
-        printText("Bye. hope to see you again soon!");
+    public String exit() {
+        return ("Bye. hope to see you again soon!");
     }
 
 }

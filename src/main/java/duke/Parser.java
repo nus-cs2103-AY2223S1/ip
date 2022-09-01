@@ -10,28 +10,28 @@ public class Parser {
      * @param item the description of the task
      * @param taskList the object used to store the tasks
      */
-    public static void parse(String item, TaskList taskList) {
+    public static String parse(String item, TaskList taskList) {
         if (item.equals("list")) {
-            taskList.printTaskList();
+            return taskList.printTaskList();
         } else if (item.length() == 6 && item.substring(0, 4).equals("mark")) {
             int index = Integer.parseInt(item.substring(5)) - 1;
-            taskList.setDone(index);
+            return taskList.setDone(index);
         } else if (item.length() == 8 && item.substring(0, 6).equals("unmark")) {
             int index = Integer.parseInt(item.substring(7)) - 1;
-            taskList.setUndone(index);
+            return taskList.setUndone(index);
         } else if (item.length() >= 8 && item.substring(0, 8).equals("deadline")) {
-            taskList.createDeadline(item);
+            return taskList.createDeadline(item);
         } else if (item.length() >= 5 && item.substring(0, 5).equals("event")) {
-            taskList.createEvent(item);
+            return taskList.createEvent(item);
         } else if (item.length() >= 4 && item.substring(0, 4).equals("todo")) {
-            taskList.createTask(item);
+            return taskList.createTask(item);
         } else if (item.length() >= 6 && item.substring(0, 6).equals("delete")) {
             int index = Integer.parseInt(item.substring(7)) - 1;
-            taskList.deleteTask(index);
+            return taskList.deleteTask(index);
         } else if (item.length() >= 4 && item.substring(0, 4).equals("find")) {
-            taskList.printFilteredTaskList(item.substring(5));
+            return taskList.printFilteredTaskList(item.substring(5));
         } else {
-            System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            return ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
