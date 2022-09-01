@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 /**
  * Controller class for MainWindow. It is the blueprint for all controls
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
