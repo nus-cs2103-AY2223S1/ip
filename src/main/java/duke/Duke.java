@@ -36,33 +36,33 @@ public class Duke {
 
             try {
                 switch (command) {
-                    case BYE:
-                        ByeHandler.handle();
-                        break;
-                    case LIST:
-                        ListHandler.handle(list);
-                        break;
-                    case TODO:
-                        TodoHandler.handle(list, fullCommand[1]);
-                        break;
-                    case DEADLINE:
-                        DeadlineHandler.handle(list, fullCommand[1]);
-                        break;
-                    case EVENT:
-                        EventHandler.handle(list, fullCommand[1]);
-                        break;
-                    case MARK:
-                        MarkHandler.handle(list, fullCommand[1]);
-                        break;
-                    case UNMARK:
-                        UnmarkHandler.handle(list, fullCommand[1]);
-                        break;
-                    case DELETE:
-                        DeleteHandler.handle(list, fullCommand[1]);
-                        break;
-                    default:
-                        dukePrint("Unknown Command!");
-                        break;
+                case BYE:
+                    ByeHandler.handle();
+                    break;
+                case LIST:
+                    ListHandler.handle(list);
+                    break;
+                case TODO:
+                    TodoHandler.handle(list, fullCommand[1]);
+                    break;
+                case DEADLINE:
+                    DeadlineHandler.handle(list, fullCommand[1]);
+                    break;
+                case EVENT:
+                    EventHandler.handle(list, fullCommand[1]);
+                    break;
+                case MARK:
+                    MarkHandler.handle(list, fullCommand[1]);
+                    break;
+                case UNMARK:
+                    UnmarkHandler.handle(list, fullCommand[1]);
+                    break;
+                case DELETE:
+                    DeleteHandler.handle(list, fullCommand[1]);
+                    break;
+                default:
+                    dukePrint("Unknown Command!");
+                    break;
                 }
                 storage.write(list);
             } catch (DukeException dukeException) {
