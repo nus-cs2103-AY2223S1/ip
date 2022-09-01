@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.util.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * A command class that displays the search results from the list for a keyword.
@@ -25,14 +25,14 @@ public class FindCommand extends Command {
      * Executes the command concretely.
      * Displays the search results from the list for a keyword.
      *
-     * @param ui An object that facilitates output that might be required by the command.
+     * @param cliUi An object that facilitates output that might be required by the command.
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
      */
     @Override
-    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
+    protected void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
         String output = OUTPUT_MESSAGE + taskList.find(keyword);
-        ui.printOutput(output);
+        cliUi.printOutput(output);
     }
 }

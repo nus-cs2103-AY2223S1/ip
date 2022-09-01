@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
+import duke.util.CliUi;
 
 /**
  * A command class that handles every input that cannot be interpreted by the parser.
@@ -23,13 +23,13 @@ public class UnknownCommand extends Command {
      * Handles input that cannot be interpreted by the parser.
      * Prints a message saying that the command cannot be parsed.
      *
-     * @param ui An object that facilitates output that might be required by the command.
+     * @param cliUi An object that facilitates output that might be required by the command.
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
      */
     @Override
-    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
-        ui.printOutput(GENERAL_ERROR_STRING);
+    protected void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
+        cliUi.printOutput(GENERAL_ERROR_STRING);
     }
 }

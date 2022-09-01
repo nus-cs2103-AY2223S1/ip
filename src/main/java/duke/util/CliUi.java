@@ -3,10 +3,10 @@ package duke.util;
 import java.util.Scanner;
 
 /**
- * A class that is responsible for reading user input and printing computated output.
+ * A class that is responsible for reading user input and printing computed output on the command line interface (CLI).
  * It is the frontend of the application.
  */
-public class Ui {
+public class CliUi {
     private static final String HORIZONTAL_BAR = "-------------------------";
     private static final String INDENTATION = "    ";
     private final Scanner scanner;
@@ -14,7 +14,7 @@ public class Ui {
     /**
      * Returns a new instance of Ui that makes use of a scanner reading the standard system input.
      */
-    public Ui() {
+    public CliUi() {
         scanner = new Scanner(System.in);
     }
 
