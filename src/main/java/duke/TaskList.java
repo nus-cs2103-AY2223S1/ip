@@ -75,10 +75,6 @@ public class TaskList {
 	 */
 	public static String markString(Task task) {
 		task.mark();
-//		System.out.println("-----------------------------------------------");
-//		System.out.println("Nice! I've marked this task as done:");
-//		System.out.println(task);
-//		System.out.println("-----------------------------------------------");
 		return "Nice! I've marked this task as done:\n" + task;
 	}
 
@@ -89,10 +85,6 @@ public class TaskList {
 	 */
 	public static String unMarkString(Task task) {
 		task.unMark();
-//		System.out.println("-----------------------------------------------");
-//		System.out.println("OK, I've marked this task as not done yet:");
-//		System.out.println(task);
-//		System.out.println("-----------------------------------------------");
 		return "OK, I've marked this task as not done yet:\n" + task;
 	}
 
@@ -123,7 +115,6 @@ public class TaskList {
 			} else {
 				throw new DukeException("I don't know which to mark!");
 			}
-//			break;
 		case UNMARK:
 			/** when there is no number declared */
 			if (parts.length <= 1) {
@@ -141,7 +132,6 @@ public class TaskList {
 			} else {
 				throw new DukeException("I don't know which to unmark!");
 			}
-//			break;
 		}
 		return "ERROR! There seems to be an issue.";
 	}
@@ -152,11 +142,6 @@ public class TaskList {
 	 * @param task The task added into the arraylist.
 	 */
 	public String addDetailedTask(Task task) {
-//		System.out.println("-----------------------------------------------");
-//		System.out.println("Got it. I've added this task:");
-//		System.out.println(task);
-//		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
-//		System.out.println("-----------------------------------------------");
 		return "Got it. I've added this task:\n" + task + "\n"
 				+  "Now you have " + this.list.size() +" tasks in the list.";
 	}
@@ -229,11 +214,6 @@ public class TaskList {
 	public String deleteTask(int number) {
 		Task task = this.list.get(number - 1);
 		this.list.remove(number - 1);
-//		System.out.println("-----------------------------------------------");
-//		System.out.println("Noted. I've removed this task:");
-//		System.out.println(task);
-//		System.out.println("Now you have " + this.list.size() +" tasks in the list.");
-//		System.out.println("-----------------------------------------------");
 		return "Noted. I've removed this task:\n" + task + "\n"
 				+ "Now you have " + this.list.size() +" tasks in the list.";
 	}

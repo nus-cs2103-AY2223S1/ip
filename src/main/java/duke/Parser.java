@@ -82,9 +82,6 @@ public class Parser {
 		String part2;
 		switch (part1) {
 		case "bye":
-//			System.out.println("-----------------------------------------------");
-//			System.out.println("Bye. Hope to see you again soon!");
-//			System.out.println("-----------------------------------------------");
 			String textToFile = "";
 			for (int i = 0; i < this.tasks.size(); i++) {
 				textToFile = textToFile + this.storage.fileFormatString(tasks.getTask(i)) + System.lineSeparator();
@@ -98,28 +95,20 @@ public class Parser {
 			if (this.tasks.size() == 0) {
 				throw new DukeException("there's nothing!");
 			}
-//			System.out.println("-----------------------------------------------");
 			for (int i = 0; i < this.tasks.size(); i++) {
-//				System.out.println((i + 1) + "." + this.tasks.getTask(i).toString());
 				listString += (i + 1) + "." + this.tasks.getTask(i).toString() + "\n";
 			}
-//			System.out.println("-----------------------------------------------");
 			return listString;
 		case "mark":
 			return this.tasks.updateTask(Update.MARK, parts);
-//			break;
 		case "unmark":
 			return this.tasks.updateTask(Update.UNMARK, parts);
-//			break;
 		case "deadline":
 			return this.tasks.addTaskType(Type.DEADLINE, parts);
-//			break;
 		case "todo":
 			return this.tasks.addTaskType(Type.TODO, parts);
-//			break;
 		case "event":
 			return this.tasks.addTaskType(Type.EVENT, parts);
-//			break;
 		case "delete":
 			if (parts.length <= 1) {
 				throw new DukeException("Please tell me what to delete!");
@@ -135,7 +124,6 @@ public class Parser {
 			} else {
 				throw new DukeException("I don't know which to delete!");
 			}
-//			break;
 		case "find":
 			String findListString = "Here are the matching tasks in your list:\n";
 			if (parts.length <= 1) {
@@ -144,11 +132,8 @@ public class Parser {
 			int count = 1;
 			part2 = parts[1];
 			Pattern findExpression = Pattern.compile(".*\\b" + part2 + "\\b.*");
-//			System.out.println("-----------------------------------------------");
-//			System.out.println("Here are the matching tasks in your list:");
 			for (int i = 0; i < tasks.size(); i++) {
 				if (tasks.getTask(i).getDescription().matches(String.valueOf(findExpression))) {
-//					System.out.println((count) + "." + this.tasks.getTask(i).toString());
 					findListString += (count) + "." + this.tasks.getTask(i).toString() + "\n";
 					count++;
 				}
@@ -157,8 +142,6 @@ public class Parser {
 				return "Nothing can be found!";
 			}
 			return findListString;
-//			System.out.println("-----------------------------------------------");
-//			break;
 		default:
 			throw new DukeException("I'm sorry, but I don't know what that means.");
 		}
