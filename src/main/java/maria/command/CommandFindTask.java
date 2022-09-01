@@ -36,15 +36,16 @@ public class CommandFindTask extends Command {
             }
         }
 
-        if (filteredList.size() == 0) {
-            return "There are no tasks available.";
-        } else {
-            // Converts the task list to a multiline string for display
-            return "Your tasks are \n" + filteredList.stream()
-                    .map(task -> "- " + task)
-                    .reduce((acc, str) -> acc + "\n" + str).get();
+        // Converts the task list to a multiline string for display
+        StringBuilder result = new StringBuilder("Your matching tasks are \n");
+
+        for (int i = 0; i < filteredList.size(); ++i) {
+            result.append("- ")
+                    .append(filteredList.get(i).toString())
+                    .append(i == filteredList.size() - 1 ? "" : "\n");
         }
 
+        return result.toString();
 
     }
 

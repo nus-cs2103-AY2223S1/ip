@@ -81,16 +81,16 @@ public class LandingPage extends VBox {
 
         String content = this.taskManager.getResultDisplayQueue().poll();
 
-        if (content != null) {
+        if (content == null) {
+            return;
+        }
 
-            String displayedText = textAreaDisplay.getText();
+        String displayedText = textAreaDisplay.getText();
 
-            if (displayedText.isEmpty()) {
-                textAreaDisplay.setText(content);
-            } else {
-                textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
-            }
-
+        if (displayedText.isEmpty()) {
+            textAreaDisplay.setText(content);
+        } else {
+            textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
         }
 
     }

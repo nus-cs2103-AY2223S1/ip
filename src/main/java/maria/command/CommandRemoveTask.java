@@ -11,7 +11,7 @@ public class CommandRemoveTask extends Command {
     private final int index;
 
     public CommandRemoveTask(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     /**
