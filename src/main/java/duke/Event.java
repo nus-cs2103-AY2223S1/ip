@@ -4,20 +4,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class event extends Task {
-    protected formatDate day;
+public class Event extends Task {
+    protected FormatDate day;
 
     /**
      *
      * @param desc description of the event
      */
-    public event (String desc) {
+    public Event(String desc) {
         super(desc);
     }
 
     /**
      *
-     * @return [E][ ] with description of event and the day of the event
+     * @return String: [E][ ] with description of event and the day of the event
      */
     @Override
     public String toString() {
@@ -26,9 +26,9 @@ public class event extends Task {
 
     /**
      *
-     * @param day the day where the event is happening
+     * @param day the event's day
      */
-    public void setDay(formatDate day) {
+    public void setDay(FormatDate day) {
         this.day = day;
     }
 

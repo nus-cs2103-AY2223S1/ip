@@ -1,19 +1,17 @@
 package duke;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class formatDate {
+public class FormatDate {
     LocalDate formatDate;
 
     /**
      *
      * @param str pass in string of the date in the format of yyyy-MM-dd
      */
-    public formatDate(String str) {
+    public FormatDate(String str) {
         this.formatDate = LocalDate.parse(str);
     }
 

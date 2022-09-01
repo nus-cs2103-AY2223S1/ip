@@ -1,13 +1,17 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileReader;
 
 public class Storage {
     private File file;
 
     /**
      *
-     * @param file textfile where tasks are written into
+     * @param file text file where tasks are written into
      */
     public Storage(File file) {
         this.file = file;
@@ -15,7 +19,7 @@ public class Storage {
 
     /**
      *
-     * @param tasks tasks from taskList which are written into the textfile
+     * @param tasks tasks from taskList which are written into the text file
      * @throws IOException
      */
     public void writeToFile(TaskList tasks) throws IOException {
@@ -32,7 +36,7 @@ public class Storage {
 
     /**
      *
-     * @return tasks from textfile are loaded and stored into the TaskList upon restarting the bot
+     * @return tasks from text file are loaded and stored into the TaskList upon restarting the bot
      * @throws IOException
      */
     public TaskList loadFile() throws IOException {
@@ -50,7 +54,7 @@ public class Storage {
 
             if(str.charAt(1) == 'T') {
                 String task = str.substring(2);
-                todo input = new todo(task);
+                ToDo input = new ToDo(task);
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
                 }
@@ -60,10 +64,10 @@ public class Storage {
                 int openBracket = str.indexOf('(');
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
-                deadline input = new deadline(taskName);
+                Deadline input = new Deadline(taskName);
 
                 String result = input.correctDateFormat(str.substring(openBracket + 5, closeBracket));
-                input.setDate(new formatDate(result));
+                input.setDate(new FormatDate(result));
 
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
@@ -74,10 +78,10 @@ public class Storage {
                 int openBracket = str.indexOf('(');
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
-                event input = new event(taskName);
+                Event input = new Event(taskName);
 
                 String result = input.correctDateFormat(str.substring(openBracket + 5, closeBracket));
-                input.setDay(new formatDate(result));
+                input.setDay(new FormatDate(result));
 
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();

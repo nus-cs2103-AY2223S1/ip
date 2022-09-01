@@ -1,11 +1,10 @@
 package duke;
-
-public class todo extends Task {
+public class ToDo extends Task {
     /**
      *
      * @param desc description of the task
      */
-    public todo(String desc) {
+    public ToDo(String desc) {
         super(desc);
     }
 

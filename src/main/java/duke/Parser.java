@@ -11,7 +11,7 @@ public class Parser {
      * @return boolean
      * @throws DukeException
      */
-    public static boolean parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public static boolean isParse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
 
             try {
                 if (str.equals("bye")) {
