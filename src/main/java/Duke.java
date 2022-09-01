@@ -1,14 +1,3 @@
-import java.time.format.DateTimeParseException;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Stream;
-
 /**
  * Overall Duke Class encapsulating the Duke bot.
  * @author Charles Lim Jun Hao
