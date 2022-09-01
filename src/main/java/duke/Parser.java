@@ -1,5 +1,6 @@
 package duke;
 import java.io.IOException;
+import java.util.List;
 
 public class Parser {
     private TaskList tasks;
@@ -32,6 +33,16 @@ public class Parser {
                 System.out.println("OK, I've marked this task as not done yet:\n" +
                         "[" + tasks.get(counter).getStatusIcon() + "] " + tasks.get(counter).getDescription());
                 storage.saveFile(tasks);
+
+            } else if (input.startsWith("find")) {
+                System.out.println("Here are the matching tasks in your list:");
+                String descriptionToFind = input.substring(5);
+                List<Integer> searchResults = tasks.findTasks(descriptionToFind);
+                int counter = 1;
+                for (int index : searchResults) {
+                    System.out.println((counter) + "." + tasks.get(index).toString());
+                    counter += 1;
+                }
 
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
