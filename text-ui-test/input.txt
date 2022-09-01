@@ -1,2 +1,2 @@
-duke.todo borrow book
+duke.ToDo borrow book
 bye

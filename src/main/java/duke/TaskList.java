@@ -7,8 +7,8 @@ public class TaskList extends ArrayList<Task> {
     /**
      * deletes task from the list.
      *
-     * @param
-     * @param str
+     * @param task the task to be deleted
+     * @param str description of the task
      */
     public void deleteTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
@@ -27,8 +27,8 @@ public class TaskList extends ArrayList<Task> {
     /**
      * marks tasks in the list
      *
-     * @param
-     * @param str
+     * @param task the task to be marked
+     * @param str description of task
      */
     public void markTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
@@ -46,8 +46,8 @@ public class TaskList extends ArrayList<Task> {
     /**
      * unmarks task on the list.
      *
-     * @param
-     * @param str
+     * @param task the task to be unmarked
+     * @param str the description of the task
      */
     public void unmarkTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);

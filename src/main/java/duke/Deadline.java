@@ -4,27 +4,39 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class deadline extends Task {
-    protected formatDate date;
+public class Deadline extends Task {
+    protected FormatDate date;
 
-    public deadline(String desc) {
-        super(desc);
+    /**
+     *
+     * @param description description of task
+     */
+    public Deadline(String description) {
+        super(description);
     }
 
-    public deadline(String desc, formatDate date) {
-        super(desc);
-        this.date = date;
-    }
-
+    /**
+     *
+     * @return String : [D][ ] with the description and deadline
+     */
     @Override
     public String toString() {
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: " + date + ")";
     }
 
-    public void setDate(formatDate date) {
+    /**
+     *
+     * @param date set the deadline of the task
+     */
+    public void setDate(FormatDate date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @param str "MMM dd yyyy"
+     * @return the correct String format "yyyy-MM-dd" which can be interpreted by the parser
+     */
     public String correctDateFormat(String str) {
         SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat from = new SimpleDateFormat("MMM dd yyyy");

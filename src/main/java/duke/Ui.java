@@ -1,6 +1,5 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 public class Ui {
     private Scanner sc;
@@ -28,7 +27,7 @@ public class Ui {
     /**
      * Prints the task list.
      *
-     * @param tasks
+     * @param tasks prints the tasks in the taskList
      */
     public static void printList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
@@ -37,10 +36,26 @@ public class Ui {
         }
     }
 
+    /**
+     *
+     * @param tasks add task into this taskList
+     * @param input prints out the task added
+     */
     public static void addedTask(TaskList tasks, Task input) {
         tasks.add(input);
         System.out.println("Got it. I've added this task:");
         System.out.println(input);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+    }
+
+    /**
+     *  Prints tasks with specified keywords
+     * @param tasks the resulting tasklist to be passed here
+     */
+    public static void finderPrinter(TaskList tasks) {
+        System.out.println("Here are the matching tasks in your list: ");
+        for (int i = 0, d = 1; i < tasks.size(); i++, d++) {
+            System.out.println(d + ". " + tasks.get(i));
+        }
     }
 }

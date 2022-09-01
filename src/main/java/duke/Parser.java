@@ -2,7 +2,16 @@ package duke;
 
 import java.io.IOException;
 public class Parser {
-    public static boolean parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    /**
+     *
+     * @param str description of the task
+     * @param taskList the taskList where tasks are stored and loaded from
+     * @param ui the interactive UI system
+     * @param storage storage deals with the writing and loading of files
+     * @return boolean
+     * @throws DukeException
+     */
+    public static boolean isParse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
 
             try {
                 if (str.equals("bye")) {
@@ -35,6 +44,9 @@ public class Parser {
                 else if (str.split(" ")[0].equals("delete")) {
                     taskList.deleteTask(str, taskList);
                     storage.writeToFile(taskList);
+                }
+                else if (str.split(" ")[0].equals("find")) {
+                    Task.find(str, taskList);
                 }
                 else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
