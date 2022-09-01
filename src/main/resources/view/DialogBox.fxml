@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="dialog" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Label" textFill="#1b1a1a" wrapText="true">
+         <font>
+            <Font name="Chalkboard SE Light" size="16.0" />
+         </font>
+         <effect>
+            <ColorAdjust />
+         </effect>
+         <padding>
+            <Insets left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin></Label>
+        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true">
+         <viewport>
+            <Rectangle2D />
+         </viewport></ImageView>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
+</fx:root>

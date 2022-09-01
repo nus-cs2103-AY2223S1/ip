@@ -1,6 +1,5 @@
 package byu;
 
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,12 +14,14 @@ public class TaskList {
 
     private final ArrayList<Task> tasks;
     private int numOfTasks = 0;
+    private Ui ui;
 
     /**
      * Creates a ToDoList that stores tasks.
      */
-    public TaskList() {
+    public TaskList(Ui ui) {
         this.tasks = new ArrayList<>();
+        this.ui = ui;
     }
 
     /**
@@ -31,22 +32,24 @@ public class TaskList {
     public void addTask(Task task) {
         this.tasks.add(task);
         this.numOfTasks += 1;
-        System.out.format("added: %s\n", task.toString());
+        String output = String.format("added: %s\n", task.toString());
         if (this.numOfTasks == 1) {
-            System.out.format("Now you have %d task in the list.\n", this.numOfTasks);
+            output += String.format("Now you have %d task in the list.\n", this.numOfTasks);
         } else {
-            System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
+            output += String.format("Now you have %d tasks in the list.\n", this.numOfTasks);
         }
+        this.ui.setOutput(output);
     }
 
     /**
      * Prints all the tasks in the list.
      */
     public void list() {
-        System.out.println("These are the tasks in your list:");
+        String output = "These are the tasks in your list:\n";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.format("%d. %s\n", i + 1, tasks.get(i).toString());
+            output += String.format("%d. %s\n", i + 1, tasks.get(i).toString());
         }
+        this.ui.setOutput(output);
     }
 
     /**
@@ -61,7 +64,8 @@ public class TaskList {
         }
         Task t = tasks.get(i - 1);
         t.setDone(true);
-        System.out.println("Nice! I've marked this task as done:\n" + t);
+        String output = String.format("Nice! I've marked this task as done:\n%s\n", t);
+        this.ui.setOutput(output);
     }
 
     /**
@@ -76,7 +80,8 @@ public class TaskList {
         }
         Task t = tasks.get(i - 1);
         t.setDone(false);
-        System.out.println("OK, I've marked this task as not done yet:\n" + t);
+        String output = String.format("OK, I've marked this task as not done yet:\n%s\n", t);
+        this.ui.setOutput(output);
     }
 
     /**
@@ -92,8 +97,9 @@ public class TaskList {
         Task t = tasks.get(i - 1);
         this.tasks.remove(i - 1);
         this.numOfTasks -= 1;
-        System.out.println("Alright! I've removed this task:\n" + t);
-        System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
+        String output = String.format("Alright! I've removed this task:\n%s\n", t);
+        output += String.format("Now you have %d tasks in the list.\n", this.numOfTasks);
+        this.ui.setOutput(output);
     }
 
     /**
@@ -113,12 +119,13 @@ public class TaskList {
     }
 
     public void find(String s) {
-        System.out.println("Here are the matching tasks in your list:");
+        String output = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getName().contains(s)) {
-                System.out.format("%d. %s\n", i + 1, tasks.get(i).toString());
+                output += String.format("%d. %s\n", i + 1, tasks.get(i).toString());
             }
         }
+        this.ui.setOutput(output);
     }
 
     public int getNumOfTasks() {
