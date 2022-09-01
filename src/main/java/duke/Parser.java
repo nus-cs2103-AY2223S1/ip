@@ -38,9 +38,6 @@ public class Parser {
         else if (command.startsWith("find")) { // find
             return new Command(Command.CommandTypes.FIND, command);
         }
-        else if (command.equals("bye")) {
-            return new Command(Command.CommandTypes.EXIT, command);
-        }
         else {
             throw new Exception("I am sorry, I do not comprehend such commands. Please Try again...");
         }

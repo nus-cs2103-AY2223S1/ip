@@ -2,8 +2,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import duke.Command;
-import duke.ToDoList;
-import duke.Ui;
+import duke.TaskList;
 import duke.FileLoaderSaver;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,17 +13,16 @@ public class CommandTest {
     public void execute_createEventAndMarkDone_eventSaved(){
         try {
             String filePath = "/Users/shaune/Desktop/NUS/CS2103T/ip-1/src/test/actualOutput.txt";
-            ToDoList toDoList = new ToDoList();
-            Ui ui = new Ui();
+            TaskList toDoList = new TaskList();
             FileLoaderSaver storage = new FileLoaderSaver(filePath);
 
             String userInput = "event Justin Bieber Concert /at 2019-08-19";
             Command c = new Command(Command.CommandTypes.EVENT, userInput);
-            c.execute(toDoList, ui, storage);
+            c.execute(toDoList, storage);
 
             userInput = "mark 1";
             c = new Command(Command.CommandTypes.MARK, userInput);
-            c.execute(toDoList, ui, storage);
+            c.execute(toDoList, storage);
 
             String expectedOutput = "E # true # Justin Bieber Concert # 2019-08-19";
             List<String> taskList = storage.loadFile();

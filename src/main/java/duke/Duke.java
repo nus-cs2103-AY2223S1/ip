@@ -1,7 +1,19 @@
 package duke;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.layout.Region;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+
 
 /**
  * Main duke.Duke class where duke program is ran
@@ -11,14 +23,41 @@ public class Duke {
     private String filePath;
     private FileLoaderSaver storage;
     private TaskList taskList;
-    private Ui ui;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
-     * Initiates duke task with pathname to saved todolist and runs duke.Duke
-     * @param args
+     * Creates a label with the specified text and adds it to the dialog container.
+     * @param text String containing text to add
+     * @return a label with the specified text that has word wrap enabled.
      */
-    public static void main(String[] args) {
-        new Duke("/Users/shaune/Desktop/NUS/CS2103T/Duke.txt").run();
+    private Label getDialogLabel(String text) {
+        // You will need to import `javafx.scene.control.Label`.
+        Label textToAdd = new Label(text);
+        textToAdd.setWrapText(true);
+
+        return textToAdd;
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        String response;
+        String fullCommand;
+        try {
+            fullCommand = input;
+            Command c = Parser.parse(fullCommand);
+            response = c.execute(taskList, storage);
+        } catch (InputMismatchException exception) {
+            return "Error: please only input String commands.";
+        } catch (IndexOutOfBoundsException exception) {
+            return "Index specified out of range, please try again...";
+        } catch (Exception exception) {
+            return exception.getMessage();
+        }
+        return response;
     }
 
     /**
@@ -28,7 +67,6 @@ public class Duke {
      */
     public Duke(String filePath) {
         this.filePath = filePath;
-        ui = new Ui();
         storage = new FileLoaderSaver(filePath);
 
         try {
@@ -38,32 +76,4 @@ public class Duke {
             taskList = new TaskList();
         }
     }
-
-    /**
-     * Runs duke program
-     */
-    public void run() {
-        Ui.greet(); //duke.Ui
-        boolean isExit = false;
-
-        while (!isExit) {
-            String fullCommand;
-            try {
-                fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, ui, storage);
-                isExit = c.isExit();
-            } catch (InputMismatchException exception) {
-                System.out.println("\tError: please only input String commands.");
-            } catch (IndexOutOfBoundsException exception) {
-                System.out.println("\tIndex specified out of range, please try again...");
-            } catch (Exception exception) {
-                System.out.println("\t" + exception.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }
 }
-

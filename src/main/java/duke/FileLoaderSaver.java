@@ -10,7 +10,7 @@ import java.io.FileWriter;
  * duke.FileLoaderSaver class loads and saves a given String of code into a txt file in path
  * @author Shaune Ang
  */
-public class FileLoaderSaver {
+public class  FileLoaderSaver {
     private Path filePath;
 
     /**

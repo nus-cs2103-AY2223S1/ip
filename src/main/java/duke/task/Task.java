@@ -29,7 +29,7 @@ abstract public class Task {
     /**
      * Changes isCompleted to done
      */
-    public void mark() {
+    public String mark() {
         String message;
         if (isCompleted == true) {
             message = "\t This task is already marked:";
@@ -37,14 +37,13 @@ abstract public class Task {
             isCompleted = true;
             message = "\tGood Job on completing the task! I've marked this task as done:";
         }
-        System.out.println(message);
-        System.out.println("\t   " + toString());
+        return message + "\n" + toString();
     }
 
     /**
      * Changes isCompleted to not done
      */
-    public void unmark() {
+    public String unmark() {
         String message;
         if (isCompleted == false) {
             message = "\t This task is already unmarked:";
@@ -52,8 +51,7 @@ abstract public class Task {
             isCompleted = false;
             message = "\tOK, I've marked this task as not done yet:";
         }
-        System.out.println(message);
-        System.out.println("\t   " + toString());
+        return message + "\n" + toString();
     }
 
     /**

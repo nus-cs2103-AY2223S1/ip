@@ -37,50 +37,49 @@ public class TaskList {
      * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
-    public void complete(int index) throws IndexOutOfBoundsException {
+    public String complete(int index) throws IndexOutOfBoundsException {
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        taskList.get(index).mark();
+        return taskList.get(index).mark();
     }
 
     /** Sets isComplete status of task at index to be incomplete
      * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
-    public void incomplete(int index) throws IndexOutOfBoundsException {
+    public String incomplete(int index) throws IndexOutOfBoundsException {
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        taskList.get(index).unmark();
+        return taskList.get(index).unmark();
     }
 
     /**
      *  Adds task to todoList
      * @param task task to be added to toDoList
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         taskList.add(task);
-        System.out.println("\tGot it. I've added this task:");
-        System.out.println("\t  " + task);
+        return "Got it. I've added this task:\n" + task;
     }
 
     /**
      * Displays all tasks in toDoList
      */
-    public void listTasks() {
+    public String listTasks() {
         if (taskList.size() < 1) {
-            System.out.println("\tYou don't have any pending tasks.");
-            return;
+            return "You don't have any pending tasks.";
         }
 
-        System.out.println("\tHere are the tasks in your list:");
+        String response = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
             Task currentTask = taskList.get(i);
             if (currentTask != null){
-                System.out.printf("\t%d. %s\n", i + 1, currentTask);
+                response += String.format("%d. %s\n", i + 1, currentTask);
             }
         }
+        return response;
     }
 
     /**
@@ -88,15 +87,14 @@ public class TaskList {
      * @param index index to delete
      * @Throws IndexOutOfBoundsException
      */
-    public void delete(int index) throws IndexOutOfBoundsException {
+    public String delete(int index) throws IndexOutOfBoundsException {
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
         else {
             Task tempTask = taskList.get(index);
             taskList.remove(index);
-            System.out.println("\tNoted. I've removed this task:");
-            System.out.println("\t  " + tempTask);
+            return "Noted. I've removed this task:/n" + tempTask;
         }
     }
 
@@ -163,27 +161,28 @@ public class TaskList {
     /**
      * Prints number of tasks in the list
      */
-    public void displayListSize() {
-        System.out.printf("\tNow you have %d tasks in the list.\n", taskList.size());
+    public String displayListSize() {
+        return String.format("Now you have %d tasks in the list.\n", taskList.size());
     }
 
     /**
      * Searches for searchString by iterating through all the names of the tasks in toDoList
      * @param searchString
      */
-    public void findTasks(String searchString) {
+    public String findTasks(String searchString) {
         int findCount = 0;
-        System.out.println("\tHere are the matching tasks in your list:");
+        String response = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
             Task currentTask = taskList.get(i);
             if (currentTask.nameContains(searchString)){
                 findCount++;
-                System.out.printf("\t%d. %s\n", findCount, currentTask);
+                response += String.format("%d. %s\n", findCount, currentTask);
             }
         }
 
         if (findCount == 0) {
-            System.out.printf("\tNo tasks were found matching: %s\n", searchString);
+            response = String.format("No tasks were found matching: %s\n", searchString);
         }
+        return response;
     }
 }
