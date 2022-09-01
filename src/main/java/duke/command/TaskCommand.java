@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.Ui;
+import duke.task.*;
+
 public class TaskCommand extends Command {
 
     private String taskType;

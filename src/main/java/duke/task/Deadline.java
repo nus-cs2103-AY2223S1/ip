@@ -1,14 +1,16 @@
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class Deadline extends Task {
 
-    public Event(String desc) {
+    public Deadline(String desc) {
         super(desc);
 
-        String parts[] = desc.split("/at ");
+        String parts[] = desc.split("/by ");
         super.description = parts[0];
         super.isDone = false;
-        super.type = "E";
+        super.type = "D";
 
         try {
             String dateInString = parts[1];
@@ -26,6 +28,7 @@ public class Event extends Task {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         String formattedDate = dateAndTime.format(formatter);
-        return "[" + type + "][" + mark + "]" + this.description + "(at: " + formattedDate + ")";
+        return "[" + type + "][" + mark + "]" + this.description + "(by: " + formattedDate + ")";
+
     }
 }
