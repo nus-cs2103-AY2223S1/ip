@@ -2,6 +2,12 @@ package duke;
 
 import java.io.Serializable;
 
+/*
+ * Abstract super class of all Tasks.
+ *
+ * @author Cui Shen Yi
+ * @version CS2103T AY22/23 Semester 1
+ */
 public abstract class Task implements Serializable {
 
     protected String task;
