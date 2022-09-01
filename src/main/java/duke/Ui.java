@@ -16,40 +16,17 @@ public class Ui {
     private Scanner sc = new Scanner(System.in);
 
     /**
-     * Prints a welcome message.
-     */
-    public void showWelcome() {
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
-    }
-
-    /**
      * Prints an error message upon failure to load data from the saved file.
      */
-    public void showLoadingError() {
-        System.out.println("There was an error loading your file. Starting a new list...\n");
-    }
-
-    /**
-     * Prints a dotted line to separate commands and responses.
-     */
-    public void showLine() {
-        System.out.println("-------------------------------");
-    }
-
-    /**
-     * Prints the message of the error.
-     *
-     * @param errorMessage Error message to be printed.
-     */
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
+    public String showLoadingError() {
+        return "There was an error loading your file. Starting a new list...\n";
     }
 
     /**
      * Prints a farewell message.
      */
-    public void showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showGoodbye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -58,9 +35,9 @@ public class Ui {
      * @param t Task that was added to the list.
      * @param len New length of the list.
      */
-    public void showAdd(Task t, int len) {
-        System.out.println("Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + len
-                + taskString(len) + "in the list.");
+    public String showAdd(Task t, int len) {
+        return "Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + len
+                + taskString(len) + "in the list.";
     }
 
     /**
@@ -69,11 +46,11 @@ public class Ui {
      * @param t Task that was deleted from the list.
      * @param len New length of the list.
      */
-    public void showDelete(Task t, int len) {
+    public String showDelete(Task t, int len) {
         String notice = "Noted. I've removed this task:\n";
         String desc = t.toString() + "\n";
         String tasksLeft = "Now you have " + len + taskString(len) + "in the list.";
-        System.out.println(notice + desc + tasksLeft);
+        return notice + desc + tasksLeft;
     }
 
     /**
@@ -81,8 +58,8 @@ public class Ui {
      *
      * @param t Task that was marked as done.
      */
-    public void showMark(Task t) {
-        System.out.println("Nice! I've marked this task as done:\n" + t);
+    public String showMark(Task t) {
+        return "Nice! I've marked this task as done:\n" + t;
     }
 
     /**
@@ -90,25 +67,15 @@ public class Ui {
      *
      * @param t Task that was unmarked as done.
      */
-    public void showUnmark(Task t) {
-        System.out.println("OK, I've marked this task as not done yet:\n" + t);
-    }
-
-    /**
-     * Reads the line that was input and determines the exact Command it is referring to.
-     *
-     * @return Command indicated by the input String.
-     */
-    public String readCommand() {
-        String command = sc.nextLine();
-        return command;
+    public String showUnmark(Task t) {
+        return "OK, I've marked this task as not done yet:\n" + t;
     }
 
     /**
      * Prints a notification of tasks being found.
      */
-    public void showFound() {
-        System.out.println("Here are the matching tasks in your list:");
+    public String showFound() {
+        return "Here are the matching tasks in your list:\n";
     }
 
     private String taskString(int len) {

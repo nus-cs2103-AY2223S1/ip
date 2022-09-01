@@ -31,8 +31,8 @@ public class ShowListCommand extends Command {
      * @param storage Storage for saving purposes if applicable.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.printList();
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return "Here are your current tasks:\n" + taskList.printList();
     }
 
 }
