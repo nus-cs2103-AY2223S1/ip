@@ -16,13 +16,15 @@ public class Storage {
     static String filePath;
     BufferedReader bR;
     File dukeFile;
+    Ui ui;
 
     /**
      * The method takes in two parameters
      * @param pathName of type String
      * @param fileName of type String
      */
-    public Storage(String pathName, String fileName) {
+    public Storage(Ui ui, String pathName, String fileName) {
+        this.ui = ui;
         Path file = Paths.get(pathName);
         File curr = new File(String.valueOf(pathName), fileName);
         filePath = pathName + "/" + fileName;
@@ -70,7 +72,7 @@ public class Storage {
             }
             return tasksToDo;
         } catch (IOException e) {
-            Ui.printErrorMessage(e.toString());
+            ui.printErrorMessage(e.toString());
         }
         return null;
     }
@@ -80,7 +82,7 @@ public class Storage {
      * @param task The input to be received
      * @return returns a boolean
      */
-    public static boolean updateFile(Task task) {
+    public boolean updateFile(Task task) {
         try {
             String taskStr = task.getType() == 'T' ?
                     ('T' + "|" + task.getDone() + "|" + task.getTask())
@@ -88,7 +90,7 @@ public class Storage {
             Files.write(Paths.get(filePath), (taskStr + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
             return true;
         } catch (IOException e) {
-            Ui.printErrorMessage(e.toString());
+            ui.printErrorMessage(e.toString());
             return false;
         }
     }
@@ -98,7 +100,7 @@ public class Storage {
      * @param tasks The input to be received
      * @return returns a boolean
      */
-    public static boolean rewriteEntireFile(ArrayList<Task> tasks) {
+    public boolean rewriteEntireFile(ArrayList<Task> tasks) {
         try {
             BufferedWriter bW = Files.newBufferedWriter(Paths.get(filePath));
             bW.write("");
@@ -107,7 +109,7 @@ public class Storage {
             }
             return true;
         } catch (IOException e) {
-            Ui.printErrorMessage(e.toString());
+            ui.printErrorMessage(e.toString());
             return false;
         }
     }

@@ -8,13 +8,18 @@ import java.util.ArrayList;
  */
 public class TaskList {
     ArrayList<Task> tasks;
+    Ui ui;
+    Storage storage;
 
     /**
-     * The method takes in a parameter
-     * @param tasks of type ArrayList
+     * The method takes in two parameter
+     * @param ui of type Ui
+     * @param storage of type Ui
      */
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList(Ui ui, Storage storage) {
+        this.tasks = storage.load();
+        this.ui = ui;
+        this.storage = storage;
     }
 
     /**
@@ -22,9 +27,9 @@ public class TaskList {
      * @param task of type Task
      */
     public void add(Task task) {
-        if (Storage.updateFile(task)) {
+        if (storage.updateFile(task)) {
             tasks.add(task);
-            Ui.printAddSuccessfulMsg(task, tasks.size());
+            ui.printAddSuccessfulMsg(task, tasks.size());
         }
     }
 
@@ -52,8 +57,8 @@ public class TaskList {
     public void markTaskAsDone(int i) {
         Task task = tasks.get(i);
         task.setTaskAsDone();
-        if (Storage.rewriteEntireFile(tasks)) {
-            Ui.printMarkTaskSuccessfulMsg(task);
+        if (storage.rewriteEntireFile(tasks)) {
+            ui.printMarkTaskSuccessfulMsg(task);
         }
     }
 
@@ -64,8 +69,8 @@ public class TaskList {
     public void unMarkTaskAsDone(int i) {
         Task task = tasks.get(i);
         task.setTaskAsUnDone();
-        if (Storage.rewriteEntireFile(tasks)) {
-            Ui.printUnMarkTaskSuccessfulMsg(task);
+        if (storage.rewriteEntireFile(tasks)) {
+            ui.printUnMarkTaskSuccessfulMsg(task);
         }
     }
 
@@ -76,8 +81,8 @@ public class TaskList {
     public void delete(int i) {
         Task task = tasks.get(i);
         tasks.remove(i);
-        if (Storage.rewriteEntireFile(tasks)) {
-            Ui.printDeleteSuccessfulMsg(task, tasks.size());
+        if (storage.rewriteEntireFile(tasks)) {
+            ui.printDeleteSuccessfulMsg(task, tasks.size());
         }
     }
 }

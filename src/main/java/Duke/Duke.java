@@ -1,5 +1,7 @@
 package Duke;
 
+import javafx.application.Application;
+
 /**
  * The Duke.Duke class stores Storage and TaskList as parameters
  * @author LimWeiJun
@@ -7,31 +9,24 @@ package Duke;
 public class Duke {
     private Storage storage;
     private TaskList tasks;
-
-//    @Override
-//    public void start(Stage stage) {
-//        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-//        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-//
-//        stage.setScene(scene); // Setting the stage to show our screen
-//        stage.show(); // Render the stage.
-//    }
+    private Ui ui;
 
     public Duke(String filePath) {
+        ui = new Ui();
         String[] seperates = filePath.split("/");
-        storage = new Storage(seperates[0], seperates[1]);
+        storage = new Storage(ui, seperates[0], seperates[1]);
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new TaskList(ui, storage);
         } catch (Exception e) {
-            Ui.printErrorMessage(e.toString());
+            ui.printErrorMessage(e.toString());
         }
     }
 
-    public void run() {
-        Parser.readLine(tasks);
+    public void takeCommand(String userCommand) {
+        Parser.readLine(ui, userCommand, tasks);
     }
 
     public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+        Application.launch(Ui.class, args);
     }
 }
