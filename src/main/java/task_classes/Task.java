@@ -1,5 +1,7 @@
 package task_classes;
 
+import org.json.JSONObject;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -18,11 +20,27 @@ public abstract class Task {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
-    public void setDone(){
+    public void setDone() {
         this.isDone = true;
     }
-    public void setNotDone(){
+
+    public void setNotDone() {
         this.isDone = false;
     }
+
+    public abstract JSONObject toJSONObject();
+
+    public static Task fromJSONObject(JSONObject jsonObject) {
+        switch (jsonObject.getString("type")) {
+            case "Todo":
+                return Todo.fromJSONObject(jsonObject);
+            case "Event":
+                return Event.fromJSONObject(jsonObject);
+            case "Deadline":
+                return Deadline.fromJSONObject(jsonObject);
+        }
+        return null;
+    }
+
 
 }

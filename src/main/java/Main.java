@@ -1,3 +1,6 @@
+import utils.IOUtils;
+
+import java.util.Scanner;
 public class Main {
     public static String logo = ".__ .  ..  ..___" + "\n" +
             "|  \\|  ||_/ [__ " + "\n" +
@@ -7,7 +10,17 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(Main.logo);
-        new ConversationHandler();
+        ConversationHandler handler = new ConversationHandler();
+
+        Scanner in = new Scanner(System.in);
+
+        while (handler.isOpen() && in.hasNext()) {
+            String line = in.nextLine();
+            String output = handler.handleCommand(line);
+            IOUtils.printContentWithHR(output);
+        }
+
+
     }
 
 
