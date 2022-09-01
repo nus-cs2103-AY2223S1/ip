@@ -13,11 +13,12 @@ abstract public class Command {
     /**
      * When the Command is executed, it performs its intended actions.
      * For example, executing an EventCommand adds an Event to the
-     * task list and prints relevant information to the terminal.
+     * task list and prints relevant information to the chat GUI.
      *
      * @param taskList The taskList relevant to the command.
+     * @return A string to print to the chat GUI.
      */
-    public abstract void execute(TaskList taskList);
+    public abstract String execute(TaskList taskList);
 
     /**
      * Returns true if the command signals the breaking of the loop

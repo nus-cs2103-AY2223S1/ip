@@ -1,6 +1,6 @@
 package commands;
 
-import common.Ui;
+import common.ChatResponse;
 import dukeexceptions.DukeException;
 import dukeexceptions.InsufficientArgumentsException;
 import tasklist.TaskList;
@@ -19,7 +19,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         TaskList results = new TaskList();
         String target = this.args[0];
 
@@ -31,6 +31,6 @@ public class FindCommand extends Command {
             }
         }
 
-        Ui.printFindResults(results);
+        return ChatResponse.returnChatFindResults(results);
     }
 }

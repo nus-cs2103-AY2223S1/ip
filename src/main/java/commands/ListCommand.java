@@ -1,12 +1,12 @@
 package commands;
 
-import common.Ui;
+import common.ChatResponse;
 import tasklist.TaskList;
 
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList) {
-        Ui.printTaskList(taskList);
+    public String execute(TaskList taskList) {
+        return ChatResponse.returnChatTaskList(taskList);
     }
 }

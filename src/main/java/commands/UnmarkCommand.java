@@ -1,6 +1,6 @@
 package commands;
 
-import common.Ui;
+import common.ChatResponse;
 import dukeexceptions.DukeException;
 import dukeexceptions.IllegalIndexException;
 import tasklist.TaskList;
@@ -27,9 +27,9 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         int index = Integer.parseInt(args[0]) - 1;
         taskList.unmarkTask(index);
-        Ui.printUnmarkTask(taskList.get(index));
+        return ChatResponse.returnChatUnmarkTask(taskList.get(index));
     }
 }

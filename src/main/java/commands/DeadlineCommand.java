@@ -1,7 +1,7 @@
 package commands;
 
+import common.ChatResponse;
 import common.Parser;
-import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.MissingDescriptionException;
 import dukeexceptions.WrongDatetimeFormatException;
@@ -45,14 +45,13 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/by").get(0);
 
         String unparsedDatetime = Parser.splitArrayIntoSubstrings(this.args, "/by").get(1);
         LocalDateTime taskDeadline = parseDeadlineDatetime(unparsedDatetime);
         Deadline newDeadline = new Deadline(description, taskDeadline);
         taskList.addTask(newDeadline);
-        Ui.printAddTask(newDeadline, taskList);
+        return ChatResponse.returnChatAddTask(newDeadline, taskList);
     }
-
 }

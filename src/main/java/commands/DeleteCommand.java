@@ -1,6 +1,6 @@
 package commands;
 
-import common.Ui;
+import common.ChatResponse;
 import dukeexceptions.DukeException;
 import dukeexceptions.IllegalIndexException;
 import tasklist.TaskList;
@@ -29,10 +29,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         int index = Integer.parseInt(args[0]) - 1;
         Task toDelete = taskList.get(index);
         taskList.deleteTask(index);
-        Ui.printDeleteTask(toDelete, taskList);
+        return ChatResponse.returnChatDeleteTask(toDelete, taskList);
     }
 }

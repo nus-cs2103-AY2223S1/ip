@@ -1,13 +1,13 @@
 package commands;
 
-import tasklist.TaskList;
-import tasks.ToDo;
-import common.Ui;
+import common.ChatResponse;
 import dukeexceptions.DukeException;
 import dukeexceptions.MissingDescriptionException;
+import tasklist.TaskList;
+import tasks.ToDo;
 
 public class ToDoCommand extends Command {
-    private String[] args;
+    private final String[] args;
 
     public ToDoCommand(String[] args) {
         this.args = args;
@@ -20,9 +20,9 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         ToDo newToDo = new ToDo(String.join(" ", this.args));
         taskList.addTask(newToDo);
-        Ui.printAddTask(newToDo, taskList);
+        return ChatResponse.returnChatAddTask(newToDo, taskList);
     }
 }

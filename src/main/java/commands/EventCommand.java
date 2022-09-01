@@ -1,7 +1,7 @@
 package commands;
 
+import common.ChatResponse;
 import common.Parser;
-import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.MissingDescriptionException;
 import dukeexceptions.WrongDatetimeFormatException;
@@ -47,7 +47,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/at").get(0);
 
         String unparsedTimeRange = Parser.splitArrayIntoSubstrings(this.args, "/at").get(1);
@@ -59,6 +59,6 @@ public class EventCommand extends Command {
 
         Event newEvent = new Event(description, startTimeRange, endTimeRange);
         taskList.addTask(newEvent);
-        Ui.printAddTask(newEvent, taskList);
+        return ChatResponse.returnChatAddTask(newEvent, taskList);
     }
 }
