@@ -1,2 +1,3 @@
-[T][ ] yes
-[D][ ] yes (by: 29 December 2022)
+[D][X] yes (by: 10 October 2042)
+[E][ ] no (at: Sunday 2-4pm)
+[T][ ] maybe

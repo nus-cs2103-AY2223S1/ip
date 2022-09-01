@@ -25,6 +25,6 @@ public class DukeException extends Exception {
      * date time Exception Handler
      */
     public static void dateTimeException() {
-        System.out.println("☹ OOPS!!! Please provide a date in yyyy-mm-dd format");
+        System.out.println("☹ OOPS!!! Please provide a valid date in yyyy-mm-dd format");
     }
 }

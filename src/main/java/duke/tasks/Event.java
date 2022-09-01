@@ -20,6 +20,6 @@ public class Event extends Task {
 
     @Override
     public String output() {
-        return super.output() + this.time;
+        return super.output() + " (at: " + this.time + ")";
     }
 }
