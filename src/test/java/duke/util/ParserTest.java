@@ -24,6 +24,6 @@ public class ParserTest {
 
     @Test
     public void todoValid() throws NoArgumentException, WrongArgumentException, FileParseException {
-        assertFalse(p.parseInput("todo something", false));
+
     }
 }
