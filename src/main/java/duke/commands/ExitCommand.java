@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.exceptions.DukeException;
 
 /**
@@ -23,24 +22,13 @@ public class ExitCommand extends Command {
      * Exits <code>Duke</code> and writes the tasks in the <code>TaskList</code> into the local storage.
      *
      * @param tasks <code>TaskList</code> to be interacted with this command.
-     * @param ui <code>Ui</code> to print messages after the command executes.
      * @param storage <code>Storage</code> that interacts with the local storage.
      * @throws DukeException If <code>Storage</code> fails to write into the local storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         storage.save(tasks);
-        ui.printBye();
+        String response = "Goodbye!";
+        return response;
     }
-
-    /**
-     * Returns whether the command is the exit command.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
-
 }

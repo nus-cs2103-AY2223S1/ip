@@ -9,7 +9,7 @@ import duke.commands.ExitCommand;
 import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
-import duke.commands.UnMarkCommand;
+import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
 
 /**
@@ -20,7 +20,7 @@ public class Parser {
     /**
      * Parses input into a <code>Command</code>.
      *
-     * @param fullCommand Input taken from <code>Ui</code>.
+     * @param fullCommand User's input
      * @return <code>Command</code> to be executed.
      * @throws DukeException If input is not of a recognizable pattern.
      */
@@ -44,7 +44,7 @@ public class Parser {
             return new MarkCommand(fullCommand);
         }
         if (fullCommand.matches("^unmark [0-9]*$")) {
-            return new UnMarkCommand(fullCommand);
+            return new UnmarkCommand(fullCommand);
         }
         if (fullCommand.matches("^delete [0-9]*$")) {
             return new DeleteCommand(fullCommand);

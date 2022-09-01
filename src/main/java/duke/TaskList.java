@@ -49,7 +49,7 @@ public class TaskList {
      *
      * @return The number of <code>Task</code> in this <code>TaskList</code>.
      */
-    public int size() {
+    public int getSize() {
         return this.tasks.size();
     }
 
@@ -83,14 +83,15 @@ public class TaskList {
     /**
      * Prints out the list of <code>Task</code> stored in this <code>TaskList</code>.
      */
-    public void list() {
+    public String list() {
         Task[] x = new Task[tasks.size()];
         Task[] tasksArray = tasks.toArray(x);
-        System.out.println("Here are the tasks in your list:");
+        String response = "Here are the tasks in your list:\n";
         for (int i = 1; i <= tasksArray.length; i++) {
             Task task = tasksArray[i - 1];
-            System.out.println(i + "." + task.toString());
+            response += i + "." + task.toString() + "\n";
         }
+        return response;
     }
 
     /**
@@ -98,16 +99,17 @@ public class TaskList {
      *
      * @param input Keyword of the description of the <code>Task</code>.
      */
-    public void find(String input) {
-        System.out.println("Here are the matching tasks in your list: ");
+    public String find(String input) {
+        String response = "Here are the matching tasks in your list:\n";
         int count = 1;
         for (int i = 0; i < tasks.size(); i++) {
             String task = tasks.get(i).toString();
             if (task.contains(input.substring(5))) {
-                System.out.println(count + "." + task);
+                response += count + "." + task + "\n";
                 count++;
             }
         }
+        return response;
     }
 
 }

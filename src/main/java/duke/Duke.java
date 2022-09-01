@@ -10,49 +10,34 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     /**
      * Constructs a <code>Duke</code> instance and attempt to retrieve the saved tasks list stored locally.
      * If the retrieval succeeds, initializes a <code>TaskList</code> with the saved tasks in it.
      * If the retrieval fails, initializes a <code>TaskList</code>.
-     *
-     * @param filePath Path of the file relative to the root directory.
      */
-    public Duke(String filePath) {
-        ui = new Ui();
-        ui.printWelcome();
-        storage = new Storage(filePath);
+
+    public Duke() {
+        storage = new Storage("data/TaskList.txt");
         try {
             tasks = new TaskList(storage.load());
-            ui.printSuccessfulLoad();
         } catch (DukeException e) {
-            ui.printFailedLoad();
             tasks = new TaskList();
         }
     }
 
     /**
-     * Runs <code>Duke</code> to start taking inputs.
+     * Returns a <code>String</code> as a response to the user's input.
+     *
+     * @param input User's input.
+     * @return A <code>String</code> response.
      */
-    public void run() {
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.printError(e.getMessage());
-            } finally {
-                ui.printLine();
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/TaskList.txt").run();
     }
 }
