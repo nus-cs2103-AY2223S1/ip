@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,24 +12,38 @@ public class Duke {
     private static void updateFromFile() {
         try {
             String line = FileHandler.readLine(1);
-            int lineNum = 0;
-            while (!line.equals("")) {
+            int lineNum = 1;
+            while (line != null) {
+                Task task;
+                if (line.charAt(1) == 'D') {
+                    int index = line.indexOf('|');
+                    String taskName = line.substring(7, index - 1);
+                    String dateTime = line.substring(index + 2);
+                    task = new Task.DeadlineTask(taskName, dateTime);
+                } else if (line.charAt(1) == 'E') {
+                    int index = line.indexOf('|');
+                    String dateTime = line.substring(index + 2);
+                    String taskName = line.substring(8, index - 1);
+                    task = new Task.EventTask(taskName, dateTime);
+                } else if (line.charAt(1) == 'T'){
+                    String taskName = line.substring(8);
+                    task = new Task.TodoTask(taskName);
+                } else {
+                    throw new InputMismatchException();
+                }
+                if (line.charAt(4) == '1') {
+                    task.markComplete();
+                }
+                LIST_OF_TASKS.add(task);
                 lineNum++;
                 line = FileHandler.readLine(lineNum);
-                if (line.charAt(1) == 'D') {
-                    if (line.charAt('4') == 'Y') {
-                        int index = line.indexOf('|');
-                        String taskName = line.substring(8, index - 1);
-                        String dateTime = line.substring(index + 2);
-                        Task task = new Task.DeadlineTask(taskName, dateTime);
-                    }
-                }
             }
-            //TODO
         } catch (FileNotFoundException e) {
             System.out.println("No file found to read from");
         } catch (IOException e) {
             System.out.println("Unknown IO Exception");
+        } catch (NullPointerException | InputMismatchException e) {
+            System.out.println("Input file format not recognised");
         }
     }
 
@@ -47,6 +63,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        updateFromFile();
         System.out.println("Hi, I'm Duke. What can I do for you?");
         Scanner keyboard = new Scanner(System.in);
         String message = keyboard.nextLine();
@@ -66,7 +83,7 @@ public class Duke {
                     int task_index = Integer.parseInt(message.substring(5)) - 1;
                     Task task = LIST_OF_TASKS.get(task_index);
                     task.markComplete();
-                    System.out.printf("Marked task %d as complete. %n%s",task_index + 1, task);
+                    System.out.printf("Marked task %d as complete. %n%s%n",task_index + 1, task);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Please indicate which task you would like to mark");
                 } catch (NumberFormatException e) {
@@ -89,10 +106,10 @@ public class Duke {
                 }
             }else if (message.toLowerCase().startsWith("deadline")) {
                 int slash_char_pos = message.indexOf("/by");
-                if (slash_char_pos < 13) {
+                if (slash_char_pos < 11) {
                     System.out.println("Deadline tasks require a task name and a deadline specified by /by");
                 } else {
-                    String task_name = message.substring(9, slash_char_pos);
+                    String task_name = message.substring(9, slash_char_pos - 1);
                     String deadline = message.substring(slash_char_pos + 4);
                     Task this_task = new Task.DeadlineTask(task_name, deadline);
                     LIST_OF_TASKS.add(this_task);
@@ -100,10 +117,10 @@ public class Duke {
                 }
             } else if (message.toLowerCase().startsWith(("event"))) {
                 int slash_char_pos = message.indexOf("/at");
-                if (slash_char_pos < 10) {
+                if (slash_char_pos < 8) {
                     System.out.println("Event tasks require a task name and a datetime specified by /at");
                 } else {
-                    String task_name = message.substring(6, slash_char_pos);
+                    String task_name = message.substring(6, slash_char_pos - 1);
                     String date = message.substring(slash_char_pos + 4);
                     Task this_task = new Task.EventTask(task_name, date);
                     LIST_OF_TASKS.add(this_task);

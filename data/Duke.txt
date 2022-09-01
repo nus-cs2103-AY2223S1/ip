@@ -1,1 +1,1 @@
-[D][N] 8 | die
+[P][1] BCD | live

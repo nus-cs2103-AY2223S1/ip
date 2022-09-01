@@ -26,7 +26,7 @@ public class FileHandler {
 
     public static String readLine(int lineNum) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(RELATIVE_PATH));
-        String line = reader.readLine();
+        String line = "INIT";
         int counter = 0;
         while(line != null) {
             counter++;
@@ -36,7 +36,7 @@ public class FileHandler {
             }
         }
         reader.close();
-        return "";
+        return null;
     }
 
     public static boolean editLine(String content, int lineNum) throws IOException {
