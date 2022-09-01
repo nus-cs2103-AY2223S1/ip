@@ -4,20 +4,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Deadline extends Task {
-    protected FormatDate date;
+public class deadline extends Task {
+    protected formatDate date;
 
     /**
      *
-     * @param description description of task
+     * @param desc description of task
      */
-    public Deadline(String description) {
-        super(description);
+    public deadline(String desc) {
+        super(desc);
     }
 
     /**
      *
-     * @return String : [D][ ] with the description and deadline
+     * @return String : [D][ ] with the description and due date
      */
     @Override
     public String toString() {
@@ -26,9 +26,9 @@ public class Deadline extends Task {
 
     /**
      *
-     * @param date set the deadline of the task
+     * @param date set the due date of the task
      */
-    public void setDate(FormatDate date) {
+    public void setDate(formatDate date) {
         this.date = date;
     }
 

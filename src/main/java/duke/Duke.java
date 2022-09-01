@@ -12,7 +12,7 @@ public class Duke {
 
     /**
      *
-     * @param file text file where the descriptions are stored
+     * @param file textfile where the descriptions are stored
      * @throws IOException
      */
     public Duke(File file) throws IOException {
@@ -27,11 +27,11 @@ public class Duke {
     public void run() {
         ui.greet();
         Scanner sc = new Scanner(System.in);
-        boolean isExitProgram = false;
+        boolean exitProgram = false;
 
-        while(!isExitProgram) {
+        while(!exitProgram) {
             try {
-                isExitProgram = Parser.isParse(sc.nextLine(), taskList, ui, storage);
+                exitProgram = Parser.parse(sc.nextLine(), taskList, ui, storage);
             } catch (DukeException e) {
                 System.out.println("Something went wrong " + e.getMessage());
             }
