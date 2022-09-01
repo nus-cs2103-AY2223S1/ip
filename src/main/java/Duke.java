@@ -1,3 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -103,7 +107,7 @@ public class Duke {
      */
     public static void deadline(String[] arguments) {
         StringBuilder deadlineName = new StringBuilder();
-        StringBuilder deadlineDeadline = new StringBuilder();
+        StringBuilder deadlineDeadlineString = new StringBuilder();
         boolean byFlagRead = false;
         for (int i = 1; i < arguments.length; ++i) {
             if (arguments[i].equals("/by") && !byFlagRead) {
@@ -111,10 +115,10 @@ public class Duke {
                 continue;
             }
             if (byFlagRead) {
-                if (deadlineDeadline.length() != 0) {
-                    deadlineDeadline.append(' ');
+                if (deadlineDeadlineString.length() != 0) {
+                    deadlineDeadlineString.append(' ');
                 }
-                deadlineDeadline.append(arguments[i]);
+                deadlineDeadlineString.append(arguments[i]);
             } else {
                 if (deadlineName.length() != 0) {
                     deadlineName.append(' ');
@@ -122,12 +126,20 @@ public class Duke {
                 deadlineName.append(arguments[i]);
             }
         }
-        if (deadlineName.length() == 0 || deadlineDeadline.length() == 0) {
+        if (deadlineName.length() == 0 || deadlineDeadlineString.length() == 0) {
             reply(new String[]{"Format the command as follows:",
                     "deadline <deadline name> /by <deadline>"});
             return;
         }
-        todoList.add(new Deadline(deadlineName.toString(), deadlineDeadline.toString()));
+        LocalDateTime deadlineDeadline;
+        try {
+            deadlineDeadline = LocalDateTime
+                .parse(deadlineDeadlineString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+        } catch (DateTimeParseException e) {
+            reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
+            return;
+        }
+        todoList.add(new Deadline(deadlineName.toString(), deadlineDeadline));
         justAddedComment();
     }
 
@@ -138,31 +150,51 @@ public class Duke {
      */
     public static void event(String[] arguments) {
         StringBuilder eventName = new StringBuilder();
-        StringBuilder eventTime = new StringBuilder();
-        boolean atFlagRead = false;
+        StringBuilder eventStartTimeString = new StringBuilder();
+        StringBuilder eventEndTimeString = new StringBuilder();
+        int readMode = 0;
         for (int i = 1; i < arguments.length; ++i) {
-            if (arguments[i].equals("/at") && !atFlagRead) {
-                atFlagRead = true;
+            if (arguments[i].equals("/from")) {
+                readMode = 1;
                 continue;
             }
-            if (atFlagRead) {
-                if (eventTime.length() != 0) {
-                    eventTime.append(' ');
-                }
-                eventTime.append(arguments[i]);
-            } else {
+            if (arguments[i].equals("/to")) {
+                readMode = 2;
+                continue;
+            }
+            if (readMode == 0) {
                 if (eventName.length() != 0) {
                     eventName.append(' ');
                 }
                 eventName.append(arguments[i]);
+            } else if (readMode == 1) {
+                if (eventStartTimeString.length() != 0) {
+                    eventStartTimeString.append(' ');
+                }
+                eventStartTimeString.append(arguments[i]);
+            } else if (readMode == 2) {
+                if (eventEndTimeString.length() != 0) {
+                    eventEndTimeString.append(' ');
+                }
+                eventEndTimeString.append(arguments[i]);
             }
         }
-        if (eventName.length() == 0 || eventTime.length() == 0) {
+        if (eventName.length() == 0 || eventStartTimeString.length() == 0 || eventEndTimeString.length() == 0) {
             reply(new String[]{"Format the command as follows:",
-                    "event <event name> /at <event time>"});
+                    "event <event name> /from <event start time> /to <event end time>"});
             return;
         }
-        todoList.add(new Event(eventName.toString(), eventTime.toString()));
+        LocalDateTime eventStartTime, eventEndTime;
+        try {
+            eventStartTime = LocalDateTime
+                .parse(eventStartTimeString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+            eventEndTime = LocalDateTime
+                .parse(eventEndTimeString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+        } catch (DateTimeParseException e) {
+            reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
+            return;
+        }
+        todoList.add(new Event(eventName.toString(), eventStartTime, eventEndTime));
         justAddedComment();
     }
 
