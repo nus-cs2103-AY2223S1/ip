@@ -55,7 +55,6 @@ public class Storage {
 
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
-                System.out.println(input);
                 String[] parsedInput = input.split(" \\| ");
                 Task task;
 

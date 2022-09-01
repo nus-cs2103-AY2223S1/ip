@@ -1,9 +1,7 @@
 package bobthebot.bob;
 
-import java.io.IOException;
 import java.util.Scanner;
 
-import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
@@ -32,13 +30,13 @@ public class BobTheBot {
     /**
      * Runs BobTheBot.
      */
-    public void run() throws BobException {
-        Ui.printWelcome();
+    public void run() {
+        Ui.sayWelcome();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.toLowerCase().equals("bye")) {
-                Ui.printGoodbye(list);
+                Ui.sayGoodbye(list);
                 break;
             }
             parser.parseCommand(command, list);
@@ -47,10 +45,10 @@ public class BobTheBot {
         scanner.close();
     }
 
-    /**
-     * Main class where constructor is called and BobTheBot is run.
-     */
-    public static void main(String[] args) throws IOException, BobException {
-        new BobTheBot("./../../data/data.txt").run();
-    }
+//    /**
+//     * Main class where constructor is called and BobTheBot is run.
+//     */
+//    public static void main(String[] args) {
+//        new BobTheBot("./../../data/data.txt").run();
+//    }
 }

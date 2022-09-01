@@ -1,14 +1,15 @@
 package tasks;
 
-import bobthebot.tasks.Task;
-import bobthebot.tasks.Todo;
-import bobthebot.tasks.ToDoList;
-import bobthebot.utils.Storage;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import bobthebot.tasks.Task;
+import bobthebot.tasks.ToDoList;
+import bobthebot.tasks.Todo;
+import bobthebot.utils.Storage;
 
 public class ToDoListTest {
     @Test
@@ -18,7 +19,7 @@ public class ToDoListTest {
         Task todo = new Todo("task1");
         ToDoList taskList = new ToDoList(tasks, storage);
         todo.markDone();
-        assertEquals(todo.getStatusIcon(), "✔");
+        assertEquals(todo.getStatusIcon(), "X");
     }
 
     @Test

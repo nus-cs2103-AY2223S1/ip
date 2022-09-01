@@ -1,13 +1,14 @@
 package utils;
 
-import bobthebot.tasks.Deadline;
-import bobthebot.tasks.Task;
-import bobthebot.utils.Storage;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import bobthebot.tasks.Deadline;
+import bobthebot.tasks.Task;
+import bobthebot.utils.Storage;
 
 public class StorageTest {
     @Test
