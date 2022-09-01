@@ -29,11 +29,20 @@ public class AddToDoCommand extends Command {
      * @throws DukeMissingArgumentException If the input is missing a description.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
         try {
             ToDo todo = new ToDo(description.substring(5), false);
             tasks.add(todo);
-            ui.printAddTask(todo, tasks.size());
+            int numberOfTasks = tasks.size();
+            String response;
+            if (numberOfTasks < 2) {
+                response = "Got it. I've added this task:\n " + todo
+                        + "\nNow you have " + numberOfTasks + " task in the list.";
+            } else {
+                response = "Got it. I've added this task:\n " + todo
+                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
+            }
+            return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeMissingArgumentException("OOPS!!! The description of a todo cannot be empty.");
         }

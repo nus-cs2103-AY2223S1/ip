@@ -28,11 +28,12 @@ public class UnMarkCommand extends Command {
      * @throws DukeIndexOutOfBoundsException If user inputted an index outside the range.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(7)) - 1;
             tasks.markTaskAsUndone(index);
-            ui.printTaskMarkedUndone(tasks.get(index));
+            String response = "OK, I've marked this task as not done yet:\n" + tasks.get(index);
+            return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as undone.");
         }

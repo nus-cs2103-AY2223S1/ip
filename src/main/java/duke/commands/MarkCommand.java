@@ -28,11 +28,12 @@ public class MarkCommand extends Command {
      * @throws DukeIndexOutOfBoundsException If user inputted an index outside the range.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(5)) - 1;
             tasks.markTaskAsDone(index);
-            ui.printTaskMarkedDone(tasks.get(index));
+            String response = "Nice! I've marked this task as done:\n" + tasks.get(index);
+            return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as done.");
         }

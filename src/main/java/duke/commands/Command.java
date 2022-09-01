@@ -29,7 +29,7 @@ public abstract class Command {
      * @param storage <code>Storage</code> that interacts with the local storage.
      * @throws DukeException If command fails to execute.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns whether the command is the exit command.

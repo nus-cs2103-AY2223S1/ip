@@ -29,12 +29,21 @@ public class AddDeadlineCommand extends Command {
      * @throws DukeMissingArgumentException If the input is missing a description or time.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
         try {
             String[] str = description.substring(9).split(" /by ");
             Deadline deadline = new Deadline(str[0], str[1], false);
             tasks.add(deadline);
-            ui.printAddTask(deadline, tasks.size());
+            int numberOfTasks = tasks.size();
+            String response;
+            if (numberOfTasks < 2) {
+                response = "Got it. I've added this task:\n " + deadline
+                        + "\nNow you have " + numberOfTasks + " task in the list.";
+            } else {
+                response = "Got it. I've added this task:\n " + deadline
+                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
+            }
+            return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of a deadline "
                     + "cannot be empty.");

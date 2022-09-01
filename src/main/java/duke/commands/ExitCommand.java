@@ -28,9 +28,10 @@ public class ExitCommand extends Command {
      * @throws DukeException If <code>Storage</code> fails to write into the local storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         storage.save(tasks);
-        ui.printBye();
+        String response = "Goodbye!";
+        return response;
     }
 
     /**

@@ -12,6 +12,19 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    public Duke() {
+        ui = new Ui();
+        ui.printWelcome();
+        storage = new Storage("data/TaskList.txt");
+        try {
+            tasks = new TaskList(storage.load());
+            ui.printSuccessfulLoad();
+        } catch (DukeException e) {
+            ui.printFailedLoad();
+            tasks = new TaskList();
+        }
+    }
+
     /**
      * Constructs a <code>Duke</code> instance and attempt to retrieve the saved tasks list stored locally.
      * If the retrieval succeeds, initializes a <code>TaskList</code> with the saved tasks in it.
@@ -54,5 +67,18 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke("data/TaskList.txt").run();
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

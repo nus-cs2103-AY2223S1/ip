@@ -29,12 +29,21 @@ public class AddEventCommand extends Command {
      * @throws DukeMissingArgumentException If the input is missing a description or time.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeMissingArgumentException {
         try {
             String[] str = description.substring(6).split(" /at ");
             Event event = new Event(str[0], str[1], false);
             tasks.add(event);
-            ui.printAddTask(event, tasks.size());
+            int numberOfTasks = tasks.size();
+            String response;
+            if (numberOfTasks < 2) {
+                response = "Got it. I've added this task:\n " + event
+                        + "\nNow you have " + numberOfTasks + " task in the list.";
+            } else {
+                response = "Got it. I've added this task:\n " + event
+                        + "\nNow you have " + numberOfTasks + " tasks in the list.";
+            }
+            return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeMissingArgumentException("OOPS!!! The description and/or the time of an event "
                     + "cannot be empty.");

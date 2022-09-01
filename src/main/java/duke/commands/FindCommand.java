@@ -26,7 +26,7 @@ public class FindCommand extends Command {
      * @param storage <code>Storage</code> that interacts with the local storage.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.find(description);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.find(description);
     }
 }
