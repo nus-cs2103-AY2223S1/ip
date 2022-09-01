@@ -1,12 +1,12 @@
 package duke;
 
-import duke.task.Deadline;
-
-import org.junit.jupiter.api.Test;
-    
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import duke.task.Deadline;
 
 public class DeadlineTest {
     @Test
@@ -18,7 +18,7 @@ public class DeadlineTest {
             System.out.println(e);
         }
         DukeException thrown = assertThrows(DukeException.class, () -> new Deadline("deadline", "wrong time format"));
-        assertTrue(thrown.getMessage().contains("Wrong datetime format"));
+        assertTrue(thrown.getMessage().contains("Wrong format"));
     }
 
     @Test
