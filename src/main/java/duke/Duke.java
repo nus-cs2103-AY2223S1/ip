@@ -7,11 +7,17 @@ import duke.storage.Storage;
 import duke.task.List;
 import duke.ui.Ui;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 /**
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
+    private static final String FILE_PATH = "Duke/duke.txt";
     private Storage storage;
     private List tasks;
     private Ui ui;
@@ -20,10 +26,10 @@ public class Duke {
      * Sets up the required objects and loads up the data from the storage file.
      *
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
         try {
-            storage = new Storage(filePath);
+            storage = new Storage(FILE_PATH);
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
         }
@@ -37,9 +43,9 @@ public class Duke {
     }
 
     /** Runs the program until termination. */
-    public static void main(String[] args) {
+    public static void main(String... args) {
 
-        new Duke("Duke/Duke.txt").run();
+        new Duke().run();
     }
 
     /**
