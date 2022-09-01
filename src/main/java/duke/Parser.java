@@ -45,6 +45,9 @@ public class Parser {
                     taskList.deleteTask(str, taskList);
                     storage.writeToFile(taskList);
                 }
+                else if (str.split(" ")[0].equals("find")) {
+                    Task.find(str, taskList);
+                }
                 else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
