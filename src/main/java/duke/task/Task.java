@@ -4,6 +4,9 @@ package duke.task;
  * Simulates the individual task entered by the user and
  * encapsulates the task description as well as task status
  * within its fields.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Task {
     //To encapsulate the information regarding the task

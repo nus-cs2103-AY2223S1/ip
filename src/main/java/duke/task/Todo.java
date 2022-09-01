@@ -5,6 +5,9 @@ import java.util.Objects;
 /**
  * Extends from Task as it is a more specific/well-defined task,
  * it is differentiated by having no deadline/due dates in user-input.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Todo extends Task {
 

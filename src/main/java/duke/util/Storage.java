@@ -14,6 +14,9 @@ import duke.task.Todo;
 
 /**
  * Handles reading/writing of tasks to a local txt file.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Storage {
     private String filePath;

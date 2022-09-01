@@ -16,6 +16,9 @@ import duke.util.Ui;
 /**
  * Represents a command for adding tasks to the task lists. It comprises of 3 types
  * of task to be created, namely todo, deadline and event.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class AddCommand extends Command {
     private int taskType;
@@ -40,10 +43,11 @@ public class AddCommand extends Command {
      * @param tasks List to add and keep track of the tasks
      * @param ui Ui that handles the interaction with user inputs
      * @param storage Storage that handles the writing and reading of tasks from a txt file
+     * @return String that represents the response of ChatBot after executing the command
      * @throws IOException if the writeToFile method fails while storing the TaskList on a local txt file
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         if (this.taskType == 0) {
             tasks.add(new Todo(this.taskDetails, false));
         } else if (this.taskType == 1) {
@@ -54,14 +58,19 @@ public class AddCommand extends Command {
             tasks.add(new Event(infoArray[0], formatDate(infoArray[1]), false));
         }
         String taskDescription = "  " + tasks.getTask(tasks.size() - 1).toString();
-        System.out.println(this);
-        System.out.println(taskDescription);
-        if (tasks.size() == 1) {
-            System.out.println("Now you have 1 task in the list.");
-        } else {
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        }
         storage.writeToFile(tasks);
+        if (tasks.size() == 1) {
+            return this + taskDescription
+                    + "\nNow you have 1 task in the list."
+                    + "\n________________________________________";
+        } else {
+            return this + taskDescription
+                    + "\nNow you have "
+                    + tasks.size()
+                    + " tasks in the list."
+                    + "\n________________________________________";
+        }
+
     }
 
     /**
@@ -97,8 +106,8 @@ public class AddCommand extends Command {
      */
     @Override
     public String toString() {
-        return "__________________________________________________\n"
-                + "Got it. I have added this task:";
+        return "________________________________________\n"
+                + "Got it. I have added this task:\n";
     }
 
     /**

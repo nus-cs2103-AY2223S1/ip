@@ -10,6 +10,9 @@ import duke.util.Ui;
 
 /**
  * Encapsulates the logic for the MarkCommand when the user wants to mark a certain task as done.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class MarkCommand extends Command {
     private int taskNumber;
@@ -30,21 +33,25 @@ public class MarkCommand extends Command {
      * @param tasks List that keeps track of the tasks added/removed
      * @param ui Ui that handles the interaction with user inputs
      * @param storage Storage that handles the writing/reading of data from a txt file
+     * @return String that represents the response of ChatBot after executing the command
      * @throws DukeException if the specified task is invalid
      * @throws IOException if an error occurred while writing data to the txt file
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
-            String errorMessage = "__________________________________________________\n"
-                    + "OOPS!!! There is no such task number!";
+            String errorMessage = "________________________________________\n"
+                    + "OOPS!!! There is no such task number!\n"
+                    + "________________________________________";
             throw new DukeException(errorMessage);
         }
 
         tasks.getTask(this.taskNumber - 1).markTaskDone();
-        System.out.println(this);
-        System.out.println("  " + tasks.getTask(this.taskNumber - 1).toString());
         storage.writeToFile(tasks);
+        return this
+                + "  "
+                + tasks.getTask(this.taskNumber - 1).toString()
+                + "\n________________________________________";
     }
 
     /**
@@ -64,8 +71,8 @@ public class MarkCommand extends Command {
      */
     @Override
     public String toString() {
-        return "__________________________________________________\n"
-                + "Good Job! I have marked this task as done:";
+        return "________________________________________\n"
+                + "Good Job! I have marked this task as done:\n";
     }
 
     /**

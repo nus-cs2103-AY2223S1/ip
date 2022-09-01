@@ -5,6 +5,9 @@ import java.util.ArrayList;
 /**
  * Simulates the list used to store the Tasks added by the user
  * and provide basic operations similar to a to-do list.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class TaskList {
     private ArrayList<Task> taskList;

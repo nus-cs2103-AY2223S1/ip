@@ -13,6 +13,9 @@ import duke.util.Ui;
 /**
  * An interactive ChatBot that provides functions of a to-do list
  * depending on the user's input.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Duke {
     private Storage storage;
@@ -38,26 +41,18 @@ public class Duke {
     }
 
     /**
-     * Kickstarts the entire ChatBot.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.displayWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException | IOException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException | IOException e) {
+            return e.getMessage();
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
-    }
+
+
 }

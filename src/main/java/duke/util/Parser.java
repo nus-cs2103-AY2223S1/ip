@@ -14,6 +14,9 @@ import duke.exception.DukeException;
 /**
  * Handles the process of parsing the user inputs and carry out the
  * corresponding commands.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Parser {
     //The important keywords to check against with the user-input
@@ -46,8 +49,9 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         //Exception: When the user input is empty/blank
         if (fullCommand.isEmpty() || fullCommand.isBlank()) {
-            String errorMessage = "__________________________________________________\n"
-                    + "Please enter valid inputs, empty strings or blanks are not valid!";
+            String errorMessage = "________________________________________\n"
+                    + "Empty strings or blanks are invalid!\n"
+                    + "________________________________________";
             throw new DukeException(errorMessage);
         }
 
@@ -61,8 +65,9 @@ public class Parser {
             return new ListCommand();
         } else if (firstText.equals(DELETECOMMAND)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The task number for deleting must be specified!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The task number for deleting must be specified!\n"
+                        + "________________________________________";
                 throw new DukeException(errorMessage);
             }
 
@@ -70,14 +75,16 @@ public class Parser {
                 int inputNumber = Integer.parseInt(array[1]);
                 return new DeleteCommand(inputNumber);
             } catch (NumberFormatException e) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! Please input a number after delete keyword!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! Please input a number after delete keyword!\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
         } else if (firstText.equals(MARKCOMMAND)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The task number for marking must be specified!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The task number for marking must be specified!\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
 
@@ -85,14 +92,16 @@ public class Parser {
                 int inputNumber = Integer.parseInt(array[1]);
                 return new MarkCommand(inputNumber);
             } catch (NumberFormatException e) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! Please input a number after mark keyword!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! Please input a number after mark keyword!\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
         } else if (firstText.equals(UNMARKCOMMAND)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The task number for unmarking must be specified!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The task number for unmarking must be specified!\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
 
@@ -100,35 +109,40 @@ public class Parser {
                 int inputNumber = Integer.parseInt(array[1]);
                 return new UnmarkCommand(inputNumber);
             } catch (NumberFormatException e) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! Please input a number after unmark keyword!";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! Please input a number after unmark keyword!\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
         } else if (firstText.equals(TODO)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The description of a todo cannot be empty.";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The description of a todo cannot be empty.\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
             return new AddCommand(0, array[1]);
         } else if (firstText.equals(DEADLINE)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The description of a deadline cannot be empty.";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The description of a deadline cannot be empty.\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
             return new AddCommand(1, array[1]);
         } else if (firstText.equals(EVENT)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The description of a event cannot be empty.";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The description of a event cannot be empty.\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
             return new AddCommand(2, array[1]);
         } else if (firstText.equals(FINDCOMMAND)) {
             if (array.length == 1) {
-                String errorMessage = "__________________________________________________\n"
-                        + "OOPS!!! The keyword to search cannot be empty.";
+                String errorMessage = "________________________________________\n"
+                        + "OOPS!!! The keyword to search cannot be empty.\n"
+                        + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
             return new FindCommand(array[1]);

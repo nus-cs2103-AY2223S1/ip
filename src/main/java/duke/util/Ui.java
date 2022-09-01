@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 /**
  * Handles the interactions with the user.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Ui {
     private Scanner scanner;
@@ -27,12 +30,12 @@ public class Ui {
                 + "| |___| |_| |   <  __/\n"
                 + "|_____|\\__,_|_|\\_\\___|\n";
 
-        return "__________________________________________________\n"
+        return "________________________________________\n"
                 + "Hola Amigo! My name is\n"
                 + logo
                 + "\n"
                 + "How may I assist you today?\n"
-                + "__________________________________________________";
+                + "________________________________________";
     }
 
     /**
@@ -55,7 +58,7 @@ public class Ui {
      * Prints out a divider for formatting.
      */
     public void showLine() {
-        System.out.println("__________________________________________________");
+        System.out.println("________________________________________");
     }
 
     /**

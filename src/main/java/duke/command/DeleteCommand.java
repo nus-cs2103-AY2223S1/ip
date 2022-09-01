@@ -9,6 +9,9 @@ import duke.util.Ui;
 
 /**
  * Encapsulates the logic behind deleting a task from the TaskList.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class DeleteCommand extends Command {
     private int taskNumber;
@@ -29,29 +32,39 @@ public class DeleteCommand extends Command {
      * @param tasks List that keeps track of the tasks added/removed
      * @param ui Ui that handles the interaction with user inputs
      * @param storage Storage that handles the writing/reading of data from a txt file
+     * @return String that represents the response of ChatBot after executing the command
      * @throws DukeException if the TaskList is empty or an invalid task number in user's input
      * @throws IOException if an error occurs while writing to a txt file
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         //Exception: Throw an error when user tries to delete from an empty list
         if (tasks.isEmpty()) {
-            String errorMessage = "__________________________________________________\n"
-                    + "OOPS!!! There are no task left to be deleted!";
+            String errorMessage = "________________________________________\n"
+                    + "OOPS!!! There are no task left to be deleted!\n"
+                    + "________________________________________";
             throw new DukeException(errorMessage);
         }
 
         //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
         if (taskNumber > tasks.size() || taskNumber < 1) {
-            String errorMessage = "__________________________________________________\n"
-                    + "OOPS!!! There is no such task number!";
+            String errorMessage = "________________________________________\n"
+                    + "OOPS!!! There is no such task number!\n"
+                    + "________________________________________";;
             throw new DukeException(errorMessage);
         }
-        System.out.println(this);
-        System.out.println("  " + tasks.getTask(taskNumber - 1).toString());
+
+        String respondMessage = this
+                + "  "
+                + tasks.getTask(taskNumber - 1).toString()
+                + "\n Now you have "
+                + (tasks.size() - 1)
+                + " tasks in the list."
+                + "\n________________________________________";
         tasks.delete(this.taskNumber - 1);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         storage.writeToFile(tasks);
+        return respondMessage;
+
     }
 
     /**
@@ -71,8 +84,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String toString() {
-        return "__________________________________________________\n"
-                + "Noted. I have removed this task:";
+        return "________________________________________\n"
+                + "Noted. I have removed this task:\n";
     }
 
     /**

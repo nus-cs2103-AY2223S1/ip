@@ -6,6 +6,9 @@ import duke.util.Ui;
 /**
  * Encapsulates the logic for a WrongCommand when the user key in keywords that are
  * not recognised by the ChatBot.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class WrongCommand extends Command {
 
@@ -16,10 +19,11 @@ public class WrongCommand extends Command {
      * @param tasks List that keeps track of the tasks added/removed
      * @param ui Ui that handles the interaction with user inputs
      * @param storage Storage that handles the writing/reading of data from a txt file
+     * @return String that represents the response of ChatBot after executing the command
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println(this);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return this.toString();
     }
 
     /**
@@ -39,7 +43,8 @@ public class WrongCommand extends Command {
      */
     @Override
     public String toString() {
-        return "__________________________________________________\n"
-                + "OOPS! I'm sorry, but I don't know what that means :(";
+        return "________________________________________\n"
+                + "Sorry! I don't know what that means :(\n"
+                + "________________________________________";
     }
 }

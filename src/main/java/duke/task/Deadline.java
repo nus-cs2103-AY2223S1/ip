@@ -3,6 +3,9 @@ package duke.task;
 /**
  * Extends from Task as it is a more specific/well-defined
  * task, it is differentiated with the "deadline" keyword in user-input.
+ *
+ * @author bensohh
+ * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class Deadline extends Task {
     //String field to store details after /by keyword
