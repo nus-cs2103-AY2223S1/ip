@@ -4,8 +4,16 @@
  */
 package duke;
 
-import duke.command.*;
-import duke.task.*;
+import duke.command.Command;
+import duke.command.ListCommand;
+import duke.command.ByeCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.TodoCommand;
+import duke.command.FindCommand;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -36,24 +44,24 @@ public class Parser {
 
     /**
      * public static method parse that parse input from user and returns Command for Duke to operate.
-     * @param fullCommand
+     * @param fullCommand full command from user.
      * @return Command that user input.
      * @throws DukeException
      */
     public static Command parse(String fullCommand) throws DukeException {
 
-        String[] com = fullCommand.split(" ", 2);
+        String[] splitString = fullCommand.split(" ", 2);
 
         CommandCases cs;
 
         try {
-            cs = CommandCases.valueOf(com[0].toUpperCase());
+            cs = CommandCases.valueOf(splitString[0].toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new DukeException("No such command exist...");
         }
 
         try {
-            if (com.length == 1) {
+            if (splitString.length == 1) {
                 switch (cs) {
                 case LIST:
                     return new ListCommand();
@@ -91,27 +99,27 @@ public class Parser {
                     return new ListCommand();
 
                 case MARK:
-                    return new MarkCommand(Integer.parseInt(com[1]));
+                    return new MarkCommand(Integer.parseInt(splitString[1]));
 
                 case UNMARK:
-                    return new UnmarkCommand(Integer.parseInt(com[1]));
+                    return new UnmarkCommand(Integer.parseInt(splitString[1]));
 
                 case TODO:
-                    return new TodoCommand(com[1]);
+                    return new TodoCommand(splitString[1]);
 
                 case DEADLINE:
-                    String[] parse = com[1].split("/by", 2);
+                    String[] parse = splitString[1].split("/by", 2);
                     return new DeadlineCommand(parse[0], LocalDate.parse(parse[1], formatter));
 
                 case EVENT:
-                    String[] parse1 = com[1].split("/at", 2);
+                    String[] parse1 = splitString[1].split("/at", 2);
                     return new EventCommand(parse1[0], LocalDate.parse(parse1[1], formatter));
 
                 case DELETE:
-                    return new DeleteCommand(Integer.parseInt(com[1]));
+                    return new DeleteCommand(Integer.parseInt(splitString[1]));
 
                 case FIND:
-                    String[] keywordSplit = com[1].split("\\s");
+                    String[] keywordSplit = splitString[1].split("\\s");
                     return new FindCommand(keywordSplit);
 
                 default:

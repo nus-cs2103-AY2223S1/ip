@@ -5,7 +5,10 @@
 
 package duke;
 
-import duke.task.*;
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Event;
+import duke.task.Deadline;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,8 +16,9 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * public class Storage to handle file input/read and file output/saving of text file.
@@ -36,7 +40,7 @@ public class Storage {
      */
     public ArrayList<Task> loadFromFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
-        ArrayList<Task> memo = new ArrayList<>();
+        ArrayList<Task> outputs = new ArrayList<>();
 
         BufferedReader reader = null;
         try {
@@ -64,7 +68,7 @@ public class Storage {
                 if (parse[1].equals("[X]")) {
                     task.mark();
                 }
-                memo.add(task);
+                outputs.add(task);
                 row = reader.readLine();
             }
         } catch (Exception e) {
@@ -78,7 +82,7 @@ public class Storage {
                 }
             }
         }
-        return memo;
+        return outputs;
     }
 
     /**

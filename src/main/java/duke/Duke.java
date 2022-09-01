@@ -4,10 +4,7 @@
  */
 package duke;
 
-import duke.command.*;
-import javafx.application.Application;
-
-import java.io.FileNotFoundException;
+import duke.command.Command;
 
 /**
  * class Duke that runs chat bot Duke.
