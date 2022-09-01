@@ -7,7 +7,10 @@ import java.util.Scanner;
 
 /**
  * Utility class that handles printing to terminal and reading user input.
+ * Depreciated as it is now replaced with the ChatResponse class,
+ * as now we no longer print Duke to the CLI.
  */
+@Deprecated
 public class Ui {
 
     /**
