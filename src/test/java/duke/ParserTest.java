@@ -17,7 +17,7 @@ public class ParserTest {
 
     @Test
     public void checkDate_wrongFormat_exceptionThrown() {
-        assertThrows(DukeException.class, () -> Parser.checkDate("20 dec 2022"));
+        assertThrows(DukeException.class, () -> Parser.isDateValid("20 dec 2022"));
     }
 
     @Test

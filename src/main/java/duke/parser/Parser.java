@@ -18,10 +18,10 @@ import duke.commands.UnmarkCommand;
 import duke.data.exception.DukeException;
 
 /**
- * This class encapsulates the Parser
+ * This class encapsulates the Parser which checks for
+ * the validity of inputs provided
  */
 public class Parser {
-
     /**
      * Makes sense of the commands provided by the user
      * @param input The input provided by the user
@@ -30,38 +30,27 @@ public class Parser {
      */
     public static Command parse(String input) throws DukeException {
         String[] components = input.split(" ", 2);
-        switch (components[0]) {
+        String command = components[0];
+        String args = components.length == 1 ? "" : components[1];
+        switch (command) {
         case "bye":
             return new ExitCommand();
         case "list":
-            return new ListCommand(components);
+            return prepareList(args);
         case "mark":
-            checkInput(components);
-            return new MarkCommand(Integer.parseInt(components[1]));
+            return prepareMark(args);
         case "unmark":
-            checkInput(components);
-            return new UnmarkCommand(Integer.parseInt(components[1]));
+            return prepareUnmark(args);
         case "todo":
-            checkInput(components);
-            return new TodoCommand(components[1]);
+            return prepareTodo(args);
         case "deadline":
-            checkInput(components);
-            String[] deadlineInfo = components[1].split(" /by ");
-            checkInput(deadlineInfo);
-            checkDate(deadlineInfo[1]);
-            return new DeadlineCommand(deadlineInfo[0], deadlineInfo[1]);
+            return prepareDeadline(args);
         case "event":
-            checkInput(components);
-            String[] eventInfo = components[1].split(" /at ");
-            checkInput(eventInfo);
-            checkDate(eventInfo[1]);
-            return new EventCommand(eventInfo[0], eventInfo[1]);
+            return prepareEvent(args);
         case "delete":
-            checkInput(components);
-            return new DeleteCommand(Integer.parseInt(components[1]));
+            return prepareDelete(args);
         case "find":
-            checkInput(components);
-            return new FindCommand(components[1].split(" "));
+            return prepareFind(args);
         default:
             return new InvalidCommand();
         }
@@ -79,16 +68,111 @@ public class Parser {
     }
 
     /**
-     * Checks if the date has the required format
-     * @param date The date of the task
-     * @throws DukeException If the date does not follow the required format
+     * Checks if the date provided is valid
+     * @param date
+     * @throws DukeException
      */
-    public static void checkDate(String date) throws DukeException {
+    public static boolean isDateValid(String date) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate.parse(date, formatter);
+            return true;
         } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    private static ListCommand prepareList(String args) throws DukeException {
+        if (args.equals("")) {
+            return new ListCommand();
+        } else {
+            isDateValid(args);
+            return new ListCommand(args);
+        }
+    }
+
+    private static MarkCommand prepareMark(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        try {
+            int index = Integer.parseInt(args);
+            return new MarkCommand(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid input!");
+        }
+    }
+
+    private static UnmarkCommand prepareUnmark(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        try {
+            int index = Integer.parseInt(args);
+            return new UnmarkCommand(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid input!");
+        }
+    }
+
+    private static TodoCommand prepareTodo(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        return new TodoCommand(args);
+    }
+
+    private static DeadlineCommand prepareDeadline(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        String[] components = args.split(" /by ", 2);
+        if (components.length == 1) {
+            throw new DukeException("Invalid input!");
+        } else if (!isDateValid(components[1])) {
             throw new DukeException("The date included should follow this format: dd/MM/yyyy");
         }
+
+        return new DeadlineCommand(components[0], components[1]);
+    }
+
+    private static EventCommand prepareEvent(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        String[] components = args.split(" /at ", 2);
+        if (components.length == 1) {
+            throw new DukeException("Invalid input!");
+        } else if (!isDateValid(components[1])) {
+            throw new DukeException("The date included should follow this format: dd/MM/yyyy");
+        }
+
+        return new EventCommand(components[0], components[1]);
+    }
+
+    private static DeleteCommand prepareDelete(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        try {
+            int index = Integer.parseInt(args);
+            return new DeleteCommand(index);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid input!");
+        }
+    }
+
+    private static FindCommand prepareFind(String args) throws DukeException {
+        if (args.equals("")) {
+            throw new DukeException("Invalid input!");
+        }
+
+        return new FindCommand(args.split(" "));
     }
 }

@@ -8,7 +8,8 @@ import duke.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * This class encapsulates an Exit Command
+ * This class encapsulates a List Command
+ * It returns the entire list of tasks or tasks that falls on a specific date
  */
 public class ListCommand extends Command {
 
@@ -21,10 +22,10 @@ public class ListCommand extends Command {
      */
     public ListCommand(String... info) {
         super();
-        if (info.length == 1) {
+        if (info.length == 0) {
             this.date = null;
         } else {
-            this.date = info[1];
+            this.date = info[0];
         }
     }
 
