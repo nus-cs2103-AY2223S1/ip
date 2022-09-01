@@ -25,7 +25,7 @@ public class Sakura {
      * Starts Sakura chatbot.
      */
     private void run() {
-        ui.greet();
+        System.out.println(Ui.greet());
         Scanner sc = new Scanner(System.in);
         while (inProgress) {
             String command = sc.nextLine();
@@ -43,7 +43,7 @@ public class Sakura {
     }
 
     public String getResponse(String input) {
-        System.out.println(ui.greet());
+        System.out.println(Ui.greet());
         return Parser.parseCommand(input, taskList);
     }
 }

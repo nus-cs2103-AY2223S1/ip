@@ -31,6 +31,9 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "\u001B[36m(TODO)\u001B[0m" + super.toString();
+        return "(TODO)" + super.toString();
     }
 }
+
+//[36m
+// [0m

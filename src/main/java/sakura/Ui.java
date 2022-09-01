@@ -3,8 +3,8 @@ package sakura;
 import java.util.List;
 
 public class Ui {
-    static String DIV = "________________________________________________________________";
-    static String DIV2 = "==============================================================";
+    static String DIV = "_________________________________________________________________";
+    static String DIV2 = "========================================";
 
     public String printDiv() {
         return "\t" + DIV;
@@ -15,15 +15,11 @@ public class Ui {
      * @return string message to user.
      */
     public static String greet() {
-        String logo =    "\u001B[36m███████  █████  ██   ██ ██    ██ ██████   █████    \u001B[0m\n"
-                       + "\u001B[36m██      ██   ██ ██  ██  ██    ██ ██   ██ ██   ██   \u001B[0m\n"
-                       + "\u001B[34m███████ ███████ █████   ██    ██ ██████  ███████   \u001B[0m\n"
-                       + "\u001B[35m     ██ ██   ██ ██  ██  ██    ██ ██   ██ ██   ██   \u001B[0m\n"
-                       + "\u001B[35m███████ ██   ██ ██   ██  ██████  ██   ██ ██   ██  ██\u001B[0m\n";
+        String logo = " <SAKURA.>";
 
-        return "Hello! This is \n" + logo + "\nat your service!!"
+        return "Hello! This is \n" + logo + "\nat your service!!\n"
             + DIV
-            + "How may I serve you today, Senpai?"
+            + "\nHow may I serve you today, Senpai?"
             + "\t" + DIV2 + "\n";
     }
 
@@ -32,7 +28,7 @@ public class Ui {
      * @return string message to user.
      */
     public String showExit() {
-        return "\tBye Senpai! It was a pleasure serving you, see you again soon!" + "\t" + DIV2 + "\n";
+        return "Bye Senpai! It was a pleasure serving you, see you again soon!" + "\t" + DIV2 + "\n";
     }
 
     /**
@@ -44,7 +40,7 @@ public class Ui {
      */
     public static String addDescription(List<Task> tasks, Task newTask) {
         tasks.add(newTask);
-        return "\tYes Senpai! I've added this task: \n\t  "
+        return "Yes Senpai! I've added this task: \n\t  "
                 + newTask
                 + " \n\tNow you have "
                 + tasks.size()
@@ -58,7 +54,7 @@ public class Ui {
      * @return string message to user.
      */
     public static String deleteDescription(List<Task> tasks, Task deletedTask) {
-        return "\tRight away Senpai! I've SHREDDED this task: \n\t  "
+        return "Right away Senpai! I've SHREDDED this task: \n\t  "
                 + deletedTask
                 + " \n\tNow you have "
                 + tasks.size()
@@ -72,7 +68,7 @@ public class Ui {
      * @return string message to user.
      */
     public static String showAllTask(List<Task> tasks) {
-        StringBuilder list = new StringBuilder("\tSenpai, these are the tasks in your list:");
+        StringBuilder list = new StringBuilder("Senpai, these are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             int index = i + 1;
             list.append("\n\t").append(index).append(". ").append(tasks.get(i));
@@ -82,7 +78,7 @@ public class Ui {
 
     public static String searchTaskDescription(List<Task> searchTask) {
         if (searchTask.size() > 0) {
-            StringBuilder searcher = new StringBuilder("\tSenpai, these are the tasks in your list:");
+            StringBuilder searcher = new StringBuilder("Senpai, these are the tasks in your list:");
             for (int i = 0; i < searchTask.size(); i++) {
                 int index = i + 1;
                 Task task = searchTask.get(i);
@@ -90,7 +86,7 @@ public class Ui {
             }
             return searcher.toString();
         } else {
-            return new StringBuilder("\tSenpai, there are no such tasks in your list :(").toString();
+            return "Senpai, there are no such tasks in your list :(";
         }
     }
 }
