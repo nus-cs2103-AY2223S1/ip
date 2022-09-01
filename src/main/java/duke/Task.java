@@ -34,18 +34,16 @@ public class Task {
         return (isDone ? 1 : 0 ) + " | " + this.description;
     }
 
-<<<<<<< HEAD
     /**
      * String representation of Task.
      *
      * @return string representation of Task.
      */
-=======
+
     public boolean containsWord(String str) {
         return description.contains(str);
     }
 
->>>>>>> branch-Level-9
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
