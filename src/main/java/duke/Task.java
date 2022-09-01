@@ -14,7 +14,7 @@ public abstract class Task implements Serializable {
     protected boolean isComplete = false;
 
     /**
-     * Constructor to create new duke.Task class
+     * Constructor to create new duke.Task class.
      *
      * @param task
      */
@@ -23,7 +23,7 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Factory method used to create a new duke.Task
+     * Factory method used to create a new duke.Task.
      *
      * @param commandArray the command entered by the user to be parsed by the method
      * @return a duke.Task obj, either a duke.Todo, duke.Deadline or duke.Event
@@ -58,7 +58,7 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Method used to mark this task as complete
+     * Method used to mark this task as complete.
      */
     public void markAsDone() {
         this.isComplete = true;
@@ -87,9 +87,9 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * A method used to validate a userCommand to for a specific task type
+     * A method used to validate a userCommand to for a specific task type.
      *
-     * @param userCommand the command entered by the user to be parsed by the method
+     * @param commandArray the command entered by the user to be parsed by the method
      * @param taskType    the task type either duke.Todo, duke.Deadline or duke.Event
      * @throws DukeException
      */
