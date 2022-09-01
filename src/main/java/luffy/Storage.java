@@ -46,22 +46,26 @@ public class Storage {
             if (dataFile.exists()) {
                 Scanner scanner = new Scanner(dataFile);
                 while (scanner.hasNext()) {
-                    Task currentTask;
+                    Task currentTask = null;
                     String[] taskLine = scanner.nextLine().split(Pattern.quote(" | "));
+                    boolean isTaskDone = taskLine[1].equals("1");
                     String taskDescription = taskLine[2];
                     switch (taskLine[0]) {
-                        case "[T]":
-                            currentTask = new Todo(taskDescription);
-                            tasks.add(currentTask);
-                            break;
-                        case "[E]":
-                            currentTask = new Event(taskDescription, taskLine[3]);
-                            tasks.add(currentTask);
-                            break;
-                        case "[D]":
-                            currentTask = new Deadline(taskDescription, taskLine[3]);
-                            tasks.add(currentTask);
-                            break;
+                    case "[T]":
+                        currentTask = new Todo(taskDescription);
+                        tasks.add(currentTask);
+                        break;
+                    case "[E]":
+                        currentTask = new Event(taskDescription, taskLine[3]);
+                        tasks.add(currentTask);
+                        break;
+                    case "[D]":
+                        currentTask = new Deadline(taskDescription, taskLine[3]);
+                        tasks.add(currentTask);
+                        break;
+                    }
+                    if (isTaskDone) {
+                        currentTask.markCompleted();
                     }
                 }
             }

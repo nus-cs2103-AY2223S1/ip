@@ -55,15 +55,16 @@ public class Ui {
     }
 
     /**
-     * Prints current size of TaskList.
+     * Returns the status of given TaskList
      *
-     * @param tasks TaskList to be printed
+     * @param tasks Given TaskList
+     * @return Status of Given TaskList
      */
-    public void printTaskListStatus(TaskList tasks) {
+    public String returnTaskListStatus(TaskList tasks) {
         if (tasks.getSize() > 1) {
-            System.out.println("Now you have " + tasks.getSize() + " tasks in the list.");
+            return "Now you have " + tasks.getSize() + " tasks in the list.";
         } else {
-            System.out.println("Now you have " + tasks.getSize() + " task in the list.");
+            return "Now you have " + tasks.getSize() + " task in the list.";
         }
     }
 }

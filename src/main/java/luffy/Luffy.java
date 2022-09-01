@@ -1,14 +1,8 @@
 package luffy;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.regex.Pattern;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -79,7 +73,6 @@ public class Luffy extends Application{
 
     @Override
     public void start(Stage stage) {
-
         //Container for content of the chat to scroll:
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -136,31 +129,23 @@ public class Luffy extends Application{
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
-
     }
 
     /**
-     * Iteration 2:
-            * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-            * the dialog container. Clears the user input after processing.
-            */
+     * Formats User Input into elements to show response in GUI.
+     */
     private void handleUserInput() {
+        if (userInput.getText().equals("bye")) {
+            Platform.exit();
+        }
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(userInput.getText());
+        Label dukeText = new Label(this.parser.parse(userInput.getText(), this.tasks));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+                DialogBox.getLuffyDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+        storage.updateSaveFile(this.tasks, FILE_PATH);
     }
 
     /**
