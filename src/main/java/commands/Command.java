@@ -18,7 +18,7 @@ public abstract class Command {
      * @param storage Stores and retrieves data from a local .txt file.
      * @throws TumuException Parent exception for the program.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException;
 
     /**
      * Add a task to the task list.
@@ -26,10 +26,11 @@ public abstract class Command {
      * @param tasks TaskList containing all the tasks currently available.
      * @param ui Specifies how the program interacts with the user.
      */
-    protected void addTaskType(Task task, TaskList tasks, Ui ui) {
-        ui.notifyUser("I've added a task into your list:\n\t\t" + task);
+    protected String addTaskType(Task task, Storage storage, TaskList tasks, Ui ui) {
+        String output = ui.notifyUser("I've added a task into your list:\n\t\t" + task);
         tasks.addTask(task);
-        ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
+        saveUserTasks(storage, tasks, ui);
+        return output + ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
     }
 
     /**
@@ -37,7 +38,7 @@ public abstract class Command {
      * @param storage Stores and retrieves data from a local .txt file.
      * @param tasks TaskList containing all the tasks currently available.
      */
-    protected void saveUserTasks(Storage storage, TaskList tasks) {
-        storage.saveData(tasks.getTasks());
+    protected void saveUserTasks(Storage storage, TaskList tasks, Ui ui) {
+        storage.saveData(tasks.getTasks(), ui);
     }
 }

@@ -32,13 +32,14 @@ public class DeleteCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         Task removedTask = tasks.deleteTask(taskIndex);
+        String output = "";
         if (removedTask != null) {
-            ui.notifyUser("Alright, I have removed this task for you:\n\t\t" + removedTask);
-            ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
+            output += ui.notifyUser("Alright, I have removed this task for you:\n\t\t" + removedTask);
+            output += ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
         }
-
-        saveUserTasks(storage, tasks);
+        saveUserTasks(storage, tasks, ui);
+        return output;
     }
 }

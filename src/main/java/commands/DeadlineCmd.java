@@ -33,7 +33,7 @@ public class DeadlineCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         //Check for "/by", if not available then prompt user to add timing.
         if (!body.contains("/by")) {
             throw new DENoTimingException("by");
@@ -45,11 +45,9 @@ public class DeadlineCmd extends Command {
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
                 throw new DENoArgException();
             } else {
-                addTaskType(new Deadline(parse[0].trim(),
-                        parse[1].replaceAll("\\s+", "")), tasks, ui);
+                return addTaskType(new Deadline(parse[0].trim(),
+                        parse[1].replaceAll("\\s+", "")), storage, tasks, ui);
             }
         }
-
-        saveUserTasks(storage, tasks);
     }
 }

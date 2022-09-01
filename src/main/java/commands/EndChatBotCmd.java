@@ -16,7 +16,7 @@ public class EndChatBotCmd extends Command {
      * @param storage Stores and retrieves data from a local .txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.notifyUser("Goodbye, and have a nice day ahead! :D");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.notifyUser("Goodbye, and have a nice day ahead! :D");
     }
 }
