@@ -1,7 +1,6 @@
 package duke.ui;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,20 +18,17 @@ public class Ui {
     private static final String MESSAGE_EMPTY_LIST = "Your list is empty. Try adding what you wanna do!\n";
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     private static final String DIVIDER = "===================================================";
-    private static final String LS = System.lineSeparator();
     private final Scanner in;
-    private final PrintStream out;
 
     public Ui() {
-        this(System.in, System.out);
+        this(System.in);
     }
 
     /**
      * Constructor for Ui with specified InputStream and PrintStream
      */
-    public Ui(InputStream in, PrintStream out) {
+    public Ui(InputStream in) {
         this.in = new Scanner(in);
-        this.out = out;
     }
 
     /**
