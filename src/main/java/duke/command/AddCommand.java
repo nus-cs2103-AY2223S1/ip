@@ -56,6 +56,11 @@ public class AddCommand extends Command {
         String taskDescription = "  " + tasks.getTask(tasks.size() - 1).toString();
         System.out.println(this);
         System.out.println(taskDescription);
+        if (tasks.size() == 1) {
+            System.out.println("Now you have 1 task in the list.");
+        } else {
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        }
         storage.writeToFile(tasks);
     }
 

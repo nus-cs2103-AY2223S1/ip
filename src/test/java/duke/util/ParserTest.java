@@ -37,11 +37,11 @@ public class ParserTest {
             if (i < 3) {
                 assertEquals(new AddCommand(commandTypes[i], commandInputs[i]), Parser.parse(parseInputs[i]));
             } else if (i == 3) {
-                assertEquals(new MarkCommand("1"), Parser.parse((parseInputs[i])));
+                assertEquals(new MarkCommand(1), Parser.parse((parseInputs[i])));
             } else if (i == 4) {
-                assertEquals(new UnmarkCommand("1"), Parser.parse((parseInputs[i])));
+                assertEquals(new UnmarkCommand(1), Parser.parse((parseInputs[i])));
             } else if (i == 5) {
-                assertEquals(new DeleteCommand("1"), Parser.parse((parseInputs[i])));
+                assertEquals(new DeleteCommand(1), Parser.parse((parseInputs[i])));
             } else if (i == 6) {
                 assertTrue(Parser.parse(parseInputs[i]) instanceof ListCommand);
             } else if (i == 7) {

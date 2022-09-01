@@ -16,10 +16,10 @@ public class DeleteCommand extends Command {
     /**
      * Constructor to create an instance of DeleteCommand.
      *
-     * @param taskDetails a String representation containing details about the task
+     * @param taskNumber Integer representing the task number to delete
      */
-    public DeleteCommand(String taskDetails) {
-        this.taskNumber = Integer.parseInt(taskDetails);
+    public DeleteCommand(int taskNumber) {
+        this.taskNumber = taskNumber;
     }
 
     /**
@@ -37,16 +37,14 @@ public class DeleteCommand extends Command {
         //Exception: Throw an error when user tries to delete from an empty list
         if (tasks.isEmpty()) {
             String errorMessage = "__________________________________________________\n"
-                    + "OOPS!!! There are no task left to be deleted!\n"
-                    + "__________________________________________________";
+                    + "OOPS!!! There are no task left to be deleted!";
             throw new DukeException(errorMessage);
         }
 
         //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
         if (taskNumber > tasks.size() || taskNumber < 1) {
             String errorMessage = "__________________________________________________\n"
-                    + "OOPS!!! There is no such task number!\n"
-                    + "__________________________________________________";
+                    + "OOPS!!! There is no such task number!";
             throw new DukeException(errorMessage);
         }
         System.out.println(this);

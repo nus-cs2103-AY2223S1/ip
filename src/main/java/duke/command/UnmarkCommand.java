@@ -17,10 +17,10 @@ public class UnmarkCommand extends Command {
     /**
      * Constructor to create an instance of UnmarkCommand.
      *
-     * @param taskDetails String representation of the task descriptions
+     * @param taskNumber Integer representing the task number to delete
      */
-    public UnmarkCommand(String taskDetails) {
-        this.taskNumber = Integer.parseInt(taskDetails);
+    public UnmarkCommand(int taskNumber) {
+        this.taskNumber = taskNumber;
     }
 
     /**

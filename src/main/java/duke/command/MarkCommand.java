@@ -17,10 +17,10 @@ public class MarkCommand extends Command {
     /**
      * Constructor to create an instance of MarkCommand.
      *
-     * @param taskDetails String representation of the task description
+     * @param taskNumber Integer representing the task number to mark
      */
-    public MarkCommand(String taskDetails) {
-        this.taskNumber = Integer.parseInt(taskDetails);
+    public MarkCommand(int taskNumber) {
+        this.taskNumber = taskNumber;
     }
 
     /**

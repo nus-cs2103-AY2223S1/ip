@@ -65,21 +65,45 @@ public class Parser {
                         + "OOPS!!! The task number for deleting must be specified!";
                 throw new DukeException(errorMessage);
             }
-            return new DeleteCommand(array[1]);
+
+            try {
+                int inputNumber = Integer.parseInt(array[1]);
+                return new DeleteCommand(inputNumber);
+            } catch (NumberFormatException e) {
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! Please input a number after delete keyword!";
+                throw new DukeException(errorMessage);
+            }
         } else if (firstText.equals(MARKCOMMAND)) {
             if (array.length == 1) {
                 String errorMessage = "__________________________________________________\n"
                         + "OOPS!!! The task number for marking must be specified!";
                 throw new DukeException(errorMessage);
             }
-            return new MarkCommand(array[1]);
+
+            try {
+                int inputNumber = Integer.parseInt(array[1]);
+                return new MarkCommand(inputNumber);
+            } catch (NumberFormatException e) {
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! Please input a number after mark keyword!";
+                throw new DukeException(errorMessage);
+            }
         } else if (firstText.equals(UNMARKCOMMAND)) {
             if (array.length == 1) {
                 String errorMessage = "__________________________________________________\n"
                         + "OOPS!!! The task number for unmarking must be specified!";
                 throw new DukeException(errorMessage);
             }
-            return new UnmarkCommand(array[1]);
+
+            try {
+                int inputNumber = Integer.parseInt(array[1]);
+                return new UnmarkCommand(inputNumber);
+            } catch (NumberFormatException e) {
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! Please input a number after unmark keyword!";
+                throw new DukeException(errorMessage);
+            }
         } else if (firstText.equals(TODO)) {
             if (array.length == 1) {
                 String errorMessage = "__________________________________________________\n"
