@@ -42,7 +42,7 @@ public class Deadline extends Task {
                 ? this.dueByDate.toString()
                 : this.dueByStr;
         String time = this.dueByTime != null
-                ? String.format(" %s", this.dueByTime.format(DateTimeFormatter.ofPattern(("HHmm:"))))
+                ? String.format(" %s", this.dueByTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
                 : "";
         return String.format("D | %s | %s%s", super.saveString(), date, time);
     }

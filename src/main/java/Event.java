@@ -42,7 +42,7 @@ public class Event extends Task {
                 ? this.dueAtDate.toString()
                 : this.dueAtStr;
         String time = this.dueAtTime != null
-                ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm:"))))
+                ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
                 : "";
         return String.format("E | %s | %s%s", super.saveString(), date, time);
     }
