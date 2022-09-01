@@ -10,59 +10,53 @@ public class Ui {
     private static final String UNMARK_TEXT_MESSAGE = "OK, I've marked this task as not done yet: \n";
     private static final String MATCH_TEXT_MESSAGE = "Here are the matching tasks in your list: \n";
 
-    private void wrapText(String content) {
-        System.out.println("-".repeat(57));
-        System.out.println(content);
-        System.out.println("-".repeat(57));
-    }
-
-    public void showAddedTask(TaskList tasklist) {
+    public String showAddedTask(TaskList tasklist) {
         String content = tasklist.getLastTask();
         content = ADD_TASK_MESSAGE + content;
         content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
-        wrapText(content);
+        return content;
     }
 
-    public void showDeletedTask(String content, TaskList tasklist) {
+    public String showDeletedTask(String content, TaskList tasklist) {
         content = DELETE_TASK_MESSAGE + content;
         content += "\nNow you have " + tasklist.getSize() + " tasks in the list.";
-        wrapText(content);
+        return content;
     }
 
-    public void showGreeting() {
-        wrapText(GREET_MESSAGE);
+    public String showGreeting() {
+        return GREET_MESSAGE;
     }
 
-    public void showBye() {
-        wrapText(BYE_MESSAGE);
+    public String showBye() {
+        return BYE_MESSAGE;
     }
 
-    public void showMark(TaskList tasklist, String taskNumber) {
+    public String showMark(TaskList tasklist, String taskNumber) {
         String markInText = MARK_TEXT_MESSAGE;
         markInText += tasklist.markSpecificTask(taskNumber);
-        wrapText(markInText);
+        return markInText;
     }
 
-    public void showUnmark(TaskList tasklist, String taskNumber) {
+    public String showUnmark(TaskList tasklist, String taskNumber) {
         String unmarkInText = UNMARK_TEXT_MESSAGE;
         unmarkInText += tasklist.unmarkSpecificTask(taskNumber);
-        wrapText(unmarkInText);
+        return unmarkInText;
     }
 
-    public void showList(TaskList tasklist) {
+    public String showList(TaskList tasklist) {
         String listInString = LIST_MESSAGE;
         listInString += tasklist.listOfTaskForDisplay();
-        wrapText(listInString);
+        return listInString;
     }
 
-    public void showMatch(TaskList tasklist, String substring) {
+    public String showMatch(TaskList tasklist, String substring) {
         String matchInString = MATCH_TEXT_MESSAGE;
         matchInString += tasklist.listOfMatchedTasks(substring);
-        wrapText(matchInString);
+        return matchInString;
     }
 
-    public void showError(String errorMessage) {
-        wrapText(errorMessage);
+    public String showError(String errorMessage) {
+        return errorMessage;
     }
 
 }
