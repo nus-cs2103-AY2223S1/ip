@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    private static final String HORIZONTAL_LINE = "______________________________________________________________";
     private static final String LOGO =
             " ____        _        \n"
           + "|  _ \\ _   _| | _____ \n"
@@ -36,7 +35,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         this.scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog(welcomeMsg()));
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("How may I help you?"));
     }
 
     public void setDuke(DukeApplication d) {
@@ -58,12 +57,7 @@ public class MainWindow extends AnchorPane {
 
     private String welcomeMsg() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(HORIZONTAL_LINE);
-        stringBuilder.append("\n");
-        // stringBuilder.append(LOGO);
-        // stringBuilder.append("\n");
-        stringBuilder.append("How may I help you?\n");
-        stringBuilder.append(HORIZONTAL_LINE);
+        stringBuilder.append("How may I help you?");
         return stringBuilder.toString();
     }
 }

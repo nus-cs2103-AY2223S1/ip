@@ -2,18 +2,7 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.command.AddCommand;
-import duke.command.CommandType;
-import duke.command.DeleteCommand;
-import duke.command.EmptyCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ICommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.SaveCommand;
-import duke.command.UnmarkCommand;
-import duke.controller.Ui;
+import duke.command.*;
 
 /**
  * Represents a parser to parse string inputs from user
@@ -33,7 +22,7 @@ public class Parser {
                 throw new DukeException("I'm sorry, but I don't understand that.");
             }
             CommandType type = CommandType.COMMAND_MAP.get(command);
-            ICommand cmd = new EmptyCommand();
+            ICommand cmd;
             switch (type) {
             case TODO:
                 String todoBody = sc.nextLine().trim();
@@ -56,7 +45,7 @@ public class Parser {
                 String eventBody = sc.nextLine().trim();
                 String[] eventArgs = eventBody.split("\\s/at\\s");
                 if (eventArgs.length < 2 || eventArgs[0].isBlank() || eventArgs[1].isBlank()) {
-                    throw new DukeException("Something went wrong! Could not read DEADLINE.");
+                    throw new DukeException("Something went wrong! Could not read EVENT.");
                 } else {
                     cmd = new AddCommand(CommandType.EVENT, eventArgs[0], eventArgs[1]);
                 }
@@ -91,8 +80,7 @@ public class Parser {
             }
             return cmd;
         } catch (DukeException e) {
-            Ui.showError(e.getMessage());
-            return new EmptyCommand();
+            return new WrongCommand(e.getMessage());
         } finally {
             sc.close();
         }

@@ -1,6 +1,8 @@
 package duke.task;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an event on a date.
@@ -16,7 +18,14 @@ public class Event extends Task {
      */
     public Event(String isDone, String description, String dateStr) {
         super(description, isDone.equals("1"));
-        this.date = LocalDate.parse(dateStr);
+        LocalDate parsedDate;
+        try {
+            parsedDate = LocalDate.parse(dateStr);
+        } catch (DateTimeParseException e) {
+            // Default current date will be used.
+            parsedDate = LocalDate.now();
+        }
+        this.date = parsedDate;
     }
 
     /**

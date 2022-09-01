@@ -30,7 +30,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.dialog.setText(text);
     }
 
