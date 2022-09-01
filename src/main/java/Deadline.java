@@ -1,6 +1,10 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Deadline extends Task {
 
-    private String dueDate;
+    private LocalDateTime dueDate;
 
     /**
      * Constructor to create a new Deadline
@@ -8,9 +12,14 @@ public class Deadline extends Task {
      * @param task    the task that you want to complete (String)
      * @param dueDate the dueDate for this deadline (String)
      */
-    public Deadline(String task, String dueDate) {
+    public Deadline(String task, String dueDate) throws DukeException {
         super(task);
-        this.dueDate = dueDate;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            this.dueDate = LocalDateTime.parse(dueDate, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date Format Incorrect: yyyy-MM-dd HH:mm");
+        }
     }
 
     /**
@@ -20,6 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (by: " + this.dueDate + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[D] " + super.toString() + " (by: " + this.dueDate.format(formatter) + ")";
     }
 }
