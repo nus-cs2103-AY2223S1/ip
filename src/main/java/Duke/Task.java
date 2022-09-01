@@ -4,23 +4,23 @@ import java.time.LocalDateTime;
 
 abstract public class Task {
     private String name;
-    private boolean done;
+    private boolean isDone;
 
     Task(String name) {
         this.name = name;
-        this.done = false;
+        this.isDone = false;
     }
 
     void Done() {
-        this.done = true;
+        this.isDone = true;
     }
 
     void unDone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     boolean getDone() {
-        return this.done;
+        return this.isDone;
     }
 
     String getName() {
@@ -33,7 +33,7 @@ abstract public class Task {
     @Override
     public String toString() {
         String out = "";
-        if (this.done) {
+        if (this.isDone) {
             out += "[X]";
         } else {
             out += "[ ]";

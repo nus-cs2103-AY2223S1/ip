@@ -21,9 +21,10 @@ public class Event extends Task {
         }
     }
 
-    Event(String name, String dateTime, boolean exist) {
+    Event(String name, String dateTime, boolean isExist) {
         super(name);
-        this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
+        this.dateTime = LocalDateTime.parse(dateTime,
+                        DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
     }
 
 
@@ -41,7 +42,8 @@ public class Event extends Task {
     public String toString() {
         String out = "[E]";
         out += super.toString();
-        out += " (at " + this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+        out += " (at " + this.dateTime.format(DateTimeFormatter.
+                        ofPattern("MMM dd yyyy HHmm")) + ")";
         return out;
     }
 }
