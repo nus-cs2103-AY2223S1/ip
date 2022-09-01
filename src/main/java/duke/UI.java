@@ -39,9 +39,7 @@ public class UI {
     }
 
     public static String end() {
-        //getLine();
         return getGoodbyeMessage();
-        //getLine();
     }
 
 

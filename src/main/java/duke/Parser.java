@@ -34,8 +34,8 @@ public class Parser {
             switch (firstWord) {
 
             case "bye":
-
-                return UI.end();
+                s = UI.end();
+                break;
 
             case "list":
                 s = UI.printList();
@@ -76,6 +76,7 @@ public class Parser {
             }
             Storage.save(TaskList.getTaskList());
             return s;
+
         } catch (DukeException e) {
             return e.getMessage();
 
