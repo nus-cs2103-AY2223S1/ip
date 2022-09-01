@@ -1,7 +1,7 @@
 package main.java;
 
 // todos work the same as tasks
-public class ToDos extends Task {
+public class ToDos extends main.java.Task {
 
     public ToDos(String taskName) {
         super(taskName);

@@ -2,7 +2,7 @@ package main.java;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 // got date
-public class Deadlines extends Task{
+public class Deadlines extends main.java.Task {
 
     protected LocalDate by;
 

@@ -1,7 +1,7 @@
 package main.java;
 
 // events have extra location feature
-public class Events extends Task {
+public class Events extends main.java.Task {
     protected String location;
 
     public Events(String taskName, String location) {

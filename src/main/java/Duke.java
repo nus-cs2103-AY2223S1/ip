@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.java.*;
+import main.java.Task;
 
 public class Duke {
 
@@ -13,7 +14,7 @@ public class Duke {
     private static int index = 0;
 
 
-    public static void main(String[] args) throws DukeException, IOException {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         read();
