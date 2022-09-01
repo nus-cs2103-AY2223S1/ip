@@ -7,7 +7,9 @@ import utils.IOUtils;
 import utils.InputParser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConversationHandler {
 
@@ -17,6 +19,10 @@ public class ConversationHandler {
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
         this.open = true;
+        list = new ArrayList<>();
+        for (Task t: FileIO.getInstance().readTaskList()) {
+            list.add(t);
+        }
     }
 
     public String handleCommand(String input) {

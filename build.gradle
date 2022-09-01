@@ -20,6 +20,8 @@ apply plugin : "java"
 ext {
     javaMainClass = "Main"
     standardInput = System.in
+    standardOutput = System.out
+    errorOutput = System.err
 }
 
 application {
@@ -35,6 +37,9 @@ task runMain(type: Exec) {
     group = "Execution"
 
     standardInput = System.in
+    standardOutput = System.out
+    errorOutput = System.err
+
     description = "Run the main class"
     commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), javaMainClass
 }

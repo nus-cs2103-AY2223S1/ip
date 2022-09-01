@@ -1,5 +1,34 @@
-[{
-    "description": "hi",
-    "type": "Todo",
-    "done": false
-}]
+[
+    {
+        "description": "hi2",
+        "type": "Todo",
+        "done": false
+    },
+    {
+        "description": "hi4",
+        "type": "Todo",
+        "done": true
+    },
+    {
+        "description": "hi5",
+        "type": "Todo",
+        "done": false
+    },
+    {
+        "at": "Sunday",
+        "description": "return book",
+        "type": "Event",
+        "done": false
+    },
+    {
+        "at": "no idea :-p",
+        "description": "do homework",
+        "type": "Event",
+        "done": false
+    },
+    {
+        "description": "hisdf",
+        "type": "Todo",
+        "done": true
+    }
+]

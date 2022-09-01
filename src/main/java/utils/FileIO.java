@@ -1,6 +1,7 @@
 package utils;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import task_classes.Task;
 
 import java.io.*;
@@ -29,14 +30,23 @@ public class FileIO {
         return instance;
     }
 
-//    public Task[] readTaskList() {
-//        try {
-//            FileReader saveFileReader = new FileReader(saveFilePath);
-//        } catch (FileNotFoundException e) {
-//            return null;
-//        }
-//        return
-//    }
+    public Task[] readTaskList() {
+        JSONArray jsonArray;
+        try {
+            jsonArray = new JSONArray(Files.readString(Paths.get(saveFilePath)));
+        } catch (FileNotFoundException e) {
+            jsonArray = new JSONArray();
+        } catch (IOException e) {
+            jsonArray = new JSONArray();
+        }
+
+        Task[] objArray = new Task[jsonArray.length()];
+        for (int i = 0; i < jsonArray.length(); i ++) {
+            objArray[i] = Task.fromJSONObject((JSONObject) jsonArray.get(i));
+        }
+
+        return objArray;
+    }
 
     public void saveList(List<? extends JSONParsable> list) {
         JSONArray saveData = new JSONArray();
