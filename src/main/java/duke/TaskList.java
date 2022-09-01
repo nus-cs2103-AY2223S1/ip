@@ -30,7 +30,7 @@ public class TaskList {
      * @param s string description of task.
      * @param type type of task.
      */
-    public static void addTaskToArray(String s, Task.TYPE type) {
+    public static String addTaskToArray(String s, Task.TYPE type) {
         Task t;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
@@ -57,20 +57,20 @@ public class TaskList {
 
             case TODO:
                 if (s.length() < 1) {
-                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                 }
                 t = new Todo(s);
                 break;
 
             case EVENT:
                 if (s.length() < 1) {
-                    throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of an event cannot be empty.");
                 }
                 String[] splitStringTD = s.split(" /at ");
 
                 if (splitStringTD.length < 2) {
                     System.out.println(splitStringTD.length);
-                    throw new DukeException("☹ Event requires an AT time typed correctly.");
+                    throw new DukeException("Event requires an AT time typed correctly.");
                 }
                 String taskStringTD = splitStringTD[0];
                 String at = splitStringTD[1];
@@ -84,10 +84,10 @@ public class TaskList {
                 }
 
             default:
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             taskList.add(t);
-            UI.printAddition(t);
+            return UI.printAddition(t);
         } catch (DateTimeParseException e) {
             throw new DukeException("Date/Time not in correct format!");
         }
@@ -102,12 +102,15 @@ public class TaskList {
      *
      * @param taskNumber number for task to be removed.
      */
-    public static void deleteTaskFromArray(String taskNumber) {
+    public static String deleteTaskFromArray(String taskNumber) {
         String numberToRemove = taskNumber.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
+        if (numberToRemoveInt > taskListLength() - 1) {
+            throw new DukeException("You hav less than " + taskListLength() + "tasks!");
+        }
         Task t = taskList.get(numberToRemoveInt);
         taskList.remove(numberToRemoveInt);
-        UI.deleteTaskUI(taskList, t);
+        return UI.deleteTaskUI(taskList, t);
     }
 
     /**
@@ -115,7 +118,7 @@ public class TaskList {
      *
      * @param removeTaskNumberString index to be marked as done
      */
-    public static void markAsDone(String removeTaskNumberString) {
+    public static String markAsDone(String removeTaskNumberString) {
         String numberToRemove = removeTaskNumberString.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
         if (numberToRemoveInt == taskListLength()) {
@@ -123,7 +126,7 @@ public class TaskList {
         }
         Task tsk = taskList.get(numberToRemoveInt);
         tsk.markAsDone();
-        UI.markAsDoneUI(tsk);
+        return UI.markAsDoneUI(tsk);
     }
 
     /**
@@ -131,7 +134,7 @@ public class TaskList {
      *
      * @param addTaskNumberString index to be marked as done
      */
-    public static void markAsUndone(String addTaskNumberString) {
+    public static String markAsUndone(String addTaskNumberString) {
         String numberToAddAgain = addTaskNumberString.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToAddAgain) - 1;
         if (numberToRemoveInt == taskListLength()) {
@@ -139,13 +142,14 @@ public class TaskList {
         }
         Task tsk = taskList.get(numberToRemoveInt);
         tsk.markAsUndone();
-        UI.markAsUndoneUI(tsk);
+        return UI.markAsUndoneUI(tsk);
     }
 
-    public static void findTasks(String keyword) {
+    public static String findTasks(String keyword) {
         ArrayList<Task> filteredList = new ArrayList<>(taskList.stream()
                 .filter(task -> task.containsWord(keyword))
                 .collect(Collectors.toList()));
-        UI.findTasksUI(filteredList);
+
+        return UI.findTasksUI(filteredList);
     }
 }

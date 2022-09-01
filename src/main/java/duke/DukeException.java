@@ -8,6 +8,10 @@ class DukeException extends RuntimeException{
         this.exception = exception;
     }
 
+    public String getMessage() {
+        return this.exception;
+    }
+
     @Override
     public String toString() {
         return this.exception;

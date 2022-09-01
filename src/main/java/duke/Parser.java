@@ -2,8 +2,6 @@ package duke;
 
 
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * Parse user input.
@@ -18,81 +16,71 @@ public class Parser {
     /**
      * Parses user input.
      */
-    public static void parseInput() {
-        Scanner sc = new Scanner(System.in);
-        boolean running = true;
+    public static String parseInput(String string) {
+        //boolean running = true;
 
-        while (running) {
-            try {
-                new TaskList(Storage.loadTask());
-                //parse
-                String str1 = sc.nextLine();
-                String[] wordArray = parseTypingInput(str1);
-                String str2 = "";
+        String s = "";
+        try {
+            new TaskList(Storage.loadTask());
+            //parse
+            String[] wordArray = parseTypingInput(string);
+            String str2 = "";
 
-                if (wordArray.length >= 2) {
-                    str2 = wordArray[1];
-                }
-                String firstWord = wordArray[0];
-
-                switch (firstWord) {
-
-                case "bye":
-                    UI.end();
-                    running = false;
-                    break;
-
-                case "list":
-                    UI.printList();
-                    break;
-
-                case "mark":
-                    TaskList.markAsDone(str2);
-                    break;
-
-                case "unmark":
-                    TaskList.markAsUndone(str2);
-                    break;
-
-                case "delete":
-                    TaskList.deleteTaskFromArray(str2);
-                    break;
-
-                case "deadline":
-                    TaskList.addTaskToArray(str2, Task.TYPE.DEADLINE);
-                    break;
-
-                case "todo":
-                    TaskList.addTaskToArray(str2, Task.TYPE.TODO);
-                    break;
-
-                case "event":
-                    TaskList.addTaskToArray(str2, Task.TYPE.EVENT);
-                    break;
-
-                case "find":
-                    TaskList.findTasks(str2);
-                    break;
-
-                default:
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-
-                }
-                Storage.save(TaskList.getTaskList());
-
-            } catch (InputMismatchException e) {
-                UI.getLINE();
-                System.out.println("Invalid input");
-                UI.getLINE();
-
-            } catch (DukeException e) {
-                UI.getLINE();
-                System.out.println(e);
-                UI.getLINE();
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            if (wordArray.length >= 2) {
+                str2 = wordArray[1];
             }
+            String firstWord = wordArray[0];
+
+            switch (firstWord) {
+
+            case "bye":
+
+                return UI.end();
+
+            case "list":
+                s = UI.printList();
+                break;
+
+            case "mark":
+                s = TaskList.markAsDone(str2);
+
+                break;
+
+            case "unmark":
+                s = TaskList.markAsUndone(str2);
+                break;
+
+            case "delete":
+                s = TaskList.deleteTaskFromArray(str2);
+                break;
+
+            case "deadline":
+                s = TaskList.addTaskToArray(str2, Task.TYPE.DEADLINE);
+                break;
+
+            case "todo":
+                s = TaskList.addTaskToArray(str2, Task.TYPE.TODO);
+                break;
+
+            case "event":
+                s = TaskList.addTaskToArray(str2, Task.TYPE.EVENT);
+                break;
+
+            case "find":
+                s = TaskList.findTasks(str2);
+                break;
+
+            default:
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+
+            }
+            Storage.save(TaskList.getTaskList());
+            return s;
+        } catch (DukeException e) {
+            return e.getMessage();
+
+        } catch (IOException e) {
+            return e.getMessage();
         }
     }
 }
