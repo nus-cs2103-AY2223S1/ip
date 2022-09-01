@@ -97,8 +97,8 @@ public class TaskList {
     /**
      * Prints all tasks in the list.
      */
-    public void listTasks() {
-        Ui.printTasks(this.tasks);
+    public String listTasks() {
+        return Ui.getTasks(this.tasks);
     }
 
     /**
@@ -138,6 +138,16 @@ public class TaskList {
             }
         }
         Ui.sendMessage(result);
+    }
+
+    public String getAllOccurrencesOf(String s) {
+        String result = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).toString().toLowerCase().contains(s)) {
+                result = result + "\n\t" + this.tasks.get(i);
+            }
+        }
+        return result;
     }
 
     /**
