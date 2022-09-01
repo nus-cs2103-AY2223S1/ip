@@ -1,0 +1,4 @@
+[T] | 0 | say hello
+[D] | 1 | say bye | 2022-09-01
+[E] | 0 | jellyfish catching | 2022-09-02
+[T] | 1 | catch jellyfish
