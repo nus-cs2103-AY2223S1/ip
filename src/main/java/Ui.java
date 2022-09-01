@@ -12,16 +12,6 @@ public class Ui {
   }
 
   /**
-   * Splits a command line into arguments.
-   *
-   * @param line The command line String.
-   * @return A String array of arguments.
-   */
-  public static String[] parse(String line) {
-    return line.split(" ");
-  }
-
-  /**
    * Prints a one line reply with the appropriate style.
    *
    * @param message A string of the one line reply message.
