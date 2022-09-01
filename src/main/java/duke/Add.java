@@ -4,7 +4,7 @@ package duke;
  * Represents the Add command.
  */
 public class Add extends Task {
-    public String command;
+    private String command;
     public Add(String description) {
         super(description);
         this.command = description;

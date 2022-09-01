@@ -6,7 +6,7 @@ import java.io.*;
  * Represents a storage that stores the command list.
  */
 public class Storage {
-    public OutputStream out;
+    private OutputStream out;
     public String input;
 
     public Storage(String filePath) throws IOException {

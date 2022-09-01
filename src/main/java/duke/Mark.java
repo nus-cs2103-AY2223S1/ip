@@ -4,7 +4,7 @@ package duke;
  * Represents the Mark command.
  */
 public class Mark extends Task {
-    public String command;
+    private String command;
     public Mark(String description) {
         super(description);
         this.command = description;

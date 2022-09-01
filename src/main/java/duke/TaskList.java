@@ -4,7 +4,7 @@ package duke;
  * Contains the task list.
  */
 public class TaskList {
-    public String list;
+    private String list;
 
     public  TaskList() {}
 

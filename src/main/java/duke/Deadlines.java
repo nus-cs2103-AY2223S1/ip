@@ -4,9 +4,9 @@ package duke;
  * Represents the Deadlines command.
  */
 public class Deadlines extends Task {
-    public String command;
-    public int num;
-    public String time;
+    private String command;
+    private int num;
+    private String time;
 
     public Deadlines(String description, int num, String time) {
         super(description);

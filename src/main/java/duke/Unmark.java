@@ -4,7 +4,7 @@ package duke;
  * Represents the unmark command.
  */
 public class Unmark extends Task {
-    public String command;
+    private String command;
     public Unmark(String description) {
         super(description);
         this.command = description;

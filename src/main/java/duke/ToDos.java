@@ -4,8 +4,8 @@ package duke;
  * Represents the todo command.
  */
 public class ToDos extends Task {
-    public String command;
-    public int num;
+    private String command;
+    private int num;
 
     public ToDos(String description, int num) {
         super(description);

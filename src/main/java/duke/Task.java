@@ -41,16 +41,13 @@ public class Task {
         }
         if (command.split(" ")[0].equals("todo")) {
             if (command.length() == 4) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
             arrayList.add("[T][ ] " + command.substring(5));
             return new ToDos(command.substring(5), number);
         }
         if (command.split(" ")[0].equals("deadline")) {
             String time = command.split("/")[1].substring(3);
-            for (int k = 2; k < command.split("/").length; k++) {
-                time += command.split("/")[k];
-            }
             LocalDate date = LocalDate.parse(time);
             String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             arrayList.add("[D][ ] " + command.split("/")[0].substring(9) + "(by: " + tranTime + ")");
@@ -58,9 +55,6 @@ public class Task {
         }
         if (command.split(" ")[0].equals("event")) {
             String time = command.split("/")[1].substring(3);
-            for (int k = 2; k < command.split("/").length; k++) {
-                time += command.split("/")[k];
-            }
             LocalDate date = LocalDate.parse(time);
             String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
             arrayList.add("[E][ ] " + command.split("/")[0].substring(6) + "(at: " + tranTime + ")");
@@ -70,12 +64,12 @@ public class Task {
             String target = command.split(" ")[1];
             return new Find(target, arrayList);
         }
-        if (command.equals("blah")) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        if (command.equals("add")) {
+            Task task = new Add(command);
+            arrayList.add(number + "." + task.toString());
+            return task;
         }
-        Task task = new Add(command);
-        arrayList.add(number + "." + task.toString());
-        return task;
+        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     /**

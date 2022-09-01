@@ -4,8 +4,8 @@ package duke;
  * Represents the delete command.
  */
 public class Delete {
-    public int num;
-    public String command;
+    private int num;
+    private String command;
 
     public Delete(String description, int num) {
         this.command = description;

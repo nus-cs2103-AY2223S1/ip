@@ -3,7 +3,7 @@ package duke;
 import java.util.ArrayList;
 
 public class Find extends Task {
-    public String target;
+    private String target;
     ArrayList<String> list = new ArrayList<>();
 
     public Find(String target, ArrayList<String> list) {
