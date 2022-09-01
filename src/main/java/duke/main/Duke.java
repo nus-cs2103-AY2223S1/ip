@@ -1,6 +1,10 @@
 package duke.main;
 
 import java.io.IOException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import duke.command.Command;
 import duke.exceptions.DukeException;
@@ -12,7 +16,7 @@ import duke.util.TaskList;
 /**
  * Main class for cli version of Duke
  */
-public class Duke {
+public class Duke extends Application {
     private static final String LOGO = "Welcome to\n"
             + " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -27,6 +31,8 @@ public class Duke {
     private DukeIo userInputOutput;
     private TaskList tasks;
     private Storage dukeData;
+
+    public Duke() {}
 
     private Duke(TaskList tasks, Storage dukeData) {
         userInputOutput = new DukeIo();
@@ -105,12 +111,25 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke Program
-     * 
+     * Runs the Duke Program as an cli program
+     *
      * @param args
      */
     public static void main(String[] args) {
         Duke duke = createApplication();
         duke.run();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        primaryStage.setScene(scene); // Setting the stage to show our screen
+        primaryStage.show(); // Render the stage.
+
     }
 }
