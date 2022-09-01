@@ -1,5 +1,8 @@
 package ui;
 
+import commands.CommandResponse;
+import entry.Jarvis;
+import exceptions.DukeException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +26,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+    private Jarvis jarvis;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -35,8 +38,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setJarvis(Jarvis d) {
+        jarvis = d;
     }
 
     public void setStage(Stage st) {
@@ -45,7 +48,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void showWelcome() {
-        String welc = "Welcome to JARVIS! What can I do for you?";
+        String welc = jarvis.getWelcome();
         dialogContainer.getChildren().add(
             DialogBox.getDukeDialog(welc, dukeImage)
         );
@@ -58,14 +61,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        CommandResponse response = jarvis.getResponse(input);
 
         Platform.runLater(() -> {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
+                    DialogBox.getDukeDialog(response.getMessage(), dukeImage)
             );
             userInput.clear();
         });
+    }
+
+    protected void save() throws DukeException {
+        jarvis.save();
     }
 }

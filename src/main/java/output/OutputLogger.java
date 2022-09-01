@@ -25,10 +25,9 @@ public class OutputLogger {
      * Output a message to the user through command line
      * @param msg Message to output
      */
-    public static void output(String msg) {
-        String line = "____________________________________________________________";
-        String out = String.format("%s%n%s:\n%s%n%s%n", line, NAME, msg, line);
-        System.out.println(indent(out));
+    public static String output(String msg) {
+        String out = String.format("%s:%n%s", NAME, msg);
+        return indent(out);
     }
 
     /**
@@ -63,20 +62,20 @@ public class OutputLogger {
     /**
      * Print chatbot introduction for the user
      */
-    public static void printIntroduction() {
-        String logo = "\n"
-                +
-                "     _   _    ___ __   __ ___  ___ \n"
-                +
-                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n"
-                +
-                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n"
-                +
-                "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
+    public static String getIntroduction() {
+//        String logo = "\n"
+//                +
+//                "     _   _    ___ __   __ ___  ___ \n"
+//                +
+//                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n"
+//                +
+//                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n"
+//                +
+//                "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
+//
+//        System.out.print(logo);
 
-        System.out.print(logo);
-
-        output(String.format("Hello,I'm %s!\nWhat can I do for you?", NAME));
+        return output(String.format("Hello, I'm %s!\nWhat can I do for you?", NAME));
     }
 
 }

@@ -18,11 +18,13 @@ public class CommandRunner {
      */
     private Map<String, Command> commandMap;
 
+    private TaskModel taskModel;
+
     /**
      * Creates new CommandRunner
      */
-    public CommandRunner() throws StorageException {
-        TaskModel taskModel = new TaskModel();
+    public CommandRunner(TaskModel taskModel) throws StorageException {
+        this.taskModel = taskModel;
 
         // Add new commands here
         Command list = new ListCommand(taskModel);
