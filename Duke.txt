@@ -1,7 +1,7 @@
 todo|three|0
 todo|two|1
-event|four|0|2019-02-14
-todo|find dinner|0
+event|four|1|2019-02-14
 todo|make dinner|0
 todo|buy din|0
 deadline|throw dinners|0|2014-10-12
+todo|1|0

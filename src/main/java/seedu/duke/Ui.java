@@ -8,26 +8,26 @@ import java.util.ArrayList;
 
 public class Ui {
 
-    private static final String START = "Hello! I'm Duke\nWhat can I do for you?";
-    private static final String END = "Bye. Hope to see you again soon!";
-    private static final String BREAKER = "____________________________________________________________\n";
+    public static final String START = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String END = "Bye. Hope to see you again soon!";
+    //private static final String BREAKER = "____________________________________________________________\n";
 
     private boolean isActive;
 
     /**
      * Displays the start message
      */
-    public void start() {
+    public String start() {
         this.isActive = true;
-        this.msg(START);
+        return msg(START);
     }
 
     /**
      * Displays the end message
      */
-    public void end() {
+    public String end() {
         this.isActive = false;
-        this.msg(END);
+        return msg(END);
     }
 
     /**
@@ -44,8 +44,8 @@ public class Ui {
      *
      * @param s String to be displayed
      */
-    public void msg(String s) {
-        System.out.println(BREAKER + s + "\n" + BREAKER);
+    public String msg(String s) {
+        return s + "\n";
     }
 
     /**
@@ -53,16 +53,16 @@ public class Ui {
      *
      * @param l ArrayList containing Tasks
      */
-    public void displayList(ArrayList<Task> l) {
+    public String displayList(ArrayList<Task> l) {
         String result = "";
         if (l.isEmpty()) {
             msg("");
-            return;
+            return "";
         }
         for (int i = 0; i < l.size()-1; i++) {
             result += (i+1) + ". " + l.get(i) + "\n";
         }
         result += (l.size()) + ". " + l.get(l.size()-1);
-        msg(result);
+        return msg(result);
     }
 }
