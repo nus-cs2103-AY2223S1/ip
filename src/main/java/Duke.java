@@ -19,14 +19,20 @@ public class Duke {
                     int index = line.indexOf('|');
                     String taskName = line.substring(7, index - 1);
                     String dateTime = line.substring(index + 2);
+                    String month = dateTime.substring(3, 6);
+                    int numberMonth = Task.monthToInt(month);
+                    dateTime = dateTime.substring(0, 2) + "-" + numberMonth + "-" + dateTime.substring(7);
                     task = new Task.DeadlineTask(taskName, dateTime);
                 } else if (line.charAt(1) == 'E') {
                     int index = line.indexOf('|');
+                    String taskName = line.substring(7, index - 1);
                     String dateTime = line.substring(index + 2);
-                    String taskName = line.substring(8, index - 1);
-                    task = new Task.EventTask(taskName, dateTime);
-                } else if (line.charAt(1) == 'T'){
-                    String taskName = line.substring(8);
+                    String month = dateTime.substring(3, 6);
+                    int numberMonth = Task.monthToInt(month);
+                    dateTime = dateTime.substring(0, 2) + "-" + numberMonth + "-" + dateTime.substring(7);
+                    task = new Task.DeadlineTask(taskName, dateTime);
+                } else if (line.charAt(1) == 'T') {
+                    String taskName = line.substring(7);
                     task = new Task.TodoTask(taskName);
                 } else {
                     throw new InputMismatchException();
