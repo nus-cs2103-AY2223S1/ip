@@ -29,22 +29,22 @@ public abstract class Task implements Serializable {
         String command = commandArray[0];
         try {
             switch (Command.valueOf(command)) {
-                case todo:
-                    Task.validateTaskCreation(commandArray, TaskType.TODO);
-                    task = commandArray[1].trim();
-                    return new Todo(task);
-                case deadline:
-                    Task.validateTaskCreation(commandArray, TaskType.DEADLINE);
-                    task = commandArray[1].split("/by", 2)[0].trim();
-                    date = commandArray[1].split("/by", 2)[1].trim();
-                    return new Deadline(task, date);
-                case event:
-                    Task.validateTaskCreation(commandArray, TaskType.EVENT);
-                    task = commandArray[1].split("/at", 2)[0].trim();
-                    date = commandArray[1].split("/at", 2)[1].trim();
-                    return new Event(task, date);
-                default:
-                    throw new DukeException();
+            case todo:
+                Task.validateTaskCreation(commandArray, TaskType.TODO);
+                task = commandArray[1].trim();
+                return new Todo(task);
+            case deadline:
+                Task.validateTaskCreation(commandArray, TaskType.DEADLINE);
+                task = commandArray[1].split("/by", 2)[0].trim();
+                date = commandArray[1].split("/by", 2)[1].trim();
+                return new Deadline(task, date);
+            case event:
+                Task.validateTaskCreation(commandArray, TaskType.EVENT);
+                task = commandArray[1].split("/at", 2)[0].trim();
+                date = commandArray[1].split("/at", 2)[1].trim();
+                return new Event(task, date);
+            default:
+                throw new DukeException();
             }
         } catch (IllegalArgumentException e) {
             throw new DukeException();

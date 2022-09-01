@@ -188,24 +188,24 @@ public enum Command {
 
         try {
             switch (Command.valueOf(command)) {
-                case bye:
-                    Command.exit(scanner);
-                    return;
-                case list:
-                    Command.listTasks(allTasks);
-                    break;
-                case mark:
-                    Command.markTask(commandArray, allTasks);
-                    break;
-                case unmark:
-                    Command.unMarkTask(commandArray, allTasks);
-                    break;
-                case delete:
-                    Command.delete(commandArray, allTasks);
-                    break;
-                default:
-                    Task newTask = Task.createTask(commandArray);
-                    allTasks.addTask(newTask);
+            case bye:
+                Command.exit(scanner);
+                return;
+            case list:
+                Command.listTasks(allTasks);
+                break;
+            case mark:
+                Command.markTask(commandArray, allTasks);
+                break;
+            case unmark:
+                Command.unMarkTask(commandArray, allTasks);
+                break;
+            case delete:
+                Command.delete(commandArray, allTasks);
+                break;
+            default:
+                Task newTask = Task.createTask(commandArray);
+                allTasks.addTask(newTask);
             }
         } catch (IllegalArgumentException e) {
             throw new DukeException();
