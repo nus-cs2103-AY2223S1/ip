@@ -7,7 +7,7 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 
 /**
- * This class encapsulates an Unmark Command
+ * This class represents a command to mark a task as not completed
  */
 public class UnmarkCommand extends Command {
 

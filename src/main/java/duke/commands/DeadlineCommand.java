@@ -8,7 +8,7 @@ import duke.ui.Ui;
 
 
 /**
- * This class encapsulates a Deadline Command
+ * This class represents a command to add a deadline to the task list
  */
 public class DeadlineCommand extends Command {
 

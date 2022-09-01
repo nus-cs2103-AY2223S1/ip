@@ -7,7 +7,7 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 
 /**
- * This class encapsulates a Delete Command
+ * This class represents a command to delete a task from the task list
  */
 public class DeleteCommand extends Command {
 

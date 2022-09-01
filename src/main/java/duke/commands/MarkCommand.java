@@ -7,7 +7,7 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 
 /**
- * This class encapsulates a Mark Command
+ * This class represents a command to mark a task as completed
  */
 public class MarkCommand extends Command {
 

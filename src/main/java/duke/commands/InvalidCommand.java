@@ -6,7 +6,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * This class encapsulates an Invalid Command
+ * This class represents an invalid command provided by the user
  */
 public class InvalidCommand extends Command {
 

@@ -17,7 +17,7 @@ import duke.tasks.Task;
 import duke.tasks.ToDo;
 
 /**
- * This class encapsulates the Storage
+ * This class saves and loads tasks into and from the text file created
  */
 public class Storage {
     private String filePath;

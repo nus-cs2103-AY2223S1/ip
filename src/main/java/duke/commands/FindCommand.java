@@ -8,7 +8,8 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 
 /**
- * This class encapsulates a find command
+ * This class represents a command to find tasks that contains all
+ * the keywords provided
  */
 public class FindCommand extends Command {
     private String[] keyword;

@@ -6,7 +6,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Encapsulates the Command from users
+ * This class represents a command provided by the user
  */
 public abstract class Command {
     private boolean isExit = false;

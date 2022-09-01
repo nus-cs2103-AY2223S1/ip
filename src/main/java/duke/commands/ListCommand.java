@@ -8,8 +8,8 @@ import duke.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * This class encapsulates a List Command
- * It returns the entire list of tasks or tasks that falls on a specific date
+ * This class represents a command to list out the tasks in the task list
+ * If a date is provided, tasks that fall on that date will be listed
  */
 public class ListCommand extends Command {
 

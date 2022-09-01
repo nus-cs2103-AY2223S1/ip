@@ -8,7 +8,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Driver class
+ * This class represents the Duke chatbot
  */
 public class Duke {
 
@@ -17,22 +17,13 @@ public class Duke {
     private Storage storage;
 
     /**
-     * Constructs a new Duke
+     * Constructs a new Duke chatbot
      */
     public Duke() {
         Storage storage = new Storage("./data/duke.txt");
         this.ui = new Ui();
         this.storage = storage;
         this.tasks = new TaskList(storage.load());
-    }
-
-    /**
-     * Echoes user's input
-     * @param message A message to echo
-     * @return The message user's provided
-     */
-    public String echo(String message) {
-        return "\t" + message;
     }
 
     /**
