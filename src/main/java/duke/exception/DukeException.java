@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class DukeException extends Exception {
     /**
-     * Constructor for an error for Duke.
+     * Constructor for an error for duke.Duke.
      */
     public DukeException() {
         super();
@@ -13,6 +13,6 @@ public class DukeException extends Exception {
 
     @Override
     public String toString() {
-        return "( • ᴖ • ｡) Error encountered: ";
+        return "Error encountered: ";
     }
 }

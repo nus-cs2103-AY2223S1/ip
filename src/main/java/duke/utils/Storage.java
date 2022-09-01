@@ -1,9 +1,5 @@
 package duke.utils;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,8 +12,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 /**
- * Duke utility function to handle both saving and reading of the task list into local drive.
+ * duke.Duke utility function to handle both saving and reading of the task list into local drive.
  */
 public class Storage {
 
@@ -61,7 +62,7 @@ public class Storage {
      * Reads the duke/duke.txt file in the project root folder and generates the task list
      * accordingly.
      *
-     * @return The task list for the Duke program.
+     * @return The task list for the duke.Duke program.
      */
     public List<Task> read() {
         ArrayList<Task> tasks = new ArrayList<>();

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a task happening at a certain time in Duke.
+ * Represents a task happening at a certain time in duke.Duke.
  */
 public class Event extends Task {
     private LocalDateTime time;

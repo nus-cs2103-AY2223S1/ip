@@ -28,11 +28,11 @@ public class TodoCommand extends Command {
      * @param taskList {@inheritDoc}
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList taskList) {
+    public String execute(Storage storage, UI ui, TaskList taskList) {
         Task task = new ToDo(taskDetails);
         taskList.add(task);
-        System.out.println("Got it. I've added this task:\n" + task);
-        System.out.println("Now you have " + taskList.size() + " tasks in the list");
         storage.save(taskList.list());
+        return "Got it. I've added this task:\n" + task
+            + "\nNow you have " + taskList.size() + " tasks in the list";
     }
 }

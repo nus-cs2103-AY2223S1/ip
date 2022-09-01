@@ -27,13 +27,14 @@ public class DeleteCommand extends Command {
      * @throws MarkException If number specified is out of range of the task list.
      */
     @Override
-    public void execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
+    public String execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
         if (num > taskList.size() || num < 0) {
             throw new MarkException();
         }
-        System.out.println("Noted, I've removed this task:\n" + taskList.getTask(num - 1));
+        String temp = taskList.getTask(num - 1).getDescription();
         taskList.delete(num - 1);
-        System.out.println("Now you have " + taskList.size() + " tasks in the list");
         storage.save(taskList.list());
+        return "Noted, I've removed this task:\n" + temp
+            + "\nNow you have " + taskList.size() + " tasks in the list";
     }
 }

@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Represents a task in Duke.
+ * Represents a task in duke.Duke.
  */
 public class Task {
     private String task;
