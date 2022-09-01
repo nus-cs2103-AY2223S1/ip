@@ -67,7 +67,6 @@ public class Storage {
     }
 
     /**
-     * <<<<<<< HEAD
      * This functions stores the data from the taskList into the file.
      *
      * @param taskLists given taskList.
