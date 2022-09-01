@@ -35,10 +35,11 @@ public class AddCommand extends Command {
      * @throws DukeException specific error message to be thrown
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
         int total = tasks.totalSize();
-        ui.showAdd(task, total);
+        String message = ui.showAdd(task,total);
         storage.store(tasks.getTaskList());
+        return message;
     }
 }

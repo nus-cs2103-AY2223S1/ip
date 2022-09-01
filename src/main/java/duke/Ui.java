@@ -18,25 +18,20 @@ public class Ui {
     /**
      * Prints welcome message to user
      */
-    public void showWelcome() {
-        String logo = "____________________________________________________________\n"
-                + "Hello from\n"
-                + " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n"
-                + "How may I assist you?\n"
-                + "____________________________________________________________\n";
-        System.out.println(logo);
+
+    public String showWelcome() {
+        String logo =  "Hello from\n" +
+                "How may I assist you?\n";
+        return logo;
+
     }
 
     /**
      * Prints LoadingError if file cannot load
      */
-    public void showLoadingError() {
-
-        System.out.println("Unable to load file");
+    public String showLoadingError() {
+        String loadingErrorMsg = "Unable to load file";
+        return loadingErrorMsg;
     }
 
     /**
@@ -48,29 +43,23 @@ public class Ui {
         return command;
     }
 
-    /**
-     * Prints the line
-     */
-    public void showLine() {
-
-        System.out.println("____________________________________________________________\n");
-    }
 
     /**
      * Prints the error description in Duke exception
      * @param errorMsg the relevant error message
      *
      */
-    public void showError(String errorMsg) {
-        System.out.println(errorMsg);
+    public String showError(String errorMsg) {
+
+        return errorMsg;
     }
 
     /**
      * Prints farewell message to user
      */
-    public void showBye() {
+    public String showBye() {
         String bye = "Bye. Hope to see you again soon!\n";
-        System.out.println(bye);
+        return bye;
     }
 
     /**
@@ -78,9 +67,9 @@ public class Ui {
      * @param task the specified task to be marked
      *
      */
-    public void showMarked(Task task) {
+    public String showMarked(Task task) {
         String taskCompletion = "Nice! I've marked this task as done:\n" + "  " + task.toString() + "\n";
-        System.out.println(taskCompletion);
+        return taskCompletion;
     }
 
     /**
@@ -88,9 +77,9 @@ public class Ui {
      * @param task the specified task to be unmarked
      *
      */
-    public void showUnMarked(Task task) {
+    public String showUnMarked(Task task) {
         String taskUnCompletion = "Ok, I've marked this task as not done yet:\n" + "  " + task.toString() + "\n";
-        System.out.println(taskUnCompletion);
+        return taskUnCompletion;
     }
 
     /**
@@ -98,14 +87,14 @@ public class Ui {
      * @param tasks the list of tasks
      *
      */
-    public void showList(ArrayList<Task> tasks) {
+    public String showList(ArrayList<Task> tasks) {
         String newList = "Here are the tasks in your list:\n";
         int count = 1;
         for (Task item: tasks) {
             newList += (count + "." + item.toString() + "\n");
             count++;
         }
-        System.out.println(newList);
+        return newList;
     }
 
     /**
@@ -113,10 +102,10 @@ public class Ui {
      * @param task the specified task to be deleted
      *
      */
-    public void showDelete(Task task, int total) {
+    public String showDelete(Task task, int total) {
         String message = "Noted. I've removed this task:\n" + " " + task.toString() + "\n" + "Now you have " + total
                 + " tasks in the list.\n";
-        System.out.println(message);
+        return message;
     }
 
     /**
@@ -124,24 +113,27 @@ public class Ui {
      * @param task the specified task to be added
      *
      */
-    public void showAdd(Task task, int total) {
+    public String showAdd(Task task, int total) {
         String printLine = "Got it. I've added this task:\n" + "  " + task.toString() + "\n" + "Now you have " + total
                 + " tasks in the list.\n";
-        System.out.println(printLine);
+        return printLine;
+
     }
+
 
     /**
      * Prints prompt about success in finding filtered tasks
      * @param filteredTaskList the filtered list of tasks
      *
      */
-    public void showFind(ArrayList<Task> filteredTaskList) {
+
+    public String showFind(ArrayList<Task> filteredTaskList) {
         String newList = "Here are the matching tasks in your list:\n";
         int count = 1;
         for (Task item: filteredTaskList) {
             newList += (count + "." + item.toString() + "\n");
             count++;
         }
-        System.out.println(newList);
+        return newList;
     }
 }

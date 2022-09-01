@@ -34,12 +34,13 @@ public class MarkCommand extends Command {
      * @throws DukeException specific error message to be thrown
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task task = tasks.getTaskList().get(this.number - 1);
             task.setCompleted();
-            ui.showMarked(task);
+            String message = ui.showMarked(task);
             storage.store(tasks.getTaskList());
+            return message;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("OH NO! You are not allowed here");
         }
