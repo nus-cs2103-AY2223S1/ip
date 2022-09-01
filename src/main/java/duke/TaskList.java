@@ -22,10 +22,12 @@ public class TaskList {
     /**
      * Adds the given <code>Task</code> to the list.
      *
-     * @param t <code>Task</code> to be added to the list.
+     * @param tasks Variable number of <code>Task</code>s to be added to the list.
      */
-    public void addTask(Task t) {
-        this.userTasks.add(t);
+    public void addTasks(Task ...tasks) {
+        for (Task t : tasks) {
+            this.userTasks.add(t);
+        }
     }
 
     /**

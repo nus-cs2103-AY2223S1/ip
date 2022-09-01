@@ -61,13 +61,13 @@ public class Duke {
                 this.tasks.unmarkTask(Parser.parseTaskNumber(userResponse));
                 return this.ui.showUnmarkSuccess(Parser.parseTaskNumber(userResponse));
             case TODO:
-                this.tasks.addTask(Parser.parseTodoTask(userResponse));
+                this.tasks.addTasks(Parser.parseTodoTask(userResponse));
                 return this.ui.showAddTaskSuccess(this.tasks);
             case EVENT:
-                this.tasks.addTask(Parser.parseEventTask(userResponse));
+                this.tasks.addTasks(Parser.parseEventTask(userResponse));
                 return this.ui.showAddTaskSuccess(this.tasks);
             case DEADLINE:
-                this.tasks.addTask(Parser.parseDeadlineTask(userResponse));
+                this.tasks.addTasks(Parser.parseDeadlineTask(userResponse));
                 return this.ui.showAddTaskSuccess(this.tasks);
             case DELETE:
                 this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
