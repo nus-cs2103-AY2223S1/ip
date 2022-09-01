@@ -1,6 +1,9 @@
+import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     public static void main(String[] args) throws Exception{
@@ -12,12 +15,41 @@ public class Duke {
         ArrayList<Task> tasks = new ArrayList<Task>();
         int numTasks = 0;
 
-
         // Main code
         System.out.println(spacing);
         System.out.println("Hello! I am Greg!");
         System.out.println("What do you need help with?");
         System.out.println(spacing + "\n");
+
+        // File check and creation
+        new File("./data").mkdirs();
+        File dataStore = new File("./data/duke.txt"); 
+        if (dataStore.exists()) {
+            BufferedReader fileRead = new BufferedReader(new FileReader(dataStore));
+            String st;
+            while ((st = fileRead.readLine()) != null) {
+                String[] stSplit = st.split(" \\| ");
+                if (stSplit[0].equals("T")) {
+                    Todo newTask = new Todo(stSplit[2]);
+                    tasks.add(newTask);
+                    numTasks += 1;
+                }
+                else if (stSplit[0].equals("D")) {
+                    Deadline newTask = new Deadline(stSplit[2], stSplit[3]);
+                    tasks.add(newTask);
+                    numTasks += 1;
+                } 
+                else if (stSplit[0].equals("E")) {
+                    Event newTask = new Event(stSplit[2], stSplit[3]);
+                    tasks.add(newTask);
+                    numTasks += 1;
+                }
+                if (stSplit[1].equals("1")) {
+                    tasks.get(numTasks-1).setStatus(1);
+                }
+            }
+            fileRead.close();
+        }
 
         // Queries for tasks until terminated
         while (true) {
@@ -27,7 +59,7 @@ public class Duke {
                 System.out.println("\n" + spacing);
                 System.out.println("Goobye, see you again!\n");
                 System.out.println(spacing + "\n");
-                break;
+                return;
             } 
 
             // 2. Lists out all the tasks
@@ -76,7 +108,7 @@ public class Duke {
 
             // Deadline
             else if (word.startsWith("deadline")) {
-                String[] deadlineTask = (word.replace("deadline ", "")).split("/by ");
+                String[] deadlineTask = (word.replace("deadline ", "")).split(" /by ");
                 Deadline deadline = new Deadline(deadlineTask[0], deadlineTask[1]);
                 tasks.add(deadline);
                 numTasks += 1;
@@ -89,7 +121,7 @@ public class Duke {
 
             // Event
             else if (word.startsWith("event")) {
-                String[] eventTask = word.replace("event ", "").split("/at ");
+                String[] eventTask = word.replace("event ", "").split(" /at ");
                 Event event = new Event(eventTask[0], eventTask[1]);
                 tasks.add(event);
                 numTasks += 1;
@@ -102,21 +134,26 @@ public class Duke {
 
             // 6. Deleting tasks
             else if (word.startsWith("delete")) {
-                if (numTasks == 0) {
+                if (numTasks == 0) { // No tasks in list
                     System.out.println("\n" + spacing);
                     System.out.println("List empty. Add tasks into your list!\n");
                     System.out.println(spacing + "\n");
-                }
-                else { 
+                } else { 
                     String[] deleteTask = word.split(" ");
                     int taskIndex = Integer.parseInt(deleteTask[1]);
-                    Task deletedTask = tasks.remove(taskIndex - 1);
-                    numTasks -= 1;
-                    System.out.println("\n" + spacing);
-                    System.out.println("Noted. I've removed this task:");
-                    System.out.println(deletedTask.toString());
-                    System.out.println("Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+                    if (taskIndex > numTasks) {
+                        System.out.println("\n" + spacing);
+                    System.out.println("No such task!\n");
                     System.out.println(spacing + "\n");
+                    } else {
+                        Task deletedTask = tasks.remove(taskIndex - 1);
+                        numTasks -= 1;
+                        System.out.println("\n" + spacing);
+                        System.out.println("Noted. I've removed this task:");
+                        System.out.println(deletedTask.toString());
+                        System.out.println("Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+                        System.out.println(spacing + "\n");
+                    }
                 }
             }
 
@@ -126,6 +163,18 @@ public class Duke {
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 System.out.println(spacing + "\n");
             }
+
+            // Writing to file when something is done
+            FileWriter myWriter = new FileWriter("./data/duke.txt");
+            for (int i = 0; i < numTasks; i++) {
+                Task t = tasks.get(i);
+                if (t instanceof Deadline || t instanceof Event) {
+                    myWriter.write(t.getTaskType() + " | " +  t.getBinaryStatus() + " | " + t.getTask() + " | " + t.getDue() + "\n");
+                } else {
+                    myWriter.write(t.getTaskType() + " | " +  t.getBinaryStatus() + " | " + t.getTask() + "\n");
+                }
+            }
+            myWriter.close();
         }
     }
 }

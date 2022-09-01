@@ -15,12 +15,24 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String getBinaryStatus() {
+        return (isDone ? "1" : "0");
+    }
+
     public void setStatus(int status) {
         if (status == 0) {
             this.isDone = false;
         } else {
             this.isDone = true;
         }
+    }
+
+    public String getDue() {
+        return "";
+    }
+
+    public String getTaskType() {
+        return "";
     }
 
     @Override
