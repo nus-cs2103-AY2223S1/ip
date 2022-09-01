@@ -93,7 +93,7 @@ public class Parser {
     private static final BiFunction<TaskList, String, String> unmarkTask = (
             taskList, input) -> {
         int i = Integer.parseInt(input.split(" ")[1]);
-        return taskList.markUnDone(i);
+        return taskList.markUndone(i);
     };
 
     /**
