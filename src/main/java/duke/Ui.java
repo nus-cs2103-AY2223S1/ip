@@ -142,4 +142,17 @@ public class Ui {
             System.out.println("There are no tasks on this date!");
         }
     }
+
+    public void showFindings(TaskList taskList, String input) {
+        if (taskList.size() != 0) {
+            System.out.println("I found " + taskList.size()
+                    + showTaskTense(taskList) + " for \"" + input + "\"");
+            System.out.println(taskList);
+            System.out.println("Did you find what you were looking for?");
+        } else {
+            System.out.println("I couldn't find any tasks for \""
+                    + input + "\"");
+            System.out.println("Perhaps try another word!");
+        }
+    }
 }

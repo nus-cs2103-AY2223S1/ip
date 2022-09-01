@@ -5,6 +5,7 @@ import duke.DukeException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class Event extends Task {
     protected LocalDateTime dateTime;
@@ -58,6 +59,10 @@ public class Event extends Task {
         } catch (Exception e){
             throw new DukeException("Please type in the date in the format yyyy-MM-dd");
         }
+    }
+
+    public boolean doesDescriptionContain(String input) throws DukeException {
+        return Arrays.asList(description.split(" ")).contains(input);
     }
 
     /**

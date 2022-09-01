@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.DukeException;
+import java.util.Arrays;
+
 public class ToDo extends Task {
     /**
      * Constructs a to-do with the specified description.
@@ -25,6 +28,10 @@ public class ToDo extends Task {
      */
     public boolean isOnThisDate(String dateStr) {
         return false;
+    }
+
+    public boolean doesDescriptionContain(String input) throws DukeException {
+        return Arrays.asList(description.split(" ")).contains(input);
     }
 
     /**

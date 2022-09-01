@@ -1,15 +1,6 @@
 package duke;
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.ExitCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.OnCommand;
-import duke.commands.ToDoCommand;
-import duke.commands.UnmarkCommand;
+import duke.commands.*;
 
 /**
  * Deals with making sense of the user command.
@@ -67,10 +58,14 @@ public class Parser {
                         throw new DukeException("Please input a date!");
                     }
                     return new OnCommand(input[1]);
+                case "find":
+                    if (input.length < 2) {
+                        return new FindCommand("");
+                    }
+                    return new FindCommand(input[1].trim());
                 default:
-                    throw new DukeException("What's " + command + " ??\n"
-                            + "Please say something I can understand!");
-
+                        throw new DukeException("What's " + command + " ??\n"
+                                + "Please say something I can understand!");
             }
 
     }
