@@ -1,4 +1,4 @@
-package duke;
+package component;
 
 /**
  * Public class ToDo that extends Task.

@@ -1,4 +1,4 @@
-package duke;
+package component;
 
 /**
  * Public Task class that represents a task.
