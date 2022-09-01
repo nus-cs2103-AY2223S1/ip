@@ -4,10 +4,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.logic.task.Deadline;
+import duke.logic.task.Event;
+import duke.logic.task.Task;
+import duke.logic.task.ToDo;
 
 /**
  * Class to initialize existing data.

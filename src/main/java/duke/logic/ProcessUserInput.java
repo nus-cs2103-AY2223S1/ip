@@ -1,12 +1,12 @@
-package duke.parser;
+package duke.logic;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskOperation;
-import duke.task.ToDo;
+import duke.logic.task.Deadline;
+import duke.logic.task.Event;
+import duke.logic.task.Task;
+import duke.logic.task.TaskOperation;
+import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
 /**
@@ -24,7 +24,7 @@ public class ProcessUserInput {
         int index;
         switch (typeOfTask) {
         case Constants.LIST:
-            return duke.task.TaskOperation.listItems(workList);
+            return TaskOperation.listItems(workList);
         case Constants.UNMARK:
             try {
                 userInput.substring(8);

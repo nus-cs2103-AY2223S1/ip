@@ -1,4 +1,4 @@
-package duke.task;
+package duke.logic.task;
 import java.util.ArrayList;
 
 import duke.storage.DukeEncoder;
@@ -9,8 +9,8 @@ import duke.ui.Constants;
  * Represents a general task.
  */
 public class Task {
-    protected String detail;
-    protected boolean isDone;
+    private String detail;
+    private boolean isDone;
 
     /**
      * Constructor for task.

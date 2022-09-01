@@ -1,4 +1,4 @@
-package duke.task;
+package duke.logic.task;
 import java.util.ArrayList;
 
 import duke.storage.DukeEncoder;

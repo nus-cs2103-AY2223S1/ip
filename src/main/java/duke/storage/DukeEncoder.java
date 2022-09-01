@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import duke.task.Task;
+import duke.logic.task.Task;
 
 /**
  * Class to update list after each command.

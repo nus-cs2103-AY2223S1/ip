@@ -1,4 +1,4 @@
-package duke.task;
+package duke.logic.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
