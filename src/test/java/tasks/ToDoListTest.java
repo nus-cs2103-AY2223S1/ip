@@ -19,7 +19,7 @@ public class ToDoListTest {
         Task todo = new Todo("task1");
         ToDoList taskList = new ToDoList(tasks, storage);
         todo.markDone();
-        assertEquals(todo.getStatusIcon(), "✔");
+        assertEquals(todo.getStatusIcon(), "X");
     }
 
     @Test

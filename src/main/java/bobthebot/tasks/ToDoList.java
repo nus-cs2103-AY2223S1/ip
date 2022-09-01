@@ -27,11 +27,12 @@ public class ToDoList {
     }
 
     /**
-     * Adds items to the list. Method also handles the logic for the type of task to be added.
+     * Adds items to the list. Also handles the logic for the type of task to be added.
      *
      * @param command A String which contains the command about the task to be added.
+     * @return Task added message.
      */
-    public void addTask(String command) {
+    public String addTask(String command) {
         if (command.startsWith("todo")) {
             command = command.replace("todo", "").trim();
             if (command.length() == 0) {
@@ -39,12 +40,12 @@ public class ToDoList {
                 errorString += "\tWrite your deadlines in the following format: \n";
                 errorString += "\t=> deadline <deadline-name> by <date>";
                 Ui.printErrorMessage(errorString);
+                return errorString;
             } else {
                 Task todo = new Todo(command);
                 list.add(todo);
                 storage.store(list);
-
-                Ui.taskAddedMessage(todo, this);
+                return Ui.taskAddedMessage(todo, this);
             }
         } else if (command.startsWith("deadline")) {
             try {
@@ -54,6 +55,7 @@ public class ToDoList {
                     errorString += "\tWrite your deadlines in the following format: \n";
                     errorString += "\t=> deadline <deadline-name> by <date>";
                     Ui.printErrorMessage(errorString);
+                    return errorString;
                 } else {
                     String[] deadline = command.split(" /by ");
 
@@ -72,16 +74,17 @@ public class ToDoList {
                         String errorString = "\tInvalid formatting for deadline entered!\n";
                         errorString += "\tWrite your deadlines in the following format: YYYY-MM-DD HHHH";
                         Ui.printErrorMessage(errorString);
+                        return errorString;
                     } else if (by.trim().matches(regex) && !isAfter) {
                         String errorString = "\tI might be a non-sentient robot but you seem to be a time traveller!\n";
                         errorString += "\tPlease input deadlines BEFORE the current date and time.";
                         Ui.printErrorMessage(errorString);
+                        return errorString;
                     } else {
                         Task task = new Deadline(deadline[0], deadline[1]);
                         list.add(task);
                         storage.store(list);
-
-                        Ui.taskAddedMessage(task, this);
+                        return Ui.taskAddedMessage(task, this);
                     }
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -89,11 +92,12 @@ public class ToDoList {
                 errorString += "\tWrite your deadlines in the following format: \n";
                 errorString += "\t=> deadline <deadline-name> by <date>";
                 Ui.printErrorMessage(errorString);
+                return errorString;
             } catch (DateTimeParseException e) {
                 String errorString = "\tInvalid formatting for deadline entered!\n";
                 errorString += "\tWrite your dates in the following format: YYYY-MM-DD HHHH";
-
                 Ui.printErrorMessage(errorString);
+                return errorString;
             }
         } else if (command.startsWith("event")) {
             try {
@@ -105,6 +109,7 @@ public class ToDoList {
                     errorString += "\t=> event <event-name> by <date>";
 
                     Ui.printErrorMessage(errorString);
+                    return errorString;
                 } else {
                     String[] event = command.split(" /at ");
 
@@ -123,16 +128,18 @@ public class ToDoList {
                         String errorString = "\tInvalid formatting for date entered!\n";
                         errorString += "\tWrite your date in the following format: YYYY-MM-DD HHHH";
                         Ui.printErrorMessage(errorString);
+                        return errorString;
                     } else if (at.trim().matches(regex) && !isAfter) {
                         String errorString = "\tI might be a non-sentient robot but you seem to be a time traveller!\n";
                         errorString += "\tPlease input events BEFORE the current date and time.";
                         Ui.printErrorMessage(errorString);
+                        return errorString;
                     } else {
                         Task task = new Event(event[0], event[1]);
                         list.add(task);
                         storage.store(list);
 
-                        Ui.taskAddedMessage(task, this);
+                        return Ui.taskAddedMessage(task, this);
                     }
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -141,11 +148,13 @@ public class ToDoList {
                 errorString += "\tWrite your events in the following format: \n";
                 errorString += "\t=> event <event-name> by <date>";
                 Ui.printErrorMessage(errorString);
+                return errorString;
             } catch (DateTimeParseException e) {
                 String errorString = "\tInvalid formatting for deadline entered!\n";
                 errorString += "\tWrite your dates in the following format: YYYY-MM-DD HHHH";
 
                 Ui.printErrorMessage(errorString);
+                return errorString;
             }
         } else {
             String errorString = "\tDeepest apologies, I am a mere automated bot.\n"
@@ -158,8 +167,10 @@ public class ToDoList {
                     + "\t5. unmark - to mark an event as undone\n"
                     + "\t6. delete - to delete an event\n"
                     + "\t7. list - to view all the events on your todo list\n"
-                    + "\t8. bye - to wish me a (temporary) farewell\n";
+                    + "\t8. find - to find items in your list containing a certain keyword\n"
+                    + "\t9. bye - to wish me a (temporary) farewell";
             Ui.printErrorMessage(errorString);
+            return errorString;
         }
     }
 
@@ -167,33 +178,37 @@ public class ToDoList {
      * Deletes a specific event from the list, and updating the storage.
      *
      * @param index Specifies 0 index of task to be deleted.
+     * @return Task deleted message.
      */
-    public void deleteTask(int index) {
-        Ui.taskDeletedMessage(index, this);
+    public String deleteTask(int index) {
+        Task task = this.list.get(index);
         this.list.remove(index);
         storage.store(list);
+        return Ui.taskDeletedMessage(task, this);
     }
 
     /**
      * Marks a specific event from the list as done, and updating the storage.
      *
      * @param index Specifies 1 index of task to be marked as done.
+     * @return Task mark item done message.
      */
-    public void markItemDone(int index) {
+    public String markItemDone(int index) {
         this.list.get(index - 1).markDone();
-        Ui.markItemDoneMessage(this, index - 1); // takes in 0 index
         storage.store(list);
+        return Ui.markItemDoneMessage(this, index - 1); // takes in 0 index
     }
 
     /**
      * Marks a specific event from the list as undone, and updating the storage.
      *
      * @param index Specifies 1 index of task to be marked as undone.
+     * @return Task mark item undone message.
      */
-    public void markItemUndone(int index) {
+    public String markItemUndone(int index) {
         this.list.get(index - 1).markUndone();
-        Ui.markItemUndoneMessage(this, index - 1); // takes in 0 index
         storage.store(list);
+        return Ui.markItemUndoneMessage(this, index - 1); // takes in 0 index
     }
 
     /**

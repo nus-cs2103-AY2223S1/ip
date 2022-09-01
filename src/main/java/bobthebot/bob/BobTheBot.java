@@ -31,12 +31,12 @@ public class BobTheBot {
      * Runs BobTheBot.
      */
     public void run() {
-        Ui.printWelcome();
+        Ui.sayWelcome();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.toLowerCase().equals("bye")) {
-                Ui.printGoodbye(list);
+                Ui.sayGoodbye(list);
                 break;
             }
             parser.parseCommand(command, list);
