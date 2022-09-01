@@ -10,7 +10,7 @@ public class DeleteCommand extends Command {
             Task tmp = tasks.delete(taskNo);
             storage.write(tasks.toStringWritable());
             ui.showOutput("Noted. I've removed this task:");
-            ui.showOutput(tmp.toString());
+            ui.showOutput("\t" + tmp.toString());
         } catch (ArrayIndexOutOfBoundsException err) {
             throw new DukeException("Invalid task to delete.");
         }

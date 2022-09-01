@@ -10,7 +10,7 @@ public class UnmarkCommand extends Command {
             tasks.unmark(taskNo);
             storage.write(tasks.toStringWritable());
             ui.showOutput("Ok, I've marked this task as not done yet:");
-            ui.showOutput(tasks.getTask(taskNo).toString());
+            ui.showOutput("\t" + tasks.getTask(taskNo).toString());
         } catch (ArrayIndexOutOfBoundsException err) {
             throw new DukeException("Invalid task index to unmark.");
         }
