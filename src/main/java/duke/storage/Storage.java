@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String FILEPATH;
+    private static String filePath;
     private File f;
     private ArrayList<String> tasksList;
 
@@ -25,8 +25,8 @@ public class Storage {
      * @param filePath A <code>String</code> representing the file path.
      */
     public Storage(String filePath) {
-        FILEPATH = filePath;
-        f = new File(FILEPATH);
+        this.filePath = filePath;
+        f = new File(this.filePath);
         tasksList = new ArrayList<>();
     }
 
@@ -56,7 +56,7 @@ public class Storage {
      * @throws IOException If FILE_PATH is invalid.
      */
     public void appendToFile(String textToAppend) throws IOException {
-        FileWriter fw = new FileWriter(FILEPATH, true); // create a FileWriter in append mode
+        FileWriter fw = new FileWriter(this.filePath, true); // create a FileWriter in append mode
         fw.write(textToAppend);
         fw.write(System.lineSeparator());
         fw.close();
