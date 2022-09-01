@@ -21,7 +21,6 @@ public class Duke {
     private TaskList taskList = new TaskList();
 
     public Duke() {
-        initialize();
     }
 
     /**
