@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Class that encapsulates a task and tracks its completion status.
  */

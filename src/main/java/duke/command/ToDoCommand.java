@@ -1,22 +1,25 @@
-import java.time.LocalDateTime;
+package duke.command;
 
-public class DeadlineCommand extends Command {
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.Todo;
+
+public class ToDoCommand extends Command {
     String desc;
-    LocalDateTime datetime;
 
-    public DeadlineCommand(String desc, LocalDateTime datetime) {
+    public ToDoCommand(String desc) {
         this.desc = desc;
-        this.datetime = datetime;
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Deadline tmp = new Deadline(desc, datetime);
-        tasks.addDeadline(tmp);
+        Todo tmp = new Todo(desc);
+        tasks.addTodo(tmp);
         storage.write(tasks.toStringWritable());
         ui.showOutput("Got it. I added this task:");
         ui.showOutput("\t" + tmp);
         ui.showOutput("Now you have " + tasks.getLength() + " tasks in the list.");
-
     }
 
     public boolean isExit() {

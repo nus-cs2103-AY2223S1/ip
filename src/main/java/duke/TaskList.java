@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Event;
+import duke.task.Deadline;
+
 import java.util.ArrayList;
 
 public class TaskList {

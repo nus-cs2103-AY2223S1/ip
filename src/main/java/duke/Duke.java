@@ -1,3 +1,9 @@
+package duke;
+
+import duke.exception.DukeException;
+import duke.command.*;
+
+
 /**
  * Overall Duke Class encapsulating the Duke bot.
  * @author Charles Lim Jun Hao

@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Todo extends Task {
 
     /**
@@ -5,13 +7,15 @@ public class Todo extends Task {
      *
      * @param name Description of task
      */
-    Todo(String name) {
+    public Todo(String name) {
         super(name);
     }
 
-    Todo(String[] data) {
+    public Todo(String[] data) {
         super(data[2], (data[1].equals("1")));
     }
+
+
 
     @Override
     public String toString() {

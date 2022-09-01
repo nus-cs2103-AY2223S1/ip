@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * General Exception for the Duke bot.
  */
