@@ -16,11 +16,23 @@ public class ExitCommand extends Command {
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
      * @param storage Storage that stores all tasks on Disk.
+     * @return Duke's message to the user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        super.isExit = true;
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        storage.save(tasks);
 
-        ui.sayBye();
+        // Timeout before exiting program (3 seconds).
+        new Thread(() -> {
+            try {
+                Runnable runnable = () -> System.exit(0);
+                Thread.sleep(3000);
+                runnable.run();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }).start();
+
+        return ui.byeMsg();
     }
 }

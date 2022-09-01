@@ -10,24 +10,13 @@ import duke.ui.Ui;
  * @author Elgin
  */
 public abstract class Command {
-    /** Whether the command is an exit command. */
-    protected boolean isExit;
-
     /**
      * Abstract method that executes the command.
      *
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
      * @param storage Storage that stores all tasks on Disk.
+     * @return Duke's message to the user.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
-
-    /**
-     * Checks whether command is an Exit Command.
-     *
-     * @return True if command is exit, false otherwise.
-     */
-    public boolean isExit() {
-        return this.isExit;
-    }
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 }

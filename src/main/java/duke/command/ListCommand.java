@@ -16,11 +16,12 @@ public class ListCommand extends Command {
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
      * @param storage Storage that stores all tasks on Disk.
+     * @return Duke's message to the user.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String items = tasks.allItems();
 
-        ui.showAllTasks(items);
+        return ui.allTasksMsg(items);
     }
 }

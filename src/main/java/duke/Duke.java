@@ -38,43 +38,35 @@ public class Duke {
         try {
             this.tasks = new TaskList(this.storage.load());
         } catch (FileNotFoundException e) {
-            this.ui.showLoadingError();
+            System.out.println(this.ui.showLoadingError());
             this.tasks = new TaskList();
         }
     }
 
     /**
-     * Starts serving the user in CLI.
+     * Executes the command given by the user and act accordingly.
      *
+     * @param userInput The input that user provides.
+     * @return The message Duke wants to say to the user.
+     * @throws DukeException if user input is not in a valid format.
+     * @throws NumberFormatException if indexes provided for commands that require it cannot be casted into
+     *                               integer (e.g. mark, delete).
+     * @throws DateTimeParseException if date provided for commands is invalid.
      */
-    private void run() {
-        this.ui.greetUser();
+    public String handleUserInput(String userInput) {
+        String dukeMessage = "";
 
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String userInput = this.ui.readCommand();
-                Command c = Parser.parse(userInput);
-                c.execute(this.tasks, this.ui, this.storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                this.ui.showDukeError(e.getMessage());
-            } catch (NumberFormatException e) {
-                this.ui.showNumberCastError();
-            } catch (DateTimeParseException e) {
-                this.ui.showInvalidDateError();
-            }
+        try {
+            Command c = Parser.parse(userInput);
+            dukeMessage = c.execute(this.tasks, this.ui, this.storage);
+        } catch (DukeException e) {
+            dukeMessage = this.ui.dukeErrorMsg(e.getMessage());
+        } catch (NumberFormatException e) {
+            dukeMessage = this.ui.numberCastErrorMsg();
+        } catch (DateTimeParseException e) {
+            dukeMessage = this.ui.dateErrorMsg();
         }
 
-        this.storage.save(this.tasks);
-    }
-
-    /**
-     * Runs when program is first executed.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        new Duke("src/data/duke.txt").run();
+        return dukeMessage;
     }
 }

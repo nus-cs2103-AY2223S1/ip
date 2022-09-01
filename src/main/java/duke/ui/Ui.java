@@ -1,7 +1,5 @@
 package duke.ui;
 
-import java.util.Scanner;
-
 import duke.task.Task;
 
 /**
@@ -11,152 +9,110 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Greet user message.
-     *
-     */
-    public void greetUser() {
-        String message = "Hello! I'm Duke\n" + "What can I do for you?";
-        System.out.println(Ui.formatText(message));
-    }
-
-    /**
      * Bye to user (End process message).
      *
+     * @return String representation of Bye message.
      */
-    public void sayBye() {
-        String message = "Bye. Hope to see you again soon!";
-        System.out.println(Ui.formatText(message));
+    public String byeMsg() {
+        return "Bye. Hope to see you again soon!\n" + "Application closing in 3 seconds...";
     }
 
     /**
-     * Read user input
+     * Formats a task added message for Duke.
      *
-     * @return The command that user has entered, cleaned.
+     * @return Message conveying that task has successfully been added, and the current number of tasks.
      */
-    public String readCommand() {
-        Scanner sc = new Scanner(System.in);
-
-        String userInput = sc.nextLine();
-
-        return userInput.trim();
+    public String taskAddedMsg(int newTaskCount, Task task) {
+        return "Got it. I've added this task:\n" + "  " + task + "\n" + "Now you have "
+                + newTaskCount + " tasks in the list.";
     }
 
     /**
-     * Shows user that task has successfully been added, and the current number of tasks.
+     * Formats a task deleted message for Duke.
      *
+     * @return Message conveying that user that has successfully deleted a task, and the number of tasks left
      */
-    public void showTaskAdded(int newTaskCount, Task task) {
-        String addedMessage = "Got it. I've added this task:\n" + "  "
-                + task + "\n" + "Now you have " + newTaskCount + " tasks in the list.";
-
-        System.out.println(Ui.formatText(addedMessage));
+    public String taskDeletedMsg(int newTaskCount, String taskDescription) {
+        return "Noted. I've removed this task:\n  " + taskDescription + "\n" + "Now you have "
+                + newTaskCount + " tasks in the list";
     }
 
     /**
-     * Shows user that task has successfully been deleted, and the number of tasks left.
+     * Formats a message signaling a task has been successfully marked.
      *
+     * @param taskDescription The description of the task marked.
      */
-    public void showTaskDeleted(int newTaskCount, String taskDescription) {
-        String deletedMessage = "Noted. I've removed this task:\n  "
-                + taskDescription + "\n"
-                + "Now you have " + newTaskCount + " tasks in the list";
-
-        System.out.println(Ui.formatText(deletedMessage));
+    public String taskMarkedMsg(String taskDescription) {
+        return "Nice! I've marked this task as done:\n" + taskDescription;
     }
 
     /**
-     * Shows user that task has successfully been marked.
+     * Formats a message signaling a task has been successfully unmarked.
      *
+     * @param taskDescription The description of the task unmarked.
      */
-    public void showTaskMarked(String taskDescription) {
-        String markMessage = "Nice! I've marked this task as done:\n" + taskDescription;
-
-        System.out.println(Ui.formatText(markMessage));
+    public String taskUnmarkedMsg(String taskDescription) {
+        return "OK, I've marked this task as not done yet:\n" + taskDescription;
     }
 
     /**
-     * Shows user that task is successfully unmarked.
-     *
-     */
-    public void showTaskUnmarked(String taskDescription) {
-        String unmarkMessage = "OK, I've marked this task as not done yet:\n" + taskDescription;
-
-        System.out.println(Ui.formatText(unmarkMessage));
-    }
-
-    /**
-     * Shows user all tasks that are stored.
+     * Formats a message that lists all tasks for Duke.
      *
      * @param allTasks String representation of allTasks.
+     * @return A formatted string representation of all tasks.
      */
-    public void showAllTasks(String allTasks) {
-        String tasksMessage = "Here are the tasks in your list\n" + allTasks;
+    public String allTasksMsg(String allTasks) {
+        if (allTasks.trim().isEmpty()) {
+            return "There are no tasks yet...";
+        }
 
-        System.out.println(Ui.formatText(tasksMessage));
+        return "Here are the tasks in your list\n" + allTasks;
     }
 
     /**
      * File Loading Tasks Error.
      *
+     * @return String representation of loading error.
      */
-    public void showLoadingError() {
-        String errorMessage = "☹ OOPS!!! Failed to load tasks because file cannot be opened!";
-        System.out.println(Ui.formatText(errorMessage));
+    public String showLoadingError() {
+        return "OOPS!!! Failed to load tasks because file cannot be opened!";
     }
 
     /**
-     * Shows Duke error message to user.
+     * Formats a Duke error message.
      *
      * @param error Error message.
+     * @return Formatted duke error message.
      */
-    public void showDukeError(String error) {
-        System.out.println(Ui.formatText("☹ OOPS!!! " + error));
+    public String dukeErrorMsg(String error) {
+        return "OOPS!!! " + error;
     }
 
     /**
-     * Shows date parsing error (Invalid date format).
+     * Formats a date parsing error message (Invalid date format).
      *
+     * @return Formatted invalid date error message.
      */
-    public void showInvalidDateError() {
-        String errorMessage = "☹ OOPS!!! Your date format has to be in the form 'yyyy-mm-dd'";
-        System.out.println(Ui.formatText(errorMessage));
+    public String dateErrorMsg() {
+        return "OOPS!!! Your date format has to be in the form 'yyyy-mm-dd'";
     }
 
     /**
-     * Shows String to Number cast error (because user did not input a number).
+     * Formats String to Number cast error message (because user did not input a number).
      *
+     * @return Formatted invalid number error message.
      */
-    public void showNumberCastError() {
-        String errorMessage = "☹ OOPS!!! Please input a valid index (i.e. a number)";
-        System.out.println(Ui.formatText(errorMessage));
+    public String numberCastErrorMsg() {
+        return "OOPS!!! Please input a valid index (i.e. a number)";
     }
 
     /**
-     * Shows all tasks to the user in the search result.
+     * Formats all search results message for Duke.
      *
      * @param searchResults String representation of all string results.
+     * @return String representation of all search results.
      */
-    public static void showSearchResults(String searchResults) {
-        String message = "Here are the matching tasks in your list:\n" + searchResults;
-        System.out.println(Ui.formatText(message));
-    }
-
-
-    /**
-     * Styles a given text with indentation and wraps the text around horizontal lines.
-     *
-     * @param text String that needs to be styled.
-     * @return Formatted String that has proper indentation and wrapped around horizontal lines.
-     */
-    private static String formatText(String text) {
-        final String horizontalLine = "\t---------------------------------------------------------------------\n";
-
-        String[] lines = text.split("\\r?\\n");
-        StringBuilder formattedText = new StringBuilder(horizontalLine);
-        for (String line : lines) {
-            formattedText.append("\t").append(line).append("\n");
-        }
-
-        return formattedText + horizontalLine;
+    public static String searchResultsMsg(String searchResults) {
+        return "Here are the matching tasks in your list:\n" + searchResults;
     }
 }
