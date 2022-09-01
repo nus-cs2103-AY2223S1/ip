@@ -76,12 +76,12 @@ public class TaskList {
     /**
      * Change the status of a task.
      * @param idx Index of the task whose status is to be changed.
-     * @param markStatus Status of the task after changing.
+     * @param isDone Status of the task after changing.
      * @throws PlutoException If invalid idx.
      */
-    public void markTask(int idx, boolean markStatus) throws PlutoException {
+    public void markTask(int idx, boolean isDone) throws PlutoException {
         try {
-            if (markStatus) {
+            if (isDone) {
                 missions.get(idx).markAsDone();
             } else {
                 missions.get(idx).markAsUndone();
@@ -103,7 +103,7 @@ public class TaskList {
     public String toString() {
         StringBuilder printTasks = new StringBuilder();
         for (int i = 0; i < missions.size(); i++) {
-            String output = String.format("\t\t%d. %s\n",i + 1, missions.get(i).toString());
+            String output = String.format("\t\t%d. %s\n", i + 1, missions.get(i).toString());
             printTasks.append(output);
         }
         return printTasks.toString();
