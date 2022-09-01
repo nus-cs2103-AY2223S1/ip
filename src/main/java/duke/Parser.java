@@ -34,7 +34,7 @@ public class Parser {
         } else if (input.startsWith("find")) {
             return "FIND";
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -95,16 +95,17 @@ public class Parser {
      * @param tasks
      * @throws DukeException if keyword cannot be found in our task list
      */
-    static void parseFindCommand(String command, TaskList tasks) throws DukeException{
+    static String parseFindCommand(String command, TaskList tasks) throws DukeException{
         try {
             String keyword = command.substring(5);
-            tasks.findTasks(keyword);
+            return tasks.findTasks(keyword);
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 
-    static void printUpcomingTasks(TaskList tasks) {
+    static String printUpcomingTasks(TaskList tasks) {
+        String response = "";
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks.getTasks()) {
             if (task instanceof Deadline) {
@@ -112,16 +113,17 @@ public class Parser {
                 Deadline deadline = (Deadline) task;
 
                 if (deadline.getTime().isBefore(dateTime.plusWeeks(1))) {
-                    System.out.println(deadline);
+                    response += deadline + "\n";
                 }
             } else if (task instanceof Event) {
                 //we specify that the task is of the Event class by type casting
                 Event event = (Event) task;
 
                 if (event.getTime().isBefore(dateTime.plusWeeks(1))) {
-                    System.out.println(event);
+                    response += event + "\n";
                 }
             }
         }
+        return response;
     }
 }

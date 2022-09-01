@@ -26,41 +26,45 @@ public class TaskList {
         return this.tasks;
     }
 
-    void add(Task task) {
+    String add(Task task) {
+        String response = "";
         tasks.add(task);
-        System.out.println(indent + "Got it. I've added this task:");
-        System.out.println("    " + task);
+        response += indent + "Got it. I've added this task:" + "\n";
+        response += "    " + task + "\n";
         numOfTasks += 1;
-        System.out.println(indent + "Now you have " + numOfTasks + " tasks in the list");
+        response +=  indent + "Now you have " + numOfTasks + " tasks in the list";
+        return response;
     }
 
-    void delete(int taskIndex) {
+    String delete(int taskIndex) {
+        String response = "";
         numOfTasks -= 1;
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("      " + tasks.get(taskIndex - 1));
-        System.out.println(indent + "Now you have " + numOfTasks + " tasks in the list");
+        response += "Noted. I've removed this task:" + "\n";
+        response += "      " + tasks.get(taskIndex - 1) + "\n";
+        response += indent + "Now you have " + numOfTasks + " tasks in the list";
         tasks.remove(taskIndex - 1);
+        return response;
     }
 
-    void mark(int taskIndex) {
+    String mark(int taskIndex) {
         Task task = tasks.get(taskIndex - 1);
         task.mark();
-        System.out.println(indent + "Nice! I've marked this task as done:");
-        System.out.println("      " + task);
+        return indent + "Nice! I've marked this task as done:" + "\n      " + task;
     }
 
-    void unmark(int taskIndex) {
+    String unmark(int taskIndex) {
         Task task = tasks.get(taskIndex - 1);
         task.unmark();
-        System.out.println(indent + "Ok, I've marked this task as not done yet:");
-        System.out.println("      " + task);
+        return indent + "Ok, I've marked this task as not done yet:" + "\n       " + task;
     }
 
-    void printTasks() {
+    String printTasks() {
+        String taskList = "Here are your tasks: \n";
         for (int j = 0; j < numOfTasks; j++) {
             int taskNum = j + 1;
-            System.out.println(indent + taskNum + ". " + tasks.get(j));
+            taskList += indent + taskNum + ". " + tasks.get(j) + "\n";
         }
+        return taskList;
     }
 
     /**
@@ -69,12 +73,13 @@ public class TaskList {
      * @param keyword input user is trying to find
      * @throws DukeException if none of our tasks description contains the keyword
      */
-    void findTasks(String keyword) throws DukeException{
+    String findTasks(String keyword) throws DukeException{
         // initiate a boolean variable to check if the keyword exists in our task list
+        String response = "";
         boolean isFindable = false;
         for (Task task : tasks) {
             if (task.getDescription().contains(keyword)) {
-                System.out.println(task);
+                response += task + "\n";
                 isFindable = true;
             }
         }
@@ -83,5 +88,6 @@ public class TaskList {
         if (!isFindable) {
             throw new DukeException("There exists no such keyword in the task list!");
         }
+        return response;
     }
 }
