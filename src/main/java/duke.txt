@@ -1,3 +1,5 @@
 D | X | this|2022-08-26
 E |   | chill| tonight
 D |   | testing deadline|2022-08-25
+T |   | do task one
+D |   | do deadline|2022-09-22
