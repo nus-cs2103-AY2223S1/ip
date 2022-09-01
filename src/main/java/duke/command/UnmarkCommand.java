@@ -16,7 +16,6 @@ public class UnmarkCommand extends Command {
      * @param num Number of the task to be marked as undone.
      */
     public UnmarkCommand(int num) {
-        super();
         this.num = num;
     }
 
@@ -26,11 +25,12 @@ public class UnmarkCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.getTask(this.num).markAsUndone();
-        ui.showUnmark(list.getTask(this.num));
         storage.saveList(list.save());
+        return ui.showUnmark(list.getTask(this.num));
     }
 }

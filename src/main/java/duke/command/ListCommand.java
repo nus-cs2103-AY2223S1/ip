@@ -9,12 +9,6 @@ import duke.Ui;
  */
 public class ListCommand extends Command {
 
-    /**
-     * Constructor for ListCommand.
-     */
-    public ListCommand() {
-        super();
-    }
 
     /**
      * Executes the specific command corresponding to the type of input the user gives.
@@ -22,9 +16,10 @@ public class ListCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
-        ui.showList(list);
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
+        return ui.showList(list);
     }
 }

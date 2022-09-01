@@ -17,7 +17,6 @@ public class ToDoCommand extends Command {
      * @param description Description of the task.
      */
     public ToDoCommand(String description) {
-        super();
         this.toDo = new ToDo(description);
     }
 
@@ -27,11 +26,12 @@ public class ToDoCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.toDo);
-        ui.showAdd(this.toDo, list.getSize());
         storage.saveList(list.save());
+        return ui.showAdd(this.toDo, list.getSize());
     }
 }

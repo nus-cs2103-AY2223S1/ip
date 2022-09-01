@@ -21,20 +21,27 @@ public class FindCommand extends Command {
      * @param keyword Word to find in task.
      */
     public FindCommand(String keyword) {
-        super();
         this.keyword = keyword;
         this.matchingTasks = new ArrayList<>();
     }
 
+    /**
+     * Executes the specific command corresponding to the type of input the user gives.
+     *
+     * @param list List of tasks.
+     * @param ui Ui to print messages.
+     * @param storage To save the list after making changes.
+     * @return String that matches the command input.
+     */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         for (int i = 0; i < list.getSize(); i++) {
             Task task = list.getTask(i);
             if (task.getDescription().contains(keyword)) {
                 matchingTasks.add(task);
             }
         }
-        ui.showFind(matchingTasks);
+        return ui.showFind(matchingTasks);
     }
 
 }

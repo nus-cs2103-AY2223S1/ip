@@ -1,70 +1,47 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import duke.task.Task;
 
 /**
  * Ui deals with interactions with the user.
  */
 public class Ui {
-    private static final String LINE = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-
-    private Scanner sc;
-
-    /**
-     * Constructor for Ui.
-     */
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
-
-    /**
-     * Reads the next line from the user input.
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
-
-    /**
-     * Prints the String LINE.
-     */
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
-    /**
-     * Prints the welcome statement when the user first opens Duke.
-     */
-    public void showWelcome() {
-        System.out.println("Hello! I am a ToDos, Events, Deadlines and Talk Bot, otherwise known as TEDTalk\n"
-                + "What can I do for you today?");
-    }
 
     /**
      * Prints the exit statement when the user inputs the exit command.
      */
-    public void showBye() {
-        System.out.println("Goodbye! I hope to see you again soon.");
+    public String showBye() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 2000);
+        return "Goodbye! I hope to see you again soon.";
     }
 
     /**
      * Prints the task that is to be marked as done.
      *
      * @param task Task to be marked as done.
+     * @return A string to confirm that the task has been marked as done.
      */
-    public void showMark(Task task) {
-        System.out.println("Task successfully completed!\n" + task);
+    public String showMark(Task task) {
+        return "Task successfully completed!\n" + task;
     }
 
     /**
      * Prints the task that is to be marked as undone.
      *
      * @param task Task to be marked as undone
+     * @return A string to confirm that the task has been marked as undone.
      */
-    public void showUnmark(Task task) {
-        System.out.println("Task incomplete.\n" + task);
+    public String showUnmark(Task task) {
+        return "Task incomplete.\n" + task;
     }
 
     /**
@@ -72,22 +49,24 @@ public class Ui {
      *
      * @param task Task to be added into the list.
      * @param size New number of tasks in the list.
+     * @return A string to confirm that the new task has been added to the list.
      */
-    public void showAdd(Task task, int size) {
-        System.out.println("Successfully added new task:\n" + task
-                + "\nYou have " + size + " task(s) in the list.");
+    public String showAdd(Task task, int size) {
+        return "Successfully added new task:\n" + task + "\nYou have " + size + " task(s) in the list.";
     }
 
     /**
      * Prints the current list of tasks.
      *
      * @param taskList List of tasks.
+     * @return A string to show the current list.
      */
-    public void showList(TaskList taskList) {
-        System.out.println("Here are your tasks:");
-        for (int i = 0; i < taskList.getSize(); i++) {
-            System.out.println(i + 1 + ". " + taskList.getTask(i));
+    public String showList(TaskList taskList) {
+        StringBuilder stringBuilder = new StringBuilder("Here are your tasks:\n");
+        for (int i = 1; i <= taskList.getSize(); i++) {
+            stringBuilder.append(i).append(". ").append(taskList.getTask(i - 1)).append("\n");
         }
+        return stringBuilder.toString();
     }
 
     /**
@@ -95,25 +74,27 @@ public class Ui {
      *
      * @param task Task that was removed.
      * @param size New number of tasks in the list.
+     * @return A string showing the deleted task.
      */
-    public void showDelete(Task task, int size) {
-        System.out.println("Understood. I have removed this task:\n" + task
-                + "\nYou have " + size + " task(s) in the list.");
+    public String showDelete(Task task, int size) {
+        return "Understood. I have removed this task:\n" + task + "\nYou have " + size + " task(s) in the list.";
     }
 
     /**
      * Prints list of tasks that occur on a particular date.
      *
      * @param tasks List of tasks that occur on that date.
+     * @return The string that shows the list of tasks corresponding to that date.
      */
-    public void showDate(ArrayList<Task> tasks) {
+    public String showDate(ArrayList<Task> tasks) {
         if (tasks.size() != 0) {
-            System.out.println("Here are the task(s) on that date:");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i + 1 + ". " + tasks.get(i));
+            StringBuilder stringBuilder = new StringBuilder("Here are the task(s) on that date:\n");
+            for (int i = 1; i <= tasks.size(); i++) {
+                stringBuilder.append(i).append(". ").append(tasks.get(i - 1)).append("\n");
             }
+            return stringBuilder.toString();
         } else {
-            System.out.println("You have no tasks on that date.");
+            return "You have no tasks on that date.";
         }
     }
 
@@ -128,19 +109,27 @@ public class Ui {
      * Prints error message when an invalid input is given.
      *
      * @param msg Error message to be printed.
+     * @return The error message.
      */
-    public void showError(String msg) {
-        System.out.println(msg);
+    public String showError(String msg) {
+        return msg;
     }
 
-    public void showFind(ArrayList<Task> tasks) {
+    /**
+     * Prints list of tasks corresponding to the keyword.
+     *
+     * @param tasks List of tasks that correspond to that keyword.
+     * @return A string that shows the list of tasks corresponding to that keyword.
+     */
+    public String showFind(ArrayList<Task> tasks) {
         if (tasks.size() != 0) {
-            System.out.println("Here are the matching task(s):");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i + 1 + ". " + tasks.get(i));
+            StringBuilder stringBuilder = new StringBuilder("Here are the matching task(s):\n");
+            for (int i = 1; i <= tasks.size(); i++) {
+                stringBuilder.append(i).append(". ").append(tasks.get(i - 1)).append("\n");
             }
+            return stringBuilder.toString();
         } else {
-            System.out.println("There are no tasks matching that word.");
+            return "There are no tasks matching that word.";
         }
     }
 }
