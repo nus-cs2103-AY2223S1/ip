@@ -41,18 +41,20 @@ public class Storage {
      *
      * @throws IOException Thrown when an error creating the storage file occurs.
      */
-    public void initializeStorage() throws IOException {
+    public String initializeStorage() throws IOException {
         Path filePath = Paths.get(this.filePath);
         Path dirPath = Paths.get(storageDirname);
+        String res = "";
 
         if (!Files.exists(dirPath)) {
             Files.createDirectory(dirPath);
-            Ui.printCreateNewDirectory(this.storageDirname);
+            res += ChatResponse.returnChatCreateNewDirectory(this.storageDirname);
         }
         if (!Files.exists(filePath)) {
             Files.createFile(filePath);
-            Ui.printCreateNewStorage(this.storageName);
+            res += ChatResponse.returnChatCreateNewStorage(this.storageName);
         }
+        return res;
     }
 
     /**
