@@ -20,7 +20,6 @@ public class DeadlineCommand extends Command {
      * @param time Time the task is due by.
      */
     public DeadlineCommand(String description, LocalDate time) {
-        super();
         this.deadline = new Deadline(description, time);
     }
 
@@ -30,11 +29,12 @@ public class DeadlineCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.deadline);
-        ui.showAdd(this.deadline, list.getSize());
         storage.saveList(list.save());
+        return ui.showAdd(this.deadline, list.getSize());
     }
 }

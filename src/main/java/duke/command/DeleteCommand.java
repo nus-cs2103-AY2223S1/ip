@@ -17,7 +17,6 @@ public class DeleteCommand extends Command {
      * @param num Number of the task to be deleted.
      */
     public DeleteCommand(int num) {
-        super();
         this.num = num;
     }
 
@@ -27,11 +26,12 @@ public class DeleteCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         Task removed = list.removeTask(this.num);
-        ui.showDelete(removed, list.getSize());
         storage.saveList(list.save());
+        return ui.showDelete(removed, list.getSize());
     }
 }

@@ -121,13 +121,6 @@ public class Parser {
         }
     }
 
-
-    /**
-     * Returns a Command to be executed by Duke.
-     *
-     * @return Command according to the input of the user.
-     * @throws DukeException
-     */
     public String getFindWord() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("No keyword found. Please enter a keyword.");

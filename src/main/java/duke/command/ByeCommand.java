@@ -10,22 +10,15 @@ import duke.Ui;
 public class ByeCommand extends Command {
 
     /**
-     * Constructor for ByeCommand.
-     */
-    public ByeCommand() {
-        super();
-        this.terminated = true;
-    }
-
-    /**
      * Executes the specific command corresponding to the type of input the user gives.
      *
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
+        return ui.showBye();
     }
 }

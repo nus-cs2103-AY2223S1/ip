@@ -20,7 +20,6 @@ public class EventCommand extends Command {
      * @param time Time of the task.
      */
     public EventCommand(String description, LocalDate time) {
-        super();
         this.event = new Event(description, time);
     }
 
@@ -30,11 +29,12 @@ public class EventCommand extends Command {
      * @param list List of tasks.
      * @param ui Ui to print messages.
      * @param storage To save the list after making changes.
+     * @return String that matches the command input.
      */
     @Override
-    public void execCommand(TaskList list, Ui ui, Storage storage) {
+    public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.event);
-        ui.showAdd(this.event, list.getSize());
         storage.saveList(list.save());
+        return ui.showAdd(this.event, list.getSize());
     }
 }
