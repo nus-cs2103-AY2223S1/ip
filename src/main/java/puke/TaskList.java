@@ -35,10 +35,9 @@ public class TaskList {
         for(int i = 0; i < this.tasks.size() ; i++) {
             temp += "     " + (i+1) + "." + this.tasks.get(i) + "\n";
         }
-        return "    ____________________________________________________________\n"
+        return "\n"
                 + "     Here are the tasks in your list:\n"
-                + temp
-                + "    ____________________________________________________________";
+                + temp;
     }
 
     /**
@@ -60,7 +59,6 @@ public class TaskList {
     }
 
     public String find(String s) {
-        String s1 = "    ____________________________________________________________";
         String str = "Here are the matching tasks in your list\n";
         int count = 1;
         for(int i = 0; i < tasks.size(); i++) {
@@ -69,7 +67,7 @@ public class TaskList {
                 count++;
             }
         }
-        return s1 + "\n" + str + "\n" + s1;
+        return "\n" + str + "\n";
     }
 
 } 

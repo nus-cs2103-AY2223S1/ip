@@ -15,21 +15,18 @@ public class Ui {
      */
     public String systemMessage(int i , Duke d, Task t) {
         if (i == 1) {
-            return "    ____________________________________________________________\n"
-                    + "     Bye. Why are you still here?\n"
-                    + "    ____________________________________________________________";
+            return "\n"
+                    + "     Bye. Why are you still here?\n" ;
         } else if (i == 2) {
-            return "    ____________________________________________________________\n"
+            return "\n"
                     + "     Got it. I've added this task:\n"
                     + "      " + t + "\n"
-                    + "     Now you have " + (Duke.d.tasklist.numTasks - Duke.d.tasklist.removed) + " tasks in the list.\n"
-                    + "    ____________________________________________________________";
+                    + "     Now you have " + (Duke.d.tasklist.numTasks - Duke.d.tasklist.removed) + " tasks in the list.\n";
         }  else if (i == 3) {
 
-            return "    ____________________________________________________________\n"
+            return "\n"
                     + "     Noted. I've removed this task:\n"
-                    + "     " + t + "\n"
-                    + "    ____________________________________________________________";
+                    + "     " + t + "\n";
         }else {
             return "";
         }
@@ -75,18 +72,16 @@ public class Ui {
     public String taskManager(String s, int pos, Duke d) {
         if (s.equals("do")) {
             Duke.d.tasklist.tasks.get(pos - 1).markAsDone();
-            return "    ____________________________________________________________\n"
+            return "\n"
                     +  "     Nice! I've marked this task as done: \n"
-                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n"
-                    +  "    ____________________________________________________________" ;
+                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n";
 
         } else if (s.equals("undo")) {
             Duke.d.tasklist.tasks.get(pos - 1).markAsUndone();
             System.out.println("       " + Duke.d.tasklist.tasks.get(pos-1));
-            return "    ____________________________________________________________\n"
+            return "\n"
                     +  "     OK! I've marked this task as not done yet: \n"
-                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n"
-                    +  "    ____________________________________________________________" ;
+                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n";
         } else {
             return "    Failed to manage your tasks, try doing it yourself next time";
         }
