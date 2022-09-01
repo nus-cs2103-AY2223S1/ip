@@ -1,6 +1,14 @@
 package duke.parser;
 
-import duke.command.CommandType;
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * A class that parse the user input into the respective commands.
@@ -15,29 +23,26 @@ public class Parser {
      * @param userText the text inputted by the user
      * @return the type of command given by the user
      */
-    public static CommandType parse(String userText) {
+    public static Command parse(String userText) {
         String commandWord = userText.split(" ", 2)[0];
-
+        Command command;
         if (commandWord.equals("bye")) {
-            return CommandType.BYE;
+            command = new ByeCommand(userText);
         } else if (commandWord.equals("list")) {
-            return CommandType.LIST;
+            command = new ListCommand(userText);
         } else if (commandWord.equals("mark")) {
-            return CommandType.MARK;
+            command = new MarkCommand(userText);
         } else if (commandWord.equals("unmark")) {
-            return CommandType.UNMARK;
-        } else if (commandWord.equals("todo")) {
-            return CommandType.TODO;
-        } else if (commandWord.equals("deadline")) {
-            return CommandType.DEADLINE;
-        } else if (commandWord.equals("event")) {
-            return CommandType.EVENT;
+            command = new UnmarkCommand(userText);
+        } else if (commandWord.equals("todo") || commandWord.equals("deadline") || commandWord.equals("event")) {
+            command = new AddCommand(userText);
         } else if (commandWord.equals("delete")) {
-            return CommandType.DELETE;
+            command = new DeleteCommand(userText);
         } else if (commandWord.equals("find")) {
-            return CommandType.FIND;
+            command = new FindCommand(userText);
         } else {
-            return CommandType.UNABLE;
+            command = new UnknownCommand(userText);
         }
+        return command;
     }
 }

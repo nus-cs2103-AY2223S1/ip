@@ -1,7 +1,8 @@
 package duke;
 
-import duke.command.CommandManager;
+import duke.command.Command;
 import duke.gui.Ui;
+import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -13,7 +14,6 @@ public class Duke {
     private static TaskList tasks;
     private static Storage storage;
     private Ui ui;
-    private CommandManager manager;
 
     /**
      * Default public constructor which stores the saved list in /data/duke.txt.
@@ -29,7 +29,6 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        manager = new CommandManager();
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
@@ -45,6 +44,7 @@ public class Duke {
      * @return the reply in response to the input
      */
     public String getResponse(String userInput) {
-        return manager.processCommand(tasks, userInput, storage);
+        Command command = Parser.parse(userInput);
+        return command.runCommand(ui, storage, tasks);
     }
 }
