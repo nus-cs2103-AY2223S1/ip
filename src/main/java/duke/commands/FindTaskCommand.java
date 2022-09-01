@@ -4,13 +4,23 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
+/**
+ * FindTaskCommand implements method for finding a task in the task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class FindTaskCommand extends Command {
 
-    private final int KEYWORD_START_INDEX = 5;
     private final String keywords;
 
+    /**
+     * Creates new FindTaskCommand object.
+     *
+     * @param input the input string from the user
+     */
     public FindTaskCommand(String input) {
-        this.keywords = input.substring(KEYWORD_START_INDEX);
+        this.keywords = input.substring(5);
     }
 
     /**

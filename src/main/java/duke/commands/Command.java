@@ -1,11 +1,17 @@
 package duke.commands;
 
+import java.time.format.DateTimeFormatter;
+
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-import java.time.format.DateTimeFormatter;
-
+/**
+ * Abstract Command class implements methods for various commands recognised by Duke.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public abstract class Command {
 
     // Formatter to standardize the display of dates
@@ -30,7 +36,7 @@ public abstract class Command {
      * @return True if the input is a Date
      */
     public static boolean isDate(String input) {
-       return input.matches(".[0-9].*");
+        return input.matches(".[0-9].*");
     }
 
     /**
@@ -42,6 +48,6 @@ public abstract class Command {
      */
     public static boolean checkValid(String input) {
         String[] str = input.split(" ");
-        return ((str.length != 1) &&  (str.length != 0));
+        return ((str.length > 1) && ((!input.equals("list")) && (!input.equals("exit"))));
     }
 }

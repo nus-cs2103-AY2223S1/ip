@@ -4,6 +4,12 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
+/**
+ * DeleteAllCommand implements method for clearing the task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class DeleteAllCommand extends Command {
 
     /**

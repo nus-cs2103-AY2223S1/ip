@@ -1,13 +1,16 @@
 package duke.storage;
 
-import duke.tasks.Task;
-import duke.tasks.TaskList;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+
 /**
  * Encode the {@code TaskList} object into a data file for storage.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
  */
 public class TaskListEncoder {
 

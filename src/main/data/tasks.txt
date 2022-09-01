@@ -1,3 +1,4 @@
 
 T|0|read book
 D|0|return book| Monday
+E|0|sell b00k| Monday 2-4pm

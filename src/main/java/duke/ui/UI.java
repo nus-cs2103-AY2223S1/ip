@@ -1,10 +1,16 @@
 package duke.ui;
 
+import java.util.Scanner;
+
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
-import java.util.Scanner;
-
+/**
+ * Event implements methods for displaying messages in Duke.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class UI {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -14,11 +20,11 @@ public class UI {
     }
 
     public void welcomeMessage() {
-        String logo = " ____        _        \n" +
-                "|  _ \\ _   _| | _____ \n" +
-                "| | | | | | | |/ / _ \\\n" +
-                "| |_| | |_| |   <  __/\n" +
-                "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         showLineBreak();
         System.out.println("     Hello! I'm Duke\n     What can I do for you?");

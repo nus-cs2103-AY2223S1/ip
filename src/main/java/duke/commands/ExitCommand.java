@@ -4,6 +4,12 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
+/**
+ * ExitCommand implements method for exiting Duke.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class ExitCommand extends Command {
 
     /**

@@ -1,21 +1,37 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Deadline;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-import java.time.LocalDateTime;
-
+/**
+ * AddDeadlineCommand implements method for adding Deadline to task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class AddDeadlineCommand extends Command {
 
     private final String input;
 
+    /**
+     * Creates new AddDeadlineCommand object.
+     *
+     * @param input the input string from the user
+     * @throws DukeException to handle if the input string is invalid.
+     */
     public AddDeadlineCommand(String input) throws DukeException {
-        if (!checkValid(input)) throw new DukeException(" ☹ OOPS!!! The description of a deadline cannot be empty.");
-        if (!input.contains("/by")) throw new DukeException(" ☹ OOPS!!! Please enter in the format : \n" +
-                "     deadline {task description} /by {day / date : YYYY-MM-DD / time}");
+        if (!checkValid(input)) {
+            throw new DukeException(" ☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
+        if (!input.contains("/by")) {
+            throw new DukeException(" ☹ OOPS!!! Please enter in the format : \n"
+                    + "     deadline {task description} /by {day / date : YYYY-MM-DD / time}");
+        }
         this.input = input;
     }
 

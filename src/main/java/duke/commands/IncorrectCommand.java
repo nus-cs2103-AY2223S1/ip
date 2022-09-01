@@ -4,12 +4,18 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
+/**
+ * IncorrectCommand implements method for unrecognised commands by Duke.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class IncorrectCommand extends Command {
 
     /**
      * Informs the user that the command is not recognised.
      *
-     * @param taskList placeholder to match parameters defined in parent abstract class Command
+     * @param tasks placeholder to match parameters defined in parent abstract class Command
      * @param ui the ui to display incorrect command message
      * @param storage placeholder to match parameters defined in parent abstract class Command
      */

@@ -3,16 +3,29 @@ package duke.commands;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
-import duke.ui.UI;
 import duke.tasks.Todo;
+import duke.ui.UI;
 
+/**
+ * AddTodoCommand implements method for adding Todo to task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class AddTodoCommand extends Command {
 
     private final String input;
 
+    /**
+     * Creates new AddTodoCommand object.
+     *
+     * @param input the input string from the user
+     * @throws DukeException to handle if the input string is invalid.
+     */
     public AddTodoCommand(String input) throws DukeException {
-        if (!checkValid(input))
+        if (!checkValid(input)) {
             throw new DukeException(" ☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         this.input = input;
     }
 
@@ -26,8 +39,7 @@ public class AddTodoCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         // Index of beginning of Todo description after the "todo" keyword in command.
-        int BEGIN_INDEX = 5;
-        String taskDesc = input.substring(BEGIN_INDEX);
+        String taskDesc = input.substring(5);
         Todo todo = new Todo(taskDesc);
         taskList.addTask(todo);
         ui.addTaskMessage(todo, taskList.getSize());

@@ -1,8 +1,25 @@
 package duke.parser;
 
-import duke.commands.*;
+import duke.commands.AddDeadlineCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.AddTodoCommand;
+import duke.commands.Command;
+import duke.commands.DeleteAllCommand;
+import duke.commands.DeleteTaskCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindTaskCommand;
+import duke.commands.IncorrectCommand;
+import duke.commands.MarkTaskCommand;
+import duke.commands.PrintListCommand;
+import duke.commands.UnmarkTaskCommand;
 import duke.exceptions.DukeException;
 
+/**
+ * AddDeadlineCommand implements method for parsing inputs by the user.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class Parser {
 
     /**
@@ -16,34 +33,56 @@ public class Parser {
      */
     public static Command parse(String input) throws DukeException {
         //Fetch and display taskList
-        if (input.equals("list")) return new PrintListCommand();
+        if (input.equals("list")) {
+            return new PrintListCommand();
+        }
 
         // Mark a task
-        if (input.startsWith("mark")) return new MarkTaskCommand(input);
+        if (input.startsWith("mark")) {
+            return new MarkTaskCommand(input);
+        }
+
 
         // Unmark a task
-        if (input.startsWith("unmark")) return new UnmarkTaskCommand(input);
+        if (input.startsWith("unmark")) {
+            return new UnmarkTaskCommand(input);
+        }
 
         // Deletes all tasks from the list
-        if (input.equals("delete all")) return new DeleteAllCommand();
+        if (input.equals("delete all")) {
+            return new DeleteAllCommand();
+        }
+
 
         // Delete a task
-        if (input.startsWith("delete")) return new DeleteTaskCommand(input);
+        if (input.startsWith("delete")) {
+            return new DeleteTaskCommand(input);
+        }
 
         // Add todo to taskList
-        if (input.startsWith("todo")) return new AddTodoCommand(input);
+        if (input.startsWith("todo")) {
+            return new AddTodoCommand(input);
+        }
 
         // Add deadline to taskList
-        if (input.startsWith("deadline")) return new AddDeadlineCommand(input);
+        if (input.startsWith("deadline")) {
+            return new AddDeadlineCommand(input);
+        }
 
         // Add event to taskList
-        if (input.startsWith("event")) return new AddEventCommand(input);
+        if (input.startsWith("event")) {
+            return new AddEventCommand(input);
+        }
 
         // Finds the tasks matching the given keywords
-        if (input.startsWith("find")) return new FindTaskCommand(input);
+        if (input.startsWith("find")) {
+            return new FindTaskCommand(input);
+        }
 
         // Exits program
-        if (input.startsWith("exit")) return new ExitCommand();
+        if (input.startsWith("exit")) {
+            return new ExitCommand();
+        }
 
         // In case of an unrecognised command
         return new IncorrectCommand();

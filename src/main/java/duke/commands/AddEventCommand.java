@@ -1,22 +1,37 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Event;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-import java.time.LocalDateTime;
-
+/**
+ * AddEventCommand implements method for adding Event to task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class AddEventCommand extends Command {
 
     private final String input;
 
+    /**
+     * Creates new AddEventCommand object.
+     *
+     * @param input the input string from the user
+     * @throws DukeException to handle if the input string is invalid.
+     */
     public AddEventCommand(String input) throws DukeException {
-        if (!checkValid(input))
+        if (!checkValid(input)) {
             throw new DukeException(" ☹ OOPS!!! The description of a event cannot be empty.");
-        if (!input.contains("/at")) throw new DukeException(" ☹ OOPS!!! Please enter in the format : \n" +
-                "     event {task description} /at {day / date : YYYY-MM-DD / time : no spaces}");
+        }
+        if (!input.contains("/at")) {
+            throw new DukeException(" ☹ OOPS!!! Please enter in the format : \n"
+                    + "     event {task description} /at {day / date : YYYY-MM-DD / time : no spaces}");
+        }
         this.input = input;
     }
 

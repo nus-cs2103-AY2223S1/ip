@@ -1,10 +1,22 @@
 package duke.tasks;
 
+/**
+ * Event implements methods for Event objects.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class Event extends Task {
 
     private final String deadline;
     private final String taskDesc;
 
+    /**
+     * Creates a new Event object.
+     *
+     * @param taskDesc description of the event task
+     * @param date deadline of the event task
+     */
     public Event(String taskDesc, String deadline) {
         super(taskDesc);
         this.taskDesc = taskDesc;

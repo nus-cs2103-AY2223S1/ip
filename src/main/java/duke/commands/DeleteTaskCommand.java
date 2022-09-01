@@ -5,12 +5,26 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
+/**
+ * DeleteTaskCommand implements method for deleting a task from the task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class DeleteTaskCommand extends Command {
 
     private final int taskId;
 
+    /**
+     * Creates new DeleteTaskCommand object.
+     *
+     * @param input the input string from the user
+     * @throws DukeException to handle if the input string is invalid.
+     */
     public DeleteTaskCommand(String input) throws DukeException {
-        if (!checkValid(input)) { throw new DukeException(" ☹ OOPS!!! Please enter task to delete."); }
+        if (!checkValid(input)) {
+            throw new DukeException(" ☹ OOPS!!! Please enter task to delete.");
+        }
         this.taskId = Integer.parseInt(input.substring(7)) - 1;
     }
 

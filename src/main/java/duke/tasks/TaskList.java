@@ -1,9 +1,15 @@
 package duke.tasks;
 
-import duke.exceptions.DukeException;
-
 import java.util.ArrayList;
 
+import duke.exceptions.DukeException;
+
+/**
+ * TaskList implements methods for TaskList objects.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class TaskList {
 
     private static ArrayList<Task> taskList;
@@ -52,8 +58,9 @@ public class TaskList {
             if (isEmpty()) {
                 throw new DukeException(" ☹ OOPS!!! Seems like your list is empty.");
             } else {
-                for (int i = 0; i < taskList.size(); i++)
+                for (int i = 0; i < taskList.size(); i++) {
                     System.out.println("     " + (i + 1) + ". " + taskList.get(i).toString());
+                }
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());

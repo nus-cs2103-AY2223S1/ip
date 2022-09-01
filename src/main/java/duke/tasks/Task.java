@@ -1,10 +1,21 @@
 package duke.tasks;
 
+/**
+ * Event implements methods for Task objects.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public abstract class Task {
 
     private final String taskDesc;
     private boolean completed;
 
+    /**
+     * Creates a new Task object.
+     *
+     * @param taskDesc description of the task
+     */
     public Task(String taskDesc) {
         this.taskDesc = taskDesc;
         this.completed = false;

@@ -1,18 +1,28 @@
 package duke.storage;
 
-
-import duke.tasks.Task;
-import duke.tasks.TaskList;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.tasks.Task;
+import duke.tasks.TaskList;
+
+/**
+ * Storage implements method for storing and fetching the task list from hard drive.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class Storage {
 
     /** Default file path used if the user does not provide the file name. */
-    static String path = Paths.get(".").toAbsolutePath().toString();
+    private static final String path = Paths.get(".").toAbsolutePath().toString();
     private static final String RELATIVE_FILEPATH = path.substring(0, path.length() - 1) + "src/main/";
 
     private String filePath = "";
@@ -68,13 +78,13 @@ public class Storage {
         ArrayList<Task> result = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(this.filePath));
-            List<String> encodedTaskList= new ArrayList<>();
+            List<String> encodedTaskList = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
                 encodedTaskList.add(line);
             }
             reader.close();
-            result =  TaskListDecoder.decodeTaskList(encodedTaskList);
+            result = TaskListDecoder.decodeTaskList(encodedTaskList);
         } catch (IOException e) {
             e.printStackTrace();
         }

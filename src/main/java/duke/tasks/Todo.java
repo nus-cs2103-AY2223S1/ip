@@ -1,7 +1,18 @@
 package duke.tasks;
 
+/**
+ * Todo implements methods for Todo objects.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class Todo extends Task {
 
+    /**
+     * Creates a new Todo object.
+     *
+     * @param task description of the deadline task
+     */
     public Todo(String task) {
         super(task);
     }

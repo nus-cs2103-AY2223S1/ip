@@ -4,13 +4,26 @@ import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
-
+/**
+ * UnmarkTaskCommand implements method for unmarking a task in the task list.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
+ */
 public class UnmarkTaskCommand extends Command {
 
     private final int taskId;
 
+    /**
+     * Creates new UnmarkTaskCommand object.
+     *
+     * @param input the input string from the user
+     * @throws DukeException to handle if the input string is invalid.
+     */
     public UnmarkTaskCommand(String input) throws DukeException {
-        if (!checkValid(input)) throw new DukeException(" ☹ OOPS!!! Please enter task to unmark.");
+        if (!checkValid(input)) {
+            throw new DukeException(" ☹ OOPS!!! Please enter task to unmark.");
+        }
         this.taskId = Integer.parseInt(input.substring(7)) - 1;
     }
 

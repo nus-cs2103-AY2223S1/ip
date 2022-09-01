@@ -18,6 +18,11 @@ public class Duke {
     private TaskList tasks;
     private final UI ui;
 
+    /**
+     * Creates new Duke object.
+     *
+     * @param filePath the file path to store teh task list
+     */
     public Duke(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
@@ -45,13 +50,12 @@ public class Duke {
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
-            }
-            finally {
+            } finally {
                 ui.showLineBreak();
             }
         }
     }
-    
+
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

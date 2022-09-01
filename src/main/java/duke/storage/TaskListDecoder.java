@@ -1,13 +1,20 @@
 package duke.storage;
 
-import duke.tasks.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import duke.exceptions.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+
 /**
  * Decodes the storage data file into a {@code TaskList} object.
+ *
+ * @author Isaac Li Haoyang
+ * @version v0.1
  */
 public class TaskListDecoder {
 
@@ -38,27 +45,33 @@ public class TaskListDecoder {
         Task result = null;
         String[] str = encodedTask.split("\\|");
         switch (str[0]) {
-            case "T":
-                Todo todo = new Todo(str[2]);
-                if (Objects.equals(str[1], "1")) {
-                    todo.mark();
-                }
-                result = todo;
-                break;
-            case "D":
-                Deadline deadline = new Deadline(str[2], str[3]);
-                if (Objects.equals(str[1], "1")) {
-                    deadline.mark();
-                }
-                result = deadline;
-                break;
-            case "E":
-                Event event = new Event(str[2], str[3]);
-                if (Objects.equals(str[1], "1")) {
-                    event.mark();
-                }
-                result = event;
-                break;
+        case "T":
+            Todo todo = new Todo(str[2]);
+            if (Objects.equals(str[1], "1")) {
+                todo.mark();
+            }
+            result = todo;
+            break;
+        case "D":
+            Deadline deadline = new Deadline(str[2], str[3]);
+            if (Objects.equals(str[1], "1")) {
+                deadline.mark();
+            }
+            result = deadline;
+            break;
+        case "E":
+            Event event = new Event(str[2], str[3]);
+            if (Objects.equals(str[1], "1")) {
+                event.mark();
+            }
+            result = event;
+            break;
+        default:
+            try {
+                throw new DukeException("     OOPS!!! Unrecognised task");
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return result;
     }
