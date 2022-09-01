@@ -23,6 +23,7 @@ public class Storage {
     private File file;
     private Scanner sc;
     private TaskList tasks;
+    private Ui ui;
 
     /**
      * Creates a Storage with a file.
@@ -30,17 +31,18 @@ public class Storage {
      *
      * @throws IOException if an I/O error occurs.
      */
-    public Storage() throws IOException {
+    public Storage(Ui ui) throws IOException {
         try {
             this.file = new File("./Duke.txt");
             this.sc = new Scanner(file);
-            this.tasks = new TaskList();
+            this.ui = ui;
+            this.tasks = new TaskList(this.ui);
         } catch (FileNotFoundException e) {
             String TEXT_FILE = "./Duke.txt";
             Path textFilePath = Paths.get(TEXT_FILE);
             Files.createFile(textFilePath);
             this.sc = new Scanner(file);
-            this.tasks = new TaskList();
+            this.tasks = new TaskList(this.ui);
         }
     }
 

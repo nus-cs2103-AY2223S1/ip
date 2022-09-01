@@ -11,6 +11,7 @@ public class Ui {
 
     private final Scanner sc = new Scanner(System.in);
     private final String logo = "*\\(^o^)/*";
+    private String output;
 
     /**
      * Prints the welcome message.
@@ -32,8 +33,8 @@ public class Ui {
     /**
      * Prints the error message for an invalid input.
      */
-    public void showError(DukeException e) {
-        System.out.print("Ohno! Error: " + e.getMessage() + "\n");
+    public String showError(DukeException e) {
+        return String.format("Ohno! Error: " + e.getMessage() + "\n");
     }
 
     /**
@@ -44,4 +45,11 @@ public class Ui {
         sc.close();
     }
 
+    public void setOutput(String s) {
+        this.output = s;
+    }
+
+    public String showOutput() {
+        return this.output;
+    }
 }
