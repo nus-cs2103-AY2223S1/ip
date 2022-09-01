@@ -98,7 +98,7 @@ public class Ui {
             numOfTasks = Integer.parseInt(values[0]);
         }
         if (values.length >= 2) {
-            message = values[2];
+            message = values[1];
         }
         if (keyword == Command.ActionKeywords.DEADLINE || keyword == Command.ActionKeywords.TODO
                 || keyword == Command.ActionKeywords.EVENT) {
