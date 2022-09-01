@@ -35,6 +35,5 @@ public class CommandListAllTasks extends Command {
         }
 
         return result.toString();
-
     }
 }

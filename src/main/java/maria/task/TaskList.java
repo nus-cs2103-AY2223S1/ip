@@ -65,7 +65,16 @@ public class TaskList extends ArrayList<Task> {
      * This method should be called after the internal state of a Task has been modified.
      */
     public void mutatedTask() {
+
         syncStorageState();
+
+        try {
+            assert StorageConverter.tasksToString(this).equals(this.storage.readFromFile())
+                    : "Internal state of tasks is different from the storage state.";
+        } catch (IOException e) {
+            assert false : "Storage state of tasks could not be read.";
+        }
+
     }
 
 }

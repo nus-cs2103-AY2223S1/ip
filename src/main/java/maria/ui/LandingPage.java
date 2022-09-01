@@ -59,6 +59,12 @@ public class LandingPage extends VBox {
         this.textAreaDisplay.setText("Hi, I am Maria, your personal assistant.\n"
                 + "Type 'help' or click the Help button to get started.");
 
+        assert this.taskManager != null : "Task manager cannot be null.";
+        assert this.textAreaDisplay != null : "[textAreaDisplay] FXML was improperly configured.";
+        assert this.textFieldCommand != null : "[textFieldCommand] FXML was improperly configured.";
+        assert this.buttonExecuteCommand != null : "[buttonExecuteCommand] FXML was improperly configured.";
+        assert this.buttonHelp != null : "[buttonHelp] FXML was improperly configured.";
+
     }
 
     @FXML
@@ -92,6 +98,10 @@ public class LandingPage extends VBox {
         } else {
             textAreaDisplay.setText(textAreaDisplay.getText() + "\n\n" + content);
         }
+
+        // Scroll to end
+        this.textAreaDisplay.selectEnd();
+        this.textAreaDisplay.deselect();
 
     }
 
