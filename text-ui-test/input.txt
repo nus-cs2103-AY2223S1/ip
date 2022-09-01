@@ -1,0 +1,15 @@
+add
+exit
+todo testing todo function
+list
+deadline testing deadline function /by 19 August
+list
+event testing event function /at 12 pm
+event testing event function 2 /at 3 am
+list
+mark 1
+mark 3
+list
+unmark 3
+list
+bye
