@@ -3,7 +3,7 @@ package clevernotbot;
 /**
  * Deals with exception
  */
-public class CleverNotBotException extends Exception{
+public class CleverNotBotException extends Exception {
     private String errorMessage;
     private UI textBox;
 
@@ -11,9 +11,9 @@ public class CleverNotBotException extends Exception{
      * Constructor for CleverNotBotException.
      *
      * @param errorMessage Error message logged in the system.
-     * @param textBox For textbox wrapping.(Removed for now)
+     * @param textBox      For textbox wrapping.(Removed for now)
      */
-    public CleverNotBotException(String errorMessage, UI textBox){
+    public CleverNotBotException(String errorMessage, UI textBox) {
         this.errorMessage = errorMessage;
         this.textBox = textBox;
     }
@@ -28,7 +28,7 @@ public class CleverNotBotException extends Exception{
         return textBox.coverText(errorMessage);
     }
      */
-    public String toString(){
+    public String toString() {
         return errorMessage;
     }
 }

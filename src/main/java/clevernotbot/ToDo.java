@@ -3,16 +3,16 @@ package clevernotbot;
 /**
  * Represents a more specific task with no time limit attached to it.
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * Constructor for ToDo.
      *
-     * @param name Name of the task.
+     * @param name      Name of the task.
      * @param completed The status of the task. (Completed or not)
      */
-    public ToDo(String name, boolean completed){
-        super(name,completed);
+    public ToDo(String name, boolean completed) {
+        super(name, completed);
     }
 
     /**
@@ -41,8 +41,8 @@ public class ToDo extends Task{
      * @return A toggled version of todo. (Completed = true -> Completed = false)
      */
     @Override
-    public Task toggleCompleted(){
-        return new ToDo(getName(),!isCompleted());
+    public Task toggleCompleted() {
+        return new ToDo(getName(), !isCompleted());
     }
 
     /**
@@ -51,7 +51,7 @@ public class ToDo extends Task{
      * @return A string that represent a todo. E.g. [E][X] get a book /at Aug 6th 2-4pm.
      */
     @Override
-    public String toString(){
-        return String.format("[T][%s] %s",checkMarked(),getName());
+    public String toString() {
+        return String.format("[T][%s] %s", checkMarked(), getName());
     }
 }

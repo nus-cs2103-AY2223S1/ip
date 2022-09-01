@@ -14,10 +14,10 @@ public class UI {
      *
      * @param text Text to be printed out.
      */
-    public void chat(String text){
+    public void chat(String text) {
         List<String> textLines;
         int max;
-        if (text == null){
+        if (text == null) {
             textLines = Collections.singletonList("null");
             max = 4;
         } else {
@@ -28,7 +28,7 @@ public class UI {
         System.out.println("|" + " ".repeat(max + 10) + "|");
         for (int i = 0; i < textLines.size(); i++) {
             int curr = textLines.get(i).length();
-            System.out.println("|" + " ".repeat(5) + textLines.get(i) + " ".repeat(5 + max-curr) + "|");
+            System.out.println("|" + " ".repeat(5) + textLines.get(i) + " ".repeat(5 + max - curr) + "|");
         }
         System.out.println("|" + "_".repeat(max + 10) + "|");
 
@@ -40,10 +40,10 @@ public class UI {
      * @param text Text to be printed out.
      * @return A text surrounded by a chat box.
      */
-    public String coverText(String text){
+    public String coverText(String text) {
         List<String> textLines;
         int max;
-        if (text == null){
+        if (text == null) {
             textLines = Collections.singletonList("null");
             max = 4;
         } else {
@@ -55,7 +55,7 @@ public class UI {
         op.append("|").append(" ".repeat(max + 10)).append("|");
         for (int i = 0; i < textLines.size(); i++) {
             int curr = textLines.get(i).length();
-            op.append("|").append(" ".repeat(5)).append(textLines.get(i)).append(" ".repeat(5 + max-curr)).append("|");
+            op.append("|").append(" ".repeat(5)).append(textLines.get(i)).append(" ".repeat(5 + max - curr)).append("|");
         }
         op.append("|").append("_".repeat(max + 10)).append("|");
         return op.toString();

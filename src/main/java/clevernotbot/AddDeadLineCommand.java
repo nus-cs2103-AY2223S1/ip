@@ -9,7 +9,7 @@ public class AddDeadLineCommand extends Command {
      * Constructor for the AddDeadLineCommand.
      *
      * @param commandName Description of Command.
-     * @param exit Checking if program intends to exit.
+     * @param exit        Checking if program intends to exit.
      */
     public AddDeadLineCommand(String commandName, boolean exit) {
         super(commandName, exit);
@@ -18,7 +18,7 @@ public class AddDeadLineCommand extends Command {
     /**
      * Runs the add deadline command.
      *
-     * @param tasks The task list used to store all tasks.
+     * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
      * @param storage The data where it is stored.
      * @throws CleverNotBotException Gives an exception when deadline description is empty or not contain /by.
@@ -47,9 +47,9 @@ public class AddDeadLineCommand extends Command {
                                 "\nNow you have %d tasks in the list."
                         , newTask.toString(), tasks.getSize()));
             }
-        } catch (CleverNotBotException e){
+        } catch (CleverNotBotException e) {
             throw new CleverNotBotException("Deadline description must not be empty or must contain /by!", textBox);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new CleverNotBotException("Incorrect date format! Please enter DD-MM-YYYY HH:mm" +
                     "\nFor example, 22-09-2022 19:40", textBox);
         }

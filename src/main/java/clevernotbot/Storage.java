@@ -13,7 +13,7 @@ public class Storage {
     /**
      * Constructor for Storage.
      */
-    public Storage(){
+    public Storage() {
         this.file = new File(this.fileLocation);
     }
 
@@ -25,21 +25,21 @@ public class Storage {
     public ArrayList<Task> getTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
         String line;
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(fileLocation));
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 Task task = convertLineToTask(line);
                 tasks.add(task);
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Error! File does not exist! Creating a new file at location!");
-            try{
+            try {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
-            } catch (IOException errorCreate){
+            } catch (IOException errorCreate) {
                 System.out.println("An error has occurred when trying to create new file");
             }
-        } catch (IOException errorObtain){
+        } catch (IOException errorObtain) {
             System.out.println("An error has occurred when trying to obtain data from the save file.");
         }
         return tasks;
@@ -53,34 +53,34 @@ public class Storage {
     public void writeToFile(ArrayList<Task> tasks) {
         try {
             // if the file above doesn't exist, create it.
-            if(!file.getParentFile().exists()){
+            if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
             FileWriter fw = new FileWriter(file);
             StringBuilder op = new StringBuilder();
             int counter = 0;
-            for (Task task: tasks){
+            for (Task task : tasks) {
                 String taskToStorage = "";
-                if (task.getTaskType().equals("T")){
+                if (task.getTaskType().equals("T")) {
                     taskToStorage = String.format("%s | %d | %s",
-                            task.getTaskType(),task.isCompleted()? 1:0,task.getName());
-                } else if(task.getTaskType().equals("D") || task.getTaskType().equals("E")){
+                            task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName());
+                } else if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
                     taskToStorage = String.format("%s | %d | %s | %s",
-                            task.getTaskType(),task.isCompleted()? 1:0,task.getName(),task.getTime());
+                            task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName(), task.getTime());
                 } else {
                     System.out.println("Warning! Illegal entries has been detected!");
                 }
 
                 op.append(taskToStorage);
                 counter++;
-                if(counter < tasks.size()){
+                if (counter < tasks.size()) {
                     op.append("\n");
                 }
             }
             String result = op.toString();
             fw.write(result);
             fw.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println("An error has occurred during saving of file!");
         }
     }

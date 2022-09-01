@@ -11,10 +11,10 @@ public abstract class Task {
     /**
      * Constructor for Task.
      *
-     * @param name Name of the task.
+     * @param name      Name of the task.
      * @param completed The status of the task. (Completed or not)
      */
-    public Task(String name, boolean completed){
+    public Task(String name, boolean completed) {
         this.name = name;
         this.completed = completed;
     }
@@ -24,7 +24,7 @@ public abstract class Task {
      *
      * @return Name.
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -33,7 +33,7 @@ public abstract class Task {
      *
      * @return Task's completion.
      */
-    public boolean isCompleted(){
+    public boolean isCompleted() {
         return completed;
     }
 
@@ -42,8 +42,8 @@ public abstract class Task {
      *
      * @return Mark.
      */
-    public String checkMarked(){
-        return isCompleted()? "X":" ";
+    public String checkMarked() {
+        return isCompleted() ? "X" : " ";
     }
 
     /**

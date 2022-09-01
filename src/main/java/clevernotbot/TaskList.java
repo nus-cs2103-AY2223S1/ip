@@ -16,7 +16,7 @@ public class TaskList {
      *
      * @param tasks A list of task.
      */
-    public TaskList(ArrayList<Task> tasks){
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         size = tasks.size();
     }
@@ -26,7 +26,7 @@ public class TaskList {
      *
      * @param element Task to be inputted.
      */
-    public void addTask(Task element){
+    public void addTask(Task element) {
         tasks.add(element);
         size++;
     }
@@ -34,10 +34,10 @@ public class TaskList {
     /**
      * Adds task by index to <Code>TaskList</Code>.
      *
-     * @param idx Index to be slotted in.
+     * @param idx     Index to be slotted in.
      * @param element Task to be inputted.
      */
-    public void addTaskByIdx(int idx, Task element){
+    public void addTaskByIdx(int idx, Task element) {
         tasks.add(idx, element);
         size++;
     }
@@ -47,8 +47,8 @@ public class TaskList {
      *
      * @param task Task to be removed.
      */
-    public void removeTask(Task task){
-        tasks.remove((Task)task);
+    public void removeTask(Task task) {
+        tasks.remove((Task) task);
         size--;
     }
 
@@ -58,7 +58,7 @@ public class TaskList {
      * @param idx Index that the Task is at.
      * @return Task at that index.
      */
-    public Task getTask(int idx){
+    public Task getTask(int idx) {
         return tasks.get(idx);
     }
 
@@ -67,7 +67,7 @@ public class TaskList {
      *
      * @return An ArrayList.
      */
-    public ArrayList<Task> getTaskList(){
+    public ArrayList<Task> getTaskList() {
         return tasks;
     }
 
@@ -76,7 +76,7 @@ public class TaskList {
      *
      * @return How many Task is in a TaskList.
      */
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 
@@ -86,7 +86,7 @@ public class TaskList {
      * @return A string that represent a TaskList.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return Arrays.toString(tasks.toArray());
     }
 

@@ -7,16 +7,16 @@ import java.time.format.DateTimeFormatter;
  * Represents a more specific task with time limit attached to it. A <code>Deadline</code> object corresponds to
  * a task by a specific time e.g., <code>02-12-2018 18:00</code>
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private String dateTime;
     private LocalDateTime date;
 
     /**
      * Constructor for Deadline.
      *
-     * @param name Name of the Task.
+     * @param name      Name of the Task.
      * @param completed The status of the Task. (Completed or not)
-     * @param dateTime The deadline.
+     * @param dateTime  The deadline.
      */
     public Deadline(String name, boolean completed, String dateTime) {
         super(name, completed);
@@ -60,7 +60,7 @@ public class Deadline extends Task{
      *
      * @return Date and time in MMM d yyyy HH:mm e.g. "Jan 9 1998 19:30".
      */
-    public String getDateTime(){
+    public String getDateTime() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"));
     }
 
@@ -70,7 +70,7 @@ public class Deadline extends Task{
      * @param format String of a format e.g. "yyyy-dd-MM HH:mm".
      * @return The date and time in a specific format.
      */
-    public String getDateTime(String format){
+    public String getDateTime(String format) {
         return date.format(DateTimeFormatter.ofPattern(format));
     }
 
@@ -79,7 +79,7 @@ public class Deadline extends Task{
      *
      * @return Date in MMM d yyyy format.
      */
-    public String getDate(){
+    public String getDate() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
@@ -89,8 +89,8 @@ public class Deadline extends Task{
      * @return A toggled version of deadline. (Completed = true -> Completed = false)
      */
     @Override
-    public Task toggleCompleted(){
-        return new Deadline(getName(),!isCompleted(), dateTime);
+    public Task toggleCompleted() {
+        return new Deadline(getName(), !isCompleted(), dateTime);
 
     }
 
@@ -111,8 +111,8 @@ public class Deadline extends Task{
      * @return A string that represent a deadline. E.g. [D][X] get a book /by 20-04-1990 19:30.
      */
     @Override
-    public String toString(){
-        return String.format("[D][%s] %s (by: %s)",checkMarked(),getName(),getDateTime());
+    public String toString() {
+        return String.format("[D][%s] %s (by: %s)", checkMarked(), getName(), getDateTime());
     }
 
 }
