@@ -1,7 +1,9 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+
 }
 
 repositories {
@@ -34,6 +36,11 @@ application {
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
 }
 
 run{
