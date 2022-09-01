@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import duke.controller.Ui;
 import duke.task.Task;
 
 /**
@@ -34,7 +33,7 @@ public class Storage {
             Scanner sc = new Scanner(f);
             return sc;
         } catch (FileNotFoundException fileError) {
-            Ui.showError("Error in loading data. File not found.");
+            System.out.println("Error in loading data. File not found.");
             return new Scanner("");
         }
     }

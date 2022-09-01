@@ -42,10 +42,9 @@ public class AddCommand implements ICommand {
      * Executes the command by adding the task to the list.
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
-     * @param ui Ui object for displaying messages.
      */
     @Override
-    public String execute(Storage storage, TaskList taskList, Ui ui) {
+    public String execute(Storage storage, TaskList taskList) {
         switch (type) {
         case TODO:
             return taskList.add(new ToDo("0", description));

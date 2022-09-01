@@ -1,3 +1,0 @@
-E,1,meeting 1,2022-09-01
-D,0,helo,2022-09-01
-T,0,hoemowlr

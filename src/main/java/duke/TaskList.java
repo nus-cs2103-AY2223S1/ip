@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import duke.controller.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -46,9 +45,9 @@ public class TaskList {
                     throw new DukeException("Invalid input from file.");
                 }
             }
-            Ui.showMsg("Successfully loaded saved contents.\n" + this);
+            System.out.println("Successfully loaded saved contents.\n" + this);
         } catch (DukeException e) {
-            Ui.showMsg(e.getMessage());
+            System.out.println(e.getMessage());
         } finally {
             sc.close();
         }

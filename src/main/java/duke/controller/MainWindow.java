@@ -12,13 +12,6 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    private static final String LOGO =
-            " ____        _        \n"
-          + "|  _ \\ _   _| | _____ \n"
-          + "| | | | | | | |/ / _ \\\n"
-          + "| |_| | |_| |   <  __/\n"
-          + "|____/ \\__,_|_|\\_\\___|\n";
-
     @FXML
     private ScrollPane scrollPane;
     @FXML

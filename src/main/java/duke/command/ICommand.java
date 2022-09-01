@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.controller.Ui;
 
 /**
  * An interface for all command types.
@@ -14,7 +13,7 @@ public interface ICommand {
      * @param taskList TaskList object for operations on the list of tasks.
      * @param ui Ui object for displaying messages.
      */
-    String execute(Storage storage, TaskList taskList, Ui ui);
+    String execute(Storage storage, TaskList taskList);
 
     /**
      * Returns if command is an ExitCommand.

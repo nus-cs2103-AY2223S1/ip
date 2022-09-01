@@ -20,7 +20,6 @@ public class DukeApplication {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(this.storage.load());
         this.ui = new Ui();
-        ui.showWelcomeMsg();
     }
 
     /**
@@ -31,7 +30,7 @@ public class DukeApplication {
         while (!cmd.isExit()) {
             String input = this.ui.readCommand();
             cmd = Parser.parse(input);
-            cmd.execute(storage, taskList, ui);
+            cmd.execute(storage, taskList);
         }
     }
 
@@ -42,7 +41,7 @@ public class DukeApplication {
      */
     public String process(String input) {
         ICommand cmd = Parser.parse(input);
-        return cmd.execute(storage, taskList, ui);
+        return cmd.execute(storage, taskList);
     }
 
     /**
