@@ -22,14 +22,14 @@ public class ListCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String message = "Here are the tasks in your list:\n";
         if (taskList.size() == 0) {
             message = "Currently no tasks in the list.";
         } else {
             message = message + taskList;
         }
-        messagePrinter.printMessage(message);
+        return messagePrinter.printMessage(message);
     }
 
     /**

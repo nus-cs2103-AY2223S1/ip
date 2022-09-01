@@ -22,14 +22,14 @@ public class GreetCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String welcomeMsg = "Hello! I'm Duke \n" + "What can I do for you?";
-        messagePrinter.printMessage("Hello from\n" + logo + "\n" + welcomeMsg);
+        return messagePrinter.printMessage("Hello from\n" + logo + "\n" + welcomeMsg);
     }
 
     /**

@@ -50,13 +50,13 @@ public class DeadlineCommand extends AddCommand {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         taskList.add(deadline);
         successMsg = successMsg + "\n" + deadline + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        messagePrinter.printMessage(successMsg);
+        return messagePrinter.printMessage(successMsg);
     }
 
     /**

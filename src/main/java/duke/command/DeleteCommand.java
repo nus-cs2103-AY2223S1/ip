@@ -38,12 +38,12 @@ public class DeleteCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Noted. I've removed this task:";
         Task task = taskList.remove(idTask - 1);
         successMsg = successMsg + "\n" + task + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        messagePrinter.printMessage(successMsg);
+        return messagePrinter.printMessage(successMsg);
     }
 
     /**

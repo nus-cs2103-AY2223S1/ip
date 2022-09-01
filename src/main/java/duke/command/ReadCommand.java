@@ -22,11 +22,11 @@ public class ReadCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         taskList.loadFrom(storage.read());
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
-        messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
+        return messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
                 + "Type [list] to view your tasks");
     }
 

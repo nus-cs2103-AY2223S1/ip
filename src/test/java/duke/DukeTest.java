@@ -2,13 +2,10 @@ package duke;
 
 import duke.util.Storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 public class DukeTest {
-    private final String TEST_PATH = "test/data/duke.txt";
-    protected final Storage TEST_STORAGE = new Storage(TEST_PATH);
-    protected Duke duke = new Duke(TEST_PATH);
+    private final String testPath = "test/data/duke.txt";
+    protected final Storage testStorage = new Storage(testPath);
+    protected Duke duke = new Duke(testPath);
 
     protected final String WHOLE_FORMATTED_TASKLIST = "T } 1 } explore\n"
             + "E } 0 } presentation } 2022-10-01 12:34\n"

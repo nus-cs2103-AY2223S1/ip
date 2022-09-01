@@ -50,13 +50,13 @@ public class EventCommand extends AddCommand {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Got it. I've added this task:";
         Task event = Task.event(msg, time);
         taskList.add(event);
         successMsg = successMsg + "\n" + event + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list.";
-        messagePrinter.printMessage(successMsg);
+        return messagePrinter.printMessage(successMsg);
     }
 
     /**

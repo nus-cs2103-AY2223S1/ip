@@ -22,8 +22,9 @@ public class DoNothingCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         //            do nothing
+        return null;
     }
 
     /**

@@ -22,11 +22,11 @@ public class SaveCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         storage.write(taskList.toFormattedString());
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
-        messagePrinter.printMessage("Your " + size + " " + temp + " been saved successfully");
+        return messagePrinter.printMessage("Your " + size + " " + temp + " been saved successfully");
     }
 
     /**

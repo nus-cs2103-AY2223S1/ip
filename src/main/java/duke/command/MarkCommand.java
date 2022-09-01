@@ -35,11 +35,11 @@ public class MarkCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Nice! I've marked this task as done:";
         Task task = taskList.get(idTask - 1);
         task.markAsDone();
-        messagePrinter.printMessage(successMsg + "\n" + task);
+        return messagePrinter.printMessage(successMsg + "\n" + task);
     }
 
     /**

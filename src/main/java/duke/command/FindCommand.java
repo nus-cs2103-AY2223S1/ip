@@ -36,7 +36,7 @@ public class FindCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList tasks, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList tasks, MessagePrinter messagePrinter, Storage storage) {
         String message = "Here are the matching tasks in your list:\n";
         TaskList temp = new TaskList();
         Stream.iterate(0, x -> x + 1).limit(tasks.size())
@@ -48,7 +48,7 @@ public class FindCommand extends Command {
         } else {
             message = message + temp.toString();
         }
-        messagePrinter.printMessage(message);
+        return messagePrinter.printMessage(message);
     }
 
     /**

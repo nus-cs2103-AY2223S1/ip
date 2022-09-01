@@ -38,11 +38,11 @@ public class UnmarkCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = taskList.get(idTask - 1);
         task.markAsNotDone();
-        messagePrinter.printMessage(successMsg + "\n" + task);
+        return messagePrinter.printMessage(successMsg + "\n" + task);
     }
 
     /**

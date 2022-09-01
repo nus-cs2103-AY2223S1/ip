@@ -142,8 +142,9 @@ public abstract class Command {
      * @param taskList TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.
      * @param storage Storage of the Duke.
+     * @return The response of Duke.
      */
-    public abstract void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage);
+    public abstract String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage);
 
     /**
      * Returns whether this command terminates Duke.

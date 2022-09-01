@@ -23,6 +23,15 @@ public class MessagePrinter {
     private char horizontalLineSymbol;
 
     /**
+     * The constructor of the class
+     */
+    public MessagePrinter() {
+        setHorizontalLineLength(50);
+        setHorizontalLineSymbol('*');
+        setIndentationLevel(2);
+    }
+
+    /**
      * Set the indentation level to given value.
      * @param indentationLevel
      */
@@ -79,13 +88,14 @@ public class MessagePrinter {
     }
 
     /**
-     * The method to print horizontal lines.
+     * Returns String of horizontal line.
+     * @return The String of horizontal line.
      */
-    private void printLine() {
+    private String printLine() {
         String line = Stream.generate(() -> Character.toString(this.horizontalLineSymbol))
                 .limit(this.horizontalLineLength)
                 .reduce("", (x, y) -> x + y);
-        print(line);
+        return line;
     }
 
     /**
@@ -99,11 +109,20 @@ public class MessagePrinter {
     /**
      * The method to accept given message and print with style.
      * @param msg The given message.
+     * @return The message with style.
      */
-    public void printMessage(String msg) {
-        printLine();
-        Arrays.stream(msg.split("\\n")).forEach(x -> print(" " + x));
-        printLine();
+    public String printMessage(String msg) {
+        StringBuilder result = new StringBuilder();
+        result.append(printLine()).append(System.lineSeparator());
+        result.append(" ");
+        result.append(Arrays.stream(msg.split(System.lineSeparator()))
+                        .reduce("", (x, y) -> x
+                                + (x.equals("") ? "" : System.lineSeparator())
+                                + getIndentation() + y))
+                .append(System.lineSeparator());
+        result.append(printLine()).append(System.lineSeparator());
+        System.out.println(result.toString());
+        return result.toString();
     }
 
     /**

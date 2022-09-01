@@ -22,9 +22,9 @@ public class ExitCommand extends Command {
      * @param storage Storage of the Duke.
      */
     @Override
-    public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String farewellMsg = "Bye. Hope to see you again soon!";
-        messagePrinter.printMessage(farewellMsg);
+        return messagePrinter.printMessage(farewellMsg);
     }
 
     /**
