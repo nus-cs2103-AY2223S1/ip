@@ -78,6 +78,7 @@ public class TaskList {
      * @throws DukeException if task number not valid.
      */
     public Task delete(int taskNumber) throws DukeException {
+        assert taskNumber > 0;
         Task taskToRemove = null;
         try {
             taskToRemove = tasks.get(taskNumber - 1);
@@ -86,6 +87,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Please enter a valid task number!");
         }
+        assert taskToRemove != null;
         return taskToRemove;
     }
 
