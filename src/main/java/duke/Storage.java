@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * Class that handles loading and saving of tasks for Duke Bot.
  */
 public class Storage {
-    private FileWriter output;
+    private FileWriter fileWriter;
     private String previousText;
 
     /**
@@ -34,7 +34,7 @@ public class Storage {
             }
         }
         try {
-            output = new FileWriter("data/duke.txt");
+            fileWriter = new FileWriter("data/duke.txt");
         } catch (java.io.IOException e) {
             System.out.println("Unable to write storage file: " + e);
         }
@@ -57,9 +57,9 @@ public class Storage {
      */
     public void writeText(String text, boolean nextLine) {
         try {
-            output.write(text);
+            fileWriter.write(text);
             if (nextLine) {
-                output.write("\n");
+                fileWriter.write("\n");
             }
         } catch (java.io.IOException e) {
             System.out.println("Failed to write text to save file: " + e);
@@ -71,7 +71,7 @@ public class Storage {
      */
     public void closeWriter() {
         try {
-            output.close();
+            fileWriter.close();
         } catch (java.io.IOException e) {
             System.out.println("Failed to close save file: " + e);
         }

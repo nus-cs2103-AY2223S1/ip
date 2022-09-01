@@ -17,8 +17,8 @@ public class TaskListTest {
         Duke duke = new Duke();
         duke.parseCommand("deadline return book /by 2022-08-28");
         duke.parseCommand("mark 1");
-        assertEquals(duke.tasks.taskList.get(0).getStatus(), "mark");
+        assertEquals(duke.tasks.tasks.get(0).getStatus(), "mark");
         duke.parseCommand("unmark 1");
-        assertEquals(duke.tasks.taskList.get(0).getStatus(), "unmark");
+        assertEquals(duke.tasks.tasks.get(0).getStatus(), "unmark");
     }
 }

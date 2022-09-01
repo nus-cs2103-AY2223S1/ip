@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Class that stores and manipulates tasks for Duke Bot.
  */
 public class TaskList {
-    protected final ArrayList<Task> taskList;
+    protected final ArrayList<Task> tasks;
     private final Storage store;
     private final Ui ui;
 
@@ -18,7 +18,7 @@ public class TaskList {
      * @param uiInstance Ui instance being used in Duke Bot.
      */
     public TaskList(Ui uiInstance) {
-        taskList = new ArrayList<>();
+        tasks = new ArrayList<>();
         store = new Storage();
         ui = uiInstance;
     }
@@ -29,11 +29,11 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void addTask(Task task) {
-        taskList.add(task);
+        tasks.add(task);
         ui.printMessage("Got it. I've added this task:\n      " +
                 task +
                 "\n    Now you have " +
-                taskList.size() +
+                tasks.size() +
                 " tasks in the list.");
     }
 
@@ -43,11 +43,11 @@ public class TaskList {
      * @param id Index of task to be deleted. Index is numbering from calling "list" command.
      */
     public void deleteTask(int id) {
-        Task t = taskList.remove(id);
+        Task t = tasks.remove(id);
         ui.printMessage("Noted. I've removed this task:\n      " +
                 t +
                 "\n    Now you have " +
-                taskList.size() +
+                tasks.size() +
                 " tasks in the list.");
     }
 
@@ -57,8 +57,8 @@ public class TaskList {
      * @param id Index of task to be marked. Index is numbering from calling "list" command.
      */
     public void markTask(int id) {
-        Task t = taskList.get(id);
-        t.done();
+        Task t = tasks.get(id);
+        t.setAsDone();
         ui.printMessage("Nice! I've marked this task as done:\n    " + t);
     }
 
@@ -68,8 +68,8 @@ public class TaskList {
      * @param id Index of task to be unmarked. Index is numbering from calling "list" command.
      */
     public void unmarkTask(int id) {
-        Task t = taskList.get(id);
-        t.undone();
+        Task t = tasks.get(id);
+        t.setAsUndone();
         ui.printMessage("OK, I've marked this task as not done yet:\n    " + t);
     }
 
@@ -81,7 +81,7 @@ public class TaskList {
     public void findTask(String identifier) {
         String messageList = "";
         int count = 1;
-        for (Task t: taskList) {
+        for (Task t: tasks) {
             if (t.toString().contains(identifier)) {
                 messageList += "\n    " + count++ + ". " + t;
             }
@@ -95,7 +95,7 @@ public class TaskList {
      * @return Size of TaskList.
      */
     public int getSize() {
-        return taskList.size();
+        return tasks.size();
     }
 
     /**
@@ -105,7 +105,7 @@ public class TaskList {
     public void generateList() {
         String messageList = "";
         int count = 1;
-        for (Task t: taskList) {
+        for (Task t: tasks) {
             messageList += "\n    " + count++ + ". " + t;
         }
         ui.printMessage("Here are the tasks in your list:\n    " + messageList);
@@ -137,7 +137,7 @@ public class TaskList {
      * Tasks are saved using an instance of Storage.
      */
     public void saveTasks() {
-        for (Task t : taskList) {
+        for (Task t : tasks) {
             store.writeText(t.toStorageString(), true);
         }
         ui.printMessage("Bye. Hope to see you again soon!");

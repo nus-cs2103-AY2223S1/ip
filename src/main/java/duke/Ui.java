@@ -12,14 +12,14 @@ public class Ui {
                              + "| |_| | |_| |   <  __/\n"
                              + "|____/ \\__,_|_|\\_\\___|\n";
     private Scanner sc;
-    private boolean verbose;
+    private boolean isVerbose;
 
     /**
      * Class constructor for Ui.
      */
     public Ui() {
         sc = new Scanner(System.in);
-        verbose = true;
+        isVerbose = true;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Ui {
      * Prints the logo of Duke Bot.
      */
     public void printLogo() {
-        if (verbose) {
+        if (isVerbose) {
             System.out.println("Hello from\n" + LOGO);
         }
     }
@@ -49,7 +49,7 @@ public class Ui {
         String formattedMessage = "    ____________________________________________________________\n    "
                 + message
                 + "\n    ____________________________________________________________\n";
-        if (verbose) {
+        if (isVerbose) {
             System.out.println(formattedMessage);
         }
     }
@@ -61,6 +61,6 @@ public class Ui {
      * @param verbosity Value of verbosity.
      */
     public void setVerbose(boolean verbosity) {
-        verbose = verbosity;
+        isVerbose = verbosity;
     }
 }

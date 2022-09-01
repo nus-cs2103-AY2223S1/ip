@@ -36,14 +36,14 @@ abstract public class Task {
     /**
      * Marks current Task as done.
      */
-    public void done() {
+    public void setAsDone() {
         this.isDone = true;
     }
 
     /**
      * Marks current Task as not done.
      */
-    public void undone() {
+    public void setAsUndone() {
         this.isDone = false;
     }
 

@@ -33,11 +33,11 @@ public class Parser {
      * Verbose argument can be used to control output of Ui.
      * 
      * @param command Command string for parsing and execution.
-     * @param verbose Boolean to indicate verbosity of Ui.
+     * @param isVerbose Boolean to indicate verbosity of Ui.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
-    public void parse(String command, boolean verbose) throws DukeException {
-        ui.setVerbose(verbose);
+    public void parse(String command, boolean isVerbose) throws DukeException {
+        ui.setVerbose(isVerbose);
         if (command.startsWith("deadline") || command.startsWith("event") || command.startsWith("todo")) {
             parseTask(command);
         } else if (command.startsWith("mark") || command.startsWith("unmark") || command.startsWith("delete")) {
@@ -86,7 +86,7 @@ public class Parser {
         String[] split = command.split(" ", 2);
         String commandName = split[0];
         int id = tasks.getSize();
-        if (split.length > 1){
+        if (split.length > 1) {
             try {
                 id = Integer.parseInt(split[1]);
             } catch (NumberFormatException e) {
