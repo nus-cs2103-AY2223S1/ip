@@ -21,16 +21,14 @@ import duke.ui.Ui;
  */
 public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<argument>.*)");
-    private Ui ui;
     private Storage storage;
 
     /**
      * Initialises the parser.
      *
-     * @param ui Ui
+     * @param storage Storage
      */
-    public Parser(Ui ui, Storage storage) {
-        this.ui = ui;
+    public Parser(Storage storage) {
         this.storage = storage;
     }
 
@@ -38,7 +36,7 @@ public class Parser {
         Pattern pattern = Pattern.compile("(.+)");
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
-            ui.printMessage("The description of a todo cannot be empty.");
+            Ui.printMessage("The description of a todo cannot be empty.");
             return new HelpCommand();
         }
         return new TodoCommand(argument);
@@ -48,7 +46,7 @@ public class Parser {
         Pattern pattern = Pattern.compile("(?<description>.+?)\\s/by\\s(?<dateTime>.+)");
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
-            ui.printMessage("The description or datetime cannot be empty");
+            Ui.printMessage("The description or datetime cannot be empty");
             return new HelpCommand();
         }
         String description = matcher.group("description").strip();
@@ -60,7 +58,7 @@ public class Parser {
         Pattern pattern = Pattern.compile("(?<description>.+?)\\s/at\\s(?<dateTime>.+)");
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
-            ui.printMessage("The description or datetime cannot be empty");
+            Ui.printMessage("The description or datetime cannot be empty");
             return new HelpCommand();
         }
         String description = matcher.group("description").strip();
@@ -72,7 +70,7 @@ public class Parser {
         Pattern pattern = Pattern.compile("(.+)");
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
-            ui.printMessage("The description of find cannot be empty.");
+            Ui.printMessage("The description of find cannot be empty.");
             return new HelpCommand();
         }
         return new FindCommand(argument);
@@ -87,7 +85,7 @@ public class Parser {
     public Command parse(String input) {
         Matcher matcher = Parser.BASIC_COMMAND_FORMAT.matcher(input);
         if (!matcher.matches()) {
-            ui.printMessage("No matches");
+            Ui.printMessage("No matches");
             return new HelpCommand();
         }
         String command = matcher.group("commandWord").strip();
@@ -102,7 +100,7 @@ public class Parser {
                 int index = Integer.parseInt(argument) - 1;
                 return new MarkCommand(index);
             } catch (NumberFormatException e) {
-                ui.printMessage("Please use the format: mark <integer>");
+                Ui.printMessage("Error!", "Please use the format: mark <integer>");
             }
             return new HelpCommand();
         }
@@ -111,7 +109,7 @@ public class Parser {
                 int index = Integer.parseInt(argument) - 1;
                 return new UnmarkCommand(index);
             } catch (NumberFormatException e) {
-                ui.printMessage("Please use the format: mark <integer>");
+                Ui.printMessage("Error!", "Please use the format: unmark <integer>");
             }
             return new HelpCommand();
         }
@@ -129,7 +127,7 @@ public class Parser {
                 int index = Integer.parseInt(argument) - 1;
                 return new DeleteCommand(index);
             } catch (NumberFormatException e) {
-                ui.printMessage("Please use the format: delete <integer>");
+                Ui.printMessage("Error!", "Please use the format: delete <integer>");
             }
             return new HelpCommand();
         }
@@ -140,7 +138,7 @@ public class Parser {
             return new ByeCommand(storage);
         }
         default:
-            return new HelpCommand();
+            return new HelpCommand(argument);
         }
     }
 }

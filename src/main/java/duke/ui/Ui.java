@@ -2,11 +2,6 @@ package duke.ui;
 
 import duke.task.TaskList;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-
 /**
  * UI of the application Inspired by AddressBook
  */
@@ -41,12 +36,19 @@ public class Ui {
     /**
      * Generic method to print a message.
      *
-     * @param str
+     * @param strs vaars of String.
      * @return message
      */
-    public String printMessage(String str) {
-        return "_______________________________________________________" + "\n\t" + str + "\n"
-                + "_______________________________________________________";
+    public static String printMessage(String... strs) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("_______________________________________________________");
+        for (String str : strs) {
+            sb.append("\n\t");
+            sb.append(str);
+            sb.append("\n");
+        }
+        sb.append("_______________________________________________________");
+        return sb.toString();
     }
 
     /**
@@ -57,7 +59,7 @@ public class Ui {
      * @param taskList
      * @return message
      */
-    public String wrapMessage(String str, String taskDescription, TaskList taskList) {
+    public static String wrapMessage(String str, String taskDescription, TaskList taskList) {
         return String.format(
                 str + "\n\t\t" + taskDescription + "\n\tNow you have " + taskList.size() + " tasks in the list.");
     }

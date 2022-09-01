@@ -12,7 +12,6 @@ import javafx.application.Platform;
 public class Duke {
   private TaskList taskList;
   private Storage storage;
-  private Ui ui;
   private Parser parser;
 
   /**
@@ -22,13 +21,12 @@ public class Duke {
    */
   public Duke(String filePath) {
     storage = new Storage(filePath);
-    ui = new Ui();
     try {
       taskList = storage.readFile();
     } catch (DukeException e) {
       e.printStackTrace();
     }
-    parser = new Parser(ui, storage);
+    parser = new Parser(storage);
   }
 
   public String getResponse(String input) {

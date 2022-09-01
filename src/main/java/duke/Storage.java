@@ -15,7 +15,8 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 /**
- * Represents an encapsulation that deals with loading tasks from the save file and saving tasks in the file
+ * Represents an encapsulation that deals with loading tasks from the save file
+ * and saving tasks in the file
  */
 public class Storage {
   private static final String SEPARATOR = ",";
@@ -50,7 +51,8 @@ public class Storage {
   }
 
   /**
-   * A method to save TaskList to a file while handling errors occured during the process.
+   * A method to save TaskList to a file while handling errors occured during the
+   * process.
    *
    * @param taskList TaskList
    */
