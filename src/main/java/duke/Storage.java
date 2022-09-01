@@ -1,18 +1,25 @@
 package duke;
 
-import java.util.ArrayList;
-import java.io.IOException;
-import java.io.File;
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.OutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.nio.file.Path;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 
+/**
+ * Storage class that manages loading and saving of data.
+ */
 public class Storage {
     protected Path filePath;
 
+    /**
+     * Constructs a Storage object according to the path given.
+     * @param filePath Path of the saved file
+     */
     public Storage(Path filePath) {
         this.filePath = filePath;
         try {

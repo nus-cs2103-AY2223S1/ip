@@ -2,9 +2,14 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'checkstyle'
 }
 
 mainClassName = 'Duke'
+
+checkstyle {
+    toolVersion = '10.2'
+}
 
 test {
     useJUnitPlatform()

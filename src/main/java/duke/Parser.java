@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Parser class that parses user input.
+ */
 public class Parser {
     /**
-     * Returns Command enumeration according to what the input is parsed as
-     * @param input input string
-     * @return Command enumeration
+     * Parses input and returns Command enumeration.
+     * @param input Input of user
+     * @return Type of input
      */
     public static Command parse(String input) {
         List<String> inputList = Stream.of(input.split(" "))
@@ -52,8 +55,6 @@ public class Parser {
     public static int getTaskIndex(String input) {
         return Integer.parseInt(input.substring(input.length() - 1)) - 1;
     }
-
-    
     public static String getKeyword(String input) {
         return input.substring(6);
     }

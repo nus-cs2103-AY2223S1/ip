@@ -1,10 +1,13 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 
 class DeadlineTest {
 
@@ -14,8 +17,8 @@ class DeadlineTest {
         String todayString = " (by: " + today.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
         Deadline newDeadline1 = new Deadline(today, "CS2103");
         Deadline newDeadline2 = new Deadline(today, "PHS3122", true);
-        assertAll(() -> assertEquals(newDeadline1.getDateTime(), todayString),
-        () -> assertEquals(newDeadline2.getDateTime(), todayString)
+        assertAll(() -> assertEquals(newDeadline1.getDateTime(), todayString), () ->
+                assertEquals(newDeadline2.getDateTime(), todayString)
         );
     }
 
@@ -24,8 +27,8 @@ class DeadlineTest {
         LocalDateTime today = LocalDateTime.now();
         Deadline newDeadline1 = new Deadline(today, "CS2103");
         Deadline newDeadline2 = new Deadline(today, "PHS3122", false);
-        assertAll(() -> assertEquals(newDeadline1.getRawDateTime(), today),
-        () -> assertEquals(newDeadline2.getRawDateTime(), today)
+        assertAll(() -> assertEquals(newDeadline1.getRawDateTime(), today), () ->
+                assertEquals(newDeadline2.getRawDateTime(), today)
         );
     }
 
@@ -36,8 +39,8 @@ class DeadlineTest {
         Deadline newDeadline2 = new Deadline(today, "PHS3122", true);
         String printDeadline1 = "D |   | CS2103 | " + newDeadline1.getDateTime();
         String printDeadline2 = "D | X | PHS3122 | " + newDeadline2.getDateTime();
-        assertAll(() -> assertEquals(printDeadline1, newDeadline1.printText()),
-        () -> assertEquals(printDeadline2, newDeadline2.printText())
+        assertAll(() -> assertEquals(printDeadline1, newDeadline1.printText()), () ->
+                assertEquals(printDeadline2, newDeadline2.printText())
         );
     }
 

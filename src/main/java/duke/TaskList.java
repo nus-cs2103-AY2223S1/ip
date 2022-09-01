@@ -3,16 +3,26 @@ package duke;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+/**
+ * Public TaskList class that manages addition and deletion to the task list.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 
+    /**
+     * Constructs an empty TaskList object.
+     */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Constructs a TaskList object containing tasks given as string.
+     * @param tasks Task list
+     */
     public TaskList(ArrayList<String> tasks) {
         this.list = new ArrayList<>();
         Task newTask = null;
@@ -39,6 +49,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Obtains the task list in the form of ArrayList of Strings.
+     * @return ArrayList representation of task list
+     */
     public ArrayList<String> extractToStringArray() {
         ArrayList<String> textArray = new ArrayList<>();
         for (Task task : this.list) {
@@ -49,9 +63,9 @@ public class TaskList {
     }
 
     /**
-     * Adds task to the current task list
-     * @param task Task object
-     * @return boolean response
+     * Adds Task to the current task list.
+     * @param task Task to be added
+     * @return Boolean value indicating status of addition to task list
      */
     public boolean addTask(Task task) {
         boolean response = this.list.add(task);
@@ -59,9 +73,9 @@ public class TaskList {
     }
 
     /**
-     * Deletes a task in the list and returns the deleted task
-     * @param taskIndex index of the current task
-     * @return deleted Task object
+     * Deletes a Task in the list and returns the deleted Task.
+     * @param taskIndex Index of the current task
+     * @return Deleted Task object
      */
     public Task deleteTask(int taskIndex) {
         Task removedTask = this.list.remove(taskIndex);
@@ -69,25 +83,30 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done
-     * @param taskIndex index of the current task
-     * @return marked Task object
+     * Marks a Task as done
+     * @param taskIndex Index of the current task
+     * @return Marked Task object
      */
     public Task markTask(int taskIndex) {
         this.list.get(taskIndex).markAsDone();
-        return this.list.get(taskIndex);        
+        return this.list.get(taskIndex);
     }
 
     /**
-     * Unmarks a task as undone
-     * @param taskIndex index of the current task
-     * @return unmarked Task object
+     * Unmarks a Task as undone
+     * @param taskIndex Index of the current task
+     * @return Unmarked Task object
      */
     public Task unmarkTask(int taskIndex) {
         this.list.get(taskIndex).unmarkAsDone();
         return this.list.get(taskIndex);
     }
-    
+
+    /**
+     * Finds a matching Task according to the keyword given.
+     * @param keyword Search keyword
+     * @return TaskList object containing the matching tasks.
+     */
     public TaskList findTasks(String keyword) {
         TaskList foundTasks = new TaskList();
         for (Task task : this.list) {
@@ -99,13 +118,17 @@ public class TaskList {
     }
 
     /**
-     * Returns the number of tasks in the task list
-     * @return number of tasks
+     * Returns the number of tasks in the task list.
+     * @return Number of tasks
      */
     public int getNumberOfTasks() {
         return this.list.size();
     }
 
+    /**
+     * Represents the TaskList object as a String.
+     * @return String representation of the TaskList object
+     */
     @Override
     public String toString() {
         if (this.list.isEmpty()) {

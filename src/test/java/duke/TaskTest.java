@@ -1,8 +1,10 @@
 package duke;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
 
@@ -10,8 +12,8 @@ class TaskTest {
     void getStatusIconTest() {
         Task newTask1 = new Task("PHS3122", "T");
         Task newTask2 = new Task("CS2103", "D", true);
-        assertAll(() -> assertEquals(newTask1.getStatusIcon(), " "),
-        () -> assertEquals(newTask2.getStatusIcon(), "X"));
+        assertAll(() -> assertEquals(newTask1.getStatusIcon(), " "), () ->
+                assertEquals(newTask2.getStatusIcon(), "X"));
     }
 
     @Test

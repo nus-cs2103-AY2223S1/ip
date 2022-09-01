@@ -1,18 +1,27 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 import duke.Command;
 import duke.Parser;
 import duke.Storage;
 import duke.Task;
 import duke.TaskList;
 import duke.Ui;
-import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+
+/**
+ * Main class Duke that runs the application.
+ */
 public class Duke {
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
 
+    /**
+     * Constructs a new class Duke.
+     * @param filePath Path of the storage.
+     */
     public Duke(Path filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +33,9 @@ public class Duke {
         tasks = new TaskList();
     }
 
+    /**
+     * Runs Duke.
+     */
     public void run() {
         ui.showOpeningStatement();
         Scanner scanner = new Scanner(System.in);
@@ -96,6 +108,10 @@ public class Duke {
     }
 
 
+    /**
+     * Main method that launches the Duke application.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         String home = System.getProperty("user.home");
         Path path = Paths.get(home, "data", "duke");

@@ -1,16 +1,31 @@
+
 package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Public class Deadline that extends Task.
+ */
 public class Deadline extends Task {
     protected LocalDateTime dateTime;
 
+    /**
+     * Constructs an unmarked Deadline class.
+     * @param dateTime Date and time the deadline needs to be done by
+     * @param description Description of the deadline.
+     */
     public Deadline(LocalDateTime dateTime, String description) {
         super(description, "D");
         this.dateTime = dateTime;
     }
 
+    /**
+     * Constructs a Deadline class.
+     * @param dateTime Date and time the deadline needs to be done by
+     * @param description Description of the deadline
+     * @param isDone Status of the deadline
+     */
     public Deadline(LocalDateTime dateTime, String description, boolean isDone) {
         super(description, "D", isDone);
         this.dateTime = dateTime;
@@ -21,8 +36,8 @@ public class Deadline extends Task {
      * @return string formatted date and time
      */
     public String getDateTime() {
-        return " (by: " +
-                this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
+        return " (by: "
+                + this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
     }
 
     /**
@@ -34,16 +49,16 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a String format of this deadline, to be written to TXT file
-     * For example:
-     * D |   | CS2103 | (by: Aug 29 2022, 09:30 PM)
-     * @return string formatted deadline
+     * {@inheritDoc}
      */
     @Override
     public String printText() {
         return super.printText() + " | " + this.getDateTime();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[" + this.getCode() + "]" + super.toString() + this.getDateTime();

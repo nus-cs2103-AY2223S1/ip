@@ -1,11 +1,12 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ParserTest {
 
@@ -20,15 +21,15 @@ class ParserTest {
         String command7 = "list";
         String command8 = "todo Do laundry";
         String command9 = "delete 10";
-        assertAll(() -> assertEquals(Parser.parse(command1), Command.CREATE_EVENT),
-                () -> assertEquals(Parser.parse(command2), Command.EXIT),
-                () -> assertEquals(Parser.parse(command3), Command.CREATE_DEADLINE),
-                () -> assertEquals(Parser.parse(command4), Command.UNKNOWN),
-                () -> assertEquals(Parser.parse(command5), Command.UNMARK),
-                () -> assertEquals(Parser.parse(command6), Command.MARK),
-                () -> assertEquals(Parser.parse(command7), Command.LIST),
-                () -> assertEquals(Parser.parse(command8), Command.CREATE_TODO),
-                () -> assertEquals(Parser.parse(command9), Command.DELETE)
+        assertAll(() -> assertEquals(Parser.parse(command1), Command.CREATE_EVENT), () ->
+                assertEquals(Parser.parse(command2), Command.EXIT), () ->
+                assertEquals(Parser.parse(command3), Command.CREATE_DEADLINE), () ->
+                assertEquals(Parser.parse(command4), Command.UNKNOWN), () ->
+                assertEquals(Parser.parse(command5), Command.UNMARK), () ->
+                assertEquals(Parser.parse(command6), Command.MARK), () ->
+                assertEquals(Parser.parse(command7), Command.LIST), () ->
+                assertEquals(Parser.parse(command8), Command.CREATE_TODO), () ->
+                assertEquals(Parser.parse(command9), Command.DELETE)
         );
     }
 
