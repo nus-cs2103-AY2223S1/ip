@@ -70,7 +70,12 @@ public class DialogBox extends HBox {
      *             said by the user.
      */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        // Count number of lines in string
+        int numberOfLines = text.split("\r\n|\r|\n").length;
+        // Set minimum height of label to be relative to number of lines.
+        db.setMinHeight(Math.max(99, numberOfLines * 25));
+        return db;
     }
 
     /**
@@ -85,6 +90,10 @@ public class DialogBox extends HBox {
         // Flip the dialog box since Duke's dialog boxes should have
         // the image on the left.
         db.flip();
+        // Count number of lines in string
+        int numberOfLines = text.split("\r\n|\r|\n").length;
+        // Set minimum height of label to be relative to number of lines.
+        db.setMinHeight(Math.max(99, numberOfLines * 25));
         return db;
     }
 }
