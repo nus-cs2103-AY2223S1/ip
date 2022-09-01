@@ -1,16 +1,18 @@
+package Duke;
+
 /**
  * Contains most of the constants used in this program for easier use and access
  */
-package Duke;
-
 public class Constants {
+
+    public static final String FILE_PATH = "data/tasks.txt";
 
     public static final String NAME = "Shanice:)";
 
     public static final String LINE =
             "____________________________________________________________________________";
 
-    public static final String LIST = "Here are the tasks in your list: ";
+    public static final String LIST = "Here are the tasks in your list: \n";
 
     public static final String INVALID_COMMAND = "I'm sorry, but I don't know what that means :-(";
 
@@ -32,5 +34,5 @@ public class Constants {
 
     public static final String NO_MORE_LINES = "There is no more input!";
 
-    public static final String FOUND_LIST = "Here are the matching tasks in your list: ";
+    public static final String FOUND_LIST = "Here are the matching tasks in your list: \n";
 }

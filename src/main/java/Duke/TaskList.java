@@ -1,12 +1,12 @@
-/**
- * This class contains the task list and the operations to add / delete tasks in the list
- */
 package Duke;
 
 import Tasks.Task;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains the task list and the operations to add / delete tasks in the list
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -97,43 +97,51 @@ public class TaskList {
     }
 
     /**
-     * Prints the tasks into the taskList
+     * Prints the tasks into the taskList in the correct format
+     *
+     * @return string that prints the tasks
      */
-    public void printList() {
+    public String printList() {
+        String str = "";
         try {
             if (tasks.size() == 0) {
                 throw new DukeException(Constants.EMPTY_LIST);
             }
             else {
-                System.out.println(Constants.LIST);
+                str += (Constants.LIST);
                 for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println(String.format("%d.%s", i + 1, tasks.get(i).toString()));
+                    str += (String.format("%d.%s \n", i + 1, tasks.get(i).toString()));
                 }
             }
         }
         catch (DukeException e) {
             System.out.println(e.getMessage());
         }
+        return str;
     }
 
     /**
-     * Prints the tasks in the given taskList
+     * Prints the tasks in the given taskList in the correct format
+     *
+     * @return string that prints the tasks
      */
-    public void printList(ArrayList<Task> givenTasks) {
+    public String printList(ArrayList<Task> givenTasks) {
+        String str = "";
         try {
             if (givenTasks.size() == 0) {
                 throw new DukeException(Constants.EMPTY_LIST);
             }
             else {
-                System.out.println(Constants.LIST);
+                str += (Constants.FOUND_LIST);
                 for (int i = 0; i < givenTasks.size(); i++) {
-                    System.out.println(String.format("%d.%s", i + 1, givenTasks.get(i).toString()));
+                    str += String.format("%d.%s \n", i + 1, givenTasks.get(i).toString());
                 }
             }
         }
         catch (DukeException e) {
             System.out.println(e.getMessage());
         }
+        return str;
     }
 
     /**
