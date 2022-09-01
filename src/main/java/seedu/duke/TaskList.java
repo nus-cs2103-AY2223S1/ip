@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TaskList {
-    private static ArrayList<Task> storage = new ArrayList<>();
+    private static ArrayList<Task> tempStorage = new ArrayList<>();
     private Storage saveFile;
 
     /**
@@ -14,7 +14,7 @@ public class TaskList {
      */
     public TaskList(Storage saveFile) {
         this.saveFile = saveFile;
-        saveFile.initialise(storage);
+        saveFile.initialise(tempStorage);
     }
 
     /**
@@ -22,50 +22,45 @@ public class TaskList {
      *
      * @param command the user's input.
      */
-    public void addTask(String command) {
+    public String addTask(String command) {
 
         if (command.startsWith("todo")) {
             if (command.length() <= 5) {
-                Ui.emptyDescription("Todo");
-                return;
+                return Ui.emptyDescription("Todo");
             }
 
             Task newTask = new Todo(command.substring(5));
-            storage.add(newTask);
+            tempStorage.add(newTask);
             saveFile.addTask(newTask.toStore());
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
-                    Ui.emptyDescription("Deadline");
-                    return;
+                    return Ui.emptyDescription("Deadline");
                 }
 
                 String[] temp = command.substring(9).split("/by ");
 
                 Task newTask = new Deadline(temp[0], temp[1]);
-                storage.add(newTask);
+                tempStorage.add(newTask);
                 saveFile.addTask(newTask.toStore());
             } catch (DateTimeParseException e) {
-                Ui.wrongDateFormat();
-                return;
+                return Ui.wrongDateFormat();
             }
         } else if (command.startsWith("event")) {
             if (command.length() <= 6) {
-                Ui.emptyDescription("Event");
-                return;
+                return Ui.emptyDescription("Event");
             }
 
             String[] temp = command.substring(6).split("/at ");
 
             Task newTask = new Event(temp[0], temp[1]);
-            storage.add(newTask);
+            tempStorage.add(newTask);
             saveFile.addTask(newTask.toStore());
         } else {
-            Ui.unknownCommand();
-            return;
+            return Ui.unknownCommand();
         }
 
-        Ui.addText(storage.get(storage.size() - 1).toString(), storage.size());
+        return Ui.addText(tempStorage.get(tempStorage.size() - 1).toString(), tempStorage.size());
     }
 
     /**
@@ -76,14 +71,14 @@ public class TaskList {
      *
      * @param index The index of the Task to be removed from storage.
      */
-    public void delete(int index) {
+    public String delete(int index) {
         try {
-            Task toRemove = storage.remove(index);
-            saveFile.reload(storage);
+            Task toRemove = tempStorage.remove(index);
+            saveFile.reload(tempStorage);
 
-            Ui.deleteText(toRemove.toString(), storage.size());
+            return Ui.deleteText(toRemove.toString(), tempStorage.size());
         } catch (IndexOutOfBoundsException e) {
-            Ui.taskNotFoundText();
+            return Ui.taskNotFoundText();
         }
 
     }
@@ -91,19 +86,19 @@ public class TaskList {
     /**
      * Lists all the tasks currently being stored.
      */
-    public void list() {
-        System.out.println("____________________________________________________________ \n"
-                + "Here are the tasks in your list:");
+    public String list() {
+        String list = "Here are the tasks in your list:\n";
 
         int index = 1;
-        Iterator<Task> iterator = storage.iterator();
+        Iterator<Task> iterator = tempStorage.iterator();
         while (iterator.hasNext()) {
-            System.out.printf("%d. ", index);
-            System.out.println(iterator.next().toString());
+            String task = index + ". " + iterator.next().toString() + "\n";
+            list = list + task;
+
             index++;
         }
 
-        System.out.println("____________________________________________________________");
+        return list;
     }
 
     /**
@@ -111,14 +106,15 @@ public class TaskList {
      *
      * @param command The user's input.
      */
-    public void toggleDone(String command) {
+    public String toggleDone(String command) {
         int index = Character.getNumericValue(command.charAt(command.length() - 1));
 
         try {
-            storage.get(index - 1).toggleDone(command);
-            saveFile.reload(storage);
+            String temp = tempStorage.get(index - 1).toggleDone(command);
+            saveFile.reload(tempStorage);
+            return temp;
         } catch (IndexOutOfBoundsException e) {
-            Ui.taskNotFoundText();
+            return Ui.taskNotFoundText();
         }
     }
 
@@ -126,11 +122,11 @@ public class TaskList {
      * returns a list of Tasks that contain the word to be found.
      * @param command the user's input.
      */
-    public void find(String command) {
+    public String find(String command) {
         ArrayList<Task> result = new ArrayList<>();
         String toFind = command.substring(5);
 
-        Iterator<Task> iterator = storage.iterator();
+        Iterator<Task> iterator = tempStorage.iterator();
         while (iterator.hasNext()) {
             Task curr = iterator.next();
             if (curr.checkMatching(toFind)) {
@@ -138,18 +134,17 @@ public class TaskList {
             }
         }
 
-        System.out.println("____________________________________________________________ \n"
-                + "Here are the matching tasks in your list:");
+        String found = "Here are the matching tasks in your list:";
 
         int index = 1;
         Iterator<Task> resultIterator = result.iterator();
         while (resultIterator.hasNext()) {
-            System.out.printf("%d. ", index);
-            System.out.println(resultIterator.next().toString());
+            String task = index + ". " + resultIterator.next().toString() + "\n";
+            found = found + task;
             index++;
         }
 
-        System.out.println("____________________________________________________________");
+        return found;
     }
 
 

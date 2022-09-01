@@ -28,21 +28,21 @@ public class Parser {
      *
      * @param command The user's input.
      */
-    public void parse(String command) {
+    public String parse(String command) {
         if (command.equals("list")) {
-            this.taskList.list();
+            return this.taskList.list();
         } else if (command.startsWith("mark") || command.startsWith("unmark")) {
-            taskList.toggleDone(command);
+            return taskList.toggleDone(command);
         } else if (command.startsWith("delete")) {
             int index = Character.getNumericValue(command.charAt(command.length() - 1));
-            taskList.delete(index - 1);
+            return taskList.delete(index - 1);
         } else if (command.startsWith("find")) {
-            taskList.find(command);
+            return taskList.find(command);
         } else if (command.equals("bye")) {
-            Ui.bye();
+            return Ui.bye();
         } else {
             // Add a task.
-            taskList.addTask(command);
+            return taskList.addTask(command);
         }
     }
 

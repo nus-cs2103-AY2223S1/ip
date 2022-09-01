@@ -107,16 +107,4 @@ public class Storage {
 
     }
 
-    public void reset(ArrayList<Task> storage) {
-        storage.clear();
-
-        try {
-            PrintWriter writer = new PrintWriter(filePath);
-            writer.print("");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
