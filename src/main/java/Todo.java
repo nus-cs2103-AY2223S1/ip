@@ -8,6 +8,10 @@ public class Todo extends Task {
         super(name);
     }
 
+    public Todo(SaveLine line) {
+        super(line);
+    }
+
     /**
      * Shows the todo name and status as a String.
      *
@@ -15,5 +19,12 @@ public class Todo extends Task {
      */
     public String toString() {
         return String.format("[T]%s", super.toString());
+    }
+
+    @Override
+    public SaveLine toData() {
+        SaveLine ret = super.toData();
+        ret.setInfoType("todo");
+        return ret;
     }
 }

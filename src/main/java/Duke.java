@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Task> todoList = new ArrayList<>();
+    public static ArrayList<Task> taskList = new ArrayList<>();
 
     /**
      * Reads a line.
@@ -57,22 +58,22 @@ public class Duke {
      * Lists the todo list.
      */
     public static void list() {
-        if (todoList.isEmpty()) {
+        if (taskList.isEmpty()) {
             reply("You have no tasks in your list.");
             return;
         }
-        String[] toReply = new String[todoList.size() + 1];
+        String[] toReply = new String[taskList.size() + 1];
         toReply[0] = "Here are the tasks in your list.";
-        for (int i = 0; i < todoList.size(); ++i) {
-            toReply[i + 1] = String.format("%d. %s", i + 1, todoList.get(i));
+        for (int i = 0; i < taskList.size(); ++i) {
+            toReply[i + 1] = String.format("%d. %s", i + 1, taskList.get(i));
         }
         reply(toReply);
     }
 
     public static void justAddedComment() {
         reply(new String[] {"Successfully added the following task",
-                        todoList.get(todoList.size() - 1).toString(),
-                        String.format("You now have %d tasks in the list.", todoList.size())});
+                        taskList.get(taskList.size() - 1).toString(),
+                        String.format("You now have %d tasks in the list.", taskList.size())});
     }
 
     /**
@@ -80,7 +81,7 @@ public class Duke {
      *
      * @param arguments The command arguments.
      */
-    public static void todo(String[] arguments) {
+    public static void todo(String[] arguments) throws IOException {
         StringBuilder todoName = new StringBuilder();
         for (int i = 1; i < arguments.length; ++i) {
             if (todoName.length() != 0) {
@@ -92,7 +93,8 @@ public class Duke {
             reply("Please include a name");
             return;
         }
-        todoList.add(new Todo(todoName.toString()));
+        taskList.add(new Todo(todoName.toString()));
+        SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         justAddedComment();
     }
 
@@ -101,7 +103,7 @@ public class Duke {
      *
      * @param arguments The command arguments.
      */
-    public static void deadline(String[] arguments) {
+    public static void deadline(String[] arguments) throws IOException {
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder deadlineDeadline = new StringBuilder();
         boolean byFlagRead = false;
@@ -127,7 +129,8 @@ public class Duke {
                     "deadline <deadline name> /by <deadline>"});
             return;
         }
-        todoList.add(new Deadline(deadlineName.toString(), deadlineDeadline.toString()));
+        taskList.add(new Deadline(deadlineName.toString(), deadlineDeadline.toString()));
+        SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         justAddedComment();
     }
 
@@ -136,7 +139,7 @@ public class Duke {
      *
      * @param arguments The command arguments.
      */
-    public static void event(String[] arguments) {
+    public static void event(String[] arguments) throws IOException {
         StringBuilder eventName = new StringBuilder();
         StringBuilder eventTime = new StringBuilder();
         boolean atFlagRead = false;
@@ -162,7 +165,8 @@ public class Duke {
                     "event <event name> /at <event time>"});
             return;
         }
-        todoList.add(new Event(eventName.toString(), eventTime.toString()));
+        taskList.add(new Event(eventName.toString(), eventTime.toString()));
+        SaveFile.addData(taskList.get(taskList.size() - 1).toData());
         justAddedComment();
     }
 
@@ -172,8 +176,8 @@ public class Duke {
      *
      * @param arguments The command arguments.
      */
-    public static void mark(String[] arguments) {
-        if (todoList.isEmpty()) {
+    public static void mark(String[] arguments) throws IOException {
+        if (taskList.isEmpty()) {
             reply("You don't have any tasks to mark!");
             return;
         }
@@ -184,15 +188,17 @@ public class Duke {
             reply("Please enter the item ID you wish to mark");
             return;
         } catch (NumberFormatException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
             return;
         }
         try {
-            todoList.get(i).doTask();
+            taskList.get(i).doTask();
             reply(new String[]{"Ok, I'm marking this as done",
-                    todoList.get(i).toString()});
+                    taskList.get(i).toString()});
+            SaveFile.getFileData().get(i).setNameData("done", "1");
+            SaveFile.saveFile();
         } catch (IndexOutOfBoundsException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
         }
     }
 
@@ -202,8 +208,8 @@ public class Duke {
      *
      * @param arguments The command arguments.
      */
-    public static void unmark(String[] arguments) {
-        if (todoList.isEmpty()) {
+    public static void unmark(String[] arguments) throws IOException {
+        if (taskList.isEmpty()) {
             reply("You don't have any tasks to unmark!");
             return;
         }
@@ -214,15 +220,17 @@ public class Duke {
             reply("Please enter the item ID you wish to unmark");
             return;
         } catch (NumberFormatException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
             return;
         }
         try {
-            todoList.get(i).undo();
+            taskList.get(i).undo();
             reply(new String[]{"Ok, I'm marking this as not done",
-                    todoList.get(i).toString()});
+                    taskList.get(i).toString()});
+            SaveFile.getFileData().get(i).setNameData("done", "0");
+            SaveFile.saveFile();
         } catch (IndexOutOfBoundsException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
         }
     }
 
@@ -232,7 +240,7 @@ public class Duke {
      * @param arguments The command arguments.
      */
     public static void delete(String[] arguments) {
-        if (todoList.isEmpty()) {
+        if (taskList.isEmpty()) {
             reply("You don't have any tasks to delete!");
             return;
         }
@@ -243,15 +251,15 @@ public class Duke {
             reply("Please enter the item ID you wish to delete");
             return;
         } catch (NumberFormatException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
             return;
         }
         try {
             reply(new String[]{"Ok, I'm deleting this",
-                    todoList.get(i).toString()});
-            todoList.remove(i);
+                    taskList.get(i).toString()});
+            taskList.remove(i);
         } catch (IndexOutOfBoundsException e) {
-            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
         }
     }
 
@@ -262,13 +270,28 @@ public class Duke {
         reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+        SaveFile.loadSaveFile();
+        for (SaveLine i : SaveFile.getFileData()) {
+            if (i.getInfoType().equals("todo")) {
+                taskList.add(new Todo(i));
+                continue;
+            }
+            if (i.getInfoType().equals("deadline")) {
+                taskList.add(new Deadline(i));
+                continue;
+            }
+            if (i.getInfoType().equals("event")) {
+                taskList.add(new Event(i));
+                continue;
+            }
+        }
         reply("What can I do for you?");
         while (true) {
             String line = readLine();

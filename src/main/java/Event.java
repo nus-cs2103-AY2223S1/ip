@@ -10,6 +10,11 @@ public class Event extends Task {
         this.time = time;
     }
 
+    public Event(SaveLine line) {
+        super(line);
+        time = line.getValue("time");
+    }
+
     /**
      * Shows the event name and status as a String.
      *
@@ -17,5 +22,13 @@ public class Event extends Task {
      */
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), time);
+    }
+
+    @Override
+    public SaveLine toData() {
+        SaveLine ret = super.toData();
+        ret.setInfoType("event");
+        ret.addNameData("time", time);
+        return ret;
     }
 }

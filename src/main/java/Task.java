@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String name;
     protected boolean done;
 
@@ -10,6 +10,11 @@ public class Task {
     public Task(String name) {
         this.name = name;
         done = false;
+    }
+
+    public Task(SaveLine line) {
+        name = line.getValue("name");
+        done = line.getValue("done").equals("1");
     }
 
     /**
@@ -63,5 +68,9 @@ public class Task {
     @Override
     public String toString() {
         return String.format("[%c] %s", mark(), name);
+    }
+
+    public SaveLine toData() {
+        return new SaveLine("task", "name", name, "done", done ? "1" : "0");
     }
 }
