@@ -33,6 +33,10 @@ public class Duke {
         storage.updateFile(tasks.getItemList());
     }
 
+    public String getResponse(String userInput) {
+        return ui.getOneInput(userInput);
+    }
+
     public static void main(String[] args) {
         new Duke("dukeHistory.txt").run();
     }

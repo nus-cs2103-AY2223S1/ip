@@ -32,14 +32,14 @@ abstract public class Task {
         return '[' + getStatusIcon() + "] " + description;
     }
 
-    public void updateStatus() {
+    public String updateStatus() {
         String acknowledgement;
         if (isDone) {
             acknowledgement = "Nice! I've marked this task as done:\n\t" + this;
         } else {
             acknowledgement= "OK, I've marked this task as not done yet:\n\t" + this;
         }
-        System.out.println(acknowledgement);
+        return acknowledgement;
     }
 
     public String getDescription() {

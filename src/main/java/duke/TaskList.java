@@ -49,11 +49,11 @@ public class TaskList {
      *
      * @param toAdd Task to be added
      */
-    public void addTask(Task toAdd) {
+    public String addTask(Task toAdd) {
         itemList.add(toAdd);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("\t" + toAdd);
-        System.out.println("Now you have " + itemList.size() + " tasks in the list.");
+        String response = "Got it. I've added this task:\n\t" + toAdd
+                + "\nNow you have " + itemList.size() + " tasks in the list.";
+        return response;
     }
 
     /**
@@ -62,16 +62,15 @@ public class TaskList {
      * @param stringDex Index of task to be deleted
      * @throws DukeException In the case that the task is not found
      */
-    public void deleteTask(String stringDex) throws DukeException {
+    public String deleteTask(String stringDex) throws DukeException {
         int index = Integer.parseInt(stringDex);
         if (index > itemList.size()) {
             throw new DukeException("Item to be deleted not found");
         } else {
-            System.out.println("Noted. I've removed this task:");
-            System.out.println("\t" + itemList.get(index - 1));
+            String msg = "Noted. I've removed this task:";
+            msg = msg + "\t" + itemList.get(index - 1);
             itemList.remove(index - 1);
-            System.out.println("Now you have " + itemList.size() + " tasks in the list.");
-
+            return msg + "Now you have " + itemList.size() + " tasks in the list.";
         }
     }
 
@@ -96,10 +95,10 @@ public class TaskList {
      *
      * @param index Index of task to be marked
      */
-    public void markTask(int index) {
+    public String markTask(int index) {
         Task marked = itemList.get(index);
         marked.setStatusIcon(true);
-        marked.updateStatus();
+        return marked.updateStatus();
     }
 
     /**
@@ -107,10 +106,10 @@ public class TaskList {
      *
      * @param index Index of task to be marked
      */
-    public void unmarkTask(int index) {
+    public String unmarkTask(int index) {
         Task marked = itemList.get(index);
         marked.setStatusIcon(false);
-        marked.updateStatus();
+        return marked.updateStatus();
     }
 
     /**
@@ -127,7 +126,7 @@ public class TaskList {
      *
      * @param keyword Description to match
      */
-    public void findTask(String keyword) {
+    public String findTask(String keyword) {
         TaskList matchingTasks = new TaskList();
 
         for (int i = 0; i < itemList.size(); i++) {
@@ -137,10 +136,9 @@ public class TaskList {
         }
 
         if (matchingTasks.isEmpty()) {
-            System.out.println("No such task found. Please try another phrase");
+            return "No such task found. Please try another phrase";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
-            System.out.println(matchingTasks);
+            return "Here are the matching tasks in your list:\n" + matchingTasks;
         }
     }
 }
