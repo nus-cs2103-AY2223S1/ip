@@ -17,7 +17,7 @@ public class ParserTest {
         String input = "testInvalidCommand";
         boolean hasError = false;
         try {
-            this.parser.process(input);
+            this.parser.processCommand(input);
         } catch (InvalidInputException error) {
             hasError = true;
         }
@@ -29,7 +29,7 @@ public class ParserTest {
         String input = "mark -1";
         boolean hasError = false;
         try {
-            this.parser.process(input);
+            this.parser.processCommand(input);
         } catch (OutOfBoundsException error) {
             hasError = true;
         }

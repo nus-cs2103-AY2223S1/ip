@@ -3,7 +3,7 @@ package carbon.error;
 /**
  * Exception class for corrupted stored data on tasks, that cannot be read.
  */
-public class CorruptedSavefileException extends CarbonException {
+public class CorruptedSaveFileException extends CarbonException {
     private String data;
 
     /**
@@ -12,7 +12,7 @@ public class CorruptedSavefileException extends CarbonException {
      * @param data String message for the error.
      * @return CorruptedSavefileException object.
      */
-    public CorruptedSavefileException(String data) {
+    public CorruptedSaveFileException(String data) {
         super(data);
         this.data = data;
     }
@@ -20,7 +20,7 @@ public class CorruptedSavefileException extends CarbonException {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return String.format("The savefiles appear to be corrupted.\n"
+        return String.format("The save file appear to be corrupted.\n"
                 + "\"%s\" is not formatted properly.", data);
     }
 }

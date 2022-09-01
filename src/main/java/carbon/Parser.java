@@ -1,7 +1,7 @@
 package carbon;
 
 import carbon.error.CarbonException;
-import carbon.error.CorruptedSavefileException;
+import carbon.error.CorruptedSaveFileException;
 import carbon.error.InvalidInputException;
 import carbon.task.Task;
 
@@ -26,8 +26,8 @@ public class Parser {
         this.ui = ui;
         this.storage = storage;
         try {
-            this.taskList = this.storage.loadSavefile();
-        } catch (CorruptedSavefileException error) {
+            this.taskList = this.storage.loadSaveFile();
+        } catch (CorruptedSaveFileException error) {
             // continue with empty list
         }
     }
@@ -40,7 +40,7 @@ public class Parser {
      * @return Execution log.
      * @throws CarbonException  If an error is encountered during processing or execution.
      */
-    public String process(String input) throws CarbonException {
+    public String processCommand(String input) throws CarbonException {
         String lowerCaseInput = input.toLowerCase();
         String log;
         switch (lowerCaseInput) {
@@ -52,7 +52,7 @@ public class Parser {
             break;
         default:
             // unable to process as a simple command, pass to next handler
-            log = this.processAdvanced(input);
+            log = this.processAdvancedCommand(input);
         }
         return log;
     }
@@ -65,7 +65,7 @@ public class Parser {
      * @return Execution log.
      * @throws CarbonException  If an error is encountered during processing or execution.
      */
-    private String processAdvanced(String input) throws CarbonException {
+    private String processAdvancedCommand(String input) throws CarbonException {
         String lowerCaseInput = input.toLowerCase();
         String log;
         try {

@@ -30,18 +30,18 @@ public class Storage {
      *
      * @return TaskList instance containing the saved tasks.
      */
-    public TaskList loadSavefile() {
+    public TaskList loadSaveFile() {
         TaskList taskList = new TaskList();
 
         try {
-            File savefile = new File(Storage.SAVEFILE);
-            if (savefile.isFile()) {
-                Scanner savefileScanner = new Scanner(savefile);
-                while (savefileScanner.hasNextLine()) {
-                    String data = savefileScanner.nextLine();
+            File saveFile = new File(Storage.SAVEFILE);
+            if (saveFile.isFile()) {
+                Scanner saveFileScanner = new Scanner(saveFile);
+                while (saveFileScanner.hasNextLine()) {
+                    String data = saveFileScanner.nextLine();
                     taskList.loadTask(data);
                 }
-                savefileScanner.close();
+                saveFileScanner.close();
             }
         } catch (FileNotFoundException error) {
             System.out.println(error);
@@ -51,20 +51,20 @@ public class Storage {
     }
 
     /**
-     * Saves the tasks in the savefile.
+     * Saves the tasks in the save file.
      * Uses the default filepath.
      *
      * @param taskList Instance of TaskList containing tasks to be saved.
      */
     public void saveTasks(TaskList taskList) {
-        File savefile = new File(Storage.SAVEFILE);
-        File savefileDir = new File(Storage.SAVEFILE_DIR);
+        File saveFile = new File(Storage.SAVEFILE);
+        File saveFileDir = new File(Storage.SAVEFILE_DIR);
         try {
             // ensures dir and file exists
-            savefileDir.mkdir();
-            savefile.createNewFile();
+            saveFileDir.mkdir();
+            saveFile.createNewFile();
 
-            FileWriter writer = new FileWriter(savefile);
+            FileWriter writer = new FileWriter(saveFile);
             writer.write(taskList.encodeTasks());
             writer.close();
         } catch (IOException error) {

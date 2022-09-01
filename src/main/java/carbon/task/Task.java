@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import carbon.error.CarbonException;
-import carbon.error.CorruptedSavefileException;
+import carbon.error.CorruptedSaveFileException;
 
 /**
  * Enapsulates information regarding tasks.
@@ -73,7 +73,7 @@ public abstract class Task {
 
         // should have min 3 segments: type, name, and doneness
         if (values.length < 3 || values.length > 4) {
-            throw new CorruptedSavefileException(data);
+            throw new CorruptedSaveFileException(data);
         }
 
         // else, continue decoding
@@ -97,7 +97,6 @@ public abstract class Task {
             // should never reach here
             decodedTask = Todo.createTask("todo _");
         }
-        decodedTask.changeDoneness(isDone);
         return decodedTask;
     }
 
@@ -106,7 +105,7 @@ public abstract class Task {
      *
      * @param isDone Whether the task is done or not.
      */
-    public void changeDoneness(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
