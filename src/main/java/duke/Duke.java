@@ -31,8 +31,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpeg"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpeg"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpeg"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.jpeg"));
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -208,7 +208,7 @@ public class Duke extends Application {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
-        
+
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
