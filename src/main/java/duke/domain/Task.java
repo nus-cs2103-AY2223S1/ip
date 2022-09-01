@@ -163,14 +163,17 @@ public class Task {
     }
 
     /**
-     * The textContains function returns true if the text of this Task contains the
-     * searchTerm.
+     * The textContains function checks if the text of a task contains any of the
+     * search terms.
      *
-     * @param searchTerm
-     *            Search for the text in the text field
+     * @param String...
+     *            Pass in a variable number of strings to the function
      * @return A boolean value
      */
-    public Boolean textContains(String searchTerm) {
-        return this.text.contains(searchTerm);
+    public Boolean textContains(String... searchTerms) {
+        for (String searchTerm : searchTerms) {
+            return this.text.contains(searchTerm);
+        }
+        return false;
     }
 }

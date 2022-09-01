@@ -174,14 +174,14 @@ public class TaskList {
      * The searchTasks function searches the task list for tasks that contain the
      * search term.
      *
-     * @param searchTerm
-     *            Search for a specific task
+     * @param searchTerms
+     *            The search terms
      * @return A string
      */
-    public String searchTasks(String searchTerm) {
+    public String searchTasks(String ... searchTerms) {
         return convertTaskListToString(
                 this.taskList.stream()
-                        .filter(task -> task.textContains(searchTerm))
+                        .filter(task -> task.textContains(searchTerms))
                         .collect(Collectors.toList()));
     }
 }
