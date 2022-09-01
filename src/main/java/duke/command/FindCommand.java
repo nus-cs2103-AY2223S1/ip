@@ -11,14 +11,14 @@ import duke.util.Ui;
  * @version CS2103T AY 22/23 Sem 1 (G01)
  */
 public class FindCommand extends Command {
-    private String keyWord;
+    private String[] keyWord;
 
     /**
      * Constructor to create an instance of FindCommand.
      *
-     * @param keyWord String to search for in the list of tasks
+     * @param keyWord Array of String keywords to search for in the list of tasks
      */
-    public FindCommand(String keyWord) {
+    public FindCommand(String... keyWord) {
         this.keyWord = keyWord;
     }
 
@@ -36,11 +36,14 @@ public class FindCommand extends Command {
         StringBuilder respondMessage = new StringBuilder(this.toString());
         for (int i = 0; i < tasks.size(); i++) {
             String taskInfo = tasks.getTask(i).toString();
-            if (taskInfo.contains(keyWord)) {
-                respondMessage.append("\n")
-                        .append(i + 1)
-                        .append(". ")
-                        .append(taskInfo);
+            for (int j = 0; j < this.keyWord.length; j++) {
+                if (taskInfo.contains(keyWord[j])) {
+                    respondMessage.append("\n")
+                            .append(i + 1)
+                            .append(". ")
+                            .append(taskInfo);
+                    break;
+                }
             }
         }
         return respondMessage.append("\n________________________________________").toString();

@@ -145,7 +145,11 @@ public class Parser {
                         + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
-            return new FindCommand(array[1]);
+
+            // User can input multiple keywords separated by a comma ","
+            // For e.g. find book, clean, concert
+            String[] searchKeywords = array[1].split(",");
+            return new FindCommand(searchKeywords);
         } else {
             return new WrongCommand();
         }
