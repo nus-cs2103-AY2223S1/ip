@@ -28,11 +28,21 @@ test {
 }
 
 application {
-    mainClassName = "cleverNotBot.CleverNotBot"
+    mainClassName = "clevernotbot.CleverNotBot"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "clevernotbot.CleverNotBot"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 shadowJar {
-    archiveBaseName = "cleverNotBot"
+    archiveBaseName = "clevernotbot"
     archiveClassifier = null
 }
 
