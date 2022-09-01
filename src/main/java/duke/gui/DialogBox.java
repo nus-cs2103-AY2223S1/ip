@@ -18,20 +18,23 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
 /**
  * Represents a dialog box in the GUI
  */
 public class DialogBox extends HBox {
-    private static Background dukeBg = new Background(new BackgroundFill(Paint.valueOf("70FFEC"),
+    private static Background dukeBg = new Background(new BackgroundFill(Paint.valueOf("B0B0B0"),
             CornerRadii.EMPTY, Insets.EMPTY));
-    private static Background userBg = new Background(new BackgroundFill(Paint.valueOf("79FF67"),
+    private static Background userBg = new Background(new BackgroundFill(Paint.valueOf("CDCDCD"),
             CornerRadii.EMPTY, Insets.EMPTY));
 
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Circle clip = new Circle(46, 50, 45);
 
 
 
@@ -42,6 +45,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            this.setSpacing(50);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,6 +69,7 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.displayPicture.setClip(db.clip);
         db.setBackground(userBg);
         return db;
     }
@@ -74,6 +79,7 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.displayPicture.setClip(db.clip);
         db.flip();
         db.setBackground(dukeBg);
         return db;
