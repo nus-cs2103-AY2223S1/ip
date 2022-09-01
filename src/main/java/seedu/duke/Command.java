@@ -26,20 +26,22 @@ public enum Command {
      * @param input The user's input in the command line
      * @throws DukeException if command is not found or cannot be executed.
      */
-    public void execute(TaskList tasklist, Ui ui, Storage storage, String input) throws DukeException {
+    public String execute(TaskList tasklist, Ui ui, Storage storage, String input) throws DukeException {
         ArrayList<Task> tasks = tasklist.getTasks();
         int taskNumber;
         Task task;
         String[] split;
 
         try {
+            String output = "";
             switch(this) {
 
             case LIST:
-                System.out.println("Here are the tasks in your list:");
+                output += "Here are the tasks in your list:\n";
+            
                 for (int i = 0; i < tasks.size(); i++) {
                     task = tasks.get(i);
-                    System.out.println(String.valueOf(i + 1) + "." + task);
+                    output += String.valueOf(i + 1) + "." + task + "\n";
                 }
                 break;
 
@@ -48,7 +50,7 @@ public enum Command {
                     throw new DukeException("Choose which task to mark as done!");
                 }
                 taskNumber = Integer.parseInt(input.substring(5));
-                tasks.get(taskNumber - 1).setDone();
+                output += tasks.get(taskNumber - 1).setDone();
                 break;
 
 
@@ -57,7 +59,7 @@ public enum Command {
                     throw new DukeException("Choose which task to mark as undone!");
                 }
                 taskNumber = Integer.parseInt(input.substring(7));
-                tasks.get(taskNumber - 1).setUndone();
+                output += tasks.get(taskNumber - 1).setUndone();
                 break;
 
             case TODO:
@@ -68,8 +70,8 @@ public enum Command {
                 task = new Todo(input.substring(5));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                    + " in the list.");
+                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
+                + " in the list.";
                 break;
 
             case EVENT:
@@ -85,8 +87,8 @@ public enum Command {
                 task = new Event(split[0], split[1].substring(3));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                    + " in the list.");
+                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
+                + " in the list.";
                 break;
 
             case DEADLINE:
@@ -103,8 +105,8 @@ public enum Command {
                 task = new Deadline(split[0], split[1].substring(3));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                    + " in the list.");
+                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
+                + " in the list.";
                 break;
 
             case DELETE:
@@ -115,23 +117,25 @@ public enum Command {
                 task = tasks.get(taskNumber);
                 tasks.remove(taskNumber);
                 ui.remove(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                    + " in the list.");
+                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
+                + " in the list.";
                 break;
 
             case BYE:
-                ui.showGoodbye();
+                output += ui.showGoodbye();
                 break;
 
             case FIND:
-                System.out.println("Here are the matching tasks in your list: ");
+                output += "Here are the matching tasks in your list:\n";
+                
                 String keyword = input.substring(5);
                 int listValue = 1;
 
                 for (int i = 0; i < tasks.size(); i++) {
                     task = tasks.get(i);
                     if (task.toString().indexOf(keyword) != -1) {
-                        System.out.println(String.valueOf(listValue) + "." + task);
+                        output += (String.valueOf(listValue) + "." + task + "\n");
+        
                         listValue++;
                     }
                 }
@@ -139,22 +143,18 @@ public enum Command {
 
             default:
                 throw new DukeException("I'm sorry, but I dont know what you mean :(");
+
             }
 
+            return output;
+
         } catch (DukeException e) {
-            System.out.println(e);
+            return e.getMessage();
 
         } finally {
             storage.save(tasks);
         }
     }
 
-    /**
-     * Returns true if the command is BYE.
-     *
-     * @return true whether the user wants to exit the program.
-     */
-    public boolean isExit() {
-        return this == BYE;
-    }
+
 }

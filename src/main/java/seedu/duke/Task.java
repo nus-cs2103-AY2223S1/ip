@@ -40,17 +40,17 @@ public class Task {
     /**
      * Set the task to be completed.
      */
-    public void setDone() {
+    public String setDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:\n[X] " + this.description);
+        return "Nice! I've marked this task as done:\n[X] " + this.description;
     }
 
     /**
      * Set the task to be uncompleted.
      */
-    public void setUndone() {
+    public String setUndone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n[ ] " + this.description);
+        return "OK, I've marked this task as not done yet:\n[ ] " + this.description;
     }
 
     @Override
