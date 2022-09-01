@@ -8,8 +8,9 @@ package duke;
 public class Ui {
 
     /**
-     * Prints the welcome message.
+     * Returns the welcome message.
      *
+     * @return String containing the welcome message.
      */
     public String showWelcome() {
         String dukeGreeting = "Hello! I'm Duke\nWhat can I do for you?";
@@ -17,8 +18,9 @@ public class Ui {
     }
 
     /**
-     * Prints the goodbye message.
+     * Returns the goodbye message.
      *
+     * @return String containing the goodbye message.
      */
     public String showGoodbye() {
         String dukeGoodbye = "Bye. Hope to see you again soon!";
@@ -26,24 +28,27 @@ public class Ui {
     }
 
     /**
-     * Prints the error message arising from invalid user input.
+     * Returns the error message arising from invalid user input.
      *
+     * @return String containing the error message.
      */
     public String showError(DukeException e) {
         return e.getMessage();
     }
 
     /**
-     * Prints the error message arising from issues in loading or storing tasks locally.
+     * Returns the error message arising from issues in loading or storing tasks locally.
      *
+     * @return String containing the error message.
      */
     public String showLoadingError(Exception e) {
         return e.getMessage();
     }
 
     /**
-     * Prints the tasks currently in the task list.
+     * Returns the tasks currently in the task list.
      *
+     * @return String containing the list of tasks.
      */
     public String showTasks(TaskList tasks) {
         if (tasks.length() != 0) {
@@ -56,9 +61,10 @@ public class Ui {
     }
 
     /**
-     * Prints a success message for marking a task as complete.
+     * Returns a success message for marking a task as complete.
      *
      * @param taskNumber Index of the task as in the task list.
+     * @return String containing a success message.
      */
     public String showMarkSuccess(int taskNumber) {
         return "Nice! I've marked task "
@@ -66,9 +72,10 @@ public class Ui {
     }
 
     /**
-     * Prints a success message for marking a task as incomplete.
+     * Returns a success message for marking a task as incomplete.
      *
      * @param taskNumber Index of the task as in the task list.
+     * @return String containing a success message.
      */
     public String showUnmarkSuccess(int taskNumber) {
         return "OK, I've marked task "
@@ -76,10 +83,11 @@ public class Ui {
     }
 
     /**
-     * Prints a success message for removing a task.
+     * Returns a success message for removing a task.
      *
      * @param taskNumber Index of the task as in the task list.
      * @param tasks Current list of tasks stored by the bot.
+     * @return String containing a success message.
      */
     public String showRemoveTaskSuccess(int taskNumber, TaskList tasks) {
         return "Noted. I've removed task " + (taskNumber + 1) + ".\n"
@@ -87,9 +95,10 @@ public class Ui {
     }
 
     /**
-     * Prints a success message for adding a task.
+     * Returns a success message for adding a task.
      *
      * @param tasks Current list of tasks stored by the bot.
+     * @return String containing a success message.
      */
     public String showAddTaskSuccess(TaskList tasks) {
         return "Task added. You now have "
@@ -97,10 +106,11 @@ public class Ui {
     }
 
     /**
-     * Prints the tasks matching the user query string.
+     * Returns the tasks matching the user query string.
      *
      * @param searchInput The query string to search for.
-     * @param tasks The current <code>TaskList</code>
+     * @param tasks The current <code>TaskList</code>.
+     * @return String containing the matching tasks.
      */
     public String showMatchingTasks(String searchInput, TaskList tasks) {
         String matchingStart = "Here are the matching tasks in your list:\n";

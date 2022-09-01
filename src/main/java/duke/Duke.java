@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * A task-keeping chatbot with a command line interface.
@@ -34,16 +33,19 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the welcome message from the bot.
+     *
+     * @return String containing the bot's welcome message.
      */
     public String getWelcome() {
         return this.ui.showWelcome();
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response from the bot after processing the user input.
+     *
+     * @param userResponse The input from the user.
+     * @return String containing the response from the bot.
      */
     public String getResponse(String userResponse) {
         try {
