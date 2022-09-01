@@ -2,13 +2,28 @@ package dan;
 
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * A parser to help parse and execute command-line inputs by the user
+ */
 public class Parser {
     private TaskList tasks;
 
+    /**
+     * Constructor method. Associates the parser to its list of tasks to perform actions on.
+     *
+     * @param tasks TaskList of tasks
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
-    
+
+    /**
+     * Parses the command-line input before executing the command.
+     *
+     * @param input The raw input data entered by the user
+     * @return A boolean of the program exit status
+     */
     public boolean parse(String input) {
         String action = input.split(" ")[0];
         try {
