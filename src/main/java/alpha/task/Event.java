@@ -1,14 +1,14 @@
 package alpha.task;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     static final String ANSI_RED = "\u001B[31m";
     static final String ANSI_RESET = "\u001B[0m";
-
     protected String date;
-    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("MMM d yyyy");
+
     public Event(String description, String date, String taskType) {
         super(description, taskType);
         this.date = date;
@@ -18,8 +18,17 @@ public class Event extends Task {
     }
     @Override
     public String toString() {
-        LocalDate d = LocalDate.parse(this.date);
-        String formattedDate = d.format(dTF);
-        return super.toString() + String.format(ANSI_RED + " (on: %s)", formattedDate + ANSI_RESET);
+        return super.toString() + String.format(ANSI_RED + " (on: %s)", date + ANSI_RESET);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        } else if(obj instanceof Event) {
+            Event e = (Event) obj;
+            return (e.getDescription().equals(this.getDescription()) && e.getStatus().equals(this.getStatus()) && e.taskType.equals(this.taskType) && e.getDate().equals(this.getDate()));
+        }
+        return false;
     }
 }

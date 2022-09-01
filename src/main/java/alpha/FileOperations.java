@@ -21,43 +21,61 @@ public class FileOperations {
         this.FILE_PATH = FILE_PATH;
         f = new File(FILE_PATH);
     }
-    public void createFile() throws IOException {
-        f.createNewFile();
-    }
-
-    public void writeToFile(String textToAppend) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
-        fw.write(textToAppend);
-        fw.close();
-    }
-
-    public void rewriteFile(TaskList taskList) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
-        for (Task t: taskList.tasks) {
-            String textToAdd = t.getTaskType() + " | " + t.getStatus() + " | " + t.getDescription();
-            if (t instanceof Todo) {
-                textToAdd += "\n";
-            }
-            if (t instanceof Event) {
-                Event e = (Event) t;
-                textToAdd += " | " + e.getDate() + "\n";
-            } else if (t instanceof Deadline) {
-                Deadline d = (Deadline) t;
-                textToAdd += " | " + d.getDeadline() + "\n";
-            }
-            fw.write(textToAdd);
+    public void createFile() throws AlphaException {
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            throw new AlphaException(e.getMessage());
         }
-        fw.close();
     }
 
-    public List<Task> readFile() throws FileNotFoundException {
+    public void writeToFile(String textToAppend) throws AlphaException {
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH, true); // create a FileWriter in append mode
+            fw.write(textToAppend);
+            fw.close();
+        } catch (IOException e) {
+            throw new AlphaException(e.getMessage());
+        }
+    }
+
+    public void rewriteFile(TaskList taskList) throws AlphaException {
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH);
+            for (Task t: taskList.tasks) {
+                String textToAdd = t.getTaskType() + " | " + t.getStatus() + " | " + t.getDescription();
+                if (t instanceof Todo) {
+                    textToAdd += "\n";
+                }
+                if (t instanceof Event) {
+                    Event e = (Event) t;
+                    textToAdd += " | " + e.getDate() + "\n";
+                } else if (t instanceof Deadline) {
+                    Deadline d = (Deadline) t;
+                    textToAdd += " | " + d.getDeadline() + "\n";
+                }
+                fw.write(textToAdd);
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new AlphaException(e.getMessage());
+        }
+
+    }
+
+    public List<Task> readFile() throws AlphaException {
         List<Task> tasksInFile = new ArrayList<>();
         //File f = new File(filePath); // create a File for the given file path
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        Scanner s;
+        try {
+            s = new Scanner(f); // create a Scanner using the File as the source
+        } catch (FileNotFoundException e) {
+            throw new AlphaException(e.getMessage());
+        }
         while (s.hasNext()) {
             String task = s.nextLine();
-            String taskType = String.valueOf(task.charAt(0));
-            boolean taskStatus = String.valueOf(task.charAt(4)) == "X";
+            String taskType = String.valueOf(task.charAt(1));
+            boolean taskStatus = String.valueOf(task.charAt(5)) == "X";
             switch (taskType) {
                 case "T": {
                     String taskDescription = task.substring(8);
@@ -67,18 +85,16 @@ public class FileOperations {
                     break;
                 }
                 case "E": {
-                    int indexOfLastSeparator = task.indexOf("|", 8);
-                    String taskDescription = task.substring(8,indexOfLastSeparator);
-                    String date = task.substring(indexOfLastSeparator + 2);
+                    String taskDescription = task.substring(8, task.length()-15);
+                    String date = task.substring(task.length()-12, task.length()-1);
                     Task event = new Event(taskDescription, date, taskType);
                     event.changeStatus(taskStatus);
                     tasksInFile.add(event);
                     break;
                 }
                 case "D": {
-                    int indexOfLastSeparator = task.indexOf("|", 8);
-                    String taskDescription = task.substring(8,indexOfLastSeparator);
-                    String deadlineDate = task.substring(indexOfLastSeparator + 2);
+                    String taskDescription = task.substring(8, task.length()-15);
+                    String deadlineDate = task.substring(task.length()-12, task.length()-1);
                     Task deadline = new Deadline(taskDescription, deadlineDate, taskType);
                     deadline.changeStatus(taskStatus);
                     tasksInFile.add(deadline);

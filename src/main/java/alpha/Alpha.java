@@ -5,6 +5,7 @@ import alpha.command.Exit;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.util.Scanner;
 
 public class Alpha {
@@ -19,12 +20,8 @@ public class Alpha {
          fileOperations = new FileOperations(FILE_PATH);
          try {
              fileOperations.createFile();
-         } catch(IOException e) {
-             uI.colouredPrint(uI.ANSI_RED, e.getMessage());
-         }
-         try {
              taskList = new TaskList(fileOperations.readFile());
-         } catch (FileNotFoundException e){
+         } catch(AlphaException e) {
              uI.colouredPrint(uI.ANSI_RED, e.getMessage());
          }
      }
@@ -40,7 +37,7 @@ public class Alpha {
                 if (c instanceof Exit) {
                     isExit = true;
                 }
-            } catch (Exception e) {
+            } catch (AlphaException | DateTimeException e) {
                 uI.colouredPrint(uI.ANSI_RED, e.getMessage());
             }
         }

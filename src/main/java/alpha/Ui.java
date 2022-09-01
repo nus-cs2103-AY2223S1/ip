@@ -14,6 +14,7 @@ public class Ui {
     public void welcomeMessage() {
         System.out.println("\n------------------\n" + ANSI_BLUE_BOLD + "HELLO, I AM ALPHA!" + ANSI_RESET + "\n------------------");
         System.out.println(ANSI_BLUE + "What can I do for you?" + ANSI_RESET);
+        System.out.println(ANSI_WHITE + "(enter help to learn about the commands)" + ANSI_RESET);
 
     }
     public String takeUserInput(Scanner in) {
