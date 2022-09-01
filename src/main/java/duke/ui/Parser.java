@@ -67,7 +67,7 @@ public class Parser {
             }
 
         } catch (NumberFormatException e) {
-            return new IncorrectCommand("Task Index must be an integer...");
+            return new IncorrectCommand("Task Index should be an integer...");
         } catch (IndexOutOfBoundsException e) {
             return new IncorrectCommand("The description of the " + commandInput + " is incorrect...");
         } catch (DateTimeParseException e) {

@@ -1,6 +1,4 @@
-D|true|todo|2019-10-15
-T|false|hello|
-T|true|da da thing|
-T|false|fsdfsfgergr|
-T|false|something|
-D|false|aws|2000-10-02
+D|false|Finish CS2103T Doc|2022-09-01
+T|true|Work on resume|
+T|true|Prepare interview|
+E|false|Job conference meeting|Tommorrow
