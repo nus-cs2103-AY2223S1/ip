@@ -20,7 +20,7 @@ public class Ui {
      * Begins the interaction/chat with the user.
      */
     public void start() {
-        String greetings = "Good day to you! I'm Jake!\n"
+        String greetings = "Good day to you! I'm Duke!\n"
                 + "I will help you to keep track of your tasks!\n"
                 + "The following are your saved tasks:";
         System.out.println(greetings);
