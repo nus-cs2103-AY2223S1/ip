@@ -4,3 +4,5 @@ T | 1 | project meeting | Aug 6th 2-4pm
 T | 1 | join sports club
 T | 0 | project meeting | Mon 2-4pm
 T | 0 | visit teacher
+T | 0 | return book /by 2/12/2019 1800
+T | 0 | return book /by 2/12/2019 1800
