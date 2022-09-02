@@ -61,6 +61,12 @@ public class Olivia extends Application {
             e.printStackTrace();
         }
         this.dispatcher=new GuiEventDispatcher(new Calendar(), new FileHandler());
+        try {
+            this.dispatcher.initialize();
+        }
+        catch (Throwable e) {
+            System.out.println(e.getMessage());
+        }
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -105,6 +111,7 @@ public class Olivia extends Application {
 
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
 
         sendButton.setOnMouseClicked((event) -> {
