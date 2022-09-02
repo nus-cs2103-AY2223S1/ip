@@ -21,14 +21,11 @@ public class Ui {
                                                                 "bye" };
 
     public static String showHello() {
-        StringBuilder str = new StringBuilder();
-        str.append("Hello! What plans do you currently have?");
-        str.append("\nUse /? for help");
-        return str.toString();
+        return "Hello! What plans do you currently have?" + "\nUse /? for help";
     }
 
     public static String showBye() {
-        return "\tBye! Hope that I was of service!";
+        return "Bye! Hope that I was of service!";
     }
 
     public static String showHelp() {
@@ -59,28 +56,25 @@ public class Ui {
     }
 
     public static String markTaskDone(Task task) {
-        StringBuilder str = new StringBuilder();
-        str.append("\tnice! I've marked this task as done:\n");
-        str.append("\t\t").append(task).append("\n");
-        return str.toString();
+        return "nice! I've marked this task as done:\n" + "\t" + task + "\n";
     }
 
     public static String markTaskNotDone(Task task) {
         StringBuilder str = new StringBuilder();
-        str.append("\tOk! I've marked this task as not done yet:\n");
-        str.append("\t\t").append(task).append("\n");
+        str.append("Ok! I've marked this task as not done yet:\n");
+        str.append("\t").append(task).append("\n");
         return str.toString();
     }
 
     public static String deleteTask(Task task) {
         StringBuilder str = new StringBuilder();
-        str.append("\tOk! I've deleted this task:\n");
-        str.append("\t\t").append(task).append("\n");
+        str.append("Ok! I've deleted this task:\n");
+        str.append("\t").append(task).append("\n");
         return str.toString();
     }
 
     public static String addTask(Task task) {
-        return "\tadded: " + task + "\n";
+        return "added: " + task + "\n";
     }
 
     public static String getListSize(TaskList list) {

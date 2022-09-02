@@ -6,17 +6,14 @@ import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 /**
  * Main code for Duke.
  */
 public class Duke {
     private final Storage storage;
-    private TaskList list;
+    private final TaskList list;
     private final Parser p;
-    private boolean isExiting;
 
     public Duke() {
         storage = new Storage("data" + File.separator + "taskList.txt");
@@ -32,10 +29,6 @@ public class Duke {
             return Ui.showErrorOccurred(e);
         }
         return response;
-    }
-
-    public void exit() {
-        storage.saveToFile(list);
     }
 
     public static void main(String[] args) {
