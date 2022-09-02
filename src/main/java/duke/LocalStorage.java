@@ -1,7 +1,8 @@
+package duke;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import task_classes.Task;
-import utils.JSONParsable;
+import duke.tasks.Task;
 
 import java.io.*;
 import java.nio.file.Files;

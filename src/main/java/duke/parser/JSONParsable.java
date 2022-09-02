@@ -1,7 +1,6 @@
-package utils;
+package duke.parser;
 
 import org.json.JSONObject;
-import task_classes.Todo;
 
 public interface JSONParsable {
     public JSONObject toJSONObject();

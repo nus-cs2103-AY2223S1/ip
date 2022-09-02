@@ -1,4 +1,6 @@
-import utils.Parser;
+package duke;
+
+import duke.parser.Parser;
 
 import java.util.Scanner;
 
@@ -7,7 +9,7 @@ public class Ui {
             "|  \\|  ||_/ [__ " + "\n" +
             "|__/|__||  \\[___" + "\n";
 
-    public static String Name = "Duke";
+    public static String Name = "duke.Duke";
     public static String Line = "──────────────────────────────────────────";
 
     private boolean open = true;

@@ -1,4 +1,4 @@
-package utils;
+package duke.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +47,7 @@ public class Parser {
     }
     /**
      * Returns a hashmap of arguments and commands from the given input.
-     * @param command Command string given
+     * @param command duke.Command string given
      * @return HashMap of arguments,
      * The given command keyword is under the key "keyword"
      * Unnamed arguments are under the key "args"

@@ -1,7 +1,7 @@
-package task_classes;
+package duke.tasks;
 
 import org.json.JSONObject;
-import utils.JSONParsable;
+import duke.parser.JSONParsable;
 
 public abstract class Task implements JSONParsable {
     protected String description;

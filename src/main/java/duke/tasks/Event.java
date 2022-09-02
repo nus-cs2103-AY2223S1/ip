@@ -1,37 +1,38 @@
-package task_classes;
+package duke.tasks;
 
 import org.json.JSONObject;
-import utils.Parser;
+import duke.parser.Parser;
 
 import java.time.LocalDate;
 
-public class Deadline extends Task {
-    protected LocalDate by;
+public class Event extends Task {
+    protected LocalDate at;
 
-    public Deadline(String description, String by) {
+    public Event(String description, String at) {
         super(description);
-        this.by = Parser.parseStringtoDate(by);
+        this.at = Parser.parseStringtoDate(at);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + Parser.parseDatetoString(by) + ")";
+        return "[E]" + super.toString() + " (at: " + Parser.parseDatetoString(at) + ")";
     }
 
     @Override
     public JSONObject toJSONObject() {
         JSONObject object = new JSONObject();
-        object.put("type", "Deadline");
+        object.put("type", "Event");
         object.put("description", this.description);
         object.put("done", this.isDone);
-        object.put("by", Parser.parseDatetoString(this.by));
+        object.put("at", Parser.parseDatetoString(this.at));
         return object;
     }
+
 
     public static Event fromJSONObject(JSONObject jsonObject) {
         Event e = new Event(
                 jsonObject.getString("description"),
-                jsonObject.getString("by"));
+                jsonObject.getString("at"));
 
         e.isDone = jsonObject.getBoolean("done");
         return e;

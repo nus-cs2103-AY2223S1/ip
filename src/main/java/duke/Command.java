@@ -1,8 +1,10 @@
-import task_classes.Deadline;
-import task_classes.Event;
-import task_classes.Task;
-import task_classes.Todo;
-import utils.Parser;
+package duke;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+import duke.parser.Parser;
 
 import java.util.Iterator;
 

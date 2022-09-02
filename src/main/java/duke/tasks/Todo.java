@@ -1,4 +1,4 @@
-package task_classes;
+package duke.tasks;
 
 import org.json.JSONObject;
 
