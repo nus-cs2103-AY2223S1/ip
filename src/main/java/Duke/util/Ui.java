@@ -12,21 +12,21 @@ public class Ui {
     /**
      * Displays the Duke Logo and asks user for their input
      */
-    public void displayWelcome() {
+    public String displayWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke.Duke\n" + "What can I do for you?");
+        String reply = "Hello from\n" + logo + "\n" + ("Hello! I'm Duke\n" + "What can I do for you?");
+        return reply;
     }
 
     /**
      * Displays goodbye message
      */
-    public void sayGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String sayGoodbye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -34,8 +34,8 @@ public class Ui {
      *
      * @param error the error message to be printed
      */
-    public void showError(String error) {
-        System.out.println(error);
+    public String showError(String error) {
+        return error;
     }
 
     /**
@@ -44,8 +44,8 @@ public class Ui {
      * @param task the task added
      * @param tasks the list of task being modified
      */
-    public void printAddedTask(Task task, TaskList tasks) {
-        System.out.println("Got it. I've added this task: \n" + task.toString()
+    public String printAddedTask(Task task, TaskList tasks) {
+        return ("Got it. I've added this task: \n" + task.toString()
                 + "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
     }
@@ -57,8 +57,8 @@ public class Ui {
      * @param task
      * @param tasks
      */
-    public void printDeletedTask(Task task, TaskList tasks) {
-        System.out.println(" Noted. I've removed this task: \n" + task.toString()
+    public String printDeletedTask(Task task, TaskList tasks) {
+        return (" Noted. I've removed this task: \n" + task.toString()
                 + "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
     }
@@ -68,8 +68,8 @@ public class Ui {
      *
      * @param response to be printed
      */
-    public void printResponse(String response) {
-        System.out.println(response);
+    public String printResponse(String response) {
+        return response;
     }
 
     /**
@@ -77,12 +77,13 @@ public class Ui {
      *
      * @param tasks the list to be printed
      */
-    public void listTasks(ArrayList<Task> tasks) {
-        System.out.println("Here are the tasks in your list:\n");
+    public String listTasks(ArrayList<Task> tasks) {
+        String reply = "Here are the tasks in your list:\n";
         for (Task task : tasks) {
             int index = tasks.indexOf(task) + 1;
-            System.out.println(index + ". " + task.toString());
+            reply += index + ". " + task.toString() + "\n";
         }
+        return reply;
     }
 
     /**
@@ -90,11 +91,12 @@ public class Ui {
      *
      * @param tasks ArrayList of matching Tasks
      */
-    public void printFoundTask(ArrayList<Task> tasks) {
-        System.out.println("Here are the matching tasks in your list:\n");
+    public String printFoundTask(ArrayList<Task> tasks) {
+        String reply = "Here are the matching tasks in your list:\n";
         for (Task task : tasks) {
             int index = tasks.indexOf(task) + 1;
-            System.out.println(index + ". " + task.toString());
+            reply += index + ". " + task.toString() + "\n";
         }
+        return reply;
     }
 }

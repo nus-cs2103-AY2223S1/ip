@@ -14,10 +14,12 @@ public class Duke {
     private TaskStorage storage;
     private TaskList taskList;
     private Ui ui;
+    private DukeHandler handler;
     public Duke(String filePath) {
         ui = new Ui();
         storage = new TaskStorage(filePath);
         taskList = storage.loadTask();
+        handler = new DukeHandler(storage, taskList, ui);
     }
 
     /**
@@ -25,20 +27,11 @@ public class Duke {
      * Reads input from the user and initialize the response
      * object to handle this input.
      */
-    public void run() {
-        try {
-            ui.displayWelcome();
-            DukeHandler handler = new DukeHandler(storage, taskList, ui);
-            Scanner userInput = new Scanner(System.in);
-            while (userInput.hasNextLine()) {
-                String input = userInput.nextLine();
-                handler.handleResponse(input);
-            }
-        } catch (DukeException e) {
-            ui.showError(e.getMessage());
-        }
+    public String run(String input) {
+        ui.displayWelcome();
+        return handler.handleResponse(input);
     }
     public static void main(String[] args) {
-        new Duke("data/Tasks.txt").run();
+        new Duke("data/Tasks.txt");
     }
 }

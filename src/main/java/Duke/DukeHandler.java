@@ -12,6 +12,9 @@ import Duke.task.TaskStorage;
 import Duke.task.Todo;
 import Duke.util.Ui;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+
 /**
  * Represents the response handler for Duke chat-bot. Stores a list of tasks,
  * and perform CRUD functions on both the list of tasks and the text file that
@@ -32,10 +35,11 @@ public class DukeHandler {
      * Makes sense of user input and perform operations
      * on task list, and shows output to user
      */
-    public void handleResponse(String input) throws DukeException {
-        if (input.equals("bye")) {
-            ui.sayGoodbye();
-            System.exit(0);
+    public String handleResponse(String input) {
+        String response = "";
+        if (input.equals("bye") || input.equals("Bye")) {
+            response = ui.sayGoodbye();
+            Platform.exit();
         }
         String[] temp = input.split(" ", 2);
         List<String> inputParts = new ArrayList<String>(Arrays.asList(temp));
@@ -45,27 +49,29 @@ public class DukeHandler {
             }
             if (input.equals("list")) {
                 ArrayList<Task> list = tasks.listTasks();
-                ui.listTasks(list);
+                response = ui.listTasks(list);
             } else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));
-                    ui.printResponse("Nice! I've marked this task as done: \n" + task.toString());
                     storage.saveTask(tasks);
+                    response = ui.printResponse("Nice! I've marked this task as done: \n" + task.toString());
+
                 }
                 if (inputParts.get(0).equals("unmark")) {
                     Task task = tasks.unmark(Integer.parseInt(inputParts.get(1)));
-                    ui.printResponse("OK, I've marked this task as not done yet: \n" + task.toString());
                     storage.saveTask(tasks);
+                    response = ui.printResponse("OK, I've marked this task as not done yet: \n" + task.toString());
+
                 }
             } else if (input.matches("delete +\\d+")) {
                 Task task = tasks.delete(Integer.parseInt(inputParts.get(1)));
-                ui.printDeletedTask(task, tasks);
                 storage.saveTask(tasks);
+                response = ui.printDeletedTask(task, tasks);
             } else if (inputParts.get(0).equals("todo")) {
                 Todo newTodo = new Todo(inputParts.get(1), false);
                 tasks.addTask(newTodo);
-                ui.printAddedTask(newTodo, tasks);
                 storage.saveTask(tasks);
+                response = ui.printAddedTask(newTodo, tasks);
             } else if (inputParts.get(0).equals("deadline")) {
                 String[] deadlineParts = inputParts.get(1).split(" /by ", 2);
                 if (deadlineParts.length < 2) {
@@ -77,8 +83,8 @@ public class DukeHandler {
                         + " 00:00" : deadlineParts[1];
                 Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineDate, false);
                 tasks.addTask(deadlineTask);
-                ui.printAddedTask(deadlineTask, tasks);
                 storage.saveTask(tasks);
+                response = ui.printAddedTask(deadlineTask, tasks);
             } else if (inputParts.get(0).equals("event")) {
                 String[] eventParts = inputParts.get(1).split(" /at ", 2);
                 if (eventParts.length < 2) {
@@ -89,17 +95,17 @@ public class DukeHandler {
                         + " 00:00" : eventParts[1];
                 Event newEvent = new Event(eventParts[0], eventDate, false);
                 tasks.addTask(newEvent);
-                ui.printAddedTask(newEvent, tasks);
                 storage.saveTask(tasks);
+                response = ui.printAddedTask(newEvent, tasks);
             } else if (inputParts.get(0).equals("find")) {
                 ArrayList<Task> searchResult = tasks.find(inputParts.get(1));
-                ui.printFoundTask(searchResult);
+                response = ui.printFoundTask(searchResult);
             } else {
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                response = ui.printResponse("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException e) {
-           ui.showError(e.getMessage());
+            response = ui.showError(e.getMessage());
         }
+        return response;
     }
-
 }
