@@ -34,6 +34,11 @@ public class Ui {
     public Command readCommand() {
         Parser.ParsedInputArguments args = Parser.getInputArguments(this.readInput());
         Command c = Command.getCommand(args);
+
+        if (c.isExit()) {
+            this.open = false;
+            this.in.close();
+        }
         return c;
     }
 

@@ -11,6 +11,10 @@ public abstract class Command {
 
     public abstract String exec(TaskList taskList);
 
+    public boolean isExit() {
+        return false;
+    }
+
     public static Command getCommand(Parser.ParsedInputArguments inputArgs) {
         switch (inputArgs.keyword) {
             case "bye":
@@ -49,8 +53,12 @@ public abstract class Command {
 
         @Override
         public String exec(TaskList taskList) {
-//            TODO: Do something to close the app here
             return "Bye. Hope to see you again!";
+        }
+
+        @Override
+        public boolean isExit() {
+            return true;
         }
     }
 
