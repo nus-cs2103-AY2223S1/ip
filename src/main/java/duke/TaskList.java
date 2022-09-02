@@ -45,6 +45,7 @@ public class TaskList {
      * @return Current size of the list.
      */
     public int getSize() {
+        assert size >= 0 : "size should be >= 0";
         return size;
     }
 
@@ -69,6 +70,7 @@ public class TaskList {
      * @return String representation of the Task marked.
      */
     public String markTask(int idx) {
+        assert idx >= 0 : "idx should be >= 0";
         return tasks.get(idx).mark();
     }
 
@@ -79,6 +81,7 @@ public class TaskList {
      * @return String representation of the Task unmarked.
      */
     public String unmarkTask(int idx) {
+        assert idx >= 0 : "idx should be >= 0";
         return tasks.get(idx).unmark();
     }
 
@@ -89,6 +92,7 @@ public class TaskList {
      * @return String representation of the Todo.
      */
     public String addTodo(String description) {
+        assert description.length() > 0 : "description should not be empty";
         Todo todo = new Todo(description);
         tasks.add(todo);
         size++;
@@ -104,6 +108,7 @@ public class TaskList {
      * @return String representation of the Deadline.
      */
     public String addDeadline(String description, LocalDate by) {
+        assert description.length() > 0 : "description should not be empty";
         Deadline deadline = new Deadline(description, by);
         tasks.add(deadline);
         size++;
@@ -119,6 +124,7 @@ public class TaskList {
      * @return String representation of the Event.
      */
     public String addEvent(String description, LocalDate at) {
+        assert description.length() > 0 : "description should not be empty";
         Event event = new Event(description, at);
         tasks.add(event);
         size++;
@@ -133,6 +139,7 @@ public class TaskList {
      * @return String representation of the Task deleted.
      */
     public String deleteTask(int idx) {
+        assert idx >= 0 : "idx should be >= 0";
         Task deleted = tasks.remove(idx);
         size--;
 
@@ -146,6 +153,7 @@ public class TaskList {
      * @return String representation of the Tasks found.
      */
     public String findTasks(String ... keywords) {
+        assert keywords.length > 0 : "keywords should not be empty";
         ArrayList<String> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
             boolean hasAllKeywords = true;
@@ -181,6 +189,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        assert size >= 0 : "size should be >= 0";
         if (size == 0) {
             return "There are no tasks in your list.";
         } else {
