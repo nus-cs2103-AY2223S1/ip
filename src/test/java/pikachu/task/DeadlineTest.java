@@ -6,12 +6,23 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Represents a test to test deadline class objects. A <code>DeadlineTest</code> object corresponds to
+ * a test for deadline class objects.
+ */
 public class DeadlineTest {
+
+    /**
+     * Tests the correctness of name of deadline tasks
+     */
     @Test
     public void getNameTest(){
         assertEquals("D", new Deadline("", LocalDate.now()).getName());
     }
 
+    /**
+     * Tests the correctness of timing of deadline tasks
+     */
     @Test
     public void getTimingTest(){
         assertEquals("6 July 2022", new Deadline("",LocalDate.of(2022,7,6)).getTiming());

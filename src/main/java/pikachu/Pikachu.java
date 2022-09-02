@@ -2,6 +2,10 @@ package pikachu;
 
 import pikachu.command.Command;
 
+/**
+ * Represents the Pikachu task manager bot. A <code>Pikachu</code> object corresponds to
+ * a chatbot to manager user task, with a storage space, a task list and a Ui to communicate with the user
+ */
 public class Pikachu {
 
     private Storage storage;
@@ -19,6 +23,12 @@ public class Pikachu {
         }
     }
 
+    /**
+     * Returns whether the string being put in is numeric or not
+     *
+     * @param str String to be checked whether it is numeric.
+     * @return boolean value indicating if string is numeric.
+     */
     public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
@@ -28,6 +38,9 @@ public class Pikachu {
         }
     }
 
+    /**
+     * Runs the Pikachu task manager bot
+     */
     public void run() {
         ui.intro();
         boolean isExit = false;
@@ -47,6 +60,9 @@ public class Pikachu {
         
     }
 
+    /**
+     * Runs the Pikachu task manager bot with a location to put the stored task data
+     */
     public static void main(String[] args) {
         new Pikachu("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt").run();
     }

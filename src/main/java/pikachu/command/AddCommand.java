@@ -9,6 +9,10 @@ import pikachu.task.Deadline;
 import pikachu.task.Event;
 import pikachu.task.Todo;
 
+/**
+ * Represents command that performs add function to the to do list. A <code>AddCommand</code> object corresponds to
+ * an instruction to add deadline/event/to do e.g., <code>"event formal dinner /at dinner hall"</code>
+ */
 public class AddCommand extends Command {
     String input;
 
@@ -16,6 +20,15 @@ public class AddCommand extends Command {
         input = fullCommand;
     }
 
+    /**
+     * Saves the new task if valid, else throw exception.
+     * Informs the user about the situation through String output
+     *
+     * @param tasks Task List of all tasks currently.
+     * @param ui Ui for user to see.
+     * @param storage Storage in charge of the current tasks.
+     * @throws PikachuException If invalid date format for deadline, empty name of the task.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         String tempStr = "";
         if (input.startsWith("deadline ") && input.contains(" /by ")) {
@@ -53,6 +66,10 @@ public class AddCommand extends Command {
         
     }
 
+    /**
+     * Returns whether this function performs an exit action on the task manager
+     * @return false, do not exit.
+     */
     public boolean isExit() {
         return false;
     }

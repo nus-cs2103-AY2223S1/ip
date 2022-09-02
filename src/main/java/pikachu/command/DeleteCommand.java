@@ -7,6 +7,10 @@ import pikachu.Ui;
 import pikachu.task.Task;
 import pikachu.TaskList;
 
+/**
+ * Represents command that performs delete function to the to do list. A <code>DeleteCommand</code> object corresponds to
+ * an instruction to delete tasks e.g., <code>delete 2</code>
+ */
 public class DeleteCommand extends Command {
     String input;
 
@@ -14,6 +18,15 @@ public class DeleteCommand extends Command {
         this.input = fullCommand;
     }
 
+    /**
+     * Deletes the task and saves the update to task list if valid, else throw exception.
+     * Informs the user about the situation through String output
+     *
+     * @param tasks Task List of all tasks currently.
+     * @param ui Ui for user to see.
+     * @param storage Storage in charge of the current tasks.
+     * @throws PikachuException If invalid format or the index of task out of range
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException{
         if (!Pikachu.isNumeric(input.substring(7))) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
@@ -28,6 +41,10 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Returns whether this function performs an exit action on the task manager
+     * @return false, do not exit.
+     */
     public boolean isExit() {
         return false;
     }

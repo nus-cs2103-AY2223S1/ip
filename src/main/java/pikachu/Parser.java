@@ -8,8 +8,20 @@ import pikachu.command.ListCommand;
 import pikachu.command.MarkCommand;
 import pikachu.command.UnmarkCommand;
 
+/**
+ * Represents a parser to find the command for the input. A <code>Parser</code> object corresponds to
+ * a parser to find input the right command
+ */
 public class Parser {
 
+    /**
+     * Returns the command corresponds to the user input
+     * If the command is unclear, PikaChuException is threw
+     *
+     * @param fullCommand the full input from user.
+     * @return command related to user input.
+     * @throws IllegalArgumentException If cannot find the corresponding command.
+     */
     public static Command parse(String fullCommand) throws PikachuException {
         if (fullCommand.equals("bye")) {
             return new ExitCommand();
