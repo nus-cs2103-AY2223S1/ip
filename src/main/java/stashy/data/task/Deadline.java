@@ -1,7 +1,6 @@
 package stashy.data.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * One of the task types, specifically those with
@@ -44,6 +43,6 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + byDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+                + byDateTime.format(OUTPUT_DATETIME_PATTERN) + ")";
     }
 }

@@ -1,9 +1,12 @@
 package stashy.data.task;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a task.
  */
 public abstract class Task {
+    protected static final DateTimeFormatter OUTPUT_DATETIME_PATTERN = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
     private String description;
     private boolean isDone;
 
