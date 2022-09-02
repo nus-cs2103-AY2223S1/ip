@@ -17,8 +17,8 @@ public class Parser {
     private static Pattern flagPattern = Pattern.compile("/\\w+");
 
     public static class ParsedInputArguments {
-        public String keyword;
-        public String args;
+        public String keyword = "";
+        public String args = "";
         public HashMap<String, String> flags = new HashMap<>();
 
         public ParsedInputArguments() {
@@ -45,9 +45,10 @@ public class Parser {
         }
 
     }
+
     /**
      * Returns a hashmap of arguments and commands from the given input.
-     * @param command duke.Command string given
+     * @param command duke.command.Command string given
      * @return HashMap of arguments,
      * The given command keyword is under the key "keyword"
      * Unnamed arguments are under the key "args"
@@ -88,12 +89,6 @@ public class Parser {
 
 
     public static void main (String[] args) {
-//        System.out.println(getInputArguments("hello"));
-//        System.out.println(getInputArguments("hello args"));
-//        System.out.println(getInputArguments("hello args args"));
-//        System.out.println(getInputArguments("hello args /at 2pm"));
-//        System.out.println(getInputArguments("hello args /at 2pm /by 1 2 3 4 5 /hello greetings asdf sd"));
-//        System.out.println(getInputArguments("deadline do things /by tmr"));
         LocalDate date = parseStringtoDate("2019-12-01");
         System.out.println(parseDatetoString(date));
     }

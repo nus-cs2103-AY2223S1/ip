@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.parser.Parser;
 
 import java.util.Scanner;
