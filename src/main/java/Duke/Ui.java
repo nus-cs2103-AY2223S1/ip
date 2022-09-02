@@ -30,96 +30,113 @@ public class Ui {
 
     /**
      * Greets user with opening statements.
+     *
+     * @return opening statements.
      */
-    public void greet() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+    public String greeting() {
+        return "Hello! I'm Duke\nWhat can I do for you?\n";
     }
 
     /**
      * Says bye to user with closing statement.
+     *
+     * @return closing statements.
      */
-    public void sayBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String sayBye() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
      * Tells user that file is not found.
+     *
+     * @return error message.
      */
-    public void fileNotFound() {
-        System.out.println("File not Found!");
+    public String printfileNotFound() {
+        return "File not Found!\n";
     }
 
     /**
      * Outputs list of tasks in Duke application.
      *
-     * @param tasklist tasklist from Duke application.
+     * @param taskList taskList from Duke application.
+     * @return list of tasks in taskList.
      */
-    public void list(TaskList tasklist) {
-        System.out.println("Here are the tasks in your list:");
-        for (int x = 0; x < tasklist.size(); x++) {
-            System.out.println(String.format("%s.%s", x + 1, tasklist.get(x).toString()));
+    public String list(TaskList taskList) {
+        String response = "Here are the tasks in your list:\n";
+        for (int x = 0; x < taskList.size(); x++) {
+            response += String.format("%s.%s\n", x + 1, taskList.get(x).toString());
         }
+        return response;
     }
 
     /**
-     * Outputs response if user adds task to tasklist.
+     * Outputs response if user adds task to taskList.
      *
-     * @param addedTask task added to tasklist.
-     * @param tasklist tasklist from Duke application.
+     * @param addedTask task added to taskList.
+     * @param taskList taskList from Duke application.
+     * @return response to added task.
      */
-    public void addResponse(Task addedTask, TaskList tasklist) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(addedTask);
-        System.out.println(String.format("Now you have %s task(s) in the list", tasklist.size()));
+    public String addResponse(Task addedTask, TaskList taskList) {
+        String response = "Got it. I've added this task:\n";
+        response += addedTask + "\n";
+        response += String.format("Now you have %s task(s) in the list\n", taskList.size());
+        return response;
     }
 
     /**
-     * Outputs response if user deletes task from tasklist.
+     * Outputs response if user deletes task from taskList.
      *
-     * @param tasklist tasklist from Duke application.
+     * @param taskList taskList from Duke application.
      * @param index index of task to be deleted.
+     * @return response to deleted task.
      */
-    public void deleteResponse(TaskList tasklist, int index) {
-        System.out.println("Noted, I've removed this task:");
-        System.out.println(tasklist.get(index).toString());
-        System.out.println(String.format("Now you have %s task(s) in the list", tasklist.size() - 1));
+    public String deleteResponse(TaskList taskList, int index) {
+        String response = "Noted, I've removed this task:\n";
+        response += taskList.get(index).toString() + "\n";
+        response += String.format("Now you have %s task(s) in the list\n", taskList.size() - 1);
+        return response;
     }
 
     /**
-     * Outputs response if user marks task on tasklist.
+     * Outputs response if user marks task on taskList.
      *
-     * @param tasklist tasklist from Duke application.
+     * @param taskList taskList from Duke application.
      * @param index index of task to be marked.
+     * @return response to marked task.
      */
-    public void markResponse(TaskList tasklist, int index) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(String.format("%s.%s", index + 1, tasklist.get(index).toString()));
+    public String markResponse(TaskList taskList, int index) {
+        String response = "Nice! I've marked this task as done:\n";
+        response += String.format("%s.%s\n", index + 1, taskList.get(index).toString());
+        return response;
     }
 
     /**
-     * Outputs response if user unmarks task on tasklist.
+     * Outputs response if user unmarks task on taskList.
      *
-     * @param tasklist tasklist from Duke application.
+     * @param taskList taskList from Duke application.
      * @param index index of task to be unmarked.
+     * @return response to unmarked task.
      */
-    public void unmarkResponse(TaskList tasklist, int index) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(String.format("%s.%s", index + 1, tasklist.get(index).toString()));
+    public String unmarkResponse(TaskList taskList, int index) {
+        String response = "OK, I've marked this task as not done yet:\n";
+        response += String.format("%s.%s\n", index + 1, taskList.get(index).toString());
+        return response;
     }
 
     /**
      * Finds tasks in list with matching description.
      *
-     * @param tasklist tasklist from duke application.
+     * @param taskList taskList from duke application.
      * @param word word to be matched.
+     * @return tasks with matching description.
      */
-    public void find(TaskList tasklist, String word) {
-        System.out.println("Here are the matching tasks in your list:");
-        for (int i = 0; i < tasklist.size(); i++) {
-            if (tasklist.get(i).toString().contains(word)) {
-                System.out.println(String.format("%s.%s", i + 1, tasklist.get(i).toString()));
+    public String find(TaskList taskList, String word) {
+        String response = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).toString().contains(word)) {
+                response += String.format("%s.%s\n", i + 1, taskList.get(i).toString());
             }
         }
+        return response;
     }
 }

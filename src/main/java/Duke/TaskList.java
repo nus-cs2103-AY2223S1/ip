@@ -16,9 +16,9 @@ public class TaskList {
     }
 
     /**
-     * Returns the size of the tasklist.
+     * Returns the size of the taskList.
      *
-     * @return size of tasklist.
+     * @return size of taskList.
      */
     public int size() {
         return this.list.size();
@@ -29,72 +29,64 @@ public class TaskList {
     }
 
     /**
-     * Adds task to tasklist without any output.
+     * Adds task to taskList without any output.
      *
-     * @param task task to be added to tasklist.
+     * @param task task to be added to taskList.
      */
     public void addTaskWithoutOutput(Task task) {
         list.add(task);
     }
 
     /**
-     * Adds task to tasklist with output from UI.
+     * Adds task to taskList with output from UI.
      *
-     * @param task task to be added to tasklist.
-     * @param ui user interface of duke.
+     * @param task task to be added to taskList.
      */
-    public void addTask(Task task, Ui ui) {
+    public void addTask(Task task) {
         list.add(task);
-        ui.addResponse(task, this);
     }
 
     /**
-     * Deletes task from tasklist.
+     * Deletes task from taskList.
      *
      * @param index index of task to be deleted.
-     * @param ui user interface of duke.
      * @throws IllegalIndexException if index is invalid.
      */
-    public void deleteTask(int index, Ui ui) throws IllegalIndexException {
+    public void deleteTask(int index) throws IllegalIndexException {
         if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
-            ui.deleteResponse(this, index);
             list.remove(index);
         }
     }
 
     /**
-     * Marks task in tasklist.
+     * Marks task in taskList.
      *
      * @param index index of task to be marked.
-     * @param ui user interface of duke.
      * @throws IllegalIndexException if index is invalid.
      */
-    public void mark(int index, Ui ui) throws IllegalIndexException {
+    public void mark(int index) throws IllegalIndexException {
         //  error checking
         if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
             list.get(index).setDone();
-            ui.markResponse(this, index);
         }
     }
 
     /**
-     * Unmarks task in tasklist.
+     * Unmarks task in taskList.
      *
      * @param index index of task to be unmarked.
-     * @param ui user interface of duke.
      * @throws IllegalIndexException if index is invalid.
      */
-    public void unmark(int index, Ui ui) throws IllegalIndexException {
+    public void unmark(int index) throws IllegalIndexException {
         //  error checking
         if (index < 0 || index >= list.size()) {
             throw new IllegalIndexException("Index invalid!");
         } else {
             list.get(index).setNotDone();
-            ui.unmarkResponse(this, index);
         }
     }
 }
