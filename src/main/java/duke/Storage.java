@@ -32,11 +32,10 @@ public class Storage {
     /**
      * Loads from the file containing existing records of tasks.
      *
-     * @param ui the UI handling interactions with the user
      * @return the list of existing tasks
      */
-    public ArrayList<Task> load(Ui ui) {
-        initialiseFile(ui);
+    public ArrayList<Task> load() {
+        initialiseFile();
         ArrayList<Task> taskList = new ArrayList<>();
 
         try {
@@ -47,7 +46,7 @@ public class Storage {
             }
             scanner.close();
         } catch (IOException exception) {
-            ui.say(exception.getMessage(), true, true);
+
         }
 
         return taskList;
@@ -55,23 +54,21 @@ public class Storage {
 
     /**
      * Creates the directory and the file if not already exist.
-     *
-     * @param ui the UI handling interactions with the user
      */
-    public void initialiseFile(Ui ui) {
+    public void initialiseFile() {
         File directory = new File(this.file.getParent());
         if (!directory.exists()) {
-            System.out.println("directory created");
+            // creates directory if not exist
             directory.mkdir();
         }
 
         try {
             if (!file.exists()) {
-                System.out.println("file created");
+                // creates file if not exist
                 file.createNewFile();
             }
         } catch (IOException exception) {
-            ui.say(exception.getMessage(), true, true);
+            exception.printStackTrace();
         }
     }
 
@@ -79,10 +76,9 @@ public class Storage {
      * Writes the current list of tasks to the file.
      *
      * @param list the current list of tasks
-     * @param ui the UI handling interactions with the user
      */
-    public void writeFile(TaskList list, Ui ui) {
-        initialiseFile(ui);
+    public void writeFile(TaskList list) {
+        initialiseFile();
 
         try {
             FileWriter writer = new FileWriter(file);
@@ -98,7 +94,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException exception) {
-            ui.say(exception.getMessage(), true, true);
+            exception.printStackTrace();
         }
     }
 }

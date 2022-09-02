@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -31,28 +30,15 @@ public class FindCommand extends Command {
      * Gives feedback to the user.
      *
      * @param tasks the list of tasks
-     * @param ui the UI
      * @param storage the storage
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         ArrayList<Task> matches = tasks.find(keyword);
-//        ui.findMessage(matches);
-        String result = "Here are the matching tasks in your list:\n";
+        StringBuilder result = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < matches.size(); i++) {
-            result += i + 1 + ". " + matches.get(i).toString() + "\n";
+            result.append(i + 1).append(". ").append(matches.get(i).toString()).append("\n");
         }
-        return result;
-    }
-
-    /**
-     * Returns a boolean value representing whether to exit the programme
-     * after the command is executed.
-     *
-     * @return a boolean value representing whether to exit the programme
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return result.toString();
     }
 }

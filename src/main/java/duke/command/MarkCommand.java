@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Encapsulation of the command of marking tasks as done.
@@ -30,30 +29,17 @@ public class MarkCommand extends Command {
      * Shows the feedback to the user.
      *
      * @param tasks the list of tasks
-     * @param ui the UI
      * @param storage the storage
      * @throws DukeException if the index is out of range
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
         tasks.get(index).setStatus(true);
-        storage.writeFile(tasks, ui);
-//        ui.markMessage(tasks, index);
+        storage.writeFile(tasks);
         return "Nice! I've marked this task as done:\n"
                 + tasks.get(index).toString();
-    }
-
-    /**
-     * Returns a boolean value representing whether to exit the programme
-     * after the command is executed.
-     *
-     * @return false
-     */
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

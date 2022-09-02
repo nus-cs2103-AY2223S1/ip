@@ -107,7 +107,6 @@ public class Parser {
                 return new AddCommand(event);
             } else {
                 return new IdleCommand();
-//                throw new DukeException("I'm sorry, but I don't quite understand what that means.");
             }
         }
     }

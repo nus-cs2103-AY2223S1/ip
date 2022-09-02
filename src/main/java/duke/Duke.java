@@ -14,8 +14,6 @@ public class Duke {
     private Storage storage;
     /** A task list object which encapsulates the list of tasks. */
     private TaskList tasks;
-    /** A UI object which encapsulates interactions with the user. */
-    private Ui ui;
 
     /**
      * Class constructor.
@@ -23,12 +21,10 @@ public class Duke {
     public Duke() {}
 
     public void initialise() {
-        ui = new Ui();
         storage = new Storage("data/tasks.txt");
         try {
-            tasks = new TaskList(storage.load(ui));
+            tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -39,7 +35,6 @@ public class Duke {
      */
     public String getResponse(String input) {
         Command c = Parser.parse(input);
-//        c.execute(tasks, ui, storage);
-        return c.execute(tasks, ui, storage);
+        return c.execute(tasks, storage);
     }
 }

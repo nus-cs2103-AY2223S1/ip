@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Task;
 
 /**
@@ -30,27 +29,14 @@ public class AddCommand extends Command {
      * Shows the feedback to the user.
      *
      * @param tasks the list of tasks
-     * @param ui the UI
      * @param storage the storage
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.add(task);
-        storage.writeFile(tasks, ui);
-//        ui.addMessage(tasks, task);
+        storage.writeFile(tasks);
         return "Got it. I've added this task:\n"
                 + "  " + task + "\n"
                 + "Now you have " + tasks.size() + " tasks in the list.";
-    }
-
-    /**
-     * Returns a boolean value representing whether to exit the programme
-     * after the command is executed.
-     *
-     * @return false
-     */
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
