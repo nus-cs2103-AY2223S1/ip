@@ -67,7 +67,7 @@ public class TaskList {
     }
 
     public String showNumberOfTasks() {
-        return "\nNow you have " + this.tasks.size() + " duke.tasks in the list.";
+        return "\nNow you have " + this.tasks.size() + " tasks in the list.";
     }
 
     public String getTask(int index) throws DukeException {

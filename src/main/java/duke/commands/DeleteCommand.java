@@ -2,6 +2,7 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
@@ -25,8 +26,9 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
+            String t = tasks.getTask(taskIndex);
             tasks.deleteTask(taskIndex);
-            ui.showMessage( MESSAGE_SUCCESS + tasks.getTask(taskIndex) + System.lineSeparator() + tasks.showNumberOfTasks());
+            ui.showMessage( MESSAGE_SUCCESS + t + System.lineSeparator() + tasks.showNumberOfTasks());
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
         }

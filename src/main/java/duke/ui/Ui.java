@@ -14,13 +14,14 @@ public class Ui {
 
     public void showGreetingMessage() {
         drawLine();
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        System.out.println("Hello! I'm Shiba \uD83D\uDC15");
+        System.out.println("The task management dog you can trust!\n");
+        System.out.println("What can I do for you today?");
         drawLine();
     }
 
     public void showErrorMessage(String errMsg) {
-        System.out.println("Oops! I don't understand that :v");
+        System.out.println("Woof! I don't understand that :v");
         System.out.println(errMsg);
     }
 

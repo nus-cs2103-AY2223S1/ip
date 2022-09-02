@@ -12,7 +12,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed below are the duke.tasks I remember: ";
+    public static final String MESSAGE_SUCCESS = "Listed below are the tasks I remember: ";
 
     public ListCommand() {
     }

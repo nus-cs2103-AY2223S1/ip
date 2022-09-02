@@ -24,6 +24,6 @@ public class ByeCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         storage.writeToFile(tasks.toArrayList());
-        ui.showMessage("Duke sad to see you leave :(");
+        ui.showMessage("Shiba hope you had a productive time today!\nDon't forget to come and work with me again \uD83D\uDC36");
     }
 }
