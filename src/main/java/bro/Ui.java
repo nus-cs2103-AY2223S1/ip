@@ -25,15 +25,15 @@ public class Ui {
         System.out.println(t.toString());
     }
 
-    public static void markUi(ArrayList<Task> list1, int n){
+    public static void markUi(ArrayList<Task> list1, int n) {
         System.out.println("I have marked this task\n" + (list1.get(n-1)).toString());
     }
 
-    public static void unmarkUi(ArrayList<Task> list1, int n){
+    public static void unmarkUi(ArrayList<Task> list1, int n) {
         System.out.println("I have unmarked this task\n" + (list1.get(n-1)).toString());
     }
 
-    public static void deleteUi(ArrayList<Task> list1, int n){
+    public static void deleteUi(ArrayList<Task> list1, int n) {
         System.out.println("I have removed this task.\n" + (list1.get(n-1)).toString());
     }
 
@@ -48,5 +48,4 @@ public class Ui {
     public static void errorMessage(String msg){
         System.out.println(msg);
     }
-
 }

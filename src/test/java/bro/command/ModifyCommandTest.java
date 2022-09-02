@@ -21,7 +21,7 @@ public class ModifyCommandTest {
         tasklist.todoTask(new Todo("party"), storage);
         tasklist.todoTask(new Todo("study"), storage);
         tasklist.todoTask(new Todo("eat"), storage);
-        try{
+        try {
             modifycmd.execute(tasklist, ui, storage);
             fail();
         } catch (BroException e) {

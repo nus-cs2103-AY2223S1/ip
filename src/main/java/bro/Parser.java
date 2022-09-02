@@ -56,7 +56,7 @@ public class Parser {
     }
 
     public void checkInput(String str, int n) throws BroException {
-        switch (str){
+        switch (str) {
         case "todo":
             if(n < 2) { throw new BroException("Please give the description!");}
             break;
