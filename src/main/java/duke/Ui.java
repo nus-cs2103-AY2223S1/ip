@@ -13,7 +13,6 @@ public class Ui {
 
     /**
      * Constructs the Ui class.
-     *
      * @param parser The parser that interprets the user input.
      */
     public Ui(Parser parser) {

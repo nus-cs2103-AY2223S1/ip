@@ -21,7 +21,6 @@ public class TaskList {
 
     /**
      * To check if an integer is given after user input "mark", "unmark" or "delete".
-     *
      * @param strNum The String after user input "mark", "unmark" or "delete".
      * @return True if it is an integer, false otherwise.
      */
@@ -34,7 +33,6 @@ public class TaskList {
 
     /**
      * Adds task from the text document to the arraylist.
-     *
      * @param task The task from the text document.
      */
 
@@ -44,7 +42,6 @@ public class TaskList {
 
     /**
      * gets index from the arraylist.
-     *
      * @param number The inndex
      * @return The task in that index.
      */
@@ -54,7 +51,6 @@ public class TaskList {
 
     /**
      * Gets the length of the arraylist.
-     *
      * @return The length of the arraylist
      */
     public int size() {
@@ -69,8 +65,7 @@ public class TaskList {
     }
 
     /**
-     * marks task with an X
-     *
+     * marks task with an X.
      * @param task
      */
     public static String markString(Task task) {
@@ -80,7 +75,6 @@ public class TaskList {
 
     /**
      * Unmarks task by removing the X.
-     *
      * @param task
      */
     public static String unMarkString(Task task) {
@@ -90,7 +84,6 @@ public class TaskList {
 
     /**
      * To mark or unmark the task.
-     *
      * @param update The action to be done.
      * @param parts The string response broken down into its keywords.
      * @throws DukeException If the keywords are missing or invalid.
@@ -135,7 +128,6 @@ public class TaskList {
 
     /**
      * Adds task into the arraylist.
-     *
      * @param task The task added into the arraylist.
      */
     public String addDetailedTask(Task task) {
@@ -145,7 +137,6 @@ public class TaskList {
 
     /**
      * Adds the right type of task to the list.
-     *
      * @param type     Type of task.
      * @param parts    The string response broken down into its keywords.
      * @throws DukeException If the keywords are missing or invalid.
@@ -198,7 +189,6 @@ public class TaskList {
 
     /**
      * Deletes task from the list.
-     *
      * @param number The index to be removed.
      */
     public String deleteTask(int number) {
