@@ -1,7 +1,7 @@
 package launcher;
 
-import duke.Duke;
 import javafx.application.Application;
+import main.Main;
 
 /**
  * <h1>Launcher class</h1>
@@ -15,7 +15,7 @@ public class Launcher {
      */
     public static void main(String[] args) {
         try {
-            Application.launch(Duke.class, args);
+            Application.launch(Main.class, args);
         } catch (Exception e) {
             e.getMessage();
         }

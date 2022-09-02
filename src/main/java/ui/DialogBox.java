@@ -2,12 +2,17 @@ package ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
+
+import java.io.IOException;
 
 /**
  * <h1>DialogBox class</h1>
@@ -15,26 +20,28 @@ import javafx.scene.layout.HBox;
  * an ImageView.
  */
 public class DialogBox extends HBox {
-    private Label text;
+    @FXML
+    private Label dialog;
+    @FXML
     private ImageView displayPicture;
 
-    /**
-     * Creates the DialogBox object.
-     *
-     * @param l Label to be contained within the DialogBox.
-     * @param iv ImageView to be contained within the DialogBox.
-     */
-    public DialogBox(Label l, ImageView iv) {
-        text = l;
-        displayPicture = iv;
-
-        text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
-
-        this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(text, displayPicture);
-        this.setPadding(new Insets(10, 0, 10, 0));
+//    /**
+//     * Creates the DialogBox object.
+//     *
+//     * @param l Label to be contained within the DialogBox.
+//     * @param iv ImageView to be contained within the DialogBox.
+//     */
+    private DialogBox(String text, Image img) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
     /**
@@ -54,8 +61,10 @@ public class DialogBox extends HBox {
      * @param iv ImageView to be contained within the DialogBox.
      * @return the DialogBox object that represents the user's dialog.
      */
-    public static DialogBox getUserDialog(Label l, ImageView iv) {
-        return new DialogBox(l, iv);
+    public static DialogBox getUserDialog(String l, Image iv) {
+        DialogBox dialogBox = new DialogBox(l, iv);
+        dialogBox.displayPicture.setClip(new Circle(47, 52, 40));
+        return dialogBox;
     }
 
     /**
@@ -65,9 +74,10 @@ public class DialogBox extends HBox {
      * @param iv ImageView to be contained within the DialogBox.
      * @return the DialogBox object that represents the Uncle Cheong's dialog.
      */
-    public static DialogBox getUncleCheongDialog(Label l, ImageView iv) {
-        var db = new DialogBox(l, iv);
-        db.flip();
-        return db;
+    public static DialogBox getUncleCheongDialog(String l, Image iv) {
+        DialogBox dialogBox = new DialogBox(l, iv);
+        dialogBox.flip();
+        dialogBox.displayPicture.setClip(new Circle(49.5, 49.5, 35));
+        return dialogBox;
     }
 }

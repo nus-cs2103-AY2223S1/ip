@@ -5,7 +5,6 @@ import java.util.Scanner;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import task.Task;
 import task.TaskList;
@@ -16,25 +15,16 @@ import task.TaskList;
  * output to the user.
  */
 public class Ui {
-    private Scanner sc = new Scanner(System.in);
     private Image uncleCheong = new Image(this.getClass().getResourceAsStream("/images/unclecheong.jpeg"));
-    private Insets leftRightPadding = new Insets(0, 10, 0, 10);
 
     private void appendUncleCheongResponseWithoutUserInput(String response, VBox dialogContainer) {
         dialogContainer.getChildren().add(DialogBox.getUncleCheongDialog(
-                getDialogLabelWithPadding(response, leftRightPadding), new ImageView(uncleCheong)));
+               response, uncleCheong));
     }
 
     private void appendUncleCheongResponseAndUserInput(String response, VBox dialogContainer, DialogBox userDialog) {
         dialogContainer.getChildren().addAll(userDialog, DialogBox.getUncleCheongDialog(
-                getDialogLabelWithPadding(response, leftRightPadding), new ImageView(uncleCheong)));
-    }
-
-    private Label getDialogLabelWithPadding(String text, Insets insets) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-        textToAdd.setPadding(insets);
-        return textToAdd;
+                response, uncleCheong));
     }
 
     /**
@@ -43,8 +33,8 @@ public class Ui {
      * @param dialogContainer VBox to add the greeting text to.
      */
     public void greet(VBox dialogContainer) {
-        appendUncleCheongResponseWithoutUserInput("Eh hello, my name is Uncle Cheong. \n"
-                + "What you want?\n", dialogContainer);
+        appendUncleCheongResponseWithoutUserInput("Eh hello, my name is Uncle Cheong."
+                + "\nWhat you want?\n", dialogContainer);
     }
 
     /**
@@ -75,8 +65,8 @@ public class Ui {
      * @param dialogContainer VBox to add the error text to.
      */
     public void sayErrorMessageWithoutUserInput(String error, VBox dialogContainer) {
-        dialogContainer.getChildren().add(DialogBox.getUncleCheongDialog(getDialogLabelWithPadding(
-                "Eh something went wrong! " + error, leftRightPadding), new ImageView(uncleCheong)));
+        dialogContainer.getChildren().add(DialogBox.getUncleCheongDialog(
+                "Eh something went wrong! " + error, uncleCheong));
     }
 
     /**
