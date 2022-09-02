@@ -24,6 +24,7 @@ public class Ui {
         this.open = true;
         System.out.println(Ui.Logo);
         this.printWithHorizontalRule("Hello! I'm " + Ui.Name + "\n" + "What can I do for you?");
+        this.in = new Scanner(System.in);
     }
 
     private String readInput() {
