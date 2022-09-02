@@ -24,9 +24,12 @@ public class AddCommand extends Command {
      * @param ui      Ui to display to users
      */
     @Override
-    public void execute(Storage storage, TaskList tasks, Ui ui) {
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
         tasks.addNewTask(task);
         storage.store(tasks);
+        return "Got it. I've added this task: \n "
+                        + task
+                        + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
 }

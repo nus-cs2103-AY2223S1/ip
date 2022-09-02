@@ -23,7 +23,7 @@ public class FindCommand extends Command {
      * @param ui      Ui to display to users
      */
     @Override
-    public void execute(Storage storage, TaskList tasks, Ui ui) {
-        tasks.findTasks(keyword);
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
+        return tasks.findTasks(keyword);
     }
 }

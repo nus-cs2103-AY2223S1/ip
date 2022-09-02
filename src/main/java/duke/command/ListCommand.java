@@ -9,7 +9,7 @@ import duke.ui.Ui;
  */
 public class ListCommand extends Command {
     @Override
-    public void execute(Storage storage, TaskList tasks, Ui ui) {
-        tasks.printList();
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
+        return tasks.printList();
     }
 }

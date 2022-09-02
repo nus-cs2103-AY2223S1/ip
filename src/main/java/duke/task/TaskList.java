@@ -25,6 +25,10 @@ public class TaskList {
     public TaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
+    
+    public int size() {
+        return taskList.size();
+    }
 
     public static void markAsDone(Task task) {
         task.isDone = true;
@@ -36,10 +40,10 @@ public class TaskList {
      * @param action    Either mark or unmark
      * @param taskIndex Index of task to mark
      */
-    public void mark(String action, int taskIndex) {
+    public String mark(String action, int taskIndex) {
         Task task = taskList.get(taskIndex - 1);
         task.isDone = action.equals("mark");
-        System.out.println((action.equals("mark")
+       return ((action.equals("mark")
                 ? "OK, I've marked this task as not done yet: \n"
                 : "Nice! I've marked this task as done: \n")
                 + task);
@@ -48,11 +52,13 @@ public class TaskList {
     /**
      * Prints out the contents of the task list
      */
-    public void printList() {
-        System.out.println("Here are the tasks in your list:");
+    public String printList() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i + 1) + "." + taskList.get(i));
+            builder.append((i + 1) + "." + taskList.get(i));
         }
+        return builder.toString();
     }
 
     /**
@@ -62,10 +68,6 @@ public class TaskList {
      */
     public void addNewTask(Task task) {
         taskList.add(task);
-        System.out.println(
-                "Got it. I've added this task: \n "
-                        + task
-                        + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
 
     /**
@@ -73,12 +75,9 @@ public class TaskList {
      *
      * @param taskIndex Index of task to delete
      */
-    public void deleteTask(int taskIndex) {
+    public Task deleteTask(int taskIndex) {
         Task task = taskList.remove(taskIndex - 1);
-        System.out.println(
-                "Noted. I've removed this task:\n "
-                        + task
-                        + "\nNow you have " + taskList.size() + " tasks in the list.");
+        return task;
     }
 
     /**
@@ -86,15 +85,17 @@ public class TaskList {
      *
      * @param keyword Word to look for
      */
-    public void findTasks(String keyword) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String findTasks(String keyword) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Here are the matching tasks in your list:");
         int i = 1;
         for (Task task : taskList) {
             if (task.description.contains(keyword)) {
-                System.out.println(i + "." + task);
+                builder.append(i).append(".").append(task);
                 i++;
             }
         }
+        return builder.toString();
 
     }
 

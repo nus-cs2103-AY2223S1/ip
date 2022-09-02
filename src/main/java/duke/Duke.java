@@ -51,8 +51,13 @@ public class Duke {
                 ui.showLine();
             }
         }
-
     }
+
+    public String getResponse(String input) {
+        Command c = Parser.parse(input);
+        return c.execute(storage, tasks, ui);
+    }
+    
 
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();

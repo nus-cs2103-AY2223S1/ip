@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.data.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
@@ -23,12 +24,15 @@ public class DeleteCommand extends Command {
      * @param ui      Ui to display to users
      */
     @Override
-    public void execute(Storage storage, TaskList tasks, Ui ui) {
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
         try {
-            tasks.deleteTask(taskToDelete);
+            Task task = tasks.deleteTask(taskToDelete);
             storage.store(tasks);
+            return "Noted. I've removed this task:\n "
+                            + task
+                            + "\nNow you have " + tasks.size() + " tasks in the list.";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Task index not found");
+            return ("Task index not found");
         }
 
     }

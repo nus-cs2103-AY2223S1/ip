@@ -31,12 +31,13 @@ public class MarkCommand extends Command {
      * @param ui      Ui to display to users
      */
     @Override
-    public void execute(Storage storage, TaskList tasks, Ui ui) {
+    public String execute(Storage storage, TaskList tasks, Ui ui) {
         try {
-            tasks.mark(action, taskIndex);
+            String res = tasks.mark(action, taskIndex);
             storage.store(tasks);
+            return res;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Task index not found");
+            return ("Task index not found");
         }
 
     }
