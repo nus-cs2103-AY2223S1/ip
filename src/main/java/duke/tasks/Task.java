@@ -12,6 +12,14 @@ public abstract class Task implements JSONParsable {
         this.isDone = false;
     }
 
+    /**
+     * Get task description.
+     * @return a string representing the task description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -30,6 +38,7 @@ public abstract class Task implements JSONParsable {
     }
 
     public abstract JSONObject toJSONObject();
+
 
     public static Task fromJSONObject(JSONObject jsonObject) {
         switch (jsonObject.getString("type")) {

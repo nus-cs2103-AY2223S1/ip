@@ -31,6 +31,9 @@ public abstract class Command {
             case "unmark":
                 return new UnmarkCommand(Integer.parseInt(inputArgs.args));
 
+            case "find":
+                return new FindCommand(inputArgs.args);
+
             case "delete":
             case "remove":
                 return new DeleteTaskCommand(Integer.parseInt(inputArgs.args));
@@ -71,16 +74,7 @@ public abstract class Command {
 
         @Override
         public String exec(TaskList taskList) {
-            String returnMsg = "";
-            int index = 1;
-
-            for (Iterator<Task> it = taskList.getIterator(); it.hasNext(); ) {
-                Task t = it.next();
-                returnMsg += index + ". " + t + "\n";
-                index++;
-            }
-
-            return returnMsg;
+            return taskList.toString();
         }
     }
 
@@ -121,6 +115,30 @@ public abstract class Command {
         }
     }
 
+    static class FindCommand extends Command {
+        String args = "";
+        public FindCommand(String args) {
+            this.args = args;
+        }
+
+        @Override
+        public String exec(TaskList taskList) {
+            TaskList tasksFound = new TaskList();
+            for (Iterator<Task> i = taskList.getIterator(); i.hasNext(); ) {
+                Task t = i.next();
+
+                if (t.getDescription().contains(args)) {
+                    tasksFound.add(t);
+                }
+            }
+
+            if (tasksFound.size() > 0) {
+                return "Here are the matching tasks in your list:\n" + tasksFound.toString();
+            } else {
+                return "There are no matching tasks in your list.";
+            }
+        }
+    }
     static class AddTodoCommand extends Command {
         Todo todo;
         public AddTodoCommand(Todo todo) {

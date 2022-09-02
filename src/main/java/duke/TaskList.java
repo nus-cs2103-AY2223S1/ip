@@ -35,6 +35,22 @@ public class TaskList {
         }
     }
 
+    /**
+     * Enumerates the Task List into a String
+     * @return a string enumerating all tasks in list.
+     */
+    public String toString() {
+        String returnMsg = "";
+        int index = 1;
+
+        for (Task t : this.list) {
+            returnMsg += index + ". " + t + "\n";
+            index++;
+        }
+
+        return returnMsg;
+    }
+
     public void loadFromLocalStorage(LocalStorage storage) {
         loadTaskList(storage.load());
     }
