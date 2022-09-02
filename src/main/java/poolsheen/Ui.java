@@ -25,8 +25,8 @@ public class Ui {
     private static final String HORIZONTAL_LINE = "---------------";
 
     /** The message last printed when the Poolsheen program ends. */
-    private static final String GOODBYE_MESSAGE = "MeoAww... See you next time :(\n"
-            + "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
+    private static final String GOODBYE_MESSAGE = "MeoAww... :(\n"
+            + "THE POOLSHEEN PROGRAM HAS ALREADY STOPPED RUNNING";
 
     /** The Scanner object which the Poolsheen program uses to interact with the user. */
     private Scanner s;
@@ -47,41 +47,27 @@ public class Ui {
     }
 
     /**
-     * Prints a formatted message by Poolsheen.
+     * Returns a formatted message by Poolsheen.
      *
      * @param message The message to be printed.
+     * @return The string to be used in the GUI.
      */
-    public void say(String message) {
-        System.out.println(HORIZONTAL_LINE + "\n"
+    public String say(String message) {
+        return (HORIZONTAL_LINE + "\n"
                 + newLine(message)
                 + newLine(LAST_REPLY) + HORIZONTAL_LINE);
     }
 
     /**
-     * Formats and prints a UI Error to the user.
-     *
-     * @param errMsg The string obtained from an error's getMessage function.
+     * Returns a formatted string of the list of tasks this Poolsheen remembers.
      */
-    public void showError(String errMsg, String errorType) {
-        System.out.println(HORIZONTAL_LINE + "\n"
-                + newLine("The following UI error has occurred")
-                + newLine("The error type is: " + errorType)
-                + newLine(errMsg)
-                + newLine("Please try again!")
-                + newLine(LAST_REPLY) + HORIZONTAL_LINE);
-    }
-
-    /**
-     * Prints the list of tasks this Poolsheen remembers.
-     */
-    public void displayList(TaskList tl) {
+    public String displayList(TaskList tl) {
         if (tl.isEmpty()) {
-            this.say("Poolsheen thinks back... "
-                    + "and remembers you said nothing :(");
+            return this.say("Poolsheen thinks back... " + "and remembers you said nothing :(");
         } else {
             String displayStr = "Poolsheen thinks back... "
                     + "and remembers you said:\n";
-            this.say(displayStr + this.getListOfTasks(tl));
+            return this.say(displayStr + this.getListOfTasks(tl));
         }
     }
 
@@ -98,7 +84,7 @@ public class Ui {
                 Task t = tl.get(i);
                 if (t != null) {
                     String line = currPos + ". " + t;
-                    displayStr += this.BEGIN_SPACE + line;
+                    displayStr += BEGIN_SPACE + line;
                     if (currPos < tl.getSize()) {
                         displayStr += "\n";
                     }
@@ -114,21 +100,21 @@ public class Ui {
      * @param line The string for Poolsheen to say in the new line.
      */
     public String newLine(String line) {
-        return BEGIN_SPACE + line + "\n";
+        return line + "\n";
     }
 
     /**
      * Prints the welcome message.
      */
-    public void showWelcome() {
-        System.out.println(WELCOME_MESSAGE);
+    public static String getWelcome() {
+        return WELCOME_MESSAGE;
     }
 
     /**
      * Prints the goodbye message.
      */
-    public void showGoodbye() {
-        System.out.println(GOODBYE_MESSAGE);
+    public static String getGoodbye() {
+        return GOODBYE_MESSAGE;
     }
 
     /**

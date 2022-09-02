@@ -2,7 +2,7 @@ package poolsheen.command;
 
 import java.util.ArrayList;
 
-import poolsheen.IncompleteCommandException;
+import poolsheen.PoolsheenException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
 import poolsheen.Ui;
@@ -18,15 +18,16 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tl, Ui ui, Storage storage) {
+    public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {
-            throw new IncompleteCommandException(String.join(" ", rest),
+            throw new PoolsheenException(String.join(" ", rest),
                     "delete", "Please enter 1 appropriate integer");
         } else {
             int pos = java.lang.Integer.parseInt(rest.get(0));
             Task t = tl.get(pos - 1);
             tl.deleteTask(pos);
-            ui.say("Poolsheen has forgot: " + t.getDescription() + " and you now have " + tl.getSize() + " tasks left");
+            return ui.say("Poolsheen has forgot: " + t.getDescription()
+                    + " and you now have " + tl.getSize() + " tasks left");
         }
     }
 }

@@ -13,7 +13,7 @@ public class Poolsheen {
     private static final String SAVE_FILE_PATH = "SAVE.TXT";
 
     /** Whether if this poolsheen object has stopped running */
-    private boolean hasExited;
+    private static boolean hasExited;
 
     /** The object which Poolsheen uses to manage the save file. */
     private Storage storage;
@@ -25,14 +25,12 @@ public class Poolsheen {
     private Ui ui;
 
     /**
-     * A private constructor to initialise the Poolsheen object.
-     *
-     * @param filePath The filePath which the Poolsheen program will depend on.
+     * A public constructor to initialise the Poolsheen object.
      */
-    private Poolsheen(String filePath) {
+    public Poolsheen() {
         this.hasExited = false;
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage(SAVE_FILE_PATH);
         try {
             this.listOfTasks = new TaskList(storage.load());
         } catch (PoolsheenException e) {
@@ -42,51 +40,37 @@ public class Poolsheen {
     }
 
     /**
-     * Allows Poolsheen to listen to our user.
+     * Forces the program to exit immediately.
      */
-    private void run() {
-        ui.showWelcome();
-        while (!this.hasExited) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(listOfTasks, ui, storage);
-                storage.update(listOfTasks);
-                this.hasExited = c.isExit();
-            } catch (PoolsheenException e) {
-                ui.showError(e.getMessage(), "PoolsheenException");
-            } catch (IOException e) {
-                ui.showError(e.getMessage(), "IOException");
-            } catch (UnknownCommandException e) {
-                ui.showError(e.toString(), "UnknownCommandException");
-            } catch (IncompleteCommandException e) {
-                ui.showError(e.toString(), "IncompleteCommandException");
-            } catch (IndexOutOfBoundsException e) {
-                ui.showError("Poolsheen thinks no task has this position.",
-                        "IndexOutOfBoundsException");
-            } catch (NumberFormatException e) {
-                ui.showError("Poolsheen believes this command needs an integer.",
-                        "NumberFormatException");
-            } catch (IllegalArgumentException e) {
-                ui.showError("Poolsheen has never seen this command and is confused.",
-                        "IllegalArgumentException");
-            } catch (Exception e) {
-                System.out.println("An unexpected error has occurred and the program will end.");
-                System.out.println("Error is: " + e.toString());
-                this.exit();
-            }
+    public static void forceExit() {
+        Poolsheen.hasExited = true;
+    }
+
+    public String getResponse(String fullCommand) {
+        String reply;
+        try {
+            Command c = Parser.parse(fullCommand);
+            reply = c.execute(listOfTasks, ui, storage);
+            storage.update(listOfTasks);
+        } catch (PoolsheenException e) {
+            reply = e.toString();
+        } catch (IOException e) {
+            reply = "An error has occurred when updating the save file!\n" + e.getMessage();
+            Poolsheen.forceExit();
+        } catch (NumberFormatException e) {
+            reply = "An error has occurred. Please use a number instead.";
+        } catch (Exception e) {
+            reply = "The following error has occured:\n" + e.getMessage();
+            Poolsheen.forceExit();
         }
-        ui.showGoodbye();
+        return reply;
     }
 
     /**
-     * Cleans up leftover code before Poolsheen stops listening to our user.
+     * A getter method that returns if the poolsheen program has ended.
+     * @return A boolean that is true if exitted, else false.
      */
-    private void exit() {
-        this.hasExited = true;
-    }
-
-    public static void main(String[] args) {
-        new Poolsheen(SAVE_FILE_PATH).run();
+    public static boolean getExited() {
+        return Poolsheen.hasExited;
     }
 }

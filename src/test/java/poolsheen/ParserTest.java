@@ -16,8 +16,8 @@ public class ParserTest {
         }
 
         @Override
-        public void execute(TaskList tl, Ui ui, Storage storage) {
-            System.out.println("Line should not reach here");
+        public String execute(TaskList tl, Ui ui, Storage storage) {
+            return "Line should not reach here";
         }
     }
 

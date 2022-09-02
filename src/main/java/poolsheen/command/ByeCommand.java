@@ -2,7 +2,8 @@ package poolsheen.command;
 
 import java.util.ArrayList;
 
-import poolsheen.IncompleteCommandException;
+import poolsheen.Poolsheen;
+import poolsheen.PoolsheenException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
 import poolsheen.Ui;
@@ -17,12 +18,13 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tl, Ui ui, Storage storage) {
+    public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {
-            ui.say("Goodbye :(");
+            Poolsheen.forceExit();
+            return ui.say("Goodbye :(");
         } else {
-            throw new IncompleteCommandException(String.join(" ", rest),
-                    "bye", "Were you trying to enter 'bye'?");
+            throw new PoolsheenException(String.join(" ", rest),
+                    "bye", "Try to enter 'bye'");
         }
     }
 }

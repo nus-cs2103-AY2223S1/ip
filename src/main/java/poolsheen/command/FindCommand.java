@@ -2,7 +2,7 @@ package poolsheen.command;
 
 import java.util.ArrayList;
 
-import poolsheen.IncompleteCommandException;
+import poolsheen.PoolsheenException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
 import poolsheen.Ui;
@@ -17,13 +17,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tl, Ui ui, Storage storage) {
+    public String execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.size() != 1) {
-            throw new IncompleteCommandException(String.join(" ", rest),
+            throw new PoolsheenException(String.join(" ", rest),
                     "find", "The find command only accepts one word");
         } else {
             TaskList matchedTasksArray = tl.find(rest.get(0));
-            ui.displayList(matchedTasksArray);
+            return ui.displayList(matchedTasksArray);
         }
     }
 }

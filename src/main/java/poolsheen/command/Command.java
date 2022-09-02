@@ -32,8 +32,9 @@ public abstract class Command {
      * @param tl The TaskList which the Poolsheen program will modify.
      * @param ui The Ui object which facilitates interactions between the user and the CLI.
      * @param storage The object which handles all interactions involving the save file.
+     * @return The string reply that will be shown on the GUI.
      */
-    public abstract void execute(TaskList tl, Ui ui, Storage storage);
+    public abstract String execute(TaskList tl, Ui ui, Storage storage);
 
     public boolean isExit() {
         return this.isEnder;

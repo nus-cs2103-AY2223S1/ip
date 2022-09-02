@@ -11,7 +11,7 @@ public class UiTest {
     @Test
     public void newLine_properLine_success() {
         Ui ui = new Ui();
-        assertEquals("      " + "testing\n", ui.newLine("testing"));
+        assertEquals("testing\n", ui.newLine("testing"));
     }
 
     @Test

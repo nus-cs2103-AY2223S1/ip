@@ -1,6 +1,5 @@
 package poolsheen;
 
-
 import java.util.ArrayList;
 
 import poolsheen.command.ByeCommand;
@@ -53,7 +52,7 @@ public class Parser {
         case "FIND":
             return new FindCommand(arl);
         default:
-            throw new UnknownCommandException(String.join(" ", arl));
+            throw new PoolsheenException(firstWord, "unknown command", "Input a valid command.");
         }
     }
 }

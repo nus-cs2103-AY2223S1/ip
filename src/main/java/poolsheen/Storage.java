@@ -79,7 +79,7 @@ public class Storage {
                     break;
                 case "D":
                     if (arl.size() != 5) {
-                        throw new PoolsheenException("Error with Deadline Task");
+                        throw new UnknownCommandException("Error with Deadline Task");
                     }
                     taskDesc = arl.get(3);
                     time = arl.get(4);
@@ -87,14 +87,14 @@ public class Storage {
                     break;
                 case "E":
                     if (arl.size() != 5) {
-                        throw new PoolsheenException("Error with Event Task");
+                        throw new UnknownCommandException("Error with Event Task");
                     }
                     taskDesc = arl.get(3);
                     time = arl.get(4);
                     res.add(new Event(taskDesc, isDone, time));
                     break;
                 default:
-                    throw new PoolsheenException("Error with loading");
+                    throw new UnknownCommandException("An unidentified task type was found");
                 }
             }
         } catch (FileNotFoundException e) {
