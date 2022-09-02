@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ParserTest {
+public class StringReplacerTest {
     @Test
-    public void parseTest() {
-        assertEquals("Assignment", new Parser().
+    public void StringReplacerTest() {
+        assertEquals("Assignment", new StringReplacer().
                 replaceAll(" Deadline Assignment ", "Deadline"));
     }
 }
