@@ -133,7 +133,7 @@ public class Duke extends Application {
     private void handleUserInput() {
         String input = userInput.getText();
         Label userText = new Label(input);
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        Label dukeText = new Label(getResponse(input));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
