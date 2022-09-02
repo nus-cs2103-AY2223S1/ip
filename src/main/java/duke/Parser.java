@@ -1,24 +1,24 @@
 package duke;
 
+import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.Todo;
 
 public class Parser {
-    private boolean bye;
+    private boolean hasExited;
 
     public Parser() {
-        this.bye = false;
+        this.hasExited = false;
     }
 
-    public boolean isBye() {
-        return this.bye;
+    public boolean isExit() {
+        return this.hasExited;
     }
 
     public void parse(String input, TaskList tasks) throws DukeException {
         if (input.equals("bye")) {
-            this.bye = true;
+            this.hasExited = true;
         } else if (input.equals("list")) {
             tasks.showList();
         } else if (input.startsWith("mark")) {
