@@ -62,6 +62,15 @@ public class TaskList {
         }
     }
 
+    public void getSearchResults(String keyword) {
+        System.out.println("Matching tasks for \"" + keyword + "\":");
+        for (Task t : this.list) {
+            if (t.hasKeyword(keyword)) {
+                System.out.println(t);
+            }
+        }
+    }
+
     public void showList() {
         System.out.println("List of tasks:");
         for (int i = 1; i < this.list.size() + 1; i++) {
