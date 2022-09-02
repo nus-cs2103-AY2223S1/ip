@@ -74,6 +74,7 @@ public class TaskList {
      */
     public Task markTask(int indx) throws DukeException, IOException {
         Task currentTask = tasks.get(indx);
+        assert currentTask != null : "Task should not be null";
         currentTask.toggleComplete();
         fh.markTask(indx, currentTask.toString());
         return currentTask;

@@ -29,9 +29,13 @@ public class Event extends Todo {
      */
     public String getDeadline() {
         int h = deadline.getHour();
+        assert h <= 12 && h >= 0 : "m should be between 0 and 12";
         String hour = h < 9 ? "0" + h : Integer.toString(h);
+
         int m = deadline.getMinute();
+        assert m <= 59 && m >= 0 : "m should be between 0 and 59";
         String minutes = m < 9 ? "0" + m : Integer.toString(m);
+
         String dayOfWeek = deadline.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         int d = deadline.getDayOfMonth();
         String dayOfMonth = d < 9 ? "0" + d : Integer.toString(d);
