@@ -29,4 +29,19 @@ Features:
 - [x] Managing Tasks
 - [ ] Managing Deadlines
 
+Duke frees your mind of having to remember things you need to do. It's, 
+- text-based
+- easy to learn 
+
+If you are a Java programmer, you can use it to practice Java too. Here's the main method:
+
+```ruby
+public class Main {
+    public static void main(String[] args) {
+        Application.launch(MainApp.class, args);
+    }
+}
+```
+
+
 ## Link to this repo
