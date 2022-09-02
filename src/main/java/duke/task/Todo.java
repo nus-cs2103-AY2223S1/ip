@@ -2,8 +2,16 @@ package duke.task;
 
 import duke.DukeException;
 
+/**
+ * Todo is a type of Task that doesn't has a date to it.
+ */
 public class Todo extends Task {
 
+    /**
+     * Constructor for Todo.
+     *
+     * @param description Description of the Todo.
+     */
     public Todo(String description) throws DukeException {
         super(description);
         if (description.isBlank()) {
@@ -13,8 +21,9 @@ public class Todo extends Task {
 
     /**
      * Constructor for task in save file.
-     * @param description Description of the duke.task.Todo.
-     * @param done If the duke.task.Todo task is done or not done.
+     *
+     * @param description Description of the Todo.
+     * @param done If the Todo task is done or not done.
      */
     public Todo(String description, boolean done) {
         super(description, done);

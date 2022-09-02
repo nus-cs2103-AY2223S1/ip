@@ -23,6 +23,7 @@ public class Storage {
 
     /**
      * Constructor for creating new save file.
+     *
      * @param filePath Path where the saved file is located.
      * @throws DukeException When error occur creating file
      * @throws IOException When error occur creating file
@@ -46,12 +47,12 @@ public class Storage {
                 throw new DukeException("Error encountered when creating new save file");
             }
         }
-
         this.saveFile = savedTasks;
     }
 
     /**
      * Retrieve the data from the save file.
+     *
      * @return ArrayList of Tasks.
      * @throws FileNotFoundException If save file is missing.
      * @throws DukeException If save file contains unreadable data.
@@ -136,7 +137,6 @@ public class Storage {
         str += event.getAt() + "\n";
         return str;
     }
-
 
     /**
      * Updates the saveFile with the current duke.main.TaskList.

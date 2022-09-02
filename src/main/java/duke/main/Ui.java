@@ -2,7 +2,6 @@ package duke.main;
 
 import duke.DukeException;
 import duke.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,112 +12,150 @@ import java.util.ArrayList;
 public class Ui {
     /**
      * Print intro message.
+     *
+     * @return A String containing the message.
      */
-    public void printIntro() {
+    public String printIntro() {
+        String msg = "Hello from Duke\n" + "What can I do for you?";
         printLine();
-        System.out.println("Hello from Duke\n" + "What can I do for you?");
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print exit message.
+     *
+     * @return A String containing the message.
      */
-    public void printExit() {
+    public String printExit() {
+        String msg = "Bye. Hope to see you again soon!";
         printLine();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print list of tasks.
+     *
      * @param tasks Existing tasks.
+     * @return A String containing the message.
      */
-    public void printListOfTasks(TaskList tasks) {
+    public String printListOfTasks(TaskList tasks) {
         printLine();
         int count = 1;
-        System.out.println("Here are the tasks in your list:");
+        String msg = "Here are the tasks in your list:\n";
         for(Task t : tasks.getTasks()) {
-            System.out.println(count++ + "." + t.toString());
+            msg += count++ + "." + t.toString() + "\n";
         }
-        System.out.println("Now you have " + (count - 1) + " tasks in the list.");
+        msg += "Now you have " + (count - 1) + " tasks in the list.";
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print task marked as done message.
+     *
      * @param taskToMark duke.task.Task to be marked as done.
+     * @return A String containing the message.
      */
-    public void printMarkDone(Task taskToMark) {
+    public String printMarkDone(Task taskToMark) {
+        String msg = "Nice! I've marked this task as done:\n" +
+                      taskToMark.toString();
         printLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskToMark.toString());
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print task marked as not done message.
+     *
      * @param taskToUnmark duke.task.Task to be marked as not done.
+     * @return A String containing the message.
      */
-    public void printMarkNotDone(Task taskToUnmark) {
+    public String printMarkNotDone(Task taskToUnmark) {
+        String msg = "Nice! I've marked this task as not done yet:\n" +
+                taskToUnmark.toString();
         printLine();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskToUnmark.toString());
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print the Duke Exception.
+     *
      * @param de Duke Exception.
+     * @return A String containing the message.
      */
-    public void printDukeException(DukeException de) {
+    public String printDukeException(DukeException de) {
         printLine();
         System.out.println(de.getMessage());
         printLine();
+        return de.getMessage();
     }
 
     /**
      * Print the IO Exception.
+     *
      * @param ie IO Exception.
+     * @return A String containing the message.
      */
-    public void printIoException(IOException ie) {
+    public String printIoException(IOException ie) {
         printLine();
         System.out.println("OOPS!!!" + ie.getMessage());
         printLine();
+        return "OOPS!!!" + ie.getMessage();
     }
+
 
     /**
      * Print the number of tasks message.
+     *
      * @param taskList duke.main.TaskList containing the list of tasks.
+     * @return A String containing the message.
      */
-    public void printNumTasks(TaskList taskList) {
-        System.out.println("Now you have " + taskList.getCount() + " tasks in the list.");
+    public String printNumTasks(TaskList taskList) {
+        String msg = "Now you have " + taskList.getCount() + " tasks in the list.";
+        System.out.println(msg);
+        return msg;
     }
 
     /**
      * Print the task added message.
+     *
      * @param taskToAdd duke.task.Task to be added.
      * @param taskList duke.main.TaskList which the task will be added to.
+     * @return A String containing the message.
      */
-    public void printAdd(Task taskToAdd, TaskList taskList) {
+    public String printAdd(Task taskToAdd, TaskList taskList) {
+        String msg = "Got it. I've added this task:\n" +
+                     taskToAdd.toString() + "\n" +
+                     printNumTasks(taskList);
         printLine();
-        System.out.println("Got it. I've added this task:");
-        System.out.println(taskToAdd.toString());
-        printNumTasks(taskList);
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
      * Print the task deleted message.
+     *
      * @param index The index of the duke.task.Task to be removed.
      * @param taskList duke.main.TaskList which the task will be removed from.
+     * @return A String containing the message.
      */
-    public void printDelete(int index, TaskList taskList) {
+    public String printDelete(int index, TaskList taskList) {
         printLine();
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(taskList.getTasks().get(index - 1).toString());
-        // minus the task about to be deleted from the count
-        System.out.println("Now you have " + (taskList.getCount() - 1) + " tasks in the list.");
+        String msg = "Noted. I've removed this task:\n" +
+                      taskList.getTasks().get(index - 1).toString() + "\n" +
+                      "Now you have " + (taskList.getCount() - 1) + " tasks in the list.";
+        System.out.println(msg);
         printLine();
+        return msg;
     }
 
     /**
@@ -130,17 +167,19 @@ public class Ui {
 
     /**
      * Print the list of tasks according to the input.
+     *
      * @param tasks The list of tasks to print.
+     * @return A String containing the message.
      */
-    public void printSomeTasks(ArrayList<Task> tasks) {
+    public String printSomeTasks(ArrayList<Task> tasks) {
         printLine();
         int count = 1;
-        System.out.println("Here are the tasks in your list:");
+        String msg = "Here are the tasks in your list:\n";
         for(Task t : tasks) {
-            System.out.println(count++ + "." + t.toString());
+            msg += count++ + "." + t.toString() + "\n";
         }
-        System.out.println("Now you have " + (count - 1) + " tasks in the list.");
+        msg += "Now you have " + (count - 1) + " tasks in the list.";
         printLine();
+        return msg;
     }
-
 }
