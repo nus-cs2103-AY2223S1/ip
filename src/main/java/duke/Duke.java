@@ -39,6 +39,7 @@ public class Duke {
             String msg = c.execute(tasks, ui, storage);
             isExit = c.isExit();
             if (isExit) {
+                assert isExit: "program trying to exit without bye command";
                 System.exit(0);
             }
             return msg;
