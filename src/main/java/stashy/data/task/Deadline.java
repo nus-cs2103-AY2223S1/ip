@@ -26,16 +26,6 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor method.
-     *
-     * @param description The event description
-     * @param byDateTime The deadline of this task
-     */
-    public Deadline(String description, LocalDateTime byDateTime) {
-        this(description, byDateTime, false);
-    }
-
-    /**
      * Converts the Deadline object into a string.
      *
      * @return The stringtified version with the deadline in "MMM dd yyyy HHmm" format

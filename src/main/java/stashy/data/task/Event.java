@@ -26,16 +26,6 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor method.
-     *
-     * @param description The event description
-     * @param atDateTime The time of the event
-     */
-    public Event(String description, LocalDateTime atDateTime) {
-        this(description, atDateTime, false);
-    }
-
-    /**
      * Converts the Event object into a string.
      *
      * @return The stringtified version with the event time in "MMM dd yyyy HHmm" format
