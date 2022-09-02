@@ -14,14 +14,13 @@ public class TaskList {
     /**
      * The constructor for the TaskList class.
      */
-    public TaskList() {
+    @SafeVarargs
+    public TaskList(ArrayList<String>... strList) {
         this.taskList = new ArrayList<>();
-    }
-
-    public TaskList(ArrayList<String> strList) {
-        this.taskList = new ArrayList<>();
-        for (String s : strList) {
-            this.taskList.add(Parser.parseTaskFromText(s));
+        for (ArrayList<String> a : strList) {
+            for (String s : a) {
+                this.taskList.add(Parser.parseTaskFromText(s));
+            }
         }
     }
 
