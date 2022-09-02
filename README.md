@@ -6,6 +6,7 @@ Requirements (not implemented yet): inline code
 ― Alan Turing ([Source](https://www.goodreads.com/author/quotes/87041.Alan_Turing#:~:text=%E2%80%9CSometimes%20it%20is%20the%20people,things%20no%20one%20can%20imagine.%E2%80%9D&text=%E2%80%9CWe%20can%20only%20see%20a,that%20needs%20to%20be%20done.%E2%80%9D&text=%E2%80%9CI'm%20afraid%20that%20the,by%20some%20in%20the%20future. "Source link"))
 
 This is a greenfield Java project for the NUS Computer Science module CS2103 Software Engineering. <br />
+~~strikethrough~~
 
 -----
 
