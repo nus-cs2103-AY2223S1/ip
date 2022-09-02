@@ -18,6 +18,7 @@ public class ToDoCommand extends Command {
      * Constructs a ToDoCommand
      */
     public ToDoCommand(Task task) {
+        assert task != null : "task given in command cannot be null";
         this.task = task;
     }
 

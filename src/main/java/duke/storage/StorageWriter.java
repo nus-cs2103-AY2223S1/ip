@@ -7,6 +7,7 @@ import duke.task.Task;
  */
 public class StorageWriter {
     static String writeSingleTask(Task task) {
+        assert task != null : "task should not be null";
         int done = task.getDoneStatus();
         switch (task.type) {
         case TODO:
