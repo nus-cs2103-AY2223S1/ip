@@ -33,6 +33,8 @@ public class AddCommand extends Command {
         tasks.addTask(task);
         storage.saveFile(tasks);
 
+        assert tasks.taskCount() > 0 : "Correctly adding tasks should guarantee a non-zero task count.";
+
         ArrayList<String> responseLines = new ArrayList<>();
         responseLines.add("Got it. I've added this task:");
         responseLines.add(" " + task);
