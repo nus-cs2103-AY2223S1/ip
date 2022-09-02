@@ -1,4 +1,8 @@
 package duke;
+
+/**
+ * Represents a todo task with task description.
+ */
 class ToDo extends Task {
 
     ToDo(String description) {

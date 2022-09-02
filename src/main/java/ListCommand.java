@@ -5,8 +5,10 @@ package duke;
  */
 public class ListCommand extends Command {
 
-    ListCommand() {
+    private static boolean isExit;
 
+    ListCommand() {
+        this.isExit = false;
     }
 
     /**
@@ -14,11 +16,11 @@ public class ListCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean false (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.getPrintedList();
-        return false;
+    String execute(TaskList tasks, Ui ui, Storage storage) {
+        String response = ui.printList(tasks.getList());
+        return response;
     }
 
 }

@@ -30,10 +30,6 @@ public class TaskList {
         }
     }
 
-    List<Task> getList() {
-        return this.list;
-    }
-
     /**
      * Add new task from the users into the existing taskList.
      * Keep track of the number of tasks in the list.
@@ -66,7 +62,8 @@ public class TaskList {
      * Keep track of the number of tasks in the list.
      * Update the keyword hashtable.
      * @param int taskNo: TaskNo given by the users for deletion.
-     * @return String[] task info: which contains the deleted task description and the current number of tasks in the list after deletion.
+     * @return String[] task info: which contains the deleted task description
+     * and the current number of tasks in the list after deletion.
      */
     String[] delete(int taskNo) {
         Task currentTask = this.list.get(taskNo - 1);
@@ -90,27 +87,22 @@ public class TaskList {
     }
 
     /**
-     * Find tasks that contain the keyword s and print it out.
+     * Find tasks that contain the keyword s and return the matching task list.
      * @param String keyword: Keyword given by the users.
+     * @return List</Task> : the list of tasks that contain the keyword.
      */
-    void findTaskWithThisKeyword(String keyword) {
+    List<Task> findTaskWithThisKeyword(String keyword) {
         System.out.println("Here are the matching tasks in your list:");
         List<Task> tasks = taskByKeyword.get(keyword);
-        for (int i = 1; i < tasks.size() + 1; i++) {
-            String matchingTask = tasks.get(i - 1).toString();
-            System.out.println(i + ". " + matchingTask);
-        }
+        return tasks;
     }
 
     /**
-     * Print out the existing list of tasks for the users.
+     * Return the current taskList.
+     * @return List</Tasks> : the current list of tasks.
      */
-    void getPrintedList() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i < list.size() + 1; i++) {
-            String currentTask = list.get(i - 1).toString();
-            System.out.println(i + ". " + currentTask);
-        }
+    List<Task> getList() {
+        return this.list;
     }
 
     /**

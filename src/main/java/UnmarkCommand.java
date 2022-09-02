@@ -6,9 +6,11 @@ package duke;
 public class UnmarkCommand extends Command {
 
     private final int taskNo;
+    private static boolean isExit;
 
     UnmarkCommand(int taskNo) {
         this.taskNo = taskNo;
+        this.isExit = false;
     }
 
     /**
@@ -16,12 +18,12 @@ public class UnmarkCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean false (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
+    String execute(TaskList tasks, Ui ui, Storage storage) {
         String modifiedTask = tasks.unmark(this.taskNo);
-        ui.unmarked(modifiedTask);
-        return false;
+        String response = ui.unmarked(modifiedTask);
+        return response;
     }
 
 }

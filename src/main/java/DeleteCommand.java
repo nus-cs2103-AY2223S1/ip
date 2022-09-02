@@ -6,9 +6,11 @@ package duke;
 public class DeleteCommand extends Command {
 
     private final int taskNo;
+    private static boolean isExit;
 
     DeleteCommand(int taskNo) {
         this.taskNo = taskNo;
+        this.isExit = false;
     }
 
     /**
@@ -16,12 +18,12 @@ public class DeleteCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean false (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
+    String execute(TaskList tasks, Ui ui, Storage storage) {
         String[] taskInfo = tasks.delete(this.taskNo);
-        ui.deleted(taskInfo[0], Integer.parseInt(taskInfo[1]));
-        return false;
+        String response = ui.deleted(taskInfo[0], Integer.parseInt(taskInfo[1]));
+        return response;
     }
 
 }

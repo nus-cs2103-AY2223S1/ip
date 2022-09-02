@@ -10,7 +10,7 @@ public class Parser {
     }
 
     /**
-     *
+     * Process the input command by the users to give the respective command to the ChatBot to execute.
      * @param String fullCommand : the full command that is given by the users.
      * @return command : the specific command to execute later.
      * @throws MismatchInputException
@@ -48,7 +48,6 @@ public class Parser {
             String keyword = strArr[1];
             return new FindCommand(keyword);
         } else {
-            //storage.saveNewChanges(this.tasks);
             throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means");
         }
     }
@@ -74,7 +73,5 @@ public class Parser {
                     + strarr[0] + " cannot be empty.");
         }
     }
-
-
 
 }
