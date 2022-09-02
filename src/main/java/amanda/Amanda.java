@@ -1,11 +1,11 @@
-package main.java;
+package main.java.amanda;
 
-import main.java.amanda.command.Command;
 import main.java.amanda.exception.AmandaException;
 import main.java.amanda.manager.QueryInterpreter;
 import main.java.amanda.manager.StoreManager;
 import main.java.amanda.manager.TaskList;
 import main.java.amanda.ui.Ui;
+import main.java.amanda.command.Command;
 
 import java.util.Scanner;
 
@@ -20,7 +20,7 @@ public class Amanda {
 
     /**
      * Constructor of the Amanda class.
-     * @param filePath Path to the storage file of Amanda.
+     * @param filePath Path to the storage file of main.java.amanda.
      */
     public Amanda (String filePath) {
         store = new StoreManager(filePath);
@@ -53,7 +53,7 @@ public class Amanda {
     }
 
     public static void main(String[] args) {
-        Amanda amanda = new Amanda("data/Amanda.txt");
+        Amanda amanda = new Amanda("./src/main/java/data/amanda.txt");
         amanda.run();
     }
 }
