@@ -29,19 +29,20 @@ public class AddCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return The message after executing.
      * @throws DescriptionEmptyException  If the description of a task is empty.
      * @throws TimeFormatException  If the given time format is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DescriptionEmptyException, TimeFormatException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DescriptionEmptyException,
+                                                                         TimeFormatException {
         if (type.equals(Type.TODO)) {
             if (text.isBlank()) {
                 throw new DescriptionEmptyException(type);
             }
             Todo todo = new Todo(text);
             tasks.add(todo);
-            ui.showAddStatus(tasks);
-            return;
+            return ui.showAddStatus(tasks);
         }
         String[] info = text.split("/");
         if (info.length == 1 || info[1].isBlank()) {
@@ -51,14 +52,14 @@ public class AddCommand extends Command {
             if (type.equals(Type.DEADLINE)) {
                 Deadline deadline = new Deadline(info[0].strip(), info[1].strip().substring(3));
                 tasks.add(deadline);
-                ui.showAddStatus(tasks);
             } else if (type.equals(Type.EVENT)) {
                 Event event = new Event(info[0].strip(), info[1].strip().substring(3));
                 tasks.add(event);
-                ui.showAddStatus(tasks);
             }
         } catch (Exception e) {
             throw new TimeFormatException();
+        } finally {
+            return ui.showAddStatus(tasks);
         }
     }
 }

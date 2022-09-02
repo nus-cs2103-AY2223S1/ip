@@ -19,16 +19,20 @@ public class UnmarkCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return String message = "";
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String message = "";
         for (int i = 0; i < indices.length; i++) {
             try {
                 tasks.get(indices[i]).setNotDone();
-                ui.showUnmarkStatus(tasks.get(indices[i]));
+                message += ui.showUnmarkStatus(tasks.get(indices[i]));
+                message += "\n";
             } catch (IndexOutOfBoundsException e) {
-                ui.showIndexOutOfBounds(indices[i]);
+                message += ui.showIndexOutOfBounds(indices[i]);
             }
         }
+        return message;
     }
 }

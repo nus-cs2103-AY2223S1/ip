@@ -11,15 +11,18 @@ import java.util.Scanner;
 public class Ui {
     /**
      * Greets users by rendering a welcome message.
+     * return A welcome message.
      */
-    public void showWelcome() {
+    public String showWelcome() {
         String logo = "  \\‾\\     /‾/  |‾|  |‾|          |‾|       /‾‾‾\\      \n"
                 + "   \\ \\   / /   | |  | |          | |      / /‾\\ \\     \n"
                 + "    \\ \\_/ /    | |  | |          | |     / /___\\ \\    \n"
                 + "     ‾| |‾     | |  | |          | |    / /_____\\ \\   \n"
                 + "      | |      | |  | |_______   | |   / /       \\ \\  \n"
                 + "      |_|      |_|  |_________|  |_|  /_/         \\_\\ \n";
-        System.out.println("Hello! I'm Yilia\n" + logo + "What can I do for you?");
+        String message = "Hello! I'm Yilia\n" + logo + "What can I do for you?";
+        System.out.println(message);
+        return message;
     }
 
     /**
@@ -34,18 +37,23 @@ public class Ui {
 
     /**
      * Shows a division line.
+     * @return a line.
      */
-    public void showLine() {
-        System.out.println("_______");
+    public String showLine() {
+        String line = "_______";
+        System.out.println(line);
+        return line;
     }
 
     /**
      * Shows an error message.
      *
      * @param message The error massage.
+     * @return The error message.
      */
-    public void showError(String message) {
+    public String showError(String message) {
         System.out.println(message);
+        return message;
     }
 
     /**
@@ -54,65 +62,83 @@ public class Ui {
     public void showLoadingError() {
         System.out.println("The file cannot be loaded.");
     }
-
     /**
      * Shows the status of successfully adding a task into the task list.
      *
      * @param tasks The task list.
+     * @return The status after adding.
      */
-    public void showAddStatus(TaskList tasks) {
-        System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size())
-                + "\nNow you have " + tasks.size() + (tasks.size() < 2 ? " task" : " tasks") + " in the list.");
+    public String showAddStatus(TaskList tasks) {
+        String message = "Got it. I've added this task:\n  " + tasks.get(tasks.size())
+                + "\nNow you have " + tasks.size() + (tasks.size() < 2 ? " task" : " tasks") + " in the list.";
+        System.out.println(message);
+        return message;
     }
-
     /**
      * Shows the status of successfully marking a task as done.
      *
      * @param task The task whose marking status is shown.
+     * @return The status after marking.
      */
-    public void showMarkStatus(Task task) {
-        System.out.println("Nice! I've marked this task as done:\n  " + task);
+    public String showMarkStatus(Task task) {
+        String message = "Nice! I've marked this task as done:\n  " + task;
+        System.out.println(message);
+        return message;
     }
-
     /**
      * Shows the status of successfully unmarking a task as not done.
      *
      * @param task The task whose unmarking status is shown.
+     * @return The status after unmarking.
      */
-    public void showUnmarkStatus(Task task) {
-        System.out.println("Nice! I've marked this task as done:\n  " + task);
+    public String showUnmarkStatus(Task task) {
+        String message = "Nice! I've marked this task as done:\n  " + task;
+        System.out.println(message);
+        return message;
     }
     /**
      * Shows the status of successfully deleting a task.
      *
      * @param task The task to delete.
      * @param tasks The task list.
+     * @return The status after deleting.
      */
-    public void showDeleteStatus(Task task, TaskList tasks) {
-        System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have "
-                + tasks.size() + " tasks in the list.");
+    public String showDeleteStatus(Task task, TaskList tasks) {
+        String message = "Noted. I've removed this task:\n  " + task + "\nNow you have "
+                + tasks.size() + " tasks in the list.";
+        System.out.println(message);
+        return message;
     }
     /**
      * Shows the content of a task.
      *
      * @param index The index of the task.
      * @param tasks The task list.
+     * @return The information of a task.
      */
-    public void showTask(int index, TaskList tasks) {
-        System.out.println(index + "." + tasks.get(index));
+    public String showTask(int index, TaskList tasks) {
+        String info = index + "." + tasks.get(index);
+        System.out.println(info);
+        return info;
     }
     /**
      * Shows the index out of bounds.
      *
      * @param index The index of the task.
+     * @return An error message.
      */
-    public void showIndexOutOfBounds(int index) {
-        System.out.println("Index " + index + " out of bounds\nPlease input another index");
+    public String showIndexOutOfBounds(int index) {
+        String message = "Index " + index + " out of bounds\nPlease input another index";
+        System.out.println(message);
+        return message;
     }
     /**
      * Farewells to users.
+     * @return A good bye message.
      */
-    public void showBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showBye() {
+        String message = "Bye. Hope to see you again soon!";
+        System.out.println(message);
+        return message;
     }
 }
