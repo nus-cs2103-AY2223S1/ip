@@ -27,7 +27,7 @@ public class Storage {
     /**
      * Loads the data from the file found in the saved location into the task list.
      *
-     * @param tasks task list.
+     * @param tasks Task list.
      */
     public static void load(List<Task> tasks) {
         // This is the current directory the system is in.
@@ -71,8 +71,8 @@ public class Storage {
     /**
      * Saves the task to the text file in the user's hard drive.
      *
-     * @param tasks task list.
-     * @param isDeleted if the contents of the file should be deleted and reset.
+     * @param tasks Task list.
+     * @param isDeleted If the contents of the file should be deleted and reset.
      */
     public static void save(ArrayList<Task> tasks, boolean isDeleted) {
         // Saves to the file

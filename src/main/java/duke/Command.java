@@ -23,7 +23,7 @@ public enum Command {
      * @param command input command
      */
     Command(String command) {
-        this.inputCommand = command;
+        inputCommand = command;
     }
 
     /**

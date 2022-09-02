@@ -41,7 +41,7 @@ public class TaskList {
      * @throws DukeException for invalid inputs.
      * @throws IOException for invalid inputs.
      */
-    public void addTask(Command type, String description) throws DukeException, IOException {
+    public String addTask(Command type, String description) throws DukeException, IOException {
         Task task;
         if (type == Command.TODO) {
             task = new ToDo(description);
@@ -50,22 +50,23 @@ public class TaskList {
         } else {
             task = Event.createEvent(description);
         }
-        UI.printAddTaskMessage(task);
         tasks.add(task);
         Storage.save(tasks, false);
+        return UI.printAddTaskMessage(task);
     }
 
     /**
      * Handles Printing of the task list.
      */
-    public void printTaskList() {
+    public String printTaskList() {
+        String output = "";
         if (!tasks.isEmpty()) {
             for (int i = 1; i <= tasks.size(); i++) {
-                System.out.println(i + ". " + tasks.get(i - 1).toString());
+                output = output.concat(i + ". " + tasks.get(i - 1).toString() + "\n");
             }
-            System.out.println("");
+            return output;
         } else {
-            System.out.println("No tasks have been added!\n");
+            return "No tasks have been added!";
         }
     }
 
@@ -75,22 +76,22 @@ public class TaskList {
      * @param markStatus       input to mark/unmark a task.
      * @param userInstructions input of the user.
      */
-    public void taskMarker(Command markStatus, String userInstructions) {
+    public String taskMarker(Command markStatus, String userInstructions) {
         try {
             int taskNo = Integer.parseInt(userInstructions);
             Task currTask = tasks.get(taskNo - 1);
             if (markStatus == Command.MARK) {
                 currTask.markDone();
                 Storage.save(tasks, true);
-                System.out.println("Task successfully marked!");
             } else {
                 currTask.markUndone();
                 Storage.save(tasks, true);
-                System.out.println("Task successfully unmarked!");
             }
-            System.out.println(currTask + "\n");
+            return UI.printMarkedTaskMessage(currTask, markStatus);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("Invalid input, please input an available integer index!\n");
+            return "Invalid input, please input an available integer index!";
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 
@@ -99,17 +100,16 @@ public class TaskList {
      *
      * @param inputIndex index to be deleted.
      */
-    public void deleteTask(String inputIndex) {
+    public String deleteTask(String inputIndex) {
         try {
             int taskNo = Integer.parseInt(inputIndex);
             Task task = tasks.get(taskNo - 1);
-            System.out.println("Ok, I've removed this task:");
-            System.out.println(task);
             tasks.remove(taskNo - 1);
             Storage.save(tasks, true);
-            System.out.println("You have " + tasks.size() + " tasks left currently.\n");
+            return String.format("Ok, I've removed this task: %s\n You have %d tasks left currently.\n",
+                    task.toString(), tasks.size());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("Invalid index, please input the index of an available task!\n");
+            return ("Invalid index, please input the index of an available task!\n");
         }
     }
 
@@ -118,18 +118,18 @@ public class TaskList {
      *
      * @param match The input by the user to be found by the method.
      */
-    public void findTask(String match) {
+    public String findTask(String match) {
         if (!tasks.isEmpty()) {
-            System.out.printf("Here's all I could find with \"%s\"!\n", match);
+            String output = (String.format("Here's all I could find with \"%s\"!\n", match));
             for (int i = 1; i <= tasks.size(); i++) {
-                Task temp = tasks.get(i - 1);
-                if (temp.getDescription().contains(match)) {
-                    System.out.println(i + ". " + temp.toString());
+                Task task = tasks.get(i - 1);
+                if (task.getDescription().contains(match)) {
+                    output = output.concat(i + ". " + task + "\n");
                 }
             }
-            System.out.println("");
+            return output;
         } else {
-            System.out.println("No tasks have been added!\n");
+            return "No tasks have been added!";
         }
     }
 }

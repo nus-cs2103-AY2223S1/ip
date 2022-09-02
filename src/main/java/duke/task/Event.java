@@ -11,7 +11,7 @@ import duke.exception.DukeException;
  */
 public class Event extends Task {
     /* Duration field */
-    private LocalDateTime duration;
+    private LocalDateTime at;
 
     /**
      * Constructor for the Event Task.
@@ -20,7 +20,7 @@ public class Event extends Task {
      */
     public Event(String description, LocalDateTime duration) {
         super(description);
-        this.duration = duration;
+        this.at = duration;
     }
 
     /**
@@ -31,12 +31,12 @@ public class Event extends Task {
      * @throws DukeException if no task or incorrect formatting is given.
      */
     public static Event createEvent(String in) throws DukeException {
-        String[] temp = in.split(" */at* ");
-        if (temp.length != 2) {
+        String[] inputArr = in.split(" */at* ");
+        if (inputArr.length != 2) {
             throw new DukeException("-Event- Please follow the format of ~description~ /at dd-MM-yyyy HHmm!\n");
         }
-        String description = temp[0];
-        String duration = temp[1];
+        String description = inputArr[0];
+        String duration = inputArr[1];
         LocalDateTime event;
         try {
             event = LocalDateTime.parse(duration, INPUT_DATE_FORMAT);
@@ -54,7 +54,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + duration.format(OUTPUT_DATE_FORMAT) + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(OUTPUT_DATE_FORMAT) + ")";
     }
 
     /**
@@ -64,6 +64,6 @@ public class Event extends Task {
      */
     @Override
     public String saveFormat() {
-        return String.format("E | %s | %s", super.saveFormat(), this.duration.format(OUTPUT_DATE_FORMAT));
+        return String.format("E | %s | %s", super.saveFormat(), this.at.format(OUTPUT_DATE_FORMAT));
     }
 }

@@ -1,5 +1,6 @@
 package duke.gui;
 
+import duke.Command;
 import duke.exception.DukeException;
 import duke.task.Task;
 
@@ -11,29 +12,22 @@ public class UI {
     /**
      * Displays the Greeting message.
      */
-    public static void greet() {
-        String logo = " _______               \n"
-                + "|  _____|  _   _____   \n"
-                + "|  |____  | | |  __ |  \n"
-                + "|   ____| | | |  ___|  \n"
-                + "|  |____  | | | |      \n"
-                + "|_______| |_| |_|";
-        System.out.println("Greetings from Elp\n" + logo);
-        System.out.println("What can I help you with?\n");
+    public static String greet() {
+        return "Greetings from Elp!\n What can I help you with?\n";
     }
 
     /**
      * Prints Goodbye Message.
      */
-    public static void goodbye() {
-        System.out.println("Have a nice day! :)");
+    public static String goodbye() {
+        return "Have a nice day! :)";
     }
 
     /**
      * Prints the error given when no index is given when deleting tasks.
      */
-    public static void printDeleteErrorMessage() {
-        System.out.println("Please add an index to delete a task!\n");
+    public static String printDeleteErrorMessage() {
+        return "Please add an index to delete a task!\n";
     }
 
     /**
@@ -41,8 +35,8 @@ public class UI {
      *
      * @param e DukeException thrown.
      */
-    public static void printDukeExceptionMessage(DukeException e) {
-        System.out.println(e.getMessage());
+    public static String printDukeExceptionMessage(DukeException e) {
+        return e.getMessage();
     }
 
     /**
@@ -50,7 +44,28 @@ public class UI {
      *
      * @param t task added.
      */
-    public static void printAddTaskMessage(Task t) {
-        System.out.println("Added: " + t.toString() + "\n");
+    public static String printAddTaskMessage(Task t) {
+        return "Added: " + t.toString() + "\n";
+    }
+
+    /**
+     * Prints the message when a task has been marked/unmarked.
+     *
+     * @param task Task to be marked.
+     * @param command Mark status.
+     * @return String output of the marked/unmarked task.
+     */
+    public static String printMarkedTaskMessage(Task task, Command command) throws DukeException {
+        switch (command) {
+        case MARK: {
+            return "Task successfully marked!\n" + task;
+        }
+        case UNMARK: {
+            return "Task successfully unmarked!\n" + task;
+        }
+        default: {
+            throw new DukeException("Error in printing marked task!");
+        }
+        }
     }
 }

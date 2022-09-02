@@ -13,23 +13,14 @@ public class Parser {
      *
      * @param in user input.
      */
-    public static void parseInput(String in) {
+    public static void parseInput(String in) throws IllegalArgumentException, IndexOutOfBoundsException {
         String[] inputArr = in.split(" ", 2);
         String inputCommand = inputArr[0];
         Command command = null;
-
-        try {
-            command = Command.getCommand(inputCommand);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        command = Command.getCommand(inputCommand);
         userCommand = command;
         if (command != Command.LIST && command != Command.BYE) {
-            try {
-                userInstructions = inputArr[1];
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Did you forget to input an index behind your command?\n");
-            }
+            userInstructions = inputArr[1];
         }
     }
 

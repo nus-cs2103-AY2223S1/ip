@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.exception.DukeException;
 import duke.gui.UI;
@@ -25,73 +24,58 @@ public class Duke {
     }
 
     /**
-     * The main class, running the chat-bot.
-     */
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
-    /**
-     * Handles the logic for Duke to run.
-     */
-    public void run() {
-        UI.greet();
-        Scanner sc = new Scanner(System.in);
-        String in = sc.nextLine();
-
-        while (true) {
-            // Splits the input to retrieve possible commands.
-            Parser.parseInput(in);
-            Command command = Parser.getUserCommand();
-            String userInstructions = Parser.getUserInstructions();
-
-            // Break out of loop
-            if (command == Command.BYE) {
-                break;
-            }
-
-            // List out current tasks in the list
-            if (command == Command.LIST) {
-                taskList.printTaskList();
-            }
-
-            if (command == Command.MARK || command == Command.UNMARK) {
-                taskList.taskMarker(command, userInstructions);
-            }
-
-            if (command == Command.FIND) {
-                taskList.findTask(userInstructions);
-            }
-
-            if (command == Command.DELETE) {
-                try {
-                    taskList.deleteTask(userInstructions);
-                } catch (IndexOutOfBoundsException e) {
-                    UI.printDeleteErrorMessage();
-                }
-            }
-
-            if (command == Command.TODO || command == Command.DEADLINE || command == Command.EVENT) {
-                try {
-                    taskList.addTask(command, userInstructions);
-                } catch (DukeException e) {
-                    UI.printDukeExceptionMessage(e);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            in = sc.nextLine();
-        }
-        UI.goodbye();
-    }
-
-    /**
      * Placeholder for now.
      *
      * @param in User's input.
      * @return Output by Elp's logic unit to return to the user.
      */
     public String getResponse(String in) {
-        return "test123";
+        // Splits the input to retrieve possible commands.
+        try {
+            Parser.parseInput(in);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            return ("Did you forget to input an index behind your command?\n");
+        }
+        Command command = Parser.getUserCommand();
+        String userInstructions = Parser.getUserInstructions();
+
+        // Break out of loop
+        if (command == Command.BYE) {
+            return UI.goodbye();
+        }
+
+        // List out current tasks in the list
+        if (command == Command.LIST) {
+            return taskList.printTaskList();
+        }
+
+        if (command == Command.MARK || command == Command.UNMARK) {
+            return taskList.taskMarker(command, userInstructions);
+        }
+
+        if (command == Command.FIND) {
+            return taskList.findTask(userInstructions);
+        }
+
+        if (command == Command.DELETE) {
+            try {
+                return taskList.deleteTask(userInstructions);
+            } catch (IndexOutOfBoundsException e) {
+                return UI.printDeleteErrorMessage();
+            }
+        }
+
+        if (command == Command.TODO || command == Command.DEADLINE || command == Command.EVENT) {
+            try {
+                return taskList.addTask(command, userInstructions);
+            } catch (DukeException e) {
+                return UI.printDukeExceptionMessage(e);
+            } catch (IOException e) {
+                return e.getMessage();
+            }
+        }
+        return "Unexpected error";
     }
 }

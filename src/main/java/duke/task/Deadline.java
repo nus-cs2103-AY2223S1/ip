@@ -33,20 +33,20 @@ public class Deadline extends Task {
      * @throws DukeException if no task or incorrect formatting is given.
      */
     public static Deadline createDeadline(String in) throws DukeException {
-        String[] temp = in.split(" */by* ");
-        if (temp.length != 2) {
+        String[] inputArr = in.split(" */by* ");
+        if (inputArr.length != 2) {
             throw new DukeException("-Deadline- Please follow the format of ~description~ /by dd-MM-yyyy HHmm!\n");
         }
-        String description = temp[0];
-        String dueDate = temp[1];
-        LocalDateTime deadline;
+        String description = inputArr[0];
+        String dateString = inputArr[1];
+        LocalDateTime dateTime;
         try {
-            deadline = LocalDateTime.parse(dueDate, INPUT_DATE_FORMAT);
+            dateTime = LocalDateTime.parse(dateString, INPUT_DATE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException("-Deadline- Your date needs to be in dd-MM-yyyy HHmm format!\n");
         }
 
-        return new Deadline(description, deadline);
+        return new Deadline(description, dateTime);
     }
 
     /**

@@ -27,9 +27,14 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/elgato.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/elp.jpg"));
 
+    /**
+     * Initializes the chat box.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        // Greet User
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(UI.greet(), dukeImage));
     }
 
     public void setDuke(Duke d) {
