@@ -21,8 +21,8 @@ public class Parser {
      * @throws UnknownCommandException If the input command is invalid.
      */
     public static Command parse(String input) throws UnknownCommandException {
-        String cmd = null;
-        String postCmd = null;
+        String cmd;
+        String postCmd;
         String[] postSplit;
         postSplit = input.split(" ");
         cmd = postSplit[0];

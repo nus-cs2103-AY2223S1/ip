@@ -35,13 +35,11 @@ public class DeleteCommand extends Command {
                 || (Integer.parseInt(index) - 1) >= taskList.size()) {
             throw new InvalidTaskNumberException("delete", index);
         }
-        boolean change;
         int i = Integer.parseInt(this.index) - 1;
         Task deleted = taskList.get(i);
         taskList.setUnDone(i);
         taskList.remove(i);
-        System.out.println("  Oki! The following task is removed:)\n\t" + deleted);
-        ui.printListCount();
+        this.response = "Oki! The following task is removed:)\n  " + deleted + "\n" + ui.printListCount();
     }
 
     /**

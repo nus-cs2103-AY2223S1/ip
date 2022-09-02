@@ -45,22 +45,22 @@ public class MarkUnmarkCommands extends Command {
         case "mark":
             change = taskList.setDone(i);
             if (change) {
-                System.out.println("  Nice! Task " + (i + 1) + " done!\n\t" + taskList.get(i));
+                this.response = "Nice! Task " + (i + 1) + " done!\n  " + taskList.get(i);
             } else {
-                System.out.println("  Task " + (i + 1) + " is already done!\n\t" + taskList.get(i));
+                this.response = "Task " + (i + 1) + " is already done!\n  " + taskList.get(i);
             }
             break;
         case "unmark":
             change = taskList.setUnDone(i);
             if (change) {
-                System.out.println("  Ok! Task " + (i + 1) + " marked as not done!\n\t" + taskList.get(i));
+                this.response = "Ok! Task " + (i + 1) + " marked as not done!\n  " + taskList.get(i);
             } else {
-                System.out.println("  Task " + (i + 1) + " is already not done!\n\t" + taskList.get(i));
+                this.response = "Task " + (i + 1) + " is already not done!\n  " + taskList.get(i);
             }
             break;
         default:
         }
-        ui.printListCount();
+        this.response += "\n" + ui.printListCount();
     }
 
     /**

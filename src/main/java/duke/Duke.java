@@ -3,16 +3,12 @@ package duke;
 import duke.command.Command;
 import duke.command.Parser;
 import duke.exception.DukeException;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 
 /**
  * Creates a chatbot named Duke.
  */
-public class Duke extends Application {
+public class Duke {
 
     /** TaskList to handle all tasks related operations. */
     private TaskList taskList;
@@ -36,50 +32,43 @@ public class Duke extends Application {
     }
 
     /**
-     * Constructor for a Duke chatbot.
+     * Returns the start message of Duke.
+     *
+     * @return The start message of Duke.
      */
-    public Duke() {
-        this.taskList = new TaskList();
-        this.storage = new Storage("./tasks.txt");
-        this.storage.readFromFile(this.taskList.getList());
-        this.ui = new Ui(this.taskList);
+    public String startMessage() {
+        return ui.startMessage();
     }
 
     /**
-     * Starts and runs the Duke chatbot program.
+     * Saves the current tasks to the file.
      */
-    private void run() {
-        ui.startMessage();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.newLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, ui);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e);
-            } finally {
-                if (!isExit) {
-                    ui.newLine();
-                }
-            }
-        }
-        ui.exitMessage();
+    public void saveTasks() {
         storage.writeToFile(this.taskList.getList());
     }
 
-    public static void main(String[] args) {
-        new Duke("./tasks.txt").run();
+    /**
+     * Returns the exit message of Duke.
+     *
+     * @return The exit message of Duke.
+     */
+    public String exitMessage() {
+        return ui.exitMessage();
     }
 
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage
+    /**
+     * Gets the response from Duke by taking in a input from the user.
+     *
+     * @param input The input command from the user.
+     * @return The response from Duke to be displayed.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(taskList, ui);
+            return c.response();
+        } catch (DukeException e) {
+            return e.toString();
+        }
     }
 }

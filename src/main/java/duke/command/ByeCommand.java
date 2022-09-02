@@ -15,7 +15,7 @@ public class ByeCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        return;
+        this.response = "bye";
     }
 
     /**
