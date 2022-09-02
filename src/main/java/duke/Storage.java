@@ -28,12 +28,6 @@ public class Storage {
         ArrayList<String> strList = new ArrayList<>();
         try {
             File myFile = new File(filePath);
-            if (myFile.createNewFile()) {
-                Ui.showLoadingError(myFile.getName());
-            } else {
-                Ui.showExistingFile(myFile.getName());
-            }
-
             Scanner myReader = new Scanner(myFile);
             while (myReader.hasNext()) {
                 strList.add(myReader.nextLine());

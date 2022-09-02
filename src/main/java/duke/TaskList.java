@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -29,11 +30,12 @@ public class TaskList {
      *
      * @param index The index of the task to be mark done
      */
-    public void markTaskAsDone(int index) throws DukeException {
+    public String markTaskAsDone(int index) throws DukeException, IOException {
         if (1 <= index && index <= taskList.size()) {
             Task currTask = taskList.get(index - 1);
             currTask.markAsDone();
-            Ui.markedDoneMessage(currTask);
+            Storage.writeToFile(this);
+            return Ui.markedDoneMessage(currTask);
         } else {
             throw new DukeException("Input a valid task index!");
         }
@@ -44,11 +46,12 @@ public class TaskList {
      *
      * @param index The index of the task to be unmarked
      */
-    public void unmarkTask(int index) throws DukeException {
+    public String unmarkTask(int index) throws DukeException, IOException {
         if (1 <= index && index <= taskList.size()) {
             Task currTask = taskList.get(index - 1);
             currTask.markUndone();
-            Ui.markUndoneMessage(currTask);
+            Storage.writeToFile(this);
+            return Ui.markUndoneMessage(currTask);
         } else {
             throw new DukeException("Input a valid task index!");
         }
@@ -59,11 +62,13 @@ public class TaskList {
      *
      * @param index The index of the task to be deleted
      */
-    public void deleteTask(int index) throws DukeException {
+    public String deleteTask(int index) throws DukeException, IOException {
         if (1 <= index && index <= taskList.size()) {
-            System.out.println("Noted. I've removed this task:\n  " + taskList.get(index - 1));
+            Task tempTask = taskList.get(index - 1);
             taskList.remove(index - 1);
-            System.out.println("Now you have " + taskList.size() + " taskList in the list.");
+            Storage.writeToFile(this);
+            return "Noted. I've removed this task:\n  " + tempTask + "\nNow you have " + taskList.size() +
+                    " tasks in the list.";
         } else {
             throw new DukeException("Input a valid task index!");
         }
@@ -105,13 +110,16 @@ public class TaskList {
      *
      * @param str the given string that is used to find the tasks
      */
-    public void find(String str) {
-        Ui.printFoundTasksStart();
-        for (int i =0; i < this.taskList.size(); i++) {
-            Task currTask = this.taskList.get(i);
-            if (currTask.toString().contains(str)) {
-                System.out.println(currTask);
-            }
+    public String find(String str) {
+        return Ui.printFoundTasksStart(str, this);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            res.append(String.format("%d. %s\n", 1 + i, this.taskList.get(i)));
         }
+        return res.toString();
     }
 }

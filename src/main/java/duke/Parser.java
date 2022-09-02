@@ -52,23 +52,14 @@ public class Parser {
      * @param tasks the list of tasks to be edited
      * @return the boolean true, to stop the program when bye is inputted
      */
-    public static boolean parse(String input, TaskList tasks) {
+    public static String parse(String input, TaskList tasks) {
         String[] arrOfInput = input.split(" ");
         String firstWord = arrOfInput[0];
 
         try {
-            if ("bye".equals(firstWord)) {
-                // end program when input is bye
-                Ui.sayGoodbye();
-                return true;
-
-            } else if ("list".equals(firstWord)) {
+            if ("list".equals(firstWord)) {
                 // list out the current list
-                Ui.printListStartingMessage();
-                for (int i = 0; i < tasks.size(); i++) {
-                    Task currTask = tasks.get(i);
-                    Ui.printTask(i + 1, currTask);
-                }
+                return Ui.printList(tasks);
 
             } else if ("mark".equals(firstWord)) {
                 // throw exception if no number after mark
@@ -78,8 +69,7 @@ public class Parser {
 
                 // to mark an element as done
                 int index = Integer.parseInt(arrOfInput[1]);
-                tasks.markTaskAsDone(index);
-                Storage.writeToFile(tasks);
+                return tasks.markTaskAsDone(index);
 
             } else if ("unmark".equals(firstWord)) {
                 // throw exception if no number after unmark
@@ -89,12 +79,11 @@ public class Parser {
 
                 // to mark an element as undone
                 int index = Integer.parseInt(arrOfInput[1]);
-                tasks.unmarkTask(index);
-                Storage.writeToFile(tasks);
+                return tasks.unmarkTask(index);
 
             } else if ("todo".equals(firstWord) || "deadline".equals(firstWord) || "event".equals(firstWord)) {
                 // adding the event, deadline or to-do to the list
-                createNewTask(firstWord, arrOfInput, tasks);
+                return createNewTask(firstWord, arrOfInput, tasks);
 
             } else if ("delete".equals(firstWord)) {
                 // throw exception if no number after delete
@@ -104,8 +93,7 @@ public class Parser {
 
                 // deleting a task
                 int index = Integer.parseInt(arrOfInput[1]);
-                tasks.deleteTask(index);
-                Storage.writeToFile(tasks);
+                return tasks.deleteTask(index);
 
             } else if ("find".equals(firstWord)) {
                 // throw exception if no word after find
@@ -115,17 +103,17 @@ public class Parser {
 
                 // finding a task from the list
                 String str = arrOfInput[1];
-                tasks.find(str);
+                return tasks.find(str);
 
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            return "Something went wrong " + e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return "Error! Please try again.";
     }
 
     /**
@@ -134,7 +122,7 @@ public class Parser {
      * @param firstWord the first word typed in by the user
      * @param strArray the array of strings of the words typed in by the user
      */
-    public static void createNewTask(String firstWord, String[] strArray, TaskList tasks)
+    public static String createNewTask(String firstWord, String[] strArray, TaskList tasks)
             throws DukeException, IOException {
         if ("todo".equals(firstWord)) {
             // throw exception if no word after to-do
@@ -150,10 +138,11 @@ public class Parser {
             tasks.add(new Todo(currString));
             Task currTask = tasks.get(tasks.size() - 1);
 
-            // print message when to-do is added
-            System.out.println("Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
             Storage.writeToFile(tasks);
+
+            // print message when to-do is added
+            return "Got it. I've added this task:\n  " + currTask +
+                    "\nNow you have " + tasks.size() + " tasks in the list.";
 
         } else if ("deadline".equals(firstWord)) {
             // throw exception if no word after deadline
@@ -179,7 +168,7 @@ public class Parser {
             for (int i = 1; i < strArray.length; i++) {
                 if (strArray[i].equals("/by")) {
                     if (i + 1 > strArray.length - 1) {
-                        System.out.println("Please type a deadline after /by");
+                        return "Please type a deadline after /by";
                     } else {
                         deadline = strArray[i + 1];
                     }
@@ -197,18 +186,18 @@ public class Parser {
             try {
                 LocalDate.parse(deadline, deadlineFormatter);
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid deadline format! Please type in deadline format as yyyy-MM-dd");
-                return;
+                return "Invalid deadline format! Please type in deadline format as yyyy-MM-dd";
             }
 
             // add deadline tasks to ArrayList once conditions are satisfied
             tasks.add(new Deadline(deadlineDescription, LocalDate.parse(deadline)));
             Task currTask = tasks.get(tasks.size() - 1);
 
-            // print message when deadline is added
-            System.out.println("Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
             Storage.writeToFile(tasks);
+
+            // print message when deadline is added
+            return "Got it. I've added this task:\n  " + currTask +
+                    "\nNow you have " + tasks.size() + " tasks in the list.";
 
         } else if ("event".equals(firstWord)) {// throw exception if no word after event
             if (strArray.length < 2) {
@@ -252,10 +241,12 @@ public class Parser {
             tasks.add(new Event(eventDescription, eventDate));
             Task currTask = tasks.get(tasks.size() - 1);
 
-            // print message when event is added
-            System.out.println("Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
             Storage.writeToFile(tasks);
+
+            // print message when event is added
+            return "Got it. I've added this task:\n  " + currTask +
+                    "\nNow you have " + tasks.size() + " tasks in the list.";
         }
+        return "Error! Please try again.";
     }
 }

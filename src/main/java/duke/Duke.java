@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * Represents the main Duke class.
@@ -25,25 +24,17 @@ public class Duke {
         }
     }
 
-
     /**
-     * Run method to run the Duke object.
+     * Returns Duke's response to the user's input.
+     *
+     * @param input the user's input
      */
-    public void run() {
-        Ui.sayGreeting();
-        Scanner sc = new Scanner(System.in);
-        boolean canQuit = false;
-
-        while (!canQuit) {
-            canQuit = Parser.parse(sc.nextLine(), tasks);
+    String getResponse(String input) {
+        if (input.equals("bye")) {
+            return Ui.sayGoodbye();
         }
-    }
-
-    /**
-     * The main function.
-     */
-    public static void main(String[] args) {
-        String FILEPATH = "./src/main/java/duke.txt";
-        new Duke(FILEPATH).run();
+        else {
+            return Parser.parse(input, tasks);
+        }
     }
 }
