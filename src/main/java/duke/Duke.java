@@ -1,21 +1,18 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TaskCommand;
 import duke.exception.DukeException;
 import duke.parse.Parser;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Main driver class for the Duke / MumBot programme.
+ *
+ * @author Kang Wei
+ */
 public class Duke {
 
     /**
@@ -30,10 +27,9 @@ public class Duke {
         // Welcome message
         Ui.print("MumBot: Hi dear! You are precious <3\n");
 
-        /**
-         * Handling of the .txt file containing the list of tasks.
-         */
-        String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/cs2103/projects/ip/data/duke.txt";
+        // Handling of the .txt file containing the list of tasks.
+        String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/"
+                + "cs2103/projects/ip/data/duke.txt";
         Storage storage = new Storage(filePath);
         tasks = storage.getTasks();
 

@@ -1,9 +1,6 @@
 package duke.command;
 
-import java.util.ArrayList;
-
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Handles the marking or unmarking of tasks.
@@ -14,9 +11,9 @@ public class MarkCommand extends Command {
      * Initialises a MarkCommand.
      *
      * @param commandArgs An array of Strings containing information
-     * pertaining to this specific mark command.
-     * @param tasks An <code>ArrayList<Task></code>, containing the
-     * current existing tasks in the programme.
+     *                    pertaining to this specific mark command.
+     * @param tasks       An `ArrayList&lt;Task&gt;`, containing the
+     *                    current existing tasks in the programme.
      */
     public MarkCommand(String[] commandArgs, TaskList tasks) {
         super(commandArgs, tasks);
@@ -26,7 +23,7 @@ public class MarkCommand extends Command {
      * Marks or unmarks a task to denote its completion.
      *
      * @return Returns true for the main Duke class to know to
-     * continue asking for user input.
+     *         continue asking for user input.
      */
     @Override
     public boolean performAction() {

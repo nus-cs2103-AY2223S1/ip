@@ -1,16 +1,16 @@
 package duke.storage;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
-
 /**
- * Assists with loading .txt file containing a <code>Task[]</code> in String
+ * Assists with loading .txt file containing a `TaskList` in String
  * format.
  * Note that this class is package-private.
  *
@@ -19,11 +19,11 @@ import java.io.IOException;
 class LoadFile {
 
     /**
-     * Parses a task in String format into a <code>Task</code>
+     * Parses a task in String format into a `Task`
      * format, and returns it.
      *
      * @param taskString The task in String format.
-     * @return The task converted to a <code>Task</code> format.
+     * @return The task converted to a `Task` format.
      */
     private static Task parseTaskString(String taskString) {
         String taskType = taskString.substring(1, 2);
@@ -33,9 +33,7 @@ class LoadFile {
             taskDescription = taskString.substring(7);
             return new Task(taskDescription);
         } else {
-            /**
-             * Setting the appropriate dateDelimiter.
-             */
+            // Setting the appropriate dateDelimiter.
             String dateDelimiter;
             boolean isDeadline = false;
             if (taskType.equals("D")) { // Task is a Deadline
@@ -45,10 +43,8 @@ class LoadFile {
                 dateDelimiter = " \\(at: ";
             }
 
-            /**
-             * Getting the appropriate descriptions after splitting the 
-             * task in String format by the dateDelimiter.
-             */
+            /* Getting the appropriate descriptions after splitting the
+            task in String format by the dateDelimiter. */
             String[] inputArr = taskString.split(dateDelimiter);
             taskDescription = inputArr[0].substring(7);
             dateDescription = inputArr[1].substring(0, inputArr[1].length() - 1);
@@ -63,7 +59,7 @@ class LoadFile {
      * and returns it.
      *
      * @param filePath The location of the file.
-     * @return The <code>TaskList</code> converted from the .txt file.
+     * @return The `TaskList` converted from the .txt file.
      * @throws DukeException Throws an exception if an IOException is caught.
      */
     public static TaskList load(String filePath) throws DukeException {
@@ -78,8 +74,8 @@ class LoadFile {
                 tasks.addTask(task, false);
             }
         } catch (IOException e) {
-            throw new DukeException("Honnney! There was a problem with loading your list " +
-                    "of tasks from " + filePath + "! :,(");
+            throw new DukeException("Honnney! There was a problem with loading your list "
+                    + "of tasks from " + filePath + "! :,(");
         }
         return tasks;
     }

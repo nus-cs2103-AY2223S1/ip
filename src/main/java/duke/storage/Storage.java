@@ -1,7 +1,5 @@
 package duke.storage;
 
-import java.util.ArrayList;
-
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -27,7 +25,7 @@ public class Storage {
      * Initialises a Storage object.
      *
      * @param filePath The path of the .txt file to store a
-     * user's tasks.
+     *                 user's tasks.
      */
     public Storage(String filePath) throws DukeException {
         this.filePath = filePath;
@@ -35,10 +33,8 @@ public class Storage {
         // Create the .txt file if it hasn't already been created.
         CreateFile.makeFile(filePath);
 
-        /**
-         * Load the .txt file, and get the list of tasks if the .txt
-         * file contains any data.
-         */
+        /* Load the .txt file, and get the list of tasks if the .txt
+           file contains any data. */
         tasks = LoadFile.load(filePath);
     }
 

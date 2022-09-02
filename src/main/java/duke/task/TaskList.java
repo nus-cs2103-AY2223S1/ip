@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import duke.ui.Ui;
 
 /**
- * Stores an <code>ArrayList<Task></code> and handles the direct operations 
+ * Stores an `ArrayList&lt;Task&rt;` and handles the direct operations
  * on it.
  *
  * @author Kang Wei
  */
 public class TaskList {
 
-    ArrayList<Task> tasks; // The list of all tasks of a user.
+    private ArrayList<Task> tasks; // The list of all tasks of a user.
 
     /**
      * Initialises a TaskList object with an
-     * <code>ArrayList<Task></code> of tasks.
+     * `ArrayList&lt;Task&gt;` of tasks.
      *
      * @param tasks The list of tasks.
      */
@@ -26,9 +26,9 @@ public class TaskList {
 
     /**
      * Adds a task to the currently stored
-     * <code>ArrayList<Task></code> of tasks.
+     * `ArrayList&lt;Task&gt;` of tasks.
      *
-     * @param task The task to store.
+     * @param task      The task to store.
      * @param isVerbose If true, then outputs a message to the ui. False if otherwise.
      */
     public void addTask(Task task, boolean isVerbose) {
@@ -40,7 +40,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the currently stored
-     * <code>ArrayList<Task></code> of tasks, by its index.
+     * `ArrayList&lt;Task&rt;` of tasks, by its index.
      *
      * @param index The index of the tasks to delete.
      */
@@ -48,11 +48,11 @@ public class TaskList {
         Task taskToRemove = tasks.get(index);
         tasks.remove(index);
         Ui.print(
-                "I've successfully removed this task:\n" +
-                taskToRemove +
-                "\n\n" +
-                "Do your own chores next time hunbun!"
-                );
+                "I've successfully removed this task:\n"
+                + taskToRemove
+                + "\n\n"
+                + "Do your own chores next time hunbun!"
+        );
     }
 
     /**
@@ -63,9 +63,9 @@ public class TaskList {
         Ui.print("Sweetie, here is the list of tasks that you have <3");
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
-            output += (
-                    (i + 1)
-                    + ". " 
+            output += ((
+                        i + 1)
+                    + ". "
                     + tasks.get(i)
                     + "\n");
         }
@@ -93,7 +93,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the <code>ArrayList<Task></code> stored in
+     * Returns the `ArrayList&lt;Task&rt;` stored in
      * this TaskList.
      */
     public ArrayList<Task> getTasks() {
@@ -108,26 +108,26 @@ public class TaskList {
         return tasks.size();
     }
 
-  /**
-   * Searches through its tasks whos descriptions fit the input String.
-   *
-   * @param searchString The String to be used to search the tasks.
-   * @return A <code>TaskList<Task></code> containing the tasks,
-   */
-  public TaskList searchUsingString(String searchString) {
-    ArrayList<Task> foundTasks = new ArrayList<Task>();
-    for (Task task : tasks) {
-      if (task.taskDescription != null) {
-        if (task.taskDescription.contains(searchString)) {
-          foundTasks.add(task);
+    /**
+     * Searches through its tasks whos descriptions fit the input String.
+     *
+     * @param searchString The String to be used to search the tasks.
+     * @return A `TaskList&lt;Task&rt;` containing the tasks,
+     */
+    public TaskList searchUsingString(String searchString) {
+        ArrayList<Task> foundTasks = new ArrayList<Task>();
+        for (Task task : tasks) {
+            if (task.taskDescription != null) {
+                if (task.taskDescription.contains(searchString)) {
+                    foundTasks.add(task);
+                }
+            } else if (task.miscDescription != null) {
+                if (task.miscDescription.contains(searchString)) {
+                    foundTasks.add(task);
+                }
+            }
         }
-      } else if (task.miscDescription != null) {
-        if (task.miscDescription.contains(searchString)) {
-          foundTasks.add(task);
-        }
-      }
-    }
 
-    return new TaskList(foundTasks);
-  }
+        return new TaskList(foundTasks);
+    }
 }

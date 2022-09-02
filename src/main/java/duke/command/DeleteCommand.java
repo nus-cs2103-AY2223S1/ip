@@ -1,9 +1,6 @@
 package duke.command;
 
-import java.util.ArrayList;
-
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Handles the deletion of a task from
@@ -21,8 +18,8 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes a task from the TaskList.
-     * Returns true to indicate that the programme should continue
-     * prompting for user input.
+     * @return Returns true to indicate that the programme should continue
+     *         prompting for user input.
      */
     @Override
     public boolean performAction() {
