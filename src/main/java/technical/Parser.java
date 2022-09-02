@@ -65,6 +65,10 @@ public class Parser {
       TaskList.delete(arguments);
       return true;
     }
+    if (arguments[0].equals("find")) {
+      TaskList.find(arguments);
+      return true;
+    }
     mismatch();
     return true;
   }
