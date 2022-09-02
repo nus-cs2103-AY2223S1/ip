@@ -8,6 +8,8 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.GreetCommand;
+import duke.command.IdleCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -30,7 +32,10 @@ public class Parser {
      * @return the parsed command
      */
     public static Command parse(String fullCommand) {
-        if (fullCommand.equals("bye")) {
+        if (fullCommand.equals("greet")) {
+            // show greeting message when start
+            return new GreetCommand();
+        } else if (fullCommand.equals("bye")) {
             // when user enters bye
             // exit programme
             return new ExitCommand();
@@ -101,7 +106,8 @@ public class Parser {
                 Event event = new Event(description, at);
                 return new AddCommand(event);
             } else {
-                throw new DukeException("I'm sorry, but I don't quite understand what that means.");
+                return new IdleCommand();
+//                throw new DukeException("I'm sorry, but I don't quite understand what that means.");
             }
         }
     }
