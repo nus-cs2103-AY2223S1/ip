@@ -21,6 +21,7 @@ import duke.command.WrongCommand;
 public class Parser {
     /**
      * Returns appropriate command from parsed input.
+     *
      * @param input
      * @return Command from parsed input to be executed.
      */

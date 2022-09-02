@@ -11,6 +11,7 @@ public class DukeApplication {
 
     /**
      * Returns an instance of Duke.
+     *
      * @param filePath String location of duke.txt.
      */
     public DukeApplication(String filePath) {
@@ -20,6 +21,7 @@ public class DukeApplication {
 
     /**
      * Returns response from command execution.
+     *
      * @param input String input from input text field.
      * @return String response from the command execution.
      */
@@ -30,6 +32,7 @@ public class DukeApplication {
 
     /**
      * Main method for Duke program.
+     *
      * @param args Command line arguments.
      */
     public static void main(String[] args) {

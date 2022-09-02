@@ -11,6 +11,7 @@ public class FindCommand implements ICommand {
 
     /**
      * Returns an instance of FindCommand.
+     *
      * @param searchStr Search keyword.
      */
     public FindCommand(String searchStr) {
@@ -19,6 +20,7 @@ public class FindCommand implements ICommand {
 
     /**
      * Executes the command by finding the tasks in the list.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -29,6 +31,7 @@ public class FindCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override
@@ -38,6 +41,7 @@ public class FindCommand implements ICommand {
 
     /**
      * Returns if two FindCommands are equal.
+     *
      * @param obj Other command.
      * @return True if two FindCommands are equal. Else false.
      */

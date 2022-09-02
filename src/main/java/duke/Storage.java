@@ -17,6 +17,7 @@ public class Storage {
 
     /**
      * Returns a storage instance.
+     *
      * @param filePath Path to the file duke.txt.
      */
     public Storage(String filePath) {
@@ -25,6 +26,7 @@ public class Storage {
 
     /**
      * Reads file at filePath.
+     *
      * @return Scanner sc
      */
     public Scanner load() {
@@ -40,6 +42,7 @@ public class Storage {
 
     /**
      * Writes content to file at filePath.
+     *
      * @param it Iterator of the arrayList from TaskList.
      */
     public String save(Iterator<Task> it) {

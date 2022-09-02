@@ -24,6 +24,7 @@ public class TaskList {
 
     /**
      * Returns an instance of a task list with saved tasks.
+     *
      * @param sc Scanner object to read the text file.
      */
     public TaskList(Scanner sc) {
@@ -55,6 +56,7 @@ public class TaskList {
 
     /**
      * Adds new task to the list.
+     *
      * @param task New task.
      * @return String response after adding the new task.
      */
@@ -68,6 +70,7 @@ public class TaskList {
 
     /**
      * Deletes task at specified index in the list.
+     *
      * @param index Index of which task to be deleted in the list.
      * @return String response after deleting the task.
      * @throws DukeException If specified index is out of range of the list.
@@ -85,6 +88,7 @@ public class TaskList {
 
     /**
      * Marks task as completed.
+     *
      * @param index Index of which task to be marked in the list.
      * @return String response after marking the task.
      * @throws DukeException If specified index is out of range of the list.
@@ -99,6 +103,7 @@ public class TaskList {
 
     /**
      * Marks task as not completed.
+     *
      * @param index Index of which task to be unmarked in the list.
      * @return String response after unmarking the task.
      * @throws DukeException If specified index is out of range of the list.
@@ -113,6 +118,7 @@ public class TaskList {
 
     /**
      * Finds all tasks in the list based on a keyword.
+     *
      * @param searchStr Specified search keyword.
      * @return String response after finding all the tasks.
      */
@@ -131,6 +137,7 @@ public class TaskList {
 
     /**
      * Returns iterator of the list of tasks.
+     *
      * Used in writing tasks to file in Storage class.
      * @return Iterator of the list of tasks.
      */
@@ -140,6 +147,7 @@ public class TaskList {
 
     /**
      * Returns the string representation of all the tasks in the list.
+     *
      * @return String representation of all the tasks in the list.
      */
     @Override

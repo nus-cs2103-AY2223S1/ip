@@ -12,6 +12,7 @@ public class MarkCommand implements ICommand {
 
     /**
      * Returns an instance of MarkCommand.
+     *
      * @param index Index of task.
      */
     public MarkCommand(int index) {
@@ -20,6 +21,7 @@ public class MarkCommand implements ICommand {
 
     /**
      * Executes the command by marking task as complete in the list.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -34,6 +36,7 @@ public class MarkCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override

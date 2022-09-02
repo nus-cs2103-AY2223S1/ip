@@ -14,7 +14,8 @@ public class WrongCommand implements ICommand {
     }
 
     /**
-     * Executes nothing.
+     * Returns the error message.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -25,6 +26,7 @@ public class WrongCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override
@@ -34,6 +36,7 @@ public class WrongCommand implements ICommand {
 
     /**
      * Returns if two WrongCommands are equal.
+     *
      * @param obj Other command.
      * @return True if two WrongCommands are equal. Else false.
      */

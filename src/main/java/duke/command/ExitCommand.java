@@ -9,6 +9,7 @@ import duke.TaskList;
 public class ExitCommand implements ICommand {
     /**
      * Executes end of program.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -19,6 +20,7 @@ public class ExitCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override
@@ -28,6 +30,7 @@ public class ExitCommand implements ICommand {
 
     /**
      * Returns if two ExitCommands are equal.
+     *
      * @param obj Other command.
      * @return True if two ExitCommands are equal. Else false.
      */

@@ -16,6 +16,7 @@ public class AddCommand implements ICommand {
 
     /**
      * Returns an instance of AddCommand for todo type.
+     *
      * @param type Type of task.
      * @param description Description of task.
      */
@@ -27,6 +28,7 @@ public class AddCommand implements ICommand {
 
     /**
      * Returns an instance of AddCommand for deadline and event types.
+     *
      * @param type Type of task.
      * @param description Description of task.
      * @param dateString Date of task.
@@ -39,6 +41,7 @@ public class AddCommand implements ICommand {
 
     /**
      * Executes the command by adding the task to the list.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -58,6 +61,7 @@ public class AddCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override
@@ -67,6 +71,7 @@ public class AddCommand implements ICommand {
 
     /**
      * Returns if two AddCommands are equal in type, description, date.
+     *
      * @param obj Other command.
      * @return True if two AddCommands are equal in type, description, date. Else false.
      */

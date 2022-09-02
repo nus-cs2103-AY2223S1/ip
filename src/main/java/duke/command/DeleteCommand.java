@@ -12,6 +12,7 @@ public class DeleteCommand implements ICommand {
 
     /**
      * Returns an instance of DeleteCommand.
+     *
      * @param index Index of task.
      */
     public DeleteCommand(int index) {
@@ -20,6 +21,7 @@ public class DeleteCommand implements ICommand {
 
     /**
      * Executes the command by deleting specified task from the list.
+     *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
      */
@@ -34,6 +36,7 @@ public class DeleteCommand implements ICommand {
 
     /**
      * Returns if command is an ExitCommand.
+     *
      * @return True if command is an ExitCommand. Else false.
      */
     @Override
@@ -43,6 +46,7 @@ public class DeleteCommand implements ICommand {
 
     /**
      * Returns if two DeleteCommands are equal in index of task to be deleted.
+     *
      * @param obj Other command.
      * @return True if two DeleteCommands are equal in index of task to be deleted. Else false.
      */
