@@ -1,5 +1,11 @@
 package qoobee;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import java.util.Scanner;
 
 /**
@@ -11,6 +17,11 @@ public class Qoobee {
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
 
     /**
      * Creates a Qoobee object that contains a ui, storage, parser and tasklist.
@@ -44,12 +55,11 @@ public class Qoobee {
     }
 
     /**
-     * Represents the main function to be run.
-     * @param args The array of sequence to be passed into main argument.
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public static void main(String[] args) {
-        Qoobee qoobee = new Qoobee();
-        qoobee.run();
+    public String getResponse(String input) {
+        return parser.parse(input);
     }
 
 }

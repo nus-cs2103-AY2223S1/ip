@@ -1,0 +1,39 @@
+package qoobee;
+
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+/**
+ * A GUI for Duke using FXML.
+ */
+public class Main extends Application {
+
+    private Qoobee qoobee = new Qoobee();
+    private static Stage stage;
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            Scene scene = new Scene(anchorPane);
+            Main.stage = stage;
+            Main.stage.setScene(scene);
+            Main.stage.setTitle("Qoobee Bot");
+            fxmlLoader.<MainWindow>getController().setQoobee(qoobee);
+            Main.stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void closeStage() {
+        Main.stage.close();
+    }
+
+}

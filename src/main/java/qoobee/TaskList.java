@@ -40,15 +40,16 @@ public class TaskList {
     /**
      * Prints the list of tasks.
      */
-    public void printTasks() {
+    public String printTasks() {
         if (taskListSize() == 0) {
-            System.out.println("You have no tasks dummy!");
+            return "You have no tasks dummy!";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
             for (int i = 0; i < taskListSize(); i++) {
                 Task currentTask = taskList.get(i);
-                System.out.println((i + 1) + "." + currentTask);
+                sb.append((i + 1) + "." + currentTask + "\n");
             }
+            return sb.toString();
         }
     }
 
@@ -57,11 +58,11 @@ public class TaskList {
      * @param task A task to be added in the list.
      * @throws QoobeeException if the user inputs an invalid syntax.
      */
-    public void addTask(Task task) throws QoobeeException {
+    public String addTask(Task task) throws QoobeeException {
         this.taskList.add(task);
-        System.out.println("Got it. I've added this task:\n" + task + "\n"
-                + "Now you have " + taskListSize() + " tasks in the list.");
         storage.save(taskList);
+        return "Got it. I've added this task:\n" + task + "\n"
+                + "Now you have " + taskListSize() + " tasks in the list.";
     }
 
     /**
@@ -69,12 +70,12 @@ public class TaskList {
      * @param index The index of the task identified.
      * @throws QoobeeException if the task does not exist.
      */
-    public void removeTask(int index) throws QoobeeException {
+    public String removeTask(int index) throws QoobeeException {
         try {
             Task task = taskList.remove(index);
-            System.out.println("Noted. I've removed this task:\n" + task + "\n"
-                    + "Now you have " + taskListSize() + " tasks in the list.");
             storage.save(taskList);
+            return "Noted. I've removed this task:\n" + task + "\n"
+                    + "Now you have " + taskListSize() + " tasks in the list.";
         } catch (IndexOutOfBoundsException e) {
             throw new QoobeeException("Please enter a right number!");
         }
@@ -85,10 +86,10 @@ public class TaskList {
      * @param task The task to be unmarked.
      * @throws QoobeeException if the task does not exist.
      */
-    public void unmark(Task task) throws QoobeeException {
+    public String unmark(Task task) throws QoobeeException {
         task.markAsUndone();
-        System.out.println("OK, I've marked this task as not done yet:\n" + task);
         storage.save(taskList);
+        return "OK, I've marked this task as not done yet:\n" + task;
     }
 
     /**
@@ -96,17 +97,17 @@ public class TaskList {
      * @param task The task to be marked.
      * @throws QoobeeException if the tast does not exist.
      */
-    public void mark(Task task) throws QoobeeException {
+    public String mark(Task task) throws QoobeeException {
         task.markAsDone();
-        System.out.println("Nice! I've marked this task as done:\n" + task);
         storage.save(taskList);
+        return "Nice! I've marked this task as done:\n" + task;
     }
 
     /**
      * Finds a task in the list
      * @param description The description of the task
      */
-    public void findTask(String description) {
+    public String findTask(String description) {
         List<Task> foundTasks = new ArrayList<>();
         for (int i = 0; i < taskListSize(); i++) {
             Task curr = taskList.get(i);
@@ -115,13 +116,14 @@ public class TaskList {
             }
         }
         if (foundTasks.size() == 0) {
-            System.out.println("No such task!");
+            return "No such task!";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < foundTasks.size(); i++) {
                 Task currentTask = foundTasks.get(i);
-                System.out.println((i + 1) + "." + currentTask);
+                sb.append(i + 1 + "." + currentTask + "\n");
             }
+            return sb.toString();
         }
     }
 

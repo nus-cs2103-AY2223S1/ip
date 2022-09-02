@@ -22,26 +22,26 @@ public class Parser {
      * Executes a specific action given a user's input.
      * @param input The user's input.
      */
-    public void parse(String input) {
+    public String parse(String input) {
         try {
             if (input.equals("bye")) {
-                System.out.println("Bye. Don't miss me too much!");
                 this.ui.exit();
+                return "Bye. Don't miss me too much!";
             } else if (input.equals("list")) {
-                tasks.printTasks();
+                return tasks.printTasks();
             } else {
                 String[] command = input.split(" ", 2);
                 if (input.startsWith("mark")) {
                     try {
                         Task task = tasks.getTask(Integer.parseInt(command[1]) - 1);
-                        tasks.mark(task);
+                        return tasks.mark(task);
                     } catch (IndexOutOfBoundsException | NumberFormatException | QoobeeException e) {
                         throw new QoobeeException("Please enter a right number!");
                     }
                 } else if (input.startsWith("unmark")) {
                     try {
                         Task task = tasks.getTask(Integer.parseInt(command[1]) - 1);
-                        tasks.unmark(task);
+                        return tasks.unmark(task);
                     } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         throw new QoobeeException("Please enter a right number!");
                     }
@@ -50,7 +50,7 @@ public class Parser {
                         throw new QoobeeException("The description of a todo cannot be empty :^(");
                     }
                     Task todo = new ToDo(command[1]);
-                    tasks.addTask(todo);
+                    return tasks.addTask(todo);
                 } else if (input.startsWith("deadline")) {
                     if (command[1].isBlank()) {
                         throw new QoobeeException("The description of a deadline cannot be empty :^(");
@@ -60,7 +60,7 @@ public class Parser {
                     }
                     String[] curr = command[1].split("/by ", 2);
                     Task deadline = new Deadline(curr[0], curr[1]);
-                    tasks.addTask(deadline);
+                    return tasks.addTask(deadline);
                 } else if (input.startsWith("event")) {
                     if (command[1].isBlank()) {
                         throw new QoobeeException("The description of a event cannot be empty :^(");
@@ -70,23 +70,24 @@ public class Parser {
                     }
                     String[] curr = command[1].split("/at", 2);
                     Task event = new Event(curr[0], curr[1]);
-                    tasks.addTask(event);
+                    return tasks.addTask(event);
                 } else if (input.startsWith("delete")) {
                     try {
                         int index = Integer.parseInt(command[1]) - 1;
-                        tasks.removeTask(index);
+                        return tasks.removeTask(index);
                     } catch (NumberFormatException e) {
                         throw new QoobeeException("Please enter a right number!");
                     }
                 } else if (input.startsWith("find")) {
-                    tasks.findTask(command[1]);
+                    return tasks.findTask(command[1]);
                 } else {
-                    throw new QoobeeException("I'm sorry, but I don't know what that means :^(");
+                    return "I'm sorry, but I don't know what that means :^(";
                 }
             }
         } catch (QoobeeException e) {
             System.out.println(e);
         }
+        return "I'm sorry, but I don't know what that means :^(";
     }
 
 
