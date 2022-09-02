@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String message = "";
 
         if (userInput.split(" ").length == 1) {
@@ -30,8 +30,8 @@ public class MarkCommand extends Command {
             message += "OK, I've marked this task as not done yet:\n";
         }
         message += task.toString() + "\n";
-        ui.printMessage(message);
         storage.saveTaskList(taskList);
+        return message;
     }
 
     @Override

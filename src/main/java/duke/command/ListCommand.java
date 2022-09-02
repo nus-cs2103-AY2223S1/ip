@@ -6,11 +6,11 @@ import duke.Ui;
 
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage, Ui ui) {
         String message = "";
         message += "Here are the tasks in your list:\n";
         message += taskList.printTaskList();
-        ui.printMessage(message);
+        return message;
     }
 
     @Override

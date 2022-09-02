@@ -14,7 +14,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String message = "";
 
         if (userInput.split(" ").length == 1) {
@@ -31,7 +31,7 @@ public class FindCommand extends Command {
                 index += 1;
             }
         }
-        ui.printMessage(message);
+        return message;
     }
 
     @Override

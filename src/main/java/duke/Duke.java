@@ -28,10 +28,12 @@ public class Duke {
         }
     }
 
+
     /**
      * Starts the Duke program and requests for user input.
      * If user types "bye", the program ends.
      */
+    /*
     public void run() {
         ui.printGreetingMessage();
         taskList = new TaskList(storage.loadTaskList());
@@ -50,9 +52,15 @@ public class Duke {
             }
         }
     }
+     */
 
     public String getResponse(String userInput) {
-        return "test";
+        try {
+            Command command = Parser.parse(userInput);
+            return command.execute(taskList, storage, ui);
+        } catch (DukeException exception) {
+            return exception.toString();
+        }
     }
 
     /**
@@ -61,8 +69,10 @@ public class Duke {
      *
      * @param args The command line arguments.
      */
+    /*
     public static void main(String[] args) {
         Duke duke = new Duke("data/duke.txt");
         duke.run();
     }
+     */
 }

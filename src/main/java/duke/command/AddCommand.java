@@ -19,7 +19,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String command;
         String message = "";
         command = userInput.split(" ")[0];
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
         message += "\t" + task.toString() + "\n";
         message += "Now you have " + taskList.getTaskListSize() + " tasks in the list.\n";
 
-        ui.printMessage(message);
+        return message;
     }
 
     @Override
