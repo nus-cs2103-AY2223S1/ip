@@ -33,7 +33,8 @@ public class TaskList {
   public static void justAddedComment() {
     Ui.reply(new String[] {"Successfully added the following task",
         taskList.get(taskList.size() - 1).toString(),
-        String.format("You now have %d tasks in the list.", taskList.size())});
+        String.format("You now have %d tasks in the list.",
+        taskList.size())});
   }
 
   /**
@@ -92,9 +93,11 @@ public class TaskList {
     LocalDateTime deadlineDeadline;
     try {
       deadlineDeadline = LocalDateTime
-          .parse(deadlineDeadlineString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+          .parse(deadlineDeadlineString.toString(),
+          DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
     } catch (DateTimeParseException e) {
-      Ui.reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
+      Ui.reply("Please format your date as"
+          + " \"year/month/date hour/minute/second\" (24 hour format).");
       return;
     }
     taskList.add(new Deadline(deadlineName.toString(), deadlineDeadline));
@@ -138,7 +141,8 @@ public class TaskList {
         eventEndTimeString.append(arguments[i]);
       }
     }
-    if (eventName.length() == 0 || eventStartTimeString.length() == 0 || eventEndTimeString.length() == 0) {
+    if (eventName.length() == 0 || eventStartTimeString.length() == 0 ||
+        eventEndTimeString.length() == 0) {
       Ui.reply(new String[]{"Format the command as follows:",
           "event <event name> /from <event start time> /to <event end time>"});
       return;
@@ -146,11 +150,14 @@ public class TaskList {
     LocalDateTime eventStartTime, eventEndTime;
     try {
       eventStartTime = LocalDateTime
-          .parse(eventStartTimeString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+          .parse(eventStartTimeString.toString(),
+          DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
       eventEndTime = LocalDateTime
-          .parse(eventEndTimeString.toString(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+          .parse(eventEndTimeString.toString(),
+          DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
     } catch (DateTimeParseException e) {
-      Ui.reply("Please format your date as \"year/month/date hour/minute/second\" (24 hour format).");
+      Ui.reply("Please format your date as"
+          + " \"year/month/date hour/minute/second\" (24 hour format).");
       return;
     }
     taskList.add(new Event(eventName.toString(), eventStartTime, eventEndTime));
@@ -176,7 +183,8 @@ public class TaskList {
       Ui.reply("Please enter the item ID you wish to mark");
       return;
     } catch (NumberFormatException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
       return;
     }
     try {
@@ -186,7 +194,8 @@ public class TaskList {
       SaveFile.getFileData().get(i).setNameData("done", "1");
       SaveFile.saveFile();
     } catch (IndexOutOfBoundsException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
     }
   }
 
@@ -208,7 +217,8 @@ public class TaskList {
       Ui.reply("Please enter the item ID you wish to unmark");
       return;
     } catch (NumberFormatException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
       return;
     }
     try {
@@ -218,7 +228,8 @@ public class TaskList {
       SaveFile.getFileData().get(i).setNameData("done", "0");
       SaveFile.saveFile();
     } catch (IndexOutOfBoundsException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
     }
   }
 
@@ -239,7 +250,8 @@ public class TaskList {
       Ui.reply("Please enter the item ID you wish to delete");
       return;
     } catch (NumberFormatException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
       return;
     }
     try {
@@ -247,7 +259,41 @@ public class TaskList {
           taskList.get(i).toString()});
       taskList.remove(i);
     } catch (IndexOutOfBoundsException e) {
-      Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
+      Ui.reply(String.format("Invalid argument! (Please enter an integer"
+          + " between 1 and %d)", taskList.size()));
     }
+  }
+
+  /**
+   * Finds all tasks with the searched phrase and lists them.
+   *
+   * @param arguments The command arguments.
+   */
+  public static void find(String[] arguments) {
+    if (taskList.isEmpty()) {
+      Ui.reply("You have no tasks in your list.");
+      return;
+    }
+    StringBuilder searchPhraseStringBuilder = new StringBuilder();
+    for (int i = 1; i < arguments.length; ++i) {
+      if (i > 1) {
+        searchPhraseStringBuilder.append(' ');
+      }
+      searchPhraseStringBuilder.append(arguments[i]);
+    }
+    String searchPhrase = searchPhraseStringBuilder.toString();
+    ArrayList<String> toReplyArrayList = new ArrayList<>();
+    toReplyArrayList.add("Here are the tasks in your list which matches the"
+        + " search phrase.");
+    for (int i = 0; i < taskList.size(); ++i) {
+      if (taskList.get(i).getName().contains(searchPhrase)) {
+        toReplyArrayList.add(String.format("%d. %s", i + 1, taskList.get(i)));
+      }
+    }
+    String[] toReply = new String[toReplyArrayList.size()];
+    for (int i = 0; i < toReply.length; ++i) {
+      toReply[i] = toReplyArrayList.get(i);
+    }
+    Ui.reply(toReply);
   }
 }
