@@ -8,6 +8,10 @@ import candice.task.TimedTask;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Encapsulates all the relevant info of the command inputted after parsing it.
+ * Commands can be resolved to execute the respective commands inputted.
+ */
 public abstract class Command {
     private final CommandType commandType;
 

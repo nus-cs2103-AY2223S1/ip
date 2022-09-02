@@ -17,7 +17,19 @@ import java.time.format.DateTimeParseException;
  * Parses inputs and returns Action objects that can be resolved or throws Exceptions if the input cannot be parsed.
  */
 public class Parser {
-
+    /**
+     * Parses the name of the task before using the method parseDateAndTime as a helper to return a TimedTaskCommand.
+     * This method also checks for any formatting errors, specifically if /by was used for Deadlines and /at was used
+     * for Events.
+     *
+     * @param taskType The CommandType of the command given, Deadline or Event.
+     * @param taskDescription The description of the task (name of the task, the timed task date and timed task timing).
+     * @return An instance of a TimedTaskCommand encapsulating the command given.
+     * @throws EmptyTimingException If there was no date and time given for a deadline or event task.
+     * @throws InvalidDateException If there was a date inputted that does not follow the format or does not exist.
+     * @throws InvalidFormattingException If there was a command inputted that did not follow the format.
+     * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
+     */
     private static Command.TimedTaskCommand parseTimedTaskCommand(CommandType taskType, String taskDescription)
             throws EmptyTimingException, InvalidDateException, InvalidFormattingException, InvalidTimeException {
         String[] splitTaskAndTimestamp = taskDescription.split(" /", 2);
@@ -43,6 +55,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the date of the command inputted and immediately returns the TimedTaskCommand if no time was given.
+     * If a time was given, the method parseDeadlineTime is used for Deadline commands and the method parseEventTime is
+     * used for Event commands.
+     *
+     * @param taskType The CommandType of the command given, Deadline or Event.
+     * @param taskName The name of the task in the command given.
+     * @param taskDateAndTime The date and time of the command given.
+     * @return An instance of a TimedTaskCommand encapsulating the command given.
+     * @throws InvalidDateException If there was a date inputted that does not follow the format or does not exist.
+     * @throws InvalidFormattingException If there was a command inputted that did not follow the format.
+     * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
+     */
     private static Command.TimedTaskCommand parseDateAndTime(CommandType taskType, String taskName, String taskDateAndTime)
             throws InvalidDateException, InvalidFormattingException, InvalidTimeException {
         String[] splitDateAndTime = taskDateAndTime.split(" ");
@@ -102,6 +127,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the deadline time of the command inputted to return the DeadlineCommand object.
+     *
+     * @param taskName The name of the task in the command given.
+     * @param deadlineDate The deadline date of the command given.
+     * @param deadlineTimeAsString The deadline time of the command given.
+     * @return An instance of a DeadlineCommand encapsulating the command given.
+     * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
+     */
     private static Command.DeadlineCommand parseDeadlineTime(String taskName, LocalDate deadlineDate,
             String deadlineTimeAsString) throws InvalidTimeException {
         if (deadlineTimeAsString.length() == 4) {
@@ -122,6 +156,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the event start and end time of the command inputted to return the EventCommand object.
+     *
+     * @param taskName The name of the task in the command given.
+     * @param eventDate The event date of the command given.
+     * @param eventTimeAsString The event time of the command given.
+     * @return An instance of a EventCommand encapsulating the command given.
+     * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
+     */
     private static Command.EventCommand parseEventTime(String taskName, LocalDate eventDate, String eventTimeAsString)
             throws InvalidTimeException {
         if (eventTimeAsString.length() == 9) {
