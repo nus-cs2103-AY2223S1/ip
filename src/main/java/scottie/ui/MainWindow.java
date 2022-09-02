@@ -1,8 +1,6 @@
 package scottie.ui;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -98,8 +96,12 @@ public class MainWindow extends AnchorPane implements Ui {
      */
     @Override
     public void showOrderedList(Iterable<?> iterable) {
-        this.showMessage(StreamSupport.stream(iterable.spliterator(), false)
-                .map(Object::toString)
-                .collect(Collectors.joining("\n")));
+        int i = 1;
+        StringBuilder sb = new StringBuilder();
+        for (Object obj : iterable) {
+            sb.append(String.format("%d. %s%n", i, obj));
+            i++;
+        }
+        this.showMessage(sb.toString());
     }
 }
