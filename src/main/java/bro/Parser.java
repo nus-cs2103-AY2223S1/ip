@@ -19,6 +19,12 @@ import java.util.List;
 
 public class Parser {
 
+    /**
+     * Returns new Command with what has to be done.
+     * @param str Input of the user.
+     * @return The Command.
+     * @throws BroException If the input has no meaning.
+     */
     public Command parse(String str) throws BroException {
 
         String[] in = str.split(" ");
@@ -47,6 +53,11 @@ public class Parser {
             }
         }
 
+    /**
+     * Checks whether the description has been given for the input tasks.
+     * @param input The input by the user.
+     * @throws BroException If the description has not been provided.
+     */
     public void checkEmptyInput(String input) throws BroException {
         String[] list = new String[]{"todo", "deadline", "event", "mark", "unmark"};
         List<String> checkList = new ArrayList<>(Arrays.asList(list));
@@ -55,6 +66,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks whether the time and details have been given for the task provided by the user.
+     * @param str Input by the user.
+     * @param n Length of the split array of the input by the user.
+     * @throws BroException If the details are invalid.
+     */
     public void checkInput(String str, int n) throws BroException {
         switch (str){
         case "todo":
@@ -67,6 +84,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts the string date into LocalDateTime.
+     * @param by The date and time provided for the deadline task.
+     * @return The LocalDateTime format of the date and time.
+     * @throws BroException If the by is of invalid format.
+     */
     public static LocalDateTime deadlineParser(String by) throws BroException {
         try {
             return LocalDateTime.parse(by.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
@@ -75,6 +98,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts the string date into LocalDateTime.
+     * @param at The date and time provided for the event task.
+     * @return The LocalDateTime format of the date and time.
+     * @throws BroException If the by is of invalid format.
+     */
     public static LocalDateTime eventParser(String at) throws BroException {
         try {
             return LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));

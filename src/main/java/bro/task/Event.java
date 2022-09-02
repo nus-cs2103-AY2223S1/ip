@@ -13,6 +13,12 @@ public class Event extends Task {
     protected boolean isMonthFormat;
     protected Parser parser;
 
+    /**
+     * Constructor of Event class.
+     * @param description The title of the task to be done.
+     * @param at Time of the task to be done.
+     * @throws BroException If the time format is invalid.
+     */
     public Event(String description, String at) throws BroException {
         super(description);
         this.at = at;

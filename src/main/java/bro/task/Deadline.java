@@ -12,6 +12,12 @@ public class Deadline extends Task {
     protected String by;
     private boolean isMonthFormat;
 
+    /**
+     * Constructor of Deadline class.
+     * @param description The title of the task to be done.
+     * @param by Time of the task to be done.
+     * @throws BroException If the time format is invalid.
+     */
     public Deadline(String description, String by) throws BroException {
         super(description);
         this.by = by;

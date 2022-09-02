@@ -8,9 +8,20 @@ import bro.Ui;
 public abstract class Command {
     boolean isExit = false;
 
+    /**
+     * Returns the boolean value of the isExit.
+     * @return The boolean value.
+     */
     public boolean isExit(){
         return this.isExit;
     }
 
+    /**
+     * Executes the command according to the input.
+     * @param tasklist List of tasks of the user.
+     * @param ui To display messages to the user.
+     * @param storage Storage of the file.
+     * @throws BroException If the input is invalid.
+     */
     public abstract void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException;
 }

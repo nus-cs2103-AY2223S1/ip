@@ -9,6 +9,10 @@ public class Bro {
     private Ui ui;
     private String filePath;
 
+    /**
+     * Constructor for the class Bro that initialises global variables.
+     * @param filePath String of the locaton of the file.
+     */
     public Bro(String filePath) {
         this.filePath = filePath;
         ui = new Ui();
@@ -21,6 +25,9 @@ public class Bro {
         }
     }
 
+    /**
+     * Parses each input and executes the command.
+     */
     public void run() {
         ui.welcome();
         boolean isExit = false;
