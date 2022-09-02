@@ -3,7 +3,6 @@ package duke.tasklist;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import duke.task.Task;
 import duke.task.ToDo;
