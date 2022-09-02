@@ -1,1 +1,3 @@
 |T|| | me
+|T||X| read book
+|E|| | party (at: 5pm)
