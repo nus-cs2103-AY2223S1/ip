@@ -1,7 +1,6 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
@@ -24,7 +23,7 @@ public class AddTaskCommand extends Command {
      * Runs the command to try to add a new task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         try {
             Task newTask = Task.of(this.taskInput, false);
             tasks.add(newTask);

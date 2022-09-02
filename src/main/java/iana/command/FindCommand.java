@@ -1,6 +1,5 @@
 package iana.command;
 
-import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
@@ -22,7 +21,7 @@ public class FindCommand extends Command {
      * Gets task list containing tasks containing specified keyword.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         TaskList list = tasks.findKeyword(this.keyword);
         ui.list(list);
     }

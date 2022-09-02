@@ -1,18 +1,20 @@
 package iana.tasks;
 
+import java.io.Serializable;
+
 import iana.utils.DateTime;
 
 /**
  * Deadline task.
  */
-public class Deadline extends Task {
+public class Deadline extends Task implements Serializable {
     protected String endTime;
 
     /**
      * Constructor for Deadline class.
      * @param task string of task description.
      * @param endTime deadline time.
-     * @param isCompleted true if task has been completed.
+     * @param isCompleted true if task has been completed
      */
     public Deadline(String task, String endTime, boolean isCompleted) {
         super(task, "deadline", isCompleted);

@@ -14,6 +14,7 @@ public class DateTime {
     
     /**
      * Parse date time string.
+     * 
      * @param timeInput date time input to be parsed.
      * @return string representation of date time in standardized format.
      */
@@ -27,6 +28,7 @@ public class DateTime {
 
     /**
      * Parse date time string.
+     * 
      * @param timeInput date time input to be parsed.
      * @return localdatetime representation of date time in standardized format.
      * @throws IanaException

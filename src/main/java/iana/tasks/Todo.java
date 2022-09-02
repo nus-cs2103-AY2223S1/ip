@@ -1,12 +1,15 @@
 package iana.tasks;
 
+import java.io.Serializable;
+
 /**
  * Todo task.
  */
-public class Todo extends Task {
+public class Todo extends Task implements Serializable {
 
     /**
      * Constructor for Todo class.
+     * 
      * @param task full user input for todo description.
      * @param isCompleted true if todo is completed.
      */

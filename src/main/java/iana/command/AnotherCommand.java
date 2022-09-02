@@ -1,6 +1,5 @@
 package iana.command;
 
-import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
@@ -13,7 +12,7 @@ public class AnotherCommand extends Command {
      * Ask user to input a new command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         ui.askNewCommand();
     }
 

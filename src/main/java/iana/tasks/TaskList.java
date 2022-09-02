@@ -2,12 +2,14 @@ package iana.tasks;
 
 import iana.exception.IanaException;
 import iana.tasks.TaskList;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represents the list that contains and manage all the current tasks.
  */
-public class TaskList {
+public class TaskList implements Serializable {
     private ArrayList<Task> taskList;
 
     /**
@@ -19,6 +21,7 @@ public class TaskList {
 
     /**
      * Constructor for a task list given an ArrayList of Task.
+     * 
      * @param taskList ArrayList of task that contains current tasks.
      */
     public TaskList(ArrayList<Task> taskList) {
@@ -27,6 +30,7 @@ public class TaskList {
 
     /**
      * Get the number of tasks in the task list.
+     * 
      * @return number of tasks.
      */
     public int size() {
@@ -35,6 +39,7 @@ public class TaskList {
 
     /**
      * Add a new task into the task list.
+     * 
      * @param newTask new task to be added.
      * @throws IanaException if task is in the incorrect format.
      */
@@ -44,6 +49,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the task list.
+     * 
      * @param taskNumber id of task to be deleted.
      * @return task that is deleted.
      * @throws IanaException if task number does not exist in current task list.
@@ -58,6 +64,7 @@ public class TaskList {
 
     /**
      * Marks the task as completed.
+     * 
      * @param taskNumber id of task to be marked.
      */
     public void mark(int taskNumber) {
@@ -66,6 +73,7 @@ public class TaskList {
 
     /**
      * Marks the task as incomplete.
+     * 
      * @param taskNumber id of task to be unmarked.
      */
     public void unmark(int taskNumber) {
@@ -74,6 +82,7 @@ public class TaskList {
 
     /**
      * Find tasks with specified keyword.
+     * 
      * @param keyword keyword of task.
      * @return a list of all tasks with the keyword.
      */
@@ -93,6 +102,7 @@ public class TaskList {
 
     /**
      * Return string representation of task.
+     * 
      * @param taskNumber id of task to be printed.
      * @return string representation of task.
      */
@@ -102,6 +112,7 @@ public class TaskList {
 
     /**
      * Return string representation of task list to be stored in storage.
+     * 
      * @return string representation of task list.
      */
     public String toFileData() {

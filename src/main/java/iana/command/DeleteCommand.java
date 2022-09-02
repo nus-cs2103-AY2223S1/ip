@@ -1,7 +1,6 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
@@ -24,7 +23,7 @@ public class DeleteCommand extends Command {
      * Runs the command to delete task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             Task deletedTask = tasks.delete(taskNumber);

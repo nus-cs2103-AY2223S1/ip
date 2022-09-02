@@ -14,9 +14,9 @@ public class ExitCommand extends Command {
      * Runs the command to exit the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         try {
-            storage.write(tasks);
+            Storage.store(tasks);
         } catch (IanaException e) {
             ui.echo(e.getMessage());
         }

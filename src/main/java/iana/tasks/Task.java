@@ -2,11 +2,12 @@ package iana.tasks;
 
 import iana.exception.IanaException;
 import iana.tasks.Task;
+import java.io.Serializable;
 
 /**
  * Task class to represent the tasks to be added into task list.
  */
-public class Task {
+public class Task implements Serializable {
     protected final String task;
     protected final String taskType;
     private boolean isCompleted;

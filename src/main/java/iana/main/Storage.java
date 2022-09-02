@@ -1,90 +1,83 @@
 package iana.main;
 
-import java.util.ArrayList;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import iana.exception.IanaException;
-import iana.tasks.Task;
 import iana.tasks.TaskList;
 
 /**
  * Stores tasks and their relevant information.
  */
 public class Storage {
-    private String filePath;
-    
-    /**
-     * Constructor for Storage class.
-     * @param path file path where information is stored.
-     */
-    public Storage(String path) {
-        this.filePath = path;
+    private static final String FILE_STRING = "data/DataStorage.txt";
+
+    public static void initialise() throws IanaException {
+        try {
+            Path filePath = Paths.get(Storage.FILE_STRING);
+            if (!Files.exists(filePath)) {
+                File file = new File(Storage.FILE_STRING);
+                file.getParentFile().mkdir();
+                file.createNewFile();
+                TaskList tasks = new TaskList();
+                Storage.store(tasks);
+            }
+        } catch (IOException e) {
+            throw new IanaException("IO Exception from Storage::initialise");
+        }
     }
 
     /**
      * Reads tasks' data from storage file and returns the task list.
+     * 
      * @return task list of stored data.
      * @throws IanaException if file or folder does not exist or file is corrupted.
      */
-    public TaskList load() throws IanaException {
-        TaskList taskList = new TaskList(new ArrayList<Task>());
+    public static TaskList load() throws IanaException {
+        TaskList taskList = new TaskList();
 
-        try{
-            File file = new File(this.filePath);
-            Scanner sc = new Scanner(file);
-
-            while (sc.hasNextLine()) {
-                String input = sc.nextLine();
-                String[] taskArray = input.split(" \\| ", 4);
-
-                String taskClass = taskArray[0];
-                boolean isCompleted = Integer.parseInt(taskArray[1]) == 1; // cannot just check int val as string
-                String taskDescription =  taskArray[2];
-
-                switch(taskClass) {
-                    case "T":
-                    String taskString = String.format("todo %s", taskDescription);
-                    taskList.add(Task.of(taskString, isCompleted));
-                    break;
-
-                    case "E":
-                    String taskTime = taskArray[3];
-                    taskString = String.format("event %s /at %s", taskDescription, taskTime);
-                    taskList.add(Task.of(taskString, isCompleted));
-                    break;
-
-                    case "D":
-                    taskTime = taskArray[3];
-                    taskString = String.format("deadline %s /by %s", taskDescription, taskTime);
-                    taskList.add(Task.of(taskString, isCompleted));
-                    break;
-
-                    default:
-                    throw new IanaException("File is corrupted");
-                }
+        try {
+            FileInputStream fileIn = new FileInputStream(Storage.FILE_STRING);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            taskList = (TaskList) in.readObject();
+            in.close();
+            fileIn.close();
+            if (taskList == null) {
+                return new TaskList();
             }
-            sc.close();
+            return taskList;
         } catch (FileNotFoundException e) {
-            throw new IanaException("File DataStorage.txt not found in [project_root]/src/main/data. Cannot read data!");
+            throw new IanaException("File not found!xx");
+        } catch (IOException e) {
+            throw new IanaException("IO Exception from Storage::load");
+        } catch (ClassNotFoundException e) {
+            throw new IanaException("Class not found");
         }
-        return taskList;
     } 
 
     /**
      * Saves task list data into storage file.
+     * 
      * @param taskList task list of tasks to be stored.
      * @throws IanaException if file or folder does not exist.
      */
-    public void write(TaskList taskList) throws IanaException {
+    public static void store(TaskList taskList) throws IanaException {
         try {
-            FileWriter fw = new FileWriter(this.filePath);
-            fw.write(taskList.toFileData());
-            fw.close();
+            FileOutputStream fileOut = new FileOutputStream(Storage.FILE_STRING);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(taskList);
+            objOut.close();
+            fileOut.close();
         } catch (IOException e) {
-            throw new IanaException("File DataStorage.txt not found in [project_root]/src/main/data. Cannot write data!");
+            throw new IanaException("IO Exception from storing tasks!");
         }
     }
 }

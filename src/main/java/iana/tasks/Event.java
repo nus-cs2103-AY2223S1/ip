@@ -1,11 +1,13 @@
 package iana.tasks;
 
+import java.io.Serializable;
+
 import iana.utils.DateTime;
 
 /**
  * Event task.
  */
-public class Event extends Task {
+public class Event extends Task implements Serializable {
     protected String eventTime;
     protected String event;
 

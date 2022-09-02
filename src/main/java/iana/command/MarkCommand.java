@@ -1,6 +1,5 @@
 package iana.command;
 
-import iana.main.Storage;
 import iana.main.Ui;
 import iana.tasks.TaskList;
 
@@ -22,7 +21,7 @@ public class MarkCommand extends Command {
      * Runs command to mark task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui) {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             tasks.mark(taskNumber);
