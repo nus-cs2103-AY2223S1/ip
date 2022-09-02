@@ -29,7 +29,7 @@ public class Parser {
             ui.printLine();
             this.toExit = true;
             break;
-        case "lift":
+        case "list":
             ui.printLine();
             ui.displayTaskList(tasks, "here are your tasks!");
             ui.printLine();
