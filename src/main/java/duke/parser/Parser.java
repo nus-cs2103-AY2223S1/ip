@@ -40,41 +40,32 @@ public class Parser {
      */
     public static String parseData(String input, TaskList taskList) {
 
-        //TODO: Update with a switch statement for parsing data
-
-        //Case 0: bye
-        if (input.startsWith("bye")) {
+        String firstLetter = input.split(" ", 0)[0];
+        switch (firstLetter) {
+        case "bye":
             return Ui.displayMessage(ENDING_MESSAGE);
 
-        //Case 1: Mark
-        } else if (input.startsWith("mark")) {
-            //split by space, then the second value
+        case "mark":
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
             return taskList.markTask(taskIndex);
 
-        //Case 2: Unmark
-        } else if (input.startsWith("unmark")) {
-            int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
-            return taskList.unmarkTask(taskIndex);
+        case "unmark":
+            int unmarkIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+            return taskList.unmarkTask(unmarkIndex);
 
-        //Case 3: List
-        } else if (input.equals("list")) {
+        case "list":
             return taskList.list();
 
-        //Case 4: Delete
-        } else if (input.startsWith("delete")) {
-            int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+        case "delete":
+            int deleteIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+            return taskList.deleteTask(deleteIndex);
 
-            return taskList.deleteTask(taskIndex);
-        //Case 5: Find all inputs with keyword
-
-        } else if (input.startsWith("find")) {
+        case "find":
             String[] tempArr = input.split(" ", 2); //split into 2
             String keyword = tempArr[1]; //the remainder of the input minus whitespace
             return taskList.findTask(keyword);
 
-        //Case 6: extension method: viewSchedule for a day
-        } else if (input.startsWith("viewSchedule")) {
+        case "viewSchedule":
             String[] inputTempArr = input.split(" ", 2);
             String date = inputTempArr[1];
             if (!(validateDate(date)).equals("Success")) { //an error occurred somewhere
@@ -82,9 +73,7 @@ public class Parser {
             }
             return taskList.viewSchedule(date);
 
-
-        //Case 7: another extension method: Link a help menu!
-        } else if (input.startsWith("help")) {
+        case "help":
             try {
                 Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
 
@@ -95,8 +84,8 @@ public class Parser {
             }
             return "Here's your help page!";
 
-        //Case 7: Add a valid task
-        } else {
+        //formulation of task
+        default:
 
             try {
                 validateTask(input);
@@ -108,8 +97,8 @@ public class Parser {
             } catch (EmptyTaskException ete) {
                 String message = "";
                 message += Ui.displayException(ete);
-                String[] tempArr = input.split(" ", 0);
-                if (tempArr[0].equals("todo")) {
+                String[] taskArr = input.split(" ", 0);
+                if (taskArr[0].equals("todo")) {
                     return message + "\n" +
                             Ui.displayMessage("todo requires at least a task description");
                 } else {
