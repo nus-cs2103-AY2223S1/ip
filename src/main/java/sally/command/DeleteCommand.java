@@ -1,3 +1,10 @@
+package sally.command;
+
+import sally.exception.SallyException;
+import sally.storage.Storage;
+import sally.task.TaskList;
+import sally.ui.Ui;
+
 public class DeleteCommand extends Command {
     private final int index;
 

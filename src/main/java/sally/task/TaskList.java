@@ -1,3 +1,5 @@
+package sally.task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -35,7 +37,7 @@ public class TaskList {
 //        for (int i = 0; i < tasks.size(); i++) {
 //            printTask = printTask + tasks.get(i).toString();
 //        }
-//        System.out.println("local tasks in TaskList: " + printTask);
+//        System.out.println("local tasks in sally.task.TaskList: " + printTask);
 //        System.out.println("task number: " + tasks.size());
     }
 

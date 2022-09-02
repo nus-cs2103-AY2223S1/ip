@@ -1,3 +1,7 @@
+package sally.task;
+
+import sally.task.Task;
+
 public class Event extends Task {
     String moreInfo;
     public Event(String description, String moreInfo, boolean saveTask) {

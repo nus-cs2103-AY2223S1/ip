@@ -1,9 +1,14 @@
-import javax.swing.*;
+package sally.storage;
+
+import sally.exception.SallyException;
+import sally.task.*;
+import sally.storage.Storage;
+import sally.ui.Ui;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -39,32 +44,29 @@ public class Storage {
                 String commands = sc.nextLine(); //scans the next input of file for command
                 String[] arrOfCommands = commands.split("\\|");
 
-                //Variables to create new Task
+                //Variables to create new sally.task.Task
                 String taskTypeString = arrOfCommands[0].trim();
                 String isDoneString = arrOfCommands[1].trim();
                 String taskName = arrOfCommands[2].trim();
-                String moreInfo = ""; //by for Deadline, at for Event
+                String moreInfo = ""; //by for sally.task.Deadline, at for sally.task.Event
 
                 if (taskTypeString.equals("E") || taskTypeString.equals("D")) {
                     moreInfo = moreInfo + arrOfCommands[3].trim();
                 }
 
-                //Convert String to each variable type
-                Task.Type taskType = toTaskType(taskTypeString);
+                if (taskTypeString.equals("T")) {
+                    Task todo = new ToDo(taskName, false);
+                    tasks.addTask(todo);
+                } else if (taskTypeString.equals("D")) {
+                    Task deadline = new Deadline(taskName, moreInfo, false);
+                    tasks.addTask(deadline);
+                } else if (taskTypeString.equals("E")) {
+                    Task event = new Event(taskName, moreInfo, false);
+                    tasks.addTask(event);
+                }
+
                 boolean isDone = toIsDone(isDoneString);
 
-                // Update information accordingly
-                switch (taskType) {
-                    case TODO:
-                        Task todo = new ToDo(taskName, false);
-                        tasks.addTask(todo);
-                    case DEADLINE:
-                        Task deadline = new Deadline(taskName, moreInfo, false);
-                        tasks.addTask(deadline);
-                    case EVENT:
-                        Task event = new Event(taskName, moreInfo, false);
-                        tasks.addTask(event);
-                }
                 int maxLength = tasks.getNumOfTasks();
                 Task task = tasks.getTask(maxLength - 1);
 
@@ -77,24 +79,6 @@ public class Storage {
         } catch (IOException e) {
             throw new SallyException("File Not Found. Check your file path input!");
         }
-    }
-
-    // Complementary method for readsFile
-    public static Task.Type toTaskType(String s) {
-        try {
-            if (s.contains("T")) {
-                return Task.Type.TODO;
-            } else if (s.contains("D")) {
-                return Task.Type.DEADLINE;
-            } else if (s.contains("E")) {
-                return Task.Type.EVENT;
-            } else {
-                throw new SallyException.SallyInvalidInputException();
-            }
-        } catch (SallyException e) {
-            System.out.println(e);
-        }
-        return Task.Type.TODO;
     }
 
     // Complementary method for readsFile
@@ -124,21 +108,24 @@ public class Storage {
             for (int i = 0; i < numOfTasks; i++) {
                 Task task = tasks.getTask(i);
 
-                int indexDone = task.isDone ? 1 : 0;
-                description = task.description;
+                int indexDone = task.getDoneStatus() ? 1 : 0;
+                description = task.getDescription();
                 moreInfo = task.getMoreInfo();
 
-                System.out.println("taskType = " + task.taskType);
-                switch (task.taskType) {
-                    case TODO:
+                System.out.println("taskType = " + task.getTaskType());
+
+                String type = task.getTaskType();
+
+                switch (type) {
+                    case "TODO":
                         typeSymbol = "T";
                         newFile = newFile + (typeSymbol + separator + indexDone + separator + description + "\n");
                         break;
-                    case DEADLINE:
+                    case "DEADLINE":
                         typeSymbol = "D";
                         newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
                         break;
-                    case EVENT:
+                    case "EVENT":
                         typeSymbol = "E";
                         newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
                         break;

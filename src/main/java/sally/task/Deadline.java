@@ -1,3 +1,7 @@
+package sally.task;
+
+import sally.task.Task;
+
 public class Deadline extends Task {
     protected String moreInfo;
 

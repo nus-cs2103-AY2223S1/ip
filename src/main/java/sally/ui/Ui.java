@@ -1,3 +1,8 @@
+package sally.ui;
+
+import sally.task.TaskList;
+
+
 import java.util.Scanner;
 
 public class Ui {
@@ -32,7 +37,7 @@ public class Ui {
     }
 
     public void showList(TaskList tasks) {
-        System.out.println("enters showList in Ui");
+        System.out.println("enters showList in sally.ui.Ui");
         System.out.println("numoftasks: " + tasks.getNumOfTasks());
         if (tasks.getNumOfTasks() == 0) {
             printWithBorder("You don't have any list right now");

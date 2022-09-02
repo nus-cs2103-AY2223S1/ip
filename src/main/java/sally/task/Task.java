@@ -1,4 +1,7 @@
-import java.io.IOException;
+package sally.task;
+
+import sally.exception.SallyException;
+import sally.storage.Storage;
 
 public class Task {
     protected String description;
@@ -18,7 +21,7 @@ public class Task {
         this.saveTask = saveTask;
     }
 
-    //Event and Deadline
+    //sally.task.Event and sally.task.Deadline
     public Task(String description, String moreInfo, boolean saveTask) {
         this.description = description;
         this.moreInfo = moreInfo;
@@ -39,6 +42,22 @@ public class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public boolean getDoneStatus() {
+        return this.isDone;
+    }
+
+    public String getTaskType() {
+        return taskType.toString();
+    }
+
+    public void setTaskType(Type taskType) {
+        this.taskType = taskType;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

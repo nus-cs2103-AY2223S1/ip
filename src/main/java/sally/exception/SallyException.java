@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package sally.exception;
 
 public class SallyException extends Exception {
     public SallyException(String message) {
@@ -33,14 +33,14 @@ public class SallyException extends Exception {
     public static class SallyNoDeadlineException extends SallyException {
         @Override
         public String toString() {
-            return BORDER + "Oops! Deadline has to be followed by '/by' and deadline time\n" + BORDER;
+            return BORDER + "Oops! sally.task.Deadline has to be followed by '/by' and deadline time\n" + BORDER;
         }
     }
 
     public static class SallyNoPlaceException extends SallyException {
         @Override
         public String toString() {
-            return BORDER + "Oops! Event has to be followed by '/at' and event place\n" + BORDER;
+            return BORDER + "Oops! sally.task.Event has to be followed by '/at' and event place\n" + BORDER;
         }
     }
 }

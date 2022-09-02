@@ -1,3 +1,11 @@
+package sally.command;
+
+import sally.exception.SallyException;
+import sally.storage.Storage;
+import sally.task.Task;
+import sally.task.TaskList;
+import sally.ui.Ui;
+
 public class MarkCommand extends Command {
     private final int index;
 
@@ -9,7 +17,7 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.getTask(index);
         String taskInString = task.toString();
-        if (!task.isDone) {
+        if (!task.getDoneStatus()) {
             task.markAsDone();
             String markTask = task.toString();
             ui.showMarked(markTask);
