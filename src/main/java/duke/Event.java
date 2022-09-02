@@ -23,6 +23,7 @@ public class Event extends Task {
     public Event(String description, String eventTime) {
         super(description);
         this.eventTime = eventTime;
+        assert this instanceof Task : "Event should be a task.";
     }
 
     /**

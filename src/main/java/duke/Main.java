@@ -30,6 +30,7 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert duke.getIsRunning() : "Duke should be running.";
     }
 }
 //@@author

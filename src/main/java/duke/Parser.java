@@ -146,6 +146,7 @@ public class Parser {
      * @return Associated message from Duke.
      */
     public String parse(Duke d, String input, boolean isLoading) {
+        assert d.getIsRunning() : "Duke should be running.";
         if (input.equals(this.BYE)) {
             return d.stopBot();
         } else if (input.equals(this.LIST)) {
