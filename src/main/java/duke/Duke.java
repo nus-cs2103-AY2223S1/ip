@@ -16,7 +16,7 @@ public class Duke {
     /**
      * Creates a duke chatbot which persists tasks to the file named fileName.
      *
-     * @param fileName      Name of the file to store tasks in.
+     * @param fileName Name of the file to store tasks in.
      * @param messageSender the consumer which sends a message to the ui.
      */
     public Duke(String fileName, Consumer<Message> messageSender) throws DukeException {
@@ -46,7 +46,7 @@ public class Duke {
             Command c = Parser.parse(userInput);
             messageSender.accept(c.execute(tasks));
         } catch (DukeException e) {
-            messageSender.accept(new Message(e.getMessage(), false, Message.User.DUKE));
+            messageSender.accept(new Message(e.getMessage(), false, Message.User.DUKE, Message.Type.ERROR));
         }
     }
 }

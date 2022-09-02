@@ -3,16 +3,22 @@ package duke.ui;
 import java.io.IOException;
 import java.util.Collections;
 
+import duke.Message;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 /**
  * An example of a custom control using FXML.
@@ -20,6 +26,11 @@ import javafx.scene.layout.HBox;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final Color COLOR_ERROR = Color.rgb(255, 40, 40);
+    private static final Color COLOR_USER = Color.ALICEBLUE;
+    private static final Color COLOR_BOT = Color.GOLDENROD;
+    @FXML
+    private DialogBox dialogBox;
     @FXML
     private Label dialog;
     @FXML
@@ -39,6 +50,11 @@ public class DialogBox extends HBox {
         displayPicture.setImage(img);
     }
 
+    private DialogBox setBackgroundColor(Color color) {
+        dialogBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        return dialogBox;
+    }
+
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
@@ -50,12 +66,14 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img).setBackgroundColor(COLOR_USER);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getDukeDialog(String text, Message.Type messageType, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        Color color = messageType == Message.Type.ERROR ? COLOR_ERROR : COLOR_BOT;
+        db.setBackgroundColor(color);
         return db;
     }
 }

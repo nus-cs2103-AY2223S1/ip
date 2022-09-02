@@ -63,6 +63,6 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 message.user == Message.User.USER
                         ? DialogBox.getUserDialog(message.message, userImage)
-                        : DialogBox.getDukeDialog(message.message, dukeImage));
+                        : DialogBox.getDukeDialog(message.message, message.messageType, dukeImage));
     }
 }
