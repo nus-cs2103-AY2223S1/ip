@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
 
     private LocalDate time;
-    private final char type = 'E';
+    private static final char TYPE = 'E';
 
     /** Constructor for an Event object */
     public Event(String taskname, LocalDate time) {
@@ -27,7 +27,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
-        return String.format("[%c] %s (at: %s)", this.type, super.toString(), this.time.format(formatter));
+        return String.format("[%c] %s (at: %s)", TYPE, super.toString(), this.time.format(formatter));
     }
 
     /**
@@ -38,6 +38,6 @@ public class Event extends Task {
     @Override
     public String toSavedString() { //internal representation in save file
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-d");
-        return "" + this.type + "#" + super.toSavedString() + "#" + this.time.format(formatter);
+        return "" + TYPE + "#" + super.toSavedString() + "#" + this.time.format(formatter);
     }
 }
