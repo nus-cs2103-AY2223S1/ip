@@ -21,7 +21,7 @@ import duke.task.ToDo;
  * Storage class that handles the storage and retrieval of tasks.
  */
 public class Storage {
-    private final String directoryPath;
+    private final String tasksFolderPath;
     private String fileName;
 
     /**
@@ -31,28 +31,23 @@ public class Storage {
      * @throws DukeException Exception thrown if the file cannot be found.
      */
     public Storage(String fileName) throws DukeException {
-        String directoryPath = null;
+        String tasksFolderPath = null;
         try {
-            directoryPath = Path.of(this.getClass()
+            String classPath = Path.of(this.getClass()
                     .getProtectionDomain()
                     .getCodeSource()
                     .getLocation().toURI()).toString();
-            directoryPath = directoryPath.substring(0, directoryPath.lastIndexOf(File.separator));
-            directoryPath = URLDecoder.decode(directoryPath, StandardCharsets.UTF_8)
+            String classDirectoryPath = classPath.substring(0, classPath.lastIndexOf(File.separator));
+            tasksFolderPath = URLDecoder.decode(classDirectoryPath, StandardCharsets.UTF_8)
                     .concat(File.separator + "data");
-            File directory = new File(directoryPath);
-            if (!directory.exists()) {
-                if (!directory.mkdir()) {
-                    directoryPath = null;
-                }
+            File tasksFolder = new File(tasksFolderPath);
+            if (!tasksFolder.exists() && !tasksFolder.mkdir()) {
+                throw new DukeException("Unable to save tasks to disk.");
             }
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        if (directoryPath == null) {
-            throw new DukeException("Unable to save tasks to disk.");
-        }
-        this.directoryPath = directoryPath;
+        this.tasksFolderPath = tasksFolderPath;
         this.fileName = fileName;
     }
 
@@ -71,7 +66,7 @@ public class Storage {
         this.fileName = fileName;
         ArrayList<Task> tasks = new ArrayList<>();
 
-        File file = new File(directoryPath.concat(File.separator + fileName));
+        File file = new File(tasksFolderPath.concat(File.separator + fileName));
         if (!file.exists()) {
             return tasks;
         }
@@ -86,10 +81,10 @@ public class Storage {
                 case DEADLINE:
                     try {
                         tasks.add(Deadline.decode(entries[2], isCompleted));
+                        break;
                     } catch (DukeException e) {
                         break;
                     }
-                    break;
                 case EVENT:
                     tasks.add(Event.decode(entries[2], isCompleted));
                     break;
@@ -109,7 +104,7 @@ public class Storage {
     }
 
     private void writeToFile(String fileName, String content) throws DukeException {
-        String filePath = directoryPath.concat(File.separator + fileName);
+        String filePath = tasksFolderPath.concat(File.separator + fileName);
         File file = new File(filePath);
         try {
             FileWriter writer = new FileWriter(file);

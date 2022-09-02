@@ -23,7 +23,10 @@ public class Duke {
         assert fileName != null : "fileName should not be null";
         assert messageSender != null : "messageSender should not be null";
         this.messageSender = messageSender;
-        messageSender.accept(new Message("Hello! I'm Duke\nWhat do you need to do?", false, Message.User.DUKE));
+        messageSender.accept(new Message("Hello! I'm Duke\nWhat do you need to do?",
+                false,
+                Message.User.DUKE));
+
         Storage storage;
         try {
             storage = new Storage(fileName);
