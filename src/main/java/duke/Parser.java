@@ -52,34 +52,34 @@ public class Parser {
     public static Command parse(String inputString) throws DukeException {
         final Matcher matcher = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)").matcher(inputString.trim());
         try {
-            if (matcher.matches()) {
-                switch (Commands.getCommand(matcher.group("commandWord"))) {
-                case BYE:
-                    return new ExitCommand();
-                case FIND:
-                    return processFind(matcher.group("arguments").strip());
-                case LIST:
-                    return new ListCommand();
-                case TODO:
-                    return processToDo(matcher.group("arguments").strip());
-                case EVENT:
-                    return processEvent(matcher.group("arguments").strip());
-                case DEADLINE:
-                    return processDeadline(matcher.group("arguments").strip());
-                case MARK:
-                    return processMark(matcher.group("arguments").strip(), true);
-                case UNMARK:
-                    return processMark(matcher.group("arguments").strip(), false);
-                case DELETE:
-                    return processDelete(matcher.group("arguments").strip());
-                default:
-                    return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
-                }
+            if (!matcher.matches()) {
+                throw new IllegalArgumentException();
+            }
+            switch (Commands.getCommand(matcher.group("commandWord"))) {
+            case BYE:
+                return new ExitCommand();
+            case FIND:
+                return processFind(matcher.group("arguments").strip());
+            case LIST:
+                return new ListCommand();
+            case TODO:
+                return processToDo(matcher.group("arguments").strip());
+            case EVENT:
+                return processEvent(matcher.group("arguments").strip());
+            case DEADLINE:
+                return processDeadline(matcher.group("arguments").strip());
+            case MARK:
+                return processMark(matcher.group("arguments").strip(), true);
+            case UNMARK:
+                return processMark(matcher.group("arguments").strip(), false);
+            case DELETE:
+                return processDelete(matcher.group("arguments").strip());
+            default:
+                throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
         }
-        return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
     }
 
     private static Command processFind(String inputString) {
@@ -139,11 +139,11 @@ public class Parser {
     }
 
     private static Command processDelete(String inputString) {
-        final Matcher matcher = TASK_FORMAT.matcher(inputString.strip());
-        if (!matcher.matches()) {
-            return new InvalidCommand("Failed to delete task %s", inputString);
-        }
         try {
+            final Matcher matcher = TASK_FORMAT.matcher(inputString.strip());
+            if (!matcher.matches()) {
+                throw new NumberFormatException();
+            }
             int taskNumber = Integer.parseInt(matcher.group("taskNumber").strip());
             return new DeleteCommand(taskNumber);
         } catch (NumberFormatException e) {

@@ -21,7 +21,10 @@ public class Duke {
      */
     public Duke(String fileName, Consumer<Message> messageSender) throws DukeException {
         this.messageSender = messageSender;
-        messageSender.accept(new Message("Hello! I'm Duke\nWhat do you need to do?", false, Message.User.DUKE));
+        messageSender.accept(new Message("Hello! I'm Duke\nWhat do you need to do?",
+                false,
+                Message.User.DUKE));
+
         Storage storage;
         try {
             storage = new Storage(fileName);
