@@ -16,7 +16,7 @@ public class TaskList {
 
     public void add(Task task) {
         taskList.add(task);
-        printOnAdd(task);
+        // printOnAdd(task);
     }
 
     public void addFromStorage(Task task) {
@@ -29,8 +29,9 @@ public class TaskList {
         System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
     }
 
-    public void remove(int i) {
-        printOnDelete(taskList.remove(i));
+    public Task delete(int i) {
+        Task toDelete = taskList.remove(i);
+        return toDelete;
     }
 
     public void printOnDelete(Task task) {
@@ -38,23 +39,25 @@ public class TaskList {
         System.out.println(" " + task.toString());
         System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
     }
-    public void mark(int index) {
-        taskList.get(index).markAsDone();
+    public Task mark(int index) {
+        Task toMark = taskList.get(index - 1);
+        toMark.markAsDone();
+        return toMark;
     }
 
-    public void unmark(int index) {
-        taskList.get(index).markAsUndone();
+    public Task unmark(int index) {
+        Task toUnmark = taskList.get(index - 1);
+        toUnmark.markAsUndone();
+        return toUnmark;
     }
-
-    public void printList() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i + 1) + "." + taskList.get(i).toString());
-        }
-    }
-
 
     public Task get(int i) {
         return taskList.get(i);
+    }
+
+    public void print() {
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + "." + taskList.get(i).toString());
+        }
     }
 }

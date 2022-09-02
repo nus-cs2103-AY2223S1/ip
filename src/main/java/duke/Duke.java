@@ -11,10 +11,10 @@ public class Duke {
     private static TaskList taskList = new TaskList();
     private static int index = 0;
     private static Storage storage = new Storage();
+    private static UI ui = new UI();
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello! I'm duke.Duke");
-        System.out.println("What can I do for you?");
+        ui.start();
 
         storage.read(taskList);
         while (sc.hasNext()) {
@@ -24,21 +24,19 @@ public class Duke {
             Task newTask;
             try {
                 if (command.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
+                    ui.bye();
                     storage.write(taskList);
                     break;
                 } else if (command.equals("list")) {
-                    if (taskList.size() == 0) {
-                        System.out.println("There are currently no tasks in the list.");
-                    } else {
-                        taskList.printList();
-                    }
+                    ui.printTaskList(taskList);
                 } else if (command.equals("unmark")) {
                     int idx = Integer.parseInt(breakitdown[1]);
-                    taskList.unmark(idx);
+                    Task toUnmark = taskList.unmark(idx);
+                    ui.printOnUnmark(toUnmark);
                 } else if (command.equals("mark")) {
                     int idx = Integer.parseInt(breakitdown[1]);
-                    taskList.mark(idx);
+                    Task toMark = taskList.mark(idx);
+                    ui.printOnMark(toMark);
                 } else if (command.equals("todo")) {
                     if (breakitdown.length == 1) {
                         throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -46,6 +44,7 @@ public class Duke {
                     String taskName = input.substring(5);
                     newTask = new ToDos(taskName);
                     taskList.add(newTask);
+                    ui.printOnAdd(newTask, taskList);
                 } else if (command.equals("deadline")) {
                     if (breakitdown.length == 1) {
                         throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
@@ -63,6 +62,7 @@ public class Duke {
                     try {
                         newTask = new Deadlines(taskName, by);
                         taskList.add(newTask);
+                        ui.printOnAdd(newTask, taskList);
                     } catch (DateTimeParseException e) {
                         System.out.println("OOPS!!! Please enter date in YYYY-MM-DD format");
                     }
@@ -82,9 +82,11 @@ public class Duke {
                     String location = taskNameLocation[1];
                     newTask = new Events(taskName, location);
                     taskList.add(newTask);
+                    ui.printOnAdd(newTask, taskList);
                 } else if (command.equals("delete")) {
                     int idx = Integer.parseInt(breakitdown[1]);
-                    taskList.remove(idx);
+                    Task toDelete = taskList.delete(idx);
+                    ui.printOnDelete(toDelete, taskList);
                 } else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }

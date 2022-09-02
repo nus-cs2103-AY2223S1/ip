@@ -45,7 +45,6 @@ public class Storage {
                         }
                         taskList.addFromStorage(event);
                     }
-
                 }
             } else {
                 file.createNewFile();
