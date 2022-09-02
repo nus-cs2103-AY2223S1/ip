@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -97,6 +98,98 @@ public class Parser {
         }
     }
 
+    public String respond(String input) {
+        try {
+            Storage storage = new Storage("duke.txt");
+            String filepath = "duke.txt";
+            Duke duke = new Duke();
+            TaskList list = new Storage(filepath).load(new File(filepath));
+            String[] descriptions = input.split(" ", 2);
+            String command = descriptions[0];
+            File file = new File(filepath);
+            if (command.equals("mark") || command.equals("unmark")) {
+                if (descriptions.length == 1) {
+                    throw new MarkException(command);
+                }
+                int index = Integer.parseInt(descriptions[1]);
+                Task task = list.get(index - 1);
+                String st = "";
+                if (command.equals("mark")) {
+                    st = list.markGui(list, index);
+                } else if (command.equals("unmark")) {
+                    list.unmark(list, index);
+                    st = list.unmarkGui(list, index);
+                }
+                storage.overwriteFile(file, list);
+                return st;
+            } else if (command.equals("delete")) {
+                if (descriptions.length == 1) {
+                    throw new MarkException(command);
+                }
+                Task task = list.get(Integer.parseInt(descriptions[1]) - 1);
+                duke.minusCount();
+                String st = list.deleteGui(list, task, Integer.parseInt(descriptions[1]) - 1);
+                storage.overwriteFile(file, list);
+                return st;
+            } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                if (descriptions.length == 1) {
+                    throw new EmptyCommandException(command);
+                }
+                Task task = null;
+                if (command.equals("todo")) {
+                    task = new Todo(descriptions[1]);
+                } else if (command.equals("event")) {
+                    String[] deets = descriptions[1].split("/at ", 2);
+                    DateTimeFormatter formatter = null;
+                    LocalDateTime date = null;
+                    try {
+                        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        date = LocalDateTime.parse(deets[1], formatter);
+                    } catch (DateTimeParseException e) {
+                        return ("Please use time in dd/MM/yyyy HH:mm format");
+                    }
+                    task = new Event(deets[0], date);
+                }
+                else if (command.equals("deadline")) {
+
+                    String[] deets = descriptions[1].split("/by ", 2);
+                    DateTimeFormatter formatter = null;
+                    LocalDateTime date = null;
+
+                    try {
+                        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        date = LocalDateTime.parse(deets[1], formatter);
+                    } catch (DateTimeParseException e) {
+                        return ("Please use time in dd/MM/yyyy HH:mm format");
+                    }
+                    task = new Deadline(deets[0], date);
+                }
+                list.add(task);
+                int number = duke.getCount();
+                duke.addCount();
+                String st = list.get(number).printGui();
+                storage.addTaskToFile(file, task);
+                return st;
+            } else if (input.equals(("bye"))) {
+                return Ui.byeGui();
+            } else if (input.equals("list")) {
+                return list.listGui();
+            } else if (command.equals("find")) {
+                return list.findGui(list, descriptions[1]);
+            } else {
+                throw new InvalidCommandException(command);
+            }
+        } catch (EmptyCommandException e) {
+            return (e.getMessage());
+
+        } catch (InvalidCommandException e) {
+            return (e.getMessage());
+
+        } catch (MarkException e) {
+            return (e.getMessage());
+        }
+    }
+
     /**
      * Converts strings to date format.
      *
@@ -113,6 +206,16 @@ public class Parser {
             System.out.println("Please use time in dd/MM/yyyy HH:mm format");
             respond();
         }
+        return date;
+    }
+
+    public LocalDateTime parseStringGui(String s) {
+        DateTimeFormatter formatter = null;
+        LocalDateTime date = null;
+
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        date = LocalDateTime.parse(s, formatter);
+
         return date;
     }
 

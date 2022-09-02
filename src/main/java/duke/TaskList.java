@@ -58,6 +58,11 @@ public class TaskList {
                 + "Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE);
     }
 
+    public String deleteGui(TaskList list, Task task, int index) {
+        list.getList().remove(index);
+        return Ui.DELETE_HEADER + task.toString()
+                + "Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE;
+    }
     /**
      * Lists out all the task in the task list.
      */
@@ -68,6 +73,16 @@ public class TaskList {
             list.get(i).list();
         }
         System.out.println(Duke.LINE + "\n");
+    }
+
+    public String listGui() {
+        String printString = Ui.TASK_LIST_HEADER + "\n";
+        for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
+            printString = printString + Integer.toString(j) + ". ";
+            printString += list.get(i).listGui() + "\n";
+        }
+        printString += Duke.LINE + "\n";
+        return  printString;
     }
 
     /**
@@ -81,6 +96,11 @@ public class TaskList {
         list.getList().get(index - 1).setStatus("[X]");
     }
 
+    public String markGui(TaskList list, int index) {
+        list.getList().get(index - 1).setStatus("[X]");
+        return Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).description();
+    }
+
     /**
      * Marks a task as undone.
      *
@@ -90,6 +110,11 @@ public class TaskList {
     public void unmark(TaskList list, int index) {
         System.out.println(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).description());
         list.getList().get(index - 1).setStatus("[ ]");
+    }
+
+    public String unmarkGui(TaskList list, int index) {
+        list.getList().get(index - 1).setStatus("[ ]");
+        return(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).description());
     }
 
     /**
@@ -110,5 +135,20 @@ public class TaskList {
             }
         }
         System.out.println(Duke.LINE);
+    }
+
+    public String findGui(TaskList list, String keyword) {
+        String printString = Ui.FIND_HEADER;
+        Task task = null;
+        int find = 1;
+        for (int i = 0; i < duke.getCount(); i++) {
+            task = list.get(i);
+            String finding = task.getName();
+            if (finding.contains(keyword)) {
+                printString += find++ + "." + task.toString();
+            }
+        }
+        printString += Duke.LINE;
+        return printString;
     }
 }

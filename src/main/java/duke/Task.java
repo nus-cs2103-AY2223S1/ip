@@ -86,11 +86,25 @@ public class Task {
         System.out.println(Duke.LINE + "\n");
     }
 
+    public String printGui() {
+        TaskList t = new TaskList();
+        String output = Duke.LINE;
+        for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
+            output += j + ". " + t.getList().get(i).status + t.getList().get(i).name + "\n";
+        }
+        output += Duke.LINE + "\n";
+        return output;
+    }
+
     /**
      * Lists the description of the task.
      */
     public void list() {
     };
+
+    public String listGui() {
+        return "";
+    }
 
     /**
      * Returns the String representation of the task.

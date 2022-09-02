@@ -33,4 +33,9 @@ public class Ui {
         System.out.println(Duke.LINE + "\n"
                 + "Bye. Hope to see you again soon!" + "\n" + Duke.LINE);
     }
+
+    public static String byeGui() {
+        return Duke.LINE + "\n"
+                + "Bye. Hope to see you again soon!" + "\n" + Duke.LINE;
+    }
 }

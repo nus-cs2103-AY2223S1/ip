@@ -68,11 +68,20 @@ public class Todo extends Task {
                 + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
+    public String printGui() {
+        return Ui.ADD_TASK_HEADER + this.toString()
+                + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n";
+    }
+
     /**
      * Prints the description of the todo task.
      */
     public void list() {
         System.out.println(this.type + this.status + " " + this.name);
+    }
+
+    public String listGui() {
+        return this.type + this.status + " " + this.name;
     }
 
     /**

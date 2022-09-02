@@ -36,6 +36,42 @@ public class Storage {
         load_initial(file);
     }
 
+    public String loadTaskGui(File file) {
+        String st =  "Loading tasks...";
+        st += loadInitialGui(file);
+        return st;
+    }
+
+    private String loadInitialGui(File file) {
+        TaskList tl = new TaskList();
+        BufferedReader br = null;
+        String st;
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+
+        while (true) {
+            try {
+                if (!((st = br.readLine()) != null)) {
+                    break;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            tl.getList().add(stringToTask(st));
+            duke.addCount();
+            st += st;
+        }
+        return st;
+    }
+
     private void load_initial(File file) {
         TaskList tl = new TaskList();
         BufferedReader br = null;
