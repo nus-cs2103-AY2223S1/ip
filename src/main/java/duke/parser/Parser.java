@@ -2,6 +2,7 @@ package duke.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -11,9 +12,19 @@ import java.util.regex.Pattern;
  * A parser class to parse all input strings
  */
 public class Parser {
-    private static Pattern intPattern = Pattern.compile("\\d+");
+    private final static Pattern INT_PATTERN = Pattern.compile("\\d+");
 
-    private static Pattern flagPattern = Pattern.compile("/\\w+");
+    private static Pattern FLAG_PATTERN = Pattern.compile("/\\w+");
+
+    /**
+     * Test if a string is an integer
+     * @param s string to be tested
+     * @return true if string is integer
+     */
+    public static boolean IsInteger(String s) {
+        return INT_PATTERN.matcher(s).matches();
+    }
+
 
     /**
      * A class representing a parsed input string (into arguments)
@@ -81,7 +92,7 @@ public class Parser {
         }
 
         command = "/" + command.split("/", 2)[1];
-        Matcher flagMatches = flagPattern.matcher(command);
+        Matcher flagMatches = FLAG_PATTERN.matcher(command);
 
         while (flagMatches.find()) {
             String match = flagMatches.group();
