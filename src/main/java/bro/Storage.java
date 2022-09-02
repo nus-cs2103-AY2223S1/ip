@@ -16,10 +16,19 @@ public class Storage {
     private ArrayList<Task> list = new ArrayList<>();
     private String path;
 
+    /**
+     * Constructor of the Storage class.
+     * @param path String with the file location.
+     */
     public Storage(String path){
         this.path = path;
     }
 
+    /**
+     * Creates an ArrayList of Task by loading the data from the file.
+     * @return ArrayList of Task with previous tasks.
+     * @throws BroException If the input for the event and deadline task is invalid.
+     */
     public ArrayList<Task> load() throws BroException {
         File f = new File(this.path);
         boolean isCreated = false;
@@ -67,12 +76,22 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Adds new task to the file
+     * @param t Task to be added
+     * @throws IOException If the file is not found.
+     */
     public static void writeToFile(Task t) throws IOException {
         FileWriter w = new FileWriter("./bro.Bro.txt", true);
         w.write(t.toString() + "\n");
         w.close();
     }
 
+    /**
+     * Modifies the file with the given ArrayList of Task.
+     * @param li List of the ArrayLisyt of task.
+     * @throws IOException If the file is not found.
+     */
     public static void modifyTaskFile(ArrayList<Task> li) throws IOException {
         FileWriter w = new FileWriter("./bro.Bro.txt", false);
         for(Task t : li){

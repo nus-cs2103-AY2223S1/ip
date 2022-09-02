@@ -12,10 +12,19 @@ public class AddCommand extends Command {
 
     private Task task;
 
+    /**
+     * Constructor of the AddCommand class.
+     * @param task Gives the task to the given task variable.
+     */
     public AddCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Adds the given task to the file.
+     */
     @Override
     public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         String type = this.task.getTaskType();

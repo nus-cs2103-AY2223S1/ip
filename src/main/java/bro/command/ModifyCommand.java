@@ -13,11 +13,21 @@ public class ModifyCommand extends Command {
     private ModifyType modifyType;
     private int index;
 
+    /**
+     * Constructor of the ModifyCommand class.
+     * @param modifyType Specifies the type of the modification to be done.
+     * @param index Gives the index value to the index variable.
+     */
     public ModifyCommand(ModifyType modifyType, int index) {
         this.modifyType = modifyType;
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Marks or unmarks the task.
+     */
     @Override
     public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         switch (modifyType) {

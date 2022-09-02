@@ -9,10 +9,19 @@ public class DeleteCommand extends Command {
 
     private int index;
 
+    /**
+     * Constructor of the DeleteCommand class.
+     * @param index Gives the integer value to the given index variable.
+     */
     public DeleteCommand(int index){
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Deletes the given task by the user.
+     */
     @Override
     public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         try {
