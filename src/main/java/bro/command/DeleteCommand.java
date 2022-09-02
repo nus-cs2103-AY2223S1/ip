@@ -6,14 +6,13 @@ import bro.TaskList;
 import bro.Ui;
 
 public class DeleteCommand extends Command {
-
     private int index;
 
     /**
      * Constructor of the DeleteCommand class.
      * @param index Gives the integer value to the given index variable.
      */
-    public DeleteCommand(int index){
+    public DeleteCommand(int index) {
         this.index = index;
     }
 
@@ -26,7 +25,7 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasklist, Ui ui, Storage storage) throws BroException {
         try {
             tasklist.deleteTask(this.index, storage);
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new BroException("Index is out of bound. Enter a valid index");
         }
     }

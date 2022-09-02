@@ -39,13 +39,13 @@ public class Ui {
     public static void printAdd(Task t){
         System.out.println(t.toString());
     }
-
+    
     /**
      * Prints out the mark statement.
      * @param list1 ArrayList of Task where the task has to be marked.
      * @param n Index of the task to be marked.
      */
-    public static void markUi(ArrayList<Task> list1, int n){
+    public static void markUi(ArrayList<Task> list1, int n) {
         System.out.println("I have marked this task\n" + (list1.get(n-1)).toString());
     }
 
@@ -54,7 +54,7 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be unmarked.
      * @param n Index of the task to be unmarked.
      */
-    public static void unmarkUi(ArrayList<Task> list1, int n){
+    public static void unmarkUi(ArrayList<Task> list1, int n) {
         System.out.println("I have unmarked this task\n" + (list1.get(n-1)).toString());
     }
 
@@ -63,7 +63,7 @@ public class Ui {
      * @param list1 ArrayList of Task where the task has to be deleted.
      * @param n Index of the task to be deleted.
      */
-    public static void deleteUi(ArrayList<Task> list1, int n){
+    public static void deleteUi(ArrayList<Task> list1, int n) {
         System.out.println("I have removed this task.\n" + (list1.get(n-1)).toString());
     }
 
@@ -88,5 +88,4 @@ public class Ui {
     public static void errorMessage(String msg){
         System.out.println(msg);
     }
-
 }

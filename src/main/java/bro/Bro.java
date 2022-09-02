@@ -37,7 +37,7 @@ public class Bro {
                Command c = new Parser().parse(fullCommand);
                c.execute(tasks, ui, storage);
                isExit = c.isExit();
-           } catch(BroException e){
+           } catch(BroException e) {
                ui.errorMessage(e.getMessage());
            }
         }

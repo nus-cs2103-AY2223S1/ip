@@ -73,7 +73,7 @@ public class Parser {
      * @throws BroException If the details are invalid.
      */
     public void checkInput(String str, int n) throws BroException {
-        switch (str){
+        switch (str) {
         case "todo":
             if(n < 2) { throw new BroException("Please give the description!");}
             break;

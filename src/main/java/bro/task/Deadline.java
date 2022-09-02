@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-
     private LocalDateTime byStore;
     protected String by;
     private boolean isMonthFormat;
@@ -35,7 +34,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        if(isMonthFormat){
+        if(isMonthFormat) {
             return "[D]" + super.toString() + " (by: " + by + ")";
         } else {
             return "[D]" + super.toString() + " (by: " +

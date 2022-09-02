@@ -46,28 +46,28 @@ public class Storage {
             }
             while(sc.hasNext()) {
                 String s = sc.nextLine();
-                if(s.startsWith("[T]")){
+                if(s.startsWith("[T]")) {
                     Task t = new Todo(s.substring(6).trim());
                     list.add(t);
                     if(s.substring(4, 5).equals("X")){
                         t.markAsDone();
                     }
                 }
-                else if(s.startsWith("[D]")){
+                else if(s.startsWith("[D]")) {
                     String desc = s.substring(6, s.indexOf(" (by")).trim();
                     String by = s.split("by:")[1].replace(')', ' ').trim();
                     Task t = new Deadline(desc, by);
                     list.add(t);
-                    if(s.substring(4, 5).equals("X")){
+                    if(s.substring(4, 5).equals("X")) {
                         t.markAsDone();
                     }
                 }
-                else if(s.startsWith("[E]")){
+                else if(s.startsWith("[E]")) {
                     String desc = s.substring(6, s.indexOf(" (at")).trim();
                     String at = s.split("at:")[1].replace(')', ' ').trim();
                     Task t = new Event(desc, at);
                     list.add(t);
-                    if(s.substring(4, 5).equals("X")){
+                    if(s.substring(4, 5).equals("X")) {
                         t.markAsDone();
                     }
                 }
@@ -94,7 +94,7 @@ public class Storage {
      */
     public static void modifyTaskFile(ArrayList<Task> li) throws IOException {
         FileWriter w = new FileWriter("./bro.Bro.txt", false);
-        for(Task t : li){
+        for(Task t : li) {
             w.write(t.toString() + "\n");
         }
         w.close();
