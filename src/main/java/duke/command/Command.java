@@ -42,13 +42,14 @@ public abstract class Command {
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
+     * @return String to be displayed on the screen as a response to the user input.
      */
-    public void execute(CliUi cliUi, TaskList taskList, Storage storage) throws DukeCommandAlreadyExecutedException {
+    public String execute(CliUi cliUi, TaskList taskList, Storage storage) throws DukeCommandAlreadyExecutedException {
         if (isExecuted) {
             throw new DukeCommandAlreadyExecutedException(COMMAND_ALREADY_EXECUTED_ERROR_MESSAGE);
         }
         isExecuted = true;
-        executeConcretely(cliUi, taskList, storage);
+        return executeConcretely(cliUi, taskList, storage);
     }
 
     /**
@@ -59,7 +60,7 @@ public abstract class Command {
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
      */
-    protected abstract void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage);
+    protected abstract String executeConcretely(CliUi cliUi, TaskList taskList, Storage storage);
 
     /**
      * Makes use of a Storage object to save the TaskList.

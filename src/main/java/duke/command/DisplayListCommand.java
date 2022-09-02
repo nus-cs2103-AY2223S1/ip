@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.util.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 
 /**
  * A command class that displays all tasks in the list.
@@ -24,10 +24,12 @@ public class DisplayListCommand extends Command {
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
+     * @return String to be displayed on the screen as a response to the user input.
      */
     @Override
-    protected void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
+    protected String executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
         String output = taskList.getListInfo();
         cliUi.printOutput(output);
+        return output;
     }
 }

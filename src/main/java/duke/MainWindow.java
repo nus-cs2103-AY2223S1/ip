@@ -1,5 +1,6 @@
 package duke;
 
+import duke.util.Response;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -19,6 +20,8 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private boolean isExit = false;
 
     private Duke duke;
 
@@ -30,8 +33,8 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void setDuke(Duke duke) {
+        this.duke = duke;
     }
 
     /**
@@ -41,11 +44,21 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        Response response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response.getMessage(), dukeImage)
         );
         userInput.clear();
+        isExit = response.isExit();
+    }
+
+    /**
+     * Public getter of isExit.
+     *
+     * @return Boolean indicating whether the program is about to terminate.
+     */
+    public boolean isExit() {
+        return isExit;
     }
 }

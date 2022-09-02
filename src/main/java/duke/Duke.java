@@ -2,18 +2,16 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeCommandAlreadyExecutedException;
+import duke.util.CliUi;
 import duke.util.Parser;
+import duke.util.Response;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
@@ -65,7 +63,7 @@ public class Duke {
     }
 
     /**
-     * Starts the main logic of the chatbot.
+     * Starts the main logic of the chatbot if the user chooses to use CLI.
      * It keeps listening to user input until an exit command.
      */
     public void run() {
@@ -96,20 +94,20 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Interacts with the user if they choose to use GUI.
+     *
+     * @param input The user input from the dialog box.
+     * @return A wrapper class containing  to be displayed on the screen as a response to the user input.
      */
-    public String getResponse(String input) {
+    public Response getResponse(String input) {
         Command nextCommand = parser.parse(input);
-
+        String message;
         try {
-            nextCommand.execute(cliUi, taskList, storage);
+            message = nextCommand.execute(cliUi, taskList, storage);
+            return new Response(message, nextCommand.isExit());
         } catch (DukeCommandAlreadyExecutedException exception) {
-            return exception.getMessage();
-        }
-
-        if (nextCommand.isExit()) {
-            System.exit(0);
+            message = exception.getMessage();
+            return new Response(message, nextCommand.isExit());
         }
     }
 

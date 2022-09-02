@@ -2,9 +2,9 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.task.TodoTask;
+import duke.util.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 
 /**
  * A command class that adds a to-do task, displays the output, and saves the file.
@@ -29,9 +29,10 @@ public class AddTodoCommand extends Command {
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
      *                 that this command might need.
      * @param storage An object that facilitates file IO and the save operation that command might need.
+     * @return String to be displayed on the screen as a response to the user input.
      */
     @Override
-    protected void executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
+    protected String executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
         String output;
 
         try {
@@ -43,5 +44,6 @@ public class AddTodoCommand extends Command {
         cliUi.printOutput(output);
 
         super.saveFile(cliUi, taskList, storage);
+        return output;
     }
 }
