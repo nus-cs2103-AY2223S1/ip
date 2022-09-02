@@ -8,12 +8,31 @@ public class TaskList {
     public TaskList() {
         arrayL = new ArrayList<Task>();
     }
+
+    /**
+     * adds task to ArrayList
+     *
+     * @param t task
+     */
     public void addTask(Task t) {
         this.arrayL.add(t);
     }
+
+    /**
+     * gets task from ArrayList
+     *
+     * @param i integer
+     * @return Task
+     */
     public Task getTask(int i) {
         return arrayL.get(i);
     }
+
+    /**
+     * removes task from ArrayList
+     *
+     * @param in integer
+     */
     public void delete(int in) {
         System.out.println("ok, I've deleted this take from array");
         System.out.println(arrayL.get(in-1).toString());

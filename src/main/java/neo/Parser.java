@@ -10,12 +10,27 @@ public class Parser {
     private Storage stor;
     private TaskList arrayLL;
     private int type;
+
+    /**
+     * parser constructor
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     */
     public Parser(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;
         this.stor = stor;
         this.arrayLL = arrayLL;
     }
 
+    /**
+     * Function to make sense of user input
+     *
+     * @param userText string containing user input
+     * @throws NeoException excpetion neo
+     * @throws IOException input output exception
+     */
     public void checkText(String userText) throws NeoException, IOException {
 
         if (userText.equals("list") || userText.equals("List")) {

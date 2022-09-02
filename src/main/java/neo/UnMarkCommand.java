@@ -9,12 +9,26 @@ public class UnMarkCommand extends Command{
 
     Task task;
 
+    /**
+     * unmark command constructor
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     */
     public UnMarkCommand(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;
         this.stor = stor;
         this.arrayLL = arrayLL;
     }
 
+    /**
+     * un mark task as completed
+     *
+     * @param tempi user input string
+     * @throws NeoException
+     * @throws IOException
+     */
     @Override
     void complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);

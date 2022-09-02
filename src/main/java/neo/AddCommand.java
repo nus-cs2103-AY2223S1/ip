@@ -7,6 +7,14 @@ public class AddCommand extends Command {
     private Storage stor;
     private int type;
 
+    /**
+     * AddCommand constructor
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     * @param type integer to identify type of task
+     */
     public AddCommand(Ui ui, Storage stor, TaskList arrayLL, int type) {
         this.ui = ui;
         this.stor = stor;
@@ -14,6 +22,13 @@ public class AddCommand extends Command {
         this.type = type;
     }
 
+    /**
+     * Adds task to array depending on type of task
+     *
+     * @param tempi user input string
+     * @throws NeoException
+     * @throws IOException
+     */
     @Override
     void complete(String tempi) throws NeoException, IOException {
 

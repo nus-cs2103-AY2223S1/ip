@@ -9,12 +9,26 @@ public class MarkCommand extends Command {
 
     Task task;
 
+    /**
+     * mark command constructor
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     */
     public MarkCommand(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;
         this.stor = stor;
         this.arrayLL = arrayLL;
     }
 
+    /**
+     * Mark command as completed
+     *
+     * @param tempi user input string
+     * @throws NeoException
+     * @throws IOException
+     */
     @Override
     void complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);
