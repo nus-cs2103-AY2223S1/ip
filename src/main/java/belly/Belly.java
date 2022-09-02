@@ -84,7 +84,11 @@ public class Belly {
             file.createNewFile();
 
             PrintWriter out = new PrintWriter(FILE_PATH);
-            out.println(txt);
+            if (txt.equals("")) {
+                file.delete();
+            } else {
+                out.println(txt);
+            }
             out.close();
         } catch (IOException e) {
             ;
