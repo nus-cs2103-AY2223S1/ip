@@ -2,17 +2,7 @@ package duke;
 
 import duke.command.ByeCommand;
 import duke.command.Command;
-import duke.command.CommandType;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.TodoTask;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {

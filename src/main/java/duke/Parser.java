@@ -1,6 +1,13 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddTaskCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.CommandType;
+import duke.command.DeleteTaskCommand;
+import duke.command.EmptyCommand;
+import duke.command.ListCommand;
+import duke.command.SetDoneCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
