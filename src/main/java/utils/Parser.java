@@ -14,6 +14,36 @@ public class Parser {
     }
 
     private static Pattern flagPattern = Pattern.compile("/\\w+");
+
+    public static class ParsedInputArguments {
+        public String keyword;
+        public String args;
+        public HashMap<String, String> flags = new HashMap<>();
+
+        public ParsedInputArguments() {
+
+        }
+
+        public ParsedInputArguments(String keyword, String args) {
+            this.keyword = keyword;
+            this.args = args;
+        }
+
+        public ParsedInputArguments(String keyword, String args, HashMap<String, String> flags) {
+            this.keyword = keyword;
+            this.args = args;
+            this.flags = flags;
+        }
+
+        public void addFlag(String key, String value) {
+            flags.put(key, value);
+        }
+
+        public String getFlag(String key) {
+            return (String) flags.get(key);
+        }
+
+    }
     /**
      * Returns a hashmap of arguments and commands from the given input.
      * @param command Command string given
@@ -22,18 +52,20 @@ public class Parser {
      * Unnamed arguments are under the key "args"
      * Keys under any /flags are under the key "/flag"
      */
-    public static HashMap<String, String> getInputArguments(String command) {
-        HashMap<String, String> result = new HashMap<>();
+    public static ParsedInputArguments getInputArguments(String command) {
+        ParsedInputArguments parsedArguments = new ParsedInputArguments();
 
-        result.put("keyword", command.split(" ", 2)[0]);
+        parsedArguments.keyword = command.split(" ", 2)[0];
         if (command.split(" ").length < 2) {
-            return result;
+            return parsedArguments;
         }
 
+//        command = command.split(" ", 2)[1];
+
         command = command.split(" ", 2)[1];
-        result.put("args", command.split("/", 2)[0].strip());
+        parsedArguments.args = command.split("/", 2)[0].strip();
         if (command.split("/").length < 2) {
-            return result;
+            return parsedArguments;
         }
 
         command = "/" + command.split("/", 2)[1];
@@ -42,9 +74,9 @@ public class Parser {
         while (flagMatches.find()) {
             String match = flagMatches.group();
             command = command.split(match, 2)[1];
-            result.put(match, command.split("/", 2)[0].strip());
+            parsedArguments.addFlag(match, command.split("/", 2)[0].strip());
         }
-        return result;
+        return parsedArguments;
     }
 
     public static LocalDate parseStringtoDate(String date) {

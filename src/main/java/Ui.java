@@ -1,6 +1,5 @@
+import command.Command;
 import utils.Parser;
-
-import java.util.HashMap;
 
 public class Ui {
     public static String Logo = ".__ .  ..  ..___" + "\n" +
@@ -19,8 +18,10 @@ public class Ui {
         this.printWithHorizontalRule("Hello! I'm " + Ui.Name + "\n" + "What can I do for you?");
     }
 
-    public HashMap<String, String> read(String s) {
-        return Parser.getInputArguments(s);
+    public Command readCommand(String s) {
+        Parser.ParsedInputArguments args = Parser.getInputArguments(s);
+        Command c = Command.getCommand(args);
+        return c;
     }
 
     public void printWithHorizontalRule(String s) {
