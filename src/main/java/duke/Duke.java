@@ -30,20 +30,26 @@ public class Duke {
     public Duke() {
         parser = new Parser();
         storage = new Storage("data", "data/tasks");
-
-        TaskList tasks;
-        try {
-            // Attempt to load tasks from storage.
-            tasks = storage.load();
-        } catch (DukeException e) {
-            e.printStackTrace();
-            // Load empty list if fail to load from storage.
-            tasks = new TaskList();
-        }
-        this.tasks = tasks;
+        tasks = retrieveTasks();
         assert this.tasks != null : "Tasks should not be null after being loaded.";
         commandsHistoryPointer = 0;
         commandsHistory = new ArrayList<>();
+    }
+
+    /**
+     * Retrieve tasks from storage.
+     * Returns empty list if fail to load from storage.
+     *
+     * @return Tasks from storage or empty list.
+     */
+    private TaskList retrieveTasks() {
+        TaskList tasks = new TaskList();
+        try {
+            tasks = storage.load();
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
+        return tasks;
     }
 
     /**
@@ -78,33 +84,53 @@ public class Duke {
         return commandsHistory.get(commandsHistoryPointer);
     }
 
-    /**
-     * Gets the response from the Duke application based on a particular input.
-     *
-     * @param input User input provided.
-     * @return Response from the Duke application.
-     */
-    public String getResponse(String input) {
+    private void addToCommandHistory(String input) {
         commandsHistory.add(input);
         // Set the command history pointer to point to the newest command.
         commandsHistoryPointer = commandsHistory.size();
+    }
 
+    private CommandResult parseAndExecuteInput(String input) throws DukeException {
+        Command command = parser.parseCommand(input);
+        assert command != null : "Command returned from parseCommand should never be null.";
+        command.setData(tasks);
+        return command.execute();
+    }
+
+    private void exitIfRequired(CommandResult result) {
+        if (!result.shouldExit()) {
+            return;
+        }
+        Platform.exit();
+    }
+
+    private void updateFileIfRequired(CommandResult result) throws IOException {
+        if (!result.shouldUpdateFile()) {
+            return;
+        }
+        storage.save(tasks);
+    }
+
+    private String handleUserInput(String input) {
         try {
-            Command command = parser.parseCommand(input);
-            assert command != null : "Command returned from parseCommand should never be null.";
-            // Populate command with tasks.
-            command.setData(tasks);
-            CommandResult result = command.execute();
+            CommandResult result = parseAndExecuteInput(input);
             assert result != null : "Result from the execution of a command should never be null.";
-            if (result.shouldExit()) {
-                Platform.exit();
-            }
-            if (result.shouldUpdateFile()) {
-                storage.save(tasks);
-            }
+            exitIfRequired(result);
+            updateFileIfRequired(result);
             return result.getUserMessage();
         } catch (DukeException | IOException e) {
             return e.getMessage();
         }
+    }
+
+    /**
+     * Gets the response from the Duke application based on a particular input.
+     *
+     * @param input User input provided.
+     * @return Response or error message from the Duke application.
+     */
+    public String getResponse(String input) {
+        addToCommandHistory(input);
+        return handleUserInput(input);
     }
 }
