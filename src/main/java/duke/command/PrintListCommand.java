@@ -20,7 +20,7 @@ public class PrintListCommand extends Command {
         StringBuilder message = new StringBuilder();
         // Empty list
         if (taskList.size() == 0) {
-            message = new StringBuilder("List is currently empty!\n");
+            message = new StringBuilder("List is currently empty!");
         } else {
             for (int i = 0; i < taskList.size(); i++) {
                 message.append(i + 1).append(". ").append(taskList.get(i)).append("\n");

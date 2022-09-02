@@ -2,12 +2,14 @@ package duke;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import duke.command.Command;
+import duke.command.ExitCommand;
 import duke.utils.Parser;
 import duke.utils.Storage;
-import duke.utils.Ui;
+import duke.gui.Ui;
 
 /**
  * Stores the main logic of the AIlfred bot.
@@ -20,11 +22,12 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
     private boolean isLoaded;
+    private boolean isExit = false;
 
     /**
      * Initializes the application.
      */
-    public Duke(String filePath, String directoryPath) throws DukeException, IOException {
+    public Duke() throws DukeException, IOException {
         try {
             storage = new Storage(PATH_FILE, PATH_DIRECTORY);
             taskList = new TaskList(storage.load());
@@ -34,10 +37,6 @@ public class Duke {
             taskList = new TaskList(new ArrayList<>(100));
             isLoaded = false;
         }
-    }
-
-    public Duke() throws DukeException, IOException {
-        this(PATH_FILE, PATH_DIRECTORY);
     }
 
     /**
@@ -63,15 +62,26 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parseCommand(input);
+            if (c instanceof ExitCommand) {
+                isExit = true;
+            }
+
             String res = c.run(taskList, storage);
             System.out.println(res);
 
             return res;
-        } catch (Exception e) {
+        } catch (InputMismatchException | IndexOutOfBoundsException
+                 | NumberFormatException | NullPointerException
+                 | DukeException | IOException e) {
             return e.getMessage();
         }
     }
 
+    /**
+     * Provides the greeting message for Duke
+     * to return in a dialog box on initialization.
+     * @return Greeting message.
+     */
     public String getGreeting() {
         String message = "";
         if (isLoaded) {
@@ -85,5 +95,14 @@ public class Duke {
 
         message += Ui.greet();
         return message;
+    }
+
+    /**
+     * Checks if exit command has been executed.
+     * @return State of current command,
+     * if current command is the exit command or not.
+     */
+    public boolean isExitCommand() {
+        return this.isExit;
     }
 }

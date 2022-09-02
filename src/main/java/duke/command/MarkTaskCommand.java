@@ -30,14 +30,14 @@ public class MarkTaskCommand extends Command {
         try {
             taskList.get(index).markAsDone();
             String message = "Nice! I've marked this task as done: \n  "
-                    + taskList.get(index) + "\n";
+                    + taskList.get(index);
             //Saving data
             storage.saveData(taskList.getList());
             return message;
         } catch (NullPointerException e) {
-            throw new DukeException("☹ OOPS!!! There is no task created for this index!");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! There is no task created for this index!");
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Please enter a valid index number!");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! Please enter a valid index number!");
         }
     }
 }

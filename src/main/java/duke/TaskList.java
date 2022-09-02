@@ -3,6 +3,7 @@ package duke;
 import java.io.IOException;
 import java.util.List;
 
+import duke.task.Task;
 import duke.utils.Storage;
 
 /**
@@ -27,7 +28,7 @@ public class TaskList {
 
         String message = "Got it. I've added this task: \n  "
                 + task + "\n"
-                + "Now you have " + numOfTasks + " tasks in the list.\n";
+                + "Now you have " + numOfTasks + " tasks in the list.";
 
         //Update save file after each task is added
         storage.saveData(this.taskList);

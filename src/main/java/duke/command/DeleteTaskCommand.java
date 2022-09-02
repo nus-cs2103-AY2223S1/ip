@@ -3,7 +3,7 @@ package duke.command;
 import java.io.IOException;
 
 import duke.DukeException;
-import duke.Task;
+import duke.task.Task;
 import duke.TaskList;
 import duke.utils.Storage;
 
@@ -35,13 +35,13 @@ public class DeleteTaskCommand extends Command {
 
             String message = "Noted. I've removed this task: \n  "
                     + task + "\n"
-                    + "Now you have " + numOfTasks + " tasks in the list.\n";
+                    + "Now you have " + numOfTasks + " tasks in the list.";
 
             //Saving data
             storage.saveData(taskList.getList());
             return message;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Please enter a valid index number!");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! Please enter a valid index number!");
         }
     }
 }

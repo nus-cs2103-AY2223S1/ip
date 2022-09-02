@@ -31,7 +31,7 @@ public class ToDoCommand extends Command {
             Todo todo = new Todo(commandDetails[1]);
             return taskList.addTask(todo, storage);
         } else {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! The description of a todo cannot be empty.");
         }
     }
 }

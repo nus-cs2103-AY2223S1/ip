@@ -2,6 +2,7 @@ package duke;
 
 import java.io.IOException;
 
+import duke.gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,13 +20,21 @@ public class Main extends Application {
     public Main() throws DukeException, IOException {
     }
 
+    /**
+     * Method to set the JavaFX stages.
+     * @param stage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("AIlfred");
 
             mainWindow = fxmlLoader.<MainWindow>getController();
             mainWindow.setDuke(duke);

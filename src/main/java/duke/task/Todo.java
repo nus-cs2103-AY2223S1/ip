@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.Task;
-
 /**
  * Creates a Task object that needs to be done.
  * @author Jason
