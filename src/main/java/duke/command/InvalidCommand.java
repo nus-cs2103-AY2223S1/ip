@@ -8,7 +8,7 @@ import duke.Ui;
 /**
  * Command when the user input is invalid
  */
-public class InvalidCommand extends Command{
+public class InvalidCommand extends Command {
 
     /**
      * To execute the {@code InvalidCommand}

@@ -9,7 +9,22 @@ import duke.Ui;
  * {@code Command} is an abstract class to represent all the user commands
  */
 public abstract class Command {
-    public static boolean isExit = false;
+    private static boolean isExit = false;
+
+    /**
+     * To check whether the program is supposed to exit
+     * @return whether to exit the program
+     */
+    public static boolean isExit() {
+        return isExit;
+    }
+
+    /**
+     * To let the program knows that it has come to an end
+     */
+    public static void end() {
+        isExit = true;
+    }
 
     /**
      * To execute the user command

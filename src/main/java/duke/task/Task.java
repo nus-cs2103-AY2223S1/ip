@@ -53,10 +53,9 @@ public abstract class Task implements Serializable {
      */
     public String toString() {
         if (this.isDone()) {
-            return("[X] " + this.description);
-        }
-        else {
-            return("[ ] " + this.description);
+            return ("[X] " + this.description);
+        } else {
+            return ("[ ] " + this.description);
         }
     }
 }

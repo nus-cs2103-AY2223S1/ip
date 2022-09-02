@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.task.Event;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Event;
 
 /**
  * Command to add an {@code Event} to the {@code TaskList}

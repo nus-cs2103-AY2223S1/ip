@@ -1,32 +1,35 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Task;
-import duke.task.Event;
-import duke.task.Todo;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
+/**
+ * This class handles the UI
+ */
 public class Ui {
 
-    Scanner scn;
+    private Scanner scn;
 
     /**
      * To greet the user with logo and welcoming messages
      */
     public void greet() {
-        String logo = "\n" +
-                "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n" +
-                "  ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n" +
-                "  ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n" +
-                "  ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n" +
-                "  ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n" +
-                "  ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n" +
-                "  ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n" +
-                "    ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n" +
-                "      ░  ░     ░  ░       ░      ░          ░  ░\n" +
-                "                               ░\n";
+        String logo = "\n"
+                + "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n"
+                + "  ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n"
+                + "  ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n"
+                + "  ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n"
+                + "  ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n"
+                + "  ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n"
+                + "  ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n"
+                + "    ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n"
+                + "      ░  ░     ░  ░       ░      ░          ░  ░\n"
+                + "                               ░\n";
         System.out.print(logo);
         System.out.println("Hi, I am LaMDA.\nHow may I assist you today?\n");
         scn = new Scanner(System.in);
@@ -62,7 +65,6 @@ public class Ui {
     public void showError(String s) {
         System.out.println(s);
     }
-
 
     /**
      * To display exit message

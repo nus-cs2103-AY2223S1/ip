@@ -2,9 +2,10 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
+
 
 /**
  * Command to mark a {@code Task} at the given index

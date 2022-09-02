@@ -2,8 +2,8 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.task.Todo;
 import duke.Ui;
+import duke.task.Todo;
 
 /**
  * Command to add a {@code Todo} to the {@code TaskList}

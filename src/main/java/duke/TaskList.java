@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * {@code TaskList} keep tracks of the current tasks during the program runtime
@@ -19,19 +19,19 @@ public class TaskList {
     }
 
     /**
-     * To get the current list of tasks
-     * @return an {@code ArrayList} that contains the current list of tasks
-     */
-    public ArrayList<Task> getTasks() {
-        return tasks;
-    }
-
-    /**
      * Constructor for {@code TaskList}
      * @param tasks the tasks data to be loaded
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    /**
+     * To get the current list of tasks
+     * @return an {@code ArrayList} that contains the current list of tasks
+     */
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
     /**
@@ -81,7 +81,7 @@ public class TaskList {
         }
         return temp;
     }
-    
+
     /**
      * To list out all the tasks in the list
      */

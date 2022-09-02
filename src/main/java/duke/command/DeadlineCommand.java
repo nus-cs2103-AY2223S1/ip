@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.task.Deadline;
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.time.LocalDate;
+import duke.task.Deadline;
 
 /**
  * Command to add a {@code Deadline} to the {@code TaskList}

@@ -1,4 +1,9 @@
 package duke;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import duke.command.Command;
 import duke.command.ExitCommand;
@@ -7,15 +12,11 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
-    private Command c;
     private static TaskList tasks;
+    private Command c;
 
     @BeforeAll
     static void setUp() {

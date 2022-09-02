@@ -1,8 +1,8 @@
 package duke;
 
-import duke.command.Command;
-
 import java.io.IOException;
+
+import duke.command.Command;
 
 /**
  * {@code Duke} is the main class of this program, and it manages the storage and the ui.
@@ -43,7 +43,7 @@ public class Duke {
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
-                isExit = Command.isExit;
+                isExit = Command.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {

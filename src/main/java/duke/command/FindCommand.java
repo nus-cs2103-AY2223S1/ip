@@ -1,10 +1,12 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command to find a list of tasks given a user input
+ */
 public class FindCommand extends Command {
 
     private String description;
