@@ -15,6 +15,7 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+        assert this instanceof Task : "Todo should be a task.";
     }
 
     /**
