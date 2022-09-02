@@ -1,17 +1,15 @@
 package duke;
 
-import duke.task.Task;
 
-import java.util.ArrayList;
-
-public class Ui {
-
+/**
+ * Handles console-based user interface. Used for sanity checks.
+ */
+public class Ui implements UiInterface {
     /**
-     * Styles and prints lines with a border.
-     *
-     * @param lines Line to be printed
+     * {@inheritDoc}
      */
-    public static void printStyledMessage(String... lines) {
+    @Override
+    public void printStyledMessage(String... lines) {
         System.out.println(",----------------------------------------------------------------");
         for (String str : lines) {
             System.out.print("| ");
@@ -21,18 +19,20 @@ public class Ui {
     }
 
     /**
-     * Greets user.
+     * {@inheritDoc}
      */
-    public static void greet() {
-        Ui.printStyledMessage("...where is this again?",
+    @Override
+    public void greet() {
+        printStyledMessage("...where is this again?",
                 "Oh, hello, I didn't see you there - I'm Anthea, a chatbot...",
                 "...or at least that's what they told me.");
     }
 
     /**
-     * Leaves the user.
+     * {@inheritDoc}
      */
-    public static void leave() {
-        Ui.printStyledMessage("It was nice to have you around, I'm going back to sleep...");
+    @Override
+    public void leave() {
+        printStyledMessage("It was nice to have you around, I'm going back to sleep...");
     }
 }

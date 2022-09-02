@@ -90,7 +90,8 @@ public class Storage {
             }
             writer.close();
         } catch (IOException ex) {
-            Ui.printStyledMessage("(>.<') I was unable to record your tasks...");
+            Duke.getCurrentUi().printStyledMessage(
+                    "(>.<') I was unable to record your tasks...");
             ex.printStackTrace();
         }
     }

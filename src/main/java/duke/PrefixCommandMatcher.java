@@ -21,7 +21,8 @@ public class PrefixCommandMatcher extends CommandMatcher {
 
             // corner case
             if (cmd.equals(prefix)) {
-                Ui.printStyledMessage("(>.<') Add a description to your " + prefix + ".");
+                Duke.getCurrentUi().printStyledMessage(
+                        "(>.<') Add a description to your " + prefix + ".");
                 return;
             }
 
@@ -32,21 +33,20 @@ public class PrefixCommandMatcher extends CommandMatcher {
             for (int i = 1; i < commandParts.length; i++) {
                 String[] keyAndValue = commandParts[i].split(" ", 2);
                 if (keyAndValue.length == 2) {
-                    map.put(keyAndValue[0].strip(), keyAndValue[1].strip());
+                    map.put(keyAndValue[0].strip(), keyAndValue[1]);
                 } else {
                     map.put(keyAndValue[0].strip(), "");
                 }
             }
-            commandParts[0] = commandParts[0].strip();
 
             // another corner case
             if (commandParts[0].equals("")) {
-                Ui.printStyledMessage("(>.<') The description for " + prefix + " shouldn't be empty.");
+                Duke.getCurrentUi().printStyledMessage("(>.<') The description for " + prefix + " shouldn't be empty.");
                 return;
             }
 
             // accept
-            action.accept(commandParts[0].strip(), map);
+            action.accept(commandParts[0], map);
         });
     }
 }

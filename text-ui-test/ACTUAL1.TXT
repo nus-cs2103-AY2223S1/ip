@@ -33,7 +33,7 @@
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | I've recorded this thing you need to do:
@@ -76,7 +76,7 @@
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -98,7 +98,7 @@
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -116,7 +116,7 @@
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -134,7 +134,7 @@
 | 5.[D][ ] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -152,7 +152,7 @@
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][ ] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -170,7 +170,7 @@
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -196,7 +196,7 @@
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -225,7 +225,7 @@
 | 5.[D][X] /at mysterious (by: [unknown])
 | 6.[D][X] /by mysterious number 2 (by: [unknown])
 | 7.[D][ ] rush this please (by: when?)
-| 8.[E][ ] wow  much  space (at: 10am)
+| 8.[E][ ]  wow  much  space (at: 10am)
 | 9.[T][ ] homework
 | 10.[T][ ] other homework
 | 11.[T][ ] project 12
@@ -253,7 +253,7 @@
 | 3.[D][X] /at mysterious (by: [unknown])
 | 4.[D][X] /by mysterious number 2 (by: [unknown])
 | 5.[D][ ] rush this please (by: when?)
-| 6.[E][ ] wow  much  space (at: 10am)
+| 6.[E][ ]  wow  much  space (at: 10am)
 | 7.[T][ ] homework
 | 8.[T][ ] other homework
 | 9.[T][ ] project 12
@@ -278,7 +278,7 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | That's going to happen at some time later:
-| [E][ ] wow  much  space (at: 10am)
+| [E][ ]  wow  much  space (at: 10am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here, your tasks:
@@ -287,7 +287,7 @@
 | 3.[D][X] /at mysterious (by: [unknown])
 | 4.[D][X] /by mysterious number 2 (by: [unknown])
 | 5.[D][ ] rush this please (by: when?)
-| 6.[E][ ] wow  much  space (at: 10am)
+| 6.[E][ ]  wow  much  space (at: 10am)
 | 7.[T][ ] homework
 | 8.[T][ ] other homework
 | 9.[T][ ] project 12
@@ -297,7 +297,7 @@
 | 13.[D][ ] /at mysterious (by: [unknown])
 | 14.[D][ ] /by mysterious number 2 (by: [unknown])
 | 15.[D][ ] rush this please (by: when?)
-| 16.[E][ ] wow  much  space (at: 10am)
+| 16.[E][ ]  wow  much  space (at: 10am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | (>.<') Add a description to your find.
@@ -307,20 +307,9 @@
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here are the tasks that you might be looking for:
-| 1.[E][X] meet people at function x/y/z whatever (at: 7:12am)
-| 2.[E][ ] meet friends (at: [unknown])
-| 3.[E][ ] meet people at dinner (at: 6:25 pm)
-| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | Here are the tasks that you might be looking for:
-| 1.[T][ ] homework
-| 2.[E][X] meet people at function x/y/z whatever (at: 7:12am)
-| 3.[T][ ] homework
-| 4.[T][ ] other homework
-| 5.[E][ ] meet friends (at: [unknown])
-| 6.[E][ ] meet people at dinner (at: 6:25 pm)
-| 7.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
 | It was nice to have you around, I'm going back to sleep...

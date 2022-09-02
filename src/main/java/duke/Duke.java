@@ -13,6 +13,16 @@ import java.util.Scanner;
 public class Duke {
     /** List of commands */
     private static ArrayList<CommandMatcher> commands;
+    private static UiInterface ui;
+
+    /**
+     * Gets the current UiInterface for command line purposes.
+     *
+     * @return UiInterface that helps display text to screen.
+     */
+    public static UiInterface getCurrentUi() {
+        return ui;
+    }
 
     private static Optional<Task> getTask(String index) {
         try {
@@ -20,10 +30,10 @@ public class Duke {
             Task task = TaskList.getTaskList().get(idx - 1);
             return Optional.of(task);
         } catch (NumberFormatException ex) {
-            Ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
+            ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
             return Optional.empty();
         } catch (IndexOutOfBoundsException ex) {
-            Ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
+            ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
     }
@@ -42,8 +52,15 @@ public class Duke {
      * @param args Command line args which are not used.
      */
     public static void main(String[] args) {
+        // allow for console tests to run
+        if (args.length >= 1 && args[0].equals("console-test")) {
+            ui = new Ui();
+        } else {
+            ui = new GuiHandler();
+        }
+
         // initialization
-        Ui.greet();
+        ui.greet();
         TaskList.initializeTaskList();
         commands = Parser.getCommands();
         Scanner input = new Scanner(System.in);
@@ -61,6 +78,6 @@ public class Duke {
 
         // finalization
         TaskList.finalizeTaskList();
-        Ui.leave();
+        ui.leave();
     }
 }

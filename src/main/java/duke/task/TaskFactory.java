@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.Optional;
 
+import duke.Duke;
 import duke.Ui;
 
 /**
@@ -44,7 +45,8 @@ public class TaskFactory {
         try {
             return Optional.of(constructTask(taskData));
         } catch (IllegalArgumentException ex) {
-            Ui.printStyledMessage("(>.<') did not understand this task - dropping it",
+            Duke.getCurrentUi().printStyledMessage(
+                    "(>.<') did not understand this task - dropping it",
                     String.join(", ", taskData));
             return Optional.empty();
         }

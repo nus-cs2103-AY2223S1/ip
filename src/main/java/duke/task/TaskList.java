@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import duke.Duke;
 import duke.Ui;
 
 /**
@@ -40,10 +41,12 @@ public class TaskList {
             Task task = taskList.get(idx - 1);
             return Optional.of(task);
         } catch (NumberFormatException ex) {
-            Ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
+            Duke.getCurrentUi().printStyledMessage(
+                    "Sorry, I didn't understand " + index + ", please give me a number.");
             return Optional.empty();
         } catch (IndexOutOfBoundsException ex) {
-            Ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
+            Duke.getCurrentUi().printStyledMessage(
+                    "Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
     }
