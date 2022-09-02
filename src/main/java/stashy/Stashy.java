@@ -61,6 +61,25 @@ public class Stashy {
     }
 
     /**
+     * Executes a given command supplied to Stashy but returns a string.
+     *
+     * @param c The command passed to this method
+     * @throws StashyException If there is indeed an exception thrown
+     */
+    public String executeCommandReturnString(Command c) throws StashyException {
+        return c.executeString(tasks, ui, storage);
+    }
+
+    /**
+     * Shows the GUI welcome message as a String.
+     *
+     * @return A simple welcome message.
+     */
+    public static String showWelcomeMessageGui() {
+        return ui.showWelcomeString();
+    }
+
+    /**
      * The main driver method of the chatbot.
      *
      * @param args Command-line arguments for the application

@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import stashy.Stashy;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Stashy using FXML.
  */
 public class Main extends Application {
 
@@ -23,7 +23,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(stashy);
+            stage.setTitle("Stashy v0.3");
+            stage.setResizable(false);
+            fxmlLoader.<MainWindow>getController().setStashy(stashy);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

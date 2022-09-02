@@ -181,10 +181,10 @@ public class Parser {
             throws StashyException {
         for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
             try {
-                LocalDateTime by = LocalDateTime.parse(byString,
+                LocalDateTime byDateTime = LocalDateTime.parse(byString,
                         DateTimeFormatter.ofPattern(dateTimeFormat)
                                 .withResolverStyle(ResolverStyle.SMART));
-                return new Deadline(description, by, isDone);
+                return new Deadline(description, byDateTime, isDone);
             } catch (Exception e) {
                 // Go for the next dateTimeFormat
             }
@@ -205,10 +205,10 @@ public class Parser {
             throws StashyException {
         for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
             try {
-                LocalDateTime at = LocalDateTime.parse(atString,
+                LocalDateTime atDateTime = LocalDateTime.parse(atString,
                         DateTimeFormatter.ofPattern(dateTimeFormat)
                                 .withResolverStyle(ResolverStyle.SMART));
-                return new Event(description, at, isDone);
+                return new Event(description, atDateTime, isDone);
             } catch (Exception e) {
                 // Go for the next dateTimeFormat
             }

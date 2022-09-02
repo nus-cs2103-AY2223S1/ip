@@ -103,7 +103,7 @@ public class TaskList {
     public String toString() {
         String message = "";
         for (int i = 1; i <= this.taskList.size(); i++) {
-            message += (i + "." + this.taskList.get(i - 1)) + "\n";
+            message += (i + ". " + this.taskList.get(i - 1)) + "\n";
         }
         String trimmedMessage = message.substring(0, Math.max(0, message.length() - 1));
         return trimmedMessage.isEmpty() ? "Nothing to see here..." : trimmedMessage;

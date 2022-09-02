@@ -1,5 +1,7 @@
 package stashy.launcher;
 
+import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import stashy.Stashy;
+import stashy.commands.Command;
+import stashy.data.exception.StashyException;
+import stashy.parser.Parser;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -23,30 +28,60 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Stashy stashy;
+    private boolean isExit = false;
+    private Random rng = new Random();
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image stashyImageNormal = new Image(this.getClass().getResourceAsStream("/images/genenormal.png"));
+    private Image stashyImageThinking = new Image(this.getClass().getResourceAsStream("/images/genethink.png"));
+    private Image stashyImageCool = new Image(this.getClass().getResourceAsStream("/images/genecool.png"));
+    private Image[] stashyImages = { stashyImageNormal, stashyImageThinking, stashyImageCool };
 
+    /**
+     * Initialization method to be run upon startup.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        Image randomStashyImage = stashyImages[rng.nextInt(stashyImages.length)];
+        dialogContainer.getChildren().addAll(
+            DialogBox.getStashyDialog(Stashy.showWelcomeMessageGui(), randomStashyImage)
+        );
     }
 
-    public void setDuke(Stashy s) {
+    public void setStashy(Stashy s) {
         stashy = s;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Stashy's reply
+     * and then appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-        String response = ""; // = stashy.getResponse(input);
+        Image randomStashyImage = stashyImages[rng.nextInt(stashyImages.length)];
+
+        String input = userInput.getText().strip();
+        if (input.isEmpty()) {
+            return;
+        }
+        String response;
+        try {
+            if (!isExit) {
+                Command c = Parser.parseCommand(input);
+                response = stashy.executeCommandReturnString(c);
+                isExit = c.isExit();
+            } else {
+                response = "..."; // Literally just an ellipsis
+            }
+        } catch (StashyException se) {
+            response = se.getMessage();
+        }
+
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),
-            DialogBox.getDukeDialog(response, dukeImage)
+            // Picks a random image for Stashy
+            DialogBox.getStashyDialog(response, randomStashyImage)
         );
         userInput.clear();
     }

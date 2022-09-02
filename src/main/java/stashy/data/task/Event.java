@@ -12,28 +12,28 @@ public class Event extends Task {
     /**
      * The time of the event as a LocalDateTime object.
      */
-    protected LocalDateTime at;
+    protected LocalDateTime atDateTime;
 
     /**
      * Constructor method.
      *
      * @param description The event description
-     * @param at The time of the event
+     * @param atDateTime The time of the event
      * @param isDone Whether the task is done or not
      */
-    public Event(String description, LocalDateTime at, boolean isDone) {
+    public Event(String description, LocalDateTime atDateTime, boolean isDone) {
         super(description, isDone);
-        this.at = at;
+        this.atDateTime = atDateTime;
     }
 
     /**
      * Constructor method.
      *
      * @param description The event description
-     * @param at The time of the event
+     * @param atDateTime The time of the event
      */
-    public Event(String description, LocalDateTime at) {
-        this(description, at, false);
+    public Event(String description, LocalDateTime atDateTime) {
+        this(description, atDateTime, false);
     }
 
     /**
@@ -44,6 +44,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+                + atDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
     }
 }
