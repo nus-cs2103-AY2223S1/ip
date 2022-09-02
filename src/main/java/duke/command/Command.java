@@ -9,14 +9,34 @@ import duke.parser.Parser;
 
 import java.util.Iterator;
 
+/**
+ * An abstract Command class for all command classes to inherit from.
+ * Use factory method to get an instance.
+ */
 public abstract class Command {
 
+    /**
+     * Executes the given command.
+     * This should be overridden by all Command subclasses.
+     *
+     * @param taskList a TaskList object for command to be executed on
+     * @return a string object representing the response given after the command.
+     */
     public abstract String exec(TaskList taskList);
 
+    /**
+     * Check if the given command is an exit command.
+     * @return true only if the Command is an exit command.
+     */
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Returns the relevant command object from a Parser.ParsedInputArguments object.
+     * @param inputArgs an input argument object representing input
+     * @return a Command object
+     */
     public static Command getCommand(Parser.ParsedInputArguments inputArgs) {
         switch (inputArgs.keyword) {
             case "bye":
