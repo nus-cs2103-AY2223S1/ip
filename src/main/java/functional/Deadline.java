@@ -9,13 +9,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
+  private static final String DEADLINE_INFOTYPE = "deadline";
+  private static final String DEADLINE_DEADLINE_LABEL = "deadline";
   protected LocalDateTime deadline;
 
   /**
-   * Construct a task with a name and a deadline.
+   * Construct functional.Task with a fixed name.
    *
    * @param name The name of the task.
-   * @param deadline The deadline of the task.
    */
   public Deadline(String name, LocalDateTime deadline) {
     super(name);
@@ -31,14 +32,13 @@ public class Deadline extends Task {
   public Deadline(SaveLine line) {
     super(line);
     deadline = LocalDateTime
-        .parse(line.getValue("deadline"),
-            DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
+        .parse(line.getValue(DEADLINE_DEADLINE_LABEL), DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss"));
   }
 
   /**
-   * Shows the task name, status, and deadline as a String.
+   * Shows the deadline name and status as a String.
    *
-   * @return A String with the task name, status, and deadline.
+   * @return A String with the task name and status.
    */
   public String toString() {
     return String.format("[D]%s (by %s)", super.toString(),
@@ -54,18 +54,11 @@ public class Deadline extends Task {
   @Override
   public SaveLine toData() {
     SaveLine ret = super.toData();
-    ret.setInfoType("deadline");
-    ret.addKeyValue("deadline", deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    ret.setInfoType(DEADLINE_INFOTYPE);
+    ret.addNameData(DEADLINE_DEADLINE_LABEL, deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
     return ret;
   }
 
-  /**
-   * Checks whether this is equal to another Object. If the other object is
-   * not a Deadline, the return value will be false.
-   *
-   * @param rhs The right hand side of the comparison.
-   * @return The boolean stating whether this and the argument are equal.
-   */
   @Override
   public boolean equals(Object rhs) {
     if (rhs instanceof Deadline) {
