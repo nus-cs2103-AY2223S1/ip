@@ -124,7 +124,7 @@ public class GuiEventDispatcher {
         for (CalendarEntry e : entries) {
             content = content + e.toString() + "\n";
         }
-        if (entries.size()==0){
+        if (entries.size() == 0) {
             return "Es tut mir leid, cannot find any match entries";
         }
         return content;
@@ -174,4 +174,7 @@ public class GuiEventDispatcher {
         //return 500; //not implemented
     }
 
+    public void initialize() throws Exception {
+        this.disk.syncFromFile(this.table);
+    }
 }
