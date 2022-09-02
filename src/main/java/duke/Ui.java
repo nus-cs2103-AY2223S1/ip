@@ -18,10 +18,11 @@ public class Ui {
         String msg = (size + " tasks were loaded.");
         System.out.println(msg);
     }
-    public void welcomeMessage() {
+    public String welcomeMessage() {
         String msg = ("Hello! I'm Duke\n" +
                 "What can I do for you?");
         printMsgWithLine(msg);
+        return msg;
     }
     public void exitMessage() {
         String msg = ("\tBye. Hope to see you again soon!");
@@ -35,10 +36,11 @@ public class Ui {
         printMsgWithLine(msg);
     }
 
-    public void taskDoneMsg(Task task) {
+    public String taskDoneMsg(Task task) {
         String msg = ("\tNice! I've marked this task as done:\n" +
                 "\t\t" + task.toString());
         printMsgWithLine(msg);
+        return msg;
     }
 
     public void taskUndoneMsg(Task task) {
@@ -56,10 +58,11 @@ public class Ui {
         printMsgWithLine(msg);
     }
 
-    public void taskAddMsg(Task task,int size) {
+    public String taskAddMsg(Task task,int size) {
         String msg = ("\tGot it. I've added this task:\n" + "\t" + task.toString() +
         "\n\tNow you have " + size + " tasks in the list.");
         printMsgWithLine(msg);
+        return msg;
     }
 
 
