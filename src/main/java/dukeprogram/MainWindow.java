@@ -1,7 +1,15 @@
 package dukeprogram;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.stream.Stream;
 
+import javafx.animation.PauseTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -48,12 +57,24 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String[] responses = Duke.getResponses(input);
+        System.out.println(Arrays.toString(responses));
 
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
-        for (String response : responses) {
-            dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
-        }
+
+        Iterator<String> responseStream = Arrays.stream(responses).iterator();
+        consumeResponse(responseStream);
 
         userInput.clear();
+    }
+
+    private void consumeResponse(Iterator<String> responseIterator) {
+        if (responseIterator.hasNext()) {
+            PauseTransition pause = new PauseTransition(Duration.millis(500));
+            pause.setOnFinished(event -> {
+                dialogContainer.getChildren().add(DialogBox.getDukeDialog(responseIterator.next(), dukeImage));
+                consumeResponse(responseIterator);
+            });
+            pause.play();
+        }
     }
 }

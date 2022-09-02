@@ -1,6 +1,7 @@
 package dukeprogram;
 
-import javax.print.attribute.standard.RequestingUserName;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Optional;
  */
 public class InternalAction {
     private final Optional<Runnable> runnable;
-    private final Optional<String> displayText;
+    private final List<String> displayTexts = new ArrayList<>();
 
     /**
      * Creates an InternalAction
@@ -17,7 +18,7 @@ public class InternalAction {
      * @param runnable the action to perform, if any
      */
     public InternalAction(String displayText, Runnable runnable) {
-        this.displayText = Optional.of(displayText);
+        this.displayTexts.add(displayText);
         this.runnable = Optional.of(runnable);
     }
 
@@ -25,16 +26,15 @@ public class InternalAction {
      * Creates an empty InternalAction
      */
     public InternalAction() {
-        this.displayText = Optional.empty();
         this.runnable = Optional.empty();
     }
 
     /**
      * Creates an InternalAction
-     * @param displayText the text to display to the user, if any
+     * @param displayTexts the texts to display to the user, if any
      */
-    public InternalAction(String displayText) {
-        this.displayText = Optional.of(displayText);
+    public InternalAction(String... displayTexts) {
+        this.displayTexts.addAll(List.of(displayTexts));
         this.runnable = Optional.empty();
     }
 
@@ -43,12 +43,11 @@ public class InternalAction {
      * @param runnable the action to perform, if any
      */
     public InternalAction(Runnable runnable) {
-        this.displayText = Optional.empty();
         this.runnable = Optional.of(runnable);
     }
 
-    public String getDisplayText() {
-        return displayText.orElse("");
+    public List<String> getAllDisplayText() {
+        return displayTexts;
     }
 
     public void doRunnable() {

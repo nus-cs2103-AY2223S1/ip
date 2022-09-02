@@ -33,7 +33,8 @@ public class AddTaskCommand extends Command {
     public InternalAction onParse(String input) {
         String[] separatedCommands = input.split(" ");
         if (separatedCommands.length < 2) {
-            return new InternalAction("Hmm, you need to tell me what you want to add...");
+            return new InternalAction("Hmm, you need to tell me what you want to add...",
+                    "Usage: add <task_type> <task_name>");
         }
 
         String[][] nameAndDate;

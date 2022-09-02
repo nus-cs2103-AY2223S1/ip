@@ -25,7 +25,8 @@ public class AccessTasksCommand extends Command {
 
     @Override
     public InternalAction onStay() {
-        return new InternalAction("Input one of these command:\n[add | list | mark | unmark | delete]");
+        return new InternalAction("Input one of these command:"
+                + "\n[add | list | mark | unmark | delete]");
     }
 
 
