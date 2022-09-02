@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Loads tasks and saves tasks in the specified file.
+ *
+ * @author Lim Ai Lin
+ */
 public class Storage {
 
     private enum Commands {
@@ -18,21 +23,26 @@ public class Storage {
         EVENT
     }
 
-    private final File file;
-    private final String filePath;
+    private final File FILE;
+    private final String FILE_PATH;
 
+    /**
+     * Creates a storage object to load and save all tasks.
+     *
+     * @param filePath The text file to load the tasks from and save the tasks to.
+     */
     public Storage(String filePath) {
-        this.filePath = filePath;
-        this.file = new File(filePath);
+        this.FILE_PATH = filePath;
+        this.FILE = new File(filePath);
     }
 
     protected ArrayList<Task> load() throws IOException {
         ArrayList<Task> ls = new ArrayList<>(100);
         try {
-            if (this.file.createNewFile()) {
-                System.out.println("Dino created a new file: " + file.getName() + "\n");
+            if (this.FILE.createNewFile()) {
+                System.out.println("Dino created a new file: " + FILE.getName() + "\n");
             } else {
-                BufferedReader br = new BufferedReader(new FileReader(file));
+                BufferedReader br = new BufferedReader(new FileReader(FILE));
                 try {
                     String current = br.readLine();
                     while (current != null) {
@@ -80,7 +90,7 @@ public class Storage {
 
     public void writeFile(TaskList tasks) {
         try {
-            FileWriter myWriter = new FileWriter(this.filePath);
+            FileWriter myWriter = new FileWriter(this.FILE_PATH);
             StringBuilder str = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {
                 Task myTask = tasks.get(i);
