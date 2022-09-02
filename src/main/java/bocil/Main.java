@@ -28,7 +28,6 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setTitle(bocil.getTitle());
             stage.setScene(scene);
-            bocil.initialize();
             fxmlLoader.<MainWindow>getController().setBocil(bocil);
             stage.show();
         } catch (IOException e) {

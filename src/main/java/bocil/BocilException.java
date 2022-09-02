@@ -6,6 +6,8 @@ package bocil;
 public class BocilException extends Exception {
     private static final String EMPTY_INPUT = "Please enter something!";
     private static final String FILE_NOT_FOUND = "I cannot find your file";
+    private static final String FILE_WRONG_FORMAT = "I cannot understand the formatting inside the storage file. "
+            + "Please fix it and restart the app!";
     private static final String INVALID_INDEX = "The task number you input is invalid";
     private static final String INVALID_FORMAT = "The task format you input is invalid";
     private static final String INVALID_DATE_FORMAT = "The date format you input is invalid";
@@ -30,12 +32,21 @@ public class BocilException extends Exception {
     }
 
     /**
-     * Handles errors where the specified file cannot be found.
+     * Handles errors where the storage file cannot be found.
      *
      * @return {@link BocilException}
      */
     public static BocilException bocilFileNotFoundException() {
         return new BocilException(FILE_NOT_FOUND);
+    }
+
+    /**
+     * Handles errors where the storage file has the wrong text formatting.
+     *
+     * @return {@link BocilException}
+     */
+    public static BocilException bocilFileWrongFormatException() {
+        return new BocilException(FILE_WRONG_FORMAT);
     }
 
     /**

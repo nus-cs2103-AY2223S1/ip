@@ -86,6 +86,8 @@ public class Storage {
             }
         } catch (FileNotFoundException e) {
             throw BocilException.bocilFileNotFoundException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw BocilException.bocilFileWrongFormatException();
         }
         return taskList;
     }

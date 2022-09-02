@@ -11,8 +11,9 @@ import ui.Ui;
 public class Bocil {
     private static final String NAME = "Windah Bocil";
     private static final String TITLE = "Bocil";
-    private final Storage storage;
-    private final Ui ui;
+    private Storage storage;
+    private Ui ui;
+    private String errorMessage;
     private Parser parser;
     private TaskList taskList;
 
@@ -27,27 +28,40 @@ public class Bocil {
         this.taskList = new TaskList();
         this.parser = new Parser();
         this.ui = new Ui();
-    }
-
-    /**
-     * Prints the introduction line of the UI.
-     */
-    public void initialize() {
         try {
             this.taskList = this.storage.readFile();
             this.parser = new Parser(this.taskList);
+            this.errorMessage = "";
         } catch (BocilException e) {
-            this.ui.printOutput(this.ui.showError(e));
+            this.errorMessage = this.ui.showError(e);
         }
     }
 
     /**
-     * Shows the introduction line of the UI.
+     * Gets the title of the UI.
      *
-     * @return Introduction line.
+     * @return UI Title.
      */
     public String getTitle() {
         return TITLE;
+    }
+
+    /**
+     * Gets the initialization error status.
+     *
+     * @return Initialization error status.
+     */
+    public boolean isError() {
+        return this.errorMessage.length() > 0;
+    }
+
+    /**
+     * Gets the initialization error message.
+     *
+     * @return Initialization error message.
+     */
+    public String getErrorMessage() {
+        return this.errorMessage;
     }
 
     /**
@@ -68,6 +82,9 @@ public class Bocil {
      * @return Response of Bocil
      */
     public String getResponse(String input) {
+        if (this.isError()) {
+            return this.getErrorMessage();
+        }
         try {
             return this.parser.processInput(input);
         } catch (BocilException e) {
