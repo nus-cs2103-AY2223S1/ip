@@ -1,16 +1,13 @@
 package duke.entities;
 
 import java.time.LocalDateTime;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 import duke.exceptions.DukeException;
 
 /**
  * Event with a description and a deadline
  */
-public class Event extends Todo {
-    private final LocalDateTime deadline;
+public class Event extends Todo implements Comparable {
 
     /**
      * Initialises the event with desc and deadline
@@ -20,28 +17,7 @@ public class Event extends Todo {
      */
     public Event(String desc, LocalDateTime deadline) throws DukeException {
         super(desc);
-        this.deadline = deadline;
-    }
-
-    /**
-     * Getter for deadline
-     * @return Deadline of Event
-     */
-    public String getDeadline() {
-        int h = deadline.getHour();
-        assert h <= 12 && h >= 0 : "m should be between 0 and 12";
-        String hour = h < 9 ? "0" + h : Integer.toString(h);
-
-        int m = deadline.getMinute();
-        assert m <= 59 && m >= 0 : "m should be between 0 and 59";
-        String minutes = m < 9 ? "0" + m : Integer.toString(m);
-
-        String dayOfWeek = deadline.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        int d = deadline.getDayOfMonth();
-        String dayOfMonth = d < 9 ? "0" + d : Integer.toString(d);
-        String month = deadline.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        Integer year = deadline.getYear();
-        return String.format(" < %s:%s %s %s %s %s >", hour, minutes, dayOfWeek, dayOfMonth, month, year);
+        super.setDeadline(deadline);
     }
 
     @Override

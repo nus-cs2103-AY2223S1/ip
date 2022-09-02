@@ -12,6 +12,7 @@ import duke.commands.DeleteCommand;
 import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.Mark;
+import duke.commands.ReminderCommand;
 import duke.commands.ShowList;
 import duke.enums.Commands;
 import duke.enums.Messages;
@@ -65,6 +66,8 @@ public class Parser {
                 return new ShowList(tasks);
             case FIND:
                 return new FindCommand(tasks, indexDescription);
+            case REMINDER:
+                return new ReminderCommand(tasks);
             default:
                 return new InvalidCommand(Messages.ERROR_INVALID_COMMAND.toString());
             }

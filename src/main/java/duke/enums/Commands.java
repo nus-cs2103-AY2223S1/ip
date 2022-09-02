@@ -16,6 +16,7 @@ public enum Commands {
     DELETE("delete"),
     MARK("mark"),
     FIND("find"),
+    REMINDER("remind"),
     ERROR("");
 
     private final String command;

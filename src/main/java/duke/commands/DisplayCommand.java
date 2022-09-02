@@ -29,7 +29,6 @@ public class DisplayCommand implements Command {
         output += Messages.LINE_SEPARATION.toString();
         return output;
     }
-
     /**
      * Wraps message without lines
      * @param msg to be wrapped
