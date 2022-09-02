@@ -25,6 +25,7 @@ public class Task {
         return this.taskName;
     }
 
-    public String toStore() {return (this.isDone ? 1 : 0) + "|" + this.taskName;}
-
+    public String toStore() {
+        return (this.isDone ? 1 : 0) + "|" + this.taskName;
+    }
 }

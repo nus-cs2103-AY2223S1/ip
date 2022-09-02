@@ -8,15 +8,27 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the storage for the tasks to be saved locally. Handles the
+ * loading of tasks from the file and saving tasks in the file
+ */
 public class Storage {
 
     private String filepath;
-    ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
 
+    /**
+     * Constructor for Storage Object.
+     * @param filepath path where the tasks are saved locally.
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
 
+    /**
+     * Adds the task to the <code>TaskList</code> from the saved file.
+     * @param taskname the description of the saved task.
+     */
     private void addToListfromFile(String taskname) {
         boolean bool = (taskname.charAt(4) == 'X' ? true : false);
         if (taskname.charAt(1) == 'T'){
@@ -36,7 +48,12 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Loads the tasks from the locally saved file to the Task List of the user.
+     * @param ui the ui to display confirmatory message once tasks are loaded.
+     * @return a <code>TaskList</code> with the loaded tasks
+     * @throws DukeException if no saved tasks are found.
+     */
     public ArrayList<Task> load(Ui ui) throws DukeException {
             if (Files.exists(Path.of(this.filepath))) {
                 File taskList = new File(this.filepath);
