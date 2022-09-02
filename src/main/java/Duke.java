@@ -1,11 +1,48 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<Task> storage = new ArrayList<>();
+        File dataFile = new File("duke.txt");
+        if (!dataFile.createNewFile()) {
+            Scanner fileReader = new Scanner(dataFile);
+            while (fileReader.hasNextLine()) {
+                fileReader.useDelimiter(" \\| ");
+                UserCommand command = UserCommand.valueOf(fileReader.next().toUpperCase());
+                Task task;
+                switch (command) {
+                case TODO:
+                    String toDoDescription = fileReader.next();
+                    task = new ToDo(toDoDescription);
+                    storage.add(task);
+                    break;
+                case DEADLINE:
+                    String deadlineDescription = fileReader.next();
+                    String deadlineBy = fileReader.next();
+                    task = new Deadline(deadlineDescription, deadlineBy);
+                    storage.add(task);
+                    break;
+                case EVENT:
+                    String eventDescription = fileReader.next();
+                    String eventAt = fileReader.next();
+                    task = new Event(eventDescription, eventAt);
+                    storage.add(task);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + command);
+                }
+                String isDone = fileReader.reset().skip(" \\| ").nextLine();
+                if (isDone.equals("true")) {
+                    task.markAsDoneWithoutMessage();
+                }
+            }
+        }
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
         UserInput: while (scanner.hasNextLine()) {
@@ -75,6 +112,11 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break UserInput;
             }
+            FileWriter fileWriter = new FileWriter(dataFile);
+            for (Task task : storage) {
+                fileWriter.write(task.fileFormat() + System.lineSeparator());
+            }
+            fileWriter.close();
         }
         scanner.close();
     }
