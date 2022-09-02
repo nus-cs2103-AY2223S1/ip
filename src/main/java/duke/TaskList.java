@@ -16,7 +16,7 @@ public class TaskList {
         return newArr;
     }
 
-    public static void add(String input) {
+    public static String add(String input) {
         Task newTask = new Task("");
         try {
             if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
@@ -60,62 +60,65 @@ public class TaskList {
             } else {
                 throw new DukeUnknownException();
             }
-            Ui.addedMsg(newTask);
+            return Ui.addedMsg(newTask);
 
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            return(e.getMessage());
         }
-
     }
 
-    public static void delete(String input) {
+    public static String delete(String input) {
         if (!input.equals("delete")) {
             try {
                 int index = Integer.parseInt(input.substring(7)) - 1;
                 Task removedTask = taskList.remove(index);
-                Ui.deleteMsg(removedTask);
+                return Ui.deleteMsg(removedTask);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(new DukeException("ERROR: there is no item in the list there!").getMessage());
+                return(new DukeException("ERROR: there is no item in the list there!").getMessage());
             }
         } else {
-            System.out.println(new DukeException("ERROR: please specify an index.").getMessage());
+            return(new DukeException("ERROR: please specify an index.").getMessage());
         }
     }
 
     /**
      * Method to show contents of list.
+     * @return
      */
-    public static void showList() {
+    public static String showList() {
         if (taskList.size() == 0) {
-            System.out.println(new DukeException("ERROR: empty list.").getMessage());
+            return(new DukeException("ERROR: empty list.").getMessage());
         }
-        for (int i = 1; i <= taskList.size(); i++) {
-            Task currTask = taskList.get(i - 1);
-            System.out.println(i + "." + currTask.toString());
+        String list = "";
+        for (int i = 0; i < TaskList.taskList.size(); i++) {
+            int j = i + 1;
+            list = list + j + "." + TaskList.taskList.get(i) + "\n";
         }
+        return "Here are your tasks:" + "\n" + list;
     }
 
-    static void markChild(int index) {
+    static String markChild(int index) {
         taskList.get(index).mark();
-        Ui.markMsg(index);
+        return Ui.markMsg(index);
     }
 
-    static void unmarkChild(int index) {
+    static String unmarkChild(int index) {
         taskList.get(index).unmark();
-        Ui.unmarkMsg(index);
+        return Ui.unmarkMsg(index);
     }
 
-    public static void find(String input) {
-        Ui.resultsMsg();
+    public static String find(String input) {
         ArrayList<Task> temp = new ArrayList<>();
         copyToList(temp).removeIf(s -> !s.getDescription().contains(input));
         ;
         if (temp.size() == 0) {
-            System.out.println(new DukeException("ERROR: empty list.").getMessage());
+            return(new DukeException("ERROR: empty list.").getMessage());
         }
-        for (int i = 1; i <= temp.size(); i++) {
-            Task currTask = temp.get(i - 1);
-            System.out.println(i + "." + currTask.toString());
+        String list = "";
+        for (int i = 0; i < temp.size(); i++) {
+            int j = i + 1;
+            list = list + j + "." + temp.get(i) + "\n";
         }
+        return Ui.resultsMsg(list);
     }
 }

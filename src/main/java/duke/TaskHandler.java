@@ -22,9 +22,10 @@ public class TaskHandler {
      * Method to add an item to the list.
      *
      * @param input Input to be added to the list.
+     * @return
      */
-    static void addTask(String input) {
-        TaskList.add(input);
+    static String addTask(String input) {
+        return TaskList.add(input);
     }
 
     /**
@@ -32,8 +33,8 @@ public class TaskHandler {
      *
      * @param input Input to be deleted from the list.
      */
-    static void deleteTask(String input) {
-        TaskList.delete(input);
+    static String deleteTask(String input) {
+        return TaskList.delete(input);
     }
 
     /**
@@ -41,9 +42,9 @@ public class TaskHandler {
      *
      * @param input Input to be marked in the list.
      */
-    public void markChild(String input) {
+    public String markChild(String input) {
         int index = Integer.parseInt(input.substring(5)) - 1;
-        taskList.markChild(index);
+        return taskList.markChild(index);
     }
 
     /**
@@ -51,13 +52,13 @@ public class TaskHandler {
      *
      * @param input Input to be unmarked in the list.
      */
-    public void unmarkChild(String input) {
+    public String unmarkChild(String input) {
         int index = Integer.parseInt(input.substring(7)) - 1;
-        taskList.unmarkChild(index);
+        return taskList.unmarkChild(index);
     }
 
-    public void findTask(String input) {
+    public String findTask(String input) {
         String formattedInput = input.substring(5);
-        taskList.find(formattedInput);
+        return taskList.find(formattedInput);
     }
 }
