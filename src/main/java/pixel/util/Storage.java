@@ -74,8 +74,8 @@ public class Storage {
      * @param userInput input from the user, starting with "delete ..."
      * @throws IOException when the filePath is invalid
      */
-    public static void deleteEntry(String userInput, String filePath) throws IOException {
-
+    public static String deleteEntry(String userInput, String filePath) throws IOException {
+        String output = "";
         Task tempRecord;
         // truncate the front part
         String temp = userInput.substring(7);
@@ -86,9 +86,9 @@ public class Storage {
             tempRecord = Storage.INPUT_TASKS.get(indexToDelete - 1);
             int originalInputListSize = Storage.INPUT_TASKS.size();
 
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(tempRecord);
-            System.out.println(originalInputListSize + " input task size");
+            output += ("Noted. I've removed this task: \n"
+                + tempRecord + "\n" );
+                //+ originalInputListSize + " input task size");
 
             // shift everything forward by 1, starting at the element to be removed (which is replaced by next element)
             for (int i = (indexToDelete - 1); i < originalInputListSize; i++) {
@@ -108,7 +108,11 @@ public class Storage {
             }
 
             Pixel.count -= 1;
-            System.out.println("Now you have " + Pixel.count + " tasks in the list.");
+            output += ("Now you have " + Pixel.count + " tasks in the list.");
+            return output;
+
+        } else {
+            return ("Choose an index between 1 and 100 to delete!");
         }
     }
 
