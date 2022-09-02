@@ -11,4 +11,8 @@ public class ByeHandler {
         dukePrint("Bye. duke.Duke doesn't miss you.");
         System.exit(0);
     }
+
+    public static String getResponse(){
+        return("Bye. duke.Duke doesn't miss you.");
+    }
 }

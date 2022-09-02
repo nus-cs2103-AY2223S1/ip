@@ -21,4 +21,13 @@ public class TodoHandler {
         list.add(newTask);
         dukePrint("Todo Added!");
     }
+
+    public static String getResponse(TaskList list, String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        Task newTask = new Todo(input);
+        list.add(newTask);
+        return ("Todo Added!");
+    }
 }
