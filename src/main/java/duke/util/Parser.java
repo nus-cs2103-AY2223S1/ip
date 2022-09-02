@@ -216,9 +216,9 @@ public class Parser {
         return getLocalDateTimeFromString(refinedDateString);
     }
 
-    private static int getTaskIndexFromCommand(String commandArgument) throws DukeMissingIndexException {
-        int indexOfFirstWhiteSpace = Parser.getIndexOfFirstWhiteSpace(commandArgument);
-        String tailSubString = commandArgument.substring(0, indexOfFirstWhiteSpace);
+    private static int getTaskIndexFromCommand(String ... commandArgument) throws DukeMissingIndexException {
+        int indexOfFirstWhiteSpace = Parser.getIndexOfFirstWhiteSpace(commandArgument[0]);
+        String tailSubString = commandArgument[0].substring(0, indexOfFirstWhiteSpace);
         tailSubString = tailSubString.replace(" ", "");
         if (tailSubString.isEmpty()) {
             throw new DukeMissingIndexException(INDEX_MISSING_ERROR_MESSAGE);
