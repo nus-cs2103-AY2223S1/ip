@@ -3,7 +3,7 @@ package duke.util;
 import java.util.Scanner;
 
 /**
- * A class that is responsible for reading user input and printing computated output.
+ * A class that is responsible for reading user input and printing computed output on the command line interface (CLI).
  * It is the frontend of the application.
  */
 public class CliUi {
