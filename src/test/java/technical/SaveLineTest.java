@@ -1,16 +1,17 @@
+package technical;
+
 import functional.Deadline;
 import functional.Event;
 import org.junit.jupiter.api.Test;
-import technical.SaveLine;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class DukeTest {
+public class SaveLineTest {
   @Test
-  public void saveLineChecks() {
+  public void toStringAndBackChecks() {
     SaveLine exampleDeadline = new Deadline("Theology",
         LocalDateTime.of(2022, 9, 2, 20, 10, 4)).toData();
     String printedDeadline = exampleDeadline.toString();
