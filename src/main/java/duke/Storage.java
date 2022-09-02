@@ -1,9 +1,9 @@
 package duke;
 
+import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +38,7 @@ public class Storage {
      * @throws DukeException if an invalid task is encountered in the file
      */
     public ArrayList<Task> getTasksFromDisk() throws FileNotFoundException, DukeException {
-        ArrayList<Task> list = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         if (this.file.exists()) {
             Scanner s = new Scanner(this.file);
             while (s.hasNext()) {
@@ -49,43 +49,43 @@ public class Storage {
                     String description = taskArr[2];
                     Todo t = new Todo(description);
                     if (done.equals("X")) {
-                        t.markDone();
+                        t.setDone(true);
                     }
-                    list.add(list.size(), t);
+                    tasks.add(tasks.size(), t);
                 } else if (taskArr[0].equals("D")) {
                     String done = taskArr[1];
                     String description = taskArr[2];
                     String date = taskArr[3];
                     Deadline t = new Deadline(description, date);
                     if (done.equals("X")) {
-                        t.markDone();
+                        t.setDone(true);
                     }
-                    list.add(list.size(), t);
+                    tasks.add(tasks.size(), t);
                 } else if (taskArr[0].equals("E")) {
                     String done = taskArr[1];
                     String description = taskArr[2];
                     String date = taskArr[3];
                     Event t = new Event(description, date);
                     if (done.equals("X")) {
-                        t.markDone();
+                        t.setDone(true);
                     }
-                    list.add(list.size(), t);
+                    tasks.add(tasks.size(), t);
                 } else {
                     throw new DukeException("Oops, unknown task type.");
                 }
             }
             System.out.println("Loaded tasks.");
         }
-        return list;
+        return tasks;
     }
 
     /**
      * Saves the list of tasks to the file.
      *
-     * @param list list of tasks
+     * @param tasks list of tasks
      * @throws IOException if an I/O error occurs when saving tasks to the file
      */
-    public void saveTasks(ArrayList<Task> list) throws IOException {
+    public void saveTasks(ArrayList<Task> tasks) throws IOException {
         if (!this.directory.exists()) {
             this.directory.mkdir();
         }
@@ -93,8 +93,8 @@ public class Storage {
             this.file.createNewFile();
         }
         FileWriter fw = new FileWriter(this.file);
-        for (int i = 0; i < list.size(); i++) {
-            fw.write(list.get(i).save() + System.lineSeparator());
+        for (int i = 0; i < tasks.size(); i++) {
+            fw.write(tasks.get(i).save() + System.lineSeparator());
         }
         fw.close();
     }

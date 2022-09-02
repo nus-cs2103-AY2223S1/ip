@@ -39,7 +39,7 @@ public class Ui {
     public void giveInput(TaskList tasks) {
         String input;
         Scanner sc = new Scanner(System.in);
-        while (!this.parser.isBye()) {
+        while (!this.parser.isExit()) {
             input = sc.nextLine();
             try {
                 this.parser.parse(input, tasks);

@@ -33,7 +33,9 @@ public class Task {
      * @return status icon of the task
      */
     public String getStatusIcon() {
-        return ("[" + (this.isDone ? "X" : " ") + "]");
+        return ("["
+                + (this.isDone ? "X" : " ")
+                + "]");
     }
 
     /**
@@ -46,17 +48,12 @@ public class Task {
     }
 
     /**
-     * Marks the task as done.
+     * Marks the task as done or not done.
+     *
+     * @param isDone true if the task should be marked as done, false if marked as not done
      */
-    public void markDone() {
-        this.isDone = true;
-    }
-
-    /**
-     * Marks the task as not done.
-     */
-    public void markNotDone() {
-        this.isDone = false;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     /**
@@ -64,6 +61,8 @@ public class Task {
      * @return string representation of the task to be saved
      */
     public String save() {
-        return " | " + (this.isDone ? "X" : " ") + " | " + this.description;
+        return " | "
+                + (this.isDone ? "X" : " ")
+                + " | " + this.description;
     }
 }

@@ -1,21 +1,21 @@
 package duke;
 
+import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.Todo;
 
 /**
  * A parser which handles parsing of the user input.
  */
 public class Parser {
-    private boolean bye;
+    private boolean hasExited;
 
     /**
      * Constructor method for a Parser.
      */
     public Parser() {
-        this.bye = false;
+        this.hasExited = false;
     }
 
     /**
@@ -23,8 +23,8 @@ public class Parser {
      *
      * @return true if the user has exited, false otherwise
      */
-    public boolean isBye() {
-        return this.bye;
+    public boolean isExit() {
+        return this.hasExited;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Parser {
      */
     public void parse(String input, TaskList tasks) throws DukeException {
         if (input.equals("bye")) {
-            this.bye = true;
+            this.hasExited = true;
         } else if (input.equals("list")) {
             tasks.showList();
         } else if (input.startsWith("mark")) {
