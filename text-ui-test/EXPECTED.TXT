@@ -5,3 +5,35 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello! I'm Duke
+What can I do for you?
+
+Got it. I've added this task:
+[T][ ] todo something first
+1. [T][ ] todo something first
+Got it. I've added this task:
+[D][ ] deadline something else (by: tonight)
+Got it. I've added this task:
+[E][ ] event another thing (at: tmr 5pm)
+1. [T][ ] todo something first
+2. [D][ ] deadline something else (by: tonight)
+3. [E][ ] event another thing (at: tmr 5pm)
+Nice! I've marked this task as done:
+[T][X] todo something first
+1. [T][X] todo something first
+2. [D][ ] deadline something else (by: tonight)
+3. [E][ ] event another thing (at: tmr 5pm)
+OK, I've marked this task as not done yet:
+[T][ ] todo something first
+1. [T][ ] todo something first
+2. [D][ ] deadline something else (by: tonight)
+3. [E][ ] event another thing (at: tmr 5pm)
+Noted. I've removed this task:
+[T][ ] todo something first
+Now you have 2 tasks in the list.
+1. [D][ ] deadline something else (by: tonight)
+2. [E][ ] event another thing (at: tmr 5pm)
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+☹ OOPS!!! The description of a todo cannot be empty.
+Bye. Hope to see you again soon!
+
