@@ -57,7 +57,7 @@ public class TaskList {
      * @param taskDescription description of <code>Task</code> to be added
      * @param date date property of <code>Task</code> of to be added
      */
-    public void editTaskList(String taskType, String taskDescription, String date) {
+    public String editTaskList(String taskType, String taskDescription, String date) {
         Task newTask = null;
         switch (taskType) {
         case "todo":
@@ -71,7 +71,7 @@ public class TaskList {
             break;
         }
         tasks.add(newTask);
-        Ui.printTaskCreationMessage(newTask, tasks.size());
+        return Ui.printTaskCreationMessage(newTask, tasks.size());
     }
 
     /**
@@ -81,24 +81,27 @@ public class TaskList {
      * @param index index of the <code>Task</code> to be edited
      * @throws DukeException if the index is out of range
      */
-    public void editTaskList(String cmd, int index) throws DukeException {
+    public String editTaskList(String cmd, int index) throws DukeException {
         if (index >= tasks.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
         }
         Task t = tasks.get(index);
+        String editMessage = "";
         switch (cmd) {
         case "mark":
-            t.markAsDone();
+            editMessage = t.markAsDone();
             break;
         case "unmark":
-            t.markAsNotDone();
+            editMessage = t.markAsNotDone();
             break;
         case "delete":
             tasks.remove(index);
-            System.out.println("Noted. I've removed this task:\n "+ t.toString()
-                    + "\nNow you have " + tasks.size() + " tasks in the list");
+            editMessage = "Noted. I've removed this task:\n "+ t.toString()
+                    + "\nNow you have " + tasks.size() + " tasks in the list";
             break;
         }
+        System.out.println(editMessage);
+        return editMessage;
     }
 
     /**
@@ -128,7 +131,7 @@ public class TaskList {
      *
      * @param keyword word being searched for in the <code>TaskList</code>
      */
-    public void find(String keyword) {
+    public String find(String keyword) {
         StringBuilder match = new StringBuilder();
         int i = 0;
         for (Task task : tasks) {
@@ -137,7 +140,7 @@ public class TaskList {
                 match.append(i).append(". ").append(task).append("\n");
             }
         }
-        Ui.printTaskSearch(match.toString());
+        return Ui.printTaskSearch(match.toString());
     }
 
     /**

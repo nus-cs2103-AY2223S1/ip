@@ -12,17 +12,19 @@ public abstract class Task {
     /**
      * Marks this <code>Task</code> as done.
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:\n " + this);
+        String doneMessage = "Nice! I've marked this task as done:\n " + this;
+        return doneMessage;
     }
 
     /**
      * Marks this <code>Task</code> as not done.
      */
-    public void markAsNotDone() {
+    public String markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n " + this);
+        String notDoneMessage = "OK, I've marked this task as not done yet:\n " + this;
+        return notDoneMessage;
     }
 
     /**
