@@ -49,7 +49,7 @@ public class EventTask extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        DateTimeFormatter formatterTime =DateTimeFormatter.ofPattern("h:mm a");
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("h:mm a");
         return "[E]" + super.toString() + " (at: "
                 + this.date.format(formatterDate) + " "
                 + this.time.format(formatterTime) + ")";

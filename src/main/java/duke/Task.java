@@ -1,8 +1,9 @@
 package duke;
+
 /**
  * The task class.
  */
-  public class Task {
+public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -40,15 +41,19 @@ package duke;
     }
 
     /**
-     * Get the description of the task.
+     * Gets the description of the task.
      * @return Description of the task.
      */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Formats the task into the correct String format.
+     * @return String in the right format.
+     */
     public String toString() {
-        return "["+ this.getStatusIcon() + "] "
+        return "[" + this.getStatusIcon() + "] "
                 + this.getDescription();
     }
 
