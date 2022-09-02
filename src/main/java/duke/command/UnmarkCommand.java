@@ -12,9 +12,9 @@ public class UnmarkCommand extends Command {
         this.index = index;
     }
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) {
+    public String execute(TaskList tasks, Storage storage, Ui ui) {
         Task t = tasks.getTask(index);
         t.markAsNotDone();
-        ui.showTaskUnmarkMessage(t);
+        return ui.showTaskUnmarkMessage(t);
     }
 }

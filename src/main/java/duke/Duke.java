@@ -3,19 +3,28 @@ package duke;
 import java.util.Scanner;
 
 import duke.command.Command;
-import duke.command.CommandParser;
 import duke.storage.Storage;
 import duke.ui.Ui;
-
 
 /**
  * Duke class to initialise application
  */
 public class Duke {
 
-    private final Storage storage;
+    private Storage storage;
     private TaskList tasks;
-    private final Ui ui;
+    private Ui ui;
+    private Parser parser;
+
+    /**
+     * Empty constructor
+     */
+    public Duke() {
+        this.ui = new Ui();
+        this.storage = new Storage("saved.txt");
+        this.tasks = new TaskList(storage.loadData());
+        this.parser = new Parser(tasks);
+    }
 
     /**
      * Initializes a new {@code Duke} object with location
@@ -25,19 +34,20 @@ public class Duke {
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
+        this.tasks = new TaskList(storage.loadData());
+        this.parser = new Parser(tasks);
     }
 
     /**
      * Starts the program with welcome message and initialize saved data if any
      */
     public void run() {
+
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
         this.storage.run();
-        tasks = new TaskList(storage.loadData());
-        Parser parser = new Parser(this.ui, tasks);
 
-        while(true) {
+        while (true) {
             //Parse -> Execute -> Print Result
             String input = sc.nextLine();
             Command c = parser.parse(input);
@@ -53,5 +63,11 @@ public class Duke {
     public static void main(String[] args) throws DukeException {
         new Duke("saved.txt").run();
     }
+
+    public String getResponse(String input) {
+        Command c = Parser.parse(input);
+        return c.execute(tasks, this.storage, ui);
+    }
+
 }
 

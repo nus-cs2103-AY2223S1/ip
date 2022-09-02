@@ -2,28 +2,30 @@ package duke;
 
 import java.time.LocalDate;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.AddCommand;
+import duke.command.FindCommand;
+import duke.command.QuackCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.DeleteCommand;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
 import duke.models.Todo;
-import duke.ui.Ui;
 
 
 /**
  * This class returns a command based on the user input
  */
 public class Parser {
-    private Ui ui;
     private TaskList taskList;
 
     /**
      * Initialise a Parser object
-     * @param ui
      * @param tasks
      */
-    public Parser(Ui ui, TaskList tasks) {
-        this.ui = ui;
+    public Parser(TaskList tasks) {
         this.taskList = tasks;
     }
 
@@ -36,7 +38,7 @@ public class Parser {
      * @param command
      * @return
      */
-    public Command parse(String command) {
+    public static Command parse(String command) {
         // Idea from : https://stackoverflow.com/questions/70683058/using-startswith-in-switch-case-in-java
         String verb = command.split(Constants.EMPTY_SPACE)[0];
         switch (verb) {
@@ -59,8 +61,7 @@ public class Parser {
             int deleteIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
             return new DeleteCommand(deleteIndex);
         case Constants.LIST_STRING:
-            this.ui.listAllTasks(this.taskList);
-            break;
+            return new ListCommand();
 //            case Constants.MARK_STRING:
 //                int markIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
 //                return new MarkCommand(markIndex);
@@ -70,13 +71,11 @@ public class Parser {
         case Constants.FIND_STRING:
             String query = command.split(Constants.EMPTY_SPACE)[0];
             return new FindCommand(query);
-        case Constants.BYE_STRING:
-            this.ui.showByeMessage();
-            break;
+        case Constants.QUACK_STRING:
+            return new QuackCommand();
         default:
             return new InvalidCommand();
 
         }
-        return new InvalidCommand();
     }
 }

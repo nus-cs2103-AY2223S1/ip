@@ -5,14 +5,12 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * When the command is not recognised
+ * List all the tasks that the user has
  */
-public class InvalidCommand extends Command {
-    public InvalidCommand() {
+public class ListCommand extends Command {
 
-    }
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
-        return "INVALID COMMAND";
+        return ui.listAllTasks(tasks);
     }
 }
