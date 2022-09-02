@@ -2,6 +2,11 @@ package duke;
 
 import java.util.Scanner;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import duke.parser.CommandParser;
 import duke.storage.Storage;
 import duke.tasks.TaskList;
@@ -11,19 +16,18 @@ public class Duke {
     private static final Storage STORAGE = new Storage();
     private static final TaskList TASK_LIST = STORAGE.load();
     private static final CommandParser COMMAND_PARSER = new CommandParser(TASK_LIST);
+    private boolean hasTerminated;
 
-    public static void main(String[] args) {
-
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
-        Scanner sc = new Scanner(System.in);
-        String command = sc.nextLine();
-
-        while (!command.equalsIgnoreCase("bye")) {
-            COMMAND_PARSER.handle(command);
+    public String handle(String command) {
+        if (command.equalsIgnoreCase("bye")) {
             STORAGE.save();
-            command = sc.nextLine();
+            hasTerminated = true;
+            return "Bye! Enter any key to exit :)";
         }
+        return COMMAND_PARSER.handle(command);
+    }
 
-        System.out.println("Bye. Hope to see you again soon!");
+    public boolean isHasTerminated() {
+        return hasTerminated;
     }
 }

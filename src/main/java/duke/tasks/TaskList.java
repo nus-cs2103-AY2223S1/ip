@@ -12,36 +12,33 @@ import duke.parser.TimeParser;
 public class TaskList {
 
     private final ArrayList<Task> tasks;
-    private static final TimeParser TIME_PARSER = new TimeParser();
+//    private static final TimeParser TIME_PARSER = new TimeParser();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    private void printTask(int index) {
-        System.out.println(tasks.get(index));
+    private String printTask(int index) {
+        return tasks.get(index).toString();
     }
 
-    private void printAddedTask(Task task) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+    private String printAddedTask(Task task) {
+        return "Got it. I've added this task: \n" + task.toString() + "\n Now you have" + tasks.size() + "in the list.";
     }
 
-    /**
+    /**b
      * Marks numbered task as done in task list.
      *
      * @param value a string representation of the task index to be marked as done
      * @throws DukeException if index is out of range
      */
-    public void markDone(String value) throws DukeException {
+    public String markDone(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
             throw new OutOfRangeException();
         } else {
             tasks.get(index).markAsDone();
-            System.out.println("Nice! I've marked this task as done:");
-            printTask(index);
+            return "Nice! I've marked this task as done:" + printTask(index);
         }
     }
 
@@ -51,15 +48,14 @@ public class TaskList {
      * @param value a string representation of the task index to be deleted
      * @throws DukeException if index is out of range
      */
-    public void delete(String value) throws DukeException {
+    public String delete(String value) throws DukeException {
         int index = Integer.parseInt(value) - 1;
         if (index < 0 || index > tasks.size() - 1) {
             throw new OutOfRangeException();
         } else {
-            System.out.println("Noted. I've removed this task:");
-            printTask(index);
+            Task currentTask = tasks.get(index);
             tasks.remove(index);
-            System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+            return "Noted. I've removed this task:\n" + currentTask + "\nNow you have " +  tasks.size() + " in the list.";
         }
     }
 
@@ -78,13 +74,13 @@ public class TaskList {
      * @param desc the description of to do task
      * @throws DukeException if description is empty
      */
-    public void addToDo(String desc) throws DukeException {
+    public String addToDo(String desc) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("todo");
         }
         ToDo newTask = new ToDo(desc);
         tasks.add(newTask);
-        printAddedTask(newTask);
+        return printAddedTask(newTask);
     }
 
     /**
@@ -94,7 +90,7 @@ public class TaskList {
      * @param time the deadline of deadline task
      * @throws DukeException if no description or time is given
      */
-    public void addDeadline(String desc, String time) throws DukeException {
+    public String addDeadline(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("deadline");
         }
@@ -103,7 +99,7 @@ public class TaskList {
         }
         Deadline newTask = new Deadline(desc, time);
         tasks.add(newTask);
-        printAddedTask(newTask);
+        return printAddedTask(newTask);
     }
 
     /**
@@ -113,7 +109,7 @@ public class TaskList {
      * @param time the time of event task
      * @throws DukeException if no description or time is given
      */
-    public void addEvent(String desc, String time) throws DukeException {
+    public String addEvent(String desc, String time) throws DukeException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("event");
         }
@@ -122,29 +118,29 @@ public class TaskList {
         }
         Event newTask = new Event(desc, time);
         tasks.add(newTask);
-        printAddedTask(newTask);
+        return printAddedTask(newTask);
     }
 
-    public void find(String desc) throws EmptyCommandException {
+    public String find(String desc) throws EmptyCommandException {
         if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("find");
         }
         int i = 1;
-        System.out.println("Here are the matching tasks in your list:");
+        StringBuilder sb = new StringBuilder();
         for (Task t : tasks) {
             if (t.hasDescription(desc)) {
-                System.out.println(i + "." + t);
+                sb.append(i + "." + t + "\n");
                 i++;
             }
         }
+        return sb.toString();
     }
 
     /**
      * Prints current list.
      */
-    public void printList() {
-        System.out.println("Here are the tasks in your list:");
-        System.out.println(this.toString());
+    public String printList() {
+        return "Here are the tasks in your list:\n" + this.toString();
     }
 
     /**
@@ -153,18 +149,19 @@ public class TaskList {
      * @param deadline the deadline to check
      * @throws NoBeforeException if no deadline is given
      */
-    public void printDeadline(String deadline) throws NoBeforeException {
+    public String printDeadline(String deadline) throws NoBeforeException {
         if (deadline == null || deadline.isBlank()) {
             throw new NoBeforeException();
         }
         int i = 1;
-        System.out.println("Here are the tasks before the deadline " + TIME_PARSER.formatDeadline(deadline));
+        StringBuilder sb = new StringBuilder();
         for (Task t : tasks) {
             if (t.isBefore(deadline)) {
-                System.out.println(i + "." + t);
+                sb.append(i + "." + t + "\n");
                 i++;
             }
         }
+        return sb.toString();
     }
 
     /**

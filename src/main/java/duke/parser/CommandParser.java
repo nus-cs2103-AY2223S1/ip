@@ -48,7 +48,9 @@ public class CommandParser {
      *
      * @param command command input by user
      */
-    public void handle(String command) {
+    public String handle(String command) {
+        String response;
+
         try {
             // Identify groups based on command pattern
             Matcher matcher = COMMAND_PATTERN.matcher(command);
@@ -61,36 +63,37 @@ public class CommandParser {
             // Call methods according to command
             switch (cmd) {
             case LIST:
-                taskList.printList();
+                response = taskList.printList();
                 break;
             case DONE:
-                taskList.markDone(desc);
+                response = taskList.markDone(desc);
                 break;
             case BEFORE:
-                taskList.printDeadline(time);
+                response = taskList.printDeadline(time);
                 break;
             case FIND:
-                taskList.find(desc);
+                response = taskList.find(desc);
                 break;
             case DELETE:
-                taskList.delete(desc);
+                response = taskList.delete(desc);
                 break;
             case TODO:
-                taskList.addToDo(desc);
+                response = taskList.addToDo(desc);
                 break;
             case EVENT:
-                taskList.addEvent(desc, time);
+                response = taskList.addEvent(desc, time);
                 break;
             case DEADLINE:
-                taskList.addDeadline(desc, time);
+                response = taskList.addDeadline(desc, time);
                 break;
             default:
                 throw new InvalidCommandException();
             }
         } catch (DukeException e) {
-            System.out.println(e);
+            return e.toString();
         } catch (DateTimeParseException e) {
-            System.out.println("Please enter the correct due date format d/mm/yyyy [HHmm]");
+            return "Please enter the correct due date format d/mm/yyyy [HHmm]";
         }
+        return response;
     }
 }
