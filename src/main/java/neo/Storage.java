@@ -36,8 +36,7 @@ public class Storage {
 
     File f = new File("/Users/richavm/Documents/NUS/Y2S1/CS2103T/data/Neo.txt");
 
-    public void Storedata(Task task) throws IOException {
-        //Task task = new Task(inp);
+    public void storeData(Task task) throws IOException {
         try {
             appendToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -45,8 +44,7 @@ public class Storage {
         }
     }
 
-    public void Writedata(Task task) throws IOException {
-        //Task task = new Task(inp);
+    public void writeData(Task task) throws IOException {
         try {
             WriteToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -54,8 +52,7 @@ public class Storage {
         }
     }
 
-    public void Retrievedata() throws IOException {
-        //Task task = new Task(inp);
+    public void retrieveData() throws IOException {
         try {
             printFileContents(f.getAbsolutePath());
         } catch (FileNotFoundException e) {
