@@ -22,8 +22,8 @@ public class TaskList {
      * Constructor for TaskList.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
-        this.size = 0;
+        tasks = new ArrayList<>();
+        size = 0;
     }
 
     /**
@@ -32,11 +32,11 @@ public class TaskList {
      * @param dataList List containing data of saved Tasks.
      */
     public TaskList(ArrayList<String> dataList) {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
         for (String data : dataList) {
             tasks.add(Task.loadTask(data));
         }
-        this.size = tasks.size();
+        size = tasks.size();
     }
 
     /**
@@ -58,6 +58,7 @@ public class TaskList {
         for (Task task : tasks) {
             dataList.add(task.saveTask());
         }
+
         return dataList;
     }
 
@@ -91,6 +92,7 @@ public class TaskList {
         Todo todo = new Todo(description);
         tasks.add(todo);
         size++;
+
         return todo.toString();
     }
 
@@ -105,6 +107,7 @@ public class TaskList {
         Deadline deadline = new Deadline(description, by);
         tasks.add(deadline);
         size++;
+
         return deadline.toString();
     }
 
@@ -119,6 +122,7 @@ public class TaskList {
         Event event = new Event(description, at);
         tasks.add(event);
         size++;
+
         return event.toString();
     }
 
@@ -131,6 +135,7 @@ public class TaskList {
     public String deleteTask(int idx) {
         Task deleted = tasks.remove(idx);
         size--;
+
         return deleted.toString();
     }
 
@@ -164,6 +169,7 @@ public class TaskList {
             for (int i = 1; i <= size; i++) {
                 sb.append(String.format("%n%d.%s", i, foundTasks.get(i - 1)));
             }
+
             return sb.toString();
         }
     }
@@ -183,6 +189,7 @@ public class TaskList {
             for (int i = 1; i <= size; i++) {
                 sb.append(String.format("%n%d.%s", i, tasks.get(i - 1)));
             }
+
             return sb.toString();
         }
     }

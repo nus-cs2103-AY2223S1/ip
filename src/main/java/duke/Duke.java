@@ -19,12 +19,12 @@ public class Duke {
      * Constructor for Duke.
      */
     public Duke() {
-        this.ui = new Ui();
-        this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
+        ui = new Ui();
+        storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         try {
-            this.tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
-            this.tasks = new TaskList();
+            tasks = new TaskList();
         }
     }
 

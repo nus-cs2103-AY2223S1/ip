@@ -39,6 +39,7 @@ public class DeadlineCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String task = tasks.addDeadline(description, by);
         storage.save(tasks.saveTasks());
+
         return ui.showAdd(task, tasks.getSize());
     }
 }

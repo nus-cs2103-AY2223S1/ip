@@ -22,6 +22,7 @@ public class Ui {
                 System.exit(0);
             }
         }, 1500);
+
         return "Bye. Hope to see you again soon!";
     }
 
