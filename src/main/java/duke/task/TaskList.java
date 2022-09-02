@@ -59,6 +59,9 @@ public class TaskList extends ArrayList<Task> {
      * @throws DukeException any exception when trying to add new task to the list.
      */
     public boolean addTask(Task task) throws DukeException {
+        if (containsTask(task)) {
+            throw new DukeException("Task already exists.");
+        }
         if (super.add(task)) {
             if (storage != null) {
                 storage.saveTasks(this);
@@ -83,6 +86,16 @@ public class TaskList extends ArrayList<Task> {
         } else {
             throw new DukeException("Failed to delete task %d", index + 1);
         }
+    }
+
+    /**
+     * Checks if the given task exists in the task list.
+     *
+     * @param task Task to be checked.
+     * @return Whether the task exists in the list.
+     */
+    public boolean containsTask(Task task) {
+        return this.stream().anyMatch(t -> t.equals(task));
     }
 
     /**
