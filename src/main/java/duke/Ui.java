@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Represents the user interface of the Duke bot. This class is deprecated.
+ * Represents the user interface of the Duke bot.
  */
 public class Ui {
     private String logo = " ____            _\n"

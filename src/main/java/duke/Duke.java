@@ -46,10 +46,6 @@ public class Duke extends Application {
         this.parser = new Parser();
     }
 
-    public boolean getIsRunning() {
-        return this.isRunning;
-    }
-
     /**
      * Stops the Duke bot.
      */
@@ -60,7 +56,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Gets the storage associated with the Duke bot.
+     * Get the storage associated with the Duke bot.
      *
      * @return Storage of the Duke bot.
      */
@@ -94,8 +90,8 @@ public class Duke extends Application {
      *
      * @return Lists of tasks.
      */
-    public String listToString() {
-        return this.tasks.listToString();
+    public String getList() {
+        return this.tasks.getList();
     }
 
     /**
@@ -121,55 +117,55 @@ public class Duke extends Application {
     /**
      * Adds a task without deadline.
      *
-     * @param desc Task description.
+     * @param s Task description.
      * @return Associated message from Duke.
      */
-    public String addTodo(String desc) {
-        return this.tasks.addTodo(desc);
+    public String addTodo(String s) {
+        return this.tasks.addTodo(s);
     }
 
     /**
      * Adds a task with deadline.
      *
-     * @param desc Task description.
-     * @param deadline Deadline in LocalDate format.
+     * @param s Task description.
+     * @param d Deadline in LocalDate format.
      * @return Associated message from Duke.
      */
-    public String addDeadline(String desc, LocalDate deadline) {
-        return this.tasks.addDeadline(desc, deadline);
+    public String addDeadline(String s, LocalDate d) {
+        return this.tasks.addDeadline(s, d);
     }
 
     /**
      * Adds a task with deadline.
      *
-     * @param desc Task description.
-     * @param deadline Deadline in String format.
+     * @param s Task description.
+     * @param d Deadline in String format.
      * @return Associated message from Duke.
      */
-    public String addDeadline(String desc, String deadline) {
-        return this.tasks.addDeadline(desc, deadline);
+    public String addDeadline(String s, String d) {
+        return this.tasks.addDeadline(s, d);
     }
 
     /**
      * Adds an event.
      *
-     * @param desc Event description.
-     * @param time Event time in LocalDate format.
+     * @param s Event description.
+     * @param d Event time in LocalDate format.
      * @return Associated message from Duke.
      */
-    public String addEvent(String desc, LocalDate time) {
-        return this.tasks.addEvent(desc, time);
+    public String addEvent(String s, LocalDate d) {
+        return this.tasks.addEvent(s, d);
     }
 
     /**
      * Adds an event.
      *
-     * @param desc Event description.
-     * @param time Event time in String format.
+     * @param s Event description.
+     * @param d Event time in String format.
      * @return Associated message from Duke.
      */
-    public String addEvent(String desc, String time) {
-        return this.tasks.addEvent(desc, time);
+    public String addEvent(String s, String d) {
+        return this.tasks.addEvent(s, d);
     }
 
     /**
@@ -195,11 +191,11 @@ public class Duke extends Application {
     /**
      * Prints a list of tasks with the matching input string.
      *
-     * @param query String to request for tasks with the matching string.
+     * @param s String to request for tasks with the matching string.
      * @return List of tasks with matching string.
      */
-    public String findTask(String query) {
-        return this.tasks.findTask(query);
+    public String find(String s) {
+        return this.tasks.find(s);
     }
 
     //@@author chengda300

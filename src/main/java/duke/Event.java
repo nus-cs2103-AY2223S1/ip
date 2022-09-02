@@ -11,30 +11,29 @@ import java.time.format.DateTimeFormatter;
  * Represents an event. An event has a description and a time that it will happen.
  */
 public class Event extends Task {
-    private String eventTime;
+    private String at;
     private LocalDate date;
 
     /**
      * Constructor for the event.
      *
      * @param description Event description.
-     * @param eventTime that the event happens in String format.
+     * @param at Time that the event happens in String format.
      */
-    public Event(String description, String eventTime) {
+    public Event(String description, String at) {
         super(description);
-        this.eventTime = eventTime;
-        assert this instanceof Task : "Event should be a task.";
+        this.at = at;
     }
 
     /**
      * Constructor for the event.
      *
      * @param description Event description.
-     * @param eventTime Time that the event happens in LocalDate format.
+     * @param at Time that the event happens in LocalDate format.
      */
-    public Event(String description, LocalDate eventTime) {
+    public Event(String description, LocalDate at) {
         super(description);
-        this.date = eventTime;
+        this.date = at;
     }
 
     /**
@@ -44,8 +43,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String eventDate = this.eventTime == null
-                ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.eventTime;
+        String eventDate = this.at == null
+                ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.at;
         return "[E]" + super.toString() + " (at: " + eventDate + ")";
     }
 }
