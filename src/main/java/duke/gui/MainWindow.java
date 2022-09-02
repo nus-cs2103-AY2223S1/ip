@@ -3,6 +3,7 @@ package duke.gui;
 import duke.ExecuteResult;
 import duke.Parser;
 import duke.modules.Todos;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -60,5 +61,9 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(
                         ChatMessage.getDukeDialog(String.join("\n", result.getReply()), dukeImage));
         userInput.clear();
+
+        if (result.shouldExitAfter()) {
+            Platform.exit();
+        }
     }
 }
