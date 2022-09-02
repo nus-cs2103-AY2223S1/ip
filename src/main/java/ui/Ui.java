@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import exception.LunaException;
 import exception.LunaLoadingException;
+import parser.Parser;
 import task.Task;
 import task.TaskList;
 
@@ -17,16 +18,18 @@ import task.TaskList;
  * @author fannyjian
  */
 public class Ui {
-    private static final String SEP = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
+    private static final String SEP = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨\n";
     private static Scanner sc;
     private boolean loaded;
+    private Parser parser;
 
     /**
      * Starts the UI by initialising a scanner to take in user commands.
      */
-    public Ui() {
+    public Ui(Parser parser) {
         this.sc = new Scanner(System.in);
         this.loaded = false;
+        this.parser = parser;
     }
 
     public void setLoaded() {
@@ -37,7 +40,7 @@ public class Ui {
      * Displays the welcome message upon start up of the chatbot.
      * Shows the bot logo, lists available commands and prints out stored tasks if any.
      */
-    public void showWelcome() {
+    public String showWelcome() {
         // Print Welcome message
         String logo =
                   "    _                     ★ ☁️   ⋆\n"
@@ -45,22 +48,22 @@ public class Ui {
                 + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        System.out.println(SEP + "\nHello. ⛅️\n   This is\n" + logo);
+        String toPrint = SEP + "\nHello. ⛅️\n   This is\n" + logo;
 
         // Print available commands
-        System.out.println("  Luna commands"
-                + "\n    🌸 list                             | View all tasks on your agenda"
-                + "\n    🌷 todo <task>                      | Add a task to your agenda"
-                + "\n    🌺 deadline <task> /by <yyyy-mm-dd> | Add a task to complete by the specified deadline"
-                + "\n    🌹 event <event> /at <yyyy-mm-dd>   | Add an event on the specified date"
-                + "\n    🪷 mark <num>                       | Mark the (num)th item in your list as completed"
-                + "\n    🌻 unmark <num>                     | Mark the (num)th item in your list as uncompleted"
-                + "\n    💐 find <keyword>                   | Find a task by searching for a keyword"
-                + "\n    🥀 bye                              | Quit Luna\n");
+        toPrint += "\n  Luna commands"
+                + "\n    🌸 list"
+                + "\n    🌷 todo <task>"
+                + "\n    🌺 deadline <task> /by <yyyy-mm-dd>"
+                + "\n    🌹 event <event> /at <yyyy-mm-dd>"
+                + "\n    🪷 mark <num>"
+                + "\n    🌻 unmark <num>"
+                + "\n    💐 find <keyword>"
+                + "\n    🥀 bye";
 
         // Print items in storage
         if (!this.loaded) {
-            System.out.println("  You do not have anything to do yet!\n  Tell Luna your tasks for the day ☀️");
+            toPrint += "\n  You do not have anything to do yet!\n  Tell Luna your tasks for the day ☀️";
         } else {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("data/luna.txt"));
@@ -73,19 +76,19 @@ public class Ui {
         }
 
         // Print final separation line
-        System.out.println(SEP);
+        return toPrint + "\n" + SEP;
     }
 
     /**
      *  Bids the user farewell before exiting the chatbot.
      */
-    public void farewell() {
-        System.out.println("\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n");
-        sc.close();
+    public String farewell() {
+        return "\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n";
+//        sc.close();
     }
 
-    public void showLine() {
-        System.out.println(SEP);
+    public String showLine() {
+        return SEP;
     }
 
     /**
@@ -93,10 +96,8 @@ public class Ui {
      *
      * @param e An Exception to be displayed to user
      */
-    public void showError(LunaException e) {
-        showLine();
-        System.out.println(e.toString());
-        showLine();
+    public String showError(LunaException e) {
+        return showLine() + "\n" + e.toString() + "\n" + showLine();
     }
 
     /**
@@ -105,11 +106,9 @@ public class Ui {
      * @param tasks Updated list of tasks added by user.
      * @param task Current task added.
      */
-    public void showAdded(TaskList tasks, Task task) {
-        showLine();
-        System.out.println("Luna has added:\n" + task.toString()
-                + "\n" + tasks.size() + " task(s) left in your list 🌻");
-        showLine();
+    public String showAdded(TaskList tasks, Task task) {
+        return showLine() + "\n Luna has added:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + showLine();
     }
 
     /**
@@ -118,11 +117,9 @@ public class Ui {
      * @param tasks Updated list of tasks saved by user.
      * @param task Task deleted.
      */
-    public void showDeleted(TaskList tasks, Task task) {
-        showLine();
-        System.out.println("Luna has removed:\n" + task.toString()
-                + "\n" + tasks.size() + " task(s) left in your list 🌻)");
-        showLine();
+    public String showDeleted(TaskList tasks, Task task) {
+        return showLine() + "\nLuna has removed:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻)\n" + showLine();
 
     }
 
@@ -131,11 +128,8 @@ public class Ui {
      *
      * @param tasks List of tasks added by user.
      */
-    public void showList(TaskList tasks) {
-        showLine();
-        System.out.println("\n☀️ Stuff you have to do! ☀️\n");
-        System.out.println(tasks);
-        showLine();
+    public String showList(TaskList tasks) {
+        return showLine() + "\n\n☀️ Stuff you have to do! ☀️\n\n" + tasks + "\n" + showLine();
     }
 
     /**
@@ -143,10 +137,8 @@ public class Ui {
      *
      * @param task Task marked as completed.
      */
-    public void showMark(Task task) {
-        showLine();
-        System.out.println("Marked as completed 🌈️\n" + task.toString());
-        showLine();
+    public String showMark(Task task) {
+        return showLine() + "\nMarked as completed 🌈️\n" + task.toString() + "\n" + showLine();
     }
 
     /**
@@ -154,10 +146,8 @@ public class Ui {
      *
      * @param task Task marked as uncompleted.
      */
-    public void showUnmark(Task task) {
-        showLine();
-        System.out.println("Marked as uncompleted 🌩\n" + task.toString());
-        showLine();
+    public String showUnmark(Task task) {
+        return showLine() + "\nMarked as uncompleted 🌩\n" + task.toString() + "\n" + showLine();
     }
 
     /**
@@ -165,14 +155,14 @@ public class Ui {
      *
      * @param tasks String representation of relevant tasks.
      */
-    public void showFound(String tasks) {
-        showLine();
+    public String showFound(String tasks) {
+        String result = showLine();
         if (tasks.equals("")) {
-            System.out.println("Luna did not manage to find any relevant tasks 🍂");
+            result += "\nLuna did not manage to find any relevant tasks 🍂\n";
         } else {
-            System.out.println("☁️ Here are the tasks Luna has found! ☁️" + tasks);
+            result += "\n☁️ Here are the tasks Luna has found! ☁️" + tasks;
         }
-        showLine();
+        return result + "\n" + showLine();
     }
 
     /**

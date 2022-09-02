@@ -16,7 +16,7 @@ public abstract class Command {
      * Calls the UI to inform users that the command has been performed successfully.
      * Calls Storage to update tasks saved in hard disk.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Indicates whether the command leads to program exiting.

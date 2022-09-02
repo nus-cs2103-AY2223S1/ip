@@ -17,6 +17,7 @@ public class Luna {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Parser parser;
 
     /**
      * Initialises Luna by setting up the UI, Storage and TaskList.
@@ -24,31 +25,38 @@ public class Luna {
      * @param filePath Path to the file containing saved tasks.
      */
     public Luna(String filePath) {
-        ui = new Ui();
+        parser = new Parser();
+        ui = new Ui(parser);
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load(ui));
     }
 
-    /**
-     * Starts the chatbot by reading commands from and executing them.
-     */
-    public void run() {
-        ui.showWelcome();
+//    /**
+//     * Starts the chatbot by reading commands from and executing them.
+//     */
+//    public void run() {
+//        ui.showWelcome();
+//
+//        boolean isExit = false;
+//        while (!isExit) {
+//            try {
+//                String fullCommand = ui.readCommand();
+//                Command c = Parser.parse(fullCommand);
+//                c.execute(tasks, ui, storage);
+//                isExit = c.isExit();
+//            } catch (LunaException e) {
+//                ui.showError(e);
+//            }
+//        }
+//    }
 
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (LunaException e) {
-                ui.showError(e);
-            }
+    public String getResponse(String input) {
+        try {
+            Command cmd = Parser.parse(input);
+            return cmd.execute(tasks, ui, storage);
+        } catch (LunaException e) {
+            return ui.showError(e);
         }
     }
 
-    public static void main(String[] args) {
-        new Luna("data/luna.txt").run();
-    }
 }

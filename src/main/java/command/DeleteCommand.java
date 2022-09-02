@@ -30,13 +30,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             Task task = tasks.delete(this.num);
-            ui.showDeleted(tasks, task);
             storage.updateStorage(tasks);
+            return ui.showDeleted(tasks, task);
         } catch (LunaException e) {
-            ui.showError(e);
+            return ui.showError(e);
         }
     }
 }

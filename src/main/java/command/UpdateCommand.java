@@ -32,20 +32,22 @@ public class UpdateCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String msg = "";
         switch (this.type) {
         case "mark":
-            ui.showMark(tasks.mark(this.num));
+            msg = ui.showMark(tasks.mark(this.num));
             break;
         case "unmark":
-            ui.showUnmark(tasks.unmark(this.num));
+            msg = ui.showUnmark(tasks.unmark(this.num));
             break;
         default:
         }
         try {
             storage.updateStorage(tasks);
+            return msg;
         } catch (LunaException e) {
-            ui.showError(e);
+            return ui.showError(e);
         }
     }
 }
