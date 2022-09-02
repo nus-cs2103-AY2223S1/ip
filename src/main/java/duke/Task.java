@@ -1,4 +1,4 @@
-package duke.task;
+package duke;
 
 /**
  * Abstract class representing a Task.
@@ -7,7 +7,7 @@ package duke.task;
  */
 public abstract class Task {
     protected String content;
-    protected Boolean status;
+    protected boolean status;
 
     protected Task(String content) {
         this.content = content;

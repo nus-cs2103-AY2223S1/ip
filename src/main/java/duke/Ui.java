@@ -1,4 +1,4 @@
-package duke.ui;
+package duke;
 
 /**
  * Text UI of Duke.

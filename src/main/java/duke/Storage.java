@@ -1,4 +1,4 @@
-package duke.storage;
+package duke;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -10,11 +10,6 @@ import java.io.FileNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import duke.task.Event;
-import duke.task.ToDo;
-import duke.task.Deadline;
-import duke.tasklist.TaskList;
 
 /**
  * Class containing static methods for loading and writing the task list to a storage text file.
@@ -35,7 +30,7 @@ public class Storage {
         while (scanner.hasNext()) {
             String task = scanner.nextLine();
             if (task.charAt(0) == 'T') {
-                Boolean status = task.charAt(4) == '1';
+                boolean status = task.charAt(4) == '1';
                 String content = task.substring(8).trim();
                 ToDo toDo = new ToDo(content);
                 if (status) {
@@ -44,7 +39,7 @@ public class Storage {
                 taskList.addTask(toDo);
 
             } else if (task.charAt(0) == 'D') {
-                Boolean status = task.charAt(4) == '1';
+                boolean status = task.charAt(4) == '1';
                 String[] split = task.substring(8).split(" \\| ");
                 String content = split[0].trim();
                 String[] dateTimeSplit = split[1].trim().split(" ");
@@ -57,7 +52,7 @@ public class Storage {
                 taskList.addTask(deadline);
 
             } else if (task.charAt(0) == 'E') {
-                Boolean status = task.charAt(4) == '1';
+                boolean status = task.charAt(4) == '1';
                 String[] split = task.substring(8).split(" \\| ");
                 String content = split[0].trim();
                 String[] dateTimeSplit = split[1].trim().split(" ");
