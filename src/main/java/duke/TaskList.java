@@ -19,6 +19,10 @@ public class TaskList {
         printOnAdd(task);
     }
 
+    public void addFromStorage(Task task) {
+        taskList.add(task);
+    }
+
     public void printOnAdd(Task task) {
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + task.toString());
