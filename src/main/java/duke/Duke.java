@@ -20,6 +20,8 @@ public class Duke {
      * @param messageSender the consumer which sends a message to the ui.
      */
     public Duke(String fileName, Consumer<Message> messageSender) throws DukeException {
+        assert fileName != null : "fileName should not be null";
+        assert messageSender != null : "messageSender should not be null";
         this.messageSender = messageSender;
         messageSender.accept(new Message("Hello! I'm Duke\nWhat do you need to do?", false, Message.User.DUKE));
         Storage storage;
