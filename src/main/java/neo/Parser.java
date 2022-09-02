@@ -6,6 +6,7 @@ public class Parser {
     private DeleteCommand delete;
     private MarkCommand mark;
     private UnMarkCommand unmark;
+    private FindCommand find;
     private Ui ui;
     private Storage stor;
     private TaskList arrayLL;
@@ -50,9 +51,13 @@ public class Parser {
             this.delete = new DeleteCommand(ui, stor, arrayLL);
             delete.complete(arr[1]);
         }
+        if (arr.length>1 && arr[0].equals("find")){
+            this.find = new FindCommand(ui, stor, arrayLL);
+            find.complete(arr[1]);
+        }
         else {
             try {
-                if (!userText.equals("list") && !userText.equals("List") && !arr[0].equals("unmark") && !arr[0].equals("mark") && !arr[0].equals("delete")) {
+                if (!userText.equals("list") && !userText.equals("List") && !arr[0].equals("unmark") && !arr[0].equals("mark") && !arr[0].equals("delete") && !arr[0].equals("find")) {
                     if (arr.length > 1 && arr[0].equals("deadline")) {
                         type = 0;
                         String tempi = arr[1];
