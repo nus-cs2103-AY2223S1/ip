@@ -86,7 +86,7 @@ public class TaskList {
      * Updates the status of the Task object at specified index
      *
      * @param index Index of the Task object which needs its task status modified.
-     * @param isDone True to mark task as done and false to mark task as not done
+     * @param isMark True to mark task as done and false to mark task as not done
      * @throws DukeException If provided index is out of range.
      */
     public Task updateTaskStatus(int index, boolean isMark) throws DukeException {
@@ -95,7 +95,7 @@ public class TaskList {
         }
         index = index - 1;
         Task task = this.taskList.get(index);
-        task.setTaskStatus(isDone);
+        task.setTaskStatus(isMark);
         this.taskList.set(index, task);
         return task;
     }
