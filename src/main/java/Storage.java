@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,11 +92,11 @@ public class Storage {
             break;
         case "D":
             String[] deadlineInputs = components[2].split(" \\| ",2);
-            task = new Deadline(deadlineInputs[0], deadlineInputs[1]);
+            task = new Deadline(deadlineInputs[0], LocalDateTime.parse(deadlineInputs[1]));
             break;
         case "E":
             String[] eventInputs = components[2].split(" \\| ", 2);
-            task = new Event(eventInputs[0], eventInputs[1]);
+            task = new Event(eventInputs[0], LocalDateTime.parse(eventInputs[1]));
             break;
         default:
             task = null;
