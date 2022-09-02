@@ -41,6 +41,7 @@ public class TaskList {
      * @param query The query string of interest
      */
     public TaskList(ArrayList<Task> taskArrayList, String query) {
+        assert query.length() > 0 : "Query string cannot be empty";
         this.taskList = new ArrayList<Task>();
         for (Task task : taskArrayList) {
             if (task.containsText(query)) {
