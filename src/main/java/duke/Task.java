@@ -34,6 +34,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns whether the task is done.
+     *
+     * @return whether the task is done.
+     */
+    public boolean isDone() {
+        return this.done;
+    }
+
+    /**
      * Returns common part of all tasks for file representation.
      *
      * @return "{1 if done else 0} | {description}".
