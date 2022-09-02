@@ -1,14 +1,14 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     private String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return isDone ? "X" : " ";
     }
 
     public void markAsDone() {
@@ -20,6 +20,10 @@ public class Task {
         }
     }
 
+    public void markAsDoneWithoutMessage() {
+        this.isDone = true;
+    }
+
     public void markAsUndone() {
         if (!isDone) {
             System.out.println("This task is already marked as not done yet!");
@@ -28,6 +32,8 @@ public class Task {
             System.out.println("OK, I've marked this task as not done yet:\n" + this);
         }
     }
+
+    public abstract String fileFormat();
 
     @Override
     public String toString() {
