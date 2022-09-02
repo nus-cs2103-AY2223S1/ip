@@ -32,9 +32,9 @@ public abstract class TimedTask extends Task {
         @Override
         public String getStatus() {
             String deadlineDate = convertLocalDate();
-            String dateAndTime = this.deadlineTime != null
-                                 ? deadlineDate + " " + this.deadlineTime
-                                 : deadlineDate;
+            String dateAndTime = this.deadlineTime == null
+                                 ? deadlineDate
+                                 : deadlineDate + " " + this.deadlineTime;
 
             return "[D]" + super.getStatus() + " (by: " + dateAndTime + ")";
         }
@@ -66,9 +66,9 @@ public abstract class TimedTask extends Task {
         @Override
         public String getStatus() {
             String eventDate = convertLocalDate();
-            String dateAndTime = this.eventStartTime != null
-                                 ? eventDate + " " + eventStartTime + "-" + eventEndTime
-                                 : eventDate;
+            String dateAndTime = (this.eventStartTime == null || this.eventEndTime == null)
+                                 ? eventDate
+                                 : eventDate + " " + eventStartTime + "-" + eventEndTime;
 
             return "[E]" + super.getStatus() + " (at: " + dateAndTime + ")";
         }
@@ -76,7 +76,7 @@ public abstract class TimedTask extends Task {
         @Override
         public String getStorageDescription() {
             String finishedStatus = super.finished ? "finished" : "unfinished";
-            if (this.eventStartTime == null) {
+            if (this.eventStartTime == null || this.eventEndTime == null) {
                 return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date
                         + ", no time given\n";
             } else {
