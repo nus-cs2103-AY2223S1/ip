@@ -2,7 +2,8 @@ package duke.command;
 
 import duke.TaskList;
 import duke.utils.Storage;
-import duke.utils.Ui;
+import duke.gui.Ui;
+
 
 /**
  * Handles the "bye" command.
@@ -11,10 +12,10 @@ public class ExitCommand extends Command {
 
     /**
      * Exits the application.
+     * @return String message of running the "bye" command.
      */
     @Override
-    public void run(TaskList taskList, Storage storage) {
-        Ui.bye();
-        System.exit(0);
+    public String run(TaskList taskList, Storage storage) {
+        return Ui.bye();
     }
 }

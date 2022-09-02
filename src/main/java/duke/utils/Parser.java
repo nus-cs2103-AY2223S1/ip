@@ -37,7 +37,7 @@ public class Parser {
 
             return new Date(parsed);
         } catch (DateTimeParseException e) {
-            throw new DukeException("☹ OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
         }
 
     }
@@ -55,7 +55,7 @@ public class Parser {
             return new Date(parsed);
 
         } catch (DateTimeParseException e) {
-            throw new DukeException("☹ OOPS!!! The save file is corrupted.");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted.");
         }
 
     }
@@ -91,7 +91,7 @@ public class Parser {
         case("find"):
             return new FindCommand(inputArr[1]);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I do not know what does \"" + input + "\" mean. :-(");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! I'm sorry, but I do not know what does \"" + input + "\" mean.");
         }
     }
 }

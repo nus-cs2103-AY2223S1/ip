@@ -3,8 +3,8 @@ package duke;
 import java.io.IOException;
 import java.util.List;
 
+import duke.task.Task;
 import duke.utils.Storage;
-import duke.utils.Ui;
 
 /**
  * Stores and manages all the tasks.
@@ -20,18 +20,20 @@ public class TaskList {
     /**
      * Adds a task to the list.
      * @param task Task to be added into taskList.
+     * @return String message of task being added.
      */
-    public void addTask(Task task, Storage storage) throws IOException {
+    public String addTask(Task task, Storage storage) throws IOException {
         taskList.add(task);
         int numOfTasks = taskList.size();
 
         String message = "Got it. I've added this task: \n  "
                 + task + "\n"
-                + "Now you have " + numOfTasks + " tasks in the list.\n";
-        Ui.printMessage(message);
+                + "Now you have " + numOfTasks + " tasks in the list.";
 
         //Update save file after each task is added
         storage.saveData(this.taskList);
+
+        return message;
     }
 
     /**

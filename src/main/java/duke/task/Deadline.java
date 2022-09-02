@@ -1,7 +1,6 @@
 package duke.task;
 
 import duke.Date;
-import duke.Task;
 
 /**
  * Creates a Task object to be done by a specific time.

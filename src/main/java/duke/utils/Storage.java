@@ -12,7 +12,7 @@ import java.util.List;
 
 import duke.Date;
 import duke.DukeException;
-import duke.Task;
+import duke.task.Task;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -36,17 +36,8 @@ public class Storage {
         this.directory = new File(directoryPath);
 
         try {
-            if (this.directory.exists()) {
-                System.out.println("Directory located... \n");
-            } else {
-                System.out.println("Creating a directory to store save file... \n");
+            if (!this.directory.exists()) {
                 Files.createDirectories(Path.of(directoryPath));
-            }
-
-            if (this.file.createNewFile()) {
-                System.out.println("Creating a new save file...");
-            } else {
-                System.out.println("Previous save file located, loading contents of save file...");
             }
 
         } catch (IOException e) {
@@ -73,7 +64,7 @@ public class Storage {
 
                 if (!dataDetails[1].equals("1")) {
                     if (!dataDetails[1].equals("0")) {
-                        throw new DukeException("☹ OOPS!!! The save file is corrupted, "
+                        throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted, "
                                 + "please delete the file and retry!");
                     } else {
                         marked = false;
@@ -88,20 +79,20 @@ public class Storage {
                     break;
                 case("D"):
                     if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! A duke.task.Deadline task is corrupted!");
+                        throw new DukeException("\uD83D\uDE14 OOPS!!! A duke.task.Deadline task is corrupted!");
                     }
                     Date deadlineDate = Parser.parseDateSave(dataDetails[3]);
                     task = new Deadline(description, deadlineDate);
                     break;
                 case("E"):
                     if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! An duke.task.Event task is corrupted!");
+                        throw new DukeException("\uD83D\uDE14 OOPS!!! An duke.task.Event task is corrupted!");
                     }
                     Date eventDate = Parser.parseDateSave(dataDetails[3]);
                     task = new Event(description, eventDate);
                     break;
                 default:
-                    throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
+                    throw new DukeException("\uD83D\uDE14 OOPS!!! The save file is corrupted, please delete the file and retry!");
                 }
 
                 if (marked) {
@@ -113,7 +104,7 @@ public class Storage {
                 data = br.readLine();
             }
         }
-        System.out.println("I have reloaded your saved file ☺!");
+        System.out.println("I have reloaded your saved file \uD83D\uDE0A ✨!");
         return list;
     }
 

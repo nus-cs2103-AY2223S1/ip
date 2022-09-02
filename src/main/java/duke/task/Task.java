@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Represents a skeleton for a Task Class.
