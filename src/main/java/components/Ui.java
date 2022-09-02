@@ -9,9 +9,7 @@ public class Ui {
 
   private String userInput;
 
-  public Ui() {
-    System.out.println("What can I do for you?");
-  }
+  public Ui() { }
 
   /**
    * gets user input formatted into strings and then to be read.

@@ -132,14 +132,14 @@ public class Parser {
     } else if (line.contains("[D]")) {
       try {
         if (line.contains("[X]")) {
-          String description = line.substring(7, line.indexOf(":") - 4);
+          String description = line.substring(8, line.indexOf(":") - 4);
           String var = line.substring(line.indexOf(":") + 2, line.length() - 1);
           LocalDate d1 = LocalDate.parse(var);
           Deadline test = new Deadline(description, d1);
           test.setStatus(true);
           storage.add(test);
         } else {
-          String description = line.substring(7, line.indexOf(":") - 7);
+          String description = line.substring(8, line.indexOf(":") - 7);
           String var = line.substring(line.indexOf(":") + 2, line.length() - 1);
           LocalDate d1 = LocalDate.parse(var);
           Deadline test = new Deadline(description, d1);

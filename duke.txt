@@ -1,6 +1,1 @@
 [T][ ] borrow book
-[D][ ] return book (by: Oct 15 2019)
-[T][ ] borror book
-[D][ ] return book (by: Feb 03 2019)
-[E][ ] do dishes (at: Snday)
-[T][ ] suck my dick
