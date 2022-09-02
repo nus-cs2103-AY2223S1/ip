@@ -56,6 +56,7 @@ public class TaskList {
      * @return a tasklist with the filtered result
      */
     public TaskList findMatchingTasks(String query) {
+        // Filter from taskList stream and collect into a List of Tasks
         List<Task> result = this.taskList.stream().filter(item -> item.getDescription().contains(query))
                 .collect(Collectors.toList());
         TaskList filteredTasks = new TaskList(result);
