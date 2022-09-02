@@ -27,8 +27,7 @@ public class FindCommand extends Command {
         ArrayList<Task> filteredTasks = tasks.filterByKeyword(this.keyword);
         if (filteredTasks.isEmpty()) {
             throw new DukeException(MESSAGE_FAILURE);
-        } else {
-            return new Message(MESSAGE_SUCCESS + filteredTasks, false, Message.User.DUKE);
         }
+        return new Message(MESSAGE_SUCCESS + filteredTasks, false, Message.User.DUKE);
     }
 }

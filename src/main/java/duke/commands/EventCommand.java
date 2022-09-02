@@ -26,12 +26,11 @@ public class EventCommand extends Command {
 
     @Override
     public Message execute(TaskList tasks) throws DukeException {
-        if (tasks.addTask(this.toAdd)) {
-            return new Message(String.format(MESSAGE_SUCCESS, this.toAdd, tasks.size()),
-                    false, Message.User.DUKE);
-        } else {
+        if (!tasks.addTask(this.toAdd)) {
             throw new DukeException(MESSAGE_FAILURE);
         }
+        return new Message(String.format(MESSAGE_SUCCESS, this.toAdd, tasks.size()),
+                false, Message.User.DUKE);
     }
 
     @Override
