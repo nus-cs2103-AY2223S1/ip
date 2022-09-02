@@ -1,5 +1,1 @@
-[T][ ] bye
-[T][ ] eat
-[T][ ] sleep
-[T][ ] hi
-[T][ ] Nothing
+[D][ ] return book (by: Dec 2 2019 1800)

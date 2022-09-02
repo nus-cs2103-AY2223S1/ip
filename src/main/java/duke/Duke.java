@@ -1,64 +1,63 @@
 package duke;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Duke {
-    public static void main(String[] args) throws EmptyDescriptionException, OutOfRangeException, UnknownCommandException {
-
-        ArrayList<Task> arr = new ArrayList<>();
 
 
-        System.out.println("Hello I'm Duke." + "\nWhat can I do for you?");
+public class Duke extends Application{
 
-        //scanner
-        Scanner sc = new Scanner(System.in);
-        String input = "";
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
 
-        //duke.duke.Storage
-        Storage storage = new Storage("duke.txt");
-        String s = storage.reader();
+    ArrayList<Task> arr = new ArrayList<>();
 
-        //duke.duke.Parser
-        Parser parser = new Parser();
 
-        //process string
-        s = s.replace("[T]", "todo");
-        s = s.replace("[D]", "deadline");
-        s = s.replace("[E]", "event");
-        s = s.replace("[ ]", "");
-        s = s.replace("[X]", "");
-        if (s.contains(":")) {
-            s = s.replace("[ ]", "");
-            s = s.replace("(", "/");
-            s = s.replace(":", "");
-            s = s.replace(")", "");
-        }
 
-        //code mechanics
-        while (true) {
-            if (parser.terminator) {
-                break;
-            } else if (s.equals("")) {
-                parser.setChecker();
-                input = sc.nextLine();
-                parser.parse(input);
-            } else {
-                int temp = s.indexOf("%");
-                input = s.substring(0, temp);
-                parser.parse(input);
-                s = s.replaceAll(input + "%", ""); //remove old string
-            }
+    //duke.duke.Parser
+    Parser parser = new Parser();
 
-        }
 
-        sc.close();
+    @Override
+    public void start(Stage stage) {
 
-        // write to file once scanner closes
-        storage.writer(parser.getArr());
+
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
+        scrollPane.setContent(dialogContainer);
+
+        userInput = new TextField();
+        sendButton = new Button("Send");
+
+        AnchorPane mainLayout = new AnchorPane();
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+
+        scene = new Scene(mainLayout);
+
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    String getResponse(String input) {
+        return parser.parse(input);
+    }
 
 }
 

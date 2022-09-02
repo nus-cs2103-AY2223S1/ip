@@ -17,6 +17,7 @@ public class Deadline extends Task {
         // date_str gives date only
         String date_str = this.by.replaceAll(this.by.substring(this.by.length() - 5),"");
         String[] date_slots = date_str.split("/", -1);
+
         if (date_slots[0].length() == 1) {
             date_slots[0] = "0" + date_slots[0];
         }

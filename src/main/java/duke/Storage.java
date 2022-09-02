@@ -6,12 +6,13 @@ import java.util.ArrayList;
 
 public class Storage {
 
-    private String filePath;
+    private final String filePath = "duke.txt";
     private ArrayList<Task> arr;
 
+
     //constructor
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
+
     }
 
     //methods
