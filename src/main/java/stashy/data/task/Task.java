@@ -61,7 +61,7 @@ public abstract class Task {
      * @return A true or false boolean
      */
     public boolean containsText(String text) {
-        return this.description.contains(text);
+        return this.description.toLowerCase().contains(text.toLowerCase());
     }
 
     @Override
