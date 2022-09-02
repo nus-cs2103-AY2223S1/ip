@@ -21,10 +21,11 @@ public class AddCommand extends Command {
     /**
      * Adds task to list and prints the task and task count.
      * Also saves the updated tasks to storage.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      * @throws DukeException
      */
     @Override

@@ -14,10 +14,11 @@ import duke.Ui;
 public class ListCommand extends Command {
     /**
      * Prints out list of tasks individually with index.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      * @throws DukeException
      */
     @Override

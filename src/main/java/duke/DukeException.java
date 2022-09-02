@@ -8,6 +8,7 @@ public class DukeException extends Exception {
 
     /**
      * Creates new DukeException with specified message.
+     *
      * @param message Error to be displayed to the user.
      */
     public DukeException(String message) {
@@ -16,6 +17,7 @@ public class DukeException extends Exception {
 
     /**
      * Returns DukeException message.
+     *
      * @return Message.
      */
     public String getMessage() {
@@ -24,6 +26,7 @@ public class DukeException extends Exception {
 
     /**
      * Returns String representation of DukeException - the message.
+     *
      * @return Message.
      */
     @Override

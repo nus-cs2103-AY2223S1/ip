@@ -14,6 +14,7 @@ public class MarkCommand extends Command {
 
     /**
      * Creates mark command.
+     *
      * @param index Index of task to be marked as done.
      */
     public MarkCommand(int index) {
@@ -23,10 +24,11 @@ public class MarkCommand extends Command {
     /**
      * Marks task as done and prints it to user.
      * Also saves the updated tasks to storage.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      * @throws DukeException
      */
     @Override

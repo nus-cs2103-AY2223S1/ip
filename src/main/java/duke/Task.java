@@ -11,6 +11,7 @@ public abstract class Task {
 
     /**
      * Creates a task.
+     *
      * @param description Description of task.
      */
     public Task(String description) {
@@ -33,8 +34,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns common part of all tasks for file representation
-     * @return "{1 if done else 0} | {description}"
+     * Returns common part of all tasks for file representation.
+     *
+     * @return "{1 if done else 0} | {description}".
      */
     public String toFileRepresentation() {
         return String.format("%d | %s", this.done ? 1 : 0, this.description);
@@ -42,7 +44,8 @@ public abstract class Task {
 
     /**
      * Returns nothing because abstract tasks should not be created.
-     * @param rep String of task representation
+     *
+     * @param rep String of task representation.
      * @return Nothing.
      */
     public static Task fromFileRepresentation(String rep) {
@@ -52,6 +55,7 @@ public abstract class Task {
     /**
      * Returns if tasks is on that date.
      * If no date, default to false.
+     *
      * @param date Specified date.
      * @return Whether the task is on the specified date.
      */
@@ -60,9 +64,10 @@ public abstract class Task {
     }
 
     /*
-     * Return whether the description includes the search query
+     * Return whether the description includes the search query.
+     *
      * @param searchQuery String to search.
-     * @return whether the description includes the search query
+     * @return whether the description includes the search query.
      */
     public boolean descriptionIncludes(String searchQuery) {
         return description.contains(searchQuery);
@@ -70,6 +75,7 @@ public abstract class Task {
 
     /**
      * Returns String representation of Task.
+     *
      * @return "{[X] if done else [ ]} | {description}"
      */
     @Override

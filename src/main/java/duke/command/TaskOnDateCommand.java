@@ -17,6 +17,7 @@ public class TaskOnDateCommand extends Command {
 
     /**
      * Create TaskOnDateCommand.
+     *
      * @param date Specified date to filter for.
      */
     public TaskOnDateCommand(LocalDate date) {
@@ -25,10 +26,11 @@ public class TaskOnDateCommand extends Command {
 
     /**
      * Filters for tasks on a specified date and prints it to the user.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

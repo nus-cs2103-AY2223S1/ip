@@ -10,6 +10,7 @@ public class Message {
 
     /**
      * Creates the message.
+     *
      * @param text Response to user.
      * @param isExit Whether the previous command was the exit command.
      * @param isError Whether there was an error with the previous command.

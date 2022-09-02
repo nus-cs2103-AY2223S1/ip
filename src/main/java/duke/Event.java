@@ -11,6 +11,7 @@ public class Event extends Task {
 
     /**
      * Initialises new event with description and date.
+     *
      * @param description Description of Event.
      * @param at Date of event.
      */
@@ -21,6 +22,7 @@ public class Event extends Task {
 
     /**
      * Returns whether Event is on that date.
+     *
      * @param date Specified date.
      * @return Boolean of whether Event is on that date.
      */
@@ -30,6 +32,7 @@ public class Event extends Task {
 
     /**
      * Returns file representation of Event.
+     *
      * @return "E | {1 if done else 0} | {description} | {at}"
      */
     @Override
@@ -38,7 +41,8 @@ public class Event extends Task {
     }
 
     /**
-     * Returns new Event instance from file representation
+     * Returns new Event instance from file representation.
+     *
      * @param rep String representation of Event.
      * @return New Event instance.
      */
@@ -56,6 +60,7 @@ public class Event extends Task {
 
     /**
      * Returns String representation of Event.
+     *
      * @return "[E] | {[X] if done else [ ]} | {description} | {formattedAt}"
      */
     @Override

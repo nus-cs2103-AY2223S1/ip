@@ -11,6 +11,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a new Deadline.
+     *
      * @param description Description of deadline.
      * @param by Due date of deadline.
      */
@@ -21,6 +22,7 @@ public class Deadline extends Task {
 
     /**
      * Returns whether the deadline is on the specified date.
+     *
      * @param date Specified date.
      * @return whether the deadline is on the specified date.
      */
@@ -30,6 +32,7 @@ public class Deadline extends Task {
 
     /**
      * Returns file representation of Deadline.
+     *
      * @return "D | {1 if done else 0} | {description} | {formattedDueDate}".
      */
     @Override
@@ -39,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Returns new Deadline from file representation.
+     *
      * @param rep String of file representation.
      * @return Deadline instance.
      */
@@ -56,6 +60,7 @@ public class Deadline extends Task {
 
     /**
      * Returns String representation of Deadline.
+     *
      * @return "[D] {[X] if done else [ ]} | {description} (by: {formattedBy})"
      */
     @Override

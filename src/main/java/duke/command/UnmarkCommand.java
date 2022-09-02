@@ -14,6 +14,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Creates UnmarkCommand.
+     *
      * @param index Index of task to mark as not done.
      */
     public UnmarkCommand(int index) {
@@ -23,6 +24,7 @@ public class UnmarkCommand extends Command {
     /**
      * Marks task as not done and prints it to user.
      * Also saves the updated tasks to storage.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.

@@ -10,7 +10,8 @@ public class Todo extends Task {
 
     /**
      * Returns the string representation of a Todo.
-     * @return "[T] {taskDescription}"
+     *
+     * @return "[T] {taskDescription}".
      */
     @Override
     public String toString() {
@@ -19,7 +20,8 @@ public class Todo extends Task {
 
     /**
      * Returns the file representation of a Todo.
-     * @return "T | {1 if done else 0} | {taskDescription}"
+     *
+     * @return "T | {1 if done else 0} | {taskDescription}".
      */
     @Override
     public String toFileRepresentation() {
@@ -28,8 +30,9 @@ public class Todo extends Task {
 
     /**
      * Converts string representation to Todo.
-     * @param rep String representation of Todo
-     * @return new Todo
+     *
+     * @param rep String representation of Todo.
+     * @return new Todo.
      */
     public static Todo fromFileRepresentation(String rep) {
         String[] args = rep.split(" \\| ");

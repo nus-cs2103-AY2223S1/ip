@@ -11,6 +11,7 @@ import duke.Ui;
 public abstract class Command {
     /**
      * Returns whether the Command is the Exit command.
+     *
      * @return Whether the Command is the Exit command.
      */
     public boolean isExit() {
@@ -19,10 +20,11 @@ public abstract class Command {
 
     /**
      * Runs instructions of command.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      * @throws DukeException
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;

@@ -21,6 +21,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Initialises a task list with existing tasks.
+     *
      * @param taskArrayList List of tasks to initialize with.
      */
     public TaskList(ArrayList<Task> taskArrayList) {
@@ -29,6 +30,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns number of tasks in the task list.
+     *
      * @return Number of tasks.
      */
     public int taskCount() {
@@ -37,6 +39,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds a task to the task list.
+     *
      * @param task Task to add.
      */
     public void addTask(Task task) {
@@ -45,7 +48,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns a specified task.
-     * @param index Index of task (1 - indexed)
+     *
+     * @param index Index of task (1 - indexed).
      * @return Task with that index.
      * @throws DukeException if index is more than the number of tasks or index < 1.
      */
@@ -68,7 +72,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Marks task as done and returns it.
-     * @param index Index of task (1 - indexed)
+     *
+     * @param index Index of task (1 - indexed).
      * @return Task marked as done.
      * @throws DukeException if index is more than the number of tasks or index < 1.
      */
@@ -80,7 +85,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Marks task as not done and returns it.
-     * @param index Index of task (1 - indexed)
+     *
+     * @param index Index of task (1 - indexed).
      * @return Task unmarked as done.
      * @throws DukeException if index is more than the number of tasks or index < 1.
      */
@@ -92,7 +98,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Deletes task and returns deleted task.
-     * @param index Index of task (1 - indexed)
+     *
+     * @param index Index of task (1 - indexed).
      * @return Deleted task.
      * @throws DukeException if index is more than the number of tasks or index < 1.
      */
@@ -104,8 +111,9 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns tasks on that date.
+     *
      * @param date
-     * @return ArrayList of tasks on specified date
+     * @return ArrayList of tasks on specified date.
      */
     public ArrayList<Task> getTasksOn(LocalDate date) {
         ArrayList<Task> filteredTaskList = this.taskArrayList.stream()
@@ -127,7 +135,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Returns iterator so TaskList is iterable
+     * Returns iterator so TaskList is iterable.
      * @return Iterator to iterate tasks.
      */
     @Override

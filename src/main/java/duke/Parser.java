@@ -71,9 +71,10 @@ public class Parser {
     }
 
     /**
-     * Parses description into Todo instance
-     * @param description Description of Todo
-     * @return Todo instance
+     * Parses description into Todo instance.
+     *
+     * @param description Description of Todo.
+     * @return Todo instance.
      * @throws DukeException If description is empty.
      */
     public static Todo parseTodo(String description) throws DukeException {
@@ -84,8 +85,9 @@ public class Parser {
     }
 
     /**
-     * Parses argsString into Deadline instance
-     * @param argsString String of format "description /by date"
+     * Parses argsString into Deadline instance.
+     *
+     * @param argsString String of format "description /by date".
      * @return Deadline instance.
      * @throws DukeException If argsString format is wrong.
      */
@@ -106,8 +108,9 @@ public class Parser {
 
     /**
      * Parses argsString into Event instance.
-     * @param argsString String of format "description /at date"
-     * @return Event instance
+     *
+     * @param argsString String of format "description /at date".
+     * @return Event instance.
      * @throws DukeException If argsString format is wrong.
      */
     public static Event parseEvent(String argsString) throws DukeException {
@@ -125,7 +128,8 @@ public class Parser {
     }
 
     /**
-     * Parses String to Integer
+     * Parses String to Integer.
+     *
      * @param number String representation of integer.
      * @return Integer with value integer.
      * @throws DukeException If number is not of number format.

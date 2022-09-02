@@ -16,6 +16,7 @@ public class FindCommand extends Command {
 
     /**
      * Creates FindCommand.
+     *
      * @param searchQuery String to filter description for.
      */
     public FindCommand(String searchQuery) {
@@ -24,10 +25,11 @@ public class FindCommand extends Command {
 
     /**
      * Prints out tasks that have the search query in the description.
+     *
      * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
-     * @return Duke's response
+     * @return Duke's response.
      * @throws DukeException
      */
     @Override

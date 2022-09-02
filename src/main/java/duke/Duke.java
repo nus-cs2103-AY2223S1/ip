@@ -12,6 +12,7 @@ public class Duke {
 
     /**
      * Creates a new instance of Duke.
+     *
      * @param filePath File path of the data file.
      */
     public Duke(String filePath) {
