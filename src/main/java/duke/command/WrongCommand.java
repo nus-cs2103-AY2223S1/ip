@@ -2,10 +2,9 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.controller.Ui;
 
 /**
- * Represents an empty command which has no actions.
+ * Represents a wrong command which returns the error message.
  */
 public class WrongCommand implements ICommand {
     private String errMsg;
@@ -18,7 +17,6 @@ public class WrongCommand implements ICommand {
      * Executes nothing.
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
-     * @param ui Ui object for displaying messages.
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
@@ -35,9 +33,9 @@ public class WrongCommand implements ICommand {
     }
 
     /**
-     * Returns if two EmptyCommands are equal.
+     * Returns if two WrongCommands are equal.
      * @param obj Other command.
-     * @return True if two EmptyCommands are equal. Else false.
+     * @return True if two WrongCommands are equal. Else false.
      */
     @Override
     public boolean equals(Object obj) {

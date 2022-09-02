@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.controller.Ui;
 
 /**
  * Represents a command to exit the program.
@@ -12,7 +11,6 @@ public class ExitCommand implements ICommand {
      * Executes end of program.
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
-     * @param ui Ui object for displaying messages.
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {

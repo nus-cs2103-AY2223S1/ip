@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.controller.Ui;
 
 /**
  * Represents a command to find tasks in the list.
@@ -22,7 +21,6 @@ public class FindCommand implements ICommand {
      * Executes the command by finding the tasks in the list.
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
-     * @param ui Ui object for displaying messages.
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {

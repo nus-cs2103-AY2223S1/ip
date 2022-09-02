@@ -1,8 +1,6 @@
 package duke;
 
-import duke.command.EmptyCommand;
 import duke.command.ICommand;
-import duke.controller.Ui;
 
 /**
  * Represents the main class of the Duke program.
@@ -10,7 +8,6 @@ import duke.controller.Ui;
 public class DukeApplication {
     private final Storage storage;
     private final TaskList taskList;
-    private final Ui ui;
 
     /**
      * Returns an instance of Duke.
@@ -19,19 +16,6 @@ public class DukeApplication {
     public DukeApplication(String filePath) {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(this.storage.load());
-        this.ui = new Ui();
-    }
-
-    /**
-     * Starts Duke program.
-     */
-    public void run() {
-        ICommand cmd = new EmptyCommand();
-        while (!cmd.isExit()) {
-            String input = this.ui.readCommand();
-            cmd = Parser.parse(input);
-            cmd.execute(storage, taskList);
-        }
     }
 
     /**
@@ -50,6 +34,5 @@ public class DukeApplication {
      */
     public static void main(String[] args) {
         DukeApplication dk = new DukeApplication("data/duke.txt");
-        dk.run();
     }
 }

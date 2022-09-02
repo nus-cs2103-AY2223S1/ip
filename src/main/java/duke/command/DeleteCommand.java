@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.controller.Ui;
 
 /**
  * Represents a command to delete task from the list.
@@ -23,7 +22,6 @@ public class DeleteCommand implements ICommand {
      * Executes the command by deleting specified task from the list.
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.
-     * @param ui Ui object for displaying messages.
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
