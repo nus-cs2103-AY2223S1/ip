@@ -12,19 +12,19 @@ public class Ui {
     /**
      * Prints a welcome message to the user.
      */
-    public static void welcomeUser() {
+    public static String welcomeUser() {
         String s = "Hello! I'm Duke\n"
-                + "\tWhat can I do for you?\n"
-                + "\t(Please enter any datetime inputs in \n"
-                + "\t\"yyyy-mm-dd hhhh\" format)";
-        sendMessage(s);
+                + "What can I do for you?\n"
+                + "(Please enter any datetime inputs in \n"
+                + "\"yyyy-mm-dd hhhh\" format)";
+        return s;
     }
 
     /**
      * Prints a goodbye message to the user.
      */
-    public static void sayGoodbye() {
-        sendMessage("Bye. Hope to see you again soon!");
+    public static String sayGoodbye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -32,22 +32,22 @@ public class Ui {
      * @param e The exception thrown from the method.
      */
     public static void displayErrorMessage(Exception e) {
-        sendMessage(e.getMessage());
+        e.getMessage();
     }
 
     /**
      * Utility function for retrieving and printing the tasks in the user's task list.
      */
-    public static void printTasks(List<Task> taskList) {
+    public static String getTasks(List<Task> taskList) {
         if (taskList.size() == 0) {
-            sendMessage("No items stored");
+            return "No items stored";
         } else {
             String s = "Here are the tasks in your list:\n";
             for (int i = 0; i < taskList.size(); i++) {
                 Task t = taskList.get(i);
                 s = s + "\t" + (i + 1) + "." + t + "\n";
             }
-            sendMessage(s.trim());
+            return s.trim();
         }
     }
 
