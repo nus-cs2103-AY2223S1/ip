@@ -24,11 +24,11 @@ public class Duke {
     private static final String COMMAND_ADD_EVENT = "event";
     private static final String COMMAND_DELETE = "delete";
 
-    private final char TIME_DELIMITER = '/';
-    private final String DATA_FILE_PATH = "./data.ser";
+    private static final char TIME_DELIMITER = '/';
+    private static final String DATA_FILE_PATH = "./data.ser";
 
 
-    /** Ui object to handle user interaction */ 
+    /** Ui object to handle user interaction */
     private Ui ui;
 
     /** Storage object to handle storing the file on the hard disk */
@@ -54,7 +54,7 @@ public class Duke {
 
 
     private void markTaskAsDoneOrUndone(String[] commands) {
-        
+
         String result = "";
 
         // First token is the action
@@ -63,7 +63,7 @@ public class Duke {
         // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
         int indexNumber = Integer.parseInt(commands[1]) - 1;
-        
+
         // Get the task from the TaskList object
         Task t = this.storedTasks.getTask(indexNumber);
 
@@ -72,7 +72,7 @@ public class Duke {
         if (action.equals(COMMAND_MARK_AS_DONE)) {
             t = t.markTask();
             result = "Nice! I've marked this task as done:\n";
-        
+
         } else {
             t = t.unmarkTask();
             result = "OK, I've marked this task as undone:\n";
@@ -80,7 +80,7 @@ public class Duke {
 
         // Store the task back in the TaskList
         this.storedTasks.setTask(indexNumber, t);
-        
+
 
         // Add the string representation of the task to the result
         result = result.concat(String.format("%s\n", t));
@@ -89,7 +89,7 @@ public class Duke {
 
 
     private void addTask(String[] commands) {
-        
+
         // Create the correct type of task based on the first token
         Task t = null;
 
@@ -112,7 +112,7 @@ public class Duke {
 
 
     private Task createTask(String[] commands) throws Exception {
-        
+
         String description = "";
         boolean isDeadline = false;
 
@@ -132,8 +132,8 @@ public class Duke {
             }
 
             return new ToDo(description);
-        
-        
+
+
         // Handle adding a Deadline task and an Event task the same way
         case COMMAND_ADD_DEADLINE:
             isDeadline = true;
@@ -165,10 +165,10 @@ public class Duke {
             for (i++; i < commands.length; i++) {
                 dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
             }
-        
+
             return isDeadline ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
 
-        
+
         default:
             return null;
         }
@@ -180,7 +180,7 @@ public class Duke {
             Format of Event task: event description /at dateAndTime
 
             Need to check for 2 things:
-            
+
             1. There is at least 1 token before /at, i.e. /at is the 3rd token or further
             2. There is at least 1 token after /at which represents the dateAndTime,
                i.e. delimiter must not be the last item
@@ -191,12 +191,12 @@ public class Duke {
 
         try {
             delimiterIndex = findDelimiter(commands);
-            
+
         } catch (Exception e) {
             // Cannot find delimiter, i.e. delimiter doesn't exist
             return false;
         }
-        
+
         // Check 1: /at is the 3rd token or further
         if (delimiterIndex < 3) {
             return false;
@@ -233,7 +233,7 @@ public class Duke {
         // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
         int indexNumber = Integer.parseInt(commands[1]) - 1;
-        
+
         // Remove the task from the TaskList object
         Task t = storedTasks.removeTask(indexNumber);
 
@@ -272,7 +272,7 @@ public class Duke {
         case COMMAND_FIND:
             findTasks(commands);
             break;
-        
+
 
         // Handle marking a task as done and undone in the same function
         case COMMAND_MARK_AS_DONE:
@@ -282,7 +282,7 @@ public class Duke {
             storage.writeToFile(this.storedTasks);
             break;
 
-        
+
         // Handle adding all types of tasks in the same function
         case COMMAND_ADD_TODO:
             // Fall through
@@ -298,12 +298,12 @@ public class Duke {
             deleteTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
-        
+
 
         case COMMAND_EXIT:
             exitDuke();
             return true;
-        
+
 
         // Command is invalid
         default:
@@ -323,7 +323,7 @@ public class Duke {
     private void run() {
 
         while (true) {
-            
+
             String[] commands = Parser.parseCommand(ui.readCommand());
 
             // If need to exit
@@ -336,11 +336,11 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        
+
         Duke d = new Duke();
 
         // Process user commands
-        d.run();        
+        d.run();
 
     }
 }

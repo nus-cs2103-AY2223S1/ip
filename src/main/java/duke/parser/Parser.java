@@ -7,7 +7,7 @@ public class Parser {
 
     /**
      * Parses the specified command by splitting the string around whitespaces.
-     * 
+     *
      * @param command Command to parse.
      * @return String array containing the tokens of the command.
      */
@@ -15,5 +15,5 @@ public class Parser {
         // Split string around whitespaces
         return command.split("\\s");
     }
-    
+
 }

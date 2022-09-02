@@ -23,7 +23,7 @@ public class Ui {
 
     /**
      * Returns the user's command read from standard input.
-     * 
+     *
      * @return String containing the user's command.
      */
     public String readCommand() {
@@ -37,11 +37,11 @@ public class Ui {
     public void stopReadingUserInput() {
         sc.close();
     }
-    
-    
+
+
     /**
      * Prints the specified TaskList object to the console.
-     * 
+     *
      * @param tasks TaskList object to print.
      * @param isSearchResult boolean value to indicate whether the TaskList object was from a search result.
      */
@@ -50,19 +50,19 @@ public class Ui {
         // Modify the header sentence based on whether the specified TaskList is from a search result
         String result = isSearchResult ? "Here are the matching tasks in your list:\n"
                                         : "Here are the tasks in your list:\n";
-        
+
         for (int i = 0; i < tasks.getSize(); i++) {
             String line = String.format("%d. %s\n", i + 1, tasks.getTask(i));
             result = result.concat(line);
         }
-        
+
         System.out.println(result);
     }
 
-    
+
     /**
      * Prints the specified message to the console.
-     * 
+     *
      * @param message Message to be printed.
      */
     public void printMessage(String message) {

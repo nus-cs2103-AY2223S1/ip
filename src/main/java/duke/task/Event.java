@@ -8,14 +8,14 @@ public class Event extends Task {
 
     private static final String EVENT_LETTER = "E";
 
-    
+
     /** String to store the date and time when the Event is happening */
     protected final String dateAndTime;
 
 
     /**
      * Creates a new Event object.
-     * 
+     *
      * @param description Description of the Event object.
      * @param dateAndTime String containing the date and time in any format.
      */
@@ -27,7 +27,7 @@ public class Event extends Task {
         super(description, isDone);
         this.dateAndTime = dateAndTime;
     }
-    
+
 
     @Override
     public Event markTask() {
@@ -43,7 +43,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the Event object.
-     * 
+     *
      * @return String representation of the Event object.
      */
     @Override

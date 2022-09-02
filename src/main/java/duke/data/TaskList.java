@@ -37,7 +37,7 @@ public class TaskList implements Serializable {
 
     /**
      * Sets a Task object at the specified index.
-     * 
+     *
      * @param indexNumber Index number to set the Task object.
      * @param t Task object to set.
      */
@@ -48,7 +48,7 @@ public class TaskList implements Serializable {
 
     /**
      * Adds a Task object to the end of the list of tasks.
-     * 
+     *
      * @param t Task object to add.
      */
     public void addTask(Task t) {
@@ -58,7 +58,7 @@ public class TaskList implements Serializable {
 
     /**
      * Removes and returns the Task object at the specified index.
-     * 
+     *
      * @param indexNumber Index number of Task object to remove.
      * @return Task object that was removed.
      */
@@ -70,10 +70,10 @@ public class TaskList implements Serializable {
 
     /**
      * Returns all Task objects which contain the specified keyword in the description.
-     * 
+     *
      * @param keyword Keyword to search for in the description.
      * @return TaskList containing the Task objects.
-     * 
+     *
      */
     public TaskList searchTasks(String keyword) {
 
@@ -91,12 +91,12 @@ public class TaskList implements Serializable {
 
     /**
      * Returns the string representation of the TaskList object.
-     * 
+     *
      * @return String representation of the TaskList object.
      */
     @Override
     public String toString() {
         return String.format("%s", this.tasks.toString());
     }
-    
+
 }

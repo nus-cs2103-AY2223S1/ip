@@ -11,7 +11,7 @@ public class ToDo extends Task {
 
     /**
      * Creates a new ToDo object.
-     * 
+     *
      * @param description Description of the ToDo object.
      */
     public ToDo(String description) {
@@ -21,7 +21,7 @@ public class ToDo extends Task {
     private ToDo(String description, boolean isDone) {
         super(description, isDone);
     }
-    
+
 
     @Override
     public ToDo markTask() {
@@ -37,7 +37,7 @@ public class ToDo extends Task {
 
     /**
      * Returns the string representation of the ToDo object.
-     * 
+     *
      * @return String representation of the ToDo object.
      */
     @Override

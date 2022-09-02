@@ -27,5 +27,5 @@ public class TodoTest {
         ToDo t = new ToDo("Todo");
         assertEquals("[T][ ] Todo", t.toString());
     }
-    
+
 }

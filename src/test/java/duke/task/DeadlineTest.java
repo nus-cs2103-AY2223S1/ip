@@ -27,5 +27,5 @@ public class DeadlineTest {
         Deadline d = new Deadline("Deadline", "2022-12-16 18:00");
         assertEquals("[D][ ] Deadline (by: 16 Dec 2022 at 06:00 PM)", d.toString());
     }
-    
+
 }

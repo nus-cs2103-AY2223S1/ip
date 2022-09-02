@@ -20,7 +20,7 @@ public class Storage {
 
     /**
      * Creates a new Storage object that stores data at the specified data path.
-     * 
+     *
      * @param dataFilePath Relative file path of the data file
      */
     public Storage(String dataFilePath) {
@@ -31,7 +31,7 @@ public class Storage {
     /**
      * Serializes (write to file) the specified TaskList object to the data file.
      * Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
-     * 
+     *
      * @param tasks TaskList object to serialize.
      */
     public void writeToFile(TaskList tasks) {
@@ -44,7 +44,7 @@ public class Storage {
 
             outputFile.close();
             outputStream.close();
-            
+
 
         } catch (FileNotFoundException e) {
             System.out.println("Error, cannot open file.");
@@ -61,11 +61,11 @@ public class Storage {
     /**
      * Returns the deserialized (read from file) TaskList object from the data file.
      * Method adapted from https://www.tutorialspoint.com/java/java_serialization.htm
-     * 
+     *
      * @return TaskList object that was deserialized from the data file.
      */
     public TaskList readFromFile() {
-        
+
         try {
             FileInputStream inputFile = new FileInputStream(this.dataFilePath);
             ObjectInputStream inputStream = new ObjectInputStream(inputFile);
@@ -93,5 +93,5 @@ public class Storage {
         System.out.println("Creating new task list instead.\n");
         return new TaskList();
     }
-    
+
 }
