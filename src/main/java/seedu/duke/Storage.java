@@ -74,14 +74,18 @@ public class Storage {
             e.printStackTrace();
         } catch (DukeException e) {
             e.printStackTrace();
-            Ui.unknownElement();
         }
 
     }
 
+    /**
+     * Adds tasks to the save file.
+     * @param taskToAdd The task to be added to the save file.
+     */
     public void addTask(String taskToAdd) {
         try {
-            PrintWriter fw = new PrintWriter(new FileWriter(filePath, true)); // create a FileWriter in append mode
+            // create a FileWriter in append mode
+            PrintWriter fw = new PrintWriter(new FileWriter(filePath, true));
             fw.println(taskToAdd);
             fw.close();
         } catch (IOException e) {
@@ -90,6 +94,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Recreates the save file using the tasks in temporary storage.
+     *
+     * @param storage The temporary storage.
+     */
     public void reload(ArrayList<Task> storage) {
         try {
             PrintWriter writer = new PrintWriter(filePath);

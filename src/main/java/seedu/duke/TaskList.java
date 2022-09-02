@@ -21,6 +21,7 @@ public class TaskList {
      * Adds Tasks to storage and saves them to the hard disk.
      *
      * @param command the user's input.
+     * @return A response to be displayed to the user.
      */
     public String addTask(String command) {
 
@@ -70,6 +71,7 @@ public class TaskList {
      *  the specified does not exist is printed.
      *
      * @param index The index of the Task to be removed from storage.
+     * @return A response to be displayed to the user.
      */
     public String delete(int index) {
         try {
@@ -85,6 +87,8 @@ public class TaskList {
 
     /**
      * Lists all the tasks currently being stored.
+     *
+     * @return A response to be displayed to the user.
      */
     public String list() {
         String list = "Here are the tasks in your list:\n";
@@ -105,6 +109,7 @@ public class TaskList {
      * Marks the specified Task as done or not done, according to the command.
      *
      * @param command The user's input.
+     * @return A response to be displayed to the user.
      */
     public String toggleDone(String command) {
         int index = Character.getNumericValue(command.charAt(command.length() - 1));
@@ -119,8 +124,10 @@ public class TaskList {
     }
 
     /**
-     * returns a list of Tasks that contain the word to be found.
+     * Returns a list of Tasks that contain the word to be found.
+     *
      * @param command the user's input.
+     * @return A response to be displayed to the user.
      */
     public String find(String command) {
         ArrayList<Task> result = new ArrayList<>();

@@ -17,6 +17,7 @@ public class Task {
      * Sets this task as done or not done, depending on the given command.
      *
      * @param command The command that determines whether this task is done or not done.
+     * @return A response to be displayed to the user.
      */
     public String toggleDone(String command) {
         if (command.startsWith("mark ")) {

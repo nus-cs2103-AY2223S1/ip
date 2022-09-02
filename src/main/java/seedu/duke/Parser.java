@@ -1,8 +1,6 @@
 package seedu.duke;
-import java.util.Scanner;
 
 public class Parser {
-    private Scanner scan = new Scanner(System.in);
     private TaskList taskList;
 
     /**
@@ -15,18 +13,10 @@ public class Parser {
     }
 
     /**
-     * Calls the Scanner to wait for the next line of user input.
-     */
-    public void nextCommand() {
-        String command = scan.nextLine();
-        this.parse(command);
-        nextCommand();
-    }
-
-    /**
      * Takes in the user's input and interprets it.
      *
      * @param command The user's input.
+     * @return A response to be displayed to the user.
      */
     public String parse(String command) {
         if (command.equals("list")) {

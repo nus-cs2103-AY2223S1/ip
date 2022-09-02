@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import javafx.application.Platform;
+
 public class Duke {
     private static Storage save;
     private static Ui ui;
@@ -7,41 +9,26 @@ public class Duke {
 
     /**
      * A constructor that returns an instance of Duke.
+     *
+     * @param fileType The location of the save file.
      */
     public Duke(String fileType) {
         save = new Storage(fileType);
 
         TaskList taskList = new TaskList(save);
         parser = new Parser(taskList);
-        ui = new Ui(parser);
     }
 
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns Duke's response to the given user input.
+     *
+     * @param input The user's input.
+     * @return Duke's response to the input.
      */
     public String getResponse(String input) {
         return parser.parse(input);
     }
-
-
-    /**
-     * Prints out greeting, initialises the TaskList and opens the scanner to start
-     * receiving commands.
-     */
-
-    /*
-    public static void run() {
-        ui.introduction();
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-
-    }
-
-     */
-
 
 }
 
