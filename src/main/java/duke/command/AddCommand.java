@@ -33,19 +33,19 @@ public class AddCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String[] split = cmd.split(" ", 2);
         String type = split[0];
-        String desc = split[1];
+        String description = split[1];
         String taskDescription;
         switch (type) {
         case "todo":
-            taskDescription = new AddTodoCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddTodoCommand(description).execute(tasks, ui, storage);
             break;
 
         case "deadline":
-            taskDescription = new AddDeadlineCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddDeadlineCommand(description).execute(tasks, ui, storage);
             break;
 
         case "event":
-            taskDescription = new AddEventCommand(desc).execute(tasks, ui, storage);
+            taskDescription = new AddEventCommand(description).execute(tasks, ui, storage);
             break;
 
         default:

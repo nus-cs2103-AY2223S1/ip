@@ -73,6 +73,7 @@ public class Parser {
                     return new AddCommand(fullCommand);
                 }
             } catch (Exception e) {
+                // Any exceptions related to Duke are DukeExceptions
                 throw new DukeException("OOPS!!! This command is invalid");
             }
         }

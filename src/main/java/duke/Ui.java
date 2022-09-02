@@ -37,7 +37,8 @@ public class Ui {
      */
     public String showBye() {
         sc.close();
-        return "Bye. Hope to see you again soon!";
+        String message = "Bye. Hope to see you again soon!";
+        return message;
     }
 
 }

@@ -18,6 +18,7 @@ import duke.task.Todo;
 public class Storage {
 
     private static final String DIR = System.getProperty("user.dir");
+    private static final String PARENTDIR = "/data";
     private String filePath;
 
     /**
@@ -74,7 +75,7 @@ public class Storage {
                 }
             }
         } else {
-            File parent = new File(DIR + "/data");
+            File parent = new File(DIR + PARENTDIR);
             boolean isFolderCreated = parent.mkdir();
             boolean isFileCreated = target.createNewFile();
         }
