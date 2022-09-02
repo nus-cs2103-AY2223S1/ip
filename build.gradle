@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Launcher"
+    mainClassName = "duke.gui.Launcher"
 }
 
 checkstyle {
