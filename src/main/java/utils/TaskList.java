@@ -1,14 +1,14 @@
 package utils;
 
-import entities.Task;
-import entities.Deadline;
-import entities.Event;
-import entities.Todo;
-import exceptions.DukeException;
-import duke.Duke;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.Duke;
+import entities.Deadline;
+import entities.Event;
+import entities.Task;
+import entities.Todo;
+import exceptions.DukeException;
 
 /**
  * Stores and manages the tasks entered by the user.

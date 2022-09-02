@@ -1,10 +1,5 @@
 package utils;
 
-import entities.Deadline;
-import entities.Event;
-import entities.Task;
-import entities.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import entities.Deadline;
+import entities.Event;
+import entities.Task;
+import entities.Todo;
 
 /**
  * Handles storing and loading tasks from the hard disk between sessions.
@@ -107,29 +107,29 @@ public class Storage {
                     remarks = taskData[3];
                 }
                 switch (taskType) {
-                    case "todo":
-                        Todo t = new Todo(desc);
-                        if (isDone) {
-                            t.markAsDone();
-                        }
-                        taskList.add(t);
-                        break;
-                    case "event":
-                        Event e = new Event(desc, remarks);
-                        if (isDone) {
-                            e.markAsDone();
-                        }
-                        taskList.add(e);
-                        break;
-                    case "deadline":
-                        Deadline d = new Deadline(desc, remarks);
-                        if (isDone) {
-                            d.markAsDone();
-                        }
-                        taskList.add(d);
-                        break;
-                    default:
-                        break;
+                case "todo":
+                    Todo t = new Todo(desc);
+                    if (isDone) {
+                        t.markAsDone();
+                    }
+                    taskList.add(t);
+                    break;
+                case "event":
+                    Event e = new Event(desc, remarks);
+                    if (isDone) {
+                        e.markAsDone();
+                    }
+                    taskList.add(e);
+                    break;
+                case "deadline":
+                    Deadline d = new Deadline(desc, remarks);
+                    if (isDone) {
+                        d.markAsDone();
+                    }
+                    taskList.add(d);
+                    break;
+                default:
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {
