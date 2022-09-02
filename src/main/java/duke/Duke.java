@@ -3,7 +3,7 @@ package duke;
 import duke.commands.Command;
 import duke.tasks.*;
 import duke.ui.Ui;
-import duke.utils.Parser;
+import duke.utils.InputParser;
 import duke.utils.Storage;
 
 import java.io.File;
@@ -16,7 +16,7 @@ public class Duke {
 
     private Ui ui;
 
-    private Parser parser;
+    private InputParser inputParser;
     private static final File saveFile = new File("savedata.txt");
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Duke {
     }
 
     public Duke() {
-        parser = new Parser();
+        inputParser = new InputParser();
         ui = new Ui();
     }
 
@@ -41,7 +41,7 @@ public class Duke {
     public void loop(Scanner sc) {
         while (sc.hasNext()) {
             String input = sc.nextLine().trim();
-            Command cmd = parser.parse(input, taskList, storage, ui);
+            Command cmd = inputParser.parse(input, taskList, storage, ui);
             cmd.execute();
         }
     }

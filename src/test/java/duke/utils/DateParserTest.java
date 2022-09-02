@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DataParserTest {
+public class DateParserTest {
 
     @Test
     public void stringToDateTest() {

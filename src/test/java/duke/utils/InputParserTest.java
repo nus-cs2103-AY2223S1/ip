@@ -10,16 +10,16 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ParserTest {
+public class InputParserTest {
 
-    private static Parser parser;
+    private static InputParser inputParser;
     private static Storage storage;
     private static Ui ui;
     private static TaskList taskList;
 
     @BeforeAll
     public static void setup() {
-        parser = new Parser();
+        inputParser = new InputParser();
         ui = new Ui();
         storage = new Storage(new File("savedata.txt"));
         taskList = new TaskList(storage.loadFromFile());
@@ -28,7 +28,7 @@ public class ParserTest {
     @Test
     public void parseTest() {
         String bye = "bye";
-        assertEquals(parser.parse(bye, taskList, storage, ui).getClass(), ExitCommand.class);
+        assertEquals(inputParser.parse(bye, taskList, storage, ui).getClass(), ExitCommand.class);
     }
 
 }

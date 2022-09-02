@@ -1,6 +1,9 @@
 package duke.utils;
 
+import duke.tasks.Deadline;
+import duke.tasks.Event;
 import duke.tasks.Task;
+import duke.tasks.Todo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class Storage {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(saveFile));
             taskList.clear();
-            reader.lines().forEach((s) -> taskList.add(Task.fromDataString(s)));
+            reader.lines().forEach((s) -> taskList.add(fromDataString(s)));
         } catch (IOException e) {
             System.out.println("Error while loading from file: " + e);
         }
@@ -54,6 +57,34 @@ public class Storage {
             System.out.println("Error while saving file: " + e);
         }
 
+    }
+
+    private static Task fromDataString(String dataString) {
+        String[] arr = dataString.split("\\|");
+        Task ret;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim();
+        }
+
+        switch(arr[0]) {
+            case "[T]":
+                ret = new Todo(arr[2]);
+                break;
+            case "[D]":
+                ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
+                break;
+            case "[E]":
+                ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
+                break;
+            default:
+                return null;
+        }
+
+        if ("1".equals(arr[1])) {
+            ret.mark();
+        }
+
+        return ret;
     }
 
 }

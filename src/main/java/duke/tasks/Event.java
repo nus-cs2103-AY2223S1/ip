@@ -8,9 +8,9 @@ public class Event extends Task {
 
     private final LocalDate localDate;
 
-    public Event(String name, String dateStr) {
+    public Event(String name, LocalDate date) {
         super(name);
-        localDate = DateParser.stringToDate(dateStr);
+        localDate = date;
     }
 
     @Override

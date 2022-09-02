@@ -5,7 +5,7 @@ import duke.tasks.TaskList;
 import duke.tasks.TaskType;
 import duke.ui.Ui;
 
-public class Parser {
+public class InputParser {
 
     public Command parse(String input, TaskList taskList, Storage storage, Ui ui) {
         int spaceIndex = input.indexOf(' ');
