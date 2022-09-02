@@ -24,8 +24,8 @@ public class Storage {
     }
 
     /**
-     * Is called upon starting Duke. Attempts to find a save file.
-     * If found, calls the ReadData method to read the save file.
+     * Attempts to find a save file upon starting Duke.
+     * If found, calls the readData method to read the save file.
      * If not, create a new empty save file.
      *
      * @return Arraylist of tasks that is created when reading contents of save file.

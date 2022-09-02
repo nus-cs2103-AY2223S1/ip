@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * The Parser class parses user inputs.
@@ -19,101 +21,87 @@ public class Parser {
         this.taskList = new TaskList();
     }
 
+
     /**
      * Calls the corresponding methods according to user input.
      *
      * @param strArray User input separated by spaces into a String array.
+     * @return Duke's response.
      * @throws DukeException If user input format is incorrect.
      * @throws IOException If unable to save changes to file.
      */
-    protected void parseCommand(String[] strArray) throws DukeException, IOException {
+    protected String parseCommand(String[] strArray) throws IOException, DukeException {
 
         String str = strArray[0];
 
         if (str.equals("list")) {
-            this.taskList.listTasks();
+            return this.taskList.listTasks();
         } else if (str.equals("mark")) {
+
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.markTaskDoneAt(i);
+            return this.taskList.markTaskDoneAt(i);
 
         } else if (str.equals("unmark")) {
+
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.markTaskNotDoneAt(i);
+            return this.taskList.markTaskNotDoneAt(i);
 
         } else if (str.equals("delete")) {
+
             int i = Integer.parseInt(strArray[1]) - 1;
-            this.taskList.deleteTaskAt(i);
+            return this.taskList.deleteTaskAt(i);
 
         } else if (str.equals("find")) {
-            this.taskList.findAllTasksWith(strArray[1]);
 
-        } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
+            return this.taskList.findAllTasksWith(strArray[1]);
 
-            String taskname = "";
-            String date = "";
-            int i = 1;
+        } else if (str.equals("todo")) {
 
-            while (i < strArray.length && strArray[i].charAt(0) != '/') {
-                taskname += strArray[i] + " ";
-                i++;
-            }
+            String taskname = Arrays.stream(strArray)
+                    .skip(1)
+                    .reduce("", (acc, current) -> acc + " " + current);
 
-            while (i < strArray.length) { //means now strArray[i] == /by or /at
+            return this.taskList.addToDo(taskname);
 
-                if (strArray[i].charAt(0) != '/') {
-                    date += strArray[i] + " ";
-                }
+        } else if (str.equals("deadline") || str.equals("event")) {
 
-                i++;
-            }
+            String taskname = Arrays.stream(strArray)
+                    .skip(1)
+                    .takeWhile(current -> current.charAt(0) != '/')
+                    .reduce("", (acc, current) -> acc + " " + current);
+
+            String date = Arrays.stream(strArray)
+                    .skip(1)
+                    .dropWhile(current -> current.charAt(0) != '/')
+                    .skip(1)
+                    .collect(Collectors.joining()); //no time functionality yet
 
             if (taskname.equals("")) {
                 throw new DukeException("Name of task cannot be empty!");
             }
 
-            if (str.equals("todo")) {
-                this.taskList.addToDo(taskname);
+            if (date.equals("")) {
+                throw new DukeException("Date/Time cannot be empty!");
+            }
+
+            LocalDate localDate;
+
+            //LocalDateTime dateTime = null; //no time functionality for now
+
+            try {
+                localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
+            } catch (DateTimeParseException e) {
+                return "Please provide a sensible date in the yyyy-MMM-dd format!";
+            }
+
+            if (str.equals("deadline")) {
+                return this.taskList.addDeadline(taskname, localDate);
             } else {
-                if (date.equals("")) {
-                    throw new DukeException("Date/Time cannot be empty!");
-                }
-
-                String[] tArray = date.trim().split(" ");
-                String time = "";
-                if (tArray.length > 2) {
-                    throw new DukeException("Date and time has too many spaces!");
-                } else if (tArray.length == 2) {
-                    time = tArray[1];
-                }
-
-                date = tArray[0];
-
-                //matches the yyyy-MMM-d format
-                if (!date.trim().matches("[0-9]{4}-"
-                        + "((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))"
-                        + "-[0-9]{1,2}")) {
-                    throw new DukeException("Date/Time must match the YYYY-MMM-DD format!");
-                }
-
-                LocalDate localDate = null;
-                LocalDateTime dateTime = null; //no time functionality for now
-
-                try {
-                    localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
-                } catch (DateTimeParseException e) {
-                    System.out.println("Please provide a sensible date and time! Exiting...");
-                    return;
-                }
-
-                if (str.equals("deadline")) {
-                    this.taskList.addDeadline(taskname, localDate);
-                } else {
-                    this.taskList.addEvent(taskname, localDate);
-                }
+                return this.taskList.addEvent(taskname, localDate);
             }
 
         } else {
-            throw new DukeException("Please enter a valid input");
+            return "Please enter a valid input";
         }
     }
 

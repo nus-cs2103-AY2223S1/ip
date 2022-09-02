@@ -13,6 +13,8 @@ public class TaskList {
     private ArrayList<Task> arrayList;
     private final Storage storage;
 
+    private final String NEWLINE = System.lineSeparator();
+
     /** Constructor for a Tasklist object */
     protected TaskList() {
         this.storage = new Storage();
@@ -31,8 +33,9 @@ public class TaskList {
     /**
      * Prints out all tasks with the specified taskname.
      *
+     * @return A String containing all found tasks, each separated by a new line.
      */
-    protected void findAllTasksWith(String name) {
+    protected String findAllTasksWith(String name) {
 
         ArrayList<Task> foundTasks = new ArrayList<>();
 
@@ -43,93 +46,102 @@ public class TaskList {
         }
 
         if (!foundTasks.isEmpty()) {
-            System.out.printf("Found %d matching tasks in your list:\n", foundTasks.size());
+            String intro = String.format("Found %d matching tasks in your list:\n", foundTasks.size());
 
             for (int i = 0; i < foundTasks.size(); i++) {
                 int j = i + 1;
-                System.out.println(j + "." + foundTasks.get(i));
+                intro += j + "." + foundTasks.get(i);
             }
 
+            return intro;
+
         } else {
-            System.out.println("Unable to find any task containing: " + name);
+            return "Unable to find any task containing: " + name;
         }
     }
 
     /**
      * Prints out all the contents of the tasks in the arraylist.
      *
+     * @return A String containing all tasks, each separated by a new line.
      */
-    protected void listTasks() {
-        System.out.println("Here are the tasks in your current list:");
+    protected String listTasks() {
+        String intro = "Here are the tasks in your current list:" + NEWLINE;
 
         if (arrayList.size() == 0) {
-            System.out.println("  Wow! You have no tasks to do currently!!");
+            intro += "  Wow! You have no tasks to do currently!!" + NEWLINE;
         }
 
         for (int i = 0; i < arrayList.size(); i++) {
             int j = i + 1;
-            System.out.println(j + "." + arrayList.get(i));
+            intro += j + "." + arrayList.get(i) + NEWLINE;
         }
+
+        return intro;
     }
 
     /**
      * Marks task as done at a specified index.
      *
      * @param i Index of the task.
+     * @return Information of the marked task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void markTaskDoneAt(int i) throws IOException {
+    protected String markTaskDoneAt(int i) throws IOException {
         this.arrayList.get(i).markDone();
         this.saveChangesToFile();
 
-        System.out.println("Nice! You actually did something:");
-        System.out.println(" " + this.arrayList.get(i));
+        return "Nice! You actually did something:" + NEWLINE
+                + " " + this.arrayList.get(i) + NEWLINE;
     }
 
     /**
      * Marks task as not done at a specified index.
      *
      * @param i Index of the task.
+     * @return Information of the unmarked task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void markTaskNotDoneAt(int i) throws IOException {
+    protected String markTaskNotDoneAt(int i) throws IOException {
         this.arrayList.get(i).markNotDone();
         this.saveChangesToFile();
 
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(" " + this.arrayList.get(i));
+        return "OK, I've marked this task as not done yet" + NEWLINE
+                + " " + this.arrayList.get(i) + NEWLINE;
     }
 
     /**
      * Deletes task at a specified index.
      *
      * @param i Index of the task.
+     * @return Information of the deleted task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void deleteTaskAt(int i) throws IOException {
+    protected String deleteTaskAt(int i) throws IOException {
         this.arrayList.get(i).markNotDone();
         Task deletedTask = arrayList.remove(i);
         this.saveChangesToFile();
 
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(" " + deletedTask);
-        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+        return "Noted. I've removed this task:" + NEWLINE
+                + " " + deletedTask + NEWLINE
+                        + "Now you have " + arrayList.size() + " task(s) in the list." + NEWLINE;
     }
 
     /**
      * Adds a ToDo task at the end of the arraylist.
      *
      * @param taskname Name of the task.
+     * @return Information of the added task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void addToDo(String taskname) throws IOException {
+    protected String addToDo(String taskname) throws IOException {
         Task todo = new Todo(taskname.trim());
         arrayList.add(todo);
         this.saveChangesToFile();
 
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + todo);
-        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+        return "Got it. I've added this task:" + NEWLINE
+                + " " + todo + NEWLINE
+                        + "Now you have " + arrayList.size() + " task(s) in the list." + NEWLINE;
     }
 
     /**
@@ -137,16 +149,17 @@ public class TaskList {
      *
      * @param taskname Name of the task.
      * @param localDate Date of the deadline.
+     * @return Information of the added task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void addDeadline(String taskname, LocalDate localDate) throws IOException {
+    protected String addDeadline(String taskname, LocalDate localDate) throws IOException {
         Task deadline = new Deadline(taskname.trim(), localDate);
         arrayList.add(deadline);
         this.saveChangesToFile();
 
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + deadline);
-        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+        return "Got it. I've added this task:" + NEWLINE
+                + " " + deadline + NEWLINE
+                        + "Now you have " + arrayList.size() + " task(s) in the list." + NEWLINE;
     }
 
     /**
@@ -154,16 +167,17 @@ public class TaskList {
      *
      * @param taskname Name of the task.
      * @param localDate Date of the deadline.
+     * @return Information of the added task.
      * @throws IOException If unable to save changes to file.
      */
-    protected void addEvent(String taskname, LocalDate localDate) throws IOException {
+    protected String addEvent(String taskname, LocalDate localDate) throws IOException {
         Task event = new Event(taskname.trim(), localDate);
         arrayList.add(event);
         this.saveChangesToFile();
 
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + event);
-        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+        return "Got it. I've added this task:" + NEWLINE
+                + " " + event + NEWLINE
+                        + "Now you have " + arrayList.size() + " task(s) in the list." + NEWLINE;
     }
 
 }
