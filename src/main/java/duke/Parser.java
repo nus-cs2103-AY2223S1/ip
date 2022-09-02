@@ -127,7 +127,7 @@ public class Parser {
         tasks.add(task);
         StringBuilder sb = new StringBuilder();
         sb.append("added: ");
-        sb.append("\t" + task);
+        sb.append("\t" + task + "\n");
         sb.append(String.format("you have %d task(s) in the list\n", tasks.size()));
 
         return sb.toString();
