@@ -98,6 +98,20 @@ public class TaskList {
     }
 
     /**
+     * Finds the tasks related to a given keyword.
+     *
+     * @param keyword the keyword
+     */
+    public void getSearchResults(String keyword) {
+        System.out.println("Matching tasks for \"" + keyword + "\":");
+        for (Task t : this.tasks) {
+            if (t.hasKeyword(keyword)) {
+                System.out.println(t);
+            }
+        }
+    }
+
+    /**
      * Prints out the entire list of tasks.
      */
     public void showList() {

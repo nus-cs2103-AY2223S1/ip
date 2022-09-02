@@ -65,4 +65,8 @@ public class Task {
                 + (this.isDone ? "X" : " ")
                 + " | " + this.description;
     }
+
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 }

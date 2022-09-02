@@ -90,6 +90,12 @@ public class Parser {
             }
             String dateStr = input.substring(5);
             tasks.getDateTasks(dateStr);
+        } else if (input.startsWith("find")) {
+            if (input.length() < 6) {
+                throw new DukeException("Oops, no keyword given.");
+            }
+            String keyword = input.substring(5);
+            tasks.getSearchResults(keyword);
         } else {
             throw new DukeException("Oops, I don't know what that means");
         }
