@@ -38,14 +38,14 @@ public class Duke extends Application {
     public Duke() {
         ui = new Ui();
         storage = new Storage("/data/tasks.txt");
-        TaskList currentTasks;
+        TaskList currentTaskList;
         try {
-            currentTasks = new TaskList(storage.load());
+            currentTaskList = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
-            currentTasks = new TaskList();
+            currentTaskList = new TaskList();
         }
-        this.tasks = currentTasks;
+        this.tasks = currentTaskList;
     }
 
     /**

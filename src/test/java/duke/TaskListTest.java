@@ -13,7 +13,7 @@ public class TaskListTest {
      * Tests for adding a Task object to TaskList.
      */
     @Test
-    public void addTaskTaskAdded() {
+    public void addTask_normalTask_taskAdded() {
         TaskList tasks = new TaskList();
         tasks.add(new Todo("homework"));
         assertEquals(1, tasks.getSize());
@@ -23,7 +23,7 @@ public class TaskListTest {
      * Tests for removing a Task object from TaskList.
      */
     @Test
-    public void removeTaskTaskRemoved() {
+    public void removeTask_normalTask_taskRemoved() {
         TaskList tasks = new TaskList();
         tasks.add(new Todo("homework"));
         tasks.remove(1);

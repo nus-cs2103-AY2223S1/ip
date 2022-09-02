@@ -13,7 +13,7 @@ public class EventTest {
      * Tests for string representation of Event object.
      */
     @Test
-    public void testStringConversion() {
+    public void toString_eventString_stringConversionSuccess() {
         assertEquals("[E][ ] project meeting (at: Oct 15 2021)", new Event("project meeting", "2021-10-15").toString());
     }
 }

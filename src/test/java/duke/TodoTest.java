@@ -13,7 +13,7 @@ public class TodoTest {
      * Tests for string representation of Todo object.
      */
     @Test
-    public void testStringConversion() {
+    public void toString_toDoString_stringConversionSuccess() {
         assertEquals("[T][ ] homework", new Todo("homework").toString());
     }
 }
