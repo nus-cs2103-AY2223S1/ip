@@ -4,7 +4,6 @@ import duke.ExecuteResult;
 import duke.Parser;
 import duke.modules.Todos;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -58,22 +57,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         ExecuteResult result = Parser.execute(input, todos);
         dialogContainer.getChildren().add(ChatMessage.getUserDialog(input, userImage));
-
-        // Split the reply into groups of 5 lines (the maximum that fits in a single message balloon)
-        List<String> currentLines = new ArrayList<>();
-        for (String line : result.getReply()) {
-            currentLines.add(line);
-            if (currentLines.size() >= 5) {
-                dialogContainer.getChildren().add(
-                        ChatMessage.getDukeDialog(String.join("\n", currentLines), dukeImage));
-                currentLines.clear();
-            }
-        }
-        if (currentLines.size() > 0) {
-            dialogContainer.getChildren().add(
-                    ChatMessage.getDukeDialog(String.join("\n", currentLines), dukeImage));
-        }
-
+        dialogContainer.getChildren().add(
+                        ChatMessage.getDukeDialog(String.join("\n", result.getReply()), dukeImage));
         userInput.clear();
     }
 }

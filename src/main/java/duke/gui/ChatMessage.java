@@ -12,13 +12,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * A JavaFX component displaying a chat message.
  */
-public class ChatMessage extends AnchorPane {
+public class ChatMessage extends VBox {
     @FXML
     private Label name;
 
@@ -54,6 +54,7 @@ public class ChatMessage extends AnchorPane {
         Collections.reverse(tmp);
         header.getChildren().setAll(tmp);
         header.setAlignment(Pos.TOP_LEFT);
+        this.setAlignment(Pos.TOP_LEFT);
     }
 
     public static ChatMessage getUserDialog(String text, Image img) {
