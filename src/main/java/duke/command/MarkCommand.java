@@ -36,7 +36,10 @@ public class MarkCommand extends Command {
         if (idx < 0 || idx >= tasks.getSize()) {
             throw new DukeException("The index provided is not within the list.");
         }
+
+        String task = tasks.markTask(idx);
         storage.save(tasks.saveTasks());
-        return ui.showMark(tasks.markTask(idx));
+
+        return ui.showMark(task);
     }
 }

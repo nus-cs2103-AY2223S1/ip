@@ -36,8 +36,10 @@ public class DeleteCommand extends Command {
         if (idx < 0 || idx >= tasks.getSize()) {
             throw new DukeException("The index provided is not within the list.");
         }
+
         String task = tasks.deleteTask(idx);
         storage.save(tasks.saveTasks());
+
         return ui.showDelete(task, tasks.getSize());
     }
 }
