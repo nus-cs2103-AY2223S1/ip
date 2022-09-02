@@ -4,6 +4,8 @@ import bro.task.Task;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TaskList {
 
@@ -133,4 +135,22 @@ public class TaskList {
         }
         ui.listSize(tasks);
     }
+
+    public void findTask(String keyword) {
+        boolean isContain = false;
+        int count = 1;
+        for(Task task : this.tasks) {
+            String[] sample = task.toString().split(" ");
+            List<String> sampleList = new ArrayList<>(Arrays.asList(sample));
+            if(sampleList.contains(keyword)) {
+                System.out.println(count + "." + task.toString());
+                isContain = true;
+                count++;
+            }
+        }
+        if(!isContain) {
+            System.out.println("Word could not be found!");
+        }
+    }
 }
+

@@ -1,11 +1,6 @@
 package bro;
 
-import bro.command.AddCommand;
-import bro.command.Command;
-import bro.command.DeleteCommand;
-import bro.command.ExitCommand;
-import bro.command.ListCommand;
-import bro.command.ModifyCommand;
+import bro.command.*;
 import bro.task.Deadline;
 import bro.task.Event;
 import bro.task.Todo;
@@ -27,10 +22,10 @@ public class Parser {
      */
     public Command parse(String str) throws BroException {
 
-        String[] in = str.split(" ");
+        String[] in = str.split(" ", 2);
         String input = in[0];
         this.checkEmptyInput(str);
-        this.checkInput(input, in.length);
+        this.checkInput(input, str.split(" ").length);
             switch (input) {
             case "list":
                 return new ListCommand();
@@ -39,15 +34,19 @@ public class Parser {
             case "unmark":
                 return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, Integer.parseInt(in[1].trim()));
             case "todo":
-                return new AddCommand(new Todo(in[1]));
+                return new AddCommand(new Todo(str.split(" ", 2)[1]));
             case "deadline":
-                return new AddCommand(new Deadline(in[1], str.split("/by")[1].trim()));
+                return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
+                        in[1].split("/by")[1].trim()));
             case "event":
-                return new AddCommand(new Event(in[1], str.split("/at")[1].trim()));
+                return new AddCommand(new Event(in[1].split("/by")[0].trim(),
+                        in[1].split("/at")[1].trim()));
             case "delete":
                 return new DeleteCommand(Integer.parseInt(in[1].trim()));
             case "bye":
                 return new ExitCommand();
+            case "find":
+                return new FindCommand(in[1]);
             default:
                 throw new BroException("Idk what it means!");
             }
@@ -59,7 +58,7 @@ public class Parser {
      * @throws BroException If the description has not been provided.
      */
     public void checkEmptyInput(String input) throws BroException {
-        String[] list = new String[]{"todo", "deadline", "event", "mark", "unmark"};
+        String[] list = new String[]{"todo", "deadline", "event", "mark", "unmark", "find"};
         List<String> checkList = new ArrayList<>(Arrays.asList(list));
         if (checkList.contains(input)) {
             throw new BroException("The description cannot be empty.");
