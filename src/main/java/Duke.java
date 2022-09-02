@@ -8,6 +8,7 @@ public class Duke {
 
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
@@ -57,6 +58,9 @@ public class Duke {
                         break;
                     case COMMAND_UNMARK:
                         unmark(Integer.parseInt(arg1));
+                        break;
+                    case COMMAND_DELETE:
+                        delete(Integer.parseInt(arg1));
                         break;
                     default:
                         error("No or invalid command given, are you just looking to chat? :D");
@@ -115,6 +119,8 @@ public class Duke {
                 return true;
             case COMMAND_UNMARK:
                 return true;
+            case COMMAND_DELETE:
+                return true;
             default:
                 return false;
             }
@@ -136,14 +142,19 @@ public class Duke {
     public static void mark(int taskNum) {
         Task targetTask = tasks.get(taskNum-1);
         targetTask.mark();
-        System.out.println(UI_LINE_SPACING + "Nice! I've marked this task as done:\n" + targetTask + "\n" + UI_LINE_SPACING);
+        chat("Nice! I've marked this task as done:\n" + targetTask + "\n");
+    }
 
+    public static void delete(int taskNum) {
+        Task removedTask = tasks.get(taskNum-1);
+        tasks.remove(taskNum-1);
+        chat(String.format("Noted. I've removed this task:\n %s Now you have %d tasks in the list.\n", removedTask, tasks.size()));
     }
 
     public static void unmark(int taskNum) {
         Task targetTask = tasks.get(taskNum-1);
         targetTask.unmark();
-        System.out.println(UI_LINE_SPACING + "OK, I've marked this task as not done yet:\n" + targetTask + "\n" + UI_LINE_SPACING);
+        chat("OK, I've marked this task as not done yet:\n" + targetTask + "\n");
     }
 
     public static String outputNumOfTasks() {
@@ -155,11 +166,11 @@ public class Duke {
     }
 
     public static void error(String message) {
-        System.out.println(UI_LINE_SPACING + ":( OOPS: " + message + "\n" + UI_LINE_SPACING);
+        chat(":( OOPS: " + message + "\n");
     }
 
     public static void end() {
-        System.out.println(UI_LINE_SPACING + "Bye! Hope to see you again!" + UI_LINE_SPACING);
+        chat("Bye! Hope to see you again!");
         isEnd = true;
     }
 }
