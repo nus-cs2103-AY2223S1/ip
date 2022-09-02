@@ -1,36 +1,24 @@
-package utils;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import task_classes.Task;
+import utils.JSONParsable;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
-public class FileIO {
+public class LocalStorage {
 
-    private static String saveFilePath = "./data/saveFile.json";
-    private static String saveFileDir = "./data";
+    private String saveFilePath;
+    private String saveFileDir;
 
-    private static FileIO instance;
-
-    // This is a singleton class
-    private FileIO(){
-
+    public LocalStorage(String saveFilePath) {
+        this.saveFilePath = saveFilePath;
+        this.saveFileDir = saveFilePath.substring(0, saveFilePath.lastIndexOf("/"));
     }
 
-    public static FileIO getInstance() {
-        if (instance == null) {
-            instance = new FileIO();
-        }
-        return instance;
-    }
-
-    public Task[] readTaskList() {
+    public Task[] load() {
         JSONArray jsonArray;
         try {
             jsonArray = new JSONArray(Files.readString(Paths.get(saveFilePath)));
@@ -48,13 +36,15 @@ public class FileIO {
         return objArray;
     }
 
-    public void saveList(List<? extends JSONParsable> list) {
+    public void save(TaskList list) {
         JSONArray saveData = new JSONArray();
-        for (JSONParsable obj : list) {
+        for (Iterator<Task> it = list.getIterator(); it.hasNext(); ) {
+            Task obj = it.next();
             saveData.put(obj.toJSONObject());
         }
+
         try {
-//            Create dire if it does not exist
+//            Create dir if it does not exist
             Files.createDirectories(Paths.get(saveFileDir));
             FileWriter file = new FileWriter(saveFilePath);
             file.write(saveData.toString(4));

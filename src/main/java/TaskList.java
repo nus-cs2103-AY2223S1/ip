@@ -26,6 +26,17 @@ public class TaskList {
         this.list = list;
     }
 
+    public void loadTaskList(Task[] list) {
+        this.list = new ArrayList<>();
+        for (Task t: list) {
+            this.list.add(t);
+        }
+    }
+
+    public void loadFromLocalStorage(LocalStorage storage) {
+        loadTaskList(storage.load());
+    }
+
     public Iterator<Task> getIterator() {
         return this.list.iterator();
     }

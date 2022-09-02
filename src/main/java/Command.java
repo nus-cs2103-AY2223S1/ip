@@ -4,7 +4,6 @@ import task_classes.Task;
 import task_classes.Todo;
 import utils.Parser;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Command {
