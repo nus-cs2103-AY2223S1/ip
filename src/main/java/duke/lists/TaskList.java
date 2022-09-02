@@ -117,7 +117,8 @@ public class TaskList {
         long hours = ChronoUnit.HOURS.between(currentTime, upComingTask.getLocalDateTime()) - days * 24;
         long minutes = ChronoUnit.MINUTES.between(currentTime, upComingTask.getLocalDateTime())
                 - hours * 60 - days * 24 * 60;
-        return String.format("Due in %d days, %d hours, %d minutes \n %s", days, hours, minutes, upComingTask.toString());
+        return String.format("Due in %d days, %d hours, %d minutes \n %s",
+                days, hours, minutes, upComingTask.toString());
     }
 
     private Task getUpcomingTask(LocalDateTime ldt) {

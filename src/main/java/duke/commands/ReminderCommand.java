@@ -1,9 +1,9 @@
 package duke.commands;
 
+import java.io.IOException;
+
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
-
-import java.io.IOException;
 
 /**
  * Reminder command that returns an appropriate reminder
