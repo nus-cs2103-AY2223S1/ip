@@ -30,7 +30,7 @@ dependencies {
 }
 
 checkstyle {
-    sourceSets = []
+    toolVersion = '10.2'
 }
 
 test {
