@@ -5,12 +5,12 @@ import duke.parser.Parser;
 import java.util.Scanner;
 
 public class Ui {
-    public static String Logo = ".__ .  ..  ..___" + "\n" +
+    private static String Logo = ".__ .  ..  ..___" + "\n" +
             "|  \\|  ||_/ [__ " + "\n" +
             "|__/|__||  \\[___" + "\n";
 
-    public static String Name = "duke.Duke";
-    public static String Line = "──────────────────────────────────────────";
+    private static String Name = "duke.Duke";
+    private static String Line = "──────────────────────────────────────────";
 
     private boolean open = true;
     private Scanner in;
