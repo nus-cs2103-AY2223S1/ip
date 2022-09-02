@@ -1,17 +1,17 @@
-package duke;
+package duke.controllers;
 
-import javafx.application.Application;
+import duke.Duke;
+import duke.Ui;
+import duke.controllers.DialogBox;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 

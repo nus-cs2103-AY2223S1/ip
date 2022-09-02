@@ -91,7 +91,7 @@ public class Parser {
             String date = getTaskField(splitInput, index + 1, len);
             createdTaskMessage = tasks.editTaskList("event", taskDescription, date);
         } else {
-            throw new DukeException("Duke: OH NO!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("Duke: Sorry! I don't know what that means!");
         }
         System.out.println(createdTaskMessage);
         return createdTaskMessage;
