@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.core.Ui;
+import duke.core.Main;
 
 /**
  * A command that exits a UI.
@@ -15,17 +15,17 @@ public class ExitCommand extends Command {
     /**
      * The UI that will be exited when this command is executed.
      */
-    protected Ui uiToExit;
+    protected Main applicationToExit;
 
     /**
      * Constructor for an exit command.
      *
      * @param invoker  The string used to invoke the execution of this command.
-     * @param uiToExit The UI that will be exited when this command is executed.
+     * @param applicationToExit The UI that will be exited when this command is executed.
      */
-    public ExitCommand(String invoker, Ui uiToExit) {
+    public ExitCommand(String invoker, Main applicationToExit) {
         super(invoker);
-        this.uiToExit = uiToExit;
+        this.applicationToExit = applicationToExit;
     }
 
     /**
@@ -36,7 +36,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(String parameters) {
-        uiToExit.setExitStatus(true);
+        applicationToExit.exit();
         return EXIT_MESSAGE;
     }
 }

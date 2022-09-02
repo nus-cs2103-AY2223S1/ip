@@ -25,7 +25,7 @@ import duke.task.ToDo;
  */
 public class Duke {
 
-    private final Ui ui = new Ui();
+    private final Main application;
     private final Parser parser;
     private final TaskList taskList = new TaskList();
 
@@ -35,9 +35,11 @@ public class Duke {
      * Constructor for a Duke using a filename that it will write to.
      * @param fileName File to write to.
      */
-    public Duke(String fileName) {
+    public Duke(String fileName, Main application) {
+        this.fileName = fileName;
+        this.application = application;
         this.parser = new Parser(new ArrayList<>(Arrays.asList(
-                new ExitCommand("bye", this.ui),
+                new ExitCommand("bye", this.application),
                 new AddTaskCommand<>("todo", taskList, null, ToDo::new),
                 new AddTaskCommand<>("deadline", taskList, " /by ", Deadline::new),
                 new AddTaskCommand<>("event", taskList, " /at ", Event::new),
@@ -47,14 +49,12 @@ public class Duke {
                 new DeleteTaskCommand("delete", taskList),
                 new FindCommand("find", taskList)
         )));
-        this.fileName = fileName;
     }
 
-    public static void main(String[] args) {
-        new Duke("duke.txt").run();
-    }
-
-    private void run() {
+    /**
+     * Initializes Duke by loading in the TaskList at the given file location.
+     */
+    protected void initialize() {
 
         File taskFile = new File(fileName);
 
@@ -62,11 +62,11 @@ public class Duke {
         try {
             scanner = new Scanner(taskFile);
         } catch (FileNotFoundException e) {
-            ui.showMessage("No tasks found. Creating new...");
+            System.out.println("No tasks found. Creating new...");
             try {
                 taskFile.createNewFile();
             } catch (IOException f) {
-                ui.showMessage("Unable to create new file for tasks.");
+                System.out.println("Unable to create new file for tasks.");
             }
         }
 
@@ -79,30 +79,34 @@ public class Duke {
                 }
             }
         }
+    }
 
-        ui.showWelcome();
-        boolean isExit = false;
+    /**
+     * Handles the user input passed in from UI.
+     *
+     * @param input Input to handle.
+     * @return Output of the handled input.
+     */
+    public String handleUserInput(String input) {
 
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                ui.showMessage(parser.parseInput(fullCommand));
-                isExit = ui.getExitStatus();
-            } catch (DukeException e) {
-                ui.showError(e);
-            } finally {
-                ui.showLine();
-            }
+        String output;
 
-            FileWriter fileWriter = null;
-            try {
-                fileWriter = new FileWriter(fileName);
-                fileWriter.write(taskList.serialize());
-                fileWriter.close();
-            } catch (IOException e) {
-                ui.showMessage("Unable to write to file.");
-            }
+        try {
+            output = parser.parseInput(input);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
+
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(fileName);
+            fileWriter.write(taskList.serialize());
+            fileWriter.close();
+        } catch (IOException e) {
+            return "Unable to write to file.";
+        }
+
+        return output;
     }
 }
