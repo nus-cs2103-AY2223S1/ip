@@ -8,10 +8,10 @@
     __________________________________________________________________________
      Got it. I've added this task:
        [T][ ] say hello
-     Now you have 1 tasks in the list.
+     Now you have 1 duke.tasks in the list.
     __________________________________________________________________________
     __________________________________________________________________________
-     Duke says: "OOPS! tasks.Task not found! Your number should be from 0 to 1" ☹
+     Duke says: "OOPS! duke.tasks.Task not found! Your number should be from 0 to 1" ☹
     __________________________________________________________________________
     __________________________________________________________________________
      Duke says: "OOPS! Commands todo, deadline and event should have a description" ☹
@@ -22,25 +22,25 @@
     __________________________________________________________________________
      Got it. I've added this task:
        [E][ ] go to dinner (at: 6 pm)
-     Now you have 2 tasks in the list.
+     Now you have 2 duke.tasks in the list.
     __________________________________________________________________________
     __________________________________________________________________________
      Got it. I've added this task:
        [D][ ] something (by: 7 pm)
-     Now you have 3 tasks in the list.
+     Now you have 3 duke.tasks in the list.
     __________________________________________________________________________
     __________________________________________________________________________
      Nice! I've marked this task as done:
        [E][X] go to dinner (at: 6 pm)
     __________________________________________________________________________
     __________________________________________________________________________
-     Here are the tasks in your list:
+     Here are the duke.tasks in your list:
      1.[T][ ] say hello
      2.[E][X] go to dinner (at: 6 pm)
      3.[D][ ] something (by: 7 pm)
     __________________________________________________________________________
     __________________________________________________________________________
-     Duke says: "OOPS! tasks.Task not found! Your number should be from 0 to 3" ☹
+     Duke says: "OOPS! duke.tasks.Task not found! Your number should be from 0 to 3" ☹
     __________________________________________________________________________
     __________________________________________________________________________
      Duke says: "OOPS! delete command should be specified with a task number" ☹
@@ -48,10 +48,10 @@
     __________________________________________________________________________
      Noted. I've removed this task:
        [E][X] go to dinner (at: 6 pm)
-     Now you have 2 tasks in the list.
+     Now you have 2 duke.tasks in the list.
     __________________________________________________________________________
     __________________________________________________________________________
-     Here are the tasks in your list:
+     Here are the duke.tasks in your list:
      1.[T][ ] say hello
      2.[D][ ] something (by: 7 pm)
     __________________________________________________________________________
