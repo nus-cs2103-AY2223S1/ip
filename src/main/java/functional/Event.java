@@ -1,4 +1,8 @@
 package functional;
+/**
+ * Class for tasks with starting and ending times.
+ * @author Nicholas Patrick
+ */
 
 import technical.SaveLine;
 
@@ -22,6 +26,12 @@ public class Event extends Task {
     this.endTime = endTime;
   }
 
+  /**
+   * Construct a task with a time interval from a SaveLine. If the argument
+   * is invalid, an error may or may not be thrown.
+   *
+   * @param line The SaveLine containing necessary information.
+   */
   public Event(SaveLine line) {
     super(line);
     startTime = LocalDateTime
@@ -41,6 +51,12 @@ public class Event extends Task {
         endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
   }
 
+  /**
+   * Turns the task into a SaveLine, so it's ready to be saved. Can also be
+   * used to compare two tasks.
+   *
+   * @return A SaveLine with the data associated with the task.
+   */
   @Override
   public SaveLine toData() {
     SaveLine ret = super.toData();
@@ -50,6 +66,13 @@ public class Event extends Task {
     return ret;
   }
 
+  /**
+   * Checks whether this is equal to another Object. If the other object is
+   * not an Event, the return value will be false.
+   *
+   * @param rhs The right hand side of the comparison.
+   * @return The boolean stating whether this and the argument are equal.
+   */
   @Override
   public boolean equals(Object rhs) {
     if (rhs instanceof Event) {

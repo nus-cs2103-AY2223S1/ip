@@ -1,7 +1,10 @@
 package functional;
+/**
+ * Class for tasks with a deadline
+ * @author Nicholas Patrick
+ */
 
 import technical.SaveLine;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +12,7 @@ public class Deadline extends Task {
   private static final String DEADLINE_INFOTYPE = "deadline";
   private static final String DEADLINE_DEADLINE_LABEL = "deadline";
   protected LocalDateTime deadline;
+
   /**
    * Construct functional.Task with a fixed name.
    *
@@ -19,6 +23,12 @@ public class Deadline extends Task {
     this.deadline = deadline;
   }
 
+  /**
+   * Construct a task with a deadline from a SaveLine. If the argument is
+   * invalid, an error may or may not be thrown.
+   *
+   * @param line The SaveLine containing necessary information.
+   */
   public Deadline(SaveLine line) {
     super(line);
     deadline = LocalDateTime
@@ -35,6 +45,12 @@ public class Deadline extends Task {
         deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
   }
 
+  /**
+   * Turns the task into a SaveLine, so it's ready to be saved. Can also be
+   * used to compare two tasks.
+   *
+   * @return A SaveLine with the data associated with the task.
+   */
   @Override
   public SaveLine toData() {
     SaveLine ret = super.toData();

@@ -1,4 +1,8 @@
 package functional;
+/**
+ * Class for tasks.
+ * @author Nicholas Patrick
+ */
 
 import technical.SaveLine;
 
@@ -19,6 +23,11 @@ public abstract class Task {
     isDone = false;
   }
 
+  /**
+   * Construct a task from a SaveLine.
+   *
+   * @param line The SaveLine containing necessary information.
+   */
   public Task(SaveLine line) {
     name = line.getValue(TASK_NAME_LABEL);
     isDone = line.getValue(TASK_IS_DONE_LABEL).equals("1");
@@ -77,6 +86,12 @@ public abstract class Task {
     return String.format("[%c] %s", mark(), name);
   }
 
+  /**
+   * Turns the task into a SaveLine, so it's ready to be saved. Can also be
+   * used to compare two tasks.
+   *
+   * @return A SaveLine with the data associated with the task.
+   */
   public SaveLine toData() {
     return new SaveLine(TASK_INFOTYPE, TASK_NAME_LABEL, name, TASK_IS_DONE_LABEL, isDone ? "1" : "0");
   }
