@@ -3,7 +3,7 @@ package duke.command;
 import static duke.Duke.TAB;
 
 import duke.exception.DukeIndexOutOfBoundException;
-import duke.util.CliUi;
+import duke.ui.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
 

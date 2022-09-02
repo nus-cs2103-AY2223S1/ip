@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.exception.DukeCommandAlreadyExecutedException;
 import duke.exception.DukeIoException;
-import duke.util.CliUi;
+import duke.ui.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
 

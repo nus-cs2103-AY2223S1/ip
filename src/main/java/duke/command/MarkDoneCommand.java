@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Duke;
 import duke.exception.DukeIndexOutOfBoundException;
-import duke.util.CliUi;
+import duke.ui.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
 

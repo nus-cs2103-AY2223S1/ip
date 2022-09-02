@@ -2,17 +2,11 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeCommandAlreadyExecutedException;
-import duke.util.CliUi;
+import duke.ui.CliUi;
 import duke.util.Parser;
 import duke.util.Response;
 import duke.util.Storage;
 import duke.util.TaskList;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 
 /**
  * The only public-facing class that interacts directly with the user.
@@ -30,15 +24,6 @@ public class Duke {
     private final CliUi cliUi;
     private final Storage storage;
     private final Parser parser;
-
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
-
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * An empty constructor that will be used to initialise Duke by Launcher

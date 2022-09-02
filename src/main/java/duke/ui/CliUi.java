@@ -1,4 +1,6 @@
-package duke.util;
+package duke.ui;
+
+import static duke.Duke.TAB;
 
 import java.util.Scanner;
 
@@ -6,9 +8,8 @@ import java.util.Scanner;
  * A class that is responsible for reading user input and printing computed output on the command line interface (CLI).
  * It is the frontend of the application.
  */
-public class CliUi {
+public class CliUi implements Formatter {
     private static final String HORIZONTAL_BAR = "-------------------------";
-    private static final String INDENTATION = "    ";
     private final Scanner scanner;
 
     /**
@@ -18,8 +19,14 @@ public class CliUi {
         scanner = new Scanner(System.in);
     }
 
-    private static String formatOutput(String output) {
-        return HORIZONTAL_BAR + '\n' + INDENTATION + output + '\n' + HORIZONTAL_BAR + '\n' + '\n';
+    /**
+     * Takes in a raw string and formats it.
+     *
+     * @param input String that is raw.
+     * @return String formatted and is about to be printed on some screen output.
+     */
+    public String formatOutput(String input) {
+        return HORIZONTAL_BAR + '\n' + TAB + input + '\n' + HORIZONTAL_BAR + '\n' + '\n';
     }
 
     /**

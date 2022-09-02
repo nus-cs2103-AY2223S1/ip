@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.task.EventTask;
-import duke.util.CliUi;
+import duke.ui.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
 
