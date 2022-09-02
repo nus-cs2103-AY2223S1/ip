@@ -47,6 +47,17 @@ application {
     mainClassName = "jenny.JennyBot"
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs= ["src/main/java"]
+        }
+        resources {
+            srcDirs= ["src/main/resources"]
+        }
+    }
+}
+
 shadowJar {
     archiveBaseName = "jenny"
     archiveVersion = "v0.3"
