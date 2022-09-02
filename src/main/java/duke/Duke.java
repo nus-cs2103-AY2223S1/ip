@@ -5,6 +5,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
+
 /**
  * An interactive chatbot.
  *
@@ -14,7 +15,6 @@ public class Duke {
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
-    static String PATH = "./src/main/files/taskset.txt";
 
     /**
      * The constructor for duke.
@@ -170,17 +170,11 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
         }
+
         try {
             storage.saveFile(tasks);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
-    /**
-     * main function for running.
-     * @param args nothing here
-     */
-    public static void main(String[] args) {
-        new Duke(PATH).run();
     }
 }
