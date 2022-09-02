@@ -62,8 +62,9 @@ public class Storage {
      * @param task task
      * @throws IOException input output exception
      */
+
     public void storeData(Task task) throws IOException {
-        //Task task = new Task(inp);
+
         try {
             appendToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -77,8 +78,9 @@ public class Storage {
      * @param task task
      * @throws IOException input output exception
      */
+
     public void writeData(Task task) throws IOException {
-        //Task task = new Task(inp);
+
         try {
             WriteToFile(f.getAbsolutePath(), task.toString() + "\n");
         } catch (IOException e) {
@@ -91,8 +93,8 @@ public class Storage {
      *
      * @throws IOException input output exception
      */
+
     public void retrieveData() throws IOException {
-        //Task task = new Task(inp);
         try {
             printFileContents(f.getAbsolutePath());
         } catch (FileNotFoundException e) {
