@@ -19,11 +19,8 @@ public class Duke {
             tasks.add(t);
         }
 
-        Scanner in = new Scanner(System.in);
-
-        while (this.ui.isOpen() && in.hasNext()) {
-            String line = in.nextLine();
-            Command c = ui.readCommand(line);
+        while (this.ui.isOpen()) {
+            Command c = ui.readCommand();
             ui.printWithHorizontalRule(c.exec(this.tasks));
         }
     }

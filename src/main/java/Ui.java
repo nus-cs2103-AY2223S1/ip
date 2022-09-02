@@ -1,5 +1,7 @@
 import utils.Parser;
 
+import java.util.Scanner;
+
 public class Ui {
     public static String Logo = ".__ .  ..  ..___" + "\n" +
             "|  \\|  ||_/ [__ " + "\n" +
@@ -9,6 +11,7 @@ public class Ui {
     public static String Line = "──────────────────────────────────────────";
 
     private boolean open = true;
+    private Scanner in;
 
     public Ui() {
     }
@@ -23,8 +26,12 @@ public class Ui {
         this.printWithHorizontalRule("Hello! I'm " + Ui.Name + "\n" + "What can I do for you?");
     }
 
-    public Command readCommand(String s) {
-        Parser.ParsedInputArguments args = Parser.getInputArguments(s);
+    private String readInput() {
+        return in.nextLine();
+    }
+
+    public Command readCommand() {
+        Parser.ParsedInputArguments args = Parser.getInputArguments(this.readInput());
         Command c = Command.getCommand(args);
         return c;
     }
