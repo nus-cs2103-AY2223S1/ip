@@ -1,6 +1,10 @@
-package amanda.manager;
+package main.java.amanda.manager;
 
-import amanda.task.*;
+import main.java.amanda.task.Task;
+import main.java.amanda.task.Todo;
+import main.java.amanda.task.Deadline;
+import main.java.amanda.task.Event;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -11,25 +15,49 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * StoreManager manages the storage of the task list.
+ */
 public class StoreManager {
 
     protected String path;
 
+    /**
+     * Constructor for StoreManger class.
+     * @param filepath the path to the file which acts as storage for the task list.
+     */
     public StoreManager(String filepath) {
         this.path = filepath;
     }
 
-
-    public void load(TaskManager taskManager) throws IOException {
-        if (Files.notExists(Paths.get(path))) {
+    /**
+     * Load the task list stored in the storage file into a new task list.
+     * @param TaskList the new task list.
+     */
+    public void load(TaskList TaskList) {
+        if (Files.notExists(Paths.get(path))) { // if file given in the provided path in the constructor does not exist.
             File file = new File(this.path);
-            file.getParentFile().mkdirs();
-            file.createNewFile();
+            file.getParentFile().mkdirs(); // create the parent directories.
+            try {
+                file.createNewFile(); // create the file
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             File file = new File(this.path);
-            System.out.println(file);
-            Scanner read = new Scanner(file);
+            Scanner read = null;
+            try {
+                read = new Scanner(file); // use scanner to read from the file
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            assert read != null;
             String curr = read.nextLine();
+            /*
+            Iterate through every line of the storage file and create corresponding
+            tasks to add to a new task list. Thus recreating the task list from the
+            previous time when amanda was used.
+             */
             while (true) {
                 StringTokenizer tokens = new StringTokenizer(curr, "/");
                 String token = tokens.nextToken();
@@ -39,21 +67,21 @@ public class StoreManager {
                     if (isDone) {
                         task.doTask();
                     }
-                    taskManager.getList().add(task);
+                    TaskList.getList().add(task);
                 } else if (token.equals("D")) {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Deadline(tokens.nextToken(), tokens.nextToken());
                     if (isDone) {
                         task.doTask();
                     }
-                    taskManager.getList().add(task);
+                    TaskList.getList().add(task);
                 } else if (token.equals("E")) {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Event(tokens.nextToken(), tokens.nextToken());
                     if (isDone) {
                         task.doTask();
                     }
-                    taskManager.getList().add(task);
+                    TaskList.getList().add(task);
                 }
                 if (!read.hasNextLine()) {
                     break;
@@ -64,14 +92,20 @@ public class StoreManager {
         }
     }
 
-    public void store(TaskManager taskManager) {
+    /**
+     * Store the current task list into the storage file.
+     * @param TaskList the current task list.
+     */
+    public void store(TaskList TaskList) {
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(this.path, "UTF-8");
+            writer = new PrintWriter(this.path, "UTF-8"); // create PrintWriter object to write to the storage file.
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        for (Task t : taskManager.getList()) {
+
+        // Iterate through the current task list and update the storage file with the newest state of the task list
+        for (Task t : TaskList.getList()) {
             String curr = t.getType() + "/" + t.getState() + "/" + t.getTask();
             if (!t.getType().equals("T")) {
                 curr += "/" + t.getTime();
