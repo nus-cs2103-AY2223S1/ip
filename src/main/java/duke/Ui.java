@@ -1,6 +1,6 @@
 package duke;
 
-public class UI {
+public class Ui {
 
     public void start() {
         System.out.println("Hello! I'm duke.Duke");

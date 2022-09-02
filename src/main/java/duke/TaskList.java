@@ -30,7 +30,7 @@ public class TaskList {
     }
 
     public Task delete(int i) {
-        Task toDelete = taskList.remove(i);
+        Task toDelete = taskList.remove(i - 1);
         return toDelete;
     }
 

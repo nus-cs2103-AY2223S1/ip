@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Storage {
 
     public static void read(TaskList taskList) throws IOException {
+
         File directory = new File("data");
         File file = new File("data/duke.txt");
         if (directory.exists()) {
