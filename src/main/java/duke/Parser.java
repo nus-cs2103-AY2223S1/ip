@@ -35,7 +35,6 @@ public class Parser {
 
             tasks.clear();
             ui.printSuccessfulClear();
-            ui.printSpacer();
 
         } else if (startsWith(command, "mark")) {
 
@@ -43,7 +42,6 @@ public class Parser {
                 Task t = tasks.markTask(command);
                 ui.printSuccessfulMark();
                 ui.printTask(t);
-                ui.printSpacer();
             } catch (TaskNumberException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -54,7 +52,6 @@ public class Parser {
                 Task t = tasks.unmarkTask(command);
                 ui.printSuccessfulUnmark();
                 ui.printTask(t);
-                ui.printSpacer();
             } catch (TaskNumberException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -66,7 +63,6 @@ public class Parser {
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
                 ui.printNoOfTasks(tasks);
-                ui.printSpacer();
             } catch (EmptyTodoException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -78,7 +74,6 @@ public class Parser {
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
                 ui.printNoOfTasks(tasks);
-                ui.printSpacer();
             } catch (DeadlineFormatException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -90,7 +85,6 @@ public class Parser {
                 ui.printSuccessfulAdd();
                 ui.printTask(t);
                 ui.printNoOfTasks(tasks);
-                ui.printSpacer();
             } catch (EventFormatException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -102,7 +96,6 @@ public class Parser {
                 ui.printSuccessfulDelete();
                 ui.printTask(t);
                 ui.printNoOfTasks(tasks);
-                ui.printSpacer();
             } catch (TaskNumberException e) {
                 ui.printErrorMessage(e, tasks);
             }
@@ -112,7 +105,6 @@ public class Parser {
             try {
                 ArrayList<Task> result = tasks.findTasks(command);
                 ui.printFoundResults(result);
-                ui.printSpacer();
             } catch (EmptyFindException e) {
                 ui.printErrorMessage(e, tasks);
             }

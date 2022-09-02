@@ -1,5 +1,7 @@
 package duke;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,6 +13,13 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
+    private final PrintStream ORIGINAL_OUT = System.out;
+    private final PrintStream ORIGINAL_ERR = System.err;
+
+    private void restoreStreams() {
+        System.setOut(ORIGINAL_OUT);
+        System.setErr(ORIGINAL_ERR);
+    }
 
     /**
      * Constructs a Duke which saves data in the given directory and file name.
@@ -33,7 +42,6 @@ public class Duke {
             this.ui.greet();
             ui.printErrorMessage(e, this.tasks);
             ui.printSuccessfulClear();
-            ui.printSpacer();
         }
     }
 
@@ -50,6 +58,36 @@ public class Duke {
                 ui.printErrorMessage(e, this.tasks);
             }
         }
+    }
+
+    public String getResponse(String input) {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+
+        try {
+            this.parser.parseCommand(input, this.tasks, this.ui, this.storage);
+        } catch (IOException e) {
+            ui.printErrorMessage(e, this.tasks);
+        }
+        String response = outContent.toString();
+
+        restoreStreams();
+        return response;
+    }
+
+    public String getGreeting() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+
+        this.ui.greet();
+        String response = outContent.toString();
+
+        restoreStreams();
+        return response;
     }
 
     public static void main(String[] args) {

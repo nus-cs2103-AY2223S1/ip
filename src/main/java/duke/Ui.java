@@ -14,19 +14,12 @@ public class Ui {
         return this.cont;
     }
 
-    public void printSpacer() {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    }
-
     public void greet() {
-        printSpacer();
         System.out.println(":D Hello! This is Duke! What can I do for you today?");
-        printSpacer();
     }
 
     public void goodbye() {
         System.out.println(":) Bye. Hope to see you again soon!");
-        printSpacer();
         cont = false;
     }
 
@@ -61,7 +54,6 @@ public class Ui {
             System.out.println("Here are the tasks in your list:");
             ts.printAllTasks();
         }
-        printSpacer();
     }
 
     public void printTask(Task t) {
@@ -88,31 +80,23 @@ public class Ui {
     public void printErrorMessage(Exception e, TaskList tasks) {
         if (e instanceof IOException) {
             System.out.println(":( An error occurred reading/writing your save files!");
-            printSpacer();
         } else if (e instanceof InvalidCommandException) {
-            System.out.println(":( Sorry I don't understand the command: " + e);
-            printSpacer();
+            System.out.println(":( Sorry, I don't understand the command: " + e);
         } else if (e instanceof TaskNumberException) {
             System.out.println(":( Oops! Please enter a valid task number!");
             System.out.println("You currently have " + tasks.getTasksLength() + " tasks.");
-            printSpacer();
         } else if (e instanceof EmptyTodoException) {
             System.out.println(":( Oops! The description of a todo cannot be empty!");
-            printSpacer();
         } else if (e instanceof DeadlineFormatException) {
             System.out.println(":( Oops! That's not the right way to set a deadline!");
             System.out.println("Please use this format: \"deadline <description> /by <time>\"");
-            printSpacer();
         } else if (e instanceof EventFormatException) {
             System.out.println(":( Oops! That's not the right way to set an event!");
             System.out.println("Please use this format: \"event <description> /at <time>\"");
-            printSpacer();
         } else if (e instanceof EmptyFindException) {
             System.out.println(":( Oops! The search keyword(s) cannot be empty!");
-            printSpacer();
         } else {
             System.out.println(":( Oops! An unknown error has occurred!");
-            printSpacer();
             e.printStackTrace();
         }
     }
