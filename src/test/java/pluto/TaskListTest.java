@@ -1,11 +1,12 @@
 package pluto;
 
-import org.junit.jupiter.api.Test;
-import pluto.task.Task;
-import pluto.task.Todo;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+import pluto.task.Task;
+import pluto.task.Todo;
 
 public class TaskListTest {
     @Test

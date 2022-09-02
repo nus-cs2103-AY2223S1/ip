@@ -1,13 +1,16 @@
 package pluto.command;
 
+import java.time.LocalDate;
+
 import pluto.PlutoException;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 import pluto.task.Task;
 
-import java.time.LocalDate;
-
+/**
+ * Command to show all tasks of a particular date.
+ */
 public class ShowCommand extends Command {
     /** Date whose tasks need to be retrieved */
     private LocalDate date;

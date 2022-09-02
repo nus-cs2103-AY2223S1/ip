@@ -2,6 +2,9 @@ package pluto.task;
 
 import java.time.LocalDate;
 
+/**
+ * Todo task.
+ */
 public class Todo extends Task {
 
     /**

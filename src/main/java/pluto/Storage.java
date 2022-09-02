@@ -1,15 +1,19 @@
 package pluto;
 
-import pluto.task.Deadline;
-import pluto.task.Event;
-import pluto.task.Task;
-import pluto.task.Todo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import pluto.task.Deadline;
+import pluto.task.Event;
+import pluto.task.Task;
+import pluto.task.Todo;
+
+/**
+ * Read and write tasks from a local file.
+ */
 public class Storage {
     /** File object to read and write tasks into */
     private File file;
@@ -67,6 +71,8 @@ public class Storage {
                     markTasks(event, textArr[1]);
                     missions.add(event);
                     break;
+                default:
+                    throw new PlutoException("\tOOPS!!! Couldn't parse previous tasks.");
                 }
             }
         } catch (IOException e) {

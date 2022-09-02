@@ -1,14 +1,15 @@
 package pluto;
 
-import org.junit.jupiter.api.Test;
-import pluto.command.AddCommand;
-import pluto.task.Event;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import pluto.command.AddCommand;
+import pluto.task.Event;
 
 public class ParserTest {
     @Test

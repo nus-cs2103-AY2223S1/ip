@@ -1,5 +1,12 @@
 package pluto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.HashSet;
+
 import pluto.command.AddCommand;
 import pluto.command.Command;
 import pluto.command.DeleteCommand;
@@ -9,17 +16,12 @@ import pluto.command.ListCommand;
 import pluto.command.ShowCommand;
 import pluto.command.UpdateStatusCommand;
 import pluto.task.Deadline;
-import pluto.task.Todo;
 import pluto.task.Event;
+import pluto.task.Todo;
 
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
-import java.util.HashSet;
-
+/**
+ * Parses commands input by the user.
+ */
 public class Parser {
     /** Types of commands */
     enum Type {
@@ -112,7 +114,8 @@ public class Parser {
      * @throws PlutoException If str doesn't have a description.
      */
     public static void isOnlyCommand(String str) throws PlutoException {
-        HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark", "unmark", "delete", "show"));
+        HashSet<String> commands = new HashSet<>(Arrays.asList("todo", "deadline", "event", "mark",
+                "unmark", "delete", "show"));
         if (commands.contains(str.strip())) {
             throw new PlutoException(String.format("\tOOPS!!! The description of %s cannot be empty.", str));
         }

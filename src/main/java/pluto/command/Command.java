@@ -5,6 +5,9 @@ import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 
+/**
+ * Commands entered by the user.
+ */
 public abstract class Command {
 
     /**

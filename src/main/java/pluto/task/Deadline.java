@@ -1,11 +1,12 @@
 package pluto.task;
 
-import pluto.command.AddCommand;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline task.
+ */
 public class Deadline extends Task {
     /** Deadline time */
     private LocalDateTime by;
@@ -42,7 +43,8 @@ public class Deadline extends Task {
     public boolean equals(Object o) {
         if (o instanceof Deadline) {
             Deadline other = (Deadline) o;
-            return this.by.equals(other.by) && this.description.equals(other.description) && this.isDone == other.isDone;
+            return this.by.equals(other.by) && this.description.equals(other.description)
+                    && this.isDone == other.isDone;
         }
         return false;
     }

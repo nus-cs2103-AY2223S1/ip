@@ -2,6 +2,9 @@ package pluto;
 
 import pluto.command.Command;
 
+/**
+ * Chat bot.
+ */
 public class Pluto {
     /** Writer and reader from local file */
     private Storage storage;
@@ -43,6 +46,10 @@ public class Pluto {
         }
     }
 
+    /**
+     * Entry point of the code.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         String path = "PlutoData.txt";
         new Pluto(path).run();

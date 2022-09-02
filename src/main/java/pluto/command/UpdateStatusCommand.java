@@ -1,12 +1,15 @@
 package pluto.command;
 
+import java.io.IOException;
+
 import pluto.PlutoException;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 
-import java.io.IOException;
-
+/**
+ * Command to update status of a task.
+ */
 public class UpdateStatusCommand extends Command {
 
     /** Index of the task whose status needs to be updated */

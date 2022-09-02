@@ -4,6 +4,9 @@ import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 
+/**
+ * Command to display all tasks.
+ */
 public class ListCommand extends Command {
 
     /**

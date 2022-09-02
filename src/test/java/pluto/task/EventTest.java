@@ -1,12 +1,12 @@
 package pluto.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class EventTest {
     @Test
@@ -21,6 +21,6 @@ public class EventTest {
     public void getDateMaybe_returnsLocalDate() {
         LocalDateTime date = LocalDateTime.parse("04-05-2022 1800", DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         Deadline d = new Deadline("join meeting", date);
-        assertEquals(d.getDateMaybe(), LocalDate.of(2022, 5,4));
+        assertEquals(d.getDateMaybe(), LocalDate.of(2022, 5, 4));
     }
 }

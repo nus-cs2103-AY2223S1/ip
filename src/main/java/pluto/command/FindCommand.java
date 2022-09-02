@@ -1,12 +1,12 @@
 package pluto.command;
 
-import pluto.PlutoException;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 
-import java.io.IOException;
-
+/**
+ * Command to return all tasks containing a keyword.
+ */
 public class FindCommand extends Command {
 
     private String keyword;
@@ -15,6 +15,12 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Displays all tasks containing a keyword.
+     */
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList t = tasks.filter(keyword);
         if (t.nTasks() == 0) {

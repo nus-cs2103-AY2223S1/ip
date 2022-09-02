@@ -2,15 +2,18 @@ package pluto;
 
 import java.util.Scanner;
 
+/**
+ * Display appropriate messages to the user.
+ */
 public class Ui {
     /** Name of chat bot */
     private static final String CHATBOT = "Pluto";
-    /** Scanner to take inputs */
-    private Scanner sc;
     /** To display output in red color */
     private static final String ANSI_RED = "\u001B[31m";
     /** To reset display color of the output */
     private static final String ANSI_RESET = "\u001B[0m";
+    /** Scanner to take inputs */
+    private Scanner sc;
 
     /**
      * Constructor that initializes global variables.

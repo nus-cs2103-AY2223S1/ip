@@ -1,13 +1,16 @@
 package pluto.command;
 
+import java.io.IOException;
+
 import pluto.PlutoException;
 import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 import pluto.task.Task;
 
-import java.io.IOException;
-
+/**
+ * Command to delete a task from the task list.
+ */
 public class DeleteCommand extends Command {
     /** Index of the task to be deleted */
     private int idx;

@@ -1,10 +1,12 @@
 package pluto;
 
+import java.util.ArrayList;
+
 import pluto.task.Task;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
+/**
+ * List of tasks added by the user.
+ */
 public class TaskList {
     /** List of tasks */
     private ArrayList<Task> missions;
@@ -100,6 +102,11 @@ public class TaskList {
         return missions.size();
     }
 
+    /**
+     * Returns tasklist of tasks containing the keyword.
+     * @param keyword Keyword to filter tasklist.
+     * @return Tasklist of filtered tasks.
+     */
     public TaskList filter(String keyword) {
         TaskList filtered = new TaskList();
         String[] keywords = keyword.split("\\s+");

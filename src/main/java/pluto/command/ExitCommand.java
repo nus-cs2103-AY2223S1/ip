@@ -4,6 +4,9 @@ import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
 
+/**
+ * Command to exit programme.
+ */
 public class ExitCommand extends Command {
     @Override
     public boolean isExit() {

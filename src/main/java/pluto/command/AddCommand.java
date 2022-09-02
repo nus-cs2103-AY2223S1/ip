@@ -1,12 +1,16 @@
 package pluto.command;
 
 import java.io.IOException;
-import pluto.task.Task;
+
+import pluto.PlutoException;
+import pluto.Storage;
 import pluto.TaskList;
 import pluto.Ui;
-import pluto.Storage;
-import pluto.PlutoException;
+import pluto.task.Task;
 
+/**
+ * Command to add a task to the tasklist.
+ */
 public class AddCommand extends Command {
     /** Task to be added */
     private Task t;

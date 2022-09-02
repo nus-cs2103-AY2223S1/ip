@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event task.
+ */
 public class Event extends Task {
     /** Event time */
     private LocalDateTime at;
@@ -40,7 +43,8 @@ public class Event extends Task {
     public boolean equals(Object o) {
         if (o instanceof Event) {
             Event other = (Event) o;
-            return this.at.equals(other.at) && this.description.equals(other.description) && this.isDone == other.isDone;
+            return this.at.equals(other.at) && this.description.equals(other.description)
+                    && this.isDone == other.isDone;
         }
         return false;
     }

@@ -4,18 +4,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Tasks that can be created by the user.
+ */
 public abstract class Task {
-    /** Task description */
-    protected String description;
-    /** Task status */
-    protected boolean isDone;
-
     /** Reset display color */
     protected static final String ANSI_RESET = "\u001B[0m";
     /** Red display color */
     protected static final String ANSI_RED = "\u001B[31m";
     /** Green display color */
     protected static final String ANSI_GREEN = "\u001B[32m";
+
+    /** Task description */
+    protected String description;
+    /** Task status */
+    protected boolean isDone;
 
     /**
      * Constructor that inializes global variables.
