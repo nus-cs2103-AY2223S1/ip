@@ -30,12 +30,10 @@ public class MarkUndoneCommand extends Command {
      * @param taskList the list of tasks
      * @throws DukeException if there is an error marking the task as undone.
      */
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         Task t = taskList.getTask(index);
         t.markUndone();
-        ui.line();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(t);
-        ui.line();
+        return "Duke says:\n" + ui.formatMessage("OK, I've marked this task as not done yet:\n"
+                + t);
     }
 }

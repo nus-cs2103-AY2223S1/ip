@@ -30,10 +30,8 @@ public class ByeCommand extends Command {
      */
 
     @Override
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
-        ui.line();
-        System.out.println("Bye. Hope to see you again soon!");
-        ui.line();
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         storage.saveData(taskList);
+        return "Duke says:\n" + ui.formatMessage("Bye. Hope to see you again soon!");
     }
 }

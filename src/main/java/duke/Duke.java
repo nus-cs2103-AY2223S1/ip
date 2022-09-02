@@ -32,28 +32,22 @@ public class Duke {
         }
     }
 
-    /**
-     * Starts the instance of Duke.
-     */
-    public void run() {
-        ui.greet();
-        boolean isDone = false;
-        while (!isDone) {
-            try {
-                String input = ui.parseCommand();
-                Command c = Parser.parse(input);
-                c.handle(this.storage, this.ui, this.taskList);
-                isDone = c.isDone();
-            } catch (DukeException e) {
-                ui.line();
-                System.out.println(e);
-                ui.line();
-            }
-        }
+    public String getGreeting() {
+        return ui.greet();
     }
 
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
+    /**
+     * Gets Duke's response to the user's input.
+     *
+     * @param input the input from the user
+     * @return Duke's response to the user's input
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.handle(this.storage, this.ui, this.taskList);
+        } catch (DukeException e) {
+            return "Duke says:\n" + ui.formatMessage(e.toString());
+        }
     }
 }

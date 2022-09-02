@@ -28,5 +28,7 @@ public abstract class Command {
      * @param taskList the list of tasks
      * @throws DukeException if there is an error when handling the command
      */
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {};
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+        return null;
+    };
 }
