@@ -22,6 +22,7 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String description) {
         this.description = description;
+        response = "";
     }
 
     /**
@@ -47,7 +48,6 @@ public class DeadlineCommand extends Command {
             throw new EmptyDurationException("deadline", "/by");
         }
         taskList.add(new Deadline(split[0].trim(), split[1]));
-        System.out.println("  Added the task with deadline: \n\t" + taskList.getLast());
-        ui.printListCount();
+        this.response = "Added the task with deadline: \n" + taskList.getLast() + "\n" + ui.printListCount();
     }
 }

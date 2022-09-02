@@ -47,7 +47,6 @@ public class EventCommand extends Command {
             throw new EmptyDurationException("event", "/at");
         }
         taskList.add(new Event(split[0].trim(), split[1]));
-        System.out.println("  Added the event task: \n\t" + taskList.getLast());
-        ui.printListCount();
+        this.response = "Added the event task: \n  " + taskList.getLast() + "\n" + ui.printListCount();
     }
 }

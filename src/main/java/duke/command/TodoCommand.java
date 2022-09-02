@@ -36,7 +36,6 @@ public class TodoCommand extends Command {
         }
 
         taskList.add(new Todo(this.description));
-        System.out.println("  Added task todo: \n\t" + taskList.getLast());
-        ui.printListCount();
+        this.response = "Added task todo: \n  " + taskList.getLast() + "\n" + ui.printListCount();
     }
 }

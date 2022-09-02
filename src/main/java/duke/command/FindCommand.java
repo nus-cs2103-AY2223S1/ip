@@ -47,11 +47,11 @@ public class FindCommand extends Command {
             }
         });
         if (result.size() > 0) {
-            System.out.println("  Here are the tasks with \"" + this.query + "\" in the description!");
-            ui.printTasks(result);
+            this.response = "Here are the tasks with \"" + this.query + "\" in the description!\n"
+                    + ui.printTasks(result);
         } else {
-            System.out.println("  There was no tasks found with \"" + this.query + "\" in the description!\n"
-                    + "  Try entering \"list\" to see what your task list looks like!");
+            this.response = "There was no tasks found with \"" + this.query + "\" in the description!" + "\n"
+                    + "Try entering \"list\" to see what your task list looks like!";
         }
     }
 }
