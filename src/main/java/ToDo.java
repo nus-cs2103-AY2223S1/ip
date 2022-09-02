@@ -1,12 +1,15 @@
 public class ToDo extends Item{
-    private final String itemType = "[T]";
 
-    public ToDo(String item) {
-        super(item);
+    public ToDo(String name) {
+        super(name, itemType.TODO, null);
+    }
+
+    public ToDo(String name, boolean isDone) {
+        super(name, isDone, itemType.TODO, null);
     }
 
     @Override
     public String toString() {
-        return this.itemType + super.toString();
+        return super.getItemType() + super.toString();
     }
 }

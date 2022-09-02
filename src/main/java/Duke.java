@@ -30,6 +30,7 @@ public class Duke {
                         String[] splitInput = input[1].split("/by", 2);
                         System.out.println(naruto.addDeadline(splitInput[0].trim(), splitInput[1].trim()));
                     } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
                         System.out.println("Whoops! deadline needs a description of the task and due date Dattebayo!" +
                                 "\n'deadline <Task> /by <Due By>'");
                     }
@@ -107,6 +108,6 @@ public class Duke {
             }
             System.out.println(lineBreak);
         }
-
+        naruto.destructor();
     }
 }

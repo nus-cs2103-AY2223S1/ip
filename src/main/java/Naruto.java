@@ -1,45 +1,17 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class Naruto {
     private final ArrayList<Item> storedItems;
+    private final Saver saveManager = new Saver();
 
     public Naruto() {
-        this.storedItems = new ArrayList<>(100);
+        this.storedItems = this.saveManager.loadItems();
     }
 
-    public boolean loadItems() throws IOException{
-        String currPath = System.getProperty("user.dir");
-        currPath += "/../data/items.json";
-
-        try (FileReader reader = new FileReader(currPath)) {
-            JSONParser parser = new JSONParser();
-            JSONArray itemsJson = (JSONArray) parser.parse(reader);
-        } catch (FileNotFoundException e) {
-            System.out.println("Save File does not exist, starting with a new list.");
-        } catch (IOException e) {
-            System.out.println("Error whilst opening file, please try again later.");
-        }  catch (ParseException e) {
-            System.out.println("Error loading save file, save may be corrupted, please try again later.");
-        }
-
-
+    public void destructor() {
+        this.saveManager.saveItems(this.storedItems);
     }
-
-
-    public boolean saveItems() throws IOException {
-        FileWriter file = new FileWriter("employees.json");
-    }
-
 
     private String addItem(Item item) {
         this.storedItems.add(item);
@@ -53,13 +25,24 @@ public class Naruto {
     }
 
     public String addDeadline(String item, String due) {
-        Deadline deadline = new Deadline(item, due);
-        return this.addItem(deadline);
+        try {
+            Deadline deadline = new Deadline(item, due);
+            return this.addItem(deadline);
+        } catch (DateTimeParseException e) {
+            return "Error Parsing Date Time Info, Item not added, " +
+                    "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)";
+        }
+
     }
 
     public String addEvent(String item, String at) {
-        Event event = new Event(item, at);
-        return this.addItem(event);
+        try {
+            Event event = new Event(item, at);
+            return this.addItem(event);
+        } catch (DateTimeParseException e) {
+            return "Error Parsing Date Time Info, Item not added, " +
+                    "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)";
+        }
     }
 
     public String getList() {

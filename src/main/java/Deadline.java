@@ -1,14 +1,16 @@
-public class Deadline extends Item{
-    private final String itemType = "[D]";
-    private final String dueDate;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String item, String dueDate) {
-        super(item);
-        this.dueDate = dueDate;
+public class Deadline extends Item{
+    public Deadline(String name, String dueDate) throws DateTimeParseException {
+        super(name, itemType.DEADLINE, dueDate);
+    }
+
+    public Deadline(String name, String dueDate, boolean isDone) throws DateTimeParseException {
+        super(name, isDone, itemType.DEADLINE, dueDate);
     }
 
     @Override
     public String toString() {
-        return this.itemType + super.toString() + " (by: " + this.dueDate + ")";
+        return this.getItemType() + super.toString() + " (by: " + this.getDateTimeString() + ")";
     }
 }
