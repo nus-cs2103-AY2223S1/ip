@@ -120,6 +120,7 @@ public class Parser {
         if (!matcher.matches() || !Parser.isValidDateTime(matcher.group("datetime"))) {
             return new InvalidCommand("Invalid deadline format");
         }
+        assert matcher.group("description") != null && matcher.group("datetime") != null;
 
         return new DeadlineCommand(matcher.group("description").strip(),
                 LocalDateTime.parse(matcher.group("datetime").strip(),
