@@ -1,10 +1,6 @@
 package seedu.duke;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Represents the Ui for Duke.
