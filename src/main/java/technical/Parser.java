@@ -1,4 +1,8 @@
 package technical;
+/**
+ * Parser class to process user inputs.
+ * @author Nicholas Patrick
+ */
 
 import java.io.IOException;
 
@@ -20,6 +24,13 @@ public class Parser {
     Ui.reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
   }
 
+  /**
+   * Parses and executes a command.
+   *
+   * @param line The line of the command
+   * @return Whether the program should continue running
+   * @throws IOException in case of failure to write into save file.
+   */
   public static boolean parseExecute(String line) throws IOException {
     String[] arguments = Parser.tokenise(line);
     if (arguments[0].equals("bye")) {

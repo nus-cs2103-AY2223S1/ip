@@ -1,4 +1,8 @@
 package functional;
+/**
+ * Class for tasks with no specific time.
+ * @author Nicholas Patrick
+ */
 
 import technical.SaveLine;
 
@@ -12,6 +16,11 @@ public class Todo extends Task {
         super(name);
     }
 
+    /**
+     * Construct a task from a SaveLine. If the argument is invalid.
+     *
+     * @param line The SaveLine containing the necessary information.
+     */
     public Todo(SaveLine line) {
         super(line);
     }
@@ -25,6 +34,12 @@ public class Todo extends Task {
         return String.format("[T]%s", super.toString());
     }
 
+    /**
+     * Turns the task into a SaveLine, so it's ready to be saved. Can also be
+     * used to compare two tasks.
+     *
+     * @return A SaveLine with the data associated with the task.
+     */
     @Override
     public SaveLine toData() {
         SaveLine ret = super.toData();
@@ -32,6 +47,13 @@ public class Todo extends Task {
         return ret;
     }
 
+    /**
+     * Checks whether this is equal to another Object. If the other object is
+     * not a Todo, the return value will be false.
+     *
+     * @param rhs The right hand side of the comparison.
+     * @return The boolean stating whether this and the argument are equal.
+     */
     @Override
     public boolean equals(Object rhs) {
         if (rhs instanceof Todo) {

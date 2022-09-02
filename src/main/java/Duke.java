@@ -1,12 +1,21 @@
+/**
+ * The main class
+ * @author Nicholas Patrick
+ */
+
 import functional.Deadline;
 import functional.Event;
 import functional.Todo;
 import technical.*;
-
 import java.io.IOException;
 
 public class Duke {
-
+    /**
+     * The main runner program.
+     *
+     * @param args arguments passed from running the program. Ignored.
+     * @throws IOException if there is a lack of edit permissions granted.
+     */
     public static void main(String[] args) throws IOException {
         String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"

@@ -1,13 +1,17 @@
 package functional;
+/**
+ * JUnit test class for Event.
+ * @author Nicholas Patrick
+ */
 
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class EventTest {
+  /**
+   * Tests whether Event::toString performs as expected
+   */
   @Test
   public void toStringCheck() {
     Event event = new Event("sleep",
