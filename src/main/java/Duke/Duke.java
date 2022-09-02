@@ -13,11 +13,17 @@ import Duke.task.TaskDeadline;
 import Duke.task.TaskEvent;
 import Duke.task.TaskList;
 import Duke.task.TaskTodo;
+import Duke.ui.DukeResponses;
+import Duke.ui.GuiUi;
 import Duke.utils.Utils;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The {@code Duke} class enables users to store and indicated various
@@ -25,115 +31,130 @@ import java.util.Scanner;
  * of all present tasks. It has a command line interface and does not
  * store data from each run.
  */
-public class Duke {
+public class Duke extends Application {
 
-    private Storage storage; // Deals with loading tasks from the file and saving tasks in the file.
-    private TaskList tasks;  // Stores all the current task created by the user.
-    private final Ui ui;     // Deals with making sense of the user command.
+    // Deals with loading tasks from the file and saving tasks in the file.
+    private Storage storage;
+    // Stores all the current task created by the user.
+    private TaskList tasks;
+    // Handles how to respond to user inputs.
+    private final DukeResponses dukeResponses = new DukeResponses();
+    // Handles how to display the UI.
+    private GuiUi dukeUi;
+    // String to specify location of previous information.
+    private static final String filepath = "data" + File.separator + "dukeData.txt";
 
-    /**
-     * Constructor for a duke object.
-     */
-    public Duke(String filePath) {
-        ui = new Ui();
+    @Override
+    public void start(Stage stage) {
+        GuiUi guiUi = new GuiUi(stage, this);
+        dukeUi = guiUi;
+        initialiseStorage();
+        welcomeUser();
+        guiUi.show();
+    }
+
+    private void initialiseStorage() {
         try {
-            storage = new Storage(filePath);
+            storage = new Storage(filepath);
             tasks = new TaskList(storage.load());
-            ui.fileSuccessfullyLoaded();
             if (tasks.getNumberOfTask() > 0) {
-                ui.listTasks(tasks);
-                ui.lineDivider();
+                dukeUi.handleOutput(dukeResponses.loadFileSuccessfully() +
+                        '\n' + dukeResponses.listTasks(tasks));
             }
         } catch (DukeException | IOException e) {
-            ui.showError(e.getMessage());
+            dukeUi.handleOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
             tasks = new TaskList();
         }
     }
 
-    /**
-     * Start the duke application.
-     */
-    public void run() {
-        ui.startPrompt();
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            try {
-                String inputString = scanner.nextLine();
-                if (inputString.isEmpty()) {
-                    continue;
-                }
-                Parser input = Parser.formatInput(inputString.trim());
-                switch (input.getCommand()) {
-                case BYE:
-                    storage.storeTask(tasks);
-                    ui.endPrompt();
-                    return;
-                case LIST:
-                    listTasks();
-                    break;
-                case FIND:
-                    findTasks(input.getMainData());
-                    break;
-                case CHECK:
-                    checkTask(input.getMainData());
-                    break;
-                case UNCHECK:
-                    uncheckTask(input.getMainData());
-                    break;
-                case DELETE:
-                    deleteTask(input.getMainData());
-                    break;
-                case TODO:
-                    addTask(new TaskTodo(input.getMainData()));
-                    break;
-                case DEADLINE:
-                    addTask(new TaskDeadline(input.getMainData(), input.getSecondaryData()));
-                    break;
-                case EVENT:
-                    addTask(new TaskEvent(input.getMainData(), input.getSecondaryData()));
-                    break;
-                default:
-                    break;
-                }
-            } catch (InvalidCommandException err) {
-                ui.showError(String.format("%s is not a valid command", err.getMessage()));
-            } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
-                ui.showError(err.getMessage());
-            } catch (InvalidSecondaryCommandException err) {
-                ui.showError(String.format("Please include %s command and the necessary information\n", err.getMessage()));
-            } catch (InvalidDateException err) {
-                ui.showError(err.getMessage());
-                ui.listValidDateFormats();
-            } catch (DukeException err) {
-                ui.showError(String.format("Unhandled Duke Exception: %s", err.getMessage()));
-            } catch (IOException err) {
-                ui.showError(String.format("IO Exception: %s", err.getMessage()));
-            } catch (Exception err) {
-                ui.showError(String.format("Unhandled Exception: %s", err.getMessage()));
-            } finally {
-                ui.lineDivider();
-            }
-        }
+    private void welcomeUser() {
+        dukeUi.handleOutput(dukeResponses.startPrompt());
     }
 
-    public static void main(String[] args) {
-        System.out.println("|".repeat(60));
-        String filepath = "data" + File.separator + "dukeData.txt";
-        new Duke(filepath).run();
+    public String receiveInput(String inputString) {
+        String response = "";
+        try {
+            if (inputString.isEmpty()) {
+                return "Hmm I did not quite catch that";
+            }
+            Parser input = Parser.formatInput(inputString.trim());
+            switch (input.getCommand()) {
+            case BYE:
+                terminate();
+                return null;
+            case LIST:
+                response = listTasks();
+                break;
+            case FIND:
+                response = findTasks(input.getMainData());
+                break;
+            case CHECK:
+                response = checkTask(input.getMainData());
+                break;
+            case UNCHECK:
+                response = uncheckTask(input.getMainData());
+                break;
+            case DELETE:
+                response = deleteTask(input.getMainData());
+                break;
+            case TODO:
+                response = addTask(new TaskTodo(input.getMainData()));
+                break;
+            case DEADLINE:
+                response = addTask(new TaskDeadline(input.getMainData(), input.getSecondaryData()));
+                break;
+            case EVENT:
+                response = addTask(new TaskEvent(input.getMainData(), input.getSecondaryData()));
+                break;
+            default:
+                break;
+            }
+        } catch (InvalidCommandException err) {
+            response = String.format("%s is not a valid command\n%s", err.getMessage(),
+                    dukeResponses.listValidInstructions());
+        } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
+            response = err.getMessage();
+        } catch (InvalidSecondaryCommandException err) {
+            response = String.format("Please include %s command and the necessary information", err.getMessage());
+        } catch (InvalidDateException err) {
+            response = String.format("%s\n%s", err.getMessage(), dukeResponses.listValidDateFormats());
+        } catch (DukeException err) {
+            response = String.format("Unhandled Duke Exception: %s", err.getMessage());
+        } catch (Exception err) {
+            response = String.format("Unhandled Exception: %s", err.getMessage());
+        }
+        return response;
+    }
+
+    private void terminate() {
+        try {
+            storage.storeTask(tasks);
+            dukeUi.handleOutput(dukeResponses.endPrompt());
+            TimerTask exitApp = new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            };
+            new Timer().schedule(exitApp, new Date(System.currentTimeMillis() + 1000));
+        } catch (IOException err) {
+            String response = String.format("IO Exception: %s", err.getMessage());
+            dukeUi.handleOutput(response);
+        }
     }
 
     /**
      * List all current task in the taskList.
      */
-    private void listTasks() {
-        ui.listTasks(tasks);
+    private String listTasks() {
+        return dukeResponses.listTasks(tasks);
     }
 
     /**
      * Find all current task in the taskList base on a string.
      */
-    private void findTasks(String string) {
-        ui.findTasks(tasks, string);
+    private String findTasks(String string) {
+        return dukeResponses.findTasks(tasks, string);
     }
 
     /**
@@ -141,13 +162,12 @@ public class Duke {
      *
      * @param index an integer representing the index of task in the task list.
      */
-    private void checkTask(String index) throws InvalidIndexException {
+    private String checkTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
         Task task = tasks.checkTask(Integer.parseInt(index));
-        ui.markDone(task.getTaskName());
-        ui.listTasks(tasks);
+        return dukeResponses.markDone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
     }
 
     /**
@@ -155,13 +175,12 @@ public class Duke {
      *
      * @param index an integer representing the index of task in the task list.
      */
-    private void uncheckTask(String index) throws InvalidIndexException {
+    private String uncheckTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
         Task task = tasks.uncheckTask(Integer.parseInt(index));
-        ui.markUndone(task.getTaskName());
-        ui.listTasks(tasks);
+        return dukeResponses.markUndone(task.getTaskName()) + "\n" + dukeResponses.listTasks(tasks);
     }
 
     /**
@@ -169,13 +188,12 @@ public class Duke {
      *
      * @param index an integer representing the index of task in the task list.
      */
-    private void deleteTask(String index) throws InvalidIndexException {
+    private String deleteTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
         }
         Task task = tasks.deleteTask(Integer.parseInt(index));
-        ui.deleteTask(task);
-        ui.listTasks(tasks);
+        return dukeResponses.deleteTask(task) + "\n" + dukeResponses.listTasks(tasks);
     }
 
     /**
@@ -184,9 +202,8 @@ public class Duke {
      * @param <T>  the type of the task we would like to add to the task list.
      * @param task the task we would like to add to the task list.
      */
-    private <T extends Task> void addTask(T task) {
+    private <T extends Task> String addTask(T task) {
         tasks.addTask(task);
-        ui.addTask(task);
-        ui.listTasks(tasks);
+        return dukeResponses.addTask(task) + "\n" + dukeResponses.listTasks(tasks);
     }
 }

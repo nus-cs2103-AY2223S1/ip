@@ -1,5 +1,5 @@
-import Duke.Ui;
 import Duke.task.TaskTodo;
+import Duke.ui.DukeResponses;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -12,15 +12,13 @@ public class UiTest {
 
     @Test
     public void lineDividerTest() {
-        Ui ui = new Ui();
         System.setOut(new PrintStream(outputStream));
-        ui.lineDivider();
         assertEquals("-".repeat(60) + "\n", outputStream.toString());
     }
 
     @Test
     public void endPromptTest() {
-        Ui ui = new Ui();
+        DukeResponses ui = new DukeResponses();
         System.setOut(new PrintStream(outputStream));
         ui.endPrompt();
         assertEquals("Goodbye" + "\n", outputStream.toString());

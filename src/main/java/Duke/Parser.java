@@ -117,12 +117,9 @@ public class Parser {
                 throw new InvalidTaskNameException();
             }
 
-            result.mainData = info.substring(0, atIndex - 1);
+            result.mainData = info.substring(0, atIndex);
             result.secondaryData = info.substring(atIndex + 1 + at.getLength());
 
-            if (result.mainData.isEmpty()) {
-                throw new InvalidTaskNameException();
-            }
             if (result.secondaryData.isEmpty()) {
                 throw new InvalidSecondaryCommandException(at.getValue());
             }
@@ -144,12 +141,9 @@ public class Parser {
                 throw new InvalidTaskNameException();
             }
 
-            result.mainData = info.substring(0, byIndex - 1);
+            result.mainData = info.substring(0, byIndex);
             result.secondaryData = info.substring(byIndex + 1 + by.getLength());
 
-            if (result.mainData.isEmpty()) {
-                throw new InvalidTaskNameException();
-            }
             if (result.secondaryData.isEmpty()) {
                 throw new InvalidSecondaryCommandException(by.getValue());
             }
