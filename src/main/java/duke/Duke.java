@@ -14,6 +14,9 @@ public class Duke {
         this.storage = new LocalStorage("./data/saveFile.json");
     }
 
+    /**
+     * Run the Duke app.
+     */
     public void run() {
         this.ui.start();
         this.tasks.loadFromLocalStorage(this.storage);

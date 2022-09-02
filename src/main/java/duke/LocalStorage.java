@@ -19,6 +19,10 @@ public class LocalStorage {
         this.saveFileDir = saveFilePath.substring(0, saveFilePath.lastIndexOf("/"));
     }
 
+    /**
+     * Load the task array from the given save data file.
+     * @return a Task array.
+     */
     public Task[] load() {
         JSONArray jsonArray;
         try {
@@ -37,6 +41,10 @@ public class LocalStorage {
         return objArray;
     }
 
+    /**
+     * Write the current task data into the save file.
+     * @param list a TaskList object to be saved.
+     */
     public void save(TaskList list) {
         JSONArray saveData = new JSONArray();
         for (Iterator<Task> it = list.getIterator(); it.hasNext(); ) {

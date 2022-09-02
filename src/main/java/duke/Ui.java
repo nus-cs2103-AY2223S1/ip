@@ -5,6 +5,9 @@ import duke.parser.Parser;
 
 import java.util.Scanner;
 
+/**
+ * A UI class to manage the user interactions of the app.
+ */
 public class Ui {
     private static String Logo = ".__ .  ..  ..___" + "\n" +
             "|  \\|  ||_/ [__ " + "\n" +
@@ -19,10 +22,17 @@ public class Ui {
     public Ui() {
     }
 
+    /**
+     * Check if the UI is open.
+     * @return a boolean on whether UI is open.
+     */
     public boolean isOpen(){
         return this.open;
     }
 
+    /**
+     * Starts the UI.
+     */
     public void start() {
         this.open = true;
         System.out.println(Ui.Logo);
@@ -34,6 +44,11 @@ public class Ui {
         return in.nextLine();
     }
 
+    /**
+     * Read the input from stdin, and converts it to a Command object.
+     * If command object is an exit object, close the UI.
+     * @return a Command object.
+     */
     public Command readCommand() {
         Parser.ParsedInputArguments args = Parser.getInputArguments(this.readInput());
         Command c = Command.getCommand(args);
@@ -45,6 +60,10 @@ public class Ui {
         return c;
     }
 
+    /**
+     * Print the given string with a horizontal rule before and after.
+     * @param s string to be printed.
+     */
     public void printWithHorizontalRule(String s) {
         printHorizontalRule();
         System.out.println(s);
