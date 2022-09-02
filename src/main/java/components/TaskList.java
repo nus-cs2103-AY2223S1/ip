@@ -81,8 +81,12 @@ public class TaskList {
    * @param status mark task to be completed with true or not completed with false.
    */
   public void setTaskStatus(int index, boolean status) {
-    ls.get(index).setStatus(false);
-    System.out.println("OK, I've marked this task as not done yet:");
+    ls.get(index).setStatus(status);
+    if (status == true) {
+      System.out.println("OK, I've marked this task as not done yet:");
+    } else {
+      System.out.println("OK, I've marked this task as not done yet:");
+    }
     System.out.println(ls.get(index).toString());
   }
 
