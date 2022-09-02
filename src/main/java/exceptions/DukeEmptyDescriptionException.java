@@ -1,3 +1,5 @@
+package exceptions;
+
 public class DukeEmptyDescriptionException extends DukeException {
 
     public DukeEmptyDescriptionException() {

@@ -1,3 +1,5 @@
+package exceptions;
+
 public class DukeUnspecifiedNumberException extends DukeException {
 
     public DukeUnspecifiedNumberException(String command) {

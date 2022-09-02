@@ -11,7 +11,7 @@
      Now you have 1 tasks in the list.
     __________________________________________________________________________
     __________________________________________________________________________
-     Duke says: "OOPS! Task not found! Your number should be from 0 to 1" ☹
+     Duke says: "OOPS! tasks.Task not found! Your number should be from 0 to 1" ☹
     __________________________________________________________________________
     __________________________________________________________________________
      Duke says: "OOPS! Commands todo, deadline and event should have a description" ☹
@@ -40,7 +40,7 @@
      3.[D][ ] something (by: 7 pm)
     __________________________________________________________________________
     __________________________________________________________________________
-     Duke says: "OOPS! Task not found! Your number should be from 0 to 3" ☹
+     Duke says: "OOPS! tasks.Task not found! Your number should be from 0 to 3" ☹
     __________________________________________________________________________
     __________________________________________________________________________
      Duke says: "OOPS! delete command should be specified with a task number" ☹

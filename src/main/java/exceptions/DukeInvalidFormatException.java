@@ -1,3 +1,5 @@
+package exceptions;
+
 public class DukeInvalidFormatException extends DukeException {
 
     public DukeInvalidFormatException(String type, String missingExpr) {

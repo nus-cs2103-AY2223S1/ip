@@ -1,3 +1,7 @@
+package tasks;
+
+import exceptions.DukeInvalidDateException;
+
 public class Event extends Task {
 
     protected String at;

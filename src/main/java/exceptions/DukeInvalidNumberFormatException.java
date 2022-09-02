@@ -1,3 +1,5 @@
+package exceptions;
+
 public class DukeInvalidNumberFormatException extends DukeException {
 
     public DukeInvalidNumberFormatException(String command) {

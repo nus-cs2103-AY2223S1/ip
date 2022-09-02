@@ -1,108 +1,63 @@
+import exceptions.DukeException;
+import exceptions.DukeInvalidNumberFormatException;
+import exceptions.DukeUnspecifiedNumberException;
+
 import java.util.Scanner;
+
+import tasks.TaskList;
+
+import commands.Command;
+
+import ui.Ui;
+import storage.Storage;
+import parser.Parser;
 
 public class Duke {
 
     private static final String LINE = "    __________________________________________________________________________";
     private static final String INDENT = "     ";
 
-    private static boolean isClosed = false;
-    private static TaskList tasks = new TaskList();
-    private static int counter = 0;
+    private boolean isClosed = false;
+    private TaskList tasks = new TaskList();
+    private int counter = 0;
+
+    private Ui ui;
+    private Storage storage;
+    private Parser parser;
+
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage();
+        parser = new Parser();
+        try {
+            tasks = new TaskList(storage.retrieveTasks());
+        } catch (DukeException e) {
+            ui.showErrorMessage(e.getMessage());
+            tasks = new TaskList();
+        }
+    }
 
     public static void main(String[] args) {
-        greetingMessage();
-        Scanner sc = new Scanner(System.in);
-        while (!isClosed) {
+        Duke duke = new Duke();
+        duke.run();
+    }
+
+    private void run() {
+        ui.showGreetingMessage();
+        boolean isByeCommand = false;
+        while (!isByeCommand) {
             try {
-                String command = sc.nextLine();
-                if (command.equals("bye")) {
-                    bye();
-                } else if (command.equals("list")) {
-                    printList();
-                } else {
-                    if (command.startsWith("mark")) {
-                        String[] splitted = command.split("\\s+");
-                        Integer index;
-                        if (splitted.length == 1) {
-                            throw new DukeUnspecifiedNumberException("mark");
-                        }
-                        try {
-                            index = Integer.valueOf(splitted[1]);
-                            tasks.markAsDone(index);
-                        } catch (NumberFormatException err) {
-                            throw new DukeInvalidNumberFormatException("mark");
-                        }
-                    } else if (command.startsWith("unmark")) {
-                        String[] splitted = command.split("\\s+");
-                        Integer index;
-                        if (splitted.length == 1) {
-                            throw new DukeUnspecifiedNumberException("unmark");
-                        }
-                        try {
-                            index = Integer.valueOf(splitted[1]);
-                            tasks.markAsNotDone(index);
-                        } catch (NumberFormatException err) {
-                            throw new DukeInvalidNumberFormatException("unmark");
-                        }
-                    } else if (command.startsWith("todo")) {
-                        tasks.addTodo(command);
-                    } else if (command.startsWith("deadline")) {
-                        tasks.addDeadline(command);
-                    } else if (command.startsWith("event")) {
-                        tasks.addEvent(command);
-                    } else if (command.startsWith("delete")) {
-                        String[] splitted = command.split("\\s+");
-                        Integer index;
-                        if (splitted.length == 1) {
-                            throw new DukeUnspecifiedNumberException("delete");
-                        }
-                        try {
-                            index = Integer.valueOf(splitted[1]);
-                            tasks.deleteTask(index);
-                        } catch (NumberFormatException err) {
-                            throw new DukeInvalidNumberFormatException("delete");
-                        }
-                    } else {
-                        throw new DukeException("You have entered an invalid command");
-                    }
-                }
-            } catch (DukeException ex) {
-                drawLine();
-                indentMessage(ex.getMessage());
-                drawLine();
+                String fullCommand = ui.readCommand();
+                ui.drawLine(); // show the divider line ("_______")
+                Command c = parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isByeCommand = c.isByeCommand();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e.getMessage());
+            } finally {
+                ui.drawLine();
             }
         }
     }
 
-    private static void greetingMessage() {
-        drawLine();
-        indentMessage("Hello! I'm Duke");
-        indentMessage("What can I do for you?");
-        drawLine();
-    }
-
-    private static void bye() {
-        isClosed = true;
-        drawLine();
-        indentMessage("Bye, Hope to see you again soon!");
-        drawLine();
-    }
-
-    private static void echo(String msg) {
-        drawLine();
-        indentMessage(msg);
-        drawLine();
-    }
-
-    public static void indentMessage(String msg) {
-        System.out.println(INDENT + msg);
-    }
-
-    public static void drawLine() {
-        System.out.println(LINE);
-    }
-
-    public static void printList() {
-        tasks.showList();
-    }
 }
