@@ -7,11 +7,11 @@ public abstract class Task {
     /**
      * Constructs a new Task object.
      * @param name the name of the task
-     * @param isInitiallyComplete whether the task is complete at the time of creation
+     * @param initialComplete whether the task is complete at the time of creation
      */
-    public Task(String name, boolean isInitiallyComplete) {
+    public Task(String name, boolean initialComplete) {
         this.name = name;
-        this.isComplete = isInitiallyComplete;
+        this.isComplete = initialComplete;
     }
 
     /**
