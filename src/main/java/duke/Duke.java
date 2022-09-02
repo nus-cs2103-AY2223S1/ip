@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 
 public class Duke {
-    public  Duke(){
-
-    }
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -37,9 +33,6 @@ public class Duke {
         tasks.addTasksToFile();
         ui.exitMessage();
     }
-
-
-
 
     public static void main(String[] args) {
         new Duke("./data/duke.txt").run();
