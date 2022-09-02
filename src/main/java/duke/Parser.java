@@ -121,6 +121,7 @@ public class Parser {
      *
      * @param firstWord the first word typed in by the user
      * @param strArray the array of strings of the words typed in by the user
+     * @param tasks the task list of which the task is to be added to
      */
     public static String createNewTask(String firstWord, String[] strArray, TaskList tasks)
             throws DukeException, IOException {

@@ -114,6 +114,10 @@ public class TaskList {
         return Ui.printFoundTasksStart(str, this);
     }
 
+    /**
+     * Returns the String representation of a TaskList object.
+     * @return the String representation of a TaskList object
+     */
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
