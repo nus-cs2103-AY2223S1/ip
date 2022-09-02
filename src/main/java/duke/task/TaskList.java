@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * Represents a list of tasks in the Duke application.
@@ -50,5 +51,17 @@ public class TaskList {
      */
     public int size() {
         return tasks.size();
+    }
+
+    /**
+     * Filters task list based on a predicate.
+     *
+     * @param predicate Predicate to filter on.
+     * @return Filtered task list.
+     */
+    public TaskList filter(Predicate<? super Task> predicate) {
+        TaskList filteredTaskList = new TaskList();
+        tasks.stream().filter(predicate).forEach(filteredTaskList::addTask);
+        return filteredTaskList;
     }
 }

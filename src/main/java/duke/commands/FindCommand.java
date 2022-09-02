@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import duke.exceptions.DukeException;
 import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Represents a find command in the Duke application.
@@ -36,13 +37,12 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         ArrayList<String> foundTasks = new ArrayList<>();
+        TaskList filteredTasks = tasks.filter(task -> task.containsKeyword(keyword));
 
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.getTask(i);
-            if (task.containsKeyword(keyword)) {
-                String taskString = String.format(TASK_FORMAT, i + 1, task);
-                foundTasks.add(taskString);
-            }
+        for (int i = 0; i < filteredTasks.size(); i++) {
+            Task task = filteredTasks.getTask(i);
+            String taskString = String.format(TASK_FORMAT, i + 1, task);
+            foundTasks.add(taskString);
         }
 
         String userMessage;
