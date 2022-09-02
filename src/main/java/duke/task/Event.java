@@ -22,7 +22,7 @@ public class Event extends Task {
         try {
             this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException dateTimeParseException){
-            throw new DukeException("☹ OOPS!!! Cannot parse date. Enter date according to example, 02-12-2019 1800");
+            throw new DukeException("OOPS!!! Cannot parse date. Enter date according to example, 02-12-2019 1800");
         }
     }
 

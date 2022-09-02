@@ -53,7 +53,7 @@ public class TaskList {
      */
     public Task getTaskAtIndex(int index) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         return this.taskList.get(index - 1);
     }
@@ -75,7 +75,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws DukeException{
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         index = index - 1;
         Task task = this.taskList.remove(index);
@@ -91,7 +91,7 @@ public class TaskList {
      */
     public Task updateTaskStatus(int index, boolean isMark) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         index = index - 1;
         Task task = this.taskList.get(index);

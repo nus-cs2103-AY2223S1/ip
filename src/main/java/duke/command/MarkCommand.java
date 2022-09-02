@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
         String message = "";
 
         if (userInput.split(" ").length == 1) {
-            throw new DukeException("☹ OOPS!!! The mark/unmark command cannot have a missing index.");
+            throw new DukeException("OOPS!!! The mark/unmark command cannot have a missing index.");
         }
         String index = userInput.split(" ")[1];
         Task task = taskList.updateTaskStatus(Integer.parseInt(index), isMark);

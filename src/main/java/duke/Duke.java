@@ -10,6 +10,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        taskList = new TaskList(storage.loadTaskList());
     }
 
     public enum Keyword {
@@ -48,6 +49,10 @@ public class Duke {
                 ui.printMessage(exception.toString() + "\n");
             }
         }
+    }
+
+    public String getResponse(String userInput) {
+        return "test";
     }
 
     /**
