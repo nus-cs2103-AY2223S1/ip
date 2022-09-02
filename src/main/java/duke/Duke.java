@@ -18,11 +18,14 @@ public class Duke {
     private static final CommandParser COMMAND_PARSER = new CommandParser(TASK_LIST);
     private boolean hasTerminated;
 
-    public String handle(String command) {
+    public String getResponse(String command) {
+        if (hasTerminated) {
+            System.exit(0);
+        }
         if (command.equalsIgnoreCase("bye")) {
-            STORAGE.save();
-            hasTerminated = true;
-            return "Bye! Enter any key to exit :)";
+                STORAGE.save();
+                hasTerminated = true;
+                return "Bye! Enter any key to exit :)";
         }
         return COMMAND_PARSER.handle(command);
     }

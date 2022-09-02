@@ -23,7 +23,7 @@ public class TaskList {
     }
 
     private String printAddedTask(Task task) {
-        return "Got it. I've added this task: \n" + task.toString() + "\n Now you have" + tasks.size() + "in the list.";
+        return "Got it. I've added this task: \n" + task.toString() + "\n Now you have " + tasks.size() + " in the list.";
     }
 
     /**b
