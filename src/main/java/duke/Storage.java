@@ -15,7 +15,6 @@ public class Storage {
 
     /**
      * Constructor for a Storage class.
-     *
      * @param filePath The relative path to the text document.
      */
     public Storage(String filePath) {
@@ -24,7 +23,6 @@ public class Storage {
 
     /**
      * To create the text document in the relevant file if it does not exist.
-     *
      * @throws IOException If the relative path to the text document is invalid.
      */
     public void load() throws IOException {
@@ -37,7 +35,6 @@ public class Storage {
 
     /**
      * Writes tasks from the arraylist into the text document.
-     *
      * @param textToAdd String information of the task.
      * @throws IOException If the relative path to the text document is invalid.
      */
@@ -49,7 +46,6 @@ public class Storage {
 
     /**
      * Formats the string of the task.
-     *
      * @param task Task in the arraylist.
      * @return The formatted string.
      */
@@ -71,7 +67,6 @@ public class Storage {
 
     /**
      * Adds tasks from the text document into the arraylist.
-     *
      * @param tasks
      * @throws FileNotFoundException If the file does not exist.
      * @throws DukeException If information from the task in invalid.

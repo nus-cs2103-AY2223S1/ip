@@ -9,7 +9,6 @@ public class Task {
 
     /**
      * Constructor for a Task Object.
-     *
      * @param description Description of the task.
      */
     public Task(String description) {
@@ -19,7 +18,6 @@ public class Task {
 
     /**
      * Gets the right icon.
-     *
      * @return The string icon.
      */
     public String getStatusIcon() {

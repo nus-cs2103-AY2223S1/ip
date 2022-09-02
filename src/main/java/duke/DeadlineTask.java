@@ -39,7 +39,6 @@ public class DeadlineTask extends Task {
 
     /**
      * formats date and time to a string that would be added into the text document.
-     *
      * @return String added into the text document.
      */
     public String dateTimeString() {

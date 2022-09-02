@@ -15,8 +15,7 @@ public class EventTask extends Task {
     private LocalTime time;
 
     /**
-     * Constructor of a EventTask object
-     *
+     * Constructor of a EventTask object.
      * @param description      description of the task
      * @param at               Date of the event.
      */
@@ -39,7 +38,6 @@ public class EventTask extends Task {
 
     /**
      * formats date and time to a string that would be added into the text document.
-     *
      * @return String added into the text document.
      */
     public String dateTimeString() {

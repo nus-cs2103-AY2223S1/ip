@@ -15,7 +15,6 @@ public class Duke {
 
     /**
      * Constructor of Duke class.
-     *
      * @param filePath The String that is the relative path to the text document.
      */
     public Duke(String filePath) {
