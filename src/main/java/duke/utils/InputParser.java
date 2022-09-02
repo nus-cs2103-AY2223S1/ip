@@ -7,7 +7,7 @@ import duke.ui.Ui;
 
 public class InputParser {
 
-    public Command parse(String input, TaskList taskList, Storage storage, Ui ui) {
+    public Command parse(String input, TaskList tasks, Storage storage, Ui ui) {
         int spaceIndex = input.indexOf(' ');
         String command, body;
         if (spaceIndex == -1) {
@@ -21,19 +21,16 @@ public class InputParser {
         if ("bye".equals(command)) {
             return new ExitCommand(ui);
         } else if ("list".equals(command)) {
-            return new PrintTasksCommand(ui, taskList);
+            return new PrintTasksCommand(ui, tasks);
         } else if ("mark".equals(command)) {
-            int index = Integer.parseInt(body) - 1;
-            return new MarkTaskCommand(storage, ui, taskList, index);
+            return new MarkTaskCommand(storage, ui, tasks, body);
         } else if ("unmark".equals(command)) {
-            int index = Integer.parseInt(body) - 1;
-            return new UnmarkTaskCommand(storage, ui, taskList, index);
+            return new UnmarkTaskCommand(storage, ui, tasks, body);
         } else if ("delete".equals(command)) {
-            int index = Integer.parseInt(body) - 1;
-            return new DeleteTaskCommand(storage, ui, taskList, index);
+            return new DeleteTaskCommand(storage, ui, tasks, body);
         } else if (isTaskType(command)) {
             TaskType type = getTaskType(command);
-            return new AddTaskCommand(storage, ui, taskList, type, body);
+            return new AddTaskCommand(storage, ui, tasks, type, body);
         } else {
             return new UnrecognisedCommand(ui);
         }

@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.exceptions.TaskNotFoundException;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.utils.Storage;
@@ -11,9 +12,9 @@ public class MarkTaskCommand extends Command {
     private Ui ui;
     private TaskList tasks;
 
-    private int index;
+    private String index;
 
-    public MarkTaskCommand(Storage storage, Ui ui, TaskList tasks, int index) {
+    public MarkTaskCommand(Storage storage, Ui ui, TaskList tasks, String index) {
         this.storage = storage;
         this.ui = ui;
         this.tasks = tasks;
@@ -22,10 +23,18 @@ public class MarkTaskCommand extends Command {
 
     @Override
     public boolean execute() {
-        Task markedTask = tasks.markTask(index);
-        ui.showMarkTaskResponse(markedTask);
-        storage.saveToFile(tasks.getList());
-        return true;
+        try {
+            Task markedTask = tasks.markTask(Integer.parseInt(index) - 1);
+            ui.showMarkTaskResponse(markedTask);
+            storage.saveToFile(tasks.getList());
+            return true;
+        } catch (TaskNotFoundException e) {
+            ui.showError(e);
+            return false;
+        } catch (NumberFormatException e) {
+            ui.showInvalidFormatError(index);
+            return false;
+        }
     }
 
 }

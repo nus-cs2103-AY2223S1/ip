@@ -1,5 +1,6 @@
 package duke.utils;
 
+import duke.exceptions.UnrecognisedDateException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -66,18 +67,22 @@ public class Storage {
             arr[i] = arr[i].trim();
         }
 
-        switch(arr[0]) {
-            case "[T]":
-                ret = new Todo(arr[2]);
-                break;
-            case "[D]":
-                ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
-                break;
-            case "[E]":
-                ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
-                break;
-            default:
-                return null;
+        try {
+            switch(arr[0]) {
+                case "[T]":
+                    ret = new Todo(arr[2]);
+                    break;
+                case "[D]":
+                    ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                case "[E]":
+                    ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
+                    break;
+                default:
+                    return null;
+            }
+        } catch (UnrecognisedDateException e) {
+            return null;
         }
 
         if ("1".equals(arr[1])) {

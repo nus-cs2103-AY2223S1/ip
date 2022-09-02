@@ -26,19 +26,19 @@ public class Ui {
     }
 
     public void showCommandUnknown() {
-        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        System.out.println("Oops! I'm sorry, but I don't know what that means :-(");
     }
 
     public void showAddTaskResponse(Task newTask, TaskList tasks) {
         String response = String.format(
-                "Got it. I've added this task:\n  %s\nNow you have %d duke.tasks in the list.",
+                "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
                 newTask, tasks.getSize());
         System.out.println(response);
     }
 
     public void showDeleteTaskResponse(Task deletedTask, TaskList tasks) {
         String response = String.format(
-                "Noted. I've removed this task:\n  %s\nNow you have %d duke.tasks in the list",
+                "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
                 deletedTask, tasks.getSize()
         );
         System.out.println(response);
@@ -59,8 +59,16 @@ public class Ui {
     }
 
     public void showTasks(TaskList tasks) {
-        System.out.println("Here are the duke.tasks in your list:");
+        System.out.println("Here are the tasks in your list:");
         System.out.print(tasks.toString());
+    }
+
+    public void showError(Exception e) {
+        System.out.printf("Oops! %s%n", e.getMessage());
+    }
+
+    public void showInvalidFormatError(String s) {
+        System.out.printf("Oops! I could not recognise this format: %s%n", s);
     }
 
 }

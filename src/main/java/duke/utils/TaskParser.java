@@ -1,14 +1,15 @@
 package duke.utils;
 
 import duke.exceptions.EmptyTaskDescException;
-import duke.exceptions.EmptyTaskTimeException;
-import duke.exceptions.NoSuchTaskException;
+import duke.exceptions.EmptyTaskDateException;
+import duke.exceptions.NoSuchTaskTypeException;
+import duke.exceptions.UnrecognisedDateException;
 import duke.tasks.*;
 
 public class TaskParser {
 
     public static Task stringToTask(TaskType type, String s)
-            throws EmptyTaskTimeException, EmptyTaskDescException, NoSuchTaskException {
+            throws EmptyTaskDateException, EmptyTaskDescException, NoSuchTaskTypeException, UnrecognisedDateException {
         if ("".equals(s)) {
             throw new EmptyTaskDescException();
         }
@@ -21,17 +22,17 @@ public class TaskParser {
             case EVENT:
                 taskInfo = s.split("/at");
                 if (taskInfo.length < 2) {
-                    throw new EmptyTaskTimeException();
+                    throw new EmptyTaskDateException();
                 }
                 return new Event(taskInfo[0].trim(), DateParser.stringToDate(taskInfo[1].trim()));
             case DEADLINE:
                 taskInfo = s.split("/by");
                 if (taskInfo.length < 2) {
-                    throw new EmptyTaskTimeException();
+                    throw new EmptyTaskDateException();
                 }
                 return new Deadline(taskInfo[0].trim(), DateParser.stringToDate(taskInfo[1].trim()));
             default:
-                throw new NoSuchTaskException(type.name());
+                throw new NoSuchTaskTypeException(type.name());
         }
     }
 

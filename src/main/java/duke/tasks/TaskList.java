@@ -1,5 +1,7 @@
 package duke.tasks;
 
+import duke.exceptions.TaskNotFoundException;
+
 import java.util.List;
 
 public class TaskList {
@@ -22,25 +24,25 @@ public class TaskList {
         taskList.add(newTask);
     }
 
-    public Task deleteTask(int index) {
+    public Task deleteTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= taskList.size()) {
-            return null;
+            throw new TaskNotFoundException();
         }
         return taskList.remove(index);
     }
 
-    public Task markTask(int index) {
+    public Task markTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= taskList.size()) {
-            return null;
+            throw new TaskNotFoundException();
         }
         Task taskToMark = taskList.get(index);
         taskToMark.mark();
         return taskToMark;
     }
 
-    public Task unmarkTask(int index) {
+    public Task unmarkTask(int index) throws TaskNotFoundException {
         if (index < 0 || index >= taskList.size()) {
-            return null;
+            throw new TaskNotFoundException();
         }
         Task taskToUnmark = taskList.get(index);
         taskToUnmark.unmark();

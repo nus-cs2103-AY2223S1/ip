@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.exceptions.TaskNotFoundException;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
@@ -10,9 +11,9 @@ public class DeleteTaskCommand extends Command {
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
-    private int index;
+    private String index;
 
-    public DeleteTaskCommand(Storage storage, Ui ui, TaskList tasks, int index) {
+    public DeleteTaskCommand(Storage storage, Ui ui, TaskList tasks, String index) {
         this.storage = storage;
         this.ui = ui;
         this.tasks = tasks;
@@ -21,9 +22,17 @@ public class DeleteTaskCommand extends Command {
 
     @Override
     public boolean execute() {
-        Task deletedTask = tasks.deleteTask(index);
-        ui.showDeleteTaskResponse(deletedTask, tasks);
-        storage.saveToFile(tasks.getList());
-        return true;
+        try {
+            Task deletedTask = tasks.deleteTask(Integer.parseInt(index) - 1);
+            ui.showDeleteTaskResponse(deletedTask, tasks);
+            storage.saveToFile(tasks.getList());
+            return true;
+        } catch (TaskNotFoundException e) {
+            ui.showError(e);
+            return false;
+        } catch (NumberFormatException e) {
+            ui.showInvalidFormatError(index);
+            return false;
+        }
     }
 }

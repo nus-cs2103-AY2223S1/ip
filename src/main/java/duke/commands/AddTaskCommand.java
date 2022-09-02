@@ -1,8 +1,9 @@
 package duke.commands;
 
 import duke.exceptions.EmptyTaskDescException;
-import duke.exceptions.EmptyTaskTimeException;
-import duke.exceptions.NoSuchTaskException;
+import duke.exceptions.EmptyTaskDateException;
+import duke.exceptions.NoSuchTaskTypeException;
+import duke.exceptions.UnrecognisedDateException;
 import duke.tasks.*;
 import duke.ui.Ui;
 import duke.utils.Storage;
@@ -33,8 +34,9 @@ public class AddTaskCommand extends Command {
             tasks.addTask(newTask);
             ui.showAddTaskResponse(newTask, tasks);
             storage.saveToFile(tasks.getList());
-        } catch (EmptyTaskDescException | EmptyTaskTimeException | NoSuchTaskException e) {
-            System.out.println("Error: " + e.getMessage());
+        } catch (EmptyTaskDescException | EmptyTaskDateException | NoSuchTaskTypeException |
+                 UnrecognisedDateException e) {
+            ui.showError(e);
             return false;
         }
         return true;

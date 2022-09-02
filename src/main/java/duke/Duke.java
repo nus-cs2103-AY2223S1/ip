@@ -40,9 +40,13 @@ public class Duke {
 
     public void loop(Scanner sc) {
         while (sc.hasNext()) {
-            String input = sc.nextLine().trim();
-            Command cmd = inputParser.parse(input, taskList, storage, ui);
-            cmd.execute();
+            try {
+                String input = sc.nextLine().trim();
+                Command cmd = inputParser.parse(input, taskList, storage, ui);
+                cmd.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
