@@ -30,9 +30,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/media/Damith.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/media/Botto.png"));
 
-    // initialize plugins
+    // Plugin instance fields
 
-    Todos todos = new Todos();
+    private Todos todos;
 
     @FXML
     public void initialize() {
