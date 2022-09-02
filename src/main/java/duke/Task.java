@@ -41,15 +41,14 @@ public class Task {
      * @param tasks
      * @param str
      */
-    public static void makeTask(TaskList tasks, String str) throws DukeException {
+    public static String makeTask(TaskList tasks, String str) throws DukeException {
         if(str.split(" ", 2)[0].equals("todo")) {
 
             if (str.equals("todo")) {
                 throw new DukeException("The description of a todo cannot be empty.");
-            } else {
-                ToDo input = new ToDo(str);
-                Ui.addedTask(tasks, input);
             }
+                ToDo input = new ToDo(str);
+                return Ui.addedTask(tasks, input);
         }
         else if(str.split(" ", 2)[0].equals("deadline")) {
             int index = str.indexOf("/");
@@ -57,7 +56,7 @@ public class Task {
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Deadline input = new Deadline(taskNameOnly);
             input.date = new FormatDate(str.substring(index + 4));
-            Ui.addedTask(tasks, input);
+            return Ui.addedTask(tasks, input);
         }
         else if(str.split(" ", 2)[0].equals("event")) {
             int index = str.indexOf("/");
@@ -65,8 +64,9 @@ public class Task {
             String taskNameOnly = taskNameWithType.split(" ",2)[1];
             Event input = new Event(taskNameOnly);
             input.day = new FormatDate(str.substring(index + 4));
-            Ui.addedTask(tasks, input);
+            return Ui.addedTask(tasks, input);
         }
+        throw new DukeException("Command not recognised.");
     }
 
     /**
@@ -74,13 +74,13 @@ public class Task {
      * @param str the "find book" command to be passed in
      * @param tasks the taskList which we are searching from
      */
-    public static void find(String str, TaskList tasks) {
+    public static String find(String str, TaskList tasks) {
         TaskList result = new TaskList();
         for (Task task : tasks) {
             if (task.toString().contains(str.substring(5))) {
                 result.add(task);
             }
         }
-        Ui.finderPrinter(result);
+        return Ui.finderPrinter(result);
     }
 }

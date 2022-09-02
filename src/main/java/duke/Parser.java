@@ -11,49 +11,48 @@ public class Parser {
      * @return boolean
      * @throws DukeException
      */
-    public static boolean isParse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public static String parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
 
             try {
                 if (str.equals("bye")) {
-                    ui.bye();
-                    return true;
+                    return ui.bye();
+
                 }
                 else if (str.equals("list")) {
-                    ui.printList(taskList);
+                    return ui.printList(taskList);
                 }
                 else if (str.split(" ")[0].equals("mark")) {
-                    taskList.markTask(str, taskList);
                     storage.writeToFile(taskList);
+                    return taskList.markTask(str, taskList);
                 }
                 else if (str.split(" ")[0].equals("unmark")) {
-                    taskList.unmarkTask(str, taskList);
                     storage.writeToFile(taskList);
+                    return taskList.unmarkTask(str, taskList);
                 }
                 else if(str.split(" ", 2)[0].equals("todo")) {
-                    Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
+                    return Task.makeTask(taskList, str);
                 }
                 else if(str.split(" ", 2)[0].equals("deadline")) {
-                    Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
+                    return Task.makeTask(taskList, str);
                 }
                 else if(str.split(" ", 2)[0].equals("event")) {
-                    Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
+                    return Task.makeTask(taskList, str);
                 }
                 else if (str.split(" ")[0].equals("delete")) {
-                    taskList.deleteTask(str, taskList);
                     storage.writeToFile(taskList);
+                    return taskList.deleteTask(str, taskList);
                 }
                 else if (str.split(" ")[0].equals("find")) {
-                    Task.find(str, taskList);
+                    return Task.find(str, taskList);
                 }
                 else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException | IOException d) {
-                System.out.println(d.getMessage());
+                return d.getMessage();
             }
-            return false;
     }
 }
