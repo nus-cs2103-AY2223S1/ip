@@ -1,4 +1,3 @@
-import command.Command;
 import utils.Parser;
 
 public class Ui {
@@ -9,11 +8,17 @@ public class Ui {
     public static String Name = "Duke";
     public static String Line = "──────────────────────────────────────────";
 
-    public Ui() {
+    private boolean open = true;
 
+    public Ui() {
+    }
+
+    public boolean isOpen(){
+        return this.open;
     }
 
     public void start() {
+        this.open = true;
         System.out.println(Ui.Logo);
         this.printWithHorizontalRule("Hello! I'm " + Ui.Name + "\n" + "What can I do for you?");
     }

@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,12 +56,10 @@ public class Parser {
     public static ParsedInputArguments getInputArguments(String command) {
         ParsedInputArguments parsedArguments = new ParsedInputArguments();
 
-        parsedArguments.keyword = command.split(" ", 2)[0];
+        parsedArguments.keyword = command.split(" ", 2)[0].toLowerCase(Locale.ROOT);
         if (command.split(" ").length < 2) {
             return parsedArguments;
         }
-
-//        command = command.split(" ", 2)[1];
 
         command = command.split(" ", 2)[1];
         parsedArguments.args = command.split("/", 2)[0].strip();

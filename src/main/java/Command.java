@@ -1,53 +1,41 @@
-package command;
-
 import task_classes.Deadline;
 import task_classes.Event;
 import task_classes.Task;
 import task_classes.Todo;
 import utils.Parser;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 
 public abstract class Command {
 
-    public abstract String exec(ArrayList<Task> taskList);
+    public abstract String exec(TaskList taskList);
 
     public static Command getCommand(Parser.ParsedInputArguments inputArgs) {
         switch (inputArgs.keyword) {
-            case "Bye":
             case "bye":
                 return new ExitCommand();
 
             case "list":
-            case "List":
                 return new ListCommand();
 
             case "mark":
-            case "Mark":
                 return new MarkCommand(Integer.parseInt(inputArgs.args));
 
             case "unmark":
-            case "Unmark":
                 return new UnmarkCommand(Integer.parseInt(inputArgs.args));
 
             case "delete":
-            case "Delete":
             case "remove":
-            case "Remove":
                 return new DeleteTaskCommand(Integer.parseInt(inputArgs.args));
 
             case "todo":
-            case "Todo":
                 return new AddTodoCommand(new Todo(inputArgs.args));
 
             case "deadline":
-            case "Deadline":
                 return new AddDeadlineCommand(new Deadline(inputArgs.args, inputArgs.getFlag("/by")));
 
             case "event":
-            case "Event":
                 return new AddEventCommand(new Event(inputArgs.args, inputArgs.getFlag("/at")));
 
             default:
@@ -60,7 +48,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
 //            TODO: Do something to close the app here
             return "Bye. Hope to see you again!";
         }
@@ -72,14 +60,16 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             String returnMsg = "";
             int index = 1;
 
-            for (Task t : taskList) {
+            for (Iterator<Task> it = taskList.getIterator(); it.hasNext(); ) {
+                Task t = it.next();
                 returnMsg += index + ". " + t + "\n";
                 index++;
             }
+
             return returnMsg;
         }
     }
@@ -94,7 +84,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
 
             Task task = taskList.get(index);
             task.setDone();
@@ -113,7 +103,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             Task task = taskList.get(this.index);
             task.setNotDone();
 
@@ -131,7 +121,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             taskList.add(this.todo);
             return "Got it. I've added this task: \n" +
                     this.todo.toString() + "\n" +
@@ -149,7 +139,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
 
             taskList.add(this.deadline);
             return "Got it. I've added this task: \n" +
@@ -168,7 +158,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             taskList.add(this.event);
 
             return "Got it. I've added this task: \n" +
@@ -186,7 +176,7 @@ public abstract class Command {
             this.index = index - 1;
         }
 
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             Task task = taskList.get(index);
             taskList.remove(index);
             return "Noted. I've removed this task: \n" +
@@ -200,7 +190,7 @@ public abstract class Command {
         }
 
         @Override
-        public String exec(ArrayList<Task> taskList) {
+        public String exec(TaskList taskList) {
             return "Unrecognized command";
         }
     }
