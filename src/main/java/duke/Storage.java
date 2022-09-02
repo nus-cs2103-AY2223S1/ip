@@ -13,14 +13,14 @@ import duke.task.Task;
  * Represents a storage class for I/O operations.
  */
 public class Storage {
-    private final String filePath;
+    private final String FILEPATH;
 
     /**
      * Returns a storage instance.
      * @param filePath Path to the file duke.txt.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
+        this.FILEPATH = filePath;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Storage {
      */
     public Scanner load() {
         try {
-            File f = new File(filePath);
+            File f = new File(FILEPATH);
             Scanner sc = new Scanner(f);
             return sc;
         } catch (FileNotFoundException fileError) {
@@ -44,7 +44,7 @@ public class Storage {
      */
     public String save(Iterator<Task> it) {
         try {
-            FileWriter fw = new FileWriter(filePath, false);
+            FileWriter fw = new FileWriter(FILEPATH, false);
             while (it.hasNext()) {
                 fw.write(it.next().toStringSaveFormat());
             }

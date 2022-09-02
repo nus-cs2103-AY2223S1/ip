@@ -7,7 +7,7 @@ import duke.TaskList;
  * Represents a command to find tasks in the list.
  */
 public class FindCommand implements ICommand {
-    private final String searchStr;
+    private String searchStr;
 
     /**
      * Returns an instance of FindCommand.

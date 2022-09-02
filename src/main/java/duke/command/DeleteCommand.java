@@ -8,7 +8,7 @@ import duke.TaskList;
  * Represents a command to delete task from the list.
  */
 public class DeleteCommand implements ICommand {
-    private final int index;
+    private int index;
 
     /**
      * Returns an instance of DeleteCommand.

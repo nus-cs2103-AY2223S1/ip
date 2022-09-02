@@ -10,9 +10,9 @@ import duke.task.ToDo;
  * Represents a command to add new task to the list.
  */
 public class AddCommand implements ICommand {
-    private final CommandType type;
-    private final String description;
-    private final String dateString;
+    private CommandType type;
+    private String description;
+    private String dateString;
 
     /**
      * Returns an instance of AddCommand for todo type.

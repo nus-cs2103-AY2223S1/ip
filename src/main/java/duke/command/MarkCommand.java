@@ -8,7 +8,7 @@ import duke.TaskList;
  * Represents a command to mark task as complete in the list.
  */
 public class MarkCommand implements ICommand {
-    private final int index;
+    private int index;
 
     /**
      * Returns an instance of MarkCommand.

@@ -6,8 +6,8 @@ import duke.command.ICommand;
  * Represents the main class of the Duke program.
  */
 public class DukeApplication {
-    private final Storage storage;
-    private final TaskList taskList;
+    private Storage storage;
+    private TaskList taskList;
 
     /**
      * Returns an instance of Duke.
