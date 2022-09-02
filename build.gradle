@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+run {
+    enableAssertions = true
+}
+
 checkstyle {
     toolVersion = '10.2'
 }
