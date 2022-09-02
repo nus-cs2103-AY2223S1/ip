@@ -1,7 +1,6 @@
 package duke;
 
 import duke.command.Command;
-import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 
@@ -28,14 +27,13 @@ public class Duke {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    public String getResponse(String input) throws DukeException {
+    public String getResponse(String input) {
         boolean isExit = false;
 
         while (!isExit) {
             try {
                 Command c = Parser.parse(input);
                 String output = c.execute(this.storage.loadSavedData(), this.ui, this.storage);
-                isExit = c.isExit(c);
                 return output;
             } catch (Exception e) {
                 return e.getMessage();

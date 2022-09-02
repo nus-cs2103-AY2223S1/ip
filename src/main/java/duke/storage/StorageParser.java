@@ -38,77 +38,92 @@ public class StorageParser {
 
         switch (identifier) {
         case "T":
-            if (segments[1].contains("1")) {
-                marked = true;
-            }
-
-            for (int i = 0; i < segments.length; i++) {
-                if (i >= 2) {
-                    sb.append(segments[i]);
-                }
-            }
-
-            formattedTask = new ToDo(sb.toString());
-
-            if (marked) {
-                formattedTask.markAsDone(true);
-            }
-
-            return formattedTask;
+            return formatToDo(segments);
 
         case "D":
-            if (segments[1].contains("1")) {
-                marked = true;
-            }
-
-            String deadlineDesc = "";
-            StringBuilder deadlineBy = new StringBuilder();
-
-            for (int i = 0; i < segments.length; i++) {
-                if (i == 2) {
-                    deadlineDesc = segments[i];
-                }
-                if (i >= 3) {
-                    deadlineBy.append(segments[i]);
-                }
-            }
-
-            LocalDateTime doneBy = DateHandler.parseDateString(deadlineBy.toString());
-            formattedTask = new Deadline(deadlineDesc, doneBy);
-
-            if (marked) {
-                formattedTask.markAsDone(true);
-            }
-
-            return formattedTask;
-
+            return formatDeadline(segments);
         case "E":
-            if (segments[1].contains("1")) {
-                marked = true;
-            }
-
-            String eventDesc = "";
-            StringBuilder eventBy = new StringBuilder();
-
-            for (int i = 0; i < segments.length; i++) {
-                if (i == 2) {
-                    eventDesc = segments[i];
-                }
-                if (i >= 3) {
-                    eventBy.append(segments[i]);
-                }
-            }
-
-            LocalDateTime eventAt = DateHandler.parseDateString(eventBy.toString());
-            formattedTask = new Event(eventDesc, eventAt);
-
-            if (marked) {
-                formattedTask.markAsDone(true);
-            }
-
-            return formattedTask;
+            return formatEvent(segments);
         default:
             throw new DukeException("Unable to parse this line");
         }
+    }
+
+    private static Task formatToDo(String[] segments) {
+        boolean isMarked = false;
+        StringBuilder sb = new StringBuilder();
+        if (segments[1].contains("1")) {
+            isMarked = true;
+        }
+
+        for (int i = 0; i < segments.length; i++) {
+            if (i >= 2) {
+                sb.append(segments[i]);
+            }
+        }
+
+        Task formattedTask = new ToDo(sb.toString());
+
+        if (isMarked) {
+            formattedTask.markAsDone(true);
+        }
+
+        return formattedTask;
+    }
+
+    private static Task formatDeadline(String[] segments) {
+        boolean isMarked = false;
+        if (segments[1].contains("1")) {
+            isMarked = true;
+        }
+
+        String deadlineDesc = "";
+        StringBuilder deadlineBy = new StringBuilder();
+
+        for (int i = 0; i < segments.length; i++) {
+            if (i == 2) {
+                deadlineDesc = segments[i];
+            }
+            if (i >= 3) {
+                deadlineBy.append(segments[i]);
+            }
+        }
+
+        LocalDateTime doneBy = DateHandler.parseDateString(deadlineBy.toString());
+        Task formattedTask = new Deadline(deadlineDesc, doneBy);
+
+        if (isMarked) {
+            formattedTask.markAsDone(true);
+        }
+
+        return formattedTask;
+    }
+
+    private static Task formatEvent(String[] segments) {
+        boolean isMarked = false;
+        if (segments[1].contains("1")) {
+            isMarked = true;
+        }
+
+        String eventDesc = "";
+        StringBuilder eventBy = new StringBuilder();
+
+        for (int i = 0; i < segments.length; i++) {
+            if (i == 2) {
+                eventDesc = segments[i];
+            }
+            if (i >= 3) {
+                eventBy.append(segments[i]);
+            }
+        }
+
+        LocalDateTime eventAt = DateHandler.parseDateString(eventBy.toString());
+        Task formattedTask = new Event(eventDesc, eventAt);
+
+        if (isMarked) {
+            formattedTask.markAsDone(true);
+        }
+
+        return formattedTask;
     }
 }
