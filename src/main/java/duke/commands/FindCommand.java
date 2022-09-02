@@ -35,6 +35,7 @@ public class FindCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
         ArrayList<String> foundTasks = new ArrayList<>();
 
         for (int i = 0; i < tasks.size(); i++) {

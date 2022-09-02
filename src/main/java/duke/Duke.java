@@ -41,6 +41,7 @@ public class Duke {
             tasks = new TaskList();
         }
         this.tasks = tasks;
+        assert this.tasks != null : "Tasks should not be null after being loaded.";
         commandsHistoryPointer = 0;
         commandsHistory = new ArrayList<>();
     }
@@ -90,14 +91,15 @@ public class Duke {
 
         try {
             Command command = parser.parseCommand(input);
+            assert command != null : "Command returned from parseCommand should never be null.";
             // Populate command with tasks.
             command.setData(tasks);
             CommandResult result = command.execute();
+            assert result != null : "Result from the execution of a command should never be null.";
             if (result.shouldExit()) {
                 Platform.exit();
             }
             if (result.shouldUpdateFile()) {
-                // Save to storage.
                 storage.save(tasks);
             }
             return result.getUserMessage();

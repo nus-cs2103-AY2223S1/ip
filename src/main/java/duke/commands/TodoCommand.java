@@ -31,6 +31,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
         tasks.addTask(todo);
         int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, todo, numberOfTasks);

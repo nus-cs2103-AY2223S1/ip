@@ -53,6 +53,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
         tasks.addTask(deadline);
         int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, deadline, numberOfTasks);
