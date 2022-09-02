@@ -4,6 +4,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/** Represents the command to list out Tasks in TaskList that inherits from Command. */
 public class ListCommand extends Command {
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {

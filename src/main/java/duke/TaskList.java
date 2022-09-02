@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /** Represents a list of Tasks objects */
 public class TaskList {
@@ -21,7 +21,8 @@ public class TaskList {
 
     /**
      * Represents a TaskList object.
-     * Initialises taskList ArrayList with the provided taskList and Initialises ui to print responses when task methods are executed
+     * Initialises taskList ArrayList with the provided taskList and Initialises ui to print responses
+     * when task methods are executed
      *
      * @param taskList An existing taskList ArrayList to initialise TaskList with.
      */
@@ -73,7 +74,7 @@ public class TaskList {
      * @param index Index of the Task object to be deleted.
      * @throws DukeException If provided index is out of range.
      */
-    public Task deleteTask(int index) throws DukeException{
+    public Task deleteTask(int index) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
@@ -89,7 +90,7 @@ public class TaskList {
      * @param isDone True to mark task as done and false to mark task as not done
      * @throws DukeException If provided index is out of range.
      */
-    public Task updateTaskStatus(int index, boolean isMark) throws DukeException {
+    public Task updateTaskStatus(int index, boolean isDone) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
             throw new DukeException("☹ OOPS!!! The task index is out of range");
         }
@@ -107,9 +108,9 @@ public class TaskList {
      */
     public String printTaskList() {
         String message = "";
-        for (int i = 0; i < taskList.size(); i ++) {
+        for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
-            message += (i+ 1) + "." + task.toString() + "\n";
+            message += (i + 1) + "." + task.toString() + "\n";
         }
         return message;
     }

@@ -1,16 +1,16 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /** Storage object used for file operations such as read and write of TaskList to text file. */
 public class Storage {
@@ -51,19 +51,19 @@ public class Storage {
 
                         Task task;
                         switch (splitString[0]) {
-                            case "T":
-                                task = new Todo(splitString[2]);
-                                break;
-                            case "D": {
-                                task = new Deadline(splitString[2], splitString[3]);
-                                break;
-                            }
-                            case "E": {
-                                task = new Event(splitString[2], splitString[3]);
-                                break;
-                            }
-                            default:
-                                throw new DukeException("☹ OOPS!!! Invalid task type found in file!");
+                        case "T":
+                            task = new Todo(splitString[2]);
+                            break;
+                        case "D": {
+                            task = new Deadline(splitString[2], splitString[3]);
+                            break;
+                        }
+                        case "E": {
+                            task = new Event(splitString[2], splitString[3]);
+                            break;
+                        }
+                        default:
+                            throw new DukeException("☹ OOPS!!! Invalid task type found in file!");
                         }
 
                         if ((splitString[1] == "1")) {

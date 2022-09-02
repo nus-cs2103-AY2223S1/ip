@@ -10,7 +10,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-
+/** Represents the command to add task that inherits from Command. */
 public class AddCommand extends Command {
     private final String userInput;
 

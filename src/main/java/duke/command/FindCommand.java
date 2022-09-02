@@ -6,6 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/** Represents the command to find tasks with given keyword that inherits from Command. */
 public class FindCommand extends Command {
     private final String userInput;
 
