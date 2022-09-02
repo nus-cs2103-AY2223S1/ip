@@ -8,6 +8,9 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static String countTasks() {
+        return "\nYou have " + tasks.size() + " tasks in the list now";
+    }
 
     /**
      * Adds a task without deadline to the list.
@@ -18,8 +21,7 @@ public class TaskList {
     public String addTodo(String desc) {
         Todo t = new Todo(desc);
         tasks.add(t);
-        return "Successfully added: " + t + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return "Successfully added: " + t + countTasks();
     }
 
     /**
@@ -32,8 +34,7 @@ public class TaskList {
     public String addDeadline(String desc, LocalDate deadline) {
         Deadline d = new Deadline(desc, deadline);
         tasks.add(d);
-        return "Successfully added: " + deadline + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return "Successfully added: " + deadline + countTasks();
     }
 
     /**
@@ -46,8 +47,7 @@ public class TaskList {
     public String addDeadline(String desc, String deadline) {
         Deadline d = new Deadline(desc, deadline);
         tasks.add(d);
-        return "Successfully added: " + deadline + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return "Successfully added: " + deadline + countTasks();
     }
 
     /**
@@ -60,8 +60,7 @@ public class TaskList {
     public String addEvent(String desc, LocalDate time) {
         Event event = new Event(desc, time);
         tasks.add(event);
-        return "Successfully added: " + event + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return "Successfully added: " + event + countTasks();
     }
 
     /**
@@ -74,8 +73,7 @@ public class TaskList {
     public String addEvent(String desc, String time) {
         Event event = new Event(desc, time);
         tasks.add(event);
-        return "Successfully added: " + event + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return "Successfully added: " + event + countTasks();
     }
 
     /**
@@ -88,8 +86,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             sb.append(i + 1 + ". " + tasks.get(i) + "\n");
         }
-        return sb + "\nYou have " + this.tasks.size()
-            + " tasks in the list now";
+        return sb + countTasks();
     }
 
     /**
@@ -101,8 +98,7 @@ public class TaskList {
     public String deleteTask(int i) {
         Task t = tasks.get(i);
         tasks.remove(t);
-        return "Successfully deleted: " + t + "\nYou have " + this.tasks.size()
-                + " tasks in the list now";
+        return "Successfully deleted: " + t + countTasks();
     }
 
     /**

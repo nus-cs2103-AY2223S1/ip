@@ -185,11 +185,11 @@ public class Duke extends Application {
     /**
      * Parses a message written to the Duke bot.
      *
-     * @param s Message to be parsed.
+     * @param query Message to be parsed.
      * @return Associated message from Duke.
      */
-    public String parse(String s) {
-        return this.parser.parse(this, s, this.hasFinishedLoading());
+    public String parse(String query) {
+        return this.parser.parse(this, query, this.hasFinishedLoading());
     }
 
     /**
