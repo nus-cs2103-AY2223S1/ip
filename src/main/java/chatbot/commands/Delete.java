@@ -1,6 +1,7 @@
 package chatbot.commands;
 
 import chatbot.exceptions.DukeException;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -23,6 +24,16 @@ public class Delete implements Command {
             ui.delete(deleted, todos.getNumberOfTasks());
         } catch (DukeException e) {
             ui.reprimand(e);
+        }
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        try {
+            Task deleted = todos.deleteTask(this.target);
+            return resp.delete(deleted, todos.getNumberOfTasks());
+        } catch (DukeException e) {
+            return resp.reprimand(e);
         }
     }
 

@@ -11,11 +11,6 @@ import java.util.Scanner;
  * whether it is query or action results or conversation elements.
  */
 public class UI {
-//    private static final String LOGO = " ____        _        \n"
-//            + "|  _ \\ _   _| | _____ \n"
-//            + "| | | | | | | |/ / _ \\\n"
-//            + "| |_| | |_| |   <  __/\n"
-//            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String EMOJI = "<_>";
     private final Scanner reader;
 

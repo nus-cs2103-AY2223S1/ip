@@ -1,5 +1,6 @@
 package chatbot.commands;
 
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -19,6 +20,12 @@ public class AddTodo implements Command {
     public void execute(TaskList todos, UI ui) {
         Task todo = todos.addTodo(this.taskName);
         ui.add(todo, todos.getNumberOfTasks());
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        Task todo = todos.addTodo(this.taskName);
+        return resp.add(todo, todos.getNumberOfTasks());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package chatbot.commands;
 
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
@@ -23,6 +24,12 @@ public class AddEvent implements Command {
     public void execute(TaskList todos, UI ui) {
         Task event = todos.addEvent(this.taskName, this.date);
         ui.add(event, todos.getNumberOfTasks());
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        Task event = todos.addEvent(this.taskName, this.date);
+        return resp.add(event, todos.getNumberOfTasks());
     }
 
     @Override
