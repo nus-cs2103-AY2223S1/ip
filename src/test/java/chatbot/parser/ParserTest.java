@@ -1,12 +1,13 @@
 package chatbot.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import chatbot.exceptions.DukeException;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.Event;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
     @Test
@@ -21,7 +22,7 @@ public class ParserTest {
             Parser.parseTargetIndex("I hate CS");
             fail();
         } catch (DukeException e) {
-           assertEquals(DukeException.TASK_INDEX_MISSING, e);
+            assertEquals(DukeException.TASK_INDEX_MISSING, e);
         }
     }
 

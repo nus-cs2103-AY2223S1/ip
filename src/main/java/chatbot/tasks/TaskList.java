@@ -1,9 +1,11 @@
 package chatbot.tasks;
 
-import chatbot.exceptions.DukeException;
-
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import chatbot.exceptions.DukeException;
 
 /**
  * The class contains two fields. The first "todos" is a list containing

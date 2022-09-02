@@ -10,8 +10,14 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     public static final String TYPE = "deadline";
 
-    public LocalDate date;
+    private LocalDate date;
 
+    /**
+     * The constructor for a Deadline task.
+     *
+     * @param taskName Name of the Deadline task.
+     * @param date Date of the Deadline.
+     */
     public Deadline(String taskName, LocalDate date) {
         super(taskName);
         this.date = date;

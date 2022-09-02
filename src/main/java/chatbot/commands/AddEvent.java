@@ -1,19 +1,25 @@
 package chatbot.commands;
 
-import chatbot.ui.UI;
+import java.time.LocalDate;
+
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
-
-import java.time.LocalDate;
+import chatbot.ui.UI;
 
 /**
  * Represents the command to be executed by the chatbot which adds
  * an Event type task to the todo list.
  */
 public class AddEvent implements Command {
-    public String taskName;
-    public LocalDate date;
+    private String taskName;
+    private LocalDate date;
 
+    /**
+     * The constructor of the AddEvent command.
+     *
+     * @param taskName Name of the event
+     * @param date Date of the event.
+     */
     public AddEvent(String taskName, LocalDate date) {
         this.taskName = taskName;
         this.date = date;

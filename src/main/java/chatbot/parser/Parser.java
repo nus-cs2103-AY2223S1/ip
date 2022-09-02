@@ -1,14 +1,24 @@
 package chatbot.parser;
 
-import chatbot.commands.*;
-import chatbot.exceptions.DukeException;
-import chatbot.tasks.Deadline;
-import chatbot.tasks.Event;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import chatbot.commands.AddDeadline;
+import chatbot.commands.AddEvent;
+import chatbot.commands.AddTodo;
+import chatbot.commands.Command;
+import chatbot.commands.Delete;
+import chatbot.commands.Exit;
+import chatbot.commands.Find;
+import chatbot.commands.List;
+import chatbot.commands.ListOn;
+import chatbot.commands.Mark;
+import chatbot.commands.Unmark;
+import chatbot.exceptions.DukeException;
+import chatbot.tasks.Deadline;
+import chatbot.tasks.Event;
 
 /**
  * The class is responsible for parsing user input and determining the consequent action.
@@ -107,8 +117,7 @@ public class Parser {
      *
      * @param args The argument to be parsed.
      * @return The task name.
-     * @throws DukeException Raised if the argument does not contain
-     * a task name.
+     * @throws DukeException Raised if the argument does not contain a task name.
      */
     public static String parseTodo(String args) throws DukeException {
         String taskName = args.trim();
@@ -127,12 +136,12 @@ public class Parser {
      * @param args The argument to be parsed.
      * @return An array containing the name and date of the task.
      * @throws DukeException Raised if the argument does not contain
-     * a task name and a date.
+     *      a task name and a date.
      */
     public static String[] parseTimedTask(String type, String args) throws DukeException {
         Matcher matcher;
         if (type == Deadline.TYPE) {
-             matcher = DEADLINE_FORMAT.matcher(args);
+            matcher = DEADLINE_FORMAT.matcher(args);
         } else {
             matcher = EVENT_FORMAT.matcher(args);
         }
@@ -148,6 +157,14 @@ public class Parser {
         return new String[] {taskName, date};
     }
 
+    /**
+     * The method parses user input to determine the possible date the user
+     *      will attach to a list command.
+     *
+     * @param args The arguments to be parsed.
+     * @return The date that might be attached.
+     * @throws DukeException
+     */
     public static LocalDate parseList(String args) throws DukeException {
         String trimmed = args.trim();
         if (trimmed.isEmpty()) {
@@ -161,6 +178,13 @@ public class Parser {
         }
     }
 
+    /**
+     * The method parses user input to determine the keyword to use for the find command.
+     *
+     * @param args The arguments to be parsed.
+     * @return The keyword to be included in the find command.
+     * @throws DukeException
+     */
     public static String parseFindKeyword(String args) throws DukeException {
         String trimmed = args.trim();
         if (trimmed.isEmpty()) {

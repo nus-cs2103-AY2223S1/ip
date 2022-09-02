@@ -6,7 +6,7 @@ import chatbot.commands.Command;
 import chatbot.exceptions.DukeException;
 import chatbot.parser.Parser;
 import chatbot.storage.Storage;
-import chatbot.tasks.*;
+import chatbot.tasks.TaskList;
 import chatbot.ui.UI;
 
 /**
@@ -33,6 +33,12 @@ public class Duke {
         taskList = new TaskList();
     }
 
+    /**
+     * The entry point that starts the chat bot.
+     *
+     * @param args Arguments provided by the user when starting the chat bot. It should be empty.
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Duke bot = new Duke();
         bot.start();

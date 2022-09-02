@@ -1,8 +1,5 @@
 package chatbot.storage;
 
-import chatbot.exceptions.DukeException;
-import chatbot.tasks.*;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import chatbot.exceptions.DukeException;
+import chatbot.tasks.Task;
+import chatbot.tasks.TaskList;
 
 /**
  * The class is responsible for populating the chatbot with possible data

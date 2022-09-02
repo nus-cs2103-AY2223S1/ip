@@ -1,9 +1,9 @@
 package chatbot.commands;
 
 import chatbot.exceptions.DukeException;
-import chatbot.ui.UI;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
+import chatbot.ui.UI;
 
 /**
  * Represents the command to be executed by the chatbot which marks
