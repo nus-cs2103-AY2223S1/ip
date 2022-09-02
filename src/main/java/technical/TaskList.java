@@ -258,9 +258,13 @@ public class TaskList {
       Ui.reply(new String[]{"Ok, I'm deleting this",
           taskList.get(i).toString()});
       taskList.remove(i);
+      SaveFile.getFileData().remove(i);
+      SaveFile.saveFile();
     } catch (IndexOutOfBoundsException e) {
       Ui.reply(String.format("Invalid argument! (Please enter an integer"
           + " between 1 and %d)", taskList.size()));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
 

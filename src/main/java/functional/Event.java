@@ -61,8 +61,8 @@ public class Event extends Task {
   public SaveLine toData() {
     SaveLine ret = super.toData();
     ret.setInfoType(EVENT_INFOTYPE);
-    ret.addNameData(EVENT_START_TIME_LABEL, startTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
-    ret.addNameData(EVENT_END_TIME_LABEL, endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    ret.addKeyValue(EVENT_START_TIME_LABEL, startTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    ret.addKeyValue(EVENT_END_TIME_LABEL, endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
     return ret;
   }
 

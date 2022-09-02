@@ -55,7 +55,7 @@ public class Deadline extends Task {
   public SaveLine toData() {
     SaveLine ret = super.toData();
     ret.setInfoType(DEADLINE_INFOTYPE);
-    ret.addNameData(DEADLINE_DEADLINE_LABEL, deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
+    ret.addKeyValue(DEADLINE_DEADLINE_LABEL, deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
     return ret;
   }
 
