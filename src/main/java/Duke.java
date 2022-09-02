@@ -90,6 +90,7 @@ public class Duke {
                     breakLoop = true;
                     break;
 
+
                 case "help":
                     System.out.println("    Hi are you in need of help? These are the commands you can use Dattebayo:" +
                             "\n      todo <Task>: add a task you need to do" +
