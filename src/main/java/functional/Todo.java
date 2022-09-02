@@ -31,4 +31,13 @@ public class Todo extends Task {
         ret.setInfoType("todo");
         return ret;
     }
+
+    @Override
+    public boolean equals(Object rhs) {
+        if (rhs instanceof Todo) {
+            Todo rhsDeadline = (Todo) rhs;
+            return toData().equals(rhsDeadline.toData());
+        }
+        return false;
+    }
 }

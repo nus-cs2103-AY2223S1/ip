@@ -46,4 +46,13 @@ public class Event extends Task {
         ret.addNameData("endTime", endTime.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
         return ret;
     }
+
+    @Override
+    public boolean equals(Object rhs) {
+        if (rhs instanceof Event) {
+            Event rhsDeadline = (Event) rhs;
+            return toData().equals(rhsDeadline.toData());
+        }
+        return false;
+    }
 }

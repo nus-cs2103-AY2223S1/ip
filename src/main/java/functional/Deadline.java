@@ -40,4 +40,13 @@ public class Deadline extends Task {
         ret.addNameData("deadline", deadline.format(DateTimeFormatter.ofPattern("d MMM yyyy 'at' HH:mm:ss")));
         return ret;
     }
+
+    @Override
+    public boolean equals(Object rhs) {
+        if (rhs instanceof Deadline) {
+            Deadline rhsDeadline = (Deadline) rhs;
+            return toData().equals(rhsDeadline.toData());
+        }
+        return false;
+    }
 }
