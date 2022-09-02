@@ -42,7 +42,7 @@ public class AddDeadlineCommand extends AddTodoCommand {
     public String execute() throws DukeException {
         try {
             LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetimeFormat);
-            Deadline currentEvent = new Deadline(descrition, deadline);
+            Deadline currentEvent = new Deadline(description, deadline);
             tasks.addTask(currentEvent);
             return wrapWithoutLines(Messages.ADD_DEADLINE.toString(), currentEvent.toString());
         } catch (DateTimeParseException e) {
