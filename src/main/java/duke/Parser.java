@@ -42,91 +42,87 @@ public class Parser {
         }
     }
 
-    public String execute(String userCommand) {
+    public void execute(String userCommand) {
         switch (getCommandType(userCommand)) {
-        case EXIT:
-            return Ui.showGoodbyeMessage();
         case ADD:
-            return handleAddCommand(userCommand);
+            handleAddCommand(userCommand);
+            break;
         case REMOVE:
-            return handleRemoveCommand(userCommand);
+            handleRemoveCommand(userCommand);
+            break;
         case MARK_AS_DONE:
-            return handleMarkAsDoneCommand(userCommand);
+            handleMarkAsDoneCommand(userCommand);
+            break;
         case MARK_AS_UNDONE:
-            return handleMarkAsUndoneCommand(userCommand);
+            handleMarkAsUndoneCommand(userCommand);
+            break;
         case LIST:
-            return handleListCommand();
+            handleListCommand();
+            break;
         case SEARCH:
-            return handleSearchCommand(userCommand);
-        case NONSENSE:
-            return Ui.showInvalidCommandError();
-        default:
-            return Ui.showInvalidCommandError();
+            handleSearchCommand(userCommand);
+            break;
         }
     }
 
-    private String handleAddCommand(String userCommand) {
+    private void handleAddCommand(String userCommand) {
         if (userCommand.startsWith("event")) {
             // TODO: Ensure that the string contains a "@" and a time range is specified.
             String eventName = userCommand.substring(6).split("@ ")[0].strip();
             String eventTimeRange = userCommand.split("@ ")[1].strip();
             taskList.add(new Event(eventName, false, eventTimeRange));
-            return String.format("Duke: I have added the event %s.\n", eventName);
+            System.out.printf("Duke: I have added the event %s.\n", eventName);
         } else if (userCommand.startsWith("deadline")) {
             // TODO: Ensure that the string contains a "@" and a due date is specified.
             String deadlineName = userCommand.substring(9).split("@ ")[0].strip();
             String deadlineDueDate = userCommand.split("@ ")[1].strip();
             taskList.add(new Deadline(deadlineName, false, deadlineDueDate));
-            return String.format("Duke: I have added the deadline %s.\n", deadlineName);
+            System.out.printf("Duke: I have added the deadline %s.\n", deadlineName);
         } else { // a 'todo'
             String toDoName = userCommand.substring(5).strip();
             taskList.add(new ToDo(toDoName, false));
-            return String.format("Duke: I have added the to-do %s.\n", toDoName);
+            System.out.printf("Duke: I have added the to-do %s.\n", toDoName);
 
         }
     }
 
-    private String handleRemoveCommand(String userCommand) {
+    private void handleRemoveCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(7)) - 1;
-        String stringToReturn = String.format("Duke: I have removed the task %s.\n", taskList.get(index));
+        System.out.printf("Duke: I have removed the task %s.\n", taskList.get(index));
         taskList.remove(index);
-        return stringToReturn;
     }
 
-    private String handleMarkAsDoneCommand(String userCommand) {
+    private void handleMarkAsDoneCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(5)) - 1;
         taskList.get(index).setComplete(true);
-
-        return ("Task marked as complete.\n" + taskList.get(index).toString());
+        System.out.println("Task marked as complete.");
+        System.out.println(taskList.get(index).toString());
     }
 
-    private String handleMarkAsUndoneCommand(String userCommand) {
+    private void handleMarkAsUndoneCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(7)) - 1;
         taskList.get(index).setComplete(false);
-
-        return ("Task marked as not complete.\n" + taskList.get(index).toString());
+        System.out.println("Task marked as not complete.");
+        System.out.println(taskList.get(index).toString());
     }
 
-    private String handleListCommand() {
-        String stringToReturn = "Duke: Here are your tasks.";
+    private void handleListCommand() {
+        System.out.println("Duke: Here are your tasks.");
         for (int i = 0; i < taskList.size(); i++) {
-            stringToReturn = stringToReturn + (String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));
+            System.out.printf("%3d: %s\n", i + 1, taskList.get(i).toString());
         }
-        return stringToReturn;
     }
 
-    private String handleSearchCommand(String userCommand) {
+    private void handleSearchCommand(String userCommand) {
         String searchTerm = userCommand.substring(7).strip();
-
-        String stringToReturn = "Duke: Here are your tasks that match the search term '" + searchTerm + "'.";
+        System.out.println("Duke: Here are your tasks that match the search term '" + searchTerm + "'.");
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i).getName().contains(searchTerm)) {
-                stringToReturn = stringToReturn + String.format("\n%3d: %s", i + 1, taskList.get(i).toString());
+                System.out.printf("%3d: %s\n", i + 1, taskList.get(i).toString());
             }
         }
-        return stringToReturn;
     }
 }
