@@ -28,8 +28,7 @@ public class MainWindow extends AnchorPane implements Formatter {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private boolean isExit = false;
+
 
     private final Image userImage =
             new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(DUKE_AVATAR_PATH)));
@@ -66,16 +65,9 @@ public class MainWindow extends AnchorPane implements Formatter {
                 DialogBox.getDukeDialog(formatOutput(response.getMessage()), dukeImage)
         );
         userInput.clear();
-        isExit = response.isExit();
-    }
-
-    /**
-     * Public getter of isExit.
-     *
-     * @return Boolean indicating whether the program is about to terminate.
-     */
-    public boolean isExit() {
-        return isExit;
+        if (response.isExit()) {
+            close();
+        }
     }
 
     /**
@@ -87,5 +79,9 @@ public class MainWindow extends AnchorPane implements Formatter {
     @Override
     public String formatOutput(String input) {
         return TAB + input;
+    }
+
+    private void close() {
+        System.exit(0);
     }
 }
