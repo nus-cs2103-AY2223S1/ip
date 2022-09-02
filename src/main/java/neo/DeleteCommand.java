@@ -9,12 +9,26 @@ public class DeleteCommand extends Command {
 
     Task task;
 
+    /**
+     * Constructor of delete comand
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     */
     public DeleteCommand(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;
         this.stor = stor;
         this.arrayLL = arrayLL;
     }
 
+    /**
+     * delete task from array
+     *
+     * @param tempi user input string
+     * @throws NeoException
+     * @throws IOException
+     */
     @Override
     void complete(String tempi) throws NeoException, IOException {
         int tempii = Integer.valueOf(tempi);

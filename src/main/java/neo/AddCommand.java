@@ -7,6 +7,14 @@ public class AddCommand extends Command {
     private Storage stor;
     private int type;
 
+    /**
+     * AddCommand constructor
+     *
+     * @param ui ui
+     * @param stor instance of storage class
+     * @param arrayLL arraylist to stor tasks
+     * @param type integer to identify type of task
+     */
     public AddCommand(Ui ui, Storage stor, TaskList arrayLL, int type) {
         this.ui = ui;
         this.stor = stor;
@@ -14,6 +22,13 @@ public class AddCommand extends Command {
         this.type = type;
     }
 
+    /**
+     * Adds task to array depending on type of task
+     *
+     * @param tempi user input string
+     * @throws NeoException
+     * @throws IOException
+     */
     @Override
     void complete(String tempi) throws NeoException, IOException {
 
@@ -26,7 +41,7 @@ public class AddCommand extends Command {
             Deadline d = new Deadline(temp2, temp3);
             System.out.println("Added: " + d.toString());
             arrayLL.addTask(d);
-            stor.Storedata(d);
+            stor.storeData(d);
         }
         if (type ==1) {
             String arri[];
@@ -37,13 +52,13 @@ public class AddCommand extends Command {
             Event e = new Event(temp2, temp3);
             System.out.println("Added: " + e.toString());
             arrayLL.addTask(e);
-            stor.Storedata(e);
+            stor.storeData(e);
         }
         if (type ==2) {
             ToDo td = new ToDo(tempi);
             System.out.println("Added: " + td.toString());
             arrayLL.addTask(td);
-            stor.Storedata(td);
+            stor.storeData(td);
         }
     }
 }
