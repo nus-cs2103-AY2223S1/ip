@@ -5,17 +5,35 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * A parser which handles parsing of the user input.
+ */
 public class Parser {
     private boolean bye;
 
+    /**
+     * Constructor method for a Parser.
+     */
     public Parser() {
         this.bye = false;
     }
 
+    /**
+     * Tests whether the user has exited.
+     *
+     * @return true if the user has exited, false otherwise
+     */
     public boolean isBye() {
         return this.bye;
     }
 
+    /**
+     * Parses the user input.
+     *
+     * @param input input from the user
+     * @param tasks list of tasks of the user
+     * @throws DukeException if there is an error with the input
+     */
     public void parse(String input, TaskList tasks) throws DukeException {
         if (input.equals("bye")) {
             this.bye = true;

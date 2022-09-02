@@ -12,15 +12,31 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * A Storage handles loading tasks from a file and saving tasks to the file.
+ */
 public class Storage {
     private File directory;
     private File file;
 
+    /**
+     * Constructor method for a Storage.
+     *
+     * @param dirName name of the directory of the file
+     * @param fileName name of the file
+     */
     public Storage(String dirName, String fileName) {
         this.directory = new File(dirName);
         this.file = new File(dirName + "/" + fileName);
     }
 
+    /**
+     * Gets the list of tasks from the file.
+     *
+     * @return the list of tasks
+     * @throws FileNotFoundException if the attempt to open the file failed
+     * @throws DukeException if an invalid task is encountered in the file
+     */
     public ArrayList<Task> getTasksFromDisk() throws FileNotFoundException, DukeException {
         ArrayList<Task> list = new ArrayList<>();
         if (this.file.exists()) {
@@ -63,6 +79,12 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Saves the list of tasks to the file.
+     *
+     * @param list list of tasks
+     * @throws IOException if an I/O error occurs when saving tasks to the file
+     */
     public void saveTasks(ArrayList<Task> list) throws IOException {
         if (!this.directory.exists()) {
             this.directory.mkdir();
