@@ -2,19 +2,20 @@ package duke.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private static Pattern intPattern = Pattern.compile("\\d+");
+    private final static Pattern INT_PATTERN = Pattern.compile("\\d+");
 
     public static boolean IsInteger(String s) {
-        return intPattern.matcher(s).matches();
+        return INT_PATTERN.matcher(s).matches();
     }
 
-    private static Pattern flagPattern = Pattern.compile("/\\w+");
+    private static Pattern FLAG_PATTERN = Pattern.compile("/\\w+");
 
     public static class ParsedInputArguments {
         public String keyword = "";
@@ -69,7 +70,7 @@ public class Parser {
         }
 
         command = "/" + command.split("/", 2)[1];
-        Matcher flagMatches = flagPattern.matcher(command);
+        Matcher flagMatches = FLAG_PATTERN.matcher(command);
 
         while (flagMatches.find()) {
             String match = flagMatches.group();

@@ -1,9 +1,9 @@
 package duke.tasks;
 
 import org.json.JSONObject;
-import duke.parser.JSONParsable;
+import duke.parser.JsonParsable;
 
-public abstract class Task implements JSONParsable {
+public abstract class Task implements JsonParsable {
     protected String description;
     protected boolean isDone;
 
@@ -29,7 +29,7 @@ public abstract class Task implements JSONParsable {
         this.isDone = false;
     }
 
-    public abstract JSONObject toJSONObject();
+    public abstract JSONObject toJsonObject();
 
     public static Task fromJSONObject(JSONObject jsonObject) {
         switch (jsonObject.getString("type")) {

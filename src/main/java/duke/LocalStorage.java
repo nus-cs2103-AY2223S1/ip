@@ -1,8 +1,9 @@
 package duke;
 
+import duke.tasks.Task;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import duke.tasks.Task;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -41,7 +42,7 @@ public class LocalStorage {
         JSONArray saveData = new JSONArray();
         for (Iterator<Task> it = list.getIterator(); it.hasNext(); ) {
             Task obj = it.next();
-            saveData.put(obj.toJSONObject());
+            saveData.put(obj.toJsonObject());
         }
 
         try {

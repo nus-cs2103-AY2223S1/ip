@@ -19,7 +19,7 @@ public class Event extends Task {
     }
 
     @Override
-    public JSONObject toJSONObject() {
+    public JSONObject toJsonObject() {
         JSONObject object = new JSONObject();
         object.put("type", "Event");
         object.put("description", this.description);
