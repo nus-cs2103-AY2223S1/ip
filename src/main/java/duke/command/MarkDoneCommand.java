@@ -30,12 +30,10 @@ public class MarkDoneCommand extends Command {
      * @param taskList the list of tasks
      * @throws DukeException if there is an error marking the task as done
      */
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         Task t = taskList.getTask(index);
         t.markDone();
-        ui.line();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(t);
-        ui.line();
+        return "Duke says:\n" + ui.formatMessage("Nice, I've marked this task as done:\n"
+                + t);
     }
 }

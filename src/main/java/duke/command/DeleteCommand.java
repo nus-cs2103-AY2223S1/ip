@@ -32,12 +32,9 @@ public class DeleteCommand extends Command {
      * @param taskList the list of tasks
      * @throws DukeException if there is an error deleting the <code>Task</code> from the list of tasks.
      */
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         Task t = taskList.deleteTask(this.index);
-        ui.line();
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(t);
-        taskList.printArraySize();
-        ui.line();
+        return "Duke says:\n" + ui.formatMessage("Noted. I've removed this task:\n"
+                + t + "\n" + taskList.getArraySize());
     }
 }

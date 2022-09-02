@@ -37,18 +37,18 @@ public class OnDateCommand extends Command {
      * @param ui       the user interfaces that deals with user inputs
      * @param taskList the list of tasks
      */
-    public void handle(Storage storage, Ui ui, TaskList taskList) {
+    public String handle(Storage storage, Ui ui, TaskList taskList) {
         ArrayList<Task> list = taskList.getTaskList();
         List<Task> filteredList = list.stream().filter(task -> task.isHappeningOnDate(localDate))
                 .collect(Collectors.toList());
+        String output = "Duke says:\n" + "Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy"))
+                    + "\n";
         int i = 0;
-        ui.line();
-        System.out.println("Hey, these are what you need to do on this date: "
-                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
         for (Task t : filteredList) {
-            System.out.println(i + 1 + "." + t);
+            output += i + 1 + "." + t + "\n";
             i++;
         }
-        ui.line();
+        return output;
     }
 }

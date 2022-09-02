@@ -32,12 +32,9 @@ public class AddCommand extends Command {
      * @throws DukeException if an error occurs when adding the task to the list of tasks.
      */
     @Override
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         taskList.addTask(this.task);
-        ui.line();
-        System.out.println("Got it. I've added this task:");
-        System.out.println(this.task);
-        taskList.printArraySize();
-        ui.line();
+        return "Duke says:\n" + ui.formatMessage("Got it. I've added this task:\n"
+                + this.task + "\n" + taskList.getArraySize());
     }
 }

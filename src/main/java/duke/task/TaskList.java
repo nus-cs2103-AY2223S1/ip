@@ -108,9 +108,10 @@ public class TaskList {
     }
 
     /**
-     * Prints to the terminal the number of <code>Task</code> in the list of tasks, to the user.
+     * Returns a message which denotes the number of <code>Task</code> in the list of tasks, to the user.
+     * @return message which denotes number of Task in the list of tasks
      */
-    public void printArraySize() {
-        System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+    public String getArraySize() {
+        return "Now you have " + this.tasks.size() + " tasks in the list.";
     }
 }

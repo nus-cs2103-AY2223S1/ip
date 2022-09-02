@@ -21,18 +21,17 @@ public class ListCommand extends Command {
      * @throws DukeException if there is currently no tasks in the list of tasks.
      */
     @Override
-    public void handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
+    public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         int numOfTasks = taskList.getSize();
         if (numOfTasks == 0) {
             throw new DukeException("Unfortunately, you do not have any tasks at hand."
                     + " Try creating some first.");
         }
-        ui.line();
-        System.out.println("Here are the tasks in your list:");
+        String output = "Duke says:\n" + "Here are the tasks in your list\n";
         for (int i = 1; i <= numOfTasks; i++) {
             Task t = taskList.getTask(i);
-            System.out.println(i + "." + t);
+            output += i + "." + t + "\n";
         }
-        ui.line();
+        return output;
     }
 }

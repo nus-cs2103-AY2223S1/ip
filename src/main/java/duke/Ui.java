@@ -14,17 +14,13 @@ public class Ui {
     /**
      * The greeting from Duke that the user sees upon running a new instance of Duke
      */
-    public void greet() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        line();
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        line();
+    public String greet() {
+        String output = "";
+        output += "Hello! I'm Duke\n";
+        output += "What can I do for you?";
+        output += "You can add your todos, deadlines and events,\n";
+        output += "and i will keep track of them for you at no cost!";
+        return output;
     }
 
     /**
@@ -32,6 +28,14 @@ public class Ui {
      */
     public void line() {
         System.out.println("________________________________________");
+    }
+
+    /**
+     * The method that returns the message that user inputs.
+     * @return the message that user inputs
+     */
+    public String formatMessage(String msg) {
+        return msg;
     }
 
     /**
