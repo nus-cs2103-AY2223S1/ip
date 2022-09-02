@@ -11,16 +11,16 @@ public class Ui {
 
     }
 
-    public void showWelcomeMessage() {
-        System.out.println("Welcome to Duke!");
+    public static String showWelcomeMessage() {
+        return "Welcome to Duke!";
     }
 
-    public void showGoodbyeMessage() {
-        System.out.println("Goodbye!");
+    public static String showGoodbyeMessage() {
+        return "Goodbye!";
     }
 
-    public void showInvalidCommandError() {
-        System.out.println("Invalid command.");
+    public static String showInvalidCommandError() {
+        return "Invalid command.";
     }
 
     public String getUserCommand() {
