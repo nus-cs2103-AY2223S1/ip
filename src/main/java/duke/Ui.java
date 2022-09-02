@@ -16,8 +16,8 @@ public class Ui {
     /**
      * Runs the Ui of the bot.
      */
-    public void run() {
-        System.out.println(this.welcomeMessage);
+    public String run() {
+        return this.welcomeMessage;
     }
 }
 

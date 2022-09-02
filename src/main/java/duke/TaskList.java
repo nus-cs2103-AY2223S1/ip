@@ -105,9 +105,8 @@ public class TaskList {
      */
     public void markList(int index) {
         this.taskArray.get(index - 1).markAsDone();
-
-        System.out.println("Nice! I've marked this task as done:\n "
-                + this.taskArray.get(index - 1).toString() + '\n');
+        /* System.out.println("Nice! I've marked this task as done:\n "
+                + this.taskArray.get(index - 1).toString() + '\n'); */
     }
 
     /**
@@ -118,8 +117,8 @@ public class TaskList {
     public void unMarkList(int index) {
         this.taskArray.get(index - 1).unMarkTask();
 
-        System.out.println("OK, I've marked this task as not done yet:\n "
-                + this.taskArray.get(index - 1).toString() + '\n');
+        /* System.out.println("OK, I've marked this task as not done yet:\n "
+                + this.taskArray.get(index - 1).toString() + '\n'); */
     }
 }
 
