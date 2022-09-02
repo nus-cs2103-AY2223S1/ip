@@ -46,6 +46,8 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
+        ui.introduction();
+        tasks = storage.readData();
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -165,7 +167,9 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        //parser.process(input, tasks);
-        return "Duke heard: " + input;
+        if (input == "bye") {
+            storage.saveData(tasks);
+        }
+        return parser.process(input, tasks);
     }
 }

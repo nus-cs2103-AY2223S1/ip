@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Parses given string to operate on.
@@ -17,52 +19,48 @@ public class Parser {
      * @param s String to be processed.
      * @param tasks Task list to be operated on.
      */
-    protected void process(String s, TaskList tasks) {
+    protected String process(String s, TaskList tasks) {
         this.tasks = tasks;
         String[] words = s.split(" ");
         String command = words[0];
         switch (command) {
         case "list":
-            outputList();
-            break;
+            return outputList();
         case "done":
-            markItemDone(s);
-            break;
+            return markItemDone(s);
         case "unmark":
-            markItemUndone(s);
-            break;
+            return markItemUndone(s);
         case "todo":
-            insertTodo(s);
-            break;
+            return insertTodo(s);
         case "deadline":
-            insertDeadline(s);
-            break;
+            return insertDeadline(s);
         case "event":
-            insertEvent(s);
-            break;
+            return insertEvent(s);
         case "delete":
-            deleteTask(s);
-            break;
+            return deleteTask(s);
         case "find":
-            find(s);
-            break;
+            return find(s);
+        case "bye":
+            return bye();
         default:
-            System.out.println("sorry, I don't understand you");
-            break;
+            return "sorry, I don't understand you";
         }
     }
 
     /**
      * Prints out tasks in list in format specified in each tasks' toString function.
      */
-    protected void outputList() {
+    protected String outputList() {
         if (tasks.size() == 0) {
-            System.out.println("you got no tasks");
+            return "you got no tasks";
         } else {
-            System.out.println("heres your tasks");
+            StringBuilder sb = new StringBuilder();
+            sb.append("heres your tasks\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.format("\t%d.%s\n", i + 1, tasks.get(i));
+                String temp = String.format("\t%d.%s\n", i + 1, tasks.get(i));
+                sb.append(temp);
             }
+            return sb.toString();
         }
     }
 
@@ -71,12 +69,12 @@ public class Parser {
      *
      * @param input String to be converted to a Todo.
      */
-    protected void insertTodo(String input) {
+    protected String insertTodo(String input) {
         try {
             String description = input.substring(5);
-            insertTask(new Todo(description, false));
+            return insertTask(new Todo(description, false));
         } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("description cannot be empty");
+            return "description cannot be empty";
         }
     }
 
@@ -85,15 +83,18 @@ public class Parser {
      *
      * @param input String to be converted to a Deadline.
      */
-    protected void insertDeadline(String input) {
+    protected String insertDeadline(String input) {
         try {
             String[] items = input.substring(9).split(" /by ");
-            insertTask(new Deadline(items[0], false, items[1]));
+            return insertTask(new Deadline(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
-            System.out.println("description cannot be empty");
+            return "description cannot be empty";
         } catch (DukeException e) {
-            System.out.println("please enter a valid date format.");
-            System.out.println("date: dd/mm/YYYY");
+            StringBuilder sb = new StringBuilder();
+            sb.append("please enter a valid date format.");
+            sb.append("date: dd/mm/YYYY");
+
+            return sb.toString();
         }
     }
 
@@ -102,15 +103,18 @@ public class Parser {
      *
      * @param input String to be converted to an Event.
      */
-    protected void insertEvent(String input) {
+    protected String insertEvent(String input) {
         try {
             String[] items = input.substring(6).split(" /at ");
-            insertTask(new Event(items[0], false, items[1]));
+            return insertTask(new Event(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
-            System.out.println("description cannot be empty");
+            return "description cannot be empty";
         } catch (DukeException e) {
-            System.out.println("please enter a valid date format.");
-            System.out.println("date and time: dd/mm/YYYY hh:mm");
+            StringBuilder sb = new StringBuilder();
+            sb.append("please enter a valid date format.");
+            sb.append("date and time: dd/mm/YYYY hh:mm");
+
+            return sb.toString();
         }
     }
 
@@ -119,11 +123,14 @@ public class Parser {
      *
      * @param task Task to be inserted into the list.
      */
-    protected void insertTask(Task task) {
+    protected String insertTask(Task task) {
         tasks.add(task);
-        System.out.println("added: ");
-        System.out.println("\t" + task);
-        System.out.format("you have %d task(s) in the list\n", tasks.size());
+        StringBuilder sb = new StringBuilder();
+        sb.append("added: ");
+        sb.append("\t" + task);
+        sb.append(String.format("you have %d task(s) in the list\n", tasks.size()));
+
+        return sb.toString();
     }
 
     /**
@@ -131,7 +138,7 @@ public class Parser {
      *
      * @param input String that contains information about item to be marked done.
      */
-    protected void markItemDone(String input) {
+    protected String markItemDone(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
@@ -139,12 +146,15 @@ public class Parser {
             }
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markDone();
-            System.out.println("cool, this task is marked as done");
-            System.out.println("\t" + tasks.get(index - 1));
+            StringBuilder sb = new StringBuilder();
+            sb.append("cool, this task is marked as done");
+            sb.append("\t" + tasks.get(index - 1));
+
+            return sb.toString();
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
-            System.out.println("format: mark <number>");
+            return "format: mark <number>";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("enter a valid index");
+            return "enter a valid index";
         }
     }
 
@@ -153,7 +163,7 @@ public class Parser {
      *
      * @param input String that contains information about item to be marked not done.
      */
-    protected void markItemUndone(String input) {
+    protected String markItemUndone(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
@@ -161,12 +171,15 @@ public class Parser {
             }
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markUndone();
-            System.out.println("ok, this task is marked as not done yet");
-            System.out.println("\t" + tasks.get(index - 1));
+            StringBuilder sb = new StringBuilder();
+            sb.append("ok, this task is marked as not done yet");
+            sb.append("\t" + tasks.get(index - 1));
+
+            return sb.toString();
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
-            System.out.println("format: mark <number>");
+            return "format: mark <number>";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("enter a valid index");
+            return "enter a valid index";
         }
     }
 
@@ -175,7 +188,7 @@ public class Parser {
      *
      * @param input String that contains information about item to be deleted.
      */
-    protected void deleteTask(String input) {
+    protected String deleteTask(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
@@ -183,15 +196,15 @@ public class Parser {
             }
             int index = Integer.parseInt(words[1]);
             tasks.remove(index - 1);
-            System.out.println("ok, i removed this task");
+            return "ok, i removed this task";
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
-            System.out.println("format: mark <number>");
+            return "format: mark <number>";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("enter a valid index");
+            return "enter a valid index";
         }
     }
 
-    protected void find(String s) {
+    protected String find(String s) {
         try {
             String toFind = s.substring(5);
             ArrayList<Task> matchingTasks = new ArrayList<>();
@@ -203,17 +216,29 @@ public class Parser {
             }
 
             if (matchingTasks.isEmpty()) {
-                System.out.println("\tyou have no matching tasks!");
+                return "\tyou have no matching tasks!";
             } else {
+                StringBuilder sb = new StringBuilder();
                 int count = 1;
-                System.out.println("\there are your matching tasks:");
+                sb.append("\there are your matching tasks:");
                 for (Task task : matchingTasks) {
-                    System.out.format("\t%d. %s\n", count, task);
+                    sb.append(String.format("\t%d. %s\n", count, task));
                     count++;
                 }
+
+                return sb.toString();
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("invalid format! try find item");
+            return "invalid format! try find item";
         }
+    }
+    protected String bye() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 1000l);
+        return "bye!";
     }
 }
