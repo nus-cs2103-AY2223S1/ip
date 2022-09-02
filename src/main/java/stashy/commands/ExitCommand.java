@@ -30,4 +30,19 @@ public class ExitCommand extends Command {
         ui.showGoodbye();
         storage.writeTaskListToFile(tasks);
     }
+
+    /**
+     * Adds a Deadline task class to the task list and outputs the UI string.
+     *
+     * @param tasks The list of tasks
+     * @param ui The UI of this application
+     * @param storage The storage used for this application
+     * @return The stringtified UI output
+     * @throws StashyException If any exception is caught
+     */
+    @Override
+    public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
+        storage.writeTaskListToFile(tasks);
+        return ui.showGoodbyeString();
+    }
 }

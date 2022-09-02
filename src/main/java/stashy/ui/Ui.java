@@ -41,7 +41,16 @@ public class Ui {
                 + "/ ___)(_  _)/ _\\ / ___)/ )( \\( \\/ )\n"
                 + "\\___ \\  )( /    \\\\___ \\) __ ( )  / \n"
                 + "(____/ (__)\\_/\\_/(____/\\_)(_/(__/  \n"
-                + "\n Beep boop! Stashy here! What can I do for you?");
+                + "\n " + showWelcomeString());
+    }
+
+    /**
+     * Gives a welcome message as a String.
+     *
+     * @return A simple welcome message
+     */
+    public String showWelcomeString() {
+        return "Beep boop! Stashy here! What can I do for you?";
     }
 
     /**
@@ -66,7 +75,16 @@ public class Ui {
      * @param tasks The list of tasks
      */
     public static void showTasks(TaskList tasks) {
-        showIndented("Listing all task(s) in your list...\n" + tasks);
+        showIndented(showTasksString(tasks));
+    }
+
+    /**
+     * Prints the task list in a tidy manner, String version.
+     *
+     * @param tasks The list of tasks
+     */
+    public static String showTasksString(TaskList tasks) {
+        return "Listing all task(s) in your list...\n" + tasks;
     }
 
     /**
@@ -75,7 +93,16 @@ public class Ui {
      * @param tasks The list of (filtered) tasks
      */
     public static void showFilteredTasks(TaskList tasks) {
-        showIndented("Listing all the matching task(s)...\n" + tasks);
+        showIndented(showFilteredTasksString(tasks));
+    }
+
+    /**
+     * Prints the filtered task list in a tidy manner, String version.
+     *
+     * @param tasks The list of (filtered) tasks
+     */
+    public static String showFilteredTasksString(TaskList tasks) {
+        return "Listing all the matching task(s)...\n" + tasks;
     }
 
     /**
@@ -102,7 +129,16 @@ public class Ui {
                 + "                  -::*+++++++++++++++++*+::+               \n"
                 + "                      -+++++++++++++++*:  -                \n"
                 + "                          -:++***++:                       \n"
-                + "\nGood bye then, see you some time! - Stashy, 2022");
+                + "\n" + showGoodbyeString());
+    }
+
+    /**
+     * Gives the goodbye message as a String.
+     *
+     * @return A simple goodbye message
+     */
+    public static String showGoodbyeString() {
+        return "Good bye then, see you some time! - Stashy, 2022";
     }
 
     /**

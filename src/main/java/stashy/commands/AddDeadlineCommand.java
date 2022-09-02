@@ -41,4 +41,20 @@ public class AddDeadlineCommand extends Command {
         ui.showIndented("There, we have a new deadline:\n  " + tasks.get(tasks.size() - 1)
                 + "\nYou have " + tasks.size() + " task(s) in the list.");
     }
+
+    /**
+     * Adds a Deadline task class to the task list and outputs the UI string.
+     *
+     * @param tasks The list of tasks
+     * @param ui The UI of this application
+     * @param storage The storage used for this application
+     * @return The stringtified UI output
+     * @throws StashyException If any exception is caught
+     */
+    @Override
+    public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
+        tasks.add(this.deadline);
+        return "There, we have a new deadline:\n  " + tasks.get(tasks.size() - 1)
+            + "\nYou have " + tasks.size() + " task(s) in the list.";
+    }
 }
