@@ -51,15 +51,15 @@ public class Ui {
         String toPrint = SEP + "\nHello. ⛅️\n   This is\n" + logo;
 
         // Print available commands
-        toPrint += "\n  Luna commands"
-                + "\n    🌸 list"
-                + "\n    🌷 todo <task>"
-                + "\n    🌺 deadline <task> /by <yyyy-mm-dd>"
-                + "\n    🌹 event <event> /at <yyyy-mm-dd>"
-                + "\n    🪷 mark <num>"
-                + "\n    🌻 unmark <num>"
-                + "\n    💐 find <keyword>"
-                + "\n    🥀 bye";
+//        toPrint += "\n  Luna commands"
+//                + "\n    🌸 list"
+//                + "\n    🌷 todo <task>"
+//                + "\n    🌺 deadline <task> /by <yyyy-mm-dd>"
+//                + "\n    🌹 event <event> /at <yyyy-mm-dd>"
+//                + "\n    🪷 mark <num>"
+//                + "\n    🌻 unmark <num>"
+//                + "\n    💐 find <keyword>"
+//                + "\n    🥀 bye";
 
         // Print items in storage
         if (!this.loaded) {

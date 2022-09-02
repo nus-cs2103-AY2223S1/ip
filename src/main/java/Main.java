@@ -20,6 +20,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle(" ❈  ✶  ✧︎ ✱✬ ✨  l u n a  ✨ ❇︎ ✫❍   ❈ ✶  ✶ ");
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setLuna(luna);
             stage.show();
         } catch (IOException e) {
