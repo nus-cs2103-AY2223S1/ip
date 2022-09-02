@@ -23,6 +23,7 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) {
         super(description);
         this.deadline = deadline;
+        assert this instanceof Task : "Deadline should be a task.";
     }
 
     /**
