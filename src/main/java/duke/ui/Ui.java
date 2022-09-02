@@ -8,12 +8,7 @@ public class Ui {
      * Prints Duke's greeting to the user.
      */
     public String printGreeting() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        return "Hello from\n" + logo;
+        return "Hello from DUKE\nPlease type your commands!";
     }
 
     /**

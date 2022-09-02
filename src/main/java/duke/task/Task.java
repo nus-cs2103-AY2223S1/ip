@@ -3,16 +3,19 @@ package duke.task;
 import duke.DukeException;
 
 public class Task {
-    private String title;
+    private String content;
     private Boolean isDone;
 
-    public Task(String title) {
-        this.title = title;
+    public Task(String content) throws DukeException {
+        if (content == "") {
+            throw new DukeException("You need to provide a content");
+        }
+        this.content = content;
         this.isDone = false;
     }
 
-    public Task(String title, boolean isDone) {
-        this.title = title;
+    public Task(String content, boolean isDone) {
+        this.content = content;
         this.isDone = isDone;
     }
 
@@ -35,17 +38,17 @@ public class Task {
     }
 
     public boolean isContain(String input) {
-        return title.contains(input);
+        return content.contains(input);
     }
 
     @Override
     public String toString() {
-        String newString = String.format("[%s] %s", isDone ? "X" : " ", title);
+        String newString = String.format("[%s] %s", isDone ? "X" : " ", content);
         return newString;
     }
 
     public String toSaveString() {
-        String saveString = String.format("%s|%s", isDone ? "1" : "0", title);
+        String saveString = String.format("%s|%s", isDone ? "1" : "0", content);
         return saveString;
     }
 }

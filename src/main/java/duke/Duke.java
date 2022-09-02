@@ -68,7 +68,10 @@ public class Duke extends Application {
     public void start(Stage primaryStage) {
         scrollPane = new ScrollPane();
         dialogueContainer = new VBox();
-        ui.printGreeting();
+
+        Label greetingLabel = new Label(ui.printGreeting());
+        dialogueContainer.getChildren().addAll(DialogBox.getDukeDialog(greetingLabel, new ImageView(duke)));
+        
         scrollPane.setContent(dialogueContainer);
         userInput = new TextField();
         sendButton = new Button("Send");
@@ -170,8 +173,8 @@ public class Duke extends Application {
             }
             storage.save(taskList.getTasks());
         } catch (Exception e) {
-            System.out.println(new DukeException(e.getMessage()));
+            return e.getMessage();
         }
-        return "Idk";
+        return "IDK";
     }
 }

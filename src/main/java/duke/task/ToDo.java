@@ -1,7 +1,9 @@
 package duke.task;
 
+import duke.DukeException;
+
 public class ToDo extends Task {
-    public ToDo(String title) {
+    public ToDo(String title) throws DukeException {
         super(title);
     }
 
