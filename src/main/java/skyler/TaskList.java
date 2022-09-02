@@ -128,7 +128,7 @@ public class TaskList {
             System.out.println(ie.getMessage());
         }
     }
-    
+
     /**
      * Adds a new event to the list
      *

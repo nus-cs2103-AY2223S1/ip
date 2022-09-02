@@ -5,8 +5,8 @@ package skyler;
  */
 public class Ui {
 
-    public void greet() {
-        System.out.println("Hello! I'm Skyler\nHow can I help you?\n");
+    public String greet() {
+        return "Hello! I'm Skyler\nHow can I help you?\n";
     }
 
     public void bye() {
