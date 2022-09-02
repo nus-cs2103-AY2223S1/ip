@@ -87,14 +87,10 @@ public class Duke extends Application {
 
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
-            //dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            //userInput.clear();
             handleUserInput();
         });
 
         userInput.setOnAction((event) -> {
-            //dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            //userInput.clear();
             handleUserInput();
         });
 
@@ -105,6 +101,7 @@ public class Duke extends Application {
     /**
      * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
+     *
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
@@ -125,10 +122,6 @@ public class Duke extends Application {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                //new DialogBox(userText, new ImageView(user)),
-                //new DialogBox(dukeText, new ImageView(duke))
-                //DialogBox.getUserDialog(userText, new ImageView(user)),
-                //DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
     }
@@ -143,6 +136,7 @@ public class Duke extends Application {
 
     /**
      * Constructor for the Duke class.
+     *
      * @param filePath Provides the file location for loading and storing tasks.
      */
     public Duke(String filePath) {
@@ -177,6 +171,49 @@ public class Duke extends Application {
         }
         storage.save(tasks);
         System.out.println("     Sad to see you go! Visit me again soon!");
+    }
+
+    /**
+     * Shows a welcome message in the chat.
+     *
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
+    public void sendWelcomeMessage(VBox dialogContainer, Image dukeImage) {
+        //this.ui.start(dialogContainer, dukeImage);
+        String greetings = "Good day to you! I'm Bob!\n"
+                + "I will help you to keep track of your tasks!\n"
+                + "The following are your saved tasks:";
+        for (Task t : this.tasks.getTasks()) {
+            greetings = greetings + "\n       " + t.toString();
+        }
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(greetings, dukeImage));
+    }
+
+    /**
+     * Parses the user input and shows a message with a suitable response in the chat.
+     *
+     * @param input The user input.
+     * @param response The response from Duke.
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param userImage The image of the user.
+     * @param dukeImage The image of Duke.
+     */
+    public void handleUserInput(String input, String response, VBox dialogContainer, Image userImage, Image dukeImage) {
+        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage));
+
+        Parser parser = new Parser();
+        if (!(input.equals("bye"))) {
+            try {
+                parser.parse(input, this.tasks, dialogContainer, dukeImage);
+            } catch (DukeException e) {
+                dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(e.getMessage(), dukeImage));
+            }
+        } else {
+            storage.save(tasks);
+            String byeMessage = "Sad to see you go! Visit me again soon!";
+            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(byeMessage, dukeImage));
+        }
     }
 
     public static void main(String[] args) {

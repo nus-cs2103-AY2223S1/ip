@@ -28,6 +28,7 @@ public class Ui {
 
     /**
      * Returns the user input stored in the instance field 'response'.
+     *
      * @return The user input.
      */
     public String getResponse() {
