@@ -1,5 +1,3 @@
-D/ /ur dad /2019-12-12
-T/X/ur mom
+D/X/ur dad /2019-12-12
+T/ /ur mom
 T/ /urmom
-T/ /ur
-T/ /test

@@ -1,6 +1,19 @@
 package duke;
 
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.layout.Region;
+
 
 /**
  * Main class for Duke
@@ -9,45 +22,42 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+
 
     /**
      * Constructor for Duke class
      *
      * Creates Ui and Storage instance
-     * @param filePath File path for storage list
      */
-    public Duke(String filePath) {
+
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("data/tasks.txt");
         tasks = new TaskList(storage.load());
 
     }
 
-    /**
-     * Runs the Duke program
-     */
-    public void run() {
-        ui.sayHello();
-        Scanner sc = new Scanner(System.in);
-        boolean isExit = false;
 
-        while (!isExit) {
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        Scanner sc = new Scanner(System.in);
+
+        if (input.equals("bye")) {
+            return ui.sayBye();
+        }
+        else {
             try {
-                isExit = Parser.parse(sc.nextLine(), tasks, ui, storage);
+                return (Parser.parse(input, tasks, ui, storage));
 
             } catch (DukeException e) {
-                System.out.println("Something went wrong " + e.getMessage());
+                return ("Something went wrong " + e.getMessage());
             }
         }
-    }
-
-    /**
-     * Main method of the Duke program
-     *
-     * @param args Arguments passed to the main method
-     */
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
     }
 
 }

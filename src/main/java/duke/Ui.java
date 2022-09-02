@@ -18,8 +18,8 @@ public class Ui {
         System.out.printf("%s", HELLO);
     }
 
-    public void sayBye() {
-        System.out.printf("%s", BYE);
+    public String sayBye() {
+        return BYE;
     }
 
     public void showLoadingError() {

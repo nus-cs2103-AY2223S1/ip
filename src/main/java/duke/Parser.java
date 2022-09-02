@@ -20,15 +20,14 @@ public class Parser {
      * @return a boolean to decide if program is to be exited
      * @throws DukeException
      */
-    public static boolean parse(String input, TaskList lst, Ui ui, Storage storage) throws DukeException {
+    public static String parse(String input, TaskList lst, Ui ui, Storage storage) throws DukeException {
 
         String[] words = input.split(" ", 2);
         String first = words[0];
 
         try {
             if (first.equals("bye")) {
-                ui.sayBye();
-                return true;
+                return ui.sayBye();
 
             } else if (first.equals("list")) {
                 String result = "Here are the tasks in your list:\n";
@@ -36,19 +35,17 @@ public class Parser {
                     result += (i + 1) + "." + lst.get(i).formatTask() + "\n";
                 }
 
-                System.out.println(result);
+                return result;
 
             } else if (first.equals("mark")) {
                 char c = input.charAt(5);
                 int index = Integer.parseInt(String.valueOf(c));
-                lst.markTask(index - 1);
-                lst.updateStorage(storage);
+                return(lst.markTask(index - 1, storage));
 
             } else if (first.equals("unmark")) {
                 char c = input.charAt(7);
                 int index = Integer.parseInt(String.valueOf(c));
-                lst.unmarkTask(index - 1);
-                lst.updateStorage(storage);
+                return(lst.unmarkTask(index - 1, storage));
 
 
             } else if (first.equals("deadline") || first.equals("event") || first.equals("todo")) {
@@ -91,7 +88,7 @@ public class Parser {
                     lst.addNewTask(t);
                 }
                 lst.updateStorage(storage);
-                System.out.println("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
+                return ("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have "
                         + lst.size() + " tasks in the list.");
 
             } else if (first.equals("delete")) {
@@ -99,26 +96,26 @@ public class Parser {
                     throw new DukeException("Please specify task to delete");
                 }
                 int index = Integer.parseInt(words[1]) - 1;
-                lst.deleteTask(index);
-                lst.updateStorage(storage);
+                return(lst.deleteTask(index, storage));
 
             } else if (first.equals("find")) {
                 String toFind = words[1];
+                String toReply = "Here are the matching tasks in your list:\n";
                 if (toFind.length() == 0) {
                     throw new DukeException("Please enter a keyword!");
                 }
                 ArrayList<String> result = lst.findTasks(toFind);
-                System.out.println("Here are the matching tasks in your list:\n");
+
                 for (int i = 0; i < result.size(); i++) {
-                    System.out.println(result.get(i));
+                    toReply += result.get(i) + "\n";
                 }
+                return toReply;
 
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means");
             }
         } catch (DukeException d) {
-            System.out.println(d.getMessage());
+            return(d.getMessage());
         }
-        return false;
     }
 }
