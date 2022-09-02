@@ -34,6 +34,53 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    private void createDirectoryIfNotExist() {
+        Path directoryPath = Paths.get(this.directoryPath);
+        File directory = new File(directoryPath.toUri());
+        // noinspection ResultOfMethodCallIgnored because only making use of the side effect
+        directory.mkdir();
+    }
+
+    private File createFileIfNotExist() throws DukeException {
+        Path filePath = Paths.get(this.filePath);
+        File file = new File(filePath.toUri());
+
+        try {
+            // noinspection ResultOfMethodCallIgnored because only making use of the side effect
+            file.createNewFile();
+        } catch (IOException e) {
+            throw DukeException.BAD_DATA;
+        }
+
+        return file;
+    }
+
+    /**
+     * Parse line into task.
+     *
+     * @param line Line in save file.
+     * @return Parsed task.
+     * @throws DukeException Exception thrown while parsing line.
+     */
+    private Task parseLine(String line) throws DukeException {
+        String[] split = line.split(" \\| ");
+        Task task;
+        switch (split[0]) {
+        case "T":
+            task = Todo.create(split[1], split[2]);
+            break;
+        case "D":
+            task = Deadline.create(split[1], split[2], split[3]);
+            break;
+        case "E":
+            task = Event.create(split[1], split[2], split[3]);
+            break;
+        default:
+            throw DukeException.BAD_DATA;
+        }
+        return task;
+    }
+
     /**
      * Load tasks from file.
      *
@@ -41,44 +88,14 @@ public class Storage {
      * @throws DukeException Exception that occurred during the loading of the tasks.
      */
     public TaskList load() throws DukeException {
-        Path directoryPath = Paths.get(this.directoryPath);
-        Path filePath = Paths.get(this.filePath);
-        File directory = new File(directoryPath.toUri());
-        // Create directory if it does not exist.
-        // noinspection ResultOfMethodCallIgnored because only making use of the side effect
-        directory.mkdir();
-        File file = new File(filePath.toUri());
-
+        createDirectoryIfNotExist();
+        File file = createFileIfNotExist();
         TaskList tasks = new TaskList();
-        try {
-            // Create file if it does not exist.
-            if (file.createNewFile()) {
-                // If file did not exist before this, there are no tasks.
-                return tasks;
-            }
-        } catch (IOException e) {
-            throw DukeException.BAD_DATA;
-        }
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                String[] split = line.split(" \\| ");
-                Task task;
-                switch (split[0]) {
-                case "T":
-                    task = Todo.create(split[1], split[2]);
-                    break;
-                case "D":
-                    task = Deadline.create(split[1], split[2], split[3]);
-                    break;
-                case "E":
-                    task = Event.create(split[1], split[2], split[3]);
-                    break;
-                default:
-                    throw DukeException.BAD_DATA;
-                }
-
+                Task task = parseLine(line);
                 tasks.addTask(task);
             }
         } catch (FileNotFoundException e) {
