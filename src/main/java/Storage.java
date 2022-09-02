@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,7 +54,17 @@ public class Storage {
                 boolean isDone = toIsDone(isDoneString);
 
                 // Update information accordingly
-                Task.makeTask(taskName, moreInfo, taskType, false);
+                switch (taskType) {
+                    case TODO:
+                        Task todo = new ToDo(taskName, false);
+                        tasks.addTask(todo);
+                    case DEADLINE:
+                        Task deadline = new Deadline(taskName, moreInfo, false);
+                        tasks.addTask(deadline);
+                    case EVENT:
+                        Task event = new Event(taskName, moreInfo, false);
+                        tasks.addTask(event);
+                }
                 int maxLength = tasks.getNumOfTasks();
                 Task task = tasks.getTask(maxLength - 1);
 
@@ -96,7 +107,9 @@ public class Storage {
         return false;
     }
 
-    public void savesFile() throws SallyException {
+    public void savesFile(TaskList tasks) throws SallyException {
+        this.tasks = tasks;
+//        System.out.println("enters savesFile");
         try {
             FileWriter writer = new FileWriter(file);
 

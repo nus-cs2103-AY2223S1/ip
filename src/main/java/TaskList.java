@@ -5,8 +5,8 @@ public class TaskList {
     protected int numOfTasks;
 
     public TaskList() {
-        tasks = new ArrayList<>();
-        numOfTasks = 0;
+        this.tasks = new ArrayList<Task>();
+        this.numOfTasks = 0;
     }
 
     public TaskList(ArrayList<Task> tasks) {
@@ -19,10 +19,24 @@ public class TaskList {
     }
 
     public Task getTask(int index) {
-        return (Task) tasks.get(index);
+        return tasks.get(index);
     }
 
-    public Task deleteTask(int index) {
-        return tasks.remove(index);
+    public void deleteTask(int index) {
+        tasks.remove(index);
     }
+
+    public void addTask(Task task) {
+//        System.out.println("enters addTask in TaskLIst");
+//        System.out.println("task parsed: " + task);
+        tasks.add(task);
+//        System.out.println("tasks.add(task) executed");
+//        String printTask = "";
+//        for (int i = 0; i < tasks.size(); i++) {
+//            printTask = printTask + tasks.get(i).toString();
+//        }
+//        System.out.println("local tasks in TaskList: " + printTask);
+//        System.out.println("task number: " + tasks.size());
+    }
+
 }
