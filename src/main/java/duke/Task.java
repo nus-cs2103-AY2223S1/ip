@@ -1,5 +1,8 @@
 package duke;
 
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+
 /**
  * Represents a task that has a description and an indicator of whether it is done.
  */
@@ -9,6 +12,7 @@ public class Task {
 
     /**
      * Constructor for the Task class.
+     *
      * @param description Provides information about what the task is.
      */
     public Task(String description) {
@@ -18,6 +22,7 @@ public class Task {
 
     /**
      * Returns one of two possible icons, depending on whether the task is done.
+     *
      * @return "X" if task is done, and "O" if task is not done.
      */
     public String getStatusIcon() {
@@ -26,6 +31,7 @@ public class Task {
 
     /**
      * Returns the description of the task.
+     *
      * @return The description of the task.
      */
     public String getDescription() {
@@ -43,6 +49,20 @@ public class Task {
     }
 
     /**
+     * Overloaded method for markAsDone(), meant for JavaFX.
+     *
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
+    public void markAsDone(VBox dialogContainer, Image dukeImage) {
+        this.isDone = true;
+        String done = "Task has been marked as done!: \n"
+                + "       "
+                + this.toString();
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(done, dukeImage));
+    }
+
+    /**
      * Indicates that a task is undone.
      */
     public void markAsUnDone() {
@@ -53,7 +73,22 @@ public class Task {
     }
 
     /**
+     * Overloaded method for markAsUnDone(), meant for JavaFX.
+     *
+     * @param dialogContainer The VBox object that contains the chat messages and images.
+     * @param dukeImage The image of Duke.
+     */
+    public void markAsUnDone(VBox dialogContainer, Image dukeImage) {
+        this.isDone = false;
+        String unDone = "Task has been marked as NOT done!: \n"
+                + "       "
+                + this.toString();
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(unDone, dukeImage));
+    }
+
+    /**
      * Checks to see if the task description contains the given keyword.
+     *
      * @param keyword The word that we want to check whether is in the task description.
      * @return True if the keyword is in the description, false otherwise.
      */
@@ -63,6 +98,7 @@ public class Task {
 
     /**
      * Returns what the task is about, and also an icon to indicate if the task is done.
+     *
      * @return What the task is about, and also an icon to indicate if the task is done.
      */
     public String toString() {
