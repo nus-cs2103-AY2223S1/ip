@@ -7,8 +7,10 @@ import java.io.IOException;
  */
 public class ExitCommand extends Command {
 
-    ExitCommand() {
+    private static boolean isExit;
 
+    ExitCommand() {
+        this.isExit = true;
     }
 
     /**
@@ -16,11 +18,11 @@ public class ExitCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean true (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.exit();
-        return true;
+    String execute(TaskList tasks, Ui ui, Storage storage) {
+        String response = ui.exit();
+        return response;
     }
 
 }

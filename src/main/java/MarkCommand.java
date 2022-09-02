@@ -6,9 +6,11 @@ package duke;
 public class MarkCommand extends Command {
 
     private final int taskNo;
+    private static boolean isExit;
 
     MarkCommand(int taskNo) {
         this.taskNo = taskNo;
+        this.isExit = false;
     }
 
     /**
@@ -16,12 +18,12 @@ public class MarkCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean false (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
+    String execute(TaskList tasks, Ui ui, Storage storage) {
         String modifiedTask = tasks.mark(this.taskNo);
-        ui.marked(modifiedTask);
-        return false;
+        String response = ui.marked(modifiedTask);
+        return response;
     }
 
 }

@@ -2,6 +2,10 @@ package duke;
 
 abstract class Command {
 
-    abstract boolean execute(TaskList tasks, Ui ui, Storage storage);
+    private static boolean isExit;
+    abstract String execute(TaskList tasks, Ui ui, Storage storage);
+    boolean getIsExit() {
+        return this.isExit;
+    }
 
 }

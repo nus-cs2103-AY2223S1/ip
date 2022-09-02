@@ -6,9 +6,11 @@ package duke;
 public class FindCommand extends Command {
 
     private final String keyword;
+    private static boolean isExit;
 
     FindCommand(String keyword) {
         this.keyword = keyword;
+        this.isExit = false;
     }
 
     /**
@@ -16,11 +18,11 @@ public class FindCommand extends Command {
      * @param tasks current tasklist.
      * @param ui .
      * @param storage .
-     * @return boolean false (true if exit and false if not exit).
+     * @return String : the response of the duke.
      */
-    boolean execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.findTaskWithThisKeyword(this.keyword);
-        return false;
+    String execute(TaskList tasks, Ui ui, Storage storage) {
+        String response = ui.printMatchingList(tasks.findTaskWithThisKeyword(this.keyword));
+        return response;
     }
 
 }
