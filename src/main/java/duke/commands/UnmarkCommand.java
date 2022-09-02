@@ -25,6 +25,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public CommandResult execute() throws DukeException {
+        assert tasks != null : "Should setData() before calling execute().";
         // Check if index is out of bounds.
         if (index <= 0 || index > tasks.size()) {
             throw DukeException.INVALID_INDEX;

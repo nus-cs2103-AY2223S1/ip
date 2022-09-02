@@ -31,11 +31,7 @@ public class FindCommand extends Command {
         keyword = arguments;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CommandResult execute() {
+    private ArrayList<String> getFoundTasks() {
         ArrayList<String> foundTasks = new ArrayList<>();
         TaskList filteredTasks = tasks.filter(task -> task.containsKeyword(keyword));
 
@@ -45,6 +41,10 @@ public class FindCommand extends Command {
             foundTasks.add(taskString);
         }
 
+        return foundTasks;
+    }
+
+    private String getUserMessage(ArrayList<String> foundTasks) {
         String userMessage;
         if (foundTasks.isEmpty()) {
             userMessage = "No tasks found!";
@@ -52,7 +52,17 @@ public class FindCommand extends Command {
             String tasksString = String.join("\n", foundTasks);
             userMessage = String.format(USER_MESSAGE_FORMAT, tasksString);
         }
+        return userMessage;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
+        ArrayList<String> foundTasks = getFoundTasks();
+        String userMessage = getUserMessage(foundTasks);
         return new CommandResult(userMessage, false, false);
     }
 }

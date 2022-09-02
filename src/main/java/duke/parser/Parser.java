@@ -39,8 +39,8 @@ public class Parser {
         } else {
             throw Parser.UNKNOWN_COMMAND;
         }
-        Command command;
 
+        Command command;
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
