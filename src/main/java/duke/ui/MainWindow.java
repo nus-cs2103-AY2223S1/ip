@@ -1,6 +1,8 @@
 package duke.ui;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import duke.Duke;
 import javafx.fxml.FXML;
@@ -64,8 +66,14 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(output, dukeImage)
         );
+        // Credits: RezwanArefin01 for the Timer code fragment
         if (output.equals("Goodbye, see you soon!")) {
-            System.exit(0);
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            }, 1500);
         }
         userInput.clear();
     }
