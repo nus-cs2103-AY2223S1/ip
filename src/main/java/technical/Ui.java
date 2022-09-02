@@ -1,9 +1,14 @@
 package technical;
+/**
+ * The class for interacting with the user.
+ * @author Nicholas Patrick
+ */
 
 import java.util.Scanner;
 
 public class Ui {
   public static Scanner scanner = new Scanner(System.in);
+
   /**
    * Reads a line.
    *

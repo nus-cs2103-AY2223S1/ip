@@ -183,7 +183,7 @@ public class TaskList {
       taskList.get(i).doTask();
       Ui.reply(new String[]{"Ok, I'm marking this as done",
           taskList.get(i).toString()});
-      SaveFile.getFileData().get(i).setNameData("done", "1");
+      SaveFile.getFileData().get(i).setKeyValue("done", "1");
       SaveFile.saveFile();
     } catch (IndexOutOfBoundsException e) {
       Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
@@ -215,7 +215,7 @@ public class TaskList {
       taskList.get(i).undo();
       Ui.reply(new String[]{"Ok, I'm marking this as not done",
           taskList.get(i).toString()});
-      SaveFile.getFileData().get(i).setNameData("done", "0");
+      SaveFile.getFileData().get(i).setKeyValue("done", "0");
       SaveFile.saveFile();
     } catch (IndexOutOfBoundsException e) {
       Ui.reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", taskList.size()));
