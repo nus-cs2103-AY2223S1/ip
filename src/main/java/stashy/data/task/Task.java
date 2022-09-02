@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
  * Represents a task.
  */
 public abstract class Task {
-    protected static final DateTimeFormatter OUTPUT_DATETIME_PATTERN = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+    protected static final DateTimeFormatter OUTPUT_DATETIME_PATTERN =
+        DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
     private String description;
     private boolean isDone;
 
