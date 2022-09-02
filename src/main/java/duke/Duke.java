@@ -46,6 +46,10 @@ public class Duke extends Application {
         this.parser = new Parser();
     }
 
+    public boolean getIsRunning() {
+        return this.isRunning;
+    }
+
     /**
      * Stops the Duke bot.
      */
@@ -56,7 +60,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Get the storage associated with the Duke bot.
+     * Gets the storage associated with the Duke bot.
      *
      * @return Storage of the Duke bot.
      */
@@ -90,8 +94,8 @@ public class Duke extends Application {
      *
      * @return Lists of tasks.
      */
-    public String getList() {
-        return this.tasks.getList();
+    public String listToString() {
+        return this.tasks.listToString();
     }
 
     /**
@@ -117,55 +121,55 @@ public class Duke extends Application {
     /**
      * Adds a task without deadline.
      *
-     * @param s Task description.
+     * @param desc Task description.
      * @return Associated message from Duke.
      */
-    public String addTodo(String s) {
-        return this.tasks.addTodo(s);
+    public String addTodo(String desc) {
+        return this.tasks.addTodo(desc);
     }
 
     /**
      * Adds a task with deadline.
      *
-     * @param s Task description.
-     * @param d Deadline in LocalDate format.
+     * @param desc Task description.
+     * @param deadline Deadline in LocalDate format.
      * @return Associated message from Duke.
      */
-    public String addDeadline(String s, LocalDate d) {
-        return this.tasks.addDeadline(s, d);
+    public String addDeadline(String desc, LocalDate deadline) {
+        return this.tasks.addDeadline(desc, deadline);
     }
 
     /**
      * Adds a task with deadline.
      *
-     * @param s Task description.
-     * @param d Deadline in String format.
+     * @param desc Task description.
+     * @param deadline Deadline in String format.
      * @return Associated message from Duke.
      */
-    public String addDeadline(String s, String d) {
-        return this.tasks.addDeadline(s, d);
+    public String addDeadline(String desc, String deadline) {
+        return this.tasks.addDeadline(desc, deadline);
     }
 
     /**
      * Adds an event.
      *
-     * @param s Event description.
-     * @param d Event time in LocalDate format.
+     * @param desc Event description.
+     * @param time Event time in LocalDate format.
      * @return Associated message from Duke.
      */
-    public String addEvent(String s, LocalDate d) {
-        return this.tasks.addEvent(s, d);
+    public String addEvent(String desc, LocalDate time) {
+        return this.tasks.addEvent(desc, time);
     }
 
     /**
      * Adds an event.
      *
-     * @param s Event description.
-     * @param d Event time in String format.
+     * @param desc Event description.
+     * @param time Event time in String format.
      * @return Associated message from Duke.
      */
-    public String addEvent(String s, String d) {
-        return this.tasks.addEvent(s, d);
+    public String addEvent(String desc, String time) {
+        return this.tasks.addEvent(desc, time);
     }
 
     /**
@@ -181,21 +185,21 @@ public class Duke extends Application {
     /**
      * Parses a message written to the Duke bot.
      *
-     * @param s Message to be parsed.
+     * @param query Message to be parsed.
      * @return Associated message from Duke.
      */
-    public String parse(String s) {
-        return this.parser.parse(this, s, this.hasFinishedLoading());
+    public String parse(String query) {
+        return this.parser.parse(this, query, this.hasFinishedLoading());
     }
 
     /**
      * Prints a list of tasks with the matching input string.
      *
-     * @param s String to request for tasks with the matching string.
+     * @param query String to request for tasks with the matching string.
      * @return List of tasks with matching string.
      */
-    public String find(String s) {
-        return this.tasks.find(s);
+    public String findTask(String query) {
+        return this.tasks.findTask(query);
     }
 
     //@@author chengda300

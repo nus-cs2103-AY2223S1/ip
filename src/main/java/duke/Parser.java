@@ -33,21 +33,25 @@ public class Parser {
     private String mark(Duke d, String input, boolean isLoading) {
         try {
             String parameter = input.substring((this.MARK + this.SPACE).length());
-            int param = Integer.parseInt(parameter);
-            return d.markTask(param)
-                    + saveCommand(d, this.MARK + this.SPACE + param + "\n", isLoading);
+            int index = Integer.parseInt(parameter) - 1;
+            return d.markTask(index)
+                    + saveCommand(d, this.MARK + this.SPACE + index + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.ERROR_MESSAGE;
+        } catch (IndexOutOfBoundsException e) {
+            return "I cannot mark a task that does not exist!";
         }
     }
     private String unmark(Duke d, String input, boolean isLoading) {
         try {
             String parameter = input.substring((this.UNMARK + this.SPACE).length());
-            int param = Integer.parseInt(parameter);
-            return d.unmarkTask(param)
-                    + saveCommand(d, this.UNMARK + this.SPACE + param + "\n", isLoading);
+            int index = Integer.parseInt(parameter) - 1;
+            return d.unmarkTask(index)
+                    + saveCommand(d, this.UNMARK + this.SPACE + index + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.ERROR_MESSAGE;
+        } catch (IndexOutOfBoundsException e) {
+            return "I cannot unmark a task that does not exist!";
         }
     }
     private String todo(Duke d, String input, boolean isLoading) {
@@ -115,19 +119,21 @@ public class Parser {
     private String delete(Duke d, String input, boolean isLoading) {
         try {
             String parameter = input.substring((this.DELETE + this.SPACE).length());
-            int param = Integer.parseInt(parameter);
-            return d.deleteTask(param)
+            int index = Integer.parseInt(parameter) - 1;
+            return d.deleteTask(index)
                     + saveCommand(d, this.DELETE + this.SPACE + parameter + "\n", isLoading);
         } catch (NumberFormatException e) {
             return this.ERROR_MESSAGE;
+        } catch (IndexOutOfBoundsException e) {
+            return "I cannot delete a task that does not exist!";
         }
     }
-    private String find(Duke d, String input) {
+    private String findTask(Duke d, String input) {
         String s = input.substring((this.FIND + this.SPACE).length());
         if (s.isBlank()) {
             return "The query is empty, what do you really mean?";
         } else {
-            return d.find(s);
+            return d.findTask(s);
         }
     }
 
@@ -143,7 +149,7 @@ public class Parser {
         if (input.equals(this.BYE)) {
             return d.stopBot();
         } else if (input.equals(this.LIST)) {
-            return d.getList();
+            return d.listToString();
         } else if (input.startsWith(this.MARK + this.SPACE)) {
             return this.mark(d, input, isLoading);
         } else if (input.startsWith(this.UNMARK + this.SPACE)) {
@@ -157,7 +163,7 @@ public class Parser {
         } else if (input.startsWith(this.DELETE + this.SPACE)) {
             return this.delete(d, input, isLoading);
         } else if (input.startsWith(this.FIND + this.SPACE)) {
-            return this.find(d, input);
+            return this.findTask(d, input);
         }
         return this.ERROR_MESSAGE;
     }

@@ -11,29 +11,29 @@ import java.time.format.DateTimeFormatter;
  * Represents a task with deadline. Such tasks have a task description and a deadline.
  */
 public class Deadline extends Task {
-    private String by;
+    private String deadline;
     private LocalDate date;
 
     /**
      * Constructor for a task with deadline.
      *
      * @param description Task description.
-     * @param by Deadline in String format.
+     * @param deadline Deadline in String format.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String deadline) {
         super(description);
-        this.by = by;
+        this.deadline = deadline;
     }
 
     /**
      * Constructor for a task with deadline.
      *
      * @param description Task description.
-     * @param by Deadline in LocalDate format.
+     * @param deadline Deadline in LocalDate format.
      */
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDate deadline) {
         super(description);
-        this.date = by;
+        this.date = deadline;
     }
 
     /**
@@ -43,8 +43,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String deadline = this.by == null
-                ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.by;
+        String deadline = this.deadline == null
+                ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.deadline;
         return "[D]" + super.toString() + " (by: " + deadline + ")";
     }
 }
