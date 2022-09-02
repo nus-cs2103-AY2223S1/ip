@@ -21,91 +21,92 @@ public class Parser {
 
     /**
      * Reads user input and performs action depending on input
+     * @param str User input.
+     * @return String representing bot's reply to user.
      * @throws DukeException If input command is not recognised or if input is blank.
      * @throws IOException If there is an error writing to file.
      */
-    public void readInput() throws DukeException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        String str;
+    public String readInput2(String str) throws DukeException, IOException {
         int initialSize = tasklist.oldTasksSize();
-        do {
-            str = scanner.next();
-            if (str.equals("bye")) {
-                break;
-            } else if (str.equals("find")) {
-                String match = scanner.nextLine();
-                List<String> matchlist = tasklist.findMatches(match);
-                bot.printMatches(matchlist);
-            }
-            else if (str.equals("delete")) {
-                int index = scanner.nextInt();
-                scanner.nextLine();
-                Task deleted = tasklist.removeTask(index);
-                bot.removeTask(tasklist.size(), deleted);
-            }else if (str.equals("deadline")) {
-                String description = "";
-                String dateline="";
-                while (scanner.hasNext()) {
-                    String temp = scanner.next();
-                    if (temp.equals("/by")) {
-                        break;
-                    }
-                    description = description + temp +" ";
-                }
-                dateline = scanner.nextLine();
-                LocalDate d1 = LocalDate.parse(dateline.substring(1));
-                Task task = new Deadline(description, d1);
-                tasklist.addTask(task);
-                int total = tasklist.size();
-                bot.addTask(total,task);
-            } else if (str.equals("todo")) {
-                String todoDes = scanner.nextLine();
-                if (todoDes.equals("")) {
-                    bot.displayError();
-                }
-                Task task = new ToDo(todoDes.substring(1));
-                tasklist.addTask(task);
-                int total = tasklist.size();
-                bot.addTask(total,task);
-            } else if (str.equals("event")) {
-                String description = "";
-                String time="";
-                while (scanner.hasNext()) {
-                    String temp = scanner.next();
-                    if (temp.equals("/at")) {
-                        break;
-                    }
-                    description = description + temp +" ";
-                }
-                time = scanner.nextLine();
-                LocalDate d1 = LocalDate.parse(time.substring(1));
-                Task task = new Event(description, d1);
-                tasklist.addTask(task);
-                int total = tasklist.size();
-                bot.addTask(total,task);
-            }
-            else if (str.equals("list")) {
-                bot.printTasks(tasklist.getOldTasks(),tasklist.getNewTasks());
-                scanner.nextLine();
-            }
-            else if (str.equals("unmark")) {
-                String strnum = scanner.next();
-                int num = Integer.valueOf(strnum);
-                Task task;
-                if (num > tasklist.oldTasksSize()) {;
-                    task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
-                    task.markUndone();
-                    tasklist.setNewTasks(num-tasklist.oldTasksSize()-1,task);
+        String stringReturned = "Default String";
+        String[] arr = str.split(" ");
+        if (arr[0].equals("find")) {
+            List<String> matchlist = tasklist.findMatches(str.substring(5));
+            stringReturned = bot.printMatches2(matchlist);
+        }
+        else if (arr[0].equals("delete")) {
+            System.out.println(arr[1]);
+            int index = Integer.parseInt(arr[1]);
+            Task deleted = tasklist.removeTask(index);
+            stringReturned = bot.removeTask2(tasklist.size(), deleted);
+        } else if (arr[0].equals("deadline")) {
+            String description = "";
+            String dateline="";
+            int counter = 1;
+            for(int i = 1; i < arr.length; i++){
+                if(arr[i].equals("/by")){
+                    break;
                 } else {
-                    task = tasklist.getOldTasks(num-1);
-                    task.markUndone();;
-                    tasklist.setOldTasks(num-1,task);
+                    description = description + arr[i]+ " ";
+                    counter++;
                 }
-                bot.markTask(false);
-                System.out.println(task);
-                scanner.nextLine();
-            } else if (str.equals("mark")) {
-                String strnum = scanner.next();
+            }
+            dateline = arr[counter + 1];
+            LocalDate d1 = LocalDate.parse(dateline);
+            Task task = new Deadline(description, d1);
+            tasklist.addTask(task);
+            int total = tasklist.size();
+            stringReturned = bot.addTask2(total,task);
+        } else if (arr[0].equals("todo")) {
+            String todoDes = "";
+            for(int i = 1; i<arr.length; i++){
+                todoDes = todoDes + arr[i] + " ";
+            }
+            if (todoDes.equals("")) {
+                bot.displayError();
+            } else {
+                Task task = new ToDo(todoDes);
+                tasklist.addTask(task);
+                int total = tasklist.size();
+                stringReturned = bot.addTask2(total,task);
+            }
+        } else if (arr[0].equals("event")) {
+            String description = "";
+            String time="";
+            int counter = 1;
+            for(int i = 1; i < arr.length; i++){
+                if(arr[i].equals("/at")){
+                    break;
+                } else {
+                    description = description + arr[i]+ " ";
+                    counter++;
+                }
+            }
+            time = arr[counter + 1];
+            LocalDate d1 = LocalDate.parse(time);
+            Task task = new Event(description, d1);
+            tasklist.addTask(task);
+            int total = tasklist.size();
+            stringReturned = bot.addTask2(total,task);
+        } else if (str.equals("list")) {
+            stringReturned = bot.printTasks2(tasklist.getOldTasks(),tasklist.getNewTasks());
+        } else if (arr[0].equals("unmark")) {
+            String strnum = arr[1];
+            int num = Integer.valueOf(strnum);
+            Task task;
+            if (num > tasklist.oldTasksSize()) {;
+                task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
+                task.markUndone();
+                tasklist.setNewTasks(num-tasklist.oldTasksSize()-1,task);
+            } else {
+                task = tasklist.getOldTasks(num-1);
+                task.markUndone();;
+                tasklist.setOldTasks(num-1,task);
+            }
+                stringReturned = bot.markTask2(false);
+                stringReturned += task.toString();
+            } else if (arr[0].equals("mark")) {
+                String strnum = arr[1];
                 int num = Integer.valueOf(strnum);
                 Task task;
                 if (num > tasklist.oldTasksSize()) {
@@ -117,30 +118,17 @@ public class Parser {
                     task.markDone();
                     tasklist.setOldTasks(num-1, task);
                 }
-                bot.markTask(true);
-                System.out.println(task);
-                scanner.nextLine();
-            }
-            else{
-                if (tasklist.oldTasksSize() < initialSize) {
-                    storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks());
-                } else {
-                    storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks());
-                    //storage.addTasks("data/Duke2.txt",tasklist.newTasks);
-                }
-                bot.displayError();
-            }
-
-        }  while (!str.equals("bye"));
-        if (str.equals("bye")) {
-            if(tasklist.oldTasksSize() < initialSize){
-                storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks());
+                stringReturned = bot.markTask2(true);
+                stringReturned += task;
+            } else if (str.equals("bye")) {
+                stringReturned = bot.goodBye2();
             } else{
-                storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks());
-                //storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                stringReturned = bot.displayError2();
             }
-            bot.goodBye();
-        }
+        storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks()); //make sure to replace the task after every action
+        return stringReturned;
    }
+
+
 
 }
