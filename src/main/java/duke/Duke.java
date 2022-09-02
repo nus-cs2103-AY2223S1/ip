@@ -7,7 +7,7 @@ import java.io.File;
  */
 public class Duke {
 
-    public static final String LINE = "____________________________________________________________";
+    public static final String LINE = "_________________________________________________";
     private static int count = 0;
     private Storage storage;
     private TaskList tasklist;

@@ -8,6 +8,7 @@ public class Todo extends Task {
     private String name;
     private String type;
     private String status;
+    private char priority;
     private Duke duke = new Duke();
 
     /**
@@ -19,6 +20,23 @@ public class Todo extends Task {
         this.name = name;
         this.status = "[ ]";
         this.type = "[T]";
+        this.priority = 'L';
+    }
+
+    /**
+     * Sets the priority of the task.
+     * @param priority the priority of the task.
+     */
+    public void setPriority(char priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Returns the priority of the task.
+     * @return the priority of the task.
+     */
+    public char getPriority() {
+        return this.priority;
     }
 
     /**
@@ -81,7 +99,7 @@ public class Todo extends Task {
      * Prints the description of the todo task.
      */
     public void list() {
-        System.out.println(this.type + this.status + " " + this.name);
+        System.out.println(this.type + this.status + this.priority + this.name);
     }
 
     /**
@@ -89,7 +107,7 @@ public class Todo extends Task {
      * @return the description of the todo task.
      */
     public String listGui() {
-        return this.type + this.status + " " + this.name;
+        return this.type + this.status + this.priority + " " + this.name;
     }
 
     /**
@@ -107,6 +125,6 @@ public class Todo extends Task {
      * @return the full string representation the todo task.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + " " + this.getName() + "\n";
+        return this.getType() + this.getStatus() + this.getPriority() + " " + this.getName() + "\n";
     }
 }

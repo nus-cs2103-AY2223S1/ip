@@ -1,5 +1,7 @@
 package duke;
 
+import javafx.scene.layout.Priority;
+
 import java.time.LocalDateTime;
 
 /**
@@ -11,6 +13,7 @@ public class Task {
     private String type;
     private String name;
     private LocalDateTime time;
+    private char priority;
     private Duke duke = new Duke();
 
     /**
@@ -27,6 +30,23 @@ public class Task {
     public Task(String name) {
         this.status = "[ ]";
         this.name = name;
+        this.priority = 'L';
+    }
+
+    /**
+     * Sets the priority of the task.
+     * @param priority the priority of the task.
+     */
+    public void setPriority(char priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Returns the priority of the task.
+     * @return the priority of the task.
+     */
+    public char getPriority() {
+        return this.priority;
     }
 
     /**

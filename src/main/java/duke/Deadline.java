@@ -12,6 +12,7 @@ public class Deadline extends Task {
     private String type;
     private String status;
     private LocalDateTime time;
+    private char priority;
     private Duke duke = new Duke();
 
     /**
@@ -25,6 +26,7 @@ public class Deadline extends Task {
         this.status = "[ ]";
         this.type = "[D]";
         this.time = deadline;
+        this.priority = 'L';
     }
 
     /**
@@ -34,6 +36,22 @@ public class Deadline extends Task {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * Sets the priority of the task.
+     * @param priority the priority of the task.
+     */
+    public void setPriority(char priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Returns the priority of the task.
+     * @return the priority of the task.
+     */
+    public char getPriority() {
+        return this.priority;
     }
 
     /**
@@ -58,7 +76,8 @@ public class Deadline extends Task {
      * Prints the description of the deadline task.
      */
     public void list() {
-        System.out.println(this.type + this.status + " " + this.name + "(by: " + formatDateString(this.time) + ")");
+        System.out.println(this.type + this.status + " " + this.priority
+                + this.name + "(by: " + formatDateString(this.time) + ")");
     }
 
     /**
@@ -66,7 +85,8 @@ public class Deadline extends Task {
      * @return the description of the deadline task.
      */
     public String listGui() {
-        return this.type + this.status + " " + this.name + "(by: " + formatDateString(this.time) + ")";
+        return this.type + this.status + " " + this.priority
+                + this.name + "(by: " + formatDateString(this.time) + ")";
     }
 
     /**
@@ -104,7 +124,7 @@ public class Deadline extends Task {
      * @return the complete string representation of the deadline task.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + this.getName()
+        return this.getType() + this.getStatus() + this.getPriority() + this.getName()
                 + " (by: " + formatDateString(this.time) + ")" + "\n";
     }
 

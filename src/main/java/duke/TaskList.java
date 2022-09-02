@@ -144,6 +144,12 @@ public class TaskList {
         return Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).printDescription();
     }
 
+    public String setPriority(TaskList list, int index, char priority) {
+        System.out.println("I have set" + list.getList().get(index - 1).printDescription() + " to " + priority);
+        list.getList().get(index - 1).setPriority(priority);
+        return ("I have set" + list.getList().get(index - 1).printDescription() + " to " + priority);
+    }
+
     /**
      * Finds tasks in the task list that matches the keyword.
      *
@@ -182,7 +188,31 @@ public class TaskList {
                 printString += find++ + "." + task.toString();
             }
         }
+        return printString;
+    }
+
+    /**
+     * Finds task by priority.
+     * @param list the task list.
+     * @param priority priority.
+     * @return the task given the priority.
+     */
+    public String findPriority(TaskList list, String priority) {
+        String printString = Ui.FIND_PRIORITY_HEADER + priority + ": \n";
+        System.out.println(printString);
+        Task task = null;
+        int find = 1;
+        for (int i = 0; i < duke.getCount(); i++) {
+            task = list.get(i);
+            char finding = task.getPriority();
+            if (Character.toUpperCase(priority.charAt(0)) == finding) {
+                printString += find + "." + task.toString();
+                System.out.println(find + "." + task.toString());
+                find++;
+            }
+        }
         printString += Duke.LINE;
+        System.out.println(Duke.LINE);
         return printString;
     }
 }

@@ -82,16 +82,19 @@ public class Parser {
             } else if (command.equals("find")) {
                 list.find(list, descriptions[1]);
                 respond();
+            } else if (command.equals("low") || command.equals("high") || command.equals("medium")) {
+                if (descriptions.length == 1) {
+                    list.findPriority(list, command);
+                } else {
+                    int index = Integer.parseInt(descriptions[1]);
+                    list.setPriority(list, index, Character.toUpperCase(command.charAt(0)));
+                }
+                storage.overwriteFile(file, list);
+                respond();
             } else {
                 throw new InvalidCommandException(command);
             }
-        } catch (EmptyCommandException e) {
-            System.out.println(e.getMessage());
-            respond();
-        } catch (InvalidCommandException e) {
-            System.out.println(e.getMessage());
-            respond();
-        } catch (MarkException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             respond();
         }
@@ -157,11 +160,10 @@ public class Parser {
                 } else if (command.equals("deadline")) {
 
                     String[] deets = descriptions[1].split("/by ", 2);
-                    DateTimeFormatter formatter = null;
                     LocalDateTime date = null;
 
                     try {
-                        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                         date = LocalDateTime.parse(deets[1], formatter);
                     } catch (DateTimeParseException e) {
                         return ("Please use time in dd/MM/yyyy HH:mm format");
@@ -180,16 +182,20 @@ public class Parser {
                 return list.listGui();
             } else if (command.equals("find")) {
                 return list.findGui(list, descriptions[1]);
+            } else if (command.equals("low") || command.equals("high") || command.equals("medium")) {
+                String st = "";
+                if (descriptions.length == 1) {
+                    st += list.findPriority(list, command);
+                } else {
+                    int index = Integer.parseInt(descriptions[1]);
+                    st += list.setPriority(list, index, Character.toUpperCase(command.charAt(0)));
+                }
+                storage.overwriteFile(file, list);
+                return st;
             } else {
                 throw new InvalidCommandException(command);
             }
-        } catch (EmptyCommandException e) {
-            return (e.getMessage());
-
-        } catch (InvalidCommandException e) {
-            return (e.getMessage());
-
-        } catch (MarkException e) {
+        } catch (Exception e) {
             return (e.getMessage());
         }
     }
@@ -201,10 +207,9 @@ public class Parser {
      * @return the date as specified by the string.
      */
     public LocalDateTime parseString(String s) {
-        DateTimeFormatter formatter = null;
         LocalDateTime date = null;
         try {
-            formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             date = LocalDateTime.parse(s, formatter);
         } catch (DateTimeParseException e) {
             System.out.println("Please use time in dd/MM/yyyy HH:mm format");
@@ -220,10 +225,9 @@ public class Parser {
      * @return the date as specified by the string.
      */
     public LocalDateTime parseFileString(String s) {
-        DateTimeFormatter formatter = null;
         LocalDateTime date = null;
         try {
-            formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
             date = LocalDateTime.parse(s, formatter);
         } catch (DateTimeParseException e) {
             System.out.println("Please use time in dd/MM/yyyy HH:mm format");

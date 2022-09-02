@@ -12,6 +12,7 @@ public class Event extends Task {
     private String type;
     private String status;
     private LocalDateTime time;
+    private char priority;
     private Duke duke = new Duke();
 
     /**
@@ -25,6 +26,7 @@ public class Event extends Task {
         this.status = "[ ]";
         this.type = "[E]";
         this.time = time;
+        this.priority = 'L';
     }
 
     /**
@@ -34,6 +36,22 @@ public class Event extends Task {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * Sets the priority of the task.
+     * @param priority the priority of the task.
+     */
+    public void setPriority(char priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Returns the priority of the task.
+     * @return the priority of the task.
+     */
+    public char getPriority() {
+        return this.priority;
     }
 
     /**
@@ -58,7 +76,7 @@ public class Event extends Task {
      * Prints the description of the event.
      */
     public void list() {
-        System.out.println(this.type + this.status + " " + this.name
+        System.out.println(this.type + this.status + " " + this.getPriority() + this.name
                 + "(at: " + formatDateString(this.time) + ")");
     }
 
@@ -67,7 +85,7 @@ public class Event extends Task {
      * @return the description of the event.
      */
     public String listGui() {
-        return this.type + this.status + " " + this.name
+        return this.type + this.status + " " + this.priority + this.name
                 + "(at: " + formatDateString(this.time) + ")";
     }
 
@@ -115,7 +133,7 @@ public class Event extends Task {
      * @return the complete string representation of the event.
      */
     public String toString() {
-        return this.getType() + this.getStatus() + this.getName()
+        return this.getType() + this.getStatus() + this.getPriority() + this.getName()
                 + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 

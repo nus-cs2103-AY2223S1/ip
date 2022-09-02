@@ -185,20 +185,21 @@ public class Storage {
         }
         char taskType = s.charAt(1);
         char done = s.charAt(4);
+        char priority = Character.toUpperCase(s.charAt(6));
         Task task = null;
         if (taskType == 'T') {
-            task = new Todo(s.substring(6));
+            task = new Todo(s.substring(7));
         } else if (taskType == 'E') {
             int firstDateIndex = s.indexOf('(');
             int lastDateIndex = s.indexOf(')');
-            String name = s.substring(6, firstDateIndex);
+            String name = s.substring(7, firstDateIndex);
             String date = s.substring(firstDateIndex + 5, lastDateIndex);
             Parser p = new Parser();
             task = new Event(name, p.parseFileString(date));
         } else if (taskType == 'D') {
             int firstDateIndex = s.indexOf('(');
             int lastDateIndex = s.indexOf(')');
-            String name = s.substring(6, firstDateIndex);
+            String name = s.substring(7, firstDateIndex);
             String date = s.substring(firstDateIndex + 5, lastDateIndex);
             Parser p = new Parser();
             task = new Deadline(name, p.parseFileString(date));
@@ -206,6 +207,7 @@ public class Storage {
         if (done == 'X') {
             task.setStatus("[X]");
         }
+        task.setPriority(priority);
         return task;
     }
 }
