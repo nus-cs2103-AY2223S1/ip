@@ -9,13 +9,9 @@ import duke.DukeException;
 public class Deadline extends Task {
     private LocalDate by;
 
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        try {
-            this.by = LocalDate.parse(by);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Date/Time format is wrong.");
-        }
+        this.by = by;
     }
 
     /**

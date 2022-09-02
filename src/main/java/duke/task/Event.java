@@ -9,13 +9,9 @@ import duke.DukeException;
 public class Event extends Task {
     private LocalDate at;
 
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, LocalDate at) throws DukeException {
         super(description);
-        try {
-            this.at = LocalDate.parse(at);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Date/Time format is wrong.");
-        }
+        this.at = at;
     }
 
     /**

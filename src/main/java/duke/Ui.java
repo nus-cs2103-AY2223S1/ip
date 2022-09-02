@@ -8,20 +8,14 @@ import java.util.Scanner;
 /**
  * Represents the user interface for Duke.
  */
-public class Ui {
+public abstract class Ui {
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String LINE = "```````````````````````````````````````````````````````````````````";
-    private static final String GREET_WELCOME = "Hello there! I am your personal task tracking assistant!\nWhat can I do for you today?\n";
+    private static final String GREET_WELCOME = "Hello there! I am\n" + LOGO + "your personal task tracking assistant!\nWhat can I do for you today?\n";
     private static final String GREET_EXIT = "Bye. Hope to see you again soon!\n";
-    private Scanner scanner;
-
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
 
     /**
      * Prints a welcome message.
@@ -31,35 +25,17 @@ public class Ui {
     }
 
     /**
-     * Prints a line.
-     */
-    public static String printLine() {
-        System.out.println(LINE);
-        return LINE;
-    }
-
-    /**
-     * Prints out error message.
-     *
-     * @param error error message
-     */
-    public static void showError(String error) {
-        System.out.println(error);
-    }
-
-    /**
      * Prints list of stored <code>Task</code> from given <code>TaskList</code>.
      *
      * @param taskList list of stored tasks
      */
     public static String printTaskList(TaskList taskList) {
-        String header = "";
+        String header;
         if (taskList.isEmpty()) {
             header = "You have no tasks in your list.";
         } else {
             header = "My List Of Tasks :D";
         }
-        System.out.println(header + "\n" + taskList);
         return header + "\n" + taskList;
     }
 
@@ -68,12 +44,23 @@ public class Ui {
      *
      * @param newTask new task added to <code>TaskList</code>
      * @param noOfTasks number of tasks in this <code>TaskList</code>
+     * @return successful task creation message
      */
     public static String printTaskCreationMessage(Task newTask, int noOfTasks) {
         String createdTaskMessage = "Got it. I've added this task:\n "
                 + newTask + "\nNow you have " + noOfTasks + " tasks in the list.";
-        System.out.println(createdTaskMessage);
         return createdTaskMessage;
+    }
+
+    /**
+     * @param deletedTask task deleted from <code>TaskList</code>
+     * @param noOfTasks number of tasks in this <code>TaskList</code>
+     * @return successful task deletion message
+     */
+    public static String printTaskDeletionMessage(Task deletedTask, int noOfTasks) {
+        String deletedTaskMessage = "Noted. I've removed this task:\n "+ deletedTask
+                + "\nNow you have " + noOfTasks + " tasks in the list";
+        return deletedTaskMessage;
     }
 
     /**
@@ -82,30 +69,19 @@ public class Ui {
      * @param match string of <code>Task</code> matching the search keywords
      */
     public static String printTaskSearch(String match) {
-        String output = "";
+        String output;
         if (match == "") {
             output = "Duke: Sorry! Cannot find any matching tasks in your list.";
         } else {
             output = "Here are the matching tasks in your list:\n" + match;
         }
-        System.out.println(output);
         return output;
     }
 
     /**
-     * Returns the next line of user input.
-     *
-     * @return next line of user input
+     * Prints exit message.
      */
-    public String readUserInput() {
-        return scanner.nextLine();
-    }
-
-    /**
-     * Closes scanner and prints exit message.
-     */
-    public String exit() {
-        this.scanner.close();
+    public static String printExit() {
         return GREET_EXIT;
     }
 }

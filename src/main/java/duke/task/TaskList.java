@@ -2,6 +2,7 @@ package duke.task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -34,12 +35,12 @@ public class TaskList {
                     tasks.add(todo);
                     break;
                 case "D":
-                    Task deadline = new Deadline(taskDescription, splitInput[3]);
+                    Task deadline = new Deadline(taskDescription, LocalDate.parse(splitInput[3]));
                     deadline.setDone(isDone);
                     tasks.add(deadline);
                     break;
                 case "E":
-                    Task event = new Event(taskDescription, splitInput[3]);
+                    Task event = new Event(taskDescription, LocalDate.parse(splitInput[3]));
                     event.setDone(isDone);
                     tasks.add(event);
                     break;
@@ -57,6 +58,7 @@ public class TaskList {
      * @param taskDescription description of <code>Task</code> to be added
      * @param date date property of <code>Task</code> of to be added
      */
+    /*
     public String editTaskList(String taskType, String taskDescription, String date) {
         Task newTask = null;
         switch (taskType) {
@@ -72,6 +74,17 @@ public class TaskList {
         }
         tasks.add(newTask);
         return Ui.printTaskCreationMessage(newTask, tasks.size());
+    }
+     */
+
+    public String addTask(Task newTask) {
+        tasks.add(newTask);
+        return Ui.printTaskCreationMessage(newTask, tasks.size());
+    }
+
+    public String deleteTask(int index) {
+        Task deletedTask = tasks.remove(index);
+        return Ui.printTaskDeletionMessage(deletedTask, tasks.size());
     }
 
     /**
@@ -102,6 +115,22 @@ public class TaskList {
         }
         System.out.println(editMessage);
         return editMessage;
+    }
+
+    public String markAsDone(int index) {
+        if (index >= tasks.size() || index < 0) {
+            throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
+        }
+        Task task = tasks.get(index);
+        return task.markAsDone();
+    }
+
+    public String markAsNotDone(int index) {
+        if (index >= tasks.size() || index < 0) {
+            throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
+        }
+        Task task = tasks.get(index);
+        return task.markAsNotDone();
     }
 
     /**

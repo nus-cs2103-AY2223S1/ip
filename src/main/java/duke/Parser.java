@@ -1,6 +1,18 @@
 package duke;
 
+import duke.command.Command;
+import duke.command.CommandType;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.task.TaskList;
+import duke.task.TaskType;
 
 import java.util.Arrays;
 
@@ -10,21 +22,12 @@ import static java.lang.Integer.parseInt;
  * Interprets user commands.
  */
 public class Parser {
-    private boolean isExit;
 
-    public Parser() {
-        isExit = false;
-    }
-
-    public boolean isExit() {
-        return isExit;
-    }
-
-    private static boolean isInteger(String str) {
+    private boolean isInteger(String str) {
         return str.chars().allMatch(Character::isDigit);
     }
 
-    private static int getDateIndex(String[] splitInput) throws DukeException {
+    private int getDateIndex(String[] splitInput) throws DukeException {
         for (int i = 0; i < splitInput.length; i++) {
             if (splitInput[i].equals("/by") || splitInput[i].equals("/at")) {
                 return i;
@@ -55,91 +58,104 @@ public class Parser {
      *
      * @param cmd command to be executed
      * @param splitInput array of user input words
-     * @param tasks list of stored <code>Task</code>
+     * @return <code>command</code> to edit tasks in <code>TaskList</code>
      * @throws DukeException if the index is out of range of the <code>TaskList</code>
      */
-    private String parseEdit(String cmd, String[] splitInput, TaskList tasks) throws DukeException {
+    private Command parseEdit(CommandType cmd, String[] splitInput) throws DukeException {
         int len = splitInput.length;
         if (len != 2 || !isInteger(splitInput[1])) {
-            throw new DukeException("Duke: To edit tasks, indicate the index of the task using an integer!");
+            throw new DukeException("Please indicate the index of the task using an integer!");
         }
-        return tasks.editTaskList(cmd, parseInt(splitInput[1]) - 1);
+        int index = parseInt(splitInput[1]) - 1;
+        switch (cmd) {
+        case MARK:
+            return new MarkCommand(index);
+        case UNMARK:
+            return new UnmarkCommand(index);
+        case DELETE:
+            return new DeleteCommand(index);
+        default:
+            throw new DukeException("Unable to edit task");
+        }
     }
 
     /**
      * Creates a new task from user input and adds it to the <code>TaskList</code>.
      *
      * @param splitInput array of user input words
-     * @param tasks list of stored tasks
+     * @return <code>command</code> to create <code>Task</code>
      * @throws DukeException if user input is invalid
      */
-    private String parseCreateTask(String[] splitInput, TaskList tasks) throws DukeException {
+    private Command parseCreateTask(TaskType taskType, String[] splitInput) throws DukeException {
         int len = splitInput.length;
-        String createdTaskMessage = "";
-        if (len == 0) {
-            throw new DukeException("No input!");
-        } else if (splitInput[0].equals("todo")) {
-            createdTaskMessage = tasks.editTaskList("todo", getTaskField(splitInput, 1, len), "");
-        } else if (splitInput[0].equals("deadline")) {
-            int index = getDateIndex(splitInput);
-            String taskDescription = getTaskField(splitInput, 1, index);
-            String date = getTaskField(splitInput, index + 1, len);
-            createdTaskMessage = tasks.editTaskList("deadline", taskDescription, date);
-        } else if (splitInput[0].equals("event")) {
-            int index = getDateIndex(splitInput);
-            String taskDescription = getTaskField(splitInput, 1, index);
-            String date = getTaskField(splitInput, index + 1, len);
-            createdTaskMessage = tasks.editTaskList("event", taskDescription, date);
-        } else {
-            throw new DukeException("Duke: Sorry! I don't know what that means!");
+        String taskDescription;
+        String date;
+        int index;
+        switch (taskType) {
+        case TODO:
+            taskDescription = getTaskField(splitInput, 1, len);
+            return new TodoCommand(taskDescription);
+        case DEADLINE:
+            index = getDateIndex(splitInput);
+            taskDescription = getTaskField(splitInput, 1, index);
+            date = getTaskField(splitInput, index + 1, len);
+            return new DeadlineCommand(taskDescription, date);
+        case EVENT:
+            index = getDateIndex(splitInput);
+            taskDescription = getTaskField(splitInput, 1, index);
+            date = getTaskField(splitInput, index + 1, len);
+            return new EventCommand(taskDescription, date);
+        default:
+            throw new DukeException("Unable to create task!");
         }
-        System.out.println(createdTaskMessage);
-        return createdTaskMessage;
     }
 
     /**
      * Searches for tasks in the <code>TaskList</code> with the input keyword.
      *
      * @param splitInput array of user input words
-     * @param tasks list of stored tasks
+     * @return <code>command</code> to find task
      * @throws DukeException if user input does not have a keyword
      */
-    private String parseFind(String[] splitInput, TaskList tasks) throws DukeException {
+    private Command parseFind(String[] splitInput) throws DukeException {
         int len = splitInput.length;
         if (len == 1) {
-            throw new DukeException("Duke: To search for tasks, enter a keyword");
+            throw new DukeException("Enter a keyword to search for tasks");
         }
         String keyword = String.join(" ", Arrays.copyOfRange(splitInput, 1, len));
-        return tasks.find(keyword);
+        return new FindCommand(keyword);
     }
 
     /**
      * Interprets and executes the input command from the user.
      *
      * @param userInput input from user
-     * @param tasks list of stored tasks
+     * @return <code>command</code> to be executed
      * @throws DukeException if command does not follow the format
      */
-    public String parse(String userInput, TaskList tasks) throws DukeException {
+    public Command parse(String userInput) throws DukeException {
         String[] splitInput = userInput.split(" ");
-        String output = "";
+        String cmd = splitInput[0];
         if (userInput.equals("bye")) {
-            isExit = true;
+            return new ExitCommand();
         } else if (userInput.equals("list")) {
-            output = Ui.printTaskList(tasks);
-        } else if (splitInput[0].equals("find")) {
-            output = parseFind(splitInput, tasks);
-        } else if (splitInput[0].equals("mark")) {
-            output = parseEdit("mark", splitInput, tasks);
-        } else if (splitInput[0].equals("unmark")) {
-            output = parseEdit("unmark", splitInput, tasks);
-        } else if (splitInput[0].equals("delete")) {
-            output = parseEdit("delete", splitInput, tasks);
-        } else if (splitInput[0].equals("delete")) {
-            throw new DukeException("Duke: To delete tasks, indicate the index of the task using an integer!");
+            return new ListCommand();
+        } else if (cmd.equals("find")) {
+            return parseFind(splitInput);
+        } else if (cmd.equals("mark")) {
+            return parseEdit(CommandType.MARK, splitInput);
+        } else if (cmd.equals("unmark")) {
+            return parseEdit(CommandType.UNMARK, splitInput);
+        } else if (cmd.equals("delete")) {
+            return parseEdit(CommandType.DELETE, splitInput);
+        } else if (cmd.equals("todo")) {
+            return parseCreateTask(TaskType.TODO, splitInput);
+        } else if (cmd.equals("deadline")) {
+            return parseCreateTask(TaskType.DEADLINE, splitInput);
+        } else if (cmd.equals("event")) {
+            return parseCreateTask(TaskType.EVENT, splitInput);
         } else {
-            output = parseCreateTask(splitInput, tasks);
+            throw new DukeException("Sorry! I don't know what that means!");
         }
-        return output;
     }
 }

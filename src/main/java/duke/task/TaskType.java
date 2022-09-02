@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Enum for the three task types
