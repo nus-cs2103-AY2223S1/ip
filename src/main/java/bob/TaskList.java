@@ -55,7 +55,7 @@ public class TaskList {
      * @param marker boolean value to indicate if task should be marked or unmarked
      */
     public void markTask(int index, boolean marker) {
-        this.tasks.get(index - 1).isDone = marker;
+        this.tasks.get(index - 1).mark(marker);
     }
 
 

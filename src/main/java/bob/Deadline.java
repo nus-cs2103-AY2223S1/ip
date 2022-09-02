@@ -27,7 +27,7 @@ public class Deadline extends Task {
      * @return String representing how Deadline object is saved
      */
     @Override
-    public String toSave() { return "D | " + super.toSave() + " | " + by; }
+    public String toSaveFormat() { return "D | " + super.toSaveFormat() + " | " + by; }
 
     /**
      * Returns the string representation of the Deadline object

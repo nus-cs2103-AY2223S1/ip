@@ -69,7 +69,7 @@ public class Storage {
                     String todoTaskName = temp[2].substring(1);
                     ToDo todo = new ToDo(todoTaskName);
                     if (temp[1].substring(1, 2).equals("1")) {
-                        todo.toMark(true);
+                        todo.mark(true);
                     }
                     tasks.addTask(todo);
                     break;
@@ -79,7 +79,7 @@ public class Storage {
                     String deadlineDate = deadlineDetails[0];
                     Deadline deadline = new Deadline(deadlineTaskName, LocalDate.parse(deadlineDate));
                     if (temp[1].substring(1, 2).equals("1")) {
-                        deadline.toMark(true);
+                        deadline.mark(true);
                     }
                     tasks.addTask(deadline);
                     break;
@@ -89,7 +89,7 @@ public class Storage {
                     String eventDate = eventDetails[0];
                     Event event = new Event(eventTaskName, LocalDate.parse(eventDate));
                     if (temp[1].substring(1, 2).equals("1")) {
-                        event.toMark(true);
+                        event.mark(true);
                     }
                     tasks.addTask(event);
                     break;
@@ -112,7 +112,7 @@ public class Storage {
             FileWriter fileWriter = new FileWriter(this.saveFile);
             String list = "";
             for (int i = 1; i < tasks.getLength() + 1; i++) {
-                list = list + tasks.getTask(i).toSave() + "\n";
+                list = list + tasks.getTask(i).toSaveFormat() + "\n";
             }
             fileWriter.write(list);
             fileWriter.close();

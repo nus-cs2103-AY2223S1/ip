@@ -91,7 +91,7 @@ public class Ui {
      * @param tasks list of tasks
      * @param index index of unmarked task
      */
-    public void displayUnMarked(TaskList tasks, int index) {
+    public void displayUnmarked(TaskList tasks, int index) {
         System.out.println("aw...i guess there's another task.\n" + tasks.getTask(index).toString());
     }
 

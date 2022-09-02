@@ -32,7 +32,7 @@ public class Task {
      *
      * @param x boolean value indicating if task should be marked as completed or not
      */
-    public void toMark(boolean x) {
+    public void mark(boolean x) {
         this.isDone = x;
     }
 
@@ -41,7 +41,7 @@ public class Task {
      *
      * @return String representing how Task object is saved
      */
-    public String toSave() {
+    public String toSaveFormat() {
         if (isDone) {
             return "1 | " + this.description;
         } else {

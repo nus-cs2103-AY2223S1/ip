@@ -29,7 +29,7 @@ public class Parser {
             ui.printLine();
             this.toExit = true;
             break;
-        case "lift":
+        case "list":
             ui.printLine();
             ui.displayTaskList(tasks, "here are your tasks!");
             ui.printLine();
@@ -51,7 +51,7 @@ public class Parser {
                 int index = Integer.valueOf(splitReply[1]);
                 tasks.markTask(index, false);
                 ui.printLine();
-                ui.displayUnMarked(tasks, index);
+                ui.displayUnmarked(tasks, index);
                 ui.printLine();
                 storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
