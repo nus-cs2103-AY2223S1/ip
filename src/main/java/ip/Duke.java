@@ -2,10 +2,11 @@ package ip;
 
 import java.io.IOException;
 
-import ip.command.ByeCommand;
-import ip.command.Command;
+import ip.command.DukeCommand;
 import ip.exception.DukeException;
-import ip.exception.InvalidCommand;
+import ip.utility.Parser;
+import ip.utility.Storage;
+import ip.utility.TaskList;
 
 
 /**
@@ -17,67 +18,39 @@ import ip.exception.InvalidCommand;
  * @author Jonathan Lam
  */
 public class Duke {
-    /** Interacts with the user, take input and give output */
-    private static final Ui ui = new Ui();
     /** Extract commands given to the ui */
-    private static final Parser parser = new Parser();
+    private static Parser parser;
     /** Encapsulation of tasks */
-    private static TaskList taskList = new TaskList();
+    private static TaskList taskList;
     /** File that task data is read from and written to */
-    private static final Storage storage = new Storage("src/main/java/ip/taskData.txt");
-    /** Flag to determine if the task data file should be wiped after program end */
-    private static boolean toWipe = false;
+    private static Storage storage;
 
     /**
-     * Duke's main method.
+     * Constructor for Duke.
      *
-     * @param args Arguments passed to main when run.
+     * @param path Path to load the task data to.
      */
-    public static void main(String[] args) {
-        // Set Duke to wipe stored task data on termination.
-        if (System.getProperty("user.dir").endsWith("text-ui-test")) {
-            toWipe = true;
-        }
-        // Load task list from default storage location.
+    public Duke(String path) {
+        storage = new Storage(path);
+        parser = new Parser();
         try {
             taskList = storage.load();
-        // Try to find task list from fallback location.
         } catch (IOException e) {
-            ui.say("Error in loading task data file. Searching for file in fallback location.");
-            try {
-                taskList = storage.load("taskList.txt");
-            } catch (IOException ee) {
-                ui.say(ee.toString());
-            }
-        }
-        ui.divider();
-        while (true) {
-            try {
-                parser.load(ui.getNextLine());
-                Command command = parser.getCommand();
-                if (command instanceof ByeCommand) {
-                    ui.sayBye();
-                    break;
-                } else {
-                    ui.divider();
-                    try {
-                        command.execute(taskList);
-                        storage.write(taskList);
-                    } catch (DukeException e) {
-                        System.out.println(e);
-                    }
-                    parser.clear();
-                    ui.divider();
-                }
-            } catch (InvalidCommand e) {
-                System.out.println("You have entered an invalid command.");
-                ui.say(e.toString());
-            }
-        }
-        if (toWipe) {
-            storage.wipe();
-            ui.say("Storage wiped.");
+            System.out.println("Error in loading file from specified path.");
+            System.out.println("Duke will not save any task data this run.");
+            taskList = new TaskList();
         }
     }
 
+    public String getResponse(String input) {
+        parser.load(input);
+        try {
+            DukeCommand command = parser.getCommand();
+            String executionReply = command.execute(taskList);
+            storage.write(taskList);
+            return executionReply;
+        } catch (DukeException e) {
+            return e.toString();
+        }
+    }
 }

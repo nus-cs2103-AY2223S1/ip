@@ -1,4 +1,4 @@
-package ip;
+package ip.utility;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +21,7 @@ public class Storage {
     /** Path of the task data file */
     private String path;
     /** Task data file */
-    private File file;
+    private final File file;
 
     /**
      * Constructor to initialize storage with given path.
@@ -40,12 +40,7 @@ public class Storage {
      * @throws IOException If an issue was encountered in opening the file.
      */
     public TaskList load() throws IOException {
-        System.out.println("Searching for existing task data...");
-        if (file.createNewFile()) {
-            System.out.println("No existing task data. New database initialized.");
-            return new TaskList();
-        } else {
-            System.out.println("Existing task data found. Loading...");
+        if (file.exists()) {
             TaskList taskList = new TaskList();
             String data = new String(Files.readAllBytes(Path.of(path)));
             String[] lines = data.split("\\r?\\n");
@@ -63,26 +58,15 @@ public class Storage {
                     taskList.add(new Event(info));
                     break;
                 default:
-                    System.out.println("Invalid task format found in existing data. Line skipped.");
+                    // Do nothing
                 }
             }
-            System.out.println("Existing data loaded.");
             return taskList;
+        } else {
+            Files.createDirectory(Path.of("data"));
+            file.createNewFile();
+            return new TaskList();
         }
-    }
-
-    /**
-     * Loads a task data file from an alternate path.
-     * Path is specified by the user.
-     *
-     * @param altPath The alternate path to source task data from.
-     * @return The TaskList built from task data file.
-     * @throws IOException If an issue was encountered in opening the file.
-     */
-    public TaskList load(String altPath) throws IOException {
-        this.path = altPath;
-        this.file = new File(path);
-        return load();
     }
 
     /**
@@ -97,27 +81,9 @@ public class Storage {
                 target.append(task.writeFormat());
             }
             target.close();
-            System.out.println("Current task list successfully saved.");
         } catch (IOException e) {
-            System.out.println("Error in writing file.");
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Gets the absolute path to the current file that Storage holds.
-     *
-     * @return Absolute path of file.
-     */
-    public String getPath() {
-        return file.getAbsolutePath();
-    }
-
-    /**
-     * Deletes the file that Storage holds.
-     */
-    public void wipe() {
-        file.delete();
     }
 
     @Override

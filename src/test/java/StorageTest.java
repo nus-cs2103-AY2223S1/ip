@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ip.Storage;
-import ip.TaskList;
+import ip.utility.Storage;
+import ip.utility.TaskList;
 
 
 public class StorageTest {

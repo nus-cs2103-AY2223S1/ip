@@ -1,4 +1,4 @@
-package ip;
+package ip.utility;
 
 import java.util.LinkedList;
 
@@ -62,6 +62,20 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new NoTaskFound(index);
         }
+    }
+
+    /**
+     * Returns a list of all tasks in the task list.
+     *
+     * @return String describing every task in the list.
+     */
+    public String list() {
+        StringBuilder output = new StringBuilder();
+        for (Task task : tasks) {
+            output.append(task);
+            output.append("\n");
+        }
+        return output.toString();
     }
 
     @Override

@@ -1,10 +1,10 @@
-package ip;
+package ip.utility;
 
 import java.util.Scanner;
 
 import ip.command.AddCommand;
 import ip.command.ByeCommand;
-import ip.command.Command;
+import ip.command.DukeCommand;
 import ip.command.EditCommand;
 import ip.command.FindCommand;
 import ip.command.ListCommand;
@@ -22,10 +22,10 @@ public class Parser {
     /**
      * Stores user input string as a Scanner object.
      *
-     * @param s Scanner to be stored.
+     * @param input String to be stored.
      */
-    public void load(Scanner s) {
-        inputLine = s;
+    public void load(String input) {
+        inputLine = new Scanner(input);
     }
 
     /**
@@ -39,10 +39,10 @@ public class Parser {
      * Parse user input for the command.
      * If no input is detected, it returns a ByeCommand object.
      *
-     * @return The command entered by the user, as a Command object.
+     * @return The command entered by the user, as a DukeCommand object.
      * @throws InvalidCommand If the command entered is not recognised.
      */
-    public Command getCommand() throws InvalidCommand {
+    public DukeCommand getCommand() throws InvalidCommand {
         if (inputLine.hasNext()) {
             String commandGiven = inputLine.next();
             switch (commandGiven) {

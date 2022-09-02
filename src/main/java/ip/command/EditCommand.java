@@ -3,27 +3,27 @@ package ip.command;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import ip.TaskList;
 import ip.exception.IndexNotSpecified;
 import ip.exception.NoTaskFound;
+import ip.utility.TaskList;
 
 /**
- * Command to edit a task in the task list.
+ * DukeCommand to edit a task in the task list.
  */
-public class EditCommand extends Command {
-    /** Command given by the user */
-    private final String commandGiven;
+public class EditCommand extends DukeCommand {
+    /** DukeCommand given by the user */
+    private final String editType;
     /** Options following the command given */
     private final Scanner options;
 
     /**
      * Constructor for EditCommand.
      *
-     * @param commandGiven Type of edit command given.
+     * @param editType Type of edit command given.
      * @param options Options to be used to edit tasks.
      */
-    public EditCommand(String commandGiven, Scanner options) {
-        this.commandGiven = commandGiven;
+    public EditCommand(String editType, Scanner options) {
+        this.editType = editType;
         this.options = options;
     }
 
@@ -35,14 +35,14 @@ public class EditCommand extends Command {
      * @throws NoTaskFound If there is no task at the index number specified.
      */
     @Override
-    public void execute(TaskList taskList) throws IndexNotSpecified, NoTaskFound {
+    public String execute(TaskList taskList) throws IndexNotSpecified, NoTaskFound {
         int index;
         try {
             index = options.nextInt();
         } catch (NoSuchElementException e) {
             throw new IndexNotSpecified();
         }
-        switch (commandGiven) {
+        switch (editType) {
         case "mark":
             taskList.mark(index - 1);
             break;
@@ -53,7 +53,8 @@ public class EditCommand extends Command {
             taskList.delete(index - 1);
             break;
         default:
-            System.out.println("Edit command not recognised.");
+            return "Cannot edit task with this edit type.";
         }
+        return "Task successfully edited.";
     }
 }

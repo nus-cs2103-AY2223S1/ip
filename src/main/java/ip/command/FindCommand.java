@@ -1,16 +1,19 @@
 package ip.command;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
-import ip.TaskList;
 import ip.task.Task;
+import ip.utility.TaskList;
 
 /**
- * Command to find tasks matching specified keyword.
+ * DukeCommand to find tasks matching specified keyword.
  */
-public class FindCommand extends Command {
+public class FindCommand extends DukeCommand {
     /** Options following the find command */
     private final Scanner options;
+    private final LinkedList<Task> results = new LinkedList<>();
+    private String keyword = "";
 
     public FindCommand(Scanner options) {
         this.options = options;
@@ -22,18 +25,24 @@ public class FindCommand extends Command {
      * @param taskList List to search.
      */
     @Override
-    public void execute(TaskList taskList) {
-        String keyword = "";
+    public String execute(TaskList taskList) {
         if (options.hasNext()) {
             keyword = options.nextLine().trim();
         }
-        int i = 1;
-        System.out.println("Tasks containing \"" + keyword + "\"");
         for (Task task : taskList.tasks) {
             if (task.hasString(keyword)) {
-                System.out.println(i + ". " + task);
-                i++;
+                results.add(task);
             }
         }
+        if (results.isEmpty()) {
+            return "No tasks with keyword \"" + keyword + "\" found.";
+        }
+        StringBuilder stringResults = new StringBuilder();
+        stringResults.append("Results from search keyword \"").append(keyword).append("\": \n");
+        for (Task task : results) {
+            stringResults.append(task);
+            stringResults.append('\n');
+        }
+        return stringResults.toString();
     }
 }

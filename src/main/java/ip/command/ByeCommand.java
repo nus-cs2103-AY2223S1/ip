@@ -1,17 +1,20 @@
 package ip.command;
 
-import ip.TaskList;
+import ip.utility.TaskList;
+import javafx.application.Platform;
 
 /**
- * Command to end the program.
+ * DukeCommand to end the program.
  */
-public class ByeCommand extends Command {
+public class ByeCommand extends DukeCommand {
 
     /**
      * Does nothing.
      */
     @Override
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         // do nothing
+        Platform.exit();
+        return "Bye!";
     }
 }

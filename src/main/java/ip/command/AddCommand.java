@@ -2,32 +2,32 @@ package ip.command;
 
 import java.util.Scanner;
 
-import ip.TaskList;
 import ip.exception.BadDeadline;
 import ip.exception.BadTimespan;
 import ip.exception.MissingDescription;
 import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.ToDo;
+import ip.utility.TaskList;
 
 
 /**
- * Command to add a task to the task list.
+ * DukeCommand to add a task to the task list.
  */
-public class AddCommand extends Command {
-    /** Command given by the user */
-    private final String commandGiven;
+public class AddCommand extends DukeCommand {
+    /** DukeCommand given by the user */
+    private final String taskType;
     /** Options following the command given */
     private final Scanner options;
 
     /**
      * Constructor for AddCommand.
      *
-     * @param commandGiven Type of add command given.
+     * @param taskType Type of task to be added.
      * @param options Options to be used to add a new task.
      */
-    public AddCommand(String commandGiven, Scanner options) {
-        this.commandGiven = commandGiven;
+    public AddCommand(String taskType, Scanner options) {
+        this.taskType = taskType;
         this.options = options;
     }
 
@@ -40,8 +40,8 @@ public class AddCommand extends Command {
      * @throws BadDeadline If the deadline is incorrectly formatted or missing.
      */
     @Override
-    public void execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
-        switch (commandGiven) {
+    public String execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
+        switch (taskType) {
         case "todo":
             taskList.add(new ToDo(options));
             break;
@@ -52,7 +52,8 @@ public class AddCommand extends Command {
             taskList.add(new Event(options));
             break;
         default:
-            System.out.println("Add command not recognized.");
+            return "Cannot add task of that type.";
         }
+        return "Task successfully added.";
     }
 }
