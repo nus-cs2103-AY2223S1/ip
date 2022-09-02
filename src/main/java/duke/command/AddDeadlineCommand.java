@@ -4,7 +4,6 @@ import duke.exception.DukeException;
 import duke.task.DeadlineTask;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 
 /**
  * A command class that adds a deadline task, displays the output, and saves the file.

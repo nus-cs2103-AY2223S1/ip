@@ -4,7 +4,6 @@ import duke.Duke;
 import duke.exception.DukeIndexOutOfBoundException;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 
 /**
  * A command class that marks a task as undone, displays the output, and saves the list.

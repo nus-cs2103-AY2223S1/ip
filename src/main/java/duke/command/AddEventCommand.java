@@ -5,6 +5,7 @@ import duke.task.EventTask;
 import duke.util.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
+import duke.util.CliUi;
 
 /**
  * A command class that adds an event task, displays the output, and saves the file.

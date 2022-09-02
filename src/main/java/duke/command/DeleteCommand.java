@@ -5,7 +5,6 @@ import static duke.Duke.TAB;
 import duke.exception.DukeIndexOutOfBoundException;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.CliUi;
 
 /**
  * A command class that deletes a task, displays the output, and saves the list.
