@@ -31,6 +31,7 @@ public class Duke {
         parser = new Parser();
         storage = new Storage("data", "data/tasks");
         tasks = retrieveTasks();
+        assert this.tasks != null : "Tasks should not be null after being loaded.";
         commandsHistoryPointer = 0;
         commandsHistory = new ArrayList<>();
     }
@@ -91,6 +92,7 @@ public class Duke {
 
     private CommandResult parseAndExecuteInput(String input) throws DukeException {
         Command command = parser.parseCommand(input);
+        assert command != null : "Command returned from parseCommand should never be null.";
         command.setData(tasks);
         return command.execute();
     }
@@ -112,6 +114,7 @@ public class Duke {
     private String handleUserInput(String input) {
         try {
             CommandResult result = parseAndExecuteInput(input);
+            assert result != null : "Result from the execution of a command should never be null.";
             exitIfRequired(result);
             updateFileIfRequired(result);
             return result.getUserMessage();

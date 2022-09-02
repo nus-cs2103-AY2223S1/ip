@@ -13,6 +13,7 @@ public class ListCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
         String[] lines = new String[tasks.size()];
 
         for (int i = 0; i < tasks.size(); i++) {

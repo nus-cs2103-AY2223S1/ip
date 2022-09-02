@@ -100,6 +100,7 @@ public class Storage {
             }
         } catch (FileNotFoundException e) {
             // Should not happen because file is created beforehand.
+            assert false : "Should not have file not found exception because file has just been created.";
             return tasks;
         }
 
@@ -119,6 +120,7 @@ public class Storage {
 
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.getTask(i);
+            assert task != null : "Task should not be null because i < tasks.size().";
             String line = task.getFileFormat();
             fw.write(line + "\n");
         }

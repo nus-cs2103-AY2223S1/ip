@@ -64,6 +64,7 @@ public class FindCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert tasks != null : "Should setData() before calling execute().";
         ArrayList<String> foundTasks = getFoundTasks();
         String userMessage = getUserMessage(foundTasks);
         return new CommandResult(userMessage, false, false);
