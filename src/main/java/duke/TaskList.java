@@ -19,51 +19,56 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks with keyword in description and prints to output
+     * Finds tasks with keyword in description and returns String representation of tasks
      *
      * @param keyword String keyword to search for in Task
+     * @return String representation of tasks
      */
-    public void findTasks(String keyword) {
+    public String findTasks(String keyword) {
         TaskList temp = new TaskList();
         for (Task task : tasks) {
             if (task.containsKeyword(keyword)) {
                 temp.tasks.add(task);
             }
         }
-        System.out.println("Here are the matching tasks in your list:");
-        temp.showTasksPlain();
+        return String.format("Here are the matching tasks in your list:\n%s", temp.showTasksPlain());
     }
 
     /**
-     * Shows the tasks in TaskList without additional comments
+     * Returns String representation of tasks in TaskList without additional comments
+     *
+     * @return String representation of tasks
      */
-    private void showTasksPlain() {
+    private String showTasksPlain() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d. %s\n", i + 1, tasks.get(i));
+            stringBuilder.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
+
+        return stringBuilder.toString();
     }
 
     /**
      * Adds a Task to TaskList
      *
      * @param task Task to be added to TaskList
+     * @return String to be displayed to user after adding Task to TaskList
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-        System.out.printf("Got it. I've added this task:\n %s\n", task);
-        showTasksCount();
+        return String.format("Got it. I've added this task:\n %s\n%s", task, showTasksCount());
     }
 
     /**
      * Deletes Task at desired index from TaskList
      *
      * @param idx Index of Task to be deleted from TaskList
+     * @return String to be displayed to user after deleting Task from TaskList
      */
-    public void deleteTask(int idx) {
+    public String deleteTask(int idx) {
         Task task = tasks.get(idx - 1);
         tasks.remove(task);
-        System.out.printf("Noted. I've removed this task:\n %s\n", task);
-        showTasksCount();
+        return String.format("Noted. I've removed this task:\n %s\n%s", task, showTasksCount());
     }
 
     /**
@@ -71,8 +76,8 @@ public class TaskList {
      *
      * @param idx Index of Task to be marked as done in TaskList
      */
-    public void markAsDone(int idx) {
-        tasks.get(idx - 1).markAsDone();
+    public String markAsDone(int idx) {
+        return tasks.get(idx - 1).markAsDone();
     }
 
     /**
@@ -80,23 +85,26 @@ public class TaskList {
      *
      * @param idx Index of Task to be marked as not done in TaskList
      */
-    public void markAsNotDone(int idx) {
-        tasks.get(idx - 1).markAsNotDone();
+    public String markAsNotDone(int idx) {
+        return tasks.get(idx - 1).markAsNotDone();
     }
 
     /**
-     * Prints all tasks in TaskList to output
+     * Returns String representation of all tasks in TaskList
+     *
+     * @return String representation of all tasks in TaskList
      */
-    public void showTasks() {
-        System.out.println("Here are the tasks in your list:");
-        showTasksPlain();
+    public String showTasks() {
+        return String.format("Here are the tasks in your list:\n%s", showTasksPlain());
     }
 
     /**
-     * Prints number of tasks in TaskList to output
+     * Returns String representation of number of tasks in TaskList
+     *
+     * @return String representation of number of tasks in TaskList
      */
-    public void showTasksCount() {
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+    public String showTasksCount() {
+        return String.format("Now you have %d tasks in the list.\n", tasks.size());
     }
 
     /**
