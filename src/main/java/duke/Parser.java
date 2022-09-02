@@ -31,6 +31,8 @@ public class Parser {
      */
     public static Command parseInput(String userInput) throws DukeException {
         String[] split = userInput.split(" ");
+        String command = split[0];
+
         if (userInput.equals("welcome") && split.length == 1) {
             return new WelcomeCommand();
         }
@@ -43,19 +45,19 @@ public class Parser {
             return new ListCommand();
         }
 
-        if (split[0].equals("mark") && split.length == 2 && isNumeric(split[1])) {
+        if (command.equals("mark") && split.length == 2 && isNumeric(split[1])) {
             return new MarkCommand(Integer.parseInt(split[1]));
         }
 
-        if (split[0].equals("unmark") && split.length == 2 && isNumeric(split[1])) {
+        if (command.equals("unmark") && split.length == 2 && isNumeric(split[1])) {
             return new UnmarkCommand(Integer.parseInt(split[1]));
         }
 
-        if (split[0].equals("delete") && split.length == 2 && isNumeric(split[1])) {
+        if (command.equals("delete") && split.length == 2 && isNumeric(split[1])) {
             return new DeleteCommand(Integer.parseInt(split[1]));
         }
 
-        if (split[0].equals("find")) {
+        if (command.equals("find")) {
             String keyword = userInput.substring(4).trim();
             if (keyword.length() == 0) {
                 throw new DukeException("OOPS!!! The keyword cannot be empty :-(");
@@ -63,7 +65,7 @@ public class Parser {
             return new FindCommand(keyword);
         }
 
-        if (split[0].equals("todo")) {
+        if (command.equals("todo")) {
             String description = userInput.substring(4).trim();
             if (description.length() == 0) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty :-(");
@@ -72,7 +74,7 @@ public class Parser {
         }
 
         try {
-            if (split[0].equals("deadline") && userInput.contains("/by")) {
+            if (command.equals("deadline") && userInput.contains("/by")) {
                 int index = userInput.indexOf("/by");
                 String description = userInput.substring(8, index).trim();
                 if (description.length() == 0) {
@@ -81,7 +83,7 @@ public class Parser {
                 return new DeadlineCommand(description, LocalDate.parse(userInput.substring(index + 3).trim()));
             }
 
-            if (split[0].equals("event") && userInput.contains("/at")) {
+            if (command.equals("event") && userInput.contains("/at")) {
                 int index = userInput.indexOf("/at");
                 String description = userInput.substring(5, index).trim();
                 if (description.length() == 0) {

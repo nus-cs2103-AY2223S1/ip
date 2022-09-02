@@ -44,7 +44,7 @@ public class TaskList {
      *
      * @return Size of the list.
      */
-    public int size() {
+    public int getSize() {
         return tasks.size();
     }
 
@@ -56,7 +56,7 @@ public class TaskList {
      * @throws DukeException If index is negative or greater than size of list.
      */
     public Task markTask(int index) throws DukeException {
-        if (index < 0 || index >= size()) {
+        if (index < 0 || index >= getSize()) {
             throw new DukeException("Task number does not exist.");
         }
         Task task = tasks.get(index);
@@ -72,7 +72,7 @@ public class TaskList {
      * @throws DukeException If index is negative or greater than size of list.
      */
     public Task unmarkTask(int index) throws DukeException {
-        if (index < 0 || index >= this.size()) {
+        if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Task number does not exist.");
         }
         Task task = tasks.get(index);
@@ -88,7 +88,7 @@ public class TaskList {
      * @throws DukeException If index is negative or greater than size of list.
      */
     public Task deleteTask(int index) throws DukeException {
-        if (index < 0 || index >= this.size()) {
+        if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Task number does not exist.");
         }
         return tasks.remove(index);

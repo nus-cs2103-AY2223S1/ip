@@ -39,6 +39,11 @@ public class Deadline extends Task {
         return DateTimeFormatter.ofPattern("MMM dd yyyy").format(by);
     }
 
+    /**
+     * Returns the deadline in a string format to be saved in a local file.
+     *
+     * @return A string corresponding to the deadline.
+     */
     @Override
     public String stringify() {
         return String.format("%s | %s | %s", "D", super.stringify(), by);

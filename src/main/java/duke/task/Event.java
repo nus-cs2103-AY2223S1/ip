@@ -39,6 +39,11 @@ public class Event extends Task {
         return DateTimeFormatter.ofPattern("MMM dd yyyy").format(at);
     }
 
+    /**
+     * Returns the event in a string format to be saved in a local file.
+     *
+     * @return A string corresponding to the event.
+     */
     @Override
     public String stringify() {
         return String.format("%s | %s | %s", "E", super.stringify(), at);

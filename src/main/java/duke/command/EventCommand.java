@@ -41,7 +41,7 @@ public class EventCommand extends Command {
     public String execute(Storage storage, TaskList taskList, Ui ui) {
         String output = "";
         output += ui.printAddTask(taskList.addTask(new Event(description, at)));
-        output += ui.printSizeOfList(taskList.size());
+        output += ui.printSizeOfList(taskList.getSize());
         storage.save(taskList.getTasks());
         return output;
     }

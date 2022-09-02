@@ -26,6 +26,11 @@ public class ToDo extends Task {
         super(description, isDone);
     }
 
+    /**
+     * Returns the todo in a string format to be saved in a local file.
+     *
+     * @return A string corresponding to the todo.
+     */
     @Override
     public String stringify() {
         return String.format("%s | %s", "T", super.stringify());

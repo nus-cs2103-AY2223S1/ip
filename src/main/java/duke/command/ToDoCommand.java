@@ -36,7 +36,7 @@ public class ToDoCommand extends Command {
     public String execute(Storage storage, TaskList taskList, Ui ui) {
         String output = "";
         output += ui.printAddTask(taskList.addTask(new ToDo(description)));
-        output += ui.printSizeOfList(taskList.size());
+        output += ui.printSizeOfList(taskList.getSize());
         storage.save(taskList.getTasks());
         return output;
     }

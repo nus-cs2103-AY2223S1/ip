@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
         try {
             String output = "";
             output += ui.printDeleteTask(taskList.deleteTask(index - 1));
-            output += ui.printSizeOfList(taskList.size());
+            output += ui.printSizeOfList(taskList.getSize());
             storage.save(taskList.getTasks());
             return output;
         } catch (DukeException e) {
