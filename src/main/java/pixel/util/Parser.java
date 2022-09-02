@@ -4,6 +4,7 @@ import pixel.Pixel;
 import pixel.task.Task;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 /**
@@ -20,24 +21,25 @@ public class Parser { // inner class
     }
 
     // Method is made public to facilitate testing, should be private
-    public void parse (String userInput) {
+    public String parse (String userInput) {
 
         try {
-            if (userInput.strip().equals("bye")) {
-                System.out.println(UserInterface.GOODBYE_MESSAGE);
-                System.exit(0);
+            if (userInput.strip().startsWith("bye")) {
+                // System.out.println(UserInterface.GOODBYE_MESSAGE);
+                return UserInterface.GOODBYE_MESSAGE;
+                // System.exit(0);
 
             } else if (userInput.strip().startsWith("todo ")) {
-                taskList.handleNewTask(userInput, "T");
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return taskList.handleNewTask(userInput, "T");
+                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("deadline ")) {
-                taskList.handleNewTask(userInput, "D");
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return taskList.handleNewTask(userInput, "D");
+                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("event ")) {
-                taskList.handleNewTask(userInput, "E");
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return taskList.handleNewTask(userInput, "E");
+                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("mark ")) {
                 // truncate the front part
@@ -54,9 +56,11 @@ public class Parser { // inner class
                     Storage.appendToFile(task, this.filePath);
                 }
 
-                System.out.println(" Nice! I've marked this task as done:");
-                System.out.println(Storage.INPUT_TASKS.get(indexToChange - 1));
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return (" Nice! I've marked this task as done: \n"
+                    + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
+                    + UserInterface.AFTER_VALID_INPUT);
+//                System.out.println(Storage.INPUT_TASKS.get(indexToChange - 1));
+//                System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("unmark ")) {
                 // truncate the front part
@@ -73,64 +77,65 @@ public class Parser { // inner class
                     Storage.appendToFile(task, this.filePath);
                 }
 
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(Storage.INPUT_TASKS.get(indexToChange - 1));
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+               return ("OK, I've marked this task as not done yet: \n"
+                   + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
+                   + UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().equals("list")) {
                 // System.out.println(inputMemory.length);
-                System.out.println("Here are the tasks in your list:");
+                String output = "Here are the tasks in your list: \n";
+
                 for (int i = 0; i < Pixel.count; i++) {
                     Task currentTask = Storage.INPUT_TASKS.get(i);
-                    System.out.println((i + 1) + ". " + currentTask);
+                    output += ((i + 1) + ". " + currentTask + "\n");
                 }
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return output + UserInterface.AFTER_VALID_INPUT;
 
             } else if (userInput.strip().startsWith("delete ")) {
-                Storage.deleteEntry(userInput, filePath);
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                String output = Storage.deleteEntry(userInput, filePath);
+                return output + "\n" + UserInterface.AFTER_VALID_INPUT;
 
             } else if (userInput.strip().startsWith("find ")) {
                 ArrayList<Task> results = Storage.findEntry(userInput);
-                System.out.println("Here are the matching tasks in your list:");
+                String output = "Here are the matching tasks in your list: \n";
                 for (int i = 0; i < results.size(); i++) {
                     Task currentTask = results.get(i);
-                    System.out.println((i + 1) + ". " + currentTask);
+                    output += ((i + 1) + ". " + currentTask + "\n");
                 }
-                System.out.println(UserInterface.AFTER_VALID_INPUT);
+                return output + UserInterface.AFTER_VALID_INPUT;
 
             } else {
                 throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
             }
 
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(e);
-            System.out.println("caught Index Out of Bounds Exception");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("caught Index Out of Bounds Exception \n"
+            + UserInterface.AFTER_INVALID_INPUT + "\n"
+            + UserInterface.PROMPT_MESSAGE);
 
         } catch (StackOverflowError e) {
-            System.out.println(e);
-            System.out.println("caught Stack Overflow Error");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("caught Stack Overflow Error \n"
+            + UserInterface.AFTER_INVALID_INPUT + "\n"
+            + UserInterface.PROMPT_MESSAGE);
 
         } catch (NullPointerException e) {
-            System.out.println(e);
-            System.out.println("caught Null pointer exception");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("caught Null pointer exception \n"
+            + UserInterface.AFTER_INVALID_INPUT + "\n"
+            + UserInterface.PROMPT_MESSAGE);
 
         } catch (IncorrectFormatException e) {
-            System.out.println(e);
-            System.out.println("Incorrect format exception!");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("Incorrect format exception! \n"
+            + UserInterface.AFTER_INVALID_INPUT + "\n"
+            + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {
-            System.out.println(e);
-            System.out.println("Caught IO exception! Please ensure that the file address provided is valid");
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("Caught IO exception! Please ensure that the file address provided is valid \n"
+            + UserInterface.PROMPT_MESSAGE);
 
 //        } finally {
 //            // clean up

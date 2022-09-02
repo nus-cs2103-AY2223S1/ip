@@ -19,7 +19,7 @@ public class TaskList {
         this.filePath = filePath;
     }
 
-    public void handleNewTask(String userInput, String type) throws IOException {
+    public String handleNewTask(String userInput, String type) throws IOException {
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
@@ -74,8 +74,8 @@ public class TaskList {
         }
 
         Pixel.count += 1;
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask);
-        System.out.println("Now you have " + Pixel.count + " tasks in the list.");
+        return("Got it. I've added this task: \n"
+            + newTask + "\n"
+            + "Now you have " + Pixel.count + " tasks in the list.");
     }
 }

@@ -33,7 +33,7 @@ public class HandleTaskTest {
     @Test
     public void testInvalidInput() {
         try {
-            pixelBot.parser.parse("dsfdsfdsfdsf");
+            pixelBot.parserParse("dsfdsfdsfdsf");
         } catch (Exception exception) {
             //System.out.println(exception.toString());
             assertTrue(exception instanceof IncorrectFormatException);
