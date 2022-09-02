@@ -205,14 +205,19 @@ public class Duke extends Application {
                     } else if (Parser.isFindTask(words)) {
                         String keywords = Parser.joinString(words, 1);
                         keywords = keywords.substring(0, keywords.length() - 1);
-                        System.out.println("Here are the matching tasks in your list:");
+                        String outputString = "";
+                        outputString += "Here are the matching tasks in your list:\n";
+
                         for (Task task : taskArrayList) {
                             if (task.getDescription().contains(keywords)) {
-                                System.out.println(task.toString());
+                                outputString += task.toString() + "\n";
                             }
                         }
+                        return outputString;
                     } else {
-                        throw new DukeException("I'm sorry, I don't know what that means!");
+                        String outputString = "I don't know what you mean, so I will just echo you\n";
+                        outputString += input;
+                        return outputString;
                     }
                 }
             }
@@ -378,6 +383,17 @@ public class Duke extends Application {
         Event newEvent = new Event(description, at);
         taskArrayList.add(newEvent);
         return ui.printAddedTask(newEvent);
+    }
+
+    public String getMultipleTaskDescriptions(int... taskIndexArray) {
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
+        String outputString = "";
+        for (int i = 0; i < taskIndexArray.length; i++) {
+            int taskIndex = taskIndexArray[i];
+            outputString += taskArrayList.get(taskIndex).toString();
+        }
+        
+        return outputString;
     }
 
     /**
