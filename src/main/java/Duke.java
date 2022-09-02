@@ -1,3 +1,5 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,13 +16,13 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
 
-        final String GREETING_MESSSAGE = "Hello! I'm Duke\n"
+        final String GREETING_MESSAGE = "Hello! I'm Duke\n"
                 + "What can I do for you?\n";
         final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!\n";
 
         System.out.println("Hello from\n" + LOGO);
 
-        printTextWithDivider(GREETING_MESSSAGE);
+        printTextWithDivider(GREETING_MESSAGE);
 
         storage = new Storage();
 
@@ -49,7 +51,7 @@ public class Duke {
      * @param text The specified text to be printed to the console
      */
     public static void printTextWithDivider(String text) {
-        final String divider = "-".repeat(80) + "\n";
+        final String divider = "-".repeat(100) + "\n";
         System.out.println(divider + text + divider);
     }
 
@@ -60,48 +62,40 @@ public class Duke {
      */
     private static void executeCommand(String command) {
         // Limit the words to 2
-        String[] inputs = command.split(" ", 2);
+        String[] inputs = command.trim().split(" ", 2);
 
         try {
             switch (inputs[0]) {
-                // List out all tasks
-                case ("list"): {
-                    listCommand(inputs);
-                    break;
-                }
-                // Add todo task
-                case ("todo"): {
-                    addTaskCommand(TaskType.TODO, inputs);
-                    break;
-                }
-                // Add deadline task
-                case ("deadline"): {
-                    addTaskCommand(TaskType.DEADLINE, inputs);
-                    break;
-                }
-                // Add event task
-                case ("event"): {
-                    addTaskCommand(TaskType.EVENT, inputs);
-                    break;
-                }
-                // Mark task as done
-                case ("mark"): {
-                    markTaskCommand(inputs);
-                    break;
-                }
-                // Mark task as undone
-                case ("unmark"): {
-                    unmarkTaskCommand(inputs);
-                    break;
-                }
-                // Delete task
-                case ("delete"): {
-                    deleteTaskCommand(inputs);
-                    break;
-                }
-                default: {
-                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
-                }
+             // List out all tasks
+            case ("list"):
+                listCommand(inputs);
+                break;
+            // Add todo task
+            case ("todo"):
+                addTaskCommand(TaskType.TODO, inputs);
+                break;
+            // Add deadline task
+            case ("deadline"):
+                addTaskCommand(TaskType.DEADLINE, inputs);
+                break;
+            // Add event task
+            case ("event"):
+                addTaskCommand(TaskType.EVENT, inputs);
+                break;
+            // Mark task as done
+            case ("mark"):
+                markTaskCommand(inputs);
+                break;
+            // Mark task as undone
+            case ("unmark"):
+                unmarkTaskCommand(inputs);
+                break;
+            // Delete task
+            case ("delete"):
+                deleteTaskCommand(inputs);
+                break;
+            default:
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
             }
         } catch (DukeException e) {
             printTextWithDivider(e.getMessage());
@@ -122,38 +116,39 @@ public class Duke {
         printTextWithDivider(str.toString());
     }
 
-    private static void addTaskCommand(TaskType taskType, String[] inputs) {
+    private static void addTaskCommand(TaskType taskType, String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
             throw new DukeException("OOPS!!! The description of " + taskType.getTaskType() + " cannot be empty.\n");
         }
 
         Task task;
-        switch (taskType) {
-            case TODO: {
+        try {
+            switch (taskType) {
+            case TODO:
                 task = new Todo(inputs[1]);
                 break;
-            }
-            case DEADLINE: {
-                String[] deadlineInputs = inputs[1].split("/by", 2);
+            case DEADLINE:
+                String[] deadlineInputs = inputs[1].split("/by ", 2);
 
                 if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
                     throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
                 }
-                task = new Deadline(deadlineInputs[0], deadlineInputs[1]);
+                task = new Deadline(deadlineInputs[0], LocalDateTime.parse(deadlineInputs[1], Task.DATE_TIME_FORMATTER));
                 break;
-            }
-            case EVENT: {
-                String[] eventInputs = inputs[1].split("/at", 2);
+            case EVENT:
+                String[] eventInputs = inputs[1].split("/at ", 2);
 
                 if (eventInputs.length == 1 || eventInputs[1].equals("")) {
                     throw new DukeException("OOPS!!! The date and time of an event cannot be empty.\n");
                 }
-                task = new Event(eventInputs[0], eventInputs[1]);
+                task = new Event(eventInputs[0], LocalDateTime.parse(eventInputs[1], Task.DATE_TIME_FORMATTER));
                 break;
-            }
-            default: {
+            default:
                 throw new DukeException("OOPS!!! Invalid task type.\n");
             }
+        } catch (DateTimeException e) {
+            throw new DukeException("OOPS!!! Invalid datetime format, input a valid date and time in the format " +
+                    "YYYY-MM-DD HH:MM. \n");
         }
 
         taskList.add(task);
