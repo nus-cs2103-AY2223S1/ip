@@ -109,6 +109,7 @@ public class Parser {
 
       } else {
         int removal = Integer.parseInt(line.substring(7));
+        taskList.remove(removal-1);
       }
     } else {
       throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-()");
