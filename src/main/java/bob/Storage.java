@@ -33,9 +33,9 @@ public class Storage {
                 System.out.println("error! not able to create file!");
             }
         } else {
-            String FilePath = System.getProperty("user.dir") + System.getProperty("file.separator")
+            String filePath = System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "lists" + System.getProperty("file.separator") + "tasklist.txt";
-            File saveFile = new File(FilePath);
+            File saveFile = new File(filePath);
             if (!saveFile.exists()) {
                 File taskList = new File(directoryPath, "tasklist.txt");
                 this.saveFile = taskList;
@@ -73,7 +73,7 @@ public class Storage {
                     }
                     tasks.addTask(todo);
                     break;
-                case "D" :
+                case "D":
                     String deadlineTaskName = temp[2].substring(1, temp[2].length() - 1);
                     String[] deadlineDetails = temp[3].substring(1).split(" ");
                     String deadlineDate = deadlineDetails[0];
@@ -92,6 +92,8 @@ public class Storage {
                         event.mark(true);
                     }
                     tasks.addTask(event);
+                    break;
+                default:
                     break;
                 }
             }

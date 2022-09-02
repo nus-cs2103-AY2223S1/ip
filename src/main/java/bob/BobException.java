@@ -6,7 +6,7 @@ package bob;
 public class BobException extends Exception {
 
     /**
-     * Returns error message 
+     * Returns error message
      */
     public String toString() {
         return "Bob does not understand...";

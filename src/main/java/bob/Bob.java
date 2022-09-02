@@ -5,10 +5,10 @@ package bob;
  */
 public class Bob {
 
-    Storage storage;
-    Ui ui;
-    TaskList taskList;
-    Parser parser;
+    private Storage storage;
+    private Ui ui;
+    private TaskList taskList;
+    private Parser parser;
 
     /**
      * Initialises Bob with a Ui, Storage, TaskList and Parser.

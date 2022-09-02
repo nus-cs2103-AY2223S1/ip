@@ -1,7 +1,7 @@
 package bob;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents Deadline object, a task with a specific completion date
@@ -27,7 +27,9 @@ public class Deadline extends Task {
      * @return String representing how Deadline object is saved
      */
     @Override
-    public String toSaveFormat() { return "D | " + super.toSaveFormat() + " | " + by; }
+    public String toSaveFormat() {
+        return "D | " + super.toSaveFormat() + " | " + by;
+    }
 
     /**
      * Returns the string representation of the Deadline object

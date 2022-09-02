@@ -27,7 +27,9 @@ public class Event extends Task {
      * @return String representing how Event object is saved
      */
     @Override
-    public String toSaveFormat() { return "E | " + super.toSaveFormat() + " | " + at; }
+    public String toSaveFormat() {
+        return "E | " + super.toSaveFormat() + " | " + at;
+    }
 
     /**
      * Returns the string representation of the Event object

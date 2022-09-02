@@ -20,7 +20,9 @@ public class ToDo extends Task {
      * @return String representing how ToDo object is saved
      */
     @Override
-    public String toSaveFormat() { return "T | " + super.toSaveFormat(); }
+    public String toSaveFormat() {
+        return "T | " + super.toSaveFormat();
+    }
 
     /**
      * Returns the string representation of the ToDo object
@@ -28,5 +30,7 @@ public class ToDo extends Task {
      * @return String representation of ToDo object
      */
     @Override
-    public String toString() { return "[T]" + super.toString(); }
+    public String toString() {
+        return "[T]" + super.toString();
+    }
 }

@@ -23,16 +23,17 @@ public class Ui {
     public void displayWelcomeMessage() {
         System.out.println("hey, i'm bob!👻\ndo you need help?");
         printLine();
-        System.out.println("    ↓ here's what you can do! ↓\n" +
-                "    ---------------------------\n" +
-                "❤️    ADD A TODO TASK: todo <task>\n" +
-                "🌸    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n" +
-                "✨    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n" +
-                "💕    VIEW LIST OF EVENTS: list\n" +
-                "🌼    MARK AS DONE: mark <task number in list>\n" +
-                "❣️    UNMARK TASK: unmark <task number in list>\n" +
-                "🌟    REMOVE TASK: remove <task number in list>\n" +
-                "💞    TO END THE PROGRAM: bye\n");
+        System.out.println("    ↓ here's what you can do! ↓\n"
+                + "    ---------------------------\n"
+                + "❤️    ADD A TODO TASK: todo <task>\n"
+                + "🌸    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
+                + "✨    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n"
+                + "💕    VIEW LIST OF EVENTS: list\n"
+                + "🌼    MARK AS DONE: mark <task number in list>\n"
+                + "❣️    UNMARK TASK: unmark <task number in list>\n"
+                + "🌟    REMOVE TASK: remove <task number in list>\n"
+                + "🍀    FILTER TASKS OF SPECIFIC DATE: filter <yyyy-mm-dd>\n"
+                + "💞    TO END THE PROGRAM: bye\n");
     }
 
     /**
@@ -112,7 +113,7 @@ public class Ui {
      * @param tasks list of tasks
      * @param task task added
      */
-    public void displayAddedTask (TaskList tasks, Task task) {
+    public void displayAddedTask(TaskList tasks, Task task) {
         System.out.println("okay! new task:" + "\n  " + task.toString()
                 + "\njust " + tasks.getLength() + " tasks left!");
     }
