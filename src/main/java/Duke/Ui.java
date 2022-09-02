@@ -20,12 +20,10 @@ public class Ui {
     /**
      * Duke welcome message.
      */
-    public static final String initMessage = "    ____________________________________________________________\n" +
-            "     Hello! I'm Duke.Duke\n" +
+    public static final String initMessage =  "     Hello! I'm Duke.Duke\n" +
             "     I can store a to-do list for you!\n" +
             "     Enter 'list' to display current contents and 'bye' to end the program.\n" +
-            "     Start entering your tasks!\n" +
-            "    ____________________________________________________________";
+            "     Start entering your tasks!\n";
 
 
     /**
@@ -63,11 +61,8 @@ public class Ui {
     /**
      * Prints goodbye message.
      */
-    public void showGoodbyeMessage() {
-        System.out.println(
-                "    ____________________________________________________________\n" +
-                        "     Bye. Hope to see you again soon!\n" +
-                        "    ____________________________________________________________\n");
+    public String showGoodbyeMessage() {
+        return  "     Bye. Hope to see you again soon!\n";
     }
 
     /**
@@ -84,8 +79,8 @@ public class Ui {
      *
      * @param item String
      */
-    public void showEntry(String item) {
-        System.out.println("    " + item);
+    public String showEntry(String item) {
+        return "    " + item;
     }
 
     /**
@@ -94,44 +89,41 @@ public class Ui {
      * @param deletable Task that was deleted
      * @param size      int size
      */
-    public void showDeleteMessage(Task deletable, int size) {
-        System.out.printf(
-                "    ____________________________________________________________\n" +
-                        "     Noted. I've removed this task:\n" +
+    public String showDeleteMessage(Task deletable, int size) {
+        return String.format("     Noted. I've removed this task:\n" +
                         "       %s\n" +
-                        "     Now you have %d tasks in the list.\n" +
-                        "    ____________________________________________________________\n", deletable, size);
+                        "     Now you have %d tasks in the list.\n", deletable, size);
     }
 
     /**
      * Prints invalid task message.
      */
-    public void showInvalidTaskMessage() {
-        System.out.println("Invalid task! Please input a number!");
+    public String showInvalidTaskMessage() {
+        return String.format("Invalid task! Please input a number!");
     }
 
     /**
      * prints Error message.
      */
-    public void showErrorReadingMessage() {
-        System.out.println("Error reading from data!");
+    public String showErrorReadingMessage() {
+        return String.format("Error reading from data!");
     }
 
     /**
      * Prints invalid index message.
      */
-    public void showInvalidIndexMessage() {
-        System.out.println("Please Include a valid index!");
+    public String showInvalidIndexMessage() {
+        return "Please Include a valid index!";
     }
 
     /**
      * Prints Writing Error message.
      */
-    public void showErrorWritingMessage() {
-        System.out.println("Error writing to data!");
+    public String showErrorWritingMessage() {
+        return "Error writing to data!";
     }
 
-    public void showInvalidFindFiledMessage() {
-        System.out.println("Please include a word to search for!");
+    public String showInvalidFindFiledMessage() {
+        return "Please include a word to search for!";
     }
 }

@@ -98,13 +98,13 @@ public class TaskList {
      * @param action to indicate mark/unmark
      * @param index  to indicate which task to apply action to
      */
-    public void markTasks(String action, int index) {
+    public String markTasks(String action, int index) {
         if (index > taskArray.size() || index < 1) {
-            System.out.println("Invalid task ID!");
+            return "Invalid task ID!";
         } else if (Objects.equals(action, "mark")) {
-            taskArray.get(index - 1).mark();
+            return taskArray.get(index - 1).mark();
         } else {
-            taskArray.get(index - 1).unMark();
+            return taskArray.get(index - 1).unMark();
         }
     }
 
