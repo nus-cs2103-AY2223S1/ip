@@ -1,9 +1,14 @@
 package duke.lists;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import duke.entities.Task;
+import duke.enums.Messages;
 import duke.exceptions.DukeException;
 import duke.utils.Storage;
 
@@ -94,6 +99,33 @@ public class TaskList {
             }
         }
         return output;
+    }
+
+    /**
+     * Get the most upcoming task and the time to task in hours, tasks expired will not show up
+     * @return representation of upcoming task else default message
+     */
+    public String getReminder() throws DukeException {
+        LocalDateTime currentTime = LocalDateTime.now();
+        try {
+            getUpcomingTask(currentTime);
+        } catch (NoSuchElementException e) {
+            throw new DukeException(Messages.NO_EVENTS_OR_DEADLINES.toString());
+        }
+        Task upComingTask = getUpcomingTask(currentTime);
+        long days = ChronoUnit.DAYS.between(currentTime, upComingTask.getLocalDateTime());
+        long hours = ChronoUnit.HOURS.between(currentTime, upComingTask.getLocalDateTime()) - days * 24;
+        long minutes = ChronoUnit.MINUTES.between(currentTime, upComingTask.getLocalDateTime())
+                - hours * 60 - days * 24 * 60;
+        return String.format("Due in %d days, %d hours, %d minutes \n %s",
+                days, hours, minutes, upComingTask.toString());
+    }
+
+    private Task getUpcomingTask(LocalDateTime ldt) {
+        Optional<Task> minEvent = tasks.stream()
+                .filter(i -> (i.getLocalDateTime().compareTo(ldt) > 0))
+                .min((i, j) -> i.compareTo(j));
+        return minEvent.get();
     }
 
     @Override

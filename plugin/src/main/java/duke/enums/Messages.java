@@ -16,6 +16,7 @@ public enum Messages {
     ADD_DEADLINE("Added deadline: "),
     MARK_DONE("Nice! I've marked this task as done:"),
     MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone."),
+    NO_EVENTS_OR_DEADLINES("Wee! There are no upcoming events or deadlines with deadline after now!"),
     DELETE("Wow! Good job, I have removed the following task: "),
     ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :< \n Valid Commands: \n"
                             + "list (show all tasks) \n\n"
@@ -24,7 +25,8 @@ public enum Messages {
                             + "deadline task description /at yyyy-mm-dd hh:mm (add a task)\n\n"
                             + "mark index (mark the task at that index)\n\n"
                             + "delete index (delete task at that index)\n\n"
-                            + "find keyword (finds task containing that keyword)\n\n"),
+                            + "find keyword (finds task containing that keyword)\n\n"
+                            + "reminder (gives the latest reminder)"),
     ERROR_TODO(">:| OOPS!!! The description of a todo cannot be empty."),
     ERROR_INVALID_INDEX(">:| OOPS!!! There is no task with this index."),
     ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters."),
