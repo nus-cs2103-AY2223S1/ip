@@ -12,7 +12,7 @@ import duke.DukeException;
  * Abstract class for all types of tasks with a specific time.
  */
 public abstract class TimedTask extends Task {
-    public static String format = "dd/MM/yyyy HH:mm";
+    private static String format = "dd/MM/yyyy HH:mm";
     private LocalDateTime time;
 
     /**
@@ -24,6 +24,10 @@ public abstract class TimedTask extends Task {
     public TimedTask(String description, String rawDateTime) throws DukeException {
         super(description);
         this.time = convertRawTime(rawDateTime);
+    }
+
+    public static String getFormat() {
+        return format;
     }
 
     /**
