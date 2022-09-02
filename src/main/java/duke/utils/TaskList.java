@@ -21,13 +21,10 @@ public class TaskList {
      *
      * @param task The new task to be added.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-
-        System.out.println("\n  _______________");
-        System.out.println("  Added: " + task);
-        System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
-        System.out.println("  _______________\n");
+        String str = "Added: " + task + "\n" + String.format("Now you have %d tasks in the list", tasks.size());
+        return str;
     }
 
     /**
@@ -35,10 +32,10 @@ public class TaskList {
      *
      * @param input The string representation of the index of the task to be marked.
      */
-    public void markTask(String input) throws Exception {
+    public String markTask(String input) throws Exception {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
-        task.markIsDone();
+        return task.markIsDone();
     }
 
     /**
@@ -46,22 +43,18 @@ public class TaskList {
      *
      * @param input The string representation of the index of the task to be unmarked.
      */
-    public void unmarkTask(String input) throws Exception {
+    public String unmarkTask(String input) throws Exception {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
-        task.unmarkIsDone();
+        return task.unmarkIsDone();
     }
 
-    public void deleteTask(String input) throws Exception {
+    public String deleteTask(String input) throws Exception {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         try {
             tasks.remove(taskNum);
-
-            System.out.println("\n  _______________");
-            System.out.println("  Removed: " + task);
-            System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
-            System.out.println("  _______________\n");
+            return "Removed: " + task + "\n" + String.format("Now you have %d tasks in the list", tasks.size());
         } catch (Exception e) {
             throw new DukeException(String.format("Task number %d not found", taskNum));
         }
@@ -81,25 +74,25 @@ public class TaskList {
         return tasks;
     }
 
-    public void printTasks() {
-        System.out.println("Your tasks:");
+    public String printTasks() {
+        String str = "Your tasks:\n";
         for (Task task : tasks) {
             int taskIndex = tasks.indexOf(task) + 1;
-            String taskString = String.format("%d. %s", taskIndex, task);
-            System.out.println(taskString);
+            String taskString = String.format("%d. %s\n", taskIndex, task);
+            str += taskString;
         }
+        return str;
     }
 
-    public ArrayList<Task> findTasks(String input) {
+    public String findTasks(String input) {
         ArrayList<Task> results = tasks.stream().filter(task -> task.isContain(input))
                 .collect(Collectors.toCollection(ArrayList::new));
-
-        System.out.println("Here are the matching tasks in your list:");
+        String str = "Here are the matching tasks in your list:\n";
         for (Task task : results) {
             int taskIndex = tasks.indexOf(task) + 1;
             String taskString = String.format("%d. %s", taskIndex, task);
-            System.out.println(taskString);
+            str += taskString;
         }
-        return results;
+        return str;
     }
 }
