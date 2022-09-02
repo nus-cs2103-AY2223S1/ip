@@ -22,11 +22,11 @@ public class DeleteCommand extends Command {
             Task deleted = tasks.getTask(index);
             tasks.deleteTask(index);
             storage.rebuildFile(tasks.getIterator());
-            ui.printMessage("Noted. I've removed this task:\n"
+            ui.nextOutput("Noted. I've removed this task:\n"
                     + deleted.toString() + "\n"
                     + "Now you have " + tasks.listSize() + " tasks in the list");
         } catch (IOException ioe) {
-            System.out.println("Something went wrong: " + ioe.getMessage());
+            ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }
     }
 }

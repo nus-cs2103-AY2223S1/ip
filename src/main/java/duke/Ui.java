@@ -4,24 +4,41 @@ import java.util.Scanner;
 
 public class Ui {
 
+    private String input;
+    private String output;
+
     /**
      * Display welcome message to user.
      */
-    public void showWelcome() {
+    public String showWelcome() {
         String intro = "Hello! My name is GustavoBot, but you can call me Gus\n"
                 + "How may I help you today?";
 
-        System.out.println(intro);
+        return intro;
+    }
+
+
+    public String getInput() {
+        return input;
     }
 
     /**
-     * Reads the input from user.
-     * @return Returns user's inputs as string.
+     * Stores input from user, to be parsed.
      */
-    public String readCommand() {
-        Scanner scanObj = new Scanner(System.in);
-        String fullCommand = scanObj.nextLine();
-        return fullCommand;
+    public void nextInput(String input) {
+        this.input = input;
+    }
+
+    /**
+     * Stores the output as response to user input.
+     * @param output The output as a result of parsing user input.
+     */
+    public void nextOutput(String output) {
+        this.output = output;
+    }
+
+    public String getOutput() {
+        return output;
     }
 
     /**

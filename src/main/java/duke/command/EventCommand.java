@@ -25,13 +25,13 @@ public class EventCommand extends Command {
             Event task = new Event(desc, at);
             tasks.addTask(task);
             storage.appendToFile(task.toSave() + System.lineSeparator() + "");
-            ui.printMessage("Got it. I've added this task:\n"
+            ui.nextOutput("Got it. I've added this task:\n"
                     + task + "\n"
                     + "Now you have " + tasks.listSize() + " tasks in the list.");
         } catch (EmptyDescException e) {
-            System.out.println(e.getMessage());
+            ui.nextOutput(e.getMessage());
         } catch (IOException ioe) {
-            System.out.println("Something went wrong: " + ioe.getMessage());
+            ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }
     }
 }

@@ -12,11 +12,12 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ListIterator<Task> iterate = tasks.getIterator();
-        ui.printMessage("Here are the tasks you currently have:");
+        String output = "Here are the tasks you currently have: \n";
         int qty = 0;
         while (iterate.hasNext()) {
             qty++;
-            ui.printMessage(qty + "." + iterate.next().toString());
+            output += qty + "." + iterate.next().toString() + "\n";
         }
+        ui.nextOutput(output);
     }
 }

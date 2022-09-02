@@ -29,6 +29,8 @@ public class Parser {
             return new FindCommand(fullCommand);
         } else if (fullCommand.equals("bye")) {
             return new ExitCommand();
+        } else if (fullCommand.equals("hello")) {
+            return new HelloCommand();
         } else {
             return new UnknownCommand();
         }

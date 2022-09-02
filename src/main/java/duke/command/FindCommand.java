@@ -24,14 +24,15 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ListIterator<Task> iterate = tasks.getIterator();
-        ui.printMessage("Here are the matching tasks I've found:");
         int qty = 0;
+        String output = "Here are the matching tasks I've found:";
         while (iterate.hasNext()) {
             Task currentTask = iterate.next();
             if (currentTask.getDesc().contains(desc)) {
                 qty++;
-                ui.printMessage(qty + "." + currentTask);
+                output += qty + "." + currentTask + "\n";
             }
         }
+        ui.nextOutput(output);
     }
 }

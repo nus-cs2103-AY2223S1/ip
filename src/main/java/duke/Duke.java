@@ -11,11 +11,10 @@ public class Duke {
 
     /**
      * Constructor.
-     * @param filePath
      */
-    public Duke(String filePath) {
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(path2);
         tasks = new TaskList(storage.load());
     }
 
@@ -23,17 +22,21 @@ public class Duke {
      * Initialises key objects and prompts user input.
      */
     public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            String fullCommand = ui.readCommand();
-            Command c = Parser.parseCommand(fullCommand);
-            c.execute(tasks, ui, storage);
-            isExit = c.isExit();
-        }
+        Command c = Parser.parseCommand(ui.getInput());
+        c.execute(tasks, ui, storage);
+    }
+
+    /**
+     * Feeds user input from JavaFX GUI to Duke.
+     * @param input The user input.
+     * @return The output from Duke as a string.
+     */
+    public String getResponse(String input) {
+        ui.nextInput(input);
+        run();
+        return ui.getOutput();
     }
 
     public static void main(String[] args) {
-        new Duke(path2).run();
     }
 }

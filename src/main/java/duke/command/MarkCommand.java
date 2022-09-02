@@ -20,10 +20,10 @@ public class MarkCommand extends Command {
         try {
             tasks.markTask(index);
             storage.rebuildFile(tasks.getIterator());
-            ui.printMessage("Alright, this task is marked as done:\n"
+            ui.nextOutput("Alright, this task is marked as done:\n"
                     + tasks.getTask(index).toString());
         } catch (IOException ioe) {
-            System.out.println("Something went wrong: " + ioe.getMessage());
+            ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }
     }
 }
