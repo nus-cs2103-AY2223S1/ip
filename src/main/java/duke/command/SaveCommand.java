@@ -14,7 +14,7 @@ public class SaveCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
-        return storage.save(taskList.toSave());
+        return storage.save(taskList.getIterator());
     }
 
     /**

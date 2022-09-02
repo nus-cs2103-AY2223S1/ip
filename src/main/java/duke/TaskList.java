@@ -134,7 +134,7 @@ public class TaskList {
      * Used in writing tasks to file in Storage class.
      * @return Iterator of the list of tasks.
      */
-    public Iterator<Task> toSave() {
+    public Iterator<Task> getIterator() {
         return this.list.iterator();
     }
 
