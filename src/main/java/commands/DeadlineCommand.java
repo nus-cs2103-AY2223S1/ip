@@ -1,8 +1,8 @@
 package commands;
 
+import duke.Storage;
 import duke.Ui;
 import tasks.Deadlines;
-import tasks.Events;
 import tasks.Task;
 import tasks.TaskList;
 import tasks.Todos;
@@ -31,9 +31,9 @@ public class DeadlineCommand extends Command {
      *
      * @param taskList List of tasks to add deadline into.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         Task toAdd = new Deadlines(this.descript, this.doBy);
         taskList.addTask(toAdd);
-        Ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        return ui.printAddStatement(toAdd.toString(), taskList.getSize());
     }
 }

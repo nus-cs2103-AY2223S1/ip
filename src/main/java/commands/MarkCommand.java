@@ -1,10 +1,8 @@
 package commands;
 
-import tasks.Deadlines;
-import tasks.Events;
-import tasks.Task;
+import duke.Storage;
+import duke.Ui;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * MarkCommand marks the chosen task as completed.
@@ -27,8 +25,9 @@ public class MarkCommand extends Command {
      *
      * @param taskList Task list containing task to be marked.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         taskList.mark(index);
-        System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.retrieveTask(index).toString());
+        String str = "Nice! I've marked this task as done:\n" + "  " + taskList.retrieveTask(index).toString() + "\n";
+        return str;
     }
 }

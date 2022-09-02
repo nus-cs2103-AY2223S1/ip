@@ -1,17 +1,15 @@
 package commands;
 
-import tasks.Deadlines;
-import tasks.Events;
-import tasks.Task;
+import duke.Storage;
+import duke.Ui;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * Command directs the program to take certain actions.
  */
 public abstract class Command {
     public boolean isDone;
-    public abstract void run(TaskList taskList);
+    public abstract String execute(TaskList taskList, Ui ui, Storage s);
 
     /**
      * Constructor for Command

@@ -1,10 +1,8 @@
 package commands;
 
-import tasks.Deadlines;
-import tasks.Events;
-import tasks.Task;
+import duke.Storage;
+import duke.Ui;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * ListCommand prints out all the tasks in the task list.
@@ -24,12 +22,15 @@ public class ListCommand extends Command {
      *
      * @param taskList Task list to be printed out.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
+        String str = "";
         if (taskList.getSize() == 0) {
-            System.out.println("You have no tasks at the moment!");
+            str = "You have no tasks at the moment!\n";
         }
         for (int i = 1; i <= taskList.getSize(); i++) {
-            System.out.println(i + ". " + taskList.retrieveTask(i - 1).toString());
+            String addOn = i + ". " + taskList.retrieveTask(i - 1).toString() + "\n";
+            str += addOn;
         }
+        return str;
     }
 }

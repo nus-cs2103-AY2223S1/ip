@@ -1,10 +1,8 @@
 package commands;
 
-import tasks.Deadlines;
-import tasks.Events;
-import tasks.Task;
+import duke.Storage;
+import duke.Ui;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * UnMarkCommand marks the chosen task as incomplete.
@@ -27,9 +25,10 @@ public class UnMarkCommand extends Command {
      *
      * @param taskList Task list containing task to be unmarked.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         taskList.unmark(index);
-        System.out.println("OK, I've marked this task as not done yet:\n" + "  "
-                + taskList.retrieveTask(index).toString());
+        String str = "OK, I've marked this task as not done yet:\n" + "  "
+                + taskList.retrieveTask(index).toString() + "\n";
+        return str;
     }
 }

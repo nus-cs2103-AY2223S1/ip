@@ -1,10 +1,9 @@
 package commands;
 
-import tasks.Deadlines;
-import tasks.Events;
+import duke.Storage;
+import duke.Ui;
 import tasks.Task;
 import tasks.TaskList;
-import tasks.Todos;
 
 public class FindCommand extends Command {
     String keyword;
@@ -18,8 +17,9 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         TaskList found = new TaskList();
+        String str = "";
         for (int i = 0; i < taskList.getSize(); i++) {
             Task temp = taskList.retrieveTask(i);
             if (temp.getDescription().contains(keyword)) {
@@ -27,11 +27,13 @@ public class FindCommand extends Command {
             }
         }
         if (found.getSize() == 0) {
-            System.out.println("No matching tasks were found :(");
+            str += "No matching tasks were found :(\n";
         } else {
             for (int i = 1; i <= found.getSize(); i++) {
-                System.out.println(i + ". " + found.retrieveTask(i - 1).toString());
+                String addOn = i + ". " + found.retrieveTask(i - 1).toString() + "\n";
+                str += addOn;
             }
         }
+        return str;
     }
 }

@@ -1,8 +1,7 @@
 package commands;
 
+import duke.Storage;
 import duke.Ui;
-import tasks.Deadlines;
-import tasks.Events;
 import tasks.Task;
 import tasks.TaskList;
 import tasks.Todos;
@@ -30,9 +29,9 @@ public class TodoCommand extends Command {
      *
      * @param taskList Task list to which the new Todos should be added to.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         Task toAdd = new Todos(this.descript);
         taskList.addTask(toAdd);
-        Ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        return Ui.printAddStatement(toAdd.toString(), taskList.getSize());
     }
 }

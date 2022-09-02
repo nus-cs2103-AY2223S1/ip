@@ -1,11 +1,8 @@
 package commands;
 
+import duke.Storage;
 import duke.Ui;
-import tasks.Deadlines;
-import tasks.Events;
-import tasks.Task;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * DeleteCommand deletes the chosen task from the task list.
@@ -28,10 +25,10 @@ public class DeleteCommand extends Command {
      *
      * @param taskList Task list containing the task to be deleted.
      */
-    public void run(TaskList taskList) {
+    public String execute(TaskList taskList, Ui ui, Storage s) {
         String descript = taskList.retrieveTask(index).toString();
         taskList.deleteTask(index);
-        Ui.printDeleteStatement(descript, taskList.getSize());
+        return ui.printDeleteStatement(descript, taskList.getSize());
     }
 
 }
