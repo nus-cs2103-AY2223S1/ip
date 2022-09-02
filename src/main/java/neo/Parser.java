@@ -34,7 +34,7 @@ public class Parser {
     public void checkText(String userText) throws NeoException, IOException {
 
         if (userText.equals("list") || userText.equals("List")) {
-            stor.Retrievedata();
+            stor.retrieveData();
         }
         String arr[];
         arr = userText.split(" ", 2);

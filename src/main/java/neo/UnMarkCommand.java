@@ -35,9 +35,9 @@ public class UnMarkCommand extends Command{
         arrayLL.getTask(tempii-1).setIsDone(false);
         System.out.println("ohk I've marked this task as not done");
         System.out.println(arrayLL.getTask(tempii-1).toString());
-        stor.Writedata(arrayLL.getTask(0));
+        stor.writeData(arrayLL.getTask(0));
         for(int i =1; i<arrayLL.arrayL.size(); i++) {
-            stor.Storedata(arrayLL.getTask(i));
+            stor.storeData(arrayLL.getTask(i));
         }
     }
 }
