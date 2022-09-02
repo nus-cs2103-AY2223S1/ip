@@ -12,7 +12,6 @@ import duke.command.SaveCommand;
 import duke.command.UnmarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.Todo;
 
 /**
@@ -99,13 +98,13 @@ public class Parser {
             String secondCommand = findSecondCommand(input, secCommand);
             switch (command) {
             case "deadline":
-                addTask(new Deadline(desc, secondCommand), storageList);
+                storageList.addTask(new Deadline(desc, secondCommand));
                 break;
             case "event":
-                addTask(new Event(desc, secondCommand), storageList);
+                storageList.addTask(new Event(desc, secondCommand));
                 break;
             case "todo":
-                addTask(new Todo(desc), storageList);
+                storageList.addTask(new Todo(desc));
                 break;
             default:
             }
@@ -113,17 +112,6 @@ public class Parser {
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    /**
-     * Adds a Task to the StorageList, print out the appropriate String.
-     *
-     * @param task Task to be added to the StorageList
-     * @param storageList StorageList to be added to
-     */
-    private static void addTask(Task task, StorageList storageList) {
-        storageList.add(task);
-        Output.ADD.modifyTask(task, storageList);
     }
 
     /**

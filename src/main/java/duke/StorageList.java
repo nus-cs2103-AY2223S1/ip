@@ -149,4 +149,14 @@ public class StorageList {
         }
         return ans;
     }
+
+    /**
+     * Adds a Task to the StorageList, print out the appropriate String.
+     *
+     * @param task Task to be added to the StorageList
+     */
+    public void addTask(Task task) {
+        add(task);
+        Output.ADD.modifyTask(task, this);
+    }
 }
