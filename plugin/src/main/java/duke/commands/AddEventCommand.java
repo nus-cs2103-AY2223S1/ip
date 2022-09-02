@@ -12,6 +12,15 @@ import duke.lists.TaskList;
  * Adds Event to the tasklist
  */
 public class AddEventCommand extends AddDeadlineCommand {
+
+    /**
+     * Adds an event to the task list
+     * @param tasks list of tasks
+     * @param desc description of task to be added
+     * @param input the user command
+     * @param deadline the deadline of the task
+     * @throws DukeException when something goes wrong
+     */
     public AddEventCommand(TaskList tasks, String desc, String input, String deadline) throws DukeException {
         super(tasks, desc, input, deadline);
     }
@@ -26,7 +35,7 @@ public class AddEventCommand extends AddDeadlineCommand {
     public String execute() throws DukeException {
         try {
             LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetimeFormat);
-            Event currentEvent = new Event(descrition, deadline);
+            Event currentEvent = new Event(description, deadline);
             tasks.addTask(currentEvent);
             return wrapWithoutLines(Messages.ADD_EVENT.toString(), currentEvent.toString());
         } catch (DateTimeParseException e) {

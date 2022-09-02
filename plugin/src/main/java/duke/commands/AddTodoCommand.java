@@ -9,7 +9,7 @@ import duke.lists.TaskList;
  * Adds Todo to the tasklist
  */
 public class AddTodoCommand extends ShowList {
-    protected String descrition;
+    protected String description;
     protected String instruction;
 
     /**
@@ -20,7 +20,7 @@ public class AddTodoCommand extends ShowList {
      */
     public AddTodoCommand(TaskList list, String description, String input) {
         super(list);
-        this.descrition = description;
+        this.description = description;
         this.instruction = input;
     }
 
@@ -32,7 +32,7 @@ public class AddTodoCommand extends ShowList {
      */
     @Override
     public String execute() throws DukeException {
-        Todo currentTodo = new Todo(descrition);
+        Todo currentTodo = new Todo(description);
         tasks.addTask(currentTodo);
         return wrapWithoutLines(Messages.ADD_TODO.toString(), currentTodo.toString());
     }
