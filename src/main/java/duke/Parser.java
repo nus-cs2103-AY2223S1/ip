@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,12 +103,21 @@ public class Parser {
                 matcher.group("eventTime").strip());
     }
 
+    private static boolean isValidDateTime(String dateTimeString) {
+        try {
+            LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
     private static Command processDeadline(String inputString) {
         final Matcher matcher = Pattern.compile(combineRegexes(getTextRegex("description"),
                         "/by",
                         getDateTimeRegex("datetime")))
                 .matcher(inputString.strip());
-        if (!matcher.matches()) {
+        if (!matcher.matches() || !Parser.isValidDateTime(matcher.group("datetime"))) {
             return new InvalidCommand("Invalid deadline format");
         }
 
