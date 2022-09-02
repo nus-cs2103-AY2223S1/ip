@@ -2,8 +2,11 @@ public class Deadline extends Task{
 
     protected String dateTime;
 
-    public Deadline(String description, String dateTime) {
-        super(description);
+    public Deadline(String description, String dateTime) throws MissingArgumentException{
+        super("deadline", description, dateTime);
+        if (dateTime.equals("")) {
+            throw new MissingArgumentException("ERROR: deadline command requires a description.");
+        }
         this.dateTime = dateTime;
     }
 

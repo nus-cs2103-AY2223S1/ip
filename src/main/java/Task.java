@@ -1,14 +1,17 @@
 public class Task {
+    protected String type;
     protected String description;
+    protected String dateTime;
     protected   boolean isDone;
 
     Task (String description) {
         this.description = description;
         this.isDone = false;
     }
-    Task (String description, boolean isDone) {
+    Task (String type, String description, String dateTime) {
         this.description = description;
-        this.isDone = isDone;
+        this.dateTime = dateTime;
+        this.isDone = false;
     }
 
     public String getDescription() {

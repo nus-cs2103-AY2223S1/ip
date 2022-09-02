@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<Task>();
     private static boolean isEnd = false;
@@ -19,70 +18,114 @@ public class Duke {
         String greeting = "Hello! I'm Duke  \n" + "What can I do for you?\n";
         Scanner userInput = new Scanner(System.in);
         chat(greeting);
-        while (!isEnd) {
-            String userStatement = userInput.nextLine();
-            String splitUserStatement[] = userStatement.split(" ", 2);
-            String command = splitUserStatement[0];
-            String userArgs = "";
-            if (splitUserStatement.length > 1) {
-                userArgs = splitUserStatement[1];
-            }
-            /*String[] splitUserArgs = userArgs.split("/by", 2);
-            String dateTime = "";
-            String description = splitUserArgs[0];
-            if (splitUserArgs.length > 1) {
-                dateTime = splitUserArgs[1]; 
-            } */
-            switch(command) {
-            case COMMAND_LIST:
-                chat("Here are the tasks in your list: \n" + list());
-                break;
-            case COMMAND_BYE:
-                chat("Bye! Hope to see you again!\n");
-                isEnd = true;
-                break;
-            case COMMAND_TODO:
-                ToDo toDoToAdd = new ToDo(userArgs);
-                tasks.add(toDoToAdd);
-                chat("Got it, I've added this task:\n " + toDoToAdd + "\n" + outputNumOfTasks());
-                break;
-            case COMMAND_DEADLINE:  
-                String[] splitUserArgs = userArgs.split("/by", 2);
-                String dateTime = "";
-                String description = splitUserArgs[0];
-                if (splitUserArgs.length > 1) {
-                    dateTime = splitUserArgs[1]; 
-                }           
-                Deadline deadlineToAdd = new Deadline(description, dateTime);
-                tasks.add(deadlineToAdd);
-                chat("Got it, I've added this task:\n " + deadlineToAdd + "\n" + outputNumOfTasks());
-                break;
-            case COMMAND_EVENT: 
-                String[] splitUserArgs2 = userArgs.split("/at", 2);
-                String dateTime2 = "";
-                String description2 = splitUserArgs2[0];
-                if (splitUserArgs2.length > 1) {
-                    dateTime2 = splitUserArgs2[1]; 
-                }              
-                Event eventToAdd = new Event(description2, dateTime2);
-                tasks.add(eventToAdd);
-                chat("Got it, I've added this task:\n " + eventToAdd + "\n" + outputNumOfTasks());
-                break;
-            case COMMAND_MARK:
-                mark(Integer.parseInt(userArgs));
-                break;
-            case COMMAND_UNMARK:
-                unmark(Integer.parseInt(userArgs));
-                break;
-            default:
-                chat("Not a command, just wanna chat?");
+            while (!isEnd) {
+                try {
+                    String[] parsedUserInput = parseCommand(userInput.nextLine());
+                    String command = parsedUserInput[0];
+                    String arg1 = parsedUserInput[1];
+                    String arg2 = parsedUserInput[2];
+                    switch(command) {
+                    case COMMAND_LIST:
+                        chat("Here are the tasks in your list: \n" + list());
+                        break;
+                    case COMMAND_BYE:
+                        chat("Bye! Hope to see you again!\n");
+                        isEnd = true;
+                        userInput.close();
+                        break;
+                    case COMMAND_TODO:
+                        if (arg1.equals("")) {
+                            error("ToDo task requires a description");
+                            break;
+                        }
+                        ToDo toDoToAdd = new ToDo(arg1);
+                        tasks.add(toDoToAdd);
+                        chat("Got it, I've added this task:\n " + toDoToAdd + "\n" + outputNumOfTasks());
+                        break;
+                    case COMMAND_DEADLINE:            
+                        Deadline deadlineToAdd = new Deadline(arg1, arg2);
+                        tasks.add(deadlineToAdd);
+                        chat("Got it, I've added this task:\n " + deadlineToAdd + "\n" + outputNumOfTasks());
+                        break;
+                    case COMMAND_EVENT:          
+                        Event eventToAdd = new Event(arg1, arg2);
+                        tasks.add(eventToAdd);
+                        chat("Got it, I've added this task:\n " + eventToAdd + "\n" + outputNumOfTasks());
+                        break;
+                    case COMMAND_MARK:
+                        mark(Integer.parseInt(arg1));
+                        break;
+                    case COMMAND_UNMARK:
+                        unmark(Integer.parseInt(arg1));
+                        break;
+                    default:
+                        error("No or invalid command given, are you just looking to chat? :D");
+                        break;
+                    }
+                } catch (MissingArgumentException e) {
+                    chat(e.getLocalizedMessage() + "\n");
+                } catch (InvalidCommandException e) {
+                    chat(e.getLocalizedMessage() + "\n");
+                }
             }
         }
+
+    public static String[] parseCommand(String userCommand) throws InvalidCommandException {
+        String[] parsedCommand = {"","",""};
+        String splitUserStatement[] = userCommand.split(" ", 2);
+        if (!isValidCommand(splitUserStatement[0])) {
+            throw new InvalidCommandException("Thats not an available command.");
+        }
+        String command = splitUserStatement[0];
+        parsedCommand[0] = command;
+        String userArgs = "";
+        if (splitUserStatement.length > 1) {
+            userArgs = splitUserStatement[1];
+        }
+        String[] splitUserArgs = {"",""};
+        if (command.equals(COMMAND_DEADLINE)) {
+            splitUserArgs = userArgs.split("/by", 2);
+        }
+        else if (command.equals(COMMAND_EVENT)) {
+            splitUserArgs = userArgs.split("/at", 2);
+        } else {
+            splitUserArgs = userArgs.split("/", 2);
+        }
+        parsedCommand[1] = splitUserArgs[0];
+        if (splitUserArgs.length > 1) {
+            parsedCommand[2] = splitUserArgs[1];
+        }
+        return parsedCommand;
+
+    }
+
+    public static boolean isValidCommand(String command) {
+        switch(command) { //no breaks as all cases lead to return
+            case COMMAND_LIST:
+                return true;
+            case COMMAND_BYE:
+                return true;
+            case COMMAND_TODO:
+                return true;
+            case COMMAND_DEADLINE:            
+                return true;
+            case COMMAND_EVENT:          
+                return true;
+            case COMMAND_MARK:
+                return true;
+            case COMMAND_UNMARK:
+                return true;
+            default:
+                return false;
+            }
     }
 
     public static String list() {
         String output = "";
         int count = 1;
+        if (tasks.size() == 0) {
+            return "No tasks! Yay!";
+        }
         for (Task task : tasks) {
             output += String.valueOf(count) + ". " + task + "\n";
             count += 1;
@@ -109,6 +152,10 @@ public class Duke {
 
     public static void chat(String message) {
         System.out.println(UI_LINE_SPACING + message + UI_LINE_SPACING);
+    }
+
+    public static void error(String message) {
+        System.out.println(UI_LINE_SPACING + ":( OOPS: " + message + "\n" + UI_LINE_SPACING);
     }
 
     public static void end() {
