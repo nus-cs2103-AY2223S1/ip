@@ -34,7 +34,7 @@ public class StorageParser {
         boolean marked = false;
         String[] segments = rawTask.split("\\| ");
         StringBuilder sb = new StringBuilder();
-        Task formattedTask = null;
+        Task formattedTask;
 
         switch (identifier) {
         case "T":
@@ -108,6 +108,7 @@ public class StorageParser {
 
             return formattedTask;
         default:
+            assert identifier.equals("T") || identifier.equals("D") || identifier.equals("E") : "Invalid identifier";
             throw new DukeException("Unable to parse this line");
         }
     }

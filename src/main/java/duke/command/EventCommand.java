@@ -18,6 +18,7 @@ public class EventCommand extends Command {
      * Constructs a EventCommand
      */
     public EventCommand(Task task) {
+        assert task != null : "task given in command cannot be null";
         this.task = task;
     }
 

@@ -38,6 +38,7 @@ public class Parser {
      */
     public static Command parse(String command) throws DukeException {
         String firstCommand = getFirstWord(command).toUpperCase();
+        assert !firstCommand.isEmpty() : "command string should not be empty";
 
         switch (firstCommand) {
         case ListCommand.COMMAND_ID:
@@ -150,12 +151,11 @@ public class Parser {
     }
 
     private static FindCommand executeFindCommand(String command) throws DukeException {
-        String query;
-        String mainTask = command.substring(5);
-        if (!mainTask.isEmpty()) {
-            query = mainTask;
+        String query = command.substring(5);
+        if (!query.isEmpty()) {
             return new FindCommand(query);
         } else {
+            assert query.isEmpty() : "Query should be empty";
             throw new DukeException(NO_QUERY_SPECIFIED);
         }
     }

@@ -24,6 +24,7 @@ public class Storage {
      * @return new Storage instance
      */
     public static Storage of(String filePath) {
+        assert !filePath.isEmpty() : "filePath should not be empty";
         try {
             Storage newStorage = new Storage(filePath);
             Path storagePath = newStorage.path;
@@ -87,7 +88,7 @@ public class Storage {
             // Create a new file
             Files.createFile(path);
         }
-
+        assert this.path != null : "path cannot be null";
         try {
             if (taskList.getTaskList().size() == 0) {
                 Files.write(this.path, new byte[0]);

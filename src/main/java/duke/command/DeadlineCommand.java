@@ -18,6 +18,7 @@ public class DeadlineCommand extends Command {
      * Constructs a DeadlineCommand
      */
     public DeadlineCommand(Task task) {
+        assert task != null : "Task given in command cannot be null";
         this.task = task;
     }
 

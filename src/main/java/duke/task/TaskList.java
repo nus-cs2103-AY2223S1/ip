@@ -46,14 +46,14 @@ public class TaskList {
         if (taskList.isEmpty()) {
             return NO_TASKS_LEFT;
         } else {
+            assert !taskList.isEmpty() : "taskList should not be empty";
             return String.format("Now you have %d tasks in the list", taskList.size());
         }
     }
-
     /**
-     * Retuns an instance of TaskList which contains search result from the given query string
+     * Returns an instance of TaskList which contains search result from the given query string
      * @param query is the target search term for task description in the list.
-     * @return a tasklist with the filtered result
+     * @return a task list with the filtered result
      */
     public TaskList findMatchingTasks(String query) {
         List<Task> result = this.taskList.stream().filter(item -> item.getDescription().contains(query))
@@ -74,9 +74,11 @@ public class TaskList {
             }
 
             Task taskToRemove = this.taskList.get(id - 1);
+            assert taskToRemove != null : "taskToRemove cannot be null";
+
             this.taskList.remove(id - 1);
             String taskRemovedOutput = String.format("Noted. I've removed this task:\n%s\n%s",
-                    taskToRemove.toString(), getItemsLeft());
+                    taskToRemove, getItemsLeft());
             return taskRemovedOutput;
         } catch (Exception e) {
             return e.getMessage();
@@ -90,6 +92,7 @@ public class TaskList {
      */
     public String addTaskToList(Task task) {
         try {
+            assert task != null : "task cannot be null";
             this.taskList.add(task);
             String taskAddedOutput = String.format("Got it. I've added this task:\n%s\n%s",
                     task.toString(), getItemsLeft());
@@ -105,8 +108,7 @@ public class TaskList {
      */
     public String listTasks() {
         if (taskList.isEmpty()) {
-            System.out.println(NO_TASKS_LEFT);
-            return "";
+            return NO_TASKS_LEFT;
         }
         String toPrint = "";
 
@@ -130,6 +132,7 @@ public class TaskList {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id - 1);
+            assert targetTask != null : "targetTask cannot be null";
             return targetTask.markAsDone(false);
         } catch (Exception e) {
             return e.getMessage();
@@ -147,6 +150,7 @@ public class TaskList {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id - 1);
+            assert targetTask != null : "targetTask cannot be null";
             return targetTask.markAsUnDone();
         } catch (Exception e) {
             return e.getMessage();
@@ -161,6 +165,7 @@ public class TaskList {
         Task lastAddedTask;
         if (!taskList.isEmpty()) {
             lastAddedTask = taskList.get(taskList.size() - 1);
+            assert lastAddedTask != null : "lastAddedTask cannot be null";
             return String.format("Got it. I've added this task:\n  %s\n%s\n",
                     lastAddedTask.toString(), getItemsLeft());
         }
