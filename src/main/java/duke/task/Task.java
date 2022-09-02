@@ -32,8 +32,8 @@ public class Task {
     }
 
     /**
-     * Getter for the description of the duke.task.Task.
-     * @return The description of the duke.task.Task.
+     * Getter for the description of the Task.
+     * @return The description of the Task.
      */
     public String getDescription() {
         return this.description;

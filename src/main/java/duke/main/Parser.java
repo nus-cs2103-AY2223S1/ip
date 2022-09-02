@@ -5,7 +5,6 @@ import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
 import java.time.LocalDate;
 
 /**
@@ -14,8 +13,9 @@ import java.time.LocalDate;
 public class Parser {
     /**
      * Make sense of user command input and return the respective command
+     *
      * @param userInput The line of command that user input.
-     * @return The respective duke.command.Command.
+     * @return The respective Command
      * @throws DukeException If invalid command encountered.
      */
     public static Command parseCommand(String userInput) throws DukeException {

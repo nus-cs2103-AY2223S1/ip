@@ -16,6 +16,7 @@ public class TaskList {
 
     /**
      * Constructor for generating a duke.main.TaskList from saved file.
+     *
      * @param taskArray An ArrayList of tasks to be loaded.
      */
     public TaskList(ArrayList<Task> taskArray) {
@@ -23,24 +24,27 @@ public class TaskList {
     }
 
     /**
-     * Add a task to duke.main.TaskList.
-     * @param task duke.task.Task to add.
+     * Add a task to TaskList.
+     *
+     * @param task Task to add.
      */
     public void addTask(Task task) {
         taskArray.add(task);
     }
 
     /**
-     * Remove a duke.task.Task.
-     * @param taskToRemoveIndex Index of the duke.task.Task to be removed.
+     * Remove a Task.
+     *
+     * @param taskToRemoveIndex Index of the Task to be removed.
      */
     public void removeTask(int taskToRemoveIndex) {
         taskArray.remove(taskToRemoveIndex);
     }
 
     /**
-     * Getter to retrieve the tasksArray in duke.main.TaskList.
-     * @return ArrayList of Tasks in duke.main.TaskList.
+     * Getter to retrieve the tasksArray in TaskList.
+     *
+     * @return ArrayList of Tasks in TaskList.
      */
     public ArrayList<Task> getTasks() {
         return this.taskArray;
@@ -48,6 +52,7 @@ public class TaskList {
 
     /**
      * Get number of tasks in taskArray.
+     *
      * @return Number of tasks in taskArray.
      */
     public int getCount() {
@@ -56,6 +61,7 @@ public class TaskList {
 
     /**
      * Find matching tasks based off the keyword.
+     *
      * @param keywords Keyword used to find task.
      * @return ArrayList consisting of tasks matching the keyword.
      */
@@ -70,5 +76,4 @@ public class TaskList {
         }
         return tasksFound;
     }
-
 }
