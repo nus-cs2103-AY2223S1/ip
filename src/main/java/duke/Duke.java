@@ -104,11 +104,19 @@ public class Duke extends Application {
 
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
+            try {
+                handleUserInput();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         userInput.setOnAction((event) -> {
-            handleUserInput();
+            try {
+                handleUserInput();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         //Scroll down to the end every time dialogContainer's height changes.
@@ -135,12 +143,12 @@ public class Duke extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+    private void handleUserInput() throws IOException {
+        String userText = userInput.getText();
+        String dukeText = getResponse(userText);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+                DialogBox.getUserDialog(userText, user),
+                DialogBox.getDukeDialog(dukeText, duke)
         );
         userInput.clear();
     }
@@ -149,8 +157,71 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+    protected String getResponse(String input) throws IOException {
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
+        try {
+            String userCommand = input;
+            if (userCommand.equals("bye")) {
+                return ui.bye();
+            } else if (userCommand.equals("list")) {
+                return ui.showTaskList();
+            } else {
+                // Get all the words the user has typed
+                String[] words = userCommand.split(" ");
+                // Check if user wants to mark task
+                if (Parser.isMarkTask(words)) {
+                    int taskNumber = Integer.parseInt(words[1]);
+                    // Check if user enters a number out of range
+                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+                        throw new DukeException("Number out of range!");
+                    } else {
+                        return ui.markTaskDoneAndPrintOutput(taskNumber);
+                    }
+                    // Checks if user wants to unmark task
+                } else if (Parser.isUnmarkTask(words)) {
+                    int taskNumber = Integer.parseInt(words[1]);
+                    // Check if user enters a number out of range
+                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+                        throw new DukeException("Number out of range!");
+                    } else {
+                        return ui.markTaskNotDoneAndPrintOutput(taskNumber);
+                    }
+                    // Check if user wants to delete a task
+                } else if (Parser.isDeleteTask(words)) {
+                    int taskNumber = Integer.parseInt(words[1]);
+                    if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
+                        throw new DukeException("Number out of range!");
+                    } else {
+                        return ui.markTaskDeletedAndPrintOutput(taskNumber);
+                    }
+                } else {
+                    // User is trying to add a new to-do / deadline / event
+                    if (Parser.isAddTodoTask(words)) {
+                        return createAndAddTodo(words);
+                    } else if (Parser.isAddDeadlineTask(words)) {
+                        return createAndAddDeadline(words);
+                    } else if (Parser.isAddEventTask(words)) {
+                        return createAndAddEvent(words);
+                    } else if (Parser.isFindTask(words)) {
+                        String keywords = Parser.joinString(words, 1);
+                        keywords = keywords.substring(0, keywords.length() - 1);
+                        System.out.println("Here are the matching tasks in your list:");
+                        for (Task task : taskArrayList) {
+                            if (task.getDescription().contains(keywords)) {
+                                System.out.println(task.toString());
+                            }
+                        }
+                    } else {
+                        throw new DukeException("I'm sorry, I don't know what that means!");
+                    }
+                }
+            }
+        } catch (DukeException dukeException) {
+            System.out.println(dukeException.getMessage());
+        } finally {
+            storage.saveTasks();
+        }
+        return "Done";
     }
 
     /**
@@ -240,7 +311,7 @@ public class Duke extends Application {
      * @param wordsArray the array of words entered by the user
      * @throws DukeException exception to be thrown regarding DukeException
      */
-    public void createAndAddTodo(String[] wordsArray) throws DukeException {
+    public String createAndAddTodo(String[] wordsArray) throws DukeException {
         String description = "";
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         if (wordsArray.length > 1) {
@@ -250,7 +321,7 @@ public class Duke extends Application {
         }
         Todo newTodo = new Todo(description);
         taskArrayList.add(newTodo);
-        ui.printAddedTask(newTodo);
+        return ui.printAddedTask(newTodo);
     }
 
     /**
@@ -258,7 +329,7 @@ public class Duke extends Application {
      * @param wordsArray the array of words entered by the user
      * @throws DukeException exception to be thrown regarding DukeException
      */
-    public void createAndAddDeadline(String[] wordsArray) throws DukeException {
+    public String createAndAddDeadline(String[] wordsArray) throws DukeException {
         String remainingDescription = "";
         String description = "";
         String[] remainingWords;
@@ -279,7 +350,7 @@ public class Duke extends Application {
         LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
         Deadline newDeadline = new Deadline(description, byDate, by);
         taskArrayList.add(newDeadline);
-        ui.printAddedTask(newDeadline);
+        return ui.printAddedTask(newDeadline);
     }
 
     /**
@@ -287,7 +358,7 @@ public class Duke extends Application {
      * @param wordsArray the array of words entered by the user
      * @throws DukeException exception to be thrown regarding DukeException
      */
-    public void createAndAddEvent(String[] wordsArray) throws DukeException {
+    public String createAndAddEvent(String[] wordsArray) throws DukeException {
         // If user is trying to add an event, save the description and the 'at' date
         // Have a default value in case the user did not add any description
         String description = "";
@@ -306,7 +377,7 @@ public class Duke extends Application {
         }
         Event newEvent = new Event(description, at);
         taskArrayList.add(newEvent);
-        ui.printAddedTask(newEvent);
+        return ui.printAddedTask(newEvent);
     }
 
     /**

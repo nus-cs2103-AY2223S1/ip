@@ -25,15 +25,13 @@ public class Ui {
     /**
      * Greets the user
      */
-    public void greet() {
-        System.out.println(GREETING);
-    }
+    public String greet() { return GREETING;}
 
     /**
      * Say bye to the user
      */
-    public void bye() {
-        System.out.println(BYE);
+    public String bye() {
+        return BYE;
     }
 
     public String getCommand() {
@@ -43,63 +41,71 @@ public class Ui {
     /**
      * Show all the tasks the user currently has
      */
-    public void showTaskList() {
+    public String showTaskList() {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         System.out.println(LINEBREAK);
-        System.out.println("Here are the tasks in your list:");
+        String outputString = "";
+        outputString += "Here are the tasks in your list:\n";
         for (int i = 0; i < taskArrayList.size(); i++) {
             Task currentTask = taskArrayList.get(i);
-            System.out.println(String.valueOf(i + 1) + "." + currentTask.toString());
+            outputString += String.valueOf(i + 1) + "." + currentTask.toString() + "\n";
         }
+        return outputString;
     }
 
     /**
      * Informs user that a task has been added
      * @param task the task that is added
      */
-    public void printAddedTask(Task task) {
+    public String printAddedTask(Task task) {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
-        System.out.println(LINEBREAK);
-        System.out.println("Got it. I 've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
-        System.out.println(LINEBREAK);
+        String outputString = "";
+        outputString += "Got it. I 've added this task:\n";
+        outputString += task.toString() + "\n";
+        outputString += "Now you have " + taskArrayList.size() + " tasks in the list." + "\n";
+        return outputString;
     }
 
     /**
      * Informs user a task has been deleted
      * @param index the position of the task to delete
      */
-    public void markTaskDeletedAndPrintOutput(int index) {
+    public String markTaskDeletedAndPrintOutput(int index) {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         Task currentTask = taskArrayList.get(index - 1);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(currentTask.toString());
+        String outputString = "";
+        outputString += "Noted. I've removed this task:\n";
+        outputString += currentTask.toString() + "\n";
+        outputString += "Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list." + "\n";
         taskArrayList.remove(index - 1);
-        System.out.println("Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list.");
+        return outputString;
     }
 
     /**
      * Marks a task as done and informs the user
      * @param index the position of the task to be marked done
      */
-    public void markTaskDoneAndPrintOutput(int index) {
+    public String markTaskDoneAndPrintOutput(int index) {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         Task currentTask = taskArrayList.get(index - 1);
-        System.out.println("Nice! I've marked this task as done:");
+        String outputString = "";
+        outputString += "Nice! I've marked this task as done:\n";
         currentTask.markAsDone();
-        System.out.println(currentTask.toString());
+        outputString += currentTask.toString();
+        return outputString;
     }
 
     /**
      * Marks a task a not done and informs the user
      * @param index the position to mark a task as not done
      */
-    public void markTaskNotDoneAndPrintOutput(int index) {
+    public String markTaskNotDoneAndPrintOutput(int index) {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         Task currentTask = taskArrayList.get(index - 1);
-        System.out.println("0K, I've marked this task as not done yet:");
+        String outputString = "";
+        outputString += "0K, I've marked this task as not done yet:\n";
         currentTask.markNotDone();
-        System.out.println(currentTask.toString());
+        outputString += currentTask.toString();
+        return outputString;
     }
 }
