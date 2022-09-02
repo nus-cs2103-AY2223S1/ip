@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * This class is responsible for Todos
+ */
 public class Todo extends Task {
 
     /**

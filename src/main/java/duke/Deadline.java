@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * This class is responsible for creating and manipulating Deadlines
+ */
 public class Deadline extends Task {
 
     // Attributes of a duke.Deadline

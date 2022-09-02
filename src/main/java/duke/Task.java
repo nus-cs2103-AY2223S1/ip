@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * This class is responsible for creating and manipulating a task
+ */
 public abstract class Task {
 
     // Attributes of a duke.Task

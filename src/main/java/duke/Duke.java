@@ -2,14 +2,18 @@ package duke;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
+/**
+ * This class is responsible for the bot Duke
+ */
 public class Duke {
 
     // Attributes of a Duke object
+    private static final String FILEDESTINATION = "./src/main/duke.txt";
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
-    private final static String FILEDESTINATION = "./src/main/duke.txt";
 
     /**
      * The constructor for the Duke class
@@ -30,6 +34,8 @@ public class Duke {
         ui.greet();
         ui.showTaskList();
 
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
+
         // Boolean value to check if user wants to leave
         boolean isQuit = false;
 
@@ -48,7 +54,7 @@ public class Duke {
                     if (Parser.isMarkTask(words)) {
                         int taskNumber = Integer.parseInt(words[1]);
                         // Check if user enters a number out of range
-                        if (taskNumber < 0 || taskNumber > TaskList.taskArrayList.size()) {
+                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
                             throw new DukeException("Number out of range!");
                         } else {
                             ui.markTaskDoneAndPrintOutput(taskNumber);
@@ -57,7 +63,7 @@ public class Duke {
                     } else if (Parser.isUnmarkTask(words)) {
                         int taskNumber = Integer.parseInt(words[1]);
                         // Check if user enters a number out of range
-                        if (taskNumber < 0 || taskNumber > TaskList.taskArrayList.size()) {
+                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
                             throw new DukeException("Number out of range!");
                         } else {
                             ui.markTaskNotDoneAndPrintOutput(taskNumber);
@@ -65,7 +71,7 @@ public class Duke {
                         // Check if user wants to delete a task
                     } else if (Parser.isDeleteTask(words)) {
                         int taskNumber = Integer.parseInt(words[1]);
-                        if (taskNumber < 0 || taskNumber >TaskList.taskArrayList.size()) {
+                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
                             throw new DukeException("Number out of range!");
                         } else {
                             ui.markTaskDeletedAndPrintOutput(taskNumber);
@@ -82,21 +88,19 @@ public class Duke {
                             String keywords = Parser.joinString(words, 1);
                             keywords = keywords.substring(0, keywords.length() - 1);
                             System.out.println("Here are the matching tasks in your list:");
-                            for (Task task: TaskList.taskArrayList) {
+                            for (Task task : taskArrayList) {
                                 if (task.getDescription().contains(keywords)) {
                                     System.out.println(task.toString());
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             throw new DukeException("I'm sorry, I don't know what that means!");
                         }
                     }
                 }
             } catch (DukeException dukeException) {
                 System.out.println(dukeException.getMessage());
-            }
-            finally {
+            } finally {
                 storage.saveTasks();
             }
         }
@@ -109,13 +113,14 @@ public class Duke {
      */
     public void createAndAddTodo(String[] wordsArray) throws DukeException {
         String description = "";
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
         if (wordsArray.length > 1) {
             description = Parser.joinString(wordsArray, 1);
             // Correct an extra spacing at the end
             description = description.substring(0, description.length() - 1);
         }
         Todo newTodo = new Todo(description);
-        TaskList.taskArrayList.add(newTodo);
+        taskArrayList.add(newTodo);
         ui.printAddedTask(newTodo);
     }
 
@@ -129,6 +134,7 @@ public class Duke {
         String description = "";
         String[] remainingWords;
         String[] dateTimeArray = null;
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
         String by = "";
         if (wordsArray.length > 1) {
             // Remaining description are the words after the task description
@@ -143,7 +149,7 @@ public class Duke {
         assert dateTimeArray != null;
         LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
         Deadline newDeadline = new Deadline(description, byDate, by);
-        TaskList.taskArrayList.add(newDeadline);
+        taskArrayList.add(newDeadline);
         ui.printAddedTask(newDeadline);
     }
 
@@ -159,6 +165,7 @@ public class Duke {
         String[] remainingWords;
         String at = "";
         String remainingDescription = "";
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
         if (wordsArray.length > 1) {
             // Remaining description are the words after the task description
             remainingDescription = Parser.joinString(wordsArray, 1);
@@ -169,7 +176,7 @@ public class Duke {
             at = at.substring(0, at.length() - 1);
         }
         Event newEvent = new Event(description, at);
-        TaskList.taskArrayList.add(newEvent);
+        taskArrayList.add(newEvent);
         ui.printAddedTask(newEvent);
     }
 

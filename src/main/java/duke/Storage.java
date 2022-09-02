@@ -6,7 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
+/**
+ * This clas sis responsible for storing and loading the tasks
+ */
 public class Storage {
 
     private String fileDestination;
@@ -24,9 +28,10 @@ public class Storage {
      * @throws IOException exception to be thrown
      */
     public void saveTasks() throws IOException {
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
         FileWriter fileWriter = new FileWriter(fileDestination);
         String tasksString = "";
-        for (Task task: TaskList.taskArrayList) {
+        for (Task task: taskArrayList) {
             tasksString += task.toString() + "\n";
         }
 
@@ -40,6 +45,7 @@ public class Storage {
      * @throws DukeException
      */
     public void loadTasks() throws IOException, DukeException {
+        List<Task> taskArrayList = TaskList.getTaskArrayList();
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileDestination));
         String readByLine = bufferedReader.readLine();
@@ -61,7 +67,7 @@ public class Storage {
                 if (keywords[0].indexOf("X") == 1) {
                     newTodo.markAsDone();
                 }
-                TaskList.taskArrayList.add(newTodo);
+                taskArrayList.add(newTodo);
             } else if (keywords[0].contains("D")) {
                 String remainingDescription = "";
                 String description = "";
@@ -86,7 +92,7 @@ public class Storage {
                 if (keywords[0].indexOf("X") == 1) {
                     newDeadline.markAsDone();
                 }
-                TaskList.taskArrayList.add(newDeadline);
+                taskArrayList.add(newDeadline);
             } else if (keywords[0].contains("E")) {
                 String description = "";
                 String[] remainingWords;
@@ -105,7 +111,7 @@ public class Storage {
                 if (keywords[0].indexOf("X") == 1) {
                     newEvent.markAsDone();
                 }
-                TaskList.taskArrayList.add(newEvent);
+                taskArrayList.add(newEvent);
             } else {
                 throw new DukeException("I'm sorry, I don't know what that means!");
             }

@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * This class is the customised Exceptions that we create
+ */
 public class DukeException extends Exception {
 
     /**

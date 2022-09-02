@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * This class is responsible for giving commands
+ */
 public class Command {
 
     // Attributes of a duke.Command
@@ -18,12 +21,15 @@ public class Command {
      */
     public void printCommand() {
         switch (givenCommand) {
-            case GREETINGS:
-                System.out.println("Hello! I'm duke.Duke");
-                System.out.println("What can I do for you?");
-                break;
-            case DEPARTURE:
-                System.out.println("Bye. Hope to see you again soon ^^!");
+        case GREETINGS:
+            System.out.println("Hello! I'm duke.Duke");
+            System.out.println("What can I do for you?");
+            break;
+        case DEPARTURE:
+            System.out.println("Bye. Hope to see you again soon ^^!");
+            break;
+        default:
+            System.out.println("Invalid Sentence!");
         }
     }
 }

@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 
+/**
+ * This class is responsible ofr interpretting the user input
+ */
 public class Parser {
 
     /**
@@ -58,8 +61,8 @@ public class Parser {
      * @return a boolean value stating whether to mark a task or not
      */
     public static boolean isMarkTask(String[] wordsArray) {
-        return wordsArray.length > 1 &&
-                wordsArray[0].equals("mark") && isNumeric(wordsArray[1]);
+        return wordsArray.length > 1
+                && wordsArray[0].equals("mark") && isNumeric(wordsArray[1]);
     }
 
     /**
@@ -68,8 +71,8 @@ public class Parser {
      * @return a boolean value stating whether to unmark a task or not
      */
     public static boolean isUnmarkTask(String[] wordsArray) {
-        return wordsArray.length > 1 &&
-                wordsArray[0].equals("unmark") && isNumeric(wordsArray[1]);
+        return wordsArray.length > 1
+                && wordsArray[0].equals("unmark") && isNumeric(wordsArray[1]);
     }
 
     /**

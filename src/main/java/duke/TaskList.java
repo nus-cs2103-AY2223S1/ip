@@ -3,9 +3,12 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for the list of tasks
+ */
 public class TaskList {
 
-    public static List<Task> taskArrayList;
+    private static List<Task> taskArrayList;
 
     /**
      * The constructor for TaskList
@@ -28,5 +31,9 @@ public class TaskList {
      */
     public void add(Task task) {
         taskArrayList.add(task);
+    }
+
+    public static List<Task> getTaskArrayList() {
+        return taskArrayList;
     }
 }
