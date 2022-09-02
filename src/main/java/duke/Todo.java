@@ -68,6 +68,10 @@ public class Todo extends Task {
                 + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
+    /**
+     * Prints the description of the todo task that is being added to the task list.
+     * @return the description of the todo task that is being added to the task list.
+     */
     public String printGui() {
         return Ui.ADD_TASK_HEADER + this.toString()
                 + " Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n";
@@ -80,6 +84,10 @@ public class Todo extends Task {
         System.out.println(this.type + this.status + " " + this.name);
     }
 
+    /**
+     * Prints the description of the todo task.
+     * @return the description of the todo task.
+     */
     public String listGui() {
         return this.type + this.status + " " + this.name;
     }
@@ -89,7 +97,7 @@ public class Todo extends Task {
      *
      * @return the string representation the todo task.
      */
-    public String description() {
+    public String printDescription() {
         return this.getName();
     }
 

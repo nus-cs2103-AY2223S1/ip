@@ -44,6 +44,10 @@ public class Event extends Task {
                 + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
+    /**
+     * Returns the description of the event that is being added to the task list.
+     * @return the description of the event that is being added to the task list.
+     */
     @Override
     public String printGui() {
         return (Ui.ADD_TASK_HEADER + this.toString() + " Now you have "
@@ -58,6 +62,10 @@ public class Event extends Task {
                 + "(at: " + formatDateString(this.time) + ")");
     }
 
+    /**
+     * Returns the description of the event.
+     * @return the description of the event.
+     */
     public String listGui() {
         return this.type + this.status + " " + this.name
                 + "(at: " + formatDateString(this.time) + ")";
@@ -121,7 +129,7 @@ public class Event extends Task {
      * @return the string representation of the event.
      */
     @Override
-    public String description() {
+    public String printDescription() {
         return this.getName() + " (at: " + formatDateString(this.time) + ")";
     }
 }

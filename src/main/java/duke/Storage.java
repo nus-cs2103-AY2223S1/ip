@@ -31,13 +31,19 @@ public class Storage {
      *
      * @param file the file to be load.
      */
-    public void load_task(File file) {
+    public void loadTask(File file) {
         System.out.println("Loading tasks...");
-        load_initial(file);
+        loadInitial(file);
     }
 
+    /**
+     * Loads the tasks in the file.
+     *
+     * @param file the file to be load.
+     * @return the strings of the tasks.
+     */
     public String loadTaskGui(File file) {
-        String st =  "Loading tasks...";
+        String st = "Loading tasks...";
         st += loadInitialGui(file);
         return st;
     }
@@ -65,14 +71,14 @@ public class Storage {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            tl.getList().add(stringToTask(st));
+            tl.getList().add(convertStringToTask(st));
             duke.addCount();
             st += st;
         }
         return st;
     }
 
-    private void load_initial(File file) {
+    private void loadInitial(File file) {
         TaskList tl = new TaskList();
         BufferedReader br = null;
         String st;
@@ -95,7 +101,7 @@ public class Storage {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            tl.getList().add(stringToTask(st));
+            tl.getList().add(convertStringToTask(st));
             duke.addCount();
             System.out.println(st);
         }
@@ -125,7 +131,7 @@ public class Storage {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            tl.getList().add(stringToTask(st));
+            tl.getList().add(convertStringToTask(st));
             duke.addCount();
         }
         return tl;
@@ -173,7 +179,7 @@ public class Storage {
      * @param s string representation of the task.
      * @return the task that given the description of the string.
      */
-    public Task stringToTask(String s) {
+    public Task convertStringToTask(String s) {
         if (s.length() == 0) {
             return null;
         }

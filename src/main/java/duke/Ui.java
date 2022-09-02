@@ -34,6 +34,10 @@ public class Ui {
                 + "Bye. Hope to see you again soon!" + "\n" + Duke.LINE);
     }
 
+    /**
+     * Closes the program.
+     * @return the bye command.
+     */
     public static String byeGui() {
         return Duke.LINE + "\n"
                 + "Bye. Hope to see you again soon!" + "\n" + Duke.LINE;

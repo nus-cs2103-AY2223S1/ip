@@ -30,6 +30,10 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets duke .
+     * @param d the duke to be set
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
@@ -48,4 +52,5 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+
 }

@@ -86,6 +86,10 @@ public class Task {
         System.out.println(Duke.LINE + "\n");
     }
 
+    /**
+     * Returns the task list.
+     * @return the task list.
+     */
     public String printGui() {
         TaskList t = new TaskList();
         String output = Duke.LINE;
@@ -102,6 +106,10 @@ public class Task {
     public void list() {
     };
 
+    /**
+     * Lists the description of the task.
+     * @return the description of the task.
+     */
     public String listGui() {
         return "";
     }
@@ -120,7 +128,7 @@ public class Task {
      *
      * @return the description of the task.
      */
-    public String description() {
+    public String printDescription() {
         return "";
     }
 }

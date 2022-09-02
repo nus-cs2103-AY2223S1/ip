@@ -58,6 +58,14 @@ public class TaskList {
                 + "Now you have " + duke.getCount() + " tasks in the list." + "\n" + Duke.LINE);
     }
 
+    /**
+     * Deletes a task from the task list.
+     *
+     * @param list the task list.
+     * @param task the task to be deleted.
+     * @param index the index of the to-be-deleted task.
+     * @return the description of the deleted task.
+     */
     public String deleteGui(TaskList list, Task task, int index) {
         list.getList().remove(index);
         return Ui.DELETE_HEADER + task.toString()
@@ -75,6 +83,11 @@ public class TaskList {
         System.out.println(Duke.LINE + "\n");
     }
 
+    /**
+     * Lists out all the task in the task list.
+     *
+     * @return the task in the task list.
+     */
     public String listGui() {
         String printString = Ui.TASK_LIST_HEADER + "\n";
         for (int i = 0, j = 1; i < duke.getCount(); i++, j++) {
@@ -82,7 +95,7 @@ public class TaskList {
             printString += list.get(i).listGui() + "\n";
         }
         printString += Duke.LINE + "\n";
-        return  printString;
+        return printString;
     }
 
     /**
@@ -92,13 +105,20 @@ public class TaskList {
      * @param index the index of the task to be marked.
      */
     public void mark(TaskList list, int index) {
-        System.out.println(Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).description());
+        System.out.println(Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).printDescription());
         list.getList().get(index - 1).setStatus("[X]");
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param list the task list.
+     * @param index the index of the task to be marked.
+     * @return the description of the task being marked.
+     */
     public String markGui(TaskList list, int index) {
         list.getList().get(index - 1).setStatus("[X]");
-        return Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).description();
+        return Ui.MARK_HEADER + "[X] " + list.getList().get(index - 1).printDescription();
     }
 
     /**
@@ -108,13 +128,20 @@ public class TaskList {
      * @param index the index of the task to be unmarked.
      */
     public void unmark(TaskList list, int index) {
-        System.out.println(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).description());
+        System.out.println(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).printDescription());
         list.getList().get(index - 1).setStatus("[ ]");
     }
 
+    /**
+     * UnMarks a task as done.
+     *
+     * @param list the task list.
+     * @param index the index of the task to be unmarked.
+     * @return the description of the task being unmarked.
+     */
     public String unmarkGui(TaskList list, int index) {
         list.getList().get(index - 1).setStatus("[ ]");
-        return(Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).description());
+        return Ui.UNMARK_HEADER + "[ ] " + list.getList().get(index - 1).printDescription();
     }
 
     /**
@@ -137,6 +164,13 @@ public class TaskList {
         System.out.println(Duke.LINE);
     }
 
+    /**
+     * Finds tasks in the task list that matches the keyword.
+     *
+     * @param list the task list.
+     * @param keyword the keyword to be mapped.
+     * @return the found tasks.
+     */
     public String findGui(TaskList list, String keyword) {
         String printString = Ui.FIND_HEADER;
         Task task = null;

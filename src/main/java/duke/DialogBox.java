@@ -10,11 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ScrollPane;
+
 
 /**
  * An example of a custom control using FXML.
@@ -28,7 +29,6 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
     private VBox dialogContainer;
     private ScrollPane scrollPane;
-
 
     private DialogBox(String text, Image img) {
         try {
@@ -54,13 +54,26 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Gets the user dialog box.
+     * @param text the text in the dialog box.
+     * @param img the image in the dialog box.
+     * @return the user dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Gets the duke dialog box.
+     * @param text the text in the dialog box.
+     * @param img the image in the dialog box.
+     * @return the duke dialog box.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
         return db;
     }
+
 }

@@ -4,7 +4,6 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -98,6 +97,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Interacts with the user based on command.
+     *
+     * @param input the command.
+     * @return the according response.
+     */
     public String respond(String input) {
         try {
             Storage storage = new Storage("duke.txt");
@@ -149,8 +154,7 @@ public class Parser {
                         return ("Please use time in dd/MM/yyyy HH:mm format");
                     }
                     task = new Event(deets[0], date);
-                }
-                else if (command.equals("deadline")) {
+                } else if (command.equals("deadline")) {
 
                     String[] deets = descriptions[1].split("/by ", 2);
                     DateTimeFormatter formatter = null;
@@ -206,16 +210,6 @@ public class Parser {
             System.out.println("Please use time in dd/MM/yyyy HH:mm format");
             respond();
         }
-        return date;
-    }
-
-    public LocalDateTime parseStringGui(String s) {
-        DateTimeFormatter formatter = null;
-        LocalDateTime date = null;
-
-        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        date = LocalDateTime.parse(s, formatter);
-
         return date;
     }
 

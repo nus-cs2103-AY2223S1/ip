@@ -15,6 +15,12 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    /**
+     * Starts the set-up of stage.
+     *
+     * @param stage the primary stage for this application, onto which
+     *     the application scene can be set.
+     */
     @Override
     public void start(Stage stage) {
         try {
@@ -28,4 +34,5 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
 }
