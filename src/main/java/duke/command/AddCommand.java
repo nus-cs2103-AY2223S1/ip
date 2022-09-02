@@ -19,7 +19,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String command;
         String message = "";
         command = userInput.split(" ")[0];
@@ -27,13 +27,13 @@ public class AddCommand extends Command {
         Task task;
         if (userInput.split(" ", 2).length == 1) {
             if (command.equals(Duke.Keyword.TODO.getKeyword())) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             } else if (command.equals(Duke.Keyword.EVENT.getKeyword())) {
-                throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
             } else if (command.equals(Duke.Keyword.DEADLINE.getKeyword())) {
-                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
             } else {
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
 
@@ -49,14 +49,14 @@ public class AddCommand extends Command {
             task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
             taskList.addTask(task);
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
 
         message += "Got it. I've added this task:\n";
         message += "\t" + task.toString() + "\n";
         message += "Now you have " + taskList.getTaskListSize() + " tasks in the list.\n";
 
-        ui.printMessage(message);
+        return message;
     }
 
     @Override

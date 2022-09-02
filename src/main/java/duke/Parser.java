@@ -20,7 +20,7 @@ public class Parser {
         String command;
 
         if (userInput.isEmpty()) {
-            throw new DukeException("☹ OOPS!!! The user input cannot be empty.");
+            throw new DukeException("OOPS!!! The user input cannot be empty.");
         }
         command = userInput.split(" ")[0];
         if (command.equals(Duke.Keyword.EXIT.getKeyword())) {
@@ -39,8 +39,8 @@ public class Parser {
             return new DeleteCommand(userInput);
         } else if (command.equals(Duke.Keyword.FIND.getKeyword())) {
             return new FindCommand(userInput);
-        } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }else {
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }

@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String message = "";
 
         String taskDetails = userInput.split(" ", 2)[1];
@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
         message += "Noted. I've removed this task:\n";
         message += "\t" + task.toString() + "\n";
         message += "Now you have " + taskList.getTaskListSize() + " tasks in the list.\n";
-        ui.printMessage(message);
+        return message;
     }
 
     @Override

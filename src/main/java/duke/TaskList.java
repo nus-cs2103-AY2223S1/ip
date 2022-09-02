@@ -54,7 +54,7 @@ public class TaskList {
      */
     public Task getTaskAtIndex(int index) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         return this.taskList.get(index - 1);
     }
@@ -76,7 +76,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         index = index - 1;
         Task task = this.taskList.remove(index);
@@ -87,16 +87,16 @@ public class TaskList {
      * Updates the status of the Task object at specified index
      *
      * @param index Index of the Task object which needs its task status modified.
-     * @param isDone True to mark task as done and false to mark task as not done
+     * @param isMark True to mark task as done and false to mark task as not done
      * @throws DukeException If provided index is out of range.
      */
     public Task updateTaskStatus(int index, boolean isDone) throws DukeException {
         if (index <= 0 || index > getTaskListSize()) {
-            throw new DukeException("☹ OOPS!!! The task index is out of range");
+            throw new DukeException("OOPS!!! The task index is out of range");
         }
         index = index - 1;
         Task task = this.taskList.get(index);
-        task.setTaskStatus(isDone);
+        task.setTaskStatus(isMark);
         this.taskList.set(index, task);
         return task;
     }

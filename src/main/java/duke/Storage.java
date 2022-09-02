@@ -40,7 +40,7 @@ public class Storage {
         try {
             file = new File(this.filePath);
             if (file.isDirectory()) {
-                throw new DukeException("☹ OOPS!!! Invalid file path, path given is a directory");
+                throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
             }
             if (file.exists()) {
                 try {
@@ -63,7 +63,7 @@ public class Storage {
                             break;
                         }
                         default:
-                            throw new DukeException("☹ OOPS!!! Invalid task type found in file!");
+                            throw new DukeException("OOPS!!! Invalid task type found in file!");
                         }
 
                         if ((splitString[1] == "1")) {
@@ -75,7 +75,7 @@ public class Storage {
                         taskList.add(task);
                     }
                 } catch (FileNotFoundException fileNotFoundException) {
-                    throw new DukeException("☹ OOPS!!! File could not be found");
+                    throw new DukeException("OOPS!!! File could not be found");
                 }
             }
         } catch (DukeException exception) {
@@ -96,20 +96,20 @@ public class Storage {
         try {
             file = new File(this.filePath);
             if (file.isDirectory()) {
-                throw new DukeException("☹ OOPS!!! Invalid file path, path given is a directory");
+                throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
             }
 
             if (!file.exists()) {
                 try {
                     if (!file.getParentFile().mkdirs()) {
-                        throw new DukeException("☹ OOPS!!! Directory could not be created");
+                        throw new DukeException("OOPS!!! Directory could not be created");
                     }
 
                     if (!file.createNewFile()) {
-                        throw new DukeException("☹ OOPS!!! File could not be created");
+                        throw new DukeException("OOPS!!! File could not be created");
                     }
                 } catch (IOException exception) {
-                    throw new DukeException("☹ OOPS!!! Something went wrong when trying to create file. Error message: "
+                    throw new DukeException("OOPS!!! Something went wrong when trying to create file. Error message: "
                             + exception.getMessage());
                 }
             }

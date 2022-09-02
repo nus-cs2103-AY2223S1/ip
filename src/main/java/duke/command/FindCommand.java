@@ -15,11 +15,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String message = "";
 
         if (userInput.split(" ").length == 1) {
-            throw new DukeException("☹ OOPS!!! The find command cannot have a missing query.");
+            throw new DukeException("OOPS!!! The find command cannot have a missing query.");
         }
         String query = userInput.split(" ")[1];
         message += "Here are the matching tasks in your list:\n";
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
                 index += 1;
             }
         }
-        ui.printMessage(message);
+        return message;
     }
 
     @Override
