@@ -48,10 +48,7 @@ public class TaskList {
      * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task delete(int taskIndex) throws TaskIndexOutOfBoundsException {
-        if (!isValidIndex(taskIndex)) {
-            throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
-        }
-        assert(taskIndex - 1 >= 0 && taskIndex - 1 < this.size());
+        checkIsValidIndex(taskIndex);
         Task task = this.tasks.get(taskIndex - 1);
         tasks.remove(taskIndex - 1);
         return task;
@@ -65,10 +62,8 @@ public class TaskList {
      * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task mark(int taskIndex) throws TaskIndexOutOfBoundsException {
-        if (!isValidIndex(taskIndex)) {
-            throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
-        }
-        assert(taskIndex - 1 >= 0 && taskIndex - 1 < this.size());
+        checkIsValidIndex(taskIndex);
+        assert(taskIndex - 1 >= 0 && taskIndex - 1 < getSize());
         Task task = tasks.get(taskIndex - 1);
         task.markAsDone();
         return task;
@@ -83,10 +78,8 @@ public class TaskList {
      * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task unmark(int taskIndex) throws TaskIndexOutOfBoundsException {
-        if (!isValidIndex(taskIndex)) {
-            throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
-        }
-        assert(taskIndex - 1 >= 0 && taskIndex - 1 < this.size());
+        checkIsValidIndex(taskIndex);
+        assert(taskIndex - 1 >= 0 && taskIndex - 1 < getSize());
         Task task = tasks.get(taskIndex - 1);
         task.unmarkAsDone();
         return task;
@@ -96,7 +89,7 @@ public class TaskList {
      * Returns the number of tasks in the List of tasks.
      * @return Size of the List of tasks.
      */
-    public int size() {
+    public int getSize() {
         return tasks.size();
     }
 
@@ -146,10 +139,14 @@ public class TaskList {
 
     /**
      * Checks if index is a valid index of a Task object in the List of tasks.
+     *
      * @param index Index of a Task object.
-     * @return True, if index is a valid index.
+     * @throws TaskIndexOutOfBoundsException If index of a Task object is invalid.
      */
-    private boolean isValidIndex(int index) {
-        return index >= 1 && index <= this.size();
+    private void checkIsValidIndex(int index) throws TaskIndexOutOfBoundsException {
+        boolean isValid = index >= 1 && index <= getSize();
+        if (!isValid) {
+            throw new TaskIndexOutOfBoundsException(index, getSize());
+        }
     }
 }

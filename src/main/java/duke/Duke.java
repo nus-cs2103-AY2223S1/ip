@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.exception.FileCorruptedException;
 import duke.gui.Ui;
 import duke.task.TaskList;
 import duke.util.Parser;
@@ -34,7 +35,7 @@ public class Duke {
         storage = new Storage("storage/tasks.txt");
         try {
             tasks = new TaskList(storage.load());
-        } catch (FileNotFoundException fnfe) {
+        } catch (FileNotFoundException | FileCorruptedException e) {
             tasks = new TaskList();
         }
     }

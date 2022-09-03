@@ -15,7 +15,7 @@ public class ParserTest {
     @Test
     public void parseInput_whiteSpace_exceptionThrown() throws DukeException {
         try {
-            assertTrue(Parser.parse("") instanceof Command);
+            assertTrue(Parser.parse("   ") instanceof Command);
             fail();
         } catch (DukeException de) {
             assertEquals("Command cannot be empty", de.getMessage());

@@ -2,6 +2,7 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
+import duke.exception.FileCorruptedException;
 import duke.util.Parser;
 
 /**
@@ -11,9 +12,14 @@ import duke.util.Parser;
  * @version v0.1
  */
 public class Task {
+    /** Icon to represent that a task is completed. */
+    private static final String COMPLETED_ICON = "X";
+    /** Icon to represent that a task is not completed. */
+    private static final String INCOMPLETE_ICON = " ";
+
     /** Description of the task. **/
     private String description;
-    /** Describes if the task is completed or not */
+    /** Describes if the task is completed or not. */
     private boolean isDone;
 
     /**
@@ -32,20 +38,28 @@ public class Task {
      * @param fileFormatString String representation of the Task object, in file format.
      * @return New Task object.
      */
-    public static Task parse(String fileFormatString) {
+    public static Task parse(String fileFormatString) throws FileCorruptedException {
         String[] taskSplit = fileFormatString.split("\\|");
+
+        assert(taskSplit.length >= 3);
+
         String taskSymbol = taskSplit[0];
-        boolean isComplete = taskSplit[1].equals("1");
+        boolean isComplete = taskSplit[1].equals(COMPLETED_ICON);
         String taskDescription = taskSplit[2];
         Task task;
+
         if (taskSymbol.equals("T")) {
             task = new Todo(taskDescription);
         } else if (taskSymbol.equals("D")) {
+            assert(taskSplit.length == 4);
             LocalDateTime byDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Deadline(taskDescription, byDateTime);
-        } else {
+        } else if (taskSymbol.equals("E")) {
+            assert(taskSplit.length == 4);
             LocalDateTime atDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Event(taskDescription, atDateTime);
+        } else {
+            throw new FileCorruptedException("Unable to read [" + taskSymbol + "] from file.");
         }
         if (isComplete) {
             task.markAsDone();
@@ -59,7 +73,7 @@ public class Task {
      * @return 'X' if the task is completed, returns a whitespace otherwise.
      */
     public String getStatusIcon() {
-        return isDone ? "X" : " ";
+        return isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
     }
 
     /**
@@ -101,7 +115,7 @@ public class Task {
      * @return Formatted task, which is to be written into the storage file.
      */
     public String toFileFormatString() {
-        int i = isDone ? 1 : 0;
-        return "|" + i + "|";
+        String icon = isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
+        return "|" + icon + "|";
     }
 }
