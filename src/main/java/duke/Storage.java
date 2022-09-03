@@ -34,13 +34,14 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from a task file
+     * Loads tasks from a storage task file
      * into an ArrayList of tasks
      */
     public ArrayList<Task> loadTaskFile() {
         File taskFile = new File(fileLocation);
         ArrayList<Task> tasks = new ArrayList<Task>();
 
+        //Checks if storage task file exists, if not, create one
         if (!taskFile.exists()) {
             File directory = new File(taskFile.getParent());
             directory.mkdir();
@@ -51,6 +52,7 @@ public class Storage {
             System.out.println(e.getMessage());
         }
 
+        //Parsing data in storage task file
         try {
             Scanner sc = new Scanner(taskFile);
             while (sc.hasNext()) {
@@ -92,6 +94,7 @@ public class Storage {
                 }
             }
             sc.close();
+
         } catch (FileNotFoundException | InvalidStorageDataException e) {
             System.out.println(e.getMessage());
         }
@@ -101,7 +104,7 @@ public class Storage {
 
     /**
      * Saves the ArrayList of tasks from
-     * a taskList object into a task file
+     * a taskList object into a storage task file
      */
     public void saveTaskFile(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
