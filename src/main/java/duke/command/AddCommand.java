@@ -14,8 +14,8 @@ import duke.ToDo;
  */
 
 public class AddCommand extends Command {
-    String description;
-    boolean isDone;
+    private String description;
+    private boolean isDone;
 
     public AddCommand(String description, boolean isDone) {
         this.description = description;
@@ -27,7 +27,10 @@ public class AddCommand extends Command {
         Task todo = new ToDo(this.description, this.isDone);
         taskList.addTask(todo);
         storage.saveData(taskList);
-        if (!storage.checkIsLoadingFile()) { UI.added(todo); }
+        if (!storage.checkIsLoadingFile()) {
+            UI.added(todo);
+            response = UI.addedResponse(todo);
+        }
     }
 
 }

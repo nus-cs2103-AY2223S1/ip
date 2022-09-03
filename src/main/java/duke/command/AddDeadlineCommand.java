@@ -31,7 +31,10 @@ public class AddDeadlineCommand extends Command { //Creating a duke.Deadline duk
         Task deadline = new Deadline(this.description, this.isDone, this.date);
         taskList.addTask(deadline);
         storage.saveData(taskList);
-        if (!storage.checkIsLoadingFile()) { UI.added(deadline); }
+        if (!storage.checkIsLoadingFile()) {
+            UI.added(deadline);
+            response = UI.addedResponse(deadline);
+        }
     }
 
 }

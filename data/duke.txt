@@ -1,3 +1,1 @@
-T |   | a
-E |   | bday | 01 Jan 2022
-D |   | homework | 03 Feb 2022
+E |   |  | 01 Jan 2022

@@ -23,5 +23,7 @@ public class MarkAsDoneCommand extends Command {
         Task task = taskList.getTask(taskNo);
         task.markAsDone();
         UI.markAsDone(task);
+        this.response = UI.markAsDoneResponse(task);
+        storage.saveData(taskList);
     }
 }

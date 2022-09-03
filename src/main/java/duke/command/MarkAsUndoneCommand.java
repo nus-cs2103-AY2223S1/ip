@@ -19,6 +19,7 @@ public class MarkAsUndoneCommand extends Command {
         Task task = taskList.getTask(taskNo);
         task.markAsUndone();
         UI.markAsUndone(task);
-
+        response = UI.markAsUndoneResponse(task);
+        storage.saveData(taskList);
     }
 }

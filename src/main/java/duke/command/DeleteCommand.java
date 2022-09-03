@@ -13,7 +13,7 @@ import duke.Task;
  */
 
 public class DeleteCommand extends Command {
-    int taskNo;
+    private int taskNo;
 
     public DeleteCommand(int taskNo) {
         this.taskNo = taskNo;
@@ -25,5 +25,7 @@ public class DeleteCommand extends Command {
         taskList.delete(taskNo);
         Task.minusTaskCount();
         UI.delete(task);
+        response = UI.deleteResponse(task);
+        storage.saveData(taskList);
     }
 }

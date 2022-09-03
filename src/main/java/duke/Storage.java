@@ -57,13 +57,13 @@ public class Storage {
     public void saveData(TaskList taskList) throws DukeException {
         try {
             File f = new File(this.filePath);
-            if (!f.createNewFile()) f.delete();
-            f.createNewFile();
-            FileWriter fw = new FileWriter(this.filePath, true);
+            if (!f.createNewFile()) f.delete(); // if file exists, delete it
+            f.createNewFile(); // create a new file
+            FileWriter fw = new FileWriter(this.filePath, true); //create a new FileWriter object to the file
             for (Task t : taskList.getList()) {
                 fw.write(t.toString() + System.lineSeparator());
-            }
-            fw.close();
+            } //for every task in the task list, write it to the empty FileWriter object.
+            fw.close(); // close FileWriter
         } catch (IOException i) {
             throw new DukeException("OOPS!! data/duke.txt file does not exist");
         }
