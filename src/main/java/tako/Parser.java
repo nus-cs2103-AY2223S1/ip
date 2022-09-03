@@ -79,7 +79,9 @@ public class Parser {
             if (splitInput.length == 1) {
                 throw new TakoException("The description of this todo cannot be empty.");
             }
-            Todo todo = new Todo(splitInput[1]);
+            String todoDescription = splitInput[1];
+            assert !todoDescription.equals("") : "Empty description.";
+            Todo todo = new Todo(todoDescription);
             return new AddCommand(todo);
         case DEADLINE:
             if (splitInput.length == 1) {
@@ -90,7 +92,9 @@ public class Parser {
                 try {
                     LocalDateTime dateTime = LocalDateTime.parse(
                             splitDeadline[1].replace(' ', 'T'));
-                    Deadline deadline = new Deadline(splitDeadline[0], dateTime);
+                    String deadlineDescription = splitDeadline[0];
+                    assert !deadlineDescription.equals("") : "Empty description.";
+                    Deadline deadline = new Deadline(deadlineDescription, dateTime);
                     return new AddCommand(deadline);
                 } catch (DateTimeParseException e) {
                     throw new TakoException("Invalid date and time.\n"
@@ -110,6 +114,8 @@ public class Parser {
                 try {
                     LocalDateTime dateTime = LocalDateTime.parse(
                             splitEvent[1].replace(' ', 'T'));
+                    String eventDescription = splitEvent[0];
+                    assert !eventDescription.equals("") : "Empty description.";
                     Event event = new Event(splitEvent[0], dateTime);
                     return new AddCommand(event);
                 } catch (DateTimeParseException e) {
@@ -141,6 +147,7 @@ public class Parser {
             }
             break;
         default:
+            assert false : "Unknown Command: " + command;
             break;
         }
         throw new TakoException("The input is invalid.");

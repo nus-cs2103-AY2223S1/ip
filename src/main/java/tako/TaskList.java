@@ -48,6 +48,7 @@ public class TaskList {
                 descriptionToTaskMap.put(s, new ArrayList<>());
             }
             List<Task> tasks = descriptionToTaskMap.get(s);
+            assert tasks != null : "Tasks should be in hashMap.";
             tasks.add(task);
         }
     }
@@ -64,6 +65,7 @@ public class TaskList {
             throw new TakoException("The task number to mark does not exist.");
         }
         Task task = tasks.get(taskNumber);
+        assert task != null : "Task should be in list.";
         task.markAsDone();
     }
 
@@ -79,6 +81,7 @@ public class TaskList {
             throw new TakoException("The task number to delete does not exist.");
         }
         Task task = tasks.remove(taskNumber);
+        assert task != null : "Task should be in list.";
         String description = task.getDescription();
         String[] splitDescription = description.split(" ");
         for (String s: splitDescription) {
