@@ -49,10 +49,9 @@ public class Todo extends Task {
      */
     @Override
     public String encode() {
-        String s = String.format("%c;%s",
+        return String.format("%c;%s",
                 SYMBOL,
                 super.encode());
-        return s;
     }
 
     /**
@@ -62,9 +61,8 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        String s = String.format("[%c]%s",
+        return String.format("[%c]%s",
                 SYMBOL,
                 super.toString());
-        return s;
     }
 }
