@@ -1,5 +1,3 @@
-Requirements (not implemented yet): inline code
-
 # Introducing Pixel -- your new chatbot to manage tasks
 
 > “Sometimes it is the people no one can imagine anything of who do the things no one can imagine.”
@@ -27,9 +25,9 @@ This is a greenfield Java project for the NUS Computer Science module CS2103 Sof
 #### And it is FREE! <br />
 
 ### Features:
-- [ ] Managing tasks (add/ delete/ find tasks)
-- [ ] Managing deadlines
-- [ ] Marking tasks as done/ unmark tasks
+- [x] Managing tasks (add/ delete/ find tasks)
+- [x] Managing deadlines
+- [x] Marking tasks as done/ unmark tasks
 - [ ] **Reminders** (coming soon)
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
