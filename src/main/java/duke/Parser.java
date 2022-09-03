@@ -244,9 +244,9 @@ public class Parser {
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForDeadline(String userInput) throws DukeException {
-        if ((userInput.indexOf(" ") != 8)
-                || (userInput.indexOf("/by ") <= 9)) {
-            // Should have a " " delimiter followed by "/by:"
+        Boolean hasNoSpaceAtIndexEight = userInput.indexOf(" ") != 8;
+        Boolean isMissingDelimiter = userInput.indexOf("/by ") <= 9;
+        if (hasNoSpaceAtIndexEight || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "deadline, please enter the following:\n"
                     + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
@@ -271,9 +271,9 @@ public class Parser {
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForEvent(String userInput) throws DukeException {
-        if ((userInput.indexOf(" ") != 5)
-                || (userInput.indexOf("/at ") <= 6)) {
-            // Should have a " " delimiter followed by "/at"
+        Boolean hasNoSpaceAtIndexFive = userInput.indexOf(" ") != 5;
+        Boolean isMissingDelimiter = userInput.indexOf("/at ") <= 6;
+        if (hasNoSpaceAtIndexFive || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "event, please enter the following:\n"
                     + "   event [TASK DESCRIPTION] /at [VENUE]\n");
@@ -300,7 +300,7 @@ public class Parser {
      */
     private void testInputForDelete(String userInput) throws DukeException {
         String[] args = userInput.split(" ");
-        int index;
+        int taskNumber;
         int size = taskList.getSize();
         if ((args.length != 2)) {
             throw new DukeException("Wrong format! To delete a task, "
@@ -308,12 +308,14 @@ public class Parser {
         }
 
         try {
-            index = Integer.parseInt(args[1]);
+            taskNumber = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number must be an integer!"
                     + "\n   delete [TASK NUMBER]\n");
         }
-        if (index < 0 || index >= size) {
+        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
+        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
+        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
             throw new DukeException("Task number is invalid."
                     + String.format("You have %d tasks!", size)
                     + "\n   delete [TASK NUMBER]\n");
@@ -327,7 +329,7 @@ public class Parser {
      */
     private void testInputForMark(String userInput) throws DukeException {
         String[] args = userInput.split(" ");
-        int index;
+        int taskNumber;
         int size = taskList.getSize();
         if ((args.length != 2)) {
             throw new DukeException("Wrong format! To mark a task as "
@@ -335,12 +337,14 @@ public class Parser {
         }
 
         try {
-            index = Integer.parseInt(args[1]);
+            taskNumber = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number must be an integer!\n"
                     + "   mark [TASK NUMBER]\n");
         }
-        if (index < 0 || index >= size) {
+        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
+        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
+        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
             throw new DukeException("Task number is invalid."
                     + String.format("You have %d tasks!\n", size)
                     + "   mark [TASK NUMBER]\n");
@@ -354,7 +358,7 @@ public class Parser {
      */
     private void testInputForUnmark(String userInput) throws DukeException {
         String[] args = userInput.split(" ");
-        int index;
+        int taskNumber;
         int size = taskList.getSize();
         if ((args.length != 2)) {
             throw new DukeException("Wrong format! To unmark a task "
@@ -362,12 +366,14 @@ public class Parser {
         }
 
         try {
-            index = Integer.parseInt(args[1]);
+            taskNumber = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number must be an integer!\n"
                     + "   unmark [TASK NUMBER]\n");
         }
-        if (index < 0 || index >= size) {
+        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
+        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
+        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
             throw new DukeException("Task number is invalid.\n"
                     + String.format("You have %d tasks!\n", size)
                     + "   mark [TASK NUMBER]\n");
