@@ -108,7 +108,7 @@ public class Parser {
                 break;
             default:
             }
-            FileIO.save(storageList, "./default.txt");
+            FileManager.save(storageList, "./default.txt");
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }

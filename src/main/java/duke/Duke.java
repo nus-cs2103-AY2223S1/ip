@@ -29,7 +29,7 @@ public class Duke {
         storageList = new StorageList();
         ui = new Ui(storageList);
         try {
-            FileIO.load(storageList, filePath);
+            FileManager.load(storageList, filePath);
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
