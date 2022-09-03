@@ -54,6 +54,7 @@ public abstract class Task {
      * @return true if the word is contained in the task. Otherwise, false
      */
     public boolean isTaskAndWordMatch(String word) {
+        assert(word != null);
         String[] wordsToCheck = task.split(" ");
         for (int i = 0; i < wordsToCheck.length; i++) {
             if (wordsToCheck[i].equals(word)) {

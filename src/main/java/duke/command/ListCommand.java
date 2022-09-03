@@ -23,6 +23,7 @@ public class ListCommand extends Command {
      * @since 0.1
      */
     public ListCommand(TaskList tasks, Ui ui) {
+        assert(tasks != null && ui != null);
         this.tasks = tasks;
         this.ui = ui;
     }
