@@ -7,7 +7,7 @@ REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac  -cp ..\src\main\stashy -Xlint:none -d ..\bin ..\src\main\stashy\*.java
+javac  -cp ..\src\main\java\stashy -Xlint:none -d ..\bin ..\src\main\java\stashy\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
