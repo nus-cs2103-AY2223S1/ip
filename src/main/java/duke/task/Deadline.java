@@ -17,8 +17,10 @@ public class Deadline extends Task {
         super(description);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mma");
-        LocalDateTime dateTime = LocalDateTime.parse(by.trim(), inputFormatter);
 
+        assert !by.isEmpty();
+
+        LocalDateTime dateTime = LocalDateTime.parse(by.trim(), inputFormatter);
         this.by = dateTime.format(outputFormatter);
     }
 
@@ -28,6 +30,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, boolean isDone, String by) {
         super(description, isDone);
+        assert !by.isEmpty();
         this.by = by;
     }
 
