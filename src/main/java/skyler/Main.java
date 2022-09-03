@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Skyler skyler = new Skyler();
+    private Skyler skyler = new Skyler("data/skyler.txt");
 
     @Override
     public void start(Stage stage) {
@@ -24,6 +24,7 @@ public class Main extends Application {
             stage.setTitle("Skyler");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setSkyler(skyler);
+            fxmlLoader.<MainWindow>getController().setStage(stage);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

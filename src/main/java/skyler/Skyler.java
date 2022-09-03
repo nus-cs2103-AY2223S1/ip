@@ -1,7 +1,6 @@
 package skyler;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Represents a personal chat assistant
@@ -10,10 +9,8 @@ public class Skyler {
 
     private Storage storage;
     private TaskList taskList;
-    private Ui ui = new Ui(); //remove this
+    private Ui ui;
     private Parser parser;
-
-    public Skyler() {}
 
     /**
      * Creates a personal chat assistant object
@@ -33,30 +30,14 @@ public class Skyler {
         this.parser = new Parser(taskList);
     }
 
-    /**
-     * Activates the personal chat assistant
-     */
-    public void run() {
-        ui.greet();
-
-        int active = 1;
-
-        try (Scanner sc = new Scanner(System.in)) {
-            while (active == 1 && sc.hasNext()) {
-                String description = sc.nextLine();
-                active = parser.parse(description);
-            }
+    public String getResponse(String input) {
+        try {
+            return parser.parse(input);
         } catch (EmptyDescriptionException e) {
-            ui.showEmptyDescriptionError();
+            return ui.showEmptyDescriptionError();
         } catch (TaskNotRecognisedException e) {
-            ui.showTaskNotRecognisedError();
-        } finally {
-            ui.bye();
+            return ui.showTaskNotRecognisedError();
         }
-    }
-
-    public static void main(String[] args) {
-        new Skyler("data/skyler.txt").run();
     }
 
 }

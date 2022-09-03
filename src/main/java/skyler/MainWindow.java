@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -22,6 +23,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Skyler skyler;
+    private Stage stage;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image skylerImage = new Image(this.getClass().getResourceAsStream("/images/Skyler.png"));
@@ -29,12 +31,15 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().addAll(DialogBox.getSkylerDialog(
-                "Hello! I'm Skyler\nHow can I help you?\n", skylerImage));
+        dialogContainer.getChildren().addAll(DialogBox.getSkylerDialog(Ui.GREETING, skylerImage));
     }
 
     public void setSkyler(Skyler skyler) {
         this.skyler = skyler;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     /**
@@ -44,7 +49,12 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = this.getResponse(input); // change to skyler.getResponse(input) --> implement
+
+        if (input.equals("bye")) {
+            this.stage.close();
+        }
+
+        String response = skyler.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSkylerDialog(response, skylerImage)
@@ -52,8 +62,4 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 
-    // remove after implementing skyler getResponse
-    private String getResponse(String input) {
-        return "Skyler heard: " + input;
-    }
 }

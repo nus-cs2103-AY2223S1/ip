@@ -20,56 +20,46 @@ public class Parser {
      * Returns status number based on input command detected
      *
      * @param command User command.
-     * @return 1 if user has more commands and 0 if user has completed commands.
+     * @return Skyler's response to the user's command.
      * @throws EmptyDescriptionException If no input task is detected after command.
      * @throws TaskNotRecognisedException If command is not recognised.
      */
-    public int parse(String command) throws EmptyDescriptionException, TaskNotRecognisedException {
-        if (command.equals("bye")) {
-            return 0;
-        } else if (command.equals("list")) {
-            taskList.list();
-            return 1;
+    public String parse(String command) throws EmptyDescriptionException, TaskNotRecognisedException {
+        if (command.equals("list")) {
+            return taskList.list();
         } else if (command.startsWith("mark")) {
             int item = Integer.parseInt(command.substring(command.length() - 1));
-            taskList.mark(item);
-            return 1;
+            return taskList.mark(item);
         } else if (command.startsWith("unmark")) {
             int item = Integer.parseInt(command.substring(command.length() - 1));
-            taskList.unmark(item);
-            return 1;
+            return taskList.unmark(item);
         } else if (command.startsWith("todo")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("todo")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.addTodo(arr[1]);
-            return 1;
+            return taskList.addTodo(arr[1]);
         } else if (command.startsWith("deadline")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("deadline")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.addDeadline(arr[1]);
-            return 1;
+            return taskList.addDeadline(arr[1]);
         } else if (command.startsWith("event")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("event")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.addEvent(arr[1]);
-            return 1;
+            return taskList.addEvent(arr[1]);
         } else if (command.startsWith("delete")) {
             int item = Integer.parseInt(command.substring(command.length() - 1));
-            taskList.delete(item);
-            return 1;
+            return taskList.delete(item);
         } else if (command.startsWith("find")) {
             String[] arr = command.split(" ", 2);
             if (command.trim().equals("find")) {
                 throw new EmptyDescriptionException();
             }
-            taskList.findTask(arr[1]);
-            return 1;
+            return taskList.findTask(arr[1]);
         } else {
             throw new TaskNotRecognisedException();
         }
