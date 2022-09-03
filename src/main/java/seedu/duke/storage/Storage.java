@@ -1,20 +1,16 @@
 package seedu.duke.storage;
 
+import seedu.duke.exception.DukeException;
+import seedu.duke.task.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
-import seedu.duke.exception.DukeException;
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.ToDo;
 
 /**
  * The Storage class handles the creation of a file specified by the duke.txt file.
@@ -31,8 +27,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
-
-
+    
     /**
      * Returns an ArrayList Task after reading the contents of the file specified by the filePath variable.
      */

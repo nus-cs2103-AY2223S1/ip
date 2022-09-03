@@ -28,9 +28,6 @@ public class Ui {
                 + " ) _)  )   /(  O )( (_ \\( (_ \\ )  /\n"
                 + "(__)  (__\\_) \\__/  \\___/ \\___/(__/\n";
 
-
-
-
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?\n");
     }
@@ -121,7 +118,7 @@ public class Ui {
     }
 
     /**
-     * Displays teh task that has been added to ArrayList.
+     * Displays the task that has been added to ArrayList.
      * @param task The task to be added.
      */
     public String addTask(Task task) {
