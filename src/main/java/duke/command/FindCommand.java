@@ -32,7 +32,9 @@ public class FindCommand extends Command {
     @Override
     public String runCommand(Ui ui, Storage storage, TaskList taskList) {
         try {
-            return taskList.find(userInput.substring(5));
+            String reply = taskList.find(userInput.substring(5));
+            assert reply.startsWith("Here are the matching tasks in your list:") : "Find command replies wrongly!";
+            return reply;
         } catch (DukeException e) {
             return e.getMessage();
         } catch (IndexOutOfBoundsException | NumberFormatException e) {

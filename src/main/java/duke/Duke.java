@@ -31,6 +31,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
+            assert tasks != null : "Task is not loaded properly!";
         } catch (Exception e) {
             tasks = new TaskList();
             ui.showLoadingError();

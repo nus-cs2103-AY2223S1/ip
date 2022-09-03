@@ -36,6 +36,7 @@ public class DeleteCommand extends Command {
     public String runCommand(Ui ui, Storage storage, TaskList taskList) {
         try {
             String reply = taskList.delete(Integer.valueOf(userInput.substring(7)));
+            assert reply.startsWith("Noted. I've removed this task:") : "Delete command replies wrongly!";
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {
