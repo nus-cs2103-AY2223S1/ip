@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/** A class that manages the Tasks in the to-do list. */
 public class TaskList {
 
+    /** The list of tasks in the to-do list */
     private static ArrayList<Task> taskArr;
 
     public TaskList() {
@@ -25,6 +27,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a tasks to the to-do list.
+     *
+     * @param keyword The String representing the type of task to add.
+     * @param input The rest of the input from the user, including the task description and deadline, if applicable.
+     * @throws DukeException If the task is invalid and cannot be added to the to-do list.
+     */
     public void addTask(String keyword, String input) throws DukeException {
         if (keyword.equals("todo")) {
             Task todoTask = new Todo(input);
@@ -52,12 +61,25 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task from the to-do list.
+     *
+     * @param input The task number to delete.
+     * @param ui The UI to display relevant messages to the user.
+     */
     public void deleteTask(String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
         ui.showDeletingTask(this.taskArr.get(taskNo).toString());
         this.taskArr.remove(getTask(taskNo));
     }
 
+    /**
+     * Marks a task in the to-do list as done or undone.
+     *
+     * @param keyword The command on whether to mark as done or undone.
+     * @param input The task number to mark.
+     * @param ui The UI to display relevant messages to the user.
+     */
     public void markTask(String keyword, String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
         switch (keyword) {
@@ -71,6 +93,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Gets the most recent task added to the to-do list.
+     *
+     * @return The retrieved Task.
+     */
     public Task getRecentTask() {
         return this.taskArr.get(taskArr.size() - 1);
     }
