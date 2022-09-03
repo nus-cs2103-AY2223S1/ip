@@ -1,6 +1,13 @@
 package parser;
 
-import command.*;
+import command.Command;
+import command.AddCommand;
+import command.ByeCommand;
+import command.DeleteCommand;
+import command.EditCommand;
+import command.FalseCommand;
+import command.FindCommand;
+import command.ListCommand;
 
 /**
  * Represents a parser to parse commands from
@@ -36,8 +43,9 @@ public class Parser {
             return new DeleteCommand(fullCommand);
         } else if (fullCommand.startsWith("mark") || fullCommand.startsWith("unmark")) {
             return new EditCommand(fullCommand);
-        } else if (fullCommand.startsWith("todo") || fullCommand.startsWith("deadline") ||
-                fullCommand.startsWith("event")) {
+        } else if (fullCommand.startsWith("todo")
+                || fullCommand.startsWith("deadline")
+                || fullCommand.startsWith("event")) {
             return new AddCommand(fullCommand);
         } else if (fullCommand.startsWith("find")) {
             return new FindCommand(fullCommand);

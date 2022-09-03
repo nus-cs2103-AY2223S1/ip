@@ -44,7 +44,8 @@ public class EditCommand extends Command {
      * @throws DukeException If there is no such task.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String response = "";
         if (commandLine.startsWith("mark")) {
             int index = Integer.parseInt(commandLine.substring(5)) - 1;
             try {
@@ -54,11 +55,14 @@ public class EditCommand extends Command {
                     Task task = taskList.get(index);
                     task.isMark(true);
                     storage.updateData(taskList);
-                    System.out.println("Nice! I've marked this task as done:\n" +
-                            " " + task + "\n");
+                    response = "Nice! I've marked this task as done:\n"
+                            + " " + task + "\n";
+                    System.out.println(response);
+                    return response;
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
+                return e.toString();
             }
         } else {
             int index = Integer.parseInt(commandLine.substring(7)) - 1;
@@ -69,11 +73,14 @@ public class EditCommand extends Command {
                     Task task = taskList.get(index);
                     task.isMark(false);
                     storage.updateData(taskList);
-                    System.out.println("OK, I've marked this task as not done yet:\n" +
-                            " " + task + "\n");
+                    response = "OK, I've marked this task as not done yet:\n"
+                            + " " + task + "\n";
+                    System.out.println(response);
+                    return response;
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
+                return e.toString();
             }
         }
     }

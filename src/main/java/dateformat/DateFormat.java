@@ -75,7 +75,7 @@ public class DateFormat {
                 String afterMonth;
                 if (afterMonthSlashIndex == 1) {
                     month = "0" + afterDay.charAt(0);
-                    afterMonth = afterDay.substring(afterDaySlashIndex + 1);
+                    afterMonth = afterDay.substring(afterMonthSlashIndex + 1);
                 } else {
                     month = afterDay.substring(0, 2);
                     afterMonth = afterDay.substring(afterMonthSlashIndex + 1);
@@ -88,6 +88,7 @@ public class DateFormat {
                         time = afterMonth.substring(5);
                     }
                 }
+
             } else if (afterBy.indexOf("/") == 3) {
                 month = afterBy.substring(0, 3);
                 int afterMonthSlashIndex = afterBy.indexOf("/");
@@ -139,7 +140,7 @@ public class DateFormat {
                 }
             }
         } else if (this.afterBy.contains("-")) {
-            if (this.afterBy.indexOf("-") < 2) {
+            if (this.afterBy.indexOf("-") <= 2) {
                 int afterDayDashIndex = afterBy.indexOf("-");
                 String afterDay;
                 if (afterDayDashIndex == 1) {
@@ -217,8 +218,10 @@ public class DateFormat {
                 }
             }
         } else {
-            afterBy = afterBy.substring(1); // When read from text file, it has an extra ":".
-            if (this.afterBy.indexOf(" ") < 2) {
+            if (afterBy.contains(":")) {
+                afterBy = afterBy.substring(1); // When read from text file, it has an extra ":".
+            }
+            if (this.afterBy.indexOf(" ") <= 2) {
                 int afterDaySpaceIndex = afterBy.indexOf(" ");
                 String afterDay;
                 if (afterDaySpaceIndex == 1) {
@@ -245,7 +248,9 @@ public class DateFormat {
                         time = afterMonth.substring(5);
                     }
                 }
-                month = months.get(month.toUpperCase());
+                if (!month.contains("1") && !month.contains("0")) {
+                    month = months.get(month.toUpperCase());
+                }
             } else if (afterBy.indexOf(" ") == 3) {
                 month = afterBy.substring(0, 3);
                 int afterMonthSpaceIndex = afterBy.indexOf(" ");
@@ -267,7 +272,10 @@ public class DateFormat {
                         time = afterDay.substring(5);
                     }
                 }
-                month = months.get(month.toUpperCase());
+                if (!month.contains("1") && !month.contains("0")) {
+                    month = months.get(month.toUpperCase());
+                }
+
             } else {
                 year = afterBy.substring(0, 4);
                 int afterYearSpaceIndex = afterBy.indexOf(" ");
@@ -296,7 +304,9 @@ public class DateFormat {
                         time = afterDay.substring(5);
                     }
                 }
-                month = months.get(month.toUpperCase());
+                if (!month.contains("1") && !month.contains("0")) {
+                    month = months.get(month.toUpperCase());
+                }
             }
         }
         if (month.length() == 1) {
@@ -364,7 +374,7 @@ public class DateFormat {
     }
 
     public static void main(String args[]) {
-        DateFormat d4 = new DateFormat("Feb 10 2022 1800");
+        DateFormat d4 = new DateFormat("30 08 2022 1800");
         System.out.println(d4.formatDate("MMM d yyyy"));
         System.out.println(d4.formatTime());
     }

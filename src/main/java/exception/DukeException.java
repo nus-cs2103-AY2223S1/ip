@@ -1,6 +1,6 @@
 package exception;
 
-public class DukeException extends IllegalArgumentException{
+public class DukeException extends IllegalArgumentException {
     protected String message;
 
     public DukeException(String message) {

@@ -9,8 +9,8 @@ public class Ui {
     protected String nextCommand;
 
     public Ui() {
+        System.out.println("Hello! I'm Duke.\nWhat can I do for you?\n");
         this.in = new Scanner(System.in);
-        this.nextCommand = in.nextLine();
     }
 
     public void showWelcome() {
@@ -22,7 +22,7 @@ public class Ui {
     }
 
     public String readCommand() {
-        return this.nextCommand;
+        return this.in.nextLine();
     }
 
     public void changeCommand() {

@@ -44,7 +44,8 @@ public class DeleteCommand extends Command {
      * @throws DukeException If there are no such task in the taskList.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String response = "";
         int index = Integer.parseInt(commandLine.substring(7)) - 1;
         try {
             if (index > taskList.size() - 1) {
@@ -53,12 +54,15 @@ public class DeleteCommand extends Command {
                 Task task = taskList.get(index);
                 taskList.remove(index);
                 storage.updateData(taskList);
-                System.out.println("Noted. I've removed this task:\n" +
-                        " " + task.toString() + "\n" + "Now you have " +
-                        taskList.size() + " tasks in the list.\n");
+                response = "Noted. I've removed this task:\n"
+                        + " " + task.toString() + "\n" + "Now you have "
+                        + taskList.size() + " tasks in the list.\n";
+                System.out.println(response);
+                return response;
             }
         } catch (DukeException e) {
             System.out.println(e.toString());
+            return e.toString();
         }
     }
 }

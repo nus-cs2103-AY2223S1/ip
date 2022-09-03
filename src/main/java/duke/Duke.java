@@ -14,11 +14,9 @@ public class Duke {
     private Ui ui;
 
     public Duke(String filePath) {
-        System.out.println("Hello! I'm Duke.\nWhat can I do for you?\n");
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-            ui = new Ui();
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
@@ -42,6 +40,13 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
+    }
+
+    public String getResponse(String input) {
+        Parser parser = new Parser(input);
+        Command c = parser.parse(input);
+        String response = c.execute(tasks, ui, storage);
+        return response;
     }
 
     public static void main(String[] args) {

@@ -37,7 +37,8 @@ public class FindCommand extends Command {
      * @throws DukeException If the description of task is empty.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        String response = "";
         try {
             if (taskList.size() == 0) {
                 throw new DukeException("There are no tasks in your list. :)");
@@ -55,12 +56,21 @@ public class FindCommand extends Command {
                         throw new DukeException("There is nothing that matches the task.");
                     } else {
                         System.out.println("Here are the matching tasks in your list:");
-                        tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1) + "."
-                                + n.toString()));
+                        tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1)
+                                + "." + n.toString()));
+                        response = "Here are the matching tasks in your list:\n";
+                        for (int j = 0; j < tasksFound.size(); j++) {
+                            Task currTaskFound = tasksFound.get(j);
+                            String currTaskFoundString = currTaskFound.toString();
+                            response += currTaskFoundString;
+                        }
+                        return response;
+
                     }
                 }
         } catch (DukeException e) {
             System.out.println(e.toString());
+            return e.toString();
         }
     }
 }

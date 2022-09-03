@@ -49,7 +49,8 @@ public class AddCommand extends Command {
      * @throws DukeException If the description of task is empty.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        String response = "";
         if (commandLine.startsWith("todo")) {
             try {
                 if (commandLine.length() <= 4) {
@@ -59,12 +60,15 @@ public class AddCommand extends Command {
                     Task currTask = new Todo(actTask);
                     taskList.add(currTask);
                     storage.updateData(taskList);
-                    System.out.println("Got it. I've added this task:\n" +
-                            " " + currTask + "\n" +
-                            "Now you have " + taskList.size() + " tasks in the list.\n");
+                    response = "Got it. I've added this task:\n"
+                            + " " + currTask + "\n" + "Now you have "
+                            + taskList.size() + " tasks in the list.\n";
+                    System.out.println(response);
+                    return response;
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
+                return e.toString();
             }
         } else if (commandLine.startsWith("deadline")) {
             try {
@@ -72,7 +76,7 @@ public class AddCommand extends Command {
                     throw new DukeException("The description of a deadline cannot be empty.");
                 } else {
                     if (!commandLine.contains("/")) {
-                        System.out.println("There is no date! >:(\n");
+                        throw new DukeException("There is no date! >:(\n");
                     } else {
                         int slashIndex = commandLine.indexOf("/");
                         String actTask = commandLine.substring(9, slashIndex - 1);
@@ -80,15 +84,18 @@ public class AddCommand extends Command {
                         Task currTask = new Deadline(actTask, taskDate);
                         taskList.add(currTask);
                         storage.updateData(taskList);
-                        System.out.println("Got it. I've added this task:\n" +
-                                " " + currTask + "\n" +
-                                "Now you have " + taskList.size() + " tasks in the list.\n");
+                        response = "Got it. I've added this task:\n"
+                                + " " + currTask + "\n" + "Now you have "
+                                + taskList.size() + " tasks in the list.\n";
+                        System.out.println(response);
+                        return response;
                     }
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
+                return e.toString();
             }
-        } else if (commandLine.startsWith("event")) {
+        } else {
             try {
                 if (commandLine.length() <= 5) {
                     throw new DukeException("The description of a event cannot be empty.");
@@ -102,13 +109,16 @@ public class AddCommand extends Command {
                         Task currTask = new Event(actTask, taskDate);
                         taskList.add(currTask);
                         storage.updateData(taskList);
-                        System.out.println("Got it. I've added this task:\n" +
-                                " " + currTask.toString() + "\n" +
-                                "Now you have " + taskList.size() + " tasks in the list.\n");
+                        response = "Got it. I've added this task:\n"
+                                + " " + currTask + "\n" + "Now you have "
+                                + taskList.size() + " tasks in the list.\n";
+                        System.out.println(response);
+                        return response;
                     }
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
+                return e.toString();
             }
         }
     }
