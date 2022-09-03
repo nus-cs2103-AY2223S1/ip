@@ -44,8 +44,9 @@ public class DialogBox extends HBox {
 
     /**
      * Gets the dialog box representing text from the user.
+     *
      * @param text the text to be displayed
-     * @param img the image to be displayed
+     * @param img  the image to be displayed
      * @return a DialogBox object with the given text and image
      */
     public static DialogBox getUserDialog(String text, Image img) {
@@ -54,8 +55,9 @@ public class DialogBox extends HBox {
 
     /**
      * Gets the dialog box representing text from Henry.
+     *
      * @param text the text to be displayed
-     * @param img the image to be displayed
+     * @param img  the image to be displayed
      * @return a DialogBox object with the given text and image
      */
     public static DialogBox getHenryDialog(String text, Image img) {
