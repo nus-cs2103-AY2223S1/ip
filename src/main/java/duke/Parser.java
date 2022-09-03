@@ -12,10 +12,6 @@ import duke.task.ToDo;
  * A class to parse user input
  */
 public class Parser {
-    /**
-     * An instance of the {@code BreakLoopIndicator}
-     */
-    final BreakLoopIndicator breakLoopIndicator = new BreakLoopIndicator();
     private final TaskList taskList;
 
     /**
@@ -28,11 +24,11 @@ public class Parser {
     }
 
     private static String generateEmptyDescMessage(String taskType) {
-        return " ☹ OOPS!!! The description of a " + taskType + " cannot be empty.\n";
+        return "OOPS!!! The description of a " + taskType + " cannot be empty.\n";
     }
 
     private static String generateEmptyActionMessage(String action) {
-        return " ☹ OOPS!!! The action to " + action + " must have the index as an argument.\n";
+        return "OOPS!!! The action to " + action + " must have the index as an argument.\n";
     }
 
     private String generateTasksNumberMessage() {
@@ -44,30 +40,28 @@ public class Parser {
      * Returns a {@code String} representing the parsed input
      *
      * @param command            The user input
-     * @param breakLoopIndicator The {@code BreakLoopIndicator} instance
      * @return A {@code String} representing the input
      * @throws CustomMessageException if invalid input is given
      */
-    public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator)
+    public String parseUserCommand(String command)
             throws CustomMessageException {
         String[] commands = command.split("\\s+");
         Command taskType;
         try {
             taskType = Command.valueOf(commands[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CustomMessageException((" ☹ OOPS!!! I'm sorry, but I "
-                    + "don't know what that means :-(\n"));
+            throw new CustomMessageException(("OOPS!!! I'm sorry, but I "
+                    + "don't know what that means :-("));
         }
         commands[0] = "";
         int index;
         String toPrint;
         switch (taskType) {
         case BYE:
-            toPrint = "";
-            breakLoopIndicator.setIsExitCommand();
+            toPrint = Responses.BYE_MESSAGE;
             break;
         case LIST:
-            toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
+            toPrint = (("Here are the tasks in your list:"
                     + taskList.getTextRepresentationOfAllTasks()));
             break;
         case MARK:
@@ -76,8 +70,7 @@ public class Parser {
             }
             index = Integer.parseInt(commands[1]) - 1;
             taskList.markTaskAsDone(index);
-            toPrint = "Nice! I've marked this task as done:\n       " + taskList.getTaskString(index);
-            toPrint = (Ui.indentedMessage(toPrint));
+            toPrint = "Nice! I've marked this task as done:\n    " + taskList.getTaskString(index);
             break;
         case UNMARK:
             if (commands.length == 1) {
@@ -85,21 +78,18 @@ public class Parser {
             }
             index = Integer.parseInt(commands[1]) - 1;
             taskList.markTaskAsNotDone(index);
-            toPrint = "OK, I've marked this task as not done yet:\n       "
+            toPrint = "OK, I've marked this task as not done yet:\n    "
                     + taskList.getTaskString(index);
-            toPrint = (Ui.indentedMessage(toPrint));
             break;
         case DELETE:
             if (commands.length == 1) {
-                throw new CustomMessageException(
-                        Ui.indentedMessage(generateEmptyActionMessage("delete")));
+                throw new CustomMessageException((generateEmptyActionMessage("delete")));
             }
             index = Integer.parseInt(commands[1]) - 1;
             String deletedTaskDescription = taskList.getTaskString(index);
             taskList.removeTask(index);
-            toPrint = "Noted. I've removed this task:\n       "
-                    + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
-            toPrint = (Ui.indentedMessage(toPrint));
+            toPrint = "Noted. I've removed this task:\n    "
+                    + deletedTaskDescription + "\n" + generateTasksNumberMessage();
             break;
         case TODO:
             toPrint = parseNewTaskCommand(command, commands.length, Command.TODO, "");
@@ -114,12 +104,12 @@ public class Parser {
             if (commands.length == 1) {
                 throw new CustomMessageException(generateEmptyActionMessage("find"));
             }
-            toPrint = Ui.indentedMessage("Here are the matching tasks in your list:"
+            toPrint = ("Here are the matching tasks in your list:"
                     + taskList.getTextRepresentationOfKeywordTasks(commands[1]));
             break;
         default:
             throw new CustomMessageException((
-                    " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
+                    "OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
         }
         return toPrint.equals("") ? "" : toPrint + "\n";
     }
@@ -148,22 +138,7 @@ public class Parser {
             }
             taskList.addToTaskList(newTask);
         }
-        return (Ui.indentedMessage("Got it. I've added this task:\n       "
-                + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n     " + generateTasksNumberMessage()));
-    }
-
-    /**
-     * A class to track whether it is time to break the loop.
-     */
-    public static class BreakLoopIndicator {
-        private boolean isExitCommand = false;
-
-        boolean getIsExitCommand() {
-            return isExitCommand;
-        }
-
-        private void setIsExitCommand() {
-            isExitCommand = true;
-        }
+        return (("Got it. I've added this task:\n    "
+                + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n" + generateTasksNumberMessage()));
     }
 }

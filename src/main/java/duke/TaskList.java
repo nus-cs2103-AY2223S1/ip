@@ -28,15 +28,10 @@ public class TaskList {
         try {
             Scanner fileScanner = storage.getScannerForTasksFile();
             while (fileScanner.hasNextLine()) {
-                parser.parseUserCommand(fileScanner.nextLine(), parser.breakLoopIndicator);
-                if (parser.breakLoopIndicator.getIsExitCommand()) {
-                    break;
-                }
+                parser.parseUserCommand(fileScanner.nextLine());
             }
             fileScanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("No existing file found");
-        } catch (CustomMessageException e) {
+        } catch (FileNotFoundException | CustomMessageException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -104,17 +99,25 @@ public class TaskList {
         // Idea below of iterating with indices in streams adapted from
         // https://stackoverflow.com/a/42616742
         StringBuilder listOfUserText = getMappedIndexToUserText(taskListToConvert).entrySet().stream().reduce(
-                new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append("\n      ")
-                        .append(currentEntry.getKey()).append(".")
+                new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append("\n  ")
+                        .append(currentEntry.getKey()).append(". ")
                         .append(currentEntry.getValue().toString()), StringBuilder::append);
         return listOfUserText.toString();
     }
 
+    /**
+     * Returns the textual representation of the {@code Tasks} matching the keyword.
+     * @param keyword The keyword to search for
+     * @return The {@code String} representation of the {@code Tasks}
+     */
     public String getTextRepresentationOfKeywordTasks(String keyword) {
         return convertTaskListToString(userTasks.stream().filter(task -> task.isMatchingKeywordInDescription(keyword))
                 .collect(Collectors.toList()));
     }
-
+    /**
+     * Returns the textual representation of all {@code Tasks}.
+     * @return The {@code String} representation of the {@code Tasks}
+     */
     public String getTextRepresentationOfAllTasks() {
         return convertTaskListToString(userTasks);
     }
