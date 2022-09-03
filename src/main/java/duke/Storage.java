@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exception.InvalidStorageDataException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -77,10 +78,11 @@ public class Storage {
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
                 default:
+                    throw new InvalidStorageDataException();
                 }
             }
             sc.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | InvalidStorageDataException e) {
             System.out.println(e.getMessage());
         }
         return tasks;
