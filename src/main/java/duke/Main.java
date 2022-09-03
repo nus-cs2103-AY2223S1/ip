@@ -25,7 +25,7 @@ public class Main extends Application {
             this.duke = new Duke();
             Main.stage = stage;
             FXMLLoader fxmlLoader =
-                    new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+                    new FXMLLoader(this.getClass().getResource("/view/MainWindow.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             Scene scene = new Scene(anchorPane);
             Main.stage.setScene(scene);

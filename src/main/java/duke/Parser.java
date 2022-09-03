@@ -70,7 +70,7 @@ public class Parser {
         default:
             throw new DukeException("I'm sorry, but I don't know what that means.");
         }
-}
+    }
 
     /**
      * Splits the given argument into description and date, separated by the command separator.
