@@ -115,7 +115,7 @@ public class Ui {
         for (int i = 0; i < lst.size(); i++) {
             Task task = lst.get(i);
             sb.append("\n");
-            sb.append(i+1 + ". " + task.toString());
+            sb.append(i + 1 + ". " + task.toString());
         }
         return sb.toString();
     }

@@ -51,11 +51,11 @@ public class Duke {
      * @throws DukeException
      */
     public String addTodo(String tDescription) throws DukeException {
-            Task todo = new Todo(tDescription);
-            tasks.addTask(todo);
-            int size = tasks.getSize();
-            storage.save(tasks);
-            return ui.printTodo(todo, size);
+        Task todo = new Todo(tDescription);
+        tasks.addTask(todo);
+        int size = tasks.getSize();
+        storage.save(tasks);
+        return ui.printTodo(todo, size);
     }
 
     /**

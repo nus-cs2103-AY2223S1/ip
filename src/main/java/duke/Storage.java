@@ -27,7 +27,7 @@ public class Storage {
      * Loads tasks from a file to an ArrayList.
      *
      * @return An ArrayList of tasks loaded from previously saved file (if there is saved file) or a new ArrayList of
-     * tasks (if there is no saved file).
+     *     tasks (if there is no saved file).
      * @throws IOException
      * @throws DukeException
      */
@@ -51,32 +51,30 @@ public class Storage {
             String taskInString = input.nextLine();
             String[] taskInArray = taskInString.split(" \\| ");
             String taskType = taskInArray[0];
+            Task task;
             switch (taskType) {
-            case "T" : {
-                Task task= new Todo(taskInArray[2]);
+            case "T":
+                task = new Todo(taskInArray[2]);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();
                 }
                 break;
-            }
-            case "D" : {
+            case "D":
                 LocalDate date = LocalDate.parse(taskInArray[3]);
-                Task task = new Deadline(taskInArray[2], date);
+                task = new Deadline(taskInArray[2], date);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();
                 }
                 break;
-            }
-            case "E" : {
-                Task task = new Event(taskInArray[2], taskInArray[3]);
+            case "E":
+                task = new Event(taskInArray[2], taskInArray[3]);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();
                 }
                 break;
-            }
             default:
                 throw new DukeException("OOPS!I cannot find a valid task type!");
             }

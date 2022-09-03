@@ -76,8 +76,8 @@ public class Parser {
                 return duke.find(str);
 
             //Handle case when user wants to quit bot
-                case "bye":
-                    return duke.handleBye();
+            case "bye":
+                return duke.handleBye();
 
             //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
             default:
