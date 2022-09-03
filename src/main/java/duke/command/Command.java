@@ -10,7 +10,7 @@ import duke.task.TaskList;
 public interface Command {
 
     /**
-     * Executes a task.
+     * Executes a command.
      *
      * @param taskList TaskList object that contains the list of tasks
      */

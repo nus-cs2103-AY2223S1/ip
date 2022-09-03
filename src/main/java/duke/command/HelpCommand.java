@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.task.TaskList;
 
+/**
+ * Represents a help command
+ */
 public class HelpCommand implements Command {
 
     public static final String COMMAND_WORD = "help";
@@ -14,10 +17,20 @@ public class HelpCommand implements Command {
         this("");
     }
 
+    /**
+     * Constructor for a {@link HelpCommand}
+     *
+     * @param command Command that the user needs help with
+     */
     public HelpCommand(String command) {
         this.command = command;
     }
 
+    /**
+     * Executes a command
+     *
+     * @param taskList
+     */
     @Override
     public String execute(TaskList taskList) {
         String message;

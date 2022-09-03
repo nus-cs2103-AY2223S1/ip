@@ -3,6 +3,9 @@ package duke.command;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * Represents a event command
+ */
 public class EventCommand implements Command {
     public static final String COMMAND_WORD = "event";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -12,11 +15,22 @@ public class EventCommand implements Command {
     private String description;
     private String dateTime;
 
+    /**
+     * Constructor for a {@link EventCommand}
+     *
+     * @param description Description for the event
+     * @param dateTime    Date and time for the event
+     */
     public EventCommand(String description, String dateTime) {
         this.description = description;
         this.dateTime = dateTime;
     }
 
+    /**
+     * Executes a command
+     *
+     * @param taskList
+     */
     @Override
     public String execute(TaskList taskList) {
         Event event = new Event(description, dateTime);

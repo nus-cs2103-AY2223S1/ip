@@ -29,6 +29,7 @@ public class DateTime {
             try {
                 dateTime = LocalDateTime.parse(input, formatter);
             } catch (DateTimeParseException e) {
+                // Try another format
             }
         }
     }

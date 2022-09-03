@@ -13,7 +13,7 @@ public class TaskList {
 
     /**
      * Initialises the task list.
-     * 
+     *
      * @param taskList
      */
     public TaskList(ArrayList<Task> taskList) {

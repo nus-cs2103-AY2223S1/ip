@@ -3,6 +3,9 @@ package duke.command;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents a mark command
+ */
 public class MarkCommand implements Command {
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Mark a task as done. Parameters: INDEX. Example: "
@@ -10,10 +13,20 @@ public class MarkCommand implements Command {
 
     private int index;
 
+    /**
+     * Constructor for a {@link MarkCommand}
+     *
+     * @param index Index for the task in task list
+     */
     public MarkCommand(int index) {
         this.index = index;
     }
 
+    /**
+     * Executes a command
+     *
+     * @param taskList
+     */
     @Override
     public String execute(TaskList taskList) {
         try {
