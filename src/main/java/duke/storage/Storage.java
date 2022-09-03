@@ -34,7 +34,7 @@ public class Storage {
             throw new DukeException("Invalid save format");
         }
         int done = Integer.parseInt(tokens[0]);
-        assert done == 1 || done == 0: "Save file lime format is invalid.";
+        assert done == 1 || done == 0 : "Save file lime format is invalid.";
         String commandInput = tokens[1];
 
         Task task = Parser.getTask(commandInput);

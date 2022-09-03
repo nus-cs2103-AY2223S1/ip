@@ -1,5 +1,9 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
+import duke.exception.DukeException;
+
 /**
  * Represents a Task that can be described and marked as done.
  */
@@ -8,7 +12,7 @@ public abstract class Task {
     protected boolean isDone;
 
     public Task(String description) {
-        assert description != null: "Description cannot be null";
+        assert description != null : "Description cannot be null";
         this.description = description;
         this.isDone = false;
     }
@@ -42,6 +46,9 @@ public abstract class Task {
      * @return String that is of the save file format.
      */
     public abstract String saveText();
+
+    public abstract LocalDateTime getTime();
+    public abstract void setTime(LocalDateTime time) throws DukeException;
 
     @Override
     public String toString() {

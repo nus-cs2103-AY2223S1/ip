@@ -16,8 +16,8 @@ public class AddDeadlineCommand extends Command {
     private LocalDateTime byDate;
 
     public AddDeadlineCommand(String description, LocalDateTime byDate) {
-        assert description != null: "Description cannot be null";
-        assert byDate != null: "Date cannot be null";
+        assert description != null : "Description cannot be null";
+        assert byDate != null : "Date cannot be null";
         this.description = description;
         this.byDate = byDate;
     }
