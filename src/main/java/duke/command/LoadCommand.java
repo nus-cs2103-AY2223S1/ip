@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Duke;
 import duke.DukeException;
-import duke.FileIO;
+import duke.FileManager;
 import duke.Output;
 import duke.StorageList;
 import duke.Ui;
@@ -26,7 +26,7 @@ public class LoadCommand extends Command {
             filename = input.split(" ")[1];
         }
 
-        FileIO.load(storageList, filename);
+        FileManager.load(storageList, filename);
         Output.LOAD.print();
     }
 }

@@ -14,9 +14,9 @@ import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * FileIO handles the loading and saving tasks in the file.
+ * FileManager handles the loading and saving tasks in the file.
  */
-public class FileIO {
+public class FileManager {
     /**
      * Save the list of tasks to a file.
      *
@@ -27,18 +27,30 @@ public class FileIO {
     public static void save(StorageList list, String filePath) throws DukeException {
         try {
             createFile(filePath);
-            FileWriter fw = new FileWriter(filePath);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < list.getSize(); i++) {
-                bw.write(list.get(i).toString());
-                bw.newLine();
-            }
-            bw.close();
+            writeToFile(filePath, list);
         } catch (FileNotFoundException e) {
             throw new DukeException("File not found.");
         } catch (IOException e) {
             throw new DukeException("Error writing to file.");
         }
+    }
+
+    /**
+     * Write the list of tasks to a file.
+     *
+     * @param filePath The path of the file to write to
+     * @param list List of tasks to write
+     * @throws IOException if the file cannot be written to
+     * @throws DukeException if the list.get(i) is not a valid Task
+     */
+    private static void writeToFile(String filePath, StorageList list) throws IOException, DukeException {
+        FileWriter fw = new FileWriter(filePath);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i = 0; i < list.getSize(); i++) {
+            bw.write(list.get(i).toString());
+            bw.newLine();
+        }
+        bw.close();
     }
 
     /**
@@ -52,20 +64,32 @@ public class FileIO {
         try {
             list.reset();
             createFile(filePath);
-            FileReader fr = new FileReader(filePath);
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (!line.equals("")) {
-                    parseLine(line, list);
-                }
-            }
-            br.close();
+            readFromFile(filePath, list);
         } catch (FileNotFoundException e) {
             throw new DukeException("File not found.");
         } catch (IOException e) {
             throw new DukeException("Error reading from file.");
         }
+    }
+
+    /**
+     * Reads the tasks from the file, and adds them to the list.
+     *
+     * @param filePath The path of the file to read from.
+     * @param list List of tasks to add to.
+     * @throws IOException if the file cannot be read from
+     * @throws DukeException if the line cannot be parsed
+     */
+    private static void readFromFile(String filePath, StorageList list) throws IOException, DukeException {
+        FileReader fr = new FileReader(filePath);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (!line.equals("")) {
+                parseLine(line, list);
+            }
+        }
+        br.close();
     }
 
     /**
