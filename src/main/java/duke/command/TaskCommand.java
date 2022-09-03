@@ -3,7 +3,6 @@ package duke.command;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a TaskCommand object.
@@ -25,13 +24,13 @@ public abstract class TaskCommand extends Command {
      * Executes TaskCommand by adding the task to tasks.
      *
      * @param tasks task to be added to tasks.
-     * @param ui display the task that was added to tasks.
      * @param storage update the storage when task is added to tasks.
+     * @return task command message
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         tasks.addTask(task);
-        storage.update(tasks, ui);
-        displayCommand(ui, TASK_ADD, task, tasks.getStatus());
+        storage.update(tasks);
+        return String.format("%s\n%s", TASK_ADD, task);
     }
 }
