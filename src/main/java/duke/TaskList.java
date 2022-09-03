@@ -11,6 +11,10 @@ import java.util.function.Predicate;
  * Represents a list of Tasks.
  */
 public class TaskList implements Iterable<Task> {
+    public static final String ERROR_NO_TASKS_TO_OPERATE_ON = "You don't have tasks.";
+    public static final String ERROR_INDEX_GIVEN_TOO_SMALL = "Task number should be at least 1.";
+    public static final String ERROR_FEWER_TASKS_THAN_INDEX = "You only have %d tasks.";
+
     private ArrayList<Task> taskArrayList;
 
     /**
@@ -58,13 +62,13 @@ public class TaskList implements Iterable<Task> {
         int numTasks = this.taskArrayList.size();
 
         if (numTasks == 0) {
-            throw new DukeException("You don't have tasks.");
+            throw new DukeException(TaskList.ERROR_NO_TASKS_TO_OPERATE_ON);
         }
         if (index < 1) {
-            throw new DukeException("Task number should be at least 1.");
+            throw new DukeException(TaskList.ERROR_INDEX_GIVEN_TOO_SMALL);
         }
         if (index > numTasks) {
-            throw new DukeException(String.format("You only have %d tasks.", numTasks));
+            throw new DukeException(String.format(TaskList.ERROR_FEWER_TASKS_THAN_INDEX, numTasks));
         }
 
         // The user gives 1-indexed numbers.

@@ -10,6 +10,8 @@ import java.util.Scanner;
  * Represents all of Duke's file operations.
  */
 public class Storage {
+    public static final String ERROR_INVALID_FILE_FORMAT = "Did you wrongly modify the file?";
+    public static final String ERROR_INSUFFICIENT_PERMISSION = "Where are you running this file?";
     private String filePath;
 
     /**
@@ -52,7 +54,7 @@ public class Storage {
                         task = Deadline.fromFileRepresentation(line);
                         break;
                     default:
-                        throw new DukeException("Did you wrongly modify the file?");
+                        throw new DukeException(Storage.ERROR_INVALID_FILE_FORMAT);
                     }
                     tasks.add(task);
                 }
@@ -83,7 +85,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Where are you running this file? " + e.getMessage());
+            throw new DukeException(Storage.ERROR_INSUFFICIENT_PERMISSION);
         }
     }
 }

@@ -16,6 +16,14 @@ import duke.command.UnmarkCommand;
  * Represents all command parsing logic.
  */
 public class Parser {
+    public static final String ERROR_UNKNOWN_COMMAND = "I don't know this command!";
+    public static final String ERROR_EMPTY_DESCRIPTION = "Description should not be empty.";
+    public static final String ERROR_NOT_NUMBER = "%s is not a number. e.g 5 is a number, five is a string.";
+    public static final String ERROR_WRONG_USAGE_OF_EVENT =
+            "Wrong usage of event.\nUsage: event some description /at some date";
+    public static final String ERROR_WRONG_USAGE_OF_DEADLINE =
+            "Wrong usage of deadline.\nUsage: deadline some description /by some date";
+    
     /**
      * Parses user command into Command instance to execute.
      * @param fullCommand String representing the command input of the user.
@@ -64,7 +72,7 @@ public class Parser {
             resultCommand = new FindCommand(argsString);
             break;
         default:
-            throw new DukeException("I don't know this command!");
+            throw new DukeException(Parser.ERROR_UNKNOWN_COMMAND);
         }
 
         return resultCommand;
@@ -79,7 +87,7 @@ public class Parser {
      */
     public static Todo parseTodo(String description) throws DukeException {
         if (description.length() == 0) {
-            throw new DukeException("The description of a todo cannot be empty.");
+            throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
         return new Todo(description);
     }
@@ -94,13 +102,13 @@ public class Parser {
     public static Deadline parseDeadline(String argsString) throws DukeException {
         String[] args = argsString.split(" */by *");
         if (args.length != 2) {
-            throw new DukeException("Wrong usage of deadline.\nUsage: deadline some description /by some date");
+            throw new DukeException(Parser.ERROR_WRONG_USAGE_OF_DEADLINE);
         }
         String description = args[0];
         String by = args[1];
         LocalDate byDate = LocalDate.parse(by);
         if (description.length() == 0) {
-            throw new DukeException("Description should not be empty.");
+            throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
 
         return new Deadline(description, byDate);
@@ -116,11 +124,11 @@ public class Parser {
     public static Event parseEvent(String argsString) throws DukeException {
         String[] args = argsString.split(" */at *");
         if (args.length != 2) {
-            throw new DukeException("Wrong usage of event.\nUsage: event some description /at some date");
+            throw new DukeException(Parser.ERROR_WRONG_USAGE_OF_EVENT);
         }
         String description = args[0];
         if (description.length() == 0) {
-            throw new DukeException("Description should not be empty.");
+            throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
         String at = args[1];
         LocalDate atDate = LocalDate.parse(at);
@@ -138,7 +146,7 @@ public class Parser {
         try {
             return Integer.parseInt(number);
         } catch (java.lang.NumberFormatException e) {
-            throw new DukeException(String.format("%s is not a number. e.g 5 is a number, five is a string.", number));
+            throw new DukeException(String.format(Parser.ERROR_NOT_NUMBER, number));
         }
     }
 }
