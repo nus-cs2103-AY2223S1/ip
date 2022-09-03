@@ -27,13 +27,13 @@ public class DateTest {
     public void displayFormat_date_success() throws Exception {
         assertEquals(
                 "19 Feb 2020",
-                Date.displayFormat(LocalDate.parse("2020-02-19")));
+                Date.getDisplayFormat(LocalDate.parse("2020-02-19")));
         assertEquals(
                 "20 May 1970",
-                Date.displayFormat(LocalDate.parse("1970-05-20")));
+                Date.getDisplayFormat(LocalDate.parse("1970-05-20")));
         assertEquals(
                 "31 Dec 2050",
-                Date.displayFormat(LocalDate.parse("2050-12-31")));
+                Date.getDisplayFormat(LocalDate.parse("2050-12-31")));
 
     }
 
@@ -41,13 +41,13 @@ public class DateTest {
     public void storageFormat_date_success() throws Exception {
         assertEquals(
                 "19-02-2020",
-                Date.storageFormat(LocalDate.parse("2020-02-19")));
+                Date.getStorageFormat(LocalDate.parse("2020-02-19")));
         assertEquals(
                 "20-05-1970",
-                Date.storageFormat(LocalDate.parse("1970-05-20")));
+                Date.getStorageFormat(LocalDate.parse("1970-05-20")));
         assertEquals(
                 "31-12-2050",
-                Date.storageFormat(LocalDate.parse("2050-12-31")));
+                Date.getStorageFormat(LocalDate.parse("2050-12-31")));
 
     }
 

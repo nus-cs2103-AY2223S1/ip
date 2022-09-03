@@ -28,8 +28,10 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
+    private Image userImage =
+            new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image dukeImage =
+            new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
     // @@author jorrdansoh-reused
     // Reused from https://se-education.org/guides/tutorials/javaFx.html
@@ -68,8 +70,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         try {
             String userText = this.userInput.getText();
+            assert userText != null : "userText should not be null";
+
             Command command = this.duke.parseText(userText);
+            assert command != null : "command should not be null";
+
             String dukeText = command.execute();
+            assert dukeText != null : "dukeText should not be null";
+
             this.duke.saveTasks();
 
             this.dialogContainer.getChildren().addAll(
