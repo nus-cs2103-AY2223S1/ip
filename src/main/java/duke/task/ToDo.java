@@ -35,7 +35,7 @@ public class ToDo extends Task {
      * to be used when saving to task file
      */
     @Override
-    public String toStringData() {
-        return "T | " + super.toStringData();
+    public String toStringStorage() {
+        return "T | " + super.toStringStorage();
     }
 }

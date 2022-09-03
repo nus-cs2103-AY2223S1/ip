@@ -28,7 +28,7 @@ public class Task {
         return (this.isDone ? "X" : " ");
     }
 
-    private String getStatusData() {
+    private String getStatusStorage() {
         return (this.isDone ? "1" : "0");
     }
 
@@ -51,7 +51,7 @@ public class Task {
      * Returns a string describging the Task object
      * to be used when saving to task file
      */
-    public String toStringData() {
-        return getStatusData() + " | " + this.description;
+    public String toStringStorage() {
+        return getStatusStorage() + " | " + this.description;
     }
 }

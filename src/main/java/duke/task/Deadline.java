@@ -44,7 +44,7 @@ public class Deadline extends Task {
      * to be used when saving to a task file
      */
     @Override
-    public String toStringData() {
-        return "D | " + super.toStringData() + " (" + by + ")";
+    public String toStringStorage() {
+        return "D | " + super.toStringStorage() + " (" + by + ")";
     }
 }

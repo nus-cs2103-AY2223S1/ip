@@ -44,7 +44,7 @@ public class Event extends Task {
      * to be used when saving to a task file
      */
     @Override
-    public String toStringData() {
-        return "E | " + super.toStringData() + " (" + at + ")";
+    public String toStringStorage() {
+        return "E | " + super.toStringStorage() + " (" + at + ")";
     }
 }
