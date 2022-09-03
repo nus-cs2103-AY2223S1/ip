@@ -12,11 +12,14 @@ import java.io.FileNotFoundException;
 
 public class Chacha {
     public static void main(String[] args) {
-        System.out.println("Hello! I'm Chacha\n" + "What can I do for you?");
-        Scanner input = new Scanner(System.in);
-        String s = input.nextLine();
+        Ui ui = new Ui();
+        System.out.println(ui.printWelcome());
+        String s = ui.readInput();
         ArrayList<Task> taskList = new ArrayList<Task>();
         while (!s.equals("bye")) {
+            //parse 
+            //run command
+            //print ui
             if (s.equals("list")) {
                 for (int i = 0; i < taskList.size();i++) {
                     Task t = taskList.get(i);	      
@@ -92,11 +95,10 @@ public class Chacha {
                 }
             } else {
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
-            }
-            s = input.nextLine();    
+            } 
+            s = ui.readInput();   
         }
         System.out.println("Bye. Hope to see you again soon!");
-        input.close();
     }
 
     private static void loadData(String filePath) throws FileNotFoundException {
