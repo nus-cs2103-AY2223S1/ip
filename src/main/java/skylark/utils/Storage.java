@@ -24,6 +24,7 @@ public class Storage {
      * @param filePath File path of the text file used for storage.
      */
     public Storage(String filePath) {
+        assert filePath.length() > 0 : "FilePath should not be empty!";
         this.filePath = filePath;
     }
 
@@ -116,6 +117,7 @@ public class Storage {
      * @throws SkylarkException If an exception is thrown while performing file operations.
      */
     public void saveToFile(ArrayList<Task> taskArrayList) throws SkylarkException {
+        assert this.filePath.length() > 0 : "FilePath should not be empty!";
         try {
             File file = new File(this.filePath);
 

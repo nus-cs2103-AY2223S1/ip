@@ -12,6 +12,7 @@ public class SkylarkException extends Exception {
      */
     public SkylarkException(String description) {
         super(description);
+        assert description.length() > 0 : "Description should not be empty!";
         this.description = description;
     }
 

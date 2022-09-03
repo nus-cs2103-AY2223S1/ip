@@ -63,6 +63,8 @@ public class MainWindow extends AnchorPane {
         }
 
         String response = skylark.getResponse(input);
+        assert response.length() > 0 : "Response should not be empty";
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSkylarkDialog(response, skylarkImage)

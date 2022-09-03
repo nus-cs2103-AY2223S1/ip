@@ -37,6 +37,8 @@ public class Skylark {
      * @throws SkylarkException If there is an exception that occurred when running the command.
      */
     private String response(String input, TaskList taskList) throws SkylarkException {
+        assert this.taskList != null : "TaskList should be initialised!";
+
         Command command = Command.createCommand(input);
 
         return command.run(taskList);
