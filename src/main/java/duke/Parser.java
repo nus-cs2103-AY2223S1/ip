@@ -6,7 +6,7 @@ package duke;
  */
 public class Parser {
     /** The TaskList where new tasks are added to. */
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /**
      * The class constructor for Parser.
@@ -27,17 +27,18 @@ public class Parser {
      */
     public String parse(String input) throws DukeException {
         String[] parts = input.split(" ");
-        if (parts[0].equals("mark")) {
+        String prefix = parts[0];
+        if (prefix.equals("mark")) {
             return tasks.markTask(parts);
-        } else if (parts[0].equals("todo")) {
+        } else if (prefix.equals("todo")) {
             return tasks.createTodo(input);
-        } else if (parts[0].equals("deadline")) {
+        } else if (prefix.equals("deadline")) {
             return tasks.createDeadline(input);
-        } else if (parts[0].equals("event")) {
+        } else if (prefix.equals("event")) {
             return tasks.createEvent(input);
-        } else if (parts[0].equals("delete")) {
+        } else if (prefix.equals("delete")) {
             return tasks.deleteTask(parts);
-        } else if (parts[0].equals("find")) {
+        } else if (prefix.equals("find")) {
             return tasks.findTasks(parts);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :(");

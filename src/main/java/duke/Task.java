@@ -38,8 +38,7 @@ public class Task {
      */
     public String markAsDone() {
         this.isDone = true; // mark task as true
-        String result = String.format("Nice! I've marked this task as done:\n%s", this.toString());
-        return result;
+        return String.format("Nice! I've marked this task as done:\n%s", this);
     }
 
     /**
@@ -47,7 +46,7 @@ public class Task {
      * tasks from a file. No output to prevent spamming the console.
      */
     public void loadDone() {
-        this.isDone = true; // mark task as true
+        this.isDone = true;
     }
 
     /**
@@ -56,7 +55,7 @@ public class Task {
      * @return description of task.
      */
     public String getDescription() {
-        return this.description; // get description of task
+        return this.description;
     }
 
     /**
@@ -66,8 +65,7 @@ public class Task {
      * @return formatted string representation of a Task.
      */
     public String toString() {
-        String outputString = String.format("[%s] %s", getStatusIcon(), getDescription());
-        return outputString;
+        return String.format("[%s] %s", getStatusIcon(), getDescription());
     }
 
     /**
@@ -77,7 +75,6 @@ public class Task {
      * @return String of the Event formatted to saved.
      */
     public String formatFileText() {
-        String s = String.format("duke.Task | %s | %s", this.getStatusIcon(), this.getDescription());
-        return s;
+        return String.format("duke.Task | %s | %s", this.getStatusIcon(), this.getDescription());
     }
 }

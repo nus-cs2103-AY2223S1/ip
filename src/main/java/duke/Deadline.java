@@ -17,22 +17,40 @@ public class Deadline extends Task {
      *
      * @param description The description of the task.
      * @param by The deadline of the task.
+     * @throws DukeException if by format is incorrect.
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
-        if (by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})")) {
-            String preDate = by.split(" ", 2)[0];
-            String preTime = by.split(" ", 2)[1];
-            String[] dates = preDate.split("-", 3);
-            String[] time = preTime.split(":", 2);
-
-            LocalDateTime deadline = LocalDateTime.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]),
-                    Integer.parseInt(dates[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
-
-            this.by = deadline;
-        } else {
+        if (!isByCorrectFormat(by)) {
             throw new DukeException("Invalid Date Format (YYYY-MM-DD HH:MM required).");
         }
+        this.by = createLocalDateTime(by);
+    }
+
+    /**
+     * Checks if by is correctly formatted as such YYYY-MM-DD HH:MM.
+     *
+     * @param by String representation of the task time.
+     * @return boolean true if it is correctly formatted, false if otherwise.
+     */
+    private boolean isByCorrectFormat(String by) {
+        return by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})");
+    }
+
+    /**
+     * Creates a LocalDateTime object with the by parameter provided.
+     *
+     * @param by String representation of the task time.
+     * @return LocalDateTime object.
+     */
+    private LocalDateTime createLocalDateTime(String by) {
+        String preDate = by.split(" ", 2)[0];
+        String preTime = by.split(" ", 2)[1];
+        String[] dates = preDate.split("-", 3);
+        String[] time = preTime.split(":", 2);
+
+        return LocalDateTime.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]),
+                Integer.parseInt(dates[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
     }
 
     /**
@@ -42,15 +60,8 @@ public class Deadline extends Task {
      * @return String of the deadline to be displayed.
      */
     public String formatTime() {
-        if (this.by.getMinute() < 10) {
-            String minute = String.format("%02d", this.by.getMinute());
-            String s = String.format("%s %s %s %s:%s", this.by.getMonth(), this.by.getDayOfMonth(),
-                    this.by.getYear(), this.by.getHour(), minute);
-            return s;
-        }
-        String s = String.format("%s %s %s %s:%s", this.by.getMonth(), this.by.getDayOfMonth(),
+        return String.format("%s %s %s %s:%02d", this.by.getMonth(), this.by.getDayOfMonth(),
                 this.by.getYear(), this.by.getHour(), this.by.getMinute());
-        return s;
     }
 
     /**
@@ -62,8 +73,7 @@ public class Deadline extends Task {
     @Override
     public String formatFileText() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String s = String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by.format(format));
-        return s;
+        return String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by.format(format));
     }
 
     /**

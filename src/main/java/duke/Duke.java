@@ -5,16 +5,16 @@ package duke;
  */
 public class Duke {
     /** The storage component. */
-    private Storage storage;
+    private final Storage storage;
 
     /** The tasks component. */
-    private TaskList tasks;
+    private final TaskList tasks;
 
     /** The parse component. */
-    private Parser parser;
+    private final Parser parser;
 
     /** The ui component. */
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * The class constructor for Duke. Initializes all necessary
@@ -32,23 +32,25 @@ public class Duke {
     /**
      * Initializes the core functionality of Duke. One-half of the decision making
      * tree of Duke. Application terminates when it encounters "bye".
+     *
+     * @param input of the user.
+     * @return String output of Duke's response.
      */
     public String run(String input) {
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
-                return ui.printList(this.tasks);
-            } else {
-                try {
-                    String response = this.parser.parse(input);
-                    storage.writeToFile("./data", this.tasks);
-                    return response;
-                } catch (DukeException e) {
-                    return ui.showError(e);
-                }
-            }
+        if (input.equals("bye")) {
+            storage.writeToFile("/data", this.tasks);
+            System.exit(0);
         }
-        System.exit(0);
-        return this.ui.close();
+        if (input.equals("list")) {
+            return ui.printList(this.tasks);
+        }
+        try {
+            String response = this.parser.parse(input);
+            storage.writeToFile("./data", this.tasks);
+            return response;
+        } catch (DukeException e) {
+            return ui.showError(e);
+        }
     }
 
     /**
@@ -66,7 +68,7 @@ public class Duke {
      * @return String output of Duke's response.
      */
     public String getResponse(String input) {
-        return this.run(input);
+        return this.run(input.trim());
     }
 
 }
