@@ -15,6 +15,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SnoozeCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.Deadline;
@@ -54,10 +55,10 @@ public class Parser {
             int deleteIndex = extractIndex(meta);
             return new DeleteCommand(deleteIndex);
         case "deadline":
-            String[] deadlineTokens = getTaskTokens(meta, Message.NO_BY_ERROR);
+            String[] deadlineTokens = getTaskTokens(meta, "/by", Message.NO_BY_ERROR);
             return new AddDeadlineCommand(deadlineTokens[0], parseDateTime(deadlineTokens[1]));
         case "event":
-            String[] eventTokens = getTaskTokens(meta, Message.NO_AT_ERROR);
+            String[] eventTokens = getTaskTokens(meta, "/at", Message.NO_AT_ERROR);
             return new AddEventCommand(eventTokens[0], parseDateTime(eventTokens[1]));
         case "todo":
             validateMetaNullity(meta);
@@ -65,6 +66,12 @@ public class Parser {
         case "find":
             validateMetaNullity(meta);
             return new FindCommand(meta);
+        case "snooze":
+            String[] snoozeTokens = getTaskTokens(meta, "/for", Message.NO_FOR_ERROR);
+            int snoozeAmount = extractIndex(snoozeTokens[1]);
+            char snoozeType = snoozeTokens[1].charAt(snoozeTokens[1].length() - 1);
+            validateSnoozeType(snoozeType);
+            return new SnoozeCommand(extractIndex(snoozeTokens[0]), snoozeAmount, snoozeType);
         default:
             throw new DukeException(Message.INVALID);
         }
@@ -84,10 +91,10 @@ public class Parser {
         String meta = commandTokens.length > 1 ? commandTokens[1] : null;
         switch (direction) {
         case "deadline":
-            String[] deadlineTokens = getTaskTokens(meta, Message.NO_BY_ERROR);
+            String[] deadlineTokens = getTaskTokens(meta, "/by", Message.NO_BY_ERROR);
             return new Deadline(deadlineTokens[0], parseDateTime(deadlineTokens[1]));
         case "event":
-            String[] eventTokens = getTaskTokens(meta, Message.NO_AT_ERROR);
+            String[] eventTokens = getTaskTokens(meta, "/at", Message.NO_AT_ERROR);
             return new Event(eventTokens[0], parseDateTime(eventTokens[1]));
         case "todo":
             validateMetaNullity(meta);
@@ -122,6 +129,13 @@ public class Parser {
         }
     }
 
+    private static void validateSnoozeType(char snoozeType) throws DukeException {
+        char[] types = new char[] {'D', 'M', 'h', 'm'};
+        if (!(snoozeType == 'M' || snoozeType == 'D' || snoozeType == 'h' || snoozeType == 'm')) {
+            throw new DukeException(Message.INVALID_SNOOZE_TYPE);
+        }
+    }
+
     /**
      * Returns parsed task tokens.
      *
@@ -129,9 +143,9 @@ public class Parser {
      * @param invalidMsg Exception message to use.
      * @throws DukeException If meta is null or tokens are invalid.
      */
-    private static String[] getTaskTokens(String meta, Message invalidMsg) throws DukeException {
+    private static String[] getTaskTokens(String meta, String delimiter, Message invalidMsg) throws DukeException {
         validateMetaNullity(meta);
-        String[] tokens = meta.split("\\s*/by\\s*", 2);
+        String[] tokens = meta.split("\\s*" + delimiter + "\\s*", 2);
         validateTokens(tokens, invalidMsg);
         return tokens;
     }
