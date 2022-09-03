@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -22,6 +24,8 @@ public class TaskList {
             listOfTasks.append(task);
             listOfTasks.append("\n");
         }
+        int last = listOfTasks.lastIndexOf("\n");
+        listOfTasks.deleteCharAt(last);
         return listOfTasks.toString();
     }
 

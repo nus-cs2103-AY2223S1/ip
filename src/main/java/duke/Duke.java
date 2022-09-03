@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.util.Scanner;
@@ -13,21 +15,22 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (IOException e) {
+        } catch (Exception e) {
             ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
     public void run() {
-        System.out.println("Hi, I'm Duke. What may I do for you?");
-        while (true) {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
                 Scanner sc = new Scanner(System.in);
                 String input = sc.nextLine();
                 String parsedInput = Parser.parse(input);
                 if (parsedInput.equalsIgnoreCase("bye")) {
-                    break;
+                    isExit = true;
                 } else if (parsedInput.equalsIgnoreCase("list")) {
                     ui.display(tasks.list());
                 } else if (parsedInput.toLowerCase().startsWith("mark")) {
@@ -100,7 +103,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/Duke.txt").run();
+        new Duke("data/duke.Duke.txt").run();
     }
 
 }
