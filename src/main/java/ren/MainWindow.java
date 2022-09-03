@@ -1,5 +1,6 @@
 package ren;
 
+import java.io.InputStream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,14 +24,22 @@ public class MainWindow extends AnchorPane {
 
     private Ren ren;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private final Image renImage = new Image(this.getClass().getResourceAsStream("/images/ren.png"));
+    private Image userImage;
+    private Image renImage;
 
     /**
      * Initializes the GUI. Greets the user.
      */
     @FXML
     public void initialize() {
+        InputStream userImageLoader = this.getClass().getResourceAsStream("/images/user.png");
+        InputStream renImageLoader = this.getClass().getResourceAsStream("/images/ren.png");
+        assert userImageLoader != null : "userImage in MainWindow should not be null";
+        assert renImageLoader != null : "renImage in MainWindow should not be null";
+
+        userImage = new Image(userImageLoader);
+        renImage = new Image(renImageLoader);
+
         String greetings = " Greetings! My name is Ren ^_^\n How may I be of service today?\n";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(

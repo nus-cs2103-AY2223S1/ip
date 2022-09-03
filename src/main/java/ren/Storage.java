@@ -152,9 +152,9 @@ public class Storage {
                 break;
             default:
             }
-            if (newTask != null) {
-                tasks.add(newTask);
-            }
+            assert newTask != null : "newTask in load in Storage should not be null";
+
+            tasks.add(newTask);
         }
         return tasks;
     }

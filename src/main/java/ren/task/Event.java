@@ -37,9 +37,8 @@ public class Event extends Task {
      */
     public static Event readData(String[] data) {
         // Check if data is complete
-        if (data.length < 5) {
-            return null;
-        }
+        assert data.length == 5 : "data[] in readData in Event should be of size 5";
+
         Event newEvent = new Event(data[2], TimeStamp.fromFile(data[3]), TimeStamp.fromFile(data[4]));
         if (data[1].equals("X")) {
             newEvent.setDone(true);

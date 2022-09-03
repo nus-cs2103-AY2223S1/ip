@@ -33,9 +33,8 @@ public class Deadline extends Task {
      */
     public static Deadline readData(String[] data) {
         // Check if data is complete
-        if (data.length < 4) {
-            return null;
-        }
+        assert data.length == 4 : "data[] in readData in Deadline should be of size 4";
+
         Deadline newDeadline = new Deadline(data[2], TimeStamp.fromFile(data[3]));
         if (data[1].equals("X")) {
             newDeadline.setDone(true);

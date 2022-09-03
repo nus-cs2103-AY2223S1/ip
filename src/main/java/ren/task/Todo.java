@@ -21,9 +21,8 @@ public class Todo extends Task {
      */
     public static Todo readData(String[] data) {
         // Check if data is complete
-        if (data.length < 3) {
-            return null;
-        }
+        assert data.length == 3 : "data[] in readData in Todo should be of size 3";
+
         Todo newTodo = new Todo(data[2]);
         if (data[1].equals("X")) {
             newTodo.setDone(true);
