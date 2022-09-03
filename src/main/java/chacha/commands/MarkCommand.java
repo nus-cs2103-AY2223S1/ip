@@ -15,7 +15,7 @@ public class MarkCommand extends Command {
     }   
 
     @Override
-    public void execute(ArrayList<Task> taskList, Ui ui) {
+    public void execute(TaskList taskList, Ui ui) {
                 Task task = taskList.get(taskIndex);
                 task.markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" + task.toString());

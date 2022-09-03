@@ -9,7 +9,7 @@ import chacha.tasks.Task;
 
 public abstract class Command {
 
-    public abstract void execute(ArrayList<Task> taskList, Ui ui);
+    public abstract void execute(TaskList taskList, Ui ui);
 
     public abstract boolean isExit();
     

@@ -9,7 +9,7 @@ import chacha.tasks.Task;
 public class ExitCommand extends Command {
     
     @Override
-    public void execute(ArrayList<Task> taskList, Ui ui) {}
+    public void execute(TaskList taskList, Ui ui) {}
 
     @Override
     public boolean isExit() {

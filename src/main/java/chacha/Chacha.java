@@ -15,7 +15,7 @@ public class Chacha {
         Ui ui = new Ui();
         System.out.println(ui.printWelcome());
         
-        ArrayList<Task> taskList = new ArrayList<Task>();
+        TaskList taskList = new TaskList();
         while (!isExit) {
             try {
                 String fullCommand = ui.readInput();
