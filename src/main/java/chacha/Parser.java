@@ -10,10 +10,9 @@ import chacha.commands.UnmarkCommand;
 import chacha.tasks.Deadline;
 import chacha.tasks.Event;
 import chacha.tasks.Todo;
-import chacha.CustomException;
 
 public class Parser {
-    public static Command parse(String userInput) throws CustomException {
+    public static Command parse(String userInput) throws ChachaException {
         String[] inputArray = userInput.split(" ");
         String command = inputArray[0];
         switch (command) {
@@ -24,7 +23,7 @@ public class Parser {
                     Todo todo = new Todo(description);
                     return new AddCommand(todo);
                 } catch(Exception e) {
-                    throw new CustomException("The description of a todo cannot be empty.\n" + "Please enter again with a description.");
+                    throw new ChachaException("The description of a todo cannot be empty.\n" + "Please enter again with a description.");
                 }
             case "deadline":
                 try {
@@ -38,7 +37,7 @@ public class Parser {
                     return new AddCommand(deadline);
                     
                 } catch(Exception e) {
-                    throw new CustomException("The description of a deadline cannot be empty.\n" + "Please enter again with a description.");
+                    throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please enter again with a description.");
                 }
             case "event":
                 try {
@@ -50,13 +49,13 @@ public class Parser {
                     Event event = new Event(description, range);
                     return new AddCommand(event);
                 } catch(Exception e) {
-                    throw new CustomException("The description of an event cannot be empty.\n" + "Please enter again with a description."); 
+                    throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description."); 
                 }
             case "list":
                 if (inputArray.length == 1) {
                     return new ListCommand();
                 } else {
-                    throw new CustomException("Sorry, I don't recognise this command.");
+                    throw new ChachaException("Sorry, I don't recognise this command.");
                 }
             case "mark":
                 if (inputArray.length == 2) {
@@ -64,7 +63,7 @@ public class Parser {
                     int taskIndex = Integer.valueOf(split[1]) - 1;
                     return new MarkCommand(taskIndex);
                 } else {
-                    throw new CustomException("Please enter valid task number to mark.");
+                    throw new ChachaException("Please enter valid task number to mark.");
                 }
             case "unmark":
                 if (inputArray.length == 2) {
@@ -72,7 +71,7 @@ public class Parser {
                     int taskIndex = Integer.valueOf(split[1]) - 1;
                     return new UnmarkCommand(taskIndex);
                 } else {
-                    throw new CustomException("Please enter valid task number to unmark.");
+                    throw new ChachaException("Please enter valid task number to unmark.");
                 }
             case "delete":
                 if (inputArray.length == 2) {
@@ -80,18 +79,19 @@ public class Parser {
                     int taskIndex = Integer.valueOf(split[1]) - 1;
                     return new DeleteCommand(taskIndex);
                 } else {
-                    throw new CustomException("Please enter valid task number to delete.");
+                    throw new ChachaException("Please enter valid task number to delete.");
                 }
-            case "bye":
+            case "exit":
                 if (inputArray.length == 1) {
                     return new ExitCommand();
                 } else {
-                    throw new CustomException("Sorry, I don't recognise this command.");
+                    throw new ChachaException("Sorry, I don't recognise this command.");
                 }
+            default:
+                throw new ChachaException("Invalid input.");
 
         } 
-        Command commands = new ListCommand();
-        return commands;
+        
     }
     
 }

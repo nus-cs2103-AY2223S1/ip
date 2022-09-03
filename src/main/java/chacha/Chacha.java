@@ -22,7 +22,7 @@ public class Chacha {
                 Command command = Parser.parse(fullCommand);
                 command.execute(taskList, ui);
                 isExit = command.isExit();
-            } catch (CustomException e) {
+            } catch (ChachaException e) {
                 ui.printError(e.getMessage());
             }
         }

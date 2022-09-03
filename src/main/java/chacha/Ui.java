@@ -29,6 +29,6 @@ public String readInput() {
     }
 
     public void printError(String message) {
-        System.out.println("The following error has occurred.\n" + message);
+        System.out.println("Chacha error: " + message);
     }
 }
