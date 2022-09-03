@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Task of type todo.
+ */
 public class Todo extends Task {
 
     public Todo(String description) {
@@ -7,7 +10,7 @@ public class Todo extends Task {
     }
 
     public String getOutput() {
-        return String.format("T | %d | %s", isDone ? 1 : 0, description);
+        return String.format("T | %d | %s", getIsDone() ? 1 : 0, getDescription());
     }
 
     @Override

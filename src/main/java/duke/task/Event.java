@@ -1,15 +1,24 @@
 package duke.task;
 
+/**
+ * Task of type event.
+ */
 public class Event extends Task {
     protected String time;
 
+    /**
+     * Constructor of an event task.
+     *
+     * @param description description of event
+     * @param time string representing time of event
+     */
     public Event(String description, String time) {
         super(description);
         this.time = time;
     }
 
     public String getOutput() {
-        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, time);
+        return String.format("E | %d | %s | %s", getIsDone() ? 1 : 0, getDescription(), time);
     }
 
     @Override

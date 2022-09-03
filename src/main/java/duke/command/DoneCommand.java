@@ -27,8 +27,8 @@ public class DoneCommand extends Command {
         }
 
         tasks.markTaskAsDone(taskNum - 1);
-        ui.printMessage("\tNice! I've marked this task as done:\n\t" +
-                tasks.get(taskNum - 1).toString());
+        ui.printMessage("\tNice! I've marked this task as done:\n\t"
+                + tasks.get(taskNum - 1).toString());
         storage.save(tasks.getAllTasks());
     }
 }
