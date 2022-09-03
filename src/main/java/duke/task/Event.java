@@ -18,6 +18,7 @@ public class Event extends Task {
         super(description);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mma");
+
         LocalDateTime dateTime = LocalDateTime.parse(at.trim(), inputFormatter);
         this.at = dateTime.format(outputFormatter);
     }
