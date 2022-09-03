@@ -38,6 +38,6 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tempList = taskList.findTasks(string);
-        return ui.showTaskFound(tempList);
+        return ui.showTasksFound(tempList);
     }
 }

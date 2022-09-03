@@ -61,7 +61,7 @@ public class Parser {
                 && (Character.isWhitespace(fullCommand.charAt(4)))
                 && fullCommand.substring(5).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(5));
-            if (number > taskList.taskListSize() || number <= 0) {
+            if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new MarkCommand(number);
@@ -70,7 +70,7 @@ public class Parser {
                 && (Character.isWhitespace(fullCommand.charAt(6)))
                 && fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
-            if (number > taskList.taskListSize() || number <= 0) {
+            if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new UnmarkCommand(number);
@@ -79,7 +79,7 @@ public class Parser {
                 && (Character.isWhitespace(fullCommand.charAt(6)))
                 && fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
-            if (number > taskList.taskListSize() || number <= 0) {
+            if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new DeleteCommand(number);
