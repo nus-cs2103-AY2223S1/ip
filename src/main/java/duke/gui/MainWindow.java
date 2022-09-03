@@ -100,7 +100,7 @@ public class MainWindow extends AnchorPane {
             // If duke is no longer running, close application after
             // a 1.5-second pause.
             PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
-            delay.setOnFinished( event -> Platform.exit());
+            delay.setOnFinished(event -> Platform.exit());
             delay.play();
         }
     }
