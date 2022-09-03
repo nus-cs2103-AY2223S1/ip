@@ -1,21 +1,22 @@
 package duke.storage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.task.Task;
 import duke.task.TaskList;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Represents an object that tracks, loads, and saves tasks to the save file as changes are made.
  */
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -67,7 +68,7 @@ public class Storage {
                 f.getParentFile().mkdirs();
                 f.createNewFile();
             } catch (IOException ioe) {
-                // HANDLE ERROR
+                System.out.println("IO error occurred while creating file.");
             } finally {
                 return res;
             }
@@ -86,6 +87,7 @@ public class Storage {
                 String saveText = taskList.get(i).saveText();
                 res += saveText + '\n';
             } catch (DukeException e) {
+                System.out.println("Could not get task.");
             }
         }
         try {
@@ -93,7 +95,7 @@ public class Storage {
             writer.write(res);
             writer.close();
         } catch (Exception e) {
-            // HANDLE ERROR
+            System.out.println("Error occurred while saving tasks.");
         }
     }
 }

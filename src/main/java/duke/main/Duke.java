@@ -4,8 +4,8 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.ui.Ui;
 import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class Duke {
 
@@ -36,5 +36,4 @@ public class Duke {
             return Ui.getErrorMessageString(e);
         }
     }
-
 }

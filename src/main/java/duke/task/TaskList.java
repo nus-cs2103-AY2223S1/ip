@@ -1,9 +1,9 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.ui.Message;
-
-import java.util.ArrayList;
 
 /**
  * Represents a task list that can store and update tasks.
@@ -134,8 +134,8 @@ public class TaskList {
         }
         for (int i = 0; i < this.getSize(); i++) {
             msg += i + 1 + ". " + this.get(i);
-            if (i < this.getSize() - 1)  {
-                msg += "\n";
+            if (i < this.getSize() - 1) {
+                msg += '\n';
             }
         }
         return msg;
