@@ -15,15 +15,25 @@ import java.io.IOException;
 import java.util.Collections;
 
 /**
- * An example of a custom control using FXML. This control represents a dialog box consisting of an
- * ImageView to represent the speaker's face and a label containing text from the speaker.
+ * Controls dialog box consisting of an ImageView to represent the speaker's face and a label
+ * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+
+    /** Label containing text from speaker. */
     @FXML
     private Label dialog;
+
+    /** Image to represent speaker's face. */
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructs a <code>DialogBox</code> from FXML file with given text and image.
+     *
+     * @param text Text from speaker.
+     * @param img  Image of speaker.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader =
@@ -34,7 +44,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -49,10 +58,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns an instance of <code>DialogBox</code> from the user.
+     *
+     * @param text Text from user input.
+     * @param img  Image to represent user.
+     * @return A <code>DialogBox</code> from the user with the given text and image.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns an instance of <code>DialogBox</code> from Cheese.
+     *
+     * @param text Response from Cheese.
+     * @param img  Image to represent Cheese.
+     * @return A <code>DialogBox</code> from Cheese with the given text and image.
+     */
     public static DialogBox getCheeseDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

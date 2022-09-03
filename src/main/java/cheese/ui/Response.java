@@ -6,7 +6,7 @@ import cheese.task.Task;
 import java.util.ArrayList;
 
 /**
- * Represents user interface that interacts with user.
+ * Contains the responses given by Cheese.
  */
 public class Response {
     /**

@@ -7,7 +7,7 @@ import cheese.parser.Parser;
 import cheese.storage.Storage;
 
 /**
- * Represents a command line interface used to manage tasks.
+ * Represents an application used to manage tasks.
  */
 public class Cheese {
     /** List of tasks. */
@@ -31,22 +31,11 @@ public class Cheese {
     }
 
     /**
-     * Runs program until user enters command to exit.
+     * Returns response from Cheese given user input.
+     *
+     * @param input Input from user.
+     * @return Response from Cheese.
      */
-    //    public void run() {
-    //        ui.showWelcome();
-    //        boolean isExit = false;
-    //        while (!isExit) {
-    //            try {
-    //                String fullCommand = ui.readCommand();
-    //                Command command = Parser.parse(fullCommand);
-    //                command.execute(taskList, storage, ui);
-    //                isExit = ByeCommand.isBye(command);
-    //            } catch (CheeseException e) {
-    //                ui.showError(e.getMessage());
-    //            }
-    //        }
-    //    }
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);

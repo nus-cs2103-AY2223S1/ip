@@ -11,10 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * A GUI for Duke using FXML.
+ * Represents a GUI for Cheese using FXML.
  */
 public class Main extends Application {
 
+    /** An instance of Cheese. */
     private Cheese cheese = new Cheese("data/cheese.txt");
 
     @Override
