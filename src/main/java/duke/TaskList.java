@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.*;
 
+import java.security.KeyPair;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -81,5 +82,17 @@ public class TaskList {
 
     public Task getTask(int taskNo) {
         return this.taskArr.get(taskNo);
+    }
+
+    public void findTasks(String wordToSearch, Ui ui) {
+        ArrayList<Integer> taskNo = new ArrayList<>();
+        ArrayList<Task> relevantTasks = new ArrayList<>();
+        for (Integer i = 0; i < taskArr.size(); i++) {
+            if (taskArr.get(i).toString().contains(wordToSearch)) {
+                taskNo.add(i);
+                relevantTasks.add(taskArr.get(i));
+            }
+        }
+        ui.showFoundTasks(taskNo, relevantTasks);
     }
 }

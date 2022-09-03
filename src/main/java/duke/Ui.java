@@ -1,5 +1,8 @@
 package duke;
 
+import duke.task.Task;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -71,6 +74,14 @@ public class Ui {
     public void showExit() {
         System.out.println(INDENT + "Bye! Hope to see you again soon! Thank You for using Zelk :D\n" + DIVIDER);
         s.close();
+    }
+
+    public void showFoundTasks(ArrayList<Integer> taskNo, ArrayList<Task> relevantTasks) {
+        System.out.println(INDENT + "alright, I've found " + taskNo.size() +  " matching tasks in your list \n");
+        for (int i = 0; i < taskNo.size(); i++) {
+            System.out.println(INDENT + (taskNo.get(i) + 1) + ". " + relevantTasks.get(i).toString());
+        }
+        System.out.println(DIVIDER);
     }
 
 }

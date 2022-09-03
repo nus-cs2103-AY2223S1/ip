@@ -10,7 +10,7 @@ public class Parser {
     private static final ArrayList<String> ADD_COMMANDS = new ArrayList<>(List.of("todo", "deadline", "event"));
     private static final ArrayList<String> DELETE_COMMANDS = new ArrayList<>(List.of("delete", "remove"));
     private static final ArrayList<String> EDIT_COMMANDS = new ArrayList<>(List.of("mark", "unmark"));
-    private static final ArrayList<String> VIEW_COMMANDS = new ArrayList<>(List.of("list"));
+    private static final ArrayList<String> VIEW_COMMANDS = new ArrayList<>(List.of("list", "find"));
     private static final ArrayList<String> EXIT_COMMANDS = new ArrayList<>(List.of("bye"));
 
     public Parser() {
@@ -27,7 +27,7 @@ public class Parser {
             if (EXIT_COMMANDS.contains(keyword)) {
                 return new ExitCommand();
             } else if (VIEW_COMMANDS.contains(keyword)) {
-                return new ViewCommand(keyword);
+                return new ViewCommand(keyword, strToParse);
             } else {
                 try {
                     String input = splitTask[1];
