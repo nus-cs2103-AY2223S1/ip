@@ -15,6 +15,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnMarkCommand;
+import duke.command.UndoCommand;
 import duke.common.DukeException;
 
 
@@ -42,6 +43,20 @@ public class ParserTest {
             assertTrue(Parser.parse("list") instanceof ListCommand);
             assertTrue(Parser.parse("list 2") instanceof ListCommand);
             assertTrue(Parser.parse("list list") instanceof ListCommand);
+        } catch (Exception exception) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testUndo() {
+        try {
+            assertFalse(Parser.parse("undo").isExit());
+            assertFalse(Parser.parse("undo 2").isExit());
+            assertFalse(Parser.parse("undo undo").isExit());
+            assertTrue(Parser.parse("undo") instanceof UndoCommand);
+            assertTrue(Parser.parse("undo 2") instanceof UndoCommand);
+            assertTrue(Parser.parse("undo undo") instanceof UndoCommand);
         } catch (Exception exception) {
             fail();
         }

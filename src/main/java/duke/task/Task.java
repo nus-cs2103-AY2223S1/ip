@@ -121,4 +121,19 @@ public abstract class Task {
         return this.getTaskTypeIcon() + Task.ENCODING_SEPARATOR
                 + this.getStatusIcon() + Task.ENCODING_SEPARATOR + this.description;
     }
+
+    /**
+     * Returns a clone of the task.
+     *
+     * @return a clone of the task
+     */
+    public Task clone() {
+        Task task = null;
+        try {
+            task = Task.decode(this.encode());
+        } catch (DukeException exception) {
+            assert false; // this should never occur
+        }
+        return task;
+    }
 }
