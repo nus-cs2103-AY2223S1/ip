@@ -1,6 +1,7 @@
 package skyler;
 
 import java.io.IOException;
+import java.lang.StringBuilder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -37,32 +38,37 @@ public class TaskList {
 
     /**
      * Prints the current list of tasks
+     *
+     * @return Description of current tasks.
      */
-    public void list() {
-        System.out.println("Tasks:");
+    public String list() {
+        StringBuilder response = new StringBuilder("Tasks:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            String str = String.format("%d.%s", i + 1, tasks.get(i));
-            System.out.println(str);
+            String str = String.format("%d.%s\n", i + 1, tasks.get(i));
+            response.append(str);
         }
+        return response.toString();
     }
 
     /**
      * Marks a task as done
      *
      * @param item Index of task.
+     * @return Description of the task marked as completed.
      */
-    public void mark(int item) {
+    public String mark(int item) {
         Task currTask = tasks.get(item - 1);
         currTask.markAsDone();
-        System.out.println("You have completed this task:");
-        String show = String.format("  %s", currTask);
-        System.out.println(show);
+        StringBuilder response = new StringBuilder("You have completed this task:\n");
+        String completedTask = String.format("  %s", currTask);
+        response.append(completedTask);
 
         try {
             // task list changes
             storage.saveTask(tasks);
+            return response.toString();
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -70,19 +76,21 @@ public class TaskList {
      * Marks a task as not done
      *
      * @param item Index of task.
+     * @return Description of the task marked as not completed.
      */
-    public void unmark(int item) {
+    public String unmark(int item) {
         Task currTask = tasks.get(item - 1);
         currTask.markAsNotDone();
-        System.out.println("OK, I've marked this task as not done yet:");
-        String show = String.format("  %s", currTask);
-        System.out.println(show);
+        StringBuilder response = new StringBuilder("OK, I've marked this task as not done yet:\n");
+        String uncompletedTask = String.format("  %s", currTask);
+        response.append(uncompletedTask);
 
         try {
             // task list changes
             storage.saveTask(tasks);
+            return response.toString();
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -90,18 +98,18 @@ public class TaskList {
      * Adds a new todo task to the list
      *
      * @param desc Task description.
+     * @return Description of task added and task summary.
      */
-    public void addTodo(String desc) {
+    public String addTodo(String desc) {
         Todo newTodo = new Todo(desc);
         tasks.add(newTodo);
-
-        printTask(newTodo, tasks.size());
 
         try {
             // task list changes
             storage.saveTask(tasks);
+            return printTask(newTodo, tasks.size());
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -109,8 +117,9 @@ public class TaskList {
      * Adds a new deadline to the list
      *
      * @param descWithDate Task description with date.
+     * @return Description of task added and task summary.
      */
-    public void addDeadline(String descWithDate) {
+    public String addDeadline(String descWithDate) {
         String[] arr1 = descWithDate.split(" /by ", 2);
 
         // process date and time
@@ -119,13 +128,12 @@ public class TaskList {
         Deadline newDeadline = new Deadline(arr1[0], dt);
         tasks.add(newDeadline);
 
-        printTask(newDeadline, tasks.size());
-
         try {
             // task list changes
             storage.saveTask(tasks);
+            return printTask(newDeadline, tasks.size());
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -133,8 +141,9 @@ public class TaskList {
      * Adds a new event to the list
      *
      * @param descWithDate Task description with date.
+     * @return Description of task added and task summary.
      */
-    public void addEvent(String descWithDate) {
+    public String addEvent(String descWithDate) {
         String[] arr1 = descWithDate.split(" /at ", 2);
 
         // process date and time
@@ -143,13 +152,12 @@ public class TaskList {
         Event newEvent = new Event(arr1[0], dt);
         tasks.add(newEvent);
 
-        printTask(newEvent, tasks.size());
-
         try {
             // task list changes
             storage.saveTask(tasks);
+            return printTask(newEvent, tasks.size());
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -157,24 +165,26 @@ public class TaskList {
      * Deletes task from the list
      *
      * @param item Index of task.
+     * @return Description of task deleted and task summary.
      */
-    public void delete(int item) {
+    public String delete(int item) {
         Task currTask = tasks.get(item - 1);
 
-        System.out.println("The following task will be removed:");
-        String show = String.format("  %s", currTask);
-        System.out.println(show);
+        StringBuilder response = new StringBuilder("The following task will be removed:\n");
+        String deletedTask = String.format("  %s\n", currTask);
+        response.append(deletedTask);
 
         tasks.remove(item - 1);
 
-        String str = String.format("Total number of tasks: %d", tasks.size());
-        System.out.println(str);
+        String summary = String.format("Total number of tasks: %d", tasks.size());
+        response.append(summary);
 
         try {
             // task list changes
             storage.saveTask(tasks);
+            return response.toString();
         } catch (IOException ie) {
-            System.out.println(ie.getMessage());
+            return ie.getMessage();
         }
     }
 
@@ -182,15 +192,18 @@ public class TaskList {
      * Prints tasks containing the given keyword
      *
      * @param keyword Keyword to search for.
+     * @return List of tasks that contain the keyword.
      */
-    public void findTask(String keyword) {
+    public String findTask(String keyword) {
         ArrayList<Integer> taskIndices = storage.findTask(keyword);
-        System.out.println("Here are the matching tasks in your list: ");
+        StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 1; i <= taskIndices.size(); i++) {
             int index = taskIndices.get(i - 1);
             Task currTask = tasks.get(index);
-            System.out.println(String.format("%d.%s", i, currTask.toString()));
+            String task = String.format("%d.%s\n", i, currTask.toString());
+            response.append(task);
         }
+        return response.toString();
     }
 
     /**
@@ -198,13 +211,15 @@ public class TaskList {
      *
      * @param task The task added.
      * @param num Current total number of tasks.
+     * @return Description of task added and task summary.
      */
-    public static void printTask(Task task, int num) {
-        System.out.println("I've added the following task:");
-        String str = String.format("  %s", task);
-        System.out.println(str);
+    public static String printTask(Task task, int num) {
+        StringBuilder response = new StringBuilder("I've added the following task:\n");
+        String addedTask = String.format("  %s\n", task);
+        response.append(addedTask);
         String summary = String.format("Total number of tasks: %d", num);
-        System.out.println(summary);
+        response.append(summary);
+        return response.toString();
     }
 
     /**
