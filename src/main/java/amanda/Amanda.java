@@ -51,9 +51,4 @@ public class Amanda {
         }
         sc.close();
     }
-
-    public static void main(String[] args) {
-        Amanda amanda = new Amanda("./src/main/java/data/amanda.txt");
-        amanda.run();
-    }
 }
