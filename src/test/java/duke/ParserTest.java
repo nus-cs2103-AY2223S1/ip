@@ -34,22 +34,22 @@ class ParserTest {
     public void parseUserCommand_actualCommand_performsAction() throws CustomMessageException {
         assertEquals("     Got it. I've added this task:\n" +
                 "       [T][ ] borrow book\n" +
-                "     Now you have 1 task in the list.", parser.parseUserCommand(
+                "     Now you have 1 task in the list.\n", parser.parseUserCommand(
                 "todo borrow book", parser.breakLoopIndicator));
         assertEquals("     Here are the tasks in your list:\n" +
-                        "      1.[T][ ] borrow book",
+                        "      1.[T][ ] borrow book\n",
                 parser.parseUserCommand("list", parser.breakLoopIndicator));
         assertEquals("     Nice! I've marked this task as done:\n" +
-                        "       [T][X] borrow book",
+                        "       [T][X] borrow book\n",
                 parser.parseUserCommand("mark 1", parser.breakLoopIndicator));
         assertEquals("     Got it. I've added this task:\n" +
                         "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 2 tasks in the list.",
+                        "     Now you have 2 tasks in the list.\n",
                 parser.parseUserCommand("deadline return book /by 2022-08-24 14:00",
                         parser.breakLoopIndicator));
         assertEquals("     Got it. I've added this task:\n" +
                         "       [E][ ] project meeting (at: 31 Dec 2023 23:59)\n" +
-                        "     Now you have 3 tasks in the list.",
+                        "     Now you have 3 tasks in the list.\n",
                 parser.parseUserCommand("event project meeting /at 2023-12-31 23:59",
                         parser.breakLoopIndicator));
 
@@ -66,15 +66,15 @@ class ParserTest {
 
         assertEquals("     Noted. I've removed this task:\n" +
                         "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 2 tasks in the list.",
+                        "     Now you have 2 tasks in the list.\n",
                 parser.parseUserCommand("delete 2", parser.breakLoopIndicator));
         assertEquals("     Here are the tasks in your list:\n" +
                         "      1.[T][X] borrow book\n" +
-                        "      2.[E][ ] project meeting (at: 31 Dec 2023 23:59)",
+                        "      2.[E][ ] project meeting (at: 31 Dec 2023 23:59)\n",
                 parser.parseUserCommand("list", parser.breakLoopIndicator));
         assertEquals("     Got it. I've added this task:\n" +
                         "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 3 tasks in the list.",
+                        "     Now you have 3 tasks in the list.\n",
                 parser.parseUserCommand("deadline return book /by 2022-08-24 14:00",
                         parser.breakLoopIndicator));
     }
