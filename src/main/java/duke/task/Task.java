@@ -35,10 +35,17 @@ public class Task {
     }
 
     /**
-     * Returns the description the a task object
+     * Returns the description of the task object
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Edits the description of the task object
+     */
+    public void editDescription(String description) {
+        this.description = description;
     }
 
     /**

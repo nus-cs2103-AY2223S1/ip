@@ -30,6 +30,12 @@ public class Ui {
         dukeResponse += "You now have " + (TaskList.length() - 1) + " tasks.\n";
     }
 
+    public static void editDescTaskLog(int index, Task newTask) {
+        dukeResponse += "Ok, I've changed task " + (index + 1) + " to:\n";
+        dukeResponse += " " + newTask + "\n";
+    }
+
+
     /**
      * Updates dukeResponse when marking a task
      */

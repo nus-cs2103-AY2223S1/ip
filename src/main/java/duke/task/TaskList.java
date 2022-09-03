@@ -66,6 +66,15 @@ public class TaskList {
     }
 
     /**
+     * Edits the description of the task at input index
+     */
+    public void editDesc(int index, String description) {
+        Task task = TaskList.tasks.get(index);
+        task.editDescription(description);
+        Ui.editDescTaskLog(index, task);
+    }
+
+    /**
      * Returns a string containing tasks that have been found
      * after searching using text
      */
