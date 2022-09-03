@@ -11,6 +11,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Represents an object that tracks, loads, and saves tasks to the save file as changes are made.
+ */
 public class Storage {
     private String filePath;
 

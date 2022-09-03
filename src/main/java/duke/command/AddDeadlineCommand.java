@@ -9,8 +9,13 @@ import duke.ui.Ui;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an executable command to add a new Deadline object.
+ */
 public class AddDeadlineCommand extends Command {
+    /* Description of the task. */
     private String description;
+    /* Deadline of the task. */
     private LocalDateTime byDate;
 
     public AddDeadlineCommand(String description, LocalDateTime byDate) {
@@ -18,8 +23,15 @@ public class AddDeadlineCommand extends Command {
         this.byDate = byDate;
     }
 
+    /**
+     * Returns a task added status string after adding task to list.
+     *
+     * @param tasks TaskList object to add the task to.
+     * @param storage Storage object to manage save file.
+     * @return Task added status string.
+     */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) {
         Deadline t = new Deadline(description, byDate);
         tasks.add(t);
         storage.save(tasks);

@@ -9,11 +9,11 @@ import duke.task.TaskList;
 
 public class Duke {
 
-    // FILE PATH
     private static final String saveFilePath = "data/duke.txt";
 
-    // INSTANCE VARIABLES
+    /* Task list to store all the tasks. */
     private final TaskList tasks;
+    /* Storage object to manage save file. */
     private final Storage storage;
 
     public Duke() {
@@ -21,6 +21,12 @@ public class Duke {
         this.tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Returns a string that is used in the app's response dialog, based on user input.
+     *
+     * @param input User input from text field.
+     * @return String to use in Lurch's response dialog.
+     */
     public String getResponse(String input) {
         try {
             Command command = Parser.getCommand(input);

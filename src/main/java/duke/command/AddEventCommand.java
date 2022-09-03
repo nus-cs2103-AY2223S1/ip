@@ -9,8 +9,13 @@ import duke.ui.Ui;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an executable command to add a new Event object
+ */
 public class AddEventCommand extends Command {
+    /* Description of the task. */
     private String description;
+    /* Deadline of the task. */
     private LocalDateTime atDate;
 
     public AddEventCommand(String description, LocalDateTime atDate) {
@@ -18,6 +23,13 @@ public class AddEventCommand extends Command {
         this.atDate = atDate;
     }
 
+    /**
+     * Returns a task added status string after adding task to list.
+     *
+     * @param tasks TaskList object to add the task to.
+     * @param storage Storage object to manage save file.
+     * @return Task added status string.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         Event t = new Event(description, atDate);

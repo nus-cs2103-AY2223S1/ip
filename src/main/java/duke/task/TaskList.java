@@ -5,7 +5,11 @@ import duke.ui.Message;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a task list that can store and update tasks.
+ */
 public class TaskList {
+    /* ArrayList container to hold all the tasks. */
     private ArrayList<Task> taskList;
 
     public TaskList() {
@@ -117,6 +121,12 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Returns a string with tasks on separate lines.
+     *
+     * @return String with tasks on separate lines.
+     * @throws DukeException If task list is empty.
+     */
     public String getListString() throws DukeException {
         String msg = "";
         if (this.getSize() == 0) {

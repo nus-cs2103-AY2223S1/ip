@@ -3,6 +3,10 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline that can be described and marked as done,
+ * and holds a date by which the task must be completed.
+ */
 public class Deadline extends Task {
     private LocalDateTime byDate;
 
@@ -11,6 +15,11 @@ public class Deadline extends Task {
         this.byDate = byDate;
     }
 
+    /**
+     * Returns a string that is safe to use with the save file.
+     *
+     * @return String that is of the save file format.
+     */
     @Override
     public String saveText() {
         return String.format(
